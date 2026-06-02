@@ -4723,6 +4723,51 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "current702_20260602.json"
             )
         )
+        pair_coordinate_anchor = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+                "anchor_candidate_audit_current702_20260602.json"
+            )
+        )
+        pair_coordinate_anchor_candidate_strict_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+                "anchor_candidate_strict_audit_current702_20260602.json"
+            )
+        )
+        pair_coordinate_anchor_review_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+                "anchor_review_queue_current702_20260602.json"
+            )
+        )
+        pair_coordinate_anchor_manual_review_packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+                "anchor_manual_review_packet_current702_20260602.json"
+            )
+        )
+        pair_coordinate_anchor_priority1_review_worksheet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+                "anchor_priority1_review_worksheet_current702_20260602.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -5013,7 +5058,13 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_surface_plan["counts"][
                 "source_free_locator_input_priority1_rows_without_anchor"
             ],
-            126,
+            24,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_locator_input_priority1_rows_with_coordinate_anchor_candidate"
+            ],
+            102,
         )
         self.assertEqual(
             pair_surface_plan["counts"][
@@ -5039,7 +5090,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 for row in pair_surface_plan["required_extractors"]
                 if row["extractor"] == "source_free_active_site_residue_identity_counter"
             ],
-            ["blocked_source_free_locator_anchor_inputs_missing"],
+            ["blocked_source_free_coordinate_anchor_review_pending"],
         )
         self.assertFalse(pair_surface_plan["guardrails"]["heldout_rows_evaluated"])
         self.assertEqual(
@@ -5125,9 +5176,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             pair_locator_input["counts"][
+                "priority1_rows_with_source_free_coordinate_local_anchor_candidate"
+            ],
+            102,
+        )
+        self.assertEqual(
+            pair_locator_input["counts"][
                 "priority1_rows_without_source_free_anchor"
             ],
-            126,
+            24,
         )
         self.assertEqual(
             pair_locator_input["counts"]["source_free_locator_schema_available"],
@@ -5149,6 +5206,208 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_locator_input["decision"]["auto_create_locator_sidecars_now"]
         )
         self.assertFalse(pair_locator_input["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            pair_coordinate_anchor["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_ready_review_only",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor["counts"]["priority1_locator_queue_rows"], 126
+        )
+        self.assertEqual(
+            pair_coordinate_anchor["counts"]["selected_pdb_coordinate_files_found"],
+            126,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor["counts"][
+                "rows_with_minimum_coordinate_anchor_locators"
+            ],
+            102,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor["counts"][
+                "rows_with_all_candidate_sequence_positions_validated"
+            ],
+            93,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor["counts"]["candidate_sidecars_staged"], 126
+        )
+        self.assertEqual(
+            pair_coordinate_anchor["counts"][
+                "auto_create_locator_sidecar_allowed_rows"
+            ],
+            0,
+        )
+        self.assertFalse(
+            pair_coordinate_anchor["decision"]["auto_create_locator_sidecars_now"]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor["candidate_sidecars"][0][
+                "ready_for_predicted_geometry_scoring"
+            ]
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_candidate_strict_audit["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_passed_review_only",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_candidate_strict_audit["counts"][
+                "candidate_sidecars_checked"
+            ],
+            126,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_candidate_strict_audit["counts"][
+                "candidate_only_sidecars"
+            ],
+            126,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_candidate_strict_audit["counts"][
+                "sidecars_with_forbidden_feature_flags"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_candidate_strict_audit["counts"][
+                "ready_for_predicted_geometry_scoring"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_candidate_strict_audit["counts"][
+                "critical_violation_total"
+            ],
+            0,
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_candidate_strict_audit["decision"][
+                "copy_to_audited_locator_dir_allowed_now"
+            ]
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_review_queue["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_ready_review_only",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_review_queue["counts"]["review_queue_rows"],
+            126,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_review_queue["counts"][
+                "ready_for_manual_forbidden_feature_review"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_review_queue["counts"][
+                "needs_ligand_specificity_review"
+            ],
+            40,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_review_queue["counts"][
+                "needs_uniprot_position_validation"
+            ],
+            7,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_review_queue["counts"][
+                "blocked_minimum_or_no_ligand_anchor"
+            ],
+            24,
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_review_queue["decision"][
+                "copy_to_audited_locator_dir_allowed_now"
+            ]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_review_queue["guardrails"][
+                "heldout_rows_evaluated"
+            ]
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_manual_review_packet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_ready_review_only",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_manual_review_packet["counts"]["review_rows"],
+            126,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_manual_review_packet["counts"][
+                "candidate_sidecar_files_present"
+            ],
+            126,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_manual_review_packet["counts"][
+                "priority1_manual_forbidden_feature_review_rows"
+            ],
+            55,
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_manual_review_packet["decision"][
+                "copy_to_audited_locator_dir_allowed_now"
+            ]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_manual_review_packet["guardrails"][
+                "heldout_rows_evaluated"
+            ]
+        )
+        self.assertIsNotNone(
+            pair_coordinate_anchor_manual_review_packet["review_rows"][0][
+                "candidate_sha256"
+            ]
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_review_worksheet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_ready_review_only",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_review_worksheet["counts"][
+                "priority1_review_rows"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_review_worksheet["counts"][
+                "candidate_sidecar_files_present"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_review_worksheet["counts"][
+                "expanded_residue_locators"
+            ],
+            303,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_review_worksheet["role_hint_counts"][
+                "metal_ligand_or_water_activator_candidate"
+            ],
+            76,
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_priority1_review_worksheet["decision"][
+                "copy_to_audited_locator_dir_allowed_now"
+            ]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_priority1_review_worksheet["guardrails"][
+                "heldout_rows_evaluated"
+            ]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_priority1_review_worksheet["worksheet_rows"][0][
+                "ready_for_predicted_geometry_scoring"
+            ]
+        )
 
     def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
         self,

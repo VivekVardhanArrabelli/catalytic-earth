@@ -1,0 +1,3181 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_current702_20260602",
+  "class_counts": {
+    "blocked_minimum_or_no_ligand_anchor": 24,
+    "needs_ligand_specificity_review": 40,
+    "needs_uniprot_position_validation": 7,
+    "ready_for_manual_forbidden_feature_review": 55
+  },
+  "counts": {
+    "blocked_minimum_or_no_ligand_anchor": 24,
+    "copy_to_audited_locator_dir_allowed_now": 0,
+    "critical_violation_total": 0,
+    "needs_ligand_specificity_review": 40,
+    "needs_uniprot_position_validation": 7,
+    "ready_for_manual_forbidden_feature_review": 55,
+    "ready_for_predicted_geometry_scoring": 0,
+    "review_queue_rows": 126
+  },
+  "created_utc": "2026-06-02T14:21:44Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "approved_source_free_locator_surface_ready": false,
+    "copy_to_audited_locator_dir_allowed_now": false,
+    "heldout_read_once_performed": false,
+    "heldout_safe_pair_application_surface_ready": false,
+    "next_gate": "Manually review priority-1 coordinate-anchor candidates, then rewrite only approved locator sidecars into the audited locator directory and rerun schema/input/surface audits.",
+    "start_manual_review_with_priority_1_rows": 55
+  },
+  "guardrails": {
+    "copy_to_audited_locator_dir_allowed_now": false,
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_sidecars_created_or_copied": false,
+    "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Review priority-1 rows first; separately resolve ligand specificity, UniProt position validation, and minimum-locator blockers for the remaining candidates.",
+    "result": "55 coordinate-anchor candidates can start manual forbidden-feature review; no locator sidecar is approved or scoring-ready."
+  },
+  "queue_rows": [
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_3_P15559.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:3",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 53,
+        "chain_id": "B",
+        "comp_id": "FAD",
+        "residue_id": "602",
+        "structure_id": "1D4A"
+      },
+      "selected_structure_id": "1D4A",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P15559"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_9_P31153.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:9",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 27,
+        "chain_id": "A",
+        "comp_id": "SAM",
+        "residue_id": "405",
+        "structure_id": "5A1I"
+      },
+      "selected_structure_id": "5A1I",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P31153"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_32_Q04760.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:32",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "B",
+        "comp_id": "ZN",
+        "residue_id": "301",
+        "structure_id": "1QIN"
+      },
+      "selected_structure_id": "1QIN",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "Q04760"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_43_P80366.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:43",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "C",
+        "comp_id": "FE",
+        "residue_id": "438",
+        "structure_id": "4KBP"
+      },
+      "selected_structure_id": "4KBP",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P80366"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_44_P00634.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:44",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "B",
+        "comp_id": "ZN",
+        "residue_id": "451",
+        "structure_id": "1ALK"
+      },
+      "selected_structure_id": "1ALK",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P00634"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_45_P43379.json",
+      "candidate_residue_locator_count": 6,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:45",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "CA",
+        "residue_id": "691",
+        "structure_id": "1CDG"
+      },
+      "selected_structure_id": "1CDG",
+      "sequence_position_validated_locator_count": 6,
+      "source_accession": "P43379"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_46_P14385.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:46",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 27,
+        "chain_id": "A",
+        "comp_id": "SAM",
+        "residue_id": "500",
+        "structure_id": "2ADM"
+      },
+      "selected_structure_id": "2ADM",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P14385"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_56_Q9WZW0.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:56",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "C",
+        "comp_id": "MG",
+        "residue_id": "310",
+        "structure_id": "1ZE1"
+      },
+      "selected_structure_id": "1ZE1",
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "Q9WZW0"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_97_P0ABF6.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:97",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "296",
+        "structure_id": "1CTT"
+      },
+      "selected_structure_id": "1CTT",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P0ABF6"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_109_Q02127.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:109",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 31,
+        "chain_id": "A",
+        "comp_id": "FMN",
+        "residue_id": "398",
+        "structure_id": "1D3G"
+      },
+      "selected_structure_id": "1D3G",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q02127"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_115_Q9T0N8.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:115",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 53,
+        "chain_id": "A",
+        "comp_id": "FAD",
+        "residue_id": "1535",
+        "structure_id": "1W1O"
+      },
+      "selected_structure_id": "1W1O",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q9T0N8"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_121_P07850.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:121",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 43,
+        "chain_id": "B",
+        "comp_id": "HEM",
+        "residue_id": "502",
+        "structure_id": "1SOX"
+      },
+      "selected_structure_id": "1SOX",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P07850"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_131_P20586.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:131",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 53,
+        "chain_id": "A",
+        "comp_id": "FAD",
+        "residue_id": "395",
+        "structure_id": "1DOC"
+      },
+      "selected_structure_id": "1DOC",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P20586"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_159_P0A434.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:159",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "401",
+        "structure_id": "1HZY"
+      },
+      "selected_structure_id": "1HZY",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P0A434"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_163_P0A7Y4.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:163",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "300",
+        "structure_id": "1RDD"
+      },
+      "selected_structure_id": "1RDD",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P0A7Y4"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_171_P00730.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:171",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "1308",
+        "structure_id": "1M4L"
+      },
+      "selected_structure_id": "1M4L",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P00730"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_180_P35505.json",
+      "candidate_residue_locator_count": 5,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:180",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "B",
+        "comp_id": "MG",
+        "residue_id": "1005",
+        "structure_id": "1HYO"
+      },
+      "selected_structure_id": "1HYO",
+      "sequence_position_validated_locator_count": 5,
+      "source_accession": "P35505"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_188_P09147.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:188",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 44,
+        "chain_id": "A",
+        "comp_id": "NAD",
+        "residue_id": "340",
+        "structure_id": "1XEL"
+      },
+      "selected_structure_id": "1XEL",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P09147"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_199_P04425.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:199",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "319",
+        "structure_id": "1GSA"
+      },
+      "selected_structure_id": "1GSA",
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "P04425"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_211_P38489.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:211",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 31,
+        "chain_id": "A",
+        "comp_id": "FMN",
+        "residue_id": "1218",
+        "structure_id": "1IDT"
+      },
+      "selected_structure_id": "1IDT",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P38489"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_220_P20906.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:220",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "I",
+        "comp_id": "MG",
+        "residue_id": "530",
+        "structure_id": "1MCZ"
+      },
+      "selected_structure_id": "1MCZ",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P20906"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_239_P00433.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:239",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 43,
+        "chain_id": "A",
+        "comp_id": "HEM",
+        "residue_id": "350",
+        "structure_id": "7ATJ"
+      },
+      "selected_structure_id": "7ATJ",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P00433"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_242_Q8I914.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:242",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "601",
+        "structure_id": "2F9R"
+      },
+      "selected_structure_id": "2F9R",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "Q8I914"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_250_P04963.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:250",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 43,
+        "chain_id": "A",
+        "comp_id": "HEM",
+        "residue_id": "396",
+        "structure_id": "2CPO"
+      },
+      "selected_structure_id": "2CPO",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P04963"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_311_P00924.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:311",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "438",
+        "structure_id": "7ENL"
+      },
+      "selected_structure_id": "7ENL",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P00924"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_321_P09155.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:321",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 2,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "1001",
+        "structure_id": "1YT3"
+      },
+      "selected_structure_id": "1YT3",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P09155"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_323_P05314.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:323",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 8,
+        "chain_id": "A",
+        "comp_id": "SF4",
+        "residue_id": "563",
+        "structure_id": "2AKJ"
+      },
+      "selected_structure_id": "2AKJ",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P05314"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_333_Q9RUB5.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:333",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "D",
+        "comp_id": "MG",
+        "residue_id": "2004",
+        "structure_id": "2O1X"
+      },
+      "selected_structure_id": "2O1X",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "Q9RUB5"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_352_P00949.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:352",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "562",
+        "structure_id": "3PMG"
+      },
+      "selected_structure_id": "3PMG",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P00949"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_356_P14769.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:356",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "B",
+        "comp_id": "MN",
+        "residue_id": "2371",
+        "structure_id": "1VZX"
+      },
+      "selected_structure_id": "1VZX",
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "P14769"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_370_O75164.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:370",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "1357",
+        "structure_id": "2YBP"
+      },
+      "selected_structure_id": "2YBP",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "O75164"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_384_P23395.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:384",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "1000",
+        "structure_id": "1A8H"
+      },
+      "selected_structure_id": "1A8H",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P23395"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_392_P07801.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:392",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 26,
+        "chain_id": "A",
+        "comp_id": "SAH",
+        "residue_id": "287",
+        "structure_id": "1AF7"
+      },
+      "selected_structure_id": "1AF7",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P07801"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_397_P04063.json",
+      "candidate_residue_locator_count": 5,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:397",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "CA",
+        "residue_id": "500",
+        "structure_id": "1AMY"
+      },
+      "selected_structure_id": "1AMY",
+      "sequence_position_validated_locator_count": 5,
+      "source_accession": "P04063"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_403_P07584.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:403",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "999",
+        "structure_id": "1AST"
+      },
+      "selected_structure_id": "1AST",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P07584"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_418_P37821.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:418",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 15,
+        "chain_id": "B",
+        "comp_id": "PLP",
+        "residue_id": "500",
+        "structure_id": "1B8G"
+      },
+      "selected_structure_id": "1B8G",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P37821"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_419_O52552.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:419",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 15,
+        "chain_id": "A",
+        "comp_id": "PLP",
+        "residue_id": "389",
+        "structure_id": "1B9H"
+      },
+      "selected_structure_id": "1B9H",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "O52552"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_480_P26214.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:480",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "B",
+        "comp_id": "ZN",
+        "residue_id": "504",
+        "structure_id": "1CZF"
+      },
+      "selected_structure_id": "1CZF",
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "P26214"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_497_Q9FDN7.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:497",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 31,
+        "chain_id": "A",
+        "comp_id": "FMN",
+        "residue_id": "701",
+        "structure_id": "1YCF"
+      },
+      "selected_structure_id": "1YCF",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q9FDN7"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_517_P61517.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:517",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "301",
+        "structure_id": "1I6P"
+      },
+      "selected_structure_id": "1I6P",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P61517"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_526_P11708.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:526",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 44,
+        "chain_id": "A",
+        "comp_id": "NAD",
+        "residue_id": "335",
+        "structure_id": "4MDH"
+      },
+      "selected_structure_id": "4MDH",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P11708"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_541_P75430.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:541",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "401",
+        "structure_id": "1U3F"
+      },
+      "selected_structure_id": "1U3F",
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "P75430"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_545_Q7M523.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:545",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 15,
+        "chain_id": "A",
+        "comp_id": "PLP",
+        "residue_id": "342",
+        "structure_id": "1F2D"
+      },
+      "selected_structure_id": "1F2D",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q7M523"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_551_P15245.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:551",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 53,
+        "chain_id": "D",
+        "comp_id": "FAD",
+        "residue_id": "801",
+        "structure_id": "1FOH"
+      },
+      "selected_structure_id": "1FOH",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P15245"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_599_P36936.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:599",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "CD",
+        "residue_id": "1001",
+        "structure_id": "1FY2"
+      },
+      "selected_structure_id": "1FY2",
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "P36936"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_709_P00431.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:709",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 43,
+        "chain_id": "A",
+        "comp_id": "HEM",
+        "residue_id": "1",
+        "structure_id": "1DJ1"
+      },
+      "selected_structure_id": "1DJ1",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P00431"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_710_P25524.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:710",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "FE",
+        "residue_id": "500",
+        "structure_id": "1RA0"
+      },
+      "selected_structure_id": "1RA0",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P25524"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_714_P0ABI8.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:714",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 59,
+        "chain_id": "F",
+        "comp_id": "HEO",
+        "residue_id": "1002",
+        "structure_id": "1FFT"
+      },
+      "selected_structure_id": "1FFT",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P0ABI8"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_723_P00782.json",
+      "candidate_residue_locator_count": 6,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:723",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "CA",
+        "residue_id": "301",
+        "structure_id": "1S01"
+      },
+      "selected_structure_id": "1S01",
+      "sequence_position_validated_locator_count": 6,
+      "source_accession": "P00782"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_750_P55792.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:750",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 53,
+        "chain_id": "A",
+        "comp_id": "FAD",
+        "residue_id": "492",
+        "structure_id": "1U8V"
+      },
+      "selected_structure_id": "1U8V",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P55792"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_853_P31570.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:853",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 91,
+        "chain_id": "A",
+        "comp_id": "B12",
+        "residue_id": "800",
+        "structure_id": "1G64"
+      },
+      "selected_structure_id": "1G64",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P31570"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_854_P80147.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:854",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 15,
+        "chain_id": "C",
+        "comp_id": "PLP",
+        "residue_id": "600",
+        "structure_id": "1OHV"
+      },
+      "selected_structure_id": "1OHV",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P80147"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_916_P9WI55.json",
+      "candidate_residue_locator_count": 3,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:916",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "C",
+        "comp_id": "MG",
+        "residue_id": "500",
+        "structure_id": "4Z71"
+      },
+      "selected_structure_id": "4Z71",
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "P9WI55"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_990_Q8GS60.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:990",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 53,
+        "chain_id": "E",
+        "comp_id": "FAD",
+        "residue_id": "503",
+        "structure_id": "5DQR"
+      },
+      "selected_structure_id": "5DQR",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q8GS60"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_994_Q9Y3Z3.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:994",
+      "next_action": "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "D",
+        "comp_id": "MN",
+        "residue_id": "750",
+        "structure_id": "4BZC"
+      },
+      "selected_structure_id": "4BZC",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "Q9Y3Z3"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_12_P00480.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:12",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 16,
+        "chain_id": "A",
+        "comp_id": "PAO",
+        "residue_id": "355",
+        "structure_id": "1OTH"
+      },
+      "selected_structure_id": "1OTH",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P00480"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_14_P49053.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:14",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 4,
+        "chain_id": "A",
+        "comp_id": "VO4",
+        "residue_id": "610",
+        "structure_id": "1VNC"
+      },
+      "selected_structure_id": "1VNC",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P49053"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_30_P09373.json",
+      "candidate_residue_locator_count": 7,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:30",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "NA",
+        "residue_id": "2001",
+        "structure_id": "2PFL"
+      },
+      "selected_structure_id": "2PFL",
+      "sequence_position_validated_locator_count": 7,
+      "source_accession": "P09373"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_31_P00469.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:31",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 36,
+        "chain_id": "A",
+        "comp_id": "DHF",
+        "residue_id": "318",
+        "structure_id": "1LCB"
+      },
+      "selected_structure_id": "1LCB",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P00469"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_34_P06622.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:34",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 4,
+        "chain_id": "B",
+        "comp_id": "ACN",
+        "residue_id": "309",
+        "structure_id": "1MPY"
+      },
+      "selected_structure_id": "1MPY",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P06622"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_79_Q05603.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:79",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 5,
+        "chain_id": "A",
+        "comp_id": "PO4",
+        "residue_id": "998",
+        "structure_id": "1D0S"
+      },
+      "selected_structure_id": "1D0S",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q05603"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_118_Q00511.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:118",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 12,
+        "chain_id": "A",
+        "comp_id": "UNC",
+        "residue_id": "999",
+        "structure_id": "1WRR"
+      },
+      "selected_structure_id": "1WRR",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q00511"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_125_Q9ZP19.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:125",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 3,
+        "chain_id": "A",
+        "comp_id": "C2O",
+        "residue_id": "500",
+        "structure_id": "1BT3"
+      },
+      "selected_structure_id": "1BT3",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q9ZP19"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_129_P37610.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:129",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 10,
+        "chain_id": "D",
+        "comp_id": "AKG",
+        "residue_id": "504",
+        "structure_id": "1OS7"
+      },
+      "selected_structure_id": "1OS7",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P37610"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_155_O06644.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:155",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 48,
+        "chain_id": "A",
+        "comp_id": "COA",
+        "residue_id": "501",
+        "structure_id": "1T4C"
+      },
+      "selected_structure_id": "1T4C",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "O06644"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_185_O15527.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:185",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 11,
+        "chain_id": "E",
+        "comp_id": "PED",
+        "residue_id": "23",
+        "structure_id": "1LWY"
+      },
+      "selected_structure_id": "1LWY",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "O15527"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_192_Q9N0A4.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:192",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 25,
+        "chain_id": "D",
+        "comp_id": "IMN",
+        "residue_id": "476",
+        "structure_id": "1Z9H"
+      },
+      "selected_structure_id": "1Z9H",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q9N0A4"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_201_Q9X4K7.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:201",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 52,
+        "chain_id": "B",
+        "comp_id": "1VU",
+        "residue_id": "5601",
+        "structure_id": "1XNY"
+      },
+      "selected_structure_id": "1XNY",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q9X4K7"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_213_P10724.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:213",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 21,
+        "chain_id": "A",
+        "comp_id": "PDD",
+        "residue_id": "390",
+        "structure_id": "1L6G"
+      },
+      "selected_structure_id": "1L6G",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P10724"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_217_P52704.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:217",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 6,
+        "chain_id": "A",
+        "comp_id": "CNH",
+        "residue_id": "300",
+        "structure_id": "1SC9"
+      },
+      "selected_structure_id": "1SC9",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P52704"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_225_Q9WZC3.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:225",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 4,
+        "chain_id": "A",
+        "comp_id": "EDO",
+        "residue_id": "131",
+        "structure_id": "1VR7"
+      },
+      "selected_structure_id": "1VR7",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q9WZC3"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_254_P33247.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:254",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 28,
+        "chain_id": "B",
+        "comp_id": "R46",
+        "residue_id": "800",
+        "structure_id": "1H3B"
+      },
+      "selected_structure_id": "1H3B",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P33247"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_255_P00334.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:255",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 44,
+        "chain_id": "A",
+        "comp_id": "NAI",
+        "residue_id": "850",
+        "structure_id": "1MG5"
+      },
+      "selected_structure_id": "1MG5",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P00334"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_267_P0A6L2.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:267",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "K",
+        "residue_id": "293",
+        "structure_id": "1DHP"
+      },
+      "selected_structure_id": "1DHP",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P0A6L2"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_313_P04395.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:313",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 11,
+        "chain_id": "E",
+        "comp_id": "NRI",
+        "residue_id": "8",
+        "structure_id": "1DIZ"
+      },
+      "selected_structure_id": "1DIZ",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P04395"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_346_P9WNP5.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:346",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 54,
+        "chain_id": "K",
+        "comp_id": "CAA",
+        "residue_id": "500",
+        "structure_id": "1Q51"
+      },
+      "selected_structure_id": "1Q51",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P9WNP5"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_355_P30074.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:355",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 20,
+        "chain_id": "A",
+        "comp_id": "NAR",
+        "residue_id": "390",
+        "structure_id": "1CGK"
+      },
+      "selected_structure_id": "1CGK",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P30074"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_363_P08179.json",
+      "candidate_residue_locator_count": 7,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:363",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 5,
+        "chain_id": "A",
+        "comp_id": "PO4",
+        "residue_id": "301",
+        "structure_id": "1GRC"
+      },
+      "selected_structure_id": "1GRC",
+      "sequence_position_validated_locator_count": 7,
+      "source_accession": "P08179"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_369_P33038.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:369",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 7,
+        "chain_id": "B",
+        "comp_id": "HAI",
+        "residue_id": "1422",
+        "structure_id": "1DLG"
+      },
+      "selected_structure_id": "1DLG",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P33038"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_375_P0ABP8.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:375",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 19,
+        "chain_id": "A",
+        "comp_id": "FMC",
+        "residue_id": "300",
+        "structure_id": "4TS9"
+      },
+      "selected_structure_id": "4TS9",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P0ABP8"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_402_P04036.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:402",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 44,
+        "chain_id": "D",
+        "comp_id": "NAI",
+        "residue_id": "302",
+        "structure_id": "1ARZ"
+      },
+      "selected_structure_id": "1ARZ",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P04036"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_407_Q0ZPV7.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:407",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 7,
+        "chain_id": "A",
+        "comp_id": "4PA",
+        "residue_id": "369",
+        "structure_id": "2O7R"
+      },
+      "selected_structure_id": "2O7R",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q0ZPV7"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_409_P0A790.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:409",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 5,
+        "chain_id": "B",
+        "comp_id": "PYR",
+        "residue_id": "25",
+        "structure_id": "1AW8"
+      },
+      "selected_structure_id": "1AW8",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P0A790"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_423_P08236.json",
+      "candidate_residue_locator_count": 7,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:423",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 14,
+        "chain_id": "C",
+        "comp_id": "NAG",
+        "residue_id": "1",
+        "structure_id": "1BHG"
+      },
+      "selected_structure_id": "1BHG",
+      "sequence_position_validated_locator_count": 7,
+      "source_accession": "P08236"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_431_O59893.json",
+      "candidate_residue_locator_count": 5,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:431",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 5,
+        "chain_id": "A",
+        "comp_id": "SO4",
+        "residue_id": "208",
+        "structure_id": "1BS9"
+      },
+      "selected_structure_id": "1BS9",
+      "sequence_position_validated_locator_count": 5,
+      "source_accession": "O59893"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_440_P07987.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:440",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 13,
+        "chain_id": "C",
+        "comp_id": "MGL",
+        "residue_id": "1",
+        "structure_id": "1QK2"
+      },
+      "selected_structure_id": "1QK2",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P07987"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_493_P07649.json",
+      "candidate_residue_locator_count": 5,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:493",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "B",
+        "comp_id": "CL",
+        "residue_id": "601",
+        "structure_id": "1DJ0"
+      },
+      "selected_structure_id": "1DJ0",
+      "sequence_position_validated_locator_count": 5,
+      "source_accession": "P07649"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_509_Q9X592.json",
+      "candidate_residue_locator_count": 7,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:509",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 4,
+        "chain_id": "A",
+        "comp_id": "IPA",
+        "residue_id": "8244",
+        "structure_id": "1R76"
+      },
+      "selected_structure_id": "1R76",
+      "sequence_position_validated_locator_count": 7,
+      "source_accession": "Q9X592"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_511_Q13526.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:511",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 50,
+        "chain_id": "A",
+        "comp_id": "SO4",
+        "residue_id": "200",
+        "structure_id": "1NMW"
+      },
+      "selected_structure_id": "1NMW",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "Q13526"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_577_P29218.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:577",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 16,
+        "chain_id": "A",
+        "comp_id": "IPD",
+        "residue_id": "279",
+        "structure_id": "1IMA"
+      },
+      "selected_structure_id": "1IMA",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P29218"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_609_P00778.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:609",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 14,
+        "chain_id": "A",
+        "comp_id": "GOL",
+        "residue_id": "249",
+        "structure_id": "1SSX"
+      },
+      "selected_structure_id": "1SSX",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P00778"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_614_P0A715.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:614",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 10,
+        "chain_id": "A",
+        "comp_id": "PEP",
+        "residue_id": "300",
+        "structure_id": "1Q3N"
+      },
+      "selected_structure_id": "1Q3N",
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "P0A715"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_634_P84147.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:634",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 20,
+        "chain_id": "A",
+        "comp_id": "HI5",
+        "residue_id": "1515",
+        "structure_id": "1V0Y"
+      },
+      "selected_structure_id": "1V0Y",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P84147"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_651_P04807.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:651",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 5,
+        "chain_id": "A",
+        "comp_id": "SO4",
+        "residue_id": "501",
+        "structure_id": "1IG8"
+      },
+      "selected_structure_id": "1IG8",
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "P04807"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_688_Q5JP69.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:688",
+      "next_action": "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 14,
+        "chain_id": "C",
+        "comp_id": "NAG",
+        "residue_id": "1",
+        "structure_id": "2ODQ"
+      },
+      "selected_structure_id": "2ODQ",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q5JP69"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_20_Q07WU7.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:20",
+      "next_action": "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 53,
+        "chain_id": "A",
+        "comp_id": "FAD",
+        "residue_id": "1573",
+        "structure_id": "1QJD"
+      },
+      "selected_structure_id": "1QJD",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q07WU7"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_198_Q5SKN9.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:198",
+      "next_action": "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "B",
+        "comp_id": "MG",
+        "residue_id": "1002",
+        "structure_id": "1V25"
+      },
+      "selected_structure_id": "1V25",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q5SKN9"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_424_P23721.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:424",
+      "next_action": "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 24,
+        "chain_id": "B",
+        "comp_id": "LLP",
+        "residue_id": "198",
+        "structure_id": "1BJO"
+      },
+      "selected_structure_id": "1BJO",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P23721"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_444_P62694.json",
+      "candidate_residue_locator_count": 2,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:444",
+      "next_action": "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "CA",
+        "residue_id": "440",
+        "structure_id": "1CEL"
+      },
+      "selected_structure_id": "1CEL",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P62694"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_606_P0AEK4.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:606",
+      "next_action": "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 44,
+        "chain_id": "E",
+        "comp_id": "NAD",
+        "residue_id": "1313",
+        "structure_id": "1QSG"
+      },
+      "selected_structure_id": "1QSG",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P0AEK4"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_686_Q7SIG4.json",
+      "candidate_residue_locator_count": 4,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:686",
+      "next_action": "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "CA",
+        "residue_id": "401",
+        "structure_id": "1E1A"
+      },
+      "selected_structure_id": "1E1A",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q7SIG4"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_892_A2RJT9.json",
+      "candidate_residue_locator_count": 8,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:892",
+      "next_action": "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 31,
+        "chain_id": "A",
+        "comp_id": "FMN",
+        "residue_id": "312",
+        "structure_id": "2DOR"
+      },
+      "selected_structure_id": "2DOR",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "A2RJT9"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_10_P0A6Q3.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:10",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1MKB",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P0A6Q3"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_67_O52942.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:67",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1PJB",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "O52942"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_71_P12295.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:71",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1EUG",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P12295"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_73_P61459.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:73",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1DCO",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P61459"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_80_Q9X0I0.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:80",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1C3C",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q9X0I0"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_86_P51541.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:86",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "402",
+        "structure_id": "1BG0"
+      },
+      "selected_structure_id": "1BG0",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P51541"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_191_P07237.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:191",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1MEK",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P07237"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_197_P00952.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:197",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "2TS1",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P00952"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_230_Q59643.json",
+      "candidate_residue_locator_count": 1,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:230",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "1338",
+        "structure_id": "1GZG"
+      },
+      "selected_structure_id": "1GZG",
+      "sequence_position_validated_locator_count": 1,
+      "source_accession": "Q59643"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_297_P77072.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:297",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1S6L",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P77072"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_334_P44859.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:334",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1BWZ",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P44859"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_396_P56272.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:396",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1AM5",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P56272"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_428_Q9ZF13.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:428",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1BQC",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q9ZF13"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_448_P33665.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:448",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1CHK",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P33665"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_453_O68884.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:453",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1JKM",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "O68884"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_474_P19080.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:474",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "3ZO8",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P19080"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_566_P46844.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:566",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1GCU",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P46844"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_590_Q01172.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:590",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1IDJ",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q01172"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_594_Q9UM07.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:594",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1WD8",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q9UM07"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_617_Q44297.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:617",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1BG6",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "Q44297"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_627_P36655.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:627",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1L6P",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P36655"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_647_P05057.json",
+      "candidate_residue_locator_count": 1,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:647",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "603",
+        "structure_id": "1KNY"
+      },
+      "selected_structure_id": "1KNY",
+      "sequence_position_validated_locator_count": 1,
+      "source_accession": "P05057"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_866_P94388.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:866",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1L7A",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P94388"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_897_P23657.json",
+      "candidate_residue_locator_count": 0,
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "m_csa:897",
+      "next_action": "Find a different source-free locator path or selected coordinate before sidecar approval.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_minimum_or_no_ligand_anchor",
+      "selected_ligand_site": null,
+      "selected_structure_id": "1PVI",
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "P23657"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue",
+  "scope": "Review queue for current702 heldout coordinate-anchor locator candidates. It prioritizes candidates for manual review but does not approve, copy, score, import, or tune on heldout rows.",
+  "source_artifacts": {
+    "coordinate_anchor_candidate_audit": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602.json",
+      "sha256": "c65fc769b690caa190093ff54c04ad4294c1fe0f7700d2e2a1660f63eb13d475"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_ready_review_only"
+}

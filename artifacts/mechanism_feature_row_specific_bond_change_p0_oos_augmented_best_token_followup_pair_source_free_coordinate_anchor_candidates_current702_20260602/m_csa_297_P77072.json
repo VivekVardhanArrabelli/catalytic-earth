@@ -1,0 +1,94 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602_candidate",
+  "candidate_blockers": [
+    "candidate_sidecar_not_approved_for_scoring",
+    "candidate_sidecar_not_in_audited_locator_dir",
+    "insufficient_candidate_residue_locators",
+    "manual_review_required_before_copy_to_audited_dir",
+    "no_nonwater_ligand_or_metal_site_detected"
+  ],
+  "candidate_guardrails": {
+    "candidate_only": true,
+    "copied_to_audited_locator_dir": false,
+    "heldout_rows_evaluated": false,
+    "m_csa_heldout_active_site_roles_used_as_locator_source": false,
+    "predicted_geometry_scored": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "written_outside_audited_locator_dir": true
+  },
+  "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_297_P77072.json",
+  "coordinate_anchor_summary": {
+    "candidate_residue_locator_count": 0,
+    "has_source_free_coordinate_local_anchor_candidate": false,
+    "ligand_site_count": 0,
+    "required_residue_locator_minimum": 2,
+    "selected_ligand_contact_count": 0,
+    "selected_ligand_site": null,
+    "selected_pdb_coordinate_found": true,
+    "sequence_position_validated_locator_count": 0
+  },
+  "coordinate_candidate_evidence": {
+    "extraction": {
+      "blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected",
+        "insufficient_candidate_residue_locators"
+      ],
+      "candidate_ligand_sites": [],
+      "candidate_residue_locators": [],
+      "ligand_site_count": 0,
+      "selected_ligand_contact_count": 0,
+      "selected_ligand_site": null,
+      "sequence_position_mapping_records": [
+        {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 212,
+          "chain_id": "A",
+          "db_accession": "P77072",
+          "db_align_beg": 1,
+          "db_align_end": 212,
+          "seq_align_beg": 1,
+          "seq_align_end": 212
+        }
+      ],
+      "sequence_position_validated_locator_count": 0,
+      "status": "candidate_contacts_blocked_minimum_not_met"
+    },
+    "selected_pdb_cif": {
+      "exists": true,
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
+      "sha256": "5f230d1041067adbb3909550f7672e68681ae42d5b9ae7e4f368c6882dba366b"
+    }
+  },
+  "created_utc": "2026-06-02T14:16:49Z",
+  "entry_id": "m_csa:297",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "locator_evidence_class": null,
+  "locator_policy": "candidate_structure_local_ligand_geometry_without_source_text_review_required",
+  "predicted_model_id": "AF-P77072-F1-model_v6",
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate",
+  "selected_structure_id": "1S6L",
+  "source_accession": "P77072",
+  "source_free_active_site_locator_status": "candidate_contacts_blocked_minimum_not_met",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  },
+  "status": "source_free_coordinate_anchor_candidate_blocked"
+}

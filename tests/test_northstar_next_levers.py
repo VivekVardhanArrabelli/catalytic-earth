@@ -41,6 +41,11 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight,
@@ -7019,6 +7024,456 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(queue["guardrails"]["heldout_rows_evaluated"])
         self.assertFalse(queue["decision"]["apply_frozen_pair_threshold_now"])
 
+    def test_followup_pair_coordinate_anchor_candidate_audit_stages_review_only_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            predicted_path = root / "predicted.json"
+            schema_path = root / "schema.json"
+            coordinate_root = root / "coordinates"
+            coordinate_root.mkdir()
+            candidate_dir = root / "candidates"
+            (coordinate_root / "pdb_1ABC.cif").write_text(
+                MINI_LOCATOR_CIF,
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "source_accession": "PTEST",
+                                "queue_class": (
+                                    "priority_1_coordinate_ready_locator_candidate"
+                                ),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "status": "ok",
+                                "pdb_id": "AF-PTEST-F1-model_v6",
+                                "experimental_pdb_id": "1ABC",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "required_residue_locator_minimum": 2,
+                        },
+                        "forbidden_predictive_fields": [
+                            "mechanism_text",
+                            "source_prose",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit(
+                locator_action_queue_path=queue_path,
+                predicted_geometry_retrieval_path=predicted_path,
+                source_free_locator_schema_path=schema_path,
+                coordinate_search_roots=[coordinate_root],
+                candidate_dir=candidate_dir,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["priority1_locator_queue_rows"], 1)
+        self.assertEqual(audit["counts"]["selected_pdb_coordinate_files_found"], 1)
+        self.assertEqual(
+            audit["counts"]["rows_with_minimum_coordinate_anchor_locators"], 1
+        )
+        self.assertEqual(
+            audit["counts"]["rows_with_all_candidate_sequence_positions_validated"], 1
+        )
+        self.assertFalse(
+            audit["decision"]["auto_create_locator_sidecars_now"]
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+        self.assertFalse(
+            audit["candidate_sidecars"][0]["ready_for_predicted_geometry_scoring"]
+        )
+
+    def test_followup_pair_coordinate_anchor_review_queue_prioritizes_blockers(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_audit_path = root / "candidate_audit.json"
+            candidate_audit_path.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "candidate_path": "candidate/1.json",
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {"comp_id": "ZN"},
+                                "has_source_free_coordinate_local_anchor_candidate": True,
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "candidate_blockers": [
+                                    "candidate_sidecar_not_approved_for_scoring"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "source_accession": "P00002",
+                                "candidate_path": "candidate/2.json",
+                                "selected_structure_id": "1DEF",
+                                "selected_ligand_site": {"comp_id": "SO4"},
+                                "has_source_free_coordinate_local_anchor_candidate": True,
+                                "candidate_residue_locator_count": 3,
+                                "sequence_position_validated_locator_count": 3,
+                                "candidate_blockers": [
+                                    "coordinate_ligand_specificity_review_required"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "source_accession": "P00003",
+                                "candidate_path": "candidate/3.json",
+                                "selected_structure_id": "1GHI",
+                                "selected_ligand_site": {"comp_id": "FAD"},
+                                "has_source_free_coordinate_local_anchor_candidate": True,
+                                "candidate_residue_locator_count": 4,
+                                "sequence_position_validated_locator_count": 0,
+                                "candidate_blockers": [
+                                    "uniprot_sequence_position_validation_required"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "source_accession": "P00004",
+                                "candidate_path": "candidate/4.json",
+                                "selected_structure_id": "1JKL",
+                                "selected_ligand_site": None,
+                                "has_source_free_coordinate_local_anchor_candidate": False,
+                                "candidate_residue_locator_count": 0,
+                                "sequence_position_validated_locator_count": 0,
+                                "candidate_blockers": [
+                                    "insufficient_candidate_residue_locators"
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            queue = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue(
+                coordinate_anchor_candidate_audit_path=candidate_audit_path,
+            )
+
+        self.assertEqual(
+            queue["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_ready_review_only",
+        )
+        self.assertEqual(
+            queue["counts"]["ready_for_manual_forbidden_feature_review"], 1
+        )
+        self.assertEqual(queue["counts"]["needs_ligand_specificity_review"], 1)
+        self.assertEqual(queue["counts"]["needs_uniprot_position_validation"], 1)
+        self.assertEqual(queue["counts"]["blocked_minimum_or_no_ligand_anchor"], 1)
+        self.assertEqual(queue["queue_rows"][0]["entry_id"], "m_csa:1")
+        self.assertFalse(
+            queue["decision"]["copy_to_audited_locator_dir_allowed_now"]
+        )
+        self.assertFalse(queue["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_coordinate_anchor_candidate_strict_audit_passes_review_only_sidecars(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_dir = root / "source_free_coordinate_anchor_candidates"
+            candidate_dir.mkdir()
+            candidate_path = candidate_dir / "m_csa_1_P00001.json"
+            candidate_audit_path = root / "candidate_audit.json"
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_blockers": [
+                            "candidate_sidecar_not_approved_for_scoring",
+                            "candidate_sidecar_not_in_audited_locator_dir",
+                            "manual_review_required_before_copy_to_audited_dir",
+                        ],
+                        "candidate_guardrails": {
+                            "candidate_only": True,
+                            "copied_to_audited_locator_dir": False,
+                            "heldout_rows_evaluated": False,
+                            "predicted_geometry_scored": False,
+                            "source_text_or_label_fields_used_as_predictive_features": False,
+                            "written_outside_audited_locator_dir": True,
+                        },
+                        "forbidden_feature_audit": {
+                            "mechanism_text": False,
+                            "source_prose": False,
+                        },
+                        "ready_for_predicted_geometry_scoring": False,
+                        "split_protection": {
+                            "ready_for_label_import": False,
+                            "review_only": True,
+                        },
+                        "status": (
+                            "source_free_coordinate_anchor_candidate_staged_review_required"
+                        ),
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_audit_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_sidecars": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "candidate_path": str(candidate_path),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit(
+                coordinate_anchor_candidate_audit_path=candidate_audit_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["candidate_sidecars_checked"], 1)
+        self.assertEqual(audit["counts"]["candidate_only_sidecars"], 1)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertFalse(
+            audit["decision"]["copy_to_audited_locator_dir_allowed_now"]
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_coordinate_anchor_manual_review_packet_packages_sha(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_path = root / "candidate.json"
+            candidate_audit_path = root / "candidate_audit.json"
+            review_queue_path = root / "review_queue.json"
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "entry_id": "m_csa:1",
+                        "status": (
+                            "source_free_coordinate_anchor_candidate_staged_review_required"
+                        ),
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_audit_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_sidecars": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "candidate_path": str(candidate_path),
+                                "status": (
+                                    "source_free_coordinate_anchor_candidate_staged_review_required"
+                                ),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            review_queue_path.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "priority": 1,
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "candidate_path": str(candidate_path),
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {"comp_id": "ZN"},
+                                "review_class": (
+                                    "ready_for_manual_forbidden_feature_review"
+                                ),
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "candidate_blockers": [
+                                    "candidate_sidecar_not_approved_for_scoring"
+                                ],
+                                "next_action": "manual review",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet(
+                coordinate_anchor_candidate_audit_path=candidate_audit_path,
+                coordinate_anchor_review_queue_path=review_queue_path,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["review_rows"], 1)
+        self.assertEqual(packet["counts"]["candidate_sidecar_files_present"], 1)
+        self.assertEqual(
+            packet["counts"]["priority1_manual_forbidden_feature_review_rows"], 1
+        )
+        self.assertIsNotNone(packet["review_rows"][0]["candidate_sha256"])
+        self.assertFalse(
+            packet["decision"]["copy_to_audited_locator_dir_allowed_now"]
+        )
+        self.assertFalse(packet["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_coordinate_anchor_priority1_review_worksheet_expands_locators(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_path = root / "candidate.json"
+            packet_path = root / "manual_review_packet.json"
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "residue_locators": [
+                            {
+                                "candidate_contact_evidence": {
+                                    "distance_angstrom": 2.5,
+                                    "ligand_atom": "N1",
+                                    "ligand_comp_id": "FAD",
+                                    "residue_atom": "NE2",
+                                    "residue_chain_id": "A",
+                                    "residue_id": "42",
+                                    "selected_structure_id": "1ABC",
+                                },
+                                "coordinate_independent_provenance": {
+                                    "heldout_rows_used": False,
+                                    "sequence_position_source": "struct_ref_seq.auth_seq_id",
+                                    "sequence_position_uniprot_validated": True,
+                                    "source_text_used": False,
+                                },
+                                "locator_confidence": 0.25,
+                                "locator_evidence_class": (
+                                    "structure_local_ligand_geometry_without_source_text"
+                                ),
+                                "residue_code": "HIS",
+                                "role_hint": "flavin_redox_contact_candidate",
+                                "sequence_position": 42,
+                            },
+                            {
+                                "candidate_contact_evidence": {
+                                    "distance_angstrom": 3.0,
+                                    "ligand_atom": "O2",
+                                    "ligand_comp_id": "FAD",
+                                    "residue_atom": "OD1",
+                                    "residue_chain_id": "A",
+                                    "residue_id": "81",
+                                    "selected_structure_id": "1ABC",
+                                },
+                                "coordinate_independent_provenance": {
+                                    "heldout_rows_used": False,
+                                    "sequence_position_source": "struct_ref_seq.auth_seq_id",
+                                    "sequence_position_uniprot_validated": True,
+                                    "source_text_used": False,
+                                },
+                                "locator_confidence": 0.25,
+                                "locator_evidence_class": (
+                                    "structure_local_ligand_geometry_without_source_text"
+                                ),
+                                "residue_code": "ASP",
+                                "role_hint": "polar_or_catalytic_ligand_contact_candidate",
+                                "sequence_position": 81,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            packet_path.write_text(
+                json.dumps(
+                    {
+                        "review_rows": [
+                            {
+                                "priority": 1,
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "candidate_path": str(candidate_path),
+                                "candidate_sha256": "abc",
+                                "candidate_file_exists": True,
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {"comp_id": "FAD"},
+                                "review_class": (
+                                    "ready_for_manual_forbidden_feature_review"
+                                ),
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "manual_review_checklist": ["review"],
+                                "next_action": "manual review",
+                            },
+                            {
+                                "priority": 2,
+                                "entry_id": "m_csa:2",
+                                "source_accession": "P00002",
+                                "candidate_path": str(root / "candidate2.json"),
+                                "review_class": "needs_ligand_specificity_review",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            worksheet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet(
+                coordinate_anchor_manual_review_packet_path=packet_path,
+            )
+
+        self.assertEqual(
+            worksheet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_ready_review_only",
+        )
+        self.assertEqual(worksheet["counts"]["priority1_review_rows"], 1)
+        self.assertEqual(worksheet["counts"]["candidate_sidecar_files_present"], 1)
+        self.assertEqual(worksheet["counts"]["expanded_residue_locators"], 2)
+        self.assertEqual(worksheet["role_hint_counts"]["flavin_redox_contact_candidate"], 1)
+        self.assertEqual(worksheet["residue_code_counts"]["ASP"], 1)
+        self.assertFalse(
+            worksheet["decision"]["copy_to_audited_locator_dir_allowed_now"]
+        )
+        self.assertFalse(worksheet["guardrails"]["heldout_rows_evaluated"])
+        self.assertFalse(
+            worksheet["worksheet_rows"][0]["locator_evidence"][0]["source_text_used"]
+        )
+
     def test_followup_pair_source_free_locator_input_audit_blocks_without_anchors(
         self,
     ) -> None:
@@ -7121,9 +7576,101 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(audit["decision"]["auto_create_locator_sidecars_now"])
         self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
         self.assertIn(
-            "priority1_rows_lack_source_free_contact_anchor",
+            "priority1_rows_lack_source_free_contact_or_coordinate_anchor",
             audit["blockers"],
         )
+
+    def test_followup_pair_source_free_locator_input_audit_counts_coordinate_candidates(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            predicted_path = root / "predicted.json"
+            coordinate_anchor_path = root / "coordinate_anchor.json"
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "queue_class": (
+                                    "priority_1_coordinate_ready_locator_candidate"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "queue_class": (
+                                    "priority_1_coordinate_ready_locator_candidate"
+                                ),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "status": "ok",
+                                "pdb_id": "AF-P00001-F1-model_v6",
+                                "ligand_context": {"ligand_codes": []},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "status": "ok",
+                                "pdb_id": "AF-P00002-F1-model_v6",
+                                "ligand_context": {"ligand_codes": []},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            coordinate_anchor_path.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "candidate_path": "candidate/m_csa_1.json",
+                                "selected_structure_id": "1ABC",
+                                "has_source_free_coordinate_local_anchor_candidate": True,
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "status": (
+                                    "source_free_coordinate_anchor_candidate_staged_review_required"
+                                ),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit(
+                locator_action_queue_path=queue_path,
+                predicted_geometry_retrieval_path=predicted_path,
+                coordinate_anchor_candidate_audit_path=coordinate_anchor_path,
+            )
+
+        self.assertEqual(
+            audit["counts"][
+                "priority1_rows_with_source_free_coordinate_local_anchor_candidate"
+            ],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["priority1_rows_without_source_free_anchor"], 1
+        )
+        self.assertIn(
+            "source_free_coordinate_anchor_candidates_need_review",
+            audit["blockers"],
+        )
+        self.assertFalse(audit["decision"]["auto_create_locator_sidecars_now"])
 
     def test_best_token_followup_token_ablation_scores_remaining_oos(
         self,

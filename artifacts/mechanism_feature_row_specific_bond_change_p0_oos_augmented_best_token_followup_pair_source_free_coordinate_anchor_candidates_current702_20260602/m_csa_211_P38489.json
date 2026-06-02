@@ -1,0 +1,1354 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602_candidate",
+  "candidate_blockers": [
+    "candidate_sidecar_not_approved_for_scoring",
+    "candidate_sidecar_not_in_audited_locator_dir",
+    "manual_review_required_before_copy_to_audited_dir"
+  ],
+  "candidate_guardrails": {
+    "candidate_only": true,
+    "copied_to_audited_locator_dir": false,
+    "heldout_rows_evaluated": false,
+    "m_csa_heldout_active_site_roles_used_as_locator_source": false,
+    "predicted_geometry_scored": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "written_outside_audited_locator_dir": true
+  },
+  "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_211_P38489.json",
+  "coordinate_anchor_summary": {
+    "candidate_residue_locator_count": 8,
+    "has_source_free_coordinate_local_anchor_candidate": true,
+    "ligand_site_count": 4,
+    "required_residue_locator_minimum": 2,
+    "selected_ligand_contact_count": 16,
+    "selected_ligand_site": {
+      "atom_count": 31,
+      "chain_id": "A",
+      "comp_id": "FMN",
+      "residue_id": "1218",
+      "structure_id": "1IDT"
+    },
+    "selected_pdb_coordinate_found": true,
+    "sequence_position_validated_locator_count": 8
+  },
+  "coordinate_candidate_evidence": {
+    "extraction": {
+      "blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_ligand_sites": [
+        {
+          "candidate_sequence_position_contact_count": 23,
+          "contact_count": 23,
+          "contacts": [
+            {
+              "auth_seq_id": 14,
+              "candidate_sequence_position": 14,
+              "distance_angstrom": 2.659,
+              "label_seq_id": 14,
+              "ligand_atom": "O2",
+              "residue_atom": "NZ",
+              "residue_chain_id": "A",
+              "residue_code": "LYS",
+              "residue_id": "14",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 207,
+              "candidate_sequence_position": 207,
+              "distance_angstrom": 2.679,
+              "label_seq_id": 207,
+              "ligand_atom": "O3P",
+              "residue_atom": "NH2",
+              "residue_chain_id": "A",
+              "residue_code": "ARG",
+              "residue_id": "207",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 12,
+              "candidate_sequence_position": 12,
+              "distance_angstrom": 2.692,
+              "label_seq_id": 12,
+              "ligand_atom": "O2P",
+              "residue_atom": "OG",
+              "residue_chain_id": "A",
+              "residue_code": "SER",
+              "residue_id": "12",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 74,
+              "candidate_sequence_position": 74,
+              "distance_angstrom": 2.758,
+              "label_seq_id": 74,
+              "ligand_atom": "O2",
+              "residue_atom": "NZ",
+              "residue_chain_id": "A",
+              "residue_code": "LYS",
+              "residue_id": "74",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 10,
+              "candidate_sequence_position": 10,
+              "distance_angstrom": 2.815,
+              "label_seq_id": 10,
+              "ligand_atom": "O2P",
+              "residue_atom": "NH1",
+              "residue_chain_id": "A",
+              "residue_code": "ARG",
+              "residue_id": "10",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 205,
+              "candidate_sequence_position": 205,
+              "distance_angstrom": 2.824,
+              "label_seq_id": 205,
+              "ligand_atom": "O3P",
+              "residue_atom": "NZ",
+              "residue_chain_id": "A",
+              "residue_code": "LYS",
+              "residue_id": "205",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 163,
+              "candidate_sequence_position": 163,
+              "distance_angstrom": 2.849,
+              "label_seq_id": 163,
+              "ligand_atom": "C4A",
+              "residue_atom": "O",
+              "residue_chain_id": "A",
+              "residue_code": "PRO",
+              "residue_id": "163",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 165,
+              "candidate_sequence_position": 165,
+              "distance_angstrom": 2.987,
+              "label_seq_id": 165,
+              "ligand_atom": "N5",
+              "residue_atom": "N",
+              "residue_chain_id": "A",
+              "residue_code": "GLU",
+              "residue_id": "165",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 166,
+              "candidate_sequence_position": 166,
+              "distance_angstrom": 3.084,
+              "label_seq_id": 166,
+              "ligand_atom": "O4",
+              "residue_atom": "N",
+              "residue_chain_id": "A",
+              "residue_code": "GLY",
+              "residue_id": "166",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 38,
+              "candidate_sequence_position": 38,
+              "distance_angstrom": 3.188,
+              "label_seq_id": 38,
+              "ligand_atom": "O3'",
+              "residue_atom": "CB",
+              "residue_chain_id": "B",
+              "residue_code": "PRO",
+              "residue_id": "38",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 40,
+              "candidate_sequence_position": 40,
+              "distance_angstrom": 3.194,
+              "label_seq_id": 40,
+              "ligand_atom": "C8M",
+              "residue_atom": "N",
+              "residue_chain_id": "B",
+              "residue_code": "SER",
+              "residue_id": "40",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 39,
+              "candidate_sequence_position": 39,
+              "distance_angstrom": 3.206,
+              "label_seq_id": 39,
+              "ligand_atom": "C8M",
+              "residue_atom": "C",
+              "residue_chain_id": "B",
+              "residue_code": "SER",
+              "residue_id": "39",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 42,
+              "candidate_sequence_position": 42,
+              "distance_angstrom": 3.24,
+              "label_seq_id": 42,
+              "ligand_atom": "O4'",
+              "residue_atom": "CB",
+              "residue_chain_id": "B",
+              "residue_code": "ASN",
+              "residue_id": "42",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 11,
+              "candidate_sequence_position": 11,
+              "distance_angstrom": 3.241,
+              "label_seq_id": 11,
+              "ligand_atom": "O1P",
+              "residue_atom": "CA",
+              "residue_chain_id": "A",
+              "residue_code": "HIS",
+              "residue_id": "11",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 71,
+              "candidate_sequence_position": 71,
+              "distance_angstrom": 3.316,
+              "label_seq_id": 71,
+              "ligand_atom": "N3",
+              "residue_atom": "OD1",
+              "residue_chain_id": "A",
+              "residue_code": "ASN",
+              "residue_id": "71",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 164,
+              "candidate_sequence_position": 164,
+              "distance_angstrom": 3.354,
+              "label_seq_id": 164,
+              "ligand_atom": "O4",
+              "residue_atom": "CG2",
+              "residue_chain_id": "A",
+              "residue_code": "ILE",
+              "residue_id": "164",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            }
+          ],
+          "ligand_site": {
+            "atom_count": 31,
+            "chain_id": "A",
+            "comp_id": "FMN",
+            "residue_id": "1218",
+            "structure_id": "1IDT"
+          }
+        },
+        {
+          "candidate_sequence_position_contact_count": 22,
+          "contact_count": 22,
+          "contacts": [
+            {
+              "auth_seq_id": 14,
+              "candidate_sequence_position": 14,
+              "distance_angstrom": 2.625,
+              "label_seq_id": 14,
+              "ligand_atom": "O2",
+              "residue_atom": "NZ",
+              "residue_chain_id": "B",
+              "residue_code": "LYS",
+              "residue_id": "14",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 207,
+              "candidate_sequence_position": 207,
+              "distance_angstrom": 2.67,
+              "label_seq_id": 207,
+              "ligand_atom": "O3P",
+              "residue_atom": "NH2",
+              "residue_chain_id": "B",
+              "residue_code": "ARG",
+              "residue_id": "207",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 12,
+              "candidate_sequence_position": 12,
+              "distance_angstrom": 2.731,
+              "label_seq_id": 12,
+              "ligand_atom": "O2P",
+              "residue_atom": "OG",
+              "residue_chain_id": "B",
+              "residue_code": "SER",
+              "residue_id": "12",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 205,
+              "candidate_sequence_position": 205,
+              "distance_angstrom": 2.813,
+              "label_seq_id": 205,
+              "ligand_atom": "O3P",
+              "residue_atom": "NZ",
+              "residue_chain_id": "B",
+              "residue_code": "LYS",
+              "residue_id": "205",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 10,
+              "candidate_sequence_position": 10,
+              "distance_angstrom": 2.917,
+              "label_seq_id": 10,
+              "ligand_atom": "O2P",
+              "residue_atom": "NH2",
+              "residue_chain_id": "B",
+              "residue_code": "ARG",
+              "residue_id": "10",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 163,
+              "candidate_sequence_position": 163,
+              "distance_angstrom": 2.958,
+              "label_seq_id": 163,
+              "ligand_atom": "N10",
+              "residue_atom": "O",
+              "residue_chain_id": "B",
+              "residue_code": "PRO",
+              "residue_id": "163",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 165,
+              "candidate_sequence_position": 165,
+              "distance_angstrom": 2.961,
+              "label_seq_id": 165,
+              "ligand_atom": "N5",
+              "residue_atom": "N",
+              "residue_chain_id": "B",
+              "residue_code": "GLU",
+              "residue_id": "165",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 166,
+              "candidate_sequence_position": 166,
+              "distance_angstrom": 3.008,
+              "label_seq_id": 166,
+              "ligand_atom": "O4",
+              "residue_atom": "N",
+              "residue_chain_id": "B",
+              "residue_code": "GLY",
+              "residue_id": "166",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 11,
+              "candidate_sequence_position": 11,
+              "distance_angstrom": 3.207,
+              "label_seq_id": 11,
+              "ligand_atom": "O1P",
+              "residue_atom": "CA",
+              "residue_chain_id": "B",
+              "residue_code": "HIS",
+              "residue_id": "11",
+              "role_hint": "flavin_redox_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 38,
+              "candidate_sequence_position": 38,
+              "distance_angstrom": 3.275,
+              "label_seq_id": 38,
+              "ligand_atom": "O3'",
+              "residue_atom": "CB",
+              "residue_chain_id": "A",
+              "residue_code": "PRO",
+              "residue_id": "38",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 40,
+              "candidate_sequence_position": 40,
+              "distance_angstrom": 3.339,
+              "label_seq_id": 40,
+              "ligand_atom": "C8M",
+              "residue_atom": "N",
+              "residue_chain_id": "A",
+              "residue_code": "SER",
+              "residue_id": "40",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 39,
+              "candidate_sequence_position": 39,
+              "distance_angstrom": 3.343,
+              "label_seq_id": 39,
+              "ligand_atom": "C8M",
+              "residue_atom": "C",
+              "residue_chain_id": "A",
+              "residue_code": "SER",
+              "residue_id": "39",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 42,
+              "candidate_sequence_position": 42,
+              "distance_angstrom": 3.363,
+              "label_seq_id": 42,
+              "ligand_atom": "O4'",
+              "residue_atom": "CB",
+              "residue_chain_id": "A",
+              "residue_code": "ASN",
+              "residue_id": "42",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 164,
+              "candidate_sequence_position": 164,
+              "distance_angstrom": 3.458,
+              "label_seq_id": 164,
+              "ligand_atom": "N5",
+              "residue_atom": "CA",
+              "residue_chain_id": "B",
+              "residue_code": "ILE",
+              "residue_id": "164",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 142,
+              "candidate_sequence_position": 142,
+              "distance_angstrom": 3.5,
+              "label_seq_id": 142,
+              "ligand_atom": "C7M",
+              "residue_atom": "OE1",
+              "residue_chain_id": "A",
+              "residue_code": "GLN",
+              "residue_id": "142",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 145,
+              "candidate_sequence_position": 145,
+              "distance_angstrom": 3.579,
+              "label_seq_id": 145,
+              "ligand_atom": "C8M",
+              "residue_atom": "CD1",
+              "residue_chain_id": "A",
+              "residue_code": "LEU",
+              "residue_id": "145",
+              "role_hint": "flavin_binding_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            }
+          ],
+          "ligand_site": {
+            "atom_count": 31,
+            "chain_id": "B",
+            "comp_id": "FMN",
+            "residue_id": "2218",
+            "structure_id": "1IDT"
+          }
+        },
+        {
+          "candidate_sequence_position_contact_count": 8,
+          "contact_count": 8,
+          "contacts": [
+            {
+              "auth_seq_id": 14,
+              "candidate_sequence_position": 14,
+              "distance_angstrom": 2.599,
+              "label_seq_id": 14,
+              "ligand_atom": "O1",
+              "residue_atom": "NZ",
+              "residue_chain_id": "A",
+              "residue_code": "LYS",
+              "residue_id": "14",
+              "role_hint": "polar_or_catalytic_ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 41,
+              "candidate_sequence_position": 41,
+              "distance_angstrom": 2.654,
+              "label_seq_id": 41,
+              "ligand_atom": "O3",
+              "residue_atom": "N",
+              "residue_chain_id": "B",
+              "residue_code": "THR",
+              "residue_id": "41",
+              "role_hint": "polar_or_catalytic_ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 124,
+              "candidate_sequence_position": 124,
+              "distance_angstrom": 3.385,
+              "label_seq_id": 124,
+              "ligand_atom": "N6",
+              "residue_atom": "CE1",
+              "residue_chain_id": "B",
+              "residue_code": "PHE",
+              "residue_id": "124",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 70,
+              "candidate_sequence_position": 70,
+              "distance_angstrom": 3.412,
+              "label_seq_id": 70,
+              "ligand_atom": "C9",
+              "residue_atom": "CD2",
+              "residue_chain_id": "A",
+              "residue_code": "PHE",
+              "residue_id": "70",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 40,
+              "candidate_sequence_position": 40,
+              "distance_angstrom": 3.785,
+              "label_seq_id": 40,
+              "ligand_atom": "O3",
+              "residue_atom": "C",
+              "residue_chain_id": "B",
+              "residue_code": "SER",
+              "residue_id": "40",
+              "role_hint": "polar_or_catalytic_ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 117,
+              "candidate_sequence_position": 117,
+              "distance_angstrom": 3.823,
+              "label_seq_id": 117,
+              "ligand_atom": "O2",
+              "residue_atom": "ND2",
+              "residue_chain_id": "B",
+              "residue_code": "ASN",
+              "residue_id": "117",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 71,
+              "candidate_sequence_position": 71,
+              "distance_angstrom": 3.961,
+              "label_seq_id": 71,
+              "ligand_atom": "C9",
+              "residue_atom": "ND2",
+              "residue_chain_id": "A",
+              "residue_code": "ASN",
+              "residue_id": "71",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 199,
+              "candidate_sequence_position": 199,
+              "distance_angstrom": 4.292,
+              "label_seq_id": 199,
+              "ligand_atom": "O",
+              "residue_atom": "CZ",
+              "residue_chain_id": "A",
+              "residue_code": "PHE",
+              "residue_id": "199",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            }
+          ],
+          "ligand_site": {
+            "atom_count": 18,
+            "chain_id": "A",
+            "comp_id": "CB1",
+            "residue_id": "2219",
+            "structure_id": "1IDT"
+          }
+        },
+        {
+          "candidate_sequence_position_contact_count": 7,
+          "contact_count": 7,
+          "contacts": [
+            {
+              "auth_seq_id": 70,
+              "candidate_sequence_position": 70,
+              "distance_angstrom": 3.011,
+              "label_seq_id": 70,
+              "ligand_atom": "O3",
+              "residue_atom": "CZ",
+              "residue_chain_id": "B",
+              "residue_code": "PHE",
+              "residue_id": "70",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 124,
+              "candidate_sequence_position": 124,
+              "distance_angstrom": 3.133,
+              "label_seq_id": 124,
+              "ligand_atom": "O3",
+              "residue_atom": "CE2",
+              "residue_chain_id": "A",
+              "residue_code": "PHE",
+              "residue_id": "124",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 41,
+              "candidate_sequence_position": 41,
+              "distance_angstrom": 3.314,
+              "label_seq_id": 41,
+              "ligand_atom": "O1",
+              "residue_atom": "CG2",
+              "residue_chain_id": "A",
+              "residue_code": "THR",
+              "residue_id": "41",
+              "role_hint": "polar_or_catalytic_ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 117,
+              "candidate_sequence_position": 117,
+              "distance_angstrom": 4.127,
+              "label_seq_id": 117,
+              "ligand_atom": "N1",
+              "residue_atom": "OD1",
+              "residue_chain_id": "A",
+              "residue_code": "ASN",
+              "residue_id": "117",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 40,
+              "candidate_sequence_position": 40,
+              "distance_angstrom": 4.195,
+              "label_seq_id": 40,
+              "ligand_atom": "O1",
+              "residue_atom": "OG",
+              "residue_chain_id": "A",
+              "residue_code": "SER",
+              "residue_id": "40",
+              "role_hint": "polar_or_catalytic_ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 14,
+              "candidate_sequence_position": 14,
+              "distance_angstrom": 4.196,
+              "label_seq_id": 14,
+              "ligand_atom": "O",
+              "residue_atom": "NZ",
+              "residue_chain_id": "B",
+              "residue_code": "LYS",
+              "residue_id": "14",
+              "role_hint": "polar_or_catalytic_ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            },
+            {
+              "auth_seq_id": 120,
+              "candidate_sequence_position": 120,
+              "distance_angstrom": 4.395,
+              "label_seq_id": 120,
+              "ligand_atom": "O4",
+              "residue_atom": "CA",
+              "residue_chain_id": "A",
+              "residue_code": "GLY",
+              "residue_id": "120",
+              "role_hint": "ligand_contact_candidate",
+              "sequence_position_source": "label_seq_id"
+            }
+          ],
+          "ligand_site": {
+            "atom_count": 18,
+            "chain_id": "A",
+            "comp_id": "CB1",
+            "residue_id": "1219",
+            "structure_id": "1IDT"
+          }
+        }
+      ],
+      "candidate_residue_locators": [
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 14,
+            "distance_angstrom": 2.659,
+            "label_seq_id": 14,
+            "ligand_atom": "O2",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "NZ",
+            "residue_chain_id": "A",
+            "residue_id": "14",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "LYS",
+          "role_hint": "flavin_binding_contact_candidate",
+          "sequence_position": 14
+        },
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 207,
+            "distance_angstrom": 2.679,
+            "label_seq_id": 207,
+            "ligand_atom": "O3P",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "NH2",
+            "residue_chain_id": "A",
+            "residue_id": "207",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "ARG",
+          "role_hint": "flavin_redox_contact_candidate",
+          "sequence_position": 207
+        },
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 12,
+            "distance_angstrom": 2.692,
+            "label_seq_id": 12,
+            "ligand_atom": "O2P",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "OG",
+            "residue_chain_id": "A",
+            "residue_id": "12",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "SER",
+          "role_hint": "flavin_binding_contact_candidate",
+          "sequence_position": 12
+        },
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 74,
+            "distance_angstrom": 2.758,
+            "label_seq_id": 74,
+            "ligand_atom": "O2",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "NZ",
+            "residue_chain_id": "A",
+            "residue_id": "74",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "LYS",
+          "role_hint": "flavin_binding_contact_candidate",
+          "sequence_position": 74
+        },
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 10,
+            "distance_angstrom": 2.815,
+            "label_seq_id": 10,
+            "ligand_atom": "O2P",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "NH1",
+            "residue_chain_id": "A",
+            "residue_id": "10",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "ARG",
+          "role_hint": "flavin_redox_contact_candidate",
+          "sequence_position": 10
+        },
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 205,
+            "distance_angstrom": 2.824,
+            "label_seq_id": 205,
+            "ligand_atom": "O3P",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "NZ",
+            "residue_chain_id": "A",
+            "residue_id": "205",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "LYS",
+          "role_hint": "flavin_binding_contact_candidate",
+          "sequence_position": 205
+        },
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 163,
+            "distance_angstrom": 2.849,
+            "label_seq_id": 163,
+            "ligand_atom": "C4A",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "O",
+            "residue_chain_id": "A",
+            "residue_id": "163",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "PRO",
+          "role_hint": "flavin_binding_contact_candidate",
+          "sequence_position": 163
+        },
+        {
+          "candidate_contact_evidence": {
+            "auth_seq_id": 165,
+            "distance_angstrom": 2.987,
+            "label_seq_id": 165,
+            "ligand_atom": "N5",
+            "ligand_comp_id": "FMN",
+            "residue_atom": "N",
+            "residue_chain_id": "A",
+            "residue_id": "165",
+            "selected_structure_id": "1IDT"
+          },
+          "coordinate_independent_provenance": {
+            "heldout_rows_used": false,
+            "method": "source_free_selected_structure_ligand_contact_candidate",
+            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+            "sequence_position_uniprot_validated": true,
+            "source_text_used": false,
+            "struct_ref_seq_mapping": {
+              "auth_seq_align_beg": 1,
+              "auth_seq_align_end": 217,
+              "chain_id": "A",
+              "db_accession": "P38489",
+              "db_align_beg": 1,
+              "db_align_end": 217,
+              "mapping_basis": "struct_ref_seq.auth_seq_id",
+              "seq_align_beg": 1,
+              "seq_align_end": 217
+            }
+          },
+          "locator_confidence": 0.25,
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "residue_code": "GLU",
+          "role_hint": "flavin_redox_contact_candidate",
+          "sequence_position": 165
+        }
+      ],
+      "ligand_site_count": 4,
+      "selected_ligand_contact_count": 16,
+      "selected_ligand_site": {
+        "atom_count": 31,
+        "chain_id": "A",
+        "comp_id": "FMN",
+        "residue_id": "1218",
+        "structure_id": "1IDT"
+      },
+      "sequence_position_mapping_records": [
+        {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        },
+        {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "B",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      ],
+      "sequence_position_validated_locator_count": 8,
+      "status": "candidate_contacts_staged_review_required"
+    },
+    "selected_pdb_cif": {
+      "exists": true,
+      "path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IDT.cif",
+      "sha256": "722e0444cb5913ce03636d90290fee99abc75b9e5590d73ed9036a8198b1aa10"
+    }
+  },
+  "created_utc": "2026-06-02T14:16:12Z",
+  "entry_id": "m_csa:211",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+  "locator_policy": "candidate_structure_local_ligand_geometry_without_source_text_review_required",
+  "predicted_model_id": "AF-P38489-F1-model_v6",
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 14,
+        "distance_angstrom": 2.659,
+        "label_seq_id": 14,
+        "ligand_atom": "O2",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "NZ",
+        "residue_chain_id": "A",
+        "residue_id": "14",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "LYS",
+      "role_hint": "flavin_binding_contact_candidate",
+      "sequence_position": 14
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 207,
+        "distance_angstrom": 2.679,
+        "label_seq_id": 207,
+        "ligand_atom": "O3P",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "NH2",
+        "residue_chain_id": "A",
+        "residue_id": "207",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "ARG",
+      "role_hint": "flavin_redox_contact_candidate",
+      "sequence_position": 207
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 12,
+        "distance_angstrom": 2.692,
+        "label_seq_id": 12,
+        "ligand_atom": "O2P",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "OG",
+        "residue_chain_id": "A",
+        "residue_id": "12",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "SER",
+      "role_hint": "flavin_binding_contact_candidate",
+      "sequence_position": 12
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 74,
+        "distance_angstrom": 2.758,
+        "label_seq_id": 74,
+        "ligand_atom": "O2",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "NZ",
+        "residue_chain_id": "A",
+        "residue_id": "74",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "LYS",
+      "role_hint": "flavin_binding_contact_candidate",
+      "sequence_position": 74
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 10,
+        "distance_angstrom": 2.815,
+        "label_seq_id": 10,
+        "ligand_atom": "O2P",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "NH1",
+        "residue_chain_id": "A",
+        "residue_id": "10",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "ARG",
+      "role_hint": "flavin_redox_contact_candidate",
+      "sequence_position": 10
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 205,
+        "distance_angstrom": 2.824,
+        "label_seq_id": 205,
+        "ligand_atom": "O3P",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "NZ",
+        "residue_chain_id": "A",
+        "residue_id": "205",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "LYS",
+      "role_hint": "flavin_binding_contact_candidate",
+      "sequence_position": 205
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 163,
+        "distance_angstrom": 2.849,
+        "label_seq_id": 163,
+        "ligand_atom": "C4A",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "O",
+        "residue_chain_id": "A",
+        "residue_id": "163",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "PRO",
+      "role_hint": "flavin_binding_contact_candidate",
+      "sequence_position": 163
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 165,
+        "distance_angstrom": 2.987,
+        "label_seq_id": 165,
+        "ligand_atom": "N5",
+        "ligand_comp_id": "FMN",
+        "residue_atom": "N",
+        "residue_chain_id": "A",
+        "residue_id": "165",
+        "selected_structure_id": "1IDT"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "sequence_position_source": "struct_ref_seq.auth_seq_id",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 217,
+          "chain_id": "A",
+          "db_accession": "P38489",
+          "db_align_beg": 1,
+          "db_align_end": 217,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 1,
+          "seq_align_end": 217
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "GLU",
+      "role_hint": "flavin_redox_contact_candidate",
+      "sequence_position": 165
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate",
+  "selected_structure_id": "1IDT",
+  "source_accession": "P38489",
+  "source_free_active_site_locator_status": "candidate_contacts_staged_review_required",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  },
+  "status": "source_free_coordinate_anchor_candidate_staged_review_required"
+}

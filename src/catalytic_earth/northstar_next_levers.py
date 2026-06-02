@@ -338,6 +338,21 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_INPUT_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_CANDIDATE_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_CANDIDATE_STRICT_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_REVIEW_QUEUE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_MANUAL_REVIEW_PACKET_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_PRIORITY1_REVIEW_WORKSHEET_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_current702_20260602"
+)
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
 RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
@@ -30070,8 +30085,29 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         locator_input_audit
         and int(locator_input_counts.get("auto_create_locator_sidecar_allowed_rows") or 0)
         == 0
-        and int(locator_input_counts.get("priority1_rows_without_source_free_anchor") or 0)
+        and (
+            int(locator_input_counts.get("priority1_rows_without_source_free_anchor") or 0)
+            > 0
+            or int(
+                locator_input_counts.get(
+                    "priority1_rows_with_source_free_coordinate_local_anchor_candidate"
+                )
+                or 0
+            )
+            > 0
+        )
+    )
+    locator_input_coordinate_anchor_review_pending = bool(
+        locator_input_audit
+        and int(
+            locator_input_counts.get(
+                "priority1_rows_with_source_free_coordinate_local_anchor_candidate"
+            )
+            or 0
+        )
         > 0
+        and int(locator_input_counts.get("auto_create_locator_sidecar_allowed_rows") or 0)
+        == 0
     )
     previous_token = pair_sidecar.get("decision", {}).get(
         "previous_selected_feature_token"
@@ -30085,7 +30121,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         else {}
     )
     residue_count_extractor_status = (
-        "blocked_source_free_locator_anchor_inputs_missing"
+        "blocked_source_free_coordinate_anchor_review_pending"
+        if locator_input_coordinate_anchor_review_pending
+        else "blocked_source_free_locator_anchor_inputs_missing"
         if locator_input_blocks_auto_creation
         else (
             "queued_current702_locator_materialization"
@@ -30209,6 +30247,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             ),
             "source_free_locator_input_priority1_rows_without_anchor": (
                 locator_input_counts.get("priority1_rows_without_source_free_anchor")
+            ),
+            "source_free_locator_input_priority1_rows_with_coordinate_anchor_candidate": (
+                locator_input_counts.get(
+                    "priority1_rows_with_source_free_coordinate_local_anchor_candidate"
+                )
             ),
             "source_free_locator_input_auto_create_allowed_rows": (
                 locator_input_counts.get("auto_create_locator_sidecar_allowed_rows")
@@ -30337,6 +30380,8 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{counts.get('source_free_locator_priority1_candidates')}",
         "- Source-free locator priority-1 rows without anchor: "
         f"{counts.get('source_free_locator_input_priority1_rows_without_anchor')}",
+        "- Source-free locator priority-1 rows with coordinate-anchor candidate: "
+        f"{counts.get('source_free_locator_input_priority1_rows_with_coordinate_anchor_candidate')}",
         "- Source-free locator auto-create allowed rows: "
         f"{counts.get('source_free_locator_input_auto_create_allowed_rows')}",
         "- Required residue locators per approved sidecar: "
@@ -31103,6 +31148,1396 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     return queue
 
 
+def _coordinate_structure_id_from_path(path: Path) -> str | None:
+    stem = path.stem.upper()
+    if stem.startswith("PDB_"):
+        token = stem.removeprefix("PDB_")
+    else:
+        token = stem
+    return token if re.fullmatch(r"[0-9][A-Z0-9]{3}", token) else None
+
+
+def _selected_pdb_coordinate_index(
+    coordinate_search_roots: list[Path],
+) -> dict[str, Path]:
+    index: dict[str, Path] = {}
+    for root in coordinate_search_roots:
+        root = Path(root)
+        if not root.exists():
+            continue
+        paths = sorted(root.rglob("*.cif")) if root.is_dir() else [root]
+        for path in paths:
+            structure_id = _coordinate_structure_id_from_path(path)
+            if structure_id and structure_id not in index:
+                index[structure_id] = path
+    return index
+
+
+def _coordinate_anchor_candidate_sidecar(
+    *,
+    queue_row: dict[str, Any],
+    predicted_row: dict[str, Any],
+    locator_schema: dict[str, Any],
+    coordinate_index: dict[str, Path],
+    candidate_dir: Path,
+) -> dict[str, Any]:
+    entry_id = str(queue_row.get("entry_id") or "")
+    source_accession = str(queue_row.get("source_accession") or "")
+    selected_structure_id = str(predicted_row.get("experimental_pdb_id") or "").upper()
+    coordinate_path = coordinate_index.get(selected_structure_id)
+    candidate_path = _locator_sidecar_path(entry_id, source_accession, candidate_dir)
+    if coordinate_path is not None:
+        extraction = _extract_locator_candidate_from_selected_cif(
+            cif_path=coordinate_path,
+            structure_id=selected_structure_id,
+            source_accession=source_accession,
+        )
+    else:
+        extraction = {
+            "status": "selected_structure_coordinate_missing",
+            "ligand_site_count": 0,
+            "selected_ligand_site": None,
+            "selected_ligand_contact_count": 0,
+            "candidate_residue_locators": [],
+            "candidate_ligand_sites": [],
+            "sequence_position_mapping_records": [],
+            "sequence_position_validated_locator_count": 0,
+            "blockers": ["selected_structure_coordinate_missing"],
+        }
+    residue_locators = [
+        row
+        for row in extraction.get("candidate_residue_locators", [])
+        if isinstance(row, dict)
+    ]
+    required_minimum = int(
+        locator_schema.get("counts", {}).get("required_residue_locator_minimum") or 2
+    )
+    validated_count = int(
+        extraction.get("sequence_position_validated_locator_count") or 0
+    )
+    has_minimum_anchor = len(residue_locators) >= required_minimum
+    coordinate_record = {
+        "path": str(coordinate_path) if coordinate_path is not None else None,
+        "exists": coordinate_path.exists() if coordinate_path is not None else False,
+        "sha256": _sha256(coordinate_path)
+        if coordinate_path is not None and coordinate_path.exists()
+        else None,
+    }
+    forbidden_fields = locator_schema.get("forbidden_predictive_fields", [])
+    blockers = sorted(
+        set(
+            list(extraction.get("blockers", []))
+            + [
+                "candidate_sidecar_not_approved_for_scoring",
+                "manual_review_required_before_copy_to_audited_dir",
+            ]
+        )
+    )
+    return {
+        "artifact_id": (
+            f"{MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_CANDIDATE_AUDIT_ID}"
+            "_candidate"
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "source_free_coordinate_anchor_candidate_staged_review_required"
+            if has_minimum_anchor
+            else "source_free_coordinate_anchor_candidate_blocked"
+        ),
+        "entry_id": entry_id,
+        "source_accession": source_accession,
+        "selected_structure_id": selected_structure_id or None,
+        "predicted_model_id": predicted_row.get("pdb_id"),
+        "locator_policy": (
+            "candidate_structure_local_ligand_geometry_without_source_text_review_required"
+        ),
+        "locator_evidence_class": (
+            "structure_local_ligand_geometry_without_source_text"
+            if residue_locators
+            else None
+        ),
+        "source_free_active_site_locator_status": extraction.get("status"),
+        "residue_locators": residue_locators,
+        "forbidden_feature_audit": {field: False for field in forbidden_fields},
+        "split_protection": {
+            "review_only": True,
+            "allowed_for_training": False,
+            "allowed_for_threshold_selection": False,
+            "ready_for_label_import": False,
+        },
+        "ready_for_predicted_geometry_scoring": False,
+        "candidate_path": str(candidate_path),
+        "candidate_blockers": blockers,
+        "candidate_guardrails": {
+            "candidate_only": True,
+            "written_outside_audited_locator_dir": True,
+            "copied_to_audited_locator_dir": False,
+            "predicted_geometry_scored": False,
+            "source_text_or_label_fields_used_as_predictive_features": False,
+            "m_csa_heldout_active_site_roles_used_as_locator_source": False,
+            "heldout_rows_evaluated": False,
+        },
+        "coordinate_anchor_summary": {
+            "has_source_free_coordinate_local_anchor_candidate": has_minimum_anchor,
+            "selected_pdb_coordinate_found": coordinate_record["exists"],
+            "selected_ligand_site": extraction.get("selected_ligand_site"),
+            "ligand_site_count": extraction.get("ligand_site_count", 0),
+            "selected_ligand_contact_count": extraction.get(
+                "selected_ligand_contact_count", 0
+            ),
+            "candidate_residue_locator_count": len(residue_locators),
+            "sequence_position_validated_locator_count": validated_count,
+            "required_residue_locator_minimum": required_minimum,
+        },
+        "coordinate_candidate_evidence": {
+            "selected_pdb_cif": coordinate_record,
+            "extraction": extraction,
+        },
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit(
+    *,
+    locator_action_queue_path: Path,
+    predicted_geometry_retrieval_path: Path,
+    source_free_locator_schema_path: Path,
+    coordinate_search_roots: list[Path],
+    candidate_dir: Path,
+) -> dict[str, Any]:
+    locator_queue = _read_json(locator_action_queue_path)
+    predicted_geometry = _read_json(predicted_geometry_retrieval_path)
+    locator_schema = _read_json(source_free_locator_schema_path)
+    coordinate_index = _selected_pdb_coordinate_index(coordinate_search_roots)
+    predicted_by_entry = {
+        str(row.get("entry_id")): row
+        for row in predicted_geometry.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    priority_rows = [
+        row
+        for row in locator_queue.get("queue_rows", [])
+        if isinstance(row, dict)
+        and row.get("queue_class")
+        == "priority_1_coordinate_ready_locator_candidate"
+    ]
+    candidates = [
+        _coordinate_anchor_candidate_sidecar(
+            queue_row=row,
+            predicted_row=predicted_by_entry.get(str(row.get("entry_id")), {}),
+            locator_schema=locator_schema,
+            coordinate_index=coordinate_index,
+            candidate_dir=candidate_dir,
+        )
+        for row in priority_rows
+    ]
+    row_audits = []
+    status_counts: Counter[str] = Counter()
+    blocker_counts: Counter[str] = Counter()
+    selected_ligand_counts: Counter[str] = Counter()
+    for candidate in candidates:
+        summary = candidate.get("coordinate_anchor_summary") or {}
+        selected_ligand = summary.get("selected_ligand_site") or {}
+        ligand_code = selected_ligand.get("comp_id")
+        if ligand_code:
+            selected_ligand_counts[str(ligand_code)] += 1
+        status_counts[str(candidate.get("status"))] += 1
+        for blocker in candidate.get("candidate_blockers", []):
+            blocker_counts[str(blocker)] += 1
+        row_audits.append(
+            {
+                "entry_id": candidate.get("entry_id"),
+                "source_accession": candidate.get("source_accession"),
+                "selected_structure_id": candidate.get("selected_structure_id"),
+                "candidate_path": candidate.get("candidate_path"),
+                "status": candidate.get("status"),
+                "selected_pdb_coordinate_found": summary.get(
+                    "selected_pdb_coordinate_found"
+                ),
+                "selected_ligand_site": selected_ligand or None,
+                "candidate_residue_locator_count": summary.get(
+                    "candidate_residue_locator_count"
+                ),
+                "sequence_position_validated_locator_count": summary.get(
+                    "sequence_position_validated_locator_count"
+                ),
+                "has_source_free_coordinate_local_anchor_candidate": summary.get(
+                    "has_source_free_coordinate_local_anchor_candidate"
+                ),
+                "candidate_blockers": candidate.get("candidate_blockers", []),
+            }
+        )
+    anchored = [
+        row
+        for row in row_audits
+        if row.get("has_source_free_coordinate_local_anchor_candidate")
+    ]
+    coordinate_found = [
+        row for row in row_audits if row.get("selected_pdb_coordinate_found")
+    ]
+    all_validated = [
+        row
+        for row in row_audits
+        if row.get("candidate_residue_locator_count")
+        and row.get("candidate_residue_locator_count")
+        == row.get("sequence_position_validated_locator_count")
+    ]
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_CANDIDATE_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_ready_review_only"
+        ),
+        "scope": (
+            "Review-only coordinate-local anchor candidate audit for priority-1 "
+            "current702 heldout locator rows. It extracts non-water ligand/metal "
+            "contact residue candidates from selected PDB coordinates without "
+            "using M-CSA heldout mechanism text, labels, source IDs, target "
+            "names, or EC/Rhea IDs, and does not approve locator sidecars."
+        ),
+        "candidate_dir": str(candidate_dir),
+        "row_audits": sorted(
+            row_audits,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "candidate_sidecars": candidates,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": False,
+            "candidate_sidecars_written_outside_audited_locator_dir": True,
+            "auto_locator_creation_allowed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "priority1_locator_queue_rows": len(priority_rows),
+            "coordinate_search_roots": len(coordinate_search_roots),
+            "selected_pdb_coordinate_files_found": len(coordinate_found),
+            "selected_pdb_coordinate_files_missing": len(priority_rows)
+            - len(coordinate_found),
+            "candidate_sidecars_staged": len(candidates),
+            "rows_with_nonwater_ligand_or_metal_site": sum(
+                1
+                for candidate in candidates
+                if int(
+                    (candidate.get("coordinate_anchor_summary") or {}).get(
+                        "ligand_site_count"
+                    )
+                    or 0
+                )
+                > 0
+            ),
+            "rows_with_minimum_coordinate_anchor_locators": len(anchored),
+            "rows_with_all_candidate_sequence_positions_validated": len(
+                all_validated
+            ),
+            "auto_create_locator_sidecar_allowed_rows": 0,
+            "approved_locator_sidecars_created_or_copied": 0,
+            "candidate_status_counts": dict(sorted(status_counts.items())),
+            "candidate_blocker_counts": dict(sorted(blocker_counts.items())),
+            "selected_ligand_counts": dict(sorted(selected_ligand_counts.items())),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "coordinate_anchor_candidates_ready_for_review": len(anchored),
+            "auto_create_locator_sidecars_now": False,
+            "approved_source_free_locator_surface_ready": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Review and rewrite only scientifically valid coordinate-anchor "
+                "candidates into the approved source-free locator directory; "
+                "then rerun the locator input audit and source-free application "
+                "surface before any heldout threshold application."
+            ),
+        },
+        "source_artifacts": {
+            "locator_action_queue": _source_path_record(locator_action_queue_path),
+            "predicted_geometry_retrieval": _source_path_record(
+                predicted_geometry_retrieval_path
+            ),
+            "source_free_locator_schema": _source_path_record(
+                source_free_locator_schema_path
+            ),
+            "coordinate_search_roots": [
+                _source_free_locator_dir_record(root)
+                for root in coordinate_search_roots
+            ],
+        },
+        "interpretation": {
+            "result": (
+                f"{len(anchored)}/{len(priority_rows)} priority-1 rows now have "
+                "candidate source-free coordinate-local ligand/metal anchors, "
+                "but all remain review-only and unapproved for scoring."
+            ),
+            "next_action": (
+                "Use this candidate audit as the concrete review queue for "
+                "approved locator sidecar creation; do not copy candidates "
+                "mechanically into the audited locator directory."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Coordinate Anchor Candidate Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Priority-1 queue rows: {counts['priority1_locator_queue_rows']}",
+        "- Selected PDB coordinate files found: "
+        f"{counts['selected_pdb_coordinate_files_found']}",
+        "- Rows with non-water ligand/metal site: "
+        f"{counts['rows_with_nonwater_ligand_or_metal_site']}",
+        "- Rows with >=2 coordinate-anchor locators: "
+        f"{counts['rows_with_minimum_coordinate_anchor_locators']}",
+        "- Rows with all candidate sequence positions validated: "
+        f"{counts['rows_with_all_candidate_sequence_positions_validated']}",
+        "- Auto-create locator sidecars now: "
+        f"{audit['decision']['auto_create_locator_sidecars_now']}",
+        "",
+        "## Candidate Rows",
+        "",
+        "| row | accession | selected PDB | ligand | locators | validated | status | blockers |",
+        "| --- | --- | --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for row in audit["row_audits"]:
+        ligand = row.get("selected_ligand_site") or {}
+        ligand_label = (
+            f"{ligand.get('comp_id')}:{ligand.get('chain_id')}:{ligand.get('residue_id')}"
+            if ligand
+            else "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{row['selected_structure_id']} | {ligand_label} | "
+            f"{row['candidate_residue_locator_count']} | "
+            f"{row['sequence_position_validated_locator_count']} | "
+            f"{row['status']} | {', '.join(row['candidate_blockers'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit(
+    *,
+    locator_action_queue_path: Path,
+    predicted_geometry_retrieval_path: Path,
+    source_free_locator_schema_path: Path,
+    coordinate_search_roots: list[Path],
+    candidate_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit(
+        locator_action_queue_path=locator_action_queue_path,
+        predicted_geometry_retrieval_path=predicted_geometry_retrieval_path,
+        source_free_locator_schema_path=source_free_locator_schema_path,
+        coordinate_search_roots=coordinate_search_roots,
+        candidate_dir=candidate_dir,
+    )
+    candidate_dir.mkdir(parents=True, exist_ok=True)
+    for candidate in audit.get("candidate_sidecars", []):
+        path = Path(str(candidate["candidate_path"]))
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            json.dumps(candidate, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _coordinate_anchor_candidate_strict_audit_violations(
+    candidate_path: Path,
+    candidate: dict[str, Any],
+) -> list[str]:
+    violations = []
+    guardrails = candidate.get("candidate_guardrails") or {}
+    split_protection = candidate.get("split_protection") or {}
+    forbidden_feature_audit = candidate.get("forbidden_feature_audit") or {}
+    blockers = set(candidate.get("candidate_blockers", []))
+    if candidate.get("ready_for_predicted_geometry_scoring"):
+        violations.append("candidate_marked_ready_for_predicted_geometry_scoring")
+    if not guardrails.get("candidate_only"):
+        violations.append("candidate_guardrail_candidate_only_missing")
+    if guardrails.get("copied_to_audited_locator_dir"):
+        violations.append("candidate_copied_to_audited_locator_dir")
+    if not guardrails.get("written_outside_audited_locator_dir"):
+        violations.append("candidate_not_marked_outside_audited_locator_dir")
+    if guardrails.get("heldout_rows_evaluated"):
+        violations.append("heldout_rows_evaluated")
+    if guardrails.get("predicted_geometry_scored"):
+        violations.append("predicted_geometry_scored")
+    if guardrails.get("source_text_or_label_fields_used_as_predictive_features"):
+        violations.append("source_text_or_label_fields_used")
+    if any(bool(value) for value in forbidden_feature_audit.values()):
+        violations.append("forbidden_feature_flag_present")
+    if not split_protection.get("review_only"):
+        violations.append("split_protection_review_only_missing")
+    if split_protection.get("ready_for_label_import"):
+        violations.append("split_protection_ready_for_label_import")
+    required_blockers = {
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+    }
+    missing_blockers = sorted(required_blockers.difference(blockers))
+    if missing_blockers:
+        violations.append("missing_review_only_blockers:" + ",".join(missing_blockers))
+    if "source_free_coordinate_anchor_candidates" not in str(candidate_path):
+        violations.append("candidate_path_not_staged_coordinate_anchor_dir")
+    return violations
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit(
+    *,
+    coordinate_anchor_candidate_audit_path: Path,
+) -> dict[str, Any]:
+    candidate_audit = _read_json(coordinate_anchor_candidate_audit_path)
+    rows = []
+    violation_counts: Counter[str] = Counter()
+    files_present = 0
+    candidate_only_sidecars = 0
+    forbidden_feature_flagged = 0
+    for candidate_row in candidate_audit.get("candidate_sidecars", []):
+        if not isinstance(candidate_row, dict):
+            continue
+        candidate_path = Path(str(candidate_row.get("candidate_path") or ""))
+        candidate_exists = candidate_path.exists()
+        candidate_payload = _read_json(candidate_path) if candidate_exists else {}
+        if candidate_exists:
+            files_present += 1
+        guardrails = candidate_payload.get("candidate_guardrails") or {}
+        forbidden_feature_audit = candidate_payload.get("forbidden_feature_audit") or {}
+        if guardrails.get("candidate_only"):
+            candidate_only_sidecars += 1
+        if any(bool(value) for value in forbidden_feature_audit.values()):
+            forbidden_feature_flagged += 1
+        violations = (
+            _coordinate_anchor_candidate_strict_audit_violations(
+                candidate_path, candidate_payload
+            )
+            if candidate_exists
+            else ["candidate_sidecar_file_missing"]
+        )
+        for violation in violations:
+            violation_counts[violation] += 1
+        rows.append(
+            {
+                "entry_id": candidate_row.get("entry_id"),
+                "source_accession": candidate_row.get("source_accession"),
+                "candidate_path": str(candidate_path),
+                "candidate_file_exists": candidate_exists,
+                "candidate_sha256": _sha256(candidate_path)
+                if candidate_exists
+                else None,
+                "candidate_status": candidate_payload.get("status"),
+                "ready_for_predicted_geometry_scoring": candidate_payload.get(
+                    "ready_for_predicted_geometry_scoring"
+                ),
+                "candidate_only": guardrails.get("candidate_only"),
+                "copied_to_audited_locator_dir": guardrails.get(
+                    "copied_to_audited_locator_dir"
+                ),
+                "written_outside_audited_locator_dir": guardrails.get(
+                    "written_outside_audited_locator_dir"
+                ),
+                "forbidden_feature_flags": {
+                    key: value
+                    for key, value in sorted(forbidden_feature_audit.items())
+                    if bool(value)
+                },
+                "violations": violations,
+            }
+        )
+    critical_violation_total = sum(violation_counts.values())
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_CANDIDATE_STRICT_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_passed_review_only"
+            if critical_violation_total == 0
+            else "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_failed_review_only"
+        ),
+        "scope": (
+            "Strict audit for staged coordinate-anchor candidate sidecars. It "
+            "checks review-only, forbidden-feature, split-protection, and "
+            "not-scoring-ready guardrails but does not approve, copy, score, "
+            "evaluate heldout rows, or tune thresholds."
+        ),
+        "candidate_rows": rows,
+        "violation_counts": dict(sorted(violation_counts.items())),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": False,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "review_only": True,
+        },
+        "counts": {
+            "candidate_sidecars_checked": len(rows),
+            "candidate_sidecar_files_present": files_present,
+            "candidate_only_sidecars": candidate_only_sidecars,
+            "sidecars_with_forbidden_feature_flags": forbidden_feature_flagged,
+            "ready_for_predicted_geometry_scoring": sum(
+                1 for row in rows if row["ready_for_predicted_geometry_scoring"]
+            ),
+            "copied_to_audited_locator_dir": sum(
+                1 for row in rows if row["copied_to_audited_locator_dir"]
+            ),
+            "critical_violation_total": critical_violation_total,
+        },
+        "decision": {
+            "candidate_strict_audit_passed": critical_violation_total == 0,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "approved_source_free_locator_surface_ready": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Use the priority-1 worksheet for manual review; only after "
+                "explicit approval should locator sidecars be rewritten into "
+                "the audited locator directory."
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_anchor_candidate_audit": _source_path_record(
+                coordinate_anchor_candidate_audit_path
+            )
+        },
+        "interpretation": {
+            "result": (
+                f"{len(rows)} staged candidate sidecars were checked with "
+                f"{critical_violation_total} critical review-only guardrail violations."
+            ),
+            "next_action": (
+                "Proceed to manual priority-1 review only; this audit does not "
+                "authorize sidecar copy or scoring."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Coordinate Anchor Candidate Strict Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Candidate sidecars checked: {counts['candidate_sidecars_checked']}",
+        "- Candidate sidecar files present: "
+        f"{counts['candidate_sidecar_files_present']}",
+        f"- Candidate-only sidecars: {counts['candidate_only_sidecars']}",
+        "- Sidecars with forbidden-feature flags: "
+        f"{counts['sidecars_with_forbidden_feature_flags']}",
+        "- Ready for predicted-geometry scoring: "
+        f"{counts['ready_for_predicted_geometry_scoring']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Violations",
+        "",
+    ]
+    if audit["violation_counts"]:
+        for violation, count in audit["violation_counts"].items():
+            lines.append(f"- {violation}: {count}")
+    else:
+        lines.append("- none")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit(
+    *,
+    coordinate_anchor_candidate_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit(
+        coordinate_anchor_candidate_audit_path=coordinate_anchor_candidate_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _coordinate_anchor_review_class(row: dict[str, Any]) -> tuple[int, str, str]:
+    blockers = set(row.get("candidate_blockers", []))
+    if not row.get("has_source_free_coordinate_local_anchor_candidate"):
+        return (
+            4,
+            "blocked_minimum_or_no_ligand_anchor",
+            "Find a different source-free locator path or selected coordinate before sidecar approval.",
+        )
+    if "coordinate_ligand_specificity_review_required" in blockers:
+        return (
+            2,
+            "needs_ligand_specificity_review",
+            "Confirm the selected coordinate ligand is biologically relevant before sidecar rewrite.",
+        )
+    if "uniprot_sequence_position_validation_required" in blockers:
+        return (
+            3,
+            "needs_uniprot_position_validation",
+            "Validate every candidate residue sequence position against UniProt before sidecar rewrite.",
+        )
+    return (
+        1,
+        "ready_for_manual_forbidden_feature_review",
+        "Review forbidden-feature cleanliness, then rewrite only approved locators into the audited directory.",
+    )
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue(
+    *,
+    coordinate_anchor_candidate_audit_path: Path,
+) -> dict[str, Any]:
+    candidate_audit = _read_json(coordinate_anchor_candidate_audit_path)
+    queue_rows = []
+    class_counts: Counter[str] = Counter()
+    for row in candidate_audit.get("row_audits", []):
+        if not isinstance(row, dict):
+            continue
+        priority, review_class, next_action = _coordinate_anchor_review_class(row)
+        class_counts[review_class] += 1
+        queue_rows.append(
+            {
+                "priority": priority,
+                "entry_id": row.get("entry_id"),
+                "source_accession": row.get("source_accession"),
+                "candidate_path": row.get("candidate_path"),
+                "selected_structure_id": row.get("selected_structure_id"),
+                "selected_ligand_site": row.get("selected_ligand_site"),
+                "review_class": review_class,
+                "candidate_residue_locator_count": row.get(
+                    "candidate_residue_locator_count"
+                ),
+                "sequence_position_validated_locator_count": row.get(
+                    "sequence_position_validated_locator_count"
+                ),
+                "candidate_blockers": row.get("candidate_blockers", []),
+                "copy_to_audited_locator_dir_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "next_action": next_action,
+            }
+        )
+    queue_rows.sort(
+        key=lambda row: (
+            int(row.get("priority") or 99),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        )
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_REVIEW_QUEUE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_ready_review_only"
+        ),
+        "scope": (
+            "Review queue for current702 heldout coordinate-anchor locator "
+            "candidates. It prioritizes candidates for manual review but does "
+            "not approve, copy, score, import, or tune on heldout rows."
+        ),
+        "queue_rows": queue_rows,
+        "class_counts": dict(sorted(class_counts.items())),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": False,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "review_only": True,
+        },
+        "counts": {
+            "review_queue_rows": len(queue_rows),
+            "ready_for_manual_forbidden_feature_review": class_counts.get(
+                "ready_for_manual_forbidden_feature_review", 0
+            ),
+            "needs_ligand_specificity_review": class_counts.get(
+                "needs_ligand_specificity_review", 0
+            ),
+            "needs_uniprot_position_validation": class_counts.get(
+                "needs_uniprot_position_validation", 0
+            ),
+            "blocked_minimum_or_no_ligand_anchor": class_counts.get(
+                "blocked_minimum_or_no_ligand_anchor", 0
+            ),
+            "copy_to_audited_locator_dir_allowed_now": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "start_manual_review_with_priority_1_rows": class_counts.get(
+                "ready_for_manual_forbidden_feature_review", 0
+            ),
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "approved_source_free_locator_surface_ready": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Manually review priority-1 coordinate-anchor candidates, then "
+                "rewrite only approved locator sidecars into the audited locator "
+                "directory and rerun schema/input/surface audits."
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_anchor_candidate_audit": _source_path_record(
+                coordinate_anchor_candidate_audit_path
+            )
+        },
+        "interpretation": {
+            "result": (
+                f"{class_counts.get('ready_for_manual_forbidden_feature_review', 0)} "
+                "coordinate-anchor candidates can start manual forbidden-feature "
+                "review; no locator sidecar is approved or scoring-ready."
+            ),
+            "next_action": (
+                "Review priority-1 rows first; separately resolve ligand "
+                "specificity, UniProt position validation, and minimum-locator "
+                "blockers for the remaining candidates."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_report(
+    queue: dict[str, Any],
+) -> str:
+    counts = queue["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Coordinate Anchor Review Queue - current702",
+        "",
+        f"Run: {queue['created_utc']}",
+        "",
+        queue["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {queue['status']}",
+        f"- Review queue rows: {counts['review_queue_rows']}",
+        "- Ready for manual forbidden-feature review: "
+        f"{counts['ready_for_manual_forbidden_feature_review']}",
+        f"- Needs ligand specificity review: {counts['needs_ligand_specificity_review']}",
+        "- Needs UniProt position validation: "
+        f"{counts['needs_uniprot_position_validation']}",
+        "- Blocked minimum/no ligand anchor: "
+        f"{counts['blocked_minimum_or_no_ligand_anchor']}",
+        "- Copy to audited locator dir allowed now: "
+        f"{counts['copy_to_audited_locator_dir_allowed_now']}",
+        "",
+        "## Queue Rows",
+        "",
+        "| priority | row | accession | selected PDB | ligand | class | locators | validated | next action |",
+        "| ---: | --- | --- | --- | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in queue["queue_rows"]:
+        ligand = row.get("selected_ligand_site") or {}
+        ligand_label = (
+            f"{ligand.get('comp_id')}:{ligand.get('chain_id')}:{ligand.get('residue_id')}"
+            if ligand
+            else "none"
+        )
+        lines.append(
+            f"| {row['priority']} | {row['entry_id']} | "
+            f"{row['source_accession']} | {row['selected_structure_id']} | "
+            f"{ligand_label} | {row['review_class']} | "
+            f"{row['candidate_residue_locator_count']} | "
+            f"{row['sequence_position_validated_locator_count']} | "
+            f"{row['next_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {queue['interpretation']['result']}",
+        f"- {queue['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue(
+    *,
+    coordinate_anchor_candidate_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    queue = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue(
+        coordinate_anchor_candidate_audit_path=coordinate_anchor_candidate_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(queue, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_report(
+                queue
+            ),
+            encoding="utf-8",
+        )
+    return queue
+
+
+def _coordinate_anchor_manual_review_checklist(review_class: str) -> list[str]:
+    checklist = [
+        "confirm no source prose, labels, EC/Rhea IDs, source IDs, or target names are used as predictive features",
+        "confirm candidate residue locators come from coordinate-local ligand or metal contact evidence",
+        "do not copy to the audited locator directory until the row has explicit approval",
+    ]
+    if review_class == "needs_ligand_specificity_review":
+        checklist.insert(
+            1,
+            "confirm the selected coordinate ligand or metal is biologically relevant to the active site",
+        )
+    if review_class == "needs_uniprot_position_validation":
+        checklist.insert(
+            1,
+            "confirm every candidate residue maps cleanly to UniProt sequence coordinates",
+        )
+    if review_class == "blocked_minimum_or_no_ligand_anchor":
+        checklist.insert(
+            1,
+            "find an alternate coordinate or locator evidence path before sidecar approval",
+        )
+    return checklist
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet(
+    *,
+    coordinate_anchor_candidate_audit_path: Path,
+    coordinate_anchor_review_queue_path: Path,
+) -> dict[str, Any]:
+    candidate_audit = _read_json(coordinate_anchor_candidate_audit_path)
+    review_queue = _read_json(coordinate_anchor_review_queue_path)
+    candidate_by_path = {
+        str(candidate.get("candidate_path")): candidate
+        for candidate in candidate_audit.get("candidate_sidecars", [])
+        if isinstance(candidate, dict) and candidate.get("candidate_path")
+    }
+    review_rows = []
+    for row in review_queue.get("queue_rows", []):
+        if not isinstance(row, dict):
+            continue
+        candidate_path = Path(str(row.get("candidate_path") or ""))
+        candidate_payload = candidate_by_path.get(str(candidate_path), {})
+        review_class = str(row.get("review_class") or "")
+        review_rows.append(
+            {
+                "priority": row.get("priority"),
+                "entry_id": row.get("entry_id"),
+                "source_accession": row.get("source_accession"),
+                "candidate_path": str(candidate_path),
+                "candidate_file_exists": candidate_path.exists(),
+                "candidate_sha256": _sha256(candidate_path)
+                if candidate_path.exists()
+                else None,
+                "candidate_payload_status": candidate_payload.get("status"),
+                "selected_structure_id": row.get("selected_structure_id"),
+                "selected_ligand_site": row.get("selected_ligand_site"),
+                "review_class": review_class,
+                "candidate_residue_locator_count": row.get(
+                    "candidate_residue_locator_count"
+                ),
+                "sequence_position_validated_locator_count": row.get(
+                    "sequence_position_validated_locator_count"
+                ),
+                "candidate_blockers": row.get("candidate_blockers", []),
+                "manual_review_checklist": _coordinate_anchor_manual_review_checklist(
+                    review_class
+                ),
+                "copy_to_audited_locator_dir_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "next_action": row.get("next_action"),
+            }
+        )
+    priority1_rows = [
+        row
+        for row in review_rows
+        if row.get("review_class") == "ready_for_manual_forbidden_feature_review"
+    ]
+    files_present = [row for row in review_rows if row.get("candidate_file_exists")]
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_MANUAL_REVIEW_PACKET_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_ready_review_only"
+            if review_rows
+            else "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_blocked_review_only"
+        ),
+        "scope": (
+            "Manual review packet for current702 heldout coordinate-anchor "
+            "candidate sidecars. It packages candidate SHA checks and review "
+            "checklists but does not authorize sidecar copy, predicted-geometry "
+            "scoring, heldout evaluation, threshold tuning, or label import."
+        ),
+        "review_rows": review_rows,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": False,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "review_only": True,
+        },
+        "counts": {
+            "review_rows": len(review_rows),
+            "candidate_sidecar_files_present": len(files_present),
+            "priority1_manual_forbidden_feature_review_rows": len(priority1_rows),
+            "copy_to_audited_locator_dir_allowed_now": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "manual_review_packet_ready": bool(review_rows),
+            "priority1_rows_ready_for_manual_review": len(priority1_rows),
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "approved_source_free_locator_surface_ready": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Review priority-1 packet rows manually; only after explicit "
+                "approval should rewritten locator sidecars enter the audited "
+                "locator directory and trigger schema/input/surface reruns."
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_anchor_candidate_audit": _source_path_record(
+                coordinate_anchor_candidate_audit_path
+            ),
+            "coordinate_anchor_review_queue": _source_path_record(
+                coordinate_anchor_review_queue_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(priority1_rows)} candidate rows are packaged for manual "
+                "forbidden-feature review; no row is approved or scoring-ready."
+            ),
+            "next_action": (
+                "Start manual review at priority 1, then resolve ligand "
+                "specificity, UniProt-position, and missing-anchor blockers."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Coordinate Anchor Manual Review Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Review rows: {counts['review_rows']}",
+        "- Candidate sidecar files present: "
+        f"{counts['candidate_sidecar_files_present']}",
+        "- Priority-1 manual forbidden-feature review rows: "
+        f"{counts['priority1_manual_forbidden_feature_review_rows']}",
+        "- Copy to audited locator dir allowed now: "
+        f"{counts['copy_to_audited_locator_dir_allowed_now']}",
+        "",
+        "## Review Rows",
+        "",
+        "| priority | row | accession | candidate sha256 | class | checklist items | next action |",
+        "| ---: | --- | --- | --- | --- | ---: | --- |",
+    ]
+    for row in packet["review_rows"]:
+        lines.append(
+            f"| {row['priority']} | {row['entry_id']} | "
+            f"{row['source_accession']} | {row['candidate_sha256']} | "
+            f"{row['review_class']} | {len(row['manual_review_checklist'])} | "
+            f"{row['next_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet(
+    *,
+    coordinate_anchor_candidate_audit_path: Path,
+    coordinate_anchor_review_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet(
+        coordinate_anchor_candidate_audit_path=coordinate_anchor_candidate_audit_path,
+        coordinate_anchor_review_queue_path=coordinate_anchor_review_queue_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def _coordinate_anchor_priority1_locator_evidence(
+    locator: dict[str, Any],
+) -> dict[str, Any]:
+    contact = locator.get("candidate_contact_evidence") or {}
+    provenance = locator.get("coordinate_independent_provenance") or {}
+    return {
+        "sequence_position": locator.get("sequence_position"),
+        "residue_code": locator.get("residue_code"),
+        "role_hint": locator.get("role_hint"),
+        "locator_confidence": locator.get("locator_confidence"),
+        "locator_evidence_class": locator.get("locator_evidence_class"),
+        "sequence_position_source": provenance.get("sequence_position_source"),
+        "sequence_position_uniprot_validated": provenance.get(
+            "sequence_position_uniprot_validated"
+        ),
+        "source_text_used": provenance.get("source_text_used"),
+        "heldout_rows_used": provenance.get("heldout_rows_used"),
+        "selected_structure_id": contact.get("selected_structure_id"),
+        "ligand_comp_id": contact.get("ligand_comp_id"),
+        "ligand_atom": contact.get("ligand_atom"),
+        "residue_atom": contact.get("residue_atom"),
+        "residue_chain_id": contact.get("residue_chain_id"),
+        "residue_id": contact.get("residue_id"),
+        "distance_angstrom": contact.get("distance_angstrom"),
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet(
+    *,
+    coordinate_anchor_manual_review_packet_path: Path,
+) -> dict[str, Any]:
+    packet = _read_json(coordinate_anchor_manual_review_packet_path)
+    worksheet_rows = []
+    locator_count = 0
+    role_hint_counts: Counter[str] = Counter()
+    residue_code_counts: Counter[str] = Counter()
+    for row in packet.get("review_rows", []):
+        if not isinstance(row, dict):
+            continue
+        if row.get("review_class") != "ready_for_manual_forbidden_feature_review":
+            continue
+        candidate_path = Path(str(row.get("candidate_path") or ""))
+        candidate_payload = _read_json(candidate_path) if candidate_path.exists() else {}
+        locator_evidence = []
+        for locator in candidate_payload.get("residue_locators", []):
+            if not isinstance(locator, dict):
+                continue
+            evidence = _coordinate_anchor_priority1_locator_evidence(locator)
+            locator_evidence.append(evidence)
+            locator_count += 1
+            if evidence.get("role_hint"):
+                role_hint_counts[str(evidence["role_hint"])] += 1
+            if evidence.get("residue_code"):
+                residue_code_counts[str(evidence["residue_code"])] += 1
+        worksheet_rows.append(
+            {
+                "priority": row.get("priority"),
+                "entry_id": row.get("entry_id"),
+                "source_accession": row.get("source_accession"),
+                "candidate_path": str(candidate_path),
+                "candidate_sha256": row.get("candidate_sha256"),
+                "candidate_file_exists": candidate_path.exists(),
+                "selected_structure_id": row.get("selected_structure_id"),
+                "selected_ligand_site": row.get("selected_ligand_site"),
+                "candidate_residue_locator_count": row.get(
+                    "candidate_residue_locator_count"
+                ),
+                "sequence_position_validated_locator_count": row.get(
+                    "sequence_position_validated_locator_count"
+                ),
+                "locator_evidence": locator_evidence,
+                "manual_review_checklist": row.get("manual_review_checklist", []),
+                "copy_to_audited_locator_dir_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "next_action": row.get("next_action"),
+            }
+        )
+    rows_with_files = [row for row in worksheet_rows if row["candidate_file_exists"]]
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_PRIORITY1_REVIEW_WORKSHEET_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_ready_review_only"
+            if worksheet_rows
+            else "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_blocked_review_only"
+        ),
+        "scope": (
+            "Priority-1 manual review worksheet for coordinate-local heldout "
+            "anchor candidates. It expands residue locator evidence from "
+            "candidate sidecars but does not approve, copy, score, import, "
+            "evaluate heldout rows, or tune thresholds."
+        ),
+        "worksheet_rows": worksheet_rows,
+        "role_hint_counts": dict(sorted(role_hint_counts.items())),
+        "residue_code_counts": dict(sorted(residue_code_counts.items())),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": False,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "review_only": True,
+        },
+        "counts": {
+            "priority1_review_rows": len(worksheet_rows),
+            "candidate_sidecar_files_present": len(rows_with_files),
+            "expanded_residue_locators": locator_count,
+            "copy_to_audited_locator_dir_allowed_now": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "priority1_review_worksheet_ready": bool(worksheet_rows),
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "approved_source_free_locator_surface_ready": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Use this worksheet for manual forbidden-feature review; only "
+                "explicitly approved locator rewrites should enter the audited "
+                "locator directory before schema/input/surface reruns."
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_anchor_manual_review_packet": _source_path_record(
+                coordinate_anchor_manual_review_packet_path
+            )
+        },
+        "interpretation": {
+            "result": (
+                f"{len(worksheet_rows)} priority-1 candidates expose "
+                f"{locator_count} coordinate-local residue locator records for "
+                "manual review; no row is approved or scoring-ready."
+            ),
+            "next_action": (
+                "Review priority-1 rows for forbidden-feature cleanliness and "
+                "sidecar rewrite eligibility before any audited locator copy."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_report(
+    worksheet: dict[str, Any],
+) -> str:
+    counts = worksheet["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Coordinate Anchor Priority-1 Review Worksheet - current702",
+        "",
+        f"Run: {worksheet['created_utc']}",
+        "",
+        worksheet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {worksheet['status']}",
+        f"- Priority-1 review rows: {counts['priority1_review_rows']}",
+        "- Candidate sidecar files present: "
+        f"{counts['candidate_sidecar_files_present']}",
+        f"- Expanded residue locators: {counts['expanded_residue_locators']}",
+        "- Copy to audited locator dir allowed now: "
+        f"{counts['copy_to_audited_locator_dir_allowed_now']}",
+        "",
+        "## Worksheet Rows",
+        "",
+        "| row | accession | PDB | ligand | locators | locator summary | next action |",
+        "| --- | --- | --- | --- | ---: | --- | --- |",
+    ]
+    for row in worksheet["worksheet_rows"]:
+        ligand = row.get("selected_ligand_site") or {}
+        ligand_label = (
+            f"{ligand.get('comp_id')}:{ligand.get('chain_id')}:{ligand.get('residue_id')}"
+            if ligand
+            else "none"
+        )
+        locator_labels = []
+        for locator in row.get("locator_evidence", [])[:8]:
+            locator_labels.append(
+                "{pos}:{code}:{role}:{dist}".format(
+                    pos=locator.get("sequence_position"),
+                    code=locator.get("residue_code"),
+                    role=locator.get("role_hint"),
+                    dist=locator.get("distance_angstrom"),
+                )
+            )
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{row['selected_structure_id']} | {ligand_label} | "
+            f"{len(row.get('locator_evidence', []))} | "
+            f"{'; '.join(locator_labels)} | {row['next_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {worksheet['interpretation']['result']}",
+        f"- {worksheet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet(
+    *,
+    coordinate_anchor_manual_review_packet_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    worksheet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet(
+        coordinate_anchor_manual_review_packet_path=coordinate_anchor_manual_review_packet_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(worksheet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_report(
+                worksheet
+            ),
+            encoding="utf-8",
+        )
+    return worksheet
+
+
 def _predicted_geometry_source_free_anchor_summary(
     row: dict[str, Any],
 ) -> dict[str, Any]:
@@ -31154,6 +32589,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     locator_action_queue_path: Path,
     predicted_geometry_retrieval_path: Path,
     source_free_locator_schema_path: Path | None = None,
+    coordinate_anchor_candidate_audit_path: Path | None = None,
 ) -> dict[str, Any]:
     locator_queue = _read_json(locator_action_queue_path)
     predicted_geometry = _read_json(predicted_geometry_retrieval_path)
@@ -31188,6 +32624,21 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         if isinstance(locator_schema, dict)
         else None
     )
+    coordinate_anchor_audit = (
+        _read_json(coordinate_anchor_candidate_audit_path)
+        if coordinate_anchor_candidate_audit_path is not None
+        and coordinate_anchor_candidate_audit_path.exists()
+        else None
+    )
+    coordinate_anchor_by_entry = (
+        {
+            str(row.get("entry_id")): row
+            for row in coordinate_anchor_audit.get("row_audits", [])
+            if isinstance(row, dict) and row.get("entry_id")
+        }
+        if isinstance(coordinate_anchor_audit, dict)
+        else {}
+    )
     predicted_by_entry = {
         str(row.get("entry_id")): row
         for row in predicted_geometry.get("results", [])
@@ -31205,9 +32656,20 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         entry_id = str(row.get("entry_id") or "")
         predicted_row = predicted_by_entry.get(entry_id, {})
         anchor = _predicted_geometry_source_free_anchor_summary(predicted_row)
+        coordinate_anchor_row = coordinate_anchor_by_entry.get(entry_id, {})
+        has_coordinate_anchor_candidate = bool(
+            coordinate_anchor_row.get(
+                "has_source_free_coordinate_local_anchor_candidate"
+            )
+        )
         blockers: list[str] = []
-        if not anchor["has_source_free_ligand_or_cofactor_anchor"]:
+        if (
+            not anchor["has_source_free_ligand_or_cofactor_anchor"]
+            and not has_coordinate_anchor_candidate
+        ):
             blockers.append("source_free_ligand_or_cofactor_contact_anchor_missing")
+        if has_coordinate_anchor_candidate:
+            blockers.append("source_free_coordinate_anchor_candidate_needs_review")
         blockers.append("source_free_event_axis_missing_for_pair_token")
         audit_rows.append(
             {
@@ -31218,6 +32680,30 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 ),
                 "predicted_model_id": predicted_row.get("pdb_id"),
                 "anchor_summary": anchor,
+                "coordinate_anchor_candidate_summary": {
+                    "has_source_free_coordinate_local_anchor_candidate": (
+                        has_coordinate_anchor_candidate
+                    ),
+                    "candidate_path": coordinate_anchor_row.get("candidate_path"),
+                    "selected_structure_id": coordinate_anchor_row.get(
+                        "selected_structure_id"
+                    ),
+                    "selected_ligand_site": coordinate_anchor_row.get(
+                        "selected_ligand_site"
+                    ),
+                    "candidate_residue_locator_count": coordinate_anchor_row.get(
+                        "candidate_residue_locator_count"
+                    ),
+                    "sequence_position_validated_locator_count": (
+                        coordinate_anchor_row.get(
+                            "sequence_position_validated_locator_count"
+                        )
+                    ),
+                    "candidate_status": coordinate_anchor_row.get("status"),
+                    "candidate_blockers": coordinate_anchor_row.get(
+                        "candidate_blockers", []
+                    ),
+                },
                 "auto_create_locator_sidecar_allowed": False,
                 "blockers": blockers,
             }
@@ -31229,9 +32715,28 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "has_source_free_ligand_or_cofactor_anchor"
         )
     ]
+    rows_with_coordinate_anchor_candidate = [
+        row
+        for row in audit_rows
+        if row.get("coordinate_anchor_candidate_summary", {}).get(
+            "has_source_free_coordinate_local_anchor_candidate"
+        )
+    ]
+    rows_with_any_source_free_anchor = [
+        row
+        for row in audit_rows
+        if row.get("anchor_summary", {}).get(
+            "has_source_free_ligand_or_cofactor_anchor"
+        )
+        or row.get("coordinate_anchor_candidate_summary", {}).get(
+            "has_source_free_coordinate_local_anchor_candidate"
+        )
+    ]
     blockers = []
-    if len(rows_with_anchor) < len(audit_rows):
-        blockers.append("priority1_rows_lack_source_free_contact_anchor")
+    if len(rows_with_any_source_free_anchor) < len(audit_rows):
+        blockers.append("priority1_rows_lack_source_free_contact_or_coordinate_anchor")
+    if rows_with_coordinate_anchor_candidate:
+        blockers.append("source_free_coordinate_anchor_candidates_need_review")
     blockers.append("source_free_event_axis_missing_for_pair_token")
     return {
         "artifact_id": (
@@ -31247,9 +32752,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         "scope": (
             "Input audit for priority-1 source-free locator queue rows. It "
             "checks whether the predicted-geometry artifact already contains "
-            "source-free local ligand/cofactor anchors that could support "
-            "locator sidecar creation without M-CSA heldout mechanism text, "
-            "heldout labels, source IDs, target names, or EC/Rhea IDs."
+            "source-free local ligand/cofactor anchors, and whether the "
+            "selected-PDB coordinate anchor candidate audit has staged "
+            "coordinate-local ligand/metal contact anchors, without M-CSA "
+            "heldout mechanism text, heldout labels, source IDs, target names, "
+            "or EC/Rhea IDs."
         ),
         "audit_rows": audit_rows,
         "source_free_locator_schema_summary": locator_schema_summary,
@@ -31276,8 +32783,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "priority1_rows_with_source_free_ligand_or_cofactor_anchor": len(
                 rows_with_anchor
             ),
+            "priority1_rows_with_source_free_coordinate_local_anchor_candidate": (
+                len(rows_with_coordinate_anchor_candidate)
+            ),
             "priority1_rows_without_source_free_anchor": len(audit_rows)
-            - len(rows_with_anchor),
+            - len(rows_with_any_source_free_anchor),
             "auto_create_locator_sidecar_allowed_rows": 0,
             "source_free_locator_schema_available": (
                 1 if locator_schema_summary is not None else 0
@@ -31311,17 +32821,23 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 if source_free_locator_schema_path is not None
                 else None
             ),
+            "coordinate_anchor_candidate_audit": (
+                _source_path_record(coordinate_anchor_candidate_audit_path)
+                if coordinate_anchor_candidate_audit_path is not None
+                else None
+            ),
         },
         "interpretation": {
             "result": (
                 "The priority-1 queue rows have predicted-geometry coordinates, "
-                "but none currently expose source-free ligand/cofactor contact "
-                "anchors for approved locator sidecar creation."
+                f"{len(rows_with_coordinate_anchor_candidate)} now expose "
+                "review-only coordinate-local anchor candidates, but none are "
+                "approved locator sidecars for scoring."
             ),
             "next_action": (
-                "Define or materialize a source-free local anchor evidence path "
-                "before copying or approving any current702 heldout locator "
-                "sidecars."
+                "Review coordinate-anchor candidates, rewrite only approved "
+                "sidecars into the audited locator directory, and keep the "
+                "event-axis blocker separate before any heldout read."
             ),
         },
     }
@@ -31345,6 +32861,8 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"- Priority-1 queue rows: {counts['priority1_locator_queue_rows']}",
         "- Rows with source-free ligand/cofactor anchor: "
         f"{counts['priority1_rows_with_source_free_ligand_or_cofactor_anchor']}",
+        "- Rows with source-free coordinate-local anchor candidate: "
+        f"{counts['priority1_rows_with_source_free_coordinate_local_anchor_candidate']}",
         "- Rows without source-free anchor: "
         f"{counts['priority1_rows_without_source_free_anchor']}",
         "- Auto-create locator sidecars now: "
@@ -31376,6 +32894,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     locator_action_queue_path: Path,
     predicted_geometry_retrieval_path: Path,
     source_free_locator_schema_path: Path | None = None,
+    coordinate_anchor_candidate_audit_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -31383,6 +32902,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         locator_action_queue_path=locator_action_queue_path,
         predicted_geometry_retrieval_path=predicted_geometry_retrieval_path,
         source_free_locator_schema_path=source_free_locator_schema_path,
+        coordinate_anchor_candidate_audit_path=coordinate_anchor_candidate_audit_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(

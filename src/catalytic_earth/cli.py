@@ -95,6 +95,11 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
@@ -13101,6 +13106,111 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
     return 0
 
 
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit(
+        locator_action_queue_path=Path(args.locator_action_queue),
+        predicted_geometry_retrieval_path=Path(args.predicted_geometry_retrieval),
+        source_free_locator_schema_path=Path(args.source_free_locator_schema),
+        coordinate_search_roots=[Path(root) for root in args.coordinate_search_root],
+        candidate_dir=Path(args.candidate_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free coordinate anchor candidates to "
+        f"{args.out} (status: {audit.get('status')}, review candidates: "
+        f"{counts.get('rows_with_minimum_coordinate_anchor_locators')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit(
+        coordinate_anchor_candidate_audit_path=Path(
+            args.coordinate_anchor_candidate_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free coordinate anchor candidate strict audit "
+        f"to {args.out} (status: {audit.get('status')}, checked: "
+        f"{counts.get('candidate_sidecars_checked')}, violations: "
+        f"{counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue(
+    args: argparse.Namespace,
+) -> int:
+    queue = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue(
+        coordinate_anchor_candidate_audit_path=Path(
+            args.coordinate_anchor_candidate_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free coordinate anchor review queue to "
+        f"{args.out} (status: {queue.get('status')}, priority-1 review rows: "
+        f"{counts.get('ready_for_manual_forbidden_feature_review')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet(
+    args: argparse.Namespace,
+) -> int:
+    packet = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet(
+        coordinate_anchor_candidate_audit_path=Path(
+            args.coordinate_anchor_candidate_audit
+        ),
+        coordinate_anchor_review_queue_path=Path(args.coordinate_anchor_review_queue),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free coordinate anchor manual review packet to "
+        f"{args.out} (status: {packet.get('status')}, priority-1 review rows: "
+        f"{counts.get('priority1_manual_forbidden_feature_review_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet(
+    args: argparse.Namespace,
+) -> int:
+    worksheet = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet(
+        coordinate_anchor_manual_review_packet_path=Path(
+            args.coordinate_anchor_manual_review_packet
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = worksheet.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free coordinate anchor priority-1 review "
+        f"worksheet to {args.out} (status: {worksheet.get('status')}, "
+        f"priority-1 rows: {counts.get('priority1_review_rows')}, "
+        f"locators: {counts.get('expanded_residue_locators')})"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input(
     args: argparse.Namespace,
 ) -> int:
@@ -13109,6 +13219,9 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         predicted_geometry_retrieval_path=Path(args.predicted_geometry_retrieval),
         source_free_locator_schema_path=Path(args.source_free_locator_schema)
         if args.source_free_locator_schema
+        else None,
+        coordinate_anchor_candidate_audit_path=Path(args.coordinate_anchor_candidate_audit)
+        if args.coordinate_anchor_candidate_audit
         else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
@@ -28928,6 +29041,247 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "coordinate-anchor-candidates"
+        ),
+        help=(
+            "stage review-only selected-PDB coordinate-local anchor candidates "
+            "for priority-1 best-token follow-up pair locator rows"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.add_argument(
+        "--locator-action-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.add_argument(
+        "--predicted-geometry-retrieval",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.add_argument(
+        "--source-free-locator-schema",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.add_argument(
+        "--coordinate-search-root",
+        action="append",
+        default=["artifacts"],
+        help="directory or CIF file to search for selected PDB coordinate files",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.add_argument(
+        "--candidate-dir",
+        default=(
+            "artifacts/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidates_current702_20260602"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_audit_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_strict_audit = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "coordinate-anchor-candidate-strict"
+        ),
+        help=(
+            "strictly audit staged coordinate-anchor candidates for review-only "
+            "guardrails without approving or scoring them"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_strict_audit.add_argument(
+        "--coordinate-anchor-candidate-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_strict_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_strict_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_strict_audit.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_strict_audit_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_strict_audit.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_review_queue = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "coordinate-anchor-review-queue"
+        ),
+        help=(
+            "rank source-free coordinate-anchor candidates for manual review "
+            "without approving or scoring locator sidecars"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_review_queue.add_argument(
+        "--coordinate-anchor-candidate-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_review_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_review_queue_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_review_queue.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_review_queue_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_review_queue.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_manual_packet = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "coordinate-anchor-manual-review-packet"
+        ),
+        help=(
+            "package source-free coordinate-anchor candidate sidecars for "
+            "manual review without approving or scoring them"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_manual_packet.add_argument(
+        "--coordinate-anchor-candidate-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_manual_packet.add_argument(
+        "--coordinate-anchor-review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_review_queue_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_manual_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_manual_review_packet_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_manual_packet.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_manual_review_packet_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_manual_packet.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_worksheet = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "coordinate-anchor-priority1-review-worksheet"
+        ),
+        help=(
+            "expand priority-1 coordinate-anchor candidate locators for manual "
+            "review without approving or scoring them"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_worksheet.add_argument(
+        "--coordinate-anchor-manual-review-packet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_manual_review_packet_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_worksheet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_review_worksheet_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_worksheet.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_review_worksheet_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_worksheet.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet
+        )
+    )
+
     row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input = subparsers.add_parser(
         (
             "audit-mechanism-feature-row-specific-bond-change-"
@@ -28959,6 +29313,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
             "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(
+        "--coordinate-anchor-candidate-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_candidate_audit_current702_20260602.json"
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(

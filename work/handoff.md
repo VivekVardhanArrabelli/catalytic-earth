@@ -56,6 +56,107 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T14:03:39Z`
+- STARTED_LOCAL: `2026-06-02T09:03:39-0500 CDT`
+- ENDED_AT: `2026-06-02T14:45:33Z`
+- ENDED_LOCAL: `2026-06-02T09:45:33-0500 CDT`
+- ELAPSED_MINUTES: `41.9`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "5171", "started_at": "2026-06-02T14:03:39Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the Lever 2 source-free heldout locator gate. Reuse the approved
+source-free locator schema and determine whether any coordinate-local,
+source-free anchor evidence exists for the 126 priority-1 heldout rows before
+creating locator sidecars or applying the frozen residual threshold.
+
+#### What changed
+
+- Lever 2 source-free coordinate-local anchor evidence was materialized for
+  the 126 priority-1 current702 heldout locator rows without approving,
+  copying, scoring, importing, tuning, or evaluating heldout rows.
+- Added rebuildable CLI/builders for:
+  coordinate-anchor candidate staging, candidate strict audit, review queue,
+  manual review packet, and priority-1 review worksheet.
+- The candidate audit found selected PDB coordinate files for all 126
+  priority-1 rows, 105 rows with a non-water ligand/metal site, 102 rows with
+  at least two coordinate-local candidate locators, and 93 rows with all
+  candidate sequence positions validated.
+- The strict audit checked all 126 staged candidate sidecars and found 0
+  critical review-only guardrail violations, 0 forbidden-feature flags, 0
+  scoring-ready rows, and 0 copied sidecars.
+- The review queue now separates the 126 rows into 55 priority-1 manual
+  forbidden-feature review rows, 40 ligand-specificity review rows, 7
+  UniProt-position validation rows, and 24 minimum/no-ligand-anchor blockers.
+- The manual packet packages all 126 staged sidecars with SHA checks. The
+  priority-1 worksheet expands the 55 review-ready rows into 303
+  coordinate-local residue locator records for manual review.
+- The source-free locator input audit and heldout-safe surface plan now
+  recognize the 102 coordinate-anchor candidates but remain blocked because
+  no locator sidecars have explicit approval or audited-directory copy.
+- Ended before the nominal 55-minute block because the guardrail-safe
+  mechanical gate is complete; the next step is explicit manual review, not an
+  automatable approval or heldout scoring step.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602.md`
+- `artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/`
+  (126 staged review-only candidate sidecars)
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_current702_20260602.md`
+- Regenerated:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json`,
+  and
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.md`.
+
+#### Tests run
+
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_northstar_next_levers.py tests/test_cli.py tests/test_geometry_artifact_regression.py`
+- `python -m compileall -q src tests`
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q`
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'coordinate_anchor_candidate_strict_audit or coordinate_anchor_priority1_review_worksheet or coordinate_anchor_manual_review_packet or coordinate_anchor_review_queue' -q`
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change_p0_oos_augmented_expanded_surface_current_counts' -q`
+- `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`
+  (342 passed, 79 subtests passed)
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  (12 source records, 8 fingerprints, 15 ontology families, 702 curated labels)
+- `PYTHONPATH=src python -m unittest discover -s tests`
+  (1168 tests passed)
+- `PYTHONPATH=src python -m pytest tests -q`
+  (1213 passed, 98 subtests passed, 1 existing sklearn/SciPy deprecation
+  warning)
+- `python -m json.tool` on all five new coordinate-anchor aggregate JSON
+  artifacts
+- `git diff --check`
+
+#### Exact next action
+
+- Start with
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_current702_20260602.md`
+  and manually review the 55 priority-1 rows for forbidden-feature cleanliness
+  and locator rewrite eligibility. Only rows with explicit approval should be
+  rewritten into the audited source-free locator directory; then rerun the
+  strict audit, locator input audit, heldout-safe surface plan, and only then
+  consider applying the frozen residual threshold. Do not score or tune on the
+  current702 heldout rows before approved locator sidecars exist.
+
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T13:02:35Z`
 - STARTED_LOCAL: `2026-06-02T08:02:35-0500 CDT`
 - ENDED_AT: `2026-06-02T13:57:54Z`
