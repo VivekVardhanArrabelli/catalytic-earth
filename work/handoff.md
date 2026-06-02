@@ -50,6 +50,104 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 P0 Unresolved Rhea Official-Source Audit And Reviewer Matrix
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T00:12:56Z`
+- STARTED_LOCAL: `Mon Jun  1 19:12:56 CDT 2026`
+- ENDED_AT: `2026-06-02T01:04:59Z`
+- ENDED_LOCAL: `Mon Jun  1 20:04:59 CDT 2026`
+- ELAPSED_MINUTES: `52.1`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "10619", "started_at": "2026-06-02T00:12:56Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and sync
+  verification complete from a clean worktree; final release result is reported
+  in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `c4856ceb1e1eee92887c6a08861b152845f2d2ff`
+- Git HEAD at end before commit:
+  `c4856ceb1e1eee92887c6a08861b152845f2d2ff`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json`,
+  durable docs, CLI/code/tests, affected work reports, carryover notes, and
+  this handoff.
+- Input artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.md`,
+  refreshed current-docs reference check, refreshed current-run integrity audit,
+  durable docs, tests, CLI/code, and carryover notes.
+- Commands run:
+  memory read attempt and fallback; lock acquire; `git fetch origin`; required
+  context reads; fold-channel JSON parse/inspection; live official Rhea and
+  UniProt checks for `m_csa:11`, `m_csa:169`, and `m_csa:5`; implemented and
+  ran
+  `audit-mechanism-feature-row-specific-bond-change-p0-rhea-unresolved-official-source`;
+  implemented and ran
+  `build-mechanism-feature-row-specific-bond-change-p0-reviewer-decision-matrix`;
+  refreshed `build-current-docs-artifact-reference-check`; refreshed the
+  current-run integrity audit; focused pytest slices; full unittest discovery;
+  full pytest; `python -m compileall -q src tests`;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`; repo JSON/JSONL
+  parse sweep; `git diff --check`; disk check; measured elapsed time; initial
+  validation soak through 22 clean iterations; after an external temp start-file
+  overwrite was detected, restored `/tmp/catalytic_earth_run_started_at.txt`
+  from the active lock timestamp and ran 7 guarded validation-soak iterations
+  through 50.9 elapsed minutes.
+- Validation results:
+  new JSON artifacts parse; focused unresolved-Rhea official-source audit,
+  reviewer decision matrix, Rhea resolution/consumption, artifact regression,
+  current-run integrity, and CLI registration tests passed; full unittest
+  discovery passed with 1112 tests and one existing sklearn/scipy deprecation
+  warning; full pytest passed with 1135 tests and the same warning; compileall
+  passed; CLI validate passed with 12 source records, 8 fingerprints, 15
+  ontology families, and 702 labels; current-docs reference check passed with
+  494 checked references and 0 missing; current-run integrity audit passed with
+  23 JSON artifacts, 23 reports, 3136 repo JSON files, 26 JSONL files, and 0
+  parse errors; git diff check passed; disk check passed with 28 GiB available;
+  validation soak passed through 50.9 elapsed minutes.
+- Commit/push result: pending at handoff write; commit this implementation,
+  push to `origin/main`, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  use
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`
+  as the next human-facing packet for `m_csa:11`, `m_csa:169`, and `m_csa:5`;
+  choose exactly one decision per row: approve M-CSA-only source evidence with
+  reviewer provenance, reject/rewrite draft events, or hold for an authorized
+  alternate reaction source. Do not refresh the no-template feature contract
+  until reviewer provenance is recorded and the strict sidecar, review queue,
+  Rhea manifest, feature-readiness, and consumption audits are rerun.
+
+Summary:
+
+- Confirmed the predicted-structure fold channel was already scored and
+  contract-passing; no Foldseek/TM recomputation was needed.
+- Added a bounded official-source audit for the three remaining P0
+  Rhea-missing rows. Rhea EC/accession queries found 0 records; current UniProt
+  confirms matching EC catalytic activity for all three accessions but provides
+  no Rhea cross-references. The rows remain non-consumable.
+- Added a reviewer decision matrix that makes the human gate explicit without
+  approving anything: each row has approve/reject/hold options, 0 reviewer IDs,
+  0 copy-ready approvals, and 0 feature-contract-consumable rows.
+
 ### 2026-06-01 P0 Rhea Resolution And Predicted-Atlas Delta Audit
 
 Automation run: `catalytic-earth-work-loop`

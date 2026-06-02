@@ -193,12 +193,19 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_LOOKUP_RESOLUTION_ID = (
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_RESOLUTION_CONSUMPTION_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_UNRESOLVED_OFFICIAL_SOURCE_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_REVIEWER_DECISION_MATRIX_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601"
+)
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_FEATURE_READINESS_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601"
 )
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
 RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
+UNIPROT_REST_URL = "https://rest.uniprot.org/uniprotkb"
 
 
 def _utc_now_iso() -> str:
@@ -16792,6 +16799,19 @@ def _fetch_rhea_query_tsv(query: str, *, limit: int = 20) -> str:
         return response.read().decode("utf-8", errors="replace")
 
 
+def _uniprot_record_url(accession: str) -> str:
+    return f"{UNIPROT_REST_URL}/{accession}.json"
+
+
+def _fetch_uniprot_record(accession: str) -> dict[str, Any]:
+    request = Request(
+        _uniprot_record_url(accession),
+        headers={"User-Agent": RHEA_USER_AGENT},
+    )
+    with urlopen(request, timeout=30) as response:
+        return json.loads(response.read().decode("utf-8", errors="replace"))
+
+
 def _safe_int(value: Any) -> int | None:
     try:
         return int(str(value).strip())
@@ -17359,6 +17379,692 @@ def write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumpt
             encoding="utf-8",
         )
     return audit
+
+
+def _safe_rhea_query_attempt(
+    *,
+    query: str,
+    query_type: str,
+    fetcher: Callable[[str], str],
+) -> dict[str, Any]:
+    try:
+        return _rhea_query_attempt(
+            query=query,
+            query_type=query_type,
+            fetcher=fetcher,
+        )
+    except Exception as exc:  # pragma: no cover - exercised by live endpoint failures.
+        return {
+            "query": query,
+            "query_type": query_type,
+            "url": _rhea_query_url(query),
+            "record_count": 0,
+            "records": [],
+            "fetch_error": f"{type(exc).__name__}: {exc}",
+        }
+
+
+def _ec_token(value: Any) -> str:
+    token = str(value or "").strip().lower()
+    return token.removeprefix("ec:")
+
+
+def _uniprot_ec_numbers(record: dict[str, Any]) -> list[str]:
+    description = record.get("proteinDescription") or {}
+    recommended = description.get("recommendedName") or {}
+    ec_values = [
+        str(row.get("value"))
+        for row in recommended.get("ecNumbers", [])
+        if isinstance(row, dict) and row.get("value")
+    ]
+    return sorted(set(ec_values))
+
+
+def _uniprot_rhea_crossrefs(reaction: dict[str, Any]) -> list[dict[str, str]]:
+    refs = reaction.get("reactionCrossReferences") or []
+    normalized = []
+    for ref in refs:
+        if not isinstance(ref, dict):
+            continue
+        database = str(ref.get("database") or ref.get("databaseType") or "")
+        identifier = str(ref.get("id") or ref.get("value") or "")
+        if database.lower() == "rhea" or identifier.startswith("RHEA"):
+            normalized.append(
+                {
+                    "database": database or "Rhea",
+                    "id": identifier,
+                }
+            )
+    return normalized
+
+
+def _uniprot_catalytic_activity_summaries(
+    record: dict[str, Any],
+) -> list[dict[str, Any]]:
+    summaries = []
+    for comment in record.get("comments", []):
+        if not isinstance(comment, dict):
+            continue
+        if comment.get("commentType") != "CATALYTIC ACTIVITY":
+            continue
+        reaction = comment.get("reaction") or {}
+        summaries.append(
+            {
+                "reaction_name": reaction.get("name"),
+                "ec_number": reaction.get("ecNumber"),
+                "rhea_cross_references": _uniprot_rhea_crossrefs(reaction),
+            }
+        )
+    return summaries
+
+
+def _bounded_unresolved_rhea_attempts(
+    *,
+    ec_targets: list[str],
+    accession: str,
+    fetcher: Callable[[str], str],
+) -> list[dict[str, Any]]:
+    attempts = []
+    seen: set[tuple[str, str]] = set()
+    for target in ec_targets:
+        queries = [
+            ("manifest_ec_target_plain", target.removeprefix("ec:")),
+            ("manifest_ec_target_prefixed", target),
+        ]
+        for query_type, query in queries:
+            key = (query_type, query)
+            if not query or key in seen:
+                continue
+            seen.add(key)
+            attempts.append(
+                _safe_rhea_query_attempt(
+                    query=query,
+                    query_type=query_type,
+                    fetcher=fetcher,
+                )
+            )
+    if accession:
+        attempts.append(
+            _safe_rhea_query_attempt(
+                query=f"uniprot:{accession}",
+                query_type="row_accession",
+                fetcher=fetcher,
+            )
+        )
+    return attempts
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit(
+    *,
+    rhea_lookup_manifest_path: Path,
+    rhea_lookup_resolution_path: Path,
+    rhea_fetcher: Callable[[str], str] | None = None,
+    uniprot_fetcher: Callable[[str], dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    manifest = _read_json(rhea_lookup_manifest_path)
+    resolution = _read_json(rhea_lookup_resolution_path)
+    rhea_fetcher = rhea_fetcher or (lambda query: _fetch_rhea_query_tsv(query))
+    uniprot_fetcher = uniprot_fetcher or _fetch_uniprot_record
+
+    manifest_by_entry = {
+        str(row.get("entry_id")): row
+        for row in manifest.get("lookup_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    unresolved_entries = [
+        str(row.get("entry_id"))
+        for row in resolution.get("row_resolutions", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and not str((row.get("accepted_resolution") or {}).get("status", "")).startswith(
+            "resolved_"
+        )
+    ]
+
+    row_audits = []
+    for entry_id in unresolved_entries:
+        manifest_row = manifest_by_entry.get(entry_id, {})
+        accession = str(manifest_row.get("accession") or "").strip()
+        ec_targets = [
+            str(target)
+            for target in manifest_row.get("ec_targets", [])
+            if isinstance(target, str) and target
+        ]
+        rhea_attempts = _bounded_unresolved_rhea_attempts(
+            ec_targets=ec_targets,
+            accession=accession,
+            fetcher=rhea_fetcher,
+        )
+        rhea_records = [
+            record
+            for attempt in rhea_attempts
+            for record in attempt.get("records", [])
+            if isinstance(record, dict) and record.get("rhea_id")
+        ]
+        uniprot_record: dict[str, Any] = {}
+        uniprot_fetch_error = None
+        if accession:
+            try:
+                uniprot_record = uniprot_fetcher(accession)
+            except Exception as exc:  # pragma: no cover - live network fallback.
+                uniprot_fetch_error = f"{type(exc).__name__}: {exc}"
+        ec_target_tokens = {_ec_token(target) for target in ec_targets}
+        catalytic_activities = _uniprot_catalytic_activity_summaries(uniprot_record)
+        matching_uniprot_activities = [
+            activity
+            for activity in catalytic_activities
+            if _ec_token(activity.get("ec_number")) in ec_target_tokens
+        ]
+        uniprot_rhea_crossrefs = [
+            crossref
+            for activity in catalytic_activities
+            for crossref in activity.get("rhea_cross_references", [])
+        ]
+        rhea_fetch_errors = [
+            str(attempt.get("fetch_error"))
+            for attempt in rhea_attempts
+            if attempt.get("fetch_error")
+        ]
+
+        if rhea_records or uniprot_rhea_crossrefs:
+            row_status = "official_rhea_evidence_found_requires_sidecar_update"
+            next_action = (
+                "Review the official Rhea evidence, update the draft sidecar "
+                "only if the row-specific reaction matches, then rerun strict "
+                "P0 audits."
+            )
+        elif rhea_fetch_errors or uniprot_fetch_error:
+            row_status = "official_source_fetch_incomplete"
+            next_action = (
+                "Retry the official source fetch before making any reviewer "
+                "decision."
+            )
+        elif matching_uniprot_activities:
+            row_status = "official_ec_activity_present_without_rhea_cross_reference"
+            next_action = (
+                "Human reviewer must either approve M-CSA-only row-specific "
+                "evidence with provenance or keep the row blocked until an "
+                "alternate reaction source is authorized."
+            )
+        else:
+            row_status = "official_sources_no_matching_ec_or_rhea_cross_reference"
+            next_action = (
+                "Human reviewer must keep the row blocked or authorize a new "
+                "source path before approval."
+            )
+
+        row_audits.append(
+            {
+                "entry_id": entry_id,
+                "accession": accession or None,
+                "m_csa_entry_name": manifest_row.get("m_csa_entry_name"),
+                "ec_targets": ec_targets,
+                "rhea_query_attempts": rhea_attempts,
+                "rhea_record_count": len(rhea_records),
+                "uniprot_query": {
+                    "url": _uniprot_record_url(accession) if accession else None,
+                    "fetch_error": uniprot_fetch_error,
+                    "primary_accession": uniprot_record.get("primaryAccession"),
+                    "uniprot_id": uniprot_record.get("uniProtkbId"),
+                    "last_annotation_update": (
+                        (uniprot_record.get("entryAudit") or {}).get(
+                            "lastAnnotationUpdateDate"
+                        )
+                    ),
+                    "recommended_name": (
+                        (
+                            (
+                                uniprot_record.get("proteinDescription") or {}
+                            ).get("recommendedName")
+                            or {}
+                        ).get("fullName")
+                        or {}
+                    ).get("value"),
+                    "recommended_ec_numbers": _uniprot_ec_numbers(uniprot_record),
+                    "catalytic_activity_count": len(catalytic_activities),
+                    "matching_ec_catalytic_activities": matching_uniprot_activities,
+                    "rhea_cross_references": uniprot_rhea_crossrefs,
+                },
+                "official_rhea_evidence_found": bool(
+                    rhea_records or uniprot_rhea_crossrefs
+                ),
+                "reviewer_decision_required": True,
+                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_model_training_now": False,
+                "status": row_status,
+                "next_action": next_action,
+            }
+        )
+    row_audits.sort(key=lambda row: _entry_id_sort_key(str(row["entry_id"])))
+
+    official_rhea_rows = [
+        row for row in row_audits if row["official_rhea_evidence_found"]
+    ]
+    fetch_incomplete_rows = [
+        row for row in row_audits if row["status"] == "official_source_fetch_incomplete"
+    ]
+    status = (
+        "p0_rhea_unresolved_official_source_audit_found_new_evidence_review_only"
+        if official_rhea_rows
+        else (
+            "p0_rhea_unresolved_official_source_audit_fetch_incomplete"
+            if fetch_incomplete_rows
+            else "p0_rhea_unresolved_official_source_audit_ready_review_only"
+        )
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_UNRESOLVED_OFFICIAL_SOURCE_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_rhea_unresolved_official_source_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Bounded official-source audit for P0 Rhea lookup rows that remain "
+            "unresolved after the prior Rhea resolution artifact. It checks "
+            "Rhea EC/accession queries and current UniProtKB catalytic activity "
+            "records, but does not approve rows or mutate feature contracts."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "source_fetch_performed": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "feature_contract_mutated": False,
+            "feature_contract_refresh_allowed": False,
+            "reviewer_provenance_required_before_approval": True,
+        },
+        "counts": {
+            "unresolved_resolution_rows": len(unresolved_entries),
+            "manifest_rows_audited": len(row_audits),
+            "rhea_query_attempts": sum(
+                len(row["rhea_query_attempts"]) for row in row_audits
+            ),
+            "rows_with_official_rhea_evidence_found": len(official_rhea_rows),
+            "rows_with_uniprot_matching_ec_activity": sum(
+                1
+                for row in row_audits
+                if row["uniprot_query"]["matching_ec_catalytic_activities"]
+            ),
+            "rows_with_uniprot_rhea_cross_references": sum(
+                1
+                for row in row_audits
+                if row["uniprot_query"]["rhea_cross_references"]
+            ),
+            "rows_with_fetch_errors": len(fetch_incomplete_rows),
+            "unresolved_after_official_source_check": (
+                len(row_audits) - len(official_rhea_rows)
+            ),
+            "reviewer_decision_required_rows": sum(
+                1 for row in row_audits if row["reviewer_decision_required"]
+            ),
+            "feature_contract_consumable_rows": 0,
+        },
+        "row_audits": row_audits,
+        "source_artifacts": {
+            "rhea_lookup_manifest": _source_path_record(rhea_lookup_manifest_path),
+            "rhea_lookup_resolution": _source_path_record(rhea_lookup_resolution_path),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(row_audits) - len(official_rhea_rows)}/{len(row_audits)} "
+                "previously unresolved P0 rows remain without official Rhea "
+                "cross-reference evidence after bounded Rhea and UniProt checks."
+            ),
+            "next_action": (
+                "A human reviewer must choose M-CSA-only approval with explicit "
+                "reviewer provenance, rejection/hold, or an authorized alternate "
+                "reaction source for each unresolved row before any no-template "
+                "feature-contract refresh."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Unresolved Rhea Official-Source Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Manifest rows audited: {counts['manifest_rows_audited']}",
+        f"- Rhea query attempts: {counts['rhea_query_attempts']}",
+        (
+            "- Rows with official Rhea evidence found: "
+            f"{counts['rows_with_official_rhea_evidence_found']}"
+        ),
+        (
+            "- Rows with UniProt matching EC activity: "
+            f"{counts['rows_with_uniprot_matching_ec_activity']}"
+        ),
+        (
+            "- Unresolved after official source check: "
+            f"{counts['unresolved_after_official_source_check']}"
+        ),
+        f"- Reviewer decision required rows: {counts['reviewer_decision_required_rows']}",
+        "",
+        "## Row Audits",
+        "",
+        "| row | accession | EC targets | UniProt EC activity | Rhea found | status |",
+        "| --- | --- | --- | ---: | --- | --- |",
+    ]
+    for row in audit["row_audits"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{', '.join(row.get('ec_targets') or [])} | "
+            f"{len(row['uniprot_query']['matching_ec_catalytic_activities'])} | "
+            f"{row['official_rhea_evidence_found']} | {row['status']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit(
+    *,
+    rhea_lookup_manifest_path: Path,
+    rhea_lookup_resolution_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit(
+        rhea_lookup_manifest_path=rhea_lookup_manifest_path,
+        rhea_lookup_resolution_path=rhea_lookup_resolution_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _reviewer_decision_options_for_unresolved_rhea_row() -> list[dict[str, Any]]:
+    return [
+        {
+            "decision": "approve_m_csa_only_source_evidence",
+            "meaning": (
+                "Reviewer accepts the M-CSA mechanism/residue evidence as "
+                "sufficient despite absent official Rhea cross-reference."
+            ),
+            "required_fields": [
+                "reviewer_id",
+                "reviewed_utc",
+                "decision_rationale",
+                "source_artifacts_reviewed",
+                "accepted_event_indices",
+                "accepted_participant_mapping_scope",
+            ],
+            "feature_contract_consumption_allowed_after_decision": (
+                "only after strict sidecar and readiness audits pass with "
+                "review_status=approved and reviewer_id populated"
+            ),
+        },
+        {
+            "decision": "reject_or_rewrite_draft_events",
+            "meaning": (
+                "Reviewer rejects one or more draft events or mappings and "
+                "requires sidecar rewrite before any approval."
+            ),
+            "required_fields": [
+                "reviewer_id",
+                "reviewed_utc",
+                "decision_rationale",
+                "rejected_event_indices",
+                "rewrite_required_fields",
+            ],
+            "feature_contract_consumption_allowed_after_decision": "no",
+        },
+        {
+            "decision": "hold_for_alternate_reaction_source",
+            "meaning": (
+                "Reviewer keeps the row blocked until a non-Rhea alternate "
+                "reaction source is explicitly authorized and audited."
+            ),
+            "required_fields": [
+                "reviewer_id",
+                "reviewed_utc",
+                "decision_rationale",
+                "requested_alternate_source_class",
+            ],
+            "feature_contract_consumption_allowed_after_decision": "no",
+        },
+    ]
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+    *,
+    unresolved_official_source_audit_path: Path,
+    sidecar_path: Path,
+    feature_readiness_path: Path,
+) -> dict[str, Any]:
+    official = _read_json(unresolved_official_source_audit_path)
+    sidecar = _read_json(sidecar_path)
+    readiness = _read_json(feature_readiness_path)
+    sidecar_by_entry = {
+        str(row.get("entry_id")): row
+        for row in sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    readiness_by_entry = {
+        str(row.get("entry_id")): row
+        for row in readiness.get("row_readiness", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    options = _reviewer_decision_options_for_unresolved_rhea_row()
+    decision_rows = []
+    for official_row in official.get("row_audits", []):
+        if not isinstance(official_row, dict) or not official_row.get("entry_id"):
+            continue
+        if official_row.get("official_rhea_evidence_found"):
+            continue
+        entry_id = str(official_row["entry_id"])
+        sidecar_row = sidecar_by_entry.get(entry_id, {})
+        readiness_row = readiness_by_entry.get(entry_id, {})
+        events = [
+            event
+            for event in sidecar_row.get("row_specific_bond_change_events", [])
+            if isinstance(event, dict)
+        ]
+        event_summaries = [
+            {
+                "event_index": index,
+                "event_type": event.get("event_type"),
+                "confidence": event.get("confidence"),
+                "mapped_active_site_residue_count": len(
+                    event.get("mapped_active_site_residues") or []
+                ),
+                "source_record_id": (
+                    (event.get("source_evidence_span") or {}).get("source_record_id")
+                ),
+            }
+            for index, event in enumerate(events)
+        ]
+        decision_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": official_row.get("accession"),
+                "m_csa_entry_name": official_row.get("m_csa_entry_name"),
+                "official_source_status": official_row.get("status"),
+                "ec_targets": official_row.get("ec_targets", []),
+                "uniprot_matching_ec_activity_count": len(
+                    official_row.get("uniprot_query", {}).get(
+                        "matching_ec_catalytic_activities", []
+                    )
+                ),
+                "official_rhea_evidence_found": False,
+                "review_status": sidecar_row.get("review_status"),
+                "reviewer_id": sidecar_row.get("reviewer_id"),
+                "event_count": len(events),
+                "event_summaries": event_summaries,
+                "readiness_blockers": sorted(readiness_row.get("blockers") or []),
+                "decision_options": options,
+                "copy_ready_approved_decision_present": False,
+                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_model_training_now": False,
+                "recommended_next_action": (
+                    "Pick exactly one decision option, add reviewer provenance "
+                    "to a future reviewed sidecar, then rerun strict sidecar, "
+                    "review-queue, Rhea manifest, feature-readiness, and "
+                    "consumption audits."
+                ),
+            }
+        )
+    decision_rows.sort(key=lambda row: _entry_id_sort_key(str(row["entry_id"])))
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_REVIEWER_DECISION_MATRIX_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_reviewer_decision_matrix"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "p0_reviewer_decision_matrix_ready_review_only",
+        "scope": (
+            "Review-only decision matrix for P0 source-evidence rows where "
+            "official Rhea/UniProt checks did not provide a Rhea "
+            "cross-reference. It defines the reviewer provenance gate without "
+            "approving rows or changing feature contracts."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "source_fetch_performed": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "feature_contract_mutated": False,
+            "feature_contract_refresh_allowed": False,
+            "reviewer_decision_recorded_by_this_artifact": False,
+        },
+        "counts": {
+            "decision_rows": len(decision_rows),
+            "rows_with_official_rhea_evidence_found": 0,
+            "rows_with_uniprot_matching_ec_activity": sum(
+                1
+                for row in decision_rows
+                if row["uniprot_matching_ec_activity_count"]
+            ),
+            "rows_with_existing_reviewer_id": sum(
+                1 for row in decision_rows if row.get("reviewer_id")
+            ),
+            "copy_ready_approved_decisions": 0,
+            "feature_contract_consumable_rows": 0,
+            "model_training_allowed_rows": 0,
+            "decision_options_per_row": len(options),
+        },
+        "decision_rows": decision_rows,
+        "source_artifacts": {
+            "unresolved_official_source_audit": _source_path_record(
+                unresolved_official_source_audit_path
+            ),
+            "sidecar": _source_path_record(sidecar_path),
+            "feature_readiness": _source_path_record(feature_readiness_path),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(decision_rows)} unresolved P0 Rhea rows now have an "
+                "explicit reviewer decision matrix; zero decisions are recorded "
+                "by this artifact."
+            ),
+            "next_action": (
+                "Human review must choose approve/reject/hold for each row with "
+                "reviewer provenance before any no-template feature-contract "
+                "refresh."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_report(
+    matrix: dict[str, Any],
+) -> str:
+    counts = matrix["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Reviewer Decision Matrix - current702",
+        "",
+        f"Run: {matrix['created_utc']}",
+        "",
+        matrix["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {matrix['status']}",
+        f"- Decision rows: {counts['decision_rows']}",
+        f"- Rows with UniProt matching EC activity: {counts['rows_with_uniprot_matching_ec_activity']}",
+        f"- Rows with existing reviewer ID: {counts['rows_with_existing_reviewer_id']}",
+        f"- Copy-ready approved decisions: {counts['copy_ready_approved_decisions']}",
+        f"- Feature-contract consumable rows: {counts['feature_contract_consumable_rows']}",
+        "",
+        "## Decision Rows",
+        "",
+        "| row | accession | events | readiness blockers | available decisions |",
+        "| --- | --- | ---: | --- | ---: |",
+    ]
+    for row in matrix["decision_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row['event_count']} | {', '.join(row['readiness_blockers'])} | "
+            f"{len(row['decision_options'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {matrix['interpretation']['result']}",
+        f"- {matrix['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+    *,
+    unresolved_official_source_audit_path: Path,
+    sidecar_path: Path,
+    feature_readiness_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    matrix = build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+        unresolved_official_source_audit_path=unresolved_official_source_audit_path,
+        sidecar_path=sidecar_path,
+        feature_readiness_path=feature_readiness_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(matrix, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_report(
+                matrix
+            ),
+            encoding="utf-8",
+        )
+    return matrix
 
 
 def _rhea_resolution_nodes_by_entry(

@@ -178,6 +178,28 @@
       "work_report_sha256": "ffb92ae16597f5dc5fbbac081513af348a6c7ff21ef7aac869581ca82dc0c6a4"
     },
     {
+      "artifact_status": "p0_rhea_unresolved_official_source_audit_ready_review_only",
+      "category": "mechanism_feature_p0_rhea_unresolved_official_source_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
+      "json_sha256": "31d32000d486099ff1abfcfa70bb1f73750ad65c6a20430f2308e187b0a7e2e3",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.md",
+      "work_report_sha256": "082dfa94318d78f7b9218d64425693526aebf06aee28ea9cd1b4d23bc96a40c3"
+    },
+    {
+      "artifact_status": "p0_reviewer_decision_matrix_ready_review_only",
+      "category": "mechanism_feature_p0_reviewer_decision_matrix",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
+      "json_sha256": "55f6fafbb76bb11f4c02f02a8328a621852417c8c408cf9f3e38da7822def681",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.md",
+      "work_report_sha256": "3f1b9bc4e4afbd7e817ecdd7886231c8fae329e23d443be916d8cfe3ac943312"
+    },
+    {
       "artifact_status": "p0_feature_readiness_audit_blocked_review_required",
       "category": "mechanism_feature_p0_feature_readiness_audit",
       "json_exists": true,
@@ -227,10 +249,10 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
-      "json_sha256": "c9d9f2e53b144addd6ad004d2490f9e695af71f3ddb3345970974c046eb5f0ff",
+      "json_sha256": "d67ddf4fa9695406b125a34ec22cb7b47b968a4d5011c87df6d22e33ad117a60",
       "work_report_exists": true,
       "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
-      "work_report_sha256": "2fe0b22a0a2fe981d6fc173a0f9956907ae1e5c8d64f2aaed363285fe0a875db"
+      "work_report_sha256": "5561b7e6b90ef24a04f450b935048d620a8fca9f55f08020750bba7c62544243"
     }
   ],
   "counts": {
@@ -239,17 +261,19 @@
     "family_panel_readiness_artifacts": 1,
     "fold_channel_coordinate_provenance_artifacts": 1,
     "fold_channel_reproduction_manifest_artifacts": 1,
-    "json_artifacts_checked": 21,
-    "json_artifacts_parse_passed": 21,
+    "json_artifacts_checked": 23,
+    "json_artifacts_parse_passed": 23,
     "label_registry_mutations": 0,
     "mechanism_feature_gap_guardrail_artifacts": 1,
     "mechanism_feature_gap_priority_artifacts": 1,
     "mechanism_feature_p0_extraction_strict_audit_artifacts": 1,
     "mechanism_feature_p0_extraction_work_package_artifacts": 1,
     "mechanism_feature_p0_feature_readiness_audit_artifacts": 1,
+    "mechanism_feature_p0_reviewer_decision_matrix_artifacts": 1,
     "mechanism_feature_p0_rhea_lookup_manifest_artifacts": 1,
     "mechanism_feature_p0_rhea_lookup_resolution_artifacts": 1,
     "mechanism_feature_p0_rhea_resolution_consumption_audit_artifacts": 1,
+    "mechanism_feature_p0_rhea_unresolved_official_source_audit_artifacts": 1,
     "mechanism_feature_p0_source_evidence_review_queue_artifacts": 1,
     "mechanism_feature_p0_source_evidence_schema_artifacts": 1,
     "mechanism_feature_p0_source_evidence_sidecar_artifacts": 1,
@@ -261,14 +285,14 @@
     "predicted_atlas_vs_fold_novelty_delta_artifacts": 1,
     "predicted_geometry_scores_created": 0,
     "production_threshold_mutations": 0,
-    "repo_json_artifacts_parse_checked": 3134,
+    "repo_json_artifacts_parse_checked": 3136,
     "repo_json_parse_error_count": 0,
     "repo_jsonl_artifacts_parse_checked": 26,
     "source_free_locator_decision_matrix_artifacts": 1,
-    "work_reports_checked": 21,
-    "work_reports_present": 21
+    "work_reports_checked": 23,
+    "work_reports_present": 23
   },
-  "created_utc": "2026-06-01T23:19:09Z",
+  "created_utc": "2026-06-02T01:06:58Z",
   "critical_counts": {
     "json_missing_or_parse_failed_rows": 0,
     "label_registry_mutations": 0,
@@ -286,21 +310,21 @@
     "predicted_geometry_scores_created": false,
     "production_thresholds_changed": false
   },
-  "next_action": "Resolve remaining P0 Rhea lookup rows m_csa:11, m_csa:169, and m_csa:5; add reviewer provenance before any train/cal no-template feature-contract refresh.",
+  "next_action": "Use the P0 reviewer decision matrix for m_csa:11, m_csa:169, and m_csa:5; record reviewer provenance before any train/cal no-template feature-contract refresh.",
   "repo_parse_errors": [],
   "schema_version": "current_run_artifact_integrity.v2",
-  "scope": "Current automation-run integrity audit for fold reproduction, predicted-atlas/fold novelty delta, mechanism-feature bond/proton/electron readiness, Rhea lookup resolution/consumption, family-panel guardrails, locator decision, and docs-reference maintenance outputs.",
+  "scope": "Current automation-run integrity audit for fold reproduction, predicted-atlas/fold novelty delta, mechanism-feature bond/proton/electron readiness, P0 Rhea official-source and reviewer-decision outputs, family-panel guardrails, locator decision, and docs-reference maintenance outputs.",
   "status": "current_run_artifact_integrity_audit_passed",
   "validation_summary": {
     "catalytic_earth_cli_validate": "passed; 12 source records, 8 fingerprints, 15 ontology families, 702 labels",
     "compileall": "passed",
-    "current_docs_artifact_reference_check": "passed; 492 references checked, 0 missing",
-    "disk_check": "passed; 27 GiB available",
-    "focused_new_tests": "passed; Rhea resolution/consumption, predicted-atlas-vs-fold delta, current-run integrity, and CLI registration focused slices",
-    "full_pytest": "passed; 1131 tests, 1 existing sklearn/scipy deprecation warning",
+    "current_docs_artifact_reference_check": "passed; 494 references checked, 0 missing",
+    "disk_check": "passed; 28 GiB available",
+    "focused_new_tests": "passed; unresolved-Rhea official-source audit, reviewer decision matrix, Rhea resolution/consumption, artifact regressions, and CLI registration focused slices",
+    "full_pytest": "passed; 1135 tests, 1 existing sklearn/scipy deprecation warning",
     "git_diff_check": "passed",
-    "repo_json_parse_sweep": "passed; 3134 JSON and 26 JSONL files parsed with 0 errors",
-    "unittest_discovery": "passed; 1108 tests, 1 existing sklearn/scipy deprecation warning",
-    "validation_soak": "passed; 21 iterations of JSON parse, focused pytest, cli validate, and git diff --check through 50.1 elapsed minutes"
+    "repo_json_parse_sweep": "passed; 3136 JSON and 26 JSONL files parsed with 0 errors",
+    "unittest_discovery": "passed; 1112 tests, 1 existing sklearn/scipy deprecation warning",
+    "validation_soak": "passed; 22 clean initial iterations through 41.9 minutes, timestamp file overwrite detected/restored from active lock, then 7 guarded iterations through 50.9 minutes"
   }
 }

@@ -69,6 +69,21 @@ confirms it entered only the draft sidecar. Resolve the remaining three Rhea
 lookup rows (`m_csa:11`, `m_csa:169`, and `m_csa:5`) and reviewer provenance
 before any no-template feature-contract refresh.
 
+Official-source addendum, 2026-06-02: the remaining three P0 Rhea rows were
+rechecked against bounded Rhea EC/accession queries and current UniProtKB
+catalytic-activity records. Rhea still returns 0 records; UniProt confirms the
+matching EC activities but provides no Rhea cross-references. The next action is
+now a human reviewer decision: approve M-CSA-only row-specific evidence with
+reviewer provenance, reject/hold the draft events, or authorize an alternate
+reaction source. Do not refresh the no-template feature contract until that
+review gate is explicit.
+
+Reviewer-decision addendum, 2026-06-02: the review-only decision matrix now
+names the three allowed decisions for each unresolved row: approve M-CSA-only
+source evidence with reviewer provenance, reject/rewrite draft events, or hold
+for an alternate reaction source. It records zero approvals and zero consumable
+rows; use it as the next human-facing packet.
+
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)
 are the hardest cases. A fold/structure-distance novelty signal (Foldseek/TM

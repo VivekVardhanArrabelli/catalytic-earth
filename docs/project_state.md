@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-01
+Last refreshed: 2026-06-02
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -398,6 +398,20 @@ artifacts first.
   EC reclassification away from the worksheet `ec:1.9.3.1`. The remaining Rhea
   lookup manifest now stages only `ec:3.1.21.2`, `ec:3.4.14.5`, and
   `ec:3.4.16.6` for `m_csa:11`, `m_csa:169`, and `m_csa:5`.
+- A bounded official-source audit rechecked those three remaining rows against
+  Rhea EC queries with and without the `ec:` prefix, Rhea accession queries, and
+  current UniProtKB catalytic-activity records. Rhea still returns 0 records;
+  UniProt confirms matching EC activity for all three accessions but provides
+  no Rhea cross-references. These rows are not automation-resolvable from
+  official Rhea/UniProt alone and now need reviewer provenance for M-CSA-only
+  approval, rejection/hold, or an explicitly authorized alternate reaction
+  source.
+- A companion reviewer decision matrix now makes that human gate explicit for
+  `m_csa:11`, `m_csa:169`, and `m_csa:5`. Each row has three allowed decision
+  options: approve M-CSA-only source evidence with reviewer provenance,
+  reject/rewrite draft events, or hold for an authorized alternate reaction
+  source. The matrix records 0 approvals, 0 reviewer IDs, 0 copy-ready rows, and
+  0 feature-contract-consumable rows.
 - A strict consumption audit confirms that the Rhea lookup resolution is used
   only as draft review evidence: `m_csa:124` carries `RHEA:11436` in the
   sidecar, the three unresolved rows remain in lookup/readiness blockers, and

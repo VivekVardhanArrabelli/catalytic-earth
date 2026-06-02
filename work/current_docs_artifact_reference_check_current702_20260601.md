@@ -1,13 +1,13 @@
 # Current Docs Artifact Reference Check - current702
 
-Run: 2026-06-01T23:47:31Z
+Run: 2026-06-02T01:05:44Z
 
 Checks current durable docs for backtick-referenced repo paths, excluding intentional globs and template placeholders.
 
 ## Status
 
 - current_docs_artifact_references_passed
-- References checked: 492
+- References checked: 494
 - Ignored references: 9
 - Missing references: 0
 

@@ -94,6 +94,8 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
     write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
     write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix,
     write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
@@ -11922,6 +11924,44 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_cons
         "Wrote row-specific bond-change P0 Rhea resolution consumption audit to "
         f"{args.out} (status: {audit.get('status')}, "
         f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit(
+        rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+        rhea_lookup_resolution_path=Path(args.rhea_lookup_resolution),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 unresolved Rhea official-source "
+        f"audit to {args.out} (status: {audit.get('status')}, "
+        "unresolved after check: "
+        f"{counts.get('unresolved_after_official_source_check')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+    args: argparse.Namespace,
+) -> int:
+    matrix = write_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+        unresolved_official_source_audit_path=Path(args.unresolved_official_source_audit),
+        sidecar_path=Path(args.sidecar),
+        feature_readiness_path=Path(args.feature_readiness),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = matrix.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 reviewer decision matrix to "
+        f"{args.out} (status: {matrix.get('status')}, "
+        f"decision rows: {counts.get('decision_rows')})"
     )
     return 0
 
@@ -25051,6 +25091,101 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_rhea_consumption.set_defaults(
         func=(
             cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption
+        )
+    )
+
+    row_specific_bond_change_p0_rhea_unresolved = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-p0-"
+            "rhea-unresolved-official-source"
+        ),
+        help=(
+            "audit official Rhea and UniProt source state for P0 rows that "
+            "remain unresolved after bounded Rhea lookup"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--rhea-lookup-resolution",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_unresolved_official_source_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_unresolved_official_source_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source
+        )
+    )
+
+    row_specific_bond_change_p0_reviewer_decision_matrix = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-p0-"
+            "reviewer-decision-matrix"
+        ),
+        help=(
+            "stage reviewer decision options for unresolved P0 Rhea rows "
+            "without approving rows or refreshing feature contracts"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--unresolved-official-source-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_unresolved_official_source_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--feature-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_reviewer_decision_matrix_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_reviewer_decision_matrix_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
         )
     )
 

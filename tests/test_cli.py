@@ -234,6 +234,26 @@ class CliTests(unittest.TestCase):
             (
                 (
                     "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-rhea-unresolved-official-source"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_rhea_unresolved_official_source"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-reviewer-decision-matrix"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_reviewer_decision_matrix"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
                     "p0-feature-readiness"
                 ),
                 (

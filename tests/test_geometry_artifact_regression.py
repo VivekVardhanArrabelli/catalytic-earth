@@ -3506,6 +3506,82 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(row_by_entry["m_csa:11"]["in_remaining_lookup_manifest"])
         self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
 
+    def test_row_specific_bond_change_p0_rhea_unresolved_official_source_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_rhea_unresolved_official_source_audit_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_rhea_unresolved_official_source_audit_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["manifest_rows_audited"], 3)
+        self.assertEqual(audit["counts"]["rhea_query_attempts"], 9)
+        self.assertEqual(audit["counts"]["rows_with_official_rhea_evidence_found"], 0)
+        self.assertEqual(audit["counts"]["rows_with_uniprot_matching_ec_activity"], 3)
+        self.assertEqual(audit["counts"]["unresolved_after_official_source_check"], 3)
+        self.assertEqual(audit["counts"]["reviewer_decision_required_rows"], 3)
+        self.assertEqual(audit["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in audit["row_audits"]],
+            ["m_csa:5", "m_csa:11", "m_csa:169"],
+        )
+        self.assertTrue(
+            all(
+                row["status"]
+                == "official_ec_activity_present_without_rhea_cross_reference"
+                for row in audit["row_audits"]
+            )
+        )
+        self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_reviewer_decision_matrix_current_counts(
+        self,
+    ) -> None:
+        matrix = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_reviewer_decision_matrix_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            matrix["status"],
+            "p0_reviewer_decision_matrix_ready_review_only",
+        )
+        self.assertEqual(matrix["counts"]["decision_rows"], 3)
+        self.assertEqual(matrix["counts"]["decision_options_per_row"], 3)
+        self.assertEqual(matrix["counts"]["rows_with_uniprot_matching_ec_activity"], 3)
+        self.assertEqual(matrix["counts"]["copy_ready_approved_decisions"], 0)
+        self.assertEqual(matrix["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in matrix["decision_rows"]],
+            ["m_csa:5", "m_csa:11", "m_csa:169"],
+        )
+        by_entry = {row["entry_id"]: row for row in matrix["decision_rows"]}
+        self.assertEqual(by_entry["m_csa:5"]["event_count"], 1)
+        self.assertEqual(by_entry["m_csa:11"]["event_count"], 4)
+        self.assertEqual(by_entry["m_csa:169"]["event_count"], 4)
+        self.assertTrue(
+            all(
+                "rhea_lookup_unresolved" in row["readiness_blockers"]
+                for row in matrix["decision_rows"]
+            )
+        )
+        self.assertFalse(matrix["guardrails"]["feature_contract_refresh_allowed"])
+        self.assertFalse(
+            matrix["guardrails"]["reviewer_decision_recorded_by_this_artifact"]
+        )
+
     def test_row_specific_bond_change_p0_feature_readiness_audit_current_counts(
         self,
     ) -> None:
@@ -4223,11 +4299,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
         self.assertEqual(audit["schema_version"], "current_run_artifact_integrity.v2")
-        self.assertEqual(audit["counts"]["json_artifacts_checked"], 21)
-        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 21)
-        self.assertEqual(audit["counts"]["work_reports_checked"], 21)
-        self.assertEqual(audit["counts"]["work_reports_present"], 21)
-        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3134)
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 23)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 23)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 23)
+        self.assertEqual(audit["counts"]["work_reports_present"], 23)
+        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3136)
         self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 26)
         self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
         self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
@@ -4254,6 +4330,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             1,
         )
         self.assertEqual(
+            audit[
+                "counts"
+            ][
+                "mechanism_feature_p0_rhea_unresolved_official_source_audit_artifacts"
+            ],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["mechanism_feature_p0_reviewer_decision_matrix_artifacts"],
+            1,
+        )
+        self.assertEqual(
             audit["counts"]["family_panel_no_template_feature_guardrail_artifacts"],
             1,
         )
@@ -4264,7 +4352,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             all(count == 0 for count in audit["critical_counts"].values())
         )
-        self.assertEqual(len(audit["artifact_rows"]), 21)
+        self.assertEqual(len(audit["artifact_rows"]), 23)
         self.assertEqual(
             audit["artifact_rows"][-1]["category"],
             "docs_reference_check",

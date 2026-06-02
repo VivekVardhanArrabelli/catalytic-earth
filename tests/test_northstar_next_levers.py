@@ -40,6 +40,8 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
     build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
     build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix,
     build_mechanism_feature_row_specific_bond_change_schema,
     build_mechanism_feature_embedding_pilot,
     build_mechanism_feature_sidecar_schema_audit,
@@ -3895,6 +3897,201 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["unresolved_rows"], 1)
         self.assertEqual(audit["counts"]["critical_violation_total"], 0)
         self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_blocks_without_rhea(
+        self,
+    ) -> None:
+        def fake_rhea_fetch(query: str) -> str:
+            return "Reaction identifier\tEquation\tEC number\tEnzymes\n"
+
+        def fake_uniprot_fetch(accession: str) -> dict[str, object]:
+            return {
+                "primaryAccession": accession,
+                "uniProtkbId": "TEST_HUMAN",
+                "entryAudit": {"lastAnnotationUpdateDate": "2026-01-28"},
+                "proteinDescription": {
+                    "recommendedName": {
+                        "fullName": {"value": "Test peptidase"},
+                        "ecNumbers": [{"value": "3.4.14.5"}],
+                    }
+                },
+                "comments": [
+                    {
+                        "commentType": "CATALYTIC ACTIVITY",
+                        "reaction": {
+                            "name": "Release of an N-terminal dipeptide.",
+                            "ecNumber": "3.4.14.5",
+                        },
+                    }
+                ],
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "manifest.json"
+            resolution = root / "resolution.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "lookup_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P27487",
+                                "m_csa_entry_name": "dipeptidyl peptidase",
+                                "ec_targets": ["ec:3.4.14.5"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            resolution.write_text(
+                json.dumps(
+                    {
+                        "row_resolutions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accepted_resolution": {
+                                    "status": (
+                                        "unresolved_no_rhea_record_for_ec_or_accession"
+                                    ),
+                                    "rhea_id": None,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accepted_resolution": {
+                                    "status": "resolved_accession_query",
+                                    "rhea_id": "RHEA:1",
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit(
+                rhea_lookup_manifest_path=manifest,
+                rhea_lookup_resolution_path=resolution,
+                rhea_fetcher=fake_rhea_fetch,
+                uniprot_fetcher=fake_uniprot_fetch,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_rhea_unresolved_official_source_audit_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["manifest_rows_audited"], 1)
+        self.assertEqual(audit["counts"]["rhea_query_attempts"], 3)
+        self.assertEqual(audit["counts"]["rows_with_official_rhea_evidence_found"], 0)
+        self.assertEqual(audit["counts"]["rows_with_uniprot_matching_ec_activity"], 1)
+        self.assertEqual(audit["counts"]["unresolved_after_official_source_check"], 1)
+        self.assertEqual(audit["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(
+            audit["row_audits"][0]["status"],
+            "official_ec_activity_present_without_rhea_cross_reference",
+        )
+        self.assertTrue(audit["row_audits"][0]["reviewer_decision_required"])
+        self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_reviewer_decision_matrix_stages_options(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            official = root / "official.json"
+            sidecar = root / "sidecar.json"
+            readiness = root / "readiness.json"
+            official.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P27487",
+                                "m_csa_entry_name": "dipeptidyl peptidase",
+                                "status": (
+                                    "official_ec_activity_present_without_rhea_cross_reference"
+                                ),
+                                "ec_targets": ["ec:3.4.14.5"],
+                                "official_rhea_evidence_found": False,
+                                "uniprot_query": {
+                                    "matching_ec_catalytic_activities": [
+                                        {"ec_number": "3.4.14.5"}
+                                    ]
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_status": "draft",
+                                "reviewer_id": None,
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "bond_broken",
+                                        "confidence": "medium",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:1:residue:1"
+                                        ],
+                                        "source_evidence_span": {
+                                            "source_record_id": "m_csa:1:mechanism:1"
+                                        },
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "row_readiness": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "blockers": [
+                                    "reviewer_id_missing",
+                                    "rhea_lookup_unresolved",
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            matrix = build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+                unresolved_official_source_audit_path=official,
+                sidecar_path=sidecar,
+                feature_readiness_path=readiness,
+            )
+
+        self.assertEqual(
+            matrix["status"],
+            "p0_reviewer_decision_matrix_ready_review_only",
+        )
+        self.assertEqual(matrix["counts"]["decision_rows"], 1)
+        self.assertEqual(matrix["counts"]["decision_options_per_row"], 3)
+        self.assertEqual(matrix["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(matrix["decision_rows"][0]["event_count"], 1)
+        self.assertIn(
+            "rhea_lookup_unresolved",
+            matrix["decision_rows"][0]["readiness_blockers"],
+        )
+        self.assertFalse(
+            matrix["decision_rows"][0]["copy_ready_approved_decision_present"]
+        )
+        self.assertFalse(matrix["guardrails"]["reviewer_decision_recorded_by_this_artifact"])
 
     def test_row_specific_bond_change_p0_feature_readiness_blocks_draft_rows(
         self,

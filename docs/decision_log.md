@@ -806,6 +806,25 @@ the lookup manifest and readiness blockers. The audit reports 0 critical
 violations, 0 approved rows, 0 feature-contract-consumable rows, and 0
 model-training-eligible rows.
 
+P0 unresolved-Rhea official-source follow-up: recheck the three remaining rows
+(`m_csa:11`, `m_csa:169`, and `m_csa:5`) against bounded Rhea EC queries with
+and without the `ec:` prefix, Rhea accession queries, and current UniProtKB
+catalytic-activity records. Rhea returns 0 records for all nine bounded queries.
+UniProt confirms matching EC catalytic activity for all three accessions but
+provides no Rhea cross-references. The rows remain non-consumable and cannot be
+automation-resolved from official Rhea/UniProt alone; the next gate is reviewer
+provenance for M-CSA-only approval, rejection/hold, or an explicitly authorized
+alternate reaction source.
+
+P0 reviewer-decision matrix follow-up: stage the review-only decision matrix
+for those three unresolved rows. It records each row's draft event count,
+readiness blockers, official-source status, and three allowed reviewer choices:
+approve M-CSA-only source evidence with reviewer provenance, reject/rewrite
+draft events, or hold for an alternate reaction source. It records no reviewer
+decision, approval, feature-contract consumption, model-training eligibility,
+label edit, registry edit, ontology edit, import, threshold change, or
+production-scorer change.
+
 P0 feature-readiness follow-up: audit the draft source-evidence sidecar against
 the strict audit, manual review queue, Rhea lookup manifest, and current
 feature contract. All 15 rows are structurally ready as drafts, with draft
