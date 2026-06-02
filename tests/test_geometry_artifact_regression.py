@@ -2805,6 +2805,35 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(manifest["guardrails"]["coordinate_downloads_performed"])
         self.assertFalse(manifest["guardrails"]["foldseek_or_tmsearch_recomputed"])
 
+    def test_predicted_structure_fold_channel_carryover_resolution_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_channel_carryover_resolved_no_rerun_needed",
+        )
+        resolution = audit["requested_carryover_resolution"]
+        self.assertTrue(resolution["requested_outputs_present"])
+        self.assertTrue(resolution["scored_scope_complete"])
+        self.assertFalse(resolution["foldseek_rerun_required"])
+        self.assertFalse(resolution["coordinate_provenance_blocker_is_score_blocker"])
+        self.assertEqual(audit["counts"]["heldout_rows_ok"], 126)
+        self.assertEqual(audit["counts"]["all_heldout_nearest_hits"], 126)
+        self.assertEqual(audit["counts"]["priority_cofactor_confounded_oos_rows"], 6)
+        self.assertEqual(audit["counts"]["priority_nearest_hits"], 6)
+        self.assertEqual(audit["counts"]["contract_critical_violation_total"], 0)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 299)
+        self.assertIn(
+            "persistent_afdb_v6_coordinate_bundle_missing",
+            resolution["remaining_blocker_classes"],
+        )
+
     def test_predicted_atlas_geometry_novelty_variants_current_counts(self) -> None:
         audit = _load_json(
             ROOT
@@ -3618,6 +3647,39 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
         self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
 
+    def test_row_specific_bond_change_p0_refresh_blocker_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_refresh_blocker_audit_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_no_template_feature_refresh_blocked_review_required",
+        )
+        self.assertFalse(
+            audit["decision"]["automation_feature_contract_refresh_allowed"]
+        )
+        self.assertEqual(audit["counts"]["sidecar_rows"], 15)
+        self.assertEqual(audit["counts"]["structurally_ready_draft_rows"], 15)
+        self.assertEqual(audit["counts"]["approved_consumable_rows"], 0)
+        self.assertEqual(audit["counts"]["reviewer_decision_required_rows"], 3)
+        self.assertEqual(audit["counts"]["reviewer_decision_rows"], 3)
+        self.assertEqual(audit["counts"]["copy_ready_approved_decisions"], 0)
+        self.assertEqual(audit["counts"]["rows_with_existing_reviewer_id"], 0)
+        self.assertEqual(audit["counts"]["rhea_unresolved_rows"], 3)
+        self.assertEqual(
+            [row["entry_id"] for row in audit["unresolved_decision_rows"]],
+            ["m_csa:5", "m_csa:11", "m_csa:169"],
+        )
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+
     def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
         self,
     ) -> None:
@@ -4299,16 +4361,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
         self.assertEqual(audit["schema_version"], "current_run_artifact_integrity.v2")
-        self.assertEqual(audit["counts"]["json_artifacts_checked"], 23)
-        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 23)
-        self.assertEqual(audit["counts"]["work_reports_checked"], 23)
-        self.assertEqual(audit["counts"]["work_reports_present"], 23)
-        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3136)
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 25)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 25)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 25)
+        self.assertEqual(audit["counts"]["work_reports_present"], 25)
+        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3138)
         self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 26)
         self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
         self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
         self.assertEqual(audit["counts"]["new_coordinates_fetched"], 0)
         self.assertEqual(audit["counts"]["predicted_geometry_scores_created"], 0)
+        self.assertEqual(
+            audit["counts"]["fold_channel_carryover_resolution_artifacts"],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["mechanism_feature_p0_refresh_blocker_audit_artifacts"],
+            1,
+        )
         self.assertEqual(
             audit["counts"]["mechanism_feature_p0_feature_readiness_audit_artifacts"],
             1,
@@ -4352,7 +4422,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             all(count == 0 for count in audit["critical_counts"].values())
         )
-        self.assertEqual(len(audit["artifact_rows"]), 23)
+        self.assertEqual(len(audit["artifact_rows"]), 25)
         self.assertEqual(
             audit["artifact_rows"][-1]["category"],
             "docs_reference_check",

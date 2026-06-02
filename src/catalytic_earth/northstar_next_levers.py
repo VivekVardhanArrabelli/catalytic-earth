@@ -61,6 +61,9 @@ PREDICTED_STRUCTURE_FOLD_CHANNEL_COORDINATE_PROVENANCE_AUDIT_ID = (
 PREDICTED_STRUCTURE_FOLD_CHANNEL_REPRODUCTION_MANIFEST_ID = (
     "v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601"
 )
+PREDICTED_STRUCTURE_FOLD_CHANNEL_CARRYOVER_RESOLUTION_ID = (
+    "v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601"
+)
 PREDICTED_STRUCTURE_FOLD_AUGMENTED_NOVELTY_OPERATING_GRID_ID = (
     "v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601"
 )
@@ -201,6 +204,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_REVIEWER_DECISION_MATRIX_ID = (
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_FEATURE_READINESS_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_REFRESH_BLOCKER_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601"
 )
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
@@ -2872,6 +2878,354 @@ def write_predicted_structure_fold_channel_reproduction_manifest(
             encoding="utf-8",
         )
     return manifest
+
+
+def _contract_critical_violation_total(contract_audit: dict[str, Any]) -> int:
+    critical_counts = (contract_audit.get("counts") or {}).get("critical_counts") or {}
+    total = 0
+    for value in critical_counts.values():
+        if isinstance(value, bool):
+            continue
+        if isinstance(value, (int, float)):
+            total += int(value)
+    return total
+
+
+def build_predicted_structure_fold_channel_carryover_resolution(
+    *,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path,
+    coordinate_provenance_audit_path: Path,
+    reproduction_manifest_path: Path,
+    predicted_structure_fold_channel_report_path: Path | None = None,
+) -> dict[str, Any]:
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    fold_signal = _read_json(fold_level_signal_path)
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    contract_audit = _read_json(contract_audit_path)
+    coordinate_provenance = _read_json(coordinate_provenance_audit_path)
+    reproduction_manifest = _read_json(reproduction_manifest_path)
+
+    rows = [row for row in predicted_atlas.get("results", []) if isinstance(row, dict)]
+    atlas_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "in_distribution" and _predicted_row_ok(row)
+    ]
+    heldout_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "heldout" and _predicted_row_ok(row)
+    ]
+    heldout_ids = {
+        str(row.get("entry_id"))
+        for row in heldout_rows
+        if row.get("entry_id")
+    }
+    confounded_ids = set(
+        fold_signal.get("confounded_entry_ids", {}).get(
+            "predicted_geometry_overlap_current_gate", []
+        )
+    )
+    priority_ids = heldout_ids & confounded_ids
+
+    parsed = fold_channel.get("parsed_foldseek_results") or {}
+    all_parsed = parsed.get("all_heldout_vs_atlas") or {}
+    priority_parsed = parsed.get("priority_cofactor_confounded_oos_vs_atlas") or {}
+    all_hit_count = (all_parsed.get("summary") or {}).get(
+        "query_entry_count_with_hits"
+    )
+    priority_hit_count = (priority_parsed.get("summary") or {}).get(
+        "query_entry_count_with_hits"
+    )
+    all_hit_count = int(all_hit_count or 0)
+    priority_hit_count = int(priority_hit_count or 0)
+
+    contract_critical_total = _contract_critical_violation_total(contract_audit)
+    contract_passed = (
+        contract_audit.get("status") == "fold_channel_contract_passed_current702"
+        and contract_critical_total == 0
+    )
+    coordinate_counts = coordinate_provenance.get("counts") or {}
+    reproduction_counts = reproduction_manifest.get("counts") or {}
+    result_files_parseable = bool(
+        coordinate_counts.get("result_files_parseable")
+        and reproduction_counts.get("result_files_parseable")
+    )
+    scored_scope_complete = (
+        fold_channel.get("status") == "computed_all_heldout_foldseek_scores"
+        and all_parsed.get("status") == "parsed"
+        and priority_parsed.get("status") == "parsed"
+        and all_hit_count == len(heldout_ids)
+        and priority_hit_count == len(priority_ids)
+        and contract_passed
+    )
+    report_exists = (
+        predicted_structure_fold_channel_report_path.exists()
+        if predicted_structure_fold_channel_report_path is not None
+        else None
+    )
+    requested_outputs_present = (
+        predicted_structure_fold_channel_path.exists()
+        and (report_exists is not False)
+    )
+    byte_reproduction_ready = (
+        reproduction_manifest.get("status") == "fold_channel_byte_reproduction_ready"
+    )
+    coordinate_bundle_missing = int(
+        coordinate_counts.get("unique_coordinate_files_missing") or 0
+    )
+    rerun_required = not scored_scope_complete
+
+    status = (
+        "fold_channel_carryover_resolved_no_rerun_needed"
+        if scored_scope_complete and requested_outputs_present and result_files_parseable
+        else "fold_channel_carryover_requires_repair_or_manifest"
+    )
+    blocker_classes = []
+    if not scored_scope_complete:
+        blocker_classes.append("scored_fold_channel_contract_or_scope_incomplete")
+    if not requested_outputs_present:
+        blocker_classes.append("requested_fold_channel_output_missing")
+    if not result_files_parseable:
+        blocker_classes.append("foldseek_result_tsv_parseability_not_confirmed")
+    if coordinate_bundle_missing and not byte_reproduction_ready:
+        blocker_classes.append("persistent_afdb_v6_coordinate_bundle_missing")
+
+    return {
+        "artifact_id": PREDICTED_STRUCTURE_FOLD_CHANNEL_CARRYOVER_RESOLUTION_ID,
+        "schema_version": f"{SCHEMA_VERSION}.predicted_structure_fold_carryover_resolution",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Validation-only resolution of the carryover request to build or "
+            "stage the AlphaFoldDB-predicted Foldseek/TM channel from frozen "
+            "current702 inputs."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "foldseek_tm_recomputed": False,
+            "coordinate_downloads_performed": False,
+            "validation_only": True,
+        },
+        "requested_carryover_resolution": {
+            "requested_primary_output_artifact": str(
+                predicted_structure_fold_channel_path
+            ),
+            "requested_primary_output_report": (
+                str(predicted_structure_fold_channel_report_path)
+                if predicted_structure_fold_channel_report_path is not None
+                else None
+            ),
+            "requested_outputs_present": requested_outputs_present,
+            "scored_scope_complete": scored_scope_complete,
+            "foldseek_rerun_required": rerun_required,
+            "foldseek_rerun_decision": (
+                "no_rerun_existing_scored_channel_contract_passes"
+                if not rerun_required
+                else "rerun_or_repair_required_before_downstream_use"
+            ),
+            "byte_level_reproduction_ready": byte_reproduction_ready,
+            "coordinate_provenance_blocker_is_score_blocker": False,
+            "remaining_blocker_classes": blocker_classes,
+        },
+        "counts": {
+            "predicted_atlas_rows": len(rows),
+            "atlas_in_distribution_rows_ok": len(atlas_rows),
+            "heldout_rows_ok": len(heldout_rows),
+            "confounded_entry_ids_from_fold_signal": len(confounded_ids),
+            "priority_cofactor_confounded_oos_rows": len(priority_ids),
+            "all_heldout_nearest_hits": all_hit_count,
+            "priority_nearest_hits": priority_hit_count,
+            "contract_critical_violation_total": contract_critical_total,
+            "unique_coordinate_files_expected": coordinate_counts.get(
+                "unique_coordinate_files_expected"
+            ),
+            "unique_coordinate_files_missing": coordinate_bundle_missing,
+            "deduplicated_afdb_accessions_missing": coordinate_counts.get(
+                "unique_accessions_without_any_local_file"
+            ),
+            "foldseek_result_files_parseable": result_files_parseable,
+        },
+        "input_artifact_status": {
+            "predicted_geometry_atlas_status": predicted_atlas.get("status"),
+            "fold_level_signal_status": fold_signal.get("status"),
+            "predicted_structure_fold_channel_status": fold_channel.get("status"),
+            "contract_audit_status": contract_audit.get("status"),
+            "coordinate_provenance_status": coordinate_provenance.get("status"),
+            "reproduction_manifest_status": reproduction_manifest.get("status"),
+        },
+        "safe_next_actions": [
+            {
+                "rank": 1,
+                "action": (
+                    "Do not rerun the predicted-structure fold channel unless "
+                    "the contract audit fails; continue from current handoff "
+                    "review gates."
+                ),
+                "blocked_by_human_decision": False,
+            },
+            {
+                "rank": 2,
+                "action": (
+                    "If mechanism-feature work resumes, start with reviewer "
+                    "provenance for m_csa:11, m_csa:169, and m_csa:5 before "
+                    "refreshing any no-template feature contract."
+                ),
+                "blocked_by_human_decision": True,
+            },
+            {
+                "rank": 3,
+                "action": (
+                    "If the run must remain automation-only, use docs/artifact "
+                    "index cleanup and focused validation rather than mutating "
+                    "labels, thresholds, or registries."
+                ),
+                "blocked_by_human_decision": False,
+            },
+        ],
+        "commands": {
+            "rerun_this_resolution": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-predicted-structure-fold-channel-carryover-resolution"
+            ),
+            "rerun_contract_audit_if_needed": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-predicted-structure-fold-channel-contract"
+            ),
+            "rerun_coordinate_provenance_if_byte_reproduction_needed": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-predicted-structure-fold-channel-coordinate-provenance"
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The requested fold-channel build/stage task is already "
+                "satisfied by the existing scored artifact and its passing "
+                "strict contract audit."
+                if status == "fold_channel_carryover_resolved_no_rerun_needed"
+                else "The fold-channel carryover is not resolved; inspect blocker classes before downstream use."
+            ),
+            "next_action": (
+                "Treat the fold channel as downstream-ready for review-only "
+                "diagnostics; persistent AFDB-v6 CIF provenance is only needed "
+                "for byte-level reproduction."
+                if status == "fold_channel_carryover_resolved_no_rerun_needed"
+                else "Repair or rerun the missing/failed fold-channel validation layer first."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_geometry_atlas": _source_path_record(predicted_geometry_atlas_path),
+            "fold_level_signal": _source_path_record(fold_level_signal_path),
+            "predicted_structure_fold_channel": _source_path_record(
+                predicted_structure_fold_channel_path
+            ),
+            "predicted_structure_fold_channel_report": (
+                _source_path_record(predicted_structure_fold_channel_report_path)
+                if predicted_structure_fold_channel_report_path is not None
+                else None
+            ),
+            "contract_audit": _source_path_record(contract_audit_path),
+            "coordinate_provenance_audit": _source_path_record(
+                coordinate_provenance_audit_path
+            ),
+            "reproduction_manifest": _source_path_record(reproduction_manifest_path),
+        },
+    }
+
+
+def _render_predicted_structure_fold_channel_carryover_resolution_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    resolution = audit["requested_carryover_resolution"]
+    lines = [
+        "# Predicted-Structure Fold Channel Carryover Resolution - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Requested outputs present: {resolution['requested_outputs_present']}",
+        f"- Scored scope complete: {resolution['scored_scope_complete']}",
+        f"- Foldseek rerun required: {resolution['foldseek_rerun_required']}",
+        f"- Remaining blockers: {', '.join(resolution['remaining_blocker_classes']) or 'none'}",
+        "",
+        "## Counts",
+        "",
+        f"- Atlas in-distribution ok rows: {counts['atlas_in_distribution_rows_ok']}",
+        f"- Heldout ok rows: {counts['heldout_rows_ok']}",
+        f"- Priority cofactor-confounded OOS rows: {counts['priority_cofactor_confounded_oos_rows']}",
+        f"- All-heldout nearest hits: {counts['all_heldout_nearest_hits']}",
+        f"- Priority nearest hits: {counts['priority_nearest_hits']}",
+        f"- Contract critical violations: {counts['contract_critical_violation_total']}",
+        f"- Missing persistent coordinate files: {counts['unique_coordinate_files_missing']}",
+        "",
+        "## Input Status",
+        "",
+    ]
+    for key, value in audit["input_artifact_status"].items():
+        lines.append(f"- {key}: {value}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+        "",
+        "## Next Actions",
+        "",
+    ]
+    for row in audit["safe_next_actions"]:
+        lines.append(f"- {row['rank']}. {row['action']}")
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_channel_carryover_resolution(
+    *,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path,
+    coordinate_provenance_audit_path: Path,
+    reproduction_manifest_path: Path,
+    predicted_structure_fold_channel_report_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_structure_fold_channel_carryover_resolution(
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        fold_level_signal_path=fold_level_signal_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        contract_audit_path=contract_audit_path,
+        coordinate_provenance_audit_path=coordinate_provenance_audit_path,
+        reproduction_manifest_path=reproduction_manifest_path,
+        predicted_structure_fold_channel_report_path=(
+            predicted_structure_fold_channel_report_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_channel_carryover_resolution_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
 
 
 GEOMETRY_VARIANT_FEATURES = (
@@ -19488,6 +19842,301 @@ def write_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
+    *,
+    strict_audit_path: Path,
+    feature_readiness_path: Path,
+    rhea_resolution_consumption_audit_path: Path,
+    unresolved_official_source_audit_path: Path,
+    reviewer_decision_matrix_path: Path,
+    feature_contract_gap_audit_path: Path,
+) -> dict[str, Any]:
+    strict_audit = _read_json(strict_audit_path)
+    readiness = _read_json(feature_readiness_path)
+    rhea_consumption = _read_json(rhea_resolution_consumption_audit_path)
+    unresolved_source = _read_json(unresolved_official_source_audit_path)
+    reviewer_matrix = _read_json(reviewer_decision_matrix_path)
+    gap_audit = _read_json(feature_contract_gap_audit_path)
+
+    readiness_counts = readiness.get("counts") or {}
+    strict_counts = strict_audit.get("counts") or {}
+    rhea_counts = rhea_consumption.get("counts") or {}
+    unresolved_counts = unresolved_source.get("counts") or {}
+    matrix_counts = reviewer_matrix.get("counts") or {}
+    gap_counts = gap_audit.get("counts") or {}
+    decision_rows = [
+        row
+        for row in reviewer_matrix.get("decision_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+
+    source_statuses = {
+        "strict_audit": strict_audit.get("status"),
+        "feature_readiness": readiness.get("status"),
+        "rhea_resolution_consumption": rhea_consumption.get("status"),
+        "unresolved_official_source": unresolved_source.get("status"),
+        "reviewer_decision_matrix": reviewer_matrix.get("status"),
+        "feature_contract_gap": gap_audit.get("status"),
+    }
+    source_critical_totals = {
+        "strict_audit": int(
+            strict_counts.get("strict_audit_critical_violation_total") or 0
+        ),
+        "feature_readiness": int(readiness_counts.get("critical_violation_total") or 0),
+        "rhea_resolution_consumption": int(
+            rhea_counts.get("critical_violation_total") or 0
+        ),
+        "feature_contract_gap": int(
+            gap_counts.get("strict_audit_critical_violation_total") or 0
+        ),
+    }
+    refresh_allowed = bool(readiness_counts.get("feature_contract_refresh_allowed"))
+    blocker_counts = {
+        "approved_consumable_rows_missing": (
+            1 if int(readiness_counts.get("approved_consumable_rows") or 0) == 0 else 0
+        ),
+        "reviewer_decision_required_rows": int(
+            unresolved_counts.get("reviewer_decision_required_rows") or 0
+        ),
+        "reviewer_id_missing_rows": int(
+            (readiness_counts.get("blocker_counts") or {}).get("reviewer_id_missing")
+            or 0
+        ),
+        "rhea_lookup_unresolved_rows": int(
+            (readiness_counts.get("blocker_counts") or {}).get("rhea_lookup_unresolved")
+            or 0
+        ),
+        "copy_ready_approved_decisions_missing": (
+            1
+            if int(matrix_counts.get("copy_ready_approved_decisions") or 0) == 0
+            else 0
+        ),
+        "unexpected_contract_row_specific_fields": int(
+            gap_counts.get("unexpected_bond_change_feature_rows") or 0
+        ),
+    }
+    automation_refresh_allowed = (
+        refresh_allowed
+        and all(total == 0 for total in source_critical_totals.values())
+        and int(matrix_counts.get("copy_ready_approved_decisions") or 0)
+        == int(matrix_counts.get("decision_rows") or 0)
+        and int(matrix_counts.get("feature_contract_consumable_rows") or 0)
+        == int(readiness_counts.get("sidecar_rows") or 0)
+    )
+    unresolved_decision_rows = [
+        {
+            "entry_id": row["entry_id"],
+            "accession": row.get("accession"),
+            "review_status": row.get("review_status"),
+            "reviewer_id": row.get("reviewer_id"),
+            "official_source_status": row.get("official_source_status"),
+            "copy_ready_approved_decision_present": row.get(
+                "copy_ready_approved_decision_present"
+            ),
+            "readiness_blockers": row.get("readiness_blockers") or [],
+            "allowed_decisions": [
+                option.get("decision")
+                for option in row.get("decision_options", [])
+                if isinstance(option, dict)
+            ],
+        }
+        for row in sorted(decision_rows, key=lambda item: _entry_id_sort_key(item["entry_id"]))
+    ]
+    status = (
+        "p0_no_template_feature_refresh_allowed_after_review_gate"
+        if automation_refresh_allowed
+        else "p0_no_template_feature_refresh_blocked_review_required"
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_REFRESH_BLOCKER_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_refresh_blocker_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Automation-only decision audit for whether the P0 row-specific "
+            "bond/proton/electron draft evidence can refresh the no-template "
+            "mechanism-feature contract."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "feature_contract_mutated": False,
+            "feature_contract_refresh_allowed_by_this_artifact": False,
+        },
+        "decision": {
+            "automation_feature_contract_refresh_allowed": automation_refresh_allowed,
+            "feature_readiness_refresh_allowed": refresh_allowed,
+            "required_before_refresh": [
+                "record reviewer provenance and exactly one decision for each unresolved Rhea row",
+                "rerun strict sidecar, review queue, Rhea manifest, feature-readiness, and consumption audits",
+                "confirm approved consumable rows are the only rows copied into train/cal feature-contract materialization",
+            ],
+            "do_not_run": [
+                "build-mechanism-feature-embedding-feature-contract with row-specific fields",
+                "build-mechanism-feature-embedding-pilot from draft sidecar rows",
+                "any heldout threshold tuning or production scorer refresh",
+            ],
+        },
+        "counts": {
+            "sidecar_rows": readiness_counts.get("sidecar_rows"),
+            "structurally_ready_draft_rows": readiness_counts.get(
+                "structurally_ready_draft_rows"
+            ),
+            "approved_consumable_rows": readiness_counts.get(
+                "approved_consumable_rows"
+            ),
+            "reviewer_decision_required_rows": unresolved_counts.get(
+                "reviewer_decision_required_rows"
+            ),
+            "reviewer_decision_rows": matrix_counts.get("decision_rows"),
+            "copy_ready_approved_decisions": matrix_counts.get(
+                "copy_ready_approved_decisions"
+            ),
+            "rows_with_existing_reviewer_id": matrix_counts.get(
+                "rows_with_existing_reviewer_id"
+            ),
+            "rhea_unresolved_rows": rhea_counts.get("unresolved_rows"),
+            "feature_contract_unexpected_row_specific_fields": gap_counts.get(
+                "unexpected_bond_change_feature_rows"
+            ),
+            "source_critical_totals": source_critical_totals,
+            "blocker_counts": blocker_counts,
+        },
+        "source_statuses": source_statuses,
+        "unresolved_decision_rows": unresolved_decision_rows,
+        "interpretation": {
+            "result": (
+                "The no-template mechanism-feature contract refresh remains "
+                "blocked: draft P0 evidence is structurally present, but no row "
+                "has reviewer provenance or feature-contract consumption approval."
+                if not automation_refresh_allowed
+                else "The reviewed P0 evidence passes all refresh gates."
+            ),
+            "next_action": (
+                "Use the reviewer decision matrix for m_csa:5, m_csa:11, and "
+                "m_csa:169; after human decisions are recorded, rerun the strict "
+                "sidecar, review queue, Rhea manifest, feature-readiness, "
+                "consumption, and this blocker audit before refreshing any "
+                "feature contract."
+            ),
+        },
+        "source_artifacts": {
+            "strict_audit": _source_path_record(strict_audit_path),
+            "feature_readiness": _source_path_record(feature_readiness_path),
+            "rhea_resolution_consumption_audit": _source_path_record(
+                rhea_resolution_consumption_audit_path
+            ),
+            "unresolved_official_source_audit": _source_path_record(
+                unresolved_official_source_audit_path
+            ),
+            "reviewer_decision_matrix": _source_path_record(
+                reviewer_decision_matrix_path
+            ),
+            "feature_contract_gap_audit": _source_path_record(
+                feature_contract_gap_audit_path
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Refresh-Blocker Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        (
+            "- Automation feature-contract refresh allowed: "
+            f"{decision['automation_feature_contract_refresh_allowed']}"
+        ),
+        f"- Sidecar rows: {counts['sidecar_rows']}",
+        f"- Structurally ready draft rows: {counts['structurally_ready_draft_rows']}",
+        f"- Approved consumable rows: {counts['approved_consumable_rows']}",
+        f"- Reviewer decision required rows: {counts['reviewer_decision_required_rows']}",
+        f"- Copy-ready approved decisions: {counts['copy_ready_approved_decisions']}",
+        f"- Rhea unresolved rows: {counts['rhea_unresolved_rows']}",
+        "",
+        "## Source Statuses",
+        "",
+    ]
+    for key, value in audit["source_statuses"].items():
+        lines.append(f"- {key}: {value}")
+    lines += [
+        "",
+        "## Unresolved Decision Rows",
+        "",
+        "| row | accession | source status | reviewer | copy ready | blockers |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["unresolved_decision_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row.get('official_source_status')} | "
+            f"{row.get('reviewer_id')} | "
+            f"{row.get('copy_ready_approved_decision_present')} | "
+            f"{', '.join(row.get('readiness_blockers') or [])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
+    *,
+    strict_audit_path: Path,
+    feature_readiness_path: Path,
+    rhea_resolution_consumption_audit_path: Path,
+    unresolved_official_source_audit_path: Path,
+    reviewer_decision_matrix_path: Path,
+    feature_contract_gap_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
+        strict_audit_path=strict_audit_path,
+        feature_readiness_path=feature_readiness_path,
+        rhea_resolution_consumption_audit_path=rhea_resolution_consumption_audit_path,
+        unresolved_official_source_audit_path=unresolved_official_source_audit_path,
+        reviewer_decision_matrix_path=reviewer_decision_matrix_path,
+        feature_contract_gap_audit_path=feature_contract_gap_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_report(
                 audit
             ),
             encoding="utf-8",

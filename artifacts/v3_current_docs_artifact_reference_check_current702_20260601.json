@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 494
+    "references_checked": 500
   },
-  "created_utc": "2026-06-02T01:05:44Z",
+  "created_utc": "2026-06-02T02:18:32Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -204,6 +204,12 @@
       "reference": "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json"
     },
     {
+      "checked_path": "artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json"
+    },
+    {
       "checked_path": "artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
       "doc": "docs/artifact_index.md",
       "exists": true,
@@ -304,12 +310,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

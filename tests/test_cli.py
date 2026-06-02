@@ -121,6 +121,13 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                "audit-predicted-structure-fold-channel-carryover-resolution",
+                (
+                    "cmd_audit_predicted_structure_fold_channel_"
+                    "carryover_resolution"
+                ),
+            ),
+            (
                 "build-mechanism-feature-row-specific-bond-change-schema",
                 "cmd_build_mechanism_feature_row_specific_bond_change_schema",
             ),
@@ -259,6 +266,16 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_audit_mechanism_feature_row_specific_bond_change_"
                     "p0_feature_readiness"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-refresh-blocker"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_refresh_blocker"
                 ),
             ),
             (

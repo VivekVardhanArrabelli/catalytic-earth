@@ -41,6 +41,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
     build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
     build_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit,
     build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix,
     build_mechanism_feature_row_specific_bond_change_schema,
     build_mechanism_feature_embedding_pilot,
@@ -49,6 +50,7 @@ from catalytic_earth.northstar_next_levers import (
     build_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     build_predicted_structure_fold_augmented_novelty_operating_grid,
     build_predicted_structure_fold_channel,
+    build_predicted_structure_fold_channel_carryover_resolution,
     build_predicted_structure_fold_channel_contract_audit,
     build_predicted_structure_fold_channel_coordinate_provenance_audit,
     build_predicted_structure_fold_channel_reproduction_manifest,
@@ -4188,6 +4190,142 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
         self.assertIn("reviewer_id_missing", audit["row_readiness"][0]["blockers"])
 
+    def test_row_specific_bond_change_p0_refresh_blocker_blocks_drafts(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            strict = root / "strict.json"
+            readiness = root / "readiness.json"
+            rhea_consumption = root / "rhea_consumption.json"
+            unresolved = root / "unresolved.json"
+            matrix = root / "matrix.json"
+            gap = root / "gap.json"
+            strict.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_source_evidence_sidecar_strict_audit_"
+                            "passed_draft_not_consumable"
+                        ),
+                        "counts": {"strict_audit_critical_violation_total": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_feature_readiness_audit_blocked_review_required",
+                        "counts": {
+                            "sidecar_rows": 1,
+                            "structurally_ready_draft_rows": 1,
+                            "approved_consumable_rows": 0,
+                            "feature_contract_refresh_allowed": False,
+                            "critical_violation_total": 0,
+                            "blocker_counts": {
+                                "reviewer_id_missing": 1,
+                                "rhea_lookup_unresolved": 1,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rhea_consumption.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_rhea_resolution_consumption_audit_passed_review_only",
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "unresolved_rows": 1,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            unresolved.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_rhea_unresolved_official_source_audit_ready_review_only",
+                        "counts": {"reviewer_decision_required_rows": 1},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            matrix.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_reviewer_decision_matrix_ready_review_only",
+                        "counts": {
+                            "decision_rows": 1,
+                            "copy_ready_approved_decisions": 0,
+                            "rows_with_existing_reviewer_id": 0,
+                            "feature_contract_consumable_rows": 0,
+                        },
+                        "decision_rows": [
+                            {
+                                "entry_id": "m_csa:11",
+                                "accession": "P0A6C1",
+                                "review_status": "draft",
+                                "reviewer_id": None,
+                                "official_source_status": (
+                                    "official_ec_activity_present_without_rhea_cross_reference"
+                                ),
+                                "copy_ready_approved_decision_present": False,
+                                "readiness_blockers": [
+                                    "reviewer_id_missing",
+                                    "rhea_lookup_unresolved",
+                                ],
+                                "decision_options": [
+                                    {"decision": "approve_m_csa_only_source_evidence"}
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gap.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "row_specific_bond_change_gap_not_consumed_by_feature_contract"
+                        ),
+                        "counts": {
+                            "strict_audit_critical_violation_total": 0,
+                            "unexpected_bond_change_feature_rows": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
+                strict_audit_path=strict,
+                feature_readiness_path=readiness,
+                rhea_resolution_consumption_audit_path=rhea_consumption,
+                unresolved_official_source_audit_path=unresolved,
+                reviewer_decision_matrix_path=matrix,
+                feature_contract_gap_audit_path=gap,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_no_template_feature_refresh_blocked_review_required",
+        )
+        self.assertFalse(
+            audit["decision"]["automation_feature_contract_refresh_allowed"]
+        )
+        self.assertEqual(audit["counts"]["approved_consumable_rows"], 0)
+        self.assertEqual(audit["counts"]["reviewer_decision_required_rows"], 1)
+        self.assertEqual(audit["counts"]["copy_ready_approved_decisions"], 0)
+        self.assertEqual(audit["unresolved_decision_rows"][0]["entry_id"], "m_csa:11")
+        self.assertIn(
+            "build-mechanism-feature-embedding-pilot from draft sidecar rows",
+            audit["decision"]["do_not_run"],
+        )
+
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -5976,6 +6114,142 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ),
             1,
         )
+
+    def test_predicted_structure_fold_channel_carryover_resolution_skips_rerun(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            predicted_atlas = root / "predicted_atlas.json"
+            fold_signal = root / "fold_signal.json"
+            fold_channel = root / "fold_channel.json"
+            fold_report = root / "fold_channel.md"
+            contract_audit = root / "contract_audit.json"
+            coordinate_provenance = root / "coordinate_provenance.json"
+            reproduction_manifest = root / "reproduction_manifest.json"
+
+            predicted_atlas.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                            },
+                            {
+                                "entry_id": "m_csa:30",
+                                "accession": "P22222",
+                                "split_assignment": "heldout",
+                                "predicted_geometry_status": "ok",
+                            },
+                            {
+                                "entry_id": "m_csa:40",
+                                "accession": "P33333",
+                                "split_assignment": "heldout",
+                                "predicted_geometry_status": "ok",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_signal.write_text(
+                json.dumps(
+                    {
+                        "confounded_entry_ids": {
+                            "predicted_geometry_overlap_current_gate": ["m_csa:30"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_all_heldout_foldseek_scores",
+                        "parsed_foldseek_results": {
+                            "all_heldout_vs_atlas": {
+                                "status": "parsed",
+                                "summary": {"query_entry_count_with_hits": 2},
+                            },
+                            "priority_cofactor_confounded_oos_vs_atlas": {
+                                "status": "parsed",
+                                "summary": {"query_entry_count_with_hits": 1},
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_report.write_text("# fold report\n", encoding="utf-8")
+            contract_audit.write_text(
+                json.dumps(
+                    {
+                        "status": "fold_channel_contract_passed_current702",
+                        "counts": {
+                            "critical_counts": {
+                                "status_violations": 0,
+                                "count_mismatches": 0,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            coordinate_provenance.write_text(
+                json.dumps(
+                    {
+                        "status": "coordinate_bundle_not_persisted_results_parseable",
+                        "counts": {
+                            "result_files_parseable": True,
+                            "unique_coordinate_files_expected": 3,
+                            "unique_coordinate_files_missing": 3,
+                            "unique_accessions_without_any_local_file": 3,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reproduction_manifest.write_text(
+                json.dumps(
+                    {
+                        "status": "fold_channel_reproduction_manifest_ready_missing_coordinates",
+                        "counts": {
+                            "result_files_parseable": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_predicted_structure_fold_channel_carryover_resolution(
+                predicted_geometry_atlas_path=predicted_atlas,
+                fold_level_signal_path=fold_signal,
+                predicted_structure_fold_channel_path=fold_channel,
+                contract_audit_path=contract_audit,
+                coordinate_provenance_audit_path=coordinate_provenance,
+                reproduction_manifest_path=reproduction_manifest,
+                predicted_structure_fold_channel_report_path=fold_report,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_channel_carryover_resolved_no_rerun_needed",
+        )
+        resolution = audit["requested_carryover_resolution"]
+        self.assertTrue(resolution["requested_outputs_present"])
+        self.assertTrue(resolution["scored_scope_complete"])
+        self.assertFalse(resolution["foldseek_rerun_required"])
+        self.assertFalse(resolution["coordinate_provenance_blocker_is_score_blocker"])
+        self.assertIn(
+            "persistent_afdb_v6_coordinate_bundle_missing",
+            resolution["remaining_blocker_classes"],
+        )
+        self.assertEqual(audit["counts"]["heldout_rows_ok"], 2)
+        self.assertEqual(audit["counts"]["priority_cofactor_confounded_oos_rows"], 1)
+        self.assertEqual(audit["counts"]["contract_critical_violation_total"], 0)
 
 
 if __name__ == "__main__":

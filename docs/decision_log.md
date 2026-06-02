@@ -495,6 +495,20 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
 `work/predicted_structure_fold_channel_reproduction_manifest_current702_20260601.md`.
 
+Carryover-resolution follow-up: add a validation-only audit for stale
+automation prompts that still ask to build or stage the predicted-structure fold
+channel. It consumes the scored channel, contract audit, coordinate provenance
+audit, reproduction manifest, predicted-atlas retrieval, and fold-level signal.
+The audit confirms the requested fold-channel artifact/report are present,
+126/126 ok heldout rows and 6/6 priority cofactor-confounded rows are scored,
+the contract has zero critical violations, and no Foldseek/TM rerun is needed.
+The remaining `persistent_afdb_v6_coordinate_bundle_missing` blocker is only for
+byte-level reproduction.
+
+Artifacts:
+`artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+`work/predicted_structure_fold_channel_carryover_resolution_current702_20260601.md`.
+
 ## 2026-06-01: Train/Cal OOS Negatives Add A Partial OOS Calibration Surface For The Fold-Augmented Gate
 
 Decision: score the hash-selected in-distribution OOS calibration negatives
@@ -834,7 +848,19 @@ feature contract contains no row-specific bond/proton/electron fields. The
 next blocker remains the three unresolved Rhea rows plus reviewer-provenance approval
 before any train/cal-only no-template feature refresh.
 
+P0 refresh-blocker follow-up: add a compact automation decision audit over the
+strict sidecar audit, feature-readiness audit, Rhea consumption audit,
+unresolved official-source audit, reviewer decision matrix, and feature-contract
+gap audit. It confirms automation must not refresh the no-template
+mechanism-feature contract: all 15 draft rows are structurally ready, but 0 are
+approved/consumable, 0 reviewer IDs are present, 0 copy-ready decisions exist,
+and `m_csa:5`, `m_csa:11`, and `m_csa:169` still require reviewer provenance.
+No feature contract, model, threshold, label, registry, ontology, import, or
+production scorer changed.
+
 Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
 `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`,

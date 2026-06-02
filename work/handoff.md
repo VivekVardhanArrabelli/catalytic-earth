@@ -50,6 +50,110 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Fold Carryover Resolution And P0 Refresh Blocker Audit
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T01:55:54Z`
+- STARTED_LOCAL: `Mon Jun  1 20:55:54 CDT 2026`
+- ENDED_AT: `2026-06-02T02:48:36Z`
+- ENDED_LOCAL: `Mon Jun  1 21:48:36 CDT 2026`
+- ELAPSED_MINUTES: `52.7`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "66442", "started_at": "2026-06-02T01:55:54Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and sync
+  verification complete from a clean worktree; final release result is reported
+  in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `9337948f575dc49bd383c75dffa9c9231a591097`
+- Git HEAD at end before commit:
+  `9337948f575dc49bd383c75dffa9c9231a591097`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+  durable docs, CLI/code/tests, affected work reports, and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_carryover_resolution_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.md`,
+  refreshed current-docs reference check, refreshed current-run integrity audit,
+  durable docs, CLI/code/tests, and this handoff.
+- Commands run:
+  memory read attempt and fallback; lock acquire; `git fetch origin`;
+  `git pull --ff-only origin main`; required context reads; JSON parse checks
+  for fold-channel artifacts; implemented and ran
+  `audit-predicted-structure-fold-channel-carryover-resolution`; implemented
+  and ran
+  `audit-mechanism-feature-row-specific-bond-change-p0-refresh-blocker`;
+  refreshed `build-current-docs-artifact-reference-check`; refreshed the
+  current-run integrity audit with repo JSON/JSONL parse sweep; focused pytest
+  slices for the new builders, current-count regressions, docs reference check,
+  and CLI registration; touched-file pytest; `python -m compileall -q src
+  tests`; `PYTHONPATH=src python -m catalytic_earth.cli validate`;
+  `git diff --check`; full unittest discovery; full pytest; disk check; exact
+  wall-clock checks; validation soak through 12 clean iterations, interrupted
+  by a user status/push request at 41.2 minutes, then resumed validation soak
+  for 9 additional clean iterations through 50.7 elapsed minutes.
+- Validation results:
+  new JSON artifacts parse; current-docs reference check passed with 500
+  checked references and 0 missing; current-run integrity audit passed with 25
+  JSON artifacts, 25 work reports, 3138 repo JSON files, 26 JSONL files, and 0
+  parse errors; focused new tests passed; touched-file pytest passed with 290
+  tests and 31 subtests; compileall passed; CLI validate passed with 12 source
+  records, 8 fingerprints, 15 ontology families, and 702 labels; full unittest
+  discovery passed with 1116 tests and one existing sklearn/scipy deprecation
+  warning; full pytest passed with 1139 tests, 50 subtests, and the same
+  warning; git diff check passed; disk check passed with 27 GiB available;
+  validation soak passed through 50.7 elapsed minutes.
+- Commit/push result: pending at handoff write; commit this implementation,
+  push to `origin/main`, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  do not rerun the predicted-structure fold channel unless the strict contract
+  audit fails. Use
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`
+  to record reviewer provenance and exactly one decision for `m_csa:5`,
+  `m_csa:11`, and `m_csa:169`; after that, rerun the strict sidecar, review
+  queue, Rhea manifest, feature-readiness, Rhea consumption, and P0
+  refresh-blocker audits before any no-template feature-contract refresh.
+
+Summary:
+
+- Added a validation-only fold-channel carryover-resolution audit. It confirms
+  the requested fold-channel artifact/report are already present and
+  score-complete: 126/126 ok heldout rows and 6/6 priority cofactor-confounded
+  OOS rows have parsed nearest-atlas Foldseek/TM hits, the contract audit has
+  zero critical violations, and no Foldseek/TM rerun is needed. The remaining
+  coordinate-bundle blocker is only for byte-level reproduction.
+- Added a compact P0 refresh-blocker audit for the no-template
+  mechanism-feature lane. It confirms all 15 P0 draft rows are structurally
+  ready but 0 are approved/consumable, 0 reviewer IDs are present, and
+  `m_csa:5`, `m_csa:11`, and `m_csa:169` still block any automation refresh.
+- Updated durable docs, artifact index, current-doc reference check, and
+  current-run integrity audit; no labels, registries, ontologies, imports,
+  production thresholds, model weights, coordinates, or Foldseek/TM scores were
+  changed.
+
 ### 2026-06-02 P0 Unresolved Rhea Official-Source Audit And Reviewer Matrix
 
 Automation run: `catalytic-earth-work-loop`

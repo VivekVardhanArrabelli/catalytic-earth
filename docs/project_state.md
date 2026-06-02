@@ -83,6 +83,10 @@ artifacts first.
   commands, contract/provenance audit hashes, and the single blocker class
   `persistent_afdb_v6_coordinate_bundle_missing`. No coordinates were
   downloaded and no Foldseek/TM score was recomputed.
+- A carryover-resolution audit now makes stale fold-channel prompts explicit:
+  the requested fold-channel artifact/report are present and score-complete,
+  126/126 heldout rows and 6/6 priority cofactor-confounded rows remain scored,
+  and no Foldseek/TM rerun is needed unless the contract audit fails.
 - The fold-augmented gate now has a leakage-safe thresholding contract. A
   deterministic in-distribution train/cal split selected the
   `combined_mean_geometry_fold` threshold `0.44155` at >=90% calibration
@@ -423,6 +427,11 @@ artifacts first.
   the feature contract contains no row-specific bond/proton/electron fields,
   and refresh remains blocked on reviewer provenance plus the three remaining Rhea lookup
   rows.
+- A companion P0 refresh-blocker audit now packages that into the automation
+  decision: no-template feature-contract refresh is not allowed from the draft
+  sidecar. `m_csa:5`, `m_csa:11`, and `m_csa:169` need reviewer provenance
+  and one explicit decision each before any strict rerun or train/cal feature
+  refresh.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe
