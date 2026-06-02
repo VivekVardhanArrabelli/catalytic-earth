@@ -11,6 +11,7 @@ from catalytic_earth.northstar_next_levers import (
     build_family_panel_evidence_packet,
     build_family_panel_high_value_glycyl_radical_readiness_packet,
     build_fold_augmented_abstention_gate,
+    build_fold_augmented_confounded_deployment_closure_audit,
     build_fold_augmented_family_panel_m_csa_primary_channel_repair,
     build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     build_fold_augmented_family_panel_missing_primary_channel_queue,
@@ -30,6 +31,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_reaction_center_template_sidecar,
     build_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
     build_mechanism_feature_row_specific_bond_change_materialization_priority,
+    build_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet,
     build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
@@ -43,6 +45,9 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit,
     build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit,
     build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix,
+    build_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap,
+    build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar,
     build_mechanism_feature_row_specific_bond_change_schema,
     build_mechanism_feature_embedding_pilot,
     build_mechanism_feature_sidecar_schema_audit,
@@ -1645,6 +1650,146 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(audit["decision"]["research_surface_sufficient"])
         self.assertFalse(audit["decision"]["production_surface_sufficient"])
         self.assertEqual(audit["counts"]["score_complete_fraction"], 0.9)
+
+    def test_confounded_deployment_closure_blocks_production_gap(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fold_channel = root / "fold_channel.json"
+            contract = root / "contract.json"
+            threshold = root / "threshold.json"
+            sufficiency = root / "sufficiency.json"
+            clearance = root / "clearance.json"
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_all_heldout_foldseek_scores",
+                        "parsed_foldseek_results": {
+                            "priority_cofactor_confounded_oos_vs_atlas": {
+                                "nearest_atlas_hits": [
+                                    {
+                                        "query_entry_id": "m_csa:31",
+                                        "nearest_atlas_entry_id": "m_csa:900",
+                                        "nearest_atlas_true_fingerprint_id": (
+                                            "ser_his_acid_hydrolase"
+                                        ),
+                                        "tm_score": 0.38,
+                                    },
+                                    {
+                                        "query_entry_id": "m_csa:30",
+                                        "nearest_atlas_entry_id": "m_csa:11",
+                                        "nearest_atlas_true_fingerprint_id": (
+                                            "metal_dependent_hydrolase"
+                                        ),
+                                        "tm_score": 0.5,
+                                    },
+                                ]
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract.write_text(
+                json.dumps(
+                    {
+                        "status": "fold_channel_contract_passed_current702",
+                        "counts": {
+                            "heldout_rows_ok": 20,
+                            "all_heldout_nearest_hits": 20,
+                            "priority_cofactor_confounded_oos_rows": 2,
+                            "priority_nearest_hits": 2,
+                            "critical_counts": {"missing_priority_hit_ids": 0},
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "counts": {"heldout_confounded_oos": 2},
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.44,
+                                "calibration_oos_total": 9,
+                                "calibration_oos_abstained": 4,
+                                "calibration_oos_abstain_recall": 0.4444,
+                            },
+                            "heldout_final_eval_at_90pct_oos_calibrated_threshold": {
+                                "heldout_in_scope_retain_recall": 0.95,
+                                "heldout_oos_abstain_recall": 0.55,
+                                "heldout_confounded_oos_abstain_recall": 1.0,
+                                "heldout_confounded_oos_abstained": 2,
+                                "heldout_confounded_oos_total": 2,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sufficiency.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "candidate_ids_requested": 10,
+                            "score_complete_rows": 9,
+                        },
+                        "decision": {
+                            "research_surface_sufficient": True,
+                            "production_surface_sufficient": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            clearance.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "remaining_blocker_rows": 1,
+                            "rows_with_fold_only_evidence": 1,
+                        },
+                        "row_attempts": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "current_blocker": "alphafold_db_coordinate_unavailable",
+                                "fold_only_evidence_available": True,
+                                "clearance_result": "blocked",
+                                "next_action": "source an alternate accession",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_confounded_deployment_closure_audit(
+                predicted_structure_fold_channel_path=fold_channel,
+                contract_audit_path=contract,
+                oos_calibrated_threshold_contract_path=threshold,
+                sufficiency_decision_path=sufficiency,
+                remaining_blocker_clearance_path=clearance,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "confounded_fold_channel_research_ready_production_blocked",
+        )
+        self.assertTrue(
+            audit["decision"]["confounded_subset_target_met_for_research"]
+        )
+        self.assertFalse(audit["decision"]["deployable_without_production_caveat"])
+        self.assertEqual(audit["counts"]["critical_violation_total"], 1)
+        self.assertEqual(
+            audit["counts"]["remaining_production_blocker_rows"],
+            1,
+        )
+        self.assertEqual(
+            audit["predicted_structure_vs_atlas_contract"]["confounded_entry_ids"],
+            ["m_csa:30", "m_csa:31"],
+        )
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
 
     def test_fold_augmented_family_panel_readout_applies_research_threshold(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -4324,6 +4469,640 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertIn(
             "build-mechanism-feature-embedding-pilot from draft sidecar rows",
             audit["decision"]["do_not_run"],
+        )
+
+    def test_row_specific_bond_change_p0_train_cal_feature_sidecar_filters_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar_path = root / "sidecar.json"
+            readiness_path = root / "readiness.json"
+            split_path = root / "split.json"
+            contract_path = root / "contract.json"
+            label_manifest_path = root / "label_manifest.json"
+
+            event = {
+                "event_type": "bond_broken",
+                "confidence": "medium",
+                "mapped_active_site_residues": ["m_csa:5:residue:1"],
+                "source_evidence_span": {
+                    "source_record_id": "m_csa:5:mechanism:1",
+                    "span_text": "mechanism text should not travel",
+                },
+            }
+            proton_event = {
+                "event_type": "proton_transfer",
+                "confidence": "low",
+                "mapped_active_site_residues": ["m_csa:5:residue:2"],
+                "source_evidence_span": {
+                    "source_record_id": "m_csa:5:mechanism:1",
+                    "span_text": "proton source text should not travel",
+                },
+            }
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_source_evidence_sidecar_partially_approved_review_required"
+                        ),
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "review_status": "approved",
+                                "reviewer_id": "reviewer",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "row_specific_bond_change_events": [
+                                    event,
+                                    proton_event,
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "review_status": "draft",
+                                "reviewer_id": None,
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "row_specific_bond_change_events": [event],
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "review_status": "approved",
+                                "reviewer_id": "reviewer",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "row_specific_bond_change_events": [event],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness_path.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_feature_readiness_audit_blocked_review_required",
+                        "row_readiness": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "approved_and_consumable": True,
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "approved_and_consumable": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            split_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "mechanism_feature_embedding_train_cal_split_ready_no_model_fit"
+                        ),
+                        "split_records": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "assigned_embedding_split": "train",
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "assigned_embedding_split": "train",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "mechanism_feature_embedding_feature_contract_ready_no_model_fit"
+                        ),
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "feature_guardrails": {"heldout_row": False},
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "feature_guardrails": {"heldout_row": False},
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "split_assignment": "heldout",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            sidecar = build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar(
+                source_sidecar_path=sidecar_path,
+                feature_readiness_path=readiness_path,
+                train_cal_split_manifest_path=split_path,
+                feature_contract_path=contract_path,
+                label_manifest_path=label_manifest_path,
+            )
+
+        self.assertEqual(
+            sidecar["status"],
+            "p0_train_cal_row_specific_feature_sidecar_ready_partial_no_fit",
+        )
+        self.assertEqual(sidecar["counts"]["materialized_feature_rows"], 1)
+        self.assertEqual(sidecar["counts"]["draft_rows_excluded"], 1)
+        self.assertEqual(sidecar["counts"]["heldout_approved_rows_excluded"], 1)
+        self.assertEqual(
+            sidecar["counts"]["materialized_event_type_counts"],
+            {"bond_broken": 1, "proton_transfer": 1},
+        )
+        self.assertEqual(sidecar["feature_rows"][0]["entry_id"], "m_csa:5")
+        features = sidecar["feature_rows"][0]["row_specific_event_features"]
+        self.assertEqual(features["bond_change_event_count"], 1)
+        self.assertEqual(features["proton_transfer_count"], 1)
+        self.assertEqual(features["unique_mapped_active_site_residue_count"], 2)
+        feature_rows_text = json.dumps(sidecar["feature_rows"])
+        self.assertNotIn("mechanism text should not travel", feature_rows_text)
+        self.assertNotIn("source_record_id", feature_rows_text)
+        self.assertFalse(sidecar["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(
+            sidecar["decision"][
+                "full_no_template_centroid_or_residual_rerun_ready"
+            ]
+        )
+
+    def test_row_specific_bond_change_p0_train_cal_coverage_gap_prioritizes_calibration(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            feature_sidecar_path = root / "feature_sidecar.json"
+            source_sidecar_path = root / "source_sidecar.json"
+            review_queue_path = root / "review_queue.json"
+            split_path = root / "split.json"
+            label_manifest_path = root / "label_manifest.json"
+            feature_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "full_no_template_centroid_or_residual_rerun_ready": False
+                        },
+                        "counts": {
+                            "materialized_feature_rows": 1,
+                            "train_rows": 1,
+                            "calibration_rows": 0,
+                            "materialized_event_type_counts": {
+                                "bond_broken": 1,
+                            },
+                            "critical_violation_total": 0,
+                            "critical_counts": {
+                                "materialized_heldout_rows": 0,
+                                "materialized_draft_rows": 0,
+                            },
+                        },
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "assigned_embedding_split": "train",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "review_status": "approved",
+                                "row_specific_bond_change_events": [
+                                    {"event_type": "bond_broken"}
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "review_status": "draft",
+                                "row_specific_bond_change_events": [
+                                    {"event_type": "proton_transfer"},
+                                    {"event_type": "bond_order_changed"},
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:7",
+                                "review_status": "draft",
+                                "row_specific_bond_change_events": [
+                                    {"event_type": "electron_transfer"}
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            review_queue_path.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "review_category": "standard_draft_event_review",
+                                "blockers": ["review_status_not_approved"],
+                            },
+                            {
+                                "entry_id": "m_csa:7",
+                                "review_category": "standard_draft_event_review",
+                                "blockers": ["review_status_not_approved"],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            split_path.write_text(
+                json.dumps(
+                    {
+                        "split_records": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "assigned_embedding_split": "calibration",
+                            },
+                            {
+                                "entry_id": "m_csa:7",
+                                "assigned_embedding_split": "train",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:7",
+                                "split_assignment": "in_distribution",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap(
+                train_cal_feature_sidecar_path=feature_sidecar_path,
+                source_sidecar_path=source_sidecar_path,
+                review_queue_path=review_queue_path,
+                train_cal_split_manifest_path=split_path,
+                label_manifest_path=label_manifest_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_train_cal_feature_coverage_gap_ready_review_queue",
+        )
+        self.assertTrue(audit["decision"]["rerun_blocked_by_calibration_coverage"])
+        self.assertEqual(audit["decision"]["next_review_gate_entry_ids"], ["m_csa:6"])
+        self.assertEqual(audit["counts"]["draft_calibration_rows"], 1)
+        self.assertEqual(audit["counts"]["draft_train_rows"], 1)
+        self.assertEqual(
+            audit["counts"]["missing_materialized_event_type_counts"],
+            {
+                "bond_order_changed": 1,
+                "electron_transfer": 1,
+                "proton_transfer": 1,
+            },
+        )
+        self.assertEqual(
+            audit["review_priority_rows"][0]["priority_class"],
+            "P0.1_calibration_coverage_unblocker",
+        )
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+
+    def test_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_passes_clean_payload(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            feature_sidecar_path = root / "feature_sidecar.json"
+            source_sidecar_path = root / "source_sidecar.json"
+            label_manifest_path = root / "label_manifest.json"
+            feature_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "full_no_template_centroid_or_residual_rerun_ready": False,
+                            "reason_not_ready_for_rerun": (
+                                "calibration coverage absent"
+                            ),
+                        },
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "event_count": 2,
+                                    "bond_change_event_count": 1,
+                                    "has_bond_change_event": True,
+                                },
+                                "feature_guardrails": {
+                                    "heldout_row": False,
+                                    "source_text_excluded_from_features": True,
+                                    "source_ids_excluded_from_features": True,
+                                    "reviewer_metadata_excluded_from_features": True,
+                                    "accession_excluded_from_features": True,
+                                    "labels_and_fingerprint_excluded_from_features": True,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "split_assignment": "in_distribution",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit(
+                train_cal_feature_sidecar_path=feature_sidecar_path,
+                source_sidecar_path=source_sidecar_path,
+                label_manifest_path=label_manifest_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_train_cal_feature_guardrail_audit_passed_partial_no_fit",
+        )
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertEqual(audit["counts"]["feature_value_type_counts"], {"bool": 1, "int": 2})
+        self.assertTrue(
+            audit["decision"]["safe_to_use_as_partial_train_feature_surface"]
+        )
+        self.assertFalse(audit["decision"]["safe_to_run_no_template_methods_now"])
+        self.assertIn(
+            "calibration coverage absent",
+            audit["decision"]["reason_not_ready_for_rerun"],
+        )
+
+    def test_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_blocks_leaks(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            feature_sidecar_path = root / "feature_sidecar.json"
+            source_sidecar_path = root / "source_sidecar.json"
+            label_manifest_path = root / "label_manifest.json"
+            feature_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "source_span_text": "leaky source text",
+                                    "event_count": 1,
+                                },
+                                "feature_guardrails": {
+                                    "heldout_row": False,
+                                    "source_text_excluded_from_features": True,
+                                    "source_ids_excluded_from_features": True,
+                                    "reviewer_metadata_excluded_from_features": True,
+                                    "accession_excluded_from_features": True,
+                                    "labels_and_fingerprint_excluded_from_features": True,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "event_count": 1,
+                                },
+                                "feature_guardrails": {
+                                    "heldout_row": True,
+                                    "source_text_excluded_from_features": True,
+                                    "source_ids_excluded_from_features": True,
+                                    "reviewer_metadata_excluded_from_features": True,
+                                    "accession_excluded_from_features": True,
+                                    "labels_and_fingerprint_excluded_from_features": True,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "review_status": "draft",
+                                "allowed_for_feature_contract_consumption_now": False,
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "split_assignment": "heldout",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit(
+                train_cal_feature_sidecar_path=feature_sidecar_path,
+                source_sidecar_path=source_sidecar_path,
+                label_manifest_path=label_manifest_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_train_cal_feature_guardrail_audit_blocked",
+        )
+        critical_counts = audit["counts"]["critical_counts"]
+        self.assertEqual(critical_counts["feature_rows_source_not_approved"], 1)
+        self.assertEqual(critical_counts["feature_rows_source_not_consumable"], 1)
+        self.assertEqual(critical_counts["feature_rows_label_manifest_heldout"], 1)
+        self.assertEqual(critical_counts["feature_rows_marked_heldout"], 1)
+        self.assertEqual(critical_counts["feature_payload_forbidden_keys"], 1)
+        self.assertEqual(
+            critical_counts["feature_payload_non_scalar_or_string_values"], 1
+        )
+        self.assertFalse(
+            audit["decision"]["safe_to_use_as_partial_train_feature_surface"]
+        )
+
+    def test_row_specific_bond_change_p0_calibration_review_packet_uses_next_gate_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            coverage_path = root / "coverage.json"
+            source_path = root / "source.json"
+            coverage_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "decision": {
+                            "next_review_gate_entry_ids": ["m_csa:6"],
+                        },
+                        "review_priority_rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "assigned_embedding_split": "calibration",
+                                "priority_class": (
+                                    "P0.1_calibration_coverage_unblocker"
+                                ),
+                                "priority_reasons": [
+                                    "calibration_coverage_absent"
+                                ],
+                                "review_category": "standard_draft_event_review",
+                                "review_blockers": [
+                                    "review_status_not_approved"
+                                ],
+                                "event_types": ["proton_transfer"],
+                                "missing_from_materialized_event_types": [],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_record_id": "m_csa:6:mechanism:1",
+                                        "span_text": "review-only source text",
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "proton_transfer",
+                                        "confidence": "medium",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:6:residue:1",
+                                            "m_csa:6:residue:2",
+                                        ],
+                                        "source_evidence_span": {
+                                            "source_record_id": (
+                                                "m_csa:6:mechanism:1"
+                                            ),
+                                            "span_text": (
+                                                "review-only event source text"
+                                            ),
+                                        },
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:7",
+                                "source_text_or_database_evidence_span": [],
+                                "row_specific_bond_change_events": [],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet(
+                train_cal_coverage_gap_path=coverage_path,
+                source_sidecar_path=source_path,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "p0_calibration_review_packet_ready_manual_only",
+        )
+        self.assertEqual(packet["counts"]["packet_rows"], 1)
+        self.assertEqual(packet["packet_rows"][0]["entry_id"], "m_csa:6")
+        self.assertEqual(packet["packet_rows"][0]["event_review_rows"][0]["event_type"], "proton_transfer")
+        self.assertEqual(
+            packet["packet_rows"][0]["copy_if_approved"],
+            {
+                "review_status": "approved",
+                "allowed_for_feature_contract_consumption_now": True,
+                "allowed_for_model_training_now": False,
+                "reviewer_id_required": True,
+            },
+        )
+        self.assertFalse(packet["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(
+            packet["guardrails"]["reviewer_decisions_recorded_by_this_artifact"]
         )
 
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:

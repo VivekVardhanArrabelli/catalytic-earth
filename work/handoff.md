@@ -50,6 +50,75 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 2 Approved P0 Train/Cal Feature Materialization
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T06:31:12Z`
+- STARTED_LOCAL: `2026-06-02T01:31:12-0500 CDT`
+- ENDED_AT: `2026-06-02T07:26:47Z`
+- ENDED_LOCAL: `2026-06-02T02:26:47-0500 CDT`
+- ELAPSED_MINUTES: `55.6`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "47453", "started_at": "2026-06-02T06:31:12Z", "status": "acquired"}`
+- Lock recovery note: the lock record was refreshed at
+  `2026-06-02T07:04:32Z` after the original recorded pid was no longer running;
+  the prior lock directory was preserved as
+  `.git/catalytic-earth-automation.lock.orphan.20260602T070432Z`.
+- Lock release result: pending until commit, push, clean/synced verification, and
+  lock release complete.
+
+#### What changed
+
+- Added a train/cal-only P0 row-specific feature sidecar builder and CLI command
+  that materializes only reviewer-approved source evidence rows.
+- Materialized the three approved M-CSA-only rows (`m_csa:5`, `m_csa:11`,
+  `m_csa:169`) into label-stripped event-count/boolean features. All three are
+  assigned to train; 12 draft rows and 0 heldout rows are excluded.
+- Added a coverage-gap audit showing the no-template centroid/residual rerun is
+  still blocked by absent approved calibration coverage.
+- Added a manual-only calibration review packet for the four next-gate rows:
+  `m_csa:186`, `m_csa:147`, `m_csa:6`, and `m_csa:133`.
+- Refreshed durable docs, docs-reference bookkeeping, and current-run integrity
+  bookkeeping. No labels, registries, ontologies, imports, production
+  thresholds, model weights, or heldout threshold tuning changed.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.md`
+
+#### Tests and validation
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -k row_specific_bond_change_p0 -q`
+  passed: 35 tests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`
+  passed: 178 tests and 7 subtests.
+- `PYTHONPATH=src python -m pytest tests -q` passed: 1167 tests, 50 subtests,
+  and one existing sklearn/scipy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1122 tests and
+  the same existing sklearn/scipy deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+- `python -m compileall -q src/catalytic_earth/cli.py src/catalytic_earth/northstar_next_levers.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+  passed.
+- Artifact JSON/JSONL parse sweep passed for 3140 JSON and 26 JSONL artifact
+  files.
+- `git diff --check` passed.
+
+#### Exact next action
+
+Manually review the calibration packet rows `m_csa:186`, `m_csa:147`,
+`m_csa:6`, and `m_csa:133`. Record approve/rewrite/reject decisions in the
+P0 source-evidence sidecar, rerun the strict/readiness/materialization
+artifacts, and only then attempt the no-template centroid pilot or out-of-span
+residual on the richer template-free feature surface.
+
 ### 2026-06-02 P0 M-CSA-Only Reviewer Approval And Partial Feature Unblock
 
 Interactive run on `main` with the automation lock acquired.

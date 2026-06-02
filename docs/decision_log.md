@@ -3,6 +3,47 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-02: P0 Approved Rows Materialized Train/Cal-Only; No-Template Rerun Now Blocks On Calibration Review
+
+Decision: materialize only the three reviewer-approved P0 M-CSA-only source
+rows (`m_csa:5`, `m_csa:11`, and `m_csa:169`) into a partial train/cal
+row-specific bond/proton/electron feature sidecar. The sidecar copies only
+label-stripped event-count/boolean features from approved source evidence; it
+does not copy draft rows, heldout rows, source text, source IDs, reviewer IDs,
+labels, fingerprints, or accessions as predictive features. No model weights,
+thresholds, labels, registries, ontologies, imports, or production scorers
+changed.
+
+Result: all three approved rows are assigned to the train split, so the partial
+feature surface is materialized but not sufficient for a no-template centroid or
+residual rerun. It contains 3 feature rows and 0 calibration rows, with approved
+event counts of 3 `bond_broken`, 2 `bond_formed`, 2 `electron_transfer`, and 2
+`proton_transfer` events. A strict train/cal feature guardrail audit passes with
+0 critical violations and confirms the predictive payload is restricted to
+numeric/boolean event features. The remaining 12 P0 source-evidence rows stay
+draft and non-consumable.
+
+Consequence / next gate: the coverage-gap audit identifies four
+calibration-assigned draft rows as the next manual review gate:
+`m_csa:186`, `m_csa:147`, `m_csa:6`, and `m_csa:133`. `m_csa:186` and
+`m_csa:147` also add the currently unmaterialized `bond_order_changed` event
+type. A manual calibration review packet now carries those four rows and 16
+event-review records, but records no approvals. After human approve/rewrite/reject
+decisions are copied into the source-evidence sidecar, rerun the strict
+sidecar/readiness/materialization artifacts before attempting the no-template
+centroid pilot or the out-of-span residual on the richer feature surface.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json`,
+and
+`work/mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.md`.
+
 ## 2026-06-02: P0 Rhea-Absent Rows Approved As M-CSA-Only Source Evidence With Split-Filtered Use Only
 
 Decision: approve all three P0 row-specific bond-change rows that official

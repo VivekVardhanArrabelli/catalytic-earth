@@ -279,6 +279,46 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-train-cal-feature-sidecar"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_train_cal_feature_sidecar"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-train-cal-coverage-gap"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_train_cal_coverage_gap"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-train-cal-feature-guardrail"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_train_cal_feature_guardrail"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-calibration-review-packet"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_calibration_review_packet"
+                ),
+            ),
+            (
                 "build-mechanism-feature-embedding-pilot",
                 "cmd_build_mechanism_feature_embedding_pilot",
             ),
@@ -297,6 +337,10 @@ class CliTests(unittest.TestCase):
             (
                 "audit-predicted-atlas-vs-fold-novelty-operating-grid-delta",
                 "cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta",
+            ),
+            (
+                "audit-fold-augmented-confounded-deployment-closure",
+                "cmd_audit_fold_augmented_confounded_deployment_closure",
             ),
         ]
         for command_name, function_name in cases:

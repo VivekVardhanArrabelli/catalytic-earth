@@ -95,24 +95,30 @@ KEPT FROM THE CENTROID LINE (genuine advancements, retained and reused — not d
   calibration should adopt.
 - The forward feature path: the audited mechanism-feature contract surface plus the P0
   source-evidence sidecar with a feature-readiness audit over draft bond/proton/electron
-  events (currently 0/15 rows approved/consumable). A bounded official Rhea lookup resolved
-  `m_csa:124` to `RHEA:11436` / EC `7.1.1.9` (strict consumption audit confirms draft-only);
-  `m_csa:11`, `m_csa:169`, `m_csa:5` and reviewer provenance remain open. This is the route
-  to the genuinely-new mechanism feature the northstar actually wants.
+  events. A bounded official Rhea lookup resolved `m_csa:124` to `RHEA:11436` /
+  EC `7.1.1.9`; `m_csa:5`, `m_csa:11`, and `m_csa:169` are now
+  reviewer-approved M-CSA-only source evidence and have been materialized into a
+  partial train/cal feature sidecar. That sidecar now passes a strict
+  train/cal feature guardrail audit with numeric/boolean predictive payload
+  only. The remaining blocker is calibration coverage: all three approved rows
+  are train rows, so the next manual review gate is `m_csa:186`, `m_csa:147`,
+  `m_csa:6`, and `m_csa:133`.
 
 UNIFIED NEXT (one path; both lines feed it):
-(a) Materialize the centroid line's row-specific bond-change / proton-transfer /
-    electron-flow features (resolve the three open Rhea rows + provenance first) — the
-    genuinely-new, template-free mechanism feature.
+(a) Continue materializing the centroid line's row-specific bond-change /
+    proton-transfer / electron-flow features by reviewing the four
+    calibration-gate P0 rows (`m_csa:186`, `m_csa:147`, `m_csa:6`,
+    `m_csa:133`) and rerunning the strict/readiness/materialization artifacts.
 (b) On that richer surface, re-run BOTH methods under the centroid line's train/cal/heldout
     discipline: the no-template centroid pilot AND the out-of-span residual. Use the
     template-dependent full contract only as a ceiling diagnostic.
 (c) Give the confirmed residual a deployable calibration (or the Lever 4 expanded family
     set) so its +0.076 agnostic lift survives outside an eval-relative threshold.
-(d) Close Lever 3 — a DEPLOYMENT-VALID confounded-safe channel (predicted-structure
-    Foldseek/TM vs the atlas; the current fold eval uses experimental-PDB metadata and is
-    not deployable) — since the residual is agnostic-only and the confounded subset is
-    still 0.1667.
+(d) Close Lever 3 — the real predicted-structure Foldseek/TM-vs-atlas channel
+    now has a train/cal OOS-calibrated research threshold that abstains on 5/6
+    confounded heldout OOS rows at the 0.44155 `combined_mean_geometry_fold`
+    threshold. Clear the five disclosed train/cal OOS surface blockers before
+    any production-like threshold claim.
 A trainable GNN over active-site reaction graphs remains a future lever once a
 deployment-valid predicted-geometry graph dataset exists.
 
@@ -127,12 +133,28 @@ the refresh-blocker audit allows only partial train/cal feature materialization
 for those 3 rows. Do not run a full P0 refresh until the remaining 12 draft
 rows are reviewed, and never train or tune thresholds on heldout M-CSA rows.
 
+Materialization addendum, 2026-06-02: those 3 approved rows were copied into
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json`
+as label-stripped train/cal row-specific event features. The strict guardrail
+audit
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601.json`
+passes with 0 critical violations. They are all assigned to `train`, so the
+no-template rerun remains blocked. The coverage-gap audit points to four
+calibration rows (`m_csa:186`, `m_csa:147`, `m_csa:6`, `m_csa:133`), and the
+manual review packet
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json`
+is the next action surface.
+
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)
 are the hardest cases. A fold/structure-distance novelty signal (Foldseek/TM
 against the atlas) is orthogonal to both current channels and should fire exactly
 where geometry-confidence and cofactor are both fooled. Cheap to try if predicted
-structures are available.
+structures are available. The current closure audit
+`artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json`
+confirms the fixed fold-augmented operating point abstains on 5/6 confounded
+heldout OOS rows, but production closure still needs the five disclosed
+train/cal OOS surface blockers cleared or an explicit fold-only contract.
 
 ### 4. Expand the family set (de-risks the bound)
 All claims are bounded to 8 fingerprints. The relationship/abstention numbers

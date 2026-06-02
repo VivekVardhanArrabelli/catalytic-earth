@@ -35,6 +35,17 @@
       "work_report_sha256": "77221ee2a3c46e0829e2e82b14678239148ee74877622ae86ec20b113dae99de"
     },
     {
+      "artifact_status": "confounded_fold_channel_research_ready_production_blocked",
+      "category": "fold_augmented_confounded_deployment_closure_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json",
+      "json_sha256": "0d959b535a34e3a7a30228854f0c9f8ae54ddb347952e38ab27b46cb19d3a3b4",
+      "work_report_exists": true,
+      "work_report_path": "work/fold_augmented_confounded_deployment_closure_audit_current702_20260601.md",
+      "work_report_sha256": "0d03a7e6a13f7b7bf8f83f4fa17c78bbae4265e5fd7d7e3eeafae1232b1972d2"
+    },
+    {
       "artifact_status": "predicted_atlas_vs_fold_novelty_delta_ready_review_only",
       "category": "predicted_atlas_vs_fold_novelty_delta",
       "json_exists": true,
@@ -123,26 +134,26 @@
       "work_report_sha256": "040fdec6bf313b96e1c8659d84318056d68a4a655d00343cc41eb731501fa337"
     },
     {
-      "artifact_status": "p0_source_evidence_sidecar_draft_review_required",
+      "artifact_status": "p0_source_evidence_sidecar_partially_approved_review_required",
       "category": "mechanism_feature_p0_source_evidence_sidecar",
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "json_sha256": "73480b483045649ec44fb8b77871faa80b646ea19bcfb3169ec784cd71b0e482",
+      "json_sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.md",
-      "work_report_sha256": "16eea1c8e0850d43b347dc302858995bd7db845cb217e9431d6163bd29f7749e"
+      "work_report_sha256": "967eb4cec31b94ddeac3f3321e782b154cde75e9731d723b97f9ed995afee812"
     },
     {
-      "artifact_status": "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable",
+      "artifact_status": "p0_source_evidence_sidecar_strict_audit_passed_reviewed_consumable",
       "category": "mechanism_feature_p0_source_evidence_strict_audit",
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
-      "json_sha256": "cd5f870c3f9d73feed25105e64b54364a2e171045d5bf55de36b71254431117c",
+      "json_sha256": "d56b118f9964340280c4d80c152a43cedf830e11af69bf796de492e65df0950b",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.md",
-      "work_report_sha256": "2af28511a251a889a34de48050625222e927e764a1a4e8c11ac09648f3f753e5"
+      "work_report_sha256": "32dc99bfbe64266ce47b8cfad38f0e9334e0bd2a6df415c8a1d41cbb61451cf7"
     },
     {
       "artifact_status": "p0_source_evidence_review_queue_ready_manual_only",
@@ -150,10 +161,10 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "json_sha256": "98c49ed319d631d1dd862ac4aaacf8f41b810dda49b2d41615002d3d6fc27b64",
+      "json_sha256": "7403fbe7d0b0d18b624b9c5da746353370b3a6dd7a6360d6410e0c3243584e6a",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.md",
-      "work_report_sha256": "3144557cfe0b2c36d8d296dafce956154013474923243429e4f60aaf3f3da99e"
+      "work_report_sha256": "88f26d798473b792edd1375637d55b2d7e805f4ad79385722555943822ab3943"
     },
     {
       "artifact_status": "p0_rhea_lookup_resolution_partial_review_only",
@@ -172,10 +183,10 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
-      "json_sha256": "a0deb4bd32a422bff59ee7c53c73047badd7458295f6505e421f5d1daf3de914",
+      "json_sha256": "70062e11d6152bcc22f840ae187a1367917721b63293fd88d9bb1dae5ac6f509",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.md",
-      "work_report_sha256": "749b792d2b20776e892ee8791fabec0039bae23aa1d966172e1d179b4fd3001f"
+      "work_report_sha256": "b534eeb3d960d4a93d3205022226a718af2af59d21fd54a08e1a71376069c0f8"
     },
     {
       "artifact_status": "p0_rhea_resolution_consumption_audit_passed_review_only",
@@ -183,10 +194,10 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json",
-      "json_sha256": "f42ee480c356f646a72e5926725b6dd446afdf011c736169480f1da8cb14d900",
+      "json_sha256": "9ede0d84ddede85e43dfa63b1497cb11f1cd2fcfc030d63207c291aeb23f4d07",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.md",
-      "work_report_sha256": "ffb92ae16597f5dc5fbbac081513af348a6c7ff21ef7aac869581ca82dc0c6a4"
+      "work_report_sha256": "d42f249b11b1b32781570412070b7b8f8937089a22ee9690a8db8619d83ea7de"
     },
     {
       "artifact_status": "p0_rhea_unresolved_official_source_audit_ready_review_only",
@@ -200,15 +211,15 @@
       "work_report_sha256": "082dfa94318d78f7b9218d64425693526aebf06aee28ea9cd1b4d23bc96a40c3"
     },
     {
-      "artifact_status": "p0_reviewer_decision_matrix_ready_review_only",
+      "artifact_status": "p0_reviewer_decision_matrix_copy_ready_reviewed",
       "category": "mechanism_feature_p0_reviewer_decision_matrix",
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
-      "json_sha256": "55f6fafbb76bb11f4c02f02a8328a621852417c8c408cf9f3e38da7822def681",
+      "json_sha256": "f89f4add32b876eab20c37db07c00a4b7b1adc975c69fa3a7a5b13fc85d6089b",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.md",
-      "work_report_sha256": "3f1b9bc4e4afbd7e817ecdd7886231c8fae329e23d443be916d8cfe3ac943312"
+      "work_report_sha256": "f7c83bb6c0f6803ebd071798bb9610fd27655bd6302fea30683bc4815613bba4"
     },
     {
       "artifact_status": "p0_feature_readiness_audit_blocked_review_required",
@@ -216,21 +227,65 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "json_sha256": "19c50fc9a9c1928db02ce5983e22978b035ac38dbd9111e3a387cadf8f81e5dc",
+      "json_sha256": "cb4864d0bc870d0e2d7f0ed2e776e73da0569da44e4f3053ff2dfe819f92c2d9",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.md",
-      "work_report_sha256": "59068cb9d8606462007150006cdd60b851fb7a9333a7ba8da41ab4b386ca90b2"
+      "work_report_sha256": "ea1b562cdb041e0d50ae707d9d58449f91165424e64d0f828ccfb15f08299aa5"
     },
     {
-      "artifact_status": "p0_no_template_feature_refresh_blocked_review_required",
+      "artifact_status": "p0_no_template_feature_refresh_partially_unblocked_review_remaining",
       "category": "mechanism_feature_p0_refresh_blocker_audit",
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json",
-      "json_sha256": "eb11576d6d3a10012b02d3416bbc59eb12666d6413a83ff43dae1f7d44606ced",
+      "json_sha256": "78f491a218cac46f38efd1e1f032ea94bd0f48d7d013a27e9b4511f07f3c3a38",
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.md",
-      "work_report_sha256": "5c216c6dd7d3dd0b46e9647f0d870e9390eb2dadd2d14497efe9060ad41ace2f"
+      "work_report_sha256": "4ff8c083e4c56e471874fb8533a2b43f207728da89d63f4c09b2d5657d3f9249"
+    },
+    {
+      "artifact_status": "p0_train_cal_row_specific_feature_sidecar_ready_partial_no_fit",
+      "category": "mechanism_feature_p0_train_cal_feature_sidecar",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json",
+      "json_sha256": "9edac7fc7e87341ca5d2e35691501215ac0e87c8f572d770c1570cc0c3959277",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.md",
+      "work_report_sha256": "3be84c9f465903a050b94a04f6bd2e5cf0152b52b30a554de6083f702bdc53fd"
+    },
+    {
+      "artifact_status": "p0_train_cal_feature_coverage_gap_ready_review_queue",
+      "category": "mechanism_feature_p0_train_cal_coverage_gap",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json",
+      "json_sha256": "81bdedc9e31118cb33b80c81569e86500054388d6aa96b8696506fafb39b2e2d",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.md",
+      "work_report_sha256": "c2bfde37efc1faf1131ae9a088ddaff2435b95e267fa58664ef18ffcea41b4d4"
+    },
+    {
+      "artifact_status": "p0_calibration_review_packet_ready_manual_only",
+      "category": "mechanism_feature_p0_calibration_review_packet",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json",
+      "json_sha256": "025dcaff7c9cb6cc47aeb8b4ded863c5bf81bd3333b2afb46dbce41e5e7724f3",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.md",
+      "work_report_sha256": "758753f324ba81197ccea2a8d936d6075a55c20491adc39ddfa0dd73e658aa21"
+    },
+    {
+      "artifact_status": "p0_train_cal_feature_guardrail_audit_passed_partial_no_fit",
+      "category": "mechanism_feature_p0_train_cal_feature_guardrail_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601.json",
+      "json_sha256": "0595ab87584d763f4b32ce2daeec848d425ed941cc1683b32dee67c1eee54135",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601.md",
+      "work_report_sha256": "0eda58b38ec3191184ae2f52aa109c457e6015f0a31b1d27553ba35d6de26c87"
     },
     {
       "artifact_status": "glycyl_radical_panel_ready_as_oos_boundary_review_only",
@@ -271,24 +326,26 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
-      "json_sha256": "e0ce4145f70255076bc4208520b8777056dceb643dcf460550bb098b2f64b4f7",
+      "json_sha256": "675e9aeaf28743d676b92fd2d17a0ba8867ce193556849e856f90d0850b04cc6",
       "work_report_exists": true,
       "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
-      "work_report_sha256": "f5e415eac63d75ebbf691c36bc30639265e00b6e93a9ce5e2a9c423729c5679a"
+      "work_report_sha256": "90acbdd48902ea0fd4c255898ded50f6dded8bc996adbdb226f43da1c5395aad"
     }
   ],
   "counts": {
     "docs_reference_check_artifacts": 1,
     "family_panel_no_template_feature_guardrail_artifacts": 1,
     "family_panel_readiness_artifacts": 1,
+    "fold_augmented_confounded_deployment_closure_audit_artifacts": 1,
     "fold_channel_carryover_resolution_artifacts": 1,
     "fold_channel_coordinate_provenance_artifacts": 1,
     "fold_channel_reproduction_manifest_artifacts": 1,
-    "json_artifacts_checked": 25,
-    "json_artifacts_parse_passed": 25,
+    "json_artifacts_checked": 30,
+    "json_artifacts_parse_passed": 30,
     "label_registry_mutations": 0,
     "mechanism_feature_gap_guardrail_artifacts": 1,
     "mechanism_feature_gap_priority_artifacts": 1,
+    "mechanism_feature_p0_calibration_review_packet_artifacts": 1,
     "mechanism_feature_p0_extraction_strict_audit_artifacts": 1,
     "mechanism_feature_p0_extraction_work_package_artifacts": 1,
     "mechanism_feature_p0_feature_readiness_audit_artifacts": 1,
@@ -303,20 +360,23 @@
     "mechanism_feature_p0_source_evidence_sidecar_artifacts": 1,
     "mechanism_feature_p0_source_evidence_strict_audit_artifacts": 1,
     "mechanism_feature_p0_source_graph_readiness_artifacts": 1,
+    "mechanism_feature_p0_train_cal_coverage_gap_artifacts": 1,
+    "mechanism_feature_p0_train_cal_feature_guardrail_audit_artifacts": 1,
+    "mechanism_feature_p0_train_cal_feature_sidecar_artifacts": 1,
     "mechanism_feature_schema_artifacts": 1,
     "model_fit_or_refit_artifacts": 0,
     "new_coordinates_fetched": 0,
     "predicted_atlas_vs_fold_novelty_delta_artifacts": 1,
     "predicted_geometry_scores_created": 0,
     "production_threshold_mutations": 0,
-    "repo_json_artifacts_parse_checked": 3138,
+    "repo_json_artifacts_parse_checked": 3142,
     "repo_json_parse_error_count": 0,
     "repo_jsonl_artifacts_parse_checked": 26,
     "source_free_locator_decision_matrix_artifacts": 1,
-    "work_reports_checked": 25,
-    "work_reports_present": 25
+    "work_reports_checked": 30,
+    "work_reports_present": 30
   },
-  "created_utc": "2026-06-02T02:18:32Z",
+  "created_utc": "2026-06-02T07:27:52Z",
   "critical_counts": {
     "json_missing": 0,
     "json_parse_failed": 0,
@@ -339,21 +399,21 @@
     "predicted_geometry_scores_created": false,
     "production_thresholds_changed": false
   },
-  "next_action": "Do not rerun the predicted-structure fold channel; use the P0 reviewer decision matrix to record reviewer provenance before any no-template feature-contract refresh.",
+  "next_action": "Review m_csa:186, m_csa:147, m_csa:6, and m_csa:133 in the calibration packet; record approve/rewrite/reject decisions before rerunning no-template methods.",
   "repo_parse_errors": [],
   "schema_version": "current_run_artifact_integrity.v2",
-  "scope": "Current automation-run integrity audit for fold-channel carryover resolution, mechanism-feature P0 refresh blocker, existing northstar carryovers, and docs-reference maintenance outputs.",
+  "scope": "Current automation-run integrity audit for P0 train/cal row-specific feature materialization, its calibration review gate, existing northstar carryovers, and docs-reference maintenance outputs.",
   "status": "current_run_artifact_integrity_audit_passed",
   "validation_summary": {
     "catalytic_earth_cli_validate": "passed; 12 source records, 8 fingerprints, 15 ontology families, 702 labels",
     "compileall": "passed",
-    "current_docs_artifact_reference_check": "passed; 500 references checked, 0 missing",
-    "disk_check": "pending final wrap disk check",
-    "focused_new_tests": "passed; fold-channel carryover resolution, P0 refresh-blocker, current-count regressions, and CLI registration focused slices",
-    "full_pytest": "passed; 1139 tests, 50 subtests, 1 existing sklearn/scipy deprecation warning",
+    "current_docs_artifact_reference_check": "passed; 552 references checked, 0 missing",
+    "disk_check": "passed; 26Gi available on /System/Volumes/Data",
+    "focused_new_tests": "passed; 35 P0 row-specific train/cal tests and current-count regressions",
+    "full_pytest": "passed; 1167 tests, 50 subtests, 1 existing sklearn/scipy deprecation warning",
     "git_diff_check": "passed",
-    "repo_json_parse_sweep": "passed; 3138 JSON and 26 JSONL files parsed with 0 errors",
-    "touched_pytest_files": "passed; 290 tests and 31 subtests",
-    "unittest_discovery": "passed; 1116 tests, 1 existing sklearn/scipy deprecation warning"
+    "repo_json_parse_sweep": "passed; 3142 JSON and 26 JSONL artifact files parsed with 0 errors",
+    "touched_pytest_files": "passed; 178 tests and 7 subtests",
+    "unittest_discovery": "passed; 1122 tests, 1 existing sklearn/scipy deprecation warning"
   }
 }

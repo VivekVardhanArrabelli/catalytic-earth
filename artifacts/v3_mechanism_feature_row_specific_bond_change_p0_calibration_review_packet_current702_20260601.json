@@ -1,0 +1,386 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601",
+  "counts": {
+    "calibration_rows": 4,
+    "critical_counts": {
+      "coverage_gap_critical_violations": 0,
+      "missing_source_rows": 0
+    },
+    "critical_violation_total": 0,
+    "event_rows": 16,
+    "packet_rows": 4,
+    "rows_with_unmaterialized_event_type": 2
+  },
+  "created_utc": "2026-06-02T06:44:57Z",
+  "guardrails": {
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "review_packet_not_predictive_feature_input": true,
+    "reviewer_decisions_recorded_by_this_artifact": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "A human reviewer should approve, rewrite, or reject these calibration rows in the source-evidence sidecar, then rerun the strict/readiness/materialization artifacts.",
+    "result": "The calibration-review packet is ready for manual decisions; it records no approvals and changes no feature contract."
+  },
+  "missing_source_rows": [],
+  "packet_rows": [
+    {
+      "allowed_reviewer_decisions": [
+        "approve_as_source_evidence_for_train_cal_features",
+        "rewrite_events_and_keep_review_pending",
+        "reject_for_row_specific_feature_consumption"
+      ],
+      "assigned_embedding_split": "calibration",
+      "copy_if_approved": {
+        "allowed_for_feature_contract_consumption_now": true,
+        "allowed_for_model_training_now": false,
+        "review_status": "approved",
+        "reviewer_id_required": true
+      },
+      "entry_id": "m_csa:186",
+      "event_review_rows": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residue_count": 1,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:186:mechanism:1",
+            "span_text": "This PLP-depenedent reaction occurs via the initial elimination of water to form an enamine intermediate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residue_count": 1,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:186:mechanism:1",
+            "span_text": "This intermediate then undergoes tautomerisation to an imine form and finally the C-N bond is hydrolysed."
+          }
+        }
+      ],
+      "event_types": [
+        "bond_broken",
+        "bond_order_changed"
+      ],
+      "missing_from_materialized_event_types": [
+        "bond_order_changed"
+      ],
+      "priority_class": "P0.1_calibration_coverage_unblocker",
+      "priority_reasons": [
+        "calibration_coverage_absent",
+        "adds_unmaterialized_event_type"
+      ],
+      "review_blockers": [
+        "review_status_not_approved"
+      ],
+      "review_category": "standard_draft_event_review",
+      "row_source_evidence_spans": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:186:mechanism:1",
+          "span_text": "This PLP-depenedent reaction occurs via the initial elimination of water to form an enamine intermediate. This intermediate then undergoes tautomerisation to an imine form and finally the C-N bond is hydrolysed. This final step can occur spontaneously (as shown here), but it can also be catalysed by EC 3.5.99.10, 2-iminobutanoate/2-iminopropanoate deaminase."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:19169",
+          "span_text": "L-serine = pyruvate + NH4(+)"
+        }
+      ],
+      "source_evidence_span_count": 2
+    },
+    {
+      "allowed_reviewer_decisions": [
+        "approve_as_source_evidence_for_train_cal_features",
+        "rewrite_events_and_keep_review_pending",
+        "reject_for_row_specific_feature_consumption"
+      ],
+      "assigned_embedding_split": "calibration",
+      "copy_if_approved": {
+        "allowed_for_feature_contract_consumption_now": true,
+        "allowed_for_model_training_now": false,
+        "review_status": "approved",
+        "reviewer_id_required": true
+      },
+      "entry_id": "m_csa:147",
+      "event_review_rows": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residue_count": 1,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "The serine substrate first forms the external aldimine by displacing Lys229 from the internal aldimine."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residue_count": 2,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "Glu57 abstracts the C3-OH proton, initiating the loss of formaldehyde from the intermediate leaving behind the glycine-quinoid aldimine."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residue_count": 1,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "This rearranges to form the glycine aldimine."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residue_count": 1,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "This intermediate is broken down by nucleophilic attack of Lys229 at the imine functionality, displacing glycine and reforming the internal aldimine, the enzyme resting state."
+          }
+        }
+      ],
+      "event_types": [
+        "bond_order_changed",
+        "proton_transfer"
+      ],
+      "missing_from_materialized_event_types": [
+        "bond_order_changed"
+      ],
+      "priority_class": "P0.1_calibration_coverage_unblocker",
+      "priority_reasons": [
+        "calibration_coverage_absent",
+        "adds_unmaterialized_event_type"
+      ],
+      "review_blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review"
+      ],
+      "review_category": "high_complexity_multi_event_review",
+      "row_source_evidence_spans": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:147:mechanism:1",
+          "span_text": "The THF-dependent reaction is thought to proceed via a retroaldol mechanism. The serine substrate first forms the external aldimine by displacing Lys229 from the internal aldimine. Glu57 abstracts the C3-OH proton, initiating the loss of formaldehyde from the intermediate leaving behind the glycine-quinoid aldimine. This rearranges to form the glycine aldimine. This intermediate is broken down by nucleophilic attack of Lys229 at the imine functionality, displacing glycine and reforming the internal aldimine, the enzyme resting state. The released formaldehyde reacts with the THF cofactor to form 5,10-methylene-H4-folate."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:15481",
+          "span_text": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine"
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:19625",
+          "span_text": "L-threonine = acetaldehyde + glycine"
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:79695",
+          "span_text": "(3S)-3-hydroxy-N(6),N(6),N(6)-trimethyl-L-lysine = 4-(trimethylamino)butanal + glycine"
+        }
+      ],
+      "source_evidence_span_count": 4
+    },
+    {
+      "allowed_reviewer_decisions": [
+        "approve_as_source_evidence_for_train_cal_features",
+        "rewrite_events_and_keep_review_pending",
+        "reject_for_row_specific_feature_consumption"
+      ],
+      "assigned_embedding_split": "calibration",
+      "copy_if_approved": {
+        "allowed_for_feature_contract_consumption_now": true,
+        "allowed_for_model_training_now": false,
+        "review_status": "approved",
+        "reviewer_id_required": true
+      },
+      "entry_id": "m_csa:6",
+      "event_review_rows": [
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residue_count": 0,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "Initially, the enzyme is in the oxidised state, with its redox active cysteines 58 and 63 forming a disulphide bond to each other."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residue_count": 0,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "A hydride is transferred from NAD(P)H to FAD, a process facilitated by Glu201, Lys66 and Tyr197, as demonstrated by mutagenesis and structural studies."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residue_count": 0,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "From there the electron makes an SN2 attack on the sulfur atom of Cys63, causing Cys58 to be displaced as thiolate."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residue_count": 0,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "This residue is now ready to attack the substrate, which in all cases except mercuric reductase is another disulphide bond."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residue_count": 2,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "His467 from the other subunit of the dimer has an essential role here, as shown by mutagenesis; first it seems to withdraw a proton from Cys58, activating the latter residue for a nucleophilic attack on the substrate."
+          }
+        }
+      ],
+      "event_types": [
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "missing_from_materialized_event_types": [],
+      "priority_class": "P0.1_calibration_coverage_unblocker",
+      "priority_reasons": [
+        "calibration_coverage_absent"
+      ],
+      "review_blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
+      ],
+      "review_category": "high_complexity_multi_event_review",
+      "row_source_evidence_spans": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:6:mechanism:1",
+          "span_text": "Initially, the enzyme is in the oxidised state, with its redox active cysteines 58 and 63 forming a disulphide bond to each other. A hydride is transferred from NAD(P)H to FAD, a process facilitated by Glu201, Lys66 and Tyr197, as demonstrated by mutagenesis and structural studies. From there the electron makes an SN2 attack on the sulfur atom of Cys63, causing Cys58 to be displaced as thiolate. This residue is now ready to attack the substrate, which in all cases except mercuric reductase is another disulphide bond. His467 from the other subunit of the dimer has an essential role here, as shown by mutagenesis; first it seems to withdraw a proton from Cys58, activating the latter residue for a nucleophilic attack on the substrate. The proton is then poised to polarise the resulting Cys58-substrate mixed disulphide bond, making it vulnerable to attack from Cys63 to return the enzyme to its rest state. In addition to His467, another residue from the second subunit is found in the active site: Glu472 is shown to be essential by mutagenesis, and in structures is seen to orientate the catalytic Histidine."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:11740",
+          "span_text": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+        }
+      ],
+      "source_evidence_span_count": 2
+    },
+    {
+      "allowed_reviewer_decisions": [
+        "approve_as_source_evidence_for_train_cal_features",
+        "rewrite_events_and_keep_review_pending",
+        "reject_for_row_specific_feature_consumption"
+      ],
+      "assigned_embedding_split": "calibration",
+      "copy_if_approved": {
+        "allowed_for_feature_contract_consumption_now": true,
+        "allowed_for_model_training_now": false,
+        "review_status": "approved",
+        "reviewer_id_required": true
+      },
+      "entry_id": "m_csa:133",
+      "event_review_rows": [
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residue_count": 0,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "Putidaredoxin donates a single electron to the Fe(III) centre of the heme cofactor, forming Fe(II), which in turn donates the electron to the dioxygen substrate .Putidaredoxin then donates a second electron to the bound peroxo moiety, which initiates a proton transfer relay through Thr252, water, Asp251, Arg186 to bulk solvent."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residue_count": 0,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "Both Heme and Iron donate single electrons to the bound peroxo moiety, which eliminates water and initiates a proton transfer relay through the same chain as used previously."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residue_count": 3,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "The iron-bound oxy group abstracts a hydrogen from the camphor substrate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residue_count": 1,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "In the final step, the camphor radical initiates a homolytic substitution, hydroxylating the intermediate to form 5-hydroxycamphor."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residue_count": 0,
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "The iron centre accepts a single electron and water displaces the product."
+          }
+        }
+      ],
+      "event_types": [
+        "bond_formed",
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "missing_from_materialized_event_types": [],
+      "priority_class": "P0.1_calibration_coverage_unblocker",
+      "priority_reasons": [
+        "calibration_coverage_absent"
+      ],
+      "review_blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
+      ],
+      "review_category": "high_complexity_multi_event_review",
+      "row_source_evidence_spans": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:133:mechanism:1",
+          "span_text": "Putidaredoxin donates a single electron to the Fe(III) centre of the heme cofactor, forming Fe(II), which in turn donates the electron to the dioxygen substrate .Putidaredoxin then donates a second electron to the bound peroxo moiety, which initiates a proton transfer relay through Thr252, water, Asp251, Arg186 to bulk solvent. Both Heme and Iron donate single electrons to the bound peroxo moiety, which eliminates water and initiates a proton transfer relay through the same chain as used previously. The iron-bound oxy group abstracts a hydrogen from the camphor substrate. In the final step, the camphor radical initiates a homolytic substitution, hydroxylating the intermediate to form 5-hydroxycamphor. The iron centre accepts a single electron and water displaces the product."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:13525",
+          "span_text": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        }
+      ],
+      "source_evidence_span_count": 2
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_calibration_review_packet",
+  "scope": "Manual review packet for the calibration-assigned P0 rows that block the partial row-specific train/cal feature sidecar from supporting a no-template rerun.",
+  "source_artifacts": {
+    "source_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+    },
+    "train_cal_coverage_gap": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json",
+      "sha256": "81bdedc9e31118cb33b80c81569e86500054388d6aa96b8696506fafb39b2e2d"
+    }
+  },
+  "status": "p0_calibration_review_packet_ready_manual_only"
+}

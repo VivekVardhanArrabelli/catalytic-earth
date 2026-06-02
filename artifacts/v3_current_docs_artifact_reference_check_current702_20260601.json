@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 533
+    "references_checked": 552
   },
-  "created_utc": "2026-06-02T05:23:03Z",
+  "created_utc": "2026-06-02T07:27:00Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -276,6 +276,12 @@
       "reference": "artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json"
     },
     {
+      "checked_path": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json"
+    },
+    {
       "checked_path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
       "doc": "docs/artifact_index.md",
       "exists": true,
@@ -304,12 +310,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

@@ -1,0 +1,280 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601",
+  "counts": {
+    "approved_consumable_rows": 3,
+    "approved_rows_missing_feature_contract_row": 0,
+    "approved_rows_not_in_train_cal_split": 0,
+    "approved_source_rows": 3,
+    "calibration_rows": 0,
+    "critical_counts": {
+      "approved_train_cal_rows_missing_from_feature_rows": 0,
+      "materialized_draft_rows": 0,
+      "materialized_heldout_rows": 0,
+      "readiness_mismatch_rows": 0
+    },
+    "critical_violation_total": 0,
+    "draft_rows_excluded": 12,
+    "exclusion_reason_counts": {
+      "source_row_not_approved": 12
+    },
+    "heldout_approved_rows_excluded": 0,
+    "materialized_event_type_counts": {
+      "bond_broken": 3,
+      "bond_formed": 2,
+      "electron_transfer": 2,
+      "proton_transfer": 2
+    },
+    "materialized_feature_rows": 3,
+    "source_sidecar_rows": 15,
+    "train_rows": 3
+  },
+  "created_utc": "2026-06-02T06:38:47Z",
+  "decision": {
+    "full_no_template_centroid_or_residual_rerun_ready": false,
+    "model_training_authorized_by_this_artifact": false,
+    "partial_train_cal_feature_materialization_ready": true,
+    "reason_not_ready_for_rerun": "Only a partial approved P0 surface is materialized; continue review until train and calibration rows cover the intended no-template feature pilot."
+  },
+  "excluded_fields_as_features": [
+    "entry_id",
+    "accession",
+    "reviewer_id",
+    "source_record_id",
+    "source_database",
+    "source_text_or_database_evidence_span",
+    "source_evidence_span",
+    "fingerprint_id",
+    "label_type",
+    "assigned_embedding_split",
+    "heldout_labels_or_outcomes"
+  ],
+  "excluded_rows": [
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:6",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:15",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:16",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:37",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:66",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:68",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:94",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:102",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:124",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:133",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:147",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    },
+    {
+      "approved_and_consumable": false,
+      "entry_id": "m_csa:186",
+      "label_manifest_split": "in_distribution",
+      "reason": "source_row_not_approved",
+      "review_status": "draft"
+    }
+  ],
+  "feature_rows": [
+    {
+      "assigned_embedding_split": "train",
+      "entry_id": "m_csa:5",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 1,
+        "bond_change_event_count": 1,
+        "bond_formed_count": 0,
+        "bond_order_changed_count": 0,
+        "electron_transfer_count": 0,
+        "event_count": 1,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": false,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 2,
+        "medium_confidence_event_count": 1,
+        "multi_event_mechanism_flag": false,
+        "proton_transfer_count": 0,
+        "unique_mapped_active_site_residue_count": 2,
+        "unknown_confidence_event_count": 0
+      }
+    },
+    {
+      "assigned_embedding_split": "train",
+      "entry_id": "m_csa:11",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 1,
+        "bond_change_event_count": 2,
+        "bond_formed_count": 1,
+        "bond_order_changed_count": 0,
+        "electron_transfer_count": 2,
+        "event_count": 4,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": false,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 2,
+        "mapped_active_site_residue_count": 12,
+        "medium_confidence_event_count": 2,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 0,
+        "unique_mapped_active_site_residue_count": 6,
+        "unknown_confidence_event_count": 0
+      }
+    },
+    {
+      "assigned_embedding_split": "train",
+      "entry_id": "m_csa:169",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 1,
+        "bond_change_event_count": 2,
+        "bond_formed_count": 1,
+        "bond_order_changed_count": 0,
+        "electron_transfer_count": 0,
+        "event_count": 4,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 7,
+        "medium_confidence_event_count": 4,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 2,
+        "unique_mapped_active_site_residue_count": 2,
+        "unknown_confidence_event_count": 0
+      }
+    }
+  ],
+  "guardrails": {
+    "draft_rows_present_in_feature_rows": false,
+    "feature_contract_mutated": false,
+    "heldout_rows_present_in_feature_rows": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "partial_materialization_only": true,
+    "production_thresholds_changed": false,
+    "reviewer_id_used_as_predictive_feature": false,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Continue reviewer approval for the remaining P0 rows, then rerun this sidecar before attempting the no-template centroid pilot or out-of-atlas-span residual on the richer feature surface.",
+    "result": "3 approved P0 rows were materialized into label-stripped train/cal row-specific event features; no draft or heldout rows were copied."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_train_cal_feature_sidecar",
+  "scope": "Partial no-fit row-specific bond/proton/electron feature sidecar for reviewer-approved P0 rows only. It joins approved source evidence to the existing train/cal split and excludes draft and heldout rows.",
+  "source_artifacts": {
+    "feature_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json",
+      "sha256": "59c6782c620fb50f00b75af1820cce0daee0f10b604e2805550d972f5880cd6b"
+    },
+    "feature_readiness": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
+      "sha256": "cb4864d0bc870d0e2d7f0ed2e776e73da0569da44e4f3053ff2dfe819f92c2d9"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "source_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+    },
+    "train_cal_split_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json",
+      "sha256": "d06038f1faa9c42d98c409d949450c6cc953d6da325d98c0636ed4d9daf52d83"
+    }
+  },
+  "status": "p0_train_cal_row_specific_feature_sidecar_ready_partial_no_fit"
+}

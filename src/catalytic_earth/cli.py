@@ -70,6 +70,7 @@ from .northstar_next_levers import (
     write_fold_augmented_family_panel_missing_primary_channel_queue,
     write_fold_augmented_family_panel_research_readout,
     write_fold_augmented_family_panel_source_check_queue,
+    write_fold_augmented_confounded_deployment_closure_audit,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
     write_fold_augmented_train_cal_oos_negative_surface_scores,
@@ -87,6 +88,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_reaction_center_template_sidecar,
     write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
     write_mechanism_feature_row_specific_bond_change_materialization_priority,
+    write_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
@@ -100,6 +102,9 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit,
     write_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit,
     write_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix,
+    write_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap,
+    write_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar,
     write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
@@ -11593,6 +11598,33 @@ def cmd_build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision
     return 0
 
 
+def cmd_audit_fold_augmented_confounded_deployment_closure(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_deployment_closure_audit(
+        predicted_structure_fold_channel_path=Path(
+            args.predicted_structure_fold_channel
+        ),
+        contract_audit_path=Path(args.contract_audit),
+        oos_calibrated_threshold_contract_path=Path(
+            args.oos_calibrated_threshold_contract
+        ),
+        sufficiency_decision_path=Path(args.sufficiency_decision),
+        remaining_blocker_clearance_path=Path(args.remaining_blocker_clearance),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded deployment closure audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        "confounded abstained: "
+        f"{counts.get('heldout_confounded_oos_abstained')}/"
+        f"{counts.get('heldout_confounded_oos_total')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_family_panel_research_readout(
     args: argparse.Namespace,
 ) -> int:
@@ -12104,6 +12136,89 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_p0_refresh_blocker(
         f"{args.out} (status: {audit.get('status')}, "
         "feature refresh allowed: "
         f"{decision.get('automation_feature_contract_refresh_allowed')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar(
+    args: argparse.Namespace,
+) -> int:
+    sidecar = (
+        write_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar(
+            source_sidecar_path=Path(args.source_sidecar),
+            feature_readiness_path=Path(args.feature_readiness),
+            train_cal_split_manifest_path=Path(args.train_cal_split_manifest),
+            feature_contract_path=Path(args.feature_contract),
+            label_manifest_path=Path(args.label_manifest),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = sidecar.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 train/cal feature sidecar to "
+        f"{args.out} (status: {sidecar.get('status')}, "
+        f"feature rows: {counts.get('materialized_feature_rows')}, "
+        f"heldout excluded: {counts.get('heldout_approved_rows_excluded')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        source_sidecar_path=Path(args.source_sidecar),
+        review_queue_path=Path(args.review_queue),
+        train_cal_split_manifest_path=Path(args.train_cal_split_manifest),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 train/cal coverage gap to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"draft calibration rows: {counts.get('draft_calibration_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        source_sidecar_path=Path(args.source_sidecar),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 train/cal feature guardrail audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"feature rows: {counts.get('feature_rows')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet(
+    args: argparse.Namespace,
+) -> int:
+    packet = write_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet(
+        train_cal_coverage_gap_path=Path(args.train_cal_coverage_gap),
+        source_sidecar_path=Path(args.source_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 calibration review packet to "
+        f"{args.out} (status: {packet.get('status')}, "
+        f"packet rows: {counts.get('packet_rows')})"
     )
     return 0
 
@@ -24528,6 +24643,63 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision
     )
 
+    confounded_deployment_closure = subparsers.add_parser(
+        "audit-fold-augmented-confounded-deployment-closure",
+        help=(
+            "synthesize the predicted-structure fold channel, fixed OOS-calibrated "
+            "threshold, and disclosed blockers for the confounded heldout subset"
+        ),
+    )
+    confounded_deployment_closure.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    confounded_deployment_closure.add_argument(
+        "--contract-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_contract_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    confounded_deployment_closure.add_argument(
+        "--oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    confounded_deployment_closure.add_argument(
+        "--sufficiency-decision",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_"
+            "sufficiency_decision_current702_20260601.json"
+        ),
+    )
+    confounded_deployment_closure.add_argument(
+        "--remaining-blocker-clearance",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_"
+            "clearance_attempts_current702_20260601.json"
+        ),
+    )
+    confounded_deployment_closure.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    confounded_deployment_closure.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_deployment_closure_audit_"
+            "current702_20260601.md"
+        ),
+    )
+    confounded_deployment_closure.set_defaults(
+        func=cmd_audit_fold_augmented_confounded_deployment_closure
+    )
+
     family_panel_readout = subparsers.add_parser(
         "build-fold-augmented-family-panel-research-readout",
         help=(
@@ -25596,6 +25768,210 @@ def build_parser() -> argparse.ArgumentParser:
     )
     row_specific_bond_change_p0_refresh_blocker.set_defaults(
         func=cmd_audit_mechanism_feature_row_specific_bond_change_p0_refresh_blocker
+    )
+
+    row_specific_bond_change_p0_train_cal_feature = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-train-cal-feature-sidecar",
+        help=(
+            "materialize approved P0 row-specific bond/proton/electron "
+            "features into the existing train/cal split without fitting a model"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_feature.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_feature.add_argument(
+        "--feature-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_feature.add_argument(
+        "--train-cal-split-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_feature.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_feature.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_train_cal_feature.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_feature.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_sidecar_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_feature.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar
+        )
+    )
+
+    row_specific_bond_change_p0_train_cal_coverage = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-train-cal-coverage-gap",
+        help=(
+            "prioritize remaining P0 draft reviews needed to add calibration "
+            "or event-type coverage to the train/cal feature sidecar"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_coverage.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_coverage.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_coverage.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_coverage.add_argument(
+        "--train-cal-split-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_coverage.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_train_cal_coverage.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_coverage_gap_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_coverage.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_coverage_gap_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_coverage.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap
+        )
+    )
+
+    row_specific_bond_change_p0_train_cal_guardrail = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-train-cal-feature-guardrail",
+        help=(
+            "strictly audit the approved P0 train/cal row-specific feature "
+            "sidecar for leakage, split, and payload-type guardrails"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_guardrail.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_guardrail.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_guardrail.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_train_cal_guardrail.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_guardrail_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_guardrail.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_guardrail_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_train_cal_guardrail.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail
+        )
+    )
+
+    row_specific_bond_change_p0_calibration_packet = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-calibration-review-packet",
+        help=(
+            "build the manual review packet for calibration-assigned P0 "
+            "row-specific feature rows"
+        ),
+    )
+    row_specific_bond_change_p0_calibration_packet.add_argument(
+        "--train-cal-coverage-gap",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_coverage_gap_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_calibration_packet.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_calibration_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_calibration_review_packet_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_calibration_packet.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_calibration_review_packet_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_calibration_packet.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet
+        )
     )
 
     mechanism_feature_sidecar_schema = subparsers.add_parser(

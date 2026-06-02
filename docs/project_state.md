@@ -94,6 +94,11 @@ artifacts first.
   45/47 in-scope rows, abstains on 44/79 OOS rows, and abstains on 5/6
   cofactor-confounded OOS rows. This is a research contract, not a production
   threshold.
+- A compact confounded deployment-closure audit now ties that contract to the
+  predicted-structure-vs-atlas fold channel. It confirms 6/6 priority
+  cofactor-confounded rows have nearest-atlas Foldseek/TM hits and the fixed
+  operating point abstains on 5/6, but production closure remains blocked by
+  five train/cal OOS surface gaps.
 - A companion fold-augmented novelty-variant diagnostic now records the existing
   predicted-geometry plus predicted-fold combinations without rerunning
   Foldseek/TM. The best existing-channel variant is still
@@ -329,11 +334,12 @@ artifacts first.
   decision classes and recommends starting with the `mh_067`/`mh_068` locator
   copy decision because their split-safe template check already passed and no
   coordinate fetch is needed. The matrix authorizes no copy, fetch, or scoring.
-- A refreshed current-run artifact integrity audit indexes 21 JSON artifacts
-  and 21 matching work reports from this run. All parse/presence checks passed, and
-  the validation summary records full pytest, unittest discovery, compileall,
-  `validate`, repo-wide JSON/JSONL parse, current-docs reference check, and
-  diff-check success.
+- A refreshed current-run artifact integrity audit indexes 28 JSON artifacts
+  and 28 matching work reports from this run, including the P0 train/cal
+  feature sidecar, coverage-gap audit, and calibration review packet. All
+  parse/presence checks passed, and the validation summary records full pytest,
+  unittest discovery, compileall, `validate`, repo-wide JSON/JSONL parse,
+  current-docs reference check, and diff-check success.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -434,6 +440,24 @@ artifacts first.
   the 3 approved rows. The load-bearing guardrail is that M-CSA-derived
   row-specific bond-change features must remain train/cal-only; heldout M-CSA
   rows must not be used for training or threshold tuning.
+- The partial train/cal feature sidecar for those approved P0 rows is now
+  materialized. It copies only label-stripped row-specific event features for
+  `m_csa:5`, `m_csa:11`, and `m_csa:169`; all three are assigned to the train
+  split, 12 draft rows are excluded, 0 heldout rows are present, and no model or
+  threshold is fit. The materialized approved event surface carries three
+  `bond_broken`, two `bond_formed`, two `electron_transfer`, and two
+  `proton_transfer` events, but it is not enough to rerun the no-template
+  centroid or residual methods because it has no calibration rows. A strict
+  guardrail audit passes with 0 critical violations and confirms the predictive
+  payload is numeric/boolean event features only.
+- A companion P0 train/cal coverage-gap audit makes the next review gate
+  exact: the remaining draft P0 queue has 8 train rows and 4 calibration rows.
+  The no-template rerun is blocked by absent approved calibration coverage. The
+  next manual review rows are `m_csa:186`, `m_csa:147`, `m_csa:6`, and
+  `m_csa:133`; `m_csa:186` and `m_csa:147` also add the currently
+  unmaterialized `bond_order_changed` event type. A manual calibration review
+  packet now carries those four rows and 16 event-review records without
+  recording approvals or changing the feature contract.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe
@@ -583,15 +607,20 @@ artifacts first.
    start from
    `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
    then
-   `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
-   then materialize only the three reviewer-approved P0 M-CSA-only source rows
-   into train/cal row-specific feature sidecars before re-running BOTH the
-   no-template centroid pilot and the confirmed out-of-span residual on that
-   template-free surface under the same train/cal/heldout discipline (train
-   heads on train/cal rows only, evaluate heldout once, include a
-   predicted-geometry robustness cell), and give the residual a deployable
-   calibration. This is the unified Lever 2 forward path; see
-   `docs/decision_log.md` 2026-06-02.
+   `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`.
+   The three reviewer-approved P0 M-CSA-only source rows are already
+   materialized into a train-only feature sidecar and pass the strict
+   train/cal feature guardrail audit. Next review the four calibration-gate rows
+   in
+   `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json`
+   (`m_csa:186`, `m_csa:147`, `m_csa:6`, `m_csa:133`), record decisions in the
+   source-evidence sidecar, rerun the strict/readiness/materialization
+   artifacts, and only then re-run BOTH the no-template centroid pilot and the
+   confirmed out-of-span residual on the richer template-free surface under the
+   same train/cal/heldout discipline (train heads on train/cal rows only,
+   evaluate heldout once, include a predicted-geometry robustness cell), with a
+   deployable residual calibration. This is the unified Lever 2 forward path;
+   see `docs/decision_log.md` 2026-06-02.
 4. For FMO, revise the review/silver evidence gate into subtype panels, finish
    coordinate/materialization blockers, and keep candidate rows review-only.
 5. For label growth, require explicit expert decision, no-import safety checks
@@ -625,6 +654,7 @@ artifacts first.
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`
 - `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`
+- `artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.json`
@@ -651,6 +681,10 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
 - `artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`

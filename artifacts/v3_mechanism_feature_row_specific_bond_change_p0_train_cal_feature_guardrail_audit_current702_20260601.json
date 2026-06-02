@@ -1,0 +1,107 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601",
+  "counts": {
+    "calibration_rows": 0,
+    "critical_counts": {
+      "duplicate_feature_entry_ids": 0,
+      "feature_guardrail_mismatches": 0,
+      "feature_payload_forbidden_keys": 0,
+      "feature_payload_non_scalar_or_string_values": 0,
+      "feature_rows_label_manifest_heldout": 0,
+      "feature_rows_marked_heldout": 0,
+      "feature_rows_missing_entry_id": 0,
+      "feature_rows_missing_feature_payload": 0,
+      "feature_rows_not_in_source_sidecar": 0,
+      "feature_rows_not_train_or_calibration": 0,
+      "feature_rows_source_not_approved": 0,
+      "feature_rows_source_not_consumable": 0,
+      "unexpected_feature_row_keys": 0
+    },
+    "critical_violation_total": 0,
+    "feature_rows": 3,
+    "feature_value_type_counts": {
+      "bool": 12,
+      "int": 39
+    },
+    "source_sidecar_rows": 15,
+    "train_rows": 3
+  },
+  "created_utc": "2026-06-02T07:11:47Z",
+  "decision": {
+    "full_no_template_rerun_ready_from_sidecar": false,
+    "partial_feature_surface_guardrail_passed": true,
+    "reason_not_ready_for_rerun": "Only a partial approved P0 surface is materialized; continue review until train and calibration rows cover the intended no-template feature pilot.",
+    "safe_to_run_no_template_methods_now": false,
+    "safe_to_use_as_partial_train_feature_surface": true
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "next_action": "Use the calibration review packet to decide the four calibration-assigned draft rows, then rerun the strict sidecar, readiness, materialization, and this guardrail audit before any no-template centroid or residual rerun.",
+    "result": "The partial P0 train/cal feature sidecar passes leakage and split guardrails for train-only feature materialization."
+  },
+  "predictive_feature_contract": {
+    "allowed_predictive_payload_path": "feature_rows[].row_specific_event_features",
+    "allowed_predictive_value_types": [
+      "bool",
+      "int",
+      "float"
+    ],
+    "forbidden_predictive_inputs": [
+      "entry_id",
+      "assigned_embedding_split",
+      "source text",
+      "source IDs",
+      "reviewer metadata",
+      "accession",
+      "fingerprint or labels",
+      "heldout outcomes",
+      "target names",
+      "EC/Rhea IDs"
+    ]
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_train_cal_feature_guardrail_audit",
+  "scope": "Strict leakage and split-contract audit for the partial P0 row-specific train/cal feature sidecar. Only `row_specific_event_features` is treated as predictive payload; entry IDs, splits, guardrails, source text, source IDs, reviewer metadata, labels, and heldout outcomes are excluded.",
+  "source_artifacts": {
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "source_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json",
+      "sha256": "9edac7fc7e87341ca5d2e35691501215ac0e87c8f572d770c1570cc0c3959277"
+    }
+  },
+  "status": "p0_train_cal_feature_guardrail_audit_passed_partial_no_fit",
+  "violations": {
+    "duplicate_feature_entry_ids": [],
+    "feature_guardrail_mismatches": [],
+    "feature_payload_forbidden_keys": [],
+    "feature_payload_non_scalar_or_string_values": [],
+    "feature_rows_label_manifest_heldout": [],
+    "feature_rows_marked_heldout": [],
+    "feature_rows_missing_entry_id": [],
+    "feature_rows_missing_feature_payload": [],
+    "feature_rows_not_in_source_sidecar": [],
+    "feature_rows_not_train_or_calibration": [],
+    "feature_rows_source_not_approved": [],
+    "feature_rows_source_not_consumable": [],
+    "unexpected_feature_row_keys": []
+  }
+}
