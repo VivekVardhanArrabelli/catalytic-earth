@@ -501,6 +501,26 @@ artifacts first.
   9.52% OOS abstention at 85.42% primary retention). This confirms the real
   next lever is row-specific mechanism-feature materialization, not another
   template-level classifier.
+- The out-of-span residual is the surviving deployable signal from this lever and
+  is now confirmed. Built on a separate closed-form information-preserving metric
+  line (an independent Lever 2 build), the unsupervised out-of-atlas-span residual
+  survives a PCA cutoff-robustness sweep and a held-out-from-design confirmatory
+  split with a label-permutation null (p=0.0005). Unlike the template-dependent
+  centroid scores it is sequence-only and deployment-valid.
+- That confirmed residual is integrated into the per-channel rule gate as a third
+  lift channel, adding a +0.076 confounded-safe OOS-abstain lift at the >=85%
+  in-scope retention floor. The residual threshold remains research-grade pending a
+  deployable calibration.
+- 2026-06-02: the two independent Lever 2 builds are integrated into one result
+  (see `docs/decision_log.md` 2026-06-02). The consolidated negative — a learned or
+  standardized embedding over the CURRENT feature surface does not deployably beat
+  geometry — is robust precisely because both builds reach it independently. The
+  confirmed gate-integrated residual is the live deployable signal; the centroid
+  line's train/cal/heldout discipline (418 train / 106 calibration / once-only
+  heldout) becomes the calibration standard the residual must meet; and its
+  bond-change/proton/electron feature-materialization track (Rhea provenance) is the
+  kept forward path to the genuinely-new mechanism feature. No code or artifacts from
+  either build were removed.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
@@ -562,8 +582,12 @@ artifacts first.
    `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
    then
    `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
-   then train heads on train/cal rows only and evaluate heldout once, including
-   a predicted-geometry robustness cell.
+   then re-run BOTH the no-template centroid pilot and the confirmed out-of-span
+   residual on that template-free surface under the same train/cal/heldout
+   discipline (train heads on train/cal rows only, evaluate heldout once, include a
+   predicted-geometry robustness cell), and give the residual a deployable
+   calibration. This is the unified Lever 2 forward path; see `docs/decision_log.md`
+   2026-06-02.
 4. For FMO, revise the review/silver evidence gate into subtype panels, finish
    coordinate/materialization blockers, and keep candidate rows review-only.
 5. For label growth, require explicit expert decision, no-import safety checks
@@ -612,6 +636,10 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_embedding_pilot_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_residual_robustness_current702_20260601.json`
+- `artifacts/v3_mechanism_residual_gate_integration_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json`

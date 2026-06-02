@@ -3,6 +3,225 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-02: Lever 2 Integrated — Two Independent Builds Become One Result; The Closed-Form Residual Is The Live Deployable Signal, The Centroid Pilot's Discipline And Feature Track Are Retained
+
+Decision: integrate the two independent Lever 2 implementations rather than
+choosing one and discarding the other. The closed-form information-preserving
+metric (the "residual line") and the standardized nearest-primary centroid pilot
+(the "centroid line") are both agent-built, treated as equals, and kept; the
+genuine advancement of each is carried forward into a single Lever 2 result.
+
+Synthesis:
+- Consolidated negative (robust precisely because two independent builds agree):
+  a learned or standardized embedding over the CURRENT feature surface does not
+  deployably beat the geometry baseline. The metric's predeclared primary is a
+  clean negative (AUC 0.616 vs top1_score 0.757). The centroid pilot's strong
+  numbers (calibration AUC 0.948, heldout 0.881) are reaction-template dependent;
+  its deployment-valid no-template ablation is at chance (heldout AUC 0.489).
+  Neither full-contract score is deployment evidence.
+- Live deployable signal: the residual line's unsupervised out-of-atlas-span
+  residual is the surviving win — deployment-valid (sequence-only), confirmed
+  (PCA cutoff-robust sweep + a held-out-from-design confirmatory split with a
+  label-permutation null, p=0.0005), and integrated into the per-channel rule
+  gate for a +0.076 confounded-safe OOS-abstain lift at the >=85% retention floor.
+  The residual threshold remains research-grade pending deployable calibration.
+- Retained from the centroid line (genuine advancements, not discarded): (1) its
+  train/cal/heldout fitting discipline (fit on 418 train rows, threshold on 106
+  calibration rows, once-only heldout readout) becomes the standard the residual's
+  deployable calibration must meet; (2) the audited mechanism-feature contract
+  surface and the P0 source-evidence sidecar / bond-change / proton-transfer /
+  electron-flow feature-materialization track (with Rhea provenance) is the kept
+  forward path to the genuinely-new mechanism feature.
+
+Consequence / unified next: materialize the row-specific bond-change/proton/
+electron features (resolve open Rhea rows `m_csa:11`, `m_csa:169`, `m_csa:5` and
+reviewer provenance first), then re-run BOTH the no-template centroid pilot and
+the out-of-span residual on that template-free surface under the centroid line's
+train/cal/heldout discipline; give the residual a deployable calibration; and
+close a deployment-valid confounded-safe channel (Lever 3). No code or artifacts
+from either build were removed.
+
+Work/artifacts: `work/mechanism_feature_embedding_current702_20260601.md`,
+`work/mechanism_feature_residual_robustness_current702_20260601.md`,
+`work/mechanism_residual_gate_integration_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_embedding_pilot_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json`.
+
+## 2026-06-02: Confirmed Residual Adds A Confounded-Safe Operating-Point Lift To The Rule Gate (Research-Grade Threshold)
+
+Decision: integrate the now-confirmed out-of-span residual into the per-channel
+RULE gate as a third orthogonal lift channel and measure its marginal
+operating-point contribution, rather than promoting it on AUC alone. The deployed
+rule (geometry leads; cofactor adds abstentions only where its signature is weak)
+is extended with a residual term carrying the SAME confounded-safe guard:
+
+    abstain = geom < tg
+              OR (cof < signature AND cof < tc)              # cofactor-agnostic-lift
+              OR (cof < signature AND residual_novelty >= tr)  # residual-agnostic-lift
+
+The residual is concentrated on the cofactor-agnostic majority and is NOT
+confounded-safe (confounded AUC ~0.66 vs geometry 0.84), so gating it on
+`cof < signature` keeps confounded rows decided by geometry alone. The
+three-channel search space contains the two-channel gate (a high tr disables the
+term), so a three-channel optimum can never be worse; the question was the lift
+magnitude and confounded-safety preservation. Predeclared PASS = residual adds
+OOS-abstain-recall AND preserves confounded-abstain-recall, at the operative
+retention floor.
+
+Result (deployment pool 47 in-scope / 79 OOS; 6 confounded / 73 agnostic; residual
+channel all-OOS AUC reproduced live at 0.72098, matching the embedding eval). The
+operative floor is >=85% in-scope retention: neither gate has a >=90% point because
+the agnostic-lift terms unavoidably abstain too many low-cofactor in-scope rows at
+the minimum threshold. At >=85% retention the two-channel gate abstains on 0.3038
+of OOS (confounded 0.1667, agnostic 0.3151); adding the residual-agnostic-lift
+raises OOS-abstain-recall to 0.3797 (+0.0759), ENTIRELY from the agnostic subset
+(0.3151 -> 0.3973), with the confounded subset UNCHANGED at 0.1667 -- the
+predeclared PASS holds (adds lift, confounded-safe). The confounded subset remains
+the binding constraint, exactly motivating the Lever 3 fold channel.
+
+Deployability (honest scope). tg and tc are thresholds on calibrated [0,1]
+confidences and are deployable constants; the residual threshold tr is NOT. 100% of
+held-out rows sit above the atlas residual maximum, so the residual's
+atlas-percentile calibration SATURATES and the signal survives only in raw/relative
+form -- tr is an eval-pool-relative RESEARCH operating point (a calibration-free ROC
+sweep over observed residual values), not a production threshold. The reported lift
+is the residual's marginal operating-point contribution; a deployable residual
+calibration, or the Lever 4 expanded family set, is required before production
+promotion. An exploratory ungated variant (residual firing on all rows) is recorded
+for transparency but is not the predeclared agnostic-lift form.
+
+Consequence: the confirmed residual translates into a real, confounded-safe
+operating-point lift on the cofactor-agnostic majority (+0.076 OOS-abstain-recall at
+85% retention), banking the Lever 2 win at the gate level -- but it does NOT close
+the operational gap, because the safety-critical confounded subset is unmoved and
+the residual threshold is not yet deployable. The next gains must come from a
+confounded-safe channel (Lever 3, deployment-valid fold/structure novelty) and a
+deployable residual calibration or the wider Lever 4 surface. No labels, registries,
+ontologies, splits, thresholds, or production scorers changed; the residual is
+sequence-only and atlas-only-fit, M-CSA rows are eval-only, the deployable
+thresholds are untuned, and the cofactor channel is read-only for stratification.
+
+Reproduce: `PYTHONPATH=src python -m catalytic_earth.cli
+eval-mechanism-residual-gate-integration`. Module:
+`src/catalytic_earth/mechanism_residual_gate_integration.py`. Tests:
+`tests/test_mechanism_residual_gate_integration.py` (3 fast + 1 slow integration
+gated behind `CATALYTIC_RUN_SLOW`). Artifacts:
+`artifacts/v3_mechanism_residual_gate_integration_current702_20260601.json`,
+`work/mechanism_residual_gate_integration_current702_20260601.md`.
+
+## 2026-06-01: Out-Of-Span Residual Survives The Cutoff-Robustness And Predeclared Confirmatory Tests
+
+Decision: before treating the out-of-atlas-span residual (the AUC 0.721 Lever 2
+lead) as more than an eval-pool hypothesis, run the two checks that were
+predeclared as its gate -- a PCA variance-cutoff robustness sweep (leakage/overfit
+test) and a held-out-from-its-own-design confirmatory split -- with the pass/fail
+bars, fold salt, and permutation seed all fixed a priori. Both pass, so the
+residual graduates from exploratory readout to a confirmed candidate third
+orthogonal lift channel.
+
+Robustness sweep (leakage/overfit). The residual is the representation energy
+outside the atlas PCA span, and the span size is a fixed variance cutoff. Sweeping
+it (95% / 97% / 99%) re-derives the residual off a single shared atlas
+eigendecomposition (an anchor assertion confirms the 99%/128-dim point reproduces
+the committed 0.72098). Deployment-pool all-OOS AUC is 0.7072 (95%, 81-dim span),
+0.7215 (97%, 98-dim), 0.7210 (99%, 128-dim cap, 0.9891 variance) -- range 0.0143,
+inside the predeclared <=0.05 band; all three >=0.65; and agnostic-subset AUC
+exceeds confounded-subset AUC at every cutoff. Note the 99% target is cap-limited
+to 128 dims, so the 95%/97% points genuinely shrink the span (81/98 dims) -- the
+sweep tests real span-size sensitivity, not a no-op. S1/S2/S3 all hold: the 0.721
+is NOT an artifact of the chosen cutoff.
+
+Confirmatory split (held out from the lead's own design). The lead was surfaced on
+the whole deployment pool, so its 47/79 sample could be lucky. The held-out rows
+were partitioned into two folds by a salted hash of the entry id
+(`sha256('residual_confirm::'+id) % 2`) -- a split independent of the residual
+values and of how the lead was found -- with fold 1 reserved as the confirmation
+fold and the pass criteria committed before reading it. Significance is a
+label-permutation null (2000 shuffles, seed 20260601) over the fixed residual
+scores. The confirmation fold (29 in / 30 OOS) scores AUC 0.7885 at permutation
+p=0.0005; the design-echo fold (18/49) scores 0.654 at p=0.029; pooled 0.721 at
+p=0.0005. H1 (confirmation AUC>=0.65 AND p<0.05), H2 (both folds AUC>=0.60), and
+H3 (confirmation agnostic AUC >= confounded AUC) all hold: the separation is real
+and significant on data that played no role in the discovery, and the
+cofactor-agnostic directional structure replicates.
+
+Consequence: the out-of-span residual is a stable, generalizing novelty signal,
+not a cutoff/eval-pool artifact -- it is promoted to a candidate third orthogonal
+lift channel (geometry-led gate + cofactor-agnostic-lift + residual-agnostic-lift)
+for predeclared threshold work. It remains NOT confounded-safe (confounded AUC
+~0.66 vs geometry 0.84), so it must still be paired with a confounded-safe channel
+(Lever 3, fold) before any threshold promotion -- the confirmatory test validated
+the lift, not standalone gating. Lever 4 (an expanded family set) is the stronger
+confirmation surface but is a proposal only today; this test used the design-split
+route on the existing eval pool and should be re-run once an expanded set is
+materialized. No labels, registries, ontologies, splits, thresholds, or production
+scorers changed; the atlas-only fit and M-CSA-eval-only constraints are preserved,
+and the fold split is independent of the residual scores.
+
+Reproduce: `PYTHONPATH=src python -m catalytic_earth.cli
+eval-mechanism-residual-robustness`. Module:
+`src/catalytic_earth/mechanism_feature_residual_robustness.py`. Tests:
+`tests/test_mechanism_feature_residual_robustness.py` (8 fast + 1 slow integration
+gated behind `CATALYTIC_RUN_SLOW`). Artifacts:
+`artifacts/v3_mechanism_feature_residual_robustness_current702_20260601.json`,
+`work/mechanism_feature_residual_robustness_current702_20260601.md`.
+
+## 2026-06-01: Lever 2 Learned Mechanism-Feature Embedding Is A Clean Negative With An Out-Of-Span Residual Lead
+
+Decision: implement Lever 2 (a learned mechanism-feature embedding) as a
+closed-form, information-preserving supervised metric rather than a trainable
+network, and report the result honestly at the operating point. The space is
+sequence-only (ESM2-150M), fit ONLY on the in-distribution atlas: robust
+standardize (atlas median/IQR) -> PCA over the atlas span (keep >=99% atlas
+variance, capped at 128 dims; here 128 dims capturing 0.9891) -> within-class
+whitening (a regularized full-rank Mahalanobis metric, fixed 0.10 shrinkage,
+condition number 99.4). All hyperparameters are fixed a priori, NOT tuned on
+heldout. A trainable GNN/classifier was explicitly rejected for this lever: the
+supervised surface is only 184 atlas rows across 7 represented classes (the 8th
+fingerprint, `radical_sam_enzyme`, has zero in-distribution rows; classes range
+1-66 rows), there is no deployment-valid per-residue graph on disk, the
+no-heldout-tuning guardrail forbids validation-based training, and a
+high-capacity discriminative model worsens novelty by pulling OOS confidently
+onto class manifolds.
+
+Result (deployment pool: 47 in-scope / 79 OOS; 6 confounded / 73 agnostic;
+baseline geometry top1_score reproduced live at AUC 0.757). The PREDECLARED
+primary signal (equal-weight percentile mean of nearest-prototype, kNN-density,
+and out-of-span residual) does NOT beat the baseline: AUC 0.616 and
+OOS-abstain-recall 0.165 at >=90% retention vs 0.757 / 0.215. The supervised
+whitening DISTANCE signals (prototype 0.606, kNN 0.613) are near the bare-PLM
+level, confirming that discriminative reshaping is the wrong lever for novelty
+(the linear discriminant-energy signal was already at chance, AUC 0.524). The
+one genuinely new, orthogonal signal is the UNSUPERVISED out-of-atlas-span
+residual (sequence-representation mass outside the directions known mechanism
+chemistry occupies): AUC 0.721, and at the operating point it abstains on 0.241
+of OOS at >=90% retention -- ABOVE the geometry baseline's 0.215 -- concentrated
+on the cofactor-agnostic OOS majority. It is NOT safe on the safety-critical
+cofactor-confounded subset (confounded abstain-recall 0.333 vs baseline 0.500;
+confounded AUC 0.663 vs 0.840), so it is a COMPLEMENTARY LIFT channel, not a
+replacement gate -- the same role the cofactor channel plays. The predeclared
+percentile combiner washes out the residual (every held-out row sits below the
+atlas residual distribution, so its atlas-percentile saturates to 0); the
+residual carries signal only in RAW form and must be used as its own channel.
+
+Consequence: Lever 2 does not by itself make de novo abstention operational, and
+that is a valid, expected outcome cleanly reported. The actionable lead is the
+out-of-span residual as a third, orthogonal lift channel (geometry-led gate +
+cofactor-agnostic-lift + residual-agnostic-lift), to be validated with a
+PREDECLARED confirmatory test (not the exploratory readout here) and paired with
+a confounded-safe channel before any threshold promotion. The committed row-keyed
+learned embedding (702 rows, 128-d whitened coords + residual) is reusable for
+downstream de novo work. No labels, registries, ontologies, splits, thresholds,
+or production scorers changed; M-CSA heldout rows were eval-only, never trained.
+
+Reproduce: `PYTHONPATH=src python -m catalytic_earth.cli
+eval-mechanism-feature-embedding`. Module:
+`src/catalytic_earth/mechanism_feature_embedding.py`. Tests:
+`tests/test_mechanism_feature_embedding.py` (10 fast + 1 slow integration gated
+behind `CATALYTIC_RUN_SLOW`). Artifacts:
+`artifacts/v3_mechanism_feature_embedding_eval_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_embedding_current702_20260601.jsonl`,
+`work/mechanism_feature_embedding_current702_20260601.md`.
 ## 2026-06-01: Mechanism-Feature Embedding Pilot Is Implemented, But Template-Dependent
 
 Decision: move the learned mechanism-feature lane from a no-fit scaffold to a

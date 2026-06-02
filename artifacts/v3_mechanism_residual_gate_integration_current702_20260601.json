@@ -1,0 +1,142 @@
+{
+  "artifact_id": "v3_mechanism_residual_gate_integration_current702_20260601",
+  "created_utc": "2026-06-02T00:02:57Z",
+  "guardrails": {
+    "cofactor_channel_consumed_read_only_for_stratification": true,
+    "deployable_thresholds_not_tuned_on_heldout": true,
+    "labels_registries_thresholds_changed": false,
+    "mcsa_heldout_benchmark_is_eval_only_never_trained": true,
+    "residual_fit_on_in_distribution_atlas_only": true,
+    "residual_threshold_is_research_operating_point_not_deployable": true,
+    "sequence_inputs_amino_acid_only": true
+  },
+  "interpretation": {
+    "confounded_safety_design": "The residual-agnostic-lift fires only where the cofactor signature is weak (cof < signature), exactly like the cofactor lift, so confounded rows remain gated by geometry alone -- the residual cannot make keep/abstain calls on the safety-critical subset, where it is weaker than geometry (AUC ~0.66 vs 0.84).",
+    "deployability": "1.0 of held-out rows sit above the atlas residual maximum, so the atlas-percentile calibration saturates (True); the residual threshold tr is a research operating point, not a deployable constant. A deployable residual calibration or the Lever 4 expanded family set is needed before production.",
+    "headline": "The confirmed residual adds operating-point lift to the rule gate: at the 85pct_retention floor it raises OOS-abstain-recall from 0.3038 (geometry+cofactor) to 0.3797 (+0.0759) while preserving confounded safety (0.1667 vs 0.1667). The lift is real but research-grade: the residual threshold is eval-pool-relative (atlas calibration saturates).",
+    "residual_cross_check": "The residual channel reproduces the confirmed signal here: all-OOS AUC 0.72098 (embedding eval 0.721; cross-check True)."
+  },
+  "result": {
+    "channels_auc": {
+      "cofactor_max_score": {
+        "agnostic": 0.65666,
+        "all": 0.628064,
+        "confounded": 0.280142
+      },
+      "geometry_top1_score": {
+        "agnostic": 0.750073,
+        "all": 0.756935,
+        "confounded": 0.840426
+      },
+      "out_of_span_residual": {
+        "agnostic": 0.725736,
+        "all": 0.72098,
+        "confounded": 0.663121
+      }
+    },
+    "counts": {
+      "agnostic_oos": 73,
+      "atlas": 184,
+      "confounded_oos": 6,
+      "inscope": 47,
+      "oos": 79
+    },
+    "deployability_note": "tg, tc are deployable thresholds on calibrated [0,1] confidences; tr is an eval-pool-relative RESEARCH operating point because the residual's atlas-percentile calibration saturates (see residual_atlas_saturation).",
+    "operative_floor": "85pct_retention",
+    "per_retention_floor": {
+      "85pct_retention": {
+        "exploratory_three_channel_residual_ungated": {
+          "agnostic_abstain_recall": 0.3973,
+          "cofactor_threshold": 0.02,
+          "confounded_abstain_recall": 0.5,
+          "geometry_threshold": 0.28,
+          "inscope_retain_recall": 0.8511,
+          "oos_abstain_recall": 0.4051,
+          "residual_threshold": 10.524882
+        },
+        "three_channel_with_residual_agnostic_lift": {
+          "agnostic_abstain_recall": 0.3973,
+          "cofactor_threshold": 0.02,
+          "confounded_abstain_recall": 0.1667,
+          "geometry_threshold": 0.28,
+          "inscope_retain_recall": 0.8511,
+          "oos_abstain_recall": 0.3797,
+          "residual_threshold": 10.524882
+        },
+        "two_channel_geometry_cofactor": {
+          "agnostic_abstain_recall": 0.3151,
+          "cofactor_threshold": 0.02,
+          "confounded_abstain_recall": 0.1667,
+          "geometry_threshold": 0.32,
+          "inscope_retain_recall": 0.8511,
+          "oos_abstain_recall": 0.3038,
+          "residual_threshold": null
+        }
+      },
+      "90pct_retention": {
+        "exploratory_three_channel_residual_ungated": null,
+        "three_channel_with_residual_agnostic_lift": null,
+        "two_channel_geometry_cofactor": null
+      }
+    },
+    "residual_atlas_saturation": {
+      "atlas_percentile_calibration_saturates": true,
+      "atlas_residual_novelty_max": 3.072571,
+      "fraction_above_atlas_max": 1.0,
+      "heldout_rows_above_atlas_max": 126,
+      "heldout_rows_total": 126
+    },
+    "residual_space": {
+      "cap_binds": true,
+      "deployed_cutoff": 0.99,
+      "pca_dim": 128,
+      "variance_captured": 0.989091
+    },
+    "rule": "abstain if geometry_score < tg OR (cofactor_max < signature AND cofactor_max < tc) OR (cofactor_max < signature AND residual_novelty >= tr)",
+    "status": "computed",
+    "verdict": {
+      "operative_floor": "85pct_retention",
+      "pass_at_operative_floor": true,
+      "residual_channel_auc_all": 0.72098,
+      "residual_cross_check_vs_embedding_eval": true,
+      "residual_oos_lift_at_85pct_retention": 0.0759
+    },
+    "verdict_by_floor": {
+      "85pct_retention": {
+        "confounded_safety_preserved": true,
+        "pass": true,
+        "residual_adds_oos_lift": true,
+        "residual_oos_lift": 0.0759,
+        "three_channel_confounded_abstain_recall": 0.1667,
+        "three_channel_oos_abstain_recall": 0.3797,
+        "two_channel_confounded_abstain_recall": 0.1667,
+        "two_channel_oos_abstain_recall": 0.3038
+      },
+      "90pct_retention": {
+        "confounded_safety_preserved": null,
+        "note": "no rule-gate point clears this retention floor for one/both gates",
+        "pass": null,
+        "residual_adds_oos_lift": null,
+        "residual_oos_lift": null,
+        "three_channel_oos_abstain_recall": null,
+        "two_channel_oos_abstain_recall": null
+      }
+    }
+  },
+  "schema_version": "mechanism_residual_gate_integration.v0",
+  "scope": "D11 Lever 2 integration: add the confirmed out-of-span residual to the per-channel RULE gate as a third confounded-safe agnostic-lift channel, and measure its marginal operating-point lift over the geometry+cofactor gate, stratified, at the >=85% (and >=90% if reachable) in-scope retention floor.",
+  "source_artifacts": {
+    "cofactor_score_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    },
+    "predicted_geometry_audit": {
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "sha256": "b1c120e452f439c72686463eb56249f8002a12862a601410d682b6f19e8b6294"
+    }
+  }
+}

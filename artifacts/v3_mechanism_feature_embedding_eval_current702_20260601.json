@@ -1,0 +1,209 @@
+{
+  "artifact_id": "v3_mechanism_feature_embedding_eval_current702_20260601",
+  "created_utc": "2026-06-01T19:17:07Z",
+  "guardrails": {
+    "atlas_only_statistics_and_percentile_calibration": true,
+    "cofactor_channel_consumed_read_only_for_stratification": true,
+    "fit_on_in_distribution_atlas_only": true,
+    "labels_registries_thresholds_changed": false,
+    "mcsa_heldout_benchmark_is_eval_only_never_trained": true,
+    "no_heldout_tuning_hyperparameters_fixed_a_priori": true,
+    "predicted_geometry_deployment_regime_for_baseline": true,
+    "sequence_inputs_amino_acid_only": true
+  },
+  "interpretation": {
+    "exploratory_lead": "Lead worth a frozen follow-up: the `learned_out_of_span_residual` view -- a genuinely new, UNSUPERVISED representation signal (sequence-representation mass outside the directions known mechanism chemistry occupies) -- abstains on 0.2405 of OOS at >=90% retention, ABOVE the geometry baseline (0.2152), with AUC 0.72098. It is concentrated on the cofactor-AGNOSTIC OOS majority and is NOT safe on the safety-critical cofactor-confounded subset (confounded abstain-recall 0.3333 vs baseline 0.5), so it is a COMPLEMENTARY LIFT channel for future predeclared confirmatory testing, not a replacement gate. The supervised whitening distances (prototype/kNN) do not help, confirming that discriminative reshaping is the wrong lever for novelty.",
+    "headline": "NEGATIVE RESULT (clean) on the predeclared signal: the learned sequence-only embedding's primary combined novelty score does NOT beat the predicted-geometry top1_score baseline (AUC 0.61554 vs 0.756935; OOS-abstain-recall 0.1646 vs 0.2152 at >=90% retention). A general-purpose PLM, even reshaped by a supervised mechanism metric, encodes overall protein similarity under which novel chemistry still sits inside occupied regions, while the orthogonal geometry channel sees the active-site mismatch directly.",
+    "stratification_note": "The cofactor-confounded OOS subset (novel chemistry reusing a known cofactor family) is the hardest; per-stratum AUCs and abstain-recalls are reported so a headline number cannot hide a confounded-subset failure.",
+    "why_combined_primary_underperforms": "The predeclared equal-weight percentile combiner washes out the residual: every held-out row sits below the atlas residual distribution, so the residual's atlas-percentile saturates to 0 and contributes no ordering to the mean. The residual carries real signal only in its RAW form and must be used as its own channel -- an instructive reason the naive combination fails.",
+    "why_information_preserving": "The metric whitens out pooled within-mechanism variation (sequence drift that does not change catalysis) and is full-rank/invertible on the atlas span -- it reshapes geometry to answer to mechanism chemistry without collapsing to a rank-(K-1) discriminant (whose linear discriminative-energy novelty signal is already at chance here, AUC 0.524). The out-of-span residual is a genuinely new novelty view -- representation mass outside known mechanism chemistry -- not a recombination of the existing channels."
+  },
+  "result": {
+    "counts": {
+      "deployment_pool": {
+        "agnostic": 73,
+        "confounded": 6,
+        "inscope": 47,
+        "oos": 79
+      },
+      "full_novelty_pool": {
+        "agnostic": 84,
+        "confounded": 8,
+        "inscope": 48,
+        "oos": 92
+      }
+    },
+    "deployment_pool_signals": {
+      "learned_combined_primary": {
+        "auc_agnostic": 0.610901,
+        "auc_all": 0.61554,
+        "auc_confounded": 0.671986,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.1644,
+          "confounded_abstain_recall": 0.1667,
+          "inscope_retain_recall": 0.9149,
+          "oos_abstain_recall": 0.1646,
+          "threshold": 0.007246
+        }
+      },
+      "learned_knn_density": {
+        "auc_agnostic": 0.608277,
+        "auc_all": 0.612981,
+        "auc_confounded": 0.670213,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.137,
+          "confounded_abstain_recall": 0.0,
+          "inscope_retain_recall": 0.9787,
+          "oos_abstain_recall": 0.1266,
+          "threshold": -14.880183
+        }
+      },
+      "learned_nearest_prototype": {
+        "auc_agnostic": 0.601574,
+        "auc_all": 0.606248,
+        "auc_confounded": 0.663121,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.1644,
+          "confounded_abstain_recall": 0.1667,
+          "inscope_retain_recall": 0.9362,
+          "oos_abstain_recall": 0.1646,
+          "threshold": -12.599169
+        }
+      },
+      "learned_out_of_span_residual": {
+        "auc_agnostic": 0.725736,
+        "auc_all": 0.72098,
+        "auc_confounded": 0.663121,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.2329,
+          "confounded_abstain_recall": 0.3333,
+          "inscope_retain_recall": 0.9362,
+          "oos_abstain_recall": 0.2405,
+          "threshold": -10.219633
+        }
+      }
+    },
+    "full_novelty_pool_signals": {
+      "learned_combined_primary": {
+        "auc_agnostic": 0.612475,
+        "auc_all": 0.615716,
+        "auc_confounded": 0.64974,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.1548,
+          "confounded_abstain_recall": 0.125,
+          "inscope_retain_recall": 0.9167,
+          "oos_abstain_recall": 0.1522,
+          "threshold": 0.007246
+        }
+      },
+      "learned_knn_density": {
+        "auc_agnostic": 0.611607,
+        "auc_all": 0.615036,
+        "auc_confounded": 0.651042,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.131,
+          "confounded_abstain_recall": 0.0,
+          "inscope_retain_recall": 0.9792,
+          "oos_abstain_recall": 0.1196,
+          "threshold": -14.880183
+        }
+      },
+      "learned_nearest_prototype": {
+        "auc_agnostic": 0.600446,
+        "auc_all": 0.604846,
+        "auc_confounded": 0.651042,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.1548,
+          "confounded_abstain_recall": 0.125,
+          "inscope_retain_recall": 0.9375,
+          "oos_abstain_recall": 0.1522,
+          "threshold": -12.599169
+        }
+      },
+      "learned_out_of_span_residual": {
+        "auc_agnostic": 0.727679,
+        "auc_all": 0.722373,
+        "auc_confounded": 0.666667,
+        "operating_point_at_90pct_retention": {
+          "agnostic_abstain_recall": 0.2262,
+          "confounded_abstain_recall": 0.25,
+          "inscope_retain_recall": 0.9375,
+          "oos_abstain_recall": 0.2283,
+          "threshold": -10.219633
+        }
+      }
+    },
+    "space": {
+      "classes": [
+        "cobalamin_radical_rearrangement",
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase",
+        "metal_dependent_hydrolase",
+        "plp_dependent_enzyme",
+        "ser_his_acid_hydrolase"
+      ],
+      "input": "esm2_150m_sequence_only",
+      "n_atlas": 184,
+      "pca_dim": 128,
+      "pca_max_dim": 128,
+      "pca_variance_captured": 0.989091,
+      "pca_variance_retained_target": 0.99,
+      "whitening_condition_number": 99.3943,
+      "within_class_shrinkage": 0.1
+    },
+    "status": "computed",
+    "top1_score_baseline_deployment": {
+      "auc_agnostic": 0.750073,
+      "auc_all": 0.756935,
+      "auc_confounded": 0.840426,
+      "channel": "geometry_top1_score",
+      "operating_point_at_90pct_retention": {
+        "agnostic_abstain_recall": 0.1918,
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.2152,
+        "threshold": 0.3516
+      },
+      "reference_auc": 0.757
+    },
+    "verdict": {
+      "baseline_oos_abstain_recall_at_90pct": 0.2152,
+      "baseline_top1_score_auc_deployment": 0.756935,
+      "best_learned_signal_auc_deployment": 0.72098,
+      "exploratory_best_single_signal": {
+        "auc_agnostic": 0.725736,
+        "auc_all": 0.72098,
+        "auc_confounded": 0.663121,
+        "beats_baseline_at_operating_point": true,
+        "best_single_signal": "learned_out_of_span_residual",
+        "confounded_abstain_recall_at_90pct": 0.3333,
+        "oos_abstain_recall_at_90pct": 0.2405,
+        "role": "complementary_lift_channel_not_replacement_gate",
+        "safe_on_confounded_vs_baseline": false
+      },
+      "overall": "does_not_beat_baseline",
+      "primary_auc_deployment": 0.61554,
+      "primary_beats_top1_score_at_operating_point": false,
+      "primary_beats_top1_score_by_auc": false,
+      "primary_oos_abstain_recall_at_90pct": 0.1646,
+      "primary_signal": "learned_combined_primary"
+    }
+  },
+  "schema_version": "mechanism_feature_embedding.v0",
+  "scope": "D11 Lever 2: a learned, information-preserving mechanism-feature embedding (sequence-only ESM2-150M; atlas-fit within-class whitening over the atlas PCA span). Tests whether its novelty signals separate in-scope from out-of-scope (novel-chemistry) held-out rows better than the predicted-geometry top1_score baseline (AUC 0.757), evaluated at the operating point and stratified by cofactor-confounded vs -agnostic OOS.",
+  "source_artifacts": {
+    "cofactor_score_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    },
+    "predicted_geometry_audit": {
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "sha256": "b1c120e452f439c72686463eb56249f8002a12862a601410d682b6f19e8b6294"
+    }
+  }
+}
