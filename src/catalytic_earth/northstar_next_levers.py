@@ -85,6 +85,9 @@ FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID = (
 FOLD_AUGMENTED_CONFOUNDED_DEPLOYMENT_CLOSURE_AUDIT_ID = (
     "v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601"
 )
+FOLD_AUGMENTED_FOLD_ONLY_DEPLOYMENT_CONTRACT_DECISION_ID = (
+    "v3_fold_augmented_fold_only_deployment_contract_decision_current702_20260601"
+)
 FOLD_AUGMENTED_FAMILY_PANEL_RESEARCH_READOUT_ID = (
     "v3_fold_augmented_family_panel_research_readout_current702_20260601"
 )
@@ -219,6 +222,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_TRAIN_CAL_COVERAGE_GAP_ID = (
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_CALIBRATION_REVIEW_PACKET_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_PENDING_REWRITE_BLOCKER_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601"
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_TRAIN_CAL_FEATURE_GUARDRAIL_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601"
@@ -13404,6 +13410,285 @@ def write_fold_augmented_confounded_deployment_closure_audit(
     return audit
 
 
+def _fold_only_rows_at_threshold(
+    rows: list[dict[str, Any]],
+    *,
+    threshold: float,
+) -> list[dict[str, Any]]:
+    evaluated = []
+    for row in rows:
+        score = row.get("nearest_train_atlas_tm_score")
+        abstain = score is not None and float(score) < float(threshold)
+        evaluated.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession"),
+                "predicted_geometry_status": row.get("predicted_geometry_status"),
+                "nearest_train_atlas_entry_id": row.get(
+                    "nearest_train_atlas_entry_id"
+                ),
+                "nearest_train_atlas_true_fingerprint_id": row.get(
+                    "nearest_train_atlas_true_fingerprint_id"
+                ),
+                "nearest_train_atlas_tm_score": score,
+                "threshold": round(float(threshold), 6),
+                "abstains_at_threshold": abstain,
+            }
+        )
+    return evaluated
+
+
+def build_fold_augmented_fold_only_deployment_contract_decision(
+    *,
+    oos_calibrated_threshold_contract_path: Path,
+    fold_only_surface_path: Path,
+    confounded_deployment_closure_path: Path,
+) -> dict[str, Any]:
+    threshold_contract = _read_json(oos_calibrated_threshold_contract_path)
+    fold_only_surface = _read_json(fold_only_surface_path)
+    confounded_closure = _read_json(confounded_deployment_closure_path)
+
+    fold_channel = (
+        threshold_contract.get("threshold_contract", {}).get(
+            "fold_nearest_atlas_tm_score"
+        )
+        or {}
+    )
+    selected90 = (
+        fold_channel.get(
+            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+        )
+        or {}
+    )
+    selected85 = (
+        fold_channel.get(
+            "selected_at_85pct_calibration_in_scope_retention_max_oos_abstain"
+        )
+        or {}
+    )
+    heldout90 = (
+        fold_channel.get("heldout_final_eval_at_90pct_oos_calibrated_threshold")
+        or {}
+    )
+    heldout85 = (
+        fold_channel.get("heldout_final_eval_at_85pct_oos_calibrated_threshold")
+        or {}
+    )
+    fold_only_rows = [
+        row
+        for row in fold_only_surface.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    threshold90 = selected90.get("threshold")
+    threshold85 = selected85.get("threshold")
+    rows90 = (
+        _fold_only_rows_at_threshold(fold_only_rows, threshold=float(threshold90))
+        if threshold90 is not None
+        else []
+    )
+    rows85 = (
+        _fold_only_rows_at_threshold(fold_only_rows, threshold=float(threshold85))
+        if threshold85 is not None
+        else []
+    )
+    abstained90 = sum(1 for row in rows90 if row["abstains_at_threshold"])
+    abstained85 = sum(1 for row in rows85 if row["abstains_at_threshold"])
+    confounded90 = float(heldout90.get("heldout_confounded_oos_abstain_recall") or 0.0)
+    confounded85 = float(heldout85.get("heldout_confounded_oos_abstain_recall") or 0.0)
+    retain90 = float(heldout90.get("heldout_in_scope_retain_recall") or 0.0)
+    retain85 = float(heldout85.get("heldout_in_scope_retain_recall") or 0.0)
+    fold_only_contract_authorized = (
+        bool(fold_only_rows)
+        and abstained90 == len(fold_only_rows)
+        and retain90 >= 0.85
+        and confounded90 >= 0.80
+    )
+    threshold85_rescue_ready = (
+        bool(fold_only_rows)
+        and abstained85 == len(fold_only_rows)
+        and retain85 >= 0.85
+        and confounded85 >= 0.80
+    )
+    critical_counts = {
+        "fold_only_rows_not_abstained_at_90pct_threshold": (
+            len(fold_only_rows) - abstained90
+        ),
+        "fold_only_confounded_target_missed_at_90pct_threshold": (
+            0 if confounded90 >= 0.80 else 1
+        ),
+        "fold_only_in_scope_retention_missed_at_90pct_threshold": (
+            0 if retain90 >= 0.85 else 1
+        ),
+    }
+    status = (
+        "fold_only_deployment_contract_ready_at_fixed_threshold"
+        if fold_only_contract_authorized
+        else "fold_only_deployment_contract_no_go_fixed_threshold_insufficient"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FOLD_ONLY_DEPLOYMENT_CONTRACT_DECISION_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_fold_only_deployment_contract_decision"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Decision audit for the Lever 3 fold-only escape hatch. It copies "
+            "the existing OOS-calibrated fold-only operating point and evaluates "
+            "only the blocker rows that already have Foldseek/TM evidence; it "
+            "does not select or tune thresholds."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "fold_only_blocker_rows_used_for_threshold_selection": False,
+            "validation_only": True,
+        },
+        "counts": {
+            "fold_only_blocker_rows": len(fold_only_rows),
+            "fold_only_rows_abstained_at_90pct_threshold": abstained90,
+            "fold_only_rows_abstained_at_85pct_threshold": abstained85,
+            "heldout_confounded_oos_abstain_recall_at_90pct_threshold": confounded90,
+            "heldout_confounded_oos_abstain_recall_at_85pct_threshold": confounded85,
+            "heldout_in_scope_retain_recall_at_90pct_threshold": retain90,
+            "heldout_in_scope_retain_recall_at_85pct_threshold": retain85,
+            "remaining_production_blocker_rows": (
+                confounded_closure.get("counts", {}).get(
+                    "remaining_production_blocker_rows"
+                )
+            ),
+            "critical_counts": critical_counts,
+            "critical_violation_total": sum(critical_counts.values()),
+        },
+        "operating_points": {
+            "fold_only_90pct": selected90,
+            "fold_only_85pct": selected85,
+            "heldout_fold_only_90pct": heldout90,
+            "heldout_fold_only_85pct": heldout85,
+        },
+        "fold_only_blocker_rows_at_90pct_threshold": rows90,
+        "fold_only_blocker_rows_at_85pct_threshold": rows85,
+        "decision": {
+            "fold_only_deployment_contract_authorized": fold_only_contract_authorized,
+            "fold_only_85pct_rescue_contract_authorized": threshold85_rescue_ready,
+            "deployable_without_production_caveat": False,
+            "next_gate": (
+                "Do not use a fold-only escape hatch for production-like closure "
+                "at the fixed operating point. Clear the geometry/source blockers "
+                "for m_csa:204, m_csa:531, uniprot:P78549, and uniprot:Q3LXA3, "
+                "and resolve the missing AlphaFoldDB coordinate for m_csa:78."
+            ),
+        },
+        "source_artifacts": {
+            "oos_calibrated_threshold_contract": _source_path_record(
+                oos_calibrated_threshold_contract_path
+            ),
+            "fold_only_surface": _source_path_record(fold_only_surface_path),
+            "confounded_deployment_closure": _source_path_record(
+                confounded_deployment_closure_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The explicit fold-only contract is a no-go at the fixed "
+                f"90% operating point: {abstained90}/{len(fold_only_rows)} "
+                "fold-only blocker rows abstain and the heldout fold-only "
+                f"confounded abstain recall is {confounded90}."
+            ),
+            "next_action": (
+                "Continue Lever 3 by clearing source-geometry or coordinate "
+                "blockers rather than defining a separate fold-only deployment "
+                "contract."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_fold_only_deployment_contract_decision_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Fold-Only Deployment Contract Decision - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Fold-only deployment contract authorized: "
+        f"{decision['fold_only_deployment_contract_authorized']}",
+        f"- Fold-only blocker rows: {counts['fold_only_blocker_rows']}",
+        "- Rows abstained at 90% threshold: "
+        f"{counts['fold_only_rows_abstained_at_90pct_threshold']}",
+        "- Heldout confounded abstain recall at 90% threshold: "
+        f"{counts['heldout_confounded_oos_abstain_recall_at_90pct_threshold']}",
+        "- Heldout in-scope retain recall at 90% threshold: "
+        f"{counts['heldout_in_scope_retain_recall_at_90pct_threshold']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Rows At 90% Threshold",
+        "",
+        "| row | TM score | threshold | abstains | nearest train |",
+        "| --- | ---: | ---: | --- | --- |",
+    ]
+    for row in audit["fold_only_blocker_rows_at_90pct_threshold"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('nearest_train_atlas_tm_score')} | "
+            f"{row.get('threshold')} | {row.get('abstains_at_threshold')} | "
+            f"{row.get('nearest_train_atlas_entry_id')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_fold_only_deployment_contract_decision(
+    *,
+    oos_calibrated_threshold_contract_path: Path,
+    fold_only_surface_path: Path,
+    confounded_deployment_closure_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_fold_only_deployment_contract_decision(
+        oos_calibrated_threshold_contract_path=oos_calibrated_threshold_contract_path,
+        fold_only_surface_path=fold_only_surface_path,
+        confounded_deployment_closure_path=confounded_deployment_closure_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_fold_only_deployment_contract_decision_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def _primary_fold_augmented_threshold(contract: dict[str, Any]) -> float | None:
     primary = contract.get("primary_channel_readout") or {}
     selected = primary.get(
@@ -19501,6 +19786,23 @@ def _row_has_approved_m_csa_only_reviewer_decision(row: dict[str, Any]) -> bool:
     )
 
 
+def _row_has_reviewer_approved_feature_consumption(row: dict[str, Any]) -> bool:
+    decision = row.get("reviewer_decision")
+    return (
+        row.get("review_status") == "approved"
+        and bool(row.get("reviewer_id"))
+        and bool(row.get("allowed_for_feature_contract_consumption_now"))
+        and (
+            _row_has_rhea_equation_span(row)
+            or _row_has_approved_m_csa_only_reviewer_decision(row)
+        )
+        and (
+            not isinstance(decision, dict)
+            or str(decision.get("decision") or "").startswith("approve_")
+        )
+    )
+
+
 def _p0_source_evidence_strict_audit_passed(status: object) -> bool:
     return str(status) in {
         "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable",
@@ -19535,20 +19837,27 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
         )
         span_databases = _source_span_databases(row)
         approved_m_csa_only = _row_has_approved_m_csa_only_reviewer_decision(row)
+        reviewed_consumable = _row_has_reviewer_approved_feature_consumption(row)
         blockers = []
         if row.get("review_status") != "approved":
             blockers.append("review_status_not_approved")
         if not _row_has_rhea_equation_span(row) and not approved_m_csa_only:
             blockers.append("rhea_equation_missing")
-        if len(events) >= 4 and not approved_m_csa_only:
+        if len(events) >= 4 and not reviewed_consumable:
             blockers.append("multi_event_mechanism_review")
-        if any(event.get("confidence") == "low" for event in events) and not approved_m_csa_only:
+        if (
+            any(event.get("confidence") == "low" for event in events)
+            and not reviewed_consumable
+        ):
             blockers.append("low_confidence_event_review")
         if not events:
             blockers.append("draft_event_missing")
 
         if approved_m_csa_only:
             review_category = "approved_m_csa_only_source_evidence"
+            priority_rank = 9
+        elif reviewed_consumable:
+            review_category = "approved_rhea_backed_source_evidence"
             priority_rank = 9
         elif "rhea_equation_missing" in blockers:
             review_category = "rhea_lookup_required_before_approval"
@@ -19575,6 +19884,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
                     "reviewer-approved M-CSA-only evidence; eligible for "
                     "split-filtered feature-contract materialization"
                     if review_category == "approved_m_csa_only_source_evidence"
+                    else "reviewer-approved Rhea-backed evidence; eligible for "
+                    "split-filtered feature-contract materialization"
+                    if review_category == "approved_rhea_backed_source_evidence"
                     else "resolve missing Rhea reaction mapping or document why "
                     "M-CSA-only evidence is sufficient before row approval"
                     if review_category == "rhea_lookup_required_before_approval"
@@ -19604,7 +19916,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
             1
             for row in sidecar_rows
             if row.get("allowed_for_feature_contract_consumption_now")
-            and not _row_has_approved_m_csa_only_reviewer_decision(row)
+            and not _row_has_reviewer_approved_feature_consumption(row)
         ),
     }
     passed = all(value == 0 for value in critical_counts.values())
@@ -19656,7 +19968,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
                 1
                 for row in sidecar_rows
                 if row.get("allowed_for_feature_contract_consumption_now")
-                and _row_has_approved_m_csa_only_reviewer_decision(row)
+                and _row_has_reviewer_approved_feature_consumption(row)
             ),
             "critical_counts": critical_counts,
             "critical_violation_total": sum(critical_counts.values()),
@@ -19665,8 +19977,8 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
         "interpretation": {
             "result": (
                 "The P0 sidecar has a manual-review ordering surface; rows with "
-                "reviewer-approved M-CSA-only provenance are separated from "
-                "remaining draft review rows."
+                "reviewer-approved source evidence are separated from remaining "
+                "draft review rows."
             ),
             "next_action": (
                 "Materialize only approved train/cal rows into the feature "
@@ -21718,7 +22030,7 @@ def _render_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap
             f"{decision['rerun_blocked_by_calibration_coverage']}"
         ),
         "- Next review gate rows: "
-        f"{', '.join(decision['next_review_gate_entry_ids'])}",
+        f"{', '.join(decision['next_review_gate_entry_ids']) or '(none)'}",
         "",
         "## Review Priorities",
         "",
@@ -22009,6 +22321,374 @@ def write_mechanism_feature_row_specific_bond_change_p0_calibration_review_packe
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def _p0_pending_rewrite_blocked_indices(
+    row: dict[str, Any],
+    events: list[dict[str, Any]],
+) -> set[int]:
+    decision = row.get("reviewer_decision")
+    blocked_indices = set()
+    if isinstance(decision, dict):
+        for index in decision.get("blocked_event_indices") or []:
+            try:
+                blocked_indices.add(int(index))
+            except (TypeError, ValueError):
+                continue
+    if blocked_indices:
+        return blocked_indices
+    return {
+        index
+        for index, event in enumerate(events)
+        if event.get("confidence") == "low"
+        or not event.get("mapped_active_site_residues")
+    }
+
+
+def _p0_pending_rewrite_event_row(
+    *,
+    event: dict[str, Any],
+    event_index: int,
+    blocked_indices: set[int],
+) -> dict[str, Any]:
+    span = event.get("source_evidence_span")
+    if not isinstance(span, dict):
+        span = {}
+    return {
+        "event_index": event_index,
+        "event_type": event.get("event_type"),
+        "confidence": event.get("confidence"),
+        "mapped_active_site_residue_count": len(
+            event.get("mapped_active_site_residues") or []
+        ),
+        "blocked_by_reviewer": event_index in blocked_indices,
+        "source_record_id": span.get("source_record_id"),
+        "source_span_text": span.get("span_text"),
+    }
+
+
+def _p0_pending_rewrite_blockers(
+    *,
+    events: list[dict[str, Any]],
+    blocked_indices: set[int],
+    reviewer_decision_present: bool,
+) -> list[str]:
+    blocked_events = [
+        event for index, event in enumerate(events) if index in blocked_indices
+    ]
+    blockers = []
+    if not reviewer_decision_present:
+        blockers.append("reviewer_decision_missing")
+    if any(event.get("confidence") == "low" for event in blocked_events):
+        blockers.append("low_confidence_event_review")
+    if any(not event.get("mapped_active_site_residues") for event in blocked_events):
+        blockers.append("unmapped_event_review")
+    if len(events) >= 4 and blocked_events:
+        blockers.append("multi_event_rewrite")
+    if not blocked_events:
+        blockers.append("blocked_event_indices_missing")
+    return blockers
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
+    *,
+    source_sidecar_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_split_manifest_path: Path,
+) -> dict[str, Any]:
+    source_sidecar = _read_json(source_sidecar_path)
+    train_cal_feature_sidecar = _read_json(train_cal_feature_sidecar_path)
+    split_manifest = _read_json(train_cal_split_manifest_path)
+
+    source_rows = [
+        row
+        for row in source_sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    split_by_entry = {
+        str(row.get("entry_id")): row
+        for row in split_manifest.get("split_records", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    pending_rows = []
+    blocker_counter: Counter[str] = Counter()
+    event_type_counter: Counter[str] = Counter()
+    blocked_event_type_counter: Counter[str] = Counter()
+    blocked_event_rows = 0
+    event_rows = 0
+    reviewer_decision_missing_rows = []
+    pending_rows_allowed_for_feature_contract_consumption = 0
+    pending_rows_allowed_for_model_training = 0
+    pending_rows_not_in_train_cal_split = 0
+
+    for row in sorted(
+        source_rows,
+        key=lambda item: _entry_id_sort_key(str(item.get("entry_id"))),
+    ):
+        if row.get("review_status") != "needs_more_evidence":
+            continue
+        entry_id = str(row["entry_id"])
+        reviewer_decision = row.get("reviewer_decision")
+        reviewer_decision_present = isinstance(reviewer_decision, dict)
+        if not reviewer_decision_present:
+            reviewer_decision_missing_rows.append(entry_id)
+        if row.get("allowed_for_feature_contract_consumption_now"):
+            pending_rows_allowed_for_feature_contract_consumption += 1
+        if row.get("allowed_for_model_training_now"):
+            pending_rows_allowed_for_model_training += 1
+
+        events = [
+            event
+            for event in row.get("row_specific_bond_change_events", [])
+            if isinstance(event, dict)
+        ]
+        blocked_indices = _p0_pending_rewrite_blocked_indices(row, events)
+        accepted_indices = []
+        if reviewer_decision_present:
+            for index in reviewer_decision.get(
+                "accepted_event_indices_for_future_rewrite_context"
+            ) or []:
+                try:
+                    accepted_indices.append(int(index))
+                except (TypeError, ValueError):
+                    continue
+        rewrite_blockers = _p0_pending_rewrite_blockers(
+            events=events,
+            blocked_indices=blocked_indices,
+            reviewer_decision_present=reviewer_decision_present,
+        )
+        blocker_counter.update(rewrite_blockers)
+        split_record = split_by_entry.get(entry_id)
+        if not split_record:
+            pending_rows_not_in_train_cal_split += 1
+
+        row_event_rows = []
+        for event_index, event in enumerate(events):
+            event_type = str(event.get("event_type") or "")
+            if event_type:
+                event_type_counter[event_type] += 1
+            if event_index in blocked_indices:
+                blocked_event_rows += 1
+                if event_type:
+                    blocked_event_type_counter[event_type] += 1
+            event_rows += 1
+            row_event_rows.append(
+                _p0_pending_rewrite_event_row(
+                    event=event,
+                    event_index=event_index,
+                    blocked_indices=blocked_indices,
+                )
+            )
+
+        pending_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "assigned_embedding_split": (
+                    split_record or {}
+                ).get("assigned_embedding_split"),
+                "review_status": row.get("review_status"),
+                "reviewer_decision": (
+                    reviewer_decision.get("decision")
+                    if reviewer_decision_present
+                    else None
+                ),
+                "decision_rationale": (
+                    reviewer_decision.get("decision_rationale")
+                    if reviewer_decision_present
+                    else None
+                ),
+                "blocked_event_indices": sorted(blocked_indices),
+                "accepted_event_indices_for_future_rewrite_context": sorted(
+                    set(accepted_indices)
+                ),
+                "rewrite_blockers": rewrite_blockers,
+                "allowed_for_feature_contract_consumption_now": bool(
+                    row.get("allowed_for_feature_contract_consumption_now")
+                ),
+                "allowed_for_model_training_now": bool(
+                    row.get("allowed_for_model_training_now")
+                ),
+                "event_rows": row_event_rows,
+            }
+        )
+
+    feature_counts = train_cal_feature_sidecar.get("counts") or {}
+    critical_counts = {
+        "pending_rows_allowed_for_feature_contract_consumption": (
+            pending_rows_allowed_for_feature_contract_consumption
+        ),
+        "pending_rows_allowed_for_model_training": (
+            pending_rows_allowed_for_model_training
+        ),
+        "pending_rows_missing_reviewer_decision": len(
+            reviewer_decision_missing_rows
+        ),
+        "pending_rows_not_in_train_cal_split": pending_rows_not_in_train_cal_split,
+        "approved_feature_sidecar_critical_violations": int(
+            feature_counts.get("critical_violation_total") or 0
+        ),
+    }
+    critical_violation_total = sum(critical_counts.values())
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_PENDING_REWRITE_BLOCKER_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_pending_rewrite_blocker"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_pending_rewrite_blocker_ready_manual_only"
+            if critical_violation_total == 0
+            else "p0_pending_rewrite_blocker_blocked"
+        ),
+        "scope": (
+            "Manual rewrite blocker packet for P0 row-specific bond/proton/"
+            "electron rows that were reviewed but kept out of feature "
+            "consumption because current events are low-confidence, unmapped, "
+            "or too complex."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "feature_contract_mutated": False,
+            "rewrite_packet_not_predictive_feature_input": True,
+        },
+        "decision": {
+            "full_no_template_rerun_ready": False,
+            "reason_not_ready": (
+                "The reviewed P0 feature surface has "
+                f"{feature_counts.get('materialized_feature_rows') or 0}/"
+                f"{len(source_rows)} approved rows; pending rewrite rows must "
+                "be rewritten or rejected before the intended no-template "
+                "rerun surface is complete."
+            ),
+            "next_gate_entry_ids": [row["entry_id"] for row in pending_rows],
+        },
+        "counts": {
+            "pending_rewrite_rows": len(pending_rows),
+            "event_rows": event_rows,
+            "blocked_event_rows": blocked_event_rows,
+            "event_type_counts": dict(sorted(event_type_counter.items())),
+            "blocked_event_type_counts": dict(
+                sorted(blocked_event_type_counter.items())
+            ),
+            "blocker_counts": dict(sorted(blocker_counter.items())),
+            "approved_materialized_feature_rows": feature_counts.get(
+                "materialized_feature_rows"
+            ),
+            "approved_materialized_train_rows": feature_counts.get("train_rows"),
+            "approved_materialized_calibration_rows": feature_counts.get(
+                "calibration_rows"
+            ),
+            "critical_counts": critical_counts,
+            "critical_violation_total": critical_violation_total,
+        },
+        "pending_rewrite_rows": pending_rows,
+        "reviewer_decision_missing_rows": reviewer_decision_missing_rows,
+        "source_artifacts": {
+            "source_sidecar": _source_path_record(source_sidecar_path),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+            "train_cal_split_manifest": _source_path_record(
+                train_cal_split_manifest_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The calibration coverage blocker is cleared and the current "
+                "approved P0 rows are materialized, but reviewed pending rows "
+                "remain blocked by low-confidence or unmapped event surfaces."
+            ),
+            "next_action": (
+                "Rewrite or reject the listed blocked events, rerun strict/"
+                "readiness/materialization artifacts, and only then attempt "
+                "no-template centroid/residual reruns."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Pending Rewrite Blocker - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Pending rewrite rows: {counts['pending_rewrite_rows']}",
+        f"- Blocked event rows: {counts['blocked_event_rows']}",
+        "- Approved materialized rows: "
+        f"{counts['approved_materialized_feature_rows']}",
+        "- Approved train/cal split: "
+        f"{counts['approved_materialized_train_rows']} train, "
+        f"{counts['approved_materialized_calibration_rows']} calibration",
+        f"- Blocked event types: {counts['blocked_event_type_counts']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Rows",
+        "",
+        "| row | split | blocked events | blockers | decision |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in packet["pending_rewrite_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('assigned_embedding_split')} | "
+            f"{len(row.get('blocked_event_indices') or [])} | "
+            f"{', '.join(row.get('rewrite_blockers') or [])} | "
+            f"{row.get('reviewer_decision')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
+    *,
+    source_sidecar_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_split_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
+        source_sidecar_path=source_sidecar_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_split_manifest_path=train_cal_split_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_report(
                 packet
             ),
             encoding="utf-8",

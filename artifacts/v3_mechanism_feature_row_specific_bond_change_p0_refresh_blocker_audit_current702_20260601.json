@@ -1,12 +1,12 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601",
   "counts": {
-    "approved_consumable_rows": 3,
+    "approved_consumable_rows": 9,
     "blocker_counts": {
       "approved_consumable_rows_missing": 0,
       "copy_ready_approved_decisions_missing": 0,
       "remaining_reviewer_decision_required_rows": 0,
-      "reviewer_id_missing_rows": 12,
+      "reviewer_id_missing_rows": 0,
       "rhea_lookup_unresolved_rows": 0,
       "unexpected_contract_row_specific_fields": 0
     },
@@ -26,7 +26,7 @@
     },
     "structurally_ready_draft_rows": 15
   },
-  "created_utc": "2026-06-02T05:17:16Z",
+  "created_utc": "2026-06-02T08:15:33Z",
   "decision": {
     "automation_feature_contract_refresh_allowed": false,
     "do_not_run": [
@@ -67,22 +67,22 @@
     "feature_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "sha256": "cb4864d0bc870d0e2d7f0ed2e776e73da0569da44e4f3053ff2dfe819f92c2d9"
+      "sha256": "4cfce6f69ae0fa395c25855a9ec6eeaf0f25ba39def37de7fc42df570f45c4ef"
     },
     "reviewer_decision_matrix": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
-      "sha256": "f89f4add32b876eab20c37db07c00a4b7b1adc975c69fa3a7a5b13fc85d6089b"
+      "sha256": "dcb04c84ad3e9bdaecc9e66f0fb0ecad0783582cae70c938b91ec9c86d9f9df4"
     },
     "rhea_resolution_consumption_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json",
-      "sha256": "9ede0d84ddede85e43dfa63b1497cb11f1cd2fcfc030d63207c291aeb23f4d07"
+      "sha256": "411b56a75c8275a13ee90d22fec5e0e47a16937c27e3b016fffe4af7ad77dcc0"
     },
     "strict_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
-      "sha256": "d56b118f9964340280c4d80c152a43cedf830e11af69bf796de492e65df0950b"
+      "sha256": "7f81eca93b348cb640382de7c58930c98aa339e1965cf7b5b1f232117d182162"
     },
     "unresolved_official_source_audit": {
       "exists": true,

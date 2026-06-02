@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Refresh-Blocker Audit - current702
 
-Run: 2026-06-02T05:17:16Z
+Run: 2026-06-02T08:15:33Z
 
 Automation-only decision audit for whether the P0 row-specific bond/proton/electron draft evidence can refresh the no-template mechanism-feature contract.
 
@@ -10,7 +10,7 @@ Automation-only decision audit for whether the P0 row-specific bond/proton/elect
 - Automation feature-contract refresh allowed: False
 - Sidecar rows: 15
 - Structurally ready draft rows: 15
-- Approved consumable rows: 3
+- Approved consumable rows: 9
 - Reviewer decision required rows: 3
 - Copy-ready approved decisions: 3
 - Rhea unresolved rows: 0

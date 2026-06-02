@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601",
   "counts": {
-    "calibration_rows": 0,
+    "calibration_rows": 2,
     "critical_counts": {
       "duplicate_feature_entry_ids": 0,
       "feature_guardrail_mismatches": 0,
@@ -18,15 +18,15 @@
       "unexpected_feature_row_keys": 0
     },
     "critical_violation_total": 0,
-    "feature_rows": 3,
+    "feature_rows": 9,
     "feature_value_type_counts": {
-      "bool": 12,
-      "int": 39
+      "bool": 36,
+      "int": 117
     },
     "source_sidecar_rows": 15,
-    "train_rows": 3
+    "train_rows": 7
   },
-  "created_utc": "2026-06-02T07:11:47Z",
+  "created_utc": "2026-06-02T08:08:30Z",
   "decision": {
     "full_no_template_rerun_ready_from_sidecar": false,
     "partial_feature_surface_guardrail_passed": true,
@@ -80,12 +80,12 @@
     "source_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
     },
     "train_cal_feature_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json",
-      "sha256": "9edac7fc7e87341ca5d2e35691501215ac0e87c8f572d770c1570cc0c3959277"
+      "sha256": "2e54b9e0331aa21716cc69e3905f4e8f76acfbbd45050a54434248afc53be083"
     }
   },
   "status": "p0_train_cal_feature_guardrail_audit_passed_partial_no_fit",

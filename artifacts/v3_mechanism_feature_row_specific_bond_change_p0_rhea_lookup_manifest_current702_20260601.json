@@ -13,7 +13,7 @@
     "rhea_lookup_rows": 0,
     "rows_with_ec_targets": 0
   },
-  "created_utc": "2026-06-02T05:15:15Z",
+  "created_utc": "2026-06-02T08:08:30Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -36,7 +36,7 @@
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "7403fbe7d0b0d18b624b9c5da746353370b3a6dd7a6360d6410e0c3243584e6a"
+      "sha256": "dbecf93989c8ba7ffbf039a83f024b5b79e86e04d106c051beac92ca56335307"
     },
     "source_graph_readiness": {
       "exists": true,

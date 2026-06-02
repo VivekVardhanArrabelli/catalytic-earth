@@ -1,10 +1,10 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601",
   "counts": {
-    "approved_rows": 3,
+    "approved_rows": 4,
     "critical_counts": {},
     "critical_violation_total": 0,
-    "feature_contract_consumable_rows": 3,
+    "feature_contract_consumable_rows": 4,
     "model_training_allowed_rows": 0,
     "remaining_lookup_manifest_rows": 0,
     "resolution_rows": 4,
@@ -12,7 +12,7 @@
     "reviewer_approved_m_csa_only_rows": 3,
     "unresolved_rows": 0
   },
-  "created_utc": "2026-06-02T05:15:15Z",
+  "created_utc": "2026-06-02T08:08:30Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -62,18 +62,14 @@
     },
     {
       "accepted_resolution_status": "resolved_accession_query_with_ec_reclassification",
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:124",
       "in_remaining_lookup_manifest": false,
-      "readiness_blockers": [
-        "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
-      ],
+      "readiness_blockers": [],
       "resolved": true,
-      "review_category": "high_complexity_multi_event_review",
-      "review_status": "draft",
+      "review_category": "approved_rhea_backed_source_evidence",
+      "review_status": "approved",
       "reviewer_approved_m_csa_only": false,
       "rhea_id": "RHEA:11436",
       "sidecar_rhea_ids": [
@@ -105,17 +101,17 @@
     "feature_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "sha256": "cb4864d0bc870d0e2d7f0ed2e776e73da0569da44e4f3053ff2dfe819f92c2d9"
+      "sha256": "4cfce6f69ae0fa395c25855a9ec6eeaf0f25ba39def37de7fc42df570f45c4ef"
     },
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "7403fbe7d0b0d18b624b9c5da746353370b3a6dd7a6360d6410e0c3243584e6a"
+      "sha256": "dbecf93989c8ba7ffbf039a83f024b5b79e86e04d106c051beac92ca56335307"
     },
     "rhea_lookup_manifest": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
-      "sha256": "70062e11d6152bcc22f840ae187a1367917721b63293fd88d9bb1dae5ac6f509"
+      "sha256": "ee873325fc8dae1356f3a72ee0de6ae7b15f86ab30aed640601a51e115aecc8d"
     },
     "rhea_lookup_resolution": {
       "exists": true,
@@ -125,7 +121,7 @@
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
     }
   },
   "status": "p0_rhea_resolution_consumption_audit_passed_review_only"

@@ -1,29 +1,29 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601",
   "counts": {
-    "approved_rows": 3,
+    "approved_rows": 9,
     "draft_event_type_counts": {
-      "bond_broken": 5,
-      "bond_formed": 6,
-      "bond_order_changed": 7,
-      "electron_transfer": 21,
-      "proton_transfer": 10
+      "bond_broken": 1,
+      "bond_formed": 2,
+      "electron_transfer": 16,
+      "proton_transfer": 3
     },
-    "feature_contract_consumable_rows": 3,
+    "feature_contract_consumable_rows": 9,
+    "m_csa_only_reviewer_approved_rows": 3,
     "model_training_allowed_rows": 0,
     "review_status_counts": {
-      "approved": 3,
-      "draft": 12
+      "approved": 9,
+      "needs_more_evidence": 6
     },
+    "rhea_backed_reviewer_approved_rows": 6,
     "rows_missing_rhea_equations": 3,
     "rows_with_draft_bond_change_events": 15,
     "rows_with_rhea_equations": 12,
     "rows_with_source_spans": 15,
     "sidecar_rows": 15,
-    "worksheet_rows": 15,
-    "m_csa_only_reviewer_approved_rows": 3
+    "worksheet_rows": 15
   },
-  "created_utc": "2026-06-02T05:12:36Z",
+  "created_utc": "2026-06-02T08:08:19Z",
   "guardrails": {
     "draft_source_evidence_not_training_input": true,
     "feature_contract_mutated": false,
@@ -39,8 +39,8 @@
     "reviewer_provenance_recorded": true
   },
   "interpretation": {
-    "next_action": "Rerun strict sidecar, review queue, Rhea manifest, feature-readiness, Rhea consumption, reviewer-decision, and refresh-blocker audits before materializing any row-specific feature-contract fields.",
-    "result": "Three previously Rhea-missing P0 rows now carry reviewer-approved M-CSA-only provenance and are feature-contract-consumable only through train/cal split filtering; the remaining rows stay draft."
+    "next_action": "Rewrite or reject the six pending low-confidence electron-transfer rows, rerun strict/readiness/materialization artifacts, and only attempt no-template reruns once the approved train/cal surface reaches the intended pilot coverage.",
+    "result": "Nine P0 rows now carry reviewer approval for split-filtered feature materialization: three M-CSA-only train rows, two Rhea-backed calibration rows, and four Rhea-backed train-depth rows. Six low-confidence electron-transfer rows stay pending rewrite."
   },
   "schema_snapshot": {
     "allowed_event_types": [
@@ -329,8 +329,28 @@
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:6",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "needs_more_evidence",
+      "reviewer_decision": {
+        "accepted_event_indices_for_future_rewrite_context": [
+          4
+        ],
+        "blocked_event_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "decision": "rewrite_events_and_keep_review_pending",
+        "decision_rationale": "Keep pending because the calibration packet electron-transfer events are low-confidence and unmapped to active-site residues; the row needs a rewritten event surface before feature consumption.",
+        "reviewed_utc": "2026-06-02T08:06:21Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "low",
@@ -904,8 +924,25 @@
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:15",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "needs_more_evidence",
+      "reviewer_decision": {
+        "accepted_event_indices_for_future_rewrite_context": [
+          0
+        ],
+        "blocked_event_indices": [
+          1
+        ],
+        "decision": "rewrite_events_and_keep_review_pending",
+        "decision_rationale": "Keep pending because the zinc-water attack is currently typed as a low-confidence unmapped electron-transfer event; it needs a row-specific bond/proton rewrite before feature consumption.",
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -1093,8 +1130,25 @@
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:16",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "needs_more_evidence",
+      "reviewer_decision": {
+        "accepted_event_indices_for_future_rewrite_context": [
+          0
+        ],
+        "blocked_event_indices": [
+          1
+        ],
+        "decision": "rewrite_events_and_keep_review_pending",
+        "decision_rationale": "Keep pending because the zinc-water regeneration event is low-confidence and unmapped; rewrite the event surface before row-level feature consumption.",
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -1280,12 +1334,31 @@
           "uniprot_id": "Q05769"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:37",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Approve for split-filtered train/cal feature materialization because every current event is medium-confidence, source-spanned, and mapped to catalytic-residue support; this approval widens train-side feature depth only.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rhea_backed_provenance_accepted": true,
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -1483,12 +1556,32 @@
           "uniprot_id": "P19938"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:66",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1,
+          2
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Approve for split-filtered train/cal feature materialization because every current event is medium-confidence, source-spanned, and mapped to catalytic-residue support; this approval widens train-side feature depth only.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rhea_backed_provenance_accepted": true,
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -1668,8 +1761,25 @@
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:68",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "needs_more_evidence",
+      "reviewer_decision": {
+        "accepted_event_indices_for_future_rewrite_context": [],
+        "blocked_event_indices": [
+          0,
+          1,
+          2
+        ],
+        "decision": "rewrite_events_and_keep_review_pending",
+        "decision_rationale": "Keep pending because all current electron-transfer events are low-confidence and unmapped; this row needs a source-backed redox/bond-order rewrite before consumption.",
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "low",
@@ -1866,12 +1976,31 @@
           "uniprot_id": "Q29460"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:94",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Approve for split-filtered train/cal feature materialization because every current event is medium-confidence, source-spanned, and mapped to catalytic-residue support; this approval widens train-side feature depth only.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rhea_backed_provenance_accepted": true,
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -2035,8 +2164,28 @@
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:102",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "needs_more_evidence",
+      "reviewer_decision": {
+        "accepted_event_indices_for_future_rewrite_context": [
+          1
+        ],
+        "blocked_event_indices": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "decision": "rewrite_events_and_keep_review_pending",
+        "decision_rationale": "Keep pending because the lactate oxidation electron-transfer/hydride events are low-confidence and unmapped; the medium bond-broken event is only rewrite context.",
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "low",
@@ -2374,12 +2523,34 @@
           "uniprot_id": "P00396"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:124",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Approve for split-filtered train/cal feature materialization because every current event is medium-confidence, source-spanned, and mapped to catalytic-residue support; this approval widens train-side feature depth only.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rhea_backed_provenance_accepted": true,
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -2729,8 +2900,28 @@
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:133",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "needs_more_evidence",
+      "reviewer_decision": {
+        "accepted_event_indices_for_future_rewrite_context": [
+          2,
+          3
+        ],
+        "blocked_event_indices": [
+          0,
+          1,
+          4
+        ],
+        "decision": "rewrite_events_and_keep_review_pending",
+        "decision_rationale": "Keep pending because the heme/putidaredoxin electron-transfer events are low-confidence and unmapped; only the medium mapped proton/bond-formation events are usable as rewrite context, not a complete row-level feature surface.",
+        "reviewed_utc": "2026-06-02T08:06:21Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "low",
@@ -3010,12 +3201,33 @@
           "uniprot_id": "P07511"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:147",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Approve for split-filtered train/cal feature materialization because the calibration packet supplies Rhea equations plus four medium-confidence source-spanned PLP/THF mechanism events with mapped catalytic-residue support; the multi-event complexity is reviewed rather than left as an unresolved blocker.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T08:06:21Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rhea_backed_provenance_accepted": true,
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -3498,12 +3710,31 @@
           "uniprot_id": "P09367"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:186",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Approve for split-filtered train/cal feature materialization because the calibration packet has a Rhea equation, two medium-confidence source-spanned events, and mapped catalytic-residue support for the bond-broken and bond-order-changed event surface.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T08:06:21Z",
+        "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rhea_backed_provenance_accepted": true,
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",

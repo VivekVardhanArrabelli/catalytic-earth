@@ -319,6 +319,16 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-pending-rewrite-blocker"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_pending_rewrite_blocker"
+                ),
+            ),
+            (
                 "build-mechanism-feature-embedding-pilot",
                 "cmd_build_mechanism_feature_embedding_pilot",
             ),
@@ -341,6 +351,10 @@ class CliTests(unittest.TestCase):
             (
                 "audit-fold-augmented-confounded-deployment-closure",
                 "cmd_audit_fold_augmented_confounded_deployment_closure",
+            ),
+            (
+                "audit-fold-augmented-fold-only-deployment-contract",
+                "cmd_audit_fold_augmented_fold_only_deployment_contract",
             ),
         ]
         for command_name, function_name in cases:

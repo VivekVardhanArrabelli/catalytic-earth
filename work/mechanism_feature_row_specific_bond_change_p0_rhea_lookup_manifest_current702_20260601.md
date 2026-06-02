@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Rhea Lookup Manifest - current702
 
-Run: 2026-06-02T05:15:15Z
+Run: 2026-06-02T08:08:30Z
 
 Manual-only lookup manifest for P0 source-evidence draft rows that lack local EC-to-Rhea equations. It stages exact EC query targets and rerun instructions without fetching source data or approving rows.
 

@@ -1,11 +1,11 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601",
   "counts": {
-    "approved_consumable_rows": 3,
+    "approved_consumable_rows": 9,
     "approved_rows_missing_feature_contract_row": 0,
     "approved_rows_not_in_train_cal_split": 0,
-    "approved_source_rows": 3,
-    "calibration_rows": 0,
+    "approved_source_rows": 9,
+    "calibration_rows": 2,
     "critical_counts": {
       "approved_train_cal_rows_missing_from_feature_rows": 0,
       "materialized_draft_rows": 0,
@@ -13,22 +13,23 @@
       "readiness_mismatch_rows": 0
     },
     "critical_violation_total": 0,
-    "draft_rows_excluded": 12,
+    "draft_rows_excluded": 6,
     "exclusion_reason_counts": {
-      "source_row_not_approved": 12
+      "source_row_not_approved": 6
     },
     "heldout_approved_rows_excluded": 0,
     "materialized_event_type_counts": {
-      "bond_broken": 3,
-      "bond_formed": 2,
-      "electron_transfer": 2,
-      "proton_transfer": 2
+      "bond_broken": 4,
+      "bond_formed": 4,
+      "bond_order_changed": 7,
+      "electron_transfer": 5,
+      "proton_transfer": 7
     },
-    "materialized_feature_rows": 3,
+    "materialized_feature_rows": 9,
     "source_sidecar_rows": 15,
-    "train_rows": 3
+    "train_rows": 7
   },
-  "created_utc": "2026-06-02T06:38:47Z",
+  "created_utc": "2026-06-02T08:08:30Z",
   "decision": {
     "full_no_template_centroid_or_residual_rerun_ready": false,
     "model_training_authorized_by_this_artifact": false,
@@ -54,84 +55,42 @@
       "entry_id": "m_csa:6",
       "label_manifest_split": "in_distribution",
       "reason": "source_row_not_approved",
-      "review_status": "draft"
+      "review_status": "needs_more_evidence"
     },
     {
       "approved_and_consumable": false,
       "entry_id": "m_csa:15",
       "label_manifest_split": "in_distribution",
       "reason": "source_row_not_approved",
-      "review_status": "draft"
+      "review_status": "needs_more_evidence"
     },
     {
       "approved_and_consumable": false,
       "entry_id": "m_csa:16",
       "label_manifest_split": "in_distribution",
       "reason": "source_row_not_approved",
-      "review_status": "draft"
-    },
-    {
-      "approved_and_consumable": false,
-      "entry_id": "m_csa:37",
-      "label_manifest_split": "in_distribution",
-      "reason": "source_row_not_approved",
-      "review_status": "draft"
-    },
-    {
-      "approved_and_consumable": false,
-      "entry_id": "m_csa:66",
-      "label_manifest_split": "in_distribution",
-      "reason": "source_row_not_approved",
-      "review_status": "draft"
+      "review_status": "needs_more_evidence"
     },
     {
       "approved_and_consumable": false,
       "entry_id": "m_csa:68",
       "label_manifest_split": "in_distribution",
       "reason": "source_row_not_approved",
-      "review_status": "draft"
-    },
-    {
-      "approved_and_consumable": false,
-      "entry_id": "m_csa:94",
-      "label_manifest_split": "in_distribution",
-      "reason": "source_row_not_approved",
-      "review_status": "draft"
+      "review_status": "needs_more_evidence"
     },
     {
       "approved_and_consumable": false,
       "entry_id": "m_csa:102",
       "label_manifest_split": "in_distribution",
       "reason": "source_row_not_approved",
-      "review_status": "draft"
-    },
-    {
-      "approved_and_consumable": false,
-      "entry_id": "m_csa:124",
-      "label_manifest_split": "in_distribution",
-      "reason": "source_row_not_approved",
-      "review_status": "draft"
+      "review_status": "needs_more_evidence"
     },
     {
       "approved_and_consumable": false,
       "entry_id": "m_csa:133",
       "label_manifest_split": "in_distribution",
       "reason": "source_row_not_approved",
-      "review_status": "draft"
-    },
-    {
-      "approved_and_consumable": false,
-      "entry_id": "m_csa:147",
-      "label_manifest_split": "in_distribution",
-      "reason": "source_row_not_approved",
-      "review_status": "draft"
-    },
-    {
-      "approved_and_consumable": false,
-      "entry_id": "m_csa:186",
-      "label_manifest_split": "in_distribution",
-      "reason": "source_row_not_approved",
-      "review_status": "draft"
+      "review_status": "needs_more_evidence"
     }
   ],
   "feature_rows": [
@@ -199,6 +158,161 @@
     },
     {
       "assigned_embedding_split": "train",
+      "entry_id": "m_csa:37",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 0,
+        "bond_change_event_count": 0,
+        "bond_formed_count": 0,
+        "bond_order_changed_count": 0,
+        "electron_transfer_count": 2,
+        "event_count": 2,
+        "has_bond_change_event": false,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": false,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 2,
+        "medium_confidence_event_count": 2,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 0,
+        "unique_mapped_active_site_residue_count": 1,
+        "unknown_confidence_event_count": 0
+      }
+    },
+    {
+      "assigned_embedding_split": "train",
+      "entry_id": "m_csa:66",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 0,
+        "bond_change_event_count": 3,
+        "bond_formed_count": 0,
+        "bond_order_changed_count": 3,
+        "electron_transfer_count": 0,
+        "event_count": 3,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": false,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 3,
+        "medium_confidence_event_count": 3,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 0,
+        "unique_mapped_active_site_residue_count": 1,
+        "unknown_confidence_event_count": 0
+      }
+    },
+    {
+      "assigned_embedding_split": "train",
+      "entry_id": "m_csa:94",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 0,
+        "bond_change_event_count": 2,
+        "bond_formed_count": 2,
+        "bond_order_changed_count": 0,
+        "electron_transfer_count": 0,
+        "event_count": 2,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": false,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 2,
+        "medium_confidence_event_count": 2,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 0,
+        "unique_mapped_active_site_residue_count": 1,
+        "unknown_confidence_event_count": 0
+      }
+    },
+    {
+      "assigned_embedding_split": "train",
+      "entry_id": "m_csa:124",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 0,
+        "bond_change_event_count": 0,
+        "bond_formed_count": 0,
+        "bond_order_changed_count": 0,
+        "electron_transfer_count": 1,
+        "event_count": 5,
+        "has_bond_change_event": false,
+        "has_electron_transfer_event": true,
+        "has_proton_transfer_event": true,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 26,
+        "medium_confidence_event_count": 5,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 4,
+        "unique_mapped_active_site_residue_count": 8,
+        "unknown_confidence_event_count": 0
+      }
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "entry_id": "m_csa:147",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 0,
+        "bond_change_event_count": 3,
+        "bond_formed_count": 0,
+        "bond_order_changed_count": 3,
+        "electron_transfer_count": 0,
+        "event_count": 4,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": true,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 5,
+        "medium_confidence_event_count": 4,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 1,
+        "unique_mapped_active_site_residue_count": 2,
+        "unknown_confidence_event_count": 0
+      }
+    },
+    {
+      "assigned_embedding_split": "train",
       "entry_id": "m_csa:169",
       "feature_guardrails": {
         "accession_excluded_from_features": true,
@@ -227,6 +341,37 @@
         "unique_mapped_active_site_residue_count": 2,
         "unknown_confidence_event_count": 0
       }
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "entry_id": "m_csa:186",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "heldout_row": false,
+        "labels_and_fingerprint_excluded_from_features": true,
+        "reviewer_metadata_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true
+      },
+      "row_specific_event_features": {
+        "bond_broken_count": 1,
+        "bond_change_event_count": 2,
+        "bond_formed_count": 0,
+        "bond_order_changed_count": 1,
+        "electron_transfer_count": 0,
+        "event_count": 2,
+        "has_bond_change_event": true,
+        "has_electron_transfer_event": false,
+        "has_proton_transfer_event": false,
+        "high_confidence_event_count": 0,
+        "low_confidence_event_count": 0,
+        "mapped_active_site_residue_count": 2,
+        "medium_confidence_event_count": 2,
+        "multi_event_mechanism_flag": true,
+        "proton_transfer_count": 0,
+        "unique_mapped_active_site_residue_count": 1,
+        "unknown_confidence_event_count": 0
+      }
     }
   ],
   "guardrails": {
@@ -245,7 +390,7 @@
   },
   "interpretation": {
     "next_action": "Continue reviewer approval for the remaining P0 rows, then rerun this sidecar before attempting the no-template centroid pilot or out-of-atlas-span residual on the richer feature surface.",
-    "result": "3 approved P0 rows were materialized into label-stripped train/cal row-specific event features; no draft or heldout rows were copied."
+    "result": "9 approved P0 rows were materialized into label-stripped train/cal row-specific event features; no draft or heldout rows were copied."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_train_cal_feature_sidecar",
   "scope": "Partial no-fit row-specific bond/proton/electron feature sidecar for reviewer-approved P0 rows only. It joins approved source evidence to the existing train/cal split and excludes draft and heldout rows.",
@@ -258,7 +403,7 @@
     "feature_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "sha256": "cb4864d0bc870d0e2d7f0ed2e776e73da0569da44e4f3053ff2dfe819f92c2d9"
+      "sha256": "4cfce6f69ae0fa395c25855a9ec6eeaf0f25ba39def37de7fc42df570f45c4ef"
     },
     "label_manifest": {
       "exists": true,
@@ -268,7 +413,7 @@
     "source_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
     },
     "train_cal_split_manifest": {
       "exists": true,

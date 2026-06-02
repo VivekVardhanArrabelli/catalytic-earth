@@ -50,6 +50,96 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 2/3/4 Forward Push In Progress
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T08:02:15Z`
+- STARTED_LOCAL: `2026-06-02T03:02:15-0500 CDT`
+- ENDED_AT: `2026-06-02T08:56:50Z`
+- ENDED_LOCAL: `2026-06-02T03:56:50-0500 CDT`
+- ELAPSED_MINUTES: `54.6`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "50527", "started_at": "2026-06-02T08:02:15Z", "status": "acquired"}`
+
+#### What changed
+
+- Reviewed the P0 calibration packet and remaining train/cal review queue.
+  Approved six additional Rhea-backed rows for split-filtered feature-contract
+  consumption: `m_csa:37`, `m_csa:66`, `m_csa:94`, `m_csa:124`,
+  `m_csa:147`, and `m_csa:186`.
+- Kept six reviewed rows out of feature consumption with explicit
+  `needs_more_evidence` rewrite decisions: `m_csa:6`, `m_csa:15`,
+  `m_csa:16`, `m_csa:68`, `m_csa:102`, and `m_csa:133`.
+- Updated the P0 review queue code so reviewer-approved Rhea-backed rows are
+  treated as consumable, not as lingering multi-event/low-confidence blockers.
+- Regenerated the P0 strict/readiness/Rhea/decision/materialization artifacts.
+  The train/cal row-specific feature sidecar now materializes 9 approved rows
+  only: 7 train and 2 calibration. It remains partial/no-fit; no-template
+  centroid or residual reruns are still blocked until the six pending rewrite
+  rows are rewritten or rejected.
+- Added a reproducible P0 pending-rewrite blocker packet and CLI command. The
+  blocker packet captures 6 pending rows, 22 event rows, 16 blocked events, all
+  blocked events typed as `electron_transfer`, and 0 critical guardrail
+  violations.
+- Added a Lever 3 fold-only deployment contract decision artifact and CLI
+  command. The fold-only escape hatch is a no-go at the fixed operating point:
+  0/4 fold-only blocker rows abstain at the 90% threshold, heldout confounded
+  fold-only abstain recall is 0.3333, and the artifact records 5 critical
+  blockers.
+- Added a Lever 3 live coordinate reprobe for the five remaining deployment
+  blockers. It clears 0 rows: `P23007` still has no AFDB model through v7 and
+  no UniProt AlphaFoldDB cross-reference; `P10746`, `P31572`, `P78549`, and
+  `Q3LXA3` have AFDB coordinates but remain blocked by missing or insufficient
+  source-backed active-site geometry sidecars.
+- Added focused unit/regression coverage and CLI parser-dispatch coverage for
+  the new P0 pending-rewrite and fold-only deployment artifacts. No labels,
+  registries, ontologies, imports, production thresholds, model weights, or
+  heldout threshold selections changed.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.md`
+- `artifacts/v3_fold_augmented_fold_only_deployment_contract_decision_current702_20260601.json`
+- `work/fold_augmented_fold_only_deployment_contract_decision_current702_20260601.md`
+- `artifacts/v3_fold_augmented_remaining_blocker_coordinate_reprobe_current702_20260602.json`
+- `work/fold_augmented_remaining_blocker_coordinate_reprobe_current702_20260602.md`
+- Refreshed P0 source-evidence, strict/readiness/Rhea/decision, train/cal
+  feature, train/cal guardrail, coverage-gap, calibration-packet, and
+  docs-reference check artifacts.
+
+#### Tests and validation
+
+- `PYTHONPATH=src python -m pytest tests -q` passed: 1178 tests, 57 subtests,
+  and one existing sklearn/scipy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1133 tests and
+  the same existing sklearn/scipy deprecation warning.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -k northstar -q` passed:
+  1 test, 31 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py tests/test_northstar_next_levers.py -k 'row_specific_bond_change_p0 or fold_only_deployment_contract or source_evidence_review_queue or remaining_blocker_coordinate_reprobe' -q`
+  passed: 44 tests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `python -m compileall -q src/catalytic_earth/cli.py src/catalytic_earth/northstar_next_levers.py tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+  passed.
+- Artifact JSON/JSONL parse sweep passed for 3145 JSON and 26 JSONL files.
+- `git diff --check` passed.
+
+#### Exact next action
+
+Continue Lever 2 by rewriting or rejecting the six pending P0 event surfaces:
+`m_csa:6`, `m_csa:15`, `m_csa:16`, `m_csa:68`, `m_csa:102`, and `m_csa:133`.
+After those decisions are recorded, rerun strict/readiness/materialization and
+only then attempt the no-template centroid pilot and out-of-atlas residual on
+the richer train/cal feature surface. In Lever 3, do not use a fold-only
+escape hatch; clear source-backed active-site geometry sidecars for `P10746`,
+`P31572`, `P78549`, and `Q3LXA3`, and find an alternate predicted-coordinate
+policy or source-backed accession for `P23007`.
+
 ### 2026-06-02 Lever 2 Approved P0 Train/Cal Feature Materialization
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

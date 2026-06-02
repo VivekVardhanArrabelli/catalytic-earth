@@ -7,33 +7,24 @@
       "train_cal_feature_sidecar_critical_violations": 0
     },
     "critical_violation_total": 0,
-    "draft_calibration_rows": 4,
-    "draft_train_cal_review_rows": 12,
-    "draft_train_rows": 8,
+    "draft_calibration_rows": 2,
+    "draft_train_cal_review_rows": 6,
+    "draft_train_rows": 4,
     "excluded_draft_rows": 0,
-    "materialized_calibration_rows": 0,
-    "materialized_feature_rows": 3,
-    "materialized_train_rows": 3,
-    "missing_materialized_event_type_counts": {
-      "bond_order_changed": 3
-    },
+    "materialized_calibration_rows": 2,
+    "materialized_feature_rows": 9,
+    "materialized_train_rows": 7,
+    "missing_materialized_event_type_counts": {},
     "priority_class_counts": {
-      "P0.1_calibration_coverage_unblocker": 4,
-      "P0.2_new_event_type_coverage": 1,
-      "P0.3_train_cal_depth": 7
+      "P0.3_train_cal_depth": 6
     }
   },
-  "created_utc": "2026-06-02T06:41:54Z",
+  "created_utc": "2026-06-02T08:29:58Z",
   "decision": {
     "full_no_template_rerun_ready": false,
-    "next_review_gate_entry_ids": [
-      "m_csa:186",
-      "m_csa:147",
-      "m_csa:6",
-      "m_csa:133"
-    ],
+    "next_review_gate_entry_ids": [],
     "next_review_gate_reason": "Approve or reject calibration-assigned P0 draft rows first, then rerun the train/cal feature sidecar.",
-    "rerun_blocked_by_calibration_coverage": true
+    "rerun_blocked_by_calibration_coverage": false
   },
   "excluded_draft_rows": [],
   "guardrails": {
@@ -51,143 +42,6 @@
     "result": "The approved P0 train/cal feature surface is materialized but train-only; calibration-assigned draft rows are the next review gate before rerunning no-template novelty methods."
   },
   "review_priority_rows": [
-    {
-      "assigned_embedding_split": "calibration",
-      "entry_id": "m_csa:186",
-      "event_count": 2,
-      "event_types": [
-        "bond_broken",
-        "bond_order_changed"
-      ],
-      "missing_from_materialized_event_types": [
-        "bond_order_changed"
-      ],
-      "priority_class": "P0.1_calibration_coverage_unblocker",
-      "priority_reasons": [
-        "calibration_coverage_absent",
-        "adds_unmaterialized_event_type"
-      ],
-      "review_blockers": [
-        "review_status_not_approved"
-      ],
-      "review_category": "standard_draft_event_review"
-    },
-    {
-      "assigned_embedding_split": "calibration",
-      "entry_id": "m_csa:147",
-      "event_count": 4,
-      "event_types": [
-        "bond_order_changed",
-        "proton_transfer"
-      ],
-      "missing_from_materialized_event_types": [
-        "bond_order_changed"
-      ],
-      "priority_class": "P0.1_calibration_coverage_unblocker",
-      "priority_reasons": [
-        "calibration_coverage_absent",
-        "adds_unmaterialized_event_type"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "multi_event_mechanism_review"
-      ],
-      "review_category": "high_complexity_multi_event_review"
-    },
-    {
-      "assigned_embedding_split": "calibration",
-      "entry_id": "m_csa:6",
-      "event_count": 5,
-      "event_types": [
-        "electron_transfer",
-        "proton_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.1_calibration_coverage_unblocker",
-      "priority_reasons": [
-        "calibration_coverage_absent"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "multi_event_mechanism_review",
-        "low_confidence_event_review"
-      ],
-      "review_category": "high_complexity_multi_event_review"
-    },
-    {
-      "assigned_embedding_split": "calibration",
-      "entry_id": "m_csa:133",
-      "event_count": 5,
-      "event_types": [
-        "bond_formed",
-        "electron_transfer",
-        "proton_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.1_calibration_coverage_unblocker",
-      "priority_reasons": [
-        "calibration_coverage_absent"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "multi_event_mechanism_review",
-        "low_confidence_event_review"
-      ],
-      "review_category": "high_complexity_multi_event_review"
-    },
-    {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:66",
-      "event_count": 3,
-      "event_types": [
-        "bond_order_changed"
-      ],
-      "missing_from_materialized_event_types": [
-        "bond_order_changed"
-      ],
-      "priority_class": "P0.2_new_event_type_coverage",
-      "priority_reasons": [
-        "adds_unmaterialized_event_type"
-      ],
-      "review_blockers": [
-        "review_status_not_approved"
-      ],
-      "review_category": "standard_draft_event_review"
-    },
-    {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:37",
-      "event_count": 2,
-      "event_types": [
-        "electron_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved"
-      ],
-      "review_category": "standard_draft_event_review"
-    },
-    {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:94",
-      "event_count": 2,
-      "event_types": [
-        "bond_formed"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved"
-      ],
-      "review_category": "standard_draft_event_review"
-    },
     {
       "assigned_embedding_split": "train",
       "entry_id": "m_csa:15",
@@ -245,8 +99,8 @@
       "review_category": "standard_draft_event_review"
     },
     {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:124",
+      "assigned_embedding_split": "calibration",
+      "entry_id": "m_csa:6",
       "event_count": 5,
       "event_types": [
         "electron_transfer",
@@ -259,7 +113,8 @@
       ],
       "review_blockers": [
         "review_status_not_approved",
-        "multi_event_mechanism_review"
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
       ],
       "review_category": "high_complexity_multi_event_review"
     },
@@ -270,6 +125,27 @@
       "event_types": [
         "bond_broken",
         "electron_transfer"
+      ],
+      "missing_from_materialized_event_types": [],
+      "priority_class": "P0.3_train_cal_depth",
+      "priority_reasons": [
+        "adds_train_cal_surface_depth"
+      ],
+      "review_blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
+      ],
+      "review_category": "high_complexity_multi_event_review"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "entry_id": "m_csa:133",
+      "event_count": 5,
+      "event_types": [
+        "bond_formed",
+        "electron_transfer",
+        "proton_transfer"
       ],
       "missing_from_materialized_event_types": [],
       "priority_class": "P0.3_train_cal_depth",
@@ -295,17 +171,17 @@
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "7403fbe7d0b0d18b624b9c5da746353370b3a6dd7a6360d6410e0c3243584e6a"
+      "sha256": "dbecf93989c8ba7ffbf039a83f024b5b79e86e04d106c051beac92ca56335307"
     },
     "source_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
     },
     "train_cal_feature_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json",
-      "sha256": "9edac7fc7e87341ca5d2e35691501215ac0e87c8f572d770c1570cc0c3959277"
+      "sha256": "2e54b9e0331aa21716cc69e3905f4e8f76acfbbd45050a54434248afc53be083"
     },
     "train_cal_split_manifest": {
       "exists": true,

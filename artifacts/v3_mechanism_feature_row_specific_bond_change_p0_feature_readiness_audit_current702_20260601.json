@@ -1,18 +1,18 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601",
   "counts": {
-    "approved_consumable_rows": 3,
+    "approved_consumable_rows": 9,
     "approved_event_type_counts": {
-      "bond_broken": 3,
-      "bond_formed": 2,
-      "electron_transfer": 2,
-      "proton_transfer": 2
+      "bond_broken": 4,
+      "bond_formed": 4,
+      "bond_order_changed": 7,
+      "electron_transfer": 5,
+      "proton_transfer": 7
     },
     "blocker_counts": {
       "low_confidence_event_review": 6,
-      "multi_event_mechanism_review": 5,
-      "review_status_not_approved": 12,
-      "reviewer_id_missing": 12
+      "multi_event_mechanism_review": 3,
+      "review_status_not_approved": 6
     },
     "critical_counts": {
       "review_queue_not_ready": 0,
@@ -35,7 +35,7 @@
     "sidecar_rows": 15,
     "structurally_ready_draft_rows": 15
   },
-  "created_utc": "2026-06-02T05:15:15Z",
+  "created_utc": "2026-06-02T08:08:30Z",
   "guardrails": {
     "draft_source_evidence_not_training_input": true,
     "feature_contract_mutated": false,
@@ -75,8 +75,7 @@
       "blockers": [
         "low_confidence_event_review",
         "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
+        "review_status_not_approved"
       ],
       "entry_id": "m_csa:6",
       "event_count": 5,
@@ -89,7 +88,7 @@
       "has_bond_change_event": false,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": true,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "structurally_ready_draft": true
     },
     {
@@ -116,8 +115,7 @@
       "approved_and_consumable": false,
       "blockers": [
         "low_confidence_event_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
+        "review_status_not_approved"
       ],
       "entry_id": "m_csa:15",
       "event_count": 2,
@@ -130,7 +128,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "structurally_ready_draft": true
     },
     {
@@ -138,8 +136,7 @@
       "approved_and_consumable": false,
       "blockers": [
         "low_confidence_event_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
+        "review_status_not_approved"
       ],
       "entry_id": "m_csa:16",
       "event_count": 2,
@@ -152,16 +149,13 @@
       "has_bond_change_event": false,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": true,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "structurally_ready_draft": true
     },
     {
       "accession": "Q05769",
-      "approved_and_consumable": false,
-      "blockers": [
-        "review_status_not_approved",
-        "reviewer_id_missing"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:37",
       "event_count": 2,
       "event_types": [
@@ -172,16 +166,13 @@
       "has_bond_change_event": false,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
       "accession": "P19938",
-      "approved_and_consumable": false,
-      "blockers": [
-        "review_status_not_approved",
-        "reviewer_id_missing"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:66",
       "event_count": 3,
       "event_types": [
@@ -192,7 +183,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": false,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
@@ -200,8 +191,7 @@
       "approved_and_consumable": false,
       "blockers": [
         "low_confidence_event_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
+        "review_status_not_approved"
       ],
       "entry_id": "m_csa:68",
       "event_count": 3,
@@ -213,16 +203,13 @@
       "has_bond_change_event": false,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "structurally_ready_draft": true
     },
     {
       "accession": "Q29460",
-      "approved_and_consumable": false,
-      "blockers": [
-        "review_status_not_approved",
-        "reviewer_id_missing"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:94",
       "event_count": 2,
       "event_types": [
@@ -233,7 +220,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": false,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
@@ -242,8 +229,7 @@
       "blockers": [
         "low_confidence_event_review",
         "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
+        "review_status_not_approved"
       ],
       "entry_id": "m_csa:102",
       "event_count": 5,
@@ -256,17 +242,13 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "structurally_ready_draft": true
     },
     {
       "accession": "P00396",
-      "approved_and_consumable": false,
-      "blockers": [
-        "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:124",
       "event_count": 5,
       "event_types": [
@@ -278,7 +260,7 @@
       "has_bond_change_event": false,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": true,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
@@ -287,8 +269,7 @@
       "blockers": [
         "low_confidence_event_review",
         "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
+        "review_status_not_approved"
       ],
       "entry_id": "m_csa:133",
       "event_count": 5,
@@ -302,17 +283,13 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": true,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "structurally_ready_draft": true
     },
     {
       "accession": "P07511",
-      "approved_and_consumable": false,
-      "blockers": [
-        "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:147",
       "event_count": 4,
       "event_types": [
@@ -324,7 +301,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": false,
       "has_proton_transfer_event": true,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
@@ -348,11 +325,8 @@
     },
     {
       "accession": "P09367",
-      "approved_and_consumable": false,
-      "blockers": [
-        "review_status_not_approved",
-        "reviewer_id_missing"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:186",
       "event_count": 2,
       "event_types": [
@@ -364,7 +338,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": false,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     }
   ],
@@ -379,22 +353,22 @@
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "7403fbe7d0b0d18b624b9c5da746353370b3a6dd7a6360d6410e0c3243584e6a"
+      "sha256": "dbecf93989c8ba7ffbf039a83f024b5b79e86e04d106c051beac92ca56335307"
     },
     "rhea_lookup_manifest": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
-      "sha256": "70062e11d6152bcc22f840ae187a1367917721b63293fd88d9bb1dae5ac6f509"
+      "sha256": "ee873325fc8dae1356f3a72ee0de6ae7b15f86ab30aed640601a51e115aecc8d"
     },
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
     },
     "strict_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
-      "sha256": "d56b118f9964340280c4d80c152a43cedf830e11af69bf796de492e65df0950b"
+      "sha256": "7f81eca93b348cb640382de7c58930c98aa339e1965cf7b5b1f232117d182162"
     }
   },
   "status": "p0_feature_readiness_audit_blocked_review_required"

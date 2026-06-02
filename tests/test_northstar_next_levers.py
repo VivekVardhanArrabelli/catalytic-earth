@@ -12,6 +12,7 @@ from catalytic_earth.northstar_next_levers import (
     build_family_panel_high_value_glycyl_radical_readiness_packet,
     build_fold_augmented_abstention_gate,
     build_fold_augmented_confounded_deployment_closure_audit,
+    build_fold_augmented_fold_only_deployment_contract_decision,
     build_fold_augmented_family_panel_m_csa_primary_channel_repair,
     build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     build_fold_augmented_family_panel_missing_primary_channel_queue,
@@ -34,6 +35,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet,
     build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
+    build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit,
@@ -1789,6 +1791,87 @@ class NorthstarNextLeversTests(unittest.TestCase):
             audit["predicted_structure_vs_atlas_contract"]["confounded_entry_ids"],
             ["m_csa:30", "m_csa:31"],
         )
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_only_deployment_contract_rejects_fixed_threshold_escape_hatch(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            threshold = root / "threshold.json"
+            fold_only = root / "fold_only.json"
+            closure = root / "closure.json"
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.4
+                                },
+                                "selected_at_85pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.45
+                                },
+                                "heldout_final_eval_at_90pct_oos_calibrated_threshold": {
+                                    "heldout_in_scope_retain_recall": 0.95,
+                                    "heldout_confounded_oos_abstain_recall": 0.3333,
+                                },
+                                "heldout_final_eval_at_85pct_oos_calibrated_threshold": {
+                                    "heldout_in_scope_retain_recall": 0.9,
+                                    "heldout_confounded_oos_abstain_recall": 0.3333,
+                                },
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_only.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:204",
+                                "accession": "P10746",
+                                "nearest_train_atlas_entry_id": "m_csa:337",
+                                "nearest_train_atlas_tm_score": 0.5,
+                                "predicted_geometry_status": "missing",
+                            },
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "nearest_train_atlas_entry_id": "m_csa:83",
+                                "nearest_train_atlas_tm_score": 0.3,
+                                "predicted_geometry_status": "missing",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            closure.write_text(
+                json.dumps({"counts": {"remaining_production_blocker_rows": 2}}),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_fold_only_deployment_contract_decision(
+                oos_calibrated_threshold_contract_path=threshold,
+                fold_only_surface_path=fold_only,
+                confounded_deployment_closure_path=closure,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_only_deployment_contract_no_go_fixed_threshold_insufficient",
+        )
+        self.assertFalse(
+            audit["decision"]["fold_only_deployment_contract_authorized"]
+        )
+        self.assertEqual(
+            audit["counts"]["fold_only_rows_abstained_at_90pct_threshold"],
+            1,
+        )
+        self.assertEqual(audit["counts"]["critical_violation_total"], 2)
         self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
 
     def test_fold_augmented_family_panel_readout_applies_research_threshold(self) -> None:
@@ -3699,6 +3782,85 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(queue["counts"]["critical_violation_total"], 0)
         self.assertFalse(queue["guardrails"]["feature_contract_refresh_allowed"])
 
+    def test_row_specific_bond_change_p0_source_evidence_review_queue_accepts_rhea_backed_approved_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar = root / "sidecar.json"
+            strict = root / "strict.json"
+            event = {
+                "event_type": "bond_order_changed",
+                "participants_before": ["substrate"],
+                "participants_after": ["product"],
+                "mapped_active_site_residues": ["m_csa:147:residue:2"],
+                "source_evidence_span": {
+                    "source_record_id": "m_csa:147:mechanism:1",
+                    "span_text": "The aldimine rearranges.",
+                },
+                "confidence": "medium",
+            }
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:147",
+                                "accession": "P07511",
+                                "review_status": "approved",
+                                "reviewer_id": "reviewer",
+                                "reviewer_decision": {
+                                    "decision": "approve_rhea_backed_source_evidence",
+                                },
+                                "row_specific_bond_change_events": [event] * 4,
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_database": "m_csa_local_graph",
+                                        "span_text": "multi-event mechanism",
+                                    },
+                                    {
+                                        "source_database": "rhea_local_graph",
+                                        "span_text": "reaction equation",
+                                    },
+                                ],
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "allowed_for_model_training_now": False,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_source_evidence_sidecar_strict_audit_"
+                            "passed_reviewed_consumable"
+                        )
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            queue = build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
+                sidecar_path=sidecar,
+                strict_audit_path=strict,
+            )
+
+        self.assertEqual(
+            queue["status"],
+            "p0_source_evidence_review_queue_ready_manual_only",
+        )
+        self.assertEqual(queue["counts"]["critical_violation_total"], 0)
+        self.assertEqual(queue["counts"]["approved_feature_contract_consumable_rows"], 1)
+        self.assertEqual(queue["counts"]["unreviewed_feature_contract_consumable_rows"], 0)
+        self.assertEqual(
+            queue["queue_rows"][0]["review_category"],
+            "approved_rhea_backed_source_evidence",
+        )
+        self.assertEqual(queue["queue_rows"][0]["blockers"], [])
+
     def test_row_specific_bond_change_p0_rhea_lookup_manifest_stages_missing_rows(
         self,
     ) -> None:
@@ -5104,6 +5266,137 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(
             packet["guardrails"]["reviewer_decisions_recorded_by_this_artifact"]
         )
+
+    def test_row_specific_bond_change_p0_pending_rewrite_blocker_summarizes_reviewed_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_path = root / "source.json"
+            feature_sidecar_path = root / "feature_sidecar.json"
+            split_path = root / "split.json"
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "accession": "P00390",
+                                "review_status": "needs_more_evidence",
+                                "reviewer_id": "reviewer",
+                                "reviewer_decision": {
+                                    "decision": (
+                                        "rewrite_events_and_keep_review_pending"
+                                    ),
+                                    "decision_rationale": (
+                                        "low-confidence electron transfer"
+                                    ),
+                                    "blocked_event_indices": [0],
+                                    "accepted_event_indices_for_future_rewrite_context": [
+                                        1
+                                    ],
+                                },
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "electron_transfer",
+                                        "confidence": "low",
+                                        "mapped_active_site_residues": [],
+                                        "source_evidence_span": {
+                                            "source_record_id": (
+                                                "m_csa:6:mechanism:1"
+                                            ),
+                                            "span_text": "electron transfer text",
+                                        },
+                                    },
+                                    {
+                                        "event_type": "proton_transfer",
+                                        "confidence": "medium",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:6:residue:1"
+                                        ],
+                                        "source_evidence_span": {
+                                            "source_record_id": (
+                                                "m_csa:6:mechanism:1"
+                                            ),
+                                            "span_text": "proton transfer text",
+                                        },
+                                    },
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:147",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "allowed_for_model_training_now": False,
+                                "row_specific_bond_change_events": [],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            feature_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "materialized_feature_rows": 1,
+                            "train_rows": 0,
+                            "calibration_rows": 1,
+                            "critical_violation_total": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            split_path.write_text(
+                json.dumps(
+                    {
+                        "split_records": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "assigned_embedding_split": "train",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
+                source_sidecar_path=source_path,
+                train_cal_feature_sidecar_path=feature_sidecar_path,
+                train_cal_split_manifest_path=split_path,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "p0_pending_rewrite_blocker_ready_manual_only",
+        )
+        self.assertEqual(packet["counts"]["pending_rewrite_rows"], 1)
+        self.assertEqual(packet["counts"]["blocked_event_rows"], 1)
+        self.assertEqual(
+            packet["counts"]["blocked_event_type_counts"],
+            {"electron_transfer": 1},
+        )
+        self.assertEqual(
+            packet["counts"]["blocker_counts"],
+            {
+                "low_confidence_event_review": 1,
+                "unmapped_event_review": 1,
+            },
+        )
+        row = packet["pending_rewrite_rows"][0]
+        self.assertEqual(row["entry_id"], "m_csa:6")
+        self.assertEqual(row["assigned_embedding_split"], "train")
+        self.assertEqual(row["blocked_event_indices"], [0])
+        self.assertEqual(
+            row["accepted_event_indices_for_future_rewrite_context"], [1]
+        )
+        self.assertTrue(row["event_rows"][0]["blocked_by_reviewer"])
+        self.assertFalse(row["event_rows"][1]["blocked_by_reviewer"])
+        self.assertFalse(packet["guardrails"]["model_weights_fit_or_refit"])
 
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

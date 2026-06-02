@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Rhea Resolution Consumption Audit - current702
 
-Run: 2026-06-02T05:15:15Z
+Run: 2026-06-02T08:08:30Z
 
 Strict review-only audit that the bounded P0 Rhea lookup resolution was consumed only as draft sidecar evidence: resolved rows must carry their Rhea equation, unresolved rows must remain in the lookup/readiness blockers, and no row may become consumable.
 
@@ -19,7 +19,7 @@ Strict review-only audit that the bounded P0 Rhea lookup resolution was consumed
 | --- | --- | --- | --- | --- | --- |
 | m_csa:5 | False | None | False | approved_m_csa_only_source_evidence | passed |
 | m_csa:11 | False | None | False | approved_m_csa_only_source_evidence | passed |
-| m_csa:124 | True | RHEA:11436 | False | high_complexity_multi_event_review | passed |
+| m_csa:124 | True | RHEA:11436 | False | approved_rhea_backed_source_evidence | passed |
 | m_csa:169 | False | None | False | approved_m_csa_only_source_evidence | passed |
 
 ## Interpretation

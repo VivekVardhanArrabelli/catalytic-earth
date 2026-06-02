@@ -10,7 +10,7 @@
     "rows_with_official_rhea_evidence_found": 0,
     "rows_with_uniprot_matching_ec_activity": 3
   },
-  "created_utc": "2026-06-02T05:15:15Z",
+  "created_utc": "2026-06-02T08:15:33Z",
   "decision_rows": [
     {
       "accession": "P08819",
@@ -342,12 +342,12 @@
     "feature_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "sha256": "cb4864d0bc870d0e2d7f0ed2e776e73da0569da44e4f3053ff2dfe819f92c2d9"
+      "sha256": "4cfce6f69ae0fa395c25855a9ec6eeaf0f25ba39def37de7fc42df570f45c4ef"
     },
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
     },
     "unresolved_official_source_audit": {
       "exists": true,

@@ -71,6 +71,7 @@ from .northstar_next_levers import (
     write_fold_augmented_family_panel_research_readout,
     write_fold_augmented_family_panel_source_check_queue,
     write_fold_augmented_confounded_deployment_closure_audit,
+    write_fold_augmented_fold_only_deployment_contract_decision,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
     write_fold_augmented_train_cal_oos_negative_surface_scores,
@@ -91,6 +92,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
+    write_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker,
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit,
@@ -11625,6 +11627,29 @@ def cmd_audit_fold_augmented_confounded_deployment_closure(
     return 0
 
 
+def cmd_audit_fold_augmented_fold_only_deployment_contract(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_fold_only_deployment_contract_decision(
+        oos_calibrated_threshold_contract_path=Path(
+            args.oos_calibrated_threshold_contract
+        ),
+        fold_only_surface_path=Path(args.fold_only_surface),
+        confounded_deployment_closure_path=Path(args.confounded_deployment_closure),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented fold-only deployment contract decision to "
+        f"{args.out} (status: {audit.get('status')}, "
+        "fold-only blocker rows abstained at 90pct: "
+        f"{counts.get('fold_only_rows_abstained_at_90pct_threshold')}/"
+        f"{counts.get('fold_only_blocker_rows')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_family_panel_research_readout(
     args: argparse.Namespace,
 ) -> int:
@@ -12219,6 +12244,28 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_calibration_review_p
         "Wrote row-specific bond-change P0 calibration review packet to "
         f"{args.out} (status: {packet.get('status')}, "
         f"packet rows: {counts.get('packet_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
+    args: argparse.Namespace,
+) -> int:
+    packet = (
+        write_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
+            source_sidecar_path=Path(args.source_sidecar),
+            train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+            train_cal_split_manifest_path=Path(args.train_cal_split_manifest),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 pending rewrite blocker to "
+        f"{args.out} (status: {packet.get('status')}, "
+        f"pending rows: {counts.get('pending_rewrite_rows')}, "
+        f"blocked events: {counts.get('blocked_event_rows')})"
     )
     return 0
 
@@ -24700,6 +24747,52 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_fold_augmented_confounded_deployment_closure
     )
 
+    fold_only_deployment_contract = subparsers.add_parser(
+        "audit-fold-augmented-fold-only-deployment-contract",
+        help=(
+            "decide whether fold-only blocker rows can close the Lever 3 "
+            "deployment contract at the fixed OOS-calibrated operating point"
+        ),
+    )
+    fold_only_deployment_contract.add_argument(
+        "--oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    fold_only_deployment_contract.add_argument(
+        "--fold-only-surface",
+        default=(
+            "artifacts/v3_fold_only_train_cal_oos_negative_surface_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_only_deployment_contract.add_argument(
+        "--confounded-deployment-closure",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_only_deployment_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_fold_only_deployment_contract_decision_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_only_deployment_contract.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_fold_only_deployment_contract_decision_"
+            "current702_20260601.md"
+        ),
+    )
+    fold_only_deployment_contract.set_defaults(
+        func=cmd_audit_fold_augmented_fold_only_deployment_contract
+    )
+
     family_panel_readout = subparsers.add_parser(
         "build-fold-augmented-family-panel-research-readout",
         help=(
@@ -25971,6 +26064,54 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_calibration_packet.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet
+        )
+    )
+
+    row_specific_bond_change_p0_pending_rewrite = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-pending-rewrite-blocker",
+        help=(
+            "summarize reviewed P0 source-evidence rows that remain blocked "
+            "pending event rewrite or rejection"
+        ),
+    )
+    row_specific_bond_change_p0_pending_rewrite.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_pending_rewrite.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_pending_rewrite.add_argument(
+        "--train-cal-split-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_pending_rewrite.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_pending_rewrite_blocker_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_pending_rewrite.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_pending_rewrite_blocker_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_pending_rewrite.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker
         )
     )
 

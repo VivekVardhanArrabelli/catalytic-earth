@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601",
   "counts": {
-    "approved_rows": 3,
+    "approved_rows": 9,
     "critical_counts": {
       "approved_row_evidence_violation_rows": 0,
       "feature_contract_consumption_without_review_rows": 0,
@@ -13,8 +13,8 @@
       "sidecar_extra_entries": 0,
       "worksheet_entry_missing_from_sidecar": 0
     },
-    "draft_rows": 12,
-    "feature_contract_consumable_rows": 3,
+    "draft_rows": 0,
+    "feature_contract_consumable_rows": 9,
     "feature_contract_refresh_allowed": false,
     "model_training_allowed_rows": 0,
     "rows_with_events": 15,
@@ -24,7 +24,7 @@
     "violation_counts": {},
     "worksheet_rows": 15
   },
-  "created_utc": "2026-06-02T05:15:15Z",
+  "created_utc": "2026-06-02T08:08:29Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -65,7 +65,7 @@
       "mapped_event_residue_count": 2,
       "missing_row_fields": [],
       "participant_mapping_count": 12,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "status": "passed",
       "violations": []
     },
@@ -89,7 +89,7 @@
       "mapped_event_residue_count": 6,
       "missing_row_fields": [],
       "participant_mapping_count": 11,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "status": "passed",
       "violations": []
     },
@@ -101,7 +101,7 @@
       "mapped_event_residue_count": 1,
       "missing_row_fields": [],
       "participant_mapping_count": 8,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "status": "passed",
       "violations": []
     },
@@ -113,7 +113,7 @@
       "mapped_event_residue_count": 2,
       "missing_row_fields": [],
       "participant_mapping_count": 13,
-      "review_status": "draft",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -125,7 +125,7 @@
       "mapped_event_residue_count": 3,
       "missing_row_fields": [],
       "participant_mapping_count": 8,
-      "review_status": "draft",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -137,7 +137,7 @@
       "mapped_event_residue_count": 0,
       "missing_row_fields": [],
       "participant_mapping_count": 9,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "status": "passed",
       "violations": []
     },
@@ -149,7 +149,7 @@
       "mapped_event_residue_count": 2,
       "missing_row_fields": [],
       "participant_mapping_count": 10,
-      "review_status": "draft",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -161,7 +161,7 @@
       "mapped_event_residue_count": 1,
       "missing_row_fields": [],
       "participant_mapping_count": 8,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "status": "passed",
       "violations": []
     },
@@ -173,7 +173,7 @@
       "mapped_event_residue_count": 26,
       "missing_row_fields": [],
       "participant_mapping_count": 20,
-      "review_status": "draft",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -185,7 +185,7 @@
       "mapped_event_residue_count": 4,
       "missing_row_fields": [],
       "participant_mapping_count": 13,
-      "review_status": "draft",
+      "review_status": "needs_more_evidence",
       "status": "passed",
       "violations": []
     },
@@ -197,7 +197,7 @@
       "mapped_event_residue_count": 5,
       "missing_row_fields": [],
       "participant_mapping_count": 17,
-      "review_status": "draft",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -221,7 +221,7 @@
       "mapped_event_residue_count": 2,
       "missing_row_fields": [],
       "participant_mapping_count": 6,
-      "review_status": "draft",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     }
@@ -232,7 +232,7 @@
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
+      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
     },
     "source_evidence_schema": {
       "exists": true,
