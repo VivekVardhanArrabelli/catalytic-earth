@@ -139,6 +139,16 @@ artifacts first.
   frozen inputs. None can be safely cleared without new source-backed
   active-site evidence, an alternate predicted coordinate, or an explicitly
   authorized experimental-coordinate-only policy.
+- Those same five Lever 3 fold-channel deployment blockers now have
+  blocker-specific review gates. Three coordinate-available rows (`m_csa:531`,
+  `uniprot:P78549`, and `uniprot:Q3LXA3`) are strict-audit-clean draft
+  source-feature sidecars requiring manual approval; `m_csa:78`/P23007 has four
+  AFDB-backed alternate-accession candidates but no authorized replacement; and
+  `m_csa:204`/P10746 remains blocked by the absence of source-feature rows,
+  curated residue nodes, or an approved non-residue interaction sidecar policy.
+  The regenerated confounded readiness gate still keeps threshold `0.44155`,
+  remains research-ready for the 5/6 confounded abstention result, and stays
+  deployment-blocked until those decisions are made.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel

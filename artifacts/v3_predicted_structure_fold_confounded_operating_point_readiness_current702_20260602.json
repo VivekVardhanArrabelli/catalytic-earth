@@ -19,24 +19,30 @@
     "fold_only_rows_abstained_at_90pct_threshold": 0,
     "heldout_confounded_oos_abstained": 5,
     "heldout_confounded_oos_total": 6,
+    "p10746_non_residue_policy_approved_rows": 0,
+    "p10746_non_residue_policy_sidecars_created_now": 0,
+    "p23007_policy_gate_replacement_authorized_now": 0,
+    "p23007_policy_gate_review_ready_candidates": 4,
     "priority_confounded_nearest_hits": 6,
     "priority_confounded_oos_rows": 6,
     "remaining_blocker_coordinate_reprobe_rows_cleared": 0,
     "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows": 4,
     "remaining_blocker_coordinate_reprobe_unavailable_rows": 1,
     "remaining_production_blocker_rows": 5,
+    "source_feature_review_gate_copy_authorized_now": 0,
+    "source_feature_review_gate_manual_approval_decisions_required": 3,
     "source_sidecar_preflight_candidate_rows": 3,
     "source_sidecar_preflight_coordinate_policy_blocked_rows": 1,
     "source_sidecar_preflight_non_residue_policy_blocked_rows": 1,
     "unique_accessions_without_any_local_file": 0,
     "unique_coordinate_files_missing": 0
   },
-  "created_utc": "2026-06-02T17:10:46Z",
+  "created_utc": "2026-06-02T22:16:27Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "deployment_closed": false,
     "fold_only_escape_hatch_authorized": false,
-    "next_gate": "Keep the fixed operating point unchanged. Clear the remaining production blocker rows before claiming deployment closure; do not use the fold-only escape hatch. The persistent AFDB coordinate bundle is now complete.",
+    "next_gate": "Keep the fixed operating point unchanged. Clear the remaining production blocker rows by deciding the three source-feature sidecar approvals, the P23007 alternate-accession policy, and the P10746 non-residue interaction policy before claiming deployment closure; do not use the fold-only escape hatch. The persistent AFDB coordinate bundle is now complete.",
     "research_confounded_operating_point_ready": true
   },
   "deployment_closure_gate": [
@@ -82,6 +88,24 @@
       "fold_only_rows_abstained_at_90pct_threshold": 0,
       "gate": "fold_only_escape_hatch",
       "status": "rejected"
+    },
+    {
+      "copy_authorized_now": 0,
+      "gate": "source_feature_sidecar_review_gate",
+      "manual_approval_decisions_required": 3,
+      "status": "review_ready"
+    },
+    {
+      "gate": "p23007_alternate_accession_policy_gate",
+      "policy_review_ready_candidates": 4,
+      "replacement_authorized_now": 0,
+      "status": "review_ready"
+    },
+    {
+      "approved_policy_rows": 0,
+      "gate": "p10746_non_residue_policy_preflight",
+      "sidecars_created_now": 0,
+      "status": "blocked_no_approved_policy"
     }
   ],
   "guardrails": {
@@ -98,7 +122,7 @@
     "validation_only": true
   },
   "interpretation": {
-    "next_action": "Use this audit as the Lever 3 gate: clear source-backed active-site sidecars for coordinate-available blocker rows and resolve or exclude the coordinate-unavailable P23007 row by policy before any deployment-valid claim.",
+    "next_action": "Use this audit as the Lever 3 gate: clear source-backed active-site sidecars for coordinate-available blocker rows, decide the three source-feature sidecar approvals, resolve or exclude the coordinate-unavailable P23007 row by policy, and keep P10746 fold-only unless a non-residue interaction sidecar policy is approved before any deployment-valid claim.",
     "result": "The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point with a predicted-only deployment input contract; deployment closure remains blocked by production blocker rows and a rejected fold-only escape hatch, while the persistent AFDB coordinate bundle is complete."
   },
   "operating_point_summary": {
@@ -120,12 +144,18 @@
     "heldout_confounded_oos_total": 6,
     "heldout_in_scope_retain_recall": 0.9574,
     "in_scope_retention_ok_at_operating_point": true,
+    "p10746_non_residue_policy_approved_rows": 0,
+    "p10746_non_residue_policy_sidecars_created_now": 0,
+    "p23007_policy_gate_replacement_authorized_now": 0,
+    "p23007_policy_gate_review_ready_candidates": 4,
     "priority_confounded_nearest_hits": 6,
     "priority_confounded_oos_rows": 6,
     "remaining_blocker_coordinate_reprobe_rows_cleared": 0,
     "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows": 4,
     "remaining_blocker_coordinate_reprobe_unavailable_rows": 1,
     "remaining_production_blocker_rows": 5,
+    "source_feature_review_gate_copy_authorized_now": 0,
+    "source_feature_review_gate_manual_approval_decisions_required": 3,
     "source_sidecar_preflight_candidate_rows": 3,
     "source_sidecar_preflight_coordinate_policy_blocked_rows": 1,
     "source_sidecar_preflight_non_residue_policy_blocked_rows": 1,
@@ -256,15 +286,30 @@
       "path": "artifacts/v3_fold_augmented_fold_only_deployment_contract_decision_current702_20260601.json",
       "sha256": "516fc7dc5c3f575e8f287aab663679239b5e4d70b94aa0cda645002e3d4deeac"
     },
+    "non_residue_interaction_sidecar_policy_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json",
+      "sha256": "c999065e69c58de83ab52cd3dbfcec27f6d7fa5f29cff620818056c4e0622677"
+    },
     "oos_calibrated_threshold_contract": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
       "sha256": "8bd974b131270091502c9a6b9d06354a1fac937f1b3a4f02a2035ee88c95d829"
     },
+    "p23007_alternate_accession_policy_gate": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json",
+      "sha256": "f80a603dc001edbc983803801f4cc5e5fd59bb6c53039fa7f94e5e11c468f3e5"
+    },
     "remaining_blocker_coordinate_reprobe": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_remaining_blocker_coordinate_reprobe_current702_20260602.json",
       "sha256": "8ce55393852d6edac86340e9cb1e00316a8f2b216d77206a32900b9d878adaf1"
+    },
+    "source_feature_sidecar_review_gate": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.json",
+      "sha256": "8accb5b16f52b3d652317cb3431f1a8c5263a9df54f270f214652aedfe8ceaa7"
     },
     "source_sidecar_clearance_preflight": {
       "exists": true,

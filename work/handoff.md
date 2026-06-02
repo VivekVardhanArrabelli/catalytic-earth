@@ -56,6 +56,123 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T22:02:26Z`
+- STARTED_LOCAL: `2026-06-02T17:02:26-0500 CDT`
+- ENDED_AT: `2026-06-02T22:57:33Z`
+- ENDED_LOCAL: `2026-06-02T17:57:33-0500 CDT`
+- ELAPSED_MINUTES: `55.1`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "38375", "started_at": "2026-06-02T22:02:26Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the previous Lever 2/3/4 blockers and spend the run on the
+highest-value mechanical move that can create a concrete artifact, test, or
+next gate without touching labels, registries, ontologies, imports,
+production thresholds, or heldout-tuned surfaces.
+
+#### What changed
+
+- Lever 3: added a source-feature active-site sidecar review gate for the three
+  strict-audit-clean draft sidecars (`m_csa:531`, `uniprot:P78549`, and
+  `uniprot:Q3LXA3`). It records 3 manual approval decisions required, 0 copied
+  sidecars, 0 scoring-ready rows, and 0 deployment blockers cleared.
+- Lever 3: added a P23007 alternate-accession policy gate. It composes the
+  scout and decision matrix into 4 AFDB-backed, pattern-compatible citrate
+  synthase candidates (`O75390`, `P00889`, `Q8VHF5`, and `Q9CZU6`) while
+  authorizing 0 replacements, 0 coordinate fetches, and 0 fold-channel reruns.
+- Lever 3: added a P10746 non-residue interaction sidecar policy preflight. It
+  keeps `m_csa:204` blocked with 0 source-feature rows, 0 curated residue nodes,
+  0 approved policy rows, and mechanism text explicitly forbidden as a
+  predictive sidecar source.
+- Lever 3: regenerated the predicted-structure fold confounded readiness gate
+  so it now surfaces the three blocker-specific gates. The fold channel remains
+  research-ready at the fixed threshold `0.44155` and deployment-blocked by the
+  3 sidecar approvals plus P23007/P10746 policy decisions.
+- Lever 4 state was rechecked and not mutated. The family-panel import-preview
+  blocker gate still has 0/22 import-preview-ready rows and 5 priority locator
+  rows requiring human/policy decisions; no labels, registries, ontologies,
+  imports, locator copies, production thresholds, heldout tuning, model weights,
+  coordinate fetches, or Foldseek/TM reruns changed.
+- Updated `docs/artifact_index.md`, `docs/decision_log.md`, and
+  `docs/project_state.md` only for the new Lever 3 gate state. Regenerated the
+  docs artifact-reference check with 0 missing references.
+
+#### Artifacts and reports
+
+- New:
+  `artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.json`
+  and
+  `work/fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.md`.
+- New:
+  `artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json`
+  and
+  `work/fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.md`.
+- New:
+  `artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json`
+  and
+  `work/fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.md`.
+- Regenerated:
+  `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
+  and
+  `work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`.
+- Regenerated:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`
+  and `work/current_docs_artifact_reference_check_current702_20260601.md`.
+
+#### Tests run
+
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py`
+- Focused gate tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'source_feature_sidecar_review_gate or non_residue_interaction_policy_preflight or p23007_alternate_accession_policy_gate or predicted_structure_fold_confounded_readiness' -q`
+  (4 passed, 105 deselected)
+- Focused artifact regressions:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'source_feature_active_site_sidecar_review_gate or non_residue_interaction_sidecar_policy_preflight or p23007_alternate_accession_policy_gate or predicted_structure_fold_confounded_operating_point_readiness' -q`
+  (4 passed, 142 deselected)
+- CLI registration:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`
+  (1 passed, 80 subtests passed)
+- Relevant suites:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  (373 passed, 87 subtests passed)
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`
+  (1244 passed, 106 subtests passed; existing sklearn/SciPy deprecation warning)
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`
+  (1199 tests passed; existing sklearn/SciPy deprecation warning)
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  (12 source records, 8 fingerprints, 15 ontology families, 702 curated labels)
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  (0 missing references)
+- `python -m json.tool` on the three new JSON artifacts, regenerated readiness
+  artifact, and docs reference check JSON.
+- `git diff --check`
+
+#### Exact next action
+
+- Lever 3: decide the three draft source-feature sidecar approvals for
+  `m_csa:531`, `uniprot:P78549`, and `uniprot:Q3LXA3`. Only after explicit
+  approval should approved audited sidecars be materialized and the combined
+  predicted-geometry/fold channel rerun at the fixed threshold.
+- Lever 3: decide exactly one P23007 alternate accession (`O75390`, `P00889`,
+  `Q8VHF5`, or `Q9CZU6`) or reject the substitution path. Only after approval
+  should an AFDB coordinate be fetched and the fold channel rerun.
+- Lever 3: approve a concrete P10746 non-residue interaction sidecar policy
+  matching
+  `work/fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.md`,
+  source new primary residue/interaction evidence, or keep `m_csa:204`
+  fold-only.
+- Lever 4 remains human/policy blocked: do not copy locators or open an import
+  preview until the current human decision matrix records an explicit
+  approval/rejection and the relevant locator/schema gate is rerun.
+
+### 2026-06-02 Lever 3/2/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T20:02:04Z`
 - STARTED_LOCAL: `2026-06-02T15:02:04-0500 CDT`
 - ENDED_AT: `2026-06-02T20:25:55Z`

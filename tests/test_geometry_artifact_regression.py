@@ -2829,6 +2829,87 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(scout["guardrails"]["alternate_accession_authorized"])
 
+    def test_fold_augmented_source_feature_active_site_sidecar_review_gate_current_counts(
+        self,
+    ) -> None:
+        gate = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_source_feature_active_site_sidecar_review_gate_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            gate["status"],
+            "fold_augmented_source_feature_active_site_sidecar_review_gate_ready_review_only",
+        )
+        self.assertEqual(gate["counts"]["candidate_sidecar_rows"], 3)
+        self.assertEqual(
+            gate["counts"]["manual_approval_review_ready_rows"], 3
+        )
+        self.assertEqual(gate["counts"]["manual_approval_decisions_required"], 3)
+        self.assertEqual(gate["counts"]["strict_audit_passed_rows"], 3)
+        self.assertEqual(gate["counts"]["strict_audit_blocked_rows"], 0)
+        self.assertEqual(gate["counts"]["approved_rows"], 0)
+        self.assertEqual(gate["counts"]["copy_authorized_now"], 0)
+        self.assertEqual(
+            gate["counts"]["ready_for_predicted_geometry_scoring_now"], 0
+        )
+        self.assertEqual(gate["counts"]["deployment_blockers_cleared_now"], 0)
+        self.assertEqual(gate["counts"]["non_sidecar_policy_rows"], 2)
+        self.assertEqual(gate["counts"]["source_feature_support_rows"], 18)
+        self.assertEqual(
+            gate["counts"]["review_ready_entry_ids"],
+            ["m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        rows = {row["entry_id"]: row for row in gate["review_gate_rows"]}
+        self.assertTrue(rows["m_csa:531"]["ready_for_manual_approval_review"])
+        self.assertIn(
+            "rerun_combined_geometry_fold_channel",
+            rows["uniprot:P78549"]["blocked_actions_without_approval"],
+        )
+        self.assertFalse(gate["decision"]["copy_authorized_now"])
+        self.assertFalse(gate["guardrails"]["sidecars_approved_or_copied"])
+
+    def test_fold_augmented_p23007_alternate_accession_policy_gate_current_counts(
+        self,
+    ) -> None:
+        gate = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p23007_alternate_accession_policy_gate_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            gate["status"],
+            "fold_augmented_p23007_alternate_accession_policy_gate_ready_review_only",
+        )
+        self.assertEqual(gate["counts"]["candidate_alternate_accessions"], 4)
+        self.assertEqual(gate["counts"]["policy_review_ready_candidates"], 4)
+        self.assertEqual(gate["counts"]["candidates_with_afdb"], 4)
+        self.assertEqual(gate["counts"]["pattern_compatible_candidates"], 4)
+        self.assertEqual(gate["counts"]["replacement_authorized_now"], 0)
+        self.assertEqual(gate["counts"]["coordinate_fetch_authorized_now"], 0)
+        self.assertEqual(gate["counts"]["deployment_blockers_cleared_now"], 0)
+        self.assertEqual(
+            gate["counts"]["policy_review_candidate_accessions"],
+            ["O75390", "P00889", "Q8VHF5", "Q9CZU6"],
+        )
+        self.assertIsNone(gate["decision"]["selected_alternate_accession"])
+        self.assertFalse(gate["decision"]["replacement_authorized_now"])
+        self.assertFalse(gate["guardrails"]["coordinate_fetch_authorized"])
+        rows = {row["candidate_accession"]: row for row in gate["candidate_policy_rows"]}
+        self.assertTrue(rows["O75390"]["policy_review_ready"])
+        self.assertIn(
+            "rerun_fold_channel_with_replacement",
+            rows["Q9CZU6"]["blocked_actions_without_policy"],
+        )
+
     def test_fold_augmented_remaining_blocker_decision_matrix_current_counts(
         self,
     ) -> None:
@@ -2865,6 +2946,46 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "non_residue_interaction_sidecar_policy_design",
         )
         self.assertFalse(matrix["guardrails"]["alternate_accession_authorized"])
+
+    def test_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            "fold_augmented_non_residue_interaction_sidecar_policy_preflight_blocked_no_approved_policy",
+        )
+        self.assertEqual(preflight["counts"]["policy_rows"], 1)
+        self.assertEqual(preflight["counts"]["coordinate_available_rows"], 1)
+        self.assertEqual(preflight["counts"]["source_feature_rows"], 0)
+        self.assertEqual(preflight["counts"]["graph_residue_nodes"], 0)
+        self.assertEqual(preflight["counts"]["local_graph_residue_nodes"], 0)
+        self.assertEqual(preflight["counts"]["mechanism_text_nodes_present"], 1)
+        self.assertEqual(
+            preflight["counts"][
+                "mechanism_text_nodes_eligible_for_predictive_features"
+            ],
+            0,
+        )
+        self.assertEqual(preflight["counts"]["approved_policy_rows"], 0)
+        self.assertEqual(preflight["counts"]["sidecars_created_now"], 0)
+        self.assertEqual(preflight["counts"]["copy_authorized_now"], 0)
+        self.assertEqual(preflight["counts"]["deployment_blockers_cleared_now"], 0)
+        row = preflight["policy_preflight_rows"][0]
+        self.assertEqual(row["entry_id"], "m_csa:204")
+        self.assertFalse(row["non_residue_interaction_sidecar_policy_defined"])
+        self.assertFalse(row["mechanism_text_eligible_for_predictive_features"])
+        self.assertFalse(
+            preflight["guardrails"]["mechanism_text_used_as_predictive_feature"]
+        )
 
     def test_fold_augmented_fold_only_deployment_contract_decision_current_counts(
         self,
@@ -2932,6 +3053,31 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             audit["operating_point_summary"]["fixed_operating_threshold"], 0.44155
+        )
+        self.assertEqual(
+            audit["counts"][
+                "source_feature_review_gate_manual_approval_decisions_required"
+            ],
+            3,
+        )
+        self.assertEqual(
+            audit["counts"]["source_feature_review_gate_copy_authorized_now"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["p23007_policy_gate_review_ready_candidates"], 4
+        )
+        self.assertEqual(
+            audit["counts"]["p23007_policy_gate_replacement_authorized_now"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["p10746_non_residue_policy_approved_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["p10746_non_residue_policy_sidecars_created_now"], 0
+        )
+        self.assertIn(
+            "P23007 alternate-accession policy",
+            audit["decision"]["next_gate"],
         )
         self.assertEqual(
             audit["operating_point_summary"][

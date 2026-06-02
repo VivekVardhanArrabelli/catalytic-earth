@@ -3,6 +3,44 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-02: Lever 3 Blocker-Specific Gates Cover All Five Remaining Fold Deployment Rows
+
+Decision: keep the predicted-structure-vs-atlas fold channel at the fixed
+OOS-calibrated operating threshold `0.44155` and treat the five remaining
+production blocker rows as explicit review/policy gates, not as fold-only or
+automatic sidecar escapes. No sidecar was approved or copied, no alternate
+accession was authorized, no coordinate was fetched, no Foldseek/TM scores were
+rerun, and no thresholds, labels, registries, ontologies, imports, or model
+weights changed.
+
+Result: the source-feature sidecar review gate covers the three
+coordinate-available source-feature blocker rows (`m_csa:531`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`) with 3 strict-audit-clean draft rows
+and 3 manual approval decisions required. The P23007 alternate-accession policy
+gate exposes 4 AFDB-backed pattern-compatible citrate-synthase candidates
+(`O75390`, `P00889`, `Q8VHF5`, and `Q9CZU6`) but authorizes 0 replacements and
+0 coordinate fetches. The P10746 non-residue interaction preflight keeps
+`m_csa:204` blocked with 0 source-feature rows, 0 curated residue nodes, and 0
+approved non-residue policy rows; mechanism text remains forbidden as a
+predictive sidecar source.
+
+Consequence / next gate: decide the three draft source-feature sidecar
+approvals, decide exactly one P23007 alternate accession or reject the
+substitution path, and approve a concrete P10746 non-residue interaction
+sidecar policy or keep it fold-only. Only after those decisions should the
+combined predicted-geometry/fold channel be rerun at the fixed threshold.
+
+Artifacts:
+`artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.json`,
+`work/fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.md`,
+`artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json`,
+`work/fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.md`,
+`artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json`,
+`work/fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.md`,
+`artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`,
+and
+`work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`.
+
 ## 2026-06-02: Source-Free Pair Deployment Blocks On Event Linker; His-Only Fallback Is Lower Recall
 
 Decision: keep the calibrated row-specific best-token follow-up pair as

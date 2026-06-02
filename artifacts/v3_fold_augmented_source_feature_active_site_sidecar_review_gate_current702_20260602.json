@@ -1,0 +1,262 @@
+{
+  "artifact_id": "v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602",
+  "counts": {
+    "alternate_accession_policy_rows": 1,
+    "approved_rows": 0,
+    "candidate_sidecar_rows": 3,
+    "copy_authorized_now": 0,
+    "deployment_blockers_cleared_now": 0,
+    "manual_approval_decisions_required": 3,
+    "manual_approval_review_ready_rows": 3,
+    "non_residue_interaction_policy_rows": 1,
+    "non_sidecar_policy_rows": 2,
+    "ready_for_predicted_geometry_scoring_now": 0,
+    "review_ready_entry_ids": [
+      "m_csa:531",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "source_feature_support_rows": 18,
+    "source_feature_type_counts": {
+      "Active site": 3,
+      "Binding site": 14,
+      "Site": 1
+    },
+    "strict_audit_blocked_rows": 0,
+    "strict_audit_passed_rows": 3
+  },
+  "created_utc": "2026-06-02T22:07:13Z",
+  "decision": {
+    "approval_required_before_scoring": true,
+    "copy_authorized_now": false,
+    "deployment_closed_now": false,
+    "manual_review_gate_open": true
+  },
+  "guardrails": {
+    "approved_sidecars_created": false,
+    "copy_to_scoring_surface_authorized": false,
+    "deployment_blockers_cleared": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "ready_for_predicted_geometry_scoring": false,
+    "review_only": true,
+    "sidecars_approved_or_copied": false
+  },
+  "interpretation": {
+    "next_action": "Approve, reject, or request rewrites for m_csa:531, uniprot:P78549, and uniprot:Q3LXA3 before rerunning the combined predicted-geometry/fold channel.",
+    "result": "The three draft source-feature sidecar candidates are strict-audit clean and ready for manual approval review; none is approved, copied, scoring-ready, or deployment-clearing."
+  },
+  "non_sidecar_policy_rows": [
+    {
+      "accession": "P23007",
+      "authorized_now": false,
+      "decision_class": "alternate_accession_coordinate_policy_review",
+      "decision_options": [
+        "authorize_alternate:O75390",
+        "authorize_alternate:P00889",
+        "authorize_alternate:Q8VHF5",
+        "authorize_alternate:Q9CZU6",
+        "reject_alternates_keep_row_outside_deployment_channel"
+      ],
+      "entry_id": "m_csa:78",
+      "evidence_status": null,
+      "next_action": "If an alternate is authorized, fetch its AFDB coordinate and rerun the fold channel without changing thresholds."
+    },
+    {
+      "accession": "P10746",
+      "authorized_now": false,
+      "decision_class": "non_residue_interaction_sidecar_policy_design",
+      "decision_options": [
+        "design_non_residue_interaction_sidecar_schema",
+        "keep_fold_only_for_diagnostics",
+        "source_new_primary_residue_evidence"
+      ],
+      "entry_id": "m_csa:204",
+      "evidence_status": null,
+      "next_action": "Do not force a residue sidecar; either define an explicit interaction-sidecar policy or keep the row fold-only."
+    }
+  ],
+  "review_gate_rows": [
+    {
+      "accession": "P31572",
+      "active_site_feature_support_count": 3,
+      "allowed_for_combined_channel_now": false,
+      "allowed_review_actions": [
+        "approve_source_feature_sidecar",
+        "reject_source_feature_sidecar",
+        "request_source_feature_rewrite"
+      ],
+      "approval_decision_required": true,
+      "blocked_actions_without_approval": [
+        "copy_candidate_sidecar_to_scoring_surface",
+        "rerun_combined_geometry_fold_channel",
+        "claim_deployment_blocker_cleared"
+      ],
+      "candidate_sidecar_id": "fold_augmented_source_feature_active_site_sidecar:m_csa:531",
+      "copy_authorized_now": false,
+      "critical_violations": [],
+      "decision_class": "manual_source_feature_sidecar_review",
+      "decision_options": [
+        "approve_for_audited_sidecar_materialization",
+        "revise_candidate_sidecar",
+        "reject_keep_fold_only"
+      ],
+      "deployment_blocker_cleared_now": false,
+      "entry_id": "m_csa:531",
+      "feature_position_labels": [
+        "Active site:169",
+        "Binding site:97",
+        "Binding site:104"
+      ],
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 2
+      },
+      "next_action": "Manual scientific approval, rejection, or rewrite request for this draft source-feature sidecar.",
+      "ready_for_manual_approval_review": true,
+      "ready_for_predicted_geometry_scoring_now": false,
+      "review_status": "draft",
+      "source_record": {
+        "primary_accession": "P31572",
+        "protein_name": "L-carnitine CoA-transferase",
+        "source_database": "UniProtKB",
+        "source_record_id": "P31572",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P31572.json"
+      },
+      "strict_audit_status": "passed"
+    },
+    {
+      "accession": "P78549",
+      "active_site_feature_support_count": 6,
+      "allowed_for_combined_channel_now": false,
+      "allowed_review_actions": [
+        "approve_source_feature_sidecar",
+        "reject_source_feature_sidecar",
+        "request_source_feature_rewrite"
+      ],
+      "approval_decision_required": true,
+      "blocked_actions_without_approval": [
+        "copy_candidate_sidecar_to_scoring_surface",
+        "rerun_combined_geometry_fold_channel",
+        "claim_deployment_blocker_cleared"
+      ],
+      "candidate_sidecar_id": "fold_augmented_source_feature_active_site_sidecar:uniprot:P78549",
+      "copy_authorized_now": false,
+      "critical_violations": [],
+      "decision_class": "manual_source_feature_sidecar_review",
+      "decision_options": [
+        "approve_for_audited_sidecar_materialization",
+        "revise_candidate_sidecar",
+        "reject_keep_fold_only"
+      ],
+      "deployment_blocker_cleared_now": false,
+      "entry_id": "uniprot:P78549",
+      "feature_position_labels": [
+        "Active site:212",
+        "Site:231",
+        "Binding site:282",
+        "Binding site:289",
+        "Binding site:292",
+        "Binding site:298"
+      ],
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 4,
+        "Site": 1
+      },
+      "next_action": "Manual scientific approval, rejection, or rewrite request for this draft source-feature sidecar.",
+      "ready_for_manual_approval_review": true,
+      "ready_for_predicted_geometry_scoring_now": false,
+      "review_status": "draft",
+      "source_record": {
+        "primary_accession": "P78549",
+        "protein_name": "Endonuclease III-like protein 1",
+        "source_database": "UniProtKB",
+        "source_record_id": "P78549",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+      },
+      "strict_audit_status": "passed"
+    },
+    {
+      "accession": "Q3LXA3",
+      "active_site_feature_support_count": 9,
+      "allowed_for_combined_channel_now": false,
+      "allowed_review_actions": [
+        "approve_source_feature_sidecar",
+        "reject_source_feature_sidecar",
+        "request_source_feature_rewrite"
+      ],
+      "approval_decision_required": true,
+      "blocked_actions_without_approval": [
+        "copy_candidate_sidecar_to_scoring_surface",
+        "rerun_combined_geometry_fold_channel",
+        "claim_deployment_blocker_cleared"
+      ],
+      "candidate_sidecar_id": "fold_augmented_source_feature_active_site_sidecar:uniprot:Q3LXA3",
+      "copy_authorized_now": false,
+      "critical_violations": [],
+      "decision_class": "manual_source_feature_sidecar_review",
+      "decision_options": [
+        "approve_for_audited_sidecar_materialization",
+        "revise_candidate_sidecar",
+        "reject_keep_fold_only"
+      ],
+      "deployment_blocker_cleared_now": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "feature_position_labels": [
+        "Active site:221",
+        "Binding site:56-59",
+        "Binding site:109",
+        "Binding site:114",
+        "Binding site:401-404",
+        "Binding site:446-447",
+        "Binding site:486",
+        "Binding site:494-495",
+        "Binding site:556-558"
+      ],
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 8
+      },
+      "next_action": "Manual scientific approval, rejection, or rewrite request for this draft source-feature sidecar.",
+      "ready_for_manual_approval_review": true,
+      "ready_for_predicted_geometry_scoring_now": false,
+      "review_status": "draft",
+      "source_record": {
+        "primary_accession": "Q3LXA3",
+        "protein_name": "Triokinase/FMN cyclase",
+        "source_database": "UniProtKB",
+        "source_record_id": "Q3LXA3",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+      },
+      "strict_audit_status": "passed"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_source_feature_active_site_sidecar_review_gate",
+  "scope": "Review-only approval gate for the Lever 3 source-feature active-site sidecar candidates. It composes the draft candidate packet, strict audit, and remaining-blocker decision matrix into explicit per-row approval decisions without approving, copying, scoring, or changing thresholds.",
+  "source_artifacts": {
+    "remaining_blocker_decision_matrix": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_remaining_blocker_decision_matrix_current702_20260602.json",
+      "sha256": "9cc2a0253802e0e475dcaaa3807432271cbe4f4fff37d81ee9364242e2538d7f"
+    },
+    "source_feature_sidecar_candidate_strict_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_current702_20260602.json",
+      "sha256": "c4fc079e47562ee20351a234f9c05b0e1fa3d1e2db6eab5c29ae580820ea4208"
+    },
+    "source_feature_sidecar_candidates": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidates_current702_20260602.json",
+      "sha256": "7f3cfb2833b5aa06f56c59c23d504fdca9e602b4dabf60f74ecf6d1b7153fff8"
+    }
+  },
+  "status": "fold_augmented_source_feature_active_site_sidecar_review_gate_ready_review_only"
+}

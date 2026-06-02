@@ -77,10 +77,13 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_deployment_closure_audit,
     write_fold_augmented_fold_only_deployment_contract_decision,
     write_fold_augmented_oos_calibrated_threshold_contract,
+    write_fold_augmented_non_residue_interaction_sidecar_policy_preflight,
     write_fold_augmented_p23007_alternate_accession_scout,
+    write_fold_augmented_p23007_alternate_accession_policy_gate,
     write_fold_augmented_remaining_blocker_decision_matrix,
     write_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit,
     write_fold_augmented_source_feature_active_site_sidecar_candidates,
+    write_fold_augmented_source_feature_active_site_sidecar_review_gate,
     write_fold_augmented_source_sidecar_clearance_preflight,
     write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
     write_fold_augmented_train_cal_oos_negative_surface_scores,
@@ -11807,6 +11810,80 @@ def cmd_audit_fold_augmented_source_feature_active_site_sidecar_candidates(
     return 0
 
 
+def cmd_build_fold_augmented_source_feature_active_site_sidecar_review_gate(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_source_feature_active_site_sidecar_review_gate(
+        source_feature_sidecar_candidates_path=Path(
+            args.source_feature_sidecar_candidates
+        ),
+        source_feature_sidecar_candidate_strict_audit_path=Path(
+            args.source_feature_sidecar_candidate_strict_audit
+        ),
+        remaining_blocker_decision_matrix_path=Path(
+            args.remaining_blocker_decision_matrix
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented source-feature active-site sidecar review gate "
+        f"to {args.out} (review-ready rows: "
+        f"{counts.get('manual_approval_review_ready_rows')}, "
+        f"copy authorized now: {counts.get('copy_authorized_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_non_residue_interaction_sidecar_policy_preflight(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_non_residue_interaction_sidecar_policy_preflight(
+        source_sidecar_clearance_preflight_path=Path(
+            args.source_sidecar_clearance_preflight
+        ),
+        remaining_blocker_decision_matrix_path=Path(
+            args.remaining_blocker_decision_matrix
+        ),
+        graph_path=Path(args.graph),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented non-residue interaction sidecar policy preflight "
+        f"to {args.out} (approved policy rows: "
+        f"{counts.get('approved_policy_rows')}, sidecars created now: "
+        f"{counts.get('sidecars_created_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_p23007_alternate_accession_policy_gate(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_p23007_alternate_accession_policy_gate(
+        p23007_alternate_accession_scout_path=Path(
+            args.p23007_alternate_accession_scout
+        ),
+        remaining_blocker_decision_matrix_path=Path(
+            args.remaining_blocker_decision_matrix
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented P23007 alternate-accession policy gate to "
+        f"{args.out} (review-ready candidates: "
+        f"{counts.get('policy_review_ready_candidates')}, "
+        f"replacement authorized now: "
+        f"{counts.get('replacement_authorized_now')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_p23007_alternate_accession_scout(
     args: argparse.Namespace,
 ) -> int:
@@ -11879,6 +11956,21 @@ def cmd_audit_predicted_structure_fold_confounded_operating_point_readiness(
             args.source_sidecar_clearance_preflight
         )
         if args.source_sidecar_clearance_preflight
+        else None,
+        source_feature_sidecar_review_gate_path=Path(
+            args.source_feature_sidecar_review_gate
+        )
+        if args.source_feature_sidecar_review_gate
+        else None,
+        non_residue_interaction_sidecar_policy_preflight_path=Path(
+            args.non_residue_interaction_sidecar_policy_preflight
+        )
+        if args.non_residue_interaction_sidecar_policy_preflight
+        else None,
+        p23007_alternate_accession_policy_gate_path=Path(
+            args.p23007_alternate_accession_policy_gate
+        )
+        if args.p23007_alternate_accession_policy_gate
         else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
@@ -26312,6 +26404,134 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_fold_augmented_source_feature_active_site_sidecar_candidates
     )
 
+    source_feature_sidecar_review_gate = subparsers.add_parser(
+        "build-fold-augmented-source-feature-active-site-sidecar-review-gate",
+        help=(
+            "compose the draft source-feature sidecar candidates, strict "
+            "audit, and blocker decision matrix into a review-only approval gate"
+        ),
+    )
+    source_feature_sidecar_review_gate.add_argument(
+        "--source-feature-sidecar-candidates",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidates_"
+            "current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_review_gate.add_argument(
+        "--source-feature-sidecar-candidate-strict-audit",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidate_"
+            "strict_audit_current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_review_gate.add_argument(
+        "--remaining-blocker-decision-matrix",
+        default=(
+            "artifacts/v3_fold_augmented_remaining_blocker_decision_matrix_"
+            "current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_review_gate.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_"
+            "current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_review_gate.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_source_feature_active_site_sidecar_review_gate_"
+            "current702_20260602.md"
+        ),
+    )
+    source_feature_sidecar_review_gate.set_defaults(
+        func=cmd_build_fold_augmented_source_feature_active_site_sidecar_review_gate
+    )
+
+    non_residue_policy_preflight = subparsers.add_parser(
+        "build-fold-augmented-non-residue-interaction-sidecar-policy-preflight",
+        help=(
+            "preflight the P10746 non-residue interaction sidecar policy blocker "
+            "without creating a sidecar or scoring surface"
+        ),
+    )
+    non_residue_policy_preflight.add_argument(
+        "--source-sidecar-clearance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    non_residue_policy_preflight.add_argument(
+        "--remaining-blocker-decision-matrix",
+        default=(
+            "artifacts/v3_fold_augmented_remaining_blocker_decision_matrix_"
+            "current702_20260602.json"
+        ),
+    )
+    non_residue_policy_preflight.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    non_residue_policy_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    non_residue_policy_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_non_residue_interaction_sidecar_policy_preflight_"
+            "current702_20260602.md"
+        ),
+    )
+    non_residue_policy_preflight.set_defaults(
+        func=cmd_build_fold_augmented_non_residue_interaction_sidecar_policy_preflight
+    )
+
+    p23007_alternate_policy_gate = subparsers.add_parser(
+        "build-fold-augmented-p23007-alternate-accession-policy-gate",
+        help=(
+            "compose the P23007 alternate-accession scout into a review-only "
+            "authorization gate without fetching coordinates"
+        ),
+    )
+    p23007_alternate_policy_gate.add_argument(
+        "--p23007-alternate-accession-scout",
+        default=(
+            "artifacts/v3_fold_augmented_p23007_alternate_accession_scout_"
+            "current702_20260602.json"
+        ),
+    )
+    p23007_alternate_policy_gate.add_argument(
+        "--remaining-blocker-decision-matrix",
+        default=(
+            "artifacts/v3_fold_augmented_remaining_blocker_decision_matrix_"
+            "current702_20260602.json"
+        ),
+    )
+    p23007_alternate_policy_gate.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_"
+            "current702_20260602.json"
+        ),
+    )
+    p23007_alternate_policy_gate.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p23007_alternate_accession_policy_gate_"
+            "current702_20260602.md"
+        ),
+    )
+    p23007_alternate_policy_gate.set_defaults(
+        func=cmd_build_fold_augmented_p23007_alternate_accession_policy_gate
+    )
+
     p23007_alternate_scout = subparsers.add_parser(
         "build-fold-augmented-p23007-alternate-accession-scout",
         help=(
@@ -26450,6 +26670,27 @@ def build_parser() -> argparse.ArgumentParser:
         "--source-sidecar-clearance-preflight",
         default=(
             "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--source-feature-sidecar-review-gate",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_"
+            "current702_20260602.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--non-residue-interaction-sidecar-policy-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--p23007-alternate-accession-policy-gate",
+        default=(
+            "artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_"
             "current702_20260602.json"
         ),
     )

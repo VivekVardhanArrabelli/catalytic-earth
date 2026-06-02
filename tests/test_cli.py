@@ -818,6 +818,36 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-fold-augmented-source-feature-active-site-"
+                    "sidecar-review-gate"
+                ),
+                (
+                    "cmd_build_fold_augmented_source_feature_active_site_"
+                    "sidecar_review_gate"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-non-residue-interaction-sidecar-"
+                    "policy-preflight"
+                ),
+                (
+                    "cmd_build_fold_augmented_non_residue_interaction_"
+                    "sidecar_policy_preflight"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-p23007-alternate-accession-"
+                    "policy-gate"
+                ),
+                (
+                    "cmd_build_fold_augmented_p23007_alternate_accession_"
+                    "policy_gate"
+                ),
+            ),
+            (
                 "audit-fold-augmented-confounded-deployment-closure",
                 "cmd_audit_fold_augmented_confounded_deployment_closure",
             ),
