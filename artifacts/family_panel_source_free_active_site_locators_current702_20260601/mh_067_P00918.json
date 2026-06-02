@@ -1,0 +1,196 @@
+{
+  "artifact_id": "v3_family_panel_source_free_active_site_locator_mh_067_P00918_current702_20260602",
+  "created_utc": "2026-06-02T19:11:47Z",
+  "entry_id": "mh_067",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+  "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+  "manual_review_approval": {
+    "approval_basis": [
+      "candidate_integrity_passed",
+      "at_least_two_sequence_position_locators",
+      "split_safe_template_check_passed_no_heldout_same_accession_template",
+      "forbidden_predictive_feature_audit_clear",
+      "no_coordinate_fetch_required"
+    ],
+    "approval_scope": "source_free_active_site_locator_only",
+    "approval_source": "automation_exact_next_action_2026-06-02_after_split_safe_pass",
+    "approved_by": "Codex automation for catalytic-earth-lever-3-2-forward-push",
+    "approved_utc": "2026-06-02T19:11:47Z",
+    "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+    "candidate_sha256": "4dd8048ad5e72492502f86949758eff6373b85de7ebc76c3717fdb00fcd70bd3",
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "predictive_fields_allowed": false,
+    "production_thresholds_changed": false,
+    "split_safe_template_check_path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
+    "split_safe_template_check_sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9"
+  },
+  "ready_for_predicted_geometry_scoring": true,
+  "residue_locators": [
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 96,
+        "distance_angstrom": 2.112,
+        "label_seq_id": 96,
+        "ligand_atom": "ZN",
+        "ligand_comp_id": "ZN",
+        "residue_atom": "NE2",
+        "residue_chain_id": "A",
+        "residue_id": "96",
+        "selected_structure_id": "12CA"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "predicted_model_sequence_position_resolution": {
+          "afdb_coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v6.cif",
+          "afdb_coordinate_sha256": "173c4f1fa81ffb1a288c881040217d1473ed2d08cd792671252ee116cac10c7d",
+          "expected_residue_code": "HIS",
+          "observed_codes_at_original_position": [
+            "PHE"
+          ],
+          "original_position_resolved_expected_code": false,
+          "original_sequence_position": 95,
+          "resolution_basis": "candidate_contact_auth_seq_id",
+          "resolved_sequence_position": 96
+        },
+        "sequence_position_source": "predicted_model_resolved_candidate_contact_auth_seq_id_from_source_free_candidate_contact",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 2,
+          "auth_seq_align_end": 261,
+          "chain_id": "A",
+          "db_accession": "P00918",
+          "db_align_beg": 1,
+          "db_align_end": 259,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 2,
+          "seq_align_end": 260
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "HIS",
+      "role_hint": "metal_ligand_or_water_activator_candidate",
+      "sequence_position": 96
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 119,
+        "distance_angstrom": 2.112,
+        "label_seq_id": 119,
+        "ligand_atom": "ZN",
+        "ligand_comp_id": "ZN",
+        "residue_atom": "ND1",
+        "residue_chain_id": "A",
+        "residue_id": "119",
+        "selected_structure_id": "12CA"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "predicted_model_sequence_position_resolution": {
+          "afdb_coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v6.cif",
+          "afdb_coordinate_sha256": "173c4f1fa81ffb1a288c881040217d1473ed2d08cd792671252ee116cac10c7d",
+          "expected_residue_code": "HIS",
+          "observed_codes_at_original_position": [
+            "LEU"
+          ],
+          "original_position_resolved_expected_code": false,
+          "original_sequence_position": 118,
+          "resolution_basis": "candidate_contact_auth_seq_id",
+          "resolved_sequence_position": 119
+        },
+        "sequence_position_source": "predicted_model_resolved_candidate_contact_auth_seq_id_from_source_free_candidate_contact",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 2,
+          "auth_seq_align_end": 261,
+          "chain_id": "A",
+          "db_accession": "P00918",
+          "db_align_beg": 1,
+          "db_align_end": 259,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 2,
+          "seq_align_end": 260
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "HIS",
+      "role_hint": "metal_ligand_or_water_activator_candidate",
+      "sequence_position": 119
+    },
+    {
+      "candidate_contact_evidence": {
+        "auth_seq_id": 94,
+        "distance_angstrom": 2.497,
+        "label_seq_id": 94,
+        "ligand_atom": "ZN",
+        "ligand_comp_id": "ZN",
+        "residue_atom": "NE2",
+        "residue_chain_id": "A",
+        "residue_id": "94",
+        "selected_structure_id": "12CA"
+      },
+      "coordinate_independent_provenance": {
+        "heldout_rows_used": false,
+        "method": "source_free_selected_structure_ligand_contact_candidate",
+        "predicted_model_sequence_position_resolution": {
+          "afdb_coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v6.cif",
+          "afdb_coordinate_sha256": "173c4f1fa81ffb1a288c881040217d1473ed2d08cd792671252ee116cac10c7d",
+          "expected_residue_code": "HIS",
+          "observed_codes_at_original_position": [
+            "PHE"
+          ],
+          "original_position_resolved_expected_code": false,
+          "original_sequence_position": 93,
+          "resolution_basis": "candidate_contact_auth_seq_id",
+          "resolved_sequence_position": 94
+        },
+        "sequence_position_source": "predicted_model_resolved_candidate_contact_auth_seq_id_from_source_free_candidate_contact",
+        "sequence_position_uniprot_validated": true,
+        "source_text_used": false,
+        "struct_ref_seq_mapping": {
+          "auth_seq_align_beg": 2,
+          "auth_seq_align_end": 261,
+          "chain_id": "A",
+          "db_accession": "P00918",
+          "db_align_beg": 1,
+          "db_align_end": 259,
+          "mapping_basis": "struct_ref_seq.auth_seq_id",
+          "seq_align_beg": 2,
+          "seq_align_end": 260
+        }
+      },
+      "locator_confidence": 0.25,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "residue_code": "HIS",
+      "role_hint": "metal_ligand_or_water_activator_candidate",
+      "sequence_position": 94
+    }
+  ],
+  "schema_version": "v3.source_free_active_site_locator",
+  "source_accession": "uniprot:P00918",
+  "source_free_active_site_locator_status": "ready",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  }
+}

@@ -1,20 +1,20 @@
 {
   "artifact_id": "v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601",
   "counts": {
-    "external_or_placeholder_rows": 6,
+    "external_or_placeholder_rows": 4,
     "m_csa_rows": 0,
-    "missing_primary_channel_rows": 7,
+    "missing_primary_channel_rows": 5,
     "missing_rows_by_panel": {
       "cobalamin_and_radical_rearrangement_panel": 1,
       "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 1,
-      "no_reliable_structure_metal_hydrolase_controls": 5
+      "no_reliable_structure_metal_hydrolase_controls": 3
     },
     "score_blocker_counts": {
-      "predicted_geometry_top1_score_missing": 7
+      "predicted_geometry_top1_score_missing": 5
     },
     "secondary_probe_rows": 1
   },
-  "created_utc": "2026-06-01T15:02:09Z",
+  "created_utc": "2026-06-02T19:15:30Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -26,7 +26,7 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "7 family-panel rows lack the primary geometry+predicted-fold channel.",
+    "headline": "5 family-panel rows lack the primary geometry+predicted-fold channel.",
     "next_action": "No M-CSA rows remain in this queue; continue with the secondary probe row and external placeholder rows that still need approved source-free locator sidecars before predicted-geometry scoring."
   },
   "queue_rows": [
@@ -96,45 +96,13 @@
     },
     {
       "benchmark_role": null,
-      "entry_id": "mh_067",
-      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
-      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "predicted_geometry_status": "missing",
-      "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
-      "rank": 5,
-      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
-      "score_blockers": [
-        "predicted_geometry_top1_score_missing"
-      ],
-      "selected_organic_cofactor_max": null,
-      "split_assignment": null
-    },
-    {
-      "benchmark_role": null,
-      "entry_id": "mh_068",
-      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
-      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "predicted_geometry_status": "missing",
-      "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
-      "rank": 6,
-      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
-      "score_blockers": [
-        "predicted_geometry_top1_score_missing"
-      ],
-      "selected_organic_cofactor_max": null,
-      "split_assignment": null
-    },
-    {
-      "benchmark_role": null,
       "entry_id": "mh_072",
       "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
       "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
-      "rank": 7,
+      "rank": 5,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
         "predicted_geometry_top1_score_missing"
@@ -149,7 +117,7 @@
     "family_panel_research_readout": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
-      "sha256": "9c8d11be5191f08893510e9c8c57e22051c078f5777c020fafa84c786167998f"
+      "sha256": "9351ba3650f0670dd2001072735965551802d74f66bd2ad9de6abe08186b9589"
     }
   },
   "status": "missing_primary_channel_queue_ready_review_only"

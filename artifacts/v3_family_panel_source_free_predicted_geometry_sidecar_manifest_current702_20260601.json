@@ -26,18 +26,18 @@
   },
   "counts": {
     "blocker_counts": {
-      "approved_source_free_active_site_locator_missing": 7,
-      "source_backed_sidecar_lacks_residue_locator": 7
+      "approved_source_free_active_site_locator_missing": 5,
+      "source_backed_sidecar_lacks_residue_locator": 5
     },
     "rows_with_afdb_predicted_cif": 10,
-    "rows_with_approved_source_free_active_site_locator": 3,
+    "rows_with_approved_source_free_active_site_locator": 5,
     "rows_with_same_accession_current702_geometry": 2,
     "rows_with_source_backed_fold_score": 10,
-    "source_free_geometry_blocked_rows": 7,
-    "source_free_geometry_ready_rows": 3,
+    "source_free_geometry_blocked_rows": 5,
+    "source_free_geometry_ready_rows": 5,
     "targeted_rows": 10
   },
-  "created_utc": "2026-06-01T14:24:37Z",
+  "created_utc": "2026-06-02T19:15:46Z",
   "guardrails": {
     "coordinates_or_large_models_downloaded": false,
     "entry_names_ec_rhea_or_labels_used_as_predictive_features": false,
@@ -51,7 +51,7 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "10/10 rows have source-backed fold scores and AFDB coordinate hashes; 3 now have approved source-free active-site locators and 7 remain blocked before predicted-geometry scoring.",
+    "headline": "10/10 rows have source-backed fold scores and AFDB coordinate hashes; 5 now have approved source-free active-site locators and 5 remain blocked before predicted-geometry scoring.",
     "next_action": "Run predicted-geometry retrieval only for ready rows using the approved locator sidecars; do not promote rows or use source-backed review prose as scoring input."
   },
   "row_manifests": [
@@ -134,7 +134,7 @@
       "existing_source_free_geometry_row": null,
       "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
-      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "prior_missing_channel_diagnosis": null,
       "rank": 2,
       "same_accession_current702_geometry_rows": [],
       "selected_structure_id": "8VPO",
@@ -239,7 +239,7 @@
       "existing_source_free_geometry_row": null,
       "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
-      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "prior_missing_channel_diagnosis": null,
       "rank": 4,
       "same_accession_current702_geometry_rows": [],
       "selected_structure_id": "121P",
@@ -399,7 +399,7 @@
       "existing_source_free_geometry_row": null,
       "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "prior_missing_channel_diagnosis": null,
       "rank": 7,
       "same_accession_current702_geometry_rows": [],
       "selected_structure_id": "1DD6",
@@ -434,27 +434,22 @@
         "size_bytes": 252675
       },
       "approved_source_free_active_site_locator": {
-        "critical_violations": [
-          "locator_sidecar_missing"
-        ],
-        "exists": false,
-        "locator_evidence_class": null,
+        "critical_violations": [],
+        "exists": true,
+        "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
         "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_067_P00918.json",
-        "ready_for_predicted_geometry_scoring": false,
-        "residue_locator_count": null,
-        "sha256": null,
-        "status": "missing"
+        "ready_for_predicted_geometry_scoring": true,
+        "residue_locator_count": 3,
+        "sha256": "a0ccc8b5b4f1cb0432880ef881e9910fc18c4d91ae68bf8b7ad903386cdd83e9",
+        "status": "passed"
       },
-      "blockers": [
-        "approved_source_free_active_site_locator_missing",
-        "source_backed_sidecar_lacks_residue_locator"
-      ],
+      "blockers": [],
       "current702_label_manifest_membership": false,
       "entry_id": "mh_067",
       "existing_source_free_geometry_row": null,
-      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "prior_missing_channel_diagnosis": null,
       "rank": 8,
       "same_accession_current702_geometry_rows": [
         {
@@ -486,7 +481,7 @@
         "exists": false,
         "status": "missing_pending_scoring"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
+      "source_free_predicted_geometry_status": "ready_to_score_source_free_predicted_geometry"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -497,27 +492,22 @@
         "size_bytes": 448908
       },
       "approved_source_free_active_site_locator": {
-        "critical_violations": [
-          "locator_sidecar_missing"
-        ],
-        "exists": false,
-        "locator_evidence_class": null,
+        "critical_violations": [],
+        "exists": true,
+        "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
         "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_068_P15289.json",
-        "ready_for_predicted_geometry_scoring": false,
-        "residue_locator_count": null,
-        "sha256": null,
-        "status": "missing"
+        "ready_for_predicted_geometry_scoring": true,
+        "residue_locator_count": 4,
+        "sha256": "d3a7ceaaa5e3ad2fd183cbead41b244c0111270490c25ed29036b0dc1319fcc4",
+        "status": "passed"
       },
-      "blockers": [
-        "approved_source_free_active_site_locator_missing",
-        "source_backed_sidecar_lacks_residue_locator"
-      ],
+      "blockers": [],
       "current702_label_manifest_membership": false,
       "entry_id": "mh_068",
       "existing_source_free_geometry_row": null,
-      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "prior_missing_channel_diagnosis": null,
       "rank": 9,
       "same_accession_current702_geometry_rows": [
         {
@@ -549,7 +539,7 @@
         "exists": false,
         "status": "missing_pending_scoring"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
+      "source_free_predicted_geometry_status": "ready_to_score_source_free_predicted_geometry"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -613,7 +603,7 @@
     "active_site_locator_schema_audit": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json",
-      "sha256": "33f488beb0f5fa77253b2c3abebc5aa2bc86a651caed9212d0113b611c094ba0"
+      "sha256": "b6315d736a72058c4785cdd2b01b1b58b955d89064ef47c953159554e87a3aa5"
     },
     "label_manifest": {
       "exists": true,
@@ -623,7 +613,7 @@
     "missing_primary_channel_diagnosis": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json",
-      "sha256": "f886340a6702a0bd10dec46e7546cf3c22e1f443dec0b0ad8e85ac1923db26f7"
+      "sha256": "62d4b46f570a5b829f9dac9a76f78e579776055a5988fe9ef058093e5cd63d99"
     },
     "predicted_geometry_atlas": {
       "exists": true,

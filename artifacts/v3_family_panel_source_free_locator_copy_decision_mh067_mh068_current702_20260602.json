@@ -1,0 +1,121 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_copy_decision_mh067_mh068_current702_20260602",
+  "commands": {
+    "reproduce_this_decision": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-locator-copy-decision-mh067-mh068",
+    "rerun_locator_schema_audit": "PYTHONPATH=src python -m catalytic_earth.cli audit-family-panel-source-free-active-site-locator-schema",
+    "rerun_source_free_manifest": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-predicted-geometry-sidecar-manifest",
+    "rerun_source_free_retrieval": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-predicted-geometry-retrieval"
+  },
+  "counts": {
+    "approved_locator_copy_rows": 2,
+    "blocked_preflight_rows": 0,
+    "predicted_model_sequence_position_repairs": 3,
+    "ready_for_predicted_geometry_scoring_after_copy": 2,
+    "rejected_locator_copy_rows": 0,
+    "sidecars_planned_for_audited_locator_dir": 2,
+    "target_rows": 2
+  },
+  "created_utc": "2026-06-02T19:11:47Z",
+  "decision_class": "human_locator_copy_approval_after_split_safe_pass",
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": true,
+    "heldout_rows_used_as_templates": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_coordinates_fetched": false,
+    "predicted_geometry_scores_created_by_this_decision": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "2/2 mh_067/mh_068 candidate locators are approved for audited review-only copy.",
+    "next_action": "Rerun the locator schema audit, then the source-free predicted-geometry manifest/retrieval. Keep the rows review-only and outside import, training, threshold, or label-factory use."
+  },
+  "operator_decision": "approve",
+  "row_decisions": [
+    {
+      "approved_locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_067_P00918.json",
+      "approved_locator_sha256": "a0ccc8b5b4f1cb0432880ef881e9910fc18c4d91ae68bf8b7ad903386cdd83e9",
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+      "candidate_sha256": "4dd8048ad5e72492502f86949758eff6373b85de7ebc76c3717fdb00fcd70bd3",
+      "critical_violations": [],
+      "decision": "approved_for_audited_locator_copy_review_only",
+      "entry_id": "mh_067",
+      "predicted_model_sequence_position_repair_count": 3,
+      "predicted_model_sequence_position_repairs": [
+        {
+          "locator_index": 0,
+          "observed_codes_at_original_position": [
+            "PHE"
+          ],
+          "original_sequence_position": 95,
+          "residue_code": "HIS",
+          "resolution_basis": "candidate_contact_auth_seq_id",
+          "resolved_sequence_position": 96
+        },
+        {
+          "locator_index": 1,
+          "observed_codes_at_original_position": [
+            "LEU"
+          ],
+          "original_sequence_position": 118,
+          "residue_code": "HIS",
+          "resolution_basis": "candidate_contact_auth_seq_id",
+          "resolved_sequence_position": 119
+        },
+        {
+          "locator_index": 2,
+          "observed_codes_at_original_position": [
+            "PHE"
+          ],
+          "original_sequence_position": 93,
+          "residue_code": "HIS",
+          "resolution_basis": "candidate_contact_auth_seq_id",
+          "resolved_sequence_position": 94
+        }
+      ],
+      "ready_for_predicted_geometry_scoring_after_copy": true,
+      "residue_locator_count": 3,
+      "source_accession": "uniprot:P00918",
+      "split_template_assignment": "in_distribution",
+      "split_template_entry_id": "m_csa:216"
+    },
+    {
+      "approved_locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_068_P15289.json",
+      "approved_locator_sha256": "d3a7ceaaa5e3ad2fd183cbead41b244c0111270490c25ed29036b0dc1319fcc4",
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_068_P15289.json",
+      "candidate_sha256": "b3fe6d9deb6d5d7cebc11d7af11019114b08d2f04a483579d37a3f391f696096",
+      "critical_violations": [],
+      "decision": "approved_for_audited_locator_copy_review_only",
+      "entry_id": "mh_068",
+      "predicted_model_sequence_position_repair_count": 0,
+      "predicted_model_sequence_position_repairs": [],
+      "ready_for_predicted_geometry_scoring_after_copy": true,
+      "residue_locator_count": 4,
+      "source_accession": "uniprot:P15289",
+      "split_template_assignment": "in_distribution",
+      "split_template_entry_id": "m_csa:158"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_locator_copy_decision",
+  "scope": "Explicit review-only decision for the highest-priority source-free locator class: copy or reject the split-safe mh_067/mh_068 candidate locators into the audited locator directory before any source-free predicted-geometry scoring.",
+  "source_artifacts": {
+    "candidate_dir": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601",
+    "locator_dir": "artifacts/family_panel_source_free_active_site_locators_current702_20260601",
+    "source_backed_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
+    },
+    "split_safe_template_check": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
+      "sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9"
+    }
+  },
+  "status": "source_free_locator_copy_decision_mh067_mh068_approved_review_only"
+}

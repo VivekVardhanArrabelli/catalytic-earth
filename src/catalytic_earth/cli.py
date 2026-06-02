@@ -59,6 +59,7 @@ from .northstar_next_levers import (
     write_family_panel_source_free_active_site_locator_schema_audit,
     write_family_panel_source_free_active_site_locator_template_bundle,
     write_family_panel_source_free_locator_blocked_row_rescue_manifest,
+    write_family_panel_source_free_locator_copy_decision_mh067_mh068,
     write_family_panel_source_free_locator_human_decision_matrix,
     write_family_panel_source_free_predicted_geometry_retrieval,
     write_family_panel_source_free_predicted_geometry_source_check_preflight,
@@ -11530,6 +11531,29 @@ def cmd_build_family_panel_source_free_locator_human_decision_matrix(
     print(
         "Wrote family-panel source-free locator human decision matrix to "
         f"{args.out} (decision classes: {counts.get('decision_classes')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_locator_copy_decision_mh067_mh068(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_locator_copy_decision_mh067_mh068(
+        candidate_dir=Path(args.candidate_dir),
+        locator_dir=Path(args.locator_dir),
+        split_check_path=Path(args.split_check),
+        source_backed_materialization_path=Path(args.source_backed_materialization)
+        if args.source_backed_materialization
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        approve=not args.reject,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free locator copy decision mh067/mh068 to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"approved rows: {counts.get('approved_locator_copy_rows')})"
     )
     return 0
 
@@ -25637,6 +25661,64 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_family_panel_source_free_locator_human_decision_matrix
     )
 
+    family_panel_source_free_locator_copy_decision_mh067_mh068 = subparsers.add_parser(
+        "build-family-panel-source-free-locator-copy-decision-mh067-mh068",
+        help=(
+            "record the mh_067/mh_068 split-safe locator-copy decision and "
+            "materialize approved review-only locator sidecars"
+        ),
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.add_argument(
+        "--candidate-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locator_candidates_"
+            "current702_20260601"
+        ),
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.add_argument(
+        "--locator-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locators_"
+            "current702_20260601"
+        ),
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.add_argument(
+        "--split-check",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_split_safe_template_"
+            "check_mh067_mh068_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.add_argument(
+        "--source-backed-materialization",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.add_argument(
+        "--reject",
+        action="store_true",
+        help="record a rejection instead of the default split-safe approval",
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_copy_decision_"
+            "mh067_mh068_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_locator_copy_decision_mh067_mh068_"
+            "current702_20260602.md"
+        ),
+    )
+    family_panel_source_free_locator_copy_decision_mh067_mh068.set_defaults(
+        func=cmd_build_family_panel_source_free_locator_copy_decision_mh067_mh068
+    )
+
     fold_augmented_gate = subparsers.add_parser(
         "eval-fold-augmented-abstention-gate",
         help="evaluate no-fit deployment abstention diagnostics with the real predicted Foldseek/TM channel",
@@ -26530,6 +26612,8 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json",
             "artifacts/v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json",
             "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json",
+            "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_068_current702_20260602.json",
+            "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_067_current702_20260602.json",
             "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json",
             "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json",
         ],

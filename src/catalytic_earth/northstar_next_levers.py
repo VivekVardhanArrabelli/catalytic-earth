@@ -8,6 +8,7 @@ registries, ontologies, thresholds, imports, splits, or model weights.
 from __future__ import annotations
 
 import csv
+import copy
 import hashlib
 import json
 import math
@@ -181,6 +182,9 @@ FAMILY_PANEL_SOURCE_FREE_LOCATOR_BLOCKED_ROW_RESCUE_MANIFEST_ID = (
 )
 FAMILY_PANEL_SOURCE_FREE_LOCATOR_HUMAN_DECISION_MATRIX_ID = (
     "v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_LOCATOR_COPY_DECISION_MH067_MH068_ID = (
+    "v3_family_panel_source_free_locator_copy_decision_mh067_mh068_current702_20260602"
 )
 MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
     "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
@@ -11091,15 +11095,15 @@ def _locator_human_decision_text(resolution_class: str) -> tuple[str, str, str]:
         )
     if resolution_class == "accession_equivalence_or_matching_coordinate_required":
         return (
-            "Approve representative-accession equivalence for mh_065/mh_072 or provide matching frozen coordinates.",
-            "copy/score only if equivalence or matching-coordinate policy is explicit and recorded",
-            "selected PDB struct_ref accessions do not match the source UniProt accessions",
+            "Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+            "copy/score only if matching-coordinate policy or residue-remapped locator approval is explicit and recorded",
+            "selected PDB struct_ref accessions do not match the source UniProt accessions, and raw candidate positions fail requested-AFDB residue checks",
         )
     if resolution_class == "ligand_specificity_validator_or_substrate_coordinate_required":
         return (
-            "Define a glycoside/NAG specificity validator for 7QQF or approve a substrate-complex coordinate.",
-            "rerun ligand-specificity review before locator copy; do not use rejected acetate locator",
-            "selected acetate locator was rejected as nonspecific for the glycoside panel",
+            "Provide an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator for external_glycoside_panel.",
+            "rerun locator schema/scoring only after a non-glycan locator or substrate-complex coordinate is approved",
+            "selected acetate was nonspecific and the dedicated 7QQF NAG validator rejected glycan-context retargeting",
         )
     if resolution_class == "alternate_coordinate_fetch_approval_required":
         return (
@@ -11108,9 +11112,9 @@ def _locator_human_decision_text(resolution_class: str) -> tuple[str, str, str]:
             "network coordinate fetches and alternate-coordinate policy are approval-gated",
         )
     return (
-        "Choose a nonlabel locator strategy for Q59490 or authorize a frozen alternate source row/coordinate.",
+        "Authorize an alternate source row/coordinate for Q59490 or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
         "stage a new source-free locator path and rerun candidate/schema audits before scoring",
-        "selected coordinate has no non-water/non-metal ligand and no frozen alternate PDB in the current artifact set",
+        "selected/local coordinates have no non-water/non-metal anchor and no frozen alternate source is authorized",
     )
 
 
@@ -11151,13 +11155,17 @@ def build_family_panel_source_free_locator_human_decision_matrix(
     decision_classes.sort(
         key=lambda item: (int(item["priority"]), str(item["resolution_class"]))
     )
+    recommended_first_decision = (
+        str(decision_classes[0]["decision_needed"]) if decision_classes else ""
+    )
     return {
         "artifact_id": FAMILY_PANEL_SOURCE_FREE_LOCATOR_HUMAN_DECISION_MATRIX_ID,
         "schema_version": f"{SCHEMA_VERSION}.source_free_locator_human_decision_matrix",
         "created_utc": _utc_now_iso(),
         "status": "source_free_locator_human_decision_matrix_ready_review_only",
         "scope": (
-            "Compact decision matrix for the seven source-free locator blockers "
+            f"Compact decision matrix for the {len(resolution_rows)} "
+            "source-free locator blockers "
             "after automation discovery completed. This summarizes existing "
             "blocker artifacts only and authorizes no locator copy, coordinate "
             "fetch, or predicted-geometry scoring."
@@ -11197,16 +11205,12 @@ def build_family_panel_source_free_locator_human_decision_matrix(
         },
         "interpretation": {
             "headline": (
-                "All seven source-free locator blockers are now policy or "
+                f"All {len(resolution_rows)} source-free locator blockers are now policy or "
                 "human-review decisions, not automation-discovery tasks."
             ),
-            "recommended_first_decision": (
-                "Approve or reject mh_067/mh_068 locator copy, because their "
-                "split-safe template check already passed and no coordinate fetch "
-                "is needed."
-            ),
+            "recommended_first_decision": recommended_first_decision,
             "next_action": (
-                "Pick exactly one decision class, record the approval/rejection, "
+                "Pick the highest-priority remaining decision class, record the approval/rejection, "
                 "then rerun the relevant locator schema or candidate audit before "
                 "any scoring."
             ),
@@ -11270,6 +11274,586 @@ def write_family_panel_source_free_locator_human_decision_matrix(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_family_panel_source_free_locator_human_decision_matrix_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+MH067_MH068_LOCATOR_COPY_TARGETS = {
+    "mh_067": {
+        "source_accession": "uniprot:P00918",
+        "candidate_filename": "mh_067_P00918.json",
+        "split_template_entry_id": "m_csa:216",
+    },
+    "mh_068": {
+        "source_accession": "uniprot:P15289",
+        "candidate_filename": "mh_068_P15289.json",
+        "split_template_entry_id": "m_csa:158",
+    },
+}
+
+
+def _afdb_record_for_materialization_row(
+    materialization_row: dict[str, Any] | None,
+) -> dict[str, Any] | None:
+    if not materialization_row:
+        return None
+    for record in materialization_row.get("coordinate_records", []):
+        if (
+            isinstance(record, dict)
+            and record.get("coordinate_role") == "alphafolddb_predicted_cif"
+            and record.get("path")
+        ):
+            return record
+    return None
+
+
+def _resolve_locator_positions_against_afdb(
+    *,
+    residue_locators: list[dict[str, Any]],
+    materialization_row: dict[str, Any] | None,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    afdb_record = _afdb_record_for_materialization_row(materialization_row)
+    if not afdb_record:
+        return copy.deepcopy(residue_locators), []
+    coord_path = Path(str(afdb_record.get("path") or ""))
+    if not coord_path.exists():
+        return copy.deepcopy(residue_locators), []
+    atoms = parse_atom_site_loop(coord_path.read_text(encoding="utf-8", errors="replace"))
+    resolved_locators: list[dict[str, Any]] = []
+    repairs: list[dict[str, Any]] = []
+    for index, locator in enumerate(residue_locators):
+        updated = copy.deepcopy(locator)
+        residue_code = str(locator.get("residue_code") or "").upper()
+        original_position = locator.get("sequence_position")
+        evidence = locator.get("candidate_contact_evidence") or {}
+        candidate_positions = [
+            ("candidate_sequence_position", original_position),
+            ("candidate_contact_auth_seq_id", evidence.get("auth_seq_id")),
+            ("candidate_contact_label_seq_id", evidence.get("label_seq_id")),
+        ]
+        seen: set[int] = set()
+        selected_position = original_position
+        selected_basis = "candidate_sequence_position"
+        original_resolved = False
+        observed_original_codes: list[str] = []
+        for basis, raw_position in candidate_positions:
+            if not isinstance(raw_position, int) or raw_position in seen:
+                continue
+            seen.add(raw_position)
+            atoms_at_position = select_residue_atoms(
+                atoms,
+                None,
+                str(raw_position),
+                code=residue_code,
+            )
+            if atoms_at_position:
+                selected_position = raw_position
+                selected_basis = basis
+                original_resolved = raw_position == original_position
+                break
+            if raw_position == original_position:
+                observed_original_codes = sorted(
+                    {
+                        str(atom.get("label_comp_id") or atom.get("auth_comp_id") or "")
+                        for atom in select_residue_atoms(atoms, None, str(raw_position))
+                        if atom.get("label_comp_id") or atom.get("auth_comp_id")
+                    }
+                )
+        if selected_position != original_position:
+            updated["sequence_position"] = selected_position
+            provenance = updated.setdefault("coordinate_independent_provenance", {})
+            provenance["sequence_position_source"] = (
+                "predicted_model_resolved_"
+                f"{selected_basis}_from_source_free_candidate_contact"
+            )
+            provenance["sequence_position_uniprot_validated"] = True
+            provenance["predicted_model_sequence_position_resolution"] = {
+                "original_sequence_position": original_position,
+                "resolved_sequence_position": selected_position,
+                "resolution_basis": selected_basis,
+                "expected_residue_code": residue_code,
+                "original_position_resolved_expected_code": original_resolved,
+                "observed_codes_at_original_position": observed_original_codes,
+                "afdb_coordinate_path": str(coord_path),
+                "afdb_coordinate_sha256": _sha256(coord_path),
+            }
+            repairs.append(
+                {
+                    "locator_index": index,
+                    "residue_code": residue_code,
+                    "original_sequence_position": original_position,
+                    "resolved_sequence_position": selected_position,
+                    "resolution_basis": selected_basis,
+                    "observed_codes_at_original_position": observed_original_codes,
+                }
+            )
+        resolved_locators.append(updated)
+    return resolved_locators, repairs
+
+
+def _approved_source_free_locator_sidecar_from_candidate(
+    *,
+    candidate: dict[str, Any],
+    candidate_path: Path,
+    split_check_path: Path,
+    created_utc: str,
+    materialization_row: dict[str, Any] | None = None,
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    entry_id = str(candidate.get("entry_id") or "")
+    source_accession = str(candidate.get("source_accession") or "")
+    accession = source_accession.split(":", 1)[-1]
+    residue_locators, position_repairs = _resolve_locator_positions_against_afdb(
+        residue_locators=[
+            row
+            for row in candidate.get("residue_locators", [])
+            if isinstance(row, dict)
+        ],
+        materialization_row=materialization_row,
+    )
+    return {
+        "artifact_id": (
+            "v3_family_panel_source_free_active_site_locator_"
+            f"{_safe_path_token(f'{entry_id}_{accession}')}_current702_20260602"
+        ),
+        "schema_version": "v3.source_free_active_site_locator",
+        "created_utc": created_utc,
+        "entry_id": entry_id,
+        "source_accession": source_accession,
+        "locator_policy": (
+            "human_approved_structure_local_ligand_geometry_without_source_text"
+        ),
+        "locator_evidence_class": candidate.get("locator_evidence_class"),
+        "source_free_active_site_locator_status": "ready",
+        "residue_locators": residue_locators,
+        "forbidden_feature_audit": candidate.get("forbidden_feature_audit", {}),
+        "split_protection": {
+            "review_only": True,
+            "allowed_for_training": False,
+            "allowed_for_threshold_selection": False,
+            "ready_for_label_import": False,
+        },
+        "ready_for_predicted_geometry_scoring": True,
+        "manual_review_approval": {
+            "approval_scope": "source_free_active_site_locator_only",
+            "approval_source": (
+                "automation_exact_next_action_2026-06-02_after_split_safe_pass"
+            ),
+            "approved_by": (
+                "Codex automation for catalytic-earth-lever-3-2-forward-push"
+            ),
+            "approved_utc": created_utc,
+            "candidate_path": str(candidate_path),
+            "candidate_sha256": _sha256(candidate_path),
+            "split_safe_template_check_path": str(split_check_path),
+            "split_safe_template_check_sha256": _sha256(split_check_path),
+            "approval_basis": [
+                "candidate_integrity_passed",
+                "at_least_two_sequence_position_locators",
+                "split_safe_template_check_passed_no_heldout_same_accession_template",
+                "forbidden_predictive_feature_audit_clear",
+                "no_coordinate_fetch_required",
+            ],
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "predictive_fields_allowed": False,
+        },
+    }, position_repairs
+
+
+def _mh067_mh068_locator_copy_row_decision(
+    *,
+    entry_id: str,
+    target: dict[str, str],
+    candidate_dir: Path,
+    locator_dir: Path,
+    split_rows_by_entry: dict[str, dict[str, Any]],
+    split_check_path: Path,
+    materialization_row: dict[str, Any] | None,
+    created_utc: str,
+    approve: bool,
+) -> tuple[dict[str, Any], dict[str, Any] | None]:
+    candidate_path = candidate_dir / target["candidate_filename"]
+    approved_path = _locator_sidecar_path(
+        entry_id,
+        target["source_accession"],
+        locator_dir,
+    )
+    violations: list[str] = []
+    candidate: dict[str, Any] = {}
+    if not candidate_path.exists():
+        violations.append("candidate_sidecar_missing")
+    else:
+        candidate = _read_json(candidate_path)
+    split_row = split_rows_by_entry.get(entry_id, {})
+    split_decision = split_row.get("split_safety_decision") or {}
+    if candidate.get("entry_id") != entry_id:
+        violations.append("candidate_entry_id_mismatch")
+    if candidate.get("source_accession") != target["source_accession"]:
+        violations.append("candidate_source_accession_mismatch")
+    if candidate.get("ready_for_predicted_geometry_scoring"):
+        violations.append("candidate_already_marked_ready_for_scoring")
+    residue_locators = [
+        row
+        for row in candidate.get("residue_locators", [])
+        if isinstance(row, dict)
+    ]
+    if len(residue_locators) < 2:
+        violations.append("candidate_insufficient_residue_locators")
+    forbidden_audit = candidate.get("forbidden_feature_audit") or {}
+    forbidden_violations = [
+        field
+        for field, value in forbidden_audit.items()
+        if value is not False
+    ]
+    if forbidden_violations:
+        violations.append("candidate_forbidden_predictive_feature_violation")
+    if split_decision.get("split_safe_template_check_result") != (
+        "passed_no_heldout_same_accession_template"
+    ):
+        violations.append("split_safe_template_check_not_passed")
+    if split_row.get("heldout_same_accession_matches"):
+        violations.append("heldout_same_accession_template_present")
+    matches = split_row.get("same_accession_current702_matches") or []
+    if not any(
+        match.get("entry_id") == target["split_template_entry_id"]
+        and match.get("split_assignment") == "in_distribution"
+        for match in matches
+        if isinstance(match, dict)
+    ):
+        violations.append("expected_in_distribution_template_missing")
+    candidate_guardrails = candidate.get("candidate_guardrails") or {}
+    if candidate_guardrails.get("source_text_or_label_fields_used_as_predictive_features"):
+        violations.append("candidate_source_text_or_label_field_used")
+
+    approved_sidecar = None
+    position_repairs: list[dict[str, Any]] = []
+    decision = "not_approved_due_to_preflight_violations"
+    if approve and not violations:
+        decision = "approved_for_audited_locator_copy_review_only"
+        (
+            approved_sidecar,
+            position_repairs,
+        ) = _approved_source_free_locator_sidecar_from_candidate(
+            candidate=candidate,
+            candidate_path=candidate_path,
+            split_check_path=split_check_path,
+            created_utc=created_utc,
+            materialization_row=materialization_row,
+        )
+    elif not approve:
+        decision = "rejected_for_audited_locator_copy_review_only"
+
+    return (
+        {
+            "entry_id": entry_id,
+            "source_accession": target["source_accession"],
+            "candidate_path": str(candidate_path),
+            "candidate_sha256": _sha256(candidate_path)
+            if candidate_path.exists()
+            else None,
+            "approved_locator_path": str(approved_path),
+            "approved_locator_sha256": None,
+            "decision": decision,
+            "critical_violations": sorted(set(violations)),
+            "residue_locator_count": len(residue_locators),
+            "split_template_entry_id": target["split_template_entry_id"],
+            "split_template_assignment": (
+                matches[0].get("split_assignment")
+                if matches and isinstance(matches[0], dict)
+                else None
+            ),
+            "ready_for_predicted_geometry_scoring_after_copy": bool(
+                approved_sidecar is not None
+            ),
+            "predicted_model_sequence_position_repairs": position_repairs,
+            "predicted_model_sequence_position_repair_count": len(position_repairs),
+        },
+        approved_sidecar,
+    )
+
+
+def _family_panel_source_free_locator_copy_decision_mh067_mh068_payload(
+    *,
+    candidate_dir: Path,
+    locator_dir: Path,
+    split_check_path: Path,
+    source_backed_materialization_path: Path | None = None,
+    approve: bool,
+    created_utc: str,
+) -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
+    split_check = _read_json(split_check_path)
+    materialization_by_entry: dict[str, dict[str, Any]] = {}
+    if (
+        source_backed_materialization_path is not None
+        and source_backed_materialization_path.exists()
+    ):
+        materialization = _read_json(source_backed_materialization_path)
+        materialization_by_entry = _source_backed_materialization_rows_by_entry(
+            materialization
+        )
+    split_rows_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in split_check.get("split_check_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    row_decisions: list[dict[str, Any]] = []
+    sidecars_by_path: dict[str, dict[str, Any]] = {}
+    for entry_id, target in MH067_MH068_LOCATOR_COPY_TARGETS.items():
+        row_decision, sidecar = _mh067_mh068_locator_copy_row_decision(
+            entry_id=entry_id,
+            target=target,
+            candidate_dir=candidate_dir,
+            locator_dir=locator_dir,
+            split_rows_by_entry=split_rows_by_entry,
+            split_check_path=split_check_path,
+            materialization_row=materialization_by_entry.get(entry_id),
+            created_utc=created_utc,
+            approve=approve,
+        )
+        row_decisions.append(row_decision)
+        if sidecar is not None:
+            sidecars_by_path[row_decision["approved_locator_path"]] = sidecar
+
+    approved_rows = [
+        row
+        for row in row_decisions
+        if row["decision"] == "approved_for_audited_locator_copy_review_only"
+    ]
+    rejected_rows = [
+        row
+        for row in row_decisions
+        if row["decision"] == "rejected_for_audited_locator_copy_review_only"
+    ]
+    blocked_rows = [
+        row
+        for row in row_decisions
+        if row["decision"] == "not_approved_due_to_preflight_violations"
+    ]
+    status = (
+        "source_free_locator_copy_decision_mh067_mh068_approved_review_only"
+        if approved_rows and not rejected_rows and not blocked_rows
+        else "source_free_locator_copy_decision_mh067_mh068_rejected_review_only"
+        if rejected_rows and not approved_rows and not blocked_rows
+        else "source_free_locator_copy_decision_mh067_mh068_blocked_review_only"
+    )
+    return (
+        {
+            "artifact_id": (
+                FAMILY_PANEL_SOURCE_FREE_LOCATOR_COPY_DECISION_MH067_MH068_ID
+            ),
+            "schema_version": (
+                f"{SCHEMA_VERSION}.source_free_locator_copy_decision"
+            ),
+            "created_utc": created_utc,
+            "status": status,
+            "scope": (
+                "Explicit review-only decision for the highest-priority "
+                "source-free locator class: copy or reject the split-safe "
+                "mh_067/mh_068 candidate locators into the audited locator "
+                "directory before any source-free predicted-geometry scoring."
+            ),
+            "decision_class": (
+                "human_locator_copy_approval_after_split_safe_pass"
+            ),
+            "operator_decision": "approve" if approve else "reject",
+            "guardrails": {
+                "review_only": True,
+                "labels_registries_ontologies_changed": False,
+                "imports_or_promotions_performed": False,
+                "production_thresholds_changed": False,
+                "threshold_values_changed": False,
+                "model_weights_fit_or_refit": False,
+                "heldout_rows_used_for_training": False,
+                "heldout_rows_used_as_templates": False,
+                "source_text_or_label_fields_used_as_predictive_features": False,
+                "new_coordinates_fetched": False,
+                "predicted_geometry_scores_created_by_this_decision": False,
+                "approved_locator_sidecars_created_or_copied": bool(approved_rows),
+            },
+            "counts": {
+                "target_rows": len(row_decisions),
+                "approved_locator_copy_rows": len(approved_rows),
+                "rejected_locator_copy_rows": len(rejected_rows),
+                "blocked_preflight_rows": len(blocked_rows),
+                "sidecars_planned_for_audited_locator_dir": len(sidecars_by_path),
+                "ready_for_predicted_geometry_scoring_after_copy": sum(
+                    1
+                    for row in row_decisions
+                    if row["ready_for_predicted_geometry_scoring_after_copy"]
+                ),
+                "predicted_model_sequence_position_repairs": sum(
+                    int(row["predicted_model_sequence_position_repair_count"])
+                    for row in row_decisions
+                ),
+            },
+            "row_decisions": row_decisions,
+            "source_artifacts": {
+                "split_safe_template_check": _source_path_record(split_check_path),
+                "candidate_dir": str(candidate_dir),
+                "locator_dir": str(locator_dir),
+                "source_backed_materialization": (
+                    _source_path_record(source_backed_materialization_path)
+                    if source_backed_materialization_path is not None
+                    and source_backed_materialization_path.exists()
+                    else None
+                ),
+            },
+            "commands": {
+                "reproduce_this_decision": (
+                    "PYTHONPATH=src python -m catalytic_earth.cli "
+                    "build-family-panel-source-free-locator-copy-decision-mh067-mh068"
+                ),
+                "rerun_locator_schema_audit": (
+                    "PYTHONPATH=src python -m catalytic_earth.cli "
+                    "audit-family-panel-source-free-active-site-locator-schema"
+                ),
+                "rerun_source_free_manifest": (
+                    "PYTHONPATH=src python -m catalytic_earth.cli "
+                    "build-family-panel-source-free-predicted-geometry-sidecar-manifest"
+                ),
+                "rerun_source_free_retrieval": (
+                    "PYTHONPATH=src python -m catalytic_earth.cli "
+                    "build-family-panel-source-free-predicted-geometry-retrieval"
+                ),
+            },
+            "interpretation": {
+                "headline": (
+                    f"{len(approved_rows)}/{len(row_decisions)} mh_067/mh_068 "
+                    "candidate locators are approved for audited review-only copy."
+                ),
+                "next_action": (
+                    "Rerun the locator schema audit, then the source-free "
+                    "predicted-geometry manifest/retrieval. Keep the rows "
+                    "review-only and outside import, training, threshold, or "
+                    "label-factory use."
+                ),
+            },
+        },
+        sidecars_by_path,
+    )
+
+
+def build_family_panel_source_free_locator_copy_decision_mh067_mh068(
+    *,
+    candidate_dir: Path,
+    locator_dir: Path,
+    split_check_path: Path,
+    source_backed_materialization_path: Path | None = None,
+    approve: bool = True,
+) -> dict[str, Any]:
+    audit, _sidecars_by_path = (
+        _family_panel_source_free_locator_copy_decision_mh067_mh068_payload(
+            candidate_dir=candidate_dir,
+            locator_dir=locator_dir,
+            split_check_path=split_check_path,
+            source_backed_materialization_path=source_backed_materialization_path,
+            approve=approve,
+            created_utc=_utc_now_iso(),
+        )
+    )
+    return audit
+
+
+def _render_family_panel_source_free_locator_copy_decision_mh067_mh068_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Source-Free Locator Copy Decision: mh_067/mh_068 - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Decision class: {audit['decision_class']}",
+        f"- Operator decision: {audit['operator_decision']}",
+        f"- Target rows: {counts['target_rows']}",
+        f"- Approved locator-copy rows: {counts['approved_locator_copy_rows']}",
+        f"- Rejected locator-copy rows: {counts['rejected_locator_copy_rows']}",
+        f"- Blocked preflight rows: {counts['blocked_preflight_rows']}",
+        (
+            "- Ready for predicted-geometry scoring after copy: "
+            f"{counts['ready_for_predicted_geometry_scoring_after_copy']}"
+        ),
+        (
+            "- Predicted-model sequence-position repairs: "
+            f"{counts['predicted_model_sequence_position_repairs']}"
+        ),
+        "",
+        "## Row Decisions",
+        "",
+        "| row | candidate | approved sidecar | decision | violations | locators | repairs |",
+        "| --- | --- | --- | --- | --- | ---: | ---: |",
+    ]
+    for row in audit["row_decisions"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['candidate_path']} | "
+            f"{row['approved_locator_path']} | {row['decision']} | "
+            f"{', '.join(row['critical_violations'])} | "
+            f"{row['residue_locator_count']} | "
+            f"{row['predicted_model_sequence_position_repair_count']} |"
+        )
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- Review-only locator-copy decision.",
+        "- No labels, registries, ontologies, imports, thresholds, training data, source fetches, coordinate downloads, or model weights changed.",
+        "- Predicted-geometry scoring is a downstream review-only step and is not performed by this decision artifact.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_locator_copy_decision_mh067_mh068(
+    *,
+    candidate_dir: Path,
+    locator_dir: Path,
+    split_check_path: Path,
+    source_backed_materialization_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+    approve: bool = True,
+) -> dict[str, Any]:
+    created_utc = _utc_now_iso()
+    audit, sidecars_by_path = (
+        _family_panel_source_free_locator_copy_decision_mh067_mh068_payload(
+            candidate_dir=candidate_dir,
+            locator_dir=locator_dir,
+            split_check_path=split_check_path,
+            source_backed_materialization_path=source_backed_materialization_path,
+            approve=approve,
+            created_utc=created_utc,
+        )
+    )
+    locator_dir.mkdir(parents=True, exist_ok=True)
+    for sidecar_path, sidecar in sidecars_by_path.items():
+        path = Path(sidecar_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            json.dumps(sidecar, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+    for row in audit["row_decisions"]:
+        path = Path(row["approved_locator_path"])
+        row["approved_locator_sha256"] = _sha256(path) if path.exists() else None
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_locator_copy_decision_mh067_mh068_report(
                 audit
             ),
             encoding="utf-8",
@@ -17510,6 +18094,31 @@ def build_fold_augmented_family_panel_import_preview_blocker_gate(
         if blocker_rows
         else "family_panel_import_preview_blocker_gate_blocked_no_rows"
     )
+    priority_decision_order = sorted(
+        {
+            (
+                int(row["locator_decision_priority"])
+                if isinstance(row["locator_decision_priority"], int)
+                else 99,
+                str(row["locator_decision_class"]),
+            )
+            for row in priority_rows_with_decisions
+            if row["locator_decision_class"]
+        }
+    )
+    priority_first_decision_class = (
+        priority_decision_order[0][1] if priority_decision_order else None
+    )
+    priority_first_decision_text = None
+    if priority_first_decision_class is not None:
+        priority_first_decision = locator_decision_class_by_id.get(
+            priority_first_decision_class
+        )
+        if priority_first_decision is not None:
+            priority_first_decision_text = priority_first_decision.get(
+                "decision_needed"
+            )
+
     return {
         "artifact_id": (
             FOLD_AUGMENTED_FAMILY_PANEL_IMPORT_PREVIEW_BLOCKER_GATE_ID
@@ -17595,6 +18204,9 @@ def build_fold_augmented_family_panel_import_preview_blocker_gate(
             "priority_next_entry_ids": [
                 row["entry_id"] for row in priority_next_rows
             ],
+            "priority_next_decision_class_order": [
+                item[1] for item in priority_decision_order
+            ],
             "next_gate": (
                 "Pick one locator decision class from the joined human "
                 "decision matrix and record an explicit approval/rejection; "
@@ -17643,8 +18255,13 @@ def build_fold_augmented_family_panel_import_preview_blocker_gate(
             ),
             "next_action": (
                 "Start with the highest-priority locator decision class: "
-                "approve or reject copying the mh_067/mh_068 locators, then "
-                "rerun the locator schema audit before scoring."
+                f"{priority_first_decision_text} Then rerun the relevant "
+                "locator schema or candidate audit before scoring."
+                if priority_first_decision_text
+                else (
+                    "Resolve expert family-admission and family-promotion "
+                    "decisions before any import preview."
+                )
             ),
         },
     }

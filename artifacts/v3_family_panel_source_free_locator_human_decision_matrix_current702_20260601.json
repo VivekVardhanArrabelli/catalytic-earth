@@ -2,61 +2,44 @@
   "artifact_id": "v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601",
   "counts": {
     "approved_locator_copy_authorized_rows": 0,
-    "blocked_rows_tracked": 7,
-    "decision_classes": 5,
+    "blocked_rows_tracked": 5,
+    "decision_classes": 4,
     "ready_for_predicted_geometry_scoring": 0,
-    "rows_requiring_human_or_policy_decision": 7
+    "rows_requiring_human_or_policy_decision": 5
   },
-  "created_utc": "2026-06-01T17:16:51Z",
+  "created_utc": "2026-06-02T19:37:50Z",
   "decision_classes": [
     {
       "automation_can_continue_without_decision": false,
-      "decision_needed": "Approve or reject copying the vetted mh_067/mh_068 candidate locators into the audited locator directory.",
-      "entry_ids": [
-        "mh_067",
-        "mh_068"
-      ],
-      "main_risk_or_blocker": "manual scientific approval required, but no new coordinate fetch or heldout-template leak was found by the split-safe check",
-      "priority": 1,
-      "resolution_class": "human_locator_copy_approval_after_split_safe_pass",
-      "row_count": 2,
-      "row_next_actions": [
-        "Human review may approve copying the vetted candidate locator to the audited locator directory; rerun schema audit before scoring.",
-        "Human review may approve copying the vetted candidate locator to the audited locator directory; rerun schema audit before scoring."
-      ],
-      "safe_after_approval_action": "copy approved locator sidecars, rerun locator schema audit, then score source-free predicted geometry"
-    },
-    {
-      "automation_can_continue_without_decision": false,
-      "decision_needed": "Approve representative-accession equivalence for mh_065/mh_072 or provide matching frozen coordinates.",
+      "decision_needed": "Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
       "entry_ids": [
         "mh_065",
         "mh_072"
       ],
-      "main_risk_or_blocker": "selected PDB struct_ref accessions do not match the source UniProt accessions",
+      "main_risk_or_blocker": "selected PDB struct_ref accessions do not match the source UniProt accessions, and raw candidate positions fail requested-AFDB residue checks",
       "priority": 2,
       "resolution_class": "accession_equivalence_or_matching_coordinate_required",
       "row_count": 2,
       "row_next_actions": [
-        "Approve Q79MP6-to-Q932P5 representative equivalence or supply a frozen coordinate whose struct_ref maps to Q79MP6.",
-        "Approve P0A6P9-to-P08324 representative equivalence or supply a frozen coordinate whose struct_ref maps to P0A6P9."
+        "Provide a frozen coordinate whose struct_ref maps to Q79MP6, or an explicitly approved alignment/remapped locator from the selected representative coordinate; do not copy the raw selected-PDB locator.",
+        "Provide a frozen coordinate whose struct_ref maps to P0A6P9, or an explicitly approved alignment/remapped locator from the selected representative coordinate; do not copy the raw selected-PDB locator."
       ],
-      "safe_after_approval_action": "copy/score only if equivalence or matching-coordinate policy is explicit and recorded"
+      "safe_after_approval_action": "copy/score only if matching-coordinate policy or residue-remapped locator approval is explicit and recorded"
     },
     {
       "automation_can_continue_without_decision": false,
-      "decision_needed": "Define a glycoside/NAG specificity validator for 7QQF or approve a substrate-complex coordinate.",
+      "decision_needed": "Provide an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator for external_glycoside_panel.",
       "entry_ids": [
         "external_glycoside_panel"
       ],
-      "main_risk_or_blocker": "selected acetate locator was rejected as nonspecific for the glycoside panel",
+      "main_risk_or_blocker": "selected acetate was nonspecific and the dedicated 7QQF NAG validator rejected glycan-context retargeting",
       "priority": 3,
       "resolution_class": "ligand_specificity_validator_or_substrate_coordinate_required",
       "row_count": 1,
       "row_next_actions": [
-        "Build a dedicated frozen-7QQF glycoside/NAG validator or approve a substrate-complex coordinate before any locator copy."
+        "Provide an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator; do not copy the 7QQF acetate or NAG glycan-derived locator."
       ],
-      "safe_after_approval_action": "rerun ligand-specificity review before locator copy; do not use rejected acetate locator"
+      "safe_after_approval_action": "rerun locator schema/scoring only after a non-glycan locator or substrate-complex coordinate is approved"
     },
     {
       "automation_can_continue_without_decision": false,
@@ -69,22 +52,22 @@
       "resolution_class": "alternate_coordinate_fetch_approval_required",
       "row_count": 1,
       "row_next_actions": [
-        "Approve or reject fetching frozen alternate PDBs 3RKJ/3RKK/3SBL/3SFP/3SPU."
+        "Approve or reject fetching frozen alternate PDBs 3RKJ/3RKK/3SBL/3SFP/3SPU; no alternate CIF is cached locally."
       ],
       "safe_after_approval_action": "fetch approved coordinates, rerun candidate extraction, then repeat schema/guardrail review"
     },
     {
       "automation_can_continue_without_decision": false,
-      "decision_needed": "Choose a nonlabel locator strategy for Q59490 or authorize a frozen alternate source row/coordinate.",
+      "decision_needed": "Authorize an alternate source row/coordinate for Q59490 or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
       "entry_ids": [
         "secondary_probe::cobalamin_radical_rearrangement"
       ],
-      "main_risk_or_blocker": "selected coordinate has no non-water/non-metal ligand and no frozen alternate PDB in the current artifact set",
+      "main_risk_or_blocker": "selected/local coordinates have no non-water/non-metal anchor and no frozen alternate source is authorized",
       "priority": 5,
       "resolution_class": "nonlabel_locator_strategy_or_alternate_source_required",
       "row_count": 1,
       "row_next_actions": [
-        "Design a source-free nonlabel locator strategy or authorize a frozen alternate source row/coordinate."
+        "Authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators; current local coordinates provide no non-water/metal anchor."
       ],
       "safe_after_approval_action": "stage a new source-free locator path and rerun candidate/schema audits before scoring"
     }
@@ -99,12 +82,11 @@
     "review_only": true
   },
   "interpretation": {
-    "headline": "All seven source-free locator blockers are now policy or human-review decisions, not automation-discovery tasks.",
-    "next_action": "Pick exactly one decision class, record the approval/rejection, then rerun the relevant locator schema or candidate audit before any scoring.",
-    "recommended_first_decision": "Approve or reject mh_067/mh_068 locator copy, because their split-safe template check already passed and no coordinate fetch is needed."
+    "headline": "All 5 source-free locator blockers are now policy or human-review decisions, not automation-discovery tasks.",
+    "next_action": "Pick the highest-priority remaining decision class, record the approval/rejection, then rerun the relevant locator schema or candidate audit before any scoring.",
+    "recommended_first_decision": "Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy."
   },
   "recommended_decision_order": [
-    "human_locator_copy_approval_after_split_safe_pass",
     "accession_equivalence_or_matching_coordinate_required",
     "ligand_specificity_validator_or_substrate_coordinate_required",
     "alternate_coordinate_fetch_approval_required",
@@ -112,76 +94,68 @@
   ],
   "row_decisions": [
     {
+      "accession_equivalence_position_audit_path": "artifacts/v3_family_panel_source_free_locator_accession_equivalence_position_audit_mh065_mh072_current702_20260602.json",
+      "accession_equivalence_position_audit_sha256": "53a5d06da3112e661a4a5789c3ecb59c8b750c95d5da651737f88d54f00b2066",
       "entry_id": "mh_065",
-      "next_action": "Approve Q79MP6-to-Q932P5 representative equivalence or supply a frozen coordinate whose struct_ref maps to Q79MP6.",
+      "next_action": "Provide a frozen coordinate whose struct_ref maps to Q79MP6, or an explicitly approved alignment/remapped locator from the selected representative coordinate; do not copy the raw selected-PDB locator.",
       "previous_action_class": "uniprot_position_validation_required",
       "ready_for_predicted_geometry_scoring": false,
       "resolution_class": "accession_equivalence_or_matching_coordinate_required",
-      "resolution_status": "blocked_accession_mismatch",
+      "resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
       "source_accession": "uniprot:Q79MP6"
     },
     {
+      "accession_equivalence_position_audit_path": "artifacts/v3_family_panel_source_free_locator_accession_equivalence_position_audit_mh065_mh072_current702_20260602.json",
+      "accession_equivalence_position_audit_sha256": "53a5d06da3112e661a4a5789c3ecb59c8b750c95d5da651737f88d54f00b2066",
       "entry_id": "mh_072",
-      "next_action": "Approve P0A6P9-to-P08324 representative equivalence or supply a frozen coordinate whose struct_ref maps to P0A6P9.",
+      "next_action": "Provide a frozen coordinate whose struct_ref maps to P0A6P9, or an explicitly approved alignment/remapped locator from the selected representative coordinate; do not copy the raw selected-PDB locator.",
       "previous_action_class": "uniprot_position_validation_required",
       "ready_for_predicted_geometry_scoring": false,
       "resolution_class": "accession_equivalence_or_matching_coordinate_required",
-      "resolution_status": "blocked_accession_mismatch",
+      "resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
       "source_accession": "uniprot:P0A6P9"
     },
     {
-      "entry_id": "mh_067",
-      "next_action": "Human review may approve copying the vetted candidate locator to the audited locator directory; rerun schema audit before scoring.",
-      "previous_action_class": "split_safe_template_check_required",
-      "ready_for_predicted_geometry_scoring": false,
-      "resolution_class": "human_locator_copy_approval_after_split_safe_pass",
-      "resolution_status": "split_safe_passed_copy_not_authorized",
-      "source_accession": "uniprot:P00918"
-    },
-    {
-      "entry_id": "mh_068",
-      "next_action": "Human review may approve copying the vetted candidate locator to the audited locator directory; rerun schema audit before scoring.",
-      "previous_action_class": "split_safe_template_check_required",
-      "ready_for_predicted_geometry_scoring": false,
-      "resolution_class": "human_locator_copy_approval_after_split_safe_pass",
-      "resolution_status": "split_safe_passed_copy_not_authorized",
-      "source_accession": "uniprot:P15289"
-    },
-    {
       "entry_id": "external_glycoside_panel",
-      "next_action": "Build a dedicated frozen-7QQF glycoside/NAG validator or approve a substrate-complex coordinate before any locator copy.",
+      "glycoside_nag_validator_path": "artifacts/v3_family_panel_source_free_locator_glycoside_nag_validator_external_glycoside_panel_current702_20260602.json",
+      "glycoside_nag_validator_sha256": "3cbd82288605e6be8678bc85de3de5880ee79a7f97e005d14d0029caf63c42db",
+      "next_action": "Provide an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator; do not copy the 7QQF acetate or NAG glycan-derived locator.",
       "previous_action_class": "ligand_specificity_review_required",
       "ready_for_predicted_geometry_scoring": false,
       "resolution_class": "ligand_specificity_validator_or_substrate_coordinate_required",
-      "resolution_status": "selected_acetate_locator_rejected",
+      "resolution_status": "selected_acetate_and_nag_glycan_validator_rejected",
       "source_accession": "uniprot:Q6NSJ0"
     },
     {
+      "alternate_coordinate_local_cache_preflight_path": "artifacts/v3_family_panel_source_free_locator_mh064_alternate_coordinate_local_cache_preflight_current702_20260602.json",
+      "alternate_coordinate_local_cache_preflight_sha256": "6ada61506e5c67936da58ef66a37ac1af5bb1bc9ad3f5c8a53097d9001e47a39",
       "entry_id": "mh_064",
-      "next_action": "Approve or reject fetching frozen alternate PDBs 3RKJ/3RKK/3SBL/3SFP/3SPU.",
+      "next_action": "Approve or reject fetching frozen alternate PDBs 3RKJ/3RKK/3SBL/3SFP/3SPU; no alternate CIF is cached locally.",
       "previous_action_class": "alternate_coordinate_fetch_requires_manual_approval",
       "ready_for_predicted_geometry_scoring": false,
       "resolution_class": "alternate_coordinate_fetch_approval_required",
-      "resolution_status": "blocked_pending_fetch_policy",
+      "resolution_status": "blocked_pending_fetch_policy_no_local_alternates_cached",
       "source_accession": "uniprot:C7C422"
     },
     {
       "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
-      "next_action": "Design a source-free nonlabel locator strategy or authorize a frozen alternate source row/coordinate.",
+      "next_action": "Authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators; current local coordinates provide no non-water/metal anchor.",
+      "nonlabel_locator_feasibility_audit_path": "artifacts/v3_family_panel_source_free_locator_q59490_nonlabel_locator_feasibility_audit_current702_20260602.json",
+      "nonlabel_locator_feasibility_audit_sha256": "52328107af117bb8d534ed8b4777146e91a9f2519d1b3e8375c5688b44802197",
       "previous_action_class": "new_nonlabel_locator_strategy_required",
       "ready_for_predicted_geometry_scoring": false,
       "resolution_class": "nonlabel_locator_strategy_or_alternate_source_required",
-      "resolution_status": "blocked_no_ligand_no_alternate_pdb",
+      "resolution_status": "blocked_no_coordinate_anchor_nonlabel_strategy_required",
       "source_accession": "uniprot:Q59490"
     }
   ],
   "schema_version": "northstar_next_levers.v0.source_free_locator_human_decision_matrix",
-  "scope": "Compact decision matrix for the seven source-free locator blockers after automation discovery completed. This summarizes existing blocker artifacts only and authorizes no locator copy, coordinate fetch, or predicted-geometry scoring.",
+  "scope": "Compact decision matrix for the 5 source-free locator blockers after automation discovery completed. This summarizes existing blocker artifacts only and authorizes no locator copy, coordinate fetch, or predicted-geometry scoring.",
   "source_artifacts": {
     "blocker_resolution_status": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json",
-      "sha256": "ad377f429a4527f988c616432ae1a55f59ed870f8dacf01f0c4f6e931fe656cf"
+      "sha256": "80f5a5ea5b76c86a93289a72c92e795de199438366985ef3b9f9768ca3768491"
     },
     "remaining_blocker_action_queue": {
       "exists": true,

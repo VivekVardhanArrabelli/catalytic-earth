@@ -1,26 +1,28 @@
 {
   "artifact_id": "v3_fold_augmented_family_panel_source_check_completion_reconciliation_current702_20260602",
   "counts": {
-    "completed_review_only_no_label_change_rows": 9,
+    "completed_review_only_no_label_change_rows": 11,
     "completed_rows_by_panel": {
       "cobalamin_and_radical_rearrangement_panel": 2,
       "flavin_monooxygenase_and_flavin_oxygen_transfer": 3,
       "lipoamide_or_sulfur_transfer_redox_boundary": 1,
       "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 2,
-      "no_reliable_structure_metal_hydrolase_controls": 1
+      "no_reliable_structure_metal_hydrolase_controls": 3
     },
     "countable_label_candidate_count": 0,
     "family_promotion_ready_rows": 0,
     "import_preview_ready_rows": 0,
     "pending_rows_by_panel": {},
     "pending_source_check_rows": 0,
-    "source_check_artifact_paths_supplied": 9,
-    "source_check_artifacts_found": 9,
-    "source_check_queue_rows": 9
+    "source_check_artifact_paths_supplied": 11,
+    "source_check_artifacts_found": 11,
+    "source_check_queue_rows": 11
   },
-  "created_utc": "2026-06-02T18:18:19Z",
+  "created_utc": "2026-06-02T19:21:30Z",
   "decision": {
     "completed_source_check_entry_ids": [
+      "mh_068",
+      "mh_067",
       "mh_066",
       "m_csa:267",
       "m_csa:131",
@@ -49,11 +51,35 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "9/9 non-abstained family-panel source checks have completed review-only artifacts.",
+    "headline": "11/11 non-abstained family-panel source checks have completed review-only artifacts.",
     "next_action": "Run an explicit import-preview blocker gate before any family-panel label can count.",
     "result": "Completed source checks authorize no labels or imports; they only reduce the unresolved source-check queue."
   },
   "reconciliation_rows": [
+    {
+      "completion_status": "completed_review_only_no_label_change",
+      "countable_label_candidate": false,
+      "entry_id": "mh_068",
+      "family_promotion_ready": false,
+      "next_action": "Keep mh_068 review-only; a future import/admission packet would need explicit sulfatase/FGly boundary policy, duplicate/split review against the same-accession current702 anchor, and a row-specific bond-change sidecar before any label or family action.",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "queue_threshold_margin": 0.24875,
+      "rank": 1,
+      "ready_for_import_preview": false,
+      "source_check_result": "hold_as_review_only_sulfatase_fgly_boundary_same_accession_anchor"
+    },
+    {
+      "completion_status": "completed_review_only_no_label_change",
+      "countable_label_candidate": false,
+      "entry_id": "mh_067",
+      "family_promotion_ready": false,
+      "next_action": "Keep mh_067 review-only; a future import/admission packet would need explicit carbonic-anhydrase boundary policy, duplicate/split review against the same-accession current702 anchor, and a row-specific bond-change sidecar before any label or family action.",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "queue_threshold_margin": 0.2482,
+      "rank": 2,
+      "ready_for_import_preview": false,
+      "source_check_result": "hold_as_review_only_carbonic_anhydrase_boundary_same_accession_anchor"
+    },
     {
       "completion_status": "completed_review_only_no_label_change",
       "countable_label_candidate": false,
@@ -62,7 +88,7 @@
       "next_action": "Continue the source-free source-check queue with mh_073, then secondary_probe::radical_sam_enzyme; keep mh_066 review-only until a future explicitly authorized import/admission packet resolves bond-change, duplicate, split, and expert-review blockers.",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "queue_threshold_margin": 0.2218,
-      "rank": 1,
+      "rank": 3,
       "ready_for_import_preview": false,
       "source_check_result": "hold_as_review_only_metal_hydrolase_expansion_candidate"
     },
@@ -74,7 +100,7 @@
       "next_action": "Continue the source-check queue with m_csa:131; keep m_csa:267 as an OOS boundary control unless a future explicitly authorized Schiff-base aldol/cyclization panel is scoped with expert review.",
       "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
       "queue_threshold_margin": 0.12635,
-      "rank": 2,
+      "rank": 4,
       "ready_for_import_preview": false,
       "source_check_result": "keep_as_review_only_oos_boundary_control"
     },
@@ -86,7 +112,7 @@
       "next_action": "Continue the source-check queue with m_csa:750 or run an FMO subtype/hard-negative packet before any primary promotion discussion.",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "queue_threshold_margin": 0.11005,
-      "rank": 3,
+      "rank": 5,
       "ready_for_import_preview": false,
       "source_check_result": "confirm_secondary_fmo_probe_support_no_primary_promotion"
     },
@@ -98,7 +124,7 @@
       "next_action": "Continue the source-check queue with m_csa:551; treat m_csa:750 only as a future radical_flavin_fe_s_dehydratase candidate if a new authorized family panel is scoped.",
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "queue_threshold_margin": 0.1095,
-      "rank": 4,
+      "rank": 6,
       "ready_for_import_preview": false,
       "source_check_result": "keep_as_oos_boundary_and_future_radical_flavin_fe_s_candidate"
     },
@@ -110,7 +136,7 @@
       "next_action": "The non-abstained source-check queue is now complete; next work should either materialize geometry/fold-missing panel rows or run a dedicated FMO subtype/hard-negative packet before any promotion discussion.",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "queue_threshold_margin": 0.10305,
-      "rank": 5,
+      "rank": 7,
       "ready_for_import_preview": false,
       "source_check_result": "confirm_future_fmo_support_no_registry_change"
     },
@@ -122,7 +148,7 @@
       "next_action": "Keep m_csa:132 as secondary FMO support and update the FMO subtype/hard-negative packet/readout; do not promote FMO or edit registries.",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "queue_threshold_margin": 0.0971,
-      "rank": 6,
+      "rank": 8,
       "ready_for_import_preview": false,
       "source_check_result": "confirm_secondary_fmo_support_after_geometry_repair_no_primary_promotion"
     },
@@ -134,7 +160,7 @@
       "next_action": "Continue the source-free source-check queue with secondary_probe::radical_sam_enzyme; keep mh_073 review-only unless a future explicitly authorized GTPase-boundary policy revisits current702 metal_dependent_hydrolase scope.",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "queue_threshold_margin": 0.0462,
-      "rank": 7,
+      "rank": 9,
       "ready_for_import_preview": false,
       "source_check_result": "keep_as_review_only_gtpase_boundary_hard_negative"
     },
@@ -146,7 +172,7 @@
       "next_action": "After the three source-free source checks, return to clearing the seven remaining approved-locator blockers or build a stricter radical-SAM/cobalamin mechanism-locus sidecar before any family expansion decision.",
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "queue_threshold_margin": 0.0418,
-      "rank": 8,
+      "rank": 10,
       "ready_for_import_preview": false,
       "source_check_result": "confirm_radical_sam_locus_review_only_no_family_promotion"
     },
@@ -158,7 +184,7 @@
       "next_action": "Keep m_csa:116 as an OOS near-orphan/transhydrogenase control; prioritize source-backed sidecars for the remaining non-M-CSA missing-channel rows.",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "queue_threshold_margin": 0.016,
-      "rank": 9,
+      "rank": 11,
       "ready_for_import_preview": false,
       "source_check_result": "keep_as_review_only_oos_transhydrogenase_control"
     }
@@ -204,6 +230,16 @@
       },
       {
         "exists": true,
+        "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_068_current702_20260602.json",
+        "sha256": "0f27364763de4c7cfd0d9cec2743eb521fcc7bfeff5758c7f010ffa0604b963e"
+      },
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_067_current702_20260602.json",
+        "sha256": "6aae82fe76fa07fe70a5f7b1deaff48433f7f539d329382a1f247b44e9ec7a89"
+      },
+      {
+        "exists": true,
         "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json",
         "sha256": "39b588bf0dea2fd34a6b55d6d2618adb35685b5479125da9b4c8adc0526a01e8"
       },
@@ -216,7 +252,7 @@
     "source_check_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
-      "sha256": "e7d180af1f89fa61553a0c954c7b1a7e7e6f658571f0b397f6eeec7bb8bad3fa"
+      "sha256": "56db05c60cabe51024031cd694938fc0034f5fb84c4bc4cb087555769a75e223"
     }
   },
   "source_check_artifact_records": [
@@ -267,6 +303,20 @@
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json",
       "sha256": "415aef9e7c0ea39285a6f4a303345f7ea876e9a48810920ac5b298356c91c52e",
+      "status": "source_check_completed_review_only_no_label_change"
+    },
+    {
+      "entry_id": "mh_068",
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_068_current702_20260602.json",
+      "sha256": "0f27364763de4c7cfd0d9cec2743eb521fcc7bfeff5758c7f010ffa0604b963e",
+      "status": "source_check_completed_review_only_no_label_change"
+    },
+    {
+      "entry_id": "mh_067",
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_067_current702_20260602.json",
+      "sha256": "6aae82fe76fa07fe70a5f7b1deaff48433f7f539d329382a1f247b44e9ec7a89",
       "status": "source_check_completed_review_only_no_label_change"
     },
     {

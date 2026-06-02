@@ -3,16 +3,16 @@
   "blocked_ready_rows": [],
   "counts": {
     "abstained_at_fixed_research_threshold": 0,
-    "locator_schema_ready_rows": 3,
-    "manifest_ready_to_score_rows": 3,
+    "locator_schema_ready_rows": 5,
+    "manifest_ready_to_score_rows": 5,
     "manifest_target_rows": 10,
-    "precondition_blocked_rows_carried": 7,
-    "predicted_geometry_ok_rows": 3,
-    "retained_at_fixed_research_threshold": 3,
-    "retrieval_rows_emitted": 3,
+    "precondition_blocked_rows_carried": 5,
+    "predicted_geometry_ok_rows": 5,
+    "retained_at_fixed_research_threshold": 5,
+    "retrieval_rows_emitted": 5,
     "runtime_blocked_ready_rows": 0
   },
-  "created_utc": "2026-06-01T14:52:30Z",
+  "created_utc": "2026-06-02T19:15:47Z",
   "guardrails": {
     "benchmark_roles_used_for_score": false,
     "ec_or_rhea_ids_used_for_score": false,
@@ -30,8 +30,8 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "fixed_threshold_projection": "3/3 scored rows are retained by the existing combined_mean_geometry_fold research threshold.",
-    "headline": "3/3 ready rows now have source-free predicted-geometry retrieval scores.",
+    "fixed_threshold_projection": "5/5 scored rows are retained by the existing combined_mean_geometry_fold research threshold.",
+    "headline": "5/5 ready rows now have source-free predicted-geometry retrieval scores.",
     "next_action": "Refresh the review-only family-panel readout to consume these source-free predicted-geometry scores, while keeping all rows non-importable and outside threshold selection."
   },
   "precondition_blocked_rows": [
@@ -70,24 +70,6 @@
       "entry_id": "mh_065",
       "rank": 6,
       "source_accession": "uniprot:Q79MP6"
-    },
-    {
-      "blockers": [
-        "approved_source_free_active_site_locator_missing",
-        "source_backed_sidecar_lacks_residue_locator"
-      ],
-      "entry_id": "mh_067",
-      "rank": 8,
-      "source_accession": "uniprot:P00918"
-    },
-    {
-      "blockers": [
-        "approved_source_free_active_site_locator_missing",
-        "source_backed_sidecar_lacks_residue_locator"
-      ],
-      "entry_id": "mh_068",
-      "rank": 9,
-      "source_accession": "uniprot:P15289"
     },
     {
       "blockers": [
@@ -1444,15 +1426,1077 @@
         },
         "split_assignment": "review_only_family_panel",
         "status": "ok"
+      },
+      {
+        "accession": "P00918",
+        "benchmark_role": null,
+        "coordinate_swap": {
+          "entry_names_used_for_score": false,
+          "from": "human_approved_source_free_sequence_position_locators",
+          "labels_used_for_score": false,
+          "sequence_positions_used": true,
+          "source_text_used": false,
+          "structure_positions_used_for_predicted_model": false,
+          "to": "alphafold_db_local_uniprot_model"
+        },
+        "entry_id": "mh_067",
+        "entry_name": null,
+        "experimental_pdb_id": "12CA",
+        "ligand_context": {
+          "cofactor_families": [],
+          "distance_cutoff_angstrom": 6.0,
+          "ligand_codes": [],
+          "proximal_ligands": [],
+          "structure_cofactor_families": [],
+          "structure_ligand_codes": [],
+          "structure_ligands": []
+        },
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "missing_position_details": [],
+        "missing_positions": 0,
+        "pairwise_distances_angstrom": [
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 8.178,
+            "left": "mh_067:source_free_locator:1",
+            "right": "mh_067:source_free_locator:2"
+          },
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 7.149,
+            "left": "mh_067:source_free_locator:1",
+            "right": "mh_067:source_free_locator:3"
+          },
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 5.436,
+            "left": "mh_067:source_free_locator:2",
+            "right": "mh_067:source_free_locator:3"
+          }
+        ],
+        "pdb_id": "AF-P00918-F1-model_v6",
+        "pocket_context": {
+          "descriptors": {
+            "aromatic_fraction": 0.3421,
+            "charge_balance": 0.079,
+            "hydrophobic_fraction": 0.3421,
+            "mean_min_distance_to_active_site": 4.8518,
+            "negative_fraction": 0.0789,
+            "polar_fraction": 0.2632,
+            "positive_fraction": 0.1579,
+            "sulfur_fraction": 0.0
+          },
+          "distance_cutoff_angstrom": 8.0,
+          "nearby_residue_count": 38,
+          "nearby_residue_sites": [
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 0.0,
+              "resid": "94"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 0.0,
+              "resid": "96"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 0.0,
+              "resid": "119"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 2.433,
+              "resid": "95"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 2.447,
+              "resid": "120"
+            },
+            {
+              "atom_count": 14,
+              "chain_name": "A",
+              "code": "TRP",
+              "min_distance_to_active_site": 2.453,
+              "resid": "97"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 2.464,
+              "resid": "118"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 2.478,
+              "resid": "93"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASN",
+              "min_distance_to_active_site": 3.47,
+              "resid": "243"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 3.511,
+              "resid": "143"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 3.538,
+              "resid": "66"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 3.879,
+              "resid": "117"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 4.14,
+              "resid": "142"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASN",
+              "min_distance_to_active_site": 4.224,
+              "resid": "67"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLN",
+              "min_distance_to_active_site": 4.249,
+              "resid": "92"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 4.327,
+              "resid": "104"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 4.803,
+              "resid": "144"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.009,
+              "resid": "121"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 5.228,
+              "resid": "106"
+            },
+            {
+              "atom_count": 14,
+              "chain_name": "A",
+              "code": "TRP",
+              "min_distance_to_active_site": 5.297,
+              "resid": "244"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.301,
+              "resid": "68"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 5.426,
+              "resid": "116"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ILE",
+              "min_distance_to_active_site": 5.427,
+              "resid": "145"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 5.442,
+              "resid": "65"
+            },
+            {
+              "atom_count": 14,
+              "chain_name": "A",
+              "code": "TRP",
+              "min_distance_to_active_site": 5.637,
+              "resid": "208"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.015,
+              "resid": "98"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 6.195,
+              "resid": "105"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 6.693,
+              "resid": "64"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 6.757,
+              "resid": "115"
+            },
+            {
+              "atom_count": 12,
+              "chain_name": "A",
+              "code": "TYR",
+              "min_distance_to_active_site": 6.964,
+              "resid": "7"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 6.997,
+              "resid": "242"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 7.051,
+              "resid": "225"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "ARG",
+              "min_distance_to_active_site": 7.352,
+              "resid": "245"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 7.752,
+              "resid": "122"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 7.79,
+              "resid": "198"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ILE",
+              "min_distance_to_active_site": 7.8,
+              "resid": "209"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 7.872,
+              "resid": "141"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 7.947,
+              "resid": "60"
+            }
+          ],
+          "residue_code_counts": {
+            "ALA": 4,
+            "ARG": 1,
+            "ASN": 2,
+            "ASP": 1,
+            "GLN": 1,
+            "GLU": 2,
+            "GLY": 3,
+            "HIS": 5,
+            "ILE": 2,
+            "LEU": 4,
+            "PHE": 4,
+            "SER": 1,
+            "THR": 1,
+            "TRP": 3,
+            "TYR": 1,
+            "VAL": 3
+          }
+        },
+        "predicted_structure_source": {
+          "backend": "alphafold_db_local_cif",
+          "coordinate_record_role": "alphafolddb_predicted_cif",
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v6.cif",
+          "raw_coordinates_committed": true,
+          "sha256": "173c4f1fa81ffb1a288c881040217d1473ed2d08cd792671252ee116cac10c7d",
+          "size_bytes": 252675
+        },
+        "residue_count": 3,
+        "residues": [
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 4.556,
+              "y": 5.389,
+              "z": -5.704
+            },
+            "centroid": {
+              "x": 3.305,
+              "y": 4.407,
+              "z": -5.679
+            },
+            "chain_name": null,
+            "code": "HIS",
+            "locator_confidence": 0.25,
+            "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+            "resid": "96",
+            "residue_node_id": "mh_067:source_free_locator:1",
+            "roles": [
+              "metal_ligand_or_water_activator_candidate",
+              "structure_local_ligand_geometry_without_source_text"
+            ],
+            "sequence_position_uniprot_id": "P00918"
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 1.407,
+              "y": 2.42,
+              "z": 1.235
+            },
+            "centroid": {
+              "x": 0.842,
+              "y": 2.521,
+              "z": -0.311
+            },
+            "chain_name": null,
+            "code": "HIS",
+            "locator_confidence": 0.25,
+            "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+            "resid": "119",
+            "residue_node_id": "mh_067:source_free_locator:2",
+            "roles": [
+              "metal_ligand_or_water_activator_candidate",
+              "structure_local_ligand_geometry_without_source_text"
+            ],
+            "sequence_position_uniprot_id": "P00918"
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 6.131,
+              "y": 0.542,
+              "z": -0.69
+            },
+            "centroid": {
+              "x": 4.327,
+              "y": 0.154,
+              "z": -1.413
+            },
+            "chain_name": null,
+            "code": "HIS",
+            "locator_confidence": 0.25,
+            "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+            "resid": "94",
+            "residue_node_id": "mh_067:source_free_locator:3",
+            "roles": [
+              "metal_ligand_or_water_activator_candidate",
+              "structure_local_ligand_geometry_without_source_text"
+            ],
+            "sequence_position_uniprot_id": "P00918"
+          }
+        ],
+        "resolved_residue_count": 3,
+        "sequence_id": "P00918",
+        "source_free_locator_sidecar": {
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+          "manual_review_approval": {
+            "approval_basis": [
+              "candidate_integrity_passed",
+              "at_least_two_sequence_position_locators",
+              "split_safe_template_check_passed_no_heldout_same_accession_template",
+              "forbidden_predictive_feature_audit_clear",
+              "no_coordinate_fetch_required"
+            ],
+            "approval_scope": "source_free_active_site_locator_only",
+            "approval_source": "automation_exact_next_action_2026-06-02_after_split_safe_pass",
+            "approved_by": "Codex automation for catalytic-earth-lever-3-2-forward-push",
+            "approved_utc": "2026-06-02T19:11:47Z",
+            "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+            "candidate_sha256": "4dd8048ad5e72492502f86949758eff6373b85de7ebc76c3717fdb00fcd70bd3",
+            "imports_or_promotions_performed": false,
+            "labels_registries_ontologies_changed": false,
+            "predictive_fields_allowed": false,
+            "production_thresholds_changed": false,
+            "split_safe_template_check_path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
+            "split_safe_template_check_sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9"
+          },
+          "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_067_P00918.json",
+          "sha256": "a0ccc8b5b4f1cb0432880ef881e9910fc18c4d91ae68bf8b7ad903386cdd83e9"
+        },
+        "split_assignment": "review_only_family_panel",
+        "status": "ok"
+      },
+      {
+        "accession": "P15289",
+        "benchmark_role": null,
+        "coordinate_swap": {
+          "entry_names_used_for_score": false,
+          "from": "human_approved_source_free_sequence_position_locators",
+          "labels_used_for_score": false,
+          "sequence_positions_used": true,
+          "source_text_used": false,
+          "structure_positions_used_for_predicted_model": false,
+          "to": "alphafold_db_local_uniprot_model"
+        },
+        "entry_id": "mh_068",
+        "entry_name": null,
+        "experimental_pdb_id": "1AUK",
+        "ligand_context": {
+          "cofactor_families": [],
+          "distance_cutoff_angstrom": 6.0,
+          "ligand_codes": [],
+          "proximal_ligands": [],
+          "structure_cofactor_families": [],
+          "structure_ligand_codes": [],
+          "structure_ligands": []
+        },
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "missing_position_details": [],
+        "missing_positions": 0,
+        "pairwise_distances_angstrom": [
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 6.537,
+            "left": "mh_068:source_free_locator:1",
+            "right": "mh_068:source_free_locator:2"
+          },
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 5.708,
+            "left": "mh_068:source_free_locator:1",
+            "right": "mh_068:source_free_locator:3"
+          },
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 3.839,
+            "left": "mh_068:source_free_locator:1",
+            "right": "mh_068:source_free_locator:4"
+          },
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 3.88,
+            "left": "mh_068:source_free_locator:2",
+            "right": "mh_068:source_free_locator:3"
+          },
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 5.506,
+            "left": "mh_068:source_free_locator:2",
+            "right": "mh_068:source_free_locator:4"
+          },
+          {
+            "coordinate_type": "ca_or_centroid",
+            "distance": 7.061,
+            "left": "mh_068:source_free_locator:3",
+            "right": "mh_068:source_free_locator:4"
+          }
+        ],
+        "pdb_id": "AF-P15289-F1-model_v6",
+        "pocket_context": {
+          "descriptors": {
+            "aromatic_fraction": 0.1569,
+            "charge_balance": 0.0197,
+            "hydrophobic_fraction": 0.2549,
+            "mean_min_distance_to_active_site": 5.2373,
+            "negative_fraction": 0.1176,
+            "polar_fraction": 0.2941,
+            "positive_fraction": 0.1373,
+            "sulfur_fraction": 0.0196
+          },
+          "distance_cutoff_angstrom": 8.0,
+          "nearby_residue_count": 51,
+          "nearby_residue_sites": [
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASN",
+              "min_distance_to_active_site": 0.0,
+              "resid": "282"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 0.0,
+              "resid": "29"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 0.0,
+              "resid": "30"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 0.0,
+              "resid": "281"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 2.421,
+              "resid": "283"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 2.458,
+              "resid": "280"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 2.473,
+              "resid": "28"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 2.477,
+              "resid": "31"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 3.377,
+              "resid": "27"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 3.443,
+              "resid": "312"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 3.621,
+              "resid": "72"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 3.872,
+              "resid": "227"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 3.939,
+              "resid": "309"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "ARG",
+              "min_distance_to_active_site": 3.965,
+              "resid": "73"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 4.2,
+              "resid": "228"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 4.275,
+              "resid": "64"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 4.486,
+              "resid": "225"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 4.617,
+              "resid": "67"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "PRO",
+              "min_distance_to_active_site": 4.803,
+              "resid": "284"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 4.83,
+              "resid": "229"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 4.874,
+              "resid": "226"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 5.112,
+              "resid": "68"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 5.126,
+              "resid": "285"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.285,
+              "resid": "66"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 5.437,
+              "resid": "32"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "LYS",
+              "min_distance_to_active_site": 5.508,
+              "resid": "123"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "LYS",
+              "min_distance_to_active_site": 5.541,
+              "resid": "302"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.782,
+              "resid": "310"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "CYS",
+              "min_distance_to_active_site": 5.865,
+              "resid": "69"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 5.925,
+              "resid": "279"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 6.515,
+              "resid": "247"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.587,
+              "resid": "308"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "ARG",
+              "min_distance_to_active_site": 6.792,
+              "resid": "311"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.804,
+              "resid": "293"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.89,
+              "resid": "303"
+            },
+            {
+              "atom_count": 12,
+              "chain_name": "A",
+              "code": "TYR",
+              "min_distance_to_active_site": 6.967,
+              "resid": "230"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 7.008,
+              "resid": "35"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 7.024,
+              "resid": "333"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 7.075,
+              "resid": "224"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 7.089,
+              "resid": "76"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 7.105,
+              "resid": "254"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 7.195,
+              "resid": "301"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLN",
+              "min_distance_to_active_site": 7.665,
+              "resid": "232"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "PRO",
+              "min_distance_to_active_site": 7.724,
+              "resid": "313"
+            },
+            {
+              "atom_count": 12,
+              "chain_name": "A",
+              "code": "TYR",
+              "min_distance_to_active_site": 7.727,
+              "resid": "222"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 7.747,
+              "resid": "62"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 7.819,
+              "resid": "70"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "PRO",
+              "min_distance_to_active_site": 7.831,
+              "resid": "71"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 7.882,
+              "resid": "292"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 7.963,
+              "resid": "304"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 7.981,
+              "resid": "150"
+            }
+          ],
+          "residue_code_counts": {
+            "ALA": 3,
+            "ARG": 2,
+            "ASN": 1,
+            "ASP": 4,
+            "CYS": 1,
+            "GLN": 1,
+            "GLU": 2,
+            "GLY": 8,
+            "HIS": 3,
+            "LEU": 4,
+            "LYS": 2,
+            "PHE": 3,
+            "PRO": 3,
+            "SER": 5,
+            "THR": 4,
+            "TYR": 2,
+            "VAL": 3
+          }
+        },
+        "predicted_structure_source": {
+          "backend": "alphafold_db_local_cif",
+          "coordinate_record_role": "alphafolddb_predicted_cif",
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P15289-F1-model_v6.cif",
+          "raw_coordinates_committed": true,
+          "sha256": "92a63ccadbe5014407a5b2b735961c5b44fa3a0ebe8b2a97c79c4a486d3880e4",
+          "size_bytes": 448908
+        },
+        "residue_count": 4,
+        "residues": [
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": -4.699,
+              "y": 3.074,
+              "z": -4.073
+            },
+            "centroid": {
+              "x": -4.192,
+              "y": 2.327,
+              "z": -4.873
+            },
+            "chain_name": null,
+            "code": "ASP",
+            "locator_confidence": 0.25,
+            "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+            "resid": "281",
+            "residue_node_id": "mh_068:source_free_locator:1",
+            "roles": [
+              "metal_ligand_or_water_activator_candidate",
+              "structure_local_ligand_geometry_without_source_text"
+            ],
+            "sequence_position_uniprot_id": "P15289"
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": -6.33,
+              "y": 1.432,
+              "z": -10.187
+            },
+            "centroid": {
+              "x": -5.72,
+              "y": 0.949,
+              "z": -10.829
+            },
+            "chain_name": null,
+            "code": "ASP",
+            "locator_confidence": 0.25,
+            "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+            "resid": "30",
+            "residue_node_id": "mh_068:source_free_locator:2",
+            "roles": [
+              "metal_ligand_or_water_activator_candidate",
+              "structure_local_ligand_geometry_without_source_text"
+            ],
+            "sequence_position_uniprot_id": "P15289"
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": -7.022,
+              "y": -1.04,
+              "z": -7.277
+            },
+            "centroid": {
+              "x": -6.428,
+              "y": -1.81,
+              "z": -7.751
+            },
+            "chain_name": null,
+            "code": "ASP",
+            "locator_confidence": 0.25,
+            "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+            "resid": "29",
+            "residue_node_id": "mh_068:source_free_locator:3",
+            "roles": [
+              "metal_ligand_or_water_activator_candidate",
+              "structure_local_ligand_geometry_without_source_text"
+            ],
+            "sequence_position_uniprot_id": "P15289"
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": -3.893,
+              "y": 5.288,
+              "z": -7.104
+            },
+            "centroid": {
+              "x": -3.59,
+              "y": 4.215,
+              "z": -7.86
+            },
+            "chain_name": null,
+            "code": "ASN",
+            "locator_confidence": 0.25,
+            "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+            "resid": "282",
+            "residue_node_id": "mh_068:source_free_locator:4",
+            "roles": [
+              "metal_proximal_contact_candidate",
+              "structure_local_ligand_geometry_without_source_text"
+            ],
+            "sequence_position_uniprot_id": "P15289"
+          }
+        ],
+        "resolved_residue_count": 4,
+        "sequence_id": "P15289",
+        "source_free_locator_sidecar": {
+          "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+          "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+          "manual_review_approval": {
+            "approval_basis": [
+              "candidate_integrity_passed",
+              "at_least_two_sequence_position_locators",
+              "split_safe_template_check_passed_no_heldout_same_accession_template",
+              "forbidden_predictive_feature_audit_clear",
+              "no_coordinate_fetch_required"
+            ],
+            "approval_scope": "source_free_active_site_locator_only",
+            "approval_source": "automation_exact_next_action_2026-06-02_after_split_safe_pass",
+            "approved_by": "Codex automation for catalytic-earth-lever-3-2-forward-push",
+            "approved_utc": "2026-06-02T19:11:47Z",
+            "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_068_P15289.json",
+            "candidate_sha256": "b3fe6d9deb6d5d7cebc11d7af11019114b08d2f04a483579d37a3f391f696096",
+            "imports_or_promotions_performed": false,
+            "labels_registries_ontologies_changed": false,
+            "predictive_fields_allowed": false,
+            "production_thresholds_changed": false,
+            "split_safe_template_check_path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
+            "split_safe_template_check_sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9"
+          },
+          "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_068_P15289.json",
+          "sha256": "d3a7ceaaa5e3ad2fd183cbead41b244c0111270490c25ed29036b0dc1319fcc4"
+        },
+        "split_assignment": "review_only_family_panel",
+        "status": "ok"
       }
     ],
     "metadata": {
       "artifact": "source_free_family_panel_predicted_geometry_features",
-      "entry_count": 3,
+      "entry_count": 5,
       "entry_names_used_for_score": false,
       "labels_used_for_score": false,
       "mechanism_text_snippets_used": false,
-      "ok_entry_count": 3,
+      "ok_entry_count": 5,
       "panel_ids_used_for_score": false,
       "schema_version": "predicted_geometry_features.source_free_review.v1",
       "source": "approved source-free locator sidecars plus local AFDB CIFs"
@@ -1465,7 +2509,7 @@
         "mechanism_text_review_context_counterevidence": "Curated review-context counterevidence from mechanism text; review/abstention only and not valid external/orphan safety evidence.",
         "structure_local_evidence_counterevidence": "Predictive safety counterevidence from active-site residues, local ligands, pocket descriptors, or compactness."
       },
-      "entry_count": 3,
+      "entry_count": 5,
       "fingerprint_count": 8,
       "leakage_policy": {
         "excluded_predictive_fields": [
@@ -3724,6 +4768,1765 @@
             "text_or_label_fields_used_for_score": false
           }
         ]
+      },
+      {
+        "entry_id": "mh_067",
+        "entry_name": null,
+        "ligand_context": {
+          "cofactor_families": [],
+          "distance_cutoff_angstrom": 6.0,
+          "ligand_codes": [],
+          "proximal_ligands": [],
+          "structure_cofactor_families": [],
+          "structure_ligand_codes": [],
+          "structure_ligands": []
+        },
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "pdb_id": "AF-P00918-F1-model_v6",
+        "pocket_context": {
+          "descriptors": {
+            "aromatic_fraction": 0.3421,
+            "charge_balance": 0.079,
+            "hydrophobic_fraction": 0.3421,
+            "mean_min_distance_to_active_site": 4.8518,
+            "negative_fraction": 0.0789,
+            "polar_fraction": 0.2632,
+            "positive_fraction": 0.1579,
+            "sulfur_fraction": 0.0
+          },
+          "distance_cutoff_angstrom": 8.0,
+          "nearby_residue_count": 38,
+          "nearby_residue_sites": [
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 0.0,
+              "resid": "94"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 0.0,
+              "resid": "96"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 0.0,
+              "resid": "119"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 2.433,
+              "resid": "95"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 2.447,
+              "resid": "120"
+            },
+            {
+              "atom_count": 14,
+              "chain_name": "A",
+              "code": "TRP",
+              "min_distance_to_active_site": 2.453,
+              "resid": "97"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 2.464,
+              "resid": "118"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 2.478,
+              "resid": "93"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASN",
+              "min_distance_to_active_site": 3.47,
+              "resid": "243"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 3.511,
+              "resid": "143"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 3.538,
+              "resid": "66"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 3.879,
+              "resid": "117"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 4.14,
+              "resid": "142"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASN",
+              "min_distance_to_active_site": 4.224,
+              "resid": "67"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLN",
+              "min_distance_to_active_site": 4.249,
+              "resid": "92"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 4.327,
+              "resid": "104"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 4.803,
+              "resid": "144"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.009,
+              "resid": "121"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 5.228,
+              "resid": "106"
+            },
+            {
+              "atom_count": 14,
+              "chain_name": "A",
+              "code": "TRP",
+              "min_distance_to_active_site": 5.297,
+              "resid": "244"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.301,
+              "resid": "68"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 5.426,
+              "resid": "116"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ILE",
+              "min_distance_to_active_site": 5.427,
+              "resid": "145"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 5.442,
+              "resid": "65"
+            },
+            {
+              "atom_count": 14,
+              "chain_name": "A",
+              "code": "TRP",
+              "min_distance_to_active_site": 5.637,
+              "resid": "208"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.015,
+              "resid": "98"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 6.195,
+              "resid": "105"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 6.693,
+              "resid": "64"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 6.757,
+              "resid": "115"
+            },
+            {
+              "atom_count": 12,
+              "chain_name": "A",
+              "code": "TYR",
+              "min_distance_to_active_site": 6.964,
+              "resid": "7"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 6.997,
+              "resid": "242"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 7.051,
+              "resid": "225"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "ARG",
+              "min_distance_to_active_site": 7.352,
+              "resid": "245"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 7.752,
+              "resid": "122"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 7.79,
+              "resid": "198"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ILE",
+              "min_distance_to_active_site": 7.8,
+              "resid": "209"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 7.872,
+              "resid": "141"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 7.947,
+              "resid": "60"
+            }
+          ],
+          "residue_code_counts": {
+            "ALA": 4,
+            "ARG": 1,
+            "ASN": 2,
+            "ASP": 1,
+            "GLN": 1,
+            "GLU": 2,
+            "GLY": 3,
+            "HIS": 5,
+            "ILE": 2,
+            "LEU": 4,
+            "PHE": 4,
+            "SER": 1,
+            "THR": 1,
+            "TRP": 3,
+            "TYR": 1,
+            "VAL": 3
+          }
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "HIS"
+        ],
+        "resolved_residue_count": 3,
+        "status": "ok",
+        "top_fingerprints": [
+          {
+            "cofactor_context_score": 1.0,
+            "cofactor_evidence_level": "role_inferred",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 2
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.72,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.72,
+                "reason": "role_inferred_metal_missing_water_activation_role"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.92,
+                "reason": "role_inferred_metal_aromatic_positive_pocket"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles",
+                  "mechanism_text"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [
+                  "mechanism_text_review_context_condition_only",
+                  "mechanism_text_not_required_for_external_orphan_safety"
+                ],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.72,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles"
+                ],
+                "reason": "role_inferred_metal_missing_water_activation_role",
+                "review_context_fields": [
+                  "mechanism_text"
+                ],
+                "rule_id": "metal_dependent_hydrolase:role_inferred_metal_missing_water_activation_role"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "pocket_context"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.92,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "pocket_context"
+                ],
+                "reason": "role_inferred_metal_aromatic_positive_pocket",
+                "review_context_fields": [],
+                "rule_id": "metal_dependent_hydrolase:role_inferred_metal_aromatic_positive_pocket"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "role_inferred_metal_aromatic_positive_pocket",
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons": [
+              "role_inferred_metal_aromatic_positive_pocket",
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "role_inferred_metal_aromatic_positive_pocket",
+                "role_inferred_metal_missing_water_activation_role"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "fingerprint_name": "Metal-dependent hydrolase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Asp/Glu/Cys",
+                "required_role": "metal_ligand",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Asp/Glu",
+                "required_role": "water_activator",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.6667,
+            "role_match_fraction": 0.0,
+            "score": 0.3755,
+            "substrate_pocket_score": 0.1882,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.65,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.65,
+                "reason": "absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.65,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_heme_context",
+                "review_context_fields": [],
+                "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_heme_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "heme_peroxidase_oxidase",
+            "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Cys/Tyr",
+                "required_role": "heme_ligand",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Arg/Asp",
+                "required_role": "acid_base",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "aromatic_or_redox_residue",
+                "required_role": "electron_transfer_path",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 1.0,
+            "role_match_fraction": 0.0,
+            "score": 0.3113,
+            "substrate_pocket_score": 0.3263,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "flavin_binder",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Glu/Cys/Tyr/Arg",
+                "required_role": "redox_acid_base",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "aromatic_or_redox_residue",
+                "required_role": "electron_transfer_path",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 1.0,
+            "role_match_fraction": 0.0,
+            "score": 0.303,
+            "substrate_pocket_score": 0.5,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.25,
+            "cofactor_evidence_level": "not_required",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.7,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.7,
+                "reason": "ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.7,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "residue_roles"
+                ],
+                "reason": "ser_his_seed_missing_triad_coherence",
+                "review_context_fields": [],
+                "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "ser_his_seed_missing_triad_coherence"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His",
+                "required_role": "general_base",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 0.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1755,
+            "substrate_pocket_score": 0.7771,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 2
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "ligand_context"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "ligand_context"
+                ],
+                "reason": "nad_only_or_nonflavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context",
+                "nad_only_or_nonflavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "flavin_monooxygenase",
+            "fingerprint_name": "Flavin-dependent monooxygenase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "nadph_binding",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1682,
+            "substrate_pocket_score": 0.5572,
+            "text_or_label_fields_used_for_score": false
+          }
+        ]
+      },
+      {
+        "entry_id": "mh_068",
+        "entry_name": null,
+        "ligand_context": {
+          "cofactor_families": [],
+          "distance_cutoff_angstrom": 6.0,
+          "ligand_codes": [],
+          "proximal_ligands": [],
+          "structure_cofactor_families": [],
+          "structure_ligand_codes": [],
+          "structure_ligands": []
+        },
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "pdb_id": "AF-P15289-F1-model_v6",
+        "pocket_context": {
+          "descriptors": {
+            "aromatic_fraction": 0.1569,
+            "charge_balance": 0.0197,
+            "hydrophobic_fraction": 0.2549,
+            "mean_min_distance_to_active_site": 5.2373,
+            "negative_fraction": 0.1176,
+            "polar_fraction": 0.2941,
+            "positive_fraction": 0.1373,
+            "sulfur_fraction": 0.0196
+          },
+          "distance_cutoff_angstrom": 8.0,
+          "nearby_residue_count": 51,
+          "nearby_residue_sites": [
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASN",
+              "min_distance_to_active_site": 0.0,
+              "resid": "282"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 0.0,
+              "resid": "29"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 0.0,
+              "resid": "30"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 0.0,
+              "resid": "281"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 2.421,
+              "resid": "283"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 2.458,
+              "resid": "280"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 2.473,
+              "resid": "28"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 2.477,
+              "resid": "31"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 3.377,
+              "resid": "27"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 3.443,
+              "resid": "312"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 3.621,
+              "resid": "72"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 3.872,
+              "resid": "227"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 3.939,
+              "resid": "309"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "ARG",
+              "min_distance_to_active_site": 3.965,
+              "resid": "73"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 4.2,
+              "resid": "228"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 4.275,
+              "resid": "64"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 4.486,
+              "resid": "225"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 4.617,
+              "resid": "67"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "PRO",
+              "min_distance_to_active_site": 4.803,
+              "resid": "284"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 4.83,
+              "resid": "229"
+            },
+            {
+              "atom_count": 10,
+              "chain_name": "A",
+              "code": "HIS",
+              "min_distance_to_active_site": 4.874,
+              "resid": "226"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 5.112,
+              "resid": "68"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLU",
+              "min_distance_to_active_site": 5.126,
+              "resid": "285"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.285,
+              "resid": "66"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 5.437,
+              "resid": "32"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "LYS",
+              "min_distance_to_active_site": 5.508,
+              "resid": "123"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "LYS",
+              "min_distance_to_active_site": 5.541,
+              "resid": "302"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "VAL",
+              "min_distance_to_active_site": 5.782,
+              "resid": "310"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "CYS",
+              "min_distance_to_active_site": 5.865,
+              "resid": "69"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 5.925,
+              "resid": "279"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 6.515,
+              "resid": "247"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.587,
+              "resid": "308"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "ARG",
+              "min_distance_to_active_site": 6.792,
+              "resid": "311"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.804,
+              "resid": "293"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 6.89,
+              "resid": "303"
+            },
+            {
+              "atom_count": 12,
+              "chain_name": "A",
+              "code": "TYR",
+              "min_distance_to_active_site": 6.967,
+              "resid": "230"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "ASP",
+              "min_distance_to_active_site": 7.008,
+              "resid": "35"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 7.024,
+              "resid": "333"
+            },
+            {
+              "atom_count": 5,
+              "chain_name": "A",
+              "code": "ALA",
+              "min_distance_to_active_site": 7.075,
+              "resid": "224"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 7.089,
+              "resid": "76"
+            },
+            {
+              "atom_count": 8,
+              "chain_name": "A",
+              "code": "LEU",
+              "min_distance_to_active_site": 7.105,
+              "resid": "254"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 7.195,
+              "resid": "301"
+            },
+            {
+              "atom_count": 9,
+              "chain_name": "A",
+              "code": "GLN",
+              "min_distance_to_active_site": 7.665,
+              "resid": "232"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "PRO",
+              "min_distance_to_active_site": 7.724,
+              "resid": "313"
+            },
+            {
+              "atom_count": 12,
+              "chain_name": "A",
+              "code": "TYR",
+              "min_distance_to_active_site": 7.727,
+              "resid": "222"
+            },
+            {
+              "atom_count": 11,
+              "chain_name": "A",
+              "code": "PHE",
+              "min_distance_to_active_site": 7.747,
+              "resid": "62"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 7.819,
+              "resid": "70"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "PRO",
+              "min_distance_to_active_site": 7.831,
+              "resid": "71"
+            },
+            {
+              "atom_count": 4,
+              "chain_name": "A",
+              "code": "GLY",
+              "min_distance_to_active_site": 7.882,
+              "resid": "292"
+            },
+            {
+              "atom_count": 7,
+              "chain_name": "A",
+              "code": "THR",
+              "min_distance_to_active_site": 7.963,
+              "resid": "304"
+            },
+            {
+              "atom_count": 6,
+              "chain_name": "A",
+              "code": "SER",
+              "min_distance_to_active_site": 7.981,
+              "resid": "150"
+            }
+          ],
+          "residue_code_counts": {
+            "ALA": 3,
+            "ARG": 2,
+            "ASN": 1,
+            "ASP": 4,
+            "CYS": 1,
+            "GLN": 1,
+            "GLU": 2,
+            "GLY": 8,
+            "HIS": 3,
+            "LEU": 4,
+            "LYS": 2,
+            "PHE": 3,
+            "PRO": 3,
+            "SER": 5,
+            "THR": 4,
+            "TYR": 2,
+            "VAL": 3
+          }
+        },
+        "residue_codes": [
+          "ASP",
+          "ASP",
+          "ASP",
+          "ASN"
+        ],
+        "resolved_residue_count": 4,
+        "status": "ok",
+        "top_fingerprints": [
+          {
+            "cofactor_context_score": 1.0,
+            "cofactor_evidence_level": "role_inferred",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.72,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.72,
+                "reason": "role_inferred_metal_missing_water_activation_role"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles",
+                  "mechanism_text"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [
+                  "mechanism_text_review_context_condition_only",
+                  "mechanism_text_not_required_for_external_orphan_safety"
+                ],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.72,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles"
+                ],
+                "reason": "role_inferred_metal_missing_water_activation_role",
+                "review_context_fields": [
+                  "mechanism_text"
+                ],
+                "rule_id": "metal_dependent_hydrolase:role_inferred_metal_missing_water_activation_role"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons": [
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "role_inferred_metal_missing_water_activation_role"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "fingerprint_name": "Metal-dependent hydrolase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "His/Asp/Glu/Cys",
+                "required_role": "metal_ligand",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "His/Asp/Glu",
+                "required_role": "water_activator",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.6667,
+            "role_match_fraction": 0.0,
+            "score": 0.3786,
+            "substrate_pocket_score": 0.2166,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.25,
+            "cofactor_evidence_level": "not_required",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.7,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.7,
+                "reason": "ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.7,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "residue_roles"
+                ],
+                "reason": "ser_his_seed_missing_triad_coherence",
+                "review_context_fields": [],
+                "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "ser_his_seed_missing_triad_coherence"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "Asp/Glu",
+                "required_role": "acid_or_orienter",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 0.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1713,
+            "substrate_pocket_score": 0.7202,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASN"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "flavin_binder",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.163,
+            "substrate_pocket_score": 0.5,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 2
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "ligand_context"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "ligand_context"
+                ],
+                "reason": "nad_only_or_nonflavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context",
+                "nad_only_or_nonflavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "flavin_monooxygenase",
+            "fingerprint_name": "Flavin-dependent monooxygenase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASN"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "nadph_binding",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.154,
+            "substrate_pocket_score": 0.4005,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.65,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.65,
+                "reason": "absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.65,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_heme_context",
+                "review_context_fields": [],
+                "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_heme_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "heme_peroxidase_oxidase",
+            "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "His/Arg/Asp",
+                "required_role": "acid_base",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1492,
+            "substrate_pocket_score": 0.2186,
+            "text_or_label_fields_used_for_score": false
+          }
+        ]
       }
     ]
   },
@@ -5129,6 +7932,1136 @@
         "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_066_P52699.json",
         "sha256": "3ee9c109b15001d10899c65c2a40066531d304462d580bc14d486d8361301621"
       }
+    },
+    {
+      "entry_id": "mh_067",
+      "fold_augmented_projection": {
+        "combined_mean_geometry_fold": 0.6897,
+        "fixed_research_threshold": 0.44155,
+        "retained_at_fixed_research_threshold": true,
+        "threshold_source": "v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601"
+      },
+      "guardrail_note": "review-only source-free predicted geometry retrieval; panel_id, rank, and source rows are carried only as review context and not used by the retrieval scorer",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_retrieval": {
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_role_match_fraction": 0.0,
+        "top1_score": 0.3755,
+        "top_fingerprints": [
+          {
+            "cofactor_context_score": 1.0,
+            "cofactor_evidence_level": "role_inferred",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 2
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.72,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.72,
+                "reason": "role_inferred_metal_missing_water_activation_role"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.92,
+                "reason": "role_inferred_metal_aromatic_positive_pocket"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles",
+                  "mechanism_text"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [
+                  "mechanism_text_review_context_condition_only",
+                  "mechanism_text_not_required_for_external_orphan_safety"
+                ],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.72,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles"
+                ],
+                "reason": "role_inferred_metal_missing_water_activation_role",
+                "review_context_fields": [
+                  "mechanism_text"
+                ],
+                "rule_id": "metal_dependent_hydrolase:role_inferred_metal_missing_water_activation_role"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "pocket_context"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.92,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "pocket_context"
+                ],
+                "reason": "role_inferred_metal_aromatic_positive_pocket",
+                "review_context_fields": [],
+                "rule_id": "metal_dependent_hydrolase:role_inferred_metal_aromatic_positive_pocket"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "role_inferred_metal_aromatic_positive_pocket",
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons": [
+              "role_inferred_metal_aromatic_positive_pocket",
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "role_inferred_metal_aromatic_positive_pocket",
+                "role_inferred_metal_missing_water_activation_role"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "fingerprint_name": "Metal-dependent hydrolase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Asp/Glu/Cys",
+                "required_role": "metal_ligand",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Asp/Glu",
+                "required_role": "water_activator",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.6667,
+            "role_match_fraction": 0.0,
+            "score": 0.3755,
+            "substrate_pocket_score": 0.1882,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.65,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.65,
+                "reason": "absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.65,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_heme_context",
+                "review_context_fields": [],
+                "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_heme_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "heme_peroxidase_oxidase",
+            "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Cys/Tyr",
+                "required_role": "heme_ligand",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Arg/Asp",
+                "required_role": "acid_base",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "aromatic_or_redox_residue",
+                "required_role": "electron_transfer_path",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 1.0,
+            "role_match_fraction": 0.0,
+            "score": 0.3113,
+            "substrate_pocket_score": 0.3263,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "flavin_binder",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His/Glu/Cys/Tyr/Arg",
+                "required_role": "redox_acid_base",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "aromatic_or_redox_residue",
+                "required_role": "electron_transfer_path",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 1.0,
+            "role_match_fraction": 0.0,
+            "score": 0.303,
+            "substrate_pocket_score": 0.5,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.25,
+            "cofactor_evidence_level": "not_required",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.7,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.7,
+                "reason": "ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.7,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "residue_roles"
+                ],
+                "reason": "ser_his_seed_missing_triad_coherence",
+                "review_context_fields": [],
+                "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "ser_his_seed_missing_triad_coherence"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "His",
+                "required_role": "general_base",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 0.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1755,
+            "substrate_pocket_score": 0.7771,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 2
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "ligand_context"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "ligand_context"
+                ],
+                "reason": "nad_only_or_nonflavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context",
+                "nad_only_or_nonflavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 3,
+              "max": 8.178,
+              "median": 7.149,
+              "min": 5.436
+            },
+            "fingerprint_id": "flavin_monooxygenase",
+            "fingerprint_name": "Flavin-dependent monooxygenase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "HIS",
+                  "HIS",
+                  "HIS"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "nadph_binding",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1682,
+            "substrate_pocket_score": 0.5572,
+            "text_or_label_fields_used_for_score": false
+          }
+        ]
+      },
+      "predicted_geometry_status": "ok",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:216",
+        "nearest_atlas_tm_score": 1.004,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "rank": 8,
+      "resolved_residue_count": 3,
+      "source_accession": "uniprot:P00918",
+      "source_free_locator_sidecar": {
+        "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+        "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+        "manual_review_approval": {
+          "approval_basis": [
+            "candidate_integrity_passed",
+            "at_least_two_sequence_position_locators",
+            "split_safe_template_check_passed_no_heldout_same_accession_template",
+            "forbidden_predictive_feature_audit_clear",
+            "no_coordinate_fetch_required"
+          ],
+          "approval_scope": "source_free_active_site_locator_only",
+          "approval_source": "automation_exact_next_action_2026-06-02_after_split_safe_pass",
+          "approved_by": "Codex automation for catalytic-earth-lever-3-2-forward-push",
+          "approved_utc": "2026-06-02T19:11:47Z",
+          "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+          "candidate_sha256": "4dd8048ad5e72492502f86949758eff6373b85de7ebc76c3717fdb00fcd70bd3",
+          "imports_or_promotions_performed": false,
+          "labels_registries_ontologies_changed": false,
+          "predictive_fields_allowed": false,
+          "production_thresholds_changed": false,
+          "split_safe_template_check_path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
+          "split_safe_template_check_sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9"
+        },
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_067_P00918.json",
+        "sha256": "a0ccc8b5b4f1cb0432880ef881e9910fc18c4d91ae68bf8b7ad903386cdd83e9"
+      }
+    },
+    {
+      "entry_id": "mh_068",
+      "fold_augmented_projection": {
+        "combined_mean_geometry_fold": 0.6903,
+        "fixed_research_threshold": 0.44155,
+        "retained_at_fixed_research_threshold": true,
+        "threshold_source": "v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601"
+      },
+      "guardrail_note": "review-only source-free predicted geometry retrieval; panel_id, rank, and source rows are carried only as review context and not used by the retrieval scorer",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_retrieval": {
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_role_match_fraction": 0.0,
+        "top1_score": 0.3786,
+        "top_fingerprints": [
+          {
+            "cofactor_context_score": 1.0,
+            "cofactor_evidence_level": "role_inferred",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.72,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.72,
+                "reason": "role_inferred_metal_missing_water_activation_role"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles",
+                  "mechanism_text"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [
+                  "mechanism_text_review_context_condition_only",
+                  "mechanism_text_not_required_for_external_orphan_safety"
+                ],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.72,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "residue_roles"
+                ],
+                "reason": "role_inferred_metal_missing_water_activation_role",
+                "review_context_fields": [
+                  "mechanism_text"
+                ],
+                "rule_id": "metal_dependent_hydrolase:role_inferred_metal_missing_water_activation_role"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons": [
+              "role_inferred_metal_missing_water_activation_role"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "role_inferred_metal_missing_water_activation_role"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "fingerprint_name": "Metal-dependent hydrolase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "His/Asp/Glu/Cys",
+                "required_role": "metal_ligand",
+                "role_hint_match": false
+              },
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "His/Asp/Glu",
+                "required_role": "water_activator",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.6667,
+            "role_match_fraction": 0.0,
+            "score": 0.3786,
+            "substrate_pocket_score": 0.2166,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.25,
+            "cofactor_evidence_level": "not_required",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.7,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.7,
+                "reason": "ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.7,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "residue_roles"
+                ],
+                "reason": "ser_his_seed_missing_triad_coherence",
+                "review_context_fields": [],
+                "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons": [
+              "ser_his_seed_missing_triad_coherence"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "ser_his_seed_missing_triad_coherence"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "Asp/Glu",
+                "required_role": "acid_or_orienter",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 0.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1713,
+            "substrate_pocket_score": 0.7202,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence",
+                  "ligand_context",
+                  "residue_roles"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASN"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "flavin_binder",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.163,
+            "substrate_pocket_score": 0.5,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 2
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.6,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.6,
+                "reason": "nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_flavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:absent_flavin_context"
+              },
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "ligand_context"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.6,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "ligand_context"
+                ],
+                "reason": "nad_only_or_nonflavin_context",
+                "review_context_fields": [],
+                "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_flavin_context",
+                "nad_only_or_nonflavin_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "flavin_monooxygenase",
+            "fingerprint_name": "Flavin-dependent monooxygenase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASN"
+                ],
+                "required_residue": "basic_or_polar_motif",
+                "required_role": "nadph_binding",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.154,
+            "substrate_pocket_score": 0.4005,
+            "text_or_label_fields_used_for_score": false
+          },
+          {
+            "cofactor_context_score": 0.0,
+            "cofactor_evidence_level": "absent",
+            "compactness_score": 1.0,
+            "counterevidence_category_counts": {
+              "mechanism_text_review_context_counterevidence": 0,
+              "structure_local_evidence_counterevidence": 1
+            },
+            "counterevidence_external_orphan_safety": {
+              "predictive_safety_counterevidence_required": true,
+              "review_context_only_counterevidence_not_required": false,
+              "review_context_only_not_valid_for_orphan_discovery_claims": false
+            },
+            "counterevidence_penalty": 0.65,
+            "counterevidence_penalty_details": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_role": "predictive_safety_counterevidence",
+                "penalty": 0.65,
+                "reason": "absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_hits": [
+              {
+                "counterevidence_category": "structure_local_evidence_counterevidence",
+                "evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "evidence_role": "predictive_safety_counterevidence",
+                "external_orphan_safety_evidence": true,
+                "leakage_flags": [],
+                "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+                "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+                "penalty": 0.65,
+                "policy_version": "2026-05-13.declarative-v1",
+                "predictive_safety_evidence_fields": [
+                  "cofactor_evidence"
+                ],
+                "reason": "absent_heme_context",
+                "review_context_fields": [],
+                "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+              }
+            ],
+            "counterevidence_policy_version": "2026-05-13.declarative-v1",
+            "counterevidence_predictive_safety_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons": [
+              "absent_heme_context"
+            ],
+            "counterevidence_reasons_by_category": {
+              "mechanism_text_review_context_counterevidence": [],
+              "structure_local_evidence_counterevidence": [
+                "absent_heme_context"
+              ]
+            },
+            "counterevidence_review_context_only_reasons": [],
+            "distance_summary": {
+              "count": 6,
+              "max": 7.061,
+              "median": 5.607,
+              "min": 3.839
+            },
+            "fingerprint_id": "heme_peroxidase_oxidase",
+            "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+            "matched_signature_roles": [
+              {
+                "matched_codes": [
+                  "ASP",
+                  "ASP",
+                  "ASP"
+                ],
+                "required_residue": "His/Arg/Asp",
+                "required_role": "acid_base",
+                "role_hint_match": false
+              }
+            ],
+            "mechanistic_coherence_score": 1.0,
+            "plp_ligand_anchor_score": 0.0,
+            "residue_match_fraction": 0.3333,
+            "role_match_fraction": 0.0,
+            "score": 0.1492,
+            "substrate_pocket_score": 0.2186,
+            "text_or_label_fields_used_for_score": false
+          }
+        ]
+      },
+      "predicted_geometry_status": "ok",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:158",
+        "nearest_atlas_tm_score": 1.002,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "rank": 9,
+      "resolved_residue_count": 4,
+      "source_accession": "uniprot:P15289",
+      "source_free_locator_sidecar": {
+        "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+        "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+        "manual_review_approval": {
+          "approval_basis": [
+            "candidate_integrity_passed",
+            "at_least_two_sequence_position_locators",
+            "split_safe_template_check_passed_no_heldout_same_accession_template",
+            "forbidden_predictive_feature_audit_clear",
+            "no_coordinate_fetch_required"
+          ],
+          "approval_scope": "source_free_active_site_locator_only",
+          "approval_source": "automation_exact_next_action_2026-06-02_after_split_safe_pass",
+          "approved_by": "Codex automation for catalytic-earth-lever-3-2-forward-push",
+          "approved_utc": "2026-06-02T19:11:47Z",
+          "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_068_P15289.json",
+          "candidate_sha256": "b3fe6d9deb6d5d7cebc11d7af11019114b08d2f04a483579d37a3f391f696096",
+          "imports_or_promotions_performed": false,
+          "labels_registries_ontologies_changed": false,
+          "predictive_fields_allowed": false,
+          "production_thresholds_changed": false,
+          "split_safe_template_check_path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
+          "split_safe_template_check_sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9"
+        },
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_068_P15289.json",
+        "sha256": "d3a7ceaaa5e3ad2fd183cbead41b244c0111270490c25ed29036b0dc1319fcc4"
+      }
     }
   ],
   "schema_version": "northstar_next_levers.v0.source_free_predicted_geometry_retrieval",
@@ -5138,7 +9071,7 @@
     "locator_schema_audit": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json",
-      "sha256": "33f488beb0f5fa77253b2c3abebc5aa2bc86a651caed9212d0113b611c094ba0"
+      "sha256": "b6315d736a72058c4785cdd2b01b1b58b955d89064ef47c953159554e87a3aa5"
     },
     "source_backed_materialization": {
       "exists": true,
@@ -5148,7 +9081,7 @@
     "source_free_predicted_geometry_manifest": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
-      "sha256": "058bb6e5d2e274490491fd498b30b1f44cd8e5f01fc105f744905bd8b73e7369"
+      "sha256": "9f88b277b0f7e509bd2cd84d50543d555103e1f86d26f5069fdd865c9c71fba0"
     },
     "threshold_contract": {
       "exists": true,

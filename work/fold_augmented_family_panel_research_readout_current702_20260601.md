@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Research Readout - current702
 
-Run: 2026-06-01T14:56:34Z
+Run: 2026-06-02T19:15:47Z
 
 Downstream fold-augmented research readout over review-only family-expansion packets. It applies the already selected combined_mean_geometry_fold threshold from the OOS-calibrated research contract to packet rows with both predicted geometry and predicted-structure Foldseek/TM evidence.
 
@@ -15,10 +15,10 @@ Downstream fold-augmented research readout over review-only family-expansion pac
 
 - Panel packets: 7
 - Candidate rows: 22
-- Primary score-complete rows: 15
-- Non-abstained review rows: 9
+- Primary score-complete rows: 17
+- Non-abstained review rows: 11
 - Abstained review rows: 6
-- Missing primary-channel scores: 7
+- Missing primary-channel scores: 5
 
 ## Panel Readout
 
@@ -29,13 +29,15 @@ Downstream fold-augmented research readout over review-only family-expansion pac
 | lipoamide_or_sulfur_transfer_redox_boundary | has_non_abstained_review_rows | 2 | 2 | 1 | 1 | 0 |
 | flavin_monooxygenase_and_flavin_oxygen_transfer | has_non_abstained_review_rows | 4 | 4 | 3 | 1 | 0 |
 | cobalamin_and_radical_rearrangement_panel | has_non_abstained_review_rows | 3 | 2 | 2 | 0 | 1 |
-| no_reliable_structure_metal_hydrolase_controls | has_non_abstained_review_rows | 6 | 1 | 1 | 0 | 5 |
+| no_reliable_structure_metal_hydrolase_controls | has_non_abstained_review_rows | 6 | 3 | 3 | 0 | 3 |
 | near_orphan_glycoside_or_nucleoside_hydrolase_controls | has_non_abstained_review_rows | 4 | 3 | 2 | 1 | 1 |
 
 ## Review-Priority Rows
 
 | Row | panel | combined mean geometry+fold | margin | geometry top1 | nearest fold fingerprint | cofactor max |
 | --- | --- | ---: | ---: | --- | --- | ---: |
+| mh_068 | no_reliable_structure_metal_hydrolase_controls | 0.6903 | 0.24875 | metal_dependent_hydrolase | metal_dependent_hydrolase | None |
+| mh_067 | no_reliable_structure_metal_hydrolase_controls | 0.68975 | 0.2482 | metal_dependent_hydrolase | metal_dependent_hydrolase | None |
 | mh_066 | no_reliable_structure_metal_hydrolase_controls | 0.66335 | 0.2218 | metal_dependent_hydrolase | metal_dependent_hydrolase | None |
 | m_csa:267 | lipoamide_or_sulfur_transfer_redox_boundary | 0.5679 | 0.12635 | heme_peroxidase_oxidase | flavin_dehydrogenase_reductase | 0.834847 |
 | m_csa:131 | flavin_monooxygenase_and_flavin_oxygen_transfer | 0.5516 | 0.11005 | metal_dependent_hydrolase | flavin_dehydrogenase_reductase | 0.980908 |
@@ -48,6 +50,6 @@ Downstream fold-augmented research readout over review-only family-expansion pac
 
 ## Interpretation
 
-- 9/15 score-complete review rows remain non-abstained at the bounded fold-augmented research threshold.
+- 11/17 score-complete review rows remain non-abstained at the bounded fold-augmented research threshold.
 - This is a downstream review readout only. It does not promote family rows, retune thresholds, train on heldout rows, or change production scoring.
 - Source-check the non-abstained review-priority rows and keep geometry/fold-missing packet rows in the coordinate or sidecar materialization queue before any family-expansion decision.

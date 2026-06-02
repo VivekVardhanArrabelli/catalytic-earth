@@ -1,0 +1,88 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_q59490_nonlabel_locator_feasibility_audit_current702_20260602",
+  "candidate_blockers": [
+    "candidate_sidecar_not_in_audited_locator_dir",
+    "insufficient_candidate_residue_locators",
+    "manual_review_required_before_copy_to_audited_dir",
+    "no_nonwater_ligand_or_metal_site_detected"
+  ],
+  "coordinate_summaries": [
+    {
+      "atom_site_rows": 25227,
+      "coordinate_role": "selected_pdb_cif",
+      "exists": true,
+      "hetatm_comp_atom_counts": {
+        "HOH": 2875
+      },
+      "metal_or_ion_hetatm_comp_atom_counts": {},
+      "nonwater_hetatm_comp_atom_counts": {},
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+      "sha256": "9b4d9b9b291b4ed3ee068e1d99bd7781d5d7628df1f9c76f693d6ad2090a4f18"
+    },
+    {
+      "atom_site_rows": 5776,
+      "coordinate_role": "alphafolddb_predicted_cif",
+      "exists": true,
+      "hetatm_comp_atom_counts": {},
+      "metal_or_ion_hetatm_comp_atom_counts": {},
+      "nonwater_hetatm_comp_atom_counts": {},
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v6.cif",
+      "sha256": "cecf4f4c8cf9aeb92f1efa29458503b596830c52450f382865e70795fd560c00"
+    }
+  ],
+  "counts": {
+    "approved_locator_copy_authorized_rows": 0,
+    "candidate_residue_locators": 0,
+    "coordinate_files_checked": 2,
+    "coordinate_files_with_nonwater_hetatm_or_metal_anchor": 0,
+    "metal_or_ion_hetatm_atoms_detected": 0,
+    "nonwater_hetatm_atoms_detected": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "target_rows": 1
+  },
+  "created_utc": "2026-06-02T19:37:08Z",
+  "decision": {
+    "coordinate_only_nonlabel_locator_strategy_available_now": false,
+    "manual_nonlabel_strategy_or_alternate_source_required": true,
+    "new_countable_labels_authorized": false,
+    "next_action": "Do not fabricate Q59490 residue locators from panel identity or source prose. Authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators before schema/scoring."
+  },
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "new_coordinates_fetched": false,
+    "new_source_data_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_locator_nonlabel_locator_feasibility_audit",
+  "scope": {
+    "current702_safe_inputs_only": true,
+    "purpose": "Coordinate-only feasibility audit for the remaining nonlabel locator strategy blocker.",
+    "selected_structure_id": "1L1L",
+    "source_accession": "uniprot:Q59490",
+    "target_entries": [
+      "secondary_probe::cobalamin_radical_rearrangement"
+    ]
+  },
+  "source_artifacts": {
+    "candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "sha256": "e0520c245a8b016b3b457423bc136ceef2e12075aaddee7c780b29b6445d857b"
+    },
+    "policy_blocker_packet": {
+      "path": "artifacts/v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.json",
+      "sha256": "f5389f3c3bf3c7aa2c57abed076796f16a5ed9ef0556394e1aa015aaf3762deb"
+    },
+    "source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "sha256": "b93b12303767c604fa5a944ffce9872f8bd24785bb3939cebd71c39d0126327c"
+    }
+  },
+  "status": "source_free_locator_q59490_nonlabel_locator_feasibility_blocked_no_coordinate_anchor_review_only"
+}

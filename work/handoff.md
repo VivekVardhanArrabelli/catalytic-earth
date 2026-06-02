@@ -16644,3 +16644,89 @@ Known blockers:
   and unsafe for Wave 1 canary use until label state resolves; `m_csa:43`
   remains a valid metal-hydrolase canary. See
   `work/packet1_wave1_followthrough_20260527.md`.
+
+## Automation run catalytic-earth-lever-3-2-forward-push
+STARTED_AT_UTC: 2026-06-02T19:02:13Z
+STARTED_AT_LOCAL: 2026-06-02 14:02:13 CDT
+ENDED_AT_UTC: 2026-06-02T19:43:45Z
+ENDED_AT_LOCAL: 2026-06-02 14:43:45 CDT
+ELAPSED_MINUTES: 41.5
+
+Wrapped before 55 minutes because the mechanically safe Lever 4 locator-blocker
+surface is complete for this run: the remaining rows all require explicit
+human/policy/scientific decisions before any locator copy, coordinate fetch,
+predicted-geometry scoring, label import, or countability action.
+
+What changed:
+
+- Resolved the highest-priority `mh_067`/`mh_068` split-safe locator-copy class:
+  added `v3_family_panel_source_free_locator_copy_decision_mh067_mh068_current702_20260602`,
+  copied the approved review-only source-free locators into
+  `artifacts/family_panel_source_free_active_site_locators_current702_20260601/`,
+  repaired the three `mh_067` candidate positions against the local AFDB model,
+  reran locator schema audit, source-free predicted-geometry manifest/retrieval,
+  source-check preflight, family-panel readout, source-check queue/completion,
+  missing-primary-channel queue/diagnosis, countability preflight, and import
+  blocker gate.
+- Added review-only source-check packets for `mh_067` and `mh_068`. Both are
+  completed source checks with no family promotion, no import readiness, and no
+  label/countability change.
+- Completed the dedicated `external_glycoside_panel` NAG validator:
+  `v3_family_panel_source_free_locator_glycoside_nag_validator_external_glycoside_panel_current702_20260602`
+  rejects automatic NAG retargeting because 4/4 NAG sites have near-covalent
+  C1-Asn contacts consistent with glycan/N-linked glycosylation context.
+- Added `mh_065`/`mh_072` accession-equivalence position audit:
+  `v3_family_panel_source_free_locator_accession_equivalence_position_audit_mh065_mh072_current702_20260602`.
+  The selected PDBs still map to representative accessions and raw locator
+  positions have 0/6 expected residue-code matches in the requested UniProt AFDB
+  models, so representative equivalence alone is not sufficient for copy.
+- Added `mh_064` alternate-coordinate local-cache preflight:
+  `v3_family_panel_source_free_locator_mh064_alternate_coordinate_local_cache_preflight_current702_20260602`.
+  It confirms 0/5 alternate CIFs (`3RKJ`, `3RKK`, `3SBL`, `3SFP`, `3SPU`) are
+  cached locally and no fetch was attempted.
+- Added Q59490 nonlabel-locator feasibility audit:
+  `v3_family_panel_source_free_locator_q59490_nonlabel_locator_feasibility_audit_current702_20260602`.
+  The selected 1L1L coordinate has water HETATMs only, AFDB Q59490 has no HETATM
+  anchor, and the candidate sidecar has 0 residue locators; an alternate source
+  row/coordinate or explicit nonlabel strategy remains required.
+- Updated `work/family_panel_source_free_locator_blocker_resolution_status_current702_20260601.md`
+  and the human decision matrix/import blocker reports so all five unresolved
+  rows point to concrete remaining decisions. Import preview remains blocked:
+  0/22 rows import-ready, 0 countable labels authorized, and 5 priority rows
+  require human/policy decisions.
+- Updated CLI/generator logic for the `mh_067`/`mh_068` locator-copy decision and
+  refreshed regression coverage for the new blocker artifacts and gate wording.
+
+Guardrails:
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, network source fetches, or coordinate downloads changed.
+- No heldout training/tuning was performed. New family-panel artifacts are
+  review-only and non-countable.
+
+Verification:
+
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_geometry_artifact_regression.py`
+- Focused locator/gate regression slice: 21 passed, 122 deselected.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 702 curated labels.
+- `python -m json.tool` on the new JSON artifacts.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`: 364 passed, 81 subtests.
+- Full `PYTHONPATH=src python -m pytest -q`: 1235 passed, 100 subtests, one
+  existing sklearn/SciPy warning.
+- Full `PYTHONPATH=src python -m unittest discover -s tests`: 1190 passed, same
+  existing sklearn/SciPy warning.
+- `PYTHONPATH=src python -m compileall -q src tests`.
+- Current-docs artifact-reference check: 557 checked, 0 missing.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`: 2 passed.
+- Repo-wide JSON parse sweep: 3331 JSON files parsed.
+- `git diff --check` passed.
+
+Exact next action:
+
+Do not rerun locator discovery. Start with the top remaining decision class:
+for `mh_065`/`mh_072`, provide matching frozen coordinates or explicitly approve
+alignment/remapped locators before any raw representative-coordinate copy. Then
+rerun locator schema/scoring only if approved. The other remaining decisions are
+`external_glycoside_panel` substrate-complex or expert-approved non-glycan
+locator, `mh_064` alternate-coordinate fetch approval/rejection, and Q59490
+alternate source or explicit nonlabel locator strategy.

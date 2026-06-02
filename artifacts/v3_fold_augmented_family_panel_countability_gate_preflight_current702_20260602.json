@@ -3,28 +3,28 @@
   "counts": {
     "abstained_review_rows": 6,
     "blocker_counts": {
-      "completed_source_check_not_family_promotion_ready": 9,
+      "completed_source_check_not_family_promotion_ready": 11,
       "countable_import_preview_missing": 22,
       "label_factory_gate_not_run_for_family_panel_row": 22,
-      "primary_channel_score_missing": 7,
+      "primary_channel_score_missing": 5,
       "review_packet_not_expert_import_decision": 22,
-      "source_free_locator_human_or_policy_decision_required": 7
+      "source_free_locator_human_or_policy_decision_required": 5
     },
     "countable_label_candidate_count": 0,
     "coverage_candidate_rows": 22,
     "import_preview_ready_rows": 0,
     "label_factory_gate_ready_rows": 0,
-    "locator_human_or_policy_blocked_rows_joined": 7,
-    "missing_primary_channel_rows": 7,
-    "non_abstained_review_rows": 9,
-    "primary_score_complete_rows": 15,
+    "locator_human_or_policy_blocked_rows_joined": 5,
+    "missing_primary_channel_rows": 5,
+    "non_abstained_review_rows": 11,
+    "primary_score_complete_rows": 17,
     "readout_candidate_rows": 22,
-    "source_check_completed_no_family_promotion_rows": 9,
-    "source_check_completed_rows_joined": 9,
+    "source_check_completed_no_family_promotion_rows": 11,
+    "source_check_completed_rows_joined": 11,
     "source_check_pending_rows_joined": 0,
-    "source_check_queue_rows_joined": 9
+    "source_check_queue_rows_joined": 11
   },
-  "created_utc": "2026-06-02T18:18:23Z",
+  "created_utc": "2026-06-02T19:37:50Z",
   "decision": {
     "countable_label_candidate_entry_ids": [],
     "countable_label_import_ready": false,
@@ -98,11 +98,11 @@
     {
       "candidate_rows": 6,
       "countable_label_candidate_count": 0,
-      "geometry_or_locator_blocked_rows": 5,
+      "geometry_or_locator_blocked_rows": 3,
       "next_gate": "source_check_non_abstained_rows_then_import_preview",
-      "non_abstained_review_rows": 1,
+      "non_abstained_review_rows": 3,
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "primary_score_complete_rows": 1
+      "primary_score_complete_rows": 3
     },
     {
       "candidate_rows": 1,
@@ -134,7 +134,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 4
+      "source_check_queue_rank": 6
     },
     {
       "countable_label_candidate": false,
@@ -147,7 +147,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_resolution_class": "nonlabel_locator_strategy_or_alternate_source_required",
-      "locator_resolution_status": "blocked_no_ligand_no_alternate_pdb",
+      "locator_resolution_status": "blocked_no_coordinate_anchor_nonlabel_strategy_required",
       "non_abstained_at_research_threshold": false,
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "primary_score_complete": false,
@@ -177,7 +177,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 8
+      "source_check_queue_rank": 10
     },
     {
       "countable_label_candidate": false,
@@ -198,7 +198,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 3
+      "source_check_queue_rank": 5
     },
     {
       "countable_label_candidate": false,
@@ -219,7 +219,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 6
+      "source_check_queue_rank": 8
     },
     {
       "countable_label_candidate": false,
@@ -240,7 +240,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 5
+      "source_check_queue_rank": 7
     },
     {
       "countable_label_candidate": false,
@@ -321,7 +321,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 2
+      "source_check_queue_rank": 4
     },
     {
       "countable_label_candidate": false,
@@ -354,7 +354,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_resolution_class": "ligand_specificity_validator_or_substrate_coordinate_required",
-      "locator_resolution_status": "selected_acetate_locator_rejected",
+      "locator_resolution_status": "selected_acetate_and_nag_glycan_validator_rejected",
       "non_abstained_at_research_threshold": false,
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "primary_score_complete": false,
@@ -404,7 +404,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 9
+      "source_check_queue_rank": 11
     },
     {
       "countable_label_candidate": false,
@@ -425,7 +425,7 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 7
+      "source_check_queue_rank": 9
     },
     {
       "countable_label_candidate": false,
@@ -438,7 +438,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_resolution_class": "alternate_coordinate_fetch_approval_required",
-      "locator_resolution_status": "blocked_pending_fetch_policy",
+      "locator_resolution_status": "blocked_pending_fetch_policy_no_local_alternates_cached",
       "non_abstained_at_research_threshold": false,
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "primary_score_complete": false,
@@ -460,7 +460,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_resolution_class": "accession_equivalence_or_matching_coordinate_required",
-      "locator_resolution_status": "blocked_accession_mismatch",
+      "locator_resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
       "non_abstained_at_research_threshold": false,
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "primary_score_complete": false,
@@ -490,51 +490,49 @@
       "research_gate_status": "non_abstained_at_research_threshold",
       "source_check_completion_status": "completed_review_only_no_label_change",
       "source_check_family_promotion_ready": false,
-      "source_check_queue_rank": 1
+      "source_check_queue_rank": 3
     },
     {
       "countable_label_candidate": false,
       "entry_id": "mh_067",
       "gate_blockers": [
+        "completed_source_check_not_family_promotion_ready",
         "countable_import_preview_missing",
         "label_factory_gate_not_run_for_family_panel_row",
-        "primary_channel_score_missing",
-        "review_packet_not_expert_import_decision",
-        "source_free_locator_human_or_policy_decision_required"
+        "review_packet_not_expert_import_decision"
       ],
-      "locator_resolution_class": "human_locator_copy_approval_after_split_safe_pass",
-      "locator_resolution_status": "split_safe_passed_copy_not_authorized",
-      "non_abstained_at_research_threshold": false,
+      "locator_resolution_class": null,
+      "locator_resolution_status": null,
+      "non_abstained_at_research_threshold": true,
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "primary_score_complete": false,
+      "primary_score_complete": true,
       "ready_for_import_preview": false,
       "ready_for_label_factory_gate": false,
-      "research_gate_status": "not_score_complete_for_primary_channel",
-      "source_check_completion_status": null,
-      "source_check_family_promotion_ready": null,
-      "source_check_queue_rank": null
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "source_check_completion_status": "completed_review_only_no_label_change",
+      "source_check_family_promotion_ready": false,
+      "source_check_queue_rank": 2
     },
     {
       "countable_label_candidate": false,
       "entry_id": "mh_068",
       "gate_blockers": [
+        "completed_source_check_not_family_promotion_ready",
         "countable_import_preview_missing",
         "label_factory_gate_not_run_for_family_panel_row",
-        "primary_channel_score_missing",
-        "review_packet_not_expert_import_decision",
-        "source_free_locator_human_or_policy_decision_required"
+        "review_packet_not_expert_import_decision"
       ],
-      "locator_resolution_class": "human_locator_copy_approval_after_split_safe_pass",
-      "locator_resolution_status": "split_safe_passed_copy_not_authorized",
-      "non_abstained_at_research_threshold": false,
+      "locator_resolution_class": null,
+      "locator_resolution_status": null,
+      "non_abstained_at_research_threshold": true,
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "primary_score_complete": false,
+      "primary_score_complete": true,
       "ready_for_import_preview": false,
       "ready_for_label_factory_gate": false,
-      "research_gate_status": "not_score_complete_for_primary_channel",
-      "source_check_completion_status": null,
-      "source_check_family_promotion_ready": null,
-      "source_check_queue_rank": null
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "source_check_completion_status": "completed_review_only_no_label_change",
+      "source_check_family_promotion_ready": false,
+      "source_check_queue_rank": 1
     },
     {
       "countable_label_candidate": false,
@@ -547,7 +545,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_resolution_class": "accession_equivalence_or_matching_coordinate_required",
-      "locator_resolution_status": "blocked_accession_mismatch",
+      "locator_resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
       "non_abstained_at_research_threshold": false,
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "primary_score_complete": false,
@@ -590,22 +588,22 @@
     "family_panel_research_readout": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
-      "sha256": "9c8d11be5191f08893510e9c8c57e22051c078f5777c020fafa84c786167998f"
+      "sha256": "40b561a4330c0291a1aa2d8171109628ff0e9fde6db11469b7ade4debbd033e4"
     },
     "locator_blocker_status": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json",
-      "sha256": "ad377f429a4527f988c616432ae1a55f59ed870f8dacf01f0c4f6e931fe656cf"
+      "sha256": "80f5a5ea5b76c86a93289a72c92e795de199438366985ef3b9f9768ca3768491"
     },
     "source_check_completion_reconciliation": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_source_check_completion_reconciliation_current702_20260602.json",
-      "sha256": "2419aa8c47fad84155118b50b9c620a1c39b8b38d7f31664304701564734ccc2"
+      "sha256": "b15fbb33d7c40f5cdf47418b72a8101c83b76c5f622ac7406755445ac26d8bfa"
     },
     "source_check_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
-      "sha256": "e7d180af1f89fa61553a0c954c7b1a7e7e6f658571f0b397f6eeec7bb8bad3fa"
+      "sha256": "56db05c60cabe51024031cd694938fc0034f5fb84c4bc4cb087555769a75e223"
     }
   },
   "status": "family_panel_countability_gate_preflight_ready_no_countable_rows"

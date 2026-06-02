@@ -2,15 +2,15 @@
   "artifact_id": "v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601",
   "counts": {
     "critical_counts": {
-      "locator_sidecar_missing": 7
+      "locator_sidecar_missing": 5
     },
-    "locator_sidecars_missing": 7,
-    "locator_sidecars_present": 3,
-    "locator_sidecars_schema_passed": 3,
-    "ready_for_predicted_geometry_scoring": 3,
+    "locator_sidecars_missing": 5,
+    "locator_sidecars_present": 5,
+    "locator_sidecars_schema_passed": 5,
+    "ready_for_predicted_geometry_scoring": 5,
     "target_rows": 10
   },
-  "created_utc": "2026-06-01T14:24:29Z",
+  "created_utc": "2026-06-02T19:11:47Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -22,7 +22,7 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "3/10 locator sidecars are ready for predicted-geometry scoring.",
+    "headline": "5/10 locator sidecars are ready for predicted-geometry scoring.",
     "next_action": "Materialize locator sidecars under the audited directory, rerun this audit, then rerun the predicted-geometry sidecar manifest before refreshing family-panel packets/readout."
   },
   "locator_dir": "artifacts/family_panel_source_free_active_site_locators_current702_20260601",
@@ -108,26 +108,28 @@
       "status": "passed"
     },
     {
-      "critical_violations": [
-        "locator_sidecar_missing"
-      ],
+      "critical_violations": [],
       "entry_id": "mh_067",
-      "exists": false,
+      "exists": true,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_067_P00918.json",
-      "ready_for_predicted_geometry_scoring": false,
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 3,
+      "sha256": "a0ccc8b5b4f1cb0432880ef881e9910fc18c4d91ae68bf8b7ad903386cdd83e9",
       "source_accession": "uniprot:P00918",
-      "status": "missing"
+      "status": "passed"
     },
     {
-      "critical_violations": [
-        "locator_sidecar_missing"
-      ],
+      "critical_violations": [],
       "entry_id": "mh_068",
-      "exists": false,
+      "exists": true,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_068_P15289.json",
-      "ready_for_predicted_geometry_scoring": false,
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 4,
+      "sha256": "d3a7ceaaa5e3ad2fd183cbead41b244c0111270490c25ed29036b0dc1319fcc4",
       "source_accession": "uniprot:P15289",
-      "status": "missing"
+      "status": "passed"
     },
     {
       "critical_violations": [

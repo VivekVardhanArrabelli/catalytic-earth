@@ -1,0 +1,165 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_accession_equivalence_position_audit_mh065_mh072_current702_20260602",
+  "audit_rows": [
+    {
+      "candidate_locator_count": 3,
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_065_Q79MP6.json",
+      "candidate_sha256": "e515c38ce68e00f4dc0657684b75c110635eeb791ab2234eadfd8a3f82ec4ac9",
+      "decision": {
+        "approved_locator_copy_allowed_now": false,
+        "raw_selected_pdb_locator_copy_safe": false,
+        "ready_for_predicted_geometry_scoring": false,
+        "representative_equivalence_alone_sufficient": false,
+        "required_next_action": "Provide a frozen coordinate whose struct_ref maps to Q79MP6, or an explicitly approved alignment/remapped locator from the selected representative coordinate before any audited locator copy."
+      },
+      "entry_id": "mh_065",
+      "locator_position_checks": [
+        {
+          "candidate_contact_auth_seq_id": 139,
+          "candidate_contact_label_seq_id": 138,
+          "expected_residue_code": "HIS",
+          "requested_afdb_expected_code_match": false,
+          "requested_afdb_observed_residue_codes": [
+            "GLY"
+          ],
+          "sequence_position": 138
+        },
+        {
+          "candidate_contact_auth_seq_id": 77,
+          "candidate_contact_label_seq_id": 76,
+          "expected_residue_code": "HIS",
+          "requested_afdb_expected_code_match": false,
+          "requested_afdb_observed_residue_codes": [
+            "LYS"
+          ],
+          "sequence_position": 76
+        },
+        {
+          "candidate_contact_auth_seq_id": 79,
+          "candidate_contact_label_seq_id": 78,
+          "expected_residue_code": "HIS",
+          "requested_afdb_expected_code_match": false,
+          "requested_afdb_observed_residue_codes": [
+            "VAL"
+          ],
+          "sequence_position": 78
+        }
+      ],
+      "requested_accession_present_in_selected_pdb_struct_ref": false,
+      "requested_afdb_coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v6.cif",
+      "requested_afdb_coordinate_sha256": "26cde0b0a16e5fa8f051f86674f591ad3f156e210d929406258a249220a47c36",
+      "requested_afdb_expected_code_match_count": 0,
+      "requested_afdb_expected_code_mismatch_count": 3,
+      "selected_pdb_struct_ref_accessions": [
+        "Q932P5"
+      ],
+      "selected_structure_id": "1DDK",
+      "source_accession": "uniprot:Q79MP6",
+      "source_backed_sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_065_Q79MP6.json",
+      "source_backed_sidecar_sha256": "78e489d19595d170c4c9882377a04efbf078d496ef30754000a09a67c35e8372"
+    },
+    {
+      "candidate_locator_count": 3,
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_072_P0A6P9.json",
+      "candidate_sha256": "e354f51dd0328d8dee73173ff54d8a8b535d1c18f72b5d59c11447973b4d58dd",
+      "decision": {
+        "approved_locator_copy_allowed_now": false,
+        "raw_selected_pdb_locator_copy_safe": false,
+        "ready_for_predicted_geometry_scoring": false,
+        "representative_equivalence_alone_sufficient": false,
+        "required_next_action": "Provide a frozen coordinate whose struct_ref maps to P0A6P9, or an explicitly approved alignment/remapped locator from the selected representative coordinate before any audited locator copy."
+      },
+      "entry_id": "mh_072",
+      "locator_position_checks": [
+        {
+          "candidate_contact_auth_seq_id": 289,
+          "candidate_contact_label_seq_id": 289,
+          "expected_residue_code": "GLU",
+          "requested_afdb_expected_code_match": false,
+          "requested_afdb_observed_residue_codes": [
+            "ILE"
+          ],
+          "sequence_position": 289
+        },
+        {
+          "candidate_contact_auth_seq_id": 316,
+          "candidate_contact_label_seq_id": 316,
+          "expected_residue_code": "ASP",
+          "requested_afdb_expected_code_match": false,
+          "requested_afdb_observed_residue_codes": [
+            "GLY"
+          ],
+          "sequence_position": 316
+        },
+        {
+          "candidate_contact_auth_seq_id": 245,
+          "candidate_contact_label_seq_id": 245,
+          "expected_residue_code": "ASP",
+          "requested_afdb_expected_code_match": false,
+          "requested_afdb_observed_residue_codes": [
+            "MET"
+          ],
+          "sequence_position": 245
+        }
+      ],
+      "requested_accession_present_in_selected_pdb_struct_ref": false,
+      "requested_afdb_coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v6.cif",
+      "requested_afdb_coordinate_sha256": "ad6dc6116c071abf3ade1df3bfedd181d97334a5b5bbd625da5eadec6b8eed27",
+      "requested_afdb_expected_code_match_count": 0,
+      "requested_afdb_expected_code_mismatch_count": 3,
+      "selected_pdb_struct_ref_accessions": [
+        "P08324"
+      ],
+      "selected_structure_id": "1E9I",
+      "source_accession": "uniprot:P0A6P9",
+      "source_backed_sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_072_P0A6P9.json",
+      "source_backed_sidecar_sha256": "fd06afd9484d4e22d8d9a6a073cfedbf1243beccd00a028e43a3fc21c063eacb"
+    }
+  ],
+  "counts": {
+    "approved_locator_copy_authorized_rows": 0,
+    "candidate_locator_positions_checked": 6,
+    "ready_for_predicted_geometry_scoring": 0,
+    "requested_afdb_expected_code_matches": 0,
+    "requested_afdb_expected_code_mismatches": 6,
+    "rows_with_all_requested_afdb_position_mismatches": 2,
+    "selected_pdb_struct_ref_accession_mismatch_rows": 2,
+    "target_rows": 2
+  },
+  "created_utc": "2026-06-02T19:32:42Z",
+  "decision": {
+    "new_countable_labels_authorized": false,
+    "next_action": "For mh_065/mh_072, do not copy the raw 1DDK/1E9I locators. Provide matching frozen coordinates or explicitly approved alignment/remapped locators before rerunning schema/scoring.",
+    "raw_selected_pdb_locator_copy_safe": false,
+    "representative_equivalence_alone_sufficient": false
+  },
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "new_coordinates_fetched": false,
+    "new_source_data_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_locator_accession_equivalence_position_audit",
+  "scope": {
+    "current702_safe_inputs_only": true,
+    "purpose": "Evidence-only audit for the highest-priority remaining locator decision class after the accession mismatch validation.",
+    "target_entries": [
+      "mh_065",
+      "mh_072"
+    ]
+  },
+  "source_artifacts": {
+    "uniprot_position_validation": {
+      "path": "artifacts/v3_family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.json",
+      "sha256": "7c5b77a17f8431bf35ad1ad0fc3770b2154da3e196ee09533348f02241a95fea"
+    }
+  },
+  "status": "source_free_locator_accession_equivalence_position_audit_blocked_review_only"
+}

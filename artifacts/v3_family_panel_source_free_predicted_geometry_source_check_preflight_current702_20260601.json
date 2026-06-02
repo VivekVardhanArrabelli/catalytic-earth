@@ -1,12 +1,12 @@
 {
   "artifact_id": "v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601",
   "counts": {
-    "geometry_fold_agreement_rows": 1,
+    "geometry_fold_agreement_rows": 3,
     "geometry_fold_disagreement_rows": 2,
-    "hold_review_only_rows": 3,
-    "preflight_rows": 3
+    "hold_review_only_rows": 5,
+    "preflight_rows": 5
   },
-  "created_utc": "2026-06-01T15:04:56Z",
+  "created_utc": "2026-06-02T19:15:47Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -19,10 +19,98 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "3 newly scored source-free rows are queued for review-only source checks; none is import-ready.",
+    "headline": "5 newly scored source-free rows are queued for review-only source checks; none is import-ready.",
     "next_action": "Start with `mh_066` because it has the largest positive margin, then source-check `mh_073` and `secondary_probe::radical_sam_enzyme` for mechanism locus and duplicate/leakage status."
   },
   "preflight_rows": [
+    {
+      "combined_mean_geometry_fold": 0.6903,
+      "display_name": "Arylsulfatase A",
+      "entry_id": "mh_068",
+      "fixed_research_threshold": 0.44155,
+      "geometry_fold_agreement": true,
+      "local_source_context": {
+        "candidate_role": "external_positive_lead",
+        "current_v1_state": "external_no_decision_review_only",
+        "evidence_summary": "external sulfatase/FGly lead paired with M-CSA m_csa:158 and m_csa:661",
+        "ligand_or_substrate_state": "sulfate ester hydrolysis; FGL/FGly state must be checked in structures",
+        "metal_ligand_state": "FGly/formylglycine sulfatase with metal stabilization; reviewed EC 3.1.6.8",
+        "source": "external_metal_hydrolase_tail_panel",
+        "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1AUK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P15289.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P15289/entry"
+        }
+      },
+      "nearest_atlas_tm_score": 1.002,
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_score": 0.3786,
+      "preflight_decision": "hold_review_only_pending_source_check",
+      "rank": 1,
+      "required_next_evidence": [
+        "row-specific source-backed bond-change and reaction locus",
+        "duplicate/leakage screen against current702 and source panels",
+        "cofactor or metal-locus evidence normalized outside source prose",
+        "expert family-admission decision before any label/import change"
+      ],
+      "retained_at_fixed_research_threshold": true,
+      "risk_flags": [
+        "external_no_decision_review_only",
+        "external_panel_row_not_countable",
+        "geometry_fold_fingerprint_agreement_needs_duplicate_screen",
+        "label_import_not_authorized",
+        "source_backed_sidecar_review_context_only",
+        "source_check_required_before_family_decision"
+      ],
+      "source_accession": "uniprot:P15289"
+    },
+    {
+      "combined_mean_geometry_fold": 0.6897,
+      "display_name": "Carbonic anhydrase 2",
+      "entry_id": "mh_067",
+      "fixed_research_threshold": 0.44155,
+      "geometry_fold_agreement": true,
+      "local_source_context": {
+        "candidate_role": "external_positive_lead",
+        "current_v1_state": "external_no_decision_review_only",
+        "evidence_summary": "external carbonic anhydrase boundary lead; should not force all CAs into generic hydrolase children",
+        "ligand_or_substrate_state": "CO2/bicarbonate hydration/dehydration, not generic bond hydrolysis",
+        "metal_ligand_state": "Zn-water reversible carbonate dehydratase; reviewed EC 4.2.1.1",
+        "source": "external_metal_hydrolase_tail_panel",
+        "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/12CA",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P00918.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P00918/entry"
+        }
+      },
+      "nearest_atlas_tm_score": 1.004,
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_score": 0.3755,
+      "preflight_decision": "hold_review_only_pending_source_check",
+      "rank": 2,
+      "required_next_evidence": [
+        "row-specific source-backed bond-change and reaction locus",
+        "duplicate/leakage screen against current702 and source panels",
+        "cofactor or metal-locus evidence normalized outside source prose",
+        "expert family-admission decision before any label/import change"
+      ],
+      "retained_at_fixed_research_threshold": true,
+      "risk_flags": [
+        "external_no_decision_review_only",
+        "external_panel_row_not_countable",
+        "geometry_fold_fingerprint_agreement_needs_duplicate_screen",
+        "label_import_not_authorized",
+        "source_backed_sidecar_review_context_only",
+        "source_check_required_before_family_decision"
+      ],
+      "source_accession": "uniprot:P00918"
+    },
     {
       "combined_mean_geometry_fold": 0.6633,
       "display_name": "Metallo-beta-lactamase IMP-1",
@@ -49,7 +137,7 @@
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
       "predicted_geometry_top1_score": 0.3822,
       "preflight_decision": "hold_review_only_pending_source_check",
-      "rank": 1,
+      "rank": 3,
       "required_next_evidence": [
         "row-specific source-backed bond-change and reaction locus",
         "duplicate/leakage screen against current702 and source panels",
@@ -93,7 +181,7 @@
       "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
       "predicted_geometry_top1_score": 0.1733,
       "preflight_decision": "hold_review_only_pending_source_check",
-      "rank": 7,
+      "rank": 9,
       "required_next_evidence": [
         "row-specific source-backed bond-change and reaction locus",
         "duplicate/leakage screen against current702 and source panels",
@@ -136,7 +224,7 @@
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
       "predicted_geometry_top1_score": 0.2628,
       "preflight_decision": "hold_review_only_pending_source_check",
-      "rank": 8,
+      "rank": 10,
       "required_next_evidence": [
         "row-specific source-backed bond-change and reaction locus",
         "duplicate/leakage screen against current702 and source panels",
@@ -169,12 +257,12 @@
     "source_check_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
-      "sha256": "e7d180af1f89fa61553a0c954c7b1a7e7e6f658571f0b397f6eeec7bb8bad3fa"
+      "sha256": "d04e46be397a77f4d73c4bf0ba4c5f3ee5c58050bdb23d3344fa63483096d435"
     },
     "source_free_predicted_geometry_retrieval": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json",
-      "sha256": "490ec907f56e13c047d715a8f9307da44f57f74eb73470f7ba0270e640d628c0"
+      "sha256": "ce2a6396f5b5b960f34be742d6c1f7be8f0e2966ee8773af04d9311b92ae1c92"
     }
   },
   "status": "source_free_predicted_geometry_source_check_preflight_ready_review_only"

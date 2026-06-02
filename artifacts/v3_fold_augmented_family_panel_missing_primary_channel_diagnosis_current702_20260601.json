@@ -1,16 +1,16 @@
 {
   "artifact_id": "v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601",
   "counts": {
-    "diagnosed_rows": 7,
+    "diagnosed_rows": 5,
     "diagnosis_counts": {
-      "source_backed_fold_scored_needs_predicted_geometry": 7
+      "source_backed_fold_scored_needs_predicted_geometry": 5
     },
     "rows_with_heldout_fold_channel_score": 0,
     "rows_with_predicted_geometry_evidence": 0,
-    "rows_with_source_backed_fold_score": 7,
+    "rows_with_source_backed_fold_score": 5,
     "rows_with_train_calibration_fold_score": 0
   },
-  "created_utc": "2026-06-01T15:02:09Z",
+  "created_utc": "2026-06-02T19:15:31Z",
   "diagnosed_rows": [
     {
       "benchmark_role": null,
@@ -111,54 +111,6 @@
     {
       "benchmark_role": null,
       "diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
-      "entry_id": "mh_067",
-      "fold_score_evidence": {
-        "nearest_atlas_entry_id": "m_csa:216",
-        "nearest_atlas_tm_score": 1.004,
-        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
-        "partition": "review_only_family_panel_source_backed_materialization",
-        "selected_structure_id": "12CA",
-        "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_067_P00918.json",
-        "source": "family_panel_source_backed_afdb_vs_predicted_atlas"
-      },
-      "guardrail_note": "review-only materialization diagnosis; no labels, registries, imports, thresholds, training data, or production scoring changed",
-      "local_review_evidence": null,
-      "original_score_blockers": [
-        "predicted_geometry_top1_score_missing"
-      ],
-      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "predicted_geometry_evidence": null,
-      "rank": 5,
-      "recommended_next_action": "materialize a source-free predicted active-site geometry sidecar for this review-only row before primary-channel readout",
-      "split_assignment": null
-    },
-    {
-      "benchmark_role": null,
-      "diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
-      "entry_id": "mh_068",
-      "fold_score_evidence": {
-        "nearest_atlas_entry_id": "m_csa:158",
-        "nearest_atlas_tm_score": 1.002,
-        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
-        "partition": "review_only_family_panel_source_backed_materialization",
-        "selected_structure_id": "1AUK",
-        "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_068_P15289.json",
-        "source": "family_panel_source_backed_afdb_vs_predicted_atlas"
-      },
-      "guardrail_note": "review-only materialization diagnosis; no labels, registries, imports, thresholds, training data, or production scoring changed",
-      "local_review_evidence": null,
-      "original_score_blockers": [
-        "predicted_geometry_top1_score_missing"
-      ],
-      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "predicted_geometry_evidence": null,
-      "rank": 6,
-      "recommended_next_action": "materialize a source-free predicted active-site geometry sidecar for this review-only row before primary-channel readout",
-      "split_assignment": null
-    },
-    {
-      "benchmark_role": null,
-      "diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
       "entry_id": "mh_072",
       "fold_score_evidence": {
         "nearest_atlas_entry_id": "m_csa:300",
@@ -176,7 +128,7 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 7,
+      "rank": 5,
       "recommended_next_action": "materialize a source-free predicted active-site geometry sidecar for this review-only row before primary-channel readout",
       "split_assignment": null
     }
@@ -193,7 +145,7 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "All 7 queued rows now have frozen or source-backed fold scores; the remaining primary-channel blocker is source-free predicted active-site geometry.",
+    "headline": "All 5 queued rows now have frozen or source-backed fold scores; the remaining primary-channel blocker is source-free predicted active-site geometry.",
     "m_csa_973_result": "m_csa:973 is no longer in the missing primary-channel queue, consistent with the family-panel readout consuming its frozen train/calibration fold score.",
     "next_action": "Materialize source-free predicted active-site geometry sidecars for the source-backed fold-scored rows, starting with Q59490, A0A1M6T2I7, and Q6NSJ0."
   },
@@ -208,7 +160,7 @@
     "missing_primary_channel_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json",
-      "sha256": "1bc40aa88c441b97d4c6be2b6d83d0eca6307de80ae441ef4867436c5b3747b0"
+      "sha256": "dd43882113437e4deb22a59651ae6e632019dab1fad45ec09be2eef62eee7fc6"
     },
     "predicted_geometry_atlas_retrieval": {
       "exists": true,
@@ -218,7 +170,7 @@
     "predicted_structure_fold_channel": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
-      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+      "sha256": "27e21068789004ca280e8583dee9ebdbae8056f7ff3e63677adaa5688765c954"
     },
     "source_backed_sidecar_materialization": {
       "exists": true,

@@ -1,6 +1,6 @@
 # Family Panel Source-Free Predicted-Geometry Sidecar Manifest - current702
 
-Run: 2026-06-01T14:24:37Z
+Run: 2026-06-02T19:15:46Z
 
 Review-only readiness manifest for materializing source-free predicted active-site geometry sidecars for the 10 family-panel rows that already have source-backed AFDB-vs-predicted-atlas Foldseek/TM scores.
 
@@ -10,10 +10,10 @@ Review-only readiness manifest for materializing source-free predicted active-si
 - Targeted rows: 10
 - Rows with AFDB predicted CIFs: 10
 - Rows with source-backed fold scores: 10
-- Rows with approved source-free active-site locator: 3
-- Source-free geometry ready rows: 3
-- Source-free geometry blocked rows: 7
-- Blocker counts: {'approved_source_free_active_site_locator_missing': 7, 'source_backed_sidecar_lacks_residue_locator': 7}
+- Rows with approved source-free active-site locator: 5
+- Source-free geometry ready rows: 5
+- Source-free geometry blocked rows: 5
+- Blocker counts: {'approved_source_free_active_site_locator_missing': 5, 'source_backed_sidecar_lacks_residue_locator': 5}
 
 ## Rows
 
@@ -26,8 +26,8 @@ Review-only readiness manifest for materializing source-free predicted active-si
 | 5 | mh_064 | uniprot:C7C422 | True | 0.9222 | blocked_source_free_geometry_preconditions | approved_source_free_active_site_locator_missing, source_backed_sidecar_lacks_residue_locator |
 | 6 | mh_065 | uniprot:Q79MP6 | True | 0.9411 | blocked_source_free_geometry_preconditions | approved_source_free_active_site_locator_missing, source_backed_sidecar_lacks_residue_locator |
 | 7 | mh_066 | uniprot:P52699 | True | 0.9445 | ready_to_score_source_free_predicted_geometry |  |
-| 8 | mh_067 | uniprot:P00918 | True | 1.004 | blocked_source_free_geometry_preconditions | approved_source_free_active_site_locator_missing, source_backed_sidecar_lacks_residue_locator |
-| 9 | mh_068 | uniprot:P15289 | True | 1.002 | blocked_source_free_geometry_preconditions | approved_source_free_active_site_locator_missing, source_backed_sidecar_lacks_residue_locator |
+| 8 | mh_067 | uniprot:P00918 | True | 1.004 | ready_to_score_source_free_predicted_geometry |  |
+| 9 | mh_068 | uniprot:P15289 | True | 1.002 | ready_to_score_source_free_predicted_geometry |  |
 | 10 | mh_072 | uniprot:P0A6P9 | True | 0.5936 | blocked_source_free_geometry_preconditions | approved_source_free_active_site_locator_missing, source_backed_sidecar_lacks_residue_locator |
 
 ## Blocker-Clearing Attempts
@@ -49,5 +49,5 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-predicted-structure-fold-chan
 
 ## Interpretation
 
-- 10/10 rows have source-backed fold scores and AFDB coordinate hashes; 3 now have approved source-free active-site locators and 7 remain blocked before predicted-geometry scoring.
+- 10/10 rows have source-backed fold scores and AFDB coordinate hashes; 5 now have approved source-free active-site locators and 5 remain blocked before predicted-geometry scoring.
 - Run predicted-geometry retrieval only for ready rows using the approved locator sidecars; do not promote rows or use source-backed review prose as scoring input.

@@ -1,0 +1,105 @@
+{
+  "alternate_coordinate_rows": [
+    {
+      "cached": false,
+      "expected_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKJ.cif",
+      "fetch_command_from_policy_packet": "curl -L --fail https://files.rcsb.org/download/3RKJ.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKJ.cif",
+      "pdb_id": "3RKJ",
+      "sha256": null
+    },
+    {
+      "cached": false,
+      "expected_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKK.cif",
+      "fetch_command_from_policy_packet": "curl -L --fail https://files.rcsb.org/download/3RKK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKK.cif",
+      "pdb_id": "3RKK",
+      "sha256": null
+    },
+    {
+      "cached": false,
+      "expected_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SBL.cif",
+      "fetch_command_from_policy_packet": "curl -L --fail https://files.rcsb.org/download/3SBL.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SBL.cif",
+      "pdb_id": "3SBL",
+      "sha256": null
+    },
+    {
+      "cached": false,
+      "expected_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SFP.cif",
+      "fetch_command_from_policy_packet": "curl -L --fail https://files.rcsb.org/download/3SFP.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SFP.cif",
+      "pdb_id": "3SFP",
+      "sha256": null
+    },
+    {
+      "cached": false,
+      "expected_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SPU.cif",
+      "fetch_command_from_policy_packet": "curl -L --fail https://files.rcsb.org/download/3SPU.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SPU.cif",
+      "pdb_id": "3SPU",
+      "sha256": null
+    }
+  ],
+  "artifact_id": "v3_family_panel_source_free_locator_mh064_alternate_coordinate_local_cache_preflight_current702_20260602",
+  "counts": {
+    "alternate_coordinate_files_cached": 0,
+    "alternate_coordinate_files_missing": 5,
+    "alternate_pdb_ids_checked": 5,
+    "approved_locator_copy_authorized_rows": 0,
+    "new_coordinates_fetched": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "requested_afdb_coordinate_cached": 1,
+    "selected_coordinate_cached": 1
+  },
+  "created_utc": "2026-06-02T19:35:07Z",
+  "decision": {
+    "alternate_coordinate_fetch_already_satisfied_by_local_cache": false,
+    "fetch_policy_decision_still_required": true,
+    "new_countable_labels_authorized": false,
+    "next_action": "Approve or reject the five bounded mh_064 alternate-coordinate fetches; no alternate CIF is currently cached locally, so no candidate extraction can proceed without that policy decision."
+  },
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "network_fetch_attempted": false,
+    "new_coordinates_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_locator_alternate_coordinate_local_cache_preflight",
+  "scope": {
+    "alternate_pdb_ids": [
+      "3RKJ",
+      "3RKK",
+      "3SBL",
+      "3SFP",
+      "3SPU"
+    ],
+    "current702_safe_inputs_only": true,
+    "purpose": "Local-cache-only preflight before any alternate-coordinate fetch approval decision.",
+    "selected_structure_id": "3PG4",
+    "source_accession": "uniprot:C7C422",
+    "target_entries": [
+      "mh_064"
+    ]
+  },
+  "source_artifacts": {
+    "coordinate_dir": "artifacts/family_panel_source_backed_coordinates_current702_20260601",
+    "policy_blocker_packet": {
+      "path": "artifacts/v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.json",
+      "sha256": "f5389f3c3bf3c7aa2c57abed076796f16a5ed9ef0556394e1aa015aaf3762deb"
+    },
+    "requested_afdb_coordinate": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v6.cif",
+      "sha256": "3f2b5927b626c5328eb214efc24b10924ec120c9c19a0f7c70e021e609caaa06"
+    },
+    "selected_coordinate": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+      "sha256": "77372ff429b15fc7753047610edfb1d908fb72379dbfa479a70da64201c171ea"
+    }
+  },
+  "status": "source_free_locator_mh064_alternate_coordinate_local_cache_preflight_blocked_no_cached_alternates_review_only"
+}
