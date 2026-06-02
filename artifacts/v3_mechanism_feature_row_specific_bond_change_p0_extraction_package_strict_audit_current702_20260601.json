@@ -1,0 +1,192 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601",
+  "counts": {
+    "critical_counts": {
+      "extraction_rows_missing": 0,
+      "package_required_fields_mismatch": 0,
+      "row_template_violation_rows": 0,
+      "rows_allowed_for_feature_contract_consumption_now": 0,
+      "rows_allowed_for_model_training_now": 0,
+      "source_evidence_materialized": 0
+    },
+    "extraction_rows": 15,
+    "passed_template_only_rows": 15,
+    "required_field_count": 9,
+    "rows_with_non_null_template_values": 0,
+    "strict_audit_critical_violation_total": 0,
+    "violation_counts": {}
+  },
+  "created_utc": "2026-06-01T18:40:54Z",
+  "expected_required_fields": [
+    "source_record_id",
+    "source_database",
+    "source_record_version_or_date",
+    "row_specific_reaction_participant_mapping",
+    "row_specific_bond_change_events",
+    "active_site_residue_role_support",
+    "source_text_or_database_evidence_span",
+    "extractor_id",
+    "review_status"
+  ],
+  "guardrails": {
+    "feature_contract_mutated": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "row_specific_source_evidence_materialized": false,
+    "strict_audit_only": true
+  },
+  "interpretation": {
+    "next_action": "Only after source-backed values are filled should a future sidecar audit check evidence provenance and decide whether a no-fit feature-contract refresh is allowed.",
+    "result": "The P0 extraction work package is schema-complete and template-only: it contains manual extraction slots and acceptance criteria but no materialized row-specific bond-change evidence."
+  },
+  "row_audits": [
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:5",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:6",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:11",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:15",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:16",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:37",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:66",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:68",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:94",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:102",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:124",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:133",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:147",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:169",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    },
+    {
+      "acceptance_criteria_count": 5,
+      "entry_id": "m_csa:186",
+      "missing_fields": [],
+      "non_null_template_fields": [],
+      "status": "passed_template_only",
+      "unexpected_fields": [],
+      "violations": []
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_extraction_package_strict_audit",
+  "scope": "Strict template-only audit for the P0 row-specific bond-change extraction work package. It verifies that required manual fields are present but unfilled, rows are not consumable, and no source evidence has been materialized.",
+  "source_artifacts": {
+    "extraction_work_package": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json",
+      "sha256": "17700859acd6ac7e737d690e09bc4f4a91f5d611b6c609d8037c693d4ca8eea9"
+    }
+  },
+  "status": "p0_extraction_work_package_strict_audit_passed"
+}

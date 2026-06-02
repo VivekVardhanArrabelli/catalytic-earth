@@ -1,0 +1,997 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601",
+  "commands": {
+    "rebuild_extraction_work_package": "PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-row-specific-bond-change-p0-extraction-work-package",
+    "rebuild_source_graph_readiness": "PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-row-specific-bond-change-p0-source-graph-readiness"
+  },
+  "counts": {
+    "blocker_counts": {
+      "rhea_reaction_mapping_missing": 4,
+      "structured_bond_change_events_missing": 15
+    },
+    "critical_counts": {
+      "rows_allowed_for_feature_contract_consumption_now": 0,
+      "rows_allowed_for_model_training_now": 0,
+      "source_graph_readiness_rows_missing": 0
+    },
+    "fingerprint_counts": {
+      "flavin_dehydrogenase_reductase": 3,
+      "heme_peroxidase_oxidase": 3,
+      "metal_dependent_hydrolase": 3,
+      "plp_dependent_enzyme": 3,
+      "ser_his_acid_hydrolase": 3
+    },
+    "manual_extraction_rows": 15,
+    "p0_seed_rows": 15,
+    "required_field_count": 9,
+    "rows_requiring_rhea_lookup": 4,
+    "rows_with_rhea_targets": 11,
+    "rows_with_structured_bond_change_events_now": 0
+  },
+  "created_utc": "2026-06-01T18:37:39Z",
+  "extraction_rows": [
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P08819",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "rhea_reaction_mapping_missing",
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:5",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:3.4.16.6"
+        ],
+        "m_csa_entry_name": "carboxypeptidase D",
+        "rhea_lookup_required": true,
+        "rhea_targets": []
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "nucleophilic_acyl_substitution"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P00390",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:6",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:1.8.1.7"
+        ],
+        "m_csa_entry_name": "glutathione-disulfide reductase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:11740"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "flavin_mediated_redox_transfer"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P0A6C1",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "rhea_reaction_mapping_missing",
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:11",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:3.1.21.2"
+        ],
+        "m_csa_entry_name": "deoxyribonuclease IV (phage-T4-induced)",
+        "rhea_lookup_required": true,
+        "rhea_targets": []
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "metal_activated_water_attack"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P25910",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:15",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:3.5.2.6"
+        ],
+        "m_csa_entry_name": "beta-lactamase (Class B1)",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:20401"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "metal_activated_water_attack"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P04190",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:16",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:3.5.2.6"
+        ],
+        "m_csa_entry_name": "beta-lactamase (Class B1)",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:20401"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "metal_activated_water_attack"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "Q05769",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:37",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:1.14.99.1"
+        ],
+        "m_csa_entry_name": "prostaglandin-endoperoxide synthase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:23728"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "heme_mediated_redox_catalysis"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P19938",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:66",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:2.6.1.21"
+        ],
+        "m_csa_entry_name": "D-alanine transaminase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:15869"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "plp_stabilized_carbanion_chemistry"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P26440",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:68",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:1.3.8.4"
+        ],
+        "m_csa_entry_name": "isovaleryl-CoA dehydrogenase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:12276"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "flavin_mediated_redox_transfer"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "Q29460",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:94",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:3.1.1.47"
+        ],
+        "m_csa_entry_name": "1-alkyl-2-acetylglycerophosphocholine esterase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:17777"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "nucleophilic_acyl_substitution"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P00175",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:102",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:1.1.2.3"
+        ],
+        "m_csa_entry_name": "L-lactate dehydrogenase (cytochrome)",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:19909"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "flavin_mediated_redox_transfer"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P00396",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "rhea_reaction_mapping_missing",
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:124",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:1.9.3.1"
+        ],
+        "m_csa_entry_name": "cytochrome-c oxidase (AA3 type)",
+        "rhea_lookup_required": true,
+        "rhea_targets": []
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "heme_mediated_redox_catalysis"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P00183",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:133",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:1.14.15.1"
+        ],
+        "m_csa_entry_name": "camphor 5-monooxygenase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:13525"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "heme_mediated_redox_catalysis"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P07511",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:147",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:2.1.2.1"
+        ],
+        "m_csa_entry_name": "serine hydroxymethyltransferase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:15481",
+          "rhea:RHEA:19625",
+          "rhea:RHEA:79695"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "plp_stabilized_carbanion_chemistry"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P27487",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "train",
+      "blockers": [
+        "rhea_reaction_mapping_missing",
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:169",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:3.4.14.5"
+        ],
+        "m_csa_entry_name": "dipeptidyl-peptidase IV",
+        "rhea_lookup_required": true,
+        "rhea_targets": []
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "nucleophilic_acyl_substitution"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_change_event",
+        "reaction_participant_mapping_covers_each_bond_change_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use"
+      ],
+      "accession": "P09367",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "blockers": [
+        "structured_bond_change_events_missing"
+      ],
+      "entry_id": "m_csa:186",
+      "extraction_status": "manual_extraction_not_started",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "recommended_source_targets": {
+        "ec_targets": [
+          "ec:4.3.1.17"
+        ],
+        "m_csa_entry_name": "L-serine ammonia-lyase",
+        "rhea_lookup_required": false,
+        "rhea_targets": [
+          "rhea:RHEA:19169"
+        ]
+      },
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "source_context_status": "source_context_present_structured_bond_events_missing",
+      "template_chemical_operation_normalized": "plp_stabilized_carbanion_chemistry"
+    }
+  ],
+  "guardrails": {
+    "feature_contract_mutated": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "manual_extraction_templates_only": true,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "row_specific_source_evidence_materialized": false
+  },
+  "interpretation": {
+    "next_action": "Fill these templates from source-backed M-CSA/Rhea/mechanism evidence, run a strict sidecar audit, and only then consider a no-fit feature-contract refresh.",
+    "result": "The balanced P0 pilot is ready for manual/source-backed extraction planning, not feature consumption: every row still needs approved row-specific participant mappings and bond-change events."
+  },
+  "required_fields": [
+    "source_record_id",
+    "source_database",
+    "source_record_version_or_date",
+    "row_specific_reaction_participant_mapping",
+    "row_specific_bond_change_events",
+    "active_site_residue_role_support",
+    "source_text_or_database_evidence_span",
+    "extractor_id",
+    "review_status"
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_extraction_work_package",
+  "scope": "No-fit manual extraction work package for the balanced P0 row-specific bond-change pilot seed. It defines row-level required fields and acceptance criteria, but does not extract or materialize source evidence, mutate feature contracts, or fit a model.",
+  "source_artifacts": {
+    "source_graph_readiness": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json",
+      "sha256": "e60af5641e7c6d3ab92c683cecadb4d578736dbf7267ac9a862f8f8e3a6038a9"
+    }
+  },
+  "status": "p0_row_specific_bond_change_extraction_work_package_ready_manual_only"
+}

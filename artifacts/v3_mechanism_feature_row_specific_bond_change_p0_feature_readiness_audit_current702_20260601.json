@@ -1,0 +1,417 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601",
+  "counts": {
+    "approved_consumable_rows": 0,
+    "approved_event_type_counts": {},
+    "blocker_counts": {
+      "low_confidence_event_review": 7,
+      "multi_event_mechanism_review": 7,
+      "review_status_not_approved": 15,
+      "reviewer_id_missing": 15,
+      "rhea_equation_missing": 3,
+      "rhea_lookup_unresolved": 3
+    },
+    "critical_counts": {
+      "feature_contract_refresh_allowed_rows": 0,
+      "review_queue_not_ready": 0,
+      "rhea_lookup_manifest_not_ready": 0,
+      "strict_audit_not_passed": 0,
+      "unexpected_feature_contract_row_specific_fields": 0
+    },
+    "critical_violation_total": 0,
+    "draft_event_type_counts": {
+      "bond_broken": 5,
+      "bond_formed": 6,
+      "bond_order_changed": 7,
+      "electron_transfer": 21,
+      "proton_transfer": 10
+    },
+    "feature_contract_refresh_allowed": false,
+    "rows_with_bond_change_event": 10,
+    "rows_with_electron_transfer_event": 9,
+    "rows_with_proton_transfer_event": 6,
+    "sidecar_rows": 15,
+    "structurally_ready_draft_rows": 15
+  },
+  "created_utc": "2026-06-01T23:00:43Z",
+  "guardrails": {
+    "draft_source_evidence_not_training_input": true,
+    "feature_contract_mutated": false,
+    "feature_contract_refresh_allowed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "next_action": "Resolve the Rhea-missing rows, manually approve or reject each draft event with reviewer provenance, rerun the strict audit and this readiness audit, then refresh only train/cal feature contracts if the refresh gate passes.",
+    "result": "The P0 sidecar has structural draft coverage for bond-change, proton-transfer, and electron-transfer signals, but zero rows are approved or consumable, so the no-template embedding contract must remain unchanged."
+  },
+  "row_readiness": [
+    {
+      "accession": "P08819",
+      "approved_and_consumable": false,
+      "blockers": [
+        "review_status_not_approved",
+        "reviewer_id_missing",
+        "rhea_equation_missing",
+        "rhea_lookup_unresolved"
+      ],
+      "entry_id": "m_csa:5",
+      "event_count": 1,
+      "event_types": [
+        "bond_broken"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": false,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P00390",
+      "approved_and_consumable": false,
+      "blockers": [
+        "low_confidence_event_review",
+        "multi_event_mechanism_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:6",
+      "event_count": 5,
+      "event_types": [
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": false,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": true,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P0A6C1",
+      "approved_and_consumable": false,
+      "blockers": [
+        "low_confidence_event_review",
+        "multi_event_mechanism_review",
+        "review_status_not_approved",
+        "reviewer_id_missing",
+        "rhea_equation_missing",
+        "rhea_lookup_unresolved"
+      ],
+      "entry_id": "m_csa:11",
+      "event_count": 4,
+      "event_types": [
+        "bond_broken",
+        "bond_formed",
+        "electron_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P25910",
+      "approved_and_consumable": false,
+      "blockers": [
+        "low_confidence_event_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:15",
+      "event_count": 2,
+      "event_types": [
+        "bond_formed",
+        "electron_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P04190",
+      "approved_and_consumable": false,
+      "blockers": [
+        "low_confidence_event_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:16",
+      "event_count": 2,
+      "event_types": [
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": false,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": true,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "Q05769",
+      "approved_and_consumable": false,
+      "blockers": [
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:37",
+      "event_count": 2,
+      "event_types": [
+        "electron_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": false,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P19938",
+      "approved_and_consumable": false,
+      "blockers": [
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:66",
+      "event_count": 3,
+      "event_types": [
+        "bond_order_changed"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": false,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P26440",
+      "approved_and_consumable": false,
+      "blockers": [
+        "low_confidence_event_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:68",
+      "event_count": 3,
+      "event_types": [
+        "electron_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": false,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "Q29460",
+      "approved_and_consumable": false,
+      "blockers": [
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:94",
+      "event_count": 2,
+      "event_types": [
+        "bond_formed"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": false,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P00175",
+      "approved_and_consumable": false,
+      "blockers": [
+        "low_confidence_event_review",
+        "multi_event_mechanism_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:102",
+      "event_count": 5,
+      "event_types": [
+        "bond_broken",
+        "electron_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P00396",
+      "approved_and_consumable": false,
+      "blockers": [
+        "multi_event_mechanism_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:124",
+      "event_count": 5,
+      "event_types": [
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": false,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": true,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P00183",
+      "approved_and_consumable": false,
+      "blockers": [
+        "low_confidence_event_review",
+        "multi_event_mechanism_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:133",
+      "event_count": 5,
+      "event_types": [
+        "bond_formed",
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": true,
+      "has_proton_transfer_event": true,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P07511",
+      "approved_and_consumable": false,
+      "blockers": [
+        "multi_event_mechanism_review",
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:147",
+      "event_count": 4,
+      "event_types": [
+        "bond_order_changed",
+        "proton_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": false,
+      "has_proton_transfer_event": true,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P27487",
+      "approved_and_consumable": false,
+      "blockers": [
+        "multi_event_mechanism_review",
+        "review_status_not_approved",
+        "reviewer_id_missing",
+        "rhea_equation_missing",
+        "rhea_lookup_unresolved"
+      ],
+      "entry_id": "m_csa:169",
+      "event_count": 4,
+      "event_types": [
+        "bond_broken",
+        "bond_formed",
+        "proton_transfer"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": false,
+      "has_proton_transfer_event": true,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    },
+    {
+      "accession": "P09367",
+      "approved_and_consumable": false,
+      "blockers": [
+        "review_status_not_approved",
+        "reviewer_id_missing"
+      ],
+      "entry_id": "m_csa:186",
+      "event_count": 2,
+      "event_types": [
+        "bond_broken",
+        "bond_order_changed"
+      ],
+      "feature_contract_row_has_forbidden_field": false,
+      "feature_contract_row_present": true,
+      "has_bond_change_event": true,
+      "has_electron_transfer_event": false,
+      "has_proton_transfer_event": false,
+      "review_status": "draft",
+      "structurally_ready_draft": true
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_feature_readiness_audit",
+  "scope": "Review-only readiness audit for converting the P0 row-specific bond-change source-evidence sidecar into future mechanism-feature contract fields. It inventories proton-transfer, electron-transfer, and bond-change draft coverage while keeping every draft row out of training and threshold selection.",
+  "source_artifacts": {
+    "feature_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json",
+      "sha256": "59c6782c620fb50f00b75af1820cce0daee0f10b604e2805550d972f5880cd6b"
+    },
+    "review_queue": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+      "sha256": "98c49ed319d631d1dd862ac4aaacf8f41b810dda49b2d41615002d3d6fc27b64"
+    },
+    "rhea_lookup_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
+      "sha256": "a0deb4bd32a422bff59ee7c53c73047badd7458295f6505e421f5d1daf3de914"
+    },
+    "sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+      "sha256": "73480b483045649ec44fb8b77871faa80b646ea19bcfb3169ec784cd71b0e482"
+    },
+    "strict_audit": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
+      "sha256": "cd5f870c3f9d73feed25105e64b54364a2e171045d5bf55de36b71254431117c"
+    }
+  },
+  "status": "p0_feature_readiness_audit_blocked_review_required"
+}

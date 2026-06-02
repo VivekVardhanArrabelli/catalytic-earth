@@ -1,0 +1,209 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601",
+  "counts": {
+    "accession_query_attempts": 4,
+    "ec_query_attempts": 4,
+    "feature_contract_consumable_rows": 0,
+    "lookup_rows": 4,
+    "resolved_by_accession_rows": 1,
+    "resolved_by_exact_ec_rows": 0,
+    "resolved_rows": 1,
+    "unresolved_rows": 3
+  },
+  "created_utc": "2026-06-01T23:00:33Z",
+  "guardrails": {
+    "feature_contract_mutated": false,
+    "feature_contract_refresh_allowed": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_fetch_performed": true
+  },
+  "interpretation": {
+    "next_action": "Rebuild the draft P0 source-evidence sidecar with this resolution artifact, rerun the strict audit, then keep remaining unresolved rows in the Rhea lookup manifest.",
+    "result": "1/4 Rhea lookup rows resolved to an official Rhea equation; unresolved rows remain manual review blockers."
+  },
+  "row_resolutions": [
+    {
+      "accepted_resolution": {
+        "ec_number": null,
+        "ec_targets": [
+          "ec:3.4.16.6"
+        ],
+        "equation": null,
+        "records": [],
+        "resolution_method": null,
+        "rhea_id": null,
+        "status": "unresolved_no_rhea_record_for_ec_or_accession"
+      },
+      "accession": "P08819",
+      "accession_query_attempt": {
+        "query": "uniprot:P08819",
+        "query_type": "row_accession",
+        "record_count": 0,
+        "records": [],
+        "url": "https://www.rhea-db.org/rhea?query=uniprot%3AP08819&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+      },
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "draft_event_count": 1,
+      "ec_query_attempts": [
+        {
+          "query": "3.4.16.6",
+          "query_type": "manifest_ec_target",
+          "record_count": 0,
+          "records": [],
+          "url": "https://www.rhea-db.org/rhea?query=3.4.16.6&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+        }
+      ],
+      "entry_id": "m_csa:5",
+      "lookup_blockers_before_resolution": [
+        "rhea_equation_missing"
+      ],
+      "m_csa_entry_name": "carboxypeptidase D"
+    },
+    {
+      "accepted_resolution": {
+        "ec_number": null,
+        "ec_targets": [
+          "ec:3.1.21.2"
+        ],
+        "equation": null,
+        "records": [],
+        "resolution_method": null,
+        "rhea_id": null,
+        "status": "unresolved_no_rhea_record_for_ec_or_accession"
+      },
+      "accession": "P0A6C1",
+      "accession_query_attempt": {
+        "query": "uniprot:P0A6C1",
+        "query_type": "row_accession",
+        "record_count": 0,
+        "records": [],
+        "url": "https://www.rhea-db.org/rhea?query=uniprot%3AP0A6C1&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+      },
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "draft_event_count": 4,
+      "ec_query_attempts": [
+        {
+          "query": "3.1.21.2",
+          "query_type": "manifest_ec_target",
+          "record_count": 0,
+          "records": [],
+          "url": "https://www.rhea-db.org/rhea?query=3.1.21.2&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+        }
+      ],
+      "entry_id": "m_csa:11",
+      "lookup_blockers_before_resolution": [
+        "rhea_equation_missing"
+      ],
+      "m_csa_entry_name": "deoxyribonuclease IV (phage-T4-induced)"
+    },
+    {
+      "accepted_resolution": {
+        "ec_number": "EC:7.1.1.9",
+        "ec_targets": [
+          "ec:1.9.3.1"
+        ],
+        "equation": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)",
+        "records": [
+          {
+            "ec_number": "EC:7.1.1.9",
+            "equation": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)",
+            "mapped_enzyme_count": 1870579,
+            "rhea_id": "RHEA:11436",
+            "source": "rhea"
+          }
+        ],
+        "resolution_method": "accession_query",
+        "rhea_id": "RHEA:11436",
+        "status": "resolved_accession_query_with_ec_reclassification"
+      },
+      "accession": "P00396",
+      "accession_query_attempt": {
+        "query": "uniprot:P00396",
+        "query_type": "row_accession",
+        "record_count": 1,
+        "records": [
+          {
+            "ec_number": "EC:7.1.1.9",
+            "equation": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)",
+            "mapped_enzyme_count": 1870579,
+            "rhea_id": "RHEA:11436",
+            "source": "rhea"
+          }
+        ],
+        "url": "https://www.rhea-db.org/rhea?query=uniprot%3AP00396&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+      },
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "draft_event_count": 5,
+      "ec_query_attempts": [
+        {
+          "query": "1.9.3.1",
+          "query_type": "manifest_ec_target",
+          "record_count": 0,
+          "records": [],
+          "url": "https://www.rhea-db.org/rhea?query=1.9.3.1&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+        }
+      ],
+      "entry_id": "m_csa:124",
+      "lookup_blockers_before_resolution": [
+        "rhea_equation_missing"
+      ],
+      "m_csa_entry_name": "cytochrome-c oxidase (AA3 type)"
+    },
+    {
+      "accepted_resolution": {
+        "ec_number": null,
+        "ec_targets": [
+          "ec:3.4.14.5"
+        ],
+        "equation": null,
+        "records": [],
+        "resolution_method": null,
+        "rhea_id": null,
+        "status": "unresolved_no_rhea_record_for_ec_or_accession"
+      },
+      "accession": "P27487",
+      "accession_query_attempt": {
+        "query": "uniprot:P27487",
+        "query_type": "row_accession",
+        "record_count": 0,
+        "records": [],
+        "url": "https://www.rhea-db.org/rhea?query=uniprot%3AP27487&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+      },
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "draft_event_count": 4,
+      "ec_query_attempts": [
+        {
+          "query": "3.4.14.5",
+          "query_type": "manifest_ec_target",
+          "record_count": 0,
+          "records": [],
+          "url": "https://www.rhea-db.org/rhea?query=3.4.14.5&columns=rhea-id%2Cequation%2Cec%2Cuniprot&format=tsv&limit=20"
+        }
+      ],
+      "entry_id": "m_csa:169",
+      "lookup_blockers_before_resolution": [
+        "rhea_equation_missing"
+      ],
+      "m_csa_entry_name": "dipeptidyl-peptidase IV"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_rhea_lookup_resolution",
+  "scope": "Official Rhea lookup resolution for P0 draft source-evidence rows that lacked local graph Rhea equations. This may add review-only Rhea equation evidence to the draft sidecar, but does not approve rows or refresh feature contracts.",
+  "source_artifacts": {
+    "rhea_lookup_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
+      "sha256": "c17c7663d8cb2d83e227cd603f71e70d06b1014e1e47b38e453c3a0f08196557"
+    }
+  },
+  "status": "p0_rhea_lookup_resolution_partial_review_only"
+}

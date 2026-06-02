@@ -38,11 +38,22 @@ deployment regime). Action: regenerate `predicted_geometry_retrieval` for the
 and the atlas-Mahalanobis novelty path. This may itself lift the operating point
 and unblocks #2.
 
-### 2. Learned mechanism-feature embedding (the real northstar feature) — DONE (2026-06-01): clean negative + residual lead, now CONFIRMED
-Built as a closed-form, information-preserving supervised metric (sequence-only
-ESM2-150M; atlas-fit robust-standardize -> atlas-span PCA -> within-class
-whitening), evaluated at the operating point. See decision_log 2026-06-01 and
-`work/mechanism_feature_embedding_current702_20260601.md`.
+Status addendum, 2026-06-01: the predicted-atlas geometry novelty variants and
+operating grid are rerun, and a review-only matched-retention delta audit now
+compares them to the fold-augmented operating grid. Fold augmentation improves
+all four matched retention targets, including +0.5444 OOS abstention and +0.5
+cofactor-confounded OOS abstention at the 90% retention diagnostic. This does
+not select a threshold.
+
+### 2. Learned mechanism-feature embedding (the real northstar feature) — DONE (2026-06-01): clean negative + residual lead, now CONFIRMED + INTEGRATED
+Two parallel implementations of this lever were pursued; both are recorded — (A) the
+closed-form information-preserving metric (residual line), and (B) the standardized
+nearest-primary centroid pilot (template-feature line, addenda below).
+
+**(A) Closed-form information-preserving metric (residual line).** Built as a closed-form
+supervised metric (sequence-only ESM2-150M; atlas-fit robust-standardize -> atlas-span PCA
+-> within-class whitening), evaluated at the operating point. See decision_log 2026-06-01/02
+and `work/mechanism_feature_embedding_current702_20260601.md`.
 - The predeclared primary novelty score does NOT beat the top1_score baseline
   (AUC 0.616 vs 0.757; OOS-abstain-recall 0.165 vs 0.215 at >=90% retention).
   Supervised whitening distances (prototype/kNN ~0.61) confirm discriminative
@@ -68,13 +79,35 @@ whitening), evaluated at the operating point. See decision_log 2026-06-01 and
   deployable constant. See decision_log 2026-06-02 and
   `work/mechanism_residual_gate_integration_current702_20260601.md`
   (`eval-mechanism-residual-gate-integration`).
-- NEXT (the operational gap is now precisely the confounded subset, still 0.1667):
-  (a) close Lever 3 — a DEPLOYMENT-VALID confounded-safe channel (predicted-structure
-  Foldseek/TM vs the atlas; the current fold eval uses experimental-PDB metadata and
-  is not deployable); and (b) a deployable residual calibration (or the Lever 4
-  expanded family set) so the residual lift survives outside an eval-relative
-  threshold. A trainable GNN over active-site reaction graphs remains a future lever
-  once a deployment-valid predicted-geometry graph dataset exists.
+- NEXT (residual line): the operational gap is now precisely the confounded subset
+  (still 0.1667). (a) close Lever 3 — a DEPLOYMENT-VALID confounded-safe channel
+  (predicted-structure Foldseek/TM vs the atlas; the current fold eval uses
+  experimental-PDB metadata and is not deployable); and (b) a deployable residual
+  calibration (or the Lever 4 expanded family set) so the residual lift survives
+  outside an eval-relative threshold. A trainable GNN over active-site reaction
+  graphs remains a future lever once a deployment-valid predicted-geometry graph
+  dataset exists.
+
+**(B) Standardized nearest-primary centroid pilot (template-feature line).** A separate
+take on the same lever (decision_log 2026-06-01, "Mechanism-Feature Embedding Pilot Is
+Implemented, But Template-Dependent"); status below.
+
+Current status addendum, 2026-06-01: the train/cal feature contract has now
+been consumed by a real standardized nearest-primary centroid pilot, with a
+once-only heldout readout. The full contract scores well only while the
+reaction-template field is present; the no-reaction-template ablation is weak
+on both calibration and heldout. The next embedding-gap action is no longer
+another plan: materialize row-specific bond-change, proton-transfer, and
+electron-flow features, rerun the no-template pilot/readout, and use the
+template-dependent full-contract score only as a ceiling diagnostic.
+
+Readiness addendum, 2026-06-01: the P0 source-evidence sidecar now has a
+feature-readiness audit over draft bond/proton/electron events, but 0/15 rows
+are approved or consumable. A bounded official Rhea lookup resolved `m_csa:124`
+by accession to `RHEA:11436` / EC `7.1.1.9`, and a strict consumption audit
+confirms it entered only the draft sidecar. Resolve the remaining three Rhea
+lookup rows (`m_csa:11`, `m_csa:169`, and `m_csa:5`) and reviewer provenance
+before any no-template feature-contract refresh.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)

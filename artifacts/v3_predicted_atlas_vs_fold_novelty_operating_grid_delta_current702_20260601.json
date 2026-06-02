@@ -1,0 +1,136 @@
+{
+  "artifact_id": "v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_current702_20260601",
+  "counts": {
+    "critical_counts": {
+      "fold_operating_grid_not_ready": 0,
+      "geometry_operating_grid_not_ready": 0,
+      "missing_shared_retention_targets": 0
+    },
+    "critical_violation_total": 0,
+    "shared_retention_targets": 4,
+    "targets_with_confounded_abstain_lift": 4,
+    "targets_with_oos_abstain_lift": 4
+  },
+  "created_utc": "2026-06-01T23:16:25Z",
+  "delta_rows": [
+    {
+      "confounded_abstain_recall_delta": 0.1666,
+      "fold_augmented_signal": "mean_top1_raw_and_tm",
+      "fold_augmented_threshold": 0.5213,
+      "fold_confounded_abstain_recall": 0.8333,
+      "fold_inscope_retain_recall": 0.8085,
+      "fold_oos_abstain_recall": 0.8608,
+      "geometry_confounded_abstain_recall": 0.6667,
+      "geometry_inscope_retain_recall": 0.8085,
+      "geometry_oos_abstain_recall": 0.6203,
+      "geometry_signal": "negative_nearest_class_centroid_robust_distance",
+      "geometry_threshold": -1.434876,
+      "oos_abstain_recall_delta": 0.2405,
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "confounded_abstain_recall_delta": 0.1666,
+      "fold_augmented_signal": "harmonic_top1_raw_and_tm",
+      "fold_augmented_threshold": 0.475146,
+      "fold_confounded_abstain_recall": 0.8333,
+      "fold_inscope_retain_recall": 0.8511,
+      "fold_oos_abstain_recall": 0.8354,
+      "geometry_confounded_abstain_recall": 0.6667,
+      "geometry_inscope_retain_recall": 0.8723,
+      "geometry_oos_abstain_recall": 0.5949,
+      "geometry_signal": "negative_nearest_class_centroid_robust_distance",
+      "geometry_threshold": -1.473053,
+      "oos_abstain_recall_delta": 0.2405,
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "confounded_abstain_recall_delta": 0.5,
+      "fold_augmented_signal": "mean_top1_atlas_percentile_and_tm",
+      "fold_augmented_threshold": 0.416045,
+      "fold_confounded_abstain_recall": 0.8333,
+      "fold_inscope_retain_recall": 0.9149,
+      "fold_oos_abstain_recall": 0.7722,
+      "geometry_confounded_abstain_recall": 0.3333,
+      "geometry_inscope_retain_recall": 0.9149,
+      "geometry_oos_abstain_recall": 0.2278,
+      "geometry_signal": "negative_nearest_class_centroid_robust_distance",
+      "geometry_threshold": -2.079745,
+      "oos_abstain_recall_delta": 0.5444,
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "confounded_abstain_recall_delta": 0.6666,
+      "fold_augmented_signal": "mean_top1_raw_and_tm",
+      "fold_augmented_threshold": 0.45985,
+      "fold_confounded_abstain_recall": 0.8333,
+      "fold_inscope_retain_recall": 0.9574,
+      "fold_oos_abstain_recall": 0.6456,
+      "geometry_confounded_abstain_recall": 0.1667,
+      "geometry_inscope_retain_recall": 0.9574,
+      "geometry_oos_abstain_recall": 0.1519,
+      "geometry_signal": "negative_nearest_class_centroid_robust_distance",
+      "geometry_threshold": -2.517866,
+      "oos_abstain_recall_delta": 0.4937,
+      "target_min_inscope_retention": 0.95
+    }
+  ],
+  "guardrails": {
+    "existing_artifacts_only": true,
+    "feature_contract_mutated": false,
+    "heldout_threshold_selected_or_promoted": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "headline": "Fold-augmented novelty materially improves the frozen predicted-atlas operating-grid diagnostic at matched retention.",
+    "next_action": "Use the fold-augmented train/cal threshold contract for any thresholded claim; keep this heldout operating-grid comparison review-only.",
+    "target_90_delta": {
+      "confounded_abstain_recall_delta": 0.5,
+      "fold_augmented_signal": "mean_top1_atlas_percentile_and_tm",
+      "fold_augmented_threshold": 0.416045,
+      "fold_confounded_abstain_recall": 0.8333,
+      "fold_inscope_retain_recall": 0.9149,
+      "fold_oos_abstain_recall": 0.7722,
+      "geometry_confounded_abstain_recall": 0.3333,
+      "geometry_inscope_retain_recall": 0.9149,
+      "geometry_oos_abstain_recall": 0.2278,
+      "geometry_signal": "negative_nearest_class_centroid_robust_distance",
+      "geometry_threshold": -2.079745,
+      "oos_abstain_recall_delta": 0.5444,
+      "target_min_inscope_retention": 0.9
+    }
+  },
+  "schema_version": "northstar_next_levers.v0.predicted_atlas_vs_fold_novelty_delta",
+  "scope": "Review-only delta audit comparing frozen predicted-atlas geometry novelty operating-grid rows against frozen geometry-plus-predicted-fold operating-grid rows. It reads existing artifacts only and does not select a deployment threshold.",
+  "source_artifacts": {
+    "fold_operating_grid": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json",
+      "sha256": "b99e19341324a88f0c7c911d38bb84df9e8af7d24767c9ad85db15c06e0aa53a"
+    },
+    "geometry_operating_grid": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json",
+      "sha256": "657319235d76de66baedf81695296b55b59970d772599af9af5004072feb66c1"
+    }
+  },
+  "status": "predicted_atlas_vs_fold_novelty_delta_ready_review_only",
+  "target_90_summary": {
+    "confounded_abstain_recall_delta": 0.5,
+    "fold_augmented_signal": "mean_top1_atlas_percentile_and_tm",
+    "fold_augmented_threshold": 0.416045,
+    "fold_confounded_abstain_recall": 0.8333,
+    "fold_inscope_retain_recall": 0.9149,
+    "fold_oos_abstain_recall": 0.7722,
+    "geometry_confounded_abstain_recall": 0.3333,
+    "geometry_inscope_retain_recall": 0.9149,
+    "geometry_oos_abstain_recall": 0.2278,
+    "geometry_signal": "negative_nearest_class_centroid_robust_distance",
+    "geometry_threshold": -2.079745,
+    "oos_abstain_recall_delta": 0.5444,
+    "target_min_inscope_retention": 0.9
+  }
+}

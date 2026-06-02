@@ -107,6 +107,11 @@ artifacts first.
   `negative_nearest_class_centroid_robust_distance`; at >=90% in-scope retention
   it abstains on only 22.78% of OOS and 2/6 cofactor-confounded OOS rows, so it
   remains diagnostic input rather than a standalone deployment gate.
+- A matched-retention delta audit now compares that frozen geometry-only grid
+  to the fold-augmented grid. Fold augmentation improves OOS and
+  cofactor-confounded abstention at all four shared retention targets; at 90%
+  in-scope retention, OOS abstention rises by `0.5444` and confounded-OOS
+  abstention rises by `0.5`. This is still review-only and selects no threshold.
 - A train/cal OOS-negative calibration surface now exists for the fold-augmented
   gate. The hash-selected 76-row surface has 71 score-complete rows with
   predicted geometry, selected organic cofactor scores, and exact Foldseek/TM
@@ -231,6 +236,13 @@ artifacts first.
   `m_csa:132` as secondary-probe support, `m_csa:551` and `m_csa:973` as future
   support only, and `m_csa:750` as radical flavin/Fe-S boundary negative. No
   FMO row is import-ready or registry-edit-ready.
+- The high-value glycyl-radical/thiamine panel now has a no-template
+  feature-refresh guardrail. Its two rows (`m_csa:30` and `m_csa:31`) are
+  score-complete and abstained at the fixed research threshold, but both are
+  heldout OOS/final-only controls, absent from the P0 train/cal readiness
+  audit, and absent from the train/cal feature contract. They may be
+  source-checked as review-only heldout evidence, but must not feed the
+  no-template train/cal feature refresh.
 - A source-free predicted-geometry retrieval now scores the three approved
   locator rows (`secondary_probe::radical_sam_enzyme`, `mh_073`, and `mh_066`)
   against the existing geometry fingerprint surface using only approved residue
@@ -313,8 +325,8 @@ artifacts first.
   decision classes and recommends starting with the `mh_067`/`mh_068` locator
   copy decision because their split-safe template check already passed and no
   coordinate fetch is needed. The matrix authorizes no copy, fetch, or scoring.
-- A refreshed current-run artifact integrity audit indexes 6 JSON artifacts and
-  6 matching work reports from this run. All parse/presence checks passed, and
+- A refreshed current-run artifact integrity audit indexes 21 JSON artifacts
+  and 21 matching work reports from this run. All parse/presence checks passed, and
   the validation summary records full pytest, unittest discovery, compileall,
   `validate`, repo-wide JSON/JSONL parse, current-docs reference check, and
   diff-check success.
@@ -339,6 +351,64 @@ artifacts first.
   mechanism-feature contract: 524 train/cal feature rows contain 0 bond-change
   feature rows, 0 heldout rows, and the strict feature-contract audit still has
   0 critical violations.
+- The row-specific bond-change gap now has a no-fit materialization priority
+  manifest. It partitions the 232 evidence-required rows into 171 P0 train/cal
+  feature-contract gap rows, 13 P1 in-distribution rows needing upstream
+  feature-bundle repair, and 48 P2 heldout final-only rows, plus a balanced
+  15-row P0 pilot seed queue. It materializes no source evidence and mutates no
+  feature contract.
+- A no-fit P0 source-graph readiness audit now checks that balanced 15-row
+  pilot seed against the frozen M-CSA graph. All 15 rows have entry nodes,
+  mechanism-text edges, catalytic-residue edges, and EC mappings; 11/15 have
+  local EC-to-Rhea mappings; 0/15 expose structured row-specific bond-change
+  event edges. Manual/source-backed extraction remains required before any
+  feature-contract refresh.
+- A companion P0 extraction work package turns that readiness result into 15
+  manual extraction templates with nine required source-backed fields, exact
+  event/mapping acceptance criteria, and per-row Rhea lookup flags. It still
+  materializes no source evidence and authorizes no feature-contract or model
+  use.
+- A strict audit now validates that P0 extraction work package as
+  template-only: all 15 rows have the expected nine fields, 0 rows contain
+  non-null extracted values, 0 rows are contract/model consumable, and the audit
+  reports 0 critical violations.
+- A companion TSV worksheet now gives the next run a manual filling surface for
+  those same 15 P0 rows. All source-evidence cells are blank by construction;
+  four rows are flagged for Rhea lookup, and the worksheet must be audited after
+  any source-backed values are filled.
+- A source-evidence sidecar schema now stages the future filled sidecar contract
+  for that worksheet: 12 required row fields, six event fields, four mapping
+  fields, forbidden predictive fields, and strict evidence/leakage checks. It
+  is schema-only and still materializes 0 source values.
+- The P0 worksheet now has a draft source-evidence sidecar derived from frozen
+  local M-CSA graph evidence. All 15 rows have source spans and draft
+  bond-change events. After the bounded official Rhea lookup resolution, 12/15
+  have Rhea equations and 3/15 remain Rhea-missing. The strict sidecar audit
+  passes with 0 critical violations, but 0 rows are approved and
+  feature-contract refresh remains blocked pending manual review.
+- A companion manual-review queue ranks those 15 draft rows without changing
+  review state. It now prioritizes three Rhea-missing rows (`m_csa:11`,
+  `m_csa:169`, and `m_csa:5`), then five high-complexity multi-event rows
+  including Rhea-resolved `m_csa:124`, then seven standard draft reviews. It authorizes no
+  approval, feature-contract refresh, model use, label change, or threshold
+  change.
+- A bounded official Rhea lookup resolution queried the four staged EC/accession
+  rows. Exact EC queries returned no Rhea records, but accession `P00396`
+  resolves `m_csa:124` to `RHEA:11436` with Rhea EC `7.1.1.9`, reflecting an
+  EC reclassification away from the worksheet `ec:1.9.3.1`. The remaining Rhea
+  lookup manifest now stages only `ec:3.1.21.2`, `ec:3.4.14.5`, and
+  `ec:3.4.16.6` for `m_csa:11`, `m_csa:169`, and `m_csa:5`.
+- A strict consumption audit confirms that the Rhea lookup resolution is used
+  only as draft review evidence: `m_csa:124` carries `RHEA:11436` in the
+  sidecar, the three unresolved rows remain in lookup/readiness blockers, and
+  0 rows are approved, consumable, or model-training eligible.
+- A P0 feature-readiness audit now makes the no-template embedding blocker
+  exact. All 15 draft rows are structurally ready as source-evidence drafts,
+  with 10 rows carrying bond-change events, 6 carrying proton-transfer events,
+  and 9 carrying electron-transfer events. Zero rows are approved or consumable,
+  the feature contract contains no row-specific bond/proton/electron fields,
+  and refresh remains blocked on reviewer provenance plus the three remaining Rhea lookup
+  rows.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe
@@ -368,9 +438,7 @@ artifacts first.
   audits with zero critical violations.
 - A completion audit now confirms that all four schema-named cofactor-locus
   sidecar classes are materialized for 702 rows and schema-passing with zero
-  critical violations. The next mechanism-feature action is a train/cal-only
-  embedding pilot that consumes these sidecars without label/import changes or
-  heldout leakage.
+  critical violations.
 - A no-fit mechanism-feature embedding train/cal input manifest now enumerates
   the current sidecar surface without fitting weights or evaluating heldout
   rows. It keeps all 140 heldout rows excluded, marks 562 in-distribution
@@ -390,6 +458,26 @@ artifacts first.
   alignment, forbidden label/outcome field exclusion, no-heldout discipline, and
   no-model-fit guardrails. It passes for 524/524 rows with zero critical
   violations; model fitting remains blocked until explicitly authorized.
+- A train/cal-only mechanism-feature embedding pilot now consumes the audited
+  feature contract directly. It fits standardized nearest-primary centroids on
+  the 418 assigned train rows and selects a >=90% primary-retention threshold
+  on the 106 calibration rows. The full contract reaches calibration AUC
+  `0.948491` and 100% OOS abstention at 91.43% primary retention, but the
+  no-reaction-template ablation drops to AUC `0.549698` and 14.08% OOS
+  abstention at the same retention target. Treat this as a real implementation
+  result and a clear signal that the next mechanism-feature work must close
+  row-specific bond-change/proton/electron-flow features and then materialize
+  the same allowed feature surface for heldout once-only readout; do not trust
+  the full-contract score as production evidence.
+- That heldout readout is now materialized once. Existing sidecars provide the
+  same allowed feature surface for 132/140 heldout rows; 8 remain blocked by
+  accession-compatible role-graph gaps. The full-contract variant reaches
+  heldout AUC `0.8812` and abstains on 100% of ready OOS rows at the
+  calibration-selected threshold, but retains only 75% of ready primary rows.
+  The no-reaction-template ablation is near chance on heldout (AUC `0.488591`,
+  9.52% OOS abstention at 85.42% primary retention). This confirms the real
+  next lever is row-specific mechanism-feature materialization, not another
+  template-level classifier.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
@@ -502,6 +590,12 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
 - `artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`

@@ -1,11 +1,11 @@
 {
   "artifact_id": "v3_current_docs_artifact_reference_check_current702_20260601",
   "counts": {
-    "ignored_references": 7,
+    "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 445
+    "references_checked": 492
   },
-  "created_utc": "2026-06-01T17:53:56Z",
+  "created_utc": "2026-06-01T23:47:31Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -38,6 +38,16 @@
       "doc": "docs/agent_runbook.md",
       "reason": "glob_pattern",
       "reference": "artifacts/v3_*.jsonl"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/v3_*.tsv"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "work/*.md"
     },
     {
       "doc": "docs/agent_runbook.md",
@@ -272,6 +282,12 @@
       "reference": "artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json"
     },
     {
+      "checked_path": "artifacts/v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_current702_20260601.json"
+    },
+    {
       "checked_path": "artifacts/v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601.json",
       "doc": "docs/artifact_index.md",
       "exists": true,
@@ -294,12 +310,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

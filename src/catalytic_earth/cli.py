@@ -80,14 +80,28 @@ from .northstar_next_levers import (
     write_mechanism_feature_embedding_train_cal_input_manifest,
     write_mechanism_feature_embedding_feature_contract,
     write_mechanism_feature_embedding_feature_contract_strict_audit,
+    write_mechanism_feature_embedding_heldout_readout,
+    write_mechanism_feature_embedding_pilot,
     write_mechanism_feature_embedding_train_cal_split_manifest,
     write_mechanism_feature_active_site_role_graph_sidecar,
     write_mechanism_feature_reaction_center_template_sidecar,
     write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
+    write_mechanism_feature_row_specific_bond_change_materialization_priority,
+    write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
+    write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
+    write_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
+    write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
+    write_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
     write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
     write_predicted_atlas_geometry_novelty_variants,
+    write_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     write_predicted_structure_fold_augmented_novelty_operating_grid,
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_contract_audit,
@@ -11043,6 +11057,24 @@ def cmd_build_predicted_structure_fold_augmented_novelty_operating_grid(
     return 0
 
 
+def cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+        geometry_operating_grid_path=Path(args.geometry_operating_grid),
+        fold_operating_grid_path=Path(args.fold_operating_grid),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote predicted-atlas versus fold novelty operating-grid delta to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"shared targets: {counts.get('shared_retention_targets')})"
+    )
+    return 0
+
+
 def cmd_audit_selected_organic_cofactor_sidecar_schema(args: argparse.Namespace) -> int:
     audit = write_selected_organic_cofactor_sidecar_schema_audit(
         selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
@@ -11750,6 +11782,234 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_feature_contract_gap(
     return 0
 
 
+def cmd_build_mechanism_feature_row_specific_bond_change_materialization_priority(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_materialization_priority(
+        row_specific_bond_change_schema_path=Path(args.row_specific_bond_change_schema),
+        feature_contract_path=Path(args.feature_contract),
+        split_manifest_path=Path(args.split_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change materialization priority manifest to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"P0 rows: {counts.get('train_cal_feature_contract_gap_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness(
+        materialization_priority_path=Path(args.materialization_priority),
+        graph_path=Path(args.graph),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 source-graph readiness audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"structured-ready rows: {counts.get('structured_bond_change_ready_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package(
+    args: argparse.Namespace,
+) -> int:
+    audit = (
+        write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package(
+            source_graph_readiness_path=Path(args.source_graph_readiness),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 extraction work package to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"manual rows: {counts.get('manual_extraction_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict(
+    args: argparse.Namespace,
+) -> int:
+    audit = (
+        write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit(
+            extraction_work_package_path=Path(args.extraction_work_package),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 extraction package strict audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        "critical violations: "
+        f"{counts.get('strict_audit_critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
+    args: argparse.Namespace,
+) -> int:
+    sidecar = (
+        write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
+            worksheet_path=Path(args.worksheet),
+            source_evidence_schema_path=Path(args.source_evidence_schema),
+            graph_path=Path(args.graph),
+            rhea_lookup_resolution_path=(
+                Path(args.rhea_lookup_resolution)
+                if args.rhea_lookup_resolution
+                else None
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = sidecar.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 source-evidence sidecar to "
+        f"{args.out} (status: {sidecar.get('status')}, "
+        f"draft rows: {counts.get('sidecar_rows')}, "
+        f"approved rows: {counts.get('approved_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict(
+    args: argparse.Namespace,
+) -> int:
+    audit = (
+        write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit(
+            sidecar_path=Path(args.sidecar),
+            source_evidence_schema_path=Path(args.source_evidence_schema),
+            worksheet_path=Path(args.worksheet),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 source-evidence sidecar strict "
+        f"audit to {args.out} (status: {audit.get('status')}, "
+        "critical violations: "
+        f"{counts.get('strict_audit_critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
+    args: argparse.Namespace,
+) -> int:
+    queue = (
+        write_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
+            sidecar_path=Path(args.sidecar),
+            strict_audit_path=Path(args.strict_audit),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 source-evidence review queue to "
+        f"{args.out} (status: {queue.get('status')}, "
+        f"queue rows: {counts.get('queue_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
+    args: argparse.Namespace,
+) -> int:
+    manifest = write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
+        review_queue_path=Path(args.review_queue),
+        source_graph_readiness_path=Path(args.source_graph_readiness),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = manifest.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 Rhea lookup manifest to "
+        f"{args.out} (status: {manifest.get('status')}, "
+        f"lookup rows: {counts.get('rhea_lookup_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+    args: argparse.Namespace,
+) -> int:
+    resolution = (
+        write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+            rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = resolution.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 Rhea lookup resolution to "
+        f"{args.out} (status: {resolution.get('status')}, "
+        f"resolved rows: {counts.get('resolved_rows')}, "
+        f"unresolved rows: {counts.get('unresolved_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption(
+    args: argparse.Namespace,
+) -> int:
+    audit = (
+        write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit(
+            rhea_lookup_resolution_path=Path(args.rhea_lookup_resolution),
+            sidecar_path=Path(args.sidecar),
+            review_queue_path=Path(args.review_queue),
+            rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+            feature_readiness_path=Path(args.feature_readiness),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 Rhea resolution consumption audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_feature_readiness(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
+        sidecar_path=Path(args.sidecar),
+        strict_audit_path=Path(args.strict_audit),
+        review_queue_path=Path(args.review_queue),
+        rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+        feature_contract_path=Path(args.feature_contract),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 feature-readiness audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"structurally ready draft rows: {counts.get('structurally_ready_draft_rows')}, "
+        f"approved consumable rows: {counts.get('approved_consumable_rows')})"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_feature_sidecar_schema(args: argparse.Namespace) -> int:
     audit = write_mechanism_feature_sidecar_schema_audit(
         label_manifest_path=Path(args.label_manifest),
@@ -11877,6 +12137,51 @@ def cmd_audit_mechanism_feature_embedding_feature_contract(
         "Wrote mechanism-feature embedding feature contract strict audit to "
         f"{args.out} (passed rows: {counts.get('row_audits_passed')}, "
         f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_embedding_pilot(args: argparse.Namespace) -> int:
+    audit = write_mechanism_feature_embedding_pilot(
+        feature_contract_path=Path(args.feature_contract),
+        feature_contract_strict_audit_path=Path(args.feature_contract_strict_audit),
+        label_manifest_path=Path(args.label_manifest),
+        selected_organic_cofactor_sidecar_path=Path(
+            args.selected_organic_cofactor_sidecar
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature embedding pilot to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"variants: {counts.get('variants')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_embedding_heldout_readout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_embedding_heldout_readout(
+        embedding_pilot_path=Path(args.embedding_pilot),
+        label_manifest_path=Path(args.label_manifest),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        reaction_center_template_sidecar_path=Path(args.reaction_center_template_sidecar),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        metal_ion_locus_sidecar_path=Path(args.metal_ion_locus_sidecar),
+        cobalamin_locus_sidecar_path=Path(args.cobalamin_locus_sidecar),
+        radical_sam_locus_sidecar_path=Path(args.radical_sam_locus_sidecar),
+        iron_sulfur_locus_sidecar_path=Path(args.iron_sulfur_locus_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature embedding heldout readout to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"heldout feature rows: {counts.get('heldout_feature_rows')})"
     )
     return 0
 
@@ -22524,7 +22829,7 @@ def build_parser() -> argparse.ArgumentParser:
     residual_robust = subparsers.add_parser(
         "eval-mechanism-residual-robustness",
         help=(
-            "D11 Lever 2 follow-up: PCA variance-cutoff sweep (95/97/99%) plus a "
+            "D11 Lever 2 follow-up: PCA variance-cutoff sweep (95/97/99 percent) plus a "
             "predeclared held-out-from-design confirmatory split (with a label-permutation "
             "null) of the out-of-span residual novelty lead (AUC 0.721)"
         ),
@@ -22868,6 +23173,45 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_structure_fold_augmented_novelty_operating_grid.set_defaults(
         func=cmd_build_predicted_structure_fold_augmented_novelty_operating_grid
+    )
+
+    predicted_atlas_vs_fold_delta = subparsers.add_parser(
+        "audit-predicted-atlas-vs-fold-novelty-operating-grid-delta",
+        help=(
+            "compare frozen predicted-atlas geometry and fold-augmented "
+            "novelty operating-grid diagnostics without selecting thresholds"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--geometry-operating-grid",
+        default=(
+            "artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--fold-operating-grid",
+        default=(
+            "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--report",
+        default=(
+            "work/predicted_atlas_vs_fold_novelty_operating_grid_delta_"
+            "current702_20260601.md"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.set_defaults(
+        func=cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta
     )
 
     selected_cofactor_schema = subparsers.add_parser(
@@ -24438,6 +24782,500 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_mechanism_feature_row_specific_bond_change_feature_contract_gap
     )
 
+    row_specific_bond_change_priority = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-materialization-priority",
+        help=(
+            "prioritize row-specific bond-change source-evidence materialization "
+            "against the no-fit train/cal feature contract"
+        ),
+    )
+    row_specific_bond_change_priority.add_argument(
+        "--row-specific-bond-change-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_priority.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_priority.add_argument(
+        "--split-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_priority.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "materialization_priority_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_priority.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "materialization_priority_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_priority.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_materialization_priority
+        )
+    )
+
+    row_specific_bond_change_p0_readiness = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-source-graph-readiness",
+        help=(
+            "audit whether the balanced P0 bond-change pilot seed has structured "
+            "source-graph evidence for row-specific bond-change extraction"
+        ),
+    )
+    row_specific_bond_change_p0_readiness.add_argument(
+        "--materialization-priority",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "materialization_priority_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_readiness.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    row_specific_bond_change_p0_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_graph_readiness_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_readiness.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_source_graph_readiness_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_readiness.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness
+        )
+    )
+
+    row_specific_bond_change_p0_extraction = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-extraction-work-package",
+        help=(
+            "stage manual extraction templates for the balanced P0 "
+            "row-specific bond-change pilot seed without materializing evidence"
+        ),
+    )
+    row_specific_bond_change_p0_extraction.add_argument(
+        "--source-graph-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_graph_readiness_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_extraction.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_work_package_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_extraction.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_work_package_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_extraction.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package
+        )
+    )
+
+    row_specific_bond_change_p0_extraction_strict = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-extraction-package-strict",
+        help=(
+            "strictly audit the P0 row-specific bond-change extraction package "
+            "as template-only and non-consumable"
+        ),
+    )
+    row_specific_bond_change_p0_extraction_strict.add_argument(
+        "--extraction-work-package",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_work_package_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_extraction_strict.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_package_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_extraction_strict.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_package_strict_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_extraction_strict.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict
+        )
+    )
+
+    row_specific_bond_change_p0_source_sidecar = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar",
+        help=(
+            "build a draft source-evidence sidecar for P0 row-specific "
+            "bond-change extraction without feature-contract consumption"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--worksheet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_worksheet_current702_20260601.tsv"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--source-evidence-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_schema_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--rhea-lookup-resolution",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar
+        )
+    )
+
+    row_specific_bond_change_p0_source_sidecar_strict = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar-strict",
+        help=(
+            "strictly audit the P0 source-evidence sidecar for schema, "
+            "row alignment, and non-consumable draft guardrails"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--source-evidence-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_schema_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--worksheet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_worksheet_current702_20260601.tsv"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict
+        )
+    )
+
+    row_specific_bond_change_p0_source_review_queue = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-source-evidence-review-queue",
+        help=(
+            "rank draft P0 source-evidence sidecar rows for manual review "
+            "without approving rows or refreshing feature contracts"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue
+        )
+    )
+
+    row_specific_bond_change_p0_rhea_lookup = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-rhea-lookup-manifest",
+        help=(
+            "stage manual Rhea lookup targets for P0 source-evidence rows "
+            "missing local Rhea equations"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--source-graph-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_graph_readiness_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest
+        )
+    )
+
+    row_specific_bond_change_p0_rhea_resolution = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-rhea-lookup-resolution",
+        help=(
+            "fetch bounded official Rhea lookup evidence for P0 rows missing "
+            "local Rhea equations"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution
+        )
+    )
+
+    row_specific_bond_change_p0_rhea_consumption = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-rhea-resolution-consumption",
+        help=(
+            "audit that resolved Rhea lookup evidence was consumed only as "
+            "draft source evidence and remaining rows stay blocked"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--rhea-lookup-resolution",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--feature-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_resolution_consumption_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_resolution_consumption_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption
+        )
+    )
+
+    row_specific_bond_change_p0_feature_readiness = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-feature-readiness",
+        help=(
+            "audit whether the draft P0 source-evidence sidecar can safely "
+            "enter a future mechanism-feature contract"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_feature_readiness
+        )
+    )
+
     mechanism_feature_sidecar_schema = subparsers.add_parser(
         "audit-mechanism-feature-sidecar-schema",
         help=(
@@ -24736,6 +25574,140 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mechanism_embedding_feature_contract_audit.set_defaults(
         func=cmd_audit_mechanism_feature_embedding_feature_contract
+    )
+
+    mechanism_embedding_pilot = subparsers.add_parser(
+        "build-mechanism-feature-embedding-pilot",
+        help=(
+            "fit a train/cal-only mechanism-feature centroid pilot from the "
+            "audited feature contract"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--feature-contract-strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "strict_audit_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default=(
+            "artifacts/v3_selected_organic_cofactor_score_sidecars_"
+            "current702_20260530.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_pilot_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_embedding_pilot_current702_20260601.md"
+        ),
+    )
+    mechanism_embedding_pilot.set_defaults(
+        func=cmd_build_mechanism_feature_embedding_pilot
+    )
+
+    mechanism_embedding_heldout_readout = subparsers.add_parser(
+        "build-mechanism-feature-embedding-heldout-readout",
+        help=(
+            "materialize heldout mechanism-feature rows and apply the "
+            "train/cal-fitted embedding pilot once"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--embedding-pilot",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_pilot_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--reaction-center-template-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default=(
+            "artifacts/v3_selected_organic_cofactor_score_sidecars_"
+            "current702_20260530.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--metal-ion-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--cobalamin-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--radical-sam-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--iron-sulfur-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_heldout_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_embedding_heldout_readout_"
+            "current702_20260601.md"
+        ),
+    )
+    mechanism_embedding_heldout_readout.set_defaults(
+        func=cmd_build_mechanism_feature_embedding_heldout_readout
     )
 
     family_expansion_targets = subparsers.add_parser(

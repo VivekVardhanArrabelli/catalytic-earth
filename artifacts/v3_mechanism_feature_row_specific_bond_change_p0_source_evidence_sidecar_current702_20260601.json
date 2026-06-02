@@ -1,0 +1,3551 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601",
+  "counts": {
+    "approved_rows": 0,
+    "draft_event_type_counts": {
+      "bond_broken": 5,
+      "bond_formed": 6,
+      "bond_order_changed": 7,
+      "electron_transfer": 21,
+      "proton_transfer": 10
+    },
+    "feature_contract_consumable_rows": 0,
+    "review_status_counts": {
+      "draft": 15
+    },
+    "rows_missing_rhea_equations": 3,
+    "rows_with_draft_bond_change_events": 15,
+    "rows_with_rhea_equations": 12,
+    "rows_with_source_spans": 15,
+    "sidecar_rows": 15,
+    "worksheet_rows": 15
+  },
+  "created_utc": "2026-06-01T23:00:43Z",
+  "guardrails": {
+    "draft_source_evidence_not_training_input": true,
+    "feature_contract_mutated": false,
+    "feature_contract_refresh_allowed": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_used_only_as_source_evidence": true,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false
+  },
+  "interpretation": {
+    "next_action": "Run the strict sidecar audit, then manually review each draft event and participant mapping before any no-fit feature contract refresh.",
+    "result": "The P0 worksheet now has a draft, source-backed evidence sidecar over all 15 rows. It closes the blank-worksheet formatting gap but not the review gate: zero rows are approved for feature-contract consumption."
+  },
+  "schema_snapshot": {
+    "allowed_event_types": [
+      "bond_formed",
+      "bond_broken",
+      "bond_order_changed",
+      "proton_transfer",
+      "electron_transfer"
+    ],
+    "allowed_review_statuses": [
+      "draft",
+      "needs_more_evidence",
+      "approved",
+      "rejected"
+    ],
+    "required_row_fields": [
+      "entry_id",
+      "accession",
+      "source_record_id",
+      "source_database",
+      "source_record_version_or_date",
+      "row_specific_reaction_participant_mapping",
+      "row_specific_bond_change_events",
+      "active_site_residue_role_support",
+      "source_text_or_database_evidence_span",
+      "extractor_id",
+      "review_status",
+      "reviewer_id"
+    ]
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_source_evidence_sidecar",
+  "scope": "Draft source-evidence sidecar for the balanced P0 row-specific bond-change pilot. It fills row-specific M-CSA mechanism spans, Rhea equations where available, active-site residue support, and draft bond-change events, but every row remains non-consumable until strict review approval.",
+  "sidecar_rows": [
+    {
+      "accession": "P08819",
+      "active_site_residue_role_support": [
+        {
+          "code": "Gly",
+          "resid": 62,
+          "residue_node_id": "m_csa:5:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P08819"
+        },
+        {
+          "code": "Ser",
+          "resid": 158,
+          "residue_node_id": "m_csa:5:residue:2",
+          "roles": [
+            "covalently attached",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P08819"
+        },
+        {
+          "code": "Tyr",
+          "resid": 159,
+          "residue_node_id": "m_csa:5:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P08819"
+        },
+        {
+          "code": "Asp",
+          "resid": 361,
+          "residue_node_id": "m_csa:5:residue:4",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "increase acidity",
+            "increase basicity"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P08819"
+        },
+        {
+          "code": "His",
+          "resid": 413,
+          "residue_node_id": "m_csa:5:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P08819"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:5",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:5:residue:2",
+            "m_csa:5:residue:5"
+          ],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:5:mechanism:1",
+            "span_text": "Carboxypeptidase D uses a catalytic triad to activate serine 146 as a nucleophile to attack the scissile peptide bond."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "Gly62",
+          "participant_id": "m_csa:5:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:5:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Ser158",
+          "participant_id": "m_csa:5:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:5:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Tyr159",
+          "participant_id": "m_csa:5:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:5:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Asp361",
+          "participant_id": "m_csa:5:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:5:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "His413",
+          "participant_id": "m_csa:5:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:5:residue:5"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:5",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:5:mechanism:1",
+          "span_text": "Carboxypeptidase D uses a catalytic triad to activate serine 146 as a nucleophile to attack the scissile peptide bond. Histidine 397 and aspartate 338 from the neighbouring subunit complete the triad. The backbone amides of glycine 53 and tyrosine 147 make up the oxyanion hole to stabilise the tetrahedral intermediate."
+        }
+      ]
+    },
+    {
+      "accession": "P00390",
+      "active_site_residue_role_support": [
+        {
+          "code": "His",
+          "resid": 511,
+          "residue_node_id": "m_csa:6:residue:1",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00390"
+        },
+        {
+          "code": "Glu",
+          "resid": 516,
+          "residue_node_id": "m_csa:6:residue:2",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00390"
+        },
+        {
+          "code": "Tyr",
+          "resid": 241,
+          "residue_node_id": "m_csa:6:residue:3",
+          "roles": [
+            "activator"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00390"
+        },
+        {
+          "code": "Cys",
+          "resid": 102,
+          "residue_node_id": "m_csa:6:residue:4",
+          "roles": [
+            "electrofuge",
+            "electrophile",
+            "nucleofuge",
+            "nucleophile"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00390"
+        },
+        {
+          "code": "Cys",
+          "resid": 107,
+          "residue_node_id": "m_csa:6:residue:5",
+          "roles": [
+            "electrofuge",
+            "electrophile",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00390"
+        },
+        {
+          "code": "Lys",
+          "resid": 110,
+          "residue_node_id": "m_csa:6:residue:6",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00390"
+        },
+        {
+          "code": "Glu",
+          "resid": 245,
+          "residue_node_id": "m_csa:6:residue:7",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00390"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:6",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "glutathione disulfide",
+            "NADPH",
+            "H(+)"
+          ],
+          "participants_before": [
+            "2 glutathione",
+            "NADP(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "Initially, the enzyme is in the oxidised state, with its redox active cysteines 58 and 63 forming a disulphide bond to each other."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "glutathione disulfide",
+            "NADPH",
+            "H(+)"
+          ],
+          "participants_before": [
+            "2 glutathione",
+            "NADP(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "A hydride is transferred from NAD(P)H to FAD, a process facilitated by Glu201, Lys66 and Tyr197, as demonstrated by mutagenesis and structural studies."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "glutathione disulfide",
+            "NADPH",
+            "H(+)"
+          ],
+          "participants_before": [
+            "2 glutathione",
+            "NADP(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "From there the electron makes an SN2 attack on the sulfur atom of Cys63, causing Cys58 to be displaced as thiolate."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "glutathione disulfide",
+            "NADPH",
+            "H(+)"
+          ],
+          "participants_before": [
+            "2 glutathione",
+            "NADP(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "This residue is now ready to attack the substrate, which in all cases except mercuric reductase is another disulphide bond."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:6:residue:1",
+            "m_csa:6:residue:5"
+          ],
+          "participants_after": [
+            "glutathione disulfide",
+            "NADPH",
+            "H(+)"
+          ],
+          "participants_before": [
+            "2 glutathione",
+            "NADP(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "His467 from the other subunit of the dimer has an essential role here, as shown by mutagenesis; first it seems to withdraw a proton from Cys58, activating the latter residue for a nucleophilic attack on the substrate."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "2 glutathione",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "NADP(+)",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "glutathione disulfide",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "NADPH",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "H(+)",
+          "participant_id": "product_3",
+          "role": "product",
+          "source_identifier": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "His511",
+          "participant_id": "m_csa:6:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:6:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Glu516",
+          "participant_id": "m_csa:6:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:6:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Tyr241",
+          "participant_id": "m_csa:6:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:6:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Cys102",
+          "participant_id": "m_csa:6:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:6:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "Cys107",
+          "participant_id": "m_csa:6:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:6:residue:5"
+        },
+        {
+          "mapped_atom_or_group": "Lys110",
+          "participant_id": "m_csa:6:residue:6",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:6:residue:6"
+        },
+        {
+          "mapped_atom_or_group": "Glu245",
+          "participant_id": "m_csa:6:residue:7",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:6:residue:7"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:6",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:6:mechanism:1",
+          "span_text": "Initially, the enzyme is in the oxidised state, with its redox active cysteines 58 and 63 forming a disulphide bond to each other. A hydride is transferred from NAD(P)H to FAD, a process facilitated by Glu201, Lys66 and Tyr197, as demonstrated by mutagenesis and structural studies. From there the electron makes an SN2 attack on the sulfur atom of Cys63, causing Cys58 to be displaced as thiolate. This residue is now ready to attack the substrate, which in all cases except mercuric reductase is another disulphide bond. His467 from the other subunit of the dimer has an essential role here, as shown by mutagenesis; first it seems to withdraw a proton from Cys58, activating the latter residue for a nucleophilic attack on the substrate. The proton is then poised to polarise the resulting Cys58-substrate mixed disulphide bond, making it vulnerable to attack from Cys63 to return the enzyme to its rest state. In addition to His467, another residue from the second subunit is found in the active site: Glu472 is shown to be essential by mutagenesis, and in structures is seen to orientate the catalytic Histidine."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:11740",
+          "span_text": "2 glutathione + NADP(+) = glutathione disulfide + NADPH + H(+)"
+        }
+      ]
+    },
+    {
+      "accession": "P0A6C1",
+      "active_site_residue_role_support": [
+        {
+          "code": "Arg",
+          "resid": 37,
+          "residue_node_id": "m_csa:11:residue:1",
+          "roles": [
+            "transition state stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "Asp",
+          "resid": 229,
+          "residue_node_id": "m_csa:11:residue:10",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "His",
+          "resid": 69,
+          "residue_node_id": "m_csa:11:residue:11",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "Tyr",
+          "resid": 72,
+          "residue_node_id": "m_csa:11:residue:2",
+          "roles": [
+            "transition state stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "His",
+          "resid": 109,
+          "residue_node_id": "m_csa:11:residue:3",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "Glu",
+          "resid": 145,
+          "residue_node_id": "m_csa:11:residue:4",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "Asp",
+          "resid": 179,
+          "residue_node_id": "m_csa:11:residue:5",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "His",
+          "resid": 216,
+          "residue_node_id": "m_csa:11:residue:6",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "Glu",
+          "resid": 261,
+          "residue_node_id": "m_csa:11:residue:7",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "His",
+          "resid": 231,
+          "residue_node_id": "m_csa:11:residue:8",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        },
+        {
+          "code": "His",
+          "resid": 182,
+          "residue_node_id": "m_csa:11:residue:9",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P0A6C1"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:11",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:11:residue:10",
+            "m_csa:11:residue:11",
+            "m_csa:11:residue:3",
+            "m_csa:11:residue:4",
+            "m_csa:11:residue:5",
+            "m_csa:11:residue:6"
+          ],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:11:mechanism:1",
+            "span_text": "Hydrolysis proceeds through a pentacoordinate transition state where the unesterified phosphate oxygen that bridges Zn2 and Zn3 remains bound to its cognate metal ions."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:11:mechanism:1",
+            "span_text": "Initial binding of Endo IV to an extrahelical AP site is constrained by the intact target P-O3' covalent bond, and in the pretransition state, the bridging hydroxide between Zn1 and Zn2 would be positioned ideally for an in-line attack on the phosphate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:11:residue:10",
+            "m_csa:11:residue:11",
+            "m_csa:11:residue:3",
+            "m_csa:11:residue:4",
+            "m_csa:11:residue:5",
+            "m_csa:11:residue:6"
+          ],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:11:mechanism:1",
+            "span_text": "Glu-261, which is also a Zn2 ligand, may assist in orienting and activating the attacking nucleophile."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:11:mechanism:1",
+            "span_text": "Charge neutralisation of the phosphate group by interaction with the three Zn2+ ions likely renders the phosphorus atom susceptible to nucleophilic substitution, and the pentacoordinate transition state resulting from attack by the bridging hydroxide is stabilised by all the three metal ions."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "Arg37",
+          "participant_id": "m_csa:11:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Asp229",
+          "participant_id": "m_csa:11:residue:10",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:10"
+        },
+        {
+          "mapped_atom_or_group": "His69",
+          "participant_id": "m_csa:11:residue:11",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:11"
+        },
+        {
+          "mapped_atom_or_group": "Tyr72",
+          "participant_id": "m_csa:11:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "His109",
+          "participant_id": "m_csa:11:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Glu145",
+          "participant_id": "m_csa:11:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "Asp179",
+          "participant_id": "m_csa:11:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:5"
+        },
+        {
+          "mapped_atom_or_group": "His216",
+          "participant_id": "m_csa:11:residue:6",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:6"
+        },
+        {
+          "mapped_atom_or_group": "Glu261",
+          "participant_id": "m_csa:11:residue:7",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:7"
+        },
+        {
+          "mapped_atom_or_group": "His231",
+          "participant_id": "m_csa:11:residue:8",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:8"
+        },
+        {
+          "mapped_atom_or_group": "His182",
+          "participant_id": "m_csa:11:residue:9",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:11:residue:9"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:11",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:11:mechanism:1",
+          "span_text": "Hydrolysis proceeds through a pentacoordinate transition state where the unesterified phosphate oxygen that bridges Zn2 and Zn3 remains bound to its cognate metal ions. Initial binding of Endo IV to an extrahelical AP site is constrained by the intact target P-O3' covalent bond, and in the pretransition state, the bridging hydroxide between Zn1 and Zn2 would be positioned ideally for an in-line attack on the phosphate. Glu-261, which is also a Zn2 ligand, may assist in orienting and activating the attacking nucleophile. Charge neutralisation of the phosphate group by interaction with the three Zn2+ ions likely renders the phosphorus atom susceptible to nucleophilic substitution, and the pentacoordinate transition state resulting from attack by the bridging hydroxide is stabilised by all the three metal ions. As this transition state collapses to the reaction products, the stereochemical configuration of the phosphate is inverted and the developing negative charge at O3' stabilised by interactions with Zn3 [PMID:10458614]."
+        }
+      ]
+    },
+    {
+      "accession": "P25910",
+      "active_site_residue_role_support": [
+        {
+          "code": "Asp",
+          "resid": 103,
+          "residue_node_id": "m_csa:15:residue:1",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        },
+        {
+          "code": "Cys",
+          "resid": 181,
+          "residue_node_id": "m_csa:15:residue:2",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        },
+        {
+          "code": "Asn",
+          "resid": 193,
+          "residue_node_id": "m_csa:15:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        },
+        {
+          "code": "His",
+          "resid": 99,
+          "residue_node_id": "m_csa:15:residue:4",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        },
+        {
+          "code": "His",
+          "resid": 101,
+          "residue_node_id": "m_csa:15:residue:5",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        },
+        {
+          "code": "His",
+          "resid": 223,
+          "residue_node_id": "m_csa:15:residue:6",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        },
+        {
+          "code": "His",
+          "resid": 162,
+          "residue_node_id": "m_csa:15:residue:7",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        },
+        {
+          "code": "Lys",
+          "resid": 184,
+          "residue_node_id": "m_csa:15:residue:8",
+          "roles": [
+            "electrostatic stabiliser",
+            "steric role"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P25910"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:15",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:15:residue:1",
+            "m_csa:15:residue:2",
+            "m_csa:15:residue:4",
+            "m_csa:15:residue:5",
+            "m_csa:15:residue:6",
+            "m_csa:15:residue:7"
+          ],
+          "participants_after": [
+            "a substituted beta-amino acid"
+          ],
+          "participants_before": [
+            "a beta-lactam",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:15:mechanism:1",
+            "span_text": "The beta-lactam carbonyl interacts with zinc1 polarising the bond and enhancing its susceptibility to nucleophilic attack."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "a substituted beta-amino acid"
+          ],
+          "participants_before": [
+            "a beta-lactam",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:15:mechanism:1",
+            "span_text": "A zinc1 associated water/hydroxide is the nucleophile which attacks the beta-lactam carbonyl carbon."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "a beta-lactam",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "a beta-lactam + H2O = a substituted beta-amino acid"
+        },
+        {
+          "mapped_atom_or_group": "H2O",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "a beta-lactam + H2O = a substituted beta-amino acid"
+        },
+        {
+          "mapped_atom_or_group": "a substituted beta-amino acid",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "a beta-lactam + H2O = a substituted beta-amino acid"
+        },
+        {
+          "mapped_atom_or_group": "Asp103",
+          "participant_id": "m_csa:15:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Cys181",
+          "participant_id": "m_csa:15:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Asn193",
+          "participant_id": "m_csa:15:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "His99",
+          "participant_id": "m_csa:15:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "His101",
+          "participant_id": "m_csa:15:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:5"
+        },
+        {
+          "mapped_atom_or_group": "His223",
+          "participant_id": "m_csa:15:residue:6",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:6"
+        },
+        {
+          "mapped_atom_or_group": "His162",
+          "participant_id": "m_csa:15:residue:7",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:7"
+        },
+        {
+          "mapped_atom_or_group": "Lys184",
+          "participant_id": "m_csa:15:residue:8",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:15:residue:8"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:15",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:15:mechanism:1",
+          "span_text": "A mechanism has been proposed by Fabiane et al (PMID:9730812). The beta-lactam carbonyl interacts with zinc1 polarising the bond and enhancing its susceptibility to nucleophilic attack. A zinc1 associated water/hydroxide is the nucleophile which attacks the beta-lactam carbonyl carbon. The substrate carboxylate moiety interacts with zinc2 and lysine 184. Asparagine 193 and zinc1 stabilise the oxyanion. An incoming water molecule is activated by the zinc ions and deprontonated by the intermediate."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:20401",
+          "span_text": "a beta-lactam + H2O = a substituted beta-amino acid"
+        }
+      ]
+    },
+    {
+      "accession": "P04190",
+      "active_site_residue_role_support": [
+        {
+          "code": "Asp",
+          "resid": 120,
+          "residue_node_id": "m_csa:16:residue:1",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P04190"
+        },
+        {
+          "code": "Asn",
+          "resid": 210,
+          "residue_node_id": "m_csa:16:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P04190"
+        },
+        {
+          "code": "His",
+          "resid": 116,
+          "residue_node_id": "m_csa:16:residue:3",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P04190"
+        },
+        {
+          "code": "His",
+          "resid": 179,
+          "residue_node_id": "m_csa:16:residue:4",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P04190"
+        },
+        {
+          "code": "His",
+          "resid": 118,
+          "residue_node_id": "m_csa:16:residue:5",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P04190"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:16",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:16:residue:1"
+          ],
+          "participants_after": [
+            "a substituted beta-amino acid"
+          ],
+          "participants_before": [
+            "a beta-lactam",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:16:mechanism:1",
+            "span_text": "Here the zinc activated water initiates the reaction, Asp90 deprotonates the OH of the tetrahedral intermediate and finally, the intermediate collapses, with the nitrogen group re-protonating from Asp90."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "a substituted beta-amino acid"
+          ],
+          "participants_before": [
+            "a beta-lactam",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:16:mechanism:1",
+            "span_text": "The active site starting state is regenerated from bulk solvent, the zinc activates the water to re-form the initiating hydroxide ion (not shown)."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "a beta-lactam",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "a beta-lactam + H2O = a substituted beta-amino acid"
+        },
+        {
+          "mapped_atom_or_group": "H2O",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "a beta-lactam + H2O = a substituted beta-amino acid"
+        },
+        {
+          "mapped_atom_or_group": "a substituted beta-amino acid",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "a beta-lactam + H2O = a substituted beta-amino acid"
+        },
+        {
+          "mapped_atom_or_group": "Asp120",
+          "participant_id": "m_csa:16:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:16:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Asn210",
+          "participant_id": "m_csa:16:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:16:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "His116",
+          "participant_id": "m_csa:16:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:16:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "His179",
+          "participant_id": "m_csa:16:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:16:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "His118",
+          "participant_id": "m_csa:16:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:16:residue:5"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:16",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:16:mechanism:1",
+          "span_text": "This entry describes the monometallic mechanism where the zinc ion is bound in the His3 site. Here the zinc activated water initiates the reaction, Asp90 deprotonates the OH of the tetrahedral intermediate and finally, the intermediate collapses, with the nitrogen group re-protonating from Asp90. The active site starting state is regenerated from bulk solvent, the zinc activates the water to re-form the initiating hydroxide ion (not shown)."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:20401",
+          "span_text": "a beta-lactam + H2O = a substituted beta-amino acid"
+        }
+      ]
+    },
+    {
+      "accession": "Q05769",
+      "active_site_residue_role_support": [
+        {
+          "code": "Leu",
+          "resid": 370,
+          "residue_node_id": "m_csa:37:residue:1",
+          "roles": [
+            "steric role"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q05769"
+        },
+        {
+          "code": "His",
+          "resid": 374,
+          "residue_node_id": "m_csa:37:residue:2",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q05769"
+        },
+        {
+          "code": "Ser",
+          "resid": 516,
+          "residue_node_id": "m_csa:37:residue:3",
+          "roles": [
+            "electrostatic stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q05769"
+        },
+        {
+          "code": "Tyr",
+          "resid": 371,
+          "residue_node_id": "m_csa:37:residue:4",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "hydrogen radical acceptor",
+            "hydrogen radical donor",
+            "radical stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q05769"
+        },
+        {
+          "code": "Gln",
+          "resid": 189,
+          "residue_node_id": "m_csa:37:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q05769"
+        },
+        {
+          "code": "His",
+          "resid": 193,
+          "residue_node_id": "m_csa:37:residue:6",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q05769"
+        },
+        {
+          "code": "Gly",
+          "resid": 512,
+          "residue_node_id": "m_csa:37:residue:7",
+          "roles": [
+            "steric role"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q05769"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:37",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:37:residue:4"
+          ],
+          "participants_after": [
+            "prostaglandin H2",
+            "A",
+            "H2O"
+          ],
+          "participants_before": [
+            "(5Z,8Z,11Z,14Z)-eicosatetraenoate",
+            "AH2",
+            "2 O2"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:37:mechanism:1",
+            "span_text": "However, Gln203 has also been implicated in the peroxidase activity, cooperating with His207; while Tyr385 has been shown my mutation to be important for the cyclo-oxygenase activity."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:37:residue:4"
+          ],
+          "participants_after": [
+            "prostaglandin H2",
+            "A",
+            "H2O"
+          ],
+          "participants_before": [
+            "(5Z,8Z,11Z,14Z)-eicosatetraenoate",
+            "AH2",
+            "2 O2"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:37:mechanism:1",
+            "span_text": "Spectroscopic data suggest that a tyrosyl radical formed as a result of peroxide reduction abstracts a hydrogen from arachidonate to start the cyclo-oxygenase reaction."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "(5Z,8Z,11Z,14Z)-eicosatetraenoate",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O"
+        },
+        {
+          "mapped_atom_or_group": "AH2",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O"
+        },
+        {
+          "mapped_atom_or_group": "2 O2",
+          "participant_id": "substrate_3",
+          "role": "substrate",
+          "source_identifier": "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O"
+        },
+        {
+          "mapped_atom_or_group": "prostaglandin H2",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O"
+        },
+        {
+          "mapped_atom_or_group": "A",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O"
+        },
+        {
+          "mapped_atom_or_group": "H2O",
+          "participant_id": "product_3",
+          "role": "product",
+          "source_identifier": "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O"
+        },
+        {
+          "mapped_atom_or_group": "Leu370",
+          "participant_id": "m_csa:37:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:37:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "His374",
+          "participant_id": "m_csa:37:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:37:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Ser516",
+          "participant_id": "m_csa:37:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:37:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Tyr371",
+          "participant_id": "m_csa:37:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:37:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "Gln189",
+          "participant_id": "m_csa:37:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:37:residue:5"
+        },
+        {
+          "mapped_atom_or_group": "His193",
+          "participant_id": "m_csa:37:residue:6",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:37:residue:6"
+        },
+        {
+          "mapped_atom_or_group": "Gly512",
+          "participant_id": "m_csa:37:residue:7",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:37:residue:7"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:37",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:37:mechanism:1",
+          "span_text": "Mutagenesis studies have identified a number of residues essential for catalysis. The replacement of any one of His207, His309 or His388 (numbering for PGH1) by Gln or Ala abolishes both enzyme activities. His388 is the axial ligand for the haem iron, while His 207 is nearby on the distal side. Puzzlingly, His309 is far away from the active site in the structures which are now available. However, Gln203 has also been implicated in the peroxidase activity, cooperating with His207; while Tyr385 has been shown my mutation to be important for the cyclo-oxygenase activity. Spectroscopic data suggest that a tyrosyl radical formed as a result of peroxide reduction abstracts a hydrogen from arachidonate to start the cyclo-oxygenase reaction."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:23728",
+          "span_text": "(5Z,8Z,11Z,14Z)-eicosatetraenoate + AH2 + 2 O2 = prostaglandin H2 + A + H2O"
+        }
+      ]
+    },
+    {
+      "accession": "P19938",
+      "active_site_residue_role_support": [
+        {
+          "code": "Lys",
+          "resid": 146,
+          "residue_node_id": "m_csa:66:residue:1",
+          "roles": [
+            "covalently attached",
+            "electron pair acceptor",
+            "electron pair donor",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P19938"
+        },
+        {
+          "code": "Tyr",
+          "resid": 32,
+          "residue_node_id": "m_csa:66:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P19938"
+        },
+        {
+          "code": "Leu",
+          "resid": 202,
+          "residue_node_id": "m_csa:66:residue:3",
+          "roles": [
+            "steric role",
+            "van der waals interaction"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P19938"
+        },
+        {
+          "code": "Glu",
+          "resid": 178,
+          "residue_node_id": "m_csa:66:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P19938"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:66",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:66:residue:1"
+          ],
+          "participants_after": [
+            "D-glutamate",
+            "pyruvate"
+          ],
+          "participants_before": [
+            "D-alanine",
+            "2-oxoglutarate"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:66:mechanism:1",
+            "span_text": "Upon binding of a substrate amino acid, a transaldimation reaction occurs, releasing Lys145 from the internal aldimine and forming an external aldimine between the substrate and PLP cofactor."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:66:residue:1"
+          ],
+          "participants_after": [
+            "D-glutamate",
+            "pyruvate"
+          ],
+          "participants_before": [
+            "D-alanine",
+            "2-oxoglutarate"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:66:mechanism:1",
+            "span_text": "Lys145 then acts as the general base in the next step, driving the 1,3 prototropic shift that converts the internal aldimine into a ketimine intermediate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:66:residue:1"
+          ],
+          "participants_after": [
+            "D-glutamate",
+            "pyruvate"
+          ],
+          "participants_before": [
+            "D-alanine",
+            "2-oxoglutarate"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:66:mechanism:1",
+            "span_text": "Next, this ketimine is hydrolysed to form pyridoxamine phosphate and an alpha-keto acid."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "D-alanine",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "D-alanine + 2-oxoglutarate = D-glutamate + pyruvate"
+        },
+        {
+          "mapped_atom_or_group": "2-oxoglutarate",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "D-alanine + 2-oxoglutarate = D-glutamate + pyruvate"
+        },
+        {
+          "mapped_atom_or_group": "D-glutamate",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "D-alanine + 2-oxoglutarate = D-glutamate + pyruvate"
+        },
+        {
+          "mapped_atom_or_group": "pyruvate",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "D-alanine + 2-oxoglutarate = D-glutamate + pyruvate"
+        },
+        {
+          "mapped_atom_or_group": "Lys146",
+          "participant_id": "m_csa:66:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:66:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Tyr32",
+          "participant_id": "m_csa:66:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:66:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Leu202",
+          "participant_id": "m_csa:66:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:66:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Glu178",
+          "participant_id": "m_csa:66:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:66:residue:4"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:66",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:66:mechanism:1",
+          "span_text": "Upon binding of a substrate amino acid, a transaldimation reaction occurs, releasing Lys145 from the internal aldimine and forming an external aldimine between the substrate and PLP cofactor. Lys145 then acts as the general base in the next step, driving the 1,3 prototropic shift that converts the internal aldimine into a ketimine intermediate. Next, this ketimine is hydrolysed to form pyridoxamine phosphate and an alpha-keto acid. The second half of the reaction is the reversal of these steps with a different keto acid."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:15869",
+          "span_text": "D-alanine + 2-oxoglutarate = D-glutamate + pyruvate"
+        }
+      ]
+    },
+    {
+      "accession": "P26440",
+      "active_site_residue_role_support": [
+        {
+          "code": "Arg",
+          "resid": 416,
+          "residue_node_id": "m_csa:68:residue:1",
+          "roles": [
+            "electrostatic stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P26440"
+        },
+        {
+          "code": "Glu",
+          "resid": 283,
+          "residue_node_id": "m_csa:68:residue:2",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor",
+            "steric role"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P26440"
+        },
+        {
+          "code": "Ser",
+          "resid": 165,
+          "residue_node_id": "m_csa:68:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P26440"
+        },
+        {
+          "code": "Met",
+          "resid": 164,
+          "residue_node_id": "m_csa:68:residue:4",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P26440"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:68",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "3-methylbut-2-enoyl-CoA",
+            "reduced [electron-transfer flavoprotein]"
+          ],
+          "participants_before": [
+            "3-methylbutanoyl-CoA",
+            "oxidized [electron-transfer flavoprotein]",
+            "H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:68:mechanism:1",
+            "span_text": "The dehydrogenation reaction is initiated as Glu254 acts as a catalytic base abstracting the R -hydrogen of substrate in the form of a proton, with a concomitant transfer of the alpha -hydrogen from substrate as a hydride to the N(5) position of the isoalloxazine ring of the FAD, forming a trans double bond between the C(alpha) and C(beta) of the fatty acyl-CoA substrate."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "3-methylbut-2-enoyl-CoA",
+            "reduced [electron-transfer flavoprotein]"
+          ],
+          "participants_before": [
+            "3-methylbutanoyl-CoA",
+            "oxidized [electron-transfer flavoprotein]",
+            "H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:68:mechanism:1",
+            "span_text": "Ultimately, reducing equivalents are passed to the mitochondrial respiratory chain first via electron transfer flavoprotein (ETF) the physiological electron acceptor for all the acyl-CoA dehydrogenases, and second by ETF- ubiquinone oxidoreductase, a membrane-bound Fe-S flavoprotein."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "3-methylbut-2-enoyl-CoA",
+            "reduced [electron-transfer flavoprotein]"
+          ],
+          "participants_before": [
+            "3-methylbutanoyl-CoA",
+            "oxidized [electron-transfer flavoprotein]",
+            "H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:68:mechanism:1",
+            "span_text": "Note residues Ser136 and Met135 may serve to stabilise the oxyanion hole created in reduced FAD, however their role has not been specifically proven by experimental evidence."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "3-methylbutanoyl-CoA",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "3-methylbutanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = 3-methylbut-2-enoyl-CoA + reduced [electron-transfer flavoprotein]"
+        },
+        {
+          "mapped_atom_or_group": "oxidized [electron-transfer flavoprotein]",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "3-methylbutanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = 3-methylbut-2-enoyl-CoA + reduced [electron-transfer flavoprotein]"
+        },
+        {
+          "mapped_atom_or_group": "H(+)",
+          "participant_id": "substrate_3",
+          "role": "substrate",
+          "source_identifier": "3-methylbutanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = 3-methylbut-2-enoyl-CoA + reduced [electron-transfer flavoprotein]"
+        },
+        {
+          "mapped_atom_or_group": "3-methylbut-2-enoyl-CoA",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "3-methylbutanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = 3-methylbut-2-enoyl-CoA + reduced [electron-transfer flavoprotein]"
+        },
+        {
+          "mapped_atom_or_group": "reduced [electron-transfer flavoprotein]",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "3-methylbutanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = 3-methylbut-2-enoyl-CoA + reduced [electron-transfer flavoprotein]"
+        },
+        {
+          "mapped_atom_or_group": "Arg416",
+          "participant_id": "m_csa:68:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:68:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Glu283",
+          "participant_id": "m_csa:68:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:68:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Ser165",
+          "participant_id": "m_csa:68:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:68:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Met164",
+          "participant_id": "m_csa:68:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:68:residue:4"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:68",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:68:mechanism:1",
+          "span_text": "The dehydrogenation reaction is initiated as Glu254 acts as a catalytic base abstracting the R -hydrogen of substrate in the form of a proton, with a concomitant transfer of the alpha -hydrogen from substrate as a hydride to the N(5) position of the isoalloxazine ring of the FAD, forming a trans  double bond between the C(alpha)  and C(beta)  of the fatty acyl-CoA substrate. Ultimately, reducing equivalents are passed to the mitochondrial respiratory chain first\r\n<i>via</i> electron transfer flavoprotein (ETF) the physiological electron acceptor for all the acyl-CoA dehydrogenases, and second by ETF- ubiquinone oxidoreductase, a membrane-bound Fe-S flavoprotein.   \r\n<br/><br/>\r\nNote residues Ser136 and Met135 may serve to stabilise the oxyanion hole created in reduced FAD, however their role has not been specifically proven by experimental evidence."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:12276",
+          "span_text": "3-methylbutanoyl-CoA + oxidized [electron-transfer flavoprotein] + H(+) = 3-methylbut-2-enoyl-CoA + reduced [electron-transfer flavoprotein]"
+        }
+      ]
+    },
+    {
+      "accession": "Q29460",
+      "active_site_residue_role_support": [
+        {
+          "code": "Ser",
+          "resid": 47,
+          "residue_node_id": "m_csa:94:residue:1",
+          "roles": [
+            "covalently attached",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q29460"
+        },
+        {
+          "code": "Gly",
+          "resid": 74,
+          "residue_node_id": "m_csa:94:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q29460"
+        },
+        {
+          "code": "Asn",
+          "resid": 104,
+          "residue_node_id": "m_csa:94:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q29460"
+        },
+        {
+          "code": "Asp",
+          "resid": 192,
+          "residue_node_id": "m_csa:94:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q29460"
+        },
+        {
+          "code": "His",
+          "resid": 195,
+          "residue_node_id": "m_csa:94:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "Q29460"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:94",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:94:residue:1"
+          ],
+          "participants_after": [
+            "a 1-O-alkyl-sn-glycero-3-phosphocholine",
+            "acetate",
+            "H(+)"
+          ],
+          "participants_before": [
+            "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:94:mechanism:1",
+            "span_text": "This forms a classical Ser-His-Asp triad, and Ser47 is thought to be the catalytic nucleophile."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:94:residue:1"
+          ],
+          "participants_after": [
+            "a 1-O-alkyl-sn-glycero-3-phosphocholine",
+            "acetate",
+            "H(+)"
+          ],
+          "participants_before": [
+            "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:94:mechanism:1",
+            "span_text": "The chirality of the triad is the same as that found in the active sites of other esterases and neutral lipases, where nucleophilic attack is on the re face of the ester."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = a 1-O-alkyl-sn-glycero-3-phosphocholine + acetate + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "H2O",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = a 1-O-alkyl-sn-glycero-3-phosphocholine + acetate + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "a 1-O-alkyl-sn-glycero-3-phosphocholine",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = a 1-O-alkyl-sn-glycero-3-phosphocholine + acetate + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "acetate",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = a 1-O-alkyl-sn-glycero-3-phosphocholine + acetate + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "H(+)",
+          "participant_id": "product_3",
+          "role": "product",
+          "source_identifier": "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = a 1-O-alkyl-sn-glycero-3-phosphocholine + acetate + H(+)"
+        },
+        {
+          "mapped_atom_or_group": "Ser47",
+          "participant_id": "m_csa:94:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:94:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Gly74",
+          "participant_id": "m_csa:94:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:94:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Asn104",
+          "participant_id": "m_csa:94:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:94:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Asp192",
+          "participant_id": "m_csa:94:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:94:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "His195",
+          "participant_id": "m_csa:94:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:94:residue:5"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:94",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:94:mechanism:1",
+          "span_text": "Ser47 is close to His195, the imidazole ring of His195 is hydrogen-bonded through its nitrogen (delta 1) atom to the side-chain carboxyl of Asp192. This forms a classical Ser-His-Asp triad, and Ser47 is thought to be the catalytic nucleophile. The chirality of the triad is the same as that found in the active sites of other esterases and neutral lipases, where nucleophilic attack is on the re face of the ester. The main chain amide of Gly74 and Nd1 of Asn104 stabilise oxyanion hole."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:17777",
+          "span_text": "a 1-O-alkyl-2-acetyl-sn-glycero-3-phosphocholine + H2O = a 1-O-alkyl-sn-glycero-3-phosphocholine + acetate + H(+)"
+        }
+      ]
+    },
+    {
+      "accession": "P00175",
+      "active_site_residue_role_support": [
+        {
+          "code": "Tyr",
+          "resid": 334,
+          "residue_node_id": "m_csa:102:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00175"
+        },
+        {
+          "code": "Asp",
+          "resid": 362,
+          "residue_node_id": "m_csa:102:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00175"
+        },
+        {
+          "code": "His",
+          "resid": 453,
+          "residue_node_id": "m_csa:102:residue:3",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00175"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:102",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "2 Fe(II)-[cytochrome c]",
+            "pyruvate",
+            "2 H(+)"
+          ],
+          "participants_before": [
+            "(S)-lactate",
+            "2 Fe(III)-[cytochrome c]"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:102:mechanism:1",
+            "span_text": "The enzyme catalyses the oxidation of lactate to pyruvate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:102:residue:3"
+          ],
+          "participants_after": [
+            "2 Fe(II)-[cytochrome c]",
+            "pyruvate",
+            "2 H(+)"
+          ],
+          "participants_before": [
+            "(S)-lactate",
+            "2 Fe(III)-[cytochrome c]"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:102:mechanism:1",
+            "span_text": "In the wild type enzyme the OH and CH bond cleavages in lactate are highly asynchronous."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "2 Fe(II)-[cytochrome c]",
+            "pyruvate",
+            "2 H(+)"
+          ],
+          "participants_before": [
+            "(S)-lactate",
+            "2 Fe(III)-[cytochrome c]"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:102:mechanism:1",
+            "span_text": "The lactate hydroxyl proton is abstracted by His 373 to form the alkoxide either early in the reaction or in a pre-equilibrium."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "2 Fe(II)-[cytochrome c]",
+            "pyruvate",
+            "2 H(+)"
+          ],
+          "participants_before": [
+            "(S)-lactate",
+            "2 Fe(III)-[cytochrome c]"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:102:mechanism:1",
+            "span_text": "The hydride is then transferred to the flavin, forming pyruvate."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "2 Fe(II)-[cytochrome c]",
+            "pyruvate",
+            "2 H(+)"
+          ],
+          "participants_before": [
+            "(S)-lactate",
+            "2 Fe(III)-[cytochrome c]"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:102:mechanism:1",
+            "span_text": "In this proposal, the His373 abstracts the alpha carbon's proton, forming a negatively charged intermediate, which then eliminates the hydride."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "(S)-lactate",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "(S)-lactate + 2 Fe(III)-[cytochrome c] = 2 Fe(II)-[cytochrome c] + pyruvate + 2 H(+)"
+        },
+        {
+          "mapped_atom_or_group": "2 Fe(III)-[cytochrome c]",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "(S)-lactate + 2 Fe(III)-[cytochrome c] = 2 Fe(II)-[cytochrome c] + pyruvate + 2 H(+)"
+        },
+        {
+          "mapped_atom_or_group": "2 Fe(II)-[cytochrome c]",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "(S)-lactate + 2 Fe(III)-[cytochrome c] = 2 Fe(II)-[cytochrome c] + pyruvate + 2 H(+)"
+        },
+        {
+          "mapped_atom_or_group": "pyruvate",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "(S)-lactate + 2 Fe(III)-[cytochrome c] = 2 Fe(II)-[cytochrome c] + pyruvate + 2 H(+)"
+        },
+        {
+          "mapped_atom_or_group": "2 H(+)",
+          "participant_id": "product_3",
+          "role": "product",
+          "source_identifier": "(S)-lactate + 2 Fe(III)-[cytochrome c] = 2 Fe(II)-[cytochrome c] + pyruvate + 2 H(+)"
+        },
+        {
+          "mapped_atom_or_group": "Tyr334",
+          "participant_id": "m_csa:102:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:102:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Asp362",
+          "participant_id": "m_csa:102:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:102:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "His453",
+          "participant_id": "m_csa:102:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:102:residue:3"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:102",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:102:mechanism:1",
+          "span_text": "The enzyme catalyses the oxidation of lactate to pyruvate. In the wild type enzyme the OH and CH bond cleavages in lactate are highly asynchronous. The lactate hydroxyl proton is abstracted by His 373 to form the alkoxide either early in the reaction or in a pre-equilibrium. The developing charge on the oxygen is stabilised by Tyr254. The hydride is then transferred to the flavin, forming pyruvate."
+        },
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:102:mechanism:2",
+          "span_text": "In this proposal, the His373 abstracts the alpha carbon's proton, forming a negatively charged intermediate, which then eliminates the hydride."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:19909",
+          "span_text": "(S)-lactate + 2 Fe(III)-[cytochrome c] = 2 Fe(II)-[cytochrome c] + pyruvate + 2 H(+)"
+        }
+      ]
+    },
+    {
+      "accession": "P00396",
+      "active_site_residue_role_support": [
+        {
+          "code": "Trp",
+          "resid": 126,
+          "residue_node_id": "m_csa:124:residue:1",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Ser",
+          "resid": 255,
+          "residue_node_id": "m_csa:124:residue:10",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "His",
+          "resid": 290,
+          "residue_node_id": "m_csa:124:residue:11",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Arg",
+          "resid": 438,
+          "residue_node_id": "m_csa:124:residue:12",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Thr",
+          "resid": 316,
+          "residue_node_id": "m_csa:124:residue:13",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Lys",
+          "resid": 319,
+          "residue_node_id": "m_csa:124:residue:14",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "His",
+          "resid": 61,
+          "residue_node_id": "m_csa:124:residue:2",
+          "roles": [
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Asp",
+          "resid": 91,
+          "residue_node_id": "m_csa:124:residue:3",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Ser",
+          "resid": 156,
+          "residue_node_id": "m_csa:124:residue:4",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Ser",
+          "resid": 157,
+          "residue_node_id": "m_csa:124:residue:5",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "His",
+          "resid": 240,
+          "residue_node_id": "m_csa:124:residue:6",
+          "roles": [
+            "covalently attached",
+            "electrostatic stabiliser",
+            "metal ligand",
+            "radical stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Glu",
+          "resid": 242,
+          "residue_node_id": "m_csa:124:residue:7",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "Tyr",
+          "resid": 244,
+          "residue_node_id": "m_csa:124:residue:8",
+          "roles": [
+            "covalently attached",
+            "hydrogen radical donor",
+            "proton acceptor",
+            "proton donor",
+            "proton relay",
+            "single electron acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        },
+        {
+          "code": "His",
+          "resid": 291,
+          "residue_node_id": "m_csa:124:residue:9",
+          "roles": [
+            "metal ligand",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00396"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:124",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:124:residue:6",
+            "m_csa:124:residue:8"
+          ],
+          "participants_after": [
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
+          ],
+          "participants_before": [
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:124:mechanism:2",
+            "span_text": "Cytochrome c oxidase is a redox driven proton pump that utilises free energy of oxygen reduction for creation of proton gradient across the mitochondrial membrane."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:124:residue:1",
+            "m_csa:124:residue:10",
+            "m_csa:124:residue:12",
+            "m_csa:124:residue:13",
+            "m_csa:124:residue:14",
+            "m_csa:124:residue:3"
+          ],
+          "participants_after": [
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
+          ],
+          "participants_before": [
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:124:mechanism:2",
+            "span_text": "All protons pumped across the membrane and three out of the four substrate protons consumed per cycle are transferred through the so-called D-pathway."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:124:residue:1",
+            "m_csa:124:residue:10",
+            "m_csa:124:residue:12",
+            "m_csa:124:residue:13",
+            "m_csa:124:residue:14",
+            "m_csa:124:residue:3"
+          ],
+          "participants_after": [
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
+          ],
+          "participants_before": [
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:124:mechanism:2",
+            "span_text": "The further pathway for protons consist of two chain of water molecules."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:124:residue:1",
+            "m_csa:124:residue:10",
+            "m_csa:124:residue:12",
+            "m_csa:124:residue:13",
+            "m_csa:124:residue:14",
+            "m_csa:124:residue:3"
+          ],
+          "participants_after": [
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
+          ],
+          "participants_before": [
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:124:mechanism:2",
+            "span_text": "One of the chemical protons presumably comes via the K-pathway."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:124:residue:1",
+            "m_csa:124:residue:10",
+            "m_csa:124:residue:12",
+            "m_csa:124:residue:13",
+            "m_csa:124:residue:14",
+            "m_csa:124:residue:3"
+          ],
+          "participants_after": [
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
+          ],
+          "participants_before": [
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:124:mechanism:2",
+            "span_text": "This involves Lys319 that could receive protons either from Ser255 directly or from the conserved subunit II Glu residue indirectly."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "4 Fe(II)-[cytochrome c]",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "O2",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "8 H(+)(in)",
+          "participant_id": "substrate_3",
+          "role": "substrate",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "4 Fe(III)-[cytochrome c]",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "2 H2O",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "4 H(+)(out)",
+          "participant_id": "product_3",
+          "role": "product",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "Trp126",
+          "participant_id": "m_csa:124:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Ser255",
+          "participant_id": "m_csa:124:residue:10",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:10"
+        },
+        {
+          "mapped_atom_or_group": "His290",
+          "participant_id": "m_csa:124:residue:11",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:11"
+        },
+        {
+          "mapped_atom_or_group": "Arg438",
+          "participant_id": "m_csa:124:residue:12",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:12"
+        },
+        {
+          "mapped_atom_or_group": "Thr316",
+          "participant_id": "m_csa:124:residue:13",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:13"
+        },
+        {
+          "mapped_atom_or_group": "Lys319",
+          "participant_id": "m_csa:124:residue:14",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:14"
+        },
+        {
+          "mapped_atom_or_group": "His61",
+          "participant_id": "m_csa:124:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Asp91",
+          "participant_id": "m_csa:124:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Ser156",
+          "participant_id": "m_csa:124:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "Ser157",
+          "participant_id": "m_csa:124:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:5"
+        },
+        {
+          "mapped_atom_or_group": "His240",
+          "participant_id": "m_csa:124:residue:6",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:6"
+        },
+        {
+          "mapped_atom_or_group": "Glu242",
+          "participant_id": "m_csa:124:residue:7",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:7"
+        },
+        {
+          "mapped_atom_or_group": "Tyr244",
+          "participant_id": "m_csa:124:residue:8",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:8"
+        },
+        {
+          "mapped_atom_or_group": "His291",
+          "participant_id": "m_csa:124:residue:9",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:124:residue:9"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:124",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:124:mechanism:2",
+          "span_text": "Cytochrome c oxidase is a redox driven proton pump that utilises free energy of oxygen reduction for creation of proton gradient across the mitochondrial membrane. All protons pumped across the membrane and three out of the four substrate protons consumed per cycle are transferred through the so-called D-pathway. It leads from the conserved Asp91 under involvement of solvent molecules straight up to Ser156 and Ser157 and from there through a large presumably water-filled cavity to the conserved Glu242 [PMID:15147881, PMID:2765763, PMID:9788998]. The further pathway for protons consist of two chain of water molecules. One connecting Glu242 to propionate D of haem A3 <i>via</i> the NH group of Trp126 and one connecting Glu242 to the catalytic site of the enzyme [PMID:15147881, PMID:2765763]. One of the chemical protons presumably comes <i>via</i> the K-pathway. This involves Lys319 that could receive protons either from Ser255 directly or from the conserved subunit II Glu residue indirectly. It would transfer the proton via Thr316 the hydroxy group of the side chain of hame A3 to Tyr244 which is covalently cross-linked to His240 [PMID:15147881, PMID:9788998]. The effect of the cross-link would be to lower the pKa of Tyr244 making this residue a possible proton donor for O2 intermediates bound at the active site [PMID:15598510]. Electrons are supplied by cytochrome c <i>via</i> CuA - haem A - haem A3/CuB at the binuclear centre and the residues Arg438 Arg439 and Phe377 may be involved in these electron transfers [PMID:10775261]."
+        },
+        {
+          "source_database": "rhea_official_lookup",
+          "source_record_id": "rhea:RHEA:11436",
+          "span_text": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        }
+      ]
+    },
+    {
+      "accession": "P00183",
+      "active_site_residue_role_support": [
+        {
+          "code": "Asp",
+          "resid": 252,
+          "residue_node_id": "m_csa:133:residue:1",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00183"
+        },
+        {
+          "code": "Thr",
+          "resid": 253,
+          "residue_node_id": "m_csa:133:residue:2",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00183"
+        },
+        {
+          "code": "Cys",
+          "resid": 358,
+          "residue_node_id": "m_csa:133:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "metal ligand"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00183"
+        },
+        {
+          "code": "Leu",
+          "resid": 359,
+          "residue_node_id": "m_csa:133:residue:4",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00183"
+        },
+        {
+          "code": "Gly",
+          "resid": 360,
+          "residue_node_id": "m_csa:133:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00183"
+        },
+        {
+          "code": "Arg",
+          "resid": 187,
+          "residue_node_id": "m_csa:133:residue:6",
+          "roles": [
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P00183"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:133",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "(1R,4R,5R)-5-hydroxycamphor",
+            "2 oxidized [2Fe-2S]-[putidaredoxin]",
+            "H2O"
+          ],
+          "participants_before": [
+            "2 reduced [2Fe-2S]-[putidaredoxin]",
+            "(1R,4R)-camphor",
+            "O2",
+            "2 H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "Putidaredoxin donates a single electron to the Fe(III) centre of the heme cofactor, forming Fe(II), which in turn donates the electron to the dioxygen substrate .Putidaredoxin then donates a second electron to the bound peroxo moiety, which initiates a proton transfer relay through Thr252, water, Asp251, Arg186 to bulk solvent."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "(1R,4R,5R)-5-hydroxycamphor",
+            "2 oxidized [2Fe-2S]-[putidaredoxin]",
+            "H2O"
+          ],
+          "participants_before": [
+            "2 reduced [2Fe-2S]-[putidaredoxin]",
+            "(1R,4R)-camphor",
+            "O2",
+            "2 H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "Both Heme and Iron donate single electrons to the bound peroxo moiety, which eliminates water and initiates a proton transfer relay through the same chain as used previously."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:133:residue:1",
+            "m_csa:133:residue:2",
+            "m_csa:133:residue:6"
+          ],
+          "participants_after": [
+            "(1R,4R,5R)-5-hydroxycamphor",
+            "2 oxidized [2Fe-2S]-[putidaredoxin]",
+            "H2O"
+          ],
+          "participants_before": [
+            "2 reduced [2Fe-2S]-[putidaredoxin]",
+            "(1R,4R)-camphor",
+            "O2",
+            "2 H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "The iron-bound oxy group abstracts a hydrogen from the camphor substrate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:133:residue:3"
+          ],
+          "participants_after": [
+            "(1R,4R,5R)-5-hydroxycamphor",
+            "2 oxidized [2Fe-2S]-[putidaredoxin]",
+            "H2O"
+          ],
+          "participants_before": [
+            "2 reduced [2Fe-2S]-[putidaredoxin]",
+            "(1R,4R)-camphor",
+            "O2",
+            "2 H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "In the final step, the camphor radical initiates a homolytic substitution, hydroxylating the intermediate to form 5-hydroxycamphor."
+          }
+        },
+        {
+          "confidence": "low",
+          "event_type": "electron_transfer",
+          "mapped_active_site_residues": [],
+          "participants_after": [
+            "(1R,4R,5R)-5-hydroxycamphor",
+            "2 oxidized [2Fe-2S]-[putidaredoxin]",
+            "H2O"
+          ],
+          "participants_before": [
+            "2 reduced [2Fe-2S]-[putidaredoxin]",
+            "(1R,4R)-camphor",
+            "O2",
+            "2 H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "The iron centre accepts a single electron and water displaces the product."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "2 reduced [2Fe-2S]-[putidaredoxin]",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        },
+        {
+          "mapped_atom_or_group": "(1R,4R)-camphor",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        },
+        {
+          "mapped_atom_or_group": "O2",
+          "participant_id": "substrate_3",
+          "role": "substrate",
+          "source_identifier": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        },
+        {
+          "mapped_atom_or_group": "2 H(+)",
+          "participant_id": "substrate_4",
+          "role": "substrate",
+          "source_identifier": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        },
+        {
+          "mapped_atom_or_group": "(1R,4R,5R)-5-hydroxycamphor",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        },
+        {
+          "mapped_atom_or_group": "2 oxidized [2Fe-2S]-[putidaredoxin]",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        },
+        {
+          "mapped_atom_or_group": "H2O",
+          "participant_id": "product_3",
+          "role": "product",
+          "source_identifier": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        },
+        {
+          "mapped_atom_or_group": "Asp252",
+          "participant_id": "m_csa:133:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:133:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Thr253",
+          "participant_id": "m_csa:133:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:133:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Cys358",
+          "participant_id": "m_csa:133:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:133:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Leu359",
+          "participant_id": "m_csa:133:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:133:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "Gly360",
+          "participant_id": "m_csa:133:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:133:residue:5"
+        },
+        {
+          "mapped_atom_or_group": "Arg187",
+          "participant_id": "m_csa:133:residue:6",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:133:residue:6"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:133",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:133:mechanism:1",
+          "span_text": "Putidaredoxin donates a single electron to the Fe(III) centre of the heme cofactor, forming Fe(II), which in turn donates the electron to the dioxygen substrate .Putidaredoxin then donates a second electron to the bound peroxo moiety, which initiates a proton transfer relay through Thr252, water, Asp251, Arg186 to bulk solvent. Both Heme and Iron donate single electrons to the bound peroxo moiety, which eliminates water and initiates a proton transfer relay through the same chain as used previously. The iron-bound oxy group abstracts a hydrogen from the camphor substrate. In the final step, the camphor radical initiates a homolytic substitution, hydroxylating the intermediate to form 5-hydroxycamphor. The iron centre accepts a single electron and water displaces the product."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:13525",
+          "span_text": "2 reduced [2Fe-2S]-[putidaredoxin] + (1R,4R)-camphor + O2 + 2 H(+) = (1R,4R,5R)-5-hydroxycamphor + 2 oxidized [2Fe-2S]-[putidaredoxin] + H2O"
+        }
+      ]
+    },
+    {
+      "accession": "P07511",
+      "active_site_residue_role_support": [
+        {
+          "code": "Thr",
+          "resid": 254,
+          "residue_node_id": "m_csa:147:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P07511"
+        },
+        {
+          "code": "Lys",
+          "resid": 257,
+          "residue_node_id": "m_csa:147:residue:2",
+          "roles": [
+            "covalently attached",
+            "electron pair acceptor",
+            "electron pair donor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P07511"
+        },
+        {
+          "code": "Glu",
+          "resid": 75,
+          "residue_node_id": "m_csa:147:residue:3",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P07511"
+        },
+        {
+          "code": "Asp",
+          "resid": 228,
+          "residue_node_id": "m_csa:147:residue:4",
+          "roles": [
+            "electrostatic stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P07511"
+        },
+        {
+          "code": "Arg",
+          "resid": 263,
+          "residue_node_id": "m_csa:147:residue:5",
+          "roles": [
+            "electrostatic stabiliser"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P07511"
+        },
+        {
+          "code": "Tyr",
+          "resid": 73,
+          "residue_node_id": "m_csa:147:residue:6",
+          "roles": [
+            "steric locator"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P07511"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:147",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:147:residue:2"
+          ],
+          "participants_after": [
+            "(6S)-5,6,7,8-tetrahydrofolate",
+            "L-serine",
+            "acetaldehyde",
+            "glycine"
+          ],
+          "participants_before": [
+            "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate",
+            "glycine",
+            "H2O",
+            "L-threonine"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "The serine substrate first forms the external aldimine by displacing Lys229 from the internal aldimine."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:147:residue:2",
+            "m_csa:147:residue:3"
+          ],
+          "participants_after": [
+            "(6S)-5,6,7,8-tetrahydrofolate",
+            "L-serine",
+            "acetaldehyde",
+            "glycine"
+          ],
+          "participants_before": [
+            "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate",
+            "glycine",
+            "H2O",
+            "L-threonine"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "Glu57 abstracts the C3-OH proton, initiating the loss of formaldehyde from the intermediate leaving behind the glycine-quinoid aldimine."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:147:residue:2"
+          ],
+          "participants_after": [
+            "(6S)-5,6,7,8-tetrahydrofolate",
+            "L-serine",
+            "acetaldehyde",
+            "glycine"
+          ],
+          "participants_before": [
+            "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate",
+            "glycine",
+            "H2O",
+            "L-threonine"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "This rearranges to form the glycine aldimine."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:147:residue:2"
+          ],
+          "participants_after": [
+            "(6S)-5,6,7,8-tetrahydrofolate",
+            "L-serine",
+            "acetaldehyde",
+            "glycine"
+          ],
+          "participants_before": [
+            "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate",
+            "glycine",
+            "H2O",
+            "L-threonine"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:147:mechanism:1",
+            "span_text": "This intermediate is broken down by nucleophilic attack of Lys229 at the imine functionality, displacing glycine and reforming the internal aldimine, the enzyme resting state."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine"
+        },
+        {
+          "mapped_atom_or_group": "glycine",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine"
+        },
+        {
+          "mapped_atom_or_group": "H2O",
+          "participant_id": "substrate_3",
+          "role": "substrate",
+          "source_identifier": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine"
+        },
+        {
+          "mapped_atom_or_group": "(6S)-5,6,7,8-tetrahydrofolate",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine"
+        },
+        {
+          "mapped_atom_or_group": "L-serine",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine"
+        },
+        {
+          "mapped_atom_or_group": "L-threonine",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "L-threonine = acetaldehyde + glycine"
+        },
+        {
+          "mapped_atom_or_group": "acetaldehyde",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "L-threonine = acetaldehyde + glycine"
+        },
+        {
+          "mapped_atom_or_group": "glycine",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "L-threonine = acetaldehyde + glycine"
+        },
+        {
+          "mapped_atom_or_group": "(3S)-3-hydroxy-N(6),N(6),N(6)-trimethyl-L-lysine",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "(3S)-3-hydroxy-N(6),N(6),N(6)-trimethyl-L-lysine = 4-(trimethylamino)butanal + glycine"
+        },
+        {
+          "mapped_atom_or_group": "4-(trimethylamino)butanal",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "(3S)-3-hydroxy-N(6),N(6),N(6)-trimethyl-L-lysine = 4-(trimethylamino)butanal + glycine"
+        },
+        {
+          "mapped_atom_or_group": "glycine",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "(3S)-3-hydroxy-N(6),N(6),N(6)-trimethyl-L-lysine = 4-(trimethylamino)butanal + glycine"
+        },
+        {
+          "mapped_atom_or_group": "Thr254",
+          "participant_id": "m_csa:147:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:147:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Lys257",
+          "participant_id": "m_csa:147:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:147:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Glu75",
+          "participant_id": "m_csa:147:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:147:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Asp228",
+          "participant_id": "m_csa:147:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:147:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "Arg263",
+          "participant_id": "m_csa:147:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:147:residue:5"
+        },
+        {
+          "mapped_atom_or_group": "Tyr73",
+          "participant_id": "m_csa:147:residue:6",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:147:residue:6"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:147",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:147:mechanism:1",
+          "span_text": "The THF-dependent reaction is thought to proceed via a retroaldol mechanism. The serine substrate first forms the external aldimine by displacing Lys229 from the internal aldimine. Glu57 abstracts the C3-OH proton, initiating the loss of formaldehyde from the intermediate leaving behind the glycine-quinoid aldimine. This rearranges to form the glycine aldimine. This intermediate is broken down by nucleophilic attack of Lys229 at the imine functionality, displacing glycine and reforming the internal aldimine, the enzyme resting state. The released formaldehyde reacts with the THF cofactor to form 5,10-methylene-H4-folate."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:15481",
+          "span_text": "(6R)-5,10-methylene-5,6,7,8-tetrahydrofolate + glycine + H2O = (6S)-5,6,7,8-tetrahydrofolate + L-serine"
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:19625",
+          "span_text": "L-threonine = acetaldehyde + glycine"
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:79695",
+          "span_text": "(3S)-3-hydroxy-N(6),N(6),N(6)-trimethyl-L-lysine = 4-(trimethylamino)butanal + glycine"
+        }
+      ]
+    },
+    {
+      "accession": "P27487",
+      "active_site_residue_role_support": [
+        {
+          "code": "Tyr",
+          "resid": 631,
+          "residue_node_id": "m_csa:169:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P27487"
+        },
+        {
+          "code": "Tyr",
+          "resid": 547,
+          "residue_node_id": "m_csa:169:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P27487"
+        },
+        {
+          "code": "Ser",
+          "resid": 630,
+          "residue_node_id": "m_csa:169:residue:3",
+          "roles": [
+            "covalently attached",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P27487"
+        },
+        {
+          "code": "Asp",
+          "resid": 708,
+          "residue_node_id": "m_csa:169:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P27487"
+        },
+        {
+          "code": "His",
+          "resid": 740,
+          "residue_node_id": "m_csa:169:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P27487"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:169",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:169:residue:3"
+          ],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:169:mechanism:1",
+            "span_text": "The serine nuelcophile is activated by the Ser-His-Asp triad and attacks the carbonyl carbon of the peptide bond in a nucleophilic addition."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:169:residue:3",
+            "m_csa:169:residue:5"
+          ],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:169:mechanism:1",
+            "span_text": "The oxyanion initiates an elimination reaction that cleaves the peptide bond, releasing the new N-terminus of the protein, which protonates from the His of the catalytic triad."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:169:residue:3",
+            "m_csa:169:residue:5"
+          ],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:169:mechanism:1",
+            "span_text": "His740 deprotonates water, which attacks the carbonyl carbon bound to the catalytic Ser in a nucleophilic addition."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:169:residue:3",
+            "m_csa:169:residue:5"
+          ],
+          "participants_after": [
+            "mechanism_text_product_context"
+          ],
+          "participants_before": [
+            "mechanism_text_substrate_context"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:169:mechanism:1",
+            "span_text": "The serine is then eliminated by the collapse of the oxyanion in a classical Ser-His-Asp type reaction."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "Tyr631",
+          "participant_id": "m_csa:169:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:169:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Tyr547",
+          "participant_id": "m_csa:169:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:169:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Ser630",
+          "participant_id": "m_csa:169:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:169:residue:3"
+        },
+        {
+          "mapped_atom_or_group": "Asp708",
+          "participant_id": "m_csa:169:residue:4",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:169:residue:4"
+        },
+        {
+          "mapped_atom_or_group": "His740",
+          "participant_id": "m_csa:169:residue:5",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:169:residue:5"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:169",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:169:mechanism:1",
+          "span_text": "The serine nuelcophile is activated by the Ser-His-Asp triad and attacks the carbonyl carbon of the peptide bond in a nucleophilic addition. The oxyanion initiates an elimination reaction that cleaves the peptide bond, releasing the new N-terminus of the protein, which protonates from the His of the catalytic triad. His740 deprotonates water, which attacks the carbonyl carbon bound to the catalytic Ser in a nucleophilic addition. The serine is then eliminated by the collapse of the oxyanion in a classical Ser-His-Asp type reaction."
+        }
+      ]
+    },
+    {
+      "accession": "P09367",
+      "active_site_residue_role_support": [
+        {
+          "code": "Cys",
+          "resid": 339,
+          "residue_node_id": "m_csa:186:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P09367"
+        },
+        {
+          "code": "Ala",
+          "resid": 258,
+          "residue_node_id": "m_csa:186:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P09367"
+        },
+        {
+          "code": "Lys",
+          "resid": 41,
+          "residue_node_id": "m_csa:186:residue:3",
+          "roles": [
+            "covalently attached",
+            "electron pair acceptor",
+            "electron pair donor",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "source": "m_csa_curated_catalytic_residue",
+          "uniprot_id": "P09367"
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "entry_id": "m_csa:186",
+      "extractor_id": "codex_automation_p0_draft_20260601",
+      "review_status": "draft",
+      "reviewer_id": null,
+      "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:186:residue:3"
+          ],
+          "participants_after": [
+            "pyruvate",
+            "NH4(+)"
+          ],
+          "participants_before": [
+            "L-serine"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:186:mechanism:1",
+            "span_text": "This PLP-depenedent reaction occurs via the initial elimination of water to form an enamine intermediate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:186:residue:3"
+          ],
+          "participants_after": [
+            "pyruvate",
+            "NH4(+)"
+          ],
+          "participants_before": [
+            "L-serine"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:186:mechanism:1",
+            "span_text": "This intermediate then undergoes tautomerisation to an imine form and finally the C-N bond is hydrolysed."
+          }
+        }
+      ],
+      "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "L-serine",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "L-serine = pyruvate + NH4(+)"
+        },
+        {
+          "mapped_atom_or_group": "pyruvate",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "L-serine = pyruvate + NH4(+)"
+        },
+        {
+          "mapped_atom_or_group": "NH4(+)",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "L-serine = pyruvate + NH4(+)"
+        },
+        {
+          "mapped_atom_or_group": "Cys339",
+          "participant_id": "m_csa:186:residue:1",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:186:residue:1"
+        },
+        {
+          "mapped_atom_or_group": "Ala258",
+          "participant_id": "m_csa:186:residue:2",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:186:residue:2"
+        },
+        {
+          "mapped_atom_or_group": "Lys41",
+          "participant_id": "m_csa:186:residue:3",
+          "role": "catalytic_residue",
+          "source_identifier": "m_csa:186:residue:3"
+        }
+      ],
+      "source_database": "m_csa_local_graph",
+      "source_record_id": "m_csa:186",
+      "source_record_version_or_date": "2026-05-13T03:12:00.943739+00:00",
+      "source_text_or_database_evidence_span": [
+        {
+          "source_database": "m_csa_local_graph",
+          "source_record_id": "m_csa:186:mechanism:1",
+          "span_text": "This PLP-depenedent reaction occurs via the initial elimination of water to form an enamine intermediate. This intermediate then undergoes tautomerisation to an imine form and finally the C-N bond is hydrolysed. This final step can occur spontaneously (as shown here), but it can also be catalysed by EC 3.5.99.10, 2-iminobutanoate/2-iminopropanoate deaminase."
+        },
+        {
+          "source_database": "rhea_local_graph",
+          "source_record_id": "rhea:RHEA:19169",
+          "span_text": "L-serine = pyruvate + NH4(+)"
+        }
+      ]
+    }
+  ],
+  "source_artifacts": {
+    "graph": {
+      "exists": true,
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "rhea_lookup_resolution": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.json",
+      "sha256": "7fe9372b048ef97f9451a59227a865d15376a55ef9027192928f419c61f4ca2b"
+    },
+    "source_evidence_schema": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json",
+      "sha256": "909686b9d6afafd105cc2c397c3de6b7af54508a1878a877b52164eedfa3d666"
+    },
+    "worksheet": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv",
+      "sha256": "d1dc5f9edcdb5009c21e4e04a9253875280ec471216db8911435204c398e2a21"
+    }
+  },
+  "status": "p0_source_evidence_sidecar_draft_review_required"
+}

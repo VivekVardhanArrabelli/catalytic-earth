@@ -29,9 +29,22 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_active_site_role_graph_sidecar,
     build_mechanism_feature_reaction_center_template_sidecar,
     build_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
+    build_mechanism_feature_row_specific_bond_change_materialization_priority,
+    build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
+    build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
+    build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
+    build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
+    build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
+    build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
+    build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
     build_mechanism_feature_row_specific_bond_change_schema,
+    build_mechanism_feature_embedding_pilot,
     build_mechanism_feature_sidecar_schema_audit,
     build_predicted_atlas_geometry_novelty_variants,
+    build_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     build_predicted_structure_fold_augmented_novelty_operating_grid,
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_contract_audit,
@@ -2729,6 +2742,1255 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["heldout_feature_rows"], 0)
         self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
 
+    def test_row_specific_bond_change_materialization_priority_splits_p0_p1_p2(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema = root / "schema.json"
+            contract = root / "contract.json"
+            split = root / "split.json"
+            schema.write_text(
+                json.dumps(
+                    {
+                        "schema_contract": {
+                            "forbidden_predictive_fields": ["label_type"]
+                        },
+                        "row_materialization_queue": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "split_assignment": "in_distribution",
+                                "fingerprint_id": "fp_a",
+                                "row_specific_bond_change_status": (
+                                    "row_specific_bond_change_evidence_required"
+                                ),
+                                "template_chemical_operation_normalized": "hydrolysis",
+                                "required_next_evidence": ["source_record_id"],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P22222",
+                                "split_assignment": "in_distribution",
+                                "fingerprint_id": "fp_b",
+                                "row_specific_bond_change_status": (
+                                    "row_specific_bond_change_evidence_required"
+                                ),
+                                "template_chemical_operation_normalized": "redox",
+                                "required_next_evidence": ["source_record_id"],
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "P33333",
+                                "split_assignment": "heldout",
+                                "fingerprint_id": "fp_c",
+                                "row_specific_bond_change_status": (
+                                    "row_specific_bond_change_evidence_required"
+                                ),
+                                "template_chemical_operation_normalized": "radical",
+                                "required_next_evidence": ["source_record_id"],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract.write_text(
+                json.dumps({"feature_rows": [{"entry_id": "m_csa:1"}]}),
+                encoding="utf-8",
+            )
+            split.write_text(
+                json.dumps(
+                    {
+                        "split_records": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_materialization_priority(
+                row_specific_bond_change_schema_path=schema,
+                feature_contract_path=contract,
+                split_manifest_path=split,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "row_specific_bond_change_materialization_priority_ready_no_fit",
+        )
+        self.assertEqual(audit["counts"]["train_cal_feature_contract_gap_rows"], 1)
+        self.assertEqual(
+            audit["counts"]["in_distribution_not_feature_contract_ready_rows"],
+            1,
+        )
+        self.assertEqual(audit["counts"]["heldout_final_only_gap_rows"], 1)
+        self.assertEqual(audit["counts"]["balanced_pilot_seed_rows"], 1)
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(
+            audit["priority_rows"][0]["allowed_for_feature_contract_consumption_now"]
+        )
+
+    def test_row_specific_bond_change_p0_source_graph_readiness_blocks_unstructured_events(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            priority = root / "priority.json"
+            graph = root / "graph.json"
+            priority.write_text(
+                json.dumps(
+                    {
+                        "balanced_pilot_seed_queue": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "fingerprint_id": "fp_a",
+                                "assigned_embedding_split": "train",
+                                "template_chemical_operation_normalized": "hydrolysis",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {"id": "m_csa:1", "type": "m_csa_entry", "name": "test"},
+                            {"id": "ec:1.1.1.1", "type": "ec"},
+                            {"id": "rhea:RHEA:1", "type": "rhea_reaction"},
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:residue:1",
+                                "predicate": "has_catalytic_residue",
+                            },
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:mechanism:1",
+                                "predicate": "has_mechanism_text",
+                            },
+                            {
+                                "source": "m_csa:1",
+                                "target": "ec:1.1.1.1",
+                                "predicate": "has_ec",
+                            },
+                            {
+                                "source": "ec:1.1.1.1",
+                                "target": "rhea:RHEA:1",
+                                "predicate": "maps_to_reaction",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness(
+                materialization_priority_path=priority,
+                graph_path=graph,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_source_graph_context_ready_bond_events_not_structured",
+        )
+        self.assertEqual(audit["counts"]["balanced_p0_seed_rows"], 1)
+        self.assertEqual(audit["counts"]["structured_bond_change_ready_rows"], 0)
+        self.assertEqual(audit["counts"]["rhea_mapping_present_rows"], 1)
+        self.assertIn(
+            "structured_bond_change_events_missing",
+            audit["row_readiness"][0]["blockers"],
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+
+    def test_row_specific_bond_change_p0_extraction_package_templates_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            readiness = root / "readiness.json"
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "row_readiness": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "fingerprint_id": "fp_a",
+                                "assigned_embedding_split": "train",
+                                "template_chemical_operation_normalized": "hydrolysis",
+                                "status": (
+                                    "source_context_present_structured_"
+                                    "bond_events_missing"
+                                ),
+                                "blockers": [
+                                    "structured_bond_change_events_missing"
+                                ],
+                                "source_graph_evidence": {
+                                    "m_csa_entry_name": "test",
+                                    "ec_targets": ["ec:1.1.1.1"],
+                                    "rhea_targets": ["rhea:RHEA:1"],
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package(
+                source_graph_readiness_path=readiness,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_row_specific_bond_change_extraction_work_package_ready_manual_only",
+        )
+        self.assertEqual(audit["counts"]["p0_seed_rows"], 1)
+        self.assertEqual(audit["counts"]["manual_extraction_rows"], 1)
+        self.assertEqual(audit["counts"]["rows_with_rhea_targets"], 1)
+        self.assertEqual(audit["counts"]["rows_requiring_rhea_lookup"], 0)
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(
+            audit["extraction_rows"][0]["allowed_for_feature_contract_consumption_now"]
+        )
+        self.assertIsNone(
+            audit["extraction_rows"][0]["manual_extraction_template"][
+                "row_specific_bond_change_events"
+            ]
+        )
+
+    def test_row_specific_bond_change_p0_extraction_strict_audit_rejects_values(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            package = root / "package.json"
+            template = {
+                "source_record_id": None,
+                "source_database": None,
+                "source_record_version_or_date": None,
+                "row_specific_reaction_participant_mapping": None,
+                "row_specific_bond_change_events": [{"event_type": "bond_broken"}],
+                "active_site_residue_role_support": None,
+                "source_text_or_database_evidence_span": None,
+                "extractor_id": None,
+                "review_status": None,
+            }
+            package.write_text(
+                json.dumps(
+                    {
+                        "required_fields": list(template),
+                        "guardrails": {
+                            "row_specific_source_evidence_materialized": False,
+                            "feature_contract_mutated": False,
+                            "manual_extraction_templates_only": True,
+                        },
+                        "extraction_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "manual_extraction_template": template,
+                                "acceptance_criteria": [
+                                    "a",
+                                    "b",
+                                    "c",
+                                    "d",
+                                    "e",
+                                ],
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                                "extraction_status": "manual_extraction_not_started",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit(
+                extraction_work_package_path=package,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_extraction_work_package_strict_audit_failed",
+        )
+        self.assertEqual(
+            audit["counts"]["violation_counts"],
+            {"template_contains_materialized_values": 1},
+        )
+        self.assertEqual(audit["counts"]["critical_counts"]["row_template_violation_rows"], 1)
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+
+    def test_row_specific_bond_change_p0_source_evidence_sidecar_is_draft_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            worksheet = root / "worksheet.tsv"
+            schema = root / "schema.json"
+            graph = root / "graph.json"
+            worksheet.write_text(
+                "\t".join(
+                    [
+                        "entry_id",
+                        "accession",
+                    ]
+                )
+                + "\n"
+                + "\t".join(["m_csa:1", "P11111"])
+                + "\n",
+                encoding="utf-8",
+            )
+            schema.write_text(
+                json.dumps(
+                    {
+                        "sidecar_schema": {
+                            "allowed_event_types": [
+                                "bond_formed",
+                                "bond_broken",
+                                "bond_order_changed",
+                                "proton_transfer",
+                                "electron_transfer",
+                            ],
+                            "allowed_participant_roles": [
+                                "substrate",
+                                "product",
+                                "cofactor",
+                                "catalytic_residue",
+                                "water",
+                                "metal",
+                                "other",
+                            ],
+                            "allowed_review_statuses": [
+                                "draft",
+                                "needs_more_evidence",
+                                "approved",
+                                "rejected",
+                            ],
+                            "forbidden_predictive_fields": [
+                                "geometry_score",
+                                "fold_score",
+                            ],
+                            "required_event_fields": [
+                                "event_type",
+                                "participants_before",
+                                "participants_after",
+                                "mapped_active_site_residues",
+                                "source_evidence_span",
+                                "confidence",
+                            ],
+                            "required_mapping_fields": [
+                                "participant_id",
+                                "role",
+                                "source_identifier",
+                                "mapped_atom_or_group",
+                            ],
+                            "required_row_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_record_id",
+                                "source_database",
+                                "source_record_version_or_date",
+                                "row_specific_reaction_participant_mapping",
+                                "row_specific_bond_change_events",
+                                "active_site_residue_role_support",
+                                "source_text_or_database_evidence_span",
+                                "extractor_id",
+                                "review_status",
+                                "reviewer_id",
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"generated_at": "2026-06-01T00:00:00Z"},
+                        "nodes": [
+                            {"id": "m_csa:1", "type": "m_csa_entry"},
+                            {
+                                "id": "m_csa:1:mechanism:1",
+                                "type": "mechanism_text",
+                                "text": (
+                                    "Serine attacks the scissile peptide bond. "
+                                    "Histidine transfers a proton to the leaving group."
+                                ),
+                            },
+                            {
+                                "id": "m_csa:1:residue:1",
+                                "type": "catalytic_residue",
+                                "roles": ["nucleophile", "proton donor"],
+                                "sequence_positions": [
+                                    {
+                                        "code": "Ser",
+                                        "resid": 42,
+                                        "uniprot_id": "P11111",
+                                    }
+                                ],
+                            },
+                            {
+                                "id": "ec:3.4.1.1",
+                                "type": "ec_number",
+                            },
+                            {
+                                "id": "rhea:RHEA:1",
+                                "type": "rhea_reaction",
+                                "equation": "peptide + H2O = hydrolyzed peptide",
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:mechanism:1",
+                                "predicate": "has_mechanism_text",
+                            },
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:residue:1",
+                                "predicate": "has_catalytic_residue",
+                            },
+                            {
+                                "source": "m_csa:1",
+                                "target": "ec:3.4.1.1",
+                                "predicate": "has_ec",
+                            },
+                            {
+                                "source": "ec:3.4.1.1",
+                                "target": "rhea:RHEA:1",
+                                "predicate": "maps_to_reaction",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            sidecar = build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
+                worksheet_path=worksheet,
+                source_evidence_schema_path=schema,
+                graph_path=graph,
+            )
+
+        self.assertEqual(
+            sidecar["status"],
+            "p0_source_evidence_sidecar_draft_review_required",
+        )
+        self.assertEqual(sidecar["counts"]["sidecar_rows"], 1)
+        self.assertEqual(sidecar["counts"]["rows_with_draft_bond_change_events"], 1)
+        self.assertEqual(sidecar["counts"]["approved_rows"], 0)
+        self.assertFalse(sidecar["guardrails"]["feature_contract_refresh_allowed"])
+        row = sidecar["sidecar_rows"][0]
+        self.assertEqual(row["review_status"], "draft")
+        self.assertFalse(row["allowed_for_feature_contract_consumption_now"])
+        self.assertIn(
+            "bond_broken",
+            {event["event_type"] for event in row["row_specific_bond_change_events"]},
+        )
+
+    def test_row_specific_bond_change_p0_source_evidence_strict_audit_blocks_consumption(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            worksheet = root / "worksheet.tsv"
+            schema = root / "schema.json"
+            sidecar = root / "sidecar.json"
+            worksheet.write_text(
+                "entry_id\taccession\nm_csa:1\tP11111\n",
+                encoding="utf-8",
+            )
+            schema.write_text(
+                json.dumps(
+                    {
+                        "sidecar_schema": {
+                            "allowed_event_types": ["bond_formed"],
+                            "allowed_participant_roles": [
+                                "substrate",
+                                "product",
+                                "catalytic_residue",
+                            ],
+                            "allowed_review_statuses": [
+                                "draft",
+                                "approved",
+                            ],
+                            "forbidden_predictive_fields": ["geometry_score"],
+                            "required_event_fields": [
+                                "event_type",
+                                "participants_before",
+                                "participants_after",
+                                "mapped_active_site_residues",
+                                "source_evidence_span",
+                                "confidence",
+                            ],
+                            "required_mapping_fields": [
+                                "participant_id",
+                                "role",
+                                "source_identifier",
+                                "mapped_atom_or_group",
+                            ],
+                            "required_row_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_record_id",
+                                "source_database",
+                                "source_record_version_or_date",
+                                "row_specific_reaction_participant_mapping",
+                                "row_specific_bond_change_events",
+                                "active_site_residue_role_support",
+                                "source_text_or_database_evidence_span",
+                                "extractor_id",
+                                "review_status",
+                                "reviewer_id",
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "guardrails": {"feature_contract_mutated": False},
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "source_record_id": "m_csa:1",
+                                "source_database": "m_csa_local_graph",
+                                "source_record_version_or_date": "2026-06-01",
+                                "row_specific_reaction_participant_mapping": [
+                                    {
+                                        "participant_id": "substrate_1",
+                                        "role": "substrate",
+                                        "source_identifier": "rhea:RHEA:1",
+                                        "mapped_atom_or_group": "peptide",
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "bond_formed",
+                                        "participants_before": ["peptide"],
+                                        "participants_after": ["acyl-enzyme"],
+                                        "mapped_active_site_residues": [
+                                            "m_csa:1:residue:1"
+                                        ],
+                                        "source_evidence_span": {
+                                            "source_record_id": "m_csa:1:mechanism:1",
+                                            "span_text": "Serine attacks.",
+                                        },
+                                        "confidence": "medium",
+                                    }
+                                ],
+                                "active_site_residue_role_support": [],
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_record_id": "m_csa:1:mechanism:1",
+                                        "source_database": "m_csa_local_graph",
+                                        "span_text": "Serine attacks.",
+                                    }
+                                ],
+                                "extractor_id": "test",
+                                "review_status": "draft",
+                                "reviewer_id": None,
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit(
+                sidecar_path=sidecar,
+                source_evidence_schema_path=schema,
+                worksheet_path=worksheet,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable",
+        )
+        self.assertEqual(audit["counts"]["sidecar_rows"], 1)
+        self.assertEqual(audit["counts"]["draft_rows"], 1)
+        self.assertEqual(audit["counts"]["approved_rows"], 0)
+        self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
+        self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_source_evidence_strict_audit_requires_reviewer_for_approved_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            worksheet = root / "worksheet.tsv"
+            schema = root / "schema.json"
+            sidecar = root / "sidecar.json"
+            worksheet.write_text(
+                "entry_id\taccession\nm_csa:1\tP11111\n",
+                encoding="utf-8",
+            )
+            schema.write_text(
+                json.dumps(
+                    {
+                        "sidecar_schema": {
+                            "allowed_event_types": ["bond_formed"],
+                            "allowed_participant_roles": ["substrate"],
+                            "allowed_review_statuses": ["draft", "approved"],
+                            "forbidden_predictive_fields": [],
+                            "required_event_fields": [
+                                "event_type",
+                                "participants_before",
+                                "participants_after",
+                                "mapped_active_site_residues",
+                                "source_evidence_span",
+                                "confidence",
+                            ],
+                            "required_mapping_fields": [
+                                "participant_id",
+                                "role",
+                                "source_identifier",
+                                "mapped_atom_or_group",
+                            ],
+                            "required_row_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_record_id",
+                                "source_database",
+                                "source_record_version_or_date",
+                                "row_specific_reaction_participant_mapping",
+                                "row_specific_bond_change_events",
+                                "active_site_residue_role_support",
+                                "source_text_or_database_evidence_span",
+                                "extractor_id",
+                                "review_status",
+                                "reviewer_id",
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "guardrails": {"feature_contract_mutated": False},
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "source_record_id": "m_csa:1",
+                                "source_database": "m_csa_local_graph",
+                                "source_record_version_or_date": "2026-06-01",
+                                "row_specific_reaction_participant_mapping": [
+                                    {
+                                        "participant_id": "substrate_1",
+                                        "role": "substrate",
+                                        "source_identifier": "rhea:RHEA:1",
+                                        "mapped_atom_or_group": "peptide",
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "bond_formed",
+                                        "participants_before": ["peptide"],
+                                        "participants_after": ["product"],
+                                        "mapped_active_site_residues": [
+                                            "m_csa:1:residue:1"
+                                        ],
+                                        "source_evidence_span": {
+                                            "source_record_id": "m_csa:1:mechanism:1",
+                                            "span_text": "Serine attacks.",
+                                        },
+                                        "confidence": "medium",
+                                    }
+                                ],
+                                "active_site_residue_role_support": [],
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_record_id": "m_csa:1:mechanism:1",
+                                        "source_database": "m_csa_local_graph",
+                                        "span_text": "Serine attacks.",
+                                    }
+                                ],
+                                "extractor_id": "test",
+                                "review_status": "approved",
+                                "reviewer_id": None,
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit(
+                sidecar_path=sidecar,
+                source_evidence_schema_path=schema,
+                worksheet_path=worksheet,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_source_evidence_sidecar_strict_audit_failed",
+        )
+        self.assertEqual(
+            audit["counts"]["critical_counts"]["approved_row_evidence_violation_rows"],
+            1,
+        )
+        self.assertIn(
+            "approved_row_reviewer_id_missing",
+            audit["row_audits"][0]["violations"],
+        )
+
+    def test_row_specific_bond_change_p0_source_evidence_review_queue_prioritizes_blockers(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar = root / "sidecar.json"
+            strict = root / "strict.json"
+            event = {
+                "event_type": "bond_formed",
+                "participants_before": ["substrate"],
+                "participants_after": ["product"],
+                "mapped_active_site_residues": ["m_csa:1:residue:1"],
+                "source_evidence_span": {
+                    "source_record_id": "m_csa:1:mechanism:1",
+                    "span_text": "Serine attacks.",
+                },
+                "confidence": "medium",
+            }
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P22222",
+                                "review_status": "draft",
+                                "row_specific_bond_change_events": [event] * 4,
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_database": "m_csa_local_graph",
+                                        "span_text": "multi event",
+                                    },
+                                    {
+                                        "source_database": "rhea_local_graph",
+                                        "span_text": "reaction",
+                                    },
+                                ],
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            },
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "review_status": "draft",
+                                "row_specific_bond_change_events": [event],
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_database": "m_csa_local_graph",
+                                        "span_text": "single event",
+                                    }
+                                ],
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_source_evidence_sidecar_strict_audit_"
+                            "passed_draft_not_consumable"
+                        )
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            queue = build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
+                sidecar_path=sidecar,
+                strict_audit_path=strict,
+            )
+
+        self.assertEqual(
+            queue["status"],
+            "p0_source_evidence_review_queue_ready_manual_only",
+        )
+        self.assertEqual(queue["counts"]["queue_rows"], 2)
+        self.assertEqual(
+            queue["counts"]["category_counts"],
+            {
+                "high_complexity_multi_event_review": 1,
+                "rhea_lookup_required_before_approval": 1,
+            },
+        )
+        self.assertEqual(queue["queue_rows"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(
+            queue["queue_rows"][0]["review_category"],
+            "rhea_lookup_required_before_approval",
+        )
+        self.assertEqual(queue["counts"]["critical_violation_total"], 0)
+        self.assertFalse(queue["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_rhea_lookup_manifest_stages_missing_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue = root / "queue.json"
+            readiness = root / "readiness.json"
+            queue.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_source_evidence_review_queue_ready_manual_only",
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "review_category": (
+                                    "rhea_lookup_required_before_approval"
+                                ),
+                                "priority_rank": 1,
+                                "event_count": 3,
+                                "allowed_for_feature_contract_consumption_now": False,
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P22222",
+                                "review_category": "standard_draft_event_review",
+                                "priority_rank": 3,
+                                "event_count": 1,
+                                "allowed_for_feature_contract_consumption_now": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "row_readiness": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "source_graph_evidence": {
+                                    "m_csa_entry_name": "test enzyme",
+                                    "ec_targets": ["ec:1.2.3.4"],
+                                    "rhea_targets": [],
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            manifest = build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
+                review_queue_path=queue,
+                source_graph_readiness_path=readiness,
+            )
+
+        self.assertEqual(
+            manifest["status"],
+            "p0_rhea_lookup_manifest_ready_manual_only",
+        )
+        self.assertEqual(manifest["counts"]["rhea_lookup_rows"], 1)
+        self.assertEqual(manifest["counts"]["rows_with_ec_targets"], 1)
+        self.assertEqual(manifest["counts"]["lookup_target_count"], 1)
+        self.assertEqual(manifest["lookup_rows"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(
+            manifest["lookup_rows"][0]["lookup_targets"][0]["rhea_query_url"],
+            "https://www.rhea-db.org/rhea?query=1.2.3.4",
+        )
+        self.assertEqual(manifest["counts"]["critical_violation_total"], 0)
+        self.assertFalse(manifest["guardrails"]["source_fetch_performed"])
+
+    def test_row_specific_bond_change_p0_rhea_lookup_resolution_feeds_sidecar(
+        self,
+    ) -> None:
+        def fake_fetch(query: str) -> str:
+            header = "Reaction identifier\tEquation\tEC number\tEnzymes\n"
+            if query == "uniprot:P00396":
+                return (
+                    header
+                    + "RHEA:11436\t4 Fe(II)-[cytochrome c] + O2 + "
+                    "8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + "
+                    "4 H(+)(out)\tEC:7.1.1.9\t1870579\n"
+                )
+            return header
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "manifest.json"
+            resolution_path = root / "resolution.json"
+            worksheet = root / "worksheet.tsv"
+            schema = root / "schema.json"
+            graph = root / "graph.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "lookup_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P00396",
+                                "m_csa_entry_name": "cytochrome oxidase",
+                                "draft_event_count": 2,
+                                "lookup_blockers": ["rhea_equation_missing"],
+                                "ec_targets": ["ec:1.9.3.1"],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P0A6C1",
+                                "m_csa_entry_name": "nuclease",
+                                "draft_event_count": 1,
+                                "lookup_blockers": ["rhea_equation_missing"],
+                                "ec_targets": ["ec:3.1.21.2"],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            resolution = build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+                rhea_lookup_manifest_path=manifest,
+                fetcher=fake_fetch,
+            )
+            resolution_path.write_text(json.dumps(resolution), encoding="utf-8")
+            worksheet.write_text(
+                "entry_id\taccession\nm_csa:1\tP00396\n",
+                encoding="utf-8",
+            )
+            schema.write_text(
+                json.dumps(
+                    {
+                        "sidecar_schema": {
+                            "allowed_event_types": [
+                                "bond_formed",
+                                "bond_broken",
+                                "bond_order_changed",
+                                "proton_transfer",
+                                "electron_transfer",
+                            ],
+                            "allowed_participant_roles": [
+                                "substrate",
+                                "product",
+                                "cofactor",
+                                "catalytic_residue",
+                                "water",
+                                "metal",
+                                "other",
+                            ],
+                            "allowed_review_statuses": ["draft"],
+                            "forbidden_predictive_fields": [],
+                            "required_event_fields": [
+                                "event_type",
+                                "participants_before",
+                                "participants_after",
+                                "mapped_active_site_residues",
+                                "source_evidence_span",
+                                "confidence",
+                            ],
+                            "required_mapping_fields": [
+                                "participant_id",
+                                "role",
+                                "source_identifier",
+                                "mapped_atom_or_group",
+                            ],
+                            "required_row_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_record_id",
+                                "source_database",
+                                "source_record_version_or_date",
+                                "row_specific_reaction_participant_mapping",
+                                "row_specific_bond_change_events",
+                                "active_site_residue_role_support",
+                                "source_text_or_database_evidence_span",
+                                "extractor_id",
+                                "review_status",
+                                "reviewer_id",
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"generated_at": "2026-06-01T00:00:00Z"},
+                        "nodes": [
+                            {"id": "m_csa:1", "type": "m_csa_entry"},
+                            {
+                                "id": "m_csa:1:mechanism:1",
+                                "type": "mechanism_text",
+                                "text": "Cytochrome oxidase transfers electrons and pumps protons.",
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:mechanism:1",
+                                "predicate": "has_mechanism_text",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            sidecar = build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
+                worksheet_path=worksheet,
+                source_evidence_schema_path=schema,
+                graph_path=graph,
+                rhea_lookup_resolution_path=resolution_path,
+            )
+
+        self.assertEqual(
+            resolution["status"],
+            "p0_rhea_lookup_resolution_partial_review_only",
+        )
+        self.assertEqual(resolution["counts"]["resolved_rows"], 1)
+        self.assertEqual(resolution["counts"]["resolved_by_accession_rows"], 1)
+        self.assertEqual(resolution["counts"]["unresolved_rows"], 1)
+        self.assertEqual(sidecar["counts"]["rows_with_rhea_equations"], 1)
+        self.assertEqual(sidecar["counts"]["rows_missing_rhea_equations"], 0)
+        span_databases = {
+            span["source_database"]
+            for span in sidecar["sidecar_rows"][0]["source_text_or_database_evidence_span"]
+        }
+        self.assertIn("rhea_official_lookup", span_databases)
+
+    def test_row_specific_bond_change_p0_rhea_resolution_consumption_audit_passes(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            resolution = root / "resolution.json"
+            sidecar = root / "sidecar.json"
+            queue = root / "queue.json"
+            manifest = root / "manifest.json"
+            readiness = root / "readiness.json"
+            resolution.write_text(
+                json.dumps(
+                    {
+                        "row_resolutions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accepted_resolution": {
+                                    "status": "resolved_accession_query",
+                                    "rhea_id": "RHEA:1",
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accepted_resolution": {
+                                    "status": (
+                                        "unresolved_no_rhea_record_for_ec_or_accession"
+                                    ),
+                                    "rhea_id": None,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_status": "draft",
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_database": "rhea_official_lookup",
+                                        "source_record_id": "rhea:RHEA:1",
+                                    }
+                                ],
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "review_status": "draft",
+                                "source_text_or_database_evidence_span": [],
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_category": "high_complexity_multi_event_review",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "review_category": "rhea_lookup_required_before_approval",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps({"lookup_rows": [{"entry_id": "m_csa:2"}]}),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "row_readiness": [
+                            {"entry_id": "m_csa:1", "blockers": []},
+                            {
+                                "entry_id": "m_csa:2",
+                                "blockers": ["rhea_lookup_unresolved"],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit(
+                rhea_lookup_resolution_path=resolution,
+                sidecar_path=sidecar,
+                review_queue_path=queue,
+                rhea_lookup_manifest_path=manifest,
+                feature_readiness_path=readiness,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_rhea_resolution_consumption_audit_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["resolved_rows"], 1)
+        self.assertEqual(audit["counts"]["unresolved_rows"], 1)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_feature_readiness_blocks_draft_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar = root / "sidecar.json"
+            strict = root / "strict.json"
+            queue = root / "queue.json"
+            rhea = root / "rhea.json"
+            contract = root / "contract.json"
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "review_status": "draft",
+                                "reviewer_id": None,
+                                "row_specific_reaction_participant_mapping": [
+                                    {"participant_id": "substrate_1"}
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {"event_type": "bond_formed"},
+                                    {"event_type": "proton_transfer"},
+                                    {"event_type": "electron_transfer"},
+                                ],
+                                "source_text_or_database_evidence_span": [
+                                    {"source_database": "m_csa_local_graph"}
+                                ],
+                                "allowed_for_feature_contract_consumption_now": False,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_source_evidence_sidecar_strict_audit_"
+                            "passed_draft_not_consumable"
+                        )
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_source_evidence_review_queue_ready_manual_only",
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "blockers": ["review_status_not_approved"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rhea.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_rhea_lookup_manifest_ready_manual_only",
+                        "lookup_rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract.write_text(json.dumps({"feature_rows": []}), encoding="utf-8")
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
+                sidecar_path=sidecar,
+                strict_audit_path=strict,
+                review_queue_path=queue,
+                rhea_lookup_manifest_path=rhea,
+                feature_contract_path=contract,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_feature_readiness_audit_blocked_review_required",
+        )
+        self.assertEqual(audit["counts"]["sidecar_rows"], 1)
+        self.assertEqual(audit["counts"]["structurally_ready_draft_rows"], 1)
+        self.assertEqual(audit["counts"]["approved_consumable_rows"], 0)
+        self.assertEqual(audit["counts"]["rows_with_bond_change_event"], 1)
+        self.assertEqual(audit["counts"]["rows_with_proton_transfer_event"], 1)
+        self.assertEqual(audit["counts"]["rows_with_electron_transfer_event"], 1)
+        self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertIn("reviewer_id_missing", audit["row_readiness"][0]["blockers"])
+
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -3009,6 +4271,184 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertIn(
             "explicit_authorization_required_before_model_weights_are_fit",
             audit["blockers_before_model_fit"],
+        )
+
+    def test_mechanism_feature_embedding_pilot_fits_train_cal_centroids(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            feature_contract = root / "contract.json"
+            strict_audit = root / "strict.json"
+            label_manifest = root / "labels.json"
+            cofactor_sidecar = root / "cofactor.json"
+
+            def feature_row(
+                entry_id: str,
+                split: str,
+                residue_count: int,
+                operation: str | None,
+                metal_status: str,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": split,
+                    "active_site_role_graph": {
+                        "status": "ok",
+                        "active_site_residue_count": residue_count,
+                    },
+                    "reaction_center_template": {
+                        "status": (
+                            "template_available"
+                            if operation
+                            else "no_mechanism_fingerprint_oos_or_unlabeled"
+                        ),
+                        "reaction_chemical_operation": operation,
+                    },
+                    "organic_cofactor_scores": {
+                        "available_classes": ["flavin", "heme", "plp"],
+                        "score_values_materialized_in_source_sidecar": True,
+                    },
+                    "inorganic_cofactor_loci": {
+                        "metal_ion_locus": metal_status,
+                    },
+                    "feature_guardrails": {
+                        "fingerprint_id_excluded_from_features": True,
+                        "label_type_excluded_from_features": True,
+                        "stratum_excluded_from_features": True,
+                        "heldout_row": False,
+                    },
+                }
+
+            rows = [
+                feature_row("m_csa:1", "train", 2, "op_a", "no_metal_context_detected"),
+                feature_row("m_csa:2", "train", 3, "op_a", "no_metal_context_detected"),
+                feature_row("m_csa:3", "train", 8, "op_b", "proximal_metal_context_available"),
+                feature_row("m_csa:4", "train", 18, None, "no_metal_context_detected"),
+                feature_row("m_csa:5", "calibration", 2, "op_a", "no_metal_context_detected"),
+                feature_row("m_csa:6", "calibration", 8, "op_b", "proximal_metal_context_available"),
+                feature_row("m_csa:7", "calibration", 18, None, "no_metal_context_detected"),
+                feature_row("m_csa:8", "calibration", 20, None, "no_metal_context_detected"),
+            ]
+            feature_contract.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": rows,
+                        "counts": {"heldout_excluded_rows": 2},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict_audit.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "mechanism_feature_embedding_feature_contract_"
+                            "strict_audit_passed_no_model_fit"
+                        ),
+                        "counts": {"critical_violation_total": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_a",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_a",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_b",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "label_type": "out_of_scope",
+                                "fingerprint_id": None,
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_a",
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_b",
+                            },
+                            {
+                                "entry_id": "m_csa:7",
+                                "label_type": "out_of_scope",
+                                "fingerprint_id": None,
+                            },
+                            {
+                                "entry_id": "m_csa:8",
+                                "label_type": "out_of_scope",
+                                "fingerprint_id": None,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_records = []
+            for row in rows:
+                for cofactor_class, score in (
+                    ("flavin", 0.1),
+                    ("heme", 0.2),
+                    ("plp", 0.3),
+                ):
+                    cofactor_records.append(
+                        {
+                            "entry_id": row["entry_id"],
+                            "cofactor_class": cofactor_class,
+                            "selected_score": score,
+                        }
+                    )
+            cofactor_sidecar.write_text(
+                json.dumps({"row_class_records": cofactor_records}),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_embedding_pilot(
+                feature_contract_path=feature_contract,
+                feature_contract_strict_audit_path=strict_audit,
+                label_manifest_path=label_manifest,
+                selected_organic_cofactor_sidecar_path=cofactor_sidecar,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "mechanism_feature_embedding_pilot_fit_train_cal_ready",
+        )
+        self.assertEqual(audit["counts"]["variants"], 2)
+        self.assertEqual(audit["counts"]["train_rows"], 4)
+        self.assertEqual(audit["counts"]["calibration_rows"], 4)
+        self.assertTrue(audit["guardrails"]["model_weights_fit_or_refit"])
+        self.assertEqual(audit["guardrails"]["model_fit_rows"], "train_only")
+        self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            {
+                variant["variant_name"]
+                for variant in audit["pilot_variants"]
+            },
+            {
+                "full_contract_with_reaction_template",
+                "no_reaction_template_ablation",
+            },
+        )
+        self.assertTrue(
+            all(
+                variant["calibration_selected_threshold"]["threshold"] is not None
+                for variant in audit["pilot_variants"]
+            )
         )
 
     def test_family_panel_evidence_packet_is_review_only(self) -> None:
@@ -3790,6 +5230,68 @@ class NorthstarNextLeversTests(unittest.TestCase):
             [row["entry_id"] for row in best["confounded_rows"]],
             ["m_csa:30"],
         )
+
+    def test_predicted_atlas_vs_fold_operating_grid_delta_compares_targets(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            geometry = root / "geometry_grid.json"
+            fold = root / "fold_grid.json"
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "predicted_atlas_geometry_novelty_operating_grid_"
+                            "ready_review_only"
+                        ),
+                        "best_by_retention_target": {
+                            "0.90": {
+                                "signal": "geometry_signal",
+                                "threshold": 0.1,
+                                "inscope_retain_recall": 0.91,
+                                "oos_abstain_recall": 0.2,
+                                "confounded_abstain_recall": 0.3,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "predicted_structure_fold_augmented_novelty_"
+                            "operating_grid_ready_review_only"
+                        ),
+                        "best_by_retention_target": {
+                            "0.90": {
+                                "signal": "fold_signal",
+                                "threshold": 0.4,
+                                "inscope_retain_recall": 0.91,
+                                "oos_abstain_recall": 0.8,
+                                "confounded_abstain_recall": 0.9,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+                geometry_operating_grid_path=geometry,
+                fold_operating_grid_path=fold,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_atlas_vs_fold_novelty_delta_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["shared_retention_targets"], 1)
+        self.assertEqual(audit["counts"]["targets_with_oos_abstain_lift"], 1)
+        self.assertEqual(audit["target_90_summary"]["oos_abstain_recall_delta"], 0.6)
+        self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
 
     def test_predicted_structure_fold_channel_stages_bounded_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

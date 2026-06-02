@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import json
 import sys
 import unittest
@@ -2961,6 +2962,34 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             5,
         )
 
+    def test_predicted_atlas_vs_fold_novelty_delta_current_counts(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_"
+                "current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_atlas_vs_fold_novelty_delta_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["shared_retention_targets"], 4)
+        self.assertEqual(audit["counts"]["targets_with_oos_abstain_lift"], 4)
+        self.assertEqual(audit["counts"]["targets_with_confounded_abstain_lift"], 4)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            audit["target_90_summary"]["oos_abstain_recall_delta"],
+            0.5444,
+        )
+        self.assertEqual(
+            audit["target_90_summary"]["confounded_abstain_recall_delta"],
+            0.5,
+        )
+        self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
+
     def test_mechanism_feature_sidecar_schema_audit_current_counts(self) -> None:
         audit = _load_json(
             ROOT
@@ -3082,6 +3111,471 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["heldout_feature_rows"], 0)
         self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
         self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+
+    def test_row_specific_bond_change_materialization_priority_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "row_specific_bond_change_materialization_priority_ready_no_fit",
+        )
+        self.assertEqual(
+            audit["counts"]["rows_requiring_row_specific_bond_change_evidence"],
+            232,
+        )
+        self.assertEqual(
+            audit["counts"]["priority_tier_counts"],
+            {
+                "P0_train_cal_feature_contract_gap": 171,
+                "P1_in_distribution_not_feature_contract_ready": 13,
+                "P2_heldout_final_only_evidence_gap": 48,
+            },
+        )
+        self.assertEqual(audit["counts"]["train_cal_feature_contract_gap_rows"], 171)
+        self.assertEqual(
+            audit["counts"]["in_distribution_not_feature_contract_ready_rows"],
+            13,
+        )
+        self.assertEqual(audit["counts"]["heldout_final_only_gap_rows"], 48)
+        self.assertEqual(audit["counts"]["balanced_pilot_seed_rows"], 15)
+        self.assertEqual(
+            audit["counts"]["embedding_split_counts"],
+            {"calibration": 35, "not_in_split_manifest": 61, "train": 136},
+        )
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+        self.assertEqual(
+            {
+                row["fingerprint_id"]
+                for row in audit["balanced_pilot_seed_queue"]
+            },
+            {
+                "flavin_dehydrogenase_reductase",
+                "heme_peroxidase_oxidase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "ser_his_acid_hydrolase",
+            },
+        )
+
+    def test_row_specific_bond_change_p0_source_graph_readiness_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_source_graph_context_ready_bond_events_not_structured",
+        )
+        self.assertEqual(audit["counts"]["balanced_p0_seed_rows"], 15)
+        self.assertEqual(audit["counts"]["m_csa_entry_nodes_present"], 15)
+        self.assertEqual(audit["counts"]["mechanism_text_present_rows"], 15)
+        self.assertEqual(audit["counts"]["catalytic_residue_edges_present_rows"], 15)
+        self.assertEqual(audit["counts"]["ec_mapping_present_rows"], 15)
+        self.assertEqual(audit["counts"]["rhea_mapping_present_rows"], 11)
+        self.assertEqual(audit["counts"]["structured_bond_change_ready_rows"], 0)
+        self.assertEqual(audit["counts"]["manual_extraction_required_rows"], 15)
+        self.assertEqual(
+            audit["counts"]["blocker_counts"],
+            {
+                "rhea_reaction_mapping_missing": 4,
+                "structured_bond_change_events_missing": 15,
+            },
+        )
+        self.assertEqual(
+            audit["counts"]["status_counts"],
+            {"source_context_present_structured_bond_events_missing": 15},
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+
+    def test_row_specific_bond_change_p0_extraction_package_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_row_specific_bond_change_extraction_work_package_ready_manual_only",
+        )
+        self.assertEqual(audit["counts"]["p0_seed_rows"], 15)
+        self.assertEqual(audit["counts"]["manual_extraction_rows"], 15)
+        self.assertEqual(audit["counts"]["rows_with_rhea_targets"], 11)
+        self.assertEqual(audit["counts"]["rows_requiring_rhea_lookup"], 4)
+        self.assertEqual(audit["counts"]["rows_with_structured_bond_change_events_now"], 0)
+        self.assertEqual(audit["counts"]["required_field_count"], 9)
+        self.assertEqual(
+            audit["counts"]["fingerprint_counts"],
+            {
+                "flavin_dehydrogenase_reductase": 3,
+                "heme_peroxidase_oxidase": 3,
+                "metal_dependent_hydrolase": 3,
+                "plp_dependent_enzyme": 3,
+                "ser_his_acid_hydrolase": 3,
+            },
+        )
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertTrue(audit["guardrails"]["manual_extraction_templates_only"])
+
+    def test_row_specific_bond_change_p0_extraction_strict_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_extraction_work_package_strict_audit_passed",
+        )
+        self.assertEqual(audit["counts"]["extraction_rows"], 15)
+        self.assertEqual(audit["counts"]["passed_template_only_rows"], 15)
+        self.assertEqual(audit["counts"]["rows_with_non_null_template_values"], 0)
+        self.assertEqual(audit["counts"]["required_field_count"], 9)
+        self.assertEqual(audit["counts"]["violation_counts"], {})
+        self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertTrue(audit["guardrails"]["strict_audit_only"])
+
+    def test_row_specific_bond_change_p0_extraction_worksheet_current_counts(
+        self,
+    ) -> None:
+        worksheet_path = (
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv"
+        )
+        with worksheet_path.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        self.assertEqual(len(rows), 15)
+        self.assertEqual(rows[0]["entry_id"], "m_csa:5")
+        self.assertEqual(rows[-1]["entry_id"], "m_csa:186")
+        self.assertEqual(
+            {row["fingerprint_id"] for row in rows},
+            {
+                "flavin_dehydrogenase_reductase",
+                "heme_peroxidase_oxidase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "ser_his_acid_hydrolase",
+            },
+        )
+        self.assertEqual(
+            sum(1 for row in rows if row["rhea_lookup_required"] == "true"),
+            4,
+        )
+        self.assertTrue(all(row["source_record_id"] == "" for row in rows))
+        self.assertTrue(
+            all(row["row_specific_bond_change_events"] == "" for row in rows)
+        )
+        self.assertTrue(all(row["review_status"] == "" for row in rows))
+
+    def test_row_specific_bond_change_p0_source_evidence_schema_current_counts(
+        self,
+    ) -> None:
+        schema = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json"
+        )
+
+        self.assertEqual(schema["status"], "p0_source_evidence_sidecar_schema_staged_no_fit")
+        self.assertEqual(schema["counts"]["p0_worksheet_rows"], 15)
+        self.assertEqual(schema["counts"]["required_row_field_count"], 12)
+        self.assertEqual(schema["counts"]["required_event_field_count"], 6)
+        self.assertEqual(schema["counts"]["required_mapping_field_count"], 4)
+        self.assertEqual(schema["counts"]["source_values_materialized_now"], 0)
+        self.assertTrue(
+            all(count == 0 for count in schema["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(
+            schema["guardrails"]["row_specific_source_evidence_materialized"]
+        )
+        self.assertFalse(schema["guardrails"]["feature_contract_mutated"])
+        self.assertIn(
+            "geometry_score",
+            schema["sidecar_schema"]["forbidden_predictive_fields"],
+        )
+
+    def test_row_specific_bond_change_p0_source_evidence_sidecar_current_counts(
+        self,
+    ) -> None:
+        sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            sidecar["status"],
+            "p0_source_evidence_sidecar_draft_review_required",
+        )
+        self.assertEqual(sidecar["counts"]["worksheet_rows"], 15)
+        self.assertEqual(sidecar["counts"]["sidecar_rows"], 15)
+        self.assertEqual(sidecar["counts"]["rows_with_source_spans"], 15)
+        self.assertEqual(sidecar["counts"]["rows_with_draft_bond_change_events"], 15)
+        self.assertEqual(sidecar["counts"]["rows_with_rhea_equations"], 12)
+        self.assertEqual(sidecar["counts"]["rows_missing_rhea_equations"], 3)
+        self.assertEqual(sidecar["counts"]["approved_rows"], 0)
+        self.assertEqual(sidecar["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(sidecar["counts"]["review_status_counts"], {"draft": 15})
+        self.assertFalse(sidecar["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(sidecar["guardrails"]["feature_contract_refresh_allowed"])
+        self.assertTrue(sidecar["guardrails"]["draft_source_evidence_not_training_input"])
+
+    def test_row_specific_bond_change_p0_source_evidence_sidecar_strict_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable",
+        )
+        self.assertEqual(audit["counts"]["worksheet_rows"], 15)
+        self.assertEqual(audit["counts"]["sidecar_rows"], 15)
+        self.assertEqual(audit["counts"]["draft_rows"], 15)
+        self.assertEqual(audit["counts"]["approved_rows"], 0)
+        self.assertEqual(audit["counts"]["rows_with_events"], 15)
+        self.assertEqual(audit["counts"]["rows_with_source_spans"], 15)
+        self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
+        self.assertEqual(audit["counts"]["violation_counts"], {})
+        self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_source_evidence_review_queue_current_counts(
+        self,
+    ) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            queue["status"],
+            "p0_source_evidence_review_queue_ready_manual_only",
+        )
+        self.assertEqual(queue["counts"]["sidecar_rows"], 15)
+        self.assertEqual(queue["counts"]["queue_rows"], 15)
+        self.assertEqual(
+            queue["counts"]["category_counts"],
+            {
+                "high_complexity_multi_event_review": 5,
+                "rhea_lookup_required_before_approval": 3,
+                "standard_draft_event_review": 7,
+            },
+        )
+        self.assertEqual(queue["counts"]["approved_rows"], 0)
+        self.assertEqual(queue["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(queue["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in queue["queue_rows"][:3]],
+            ["m_csa:11", "m_csa:169", "m_csa:5"],
+        )
+        self.assertTrue(
+            all(count == 0 for count in queue["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(queue["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(queue["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_rhea_lookup_resolution_current_counts(
+        self,
+    ) -> None:
+        resolution = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_rhea_lookup_resolution_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            resolution["status"],
+            "p0_rhea_lookup_resolution_partial_review_only",
+        )
+        self.assertEqual(resolution["counts"]["lookup_rows"], 4)
+        self.assertEqual(resolution["counts"]["resolved_rows"], 1)
+        self.assertEqual(resolution["counts"]["resolved_by_accession_rows"], 1)
+        self.assertEqual(resolution["counts"]["resolved_by_exact_ec_rows"], 0)
+        self.assertEqual(resolution["counts"]["unresolved_rows"], 3)
+        accepted_by_entry = {
+            row["entry_id"]: row["accepted_resolution"]
+            for row in resolution["row_resolutions"]
+        }
+        self.assertEqual(accepted_by_entry["m_csa:124"]["rhea_id"], "RHEA:11436")
+        self.assertEqual(accepted_by_entry["m_csa:124"]["ec_number"], "EC:7.1.1.9")
+        self.assertTrue(resolution["guardrails"]["source_fetch_performed"])
+        self.assertFalse(resolution["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_rhea_lookup_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            manifest["status"],
+            "p0_rhea_lookup_manifest_ready_manual_only",
+        )
+        self.assertEqual(manifest["counts"]["review_queue_rows"], 15)
+        self.assertEqual(manifest["counts"]["rhea_lookup_rows"], 3)
+        self.assertEqual(manifest["counts"]["rows_with_ec_targets"], 3)
+        self.assertEqual(manifest["counts"]["lookup_target_count"], 3)
+        self.assertEqual(manifest["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in manifest["lookup_rows"]],
+            ["m_csa:11", "m_csa:169", "m_csa:5"],
+        )
+        self.assertEqual(
+            [row["ec_targets"][0] for row in manifest["lookup_rows"]],
+            ["ec:3.1.21.2", "ec:3.4.14.5", "ec:3.4.16.6"],
+        )
+        self.assertTrue(
+            all(count == 0 for count in manifest["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(manifest["guardrails"]["source_fetch_performed"])
+        self.assertFalse(manifest["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_rhea_resolution_consumption_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_rhea_resolution_consumption_audit_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_rhea_resolution_consumption_audit_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["resolution_rows"], 4)
+        self.assertEqual(audit["counts"]["resolved_rows"], 1)
+        self.assertEqual(audit["counts"]["unresolved_rows"], 3)
+        self.assertEqual(audit["counts"]["remaining_lookup_manifest_rows"], 3)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        row_by_entry = {row["entry_id"]: row for row in audit["row_audits"]}
+        self.assertEqual(row_by_entry["m_csa:124"]["rhea_id"], "RHEA:11436")
+        self.assertFalse(row_by_entry["m_csa:124"]["in_remaining_lookup_manifest"])
+        self.assertTrue(row_by_entry["m_csa:11"]["in_remaining_lookup_manifest"])
+        self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_feature_readiness_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_feature_readiness_audit_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_feature_readiness_audit_blocked_review_required",
+        )
+        self.assertEqual(audit["counts"]["sidecar_rows"], 15)
+        self.assertEqual(audit["counts"]["structurally_ready_draft_rows"], 15)
+        self.assertEqual(audit["counts"]["approved_consumable_rows"], 0)
+        self.assertEqual(audit["counts"]["rows_with_bond_change_event"], 10)
+        self.assertEqual(audit["counts"]["rows_with_proton_transfer_event"], 6)
+        self.assertEqual(audit["counts"]["rows_with_electron_transfer_event"], 9)
+        self.assertEqual(
+            audit["counts"]["draft_event_type_counts"],
+            {
+                "bond_broken": 5,
+                "bond_formed": 6,
+                "bond_order_changed": 7,
+                "electron_transfer": 21,
+                "proton_transfer": 10,
+            },
+        )
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+
+    def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
+        self,
+    ) -> None:
+        guardrail = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_high_value_glycyl_radical_"
+                "no_template_feature_guardrail_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            guardrail["status"],
+            "glycyl_radical_panel_no_template_feature_guardrail_ready_review_only",
+        )
+        self.assertEqual(guardrail["counts"]["panel_rows"], 2)
+        self.assertEqual(guardrail["counts"]["heldout_final_only_rows"], 2)
+        self.assertEqual(guardrail["counts"]["score_complete_rows"], 2)
+        self.assertEqual(guardrail["counts"]["abstained_at_research_threshold"], 2)
+        self.assertEqual(guardrail["counts"]["rows_present_in_p0_train_cal_readiness"], 0)
+        self.assertEqual(guardrail["counts"]["rows_present_in_train_cal_feature_contract"], 0)
+        self.assertEqual(
+            guardrail["counts"]["rows_allowed_for_no_template_feature_contract_refresh"],
+            0,
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in guardrail["row_guardrails"]],
+            ["m_csa:30", "m_csa:31"],
+        )
+        self.assertFalse(guardrail["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(
+            guardrail["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
 
     def test_mechanism_feature_inorganic_cofactor_locus_schema_current_counts(
         self,
@@ -3569,6 +4063,116 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(audit["row_audits"][0]["entry_id"], "m_csa:1")
         self.assertEqual(audit["row_audits"][0]["critical_violations"], [])
 
+    def test_mechanism_feature_embedding_pilot_current_counts(self) -> None:
+        pilot = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_embedding_pilot_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            pilot["status"],
+            "mechanism_feature_embedding_pilot_fit_train_cal_ready",
+        )
+        self.assertEqual(pilot["counts"]["feature_rows"], 524)
+        self.assertEqual(pilot["counts"]["train_rows"], 418)
+        self.assertEqual(pilot["counts"]["calibration_rows"], 106)
+        self.assertEqual(pilot["counts"]["heldout_excluded_rows"], 140)
+        self.assertEqual(pilot["counts"]["variants"], 2)
+        self.assertEqual(pilot["counts"]["missing_label_rows"], 0)
+        self.assertEqual(
+            pilot["counts"]["missing_three_organic_cofactor_score_rows"], 0
+        )
+        self.assertEqual(
+            pilot["best_calibration_variant"],
+            "full_contract_with_reaction_template",
+        )
+        by_variant = {
+            variant["variant_name"]: variant
+            for variant in pilot["pilot_variants"]
+        }
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "calibration_summary"
+            ]["auc_primary_vs_oos"],
+            0.948491,
+        )
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "calibration_selected_threshold"
+            ]["oos_abstain_recall"],
+            1.0,
+        )
+        self.assertAlmostEqual(
+            by_variant["no_reaction_template_ablation"][
+                "calibration_summary"
+            ]["auc_primary_vs_oos"],
+            0.549698,
+        )
+        self.assertTrue(pilot["guardrails"]["model_weights_fit_or_refit"])
+        self.assertEqual(pilot["guardrails"]["model_fit_rows"], "train_only")
+        self.assertEqual(
+            pilot["guardrails"]["threshold_selection_rows"],
+            "calibration_only",
+        )
+        self.assertFalse(
+            pilot["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+        self.assertFalse(pilot["guardrails"]["heldout_rows_evaluated"])
+
+    def test_mechanism_feature_embedding_heldout_readout_current_counts(self) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "mechanism_feature_embedding_heldout_readout_applied_once",
+        )
+        self.assertEqual(readout["counts"]["heldout_rows_total"], 140)
+        self.assertEqual(readout["counts"]["heldout_feature_rows"], 132)
+        self.assertEqual(readout["counts"]["heldout_feature_missing_rows"], 8)
+        self.assertEqual(
+            readout["counts"]["blocker_counts"],
+            {"role_graph:missing_accession_compatible_sequence_positions": 8},
+        )
+        by_variant = {
+            variant["variant_name"]: variant
+            for variant in readout["variant_readouts"]
+        }
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "heldout_summary"
+            ]["auc_primary_vs_oos"],
+            0.8812,
+        )
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "heldout_threshold_readout"
+            ]["primary_retain_recall"],
+            0.75,
+        )
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "heldout_threshold_readout"
+            ]["oos_abstain_recall"],
+            1.0,
+        )
+        self.assertAlmostEqual(
+            by_variant["no_reaction_template_ablation"][
+                "heldout_summary"
+            ]["auc_primary_vs_oos"],
+            0.488591,
+        )
+        self.assertFalse(readout["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+        self.assertTrue(readout["guardrails"]["heldout_rows_evaluated_once"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
     def test_mechanism_feature_embedding_train_cal_guardrail_audit_current_counts(
         self,
     ) -> None:
@@ -3618,21 +4222,49 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
 
         self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
-        self.assertEqual(audit["counts"]["json_artifacts_checked"], 6)
-        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 6)
-        self.assertEqual(audit["counts"]["work_reports_checked"], 6)
-        self.assertEqual(audit["counts"]["work_reports_present"], 6)
-        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3113)
-        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 25)
+        self.assertEqual(audit["schema_version"], "current_run_artifact_integrity.v2")
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 21)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 21)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 21)
+        self.assertEqual(audit["counts"]["work_reports_present"], 21)
+        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3134)
+        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 26)
         self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
         self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
         self.assertEqual(audit["counts"]["new_coordinates_fetched"], 0)
         self.assertEqual(audit["counts"]["predicted_geometry_scores_created"], 0)
+        self.assertEqual(
+            audit["counts"]["mechanism_feature_p0_feature_readiness_audit_artifacts"],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["predicted_atlas_vs_fold_novelty_delta_artifacts"],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["mechanism_feature_p0_rhea_lookup_resolution_artifacts"],
+            1,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ][
+                "mechanism_feature_p0_rhea_resolution_consumption_audit_artifacts"
+            ],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["family_panel_no_template_feature_guardrail_artifacts"],
+            1,
+        )
         self.assertFalse(audit["guardrails"]["labels_registries_ontologies_changed"])
         self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
         self.assertFalse(audit["guardrails"]["new_coordinates_fetched"])
         self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
-        self.assertEqual(len(audit["artifact_rows"]), 6)
+        self.assertTrue(
+            all(count == 0 for count in audit["critical_counts"].values())
+        )
+        self.assertEqual(len(audit["artifact_rows"]), 21)
         self.assertEqual(
             audit["artifact_rows"][-1]["category"],
             "docs_reference_check",

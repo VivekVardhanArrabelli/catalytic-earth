@@ -1,0 +1,385 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601",
+  "counts": {
+    "approved_rows": 0,
+    "blocker_counts": {
+      "low_confidence_event_review": 7,
+      "multi_event_mechanism_review": 7,
+      "review_status_not_approved": 15,
+      "rhea_equation_missing": 3
+    },
+    "category_counts": {
+      "high_complexity_multi_event_review": 5,
+      "rhea_lookup_required_before_approval": 3,
+      "standard_draft_event_review": 7
+    },
+    "critical_counts": {
+      "approved_rows_present": 0,
+      "feature_contract_consumption_allowed_rows": 0,
+      "strict_audit_not_passed": 0
+    },
+    "critical_violation_total": 0,
+    "feature_contract_consumable_rows": 0,
+    "queue_rows": 15,
+    "sidecar_rows": 15
+  },
+  "created_utc": "2026-06-01T23:00:43Z",
+  "guardrails": {
+    "feature_contract_mutated": false,
+    "feature_contract_refresh_allowed": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "manual_review_queue_only": true,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false
+  },
+  "interpretation": {
+    "next_action": "Start with the Rhea-missing rows in priority order; update row review_status only after source-backed manual review and rerun the strict sidecar audit.",
+    "result": "The draft P0 sidecar is ready for manual review ordering, not for feature consumption. Rows with missing Rhea equations come first, followed by multi-event mechanism reviews."
+  },
+  "queue_rows": [
+    {
+      "accession": "P0A6C1",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "rhea_equation_missing",
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
+      ],
+      "entry_id": "m_csa:11",
+      "event_count": 4,
+      "event_types": [
+        "bond_broken",
+        "bond_formed",
+        "electron_transfer"
+      ],
+      "priority_rank": 1,
+      "recommended_action": "resolve missing Rhea reaction mapping or document why M-CSA-only evidence is sufficient before row approval",
+      "review_category": "rhea_lookup_required_before_approval",
+      "source_databases": [
+        "m_csa_local_graph"
+      ]
+    },
+    {
+      "accession": "P27487",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "rhea_equation_missing",
+        "multi_event_mechanism_review"
+      ],
+      "entry_id": "m_csa:169",
+      "event_count": 4,
+      "event_types": [
+        "bond_broken",
+        "bond_formed",
+        "proton_transfer"
+      ],
+      "priority_rank": 1,
+      "recommended_action": "resolve missing Rhea reaction mapping or document why M-CSA-only evidence is sufficient before row approval",
+      "review_category": "rhea_lookup_required_before_approval",
+      "source_databases": [
+        "m_csa_local_graph"
+      ]
+    },
+    {
+      "accession": "P08819",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "rhea_equation_missing"
+      ],
+      "entry_id": "m_csa:5",
+      "event_count": 1,
+      "event_types": [
+        "bond_broken"
+      ],
+      "priority_rank": 1,
+      "recommended_action": "resolve missing Rhea reaction mapping or document why M-CSA-only evidence is sufficient before row approval",
+      "review_category": "rhea_lookup_required_before_approval",
+      "source_databases": [
+        "m_csa_local_graph"
+      ]
+    },
+    {
+      "accession": "P00390",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
+      ],
+      "entry_id": "m_csa:6",
+      "event_count": 5,
+      "event_types": [
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "priority_rank": 2,
+      "recommended_action": "review each draft event against M-CSA mechanism text and Rhea equation before any approval",
+      "review_category": "high_complexity_multi_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P00175",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
+      ],
+      "entry_id": "m_csa:102",
+      "event_count": 5,
+      "event_types": [
+        "bond_broken",
+        "electron_transfer"
+      ],
+      "priority_rank": 2,
+      "recommended_action": "review each draft event against M-CSA mechanism text and Rhea equation before any approval",
+      "review_category": "high_complexity_multi_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P00396",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review"
+      ],
+      "entry_id": "m_csa:124",
+      "event_count": 5,
+      "event_types": [
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "priority_rank": 2,
+      "recommended_action": "review each draft event against M-CSA mechanism text and Rhea equation before any approval",
+      "review_category": "high_complexity_multi_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_official_lookup"
+      ]
+    },
+    {
+      "accession": "P00183",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review",
+        "low_confidence_event_review"
+      ],
+      "entry_id": "m_csa:133",
+      "event_count": 5,
+      "event_types": [
+        "bond_formed",
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "priority_rank": 2,
+      "recommended_action": "review each draft event against M-CSA mechanism text and Rhea equation before any approval",
+      "review_category": "high_complexity_multi_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P07511",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "multi_event_mechanism_review"
+      ],
+      "entry_id": "m_csa:147",
+      "event_count": 4,
+      "event_types": [
+        "bond_order_changed",
+        "proton_transfer"
+      ],
+      "priority_rank": 2,
+      "recommended_action": "review each draft event against M-CSA mechanism text and Rhea equation before any approval",
+      "review_category": "high_complexity_multi_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P19938",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved"
+      ],
+      "entry_id": "m_csa:66",
+      "event_count": 3,
+      "event_types": [
+        "bond_order_changed"
+      ],
+      "priority_rank": 3,
+      "recommended_action": "review participant mapping and residue support before any approval",
+      "review_category": "standard_draft_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P26440",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "low_confidence_event_review"
+      ],
+      "entry_id": "m_csa:68",
+      "event_count": 3,
+      "event_types": [
+        "electron_transfer"
+      ],
+      "priority_rank": 3,
+      "recommended_action": "review participant mapping and residue support before any approval",
+      "review_category": "standard_draft_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P25910",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "low_confidence_event_review"
+      ],
+      "entry_id": "m_csa:15",
+      "event_count": 2,
+      "event_types": [
+        "bond_formed",
+        "electron_transfer"
+      ],
+      "priority_rank": 3,
+      "recommended_action": "review participant mapping and residue support before any approval",
+      "review_category": "standard_draft_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P04190",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved",
+        "low_confidence_event_review"
+      ],
+      "entry_id": "m_csa:16",
+      "event_count": 2,
+      "event_types": [
+        "electron_transfer",
+        "proton_transfer"
+      ],
+      "priority_rank": 3,
+      "recommended_action": "review participant mapping and residue support before any approval",
+      "review_category": "standard_draft_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "Q05769",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved"
+      ],
+      "entry_id": "m_csa:37",
+      "event_count": 2,
+      "event_types": [
+        "electron_transfer"
+      ],
+      "priority_rank": 3,
+      "recommended_action": "review participant mapping and residue support before any approval",
+      "review_category": "standard_draft_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "Q29460",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved"
+      ],
+      "entry_id": "m_csa:94",
+      "event_count": 2,
+      "event_types": [
+        "bond_formed"
+      ],
+      "priority_rank": 3,
+      "recommended_action": "review participant mapping and residue support before any approval",
+      "review_category": "standard_draft_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    },
+    {
+      "accession": "P09367",
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "blockers": [
+        "review_status_not_approved"
+      ],
+      "entry_id": "m_csa:186",
+      "event_count": 2,
+      "event_types": [
+        "bond_broken",
+        "bond_order_changed"
+      ],
+      "priority_rank": 3,
+      "recommended_action": "review participant mapping and residue support before any approval",
+      "review_category": "standard_draft_event_review",
+      "source_databases": [
+        "m_csa_local_graph",
+        "rhea_local_graph"
+      ]
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_source_evidence_review_queue",
+  "scope": "Manual-review queue for the draft P0 source-evidence sidecar. It orders rows by review blockers and complexity, but authorizes no approval, feature-contract refresh, or model use.",
+  "source_artifacts": {
+    "sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+      "sha256": "73480b483045649ec44fb8b77871faa80b646ea19bcfb3169ec784cd71b0e482"
+    },
+    "strict_audit": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
+      "sha256": "cd5f870c3f9d73feed25105e64b54364a2e171045d5bf55de36b71254431117c"
+    }
+  },
+  "status": "p0_source_evidence_review_queue_ready_manual_only"
+}

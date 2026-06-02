@@ -132,12 +132,134 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "materialization-priority"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "materialization_priority"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-source-graph-readiness"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_source_graph_readiness"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-extraction-work-package"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_extraction_work_package"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-extraction-package-strict"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_extraction_package_strict"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-source-evidence-sidecar"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_source_evidence_sidecar"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-source-evidence-sidecar-strict"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_source_evidence_sidecar_strict"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-source-evidence-review-queue"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_source_evidence_review_queue"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-rhea-lookup-manifest"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_rhea_lookup_manifest"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-rhea-lookup-resolution"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_rhea_lookup_resolution"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-rhea-resolution-consumption"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_rhea_resolution_consumption"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-feature-readiness"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_feature_readiness"
+                ),
+            ),
+            (
+                "build-mechanism-feature-embedding-pilot",
+                "cmd_build_mechanism_feature_embedding_pilot",
+            ),
+            (
+                "build-mechanism-feature-embedding-heldout-readout",
+                "cmd_build_mechanism_feature_embedding_heldout_readout",
+            ),
+            (
                 "build-family-panel-high-value-glycyl-radical-readiness-packet",
                 "cmd_build_family_panel_high_value_glycyl_radical_readiness_packet",
             ),
             (
                 "build-family-panel-source-free-locator-human-decision-matrix",
                 "cmd_build_family_panel_source_free_locator_human_decision_matrix",
+            ),
+            (
+                "audit-predicted-atlas-vs-fold-novelty-operating-grid-delta",
+                "cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta",
             ),
         ]
         for command_name, function_name in cases:
