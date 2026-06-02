@@ -39,6 +39,8 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package,
@@ -6477,6 +6479,439 @@ class NorthstarNextLeversTests(unittest.TestCase):
                     "row_specific_event_features"
                 ]
             )
+        )
+
+    def test_best_token_heldout_safe_application_preflight_blocks_without_surface(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar_path = root / "best_sidecar.json"
+            contract_path = root / "contract.json"
+            manifest_path = root / "manifest.json"
+            active_path = root / "active.json"
+            reaction_path = root / "reaction.json"
+            source_free_path = root / "source_free.json"
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_train_cal_feature_sidecar_ready_no_fit"
+                        ),
+                        "decision": {
+                            "selected_feature_family": "event_residue_role",
+                            "selected_feature_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                        },
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {"event_count": 1},
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_operating_point_contract_ready_calibration_only"
+                        ),
+                        "calibration_contract": {
+                            "residual_distance": {
+                                "threshold": 3.21469422,
+                                "oos_abstain_recall": 0.714286,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "heldout",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            active_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "heldout",
+                                "status": "ok",
+                                "role_counts": {"electrostatic_stabiliser": 1},
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaction_path.write_text(
+                json.dumps({"counts": {"rows_with_template": 1}, "rows": []}),
+                encoding="utf-8",
+            )
+            source_free_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"source_free_geometry_ready_rows": 0},
+                        "row_manifests": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight(
+                best_token_feature_sidecar_path=sidecar_path,
+                best_token_operating_point_contract_path=contract_path,
+                label_manifest_path=manifest_path,
+                active_site_role_graph_sidecar_path=active_path,
+                reaction_center_template_sidecar_path=reaction_path,
+                source_free_predicted_geometry_manifest_path=source_free_path,
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "p0_oos_augmented_best_token_heldout_safe_application_preflight_blocked",
+        )
+        self.assertFalse(
+            preflight["decision"]["heldout_safe_application_surface_available"]
+        )
+        self.assertFalse(
+            preflight["decision"]["frozen_residual_threshold_applied_once"]
+        )
+        self.assertFalse(preflight["guardrails"]["heldout_rows_evaluated"])
+        self.assertIn(
+            "source_free_event_residue_role_surface_missing",
+            preflight["blockers"],
+        )
+
+    def test_best_token_followup_token_ablation_scores_remaining_oos(
+        self,
+    ) -> None:
+        guardrails = {
+            "source_text_excluded_from_features": True,
+            "source_ids_excluded_from_features": True,
+            "reviewer_metadata_excluded_from_features": True,
+            "accession_excluded_from_features": True,
+            "labels_and_fingerprint_excluded_from_features": True,
+            "heldout_row": False,
+        }
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_path = root / "source.json"
+            error_path = root / "error.json"
+            sidecar_path = root / "sidecar.json"
+            labels_path = root / "labels.json"
+            rerun_path = root / "rerun.json"
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_oos_augmented_source_evidence_sidecar_ready",
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:1:residue:1",
+                                        "code": "Ser",
+                                        "roles": ["nucleophile"],
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "proton_transfer",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:1:residue:1"
+                                        ],
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:2:residue:1",
+                                        "code": "Ser",
+                                        "roles": ["nucleophile"],
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "proton_transfer",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:2:residue:1"
+                                        ],
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:3:residue:1",
+                                        "code": "Ser",
+                                        "roles": ["nucleophile"],
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "proton_transfer",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:3:residue:1"
+                                        ],
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:4:residue:1",
+                                        "code": "His",
+                                        "roles": ["metal ligand"],
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "electron_transfer",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:4:residue:1"
+                                        ],
+                                    }
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            error_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_calibration_error_analysis_ready"
+                        ),
+                        "retained_oos_failure_set": [
+                            {
+                                "entry_id": "m_csa:4",
+                                "priority": "borderline_contract_miss",
+                                "nearest_primary_label": "ser_his_acid_hydrolase",
+                            }
+                        ],
+                        "all_calibration_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "operating_point_outcome": "primary_retained",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "operating_point_outcome": "oos_non_abstained",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            selected_key = (
+                "expanded_event_residue_role__"
+                "event_residue_role_proton_transfer_electrostatic_stabiliser"
+            )
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_train_cal_feature_sidecar_ready_no_fit"
+                        ),
+                        "decision": {
+                            "selected_feature_family": "event_residue_role",
+                            "selected_feature_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                            "full_no_template_centroid_or_residual_rerun_ready": True,
+                        },
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "event_count": 1,
+                                    selected_key: False,
+                                },
+                                "feature_guardrails": guardrails,
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "event_count": 1,
+                                    selected_key: False,
+                                },
+                                "feature_guardrails": guardrails,
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "event_count": 1,
+                                    selected_key: False,
+                                },
+                                "feature_guardrails": guardrails,
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "event_count": 2,
+                                    selected_key: False,
+                                },
+                                "feature_guardrails": guardrails,
+                            },
+                        ],
+                        "counts": {"expanded_feature_dimensions": 1},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "split_assignment": "in_distribution",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "ser_his_acid_hydrolase",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "in_distribution",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "ser_his_acid_hydrolase",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "split_assignment": "in_distribution",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "ser_his_acid_hydrolase",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "split_assignment": "in_distribution",
+                                "label_type": "out_of_scope",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rerun_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_row_specific_no_template_train_cal_operating_point_ready"
+                        ),
+                        "counts": {
+                            "feature_dimensions": 2,
+                            "calibration_rows": 2,
+                            "calibration_primary_rows": 1,
+                            "calibration_oos_rows": 1,
+                        },
+                        "residual_variant": {
+                            "calibration_summary": {
+                                "auc_oos_gt_primary": 0.5,
+                                "mean_primary_residual": 0.0,
+                                "mean_oos_residual": 1.0,
+                            },
+                            "calibration_selected_residual_threshold": {
+                                "threshold": 1.0,
+                                "primary_retain_recall": 1.0,
+                                "oos_abstain_recall": 0.0,
+                            },
+                        },
+                        "centroid_variant": {
+                            "calibration_summary": {"auc_primary_vs_oos": 0.5},
+                            "calibration_selected_similarity_threshold": {
+                                "threshold": 0.1,
+                                "oos_abstain_recall": 0.0,
+                            },
+                        },
+                        "scored_rows": {
+                            "train": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "is_primary": True,
+                                    "true_label": "ser_his_acid_hydrolase",
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "is_primary": True,
+                                    "true_label": "ser_his_acid_hydrolase",
+                                },
+                            ],
+                            "calibration": [
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "is_primary": True,
+                                    "true_label": "ser_his_acid_hydrolase",
+                                },
+                                {
+                                    "entry_id": "m_csa:4",
+                                    "is_primary": False,
+                                    "true_label": "none_of_above",
+                                },
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            ablation = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation(
+                source_sidecar_path=source_path,
+                best_token_calibration_error_analysis_path=error_path,
+                base_best_token_train_cal_feature_sidecar_path=sidecar_path,
+                label_manifest_path=labels_path,
+                best_token_no_template_rerun_path=rerun_path,
+                max_candidate_tokens=10,
+            )
+
+        self.assertEqual(
+            ablation["status"],
+            "p0_oos_augmented_best_token_followup_token_ablation_ready",
+        )
+        self.assertEqual(ablation["counts"]["remaining_retained_oos_failure_rows"], 1)
+        self.assertGreater(ablation["counts"]["candidate_tokens_scored"], 0)
+        self.assertFalse(ablation["guardrails"]["heldout_rows_evaluated"])
+        self.assertNotEqual(
+            ablation["decision"]["best_followup_token"],
+            "event_residue_role:proton_transfer|electrostatic_stabiliser",
         )
 
     def test_oos_augmented_expanded_calibration_comparison_keeps_coarse_contract(

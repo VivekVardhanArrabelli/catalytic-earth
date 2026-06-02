@@ -302,6 +302,30 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_OPERATING
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_CALIBRATION_ERROR_ANALYSIS_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis_current702_20260602"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_HELDOUT_SAFE_APPLICATION_PREFLIGHT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_TOKEN_ABLATION_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_TRAIN_CAL_FEATURE_SIDECAR_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_TRAIN_CAL_FEATURE_GUARDRAIL_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_NO_TEMPLATE_RERUN_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_OPERATING_POINT_CONTRACT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_CALIBRATION_ERROR_ANALYSIS_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_HELDOUT_SAFE_SURFACE_PLAN_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602"
+)
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
 RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
@@ -28352,6 +28376,1539 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return analysis
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight(
+    *,
+    best_token_feature_sidecar_path: Path,
+    best_token_operating_point_contract_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    reaction_center_template_sidecar_path: Path,
+    source_free_predicted_geometry_manifest_path: Path,
+) -> dict[str, Any]:
+    best_sidecar = _read_json(best_token_feature_sidecar_path)
+    contract = _read_json(best_token_operating_point_contract_path)
+    manifest = _read_json(label_manifest_path)
+    active_role_graph = _read_json(active_site_role_graph_sidecar_path)
+    reaction_template = _read_json(reaction_center_template_sidecar_path)
+    source_free_manifest = _read_json(source_free_predicted_geometry_manifest_path)
+
+    selected_family = best_sidecar.get("decision", {}).get("selected_feature_family")
+    selected_token = best_sidecar.get("decision", {}).get("selected_feature_token")
+    selected_feature_key = (
+        _row_specific_expanded_feature_key(str(selected_family), str(selected_token))
+        if selected_family and selected_token
+        else None
+    )
+    residual_contract = (
+        contract.get("calibration_contract", {}).get("residual_distance", {})
+        if isinstance(contract.get("calibration_contract"), dict)
+        else {}
+    )
+    residual_threshold = residual_contract.get("threshold")
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    heldout_entry_ids = {
+        str(row.get("entry_id"))
+        for row in manifest_rows
+        if row.get("entry_id") and row.get("split_assignment") == "heldout"
+    }
+    sidecar_feature_rows = [
+        row
+        for row in best_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    sidecar_heldout_rows = [
+        row for row in sidecar_feature_rows if str(row["entry_id"]) in heldout_entry_ids
+    ]
+    active_rows = [
+        row
+        for row in active_role_graph.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    active_heldout_ok_rows = [
+        row
+        for row in active_rows
+        if row.get("split_assignment") == "heldout" and row.get("status") == "ok"
+    ]
+    active_graph_has_event_dimension = any(
+        "row_specific_bond_change_events" in row
+        or "event_type" in row
+        or "event_residue_role" in row
+        for row in active_rows[:5]
+    )
+    reaction_counts = reaction_template.get("counts") or {}
+    source_free_counts = source_free_manifest.get("counts") or {}
+    source_free_ready_rows = int(
+        source_free_counts.get("source_free_geometry_ready_rows") or 0
+    )
+    source_free_existing_rows = sum(
+        1
+        for row in source_free_manifest.get("row_manifests", [])
+        if isinstance(row, dict) and row.get("existing_source_free_geometry_row")
+    )
+    token_requires_event_residue_role = str(selected_token or "").startswith(
+        "event_residue_role:"
+    )
+
+    blockers: list[str] = []
+    if (
+        contract.get("status")
+        != "p0_oos_augmented_best_token_operating_point_contract_ready_calibration_only"
+    ):
+        blockers.append("best_token_contract_not_ready")
+    if residual_threshold is None:
+        blockers.append("frozen_residual_threshold_missing")
+    if not selected_feature_key:
+        blockers.append("selected_best_token_feature_missing")
+    if not sidecar_heldout_rows:
+        blockers.append("heldout_application_rows_not_materialized")
+    if token_requires_event_residue_role:
+        blockers.append("source_free_event_residue_role_surface_missing")
+    if not active_graph_has_event_dimension:
+        blockers.append("active_site_role_graph_lacks_event_type_dimension")
+    if source_free_ready_rows < len(heldout_entry_ids):
+        blockers.append("source_free_predicted_geometry_coverage_insufficient")
+    if reaction_counts.get("rows_with_template"):
+        blockers.append("reaction_center_template_is_template_dependent_ceiling_only")
+
+    surface_available = not blockers
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_HELDOUT_SAFE_APPLICATION_PREFLIGHT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_heldout_safe_application_preflight_ready"
+            if surface_available
+            else "p0_oos_augmented_best_token_heldout_safe_application_preflight_blocked"
+        ),
+        "scope": (
+            "Preflight for applying the frozen best-token residual threshold to "
+            "a heldout-safe application surface. It checks whether the single "
+            "event-residue-role token can be computed without M-CSA heldout "
+            "row-specific mechanism text; it does not score heldout."
+        ),
+        "selected_feature": {
+            "feature_family": selected_family,
+            "feature_token": selected_token,
+            "feature_key": selected_feature_key,
+            "requires_row_specific_event_type": token_requires_event_residue_role,
+        },
+        "frozen_contract": {
+            "decision_rule": residual_contract.get("decision_rule"),
+            "threshold": residual_threshold,
+            "calibration_oos_abstain_recall": residual_contract.get(
+                "oos_abstain_recall"
+            ),
+            "calibration_auc_oos_gt_primary": residual_contract.get(
+                "calibration_auc_oos_gt_primary"
+            ),
+        },
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "preflight_only": True,
+            "review_only": True,
+        },
+        "counts": {
+            "current702_manifest_rows": len(manifest_rows),
+            "heldout_rows_in_manifest": len(heldout_entry_ids),
+            "best_token_feature_rows": len(sidecar_feature_rows),
+            "heldout_rows_in_best_token_feature_sidecar": len(sidecar_heldout_rows),
+            "active_site_role_graph_heldout_ok_rows": len(active_heldout_ok_rows),
+            "source_free_predicted_geometry_ready_rows": source_free_ready_rows,
+            "source_free_existing_geometry_rows": source_free_existing_rows,
+            "reaction_center_template_rows_with_template": reaction_counts.get(
+                "rows_with_template"
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "blockers": blockers,
+        "available_surfaces_checked": {
+            "best_token_train_cal_feature_sidecar": (
+                "train_cal_only_no_heldout_application_rows"
+            ),
+            "active_site_role_graph_sidecar": (
+                "heldout_roles_available_but_no_row_specific_event_type_axis"
+            ),
+            "reaction_center_template_sidecar": (
+                "template_dependent_ceiling_diagnostic_not_template_free_application"
+            ),
+            "source_free_predicted_geometry_manifest": (
+                "partial_family_panel_locator_surface_not_current702_event_residue_role_surface"
+            ),
+        },
+        "decision": {
+            "heldout_safe_application_surface_available": surface_available,
+            "frozen_residual_threshold_applied_once": False,
+            "heldout_read_once_performed": False,
+            "pivot_to_calibration_followup_token_ablation": not surface_available,
+            "next_gate": (
+                "Apply the frozen residual threshold exactly once to the "
+                "heldout-safe application rows."
+                if surface_available
+                else (
+                    "Do not read heldout. Use the remaining retained calibration "
+                    "OOS rows from the best-token error analysis for a follow-up "
+                    "token ablation."
+                )
+            ),
+        },
+        "source_artifacts": {
+            "best_token_feature_sidecar": _source_path_record(
+                best_token_feature_sidecar_path
+            ),
+            "best_token_operating_point_contract": _source_path_record(
+                best_token_operating_point_contract_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+            "reaction_center_template_sidecar": _source_path_record(
+                reaction_center_template_sidecar_path
+            ),
+            "source_free_predicted_geometry_manifest": _source_path_record(
+                source_free_predicted_geometry_manifest_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "A heldout-safe application surface for the selected "
+                "event-residue-role token is not mechanically available yet."
+                if not surface_available
+                else "A heldout-safe application surface is available."
+            ),
+            "next_action": (
+                "Build a source-free event/residue-role application surface "
+                "before any heldout application, or continue calibration-only "
+                "feature ablation on the retained OOS misses."
+                if not surface_available
+                else "Run the read-once heldout application without retuning."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    decision = preflight["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Heldout-Safe Application Preflight - current702",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        f"- Selected token: {preflight['selected_feature']['feature_token']}",
+        f"- Frozen residual threshold: {preflight['frozen_contract']['threshold']}",
+        f"- Heldout rows in manifest: {counts['heldout_rows_in_manifest']}",
+        "- Heldout rows in best-token sidecar: "
+        f"{counts['heldout_rows_in_best_token_feature_sidecar']}",
+        "- Source-free predicted geometry ready rows: "
+        f"{counts['source_free_predicted_geometry_ready_rows']}",
+        f"- Blockers: {', '.join(preflight['blockers'])}",
+        "",
+        "## Decision",
+        "",
+        "- Heldout-safe application surface available: "
+        f"{decision['heldout_safe_application_surface_available']}",
+        "- Frozen residual threshold applied once: "
+        f"{decision['frozen_residual_threshold_applied_once']}",
+        "- Heldout read once performed: "
+        f"{decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight(
+    *,
+    best_token_feature_sidecar_path: Path,
+    best_token_operating_point_contract_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    reaction_center_template_sidecar_path: Path,
+    source_free_predicted_geometry_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight(
+        best_token_feature_sidecar_path=best_token_feature_sidecar_path,
+        best_token_operating_point_contract_path=best_token_operating_point_contract_path,
+        label_manifest_path=label_manifest_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        reaction_center_template_sidecar_path=reaction_center_template_sidecar_path,
+        source_free_predicted_geometry_manifest_path=source_free_predicted_geometry_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation(
+    *,
+    source_sidecar_path: Path,
+    best_token_calibration_error_analysis_path: Path,
+    base_best_token_train_cal_feature_sidecar_path: Path,
+    label_manifest_path: Path,
+    best_token_no_template_rerun_path: Path,
+    max_candidate_tokens: int = 1000,
+) -> dict[str, Any]:
+    source_sidecar = _read_json(source_sidecar_path)
+    best_error = _read_json(best_token_calibration_error_analysis_path)
+    base_sidecar = _read_json(base_best_token_train_cal_feature_sidecar_path)
+    best_rerun = _read_json(best_token_no_template_rerun_path)
+    baseline_summary = _row_specific_rerun_operating_point_summary(best_rerun)
+    selected_family = base_sidecar.get("decision", {}).get("selected_feature_family")
+    selected_token = base_sidecar.get("decision", {}).get("selected_feature_token")
+    existing_feature_fields = set(
+        _row_specific_no_template_feature_fields(
+            list(base_sidecar.get("feature_rows", []))
+        )
+    )
+
+    source_rows = [
+        row
+        for row in source_sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("review_status") == "approved"
+        and row.get("allowed_for_feature_contract_consumption_now")
+    ]
+    tokens_by_entry = _row_specific_entry_tokens(source_rows)
+    retained_rows = [
+        row
+        for row in best_error.get("retained_oos_failure_set", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    retained_entry_ids = {str(row["entry_id"]) for row in retained_rows}
+    priority_retained_entry_ids = {
+        str(row["entry_id"])
+        for row in retained_rows
+        if row.get("priority") in {"borderline_contract_miss", "near_contract_miss"}
+    }
+    missing_source_rows = sorted(
+        entry_id
+        for entry_id in retained_entry_ids
+        if entry_id not in tokens_by_entry
+    )
+    all_calibration_rows = [
+        row
+        for row in best_error.get("all_calibration_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    abstained_oos_entry_ids = {
+        str(row["entry_id"])
+        for row in all_calibration_rows
+        if row.get("operating_point_outcome") == "oos_abstained"
+    }
+    calibration_primary_entry_ids = {
+        str(row["entry_id"])
+        for row in all_calibration_rows
+        if row.get("operating_point_outcome") == "primary_retained"
+    }
+    scored_rows = [
+        row
+        for split_name in ("train", "calibration")
+        for row in best_rerun.get("scored_rows", {}).get(split_name, [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    primary_entries_by_label: dict[str, set[str]] = defaultdict(set)
+    primary_entry_ids: set[str] = set()
+    for row in scored_rows:
+        if not row.get("is_primary"):
+            continue
+        entry_id = str(row["entry_id"])
+        label = str(row.get("true_label") or "")
+        if label:
+            primary_entries_by_label[label].add(entry_id)
+        primary_entry_ids.add(entry_id)
+    nearest_primary_by_retained = {
+        str(row["entry_id"]): str(row.get("nearest_primary_label") or "")
+        for row in retained_rows
+    }
+
+    token_entries: dict[tuple[str, str], set[str]] = defaultdict(set)
+    for entry_id, family_tokens in tokens_by_entry.items():
+        for family, token in _row_specific_flat_tokens(family_tokens):
+            token_entries[(family, token)].add(entry_id)
+
+    candidate_summaries = []
+    for (family, token), entries in token_entries.items():
+        if family == selected_family and token == selected_token:
+            continue
+        if _row_specific_expanded_feature_key(family, token) in existing_feature_fields:
+            continue
+        retained_hits = sorted(entries & retained_entry_ids, key=_entry_id_sort_key)
+        if not retained_hits:
+            continue
+        priority_hits = sorted(
+            entries & priority_retained_entry_ids, key=_entry_id_sort_key
+        )
+        nearest_primary_contrast_rows = []
+        nearest_primary_conflict_rows = []
+        for entry_id in retained_hits:
+            nearest_label = nearest_primary_by_retained.get(entry_id, "")
+            nearest_entries = primary_entries_by_label.get(nearest_label, set())
+            if entries & nearest_entries:
+                nearest_primary_conflict_rows.append(entry_id)
+            else:
+                nearest_primary_contrast_rows.append(entry_id)
+        calibration_primary_hits = sorted(
+            entries & calibration_primary_entry_ids, key=_entry_id_sort_key
+        )
+        primary_hits = sorted(entries & primary_entry_ids, key=_entry_id_sort_key)
+        abstained_oos_hits = sorted(
+            entries & abstained_oos_entry_ids, key=_entry_id_sort_key
+        )
+        candidate_summaries.append(
+            {
+                "feature_family": family,
+                "feature_token": token,
+                "retained_oos_hit_rows": retained_hits,
+                "priority_retained_oos_hit_rows": priority_hits,
+                "nearest_primary_contrast_rows": sorted(
+                    nearest_primary_contrast_rows, key=_entry_id_sort_key
+                ),
+                "nearest_primary_conflict_rows": sorted(
+                    nearest_primary_conflict_rows, key=_entry_id_sort_key
+                ),
+                "calibration_primary_hit_rows": calibration_primary_hits,
+                "primary_hit_rows": primary_hits,
+                "abstained_oos_hit_rows": abstained_oos_hits,
+                "score": (
+                    4 * len(priority_hits)
+                    + 2 * len(nearest_primary_contrast_rows)
+                    + len(abstained_oos_hits)
+                    - len(calibration_primary_hits)
+                    - len(nearest_primary_conflict_rows)
+                ),
+            }
+        )
+    candidate_summaries.sort(
+        key=lambda row: (
+            -int(row["score"]),
+            -len(row["priority_retained_oos_hit_rows"]),
+            -len(row["nearest_primary_contrast_rows"]),
+            row["feature_family"],
+            row["feature_token"],
+        )
+    )
+    candidate_tokens = candidate_summaries[: max(0, int(max_candidate_tokens))]
+
+    token_rows = []
+    for candidate in candidate_tokens:
+        family = str(candidate["feature_family"])
+        token = str(candidate["feature_token"])
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            sidecar_path = tmp / "followup_token_sidecar.json"
+            guardrail_path = tmp / "followup_token_guardrail.json"
+            sidecar = _row_specific_sidecar_with_single_token_feature(
+                base_sidecar=base_sidecar,
+                source_sidecar=source_sidecar,
+                feature_family=family,
+                feature_token=token,
+            )
+            sidecar_path.write_text(
+                json.dumps(sidecar, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            guardrail = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail_audit(
+                train_cal_feature_sidecar_path=sidecar_path,
+                source_sidecar_path=source_sidecar_path,
+                label_manifest_path=label_manifest_path,
+                out_path=guardrail_path,
+            )
+            rerun = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun(
+                train_cal_feature_sidecar_path=sidecar_path,
+                train_cal_feature_guardrail_path=guardrail_path,
+                label_manifest_path=label_manifest_path,
+            )
+        summary = _row_specific_rerun_operating_point_summary(rerun)
+        recall_delta = (
+            round(
+                float(summary["residual_oos_abstain_recall"])
+                - float(baseline_summary["residual_oos_abstain_recall"]),
+                6,
+            )
+            if summary.get("residual_oos_abstain_recall") is not None
+            and baseline_summary.get("residual_oos_abstain_recall") is not None
+            else None
+        )
+        auc_delta = (
+            round(
+                float(summary["residual_auc_oos_gt_primary"])
+                - float(baseline_summary["residual_auc_oos_gt_primary"]),
+                6,
+            )
+            if summary.get("residual_auc_oos_gt_primary") is not None
+            and baseline_summary.get("residual_auc_oos_gt_primary") is not None
+            else None
+        )
+        token_rows.append(
+            {
+                "feature_family": family,
+                "feature_token": token,
+                "source_target_score": candidate.get("score"),
+                "priority_retained_oos_hit_rows": candidate.get(
+                    "priority_retained_oos_hit_rows", []
+                ),
+                "nearest_primary_contrast_rows": candidate.get(
+                    "nearest_primary_contrast_rows", []
+                ),
+                "calibration_primary_hit_rows": candidate.get(
+                    "calibration_primary_hit_rows", []
+                ),
+                "sidecar_status": sidecar.get("status"),
+                "guardrail_status": guardrail.get("status"),
+                "rerun_status": rerun.get("status"),
+                "feature_dimensions": summary.get("feature_dimensions"),
+                "token_hit_rows": sidecar.get("counts", {}).get("token_hit_rows"),
+                "residual_threshold": summary.get("residual_threshold"),
+                "residual_oos_abstain_recall": summary.get(
+                    "residual_oos_abstain_recall"
+                ),
+                "residual_auc_oos_gt_primary": summary.get(
+                    "residual_auc_oos_gt_primary"
+                ),
+                "residual_oos_abstain_recall_delta_vs_best_token": recall_delta,
+                "residual_auc_delta_vs_best_token": auc_delta,
+                "beats_best_token_residual_contract": (
+                    recall_delta is not None
+                    and auc_delta is not None
+                    and recall_delta > 0
+                    and auc_delta >= 0
+                ),
+            }
+        )
+    token_rows.sort(
+        key=lambda row: (
+            not bool(row.get("beats_best_token_residual_contract")),
+            -float(row.get("residual_oos_abstain_recall") or -1.0),
+            -float(row.get("residual_auc_oos_gt_primary") or -1.0),
+            row["feature_family"],
+            row["feature_token"],
+        )
+    )
+    beating_tokens = [
+        row for row in token_rows if row.get("beats_best_token_residual_contract")
+    ]
+    critical_counts = {
+        "source_sidecar_not_ready": (
+            0
+            if source_sidecar.get("status")
+            == "p0_oos_augmented_source_evidence_sidecar_ready"
+            else 1
+        ),
+        "best_token_calibration_error_analysis_not_ready": (
+            0
+            if best_error.get("status")
+            == "p0_oos_augmented_best_token_calibration_error_analysis_ready"
+            else 1
+        ),
+        "base_best_token_sidecar_not_ready": (
+            0
+            if base_sidecar.get("status")
+            == "p0_oos_augmented_best_token_train_cal_feature_sidecar_ready_no_fit"
+            else 1
+        ),
+        "best_token_rerun_not_operating_point_ready": (
+            0
+            if best_rerun.get("status")
+            == "p0_row_specific_no_template_train_cal_operating_point_ready"
+            else 1
+        ),
+        "remaining_retained_oos_rows_missing_source_features": len(
+            missing_source_rows
+        ),
+        "candidate_tokens_missing": 0 if candidate_tokens else 1,
+        "followup_token_ablation_rerun_failures": sum(
+            1
+            for row in token_rows
+            if row.get("rerun_status")
+            != "p0_row_specific_no_template_train_cal_operating_point_ready"
+        ),
+    }
+    passed = sum(critical_counts.values()) == 0
+    best = token_rows[0] if token_rows else {}
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_TOKEN_ABLATION_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_token_ablation_ready"
+            if passed
+            else "p0_oos_augmented_best_token_followup_token_ablation_blocked"
+        ),
+        "scope": (
+            "Calibration-only follow-up single-token ablation over the remaining "
+            "retained OOS rows after the best-token residual contract. Each "
+            "candidate token is added on top of the frozen best-token train/cal "
+            "surface, guardrail-audited, and scored without reading heldout."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": True,
+            "model_fit_rows": "train_only_per_followup_token_ablation",
+            "threshold_selected_or_tuned": True,
+            "threshold_selection_rows": "calibration_only_per_followup_token_ablation",
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "review_only": True,
+            "ablation_only": True,
+        },
+        "counts": {
+            "remaining_retained_oos_failure_rows": len(retained_entry_ids),
+            "priority_remaining_retained_oos_failure_rows": len(
+                priority_retained_entry_ids
+            ),
+            "candidate_tokens_available": len(candidate_summaries),
+            "candidate_tokens_scored": len(token_rows),
+            "tokens_beating_best_token_residual_contract": len(beating_tokens),
+            "baseline_best_token_feature_dimensions": baseline_summary.get(
+                "feature_dimensions"
+            ),
+            "baseline_best_token_residual_oos_abstain_recall": baseline_summary.get(
+                "residual_oos_abstain_recall"
+            ),
+            "baseline_best_token_residual_auc_oos_gt_primary": baseline_summary.get(
+                "residual_auc_oos_gt_primary"
+            ),
+            "critical_counts": critical_counts,
+            "critical_violation_total": sum(critical_counts.values()),
+        },
+        "excluded_existing_token": {
+            "feature_family": selected_family,
+            "feature_token": selected_token,
+        },
+        "candidate_feature_tokens": candidate_summaries[
+            : max(80, max(0, int(max_candidate_tokens)))
+        ],
+        "token_ablation_rows": token_rows,
+        "decision": {
+            "followup_token_replaces_best_token_contract": (
+                bool(beating_tokens) and passed
+            ),
+            "best_followup_token_feature_family": best.get("feature_family"),
+            "best_followup_token": best.get("feature_token"),
+            "best_followup_residual_oos_abstain_recall": best.get(
+                "residual_oos_abstain_recall"
+            ),
+            "best_followup_residual_auc_oos_gt_primary": best.get(
+                "residual_auc_oos_gt_primary"
+            ),
+            "best_followup_residual_threshold": best.get("residual_threshold"),
+            "keep_best_token_residual_threshold": not (
+                bool(beating_tokens) and passed
+            ),
+            "tokens_beating_best_token_residual_contract": [
+                {
+                    "feature_family": row["feature_family"],
+                    "feature_token": row["feature_token"],
+                    "residual_oos_abstain_recall": row[
+                        "residual_oos_abstain_recall"
+                    ],
+                    "residual_auc_oos_gt_primary": row[
+                        "residual_auc_oos_gt_primary"
+                    ],
+                }
+                for row in beating_tokens[:20]
+            ],
+            "next_gate": (
+                "Materialize the best follow-up token pair through a durable "
+                "train/cal sidecar and explicit calibration contract before any "
+                "heldout read."
+                if passed and beating_tokens
+                else (
+                    "No follow-up single token beats the best-token residual "
+                    "contract; keep the best-token threshold frozen and build "
+                    "a source-free heldout application surface before heldout."
+                    if passed
+                    else "Repair follow-up ablation inputs before interpreting results."
+                )
+            ),
+        },
+        "source_artifacts": {
+            "source_sidecar": _source_path_record(source_sidecar_path),
+            "best_token_calibration_error_analysis": _source_path_record(
+                best_token_calibration_error_analysis_path
+            ),
+            "base_best_token_train_cal_feature_sidecar": _source_path_record(
+                base_best_token_train_cal_feature_sidecar_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "best_token_no_template_rerun": _source_path_record(
+                best_token_no_template_rerun_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "At least one follow-up token beats the best-token calibration "
+                "residual operating point."
+                if passed and beating_tokens
+                else (
+                    "No follow-up single token beats the best-token calibration "
+                    "residual operating point."
+                    if passed
+                    else "The follow-up token ablation is blocked."
+                )
+            ),
+            "next_action": (
+                "Use an explicit follow-up calibration contract gate before any "
+                "heldout read."
+                if passed and beating_tokens
+                else "Keep the current best-token contract and build a heldout-safe application surface."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation_report(
+    ablation: dict[str, Any],
+) -> str:
+    counts = ablation["counts"]
+    decision = ablation["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Token Ablation - current702",
+        "",
+        f"Run: {ablation['created_utc']}",
+        "",
+        ablation["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {ablation['status']}",
+        "- Remaining retained OOS rows: "
+        f"{counts['remaining_retained_oos_failure_rows']}",
+        f"- Candidate tokens scored: {counts['candidate_tokens_scored']}",
+        "- Tokens beating best-token residual contract: "
+        f"{counts['tokens_beating_best_token_residual_contract']}",
+        "- Baseline best-token OOS abstain recall: "
+        f"{counts['baseline_best_token_residual_oos_abstain_recall']}",
+        "- Baseline best-token residual AUC: "
+        f"{counts['baseline_best_token_residual_auc_oos_gt_primary']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Top Follow-Up Token Ablations",
+        "",
+        "| token | OOS abstain recall | residual AUC | recall delta | AUC delta |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for row in ablation["token_ablation_rows"][:20]:
+        lines.append(
+            f"| {row['feature_token']} | "
+            f"{row['residual_oos_abstain_recall']} | "
+            f"{row['residual_auc_oos_gt_primary']} | "
+            f"{row['residual_oos_abstain_recall_delta_vs_best_token']} | "
+            f"{row['residual_auc_delta_vs_best_token']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Follow-up token replaces best-token contract: "
+        f"{decision['followup_token_replaces_best_token_contract']}",
+        f"- Best follow-up token: {decision['best_followup_token']}",
+        "- Best follow-up OOS abstain recall: "
+        f"{decision['best_followup_residual_oos_abstain_recall']}",
+        "- Best follow-up residual AUC: "
+        f"{decision['best_followup_residual_auc_oos_gt_primary']}",
+        "- Keep best-token residual threshold: "
+        f"{decision['keep_best_token_residual_threshold']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {ablation['interpretation']['result']}",
+        f"- {ablation['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation(
+    *,
+    source_sidecar_path: Path,
+    best_token_calibration_error_analysis_path: Path,
+    base_best_token_train_cal_feature_sidecar_path: Path,
+    label_manifest_path: Path,
+    best_token_no_template_rerun_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    max_candidate_tokens: int = 1000,
+) -> dict[str, Any]:
+    ablation = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation(
+        source_sidecar_path=source_sidecar_path,
+        best_token_calibration_error_analysis_path=best_token_calibration_error_analysis_path,
+        base_best_token_train_cal_feature_sidecar_path=base_best_token_train_cal_feature_sidecar_path,
+        label_manifest_path=label_manifest_path,
+        best_token_no_template_rerun_path=best_token_no_template_rerun_path,
+        max_candidate_tokens=max_candidate_tokens,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(ablation, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation_report(
+                ablation
+            ),
+            encoding="utf-8",
+        )
+    return ablation
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar(
+    *,
+    source_sidecar_path: Path,
+    followup_token_ablation_path: Path,
+    base_best_token_train_cal_feature_sidecar_path: Path,
+) -> dict[str, Any]:
+    source_sidecar = _read_json(source_sidecar_path)
+    followup_ablation = _read_json(followup_token_ablation_path)
+    base_sidecar = _read_json(base_best_token_train_cal_feature_sidecar_path)
+    family = followup_ablation.get("decision", {}).get(
+        "best_followup_token_feature_family"
+    )
+    token = followup_ablation.get("decision", {}).get("best_followup_token")
+    sidecar = _row_specific_sidecar_with_single_token_feature(
+        base_sidecar=base_sidecar,
+        source_sidecar=source_sidecar,
+        feature_family=str(family or ""),
+        feature_token=str(token or ""),
+    )
+    followup_ready = (
+        followup_ablation.get("status")
+        == "p0_oos_augmented_best_token_followup_token_ablation_ready"
+        and bool(
+            followup_ablation.get("decision", {}).get(
+                "followup_token_replaces_best_token_contract"
+            )
+        )
+        and bool(family)
+        and bool(token)
+    )
+    previous_family = base_sidecar.get("decision", {}).get("selected_feature_family")
+    previous_token = base_sidecar.get("decision", {}).get("selected_feature_token")
+    sidecar["artifact_id"] = (
+        MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_TRAIN_CAL_FEATURE_SIDECAR_ID
+    )
+    sidecar["schema_version"] = (
+        f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar"
+    )
+    sidecar["created_utc"] = _utc_now_iso()
+    sidecar["status"] = (
+        "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_ready_no_fit"
+        if followup_ready
+        else "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_blocked"
+    )
+    sidecar["scope"] = (
+        "No-fit train/cal row-specific feature sidecar for the best-token plus "
+        "best follow-up-token pair. It preserves the previous best-token "
+        "surface and adds exactly one additional sanitized boolean token "
+        "selected by the follow-up ablation artifact."
+    )
+    sidecar["guardrails"] = {
+        "labels_registries_ontologies_changed": False,
+        "imports_or_promotions_performed": False,
+        "production_thresholds_changed": False,
+        "model_weights_fit_or_refit": False,
+        "threshold_selected_or_tuned": False,
+        "heldout_rows_used_for_training_or_threshold_tuning": False,
+        "heldout_rows_present_in_feature_rows": False,
+        "draft_rows_present_in_feature_rows": False,
+        "source_text_or_source_ids_used_as_predictive_features": False,
+        "ec_rhea_ids_used_as_predictive_features": False,
+        "labels_used_as_predictive_features": False,
+        "feature_contract_mutated": False,
+        "review_only": True,
+    }
+    counts = dict(sidecar.get("counts", {}))
+    counts["materialized_feature_rows"] = len(sidecar.get("feature_rows", []))
+    counts["train_rows"] = sum(
+        1
+        for row in sidecar.get("feature_rows", [])
+        if row.get("assigned_embedding_split") == "train"
+    )
+    counts["calibration_rows"] = sum(
+        1
+        for row in sidecar.get("feature_rows", [])
+        if row.get("assigned_embedding_split") == "calibration"
+    )
+    counts["selected_feature_families"] = [
+        family_name
+        for family_name in (previous_family, family)
+        if family_name
+    ]
+    counts["critical_counts"] = {
+        "followup_token_ablation_not_ready": 0 if followup_ready else 1,
+        "base_best_token_sidecar_not_ready": (
+            0
+            if base_sidecar.get("status")
+            == "p0_oos_augmented_best_token_train_cal_feature_sidecar_ready_no_fit"
+            else 1
+        ),
+        "followup_token_missing": 0 if family and token else 1,
+    }
+    counts["critical_violation_total"] = sum(counts["critical_counts"].values())
+    sidecar["counts"] = counts
+    sidecar["decision"] = {
+        "previous_selected_feature_family": previous_family,
+        "previous_selected_feature_token": previous_token,
+        "selected_followup_feature_family": family,
+        "selected_followup_feature_token": token,
+        "followup_token_ablation_ready": followup_ready,
+        "full_no_template_centroid_or_residual_rerun_ready": followup_ready,
+        "model_training_authorized_by_this_artifact": False,
+        "next_gate": (
+            "Run the strict leakage guardrail and no-template rerun, then write "
+            "an explicit calibration-only operating-point contract before any "
+            "heldout read."
+            if followup_ready
+            else "Repair follow-up token ablation before pair materialization."
+        ),
+    }
+    sidecar["source_artifacts"] = {
+        "source_sidecar": _source_path_record(source_sidecar_path),
+        "followup_token_ablation": _source_path_record(followup_token_ablation_path),
+        "base_best_token_train_cal_feature_sidecar": _source_path_record(
+            base_best_token_train_cal_feature_sidecar_path
+        ),
+    }
+    sidecar["interpretation"] = {
+        "result": (
+            f"Follow-up token {token} was materialized on top of best token "
+            f"{previous_token} as a two-token train/cal surface."
+            if followup_ready
+            else "Best-token follow-up pair materialization is blocked."
+        ),
+        "next_action": (
+            "Run guardrail, no-template rerun, and calibration contract without "
+            "reading heldout."
+        ),
+    }
+    return sidecar
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar(
+    *,
+    source_sidecar_path: Path,
+    followup_token_ablation_path: Path,
+    base_best_token_train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    sidecar = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar(
+        source_sidecar_path=source_sidecar_path,
+        followup_token_ablation_path=followup_token_ablation_path,
+        base_best_token_train_cal_feature_sidecar_path=base_best_token_train_cal_feature_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(sidecar, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar_report(
+                sidecar
+            ),
+            encoding="utf-8",
+        )
+    return sidecar
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    source_sidecar_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        source_sidecar_path=source_sidecar_path,
+        label_manifest_path=label_manifest_path,
+    )
+    audit["artifact_id"] = (
+        MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_TRAIN_CAL_FEATURE_GUARDRAIL_AUDIT_ID
+    )
+    audit["schema_version"] = (
+        f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit"
+    )
+    audit["scope"] = (
+        "Strict leakage and split-contract audit for the best-token follow-up "
+        "pair train/cal row-specific feature sidecar."
+    )
+    audit["status"] = (
+        "p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_passed"
+        if audit["counts"]["critical_violation_total"] == 0
+        else "p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_blocked"
+    )
+    audit["interpretation"]["next_action"] = (
+        "Run the best-token follow-up pair no-template centroid/residual rerun "
+        "on this guardrail-passing train/cal-only surface."
+    )
+    return audit
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    source_sidecar_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        source_sidecar_path=source_sidecar_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_feature_guardrail_path=train_cal_feature_guardrail_path,
+        label_manifest_path=label_manifest_path,
+    )
+    audit["artifact_id"] = (
+        MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_NO_TEMPLATE_RERUN_ID
+    )
+    audit["schema_version"] = (
+        f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun"
+    )
+    audit["scope"] = (
+        "Train/cal-only no-template rerun over the best-token follow-up pair "
+        "row-specific feature sidecar. It fits centroids on train rows and "
+        "selects thresholds on calibration rows only; heldout is unread."
+    )
+    audit["interpretation"]["next_action"] = (
+        "Write the best-token follow-up pair calibration-only operating-point "
+        "contract; do not read heldout until a heldout-safe surface exists."
+    )
+    return audit
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_feature_guardrail_path=train_cal_feature_guardrail_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_no_template_rerun_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract(
+    *,
+    no_template_rerun_path: Path,
+) -> dict[str, Any]:
+    contract = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract(
+        no_template_rerun_path=no_template_rerun_path,
+    )
+    contract["artifact_id"] = (
+        MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_OPERATING_POINT_CONTRACT_ID
+    )
+    contract["schema_version"] = (
+        f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract"
+    )
+    contract["scope"] = (
+        "Calibration-only operating-point contract for the best-token "
+        "follow-up pair row-specific feature surface. It freezes thresholds on "
+        "calibration rows only and leaves heldout unread."
+    )
+    contract["status"] = (
+        "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+        if contract["counts"]["critical_violation_total"] == 0
+        else "p0_oos_augmented_best_token_followup_pair_operating_point_contract_blocked"
+    )
+    contract["interpretation"]["next_action"] = (
+        "Use this follow-up pair residual-distance contract only after a "
+        "heldout-safe application surface is materialized; do not retune on "
+        "heldout."
+    )
+    return contract
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract(
+    *,
+    no_template_rerun_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    contract = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract(
+        no_template_rerun_path=no_template_rerun_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis(
+    *,
+    no_template_rerun_path: Path,
+    operating_point_contract_path: Path,
+    train_cal_feature_sidecar_path: Path,
+) -> dict[str, Any]:
+    contract = _read_json(operating_point_contract_path)
+    analysis = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis(
+        no_template_rerun_path=no_template_rerun_path,
+        operating_point_contract_path=operating_point_contract_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+    )
+    if (
+        contract.get("status")
+        == "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+    ):
+        analysis["counts"]["critical_counts"]["contract_not_ready"] = 0
+        analysis["counts"]["critical_violation_total"] = sum(
+            analysis["counts"]["critical_counts"].values()
+        )
+    analysis["artifact_id"] = (
+        MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_CALIBRATION_ERROR_ANALYSIS_ID
+    )
+    analysis["schema_version"] = (
+        f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis"
+    )
+    analysis["scope"] = (
+        "Read-only calibration error analysis for the best-token follow-up pair "
+        "row-specific operating point. It names retained and abstained "
+        "calibration OOS rows under the pair residual contract without "
+        "changing thresholds or reading heldout."
+    )
+    analysis["status"] = (
+        "p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_ready"
+        if analysis["counts"]["critical_violation_total"] == 0
+        else "p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_blocked"
+    )
+    oos_abstained = analysis["counts"]["outcome_counts"].get("oos_abstained", 0)
+    oos_retained = analysis["counts"]["outcome_counts"].get("oos_non_abstained", 0)
+    analysis["interpretation"]["result"] = (
+        "The follow-up pair residual threshold abstains on "
+        f"{oos_abstained}/{oos_abstained + oos_retained} calibration OOS rows "
+        "while retaining all calibration primaries."
+        if analysis["counts"]["critical_violation_total"] == 0
+        else "The follow-up pair calibration error analysis is blocked."
+    )
+    analysis["interpretation"]["next_action"] = (
+        "Build a source-free heldout application surface for the deployed "
+        "feature pair before any heldout read."
+    )
+    return analysis
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis(
+    *,
+    no_template_rerun_path: Path,
+    operating_point_contract_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    analysis = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis(
+        no_template_rerun_path=no_template_rerun_path,
+        operating_point_contract_path=operating_point_contract_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(analysis, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_report(
+                analysis
+            ),
+            encoding="utf-8",
+        )
+    return analysis
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan(
+    *,
+    pair_train_cal_feature_sidecar_path: Path,
+    pair_operating_point_contract_path: Path,
+    pair_calibration_error_analysis_path: Path,
+    best_token_heldout_safe_preflight_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    source_free_predicted_geometry_manifest_path: Path,
+) -> dict[str, Any]:
+    pair_sidecar = _read_json(pair_train_cal_feature_sidecar_path)
+    pair_contract = _read_json(pair_operating_point_contract_path)
+    pair_error = _read_json(pair_calibration_error_analysis_path)
+    preflight = _read_json(best_token_heldout_safe_preflight_path)
+    manifest = _read_json(label_manifest_path)
+    active_role_graph = _read_json(active_site_role_graph_sidecar_path)
+    source_free_manifest = _read_json(source_free_predicted_geometry_manifest_path)
+
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    heldout_rows = [
+        row for row in manifest_rows if row.get("split_assignment") == "heldout"
+    ]
+    active_rows = [
+        row
+        for row in active_role_graph.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    active_heldout_ok_rows = [
+        row
+        for row in active_rows
+        if row.get("split_assignment") == "heldout" and row.get("status") == "ok"
+    ]
+    source_free_counts = source_free_manifest.get("counts") or {}
+    source_free_ready_rows = int(
+        source_free_counts.get("source_free_geometry_ready_rows") or 0
+    )
+    previous_token = pair_sidecar.get("decision", {}).get(
+        "previous_selected_feature_token"
+    )
+    followup_token = pair_sidecar.get("decision", {}).get(
+        "selected_followup_feature_token"
+    )
+    residual_contract = (
+        pair_contract.get("calibration_contract", {}).get("residual_distance", {})
+        if isinstance(pair_contract.get("calibration_contract"), dict)
+        else {}
+    )
+    required_extractors = [
+        {
+            "feature_token": previous_token,
+            "extractor": "source_free_event_residue_role_linker",
+            "required_inputs": [
+                "source_free_active_site_residue_locator",
+                "source_free_residue_role_assignment",
+                "source_free_proton_transfer_event_axis",
+            ],
+            "forbidden_inputs": [
+                "m_csa_heldout_row_specific_mechanism_text",
+                "heldout_labels",
+                "source_ids",
+                "target_names",
+                "ec_or_rhea_ids",
+            ],
+            "status": "missing",
+        },
+        {
+            "feature_token": followup_token,
+            "extractor": "source_free_active_site_residue_identity_counter",
+            "required_inputs": [
+                "source_free_active_site_residue_locator",
+                "accession_compatible_residue_identity_mapping",
+            ],
+            "forbidden_inputs": [
+                "m_csa_heldout_active_site_role_labels_as_predictive_features",
+                "heldout_labels",
+                "source_ids",
+                "target_names",
+            ],
+            "status": "missing_current702_heldout_surface",
+        },
+    ]
+    blockers = [
+        "source_free_current702_heldout_locator_surface_missing",
+        "source_free_event_residue_role_extractor_missing",
+        "m_csa_curated_heldout_active_site_roles_not_deployment_input",
+    ]
+    if source_free_ready_rows < len(heldout_rows):
+        blockers.append("source_free_predicted_geometry_heldout_coverage_incomplete")
+    contract_ready = (
+        pair_contract.get("status")
+        == "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+    )
+    if not contract_ready:
+        blockers.append("pair_operating_point_contract_not_ready")
+    surface_ready = False
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_HELDOUT_SAFE_SURFACE_PLAN_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_ready_surface_blocked"
+        ),
+        "scope": (
+            "Review-only materialization plan for a heldout-safe application "
+            "surface for the best-token follow-up pair. It records the "
+            "source-free extractors needed before applying the frozen residual "
+            "threshold to heldout exactly once."
+        ),
+        "selected_feature_pair": {
+            "event_residue_role_token": previous_token,
+            "residue_count_token": followup_token,
+        },
+        "calibration_contract": {
+            "threshold": residual_contract.get("threshold"),
+            "oos_abstain_recall": residual_contract.get("oos_abstain_recall"),
+            "auc_oos_gt_primary": residual_contract.get(
+                "calibration_auc_oos_gt_primary"
+            ),
+            "retained_oos_rows_after_pair": len(
+                pair_error.get("retained_oos_failure_set", [])
+            ),
+        },
+        "required_extractors": required_extractors,
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "plan_only": True,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_rows_in_manifest": len(heldout_rows),
+            "active_site_role_graph_heldout_ok_rows": len(active_heldout_ok_rows),
+            "source_free_predicted_geometry_ready_rows": source_free_ready_rows,
+            "required_extractors": len(required_extractors),
+            "blockers": len(blockers),
+            "pair_feature_dimensions": pair_sidecar.get("counts", {}).get(
+                "total_feature_dimensions"
+            ),
+            "pair_calibration_oos_abstain_recall": residual_contract.get(
+                "oos_abstain_recall"
+            ),
+            "pair_calibration_retained_oos_rows": len(
+                pair_error.get("retained_oos_failure_set", [])
+            ),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "heldout_safe_pair_application_surface_ready": surface_ready,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Build a source-free current702 heldout active-site locator and "
+                "event/residue-role extraction sidecar for the selected pair; "
+                "rerun this plan and the preflight, then apply the frozen "
+                "residual threshold exactly once without retuning."
+            ),
+        },
+        "source_artifacts": {
+            "pair_train_cal_feature_sidecar": _source_path_record(
+                pair_train_cal_feature_sidecar_path
+            ),
+            "pair_operating_point_contract": _source_path_record(
+                pair_operating_point_contract_path
+            ),
+            "pair_calibration_error_analysis": _source_path_record(
+                pair_calibration_error_analysis_path
+            ),
+            "best_token_heldout_safe_preflight": _source_path_record(
+                best_token_heldout_safe_preflight_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+            "source_free_predicted_geometry_manifest": _source_path_record(
+                source_free_predicted_geometry_manifest_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The calibrated pair surface is ready on train/cal, but heldout "
+                "application remains blocked until the selected pair can be "
+                "computed from source-free active-site/event evidence."
+            ),
+            "next_action": (
+                "Materialize source-free current702 heldout locator and "
+                "event-residue-role sidecars before any heldout threshold "
+                "application."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_report(
+    plan: dict[str, Any],
+) -> str:
+    counts = plan["counts"]
+    decision = plan["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Heldout-Safe Surface Plan - current702",
+        "",
+        f"Run: {plan['created_utc']}",
+        "",
+        plan["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {plan['status']}",
+        f"- Heldout rows: {counts['heldout_rows_in_manifest']}",
+        "- Source-free predicted geometry ready rows: "
+        f"{counts['source_free_predicted_geometry_ready_rows']}",
+        "- Pair calibration OOS abstain recall: "
+        f"{counts['pair_calibration_oos_abstain_recall']}",
+        "- Pair retained OOS rows: "
+        f"{counts['pair_calibration_retained_oos_rows']}",
+        f"- Blockers: {', '.join(plan['blockers'])}",
+        "",
+        "## Required Extractors",
+        "",
+        "| token | extractor | status |",
+        "| --- | --- | --- |",
+    ]
+    for extractor in plan["required_extractors"]:
+        lines.append(
+            f"| {extractor['feature_token']} | {extractor['extractor']} | "
+            f"{extractor['status']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Heldout-safe pair application surface ready: "
+        f"{decision['heldout_safe_pair_application_surface_ready']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {plan['interpretation']['result']}",
+        f"- {plan['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan(
+    *,
+    pair_train_cal_feature_sidecar_path: Path,
+    pair_operating_point_contract_path: Path,
+    pair_calibration_error_analysis_path: Path,
+    best_token_heldout_safe_preflight_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    source_free_predicted_geometry_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    plan = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan(
+        pair_train_cal_feature_sidecar_path=pair_train_cal_feature_sidecar_path,
+        pair_operating_point_contract_path=pair_operating_point_contract_path,
+        pair_calibration_error_analysis_path=pair_calibration_error_analysis_path,
+        best_token_heldout_safe_preflight_path=best_token_heldout_safe_preflight_path,
+        label_manifest_path=label_manifest_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        source_free_predicted_geometry_manifest_path=source_free_predicted_geometry_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_report(
+                plan
+            ),
+            encoding="utf-8",
+        )
+    return plan
 
 
 def _manifest_fingerprint_id(row: dict[str, Any]) -> Any:

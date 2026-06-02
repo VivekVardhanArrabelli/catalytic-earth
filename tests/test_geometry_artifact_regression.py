@@ -4560,6 +4560,78 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "current702_20260602.json"
             )
         )
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_heldout_safe_application_preflight_"
+                "current702_20260602.json"
+            )
+        )
+        followup_ablation = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_token_ablation_"
+                "current702_20260602.json"
+            )
+        )
+        pair_sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+                "current702_20260602.json"
+            )
+        )
+        pair_guardrail = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_"
+                "current702_20260602.json"
+            )
+        )
+        pair_rerun = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+                "current702_20260602.json"
+            )
+        )
+        pair_contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+                "current702_20260602.json"
+            )
+        )
+        pair_error = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_"
+                "current702_20260602.json"
+            )
+        )
+        pair_surface_plan = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_"
+                "current702_20260602.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -4710,6 +4782,139 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(best_error["counts"]["critical_violation_total"], 0)
         self.assertEqual(len(best_error["retained_oos_failure_set"]), 8)
         self.assertEqual(best_error["retained_oos_failure_set"][0]["entry_id"], "m_csa:273")
+        self.assertEqual(
+            preflight["status"],
+            "p0_oos_augmented_best_token_heldout_safe_application_preflight_blocked",
+        )
+        self.assertFalse(
+            preflight["decision"]["heldout_safe_application_surface_available"]
+        )
+        self.assertFalse(
+            preflight["decision"]["frozen_residual_threshold_applied_once"]
+        )
+        self.assertEqual(preflight["counts"]["heldout_rows_in_manifest"], 140)
+        self.assertEqual(
+            preflight["counts"]["heldout_rows_in_best_token_feature_sidecar"], 0
+        )
+        self.assertIn(
+            "source_free_event_residue_role_surface_missing",
+            preflight["blockers"],
+        )
+        self.assertEqual(
+            followup_ablation["status"],
+            "p0_oos_augmented_best_token_followup_token_ablation_ready",
+        )
+        self.assertEqual(
+            followup_ablation["counts"]["remaining_retained_oos_failure_rows"], 8
+        )
+        self.assertEqual(
+            followup_ablation["counts"]["candidate_tokens_scored"], 309
+        )
+        self.assertEqual(len(followup_ablation["candidate_feature_tokens"]), 309)
+        self.assertEqual(
+            followup_ablation["counts"][
+                "tokens_beating_best_token_residual_contract"
+            ],
+            54,
+        )
+        self.assertEqual(
+            followup_ablation["decision"]["best_followup_token"],
+            "residue_code_count:his=3",
+        )
+        self.assertEqual(
+            followup_ablation["decision"][
+                "best_followup_residual_oos_abstain_recall"
+            ],
+            0.857143,
+        )
+        self.assertEqual(
+            followup_ablation["decision"]["best_followup_residual_auc_oos_gt_primary"],
+            0.875,
+        )
+        self.assertEqual(
+            pair_sidecar["status"],
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_ready_no_fit",
+        )
+        self.assertEqual(pair_sidecar["counts"]["materialized_feature_rows"], 43)
+        self.assertEqual(pair_sidecar["counts"]["base_feature_dimensions"], 18)
+        self.assertEqual(pair_sidecar["counts"]["expanded_feature_dimensions"], 1)
+        self.assertEqual(pair_sidecar["counts"]["total_feature_dimensions"], 19)
+        self.assertEqual(pair_sidecar["counts"]["token_hit_rows"], 6)
+        self.assertEqual(
+            pair_sidecar["decision"]["selected_followup_feature_token"],
+            "residue_code_count:his=3",
+        )
+        self.assertEqual(
+            pair_guardrail["status"],
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_passed",
+        )
+        self.assertEqual(pair_guardrail["counts"]["critical_violation_total"], 0)
+        self.assertTrue(
+            pair_guardrail["decision"]["safe_to_run_no_template_methods_now"]
+        )
+        self.assertEqual(
+            pair_rerun["status"],
+            "p0_row_specific_no_template_train_cal_operating_point_ready",
+        )
+        self.assertEqual(pair_rerun["counts"]["feature_dimensions"], 19)
+        self.assertEqual(
+            pair_contract["status"],
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only",
+        )
+        self.assertEqual(
+            pair_contract["calibration_contract"]["residual_distance"][
+                "threshold"
+            ],
+            3.21469422,
+        )
+        self.assertEqual(
+            pair_contract["calibration_contract"]["residual_distance"][
+                "oos_abstain_recall"
+            ],
+            0.857143,
+        )
+        self.assertEqual(
+            pair_contract["calibration_contract"]["residual_distance"][
+                "calibration_auc_oos_gt_primary"
+            ],
+            0.875,
+        )
+        self.assertEqual(
+            pair_error["status"],
+            "p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_ready",
+        )
+        self.assertEqual(
+            pair_error["counts"]["outcome_counts"],
+            {
+                "oos_abstained": 24,
+                "oos_non_abstained": 4,
+                "primary_retained": 4,
+            },
+        )
+        self.assertEqual(len(pair_error["retained_oos_failure_set"]), 4)
+        self.assertFalse(pair_error["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            pair_surface_plan["status"],
+            "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_ready_surface_blocked",
+        )
+        self.assertFalse(
+            pair_surface_plan["decision"][
+                "heldout_safe_pair_application_surface_ready"
+            ]
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"]["heldout_rows_in_manifest"], 140
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"]["pair_calibration_oos_abstain_recall"],
+            0.857143,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"]["pair_calibration_retained_oos_rows"], 4
+        )
+        self.assertEqual(pair_surface_plan["counts"]["required_extractors"], 2)
+        self.assertEqual(pair_surface_plan["counts"]["blockers"], 4)
+        self.assertFalse(pair_surface_plan["guardrails"]["heldout_rows_evaluated"])
 
     def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
         self,

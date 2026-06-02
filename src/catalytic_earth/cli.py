@@ -90,6 +90,14 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
     write_mechanism_feature_row_specific_bond_change_materialization_priority,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail_audit,
@@ -12796,6 +12804,204 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"calibration error analysis to {args.out} (status: {analysis.get('status')}, "
         f"OOS retained: {outcomes.get('oos_non_abstained')}, "
         f"OOS abstained: {outcomes.get('oos_abstained')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight(
+    args: argparse.Namespace,
+) -> int:
+    preflight = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight(
+        best_token_feature_sidecar_path=Path(args.best_token_feature_sidecar),
+        best_token_operating_point_contract_path=Path(
+            args.best_token_operating_point_contract
+        ),
+        label_manifest_path=Path(args.label_manifest),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        reaction_center_template_sidecar_path=Path(
+            args.reaction_center_template_sidecar
+        ),
+        source_free_predicted_geometry_manifest_path=Path(
+            args.source_free_predicted_geometry_manifest
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    decision = preflight.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"heldout-safe application preflight to {args.out} "
+        f"(status: {preflight.get('status')}, surface available: "
+        f"{decision.get('heldout_safe_application_surface_available')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation(
+    args: argparse.Namespace,
+) -> int:
+    ablation = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation(
+        source_sidecar_path=Path(args.source_sidecar),
+        best_token_calibration_error_analysis_path=Path(
+            args.best_token_calibration_error_analysis
+        ),
+        base_best_token_train_cal_feature_sidecar_path=Path(
+            args.base_best_token_train_cal_feature_sidecar
+        ),
+        label_manifest_path=Path(args.label_manifest),
+        best_token_no_template_rerun_path=Path(args.best_token_no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        max_candidate_tokens=args.max_candidate_tokens,
+    )
+    counts = ablation.get("counts", {})
+    decision = ablation.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up token ablation to {args.out} "
+        f"(status: {ablation.get('status')}, tokens beating best: "
+        f"{counts.get('tokens_beating_best_token_residual_contract')}, "
+        f"best follow-up token: {decision.get('best_followup_token')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar(
+    args: argparse.Namespace,
+) -> int:
+    sidecar = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar(
+        source_sidecar_path=Path(args.source_sidecar),
+        followup_token_ablation_path=Path(args.followup_token_ablation),
+        base_best_token_train_cal_feature_sidecar_path=Path(
+            args.base_best_token_train_cal_feature_sidecar
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = sidecar.get("counts", {})
+    decision = sidecar.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair train/cal sidecar to {args.out} "
+        f"(status: {sidecar.get('status')}, total dimensions: "
+        f"{counts.get('total_feature_dimensions')}, follow-up token: "
+        f"{decision.get('selected_followup_feature_token')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        source_sidecar_path=Path(args.source_sidecar),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair guardrail audit to {args.out} "
+        f"(status: {audit.get('status')}, critical violations: "
+        f"{counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_feature_guardrail_path=Path(args.train_cal_feature_guardrail),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    residual = audit.get("residual_variant", {}).get(
+        "calibration_selected_residual_threshold", {}
+    )
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair no-template rerun to {args.out} "
+        f"(status: {audit.get('status')}, feature dimensions: "
+        f"{counts.get('feature_dimensions')}, OOS abstain recall: "
+        f"{residual.get('oos_abstain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract(
+    args: argparse.Namespace,
+) -> int:
+    contract = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract(
+        no_template_rerun_path=Path(args.no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    residual = contract.get("calibration_contract", {}).get("residual_distance", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair operating-point contract to {args.out} "
+        f"(status: {contract.get('status')}, residual threshold: "
+        f"{residual.get('threshold')}, OOS abstain recall: "
+        f"{residual.get('oos_abstain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis(
+    args: argparse.Namespace,
+) -> int:
+    analysis = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis(
+        no_template_rerun_path=Path(args.no_template_rerun),
+        operating_point_contract_path=Path(args.operating_point_contract),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    outcomes = analysis.get("counts", {}).get("outcome_counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair calibration error analysis to {args.out} "
+        f"(status: {analysis.get('status')}, OOS retained: "
+        f"{outcomes.get('oos_non_abstained')}, OOS abstained: "
+        f"{outcomes.get('oos_abstained')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan(
+    args: argparse.Namespace,
+) -> int:
+    plan = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan(
+        pair_train_cal_feature_sidecar_path=Path(args.pair_train_cal_feature_sidecar),
+        pair_operating_point_contract_path=Path(args.pair_operating_point_contract),
+        pair_calibration_error_analysis_path=Path(
+            args.pair_calibration_error_analysis
+        ),
+        best_token_heldout_safe_preflight_path=Path(
+            args.best_token_heldout_safe_preflight
+        ),
+        label_manifest_path=Path(args.label_manifest),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        source_free_predicted_geometry_manifest_path=Path(
+            args.source_free_predicted_geometry_manifest
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = plan.get("counts", {})
+    decision = plan.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair heldout-safe surface plan to {args.out} "
+        f"(status: {plan.get('status')}, surface ready: "
+        f"{decision.get('heldout_safe_pair_application_surface_ready')}, "
+        f"blockers: {counts.get('blockers')})"
     )
     return 0
 
@@ -27892,6 +28098,492 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_error.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-heldout-safe-application-preflight"
+        ),
+        help=(
+            "check whether the best-token residual contract can be applied to "
+            "a heldout-safe feature surface without reading heldout"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--best-token-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--best-token-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--reaction-center-template-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--source-free-predicted-geometry-manifest",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "sidecar_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_heldout_safe_application_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_heldout_safe_application_preflight_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_preflight.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_followup = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-token-ablation"
+        ),
+        help=(
+            "run a calibration-only follow-up token ablation over the retained "
+            "OOS rows left by the best-token residual contract"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--best-token-calibration-error-analysis",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_calibration_error_analysis_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--base-best-token-train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--best-token-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--max-candidate-tokens",
+        type=int,
+        default=1000,
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_token_ablation_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_token_ablation_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_followup.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_sidecar = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-train-cal-"
+            "feature-sidecar"
+        ),
+        help=(
+            "materialize the best-token plus follow-up token pair as a "
+            "train/cal-only row-specific feature sidecar"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_sidecar.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_sidecar.add_argument(
+        "--followup-token-ablation",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_token_ablation_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_sidecar.add_argument(
+        "--base-best-token-train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_sidecar.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_guardrail = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-train-cal-"
+            "feature-guardrail"
+        ),
+        help=(
+            "audit leakage and split safety for the best-token follow-up pair "
+            "train/cal feature sidecar"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_guardrail.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_guardrail.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_guardrail.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_guardrail.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_guardrail.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_guardrail.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_no_template = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-no-template-rerun"
+        ),
+        help=(
+            "run train/cal-only no-template diagnostics on the best-token "
+            "follow-up pair feature surface"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_no_template.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_no_template.add_argument(
+        "--train-cal-feature-guardrail",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_no_template.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_no_template.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_no_template.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_no_template.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_contract = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-operating-point-"
+            "contract"
+        ),
+        help=(
+            "freeze calibration-only centroid and residual thresholds for the "
+            "best-token follow-up pair feature surface"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_contract.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_contract.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_contract.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_error = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-calibration-error-"
+            "analysis"
+        ),
+        help=(
+            "analyze retained versus abstained calibration OOS rows under the "
+            "best-token follow-up pair residual contract"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_error.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_error.add_argument(
+        "--operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_error.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_error.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_error.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_error.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-heldout-safe-"
+            "surface-plan"
+        ),
+        help=(
+            "plan the source-free heldout application surface needed before "
+            "applying the best-token follow-up pair residual threshold"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--pair-train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--pair-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--pair-calibration-error-analysis",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--best-token-heldout-safe-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_heldout_safe_application_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--source-free-predicted-geometry-manifest",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "sidecar_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan
         )
     )
 

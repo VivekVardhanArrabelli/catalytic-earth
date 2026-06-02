@@ -56,6 +56,111 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T12:02:05Z`
+- STARTED_LOCAL: `2026-06-02T07:02:05-0500 CDT`
+- ENDED_AT: `2026-06-02T12:31:48Z`
+- ENDED_LOCAL: `2026-06-02T07:31:48-0500 CDT`
+- ELAPSED_MINUTES: `29.7`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "20652", "started_at": "2026-06-02T12:02:28Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue Lever 2 from the best-token residual contract. First test whether the
+selected token can be applied to heldout without M-CSA heldout row-specific
+mechanism text; if not, use the remaining retained calibration OOS rows for
+the next token ablation and keep heldout unread.
+
+#### What changed
+
+- Added a heldout-safe application preflight for the best-token residual
+  contract. It blocks the heldout read: the selected token
+  `event_residue_role:proton_transfer|electrostatic_stabiliser` needs a
+  source-free event/residue-role surface, while the available best-token
+  sidecar is train/cal-only, the active-site role graph lacks an event-type
+  axis, and the source-free predicted-geometry manifest has only 3 ready rows.
+- Used the remaining 8 retained calibration OOS rows from the best-token error
+  analysis for a follow-up all-candidate token ablation. Scored all 309
+  available candidate tokens on top of the best-token train/cal surface; 54
+  beat the best-token residual contract. The best follow-up token is
+  `residue_code_count:his=3`.
+- Materialized the best-token + follow-up-token pair as a durable train/cal
+  sidecar, guardrail-audited it, reran no-template centroid/residual scoring,
+  wrote a calibration-only operating-point contract, and analyzed calibration
+  errors. The pair keeps the residual threshold at `3.21469422`, retains all 4
+  calibration primaries, improves calibration OOS abstain recall from
+  `0.714286` to `0.857143`, improves residual AUC from `0.776786` to `0.875`,
+  and leaves 4/28 calibration OOS rows retained.
+- Added a heldout-safe surface plan for the calibrated pair. The exact next
+  deployment blocker is now explicit: build a source-free current702 heldout
+  active-site locator plus event/residue-role extraction sidecar for
+  `event_residue_role:proton_transfer|electrostatic_stabiliser` and
+  `residue_code_count:his=3` before applying the frozen threshold once.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  thresholds, or heldout M-CSA row-specific feature rows changed. Heldout was
+  not evaluated.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.md`
+
+#### Tests run
+
+- Focused new-path checks passed:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_best_token_heldout_safe_application_preflight_blocks_without_surface tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_best_token_followup_token_ablation_scores_remaining_oos tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_row_specific_bond_change_p0_oos_augmented_expanded_surface_current_counts -q`.
+- Broader Lever 2/CLI/regression suite
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`
+  passed: 331 tests and 70 subtests.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1157 tests in
+  39.105s with the existing sklearn/scipy deprecation warning.
+- `PYTHONPATH=src python -m pytest tests -q` passed after the final surface
+  plan addition: 1202 tests, 89 subtests, and the same existing warning.
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12
+  source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `git diff --check` passed.
+- New artifact JSON parse check passed for 8 JSON artifacts.
+- Repo JSON/JSONL parse sweep passed: 3181 JSON and 27 JSONL files, 0 parse
+  errors.
+
+#### Exact next action
+
+Do not read heldout yet. Continue Lever 2 by materializing a source-free
+current702 heldout application surface for the calibrated pair in
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json`.
+Start from
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json`:
+build source-free active-site locator/residue identity support for
+`residue_code_count:his=3` and a source-free event/residue-role linker for
+`event_residue_role:proton_transfer|electrostatic_stabiliser`, then rerun the
+surface plan/preflight. Only if that surface is ready, apply the frozen
+residual threshold `3.21469422` exactly once without retuning.
+
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T11:01:38.393916+00:00`
 - STARTED_LOCAL: `2026-06-02T06:01:38.394013-05:00`
 - ENDED_AT: `2026-06-02T11:42:12Z`

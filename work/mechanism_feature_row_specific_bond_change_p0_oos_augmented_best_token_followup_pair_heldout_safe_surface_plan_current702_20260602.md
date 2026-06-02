@@ -1,0 +1,33 @@
+# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Heldout-Safe Surface Plan - current702
+
+Run: 2026-06-02T12:28:24Z
+
+Review-only materialization plan for a heldout-safe application surface for the best-token follow-up pair. It records the source-free extractors needed before applying the frozen residual threshold to heldout exactly once.
+
+## Status
+
+- p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_ready_surface_blocked
+- Heldout rows: 140
+- Source-free predicted geometry ready rows: 3
+- Pair calibration OOS abstain recall: 0.857143
+- Pair retained OOS rows: 4
+- Blockers: source_free_current702_heldout_locator_surface_missing, source_free_event_residue_role_extractor_missing, m_csa_curated_heldout_active_site_roles_not_deployment_input, source_free_predicted_geometry_heldout_coverage_incomplete
+
+## Required Extractors
+
+| token | extractor | status |
+| --- | --- | --- |
+| event_residue_role:proton_transfer|electrostatic_stabiliser | source_free_event_residue_role_linker | missing |
+| residue_code_count:his=3 | source_free_active_site_residue_identity_counter | missing_current702_heldout_surface |
+
+## Decision
+
+- Heldout-safe pair application surface ready: False
+- Apply frozen pair threshold now: False
+- Heldout read once performed: False
+- Next gate: Build a source-free current702 heldout active-site locator and event/residue-role extraction sidecar for the selected pair; rerun this plan and the preflight, then apply the frozen residual threshold exactly once without retuning.
+
+## Interpretation
+
+- The calibrated pair surface is ready on train/cal, but heldout application remains blocked until the selected pair can be computed from source-free active-site/event evidence.
+- Materialize source-free current702 heldout locator and event-residue-role sidecars before any heldout threshold application.

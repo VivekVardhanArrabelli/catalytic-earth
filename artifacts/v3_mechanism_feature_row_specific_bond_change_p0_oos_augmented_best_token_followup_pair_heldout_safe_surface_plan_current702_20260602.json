@@ -1,0 +1,128 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602",
+  "blockers": [
+    "source_free_current702_heldout_locator_surface_missing",
+    "source_free_event_residue_role_extractor_missing",
+    "m_csa_curated_heldout_active_site_roles_not_deployment_input",
+    "source_free_predicted_geometry_heldout_coverage_incomplete"
+  ],
+  "calibration_contract": {
+    "auc_oos_gt_primary": 0.875,
+    "oos_abstain_recall": 0.857143,
+    "retained_oos_rows_after_pair": 4,
+    "threshold": 3.21469422
+  },
+  "counts": {
+    "active_site_role_graph_heldout_ok_rows": 132,
+    "blockers": 4,
+    "critical_violation_total": 0,
+    "heldout_rows_in_manifest": 140,
+    "pair_calibration_oos_abstain_recall": 0.857143,
+    "pair_calibration_retained_oos_rows": 4,
+    "pair_feature_dimensions": 19,
+    "required_extractors": 2,
+    "source_free_predicted_geometry_ready_rows": 3
+  },
+  "created_utc": "2026-06-02T12:28:24Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "heldout_read_once_performed": false,
+    "heldout_safe_pair_application_surface_ready": false,
+    "next_gate": "Build a source-free current702 heldout active-site locator and event/residue-role extraction sidecar for the selected pair; rerun this plan and the preflight, then apply the frozen residual threshold exactly once without retuning."
+  },
+  "guardrails": {
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "model_weights_fit_or_refit": false,
+    "plan_only": true,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Materialize source-free current702 heldout locator and event-residue-role sidecars before any heldout threshold application.",
+    "result": "The calibrated pair surface is ready on train/cal, but heldout application remains blocked until the selected pair can be computed from source-free active-site/event evidence."
+  },
+  "required_extractors": [
+    {
+      "extractor": "source_free_event_residue_role_linker",
+      "feature_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+      "forbidden_inputs": [
+        "m_csa_heldout_row_specific_mechanism_text",
+        "heldout_labels",
+        "source_ids",
+        "target_names",
+        "ec_or_rhea_ids"
+      ],
+      "required_inputs": [
+        "source_free_active_site_residue_locator",
+        "source_free_residue_role_assignment",
+        "source_free_proton_transfer_event_axis"
+      ],
+      "status": "missing"
+    },
+    {
+      "extractor": "source_free_active_site_residue_identity_counter",
+      "feature_token": "residue_code_count:his=3",
+      "forbidden_inputs": [
+        "m_csa_heldout_active_site_role_labels_as_predictive_features",
+        "heldout_labels",
+        "source_ids",
+        "target_names"
+      ],
+      "required_inputs": [
+        "source_free_active_site_residue_locator",
+        "accession_compatible_residue_identity_mapping"
+      ],
+      "status": "missing_current702_heldout_surface"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan",
+  "scope": "Review-only materialization plan for a heldout-safe application surface for the best-token follow-up pair. It records the source-free extractors needed before applying the frozen residual threshold to heldout exactly once.",
+  "selected_feature_pair": {
+    "event_residue_role_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+    "residue_count_token": "residue_code_count:his=3"
+  },
+  "source_artifacts": {
+    "active_site_role_graph_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "sha256": "8c58a6de59dde646dc3d3c4995fcda23ac3fe7f5190d1c4d19481859e7451e2b"
+    },
+    "best_token_heldout_safe_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight_current702_20260602.json",
+      "sha256": "783803a2c94c0535063e344b21fa9673cfbc404956746334a5391edcd9a493a5"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "pair_calibration_error_analysis": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_calibration_error_analysis_current702_20260602.json",
+      "sha256": "a66517a8f5e2e5c0d1e4a1e354f486ae57fdf291967db864c72eee2cc83135e9"
+    },
+    "pair_operating_point_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
+      "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
+    },
+    "pair_train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    },
+    "source_free_predicted_geometry_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
+      "sha256": "058bb6e5d2e274490491fd498b30b1f44cd8e5f01fc105f744905bd8b73e7369"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_ready_surface_blocked"
+}
