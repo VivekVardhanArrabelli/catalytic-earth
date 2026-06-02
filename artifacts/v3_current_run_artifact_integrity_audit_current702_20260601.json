@@ -24,6 +24,17 @@
       "work_report_sha256": "395391381dab366afeeac6b8e89d4a8e1c4d60f4f698b0170a29bedf39c5809d"
     },
     {
+      "artifact_status": "fold_channel_carryover_resolved_no_rerun_needed",
+      "category": "fold_channel_carryover_resolution",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json",
+      "json_sha256": "5579f223b1b731a6ea74650d191c2f46f0bb67a8dc9b3f0ff883fa8e23c1e229",
+      "work_report_exists": true,
+      "work_report_path": "work/predicted_structure_fold_channel_carryover_resolution_current702_20260601.md",
+      "work_report_sha256": "77221ee2a3c46e0829e2e82b14678239148ee74877622ae86ec20b113dae99de"
+    },
+    {
       "artifact_status": "predicted_atlas_vs_fold_novelty_delta_ready_review_only",
       "category": "predicted_atlas_vs_fold_novelty_delta",
       "json_exists": true,
@@ -178,6 +189,28 @@
       "work_report_sha256": "ffb92ae16597f5dc5fbbac081513af348a6c7ff21ef7aac869581ca82dc0c6a4"
     },
     {
+      "artifact_status": "p0_rhea_unresolved_official_source_audit_ready_review_only",
+      "category": "mechanism_feature_p0_rhea_unresolved_official_source_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
+      "json_sha256": "31d32000d486099ff1abfcfa70bb1f73750ad65c6a20430f2308e187b0a7e2e3",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.md",
+      "work_report_sha256": "082dfa94318d78f7b9218d64425693526aebf06aee28ea9cd1b4d23bc96a40c3"
+    },
+    {
+      "artifact_status": "p0_reviewer_decision_matrix_ready_review_only",
+      "category": "mechanism_feature_p0_reviewer_decision_matrix",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
+      "json_sha256": "55f6fafbb76bb11f4c02f02a8328a621852417c8c408cf9f3e38da7822def681",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.md",
+      "work_report_sha256": "3f1b9bc4e4afbd7e817ecdd7886231c8fae329e23d443be916d8cfe3ac943312"
+    },
+    {
       "artifact_status": "p0_feature_readiness_audit_blocked_review_required",
       "category": "mechanism_feature_p0_feature_readiness_audit",
       "json_exists": true,
@@ -187,6 +220,17 @@
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.md",
       "work_report_sha256": "59068cb9d8606462007150006cdd60b851fb7a9333a7ba8da41ab4b386ca90b2"
+    },
+    {
+      "artifact_status": "p0_no_template_feature_refresh_blocked_review_required",
+      "category": "mechanism_feature_p0_refresh_blocker_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json",
+      "json_sha256": "eb11576d6d3a10012b02d3416bbc59eb12666d6413a83ff43dae1f7d44606ced",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.md",
+      "work_report_sha256": "5c216c6dd7d3dd0b46e9647f0d870e9390eb2dadd2d14497efe9060ad41ace2f"
     },
     {
       "artifact_status": "glycyl_radical_panel_ready_as_oos_boundary_review_only",
@@ -227,29 +271,33 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
-      "json_sha256": "c9d9f2e53b144addd6ad004d2490f9e695af71f3ddb3345970974c046eb5f0ff",
+      "json_sha256": "e0ce4145f70255076bc4208520b8777056dceb643dcf460550bb098b2f64b4f7",
       "work_report_exists": true,
       "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
-      "work_report_sha256": "2fe0b22a0a2fe981d6fc173a0f9956907ae1e5c8d64f2aaed363285fe0a875db"
+      "work_report_sha256": "f5e415eac63d75ebbf691c36bc30639265e00b6e93a9ce5e2a9c423729c5679a"
     }
   ],
   "counts": {
     "docs_reference_check_artifacts": 1,
     "family_panel_no_template_feature_guardrail_artifacts": 1,
     "family_panel_readiness_artifacts": 1,
+    "fold_channel_carryover_resolution_artifacts": 1,
     "fold_channel_coordinate_provenance_artifacts": 1,
     "fold_channel_reproduction_manifest_artifacts": 1,
-    "json_artifacts_checked": 21,
-    "json_artifacts_parse_passed": 21,
+    "json_artifacts_checked": 25,
+    "json_artifacts_parse_passed": 25,
     "label_registry_mutations": 0,
     "mechanism_feature_gap_guardrail_artifacts": 1,
     "mechanism_feature_gap_priority_artifacts": 1,
     "mechanism_feature_p0_extraction_strict_audit_artifacts": 1,
     "mechanism_feature_p0_extraction_work_package_artifacts": 1,
     "mechanism_feature_p0_feature_readiness_audit_artifacts": 1,
+    "mechanism_feature_p0_refresh_blocker_audit_artifacts": 1,
+    "mechanism_feature_p0_reviewer_decision_matrix_artifacts": 1,
     "mechanism_feature_p0_rhea_lookup_manifest_artifacts": 1,
     "mechanism_feature_p0_rhea_lookup_resolution_artifacts": 1,
     "mechanism_feature_p0_rhea_resolution_consumption_audit_artifacts": 1,
+    "mechanism_feature_p0_rhea_unresolved_official_source_audit_artifacts": 1,
     "mechanism_feature_p0_source_evidence_review_queue_artifacts": 1,
     "mechanism_feature_p0_source_evidence_schema_artifacts": 1,
     "mechanism_feature_p0_source_evidence_sidecar_artifacts": 1,
@@ -261,46 +309,51 @@
     "predicted_atlas_vs_fold_novelty_delta_artifacts": 1,
     "predicted_geometry_scores_created": 0,
     "production_threshold_mutations": 0,
-    "repo_json_artifacts_parse_checked": 3134,
+    "repo_json_artifacts_parse_checked": 3138,
     "repo_json_parse_error_count": 0,
     "repo_jsonl_artifacts_parse_checked": 26,
     "source_free_locator_decision_matrix_artifacts": 1,
-    "work_reports_checked": 21,
-    "work_reports_present": 21
+    "work_reports_checked": 25,
+    "work_reports_present": 25
   },
-  "created_utc": "2026-06-01T23:19:09Z",
+  "created_utc": "2026-06-02T02:18:32Z",
   "critical_counts": {
-    "json_missing_or_parse_failed_rows": 0,
+    "json_missing": 0,
+    "json_parse_failed": 0,
     "label_registry_mutations": 0,
+    "model_fit_or_refit_artifacts": 0,
     "new_coordinates_fetched": 0,
     "predicted_geometry_scores_created": 0,
     "production_threshold_mutations": 0,
-    "repo_parse_errors": 0,
-    "work_reports_missing": 0
+    "repo_json_parse_errors": 0,
+    "work_report_missing": 0
   },
   "guardrails": {
+    "coordinate_downloads_performed": false,
+    "foldseek_tm_recomputed": false,
     "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
     "labels_registries_ontologies_changed": false,
     "model_weights_fit_or_refit": false,
     "new_coordinates_fetched": false,
     "predicted_geometry_scores_created": false,
     "production_thresholds_changed": false
   },
-  "next_action": "Resolve remaining P0 Rhea lookup rows m_csa:11, m_csa:169, and m_csa:5; add reviewer provenance before any train/cal no-template feature-contract refresh.",
+  "next_action": "Do not rerun the predicted-structure fold channel; use the P0 reviewer decision matrix to record reviewer provenance before any no-template feature-contract refresh.",
   "repo_parse_errors": [],
   "schema_version": "current_run_artifact_integrity.v2",
-  "scope": "Current automation-run integrity audit for fold reproduction, predicted-atlas/fold novelty delta, mechanism-feature bond/proton/electron readiness, Rhea lookup resolution/consumption, family-panel guardrails, locator decision, and docs-reference maintenance outputs.",
+  "scope": "Current automation-run integrity audit for fold-channel carryover resolution, mechanism-feature P0 refresh blocker, existing northstar carryovers, and docs-reference maintenance outputs.",
   "status": "current_run_artifact_integrity_audit_passed",
   "validation_summary": {
     "catalytic_earth_cli_validate": "passed; 12 source records, 8 fingerprints, 15 ontology families, 702 labels",
     "compileall": "passed",
-    "current_docs_artifact_reference_check": "passed; 492 references checked, 0 missing",
-    "disk_check": "passed; 27 GiB available",
-    "focused_new_tests": "passed; Rhea resolution/consumption, predicted-atlas-vs-fold delta, current-run integrity, and CLI registration focused slices",
-    "full_pytest": "passed; 1131 tests, 1 existing sklearn/scipy deprecation warning",
+    "current_docs_artifact_reference_check": "passed; 500 references checked, 0 missing",
+    "disk_check": "pending final wrap disk check",
+    "focused_new_tests": "passed; fold-channel carryover resolution, P0 refresh-blocker, current-count regressions, and CLI registration focused slices",
+    "full_pytest": "passed; 1139 tests, 50 subtests, 1 existing sklearn/scipy deprecation warning",
     "git_diff_check": "passed",
-    "repo_json_parse_sweep": "passed; 3134 JSON and 26 JSONL files parsed with 0 errors",
-    "unittest_discovery": "passed; 1108 tests, 1 existing sklearn/scipy deprecation warning",
-    "validation_soak": "passed; 21 iterations of JSON parse, focused pytest, cli validate, and git diff --check through 50.1 elapsed minutes"
+    "repo_json_parse_sweep": "passed; 3138 JSON and 26 JSONL files parsed with 0 errors",
+    "touched_pytest_files": "passed; 290 tests and 31 subtests",
+    "unittest_discovery": "passed; 1116 tests, 1 existing sklearn/scipy deprecation warning"
   }
 }

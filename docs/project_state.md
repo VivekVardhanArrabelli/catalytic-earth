@@ -83,6 +83,10 @@ artifacts first.
   commands, contract/provenance audit hashes, and the single blocker class
   `persistent_afdb_v6_coordinate_bundle_missing`. No coordinates were
   downloaded and no Foldseek/TM score was recomputed.
+- A carryover-resolution audit now makes stale fold-channel prompts explicit:
+  the requested fold-channel artifact/report are present and score-complete,
+  126/126 heldout rows and 6/6 priority cofactor-confounded rows remain scored,
+  and no Foldseek/TM rerun is needed unless the contract audit fails.
 - The fold-augmented gate now has a leakage-safe thresholding contract. A
   deterministic in-distribution train/cal split selected the
   `combined_mean_geometry_fold` threshold `0.44155` at >=90% calibration
@@ -398,6 +402,20 @@ artifacts first.
   EC reclassification away from the worksheet `ec:1.9.3.1`. The remaining Rhea
   lookup manifest now stages only `ec:3.1.21.2`, `ec:3.4.14.5`, and
   `ec:3.4.16.6` for `m_csa:11`, `m_csa:169`, and `m_csa:5`.
+- A bounded official-source audit rechecked those three remaining rows against
+  Rhea EC queries with and without the `ec:` prefix, Rhea accession queries, and
+  current UniProtKB catalytic-activity records. Rhea still returns 0 records;
+  UniProt confirms matching EC activity for all three accessions but provides
+  no Rhea cross-references. These rows are not automation-resolvable from
+  official Rhea/UniProt alone and now need reviewer provenance for M-CSA-only
+  approval, rejection/hold, or an explicitly authorized alternate reaction
+  source.
+- A companion reviewer decision matrix now makes that human gate explicit for
+  `m_csa:11`, `m_csa:169`, and `m_csa:5`. Each row has three allowed decision
+  options: approve M-CSA-only source evidence with reviewer provenance,
+  reject/rewrite draft events, or hold for an authorized alternate reaction
+  source. The matrix records 0 approvals, 0 reviewer IDs, 0 copy-ready rows, and
+  0 feature-contract-consumable rows.
 - A strict consumption audit confirms that the Rhea lookup resolution is used
   only as draft review evidence: `m_csa:124` carries `RHEA:11436` in the
   sidecar, the three unresolved rows remain in lookup/readiness blockers, and
@@ -409,6 +427,11 @@ artifacts first.
   the feature contract contains no row-specific bond/proton/electron fields,
   and refresh remains blocked on reviewer provenance plus the three remaining Rhea lookup
   rows.
+- A companion P0 refresh-blocker audit now packages that into the automation
+  decision: no-template feature-contract refresh is not allowed from the draft
+  sidecar. `m_csa:5`, `m_csa:11`, and `m_csa:169` need reviewer provenance
+  and one explicit decision each before any strict rerun or train/cal feature
+  refresh.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe

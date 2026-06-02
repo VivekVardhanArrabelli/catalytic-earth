@@ -1,0 +1,114 @@
+{
+  "artifact_id": "v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601",
+  "commands": {
+    "rerun_contract_audit_if_needed": "PYTHONPATH=src python -m catalytic_earth.cli audit-predicted-structure-fold-channel-contract",
+    "rerun_coordinate_provenance_if_byte_reproduction_needed": "PYTHONPATH=src python -m catalytic_earth.cli audit-predicted-structure-fold-channel-coordinate-provenance",
+    "rerun_this_resolution": "PYTHONPATH=src python -m catalytic_earth.cli audit-predicted-structure-fold-channel-carryover-resolution"
+  },
+  "counts": {
+    "all_heldout_nearest_hits": 126,
+    "atlas_in_distribution_rows_ok": 168,
+    "confounded_entry_ids_from_fold_signal": 6,
+    "contract_critical_violation_total": 0,
+    "deduplicated_afdb_accessions_missing": 293,
+    "foldseek_result_files_parseable": true,
+    "heldout_rows_ok": 126,
+    "predicted_atlas_rows": 299,
+    "priority_cofactor_confounded_oos_rows": 6,
+    "priority_nearest_hits": 6,
+    "unique_coordinate_files_expected": 299,
+    "unique_coordinate_files_missing": 299
+  },
+  "created_utc": "2026-06-02T02:01:53Z",
+  "guardrails": {
+    "coordinate_downloads_performed": false,
+    "foldseek_tm_recomputed": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "validation_only": true
+  },
+  "input_artifact_status": {
+    "contract_audit_status": "fold_channel_contract_passed_current702",
+    "coordinate_provenance_status": "coordinate_bundle_not_persisted_results_parseable",
+    "fold_level_signal_status": "computed_from_existing_selected_pdb_foldseek_proxy",
+    "predicted_geometry_atlas_status": "complete",
+    "predicted_structure_fold_channel_status": "computed_all_heldout_foldseek_scores",
+    "reproduction_manifest_status": "fold_channel_reproduction_manifest_ready_missing_coordinates"
+  },
+  "interpretation": {
+    "next_action": "Treat the fold channel as downstream-ready for review-only diagnostics; persistent AFDB-v6 CIF provenance is only needed for byte-level reproduction.",
+    "result": "The requested fold-channel build/stage task is already satisfied by the existing scored artifact and its passing strict contract audit."
+  },
+  "requested_carryover_resolution": {
+    "byte_level_reproduction_ready": false,
+    "coordinate_provenance_blocker_is_score_blocker": false,
+    "foldseek_rerun_decision": "no_rerun_existing_scored_channel_contract_passes",
+    "foldseek_rerun_required": false,
+    "remaining_blocker_classes": [
+      "persistent_afdb_v6_coordinate_bundle_missing"
+    ],
+    "requested_outputs_present": true,
+    "requested_primary_output_artifact": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    "requested_primary_output_report": "work/predicted_structure_fold_channel_current702_20260601.md",
+    "scored_scope_complete": true
+  },
+  "safe_next_actions": [
+    {
+      "action": "Do not rerun the predicted-structure fold channel unless the contract audit fails; continue from current handoff review gates.",
+      "blocked_by_human_decision": false,
+      "rank": 1
+    },
+    {
+      "action": "If mechanism-feature work resumes, start with reviewer provenance for m_csa:11, m_csa:169, and m_csa:5 before refreshing any no-template feature contract.",
+      "blocked_by_human_decision": true,
+      "rank": 2
+    },
+    {
+      "action": "If the run must remain automation-only, use docs/artifact index cleanup and focused validation rather than mutating labels, thresholds, or registries.",
+      "blocked_by_human_decision": false,
+      "rank": 3
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.predicted_structure_fold_carryover_resolution",
+  "scope": "Validation-only resolution of the carryover request to build or stage the AlphaFoldDB-predicted Foldseek/TM channel from frozen current702 inputs.",
+  "source_artifacts": {
+    "contract_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json",
+      "sha256": "b421d621cd04b2c7dcce098c6c2f784ffab4a8288ea0872c9875989c73eb7a11"
+    },
+    "coordinate_provenance_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
+      "sha256": "d1308a0eef73866a233dd4399e2cee6870b0c0f4626e97da3395bc66fb3e84df"
+    },
+    "fold_level_signal": {
+      "exists": true,
+      "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+      "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
+    },
+    "predicted_geometry_atlas": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "predicted_structure_fold_channel": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+    },
+    "predicted_structure_fold_channel_report": {
+      "exists": true,
+      "path": "work/predicted_structure_fold_channel_current702_20260601.md",
+      "sha256": "db8a1bbf8af8057bf5f350dd10bbc3931ff5cc361009b4ebfee4172714c1da11"
+    },
+    "reproduction_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json",
+      "sha256": "80937bc9a44dac65ff52b2f3545f69b58756eedcc02b245ec0cd15f0e42a5ba2"
+    }
+  },
+  "status": "fold_channel_carryover_resolved_no_rerun_needed"
+}

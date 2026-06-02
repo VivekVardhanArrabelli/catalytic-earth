@@ -97,6 +97,9 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
     write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
     write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix,
     write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
@@ -104,6 +107,7 @@ from .northstar_next_levers import (
     write_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     write_predicted_structure_fold_augmented_novelty_operating_grid,
     write_predicted_structure_fold_channel,
+    write_predicted_structure_fold_channel_carryover_resolution,
     write_predicted_structure_fold_channel_contract_audit,
     write_predicted_structure_fold_channel_coordinate_provenance_audit,
     write_predicted_structure_fold_channel_reproduction_manifest,
@@ -11007,6 +11011,35 @@ def cmd_build_predicted_structure_fold_channel_reproduction_manifest(
     return 0
 
 
+def cmd_audit_predicted_structure_fold_channel_carryover_resolution(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_structure_fold_channel_carryover_resolution(
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        fold_level_signal_path=Path(args.fold_level_signal),
+        predicted_structure_fold_channel_path=Path(
+            args.predicted_structure_fold_channel
+        ),
+        contract_audit_path=Path(args.contract_audit),
+        coordinate_provenance_audit_path=Path(args.coordinate_provenance_audit),
+        reproduction_manifest_path=Path(args.reproduction_manifest),
+        predicted_structure_fold_channel_report_path=(
+            Path(args.predicted_structure_fold_channel_report)
+            if args.predicted_structure_fold_channel_report
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    resolution = audit.get("requested_carryover_resolution", {})
+    print(
+        "Wrote predicted-structure fold-channel carryover resolution to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"rerun required: {resolution.get('foldseek_rerun_required')})"
+    )
+    return 0
+
+
 def cmd_eval_predicted_atlas_geometry_novelty_variants(args: argparse.Namespace) -> int:
     audit = write_predicted_atlas_geometry_novelty_variants(
         predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
@@ -11988,6 +12021,44 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_cons
     return 0
 
 
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit(
+        rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+        rhea_lookup_resolution_path=Path(args.rhea_lookup_resolution),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 unresolved Rhea official-source "
+        f"audit to {args.out} (status: {audit.get('status')}, "
+        "unresolved after check: "
+        f"{counts.get('unresolved_after_official_source_check')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+    args: argparse.Namespace,
+) -> int:
+    matrix = write_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix(
+        unresolved_official_source_audit_path=Path(args.unresolved_official_source_audit),
+        sidecar_path=Path(args.sidecar),
+        feature_readiness_path=Path(args.feature_readiness),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = matrix.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 reviewer decision matrix to "
+        f"{args.out} (status: {matrix.get('status')}, "
+        f"decision rows: {counts.get('decision_rows')})"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_feature_row_specific_bond_change_p0_feature_readiness(
     args: argparse.Namespace,
 ) -> int:
@@ -12006,6 +12077,33 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_p0_feature_readiness(
         f"{args.out} (status: {audit.get('status')}, "
         f"structurally ready draft rows: {counts.get('structurally_ready_draft_rows')}, "
         f"approved consumable rows: {counts.get('approved_consumable_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_refresh_blocker(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
+        strict_audit_path=Path(args.strict_audit),
+        feature_readiness_path=Path(args.feature_readiness),
+        rhea_resolution_consumption_audit_path=Path(
+            args.rhea_resolution_consumption_audit
+        ),
+        unresolved_official_source_audit_path=Path(
+            args.unresolved_official_source_audit
+        ),
+        reviewer_decision_matrix_path=Path(args.reviewer_decision_matrix),
+        feature_contract_gap_audit_path=Path(args.feature_contract_gap_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    decision = audit.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 refresh-blocker audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        "feature refresh allowed: "
+        f"{decision.get('automation_feature_contract_refresh_allowed')})"
     )
     return 0
 
@@ -23087,6 +23185,68 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_predicted_structure_fold_channel_reproduction_manifest
     )
 
+    predicted_structure_fold_carryover_resolution = subparsers.add_parser(
+        "audit-predicted-structure-fold-channel-carryover-resolution",
+        help=(
+            "resolve stale carryover requests for the already scored "
+            "predicted-structure Foldseek/TM channel without rerunning Foldseek"
+        ),
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--fold-level-signal",
+        default="artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--predicted-structure-fold-channel-report",
+        default="work/predicted_structure_fold_channel_current702_20260601.md",
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--contract-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_contract_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--coordinate-provenance-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--reproduction-manifest",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_carryover_resolution_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_carryover_resolution.add_argument(
+        "--report",
+        default=(
+            "work/predicted_structure_fold_channel_carryover_resolution_"
+            "current702_20260601.md"
+        ),
+    )
+    predicted_structure_fold_carryover_resolution.set_defaults(
+        func=cmd_audit_predicted_structure_fold_channel_carryover_resolution
+    )
+
     predicted_atlas_geometry_variants = subparsers.add_parser(
         "eval-predicted-atlas-geometry-novelty-variants",
         help=(
@@ -25214,6 +25374,101 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    row_specific_bond_change_p0_rhea_unresolved = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-p0-"
+            "rhea-unresolved-official-source"
+        ),
+        help=(
+            "audit official Rhea and UniProt source state for P0 rows that "
+            "remain unresolved after bounded Rhea lookup"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--rhea-lookup-resolution",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_unresolved_official_source_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_unresolved_official_source_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_unresolved.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source
+        )
+    )
+
+    row_specific_bond_change_p0_reviewer_decision_matrix = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-p0-"
+            "reviewer-decision-matrix"
+        ),
+        help=(
+            "stage reviewer decision options for unresolved P0 Rhea rows "
+            "without approving rows or refreshing feature contracts"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--unresolved-official-source-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_unresolved_official_source_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--feature-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_reviewer_decision_matrix_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_reviewer_decision_matrix_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_reviewer_decision_matrix.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
+        )
+    )
+
     row_specific_bond_change_p0_feature_readiness = subparsers.add_parser(
         "audit-mechanism-feature-row-specific-bond-change-p0-feature-readiness",
         help=(
@@ -25274,6 +25529,73 @@ def build_parser() -> argparse.ArgumentParser:
         func=(
             cmd_audit_mechanism_feature_row_specific_bond_change_p0_feature_readiness
         )
+    )
+
+    row_specific_bond_change_p0_refresh_blocker = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-refresh-blocker",
+        help=(
+            "audit whether reviewed P0 row-specific bond/proton/electron "
+            "evidence permits a no-template feature-contract refresh"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--feature-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--rhea-resolution-consumption-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_resolution_consumption_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--unresolved-official-source-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_unresolved_official_source_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--reviewer-decision-matrix",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_reviewer_decision_matrix_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--feature-contract-gap-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "feature_contract_gap_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_refresh_blocker_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_refresh_blocker_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_refresh_blocker.set_defaults(
+        func=cmd_audit_mechanism_feature_row_specific_bond_change_p0_refresh_blocker
     )
 
     mechanism_feature_sidecar_schema = subparsers.add_parser(

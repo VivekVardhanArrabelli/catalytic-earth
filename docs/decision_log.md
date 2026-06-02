@@ -714,6 +714,20 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
 `work/predicted_structure_fold_channel_reproduction_manifest_current702_20260601.md`.
 
+Carryover-resolution follow-up: add a validation-only audit for stale
+automation prompts that still ask to build or stage the predicted-structure fold
+channel. It consumes the scored channel, contract audit, coordinate provenance
+audit, reproduction manifest, predicted-atlas retrieval, and fold-level signal.
+The audit confirms the requested fold-channel artifact/report are present,
+126/126 ok heldout rows and 6/6 priority cofactor-confounded rows are scored,
+the contract has zero critical violations, and no Foldseek/TM rerun is needed.
+The remaining `persistent_afdb_v6_coordinate_bundle_missing` blocker is only for
+byte-level reproduction.
+
+Artifacts:
+`artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+`work/predicted_structure_fold_channel_carryover_resolution_current702_20260601.md`.
+
 ## 2026-06-01: Train/Cal OOS Negatives Add A Partial OOS Calibration Surface For The Fold-Augmented Gate
 
 Decision: score the hash-selected in-distribution OOS calibration negatives
@@ -1025,6 +1039,25 @@ the lookup manifest and readiness blockers. The audit reports 0 critical
 violations, 0 approved rows, 0 feature-contract-consumable rows, and 0
 model-training-eligible rows.
 
+P0 unresolved-Rhea official-source follow-up: recheck the three remaining rows
+(`m_csa:11`, `m_csa:169`, and `m_csa:5`) against bounded Rhea EC queries with
+and without the `ec:` prefix, Rhea accession queries, and current UniProtKB
+catalytic-activity records. Rhea returns 0 records for all nine bounded queries.
+UniProt confirms matching EC catalytic activity for all three accessions but
+provides no Rhea cross-references. The rows remain non-consumable and cannot be
+automation-resolved from official Rhea/UniProt alone; the next gate is reviewer
+provenance for M-CSA-only approval, rejection/hold, or an explicitly authorized
+alternate reaction source.
+
+P0 reviewer-decision matrix follow-up: stage the review-only decision matrix
+for those three unresolved rows. It records each row's draft event count,
+readiness blockers, official-source status, and three allowed reviewer choices:
+approve M-CSA-only source evidence with reviewer provenance, reject/rewrite
+draft events, or hold for an alternate reaction source. It records no reviewer
+decision, approval, feature-contract consumption, model-training eligibility,
+label edit, registry edit, ontology edit, import, threshold change, or
+production-scorer change.
+
 P0 feature-readiness follow-up: audit the draft source-evidence sidecar against
 the strict audit, manual review queue, Rhea lookup manifest, and current
 feature contract. All 15 rows are structurally ready as drafts, with draft
@@ -1034,7 +1067,19 @@ feature contract contains no row-specific bond/proton/electron fields. The
 next blocker remains the three unresolved Rhea rows plus reviewer-provenance approval
 before any train/cal-only no-template feature refresh.
 
+P0 refresh-blocker follow-up: add a compact automation decision audit over the
+strict sidecar audit, feature-readiness audit, Rhea consumption audit,
+unresolved official-source audit, reviewer decision matrix, and feature-contract
+gap audit. It confirms automation must not refresh the no-template
+mechanism-feature contract: all 15 draft rows are structurally ready, but 0 are
+approved/consumable, 0 reviewer IDs are present, 0 copy-ready decisions exist,
+and `m_csa:5`, `m_csa:11`, and `m_csa:169` still require reviewer provenance.
+No feature contract, model, threshold, label, registry, ontology, import, or
+production scorer changed.
+
 Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
 `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`,

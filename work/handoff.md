@@ -57,6 +57,16 @@ acquired, no soak loop was run, and no test suite was executed because this is a
 docs-only synthesis change — no code, registries, scoring, thresholds, or
 artifacts were added, removed, or modified.
 
+Follow-up (merge reconciliation, same session): the latest `main` (`b421ba3` —
+the "Fold Carryover Resolution And P0 Refresh Blocker Audit" and "P0 Unresolved
+Rhea Official-Source Audit And Reviewer Matrix" automation runs, both recorded as
+their own entries directly below) has been merged into this branch so PR #2 is
+mergeable. The PR had gone to conflict only because those two runs edited the same
+orientation docs this integration touched. The merge is additive on both sides;
+the one true conflict (this handoff) was resolved by keeping every entry. Main's
+code (`src/catalytic_earth/northstar_next_levers.py`, `cli.py`, tests) and the
+artifacts from those runs now ride along on the branch.
+
 #### Context
 
 - Branch: `claude/awesome-keller-Lys73` (work is on this feature branch and in
@@ -114,6 +124,208 @@ confirmed out-of-span residual on that template-free surface under the centroid
 line's train/cal/heldout discipline, give the residual a deployable calibration,
 and aim to close a deployment-valid confounded-safe channel (Lever 3). No code or
 artifacts from either build were removed; do not discard either line.
+
+### 2026-06-02 Fold Carryover Resolution And P0 Refresh Blocker Audit
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T01:55:54Z`
+- STARTED_LOCAL: `Mon Jun  1 20:55:54 CDT 2026`
+- ENDED_AT: `2026-06-02T02:48:36Z`
+- ENDED_LOCAL: `Mon Jun  1 21:48:36 CDT 2026`
+- ELAPSED_MINUTES: `52.7`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "66442", "started_at": "2026-06-02T01:55:54Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and sync
+  verification complete from a clean worktree; final release result is reported
+  in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `9337948f575dc49bd383c75dffa9c9231a591097`
+- Git HEAD at end before commit:
+  `9337948f575dc49bd383c75dffa9c9231a591097`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+  durable docs, CLI/code/tests, affected work reports, and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_carryover_resolution_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.md`,
+  refreshed current-docs reference check, refreshed current-run integrity audit,
+  durable docs, CLI/code/tests, and this handoff.
+- Commands run:
+  memory read attempt and fallback; lock acquire; `git fetch origin`;
+  `git pull --ff-only origin main`; required context reads; JSON parse checks
+  for fold-channel artifacts; implemented and ran
+  `audit-predicted-structure-fold-channel-carryover-resolution`; implemented
+  and ran
+  `audit-mechanism-feature-row-specific-bond-change-p0-refresh-blocker`;
+  refreshed `build-current-docs-artifact-reference-check`; refreshed the
+  current-run integrity audit with repo JSON/JSONL parse sweep; focused pytest
+  slices for the new builders, current-count regressions, docs reference check,
+  and CLI registration; touched-file pytest; `python -m compileall -q src
+  tests`; `PYTHONPATH=src python -m catalytic_earth.cli validate`;
+  `git diff --check`; full unittest discovery; full pytest; disk check; exact
+  wall-clock checks; validation soak through 12 clean iterations, interrupted
+  by a user status/push request at 41.2 minutes, then resumed validation soak
+  for 9 additional clean iterations through 50.7 elapsed minutes.
+- Validation results:
+  new JSON artifacts parse; current-docs reference check passed with 500
+  checked references and 0 missing; current-run integrity audit passed with 25
+  JSON artifacts, 25 work reports, 3138 repo JSON files, 26 JSONL files, and 0
+  parse errors; focused new tests passed; touched-file pytest passed with 290
+  tests and 31 subtests; compileall passed; CLI validate passed with 12 source
+  records, 8 fingerprints, 15 ontology families, and 702 labels; full unittest
+  discovery passed with 1116 tests and one existing sklearn/scipy deprecation
+  warning; full pytest passed with 1139 tests, 50 subtests, and the same
+  warning; git diff check passed; disk check passed with 27 GiB available;
+  validation soak passed through 50.7 elapsed minutes.
+- Commit/push result: pending at handoff write; commit this implementation,
+  push to `origin/main`, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  do not rerun the predicted-structure fold channel unless the strict contract
+  audit fails. Use
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`
+  to record reviewer provenance and exactly one decision for `m_csa:5`,
+  `m_csa:11`, and `m_csa:169`; after that, rerun the strict sidecar, review
+  queue, Rhea manifest, feature-readiness, Rhea consumption, and P0
+  refresh-blocker audits before any no-template feature-contract refresh.
+
+Summary:
+
+- Added a validation-only fold-channel carryover-resolution audit. It confirms
+  the requested fold-channel artifact/report are already present and
+  score-complete: 126/126 ok heldout rows and 6/6 priority cofactor-confounded
+  OOS rows have parsed nearest-atlas Foldseek/TM hits, the contract audit has
+  zero critical violations, and no Foldseek/TM rerun is needed. The remaining
+  coordinate-bundle blocker is only for byte-level reproduction.
+- Added a compact P0 refresh-blocker audit for the no-template
+  mechanism-feature lane. It confirms all 15 P0 draft rows are structurally
+  ready but 0 are approved/consumable, 0 reviewer IDs are present, and
+  `m_csa:5`, `m_csa:11`, and `m_csa:169` still block any automation refresh.
+- Updated durable docs, artifact index, current-doc reference check, and
+  current-run integrity audit; no labels, registries, ontologies, imports,
+  production thresholds, model weights, coordinates, or Foldseek/TM scores were
+  changed.
+
+### 2026-06-02 P0 Unresolved Rhea Official-Source Audit And Reviewer Matrix
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T00:12:56Z`
+- STARTED_LOCAL: `Mon Jun  1 19:12:56 CDT 2026`
+- ENDED_AT: `2026-06-02T01:04:59Z`
+- ENDED_LOCAL: `Mon Jun  1 20:04:59 CDT 2026`
+- ELAPSED_MINUTES: `52.1`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "10619", "started_at": "2026-06-02T00:12:56Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and sync
+  verification complete from a clean worktree; final release result is reported
+  in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `c4856ceb1e1eee92887c6a08861b152845f2d2ff`
+- Git HEAD at end before commit:
+  `c4856ceb1e1eee92887c6a08861b152845f2d2ff`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json`,
+  durable docs, CLI/code/tests, affected work reports, carryover notes, and
+  this handoff.
+- Input artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.md`,
+  refreshed current-docs reference check, refreshed current-run integrity audit,
+  durable docs, tests, CLI/code, and carryover notes.
+- Commands run:
+  memory read attempt and fallback; lock acquire; `git fetch origin`; required
+  context reads; fold-channel JSON parse/inspection; live official Rhea and
+  UniProt checks for `m_csa:11`, `m_csa:169`, and `m_csa:5`; implemented and
+  ran
+  `audit-mechanism-feature-row-specific-bond-change-p0-rhea-unresolved-official-source`;
+  implemented and ran
+  `build-mechanism-feature-row-specific-bond-change-p0-reviewer-decision-matrix`;
+  refreshed `build-current-docs-artifact-reference-check`; refreshed the
+  current-run integrity audit; focused pytest slices; full unittest discovery;
+  full pytest; `python -m compileall -q src tests`;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`; repo JSON/JSONL
+  parse sweep; `git diff --check`; disk check; measured elapsed time; initial
+  validation soak through 22 clean iterations; after an external temp start-file
+  overwrite was detected, restored `/tmp/catalytic_earth_run_started_at.txt`
+  from the active lock timestamp and ran 7 guarded validation-soak iterations
+  through 50.9 elapsed minutes.
+- Validation results:
+  new JSON artifacts parse; focused unresolved-Rhea official-source audit,
+  reviewer decision matrix, Rhea resolution/consumption, artifact regression,
+  current-run integrity, and CLI registration tests passed; full unittest
+  discovery passed with 1112 tests and one existing sklearn/scipy deprecation
+  warning; full pytest passed with 1135 tests and the same warning; compileall
+  passed; CLI validate passed with 12 source records, 8 fingerprints, 15
+  ontology families, and 702 labels; current-docs reference check passed with
+  494 checked references and 0 missing; current-run integrity audit passed with
+  23 JSON artifacts, 23 reports, 3136 repo JSON files, 26 JSONL files, and 0
+  parse errors; git diff check passed; disk check passed with 28 GiB available;
+  validation soak passed through 50.9 elapsed minutes.
+- Commit/push result: pending at handoff write; commit this implementation,
+  push to `origin/main`, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  use
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`
+  as the next human-facing packet for `m_csa:11`, `m_csa:169`, and `m_csa:5`;
+  choose exactly one decision per row: approve M-CSA-only source evidence with
+  reviewer provenance, reject/rewrite draft events, or hold for an authorized
+  alternate reaction source. Do not refresh the no-template feature contract
+  until reviewer provenance is recorded and the strict sidecar, review queue,
+  Rhea manifest, feature-readiness, and consumption audits are rerun.
+
+Summary:
+
+- Confirmed the predicted-structure fold channel was already scored and
+  contract-passing; no Foldseek/TM recomputation was needed.
+- Added a bounded official-source audit for the three remaining P0
+  Rhea-missing rows. Rhea EC/accession queries found 0 records; current UniProt
+  confirms matching EC catalytic activity for all three accessions but provides
+  no Rhea cross-references. The rows remain non-consumable.
+- Added a reviewer decision matrix that makes the human gate explicit without
+  approving anything: each row has approve/reject/hold options, 0 reviewer IDs,
+  0 copy-ready approvals, and 0 feature-contract-consumable rows.
 
 ### 2026-06-01 P0 Rhea Resolution And Predicted-Atlas Delta Audit
 
