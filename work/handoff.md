@@ -50,6 +50,102 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 18
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T18:02:03Z`
+- STARTED_LOCAL: `2026-06-03T13:02:03-0500 CDT`
+- ENDED_AT: `2026-06-03T18:25:48Z`
+- ENDED_LOCAL: `2026-06-03T13:25:48-0500 CDT`
+- ELAPSED_MINUTES: `23.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "11710", "started_at": "2026-06-03T18:02:03Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue inside active Levers 2/3/4 from Run 17. Follow the Run 17 next action:
+first check for hash-valid reviewed source decisions; if none are available,
+work the Lever 3 production blocker path by resolving the P10746 fold-only caveat
+or pre-registering a no-duplicate train/cal-only proxy-axis contract before any
+new scoring or fixed-threshold audit rerun.
+
+#### What changed
+
+- Source-decision intake and the P10746 decision packet remained externally
+  blocked: 78 source decisions are pending and the P10746 caveat decision is
+  still pending explicit review.
+- Extended the Lever 3 proxy-axis contract builder/CLI to support
+  `organic_score_0_30_to_below_high_axis_threshold`, custom artifact IDs, and
+  exclusion of rows already present in prior scored-extension artifacts.
+- Materialized
+  `v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_contract_current702_20260603`.
+  It excludes duplicate `m_csa:89` from the prior active-site-count tranche and
+  contracts four train/cal-only rows: `m_csa:60`, `m_csa:75`, `m_csa:214`, and
+  `m_csa:288`.
+- Built the matching scoring-input manifest, downloaded 4/4 AFDB-v6 query CIFs,
+  ran Foldseek against the 133 train-atlas targets, and parsed
+  `v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scored_extension_current702_20260603`.
+  All four follow-up rows now have predicted geometry, Foldseek/TM, selected
+  cofactor, and combined-channel scores.
+- Read out the follow-up axis at unchanged threshold `0.44155` in
+  `v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_fixed_threshold_readout_current702_20260603`.
+  Only `m_csa:288` abstains; `m_csa:60`, `m_csa:75`, and `m_csa:214` are
+  retained.
+- Composed the follow-up scores into
+  `v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_extended_train_cal_oos_surface_current702_20260603`.
+  The surface is still partial at 196/202 full-channel rows with six inherited
+  prior/base blockers, so no global fixed-threshold proxy audit was rerun.
+- Refreshed post-follow-up blocker/scout artifacts. The current background pool
+  is now 160 rows with 0 active-site-count candidates, 0 organic-score
+  candidates, and 8 unsupported-geometry rows.
+- Added
+  `v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603`.
+  It lists the 8 unsupported-geometry rows with accessions and required
+  coordinate/locus repair gates; 0/8 expected AFDB-v6 CIFs are local and 0 rows
+  are ready to score.
+- Refreshed the active mechanical audit, current-docs reference check, durable
+  docs, progress log, and status report. The active audit still has 0 runnable
+  mechanical gates and 15 blockers.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, splits,
+  model weights, source decisions, reviewer decisions, locator sidecars, event
+  linkers, or heldout threshold tuning were changed.
+- The follow-up proxy-axis contract/scoring/readout and repair queue are
+  train/cal-only. The fixed threshold remained `0.44155`.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were used
+  as predictive features.
+
+#### Tests run
+
+- Startup: `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1295 tests.
+- Focused follow-up/active-audit regression tests passed.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q` passed: 118 tests and
+  123 subtests.
+- `PYTHONPATH=src python -m compileall -q src`,
+  `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`,
+  changed-JSON `jq` parse checks, and `git diff --check` passed.
+- Full `PYTHONPATH=src python -m pytest -q` passed: 1341 tests, 149 subtests,
+  and one existing sklearn/SciPy deprecation warning.
+- Wrap `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1296 tests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+
+#### Exact next action
+
+- Lever 3: if reviewed source decisions arrive, rerun source-decision intake and
+  only the matching P10746/source/locator/family gate. Otherwise, do not score
+  more background rows and do not rerun the global fixed-threshold proxy audit
+  from the partial 196/202 surface. The two pre-registered source-free axes are
+  now exhausted; the next mechanical path is coordinate/locus repair for the 8
+  unsupported-geometry rows in the repair queue, then rerun the background
+  scout before any new proxy-axis contract.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 17
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

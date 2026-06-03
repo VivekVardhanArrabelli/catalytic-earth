@@ -1155,6 +1155,16 @@ class CliTests(unittest.TestCase):
             (
                 (
                     "build-fold-augmented-confounded-proxy-train-cal-"
+                    "unsupported-geometry-repair-queue"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "unsupported_geometry_repair_queue"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
                     "scoring-input-manifest"
                 ),
                 (

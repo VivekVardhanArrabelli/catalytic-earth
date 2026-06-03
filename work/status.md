@@ -4,13 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 333
-- Measured elapsed time: 9993.1 minutes (166.55 hours)
+- Entries: 334
+- Measured elapsed time: 10016.6 minutes (166.94 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
+- automation-lever-3: 23.5 measured minutes (0.39 hours)
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
@@ -29,21 +30,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3522
-- Evidence references logged: 2912
+- Artifact references logged: 3525
+- Evidence references logged: 2915
 
 ## Recent Entries
-
-### 2026-06-03T10:52:23.444858+00:00 - post-v2
-
-- Task: active Lever source decision intake preflight
-- Time mode: measured
-- Measured minutes: 49.217
-- Started: 2026-06-03T10:02:52Z
-- Ended: 2026-06-03T10:52:05Z
-- Artifacts: artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, artifacts/v3_active_lever_priority_decision_templates_current702_20260603.json, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, work/handoff.md, work/status.md
-- Evidence: 1305 pytest passed, 1260 unittest passed, 702 labels validated, 3375 JSON files parsed, 38 changed-artifact source SHA records checked, 0 active mechanical gates runnable, 78 source decisions still pending
-- Notes: No labels registries ontologies imports production thresholds model weights locator sidecars reviewer decisions or heldout threshold reads changed.
 
 ### 2026-06-03T11:23:19.905443+00:00 - post-v2
 
@@ -121,6 +111,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md, docs/project_state.md, docs/decision_log.md, docs/artifact_index.md, work/handoff.md, work/status.md
 - Evidence: active-site-count proxy contract selected 6 train/cal-only rows, 6/6 AFDB-v6 query CIFs staged and Foldseek scored against 133 train-atlas targets, 6/6 rows reached full geometry fold cofactor combined-channel scores, new partial extended surface is 192/198 full-channel rows, fixed threshold 0.44155 abstains 1/6 new-axis rows and retains 5/6, active audit reports 0 mechanical gates ready and 15 blockers, 1340 pytest passed with 148 subtests and one existing sklearn SciPy deprecation warning, 1295 unittest discovery passed, validate passed with 702 labels
 - Notes: No labels registries ontologies imports production thresholds model weights source decisions reviewer decisions locator sidecars event linkers or heldout threshold tuning changed.
+
+### 2026-06-03T18:25:33.116790+00:00 - automation-lever-3
+
+- Task: Scored organic follow-up proxy axis and unsupported-geometry repair queue
+- Time mode: measured
+- Measured minutes: 23.483
+- Started: 2026-06-03T18:02:03Z
+- Ended: 2026-06-03T18:25:32Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_fixed_threshold_readout_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json
+- Evidence: PYTHONPATH=src python -m pytest -q, PYTHONPATH=src python -m unittest discover -s tests, PYTHONPATH=src python -m catalytic_earth.cli validate
+- Notes: Follow-up organic-score axis scored 4/4 rows; 1/4 abstains at fixed threshold 0.44155; post-follow-up scout leaves 160 background-only rows and repair queue has 8 unsupported-geometry rows with 0/8 local AFDB-v6 coordinates.
 
 ## Expectation Updates
 

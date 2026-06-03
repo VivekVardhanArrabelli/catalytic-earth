@@ -1,6 +1,6 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T17:39:43Z
+Run: 2026-06-03T18:15:50Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
@@ -34,12 +34,12 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 - Lever 3 proxy scoring-tranche rows: 0
 - Lever 3 proxy scoring-tranche high/structural rows: 0/0
 - Lever 3 proxy scoring-tranche ready for plan: False
-- Lever 3 proxy background-only rows: 170
+- Lever 3 proxy background-only rows: 160
 - Lever 3 proxy background-axis exhausted: True
 - Lever 3 proxy background-axis scout ready axes: 0/3
 - Lever 3 new proxy axis registered: True
-- Lever 3 new proxy-axis contracted rows: 6
-- Lever 3 new proxy-axis full-channel rows: 6
+- Lever 3 new proxy-axis contracted rows: 4
+- Lever 3 new proxy-axis full-channel rows: 4
 - Lever 3 new proxy-axis missing full-score rows: 0
 - Lever 4 acceptance scenario rows: 6
 - Lever 4 acceptance scenario panels: 5
@@ -93,5 +93,5 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 ## Interpretation
 
 - No active Lever 2/3/4 gate is mechanically runnable on the current decision state.
-- Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers.
+- Lever 3 has a pre-registered source-free proxy-axis contract with 4 train/cal rows and 4 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers.
 - Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first.

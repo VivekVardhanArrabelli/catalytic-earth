@@ -1,0 +1,216 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603",
+  "blockers": [
+    "unsupported_geometry_rows_require_coordinate_or_locus_repair"
+  ],
+  "counts": {
+    "background_axis_scout_rows": 160,
+    "blockers": 1,
+    "local_afdb_v6_coordinate_files_missing": 8,
+    "local_afdb_v6_coordinate_files_observed": 0,
+    "ready_to_score_now_rows": 0,
+    "rows_with_sequence_accession": 8,
+    "unsupported_geometry_repair_rows": 8
+  },
+  "created_utc": "2026-06-03T18:21:44Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "new_proxy_axis_ready_to_score_now": false,
+    "next_gate": "Repair the listed coordinate/locus blockers, then rerun the background-axis scout before any new proxy-axis contract. Do not score unsupported geometry rows as abstention evidence.",
+    "score_repair_rows_now": false
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinate_downloads_performed": false,
+    "foldseek_or_tmsearch_run_now": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "new_proxy_axis_registered": false,
+    "production_thresholds_changed": false,
+    "repair_queue_only": true,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "headline": "8 background-only rows need coordinate/locus repair before they can support another source-free proxy axis.",
+    "next_action": "Treat unsupported geometry as a data-quality repair queue, not as a scored proxy axis."
+  },
+  "missing_sequence_entry_ids": [],
+  "repair_rows": [
+    {
+      "accession": "Q46509",
+      "active_site_residue_count": 1,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:105",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q46509_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.024633,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    },
+    {
+      "accession": "P18548",
+      "active_site_residue_count": 1,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:137",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P18548_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.003489,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    },
+    {
+      "accession": "P27000",
+      "active_site_residue_count": 1,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:318",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P27000_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.034086,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    },
+    {
+      "accession": "Q56310",
+      "active_site_residue_count": 3,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:327",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q56310_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.005613,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    },
+    {
+      "accession": "P68175",
+      "active_site_residue_count": 1,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:360",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P68175_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.035844,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    },
+    {
+      "accession": "P15807",
+      "active_site_residue_count": 1,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:610",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.222226,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    },
+    {
+      "accession": "Q9P4R4",
+      "active_site_residue_count": 1,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:618",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.215006,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    },
+    {
+      "accession": "Q7SIE1",
+      "active_site_residue_count": 1,
+      "active_site_residue_count_bin": "1_to_3",
+      "allowed_next_gate": "coordinate_or_locus_repair_then_rerun_background_scout",
+      "entry_id": "m_csa:649",
+      "expected_afdb_v6_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q7SIE1_v6.cif",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "local_afdb_v6_coordinate_exists": false,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.022674,
+      "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+      "required_repair": "Provide coordinate/locus evidence that resolves the unsupported inorganic-locus status before any proxy-axis contract or scoring claim."
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_unsupported_geometry_repair_queue",
+  "scope": "Train/cal-only repair queue for background rows whose only remaining source-free proxy-axis signal is unsupported or missing inorganic-locus geometry. It does not score rows, register a proxy axis, fetch coordinates, tune thresholds, read heldout rows, or count unsupported geometry as abstention evidence.",
+  "source_artifacts": {
+    "background_axis_scout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_scout_current702_20260603.json",
+      "sha256": "aa103db87518d0b9469fd83bcf6d3e8828c741a2e6fcd7a913be9eb9bbf13907"
+    },
+    "coordinate_root": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates",
+      "sha256": null
+    },
+    "sequence_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+      "sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue_blocked"
+}

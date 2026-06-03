@@ -110,6 +110,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_train_cal_background_axis_scout,
     write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract,
     write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout,
+    write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue,
     write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
     write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
     write_fold_augmented_oos_calibrated_threshold_contract,
@@ -12455,6 +12456,9 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
 def cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     blocker = write_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
         confounded_proxy_acquisition_queue_path=Path(
             args.confounded_proxy_acquisition_queue
@@ -12467,6 +12471,7 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
         scoring_tranche_plan_path=Path(args.scoring_tranche_plan),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
     )
     counts = blocker.get("counts", {})
     print(
@@ -12482,11 +12487,15 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
 def cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     scout = write_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
         background_axis_blocker_path=Path(args.background_axis_blocker),
         train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
     )
     counts = scout.get("counts", {})
     print(
@@ -12498,16 +12507,47 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    queue = write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue(
+        background_axis_scout_path=Path(args.background_axis_scout),
+        sequence_manifest_path=Path(args.sequence_manifest),
+        coordinate_root=Path(args.coordinate_root) if args.coordinate_root else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal unsupported-geometry "
+        f"repair queue to {args.out} (repair rows: "
+        f"{counts.get('unsupported_geometry_repair_rows')}, ready to score: "
+        f"{counts.get('ready_to_score_now_rows')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     contract = write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
         background_axis_scout_path=Path(args.background_axis_scout),
         background_axis_blocker_path=Path(args.background_axis_blocker),
         selected_axis_id=args.selected_axis_id,
         min_active_site_residue_count=args.min_active_site_residue_count,
+        exclude_scored_extension_paths=[
+            Path(path) for path in (args.exclude_scored_extension or [])
+        ],
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
     )
     counts = contract.get("counts", {})
     decision = contract.get("decision", {})
@@ -12590,6 +12630,9 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_scored_extension(
 def cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     audit = write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout(
         scored_extension_path=Path(args.scored_extension),
         expanded_oos_calibrated_threshold_contract_path=Path(
@@ -12597,6 +12640,7 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_thr
         ),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
     )
     counts = audit.get("counts", {})
     print(
@@ -28834,6 +28878,10 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     confounded_proxy_train_cal_background_axis.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_background_axis.add_argument(
         "--out",
         default=(
             "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
@@ -28873,6 +28921,10 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     confounded_proxy_train_cal_background_axis_scout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_background_axis_scout.add_argument(
         "--out",
         default=(
             "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
@@ -28888,6 +28940,52 @@ def build_parser() -> argparse.ArgumentParser:
     )
     confounded_proxy_train_cal_background_axis_scout.set_defaults(
         func=cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_scout
+    )
+
+    confounded_proxy_train_cal_unsupported_geometry_repair = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-unsupported-geometry-repair-queue",
+        help=(
+            "build a repair-only queue for background rows with unsupported "
+            "inorganic-locus geometry after source-free proxy axes are exhausted"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_repair.add_argument(
+        "--background-axis-scout",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "background_axis_scout_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_repair.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    )
+    confounded_proxy_train_cal_unsupported_geometry_repair.add_argument(
+        "--coordinate-root",
+        default=None,
+    )
+    confounded_proxy_train_cal_unsupported_geometry_repair.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_unsupported_geometry_repair.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "unsupported_geometry_repair_queue_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_repair.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_unsupported_"
+            "geometry_repair_queue_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_repair.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue
+        )
     )
 
     confounded_proxy_train_cal_new_proxy_axis = subparsers.add_parser(
@@ -28919,6 +29017,19 @@ def build_parser() -> argparse.ArgumentParser:
         "--min-active-site-residue-count",
         type=int,
         default=10,
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--exclude-scored-extension",
+        action="append",
+        default=[],
+        help=(
+            "scored-extension artifact whose candidate rows must be excluded "
+            "from this new proxy-axis contract; repeatable"
+        ),
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--artifact-id",
+        default=None,
     )
     confounded_proxy_train_cal_new_proxy_axis.add_argument(
         "--out",
@@ -29100,6 +29211,10 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/v3_fold_augmented_abstention_threshold_contract_"
             "expanded_oos_calibrated_current702_20260603.json"
         ),
+    )
+    confounded_proxy_new_axis_fixed_readout.add_argument(
+        "--artifact-id",
+        default=None,
     )
     confounded_proxy_new_axis_fixed_readout.add_argument(
         "--out",

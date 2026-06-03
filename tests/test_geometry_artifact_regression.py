@@ -4281,6 +4281,152 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
 
+    def test_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_current_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_followup_"
+                "proxy_axis_contract_current702_20260603.json"
+            )
+        )
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_followup_"
+                "proxy_axis_scoring_input_manifest_current702_20260603.json"
+            )
+        )
+        extension = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_followup_"
+                "proxy_axis_scored_extension_current702_20260603.json"
+            )
+        )
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_followup_"
+                "proxy_axis_fixed_threshold_readout_current702_20260603.json"
+            )
+        )
+        surface = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_followup_"
+                "proxy_axis_extended_train_cal_oos_surface_current702_20260603.json"
+            )
+        )
+        blocker = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "background_axis_blocker_current702_20260603.json"
+            )
+        )
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "background_axis_scout_current702_20260603.json"
+            )
+        )
+        repair_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "unsupported_geometry_repair_queue_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["selected_proxy_axis"]["axis_id"],
+            "organic_score_0_30_to_below_high_axis_threshold",
+        )
+        self.assertEqual(contract["counts"]["contracted_scoring_rows"], 4)
+        self.assertEqual(
+            contract["excluded_previously_scored_entry_ids"], ["m_csa:89"]
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in contract["scoring_tranche_rows"]],
+            ["m_csa:60", "m_csa:75", "m_csa:214", "m_csa:288"],
+        )
+        self.assertEqual(
+            manifest["status"],
+            "confounded_proxy_train_cal_scoring_input_manifest_scored_ready_to_parse",
+        )
+        self.assertEqual(manifest["counts"]["scoring_tranche_rows"], 4)
+        self.assertEqual(manifest["counts"]["foldseek_result_current_query_hits"], 4)
+        self.assertEqual(manifest["counts"]["query_coordinate_files_missing"], 0)
+        self.assertEqual(extension["counts"]["candidate_rows_with_full_channel_scores"], 4)
+        self.assertEqual(extension["blockers"], [])
+        rows = {row["entry_id"]: row for row in extension["candidate_row_scores"]}
+        self.assertEqual(
+            rows["m_csa:288"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.41995,
+        )
+        self.assertEqual(readout["counts"]["abstained_at_fixed_threshold"], 1)
+        self.assertEqual(readout["counts"]["retained_at_fixed_threshold"], 3)
+        self.assertEqual(readout["abstained_entry_ids"], ["m_csa:288"])
+        self.assertEqual(
+            surface["counts"]["candidate_rows_with_full_channel_scores"], 196
+        )
+        self.assertEqual(surface["counts"]["extended_candidate_rows"], 202)
+        self.assertEqual(surface["counts"]["appended_full_channel_rows"], 4)
+        self.assertEqual(
+            surface["counts"]["remaining_combined_score_blocker_rows"], 6
+        )
+        self.assertEqual(
+            surface["extended_surface_summary"]["appended_extension_entry_ids"],
+            ["m_csa:60", "m_csa:75", "m_csa:214", "m_csa:288"],
+        )
+        self.assertEqual(blocker["counts"]["background_only_rows"], 160)
+        self.assertEqual(blocker["counts"]["high_cofactor_axis_candidate_rows"], 0)
+        self.assertEqual(blocker["counts"]["structural_locus_candidate_rows"], 0)
+        self.assertEqual(scout["counts"]["active_site_residue_count_10_plus_rows"], 0)
+        self.assertEqual(
+            scout["counts"]["organic_score_0_30_to_below_high_axis_rows"], 0
+        )
+        self.assertEqual(scout["counts"]["unsupported_geometry_rows"], 8)
+        self.assertFalse(scout["decision"]["new_proxy_axis_ready_to_score_now"])
+        self.assertEqual(
+            repair_queue["counts"]["unsupported_geometry_repair_rows"], 8
+        )
+        self.assertEqual(repair_queue["counts"]["ready_to_score_now_rows"], 0)
+        self.assertEqual(repair_queue["counts"]["rows_with_sequence_accession"], 8)
+        self.assertEqual(
+            repair_queue["counts"]["local_afdb_v6_coordinate_files_observed"], 0
+        )
+        self.assertEqual(
+            repair_queue["counts"]["local_afdb_v6_coordinate_files_missing"], 8
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in repair_queue["repair_rows"]],
+            [
+                "m_csa:105",
+                "m_csa:137",
+                "m_csa:318",
+                "m_csa:327",
+                "m_csa:360",
+                "m_csa:610",
+                "m_csa:618",
+                "m_csa:649",
+            ],
+        )
+        self.assertFalse(
+            repair_queue["decision"]["new_proxy_axis_ready_to_score_now"]
+        )
+
     def test_fold_augmented_confounded_proxy_scored_extension_surfaces_current_counts(
         self,
     ) -> None:
@@ -9679,7 +9825,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             3,
         )
         self.assertEqual(
-            audit["counts"]["lever3_confounded_proxy_background_only_rows"], 170
+            audit["counts"]["lever3_confounded_proxy_background_only_rows"], 160
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_background_axis_blockers"], 4
@@ -9702,7 +9848,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_contracted_rows"],
-            6,
+            4,
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_contract_blockers"],
@@ -9710,7 +9856,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_full_channel_rows"],
-            6,
+            4,
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_missing_full_score_rows"],

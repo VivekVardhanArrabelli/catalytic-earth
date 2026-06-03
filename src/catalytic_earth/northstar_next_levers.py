@@ -183,6 +183,9 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_BLOCKER_ID = (
 FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_SCOUT_ID = (
     "v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_REPAIR_QUEUE_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue_current702_20260603"
+)
 FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_CONTRACT_ID = (
     "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603"
 )
@@ -27333,12 +27336,275 @@ def write_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
     return audit
 
 
+def build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue(
+    *,
+    background_axis_scout_path: Path,
+    sequence_manifest_path: Path,
+    coordinate_root: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_REPAIR_QUEUE_ID
+    ),
+) -> dict[str, Any]:
+    scout = _read_json(background_axis_scout_path)
+    sequence_manifest = _read_json(sequence_manifest_path)
+    sequence_by_entry = _records_by_entry_from_payload(sequence_manifest, ("rows",))
+    root = Path(
+        coordinate_root
+        or "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+    )
+    unsupported_rows = [
+        row
+        for row in scout.get("background_axis_scout_rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and (
+            "some_inorganic_locus_geometry_unsupported_or_missing"
+            in (row.get("background_axis_exclusion_reasons") or [])
+        )
+    ]
+    repair_rows: list[dict[str, Any]] = []
+    missing_sequence_rows: list[str] = []
+    for row in sorted(
+        unsupported_rows,
+        key=lambda item: _entry_id_sort_key(str(item.get("entry_id") or "")),
+    ):
+        entry_id = str(row["entry_id"])
+        seq_row = sequence_by_entry.get(entry_id)
+        accession = _sequence_manifest_accession(seq_row or {})
+        if seq_row is None:
+            missing_sequence_rows.append(entry_id)
+        expected_coordinate_path = (
+            root / "confounded_proxy_train_cal_tranche_queries" / f"afdb_{accession}_v6.cif"
+            if accession
+            else None
+        )
+        coordinate_exists = bool(
+            expected_coordinate_path is not None and expected_coordinate_path.exists()
+        )
+        repair_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": accession,
+                "expected_afdb_v6_coordinate_path": (
+                    str(expected_coordinate_path)
+                    if expected_coordinate_path is not None
+                    else None
+                ),
+                "local_afdb_v6_coordinate_exists": coordinate_exists,
+                "active_site_residue_count": row.get("active_site_residue_count"),
+                "active_site_residue_count_bin": row.get(
+                    "active_site_residue_count_bin"
+                ),
+                "organic_cofactor_max_class": row.get("organic_cofactor_max_class"),
+                "organic_cofactor_max_score": row.get("organic_cofactor_max_score"),
+                "inorganic_locus_statuses": row.get("inorganic_locus_statuses")
+                or {},
+                "repair_blocker": "unsupported_or_missing_inorganic_locus_geometry",
+                "required_repair": (
+                    "Provide coordinate/locus evidence that resolves the "
+                    "unsupported inorganic-locus status before any proxy-axis "
+                    "contract or scoring claim."
+                ),
+                "allowed_next_gate": (
+                    "coordinate_or_locus_repair_then_rerun_background_scout"
+                ),
+            }
+        )
+    blockers = [
+        "unsupported_geometry_rows_require_coordinate_or_locus_repair"
+    ] if repair_rows else []
+    if missing_sequence_rows:
+        blockers.append("repair_rows_missing_sequence_manifest_record")
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_unsupported_geometry_repair_queue"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue_blocked"
+            if blockers
+            else "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue_empty"
+        ),
+        "scope": (
+            "Train/cal-only repair queue for background rows whose only "
+            "remaining source-free proxy-axis signal is unsupported or missing "
+            "inorganic-locus geometry. It does not score rows, register a proxy "
+            "axis, fetch coordinates, tune thresholds, read heldout rows, or "
+            "count unsupported geometry as abstention evidence."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "repair_queue_only": True,
+            "candidate_rows_scored_now": False,
+            "new_proxy_axis_registered": False,
+            "coordinate_downloads_performed": False,
+            "foldseek_or_tmsearch_run_now": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "background_axis_scout_rows": int(
+                scout.get("counts", {}).get("background_only_rows") or 0
+            ),
+            "unsupported_geometry_repair_rows": len(repair_rows),
+            "rows_with_sequence_accession": sum(
+                1 for row in repair_rows if row.get("accession")
+            ),
+            "local_afdb_v6_coordinate_files_observed": sum(
+                1 for row in repair_rows if row["local_afdb_v6_coordinate_exists"]
+            ),
+            "local_afdb_v6_coordinate_files_missing": sum(
+                1 for row in repair_rows if not row["local_afdb_v6_coordinate_exists"]
+            ),
+            "ready_to_score_now_rows": 0,
+            "blockers": len(blockers),
+        },
+        "repair_rows": repair_rows,
+        "missing_sequence_entry_ids": sorted(
+            missing_sequence_rows, key=_entry_id_sort_key
+        ),
+        "blockers": blockers,
+        "decision": {
+            "new_proxy_axis_ready_to_score_now": False,
+            "score_repair_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Repair the listed coordinate/locus blockers, then rerun the "
+                "background-axis scout before any new proxy-axis contract. Do "
+                "not score unsupported geometry rows as abstention evidence."
+            )
+            if repair_rows
+            else (
+                "No unsupported-geometry repair rows remain in the current "
+                "background-axis scout."
+            ),
+        },
+        "source_artifacts": {
+            "background_axis_scout": _source_path_record(
+                background_axis_scout_path
+            ),
+            "sequence_manifest": _source_path_record(sequence_manifest_path),
+            "coordinate_root": {
+                "path": str(root),
+                "exists": root.exists(),
+                "sha256": None,
+            },
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(repair_rows)} background-only rows need coordinate/locus "
+                "repair before they can support another source-free proxy axis."
+            ),
+            "next_action": (
+                "Treat unsupported geometry as a data-quality repair queue, not "
+                "as a scored proxy axis."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue_report(
+    queue: dict[str, Any],
+) -> str:
+    counts = queue["counts"]
+    decision = queue["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Unsupported-Geometry Repair Queue - current702",
+        "",
+        f"Run: {queue['created_utc']}",
+        "",
+        queue["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {queue['status']}",
+        "- Unsupported-geometry repair rows: "
+        f"{counts['unsupported_geometry_repair_rows']}",
+        "- Local AFDB-v6 coordinates observed: "
+        f"{counts['local_afdb_v6_coordinate_files_observed']}/"
+        f"{counts['unsupported_geometry_repair_rows']}",
+        f"- Ready to score now: {counts['ready_to_score_now_rows']}",
+        f"- Blockers: {queue['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- New proxy axis ready to score now: "
+        f"{decision['new_proxy_axis_ready_to_score_now']}",
+        f"- Score repair rows now: {decision['score_repair_rows_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Repair Rows",
+        "",
+        "| row | accession | local AFDB-v6 | active-site count | organic max | repair blocker |",
+        "| --- | --- | --- | ---: | --- | --- |",
+    ]
+    for row in queue.get("repair_rows", []):
+        organic = (
+            f"{row['organic_cofactor_max_class']}:{row['organic_cofactor_max_score']}"
+            if row.get("organic_cofactor_max_class") is not None
+            else "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row.get('local_afdb_v6_coordinate_exists')} | "
+            f"{row.get('active_site_residue_count')} | {organic} | "
+            f"{row['repair_blocker']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {queue['interpretation']['headline']}",
+        f"- {queue['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue(
+    *,
+    background_axis_scout_path: Path,
+    sequence_manifest_path: Path,
+    coordinate_root: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_REPAIR_QUEUE_ID
+    ),
+) -> dict[str, Any]:
+    queue = build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue(
+        background_axis_scout_path=background_axis_scout_path,
+        sequence_manifest_path=sequence_manifest_path,
+        coordinate_root=coordinate_root,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(queue, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue_report(
+                queue
+            ),
+            encoding="utf-8",
+        )
+    return queue
+
+
 def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
     *,
     background_axis_scout_path: Path,
     background_axis_blocker_path: Path,
     selected_axis_id: str = "active_site_residue_count_10_plus",
     min_active_site_residue_count: int = 10,
+    exclude_scored_extension_paths: list[Path] | None = None,
     artifact_id: str = (
         FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_CONTRACT_ID
     ),
@@ -27367,8 +27633,25 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
     blockers: list[str] = []
     if selected_axis is None:
         blockers.append("selected_proxy_axis_not_in_scout")
-    if selected_axis_id != "active_site_residue_count_10_plus":
+    implemented_axis_ids = {
+        "active_site_residue_count_10_plus",
+        "organic_score_0_30_to_below_high_axis_threshold",
+    }
+    if selected_axis_id not in implemented_axis_ids:
         blockers.append("selected_proxy_axis_contract_not_implemented")
+
+    excluded_previously_scored_ids: set[str] = set()
+    missing_exclusion_artifacts: list[str] = []
+    for path in exclude_scored_extension_paths or []:
+        if not Path(path).exists():
+            missing_exclusion_artifacts.append(str(path))
+            continue
+        extension = _read_json(Path(path))
+        for scored_row in extension.get("candidate_row_scores", []):
+            if isinstance(scored_row, dict) and scored_row.get("entry_id"):
+                excluded_previously_scored_ids.add(str(scored_row["entry_id"]))
+    if missing_exclusion_artifacts:
+        blockers.append("exclude_scored_extension_missing")
 
     selected_rows: list[dict[str, Any]] = []
     if selected_axis_id == "active_site_residue_count_10_plus":
@@ -27382,6 +27665,34 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
                 and active_site_count >= min_active_site_residue_count
             ):
                 selected_rows.append(row)
+    elif selected_axis_id == "organic_score_0_30_to_below_high_axis_threshold":
+        for row in scout_rows:
+            organic_score = _parse_optional_float(row.get("organic_cofactor_max_score"))
+            if (
+                row.get("organic_subthreshold_score_bin")
+                == "0_30_to_below_high_axis"
+                and organic_score is not None
+                and organic_score >= 0.30
+                and organic_score < COFACTOR_SIGNATURE_THRESHOLD
+            ):
+                selected_rows.append(row)
+    selected_candidate_ids_before_exclusion = sorted(
+        [str(row["entry_id"]) for row in selected_rows if row.get("entry_id")],
+        key=_entry_id_sort_key,
+    )
+    excluded_duplicate_entry_ids = sorted(
+        [
+            str(row["entry_id"])
+            for row in selected_rows
+            if str(row.get("entry_id") or "") in excluded_previously_scored_ids
+        ],
+        key=_entry_id_sort_key,
+    )
+    selected_rows = [
+        row
+        for row in selected_rows
+        if str(row.get("entry_id") or "") not in excluded_previously_scored_ids
+    ]
     if not selected_rows:
         blockers.append("selected_proxy_axis_has_no_train_cal_rows")
 
@@ -27389,6 +27700,23 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
         selected_rows,
         key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
     )
+    if selected_axis_id == "active_site_residue_count_10_plus":
+        selection_reason = "pre_registered_active_site_residue_count_10_plus_proxy_axis"
+        recommended_axes = [
+            "active_site_residue_count_10_plus_proxy",
+            "background_train_cal_oos_structural_pool",
+        ]
+    elif selected_axis_id == "organic_score_0_30_to_below_high_axis_threshold":
+        selection_reason = (
+            "pre_registered_organic_score_0_30_to_below_high_axis_proxy_axis"
+        )
+        recommended_axes = [
+            "organic_score_0_30_to_below_high_axis_proxy",
+            "background_train_cal_oos_cofactor_pool",
+        ]
+    else:
+        selection_reason = "pre_registered_unknown_proxy_axis"
+        recommended_axes = ["background_train_cal_oos_proxy_pool"]
     scoring_rows: list[dict[str, Any]] = []
     heldout_like_rows: list[str] = []
     missing_background_rows: list[str] = []
@@ -27408,13 +27736,8 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
                 "label_type": background.get("label_type"),
                 "benchmark_role": "train_cal_oos_negative_proxy_calibration",
                 "priority_bucket": background.get("priority_bucket"),
-                "selection_reason": (
-                    "pre_registered_active_site_residue_count_10_plus_proxy_axis"
-                ),
-                "recommended_proxy_axes_after_scoring": [
-                    "active_site_residue_count_10_plus_proxy",
-                    "background_train_cal_oos_structural_pool",
-                ],
+                "selection_reason": selection_reason,
+                "recommended_proxy_axes_after_scoring": recommended_axes,
                 "new_proxy_axis_id": selected_axis_id,
                 "active_site_residue_count": row.get("active_site_residue_count"),
                 "active_site_residue_count_bin": row.get(
@@ -27501,10 +27824,19 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
             )
             if selected_axis is not None
             else 0,
+            "selected_axis_candidate_rows_before_exclusions": len(
+                selected_candidate_ids_before_exclusion
+            ),
+            "previously_scored_entry_ids_excluded": len(excluded_duplicate_entry_ids),
             "contracted_scoring_rows": len(scoring_rows),
             "active_site_residue_count_minimum": int(min_active_site_residue_count),
+            "organic_score_minimum": 0.30,
+            "organic_score_maximum_exclusive": round(
+                float(COFACTOR_SIGNATURE_THRESHOLD), 6
+            ),
             "heldout_like_rows": len(heldout_like_rows),
             "missing_background_rows": len(missing_background_rows),
+            "missing_exclusion_artifacts": len(missing_exclusion_artifacts),
             "blockers": len(blockers),
         },
         "selected_proxy_axis": {
@@ -27512,13 +27844,33 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
             "membership_rule": (
                 "active_site_residue_count >= "
                 f"{int(min_active_site_residue_count)}"
+            )
+            if selected_axis_id == "active_site_residue_count_10_plus"
+            else (
+                "0.30 <= selected_organic_cofactor_max_score < "
+                f"{float(COFACTOR_SIGNATURE_THRESHOLD):.2f}"
             ),
             "axis_membership_is_source_free": True,
             "axis_membership_rows_are_train_cal_only": not heldout_like_rows,
-            "intended_proxy_family": "background_train_cal_oos_structural_pool",
+            "intended_proxy_family": (
+                "background_train_cal_oos_structural_pool"
+                if selected_axis_id == "active_site_residue_count_10_plus"
+                else "background_train_cal_oos_cofactor_pool"
+            ),
             "acceptance_contract": [
                 "Use only rows emitted by the current train/cal background-axis scout.",
-                "Require active_site_residue_count_bin == 10_plus and numeric active_site_residue_count >= 10.",
+                (
+                    "Require active_site_residue_count_bin == 10_plus and "
+                    "numeric active_site_residue_count >= 10."
+                )
+                if selected_axis_id == "active_site_residue_count_10_plus"
+                else (
+                    "Require organic_subthreshold_score_bin == "
+                    "0_30_to_below_high_axis and numeric "
+                    "selected_organic_cofactor_max_score below the high-axis "
+                    "threshold."
+                ),
+                "Exclude rows already scored by any supplied scored-extension artifact.",
                 "Keep all rows non-heldout and out-of-scope calibration rows.",
                 "Run predicted-structure-vs-atlas scoring before any abstention claim.",
                 "Rerun the fixed-threshold proxy audit only with threshold values unchanged.",
@@ -27530,6 +27882,11 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
             if new_axis_registered
             else ["contract_blocked_before_scoring"]
         ),
+        "selected_candidate_entry_ids_before_exclusions": (
+            selected_candidate_ids_before_exclusion
+        ),
+        "excluded_previously_scored_entry_ids": excluded_duplicate_entry_ids,
+        "missing_exclusion_artifacts": missing_exclusion_artifacts,
         "scoring_tranche_rows": scoring_rows,
         "nonselected_candidate_axis_tests": [
             row for row in axis_tests if row.get("axis_id") != selected_axis_id
@@ -27562,6 +27919,12 @@ def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
             "background_axis_blocker": _source_path_record(
                 background_axis_blocker_path
             ),
+            "exclude_scored_extensions": [
+                _source_path_record(path)
+                if Path(path).exists()
+                else {"path": str(path), "exists": False, "sha256": None}
+                for path in exclude_scored_extension_paths or []
+            ],
         },
         "interpretation": {
             "headline": (
@@ -27663,6 +28026,7 @@ def write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
     report_path: Path | None = None,
     selected_axis_id: str = "active_site_residue_count_10_plus",
     min_active_site_residue_count: int = 10,
+    exclude_scored_extension_paths: list[Path] | None = None,
     artifact_id: str = (
         FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_CONTRACT_ID
     ),
@@ -27672,6 +28036,7 @@ def write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
         background_axis_blocker_path=background_axis_blocker_path,
         selected_axis_id=selected_axis_id,
         min_active_site_residue_count=min_active_site_residue_count,
+        exclude_scored_extension_paths=exclude_scored_extension_paths,
         artifact_id=artifact_id,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -27934,9 +28299,7 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
     else:
         status = "confounded_proxy_train_cal_scoring_input_manifest_staged_missing_coordinates"
 
-    output_artifact_path = Path(
-        f"artifacts/{FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_INPUT_MANIFEST_ID}.json"
-    )
+    output_artifact_path = Path(f"artifacts/{artifact_id}.json")
     unique_query_accessions = {
         request.get("accession")
         for request in query_requests
