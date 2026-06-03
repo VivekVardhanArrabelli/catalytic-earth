@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Lever 2 Source-Free Event Axis Reviewed, NOT Signed Off (Too Thin)
+
+Decision: the source-free proton-transfer / electrostatic-stabiliser event-axis
+linker drafted for Path A is **not signed off**. The one-shot heldout read will
+not be spent on it. The reviewer judged the source-free feature too thin to
+justify the irreplaceable heldout-read budget. No event-axis linker was
+materialized, no application surface built, no frozen residual threshold applied,
+no heldout row read.
+
+What was drafted: a deterministic, label-blind structural rubric (residue
+identity + contacting atoms + distance + source-free role hints only; no label,
+fingerprint, EC/Rhea, source text, curated role, or target name) over the 53
+approved source-free locators. Result: **14/53 rows carry the token** (both roles
+evidenced; 12 in-scope + 2 boundary-OOS, concentrated in PLP/flavin/heme
+phosphate-cofactor enzymes), **39 token-absent**, all confidences modest
+(0.21–0.47).
+
+Root-cause diagnosis: the source-free locators anchor on the cofactor/metal, so
+the electrostatic-stabiliser role only fires when a cation clamps a cofactor
+phosphate (PLP/flavin), and the pair requires a co-located proton-transfer axis.
+Metal-hydrolase and many heme sites therefore cannot evidence the pair
+source-free — the catalytic proton-transfer / oxyanion machinery is
+substrate-proximal, not cofactor-proximal, and is not captured by a
+cofactor-proximity locator. The 12/14 in-scope skew emerged from structure, not
+the label (no leakage), but the surface is too sparse and low-confidence to read
+once.
+
+Consequence / next gate: do not feed this axis to the heldout read. Reconsider
+the strengthening strategy before spending the one-shot budget. The 53 approved
+locators remain a banked, split-protected asset. The draft and its full per-row
+evidence are retained as review-only documentation, not approved inputs.
+
+Artifacts (review-only, not signed off):
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.md`.
+
 ## 2026-06-03: Lever 2 Locator Rewrites — 53 Approved, 2 Rejected (723, 599)
 
 Decision: after a full per-row review of the 55 priority-1 current702 source-free
