@@ -3178,6 +3178,102 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
         self.assertFalse(audit["decision"]["deployment_closed_now"])
 
+    def test_fold_augmented_expanded_train_cal_oos_negative_surface_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_expanded_train_cal_oos_negative_"
+                "surface_scores_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "computed_partial_expanded_train_cal_oos_negative_surface_scores",
+        )
+        self.assertEqual(audit["counts"]["candidate_ids_requested"], 76)
+        self.assertEqual(audit["counts"]["prior_full_channel_score_rows"], 71)
+        self.assertEqual(audit["counts"]["new_combined_readout_rows"], 4)
+        self.assertEqual(audit["counts"]["replaced_candidate_rows"], 4)
+        self.assertEqual(audit["counts"]["expanded_full_channel_score_rows"], 75)
+        self.assertEqual(
+            audit["counts"]["candidate_rows_with_full_channel_scores"], 75
+        )
+        self.assertEqual(audit["counts"]["candidate_predicted_geometry_ok_rows"], 75)
+        self.assertEqual(audit["counts"]["foldseek_rows_with_nearest_train_hits"], 76)
+        self.assertEqual(
+            audit["counts"]["remaining_combined_score_blocker_rows"], 1
+        )
+        self.assertEqual(audit["counts"]["coverage_after_rerun"], 0.986842)
+        self.assertEqual(
+            audit["expanded_surface_summary"]["replaced_entry_ids"],
+            ["m_csa:78", "m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            audit["remaining_combined_score_blocker_entry_ids"], ["m_csa:204"]
+        )
+        rows = {row["entry_id"]: row for row in audit["candidate_row_scores"]}
+        self.assertEqual(
+            rows["m_csa:78"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.4054,
+        )
+        self.assertEqual(rows["m_csa:78"]["scoring_accession"], "P00889")
+        self.assertEqual(
+            rows["m_csa:78"]["predicted_geometry_accession_repair"][
+                "original_accession"
+            ],
+            "P23007",
+        )
+        self.assertIsNone(rows["m_csa:204"]["channel_scores"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+
+    def test_fold_augmented_expanded_oos_calibrated_threshold_contract_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_abstention_threshold_contract_"
+                "expanded_oos_calibrated_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["artifact_id"],
+            (
+                "v3_fold_augmented_abstention_threshold_contract_"
+                "expanded_oos_calibrated_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            audit["status"], "computed_oos_calibrated_threshold_contract"
+        )
+        self.assertEqual(audit["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(audit["counts"]["calibration_oos_negative_rows"], 75)
+        self.assertEqual(
+            audit["counts"]["calibration_oos_negative_candidates_requested"], 76
+        )
+        self.assertEqual(audit["blockers"], ["train_cal_oos_negative_surface_is_partial"])
+        primary = audit["primary_channel_readout"]
+        selected = primary[
+            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+        ]
+        heldout = primary["heldout_final_eval_at_90pct_oos_calibrated_threshold"]
+        self.assertEqual(selected["threshold"], 0.44155)
+        self.assertEqual(selected["calibration_oos_total"], 75)
+        self.assertEqual(selected["calibration_oos_abstained"], 30)
+        self.assertEqual(selected["calibration_oos_abstain_recall"], 0.4)
+        self.assertEqual(heldout["heldout_confounded_oos_abstained"], 5)
+        self.assertEqual(heldout["heldout_confounded_oos_total"], 6)
+        self.assertEqual(heldout["heldout_confounded_oos_abstain_recall"], 0.8333)
+        self.assertTrue(audit["guardrails"]["heldout_used_for_final_eval_only"])
+        self.assertTrue(audit["guardrails"]["train_cal_oos_negatives_used_for_threshold"])
+
     def test_fold_augmented_post_rerun_deployment_closure_status_current_counts(
         self,
     ) -> None:
@@ -8847,6 +8943,38 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(pdb_records[0]["substrate_like_ligand_counts"], {})
 
+    def test_family_panel_source_free_locator_external_glycoside_block_decision(
+        self,
+    ) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_external_glycoside_"
+                "block_decision_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            decision["status"],
+            "source_free_locator_external_glycoside_block_decision_rejected_review_only",
+        )
+        self.assertEqual(decision["counts"]["target_rows"], 1)
+        self.assertEqual(decision["counts"]["same_accession_coordinate_records"], 4)
+        self.assertEqual(
+            decision["counts"]["substrate_like_coordinate_candidates"], 0
+        )
+        self.assertTrue(
+            decision["decision"]["external_glycoside_panel_left_blocked"]
+        )
+        self.assertFalse(decision["decision"]["copy_7qqf_acetate_or_nag_locator"])
+        self.assertFalse(decision["decision"]["predicted_geometry_scoring_authorized"])
+        self.assertFalse(
+            decision["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(decision["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(decision["guardrails"]["predicted_geometry_scored"])
+
     def test_family_panel_source_free_locator_policy_blockers_mh064_q59490(
         self,
     ) -> None:
@@ -8900,6 +9028,34 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             [],
         )
 
+    def test_family_panel_source_free_locator_q59490_block_decision(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_q59490_block_decision_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            decision["status"],
+            "source_free_locator_q59490_block_decision_rejected_review_only",
+        )
+        self.assertEqual(decision["counts"]["target_rows"], 1)
+        self.assertEqual(decision["counts"]["primary_q59490_local_coordinate_paths"], 3)
+        self.assertEqual(decision["counts"]["alternate_eligible_source_rows"], 0)
+        self.assertEqual(decision["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertTrue(decision["decision"]["q59490_left_blocked"])
+        self.assertFalse(decision["decision"]["alternate_source_substitution_authorized"])
+        self.assertFalse(decision["decision"]["nonlabel_locator_strategy_authorized"])
+        self.assertFalse(decision["decision"]["predicted_geometry_scoring_authorized"])
+        self.assertFalse(
+            decision["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(decision["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(decision["guardrails"]["predicted_geometry_scored"])
+
     def test_family_panel_source_free_locator_mh064_alternate_coordinate_local_cache_preflight(
         self,
     ) -> None:
@@ -8932,6 +9088,69 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             [row["pdb_id"] for row in preflight["alternate_coordinate_rows"]],
             ["3RKJ", "3RKK", "3SBL", "3SFP", "3SPU"],
         )
+
+    def test_family_panel_source_free_locator_mh064_block_decision(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_mh064_block_decision_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            decision["status"],
+            "source_free_locator_mh064_block_decision_rejected_review_only",
+        )
+        self.assertEqual(decision["counts"]["alternate_pdb_ids_checked"], 5)
+        self.assertEqual(decision["counts"]["alternate_coordinate_files_cached"], 0)
+        self.assertEqual(decision["counts"]["alternate_coordinate_files_missing"], 5)
+        self.assertEqual(decision["counts"]["new_coordinates_fetched"], 0)
+        self.assertTrue(decision["decision"]["mh064_left_blocked"])
+        self.assertFalse(decision["decision"]["alternate_coordinate_fetch_authorized"])
+        self.assertFalse(decision["decision"]["predicted_geometry_scoring_authorized"])
+        self.assertFalse(decision["guardrails"]["network_fetch_attempted"])
+        self.assertFalse(decision["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(
+            decision["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+
+    def test_family_panel_source_free_locator_policy_closure_status(self) -> None:
+        closure = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_policy_closure_status_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            closure["status"],
+            "source_free_locator_policy_closure_status_closed_for_automation_blocked_review_only",
+        )
+        self.assertEqual(closure["counts"]["block_decision_artifacts"], 4)
+        self.assertEqual(closure["counts"]["blocked_locator_rows"], 5)
+        self.assertEqual(
+            closure["counts"]["priority_rows_mechanically_clearable_now"], 0
+        )
+        self.assertEqual(
+            closure["counts"]["locator_policy_rows_approved_for_copy_or_scoring"], 0
+        )
+        self.assertEqual(closure["counts"]["import_preview_ready_rows"], 0)
+        self.assertEqual(closure["counts"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            closure["decision"]["automation_clearable_locator_decisions_remaining"],
+            0,
+        )
+        self.assertFalse(closure["decision"]["family_panel_import_preview_unblocked_now"])
+        self.assertFalse(closure["decision"]["predicted_geometry_scoring_authorized"])
+        self.assertFalse(
+            closure["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(closure["guardrails"]["coordinates_fetched"])
+        self.assertFalse(closure["guardrails"]["predicted_geometry_scored"])
 
     def test_family_panel_source_free_locator_q59490_nonlabel_locator_feasibility_audit(
         self,

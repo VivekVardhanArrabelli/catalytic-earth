@@ -50,6 +50,92 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 3/2/4 Forward Push Active Run 5
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T01:02:33Z`
+- STARTED_LOCAL: `2026-06-02T20:02:33-0500 CDT`
+- ENDED_AT: `2026-06-03T01:27:53Z`
+- ENDED_LOCAL: `2026-06-02T20:27:53-0500 CDT`
+- ELAPSED_MINUTES: `25.3`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "78832", "started_at": "2026-06-03T01:02:33Z", "status": "acquired"}`
+
+#### Current intent
+
+Use the active handoff as primary truth, continue within Levers 2/3/4 from
+current `main`, and make a deployable forward move without editing labels,
+registries, ontologies, imports, production thresholds, or heldout-tuned
+surfaces.
+
+#### What changed
+
+- Lever 3: added
+  `v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603`
+  and report. It composes the four fixed-threshold combined readout rows into
+  the train/cal OOS negative surface, increasing full-channel coverage from
+  71/76 to 75/76 and keeping `m_csa:204`/P10746 as the sole fold-only caveat.
+- Lever 3: regenerated the OOS-calibrated threshold contract from that expanded
+  train/cal surface only:
+  `v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603`.
+  The primary `combined_mean_geometry_fold` threshold stays `0.44155`;
+  calibration OOS abstention is 30/75, heldout final readout is unchanged at
+  45/47 in-scope retained, 44/79 OOS abstained, and 5/6 confounded OOS
+  abstained. This is a research contract, not a production threshold.
+- Lever 4: recorded explicit block decisions for the remaining source-free
+  locator policy rows:
+  `external_glycoside_panel` (no acetate/NAG/glycan copy),
+  Q59490 (no alternate-source substitution or fabricated nonlabel locators),
+  and `mh_064` (no unapproved alternate-coordinate fetch).
+- Lever 4: added
+  `v3_family_panel_source_free_locator_policy_closure_status_current702_20260603`.
+  It composes the row-level decisions and import-preview blocker gate: 5/5
+  locator rows remain blocked, 0 automation-clearable locator decisions remain,
+  0 rows are approved for copy/scoring, 0 import-preview-ready rows, and 0
+  countable label candidates.
+- Updated `docs/artifact_index.md`, `docs/project_state.md`, and
+  `docs/decision_log.md`; regenerated the current-docs artifact-reference
+  check with 0 missing references.
+- Added CLI support plus focused unit and artifact-regression coverage for the
+  expanded train/cal OOS surface and threshold-contract artifact id. Added
+  artifact-regression coverage for the new Lever 4 block-decision and closure
+  artifacts.
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, heldout tuning, heldout training surfaces, coordinate fetches, or
+  locator sidecar copies changed.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'oos_calibrated_threshold_contract or expanded_train_cal_oos_surface or fixed_threshold_combined_rerun_calibration_impact or post_rerun_deployment_closure_status' -q`
+  passed: 4 tests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  passed: 399 tests, 98 subtests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `python -m json.tool` passed for the six new JSON artifacts.
+- `PYTHONPATH=src python -m pytest -q` passed: 1270 tests, 117 subtests;
+  1 sklearn/scipy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1225 tests;
+  same sklearn/scipy deprecation warning.
+- `git diff --check` passed.
+
+#### Exact next action
+
+- Lever 3 remains blocked only by the P10746 fold-only caveat. Either explicitly
+  accept the P10746 caveat for deployment closure or provide an approved
+  non-residue sidecar; do not rerun threshold selection unless the train/cal
+  OOS surface changes again.
+- Lever 4 family-panel locator automation is closed for the current evidence:
+  all five priority locator rows require external approval/evidence before any
+  copy, fetch, scoring, import-preview, or countability claim. The next
+  automation move should pivot to Lever 2 row-specific mechanism features or a
+  new source/evidence path for P10746/family-panel locators supplied outside
+  the current evidence.
+
 ### 2026-06-02 Lever 3/2/4 Forward Push Active Run 4
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

@@ -135,6 +135,12 @@ FOLD_AUGMENTED_FIXED_THRESHOLD_COMBINED_RERUN_READOUT_ID = (
 FOLD_AUGMENTED_FIXED_THRESHOLD_COMBINED_RERUN_CALIBRATION_IMPACT_ID = (
     "v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603"
 )
+FOLD_AUGMENTED_EXPANDED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SCORES_ID = (
+    "v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603"
+)
+FOLD_AUGMENTED_EXPANDED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID = (
+    "v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603"
+)
 FOLD_AUGMENTED_POST_RERUN_DEPLOYMENT_CLOSURE_STATUS_ID = (
     "v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603"
 )
@@ -14904,6 +14910,7 @@ def build_fold_augmented_oos_calibrated_threshold_contract(
     threshold_contract_path: Path,
     train_cal_oos_surface_path: Path,
     fold_augmented_gate_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID,
 ) -> dict[str, Any]:
     threshold_contract = _read_json(threshold_contract_path)
     oos_surface = _read_json(train_cal_oos_surface_path)
@@ -14993,7 +15000,10 @@ def build_fold_augmented_oos_calibrated_threshold_contract(
         blockers.append("no_calibration_oos_negative_rows_available")
     if not heldout_rows:
         blockers.append("no_heldout_final_eval_rows_available")
-    if oos_surface.get("status") != "computed_train_cal_oos_negative_surface_scores":
+    if oos_surface.get("status") not in {
+        "computed_train_cal_oos_negative_surface_scores",
+        "computed_expanded_train_cal_oos_negative_surface_scores",
+    }:
         blockers.append("train_cal_oos_negative_surface_is_partial")
     primary = contract.get("combined_mean_geometry_fold", {})
     status = (
@@ -15001,8 +15011,10 @@ def build_fold_augmented_oos_calibrated_threshold_contract(
         if calibration_in_scope_rows and calibration_oos_rows and heldout_rows
         else "blocked_missing_oos_calibration_surface"
     )
+    surface_row_count = len(calibration_oos_rows)
+    surface_status = str(oos_surface.get("status") or "missing")
     return {
-        "artifact_id": FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID,
+        "artifact_id": artifact_id,
         "schema_version": SCHEMA_VERSION,
         "created_utc": _utc_now_iso(),
         "status": status,
@@ -15070,9 +15082,10 @@ def build_fold_augmented_oos_calibrated_threshold_contract(
                 else "OOS-calibrated threshold selection remains blocked by missing calibration surfaces."
             ),
             "production_status": "research_contract_not_production_threshold; no production scorer or global threshold was changed",
+            "train_cal_oos_surface_status": surface_status,
             "next_action": (
                 "Review the primary channel's calibration-OOS and heldout final readout, "
-                "then decide whether the partial 65-row OOS calibration surface is enough "
+                f"then decide whether the partial {surface_row_count}-row OOS calibration surface is enough "
                 "or whether to clear the remaining candidate geometry blockers first."
             ),
         },
@@ -15144,11 +15157,13 @@ def write_fold_augmented_oos_calibrated_threshold_contract(
     fold_augmented_gate_path: Path,
     out_path: Path,
     report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID,
 ) -> dict[str, Any]:
     audit = build_fold_augmented_oos_calibrated_threshold_contract(
         threshold_contract_path=threshold_contract_path,
         train_cal_oos_surface_path=train_cal_oos_surface_path,
         fold_augmented_gate_path=fold_augmented_gate_path,
+        artifact_id=artifact_id,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -19498,6 +19513,336 @@ def write_fold_augmented_fixed_threshold_combined_rerun_calibration_impact(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _readout_row_as_expanded_train_cal_oos_surface_row(
+    base_row: dict[str, Any],
+    readout_row: dict[str, Any],
+) -> dict[str, Any]:
+    updated = copy.deepcopy(base_row)
+    channel_scores = copy.deepcopy(readout_row.get("channel_scores") or {})
+    fold = readout_row.get("fold_nearest_train_atlas") or {}
+    scoring_accession = readout_row.get("accession")
+    original_accession = base_row.get("accession")
+    updated["channel_scores"] = channel_scores
+    updated["predicted_geometry_status"] = readout_row.get("geometry_status") or "ok"
+    updated["predicted_geometry_top1"] = copy.deepcopy(
+        readout_row.get("geometry_top1") or {}
+    )
+    updated["selected_organic_cofactor_max_score"] = channel_scores.get(
+        "cofactor_max_score"
+    )
+    updated["predicted_structure_fold_channel"] = {
+        "nearest_train_atlas_entry_id": fold.get("entry_id"),
+        "nearest_train_atlas_tm_score": fold.get("tm_score"),
+        "nearest_train_atlas_true_fingerprint_id": fold.get("true_fingerprint_id"),
+        "raw_query_name": fold.get("raw_query_name"),
+        "raw_target_name": fold.get("raw_target_name"),
+    }
+    updated["expanded_surface_source"] = "fixed_threshold_combined_rerun_readout"
+    updated["geometry_source"] = readout_row.get("geometry_source")
+    updated["fold_source"] = readout_row.get("fold_source")
+    updated["geometry_resolved_residue_count"] = readout_row.get(
+        "geometry_resolved_residue_count"
+    )
+    updated["geometry_missing_positions"] = readout_row.get(
+        "geometry_missing_positions"
+    )
+    updated["fixed_threshold_readout"] = {
+        "fixed_threshold": readout_row.get("fixed_threshold"),
+        "abstains_at_fixed_threshold": readout_row.get(
+            "abstains_at_fixed_threshold"
+        ),
+        "status": readout_row.get("status"),
+    }
+    if scoring_accession:
+        updated["scoring_accession"] = scoring_accession
+        updated["predicted_geometry_accession"] = scoring_accession
+        updated["predicted_geometry_manifest_accession"] = scoring_accession
+    if (
+        scoring_accession
+        and original_accession
+        and str(scoring_accession) != str(original_accession)
+    ):
+        updated["predicted_geometry_accession_repair"] = {
+            "original_accession": original_accession,
+            "scoring_accession": scoring_accession,
+            "repair_class": "authorized_ortholog_surrogate_for_train_cal_oos_calibration",
+            "source": "fold_augmented_fixed_threshold_combined_rerun_readout",
+        }
+    return updated
+
+
+def build_fold_augmented_expanded_train_cal_oos_negative_surface_scores(
+    *,
+    prior_train_cal_oos_surface_path: Path,
+    fixed_threshold_combined_rerun_readout_path: Path,
+    fixed_threshold_combined_rerun_calibration_impact_path: Path,
+) -> dict[str, Any]:
+    prior_surface = _read_json(prior_train_cal_oos_surface_path)
+    readout = _read_json(fixed_threshold_combined_rerun_readout_path)
+    calibration = _read_json(fixed_threshold_combined_rerun_calibration_impact_path)
+    prior_rows = [
+        row
+        for row in prior_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    readout_rows = [
+        row
+        for row in readout.get("readout_rows", [])
+        if isinstance(row, dict) and row.get("entry_id") and row.get("channel_scores")
+    ]
+    readout_by_id = {str(row["entry_id"]): row for row in readout_rows}
+    prior_entry_ids = {str(row["entry_id"]) for row in prior_rows}
+    missing_prior_rows = sorted(
+        (entry_id for entry_id in readout_by_id if entry_id not in prior_entry_ids),
+        key=_entry_id_sort_key,
+    )
+    expanded_rows: list[dict[str, Any]] = []
+    replaced_entry_ids: list[str] = []
+    for row in prior_rows:
+        entry_id = str(row["entry_id"])
+        readout_row = readout_by_id.get(entry_id)
+        if readout_row is None:
+            expanded_rows.append(copy.deepcopy(row))
+            continue
+        expanded_rows.append(
+            _readout_row_as_expanded_train_cal_oos_surface_row(row, readout_row)
+        )
+        replaced_entry_ids.append(entry_id)
+
+    prior_full_rows = [row for row in prior_rows if row.get("channel_scores")]
+    expanded_full_rows = [row for row in expanded_rows if row.get("channel_scores")]
+    expanded_geometry_ok_rows = [
+        row for row in expanded_rows if row.get("predicted_geometry_status") == "ok"
+    ]
+    expanded_fold_hit_rows = [
+        row
+        for row in expanded_rows
+        if (row.get("predicted_structure_fold_channel") or {}).get(
+            "nearest_train_atlas_entry_id"
+        )
+    ]
+    requested = int(
+        prior_surface.get("counts", {}).get("candidate_ids_requested")
+        or len(prior_surface.get("candidate_entry_ids", []))
+        or len(prior_rows)
+    )
+    remaining_blocker_ids = [
+        str(entry_id)
+        for entry_id in (
+            calibration.get("remaining_combined_score_blocker_entry_ids")
+            or [
+                row.get("entry_id")
+                for row in readout.get("fold_only_caveat_rows", [])
+                if isinstance(row, dict)
+            ]
+        )
+        if entry_id
+    ]
+    blockers = []
+    if missing_prior_rows:
+        blockers.append("readout_rows_not_found_in_prior_train_cal_oos_surface")
+    if remaining_blocker_ids:
+        blockers.append("remaining_fold_only_policy_caveat_not_combined_scored")
+    if calibration.get("decision", {}).get("deployment_closed_now"):
+        blockers.append("unexpected_deployment_closure_claim_in_calibration_impact")
+    status = (
+        "computed_expanded_train_cal_oos_negative_surface_scores"
+        if not blockers
+        else "computed_partial_expanded_train_cal_oos_negative_surface_scores"
+    )
+    counts = copy.deepcopy(prior_surface.get("counts") or {})
+    counts.update(
+        {
+            "candidate_ids_requested": requested,
+            "prior_full_channel_score_rows": len(prior_full_rows),
+            "new_combined_readout_rows": len(readout_rows),
+            "replaced_candidate_rows": len(replaced_entry_ids),
+            "expanded_full_channel_score_rows": len(expanded_full_rows),
+            "candidate_rows_with_full_channel_scores": len(expanded_full_rows),
+            "candidate_predicted_geometry_ok_rows": len(expanded_geometry_ok_rows),
+            "foldseek_rows_with_nearest_train_hits": len(expanded_fold_hit_rows),
+            "remaining_combined_score_blocker_rows": len(remaining_blocker_ids),
+            "missing_prior_rows_for_readout": len(missing_prior_rows),
+            "coverage_after_rerun": (
+                round(len(expanded_full_rows) / requested, 6) if requested else None
+            ),
+        }
+    )
+    audit = copy.deepcopy(prior_surface)
+    audit.update(
+        {
+            "artifact_id": FOLD_AUGMENTED_EXPANDED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SCORES_ID,
+            "schema_version": (
+                f"{SCHEMA_VERSION}.fold_augmented_expanded_train_cal_oos_negative_surface_scores"
+            ),
+            "created_utc": _utc_now_iso(),
+            "status": status,
+            "scope": (
+                "Expanded train/cal OOS-negative calibration surface after the "
+                "Lever 3 fixed-threshold combined rerun. It composes the approved "
+                "rerun readout rows into the prior train/cal OOS surface, keeps "
+                "P10746 as the single fold-only policy caveat, and does not read "
+                "heldout rows or select thresholds."
+            ),
+            "counts": counts,
+            "candidate_row_scores": expanded_rows,
+            "blockers": blockers,
+            "expanded_surface_summary": {
+                "replaced_entry_ids": sorted(
+                    replaced_entry_ids, key=_entry_id_sort_key
+                ),
+                "missing_prior_rows_for_readout": missing_prior_rows,
+                "remaining_combined_score_blocker_entry_ids": sorted(
+                    remaining_blocker_ids, key=_entry_id_sort_key
+                ),
+            },
+            "remaining_combined_score_blocker_entry_ids": sorted(
+                remaining_blocker_ids, key=_entry_id_sort_key
+            ),
+            "guardrails": {
+                **copy.deepcopy(prior_surface.get("guardrails") or {}),
+                "labels_registries_ontologies_changed": False,
+                "imports_or_promotions_performed": False,
+                "production_thresholds_changed": False,
+                "threshold_selected_or_tuned": False,
+                "threshold_values_changed": False,
+                "model_weights_fit_or_refit": False,
+                "heldout_rows_used_for_training_or_threshold_tuning": False,
+                "heldout_rows_read_now": False,
+                "combined_channel_rerun_performed_now": False,
+                "fixed_threshold_readout_composed_only": True,
+            },
+            "interpretation": {
+                "headline": (
+                    "The train/cal OOS-negative threshold-selection surface now "
+                    f"has {len(expanded_full_rows)}/{requested} full-channel rows."
+                ),
+                "production_status": (
+                    "research_calibration_surface_not_production_threshold; "
+                    "P10746 remains a policy caveat"
+                ),
+                "next_action": (
+                    "Regenerate the OOS-calibrated threshold contract from this "
+                    "expanded train/cal surface, then carry the P10746 caveat into "
+                    "the deployment-closure decision."
+                ),
+            },
+            "source_artifacts": {
+                **copy.deepcopy(prior_surface.get("source_artifacts") or {}),
+                "prior_train_cal_oos_surface": _source_path_record(
+                    prior_train_cal_oos_surface_path
+                ),
+                "fixed_threshold_combined_rerun_readout": _source_path_record(
+                    fixed_threshold_combined_rerun_readout_path
+                ),
+                "fixed_threshold_combined_rerun_calibration_impact": _source_path_record(
+                    fixed_threshold_combined_rerun_calibration_impact_path
+                ),
+            },
+        }
+    )
+    return audit
+
+
+def _render_fold_augmented_expanded_train_cal_oos_negative_surface_scores_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    summary = audit["expanded_surface_summary"]
+    lines = [
+        "# Fold-Augmented Expanded Train/Cal OOS Negative Surface Scores - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        "- Expanded full-channel rows: "
+        f"{counts['expanded_full_channel_score_rows']}/"
+        f"{counts['candidate_ids_requested']}",
+        f"- New combined readout rows: {counts['new_combined_readout_rows']}",
+        f"- Replaced candidate rows: {counts['replaced_candidate_rows']}",
+        "- Remaining combined-score blocker rows: "
+        f"{counts['remaining_combined_score_blocker_rows']}",
+        "",
+        "## Replaced Rows",
+        "",
+        "| row | combined | source | abstains at fixed threshold |",
+        "| --- | ---: | --- | --- |",
+    ]
+    replaced = set(summary["replaced_entry_ids"])
+    for row in audit["candidate_row_scores"]:
+        if row.get("entry_id") not in replaced:
+            continue
+        fixed = row.get("fixed_threshold_readout") or {}
+        channel = row.get("channel_scores") or {}
+        lines.append(
+            f"| {row['entry_id']} | {channel.get('combined_mean_geometry_fold')} | "
+            f"{row.get('expanded_surface_source')} | "
+            f"{fixed.get('abstains_at_fixed_threshold')} |"
+        )
+    lines += [
+        "",
+        "## Remaining Blockers",
+        "",
+    ]
+    if summary["remaining_combined_score_blocker_entry_ids"]:
+        lines += [
+            f"- {entry_id}"
+            for entry_id in summary["remaining_combined_score_blocker_entry_ids"]
+        ]
+    else:
+        lines.append("- None")
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- No threshold was selected or changed by this surface composer.",
+        "- No heldout rows were read.",
+        "- No label, registry, ontology, import, model-weight, or production scorer changed.",
+        "",
+        "## Next Gate",
+        "",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_expanded_train_cal_oos_negative_surface_scores(
+    *,
+    prior_train_cal_oos_surface_path: Path,
+    fixed_threshold_combined_rerun_readout_path: Path,
+    fixed_threshold_combined_rerun_calibration_impact_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_expanded_train_cal_oos_negative_surface_scores(
+        prior_train_cal_oos_surface_path=prior_train_cal_oos_surface_path,
+        fixed_threshold_combined_rerun_readout_path=(
+            fixed_threshold_combined_rerun_readout_path
+        ),
+        fixed_threshold_combined_rerun_calibration_impact_path=(
+            fixed_threshold_combined_rerun_calibration_impact_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_expanded_train_cal_oos_negative_surface_scores_report(
                 audit
             ),
             encoding="utf-8",

@@ -1,0 +1,57 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_external_glycoside_block_decision_current702_20260603",
+  "counts": {
+    "approved_locator_copy_authorized_rows": 0,
+    "local_coordinate_files_scanned": 60,
+    "ready_for_predicted_geometry_scoring": 0,
+    "same_accession_coordinate_records": 4,
+    "same_accession_records_with_rejected_glycan_or_buffer_ligands": 1,
+    "substrate_like_coordinate_candidates": 0,
+    "target_rows": 1
+  },
+  "created_utc": "2026-06-03T01:13:04Z",
+  "decision": {
+    "blocker_class": "ligand_specificity_validator_or_substrate_coordinate_required",
+    "copy_7qqf_acetate_or_nag_locator": false,
+    "external_glycoside_panel_left_blocked": true,
+    "next_action": "Unblock only with an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator, then rerun locator schema/integrity review before predicted-geometry scoring.",
+    "predicted_geometry_scoring_authorized": false
+  },
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "new_coordinates_fetched": false,
+    "new_source_data_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "rationale": [
+    "The NAG validator already rejected glycan-context retargeting for the external_glycoside_panel locator.",
+    "The local-cache substrate-coordinate scout found 4 same-accession coordinate records but 0 substrate-like coordinate candidates.",
+    "The only same-accession PDB coordinate with non-water HETATMs carries ACT/BMA/FUC/MAN/MLI/NAG glycan or buffer ligands and cannot clear the non-glycan substrate-coordinate gate."
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_locator_external_glycoside_block_decision",
+  "scope": "Review-only block decision for the Lever 4 external_glycoside_panel source-free locator. It composes the NAG validator and local-cache substrate-coordinate scout without copying locators, fetching coordinates, scoring predicted geometry, or changing any countable label surface.",
+  "source_artifacts": {
+    "glycoside_nag_validator": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_glycoside_nag_validator_external_glycoside_panel_current702_20260602.json",
+      "sha256": "3cbd82288605e6be8678bc85de3de5880ee79a7f97e005d14d0029caf63c42db"
+    },
+    "glycoside_substrate_coordinate_scout": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602.json",
+      "sha256": "4b3851e2d283eb4b23aba5f78f37c91cc3fffbdf836b28a0323c2f09ef70c7c7"
+    }
+  },
+  "status": "source_free_locator_external_glycoside_block_decision_rejected_review_only",
+  "target_row": {
+    "entry_id": "external_glycoside_panel",
+    "source_accession": "uniprot:Q6NSJ0"
+  }
+}

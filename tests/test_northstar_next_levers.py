@@ -14,6 +14,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_approved_source_feature_active_site_sidecar_materialization,
     build_fold_augmented_blocker_human_decision_application,
     build_fold_augmented_confounded_deployment_closure_audit,
+    build_fold_augmented_expanded_train_cal_oos_negative_surface_scores,
     build_fold_augmented_fold_only_deployment_contract_decision,
     build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact,
     build_fold_augmented_fixed_threshold_combined_rerun_readout,
@@ -1715,9 +1716,11 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 threshold_contract_path=threshold_contract,
                 train_cal_oos_surface_path=oos_surface,
                 fold_augmented_gate_path=fold_gate,
+                artifact_id="custom_expanded_threshold_contract",
             )
 
         self.assertEqual(audit["status"], "computed_oos_calibrated_threshold_contract")
+        self.assertEqual(audit["artifact_id"], "custom_expanded_threshold_contract")
         self.assertTrue(audit["guardrails"]["train_cal_oos_negatives_used_for_threshold"])
         primary = audit["primary_channel_readout"]
         selected = primary[
@@ -3216,6 +3219,156 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
         self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+
+    def test_expanded_train_cal_oos_surface_composes_readout_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            surface = root / "surface.json"
+            readout = root / "readout.json"
+            calibration = root / "calibration.json"
+            surface.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "prior",
+                        "status": "computed_partial_train_cal_oos_negative_surface_scores",
+                        "counts": {
+                            "candidate_ids_requested": 4,
+                            "candidate_rows_with_full_channel_scores": 1,
+                        },
+                        "candidate_entry_ids": [
+                            "m_csa:1",
+                            "m_csa:78",
+                            "m_csa:204",
+                            "m_csa:531",
+                        ],
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P1",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.6
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:78",
+                                "accession": "P23007",
+                                "channel_scores": None,
+                                "predicted_structure_fold_channel": {},
+                            },
+                            {
+                                "entry_id": "m_csa:204",
+                                "accession": "P10746",
+                                "channel_scores": None,
+                                "predicted_structure_fold_channel": {},
+                            },
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "channel_scores": None,
+                                "predicted_structure_fold_channel": {},
+                            },
+                        ],
+                        "guardrails": {"frozen_current702_inputs_only": True},
+                        "source_artifacts": {},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readout.write_text(
+                json.dumps(
+                    {
+                        "readout_rows": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "accession": "P00889",
+                                "status": "fixed_threshold_combined_readout",
+                                "fixed_threshold": 0.44155,
+                                "abstains_at_fixed_threshold": True,
+                                "geometry_status": "ok",
+                                "geometry_source": "authorized_p00889_ortholog_surrogate",
+                                "fold_source": "current_run_foldseek",
+                                "geometry_top1": {"score": 0.34},
+                                "fold_nearest_train_atlas": {
+                                    "entry_id": "m_csa:395",
+                                    "tm_score": 0.4675,
+                                    "true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "raw_query_name": "afdb_P00889_v6",
+                                    "raw_target_name": "afdb_P24289_v6",
+                                },
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.15,
+                                    "combined_mean_geometry_fold": 0.4054,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "status": "fixed_threshold_combined_readout",
+                                "fixed_threshold": 0.44155,
+                                "abstains_at_fixed_threshold": False,
+                                "geometry_status": "ok",
+                                "geometry_source": "approved_source_feature_sidecar",
+                                "fold_source": "existing_train_cal_oos_foldseek_surface",
+                                "geometry_top1": {"score": 0.45},
+                                "fold_nearest_train_atlas": {
+                                    "entry_id": "m_csa:862",
+                                    "tm_score": 0.611,
+                                    "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                                },
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.2,
+                                    "combined_mean_geometry_fold": 0.4756,
+                                },
+                            },
+                        ],
+                        "fold_only_caveat_rows": [{"entry_id": "m_csa:204"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            calibration.write_text(
+                json.dumps(
+                    {
+                        "remaining_combined_score_blocker_entry_ids": [
+                            "m_csa:204"
+                        ],
+                        "decision": {"deployment_closed_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_expanded_train_cal_oos_negative_surface_scores(
+                prior_train_cal_oos_surface_path=surface,
+                fixed_threshold_combined_rerun_readout_path=readout,
+                fixed_threshold_combined_rerun_calibration_impact_path=calibration,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "computed_partial_expanded_train_cal_oos_negative_surface_scores",
+        )
+        self.assertEqual(audit["counts"]["prior_full_channel_score_rows"], 1)
+        self.assertEqual(audit["counts"]["new_combined_readout_rows"], 2)
+        self.assertEqual(audit["counts"]["expanded_full_channel_score_rows"], 3)
+        self.assertEqual(
+            audit["remaining_combined_score_blocker_entry_ids"], ["m_csa:204"]
+        )
+        rows = {row["entry_id"]: row for row in audit["candidate_row_scores"]}
+        self.assertEqual(
+            rows["m_csa:78"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.4054,
+        )
+        self.assertEqual(rows["m_csa:78"]["scoring_accession"], "P00889")
+        self.assertEqual(
+            rows["m_csa:78"]["predicted_geometry_accession_repair"][
+                "original_accession"
+            ],
+            "P23007",
+        )
+        self.assertIsNone(rows["m_csa:204"]["channel_scores"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
 
     def test_post_rerun_deployment_closure_status_keeps_p10746_blocker(
         self,

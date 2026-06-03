@@ -1,0 +1,58 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_mh064_block_decision_current702_20260603",
+  "counts": {
+    "alternate_coordinate_files_cached": 0,
+    "alternate_coordinate_files_missing": 5,
+    "alternate_pdb_ids_checked": 5,
+    "approved_locator_copy_authorized_rows": 0,
+    "new_coordinates_fetched": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "requested_afdb_coordinate_cached": 1,
+    "selected_coordinate_cached": 1
+  },
+  "created_utc": "2026-06-03T01:18:04Z",
+  "decision": {
+    "alternate_coordinate_fetch_authorized": false,
+    "blocker_class": "alternate_coordinate_fetch_approval_required",
+    "mh064_left_blocked": true,
+    "next_action": "Unblock only after explicit approval to fetch one or more bounded alternate coordinates (3RKJ, 3RKK, 3SBL, 3SFP, 3SPU), then rerun candidate extraction and locator schema/integrity review before predicted-geometry scoring.",
+    "predicted_geometry_scoring_authorized": false
+  },
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "network_fetch_attempted": false,
+    "new_coordinates_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "rationale": [
+    "The local-cache preflight found 0/5 bounded alternate coordinate files cached for 3RKJ, 3RKK, 3SBL, 3SFP, and 3SPU.",
+    "The selected 3PG4 coordinate and requested AFDB coordinate are cached but do not clear the no-ligand alternate-coordinate blocker.",
+    "Fetching new coordinates is a policy action and is not authorized by this automation run."
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_locator_mh064_block_decision",
+  "scope": "Review-only block decision for the Lever 4 mh_064 alternate-coordinate locator blocker. It composes the policy blocker packet and local-cache preflight without fetching coordinates, copying locators, scoring predicted geometry, or changing any countable label surface.",
+  "source_artifacts": {
+    "mh064_alternate_coordinate_local_cache_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_mh064_alternate_coordinate_local_cache_preflight_current702_20260602.json",
+      "sha256": "6ada61506e5c67936da58ef66a37ac1af5bb1bc9ad3f5c8a53097d9001e47a39"
+    },
+    "policy_blocker_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.json",
+      "sha256": "f5389f3c3bf3c7aa2c57abed076796f16a5ed9ef0556394e1aa015aaf3762deb"
+    }
+  },
+  "status": "source_free_locator_mh064_block_decision_rejected_review_only",
+  "target_row": {
+    "entry_id": "mh_064",
+    "source_accession": "uniprot:C7C422"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_policy_closure_status_current702_20260603",
+  "counts": {
+    "block_decision_artifacts": 4,
+    "blocked_locator_rows": 5,
+    "countable_label_candidate_count": 0,
+    "import_preview_ready_rows": 0,
+    "locator_policy_rows_approved_for_copy_or_scoring": 0,
+    "priority_rows_mechanically_clearable_now": 0,
+    "priority_rows_requiring_external_approval_or_evidence": 5,
+    "review_rows_evaluated": 22,
+    "rows_blocked_before_import_preview": 22
+  },
+  "created_utc": "2026-06-03T01:23:10Z",
+  "decision": {
+    "automation_clearable_locator_decisions_remaining": 0,
+    "family_panel_import_preview_unblocked_now": false,
+    "next_action": "Do not continue locator automation on these five rows until external approval or evidence is supplied. If evidence arrives, rerun the relevant locator schema/integrity and import-preview blocker gates before scoring or countability claims.",
+    "policy_closure_status": "closed_for_automation_blocked_pending_external_approval_or_evidence",
+    "predicted_geometry_scoring_authorized": false
+  },
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "coordinates_fetched": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true
+  },
+  "row_closure": [
+    {
+      "block_decision": "leave_blocked_no_matching_coordinate_or_remap",
+      "entry_ids": [
+        "mh_065",
+        "mh_072"
+      ],
+      "external_unblock_condition": "matching frozen coordinates or expert residue-code-resolving alignment/remap"
+    },
+    {
+      "block_decision": "leave_blocked_no_acetate_nag_or_glycan_locator_copy",
+      "entry_ids": [
+        "external_glycoside_panel"
+      ],
+      "external_unblock_condition": "substrate-complex coordinate or expert-approved non-glycan active-site locator"
+    },
+    {
+      "block_decision": "leave_blocked_no_alternate_source_or_fabricated_nonlabel_locator",
+      "entry_ids": [
+        "secondary_probe::cobalamin_radical_rearrangement"
+      ],
+      "external_unblock_condition": "authorized alternate source row/coordinate or nonlabel locator strategy with at least two source-free sequence-position locators"
+    },
+    {
+      "block_decision": "leave_blocked_no_unapproved_alternate_coordinate_fetch",
+      "entry_ids": [
+        "mh_064"
+      ],
+      "external_unblock_condition": "explicit approval to fetch bounded alternate coordinates, followed by candidate extraction and locator review"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_locator_policy_closure_status",
+  "scope": "Review-only closure status for the Lever 4 family-panel source-free locator policy queue. It composes the row-level block decisions and the import-preview blocker gate without copying locators, fetching coordinates, scoring predicted geometry, or changing any countable label surface.",
+  "source_artifacts": {
+    "external_glycoside_block_decision": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_external_glycoside_block_decision_current702_20260603.json",
+      "sha256": "fcc9d1140b185a78241cf764b927becedcf50eaca9fe38a2314a86fc72cb0ba3"
+    },
+    "family_panel_import_preview_blocker_gate": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.json",
+      "sha256": "81dcaaf6654ed2f356cb7cbaf80dac978783f8cd350574836ba35d660dc1b048"
+    },
+    "mh064_block_decision": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_mh064_block_decision_current702_20260603.json",
+      "sha256": "b4b2dce095ad090509afd372c89ad27d9372bfcdfbb622a05273c22f8f8bc559"
+    },
+    "mh065_mh072_block_decision": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603.json",
+      "sha256": "4edf2a2d01fba07894d9c8ddd7d02c57ce2e30eacbbd3584d93b2fd0e39f08a1"
+    },
+    "q59490_block_decision": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_q59490_block_decision_current702_20260603.json",
+      "sha256": "3fd279b3c002a61d0f38abcf24dd3fc45e5dbe4643031be7499c41245e675859"
+    }
+  },
+  "status": "source_free_locator_policy_closure_status_closed_for_automation_blocked_review_only"
+}

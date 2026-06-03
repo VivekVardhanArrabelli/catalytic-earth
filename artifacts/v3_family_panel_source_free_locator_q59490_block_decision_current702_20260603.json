@@ -1,0 +1,59 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_q59490_block_decision_current702_20260603",
+  "counts": {
+    "alternate_eligible_source_rows": 0,
+    "approved_locator_copy_authorized_rows": 0,
+    "eligible_source_rows": 1,
+    "excluded_rows_with_local_coordinates": 0,
+    "primary_q59490_local_coordinate_paths": 3,
+    "ready_for_predicted_geometry_scoring": 0,
+    "target_rows": 1
+  },
+  "created_utc": "2026-06-03T01:15:21Z",
+  "decision": {
+    "alternate_source_substitution_authorized": false,
+    "blocker_class": "nonlabel_locator_strategy_or_alternate_source_required",
+    "nonlabel_locator_strategy_authorized": false,
+    "next_action": "Unblock only with an explicitly authorized alternate source row/coordinate or a nonlabel locator strategy with at least two source-free sequence-position locators, then rerun locator schema/integrity review before predicted-geometry scoring.",
+    "predicted_geometry_scoring_authorized": false,
+    "q59490_left_blocked": true
+  },
+  "guardrails": {
+    "alternate_source_authorized": false,
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "new_coordinates_fetched": false,
+    "new_source_data_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "rationale": [
+    "The nonlabel-locator feasibility audit found no coordinate anchor that can safely provide at least two source-free sequence-position locators for Q59490.",
+    "The alternate-source cache scout found 0 eligible alternate cobalamin source rows and 0 excluded rows with local coordinates.",
+    "The three primary Q59490 local coordinate paths do not by themselves authorize residue locator fabrication from panel identity or source prose."
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_locator_q59490_block_decision",
+  "scope": "Review-only block decision for the Lever 4 Q59490 source-free locator. It composes the nonlabel-locator feasibility audit and alternate-source cache scout without authorizing alternate-source substitution, copying locators, fetching coordinates, scoring predicted geometry, or changing any countable label surface.",
+  "source_artifacts": {
+    "q59490_alternate_source_cache_scout": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602.json",
+      "sha256": "658d49ab52cf4d7bf13b431e7db6f21b52bda081c3d710eacb75b3b901e37b3e"
+    },
+    "q59490_nonlabel_locator_feasibility": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_q59490_nonlabel_locator_feasibility_audit_current702_20260602.json",
+      "sha256": "52328107af117bb8d534ed8b4777146e91a9f2519d1b3e8375c5688b44802197"
+    }
+  },
+  "status": "source_free_locator_q59490_block_decision_rejected_review_only",
+  "target_row": {
+    "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+    "source_accession": "uniprot:Q59490"
+  }
+}

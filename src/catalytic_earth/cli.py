@@ -80,6 +80,7 @@ from .northstar_next_levers import (
     write_fold_augmented_family_panel_source_check_completion_reconciliation,
     write_fold_augmented_family_panel_source_check_queue,
     write_fold_augmented_confounded_deployment_closure_audit,
+    write_fold_augmented_expanded_train_cal_oos_negative_surface_scores,
     write_fold_augmented_fold_only_deployment_contract_decision,
     write_fold_augmented_fixed_threshold_combined_rerun_calibration_impact,
     write_fold_augmented_fixed_threshold_combined_rerun_readout,
@@ -11715,6 +11716,7 @@ def cmd_eval_fold_augmented_oos_calibrated_threshold_contract(args: argparse.Nam
         fold_augmented_gate_path=Path(args.fold_augmented_gate),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        artifact_id=args.artifact_id,
     )
     primary = audit.get("primary_channel_readout", {})
     selected = (
@@ -11725,6 +11727,29 @@ def cmd_eval_fold_augmented_oos_calibrated_threshold_contract(args: argparse.Nam
         "Wrote fold-augmented OOS-calibrated threshold contract to "
         f"{args.out} (status: {audit.get('status')}, "
         f"primary threshold: {selected.get('threshold')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_expanded_train_cal_oos_negative_surface(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_expanded_train_cal_oos_negative_surface_scores(
+        prior_train_cal_oos_surface_path=Path(args.prior_train_cal_oos_surface),
+        fixed_threshold_combined_rerun_readout_path=Path(
+            args.fixed_threshold_combined_rerun_readout
+        ),
+        fixed_threshold_combined_rerun_calibration_impact_path=Path(
+            args.fixed_threshold_combined_rerun_calibration_impact
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented expanded train/cal OOS negative surface to "
+        f"{args.out} (full rows: {counts.get('expanded_full_channel_score_rows')}, "
+        f"remaining blockers: {counts.get('remaining_combined_score_blocker_rows')})"
     )
     return 0
 
@@ -26496,6 +26521,13 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
     )
     oos_calibrated_threshold.add_argument(
+        "--artifact-id",
+        default=(
+            "v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601"
+        ),
+    )
+    oos_calibrated_threshold.add_argument(
         "--out",
         default=(
             "artifacts/v3_fold_augmented_abstention_threshold_contract_"
@@ -26511,6 +26543,52 @@ def build_parser() -> argparse.ArgumentParser:
     )
     oos_calibrated_threshold.set_defaults(
         func=cmd_eval_fold_augmented_oos_calibrated_threshold_contract
+    )
+
+    expanded_train_cal_oos_surface = subparsers.add_parser(
+        "build-fold-augmented-expanded-train-cal-oos-negative-surface",
+        help=(
+            "compose fixed-threshold rerun rows into the train/cal OOS negative "
+            "surface without selecting thresholds or reading heldout rows"
+        ),
+    )
+    expanded_train_cal_oos_surface.add_argument(
+        "--prior-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.json"
+        ),
+    )
+    expanded_train_cal_oos_surface.add_argument(
+        "--fixed-threshold-combined-rerun-readout",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "readout_current702_20260603.json"
+        ),
+    )
+    expanded_train_cal_oos_surface.add_argument(
+        "--fixed-threshold-combined-rerun-calibration-impact",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "calibration_impact_current702_20260603.json"
+        ),
+    )
+    expanded_train_cal_oos_surface.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_"
+            "surface_scores_current702_20260603.json"
+        ),
+    )
+    expanded_train_cal_oos_surface.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_expanded_train_cal_oos_negative_surface_scores_"
+            "current702_20260603.md"
+        ),
+    )
+    expanded_train_cal_oos_surface.set_defaults(
+        func=cmd_build_fold_augmented_expanded_train_cal_oos_negative_surface
     )
 
     fold_only_oos_surface = subparsers.add_parser(

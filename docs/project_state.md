@@ -151,6 +151,11 @@ artifacts first.
   `m_csa:531` and `uniprot:Q3LXA3` are retained. The calibration-impact audit
   expands the train/cal OOS combined-score surface from 71/76 to 75/76 rows and
   raises fixed-threshold OOS abstentions from 28 to 30.
+  The expanded train/cal OOS surface is now materialized as a first-class
+  threshold-selection input, and the regenerated OOS-calibrated research
+  contract keeps the primary threshold unchanged at `0.44155`, with 30/75
+  calibration OOS rows abstained and the same heldout final readout
+  (45/47 in-scope retained; 5/6 cofactor-confounded OOS abstained).
   `m_csa:204`/P10746 is explicitly kept fold-only with the
   no-non-residue-sidecar policy caveat. The post-rerun closure-status gate
   reduces the prior five production blockers to this single caveat. The
@@ -333,22 +338,34 @@ artifacts first.
   The selected acetate (`ACT`) locator from unliganded MYORG `7QQF` was
   rejected, NAG contacts remain glycan/glycosylation-context evidence, and a
   local-cache substrate-coordinate scout found 0 same-accession substrate-like
-  candidates. Do not copy or score this row until a dedicated substrate-complex
-  coordinate or expert-approved non-glycan locator exists.
+  candidates. The block decision now explicitly rejects copying acetate,
+  NAG/glycan, or raw glycan/buffer retargeting. Do not copy or score this row
+  until a dedicated substrate-complex coordinate or expert-approved non-glycan
+  locator exists.
 - The final no-ligand locator blocker packet isolates two policy decisions:
   `mh_064` needs explicit approval before fetching five frozen alternate PDBs
   (`3RKJ`, `3RKK`, `3SBL`, `3SFP`, `3SPU`), and Q59490 needs a nonlabel
   locator strategy or approved alternate source row. A local-cache Q59490
-  alternate-source scout found 0 eligible alternate rows. Automation did not
-  fetch coordinates, copy sidecars, or score predicted geometry for either
-  blocker.
+  alternate-source scout found 0 eligible alternate rows. The Q59490 block
+  decision now leaves the row blocked rather than fabricating residue locators
+  from panel identity or source prose. The `mh_064` block decision now leaves
+  the row blocked rather than fetching unapproved alternate coordinates.
+  Automation did not fetch coordinates, copy sidecars, or score predicted
+  geometry for either blocker.
 - A refreshed source-free locator blocker status plus human-decision matrix now
   consolidates the five remaining blocker rows into four decision classes.
   Automation discovery is complete, 0/5 are automation-clearable, 0 are
   import-preview-ready, and `mh_065`/`mh_072` have now been explicitly left
-  blocked rather than remapped. The remaining open locator-policy decisions are
-  `external_glycoside_panel`, `mh_064`, and Q59490. The matrix authorizes no
-  copy, fetch, scoring, import, or label action.
+  blocked rather than remapped; `external_glycoside_panel` is now explicitly
+  left blocked rather than acetate/NAG-retargeted; Q59490 is now explicitly
+  left blocked rather than nonlabel-fabricated or alternate-source-substituted.
+  `mh_064` is now explicitly left blocked rather than fetch-authorized. No
+  locator-policy decision remains automation-clearable; all remaining unblock
+  paths require external approval/evidence before any copy, fetch, scoring,
+  import, or label action. The consolidated locator-policy closure status
+  records 5/5 blocked locator rows, 0 automation-clearable locator decisions,
+  0 rows approved for copy/scoring, 0 import-preview-ready rows, and 0 countable
+  label candidates.
 - The family-panel import-preview blocker gate has been refreshed against that
   enriched matrix. It still reports 0/22 import-preview-ready rows, 0 countable
   label candidates, 11 completed source checks that remain review-only/no
@@ -690,6 +707,8 @@ artifacts first.
 - `artifacts/v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.json`
 - `artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603.json`
 - `artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603.json`
+- `artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.json`
+- `artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json`
 - `artifacts/v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
@@ -750,7 +769,11 @@ artifacts first.
 - `artifacts/v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602.json`
 - `artifacts/v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603.json`
 - `artifacts/v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602.json`
+- `artifacts/v3_family_panel_source_free_locator_external_glycoside_block_decision_current702_20260603.json`
 - `artifacts/v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602.json`
+- `artifacts/v3_family_panel_source_free_locator_q59490_block_decision_current702_20260603.json`
+- `artifacts/v3_family_panel_source_free_locator_mh064_block_decision_current702_20260603.json`
+- `artifacts/v3_family_panel_source_free_locator_policy_closure_status_current702_20260603.json`
 - `artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`

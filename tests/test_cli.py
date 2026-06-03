@@ -926,6 +926,16 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-fold-augmented-expanded-train-cal-oos-negative-"
+                    "surface"
+                ),
+                (
+                    "cmd_build_fold_augmented_expanded_train_cal_oos_negative_"
+                    "surface"
+                ),
+            ),
+            (
                 "build-fold-augmented-post-rerun-deployment-closure-status",
                 "cmd_build_fold_augmented_post_rerun_deployment_closure_status",
             ),

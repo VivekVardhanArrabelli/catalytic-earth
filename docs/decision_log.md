@@ -3,6 +3,136 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Source-Free Locator Policy Queue Closed For Automation
+
+Decision: close the remaining family-panel source-free locator policy queue for
+automation. This is not an import/countability unlock: all five locator rows
+remain blocked, no locator copy/scoring is authorized, and no labels,
+registries, ontologies, imports, thresholds, splits, model weights, or
+coordinates changed.
+
+Result: the consolidated closure status composes the `mh_065`/`mh_072`,
+external glycoside, Q59490, and `mh_064` block decisions with the import-preview
+blocker gate. It records 5 blocked locator rows, 0 automation-clearable locator
+decisions, 0 rows approved for locator copy or predicted-geometry scoring, 0
+import-preview-ready rows, and 0 countable label candidates.
+
+Consequence / next gate: do not continue locator automation on these five rows
+until external approval/evidence is supplied. If evidence arrives, rerun the
+relevant locator schema/integrity and import-preview blocker gates before
+scoring or countability claims.
+
+Artifacts:
+`artifacts/v3_family_panel_source_free_locator_policy_closure_status_current702_20260603.json`
+and
+`work/family_panel_source_free_locator_policy_closure_status_current702_20260603.md`.
+
+## 2026-06-03: mh_064 Locator Left Blocked; No Alternate Fetch Authorized
+
+Decision: leave `mh_064` blocked. Do not fetch alternate coordinates in this
+automation run, do not copy locator sidecars, and do not run predicted-geometry
+scoring. No import, label, registry, ontology, threshold, split, or model-weight
+change is authorized.
+
+Rationale: the local-cache preflight found zero of five bounded alternate
+coordinate files cached for `3RKJ`, `3RKK`, `3SBL`, `3SFP`, and `3SPU`. The
+selected `3PG4` coordinate and requested AFDB coordinate are cached but do not
+clear the no-ligand alternate-coordinate blocker. Fetching new coordinates is a
+policy action and is not authorized by this automation run.
+
+Consequence / next gate: unblock only after explicit approval to fetch one or
+more bounded alternate coordinates, then rerun candidate extraction and locator
+schema/integrity review before predicted-geometry scoring. The remaining
+locator-policy queue is now closed for automation: all unresolved rows require
+external approval/evidence before copy, fetch, scoring, import, or label action.
+
+Artifacts:
+`artifacts/v3_family_panel_source_free_locator_mh064_block_decision_current702_20260603.json`
+and
+`work/family_panel_source_free_locator_mh064_block_decision_current702_20260603.md`.
+
+## 2026-06-03: Q59490 Locator Left Blocked; No Alternate Source Or Fabricated Locators
+
+Decision: leave `secondary_probe::cobalamin_radical_rearrangement` / Q59490
+blocked. Do not authorize alternate-source substitution, do not fabricate
+residue locators from panel identity or source prose, and do not run
+predicted-geometry scoring. No coordinate fetch, locator copy, import, label,
+registry, ontology, threshold, split, or model-weight change is authorized.
+
+Rationale: the nonlabel-locator feasibility audit found no coordinate anchor
+that can safely provide at least two source-free sequence-position locators for
+Q59490. The alternate-source cache scout found zero eligible alternate cobalamin
+source rows and zero excluded rows with local coordinates. The three primary
+Q59490 local coordinate paths do not by themselves authorize locator
+fabrication.
+
+Consequence / next gate: unblock only with an explicitly authorized alternate
+source row/coordinate or a nonlabel locator strategy with at least two
+source-free sequence-position locators, then rerun locator schema/integrity
+review before predicted-geometry scoring. The remaining open locator-policy
+decision is now `mh_064` alternate-coordinate fetch approval.
+
+Artifacts:
+`artifacts/v3_family_panel_source_free_locator_q59490_block_decision_current702_20260603.json`
+and
+`work/family_panel_source_free_locator_q59490_block_decision_current702_20260603.md`.
+
+## 2026-06-03: External Glycoside Locator Left Blocked; No Acetate/NAG Copy
+
+Decision: leave `external_glycoside_panel` blocked. Do not copy the 7QQF
+acetate locator, NAG/glycan-derived locator, or any raw glycan/buffer
+retargeting into the audited source-free locator directory. No predicted-
+geometry scoring, coordinate fetch, import, label, registry, ontology,
+threshold, split, or model-weight change is authorized.
+
+Rationale: the NAG validator already rejected glycan-context retargeting. The
+local-cache substrate-coordinate scout scanned 60 coordinate files and found
+four same-accession coordinate records but zero substrate-like coordinate
+candidates. The only same-accession PDB coordinate with non-water HETATMs has
+ACT/BMA/FUC/MAN/MLI/NAG glycan or buffer ligands, which cannot clear the
+non-glycan substrate-coordinate gate.
+
+Consequence / next gate: unblock only with an explicit substrate-complex
+coordinate or expert-approved non-glycan active-site locator, then rerun
+locator schema/integrity review before predicted-geometry scoring. The remaining
+open locator-policy decisions are now `mh_064` alternate-coordinate fetch
+approval and Q59490 nonlabel locator or alternate-source authorization.
+
+Artifacts:
+`artifacts/v3_family_panel_source_free_locator_external_glycoside_block_decision_current702_20260603.json`
+and
+`work/family_panel_source_free_locator_external_glycoside_block_decision_current702_20260603.md`.
+
+## 2026-06-03: Expanded Train/Cal OOS Threshold Regeneration Keeps 0.44155
+
+Decision: materialize the post-rerun expanded train/cal OOS-negative surface
+and regenerate the OOS-calibrated fold-augmented threshold contract from that
+surface. This is a research calibration artifact only: no production threshold,
+label, registry, ontology, import, split, model weight, or heldout-tuned surface
+changed.
+
+Result: the expanded surface composes the four fixed-threshold combined readout
+rows into the prior train/cal OOS negative surface, increasing full-channel
+coverage from 71/76 to 75/76 rows. `m_csa:204`/P10746 remains the sole
+fold-only policy caveat and the surface is still partial. The regenerated
+OOS-calibrated research contract keeps the primary
+`combined_mean_geometry_fold` threshold at `0.44155`; calibration OOS
+abstention is 30/75, and the heldout final readout remains 45/47 in-scope rows
+retained, 44/79 OOS rows abstained, and 5/6 cofactor-confounded OOS rows
+abstained.
+
+Consequence / next gate: do not rerun this threshold-selection step unless the
+train/cal surface changes again. Lever 3 deployment closure is still blocked by
+the P10746 fold-only caveat: either explicitly accept that caveat for
+deployment closure or provide an approved non-residue sidecar.
+
+Artifacts:
+`artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.json`,
+`work/fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.md`,
+`artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json`,
+and
+`work/fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.md`.
+
 ## 2026-06-03: mh_065/mh_072 Remapped Locators Rejected; Leave Blocked
 
 Decision: leave `mh_065` and `mh_072` blocked. Do not copy the raw
