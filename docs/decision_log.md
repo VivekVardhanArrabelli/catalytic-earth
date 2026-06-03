@@ -3,6 +3,66 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Lever 3 Human Decisions Applied; Materialization Still Pending
+
+Decision: record the five Lever 3 production-blocker human/policy decisions as
+a decision-application artifact, while leaving materialization and scoring
+unperformed. The three strict-audit-clean source-feature sidecars are approved
+for materialization, P00889 is authorized as the P23007 ortholog surrogate, and
+P10746 is kept fold-only with the non-residue-sidecar policy caveat. No
+coordinates were fetched, no sidecars were copied, no Foldseek/TM or combined
+channel rerun was performed, and no labels, registries, ontologies, imports,
+thresholds, splits, model weights, or heldout-tuned surfaces changed.
+
+Result: the human/policy decision blockers are now 0, but deployment closure is
+still false. Four materialization/rerun steps remain: copy the approved
+source-feature sidecars into the scoring surface, fetch the P00889 AFDB
+coordinate as an ortholog surrogate, rerun the combined geometry/fold channel
+at the fixed threshold, and disclose the P10746 fold-only exception in the
+readout.
+
+Consequence / next gate: perform only those materialization steps under the
+fixed threshold contract; do not tune thresholds or train on heldout rows.
+
+Artifacts:
+`artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json`
+and
+`work/fold_augmented_blocker_human_decision_application_current702_20260603.md`.
+
+## 2026-06-03: Lever 4 Local-Cache Locator Discovery Closes With Five Human/Policy Blockers
+
+Decision: treat the remaining family-panel source-free locator blockers as
+human/policy decisions, not automation-discovery tasks. No coordinates were
+fetched, no locator sidecars were copied, no predicted-geometry scoring was
+run, no import preview was written, and no labels, registries, ontologies,
+thresholds, splits, model weights, or heldout-tuned surfaces changed.
+
+Result: local-cache scouts found 0 non-AFDB replacement coordinates for
+`mh_065`/`mh_072`, 0 same-accession substrate-like coordinates for
+`external_glycoside_panel`, and 0 eligible alternate source rows for Q59490.
+The human-decision matrix now tracks 5 remaining blocker rows across 4 decision
+classes, with 0 automation-clearable rows. The refreshed family-panel
+import-preview blocker gate still reports 0/22 import-preview-ready rows and
+0 countable label candidates.
+
+Consequence / next gate: decide the `mh_065`/`mh_072` matching-coordinate or
+remapped-locator policy first, then rerun the relevant locator schema/candidate
+audit and the import-preview blocker gate before any copy, fetch, scoring,
+import preview, or label-factory action.
+
+Artifacts:
+`artifacts/v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602.json`,
+`work/family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602.md`,
+`artifacts/v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602.json`,
+`work/family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602.md`,
+`artifacts/v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602.json`,
+`work/family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602.md`,
+`artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`,
+`work/family_panel_source_free_locator_human_decision_matrix_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.json`,
+and
+`work/fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.md`.
+
 ## 2026-06-02: Lever 3 Blocker-Specific Gates Cover All Five Remaining Fold Deployment Rows
 
 Decision: keep the predicted-structure-vs-atlas fold channel at the fixed

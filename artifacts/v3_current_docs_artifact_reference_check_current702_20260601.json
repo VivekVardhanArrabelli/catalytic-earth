@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 578
+    "references_checked": 608
   },
-  "created_utc": "2026-06-02T22:18:42Z",
+  "created_utc": "2026-06-03T00:16:50Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -300,16 +300,16 @@
       "reference": "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json"
     },
     {
+      "checked_path": "artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json"
+    },
+    {
       "checked_path": "artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json",
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json"
-    },
-    {
-      "checked_path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

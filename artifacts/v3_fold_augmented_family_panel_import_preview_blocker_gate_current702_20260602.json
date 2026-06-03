@@ -20,7 +20,7 @@
     "rows_blocked_by_locator_or_primary_channel": 5,
     "rows_with_completed_review_only_source_check": 11
   },
-  "created_utc": "2026-06-02T19:37:51Z",
+  "created_utc": "2026-06-03T00:05:59Z",
   "decision": {
     "all_priority_rows_human_or_policy_blocked": true,
     "import_preview_can_run": false,
@@ -56,7 +56,7 @@
   },
   "interpretation": {
     "headline": "0/22 family-panel review rows can enter an import preview.",
-    "next_action": "Start with the highest-priority locator decision class: Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. Then rerun the relevant locator schema or candidate audit before scoring.",
+    "next_action": "Start with the highest-priority locator decision class: No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. Then rerun the relevant locator schema or candidate audit before scoring.",
     "result": "The source-check queue is reconciled, but countability is still blocked by expert import decisions, label-factory gate absence, completed source checks that explicitly remain review-only, and source-free locator/primary-channel gaps. The priority locator rows are all joined to human or policy decision classes."
   },
   "panel_blocker_summaries": [
@@ -583,7 +583,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_decision_class": "nonlabel_locator_strategy_or_alternate_source_required",
-      "locator_decision_needed": "Authorize an alternate source row/coordinate for Q59490 or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
+      "locator_decision_needed": "No eligible alternate source row is available for Q59490; authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
       "locator_decision_priority": 5,
       "locator_resolution_status": "blocked_no_coordinate_anchor_nonlabel_strategy_required",
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
@@ -612,7 +612,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_decision_class": "ligand_specificity_validator_or_substrate_coordinate_required",
-      "locator_decision_needed": "Provide an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator for external_glycoside_panel.",
+      "locator_decision_needed": "No cached same-accession substrate-like coordinate clears external_glycoside_panel; provide an explicit substrate-complex coordinate or expert-approved non-glycan locator before rerunning schema/scoring.",
       "locator_decision_priority": 3,
       "locator_resolution_status": "selected_acetate_and_nag_glycan_validator_rejected",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
@@ -670,7 +670,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_decision_class": "accession_equivalence_or_matching_coordinate_required",
-      "locator_decision_needed": "Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+      "locator_decision_needed": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
       "locator_decision_priority": 2,
       "locator_resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
@@ -699,7 +699,7 @@
         "source_free_locator_human_or_policy_decision_required"
       ],
       "locator_decision_class": "accession_equivalence_or_matching_coordinate_required",
-      "locator_decision_needed": "Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+      "locator_decision_needed": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
       "locator_decision_priority": 2,
       "locator_resolution_status": "blocked_accession_mismatch_requested_afdb_position_mismatch",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
@@ -728,7 +728,7 @@
     "locator_human_decision_matrix": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json",
-      "sha256": "aaa530d68f18130ccac98345fee6c48abe2fb112c520748e78a0da8ce7eb75ad"
+      "sha256": "190719702410aa1b199a1b5f8ea13576ba8f78308b7fc39f14769654655571f9"
     }
   },
   "status": "family_panel_import_preview_blocker_gate_ready_blocked"

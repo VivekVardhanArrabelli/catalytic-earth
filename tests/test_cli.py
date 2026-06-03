@@ -807,6 +807,36 @@ class CliTests(unittest.TestCase):
                 "cmd_build_family_panel_source_free_locator_human_decision_matrix",
             ),
             (
+                (
+                    "build-family-panel-source-free-locator-matching-"
+                    "coordinate-scout-mh065-mh072"
+                ),
+                (
+                    "cmd_build_family_panel_source_free_locator_matching_"
+                    "coordinate_scout_mh065_mh072"
+                ),
+            ),
+            (
+                (
+                    "build-family-panel-source-free-locator-glycoside-"
+                    "substrate-coordinate-scout"
+                ),
+                (
+                    "cmd_build_family_panel_source_free_locator_glycoside_"
+                    "substrate_coordinate_scout"
+                ),
+            ),
+            (
+                (
+                    "build-family-panel-source-free-locator-q59490-"
+                    "alternate-source-cache-scout"
+                ),
+                (
+                    "cmd_build_family_panel_source_free_locator_q59490_"
+                    "alternate_source_cache_scout"
+                ),
+            ),
+            (
                 "audit-predicted-atlas-vs-fold-novelty-operating-grid-delta",
                 "cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta",
             ),
@@ -845,6 +875,16 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_fold_augmented_p23007_alternate_accession_"
                     "policy_gate"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-blocker-human-decision-"
+                    "application"
+                ),
+                (
+                    "cmd_build_fold_augmented_blocker_human_decision_"
+                    "application"
                 ),
             ),
             (

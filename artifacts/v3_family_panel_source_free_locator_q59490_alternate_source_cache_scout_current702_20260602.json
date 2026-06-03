@@ -1,0 +1,64 @@
+{
+  "alternate_eligible_rows": [],
+  "artifact_id": "v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602",
+  "counts": {
+    "alternate_eligible_source_rows": 0,
+    "approved_locator_copy_authorized_rows": 0,
+    "coordinate_roots": 2,
+    "eligible_source_rows": 1,
+    "excluded_rows_sample": 24,
+    "excluded_rows_with_local_coordinates": 0,
+    "primary_q59490_eligible_rows": 1,
+    "primary_q59490_local_coordinate_paths": 3,
+    "ready_for_predicted_geometry_scoring": 0,
+    "target_rows": 1
+  },
+  "created_utc": "2026-06-02T23:22:06Z",
+  "decision": {
+    "alternate_source_gate_cleared": false,
+    "alternate_source_substitution_authorized": false,
+    "new_countable_labels_authorized": false,
+    "next_action": "No eligible alternate cobalamin source row is available in the current review packet. Keep Q59490 blocked until an alternate source row/coordinate is explicitly authorized or a nonlabel strategy with at least two source-free sequence-position locators is defined."
+  },
+  "excluded_rows_with_local_coordinates": [],
+  "guardrails": {
+    "alternate_source_authorized": false,
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "new_coordinates_fetched": false,
+    "new_source_data_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_locator_q59490_alternate_source_cache_scout",
+  "scope": "Local-cache-only scout for the Q59490 nonlabel-locator blocker. It checks whether the cobalamin blocker review already contains an eligible alternate source row with local coordinates, without authorizing alternate-source substitution, coordinate fetches, locator creation, scoring, or imports.",
+  "source_artifacts": {
+    "cobalamin_blocker_review": {
+      "exists": true,
+      "path": "artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json",
+      "sha256": "52dad94795c92f4d8a0922fd90588e7c908d3ae21f0ab96ac6ba79c34b168406"
+    },
+    "q59490_nonlabel_locator_feasibility": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_q59490_nonlabel_locator_feasibility_audit_current702_20260602.json",
+      "sha256": "52328107af117bb8d534ed8b4777146e91a9f2519d1b3e8375c5688b44802197"
+    }
+  },
+  "status": "source_free_locator_q59490_alternate_source_cache_scout_blocked_no_eligible_alternate_source_review_only",
+  "target_row": {
+    "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+    "feasibility_next_action": "Do not fabricate Q59490 residue locators from panel identity or source prose. Authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators before schema/scoring.",
+    "feasibility_status": "source_free_locator_q59490_nonlabel_locator_feasibility_blocked_no_coordinate_anchor_review_only",
+    "primary_local_coordinate_paths": [
+      "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v6.cif",
+      "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+      "artifacts/v3_foldseek_coordinates_1000/pdb_1L1L.cif"
+    ],
+    "source_accession": "uniprot:Q59490"
+  }
+}

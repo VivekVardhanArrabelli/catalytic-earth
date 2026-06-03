@@ -50,6 +50,102 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 3/2/4 Forward Push Active Run 3
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T00:03:49Z`
+- STARTED_LOCAL: `2026-06-02T19:03:49-0500 CDT`
+- ENDED_AT: `2026-06-03T00:15:17Z`
+- ENDED_LOCAL: `2026-06-02T19:15:17-0500 CDT`
+- ELAPSED_MINUTES: `11.5`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "89574", "started_at": "2026-06-03T00:03:49Z", "status": "acquired"}`
+- Dead prior lock recovered:
+  `.git/catalytic-earth-automation.lock.dead.20260603T000349Z`
+
+#### Current intent
+
+Continue from the interrupted prior run's dirty worktree state, use this
+handoff as primary truth, and make forward progress inside Lever 2, 3, or 4
+without touching labels, registries, ontologies, imports, production
+thresholds, or heldout-tuned surfaces.
+
+#### What changed
+
+- Recovered the interrupted dirty worktree from the dead prior automation lock.
+- Kept the prior automation's family-panel locator scout work:
+  `v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602`,
+  `v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602`,
+  and `v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602`.
+- Added `v3_fold_augmented_blocker_human_decision_application_current702_20260603`
+  to record Vivek's human-gate decisions:
+  approve `m_csa:531`, `uniprot:P78549`, and `uniprot:Q3LXA3`;
+  authorize `P00889` as the ortholog surrogate for `P23007`/`m_csa:78`;
+  keep `P10746`/`m_csa:204` fold-only with no fabricated
+  non-residue sidecar.
+- Added a CLI command:
+  `build-fold-augmented-blocker-human-decision-application`.
+- Added unit and artifact-regression coverage for the decision application.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`
+  passed: 113 tests.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -q`
+  passed: 149 tests, 7 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q`
+  passed: 118 tests, 84 subtests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `git diff --check` passed.
+
+#### Exact next action
+
+- Materialize the three approved source-feature sidecars into the scoring
+  surface, fetch the `P00889` AFDB coordinate as an explicitly recorded
+  ortholog surrogate for `P23007`, rerun the combined geometry/fold channel at
+  the fixed threshold, and keep `P10746` fold-only with the policy caveat
+  disclosed. Do not edit labels, registries, ontologies, imports, production
+  thresholds, or train/tune on heldout rows.
+
+### 2026-06-02 Lever 3/2/4 Forward Push Active Run 2
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T23:03:20Z`
+- STARTED_LOCAL: `2026-06-02T18:03:20-0500 CDT`
+- ENDED_AT: `2026-06-03T00:03:49Z`
+- ENDED_LOCAL: `2026-06-02T19:03:49-0500 CDT`
+- ELAPSED_MINUTES: `60.5`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "65219", "started_at": "2026-06-02T23:03:20Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the latest Lever 3/2/4 blocker state and spend the run on the
+highest-value mechanical move that can create a concrete artifact, test, or
+next gate without touching labels, registries, ontologies, imports,
+production thresholds, or heldout-tuned surfaces.
+
+#### What changed
+
+- Interrupted before clean wrap; superseded by Active Run 3, which recovered
+  the dead lock and preserved/finished the dirty worktree state.
+
+#### Tests run
+
+- Interrupted before a final test ledger was written; see Active Run 3.
+
+#### Exact next action
+
+- Superseded by Active Run 3.
+
 ### 2026-06-02 Lever 3/2/4 Forward Push Active Run
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

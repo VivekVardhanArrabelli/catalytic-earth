@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Import-Preview Blocker Gate - current702
 
-Run: 2026-06-02T19:37:51Z
+Run: 2026-06-03T00:05:59Z
 
 Lever 4 import-preview blocker gate for the review-only family-panel packets. It consumes the countability preflight and records exactly why no family-panel row can enter an import preview or label-factory countability gate yet.
 
@@ -68,4 +68,4 @@ Lever 4 import-preview blocker gate for the review-only family-panel packets. It
 
 - 0/22 family-panel review rows can enter an import preview.
 - The source-check queue is reconciled, but countability is still blocked by expert import decisions, label-factory gate absence, completed source checks that explicitly remain review-only, and source-free locator/primary-channel gaps. The priority locator rows are all joined to human or policy decision classes.
-- Start with the highest-priority locator decision class: Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. Then rerun the relevant locator schema or candidate audit before scoring.
+- Start with the highest-priority locator decision class: No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy. Then rerun the relevant locator schema or candidate audit before scoring.

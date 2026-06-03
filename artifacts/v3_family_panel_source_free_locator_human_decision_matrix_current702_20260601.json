@@ -7,11 +7,11 @@
     "ready_for_predicted_geometry_scoring": 0,
     "rows_requiring_human_or_policy_decision": 5
   },
-  "created_utc": "2026-06-02T19:37:50Z",
+  "created_utc": "2026-06-02T23:22:16Z",
   "decision_classes": [
     {
       "automation_can_continue_without_decision": false,
-      "decision_needed": "Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
+      "decision_needed": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy.",
       "entry_ids": [
         "mh_065",
         "mh_072"
@@ -24,11 +24,18 @@
         "Provide a frozen coordinate whose struct_ref maps to Q79MP6, or an explicitly approved alignment/remapped locator from the selected representative coordinate; do not copy the raw selected-PDB locator.",
         "Provide a frozen coordinate whose struct_ref maps to P0A6P9, or an explicitly approved alignment/remapped locator from the selected representative coordinate; do not copy the raw selected-PDB locator."
       ],
-      "safe_after_approval_action": "copy/score only if matching-coordinate policy or residue-remapped locator approval is explicit and recorded"
+      "safe_after_approval_action": "copy/score only if matching-coordinate policy or residue-remapped locator approval is explicit and recorded",
+      "supporting_gate": {
+        "matching_coordinate_gate_cleared": false,
+        "matching_coordinate_scout_status": "source_free_locator_matching_coordinate_scout_blocked_no_replacement_matches_review_only",
+        "matching_replacement_coordinates": 0,
+        "rows_with_same_accession_afdb_coordinate_only": 2,
+        "same_accession_struct_ref_coordinates": 2
+      }
     },
     {
       "automation_can_continue_without_decision": false,
-      "decision_needed": "Provide an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator for external_glycoside_panel.",
+      "decision_needed": "No cached same-accession substrate-like coordinate clears external_glycoside_panel; provide an explicit substrate-complex coordinate or expert-approved non-glycan locator before rerunning schema/scoring.",
       "entry_ids": [
         "external_glycoside_panel"
       ],
@@ -39,7 +46,14 @@
       "row_next_actions": [
         "Provide an explicit substrate-complex coordinate or expert-approved non-glycan active-site locator; do not copy the 7QQF acetate or NAG glycan-derived locator."
       ],
-      "safe_after_approval_action": "rerun locator schema/scoring only after a non-glycan locator or substrate-complex coordinate is approved"
+      "safe_after_approval_action": "rerun locator schema/scoring only after a non-glycan locator or substrate-complex coordinate is approved",
+      "supporting_gate": {
+        "glycoside_substrate_coordinate_scout_status": "source_free_locator_glycoside_substrate_coordinate_scout_blocked_no_substrate_like_local_coordinate_review_only",
+        "same_accession_coordinate_records": 4,
+        "same_accession_records_with_rejected_glycan_or_buffer_ligands": 1,
+        "substrate_coordinate_gate_cleared": false,
+        "substrate_like_coordinate_candidates": 0
+      }
     },
     {
       "automation_can_continue_without_decision": false,
@@ -54,11 +68,12 @@
       "row_next_actions": [
         "Approve or reject fetching frozen alternate PDBs 3RKJ/3RKK/3SBL/3SFP/3SPU; no alternate CIF is cached locally."
       ],
-      "safe_after_approval_action": "fetch approved coordinates, rerun candidate extraction, then repeat schema/guardrail review"
+      "safe_after_approval_action": "fetch approved coordinates, rerun candidate extraction, then repeat schema/guardrail review",
+      "supporting_gate": null
     },
     {
       "automation_can_continue_without_decision": false,
-      "decision_needed": "Authorize an alternate source row/coordinate for Q59490 or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
+      "decision_needed": "No eligible alternate source row is available for Q59490; authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators.",
       "entry_ids": [
         "secondary_probe::cobalamin_radical_rearrangement"
       ],
@@ -69,7 +84,14 @@
       "row_next_actions": [
         "Authorize an alternate source row/coordinate or define an explicit nonlabel strategy with at least two source-free sequence-position locators; current local coordinates provide no non-water/metal anchor."
       ],
-      "safe_after_approval_action": "stage a new source-free locator path and rerun candidate/schema audits before scoring"
+      "safe_after_approval_action": "stage a new source-free locator path and rerun candidate/schema audits before scoring",
+      "supporting_gate": {
+        "alternate_eligible_source_rows": 0,
+        "alternate_source_gate_cleared": false,
+        "excluded_rows_with_local_coordinates": 0,
+        "primary_q59490_local_coordinate_paths": 3,
+        "q59490_alternate_source_cache_scout_status": "source_free_locator_q59490_alternate_source_cache_scout_blocked_no_eligible_alternate_source_review_only"
+      }
     }
   ],
   "guardrails": {
@@ -84,7 +106,7 @@
   "interpretation": {
     "headline": "All 5 source-free locator blockers are now policy or human-review decisions, not automation-discovery tasks.",
     "next_action": "Pick the highest-priority remaining decision class, record the approval/rejection, then rerun the relevant locator schema or candidate audit before any scoring.",
-    "recommended_first_decision": "Provide matching frozen coordinates for mh_065/mh_072 or explicitly approve alignment/remapped locators before any raw representative-coordinate copy."
+    "recommended_first_decision": "No matching non-AFDB replacement coordinate is cached for mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates or explicitly approve alignment/remapped locators before any raw representative-coordinate copy."
   },
   "recommended_decision_order": [
     "accession_equivalence_or_matching_coordinate_required",
@@ -157,6 +179,21 @@
       "path": "artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json",
       "sha256": "80f5a5ea5b76c86a93289a72c92e795de199438366985ef3b9f9768ca3768491"
     },
+    "glycoside_substrate_coordinate_scout": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602.json",
+      "sha256": "4b3851e2d283eb4b23aba5f78f37c91cc3fffbdf836b28a0323c2f09ef70c7c7"
+    },
+    "matching_coordinate_scout": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602.json",
+      "sha256": "9cd78f37a50ac6f3026107cfd3869c3993588be8bc81b93a091fb7a4b9b3108b"
+    },
+    "q59490_alternate_source_cache_scout": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602.json",
+      "sha256": "658d49ab52cf4d7bf13b431e7db6f21b52bda081c3d710eacb75b3b901e37b3e"
+    },
     "remaining_blocker_action_queue": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json",
@@ -165,6 +202,9 @@
   },
   "source_status": {
     "blocker_resolution_status": "source_free_locator_blocker_resolution_status_ready_review_only",
+    "glycoside_substrate_coordinate_scout": "source_free_locator_glycoside_substrate_coordinate_scout_blocked_no_substrate_like_local_coordinate_review_only",
+    "matching_coordinate_scout": "source_free_locator_matching_coordinate_scout_blocked_no_replacement_matches_review_only",
+    "q59490_alternate_source_cache_scout": "source_free_locator_q59490_alternate_source_cache_scout_blocked_no_eligible_alternate_source_review_only",
     "remaining_blocker_action_queue": "source_free_locator_remaining_blocker_action_queue_ready_review_only"
   },
   "status": "source_free_locator_human_decision_matrix_ready_review_only"

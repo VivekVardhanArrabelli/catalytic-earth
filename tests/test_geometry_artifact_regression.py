@@ -2910,6 +2910,57 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             rows["Q9CZU6"]["blocked_actions_without_policy"],
         )
 
+    def test_fold_augmented_blocker_human_decision_application_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_blocker_human_decision_application_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_blocker_human_decision_application_ready_materialization_pending",
+        )
+        self.assertEqual(audit["counts"]["approved_source_feature_sidecars"], 3)
+        self.assertEqual(
+            audit["counts"]["source_feature_sidecars_authorized_for_materialization"],
+            3,
+        )
+        self.assertEqual(audit["counts"]["p23007_replacement_authorized_now"], 1)
+        self.assertEqual(
+            audit["counts"]["p23007_coordinate_fetch_authorized_now"], 1
+        )
+        self.assertEqual(audit["counts"]["p10746_keep_fold_only_policy_rows"], 1)
+        self.assertEqual(
+            audit["counts"]["p10746_non_residue_sidecar_approved_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["human_or_policy_decision_blockers_remaining"], 0
+        )
+        rows = {
+            row["entry_id"]: row
+            for row in audit["source_feature_sidecar_decisions"]
+            if row["decision"] == "approve_source_feature_sidecar"
+        }
+        self.assertEqual(
+            sorted(rows),
+            ["m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            audit["p23007_decision"]["selected_alternate_accession"], "P00889"
+        )
+        self.assertEqual(
+            audit["p10746_decision"]["decision"],
+            "keep_fold_only_no_non_residue_sidecar",
+        )
+        self.assertFalse(audit["guardrails"]["sidecars_materialized_now"])
+        self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
+
     def test_fold_augmented_remaining_blocker_decision_matrix_current_counts(
         self,
     ) -> None:
@@ -3667,6 +3718,32 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             matrix["recommended_decision_order"][0],
             "accession_equivalence_or_matching_coordinate_required",
+        )
+        first_class = matrix["decision_classes"][0]
+        self.assertEqual(
+            first_class["supporting_gate"]["matching_coordinate_scout_status"],
+            "source_free_locator_matching_coordinate_scout_blocked_no_replacement_matches_review_only",
+        )
+        self.assertEqual(
+            first_class["supporting_gate"]["matching_replacement_coordinates"],
+            0,
+        )
+        self.assertFalse(
+            first_class["supporting_gate"]["matching_coordinate_gate_cleared"]
+        )
+        second_class = matrix["decision_classes"][1]
+        self.assertEqual(
+            second_class["supporting_gate"][
+                "glycoside_substrate_coordinate_scout_status"
+            ],
+            "source_free_locator_glycoside_substrate_coordinate_scout_blocked_no_substrate_like_local_coordinate_review_only",
+        )
+        self.assertEqual(
+            second_class["supporting_gate"]["substrate_like_coordinate_candidates"],
+            0,
+        )
+        self.assertFalse(
+            second_class["supporting_gate"]["substrate_coordinate_gate_cleared"]
         )
         self.assertFalse(matrix["guardrails"]["locator_sidecars_created_or_copied"])
         self.assertFalse(matrix["guardrails"]["new_coordinates_fetched"])
@@ -7271,7 +7348,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
         )
         self.assertIn(
-            "Provide matching frozen coordinates",
+            "No matching non-AFDB replacement coordinate is cached",
             gate["interpretation"]["next_action"],
         )
         by_entry = {row["entry_id"]: row for row in gate["row_blockers"]}
@@ -8271,6 +8348,50 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             0,
         )
 
+    def test_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_matching_coordinate_"
+                "scout_mh065_mh072_current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            scout["status"],
+            "source_free_locator_matching_coordinate_scout_blocked_no_replacement_matches_review_only",
+        )
+        self.assertEqual(scout["counts"]["target_rows"], 2)
+        self.assertEqual(scout["counts"]["matching_replacement_coordinates"], 0)
+        self.assertEqual(scout["counts"]["same_accession_struct_ref_coordinates"], 2)
+        self.assertEqual(
+            scout["counts"]["rows_with_same_accession_afdb_coordinate_only"],
+            2,
+        )
+        self.assertFalse(scout["decision"]["matching_coordinate_gate_cleared"])
+        self.assertFalse(scout["decision"]["raw_representative_coordinate_copy_allowed"])
+        self.assertFalse(scout["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(
+            scout["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+
+        by_entry = {row["entry_id"]: row for row in scout["row_scouts"]}
+        self.assertEqual(
+            by_entry["mh_065"]["decision_status"],
+            "only_requested_afdb_coordinate_present_prior_residue_mismatch",
+        )
+        self.assertEqual(
+            by_entry["mh_065"]["matching_replacement_coordinate_count"],
+            0,
+        )
+        self.assertEqual(
+            by_entry["mh_072"]["same_accession_afdb_coordinate_count"],
+            1,
+        )
+
     def test_family_panel_source_free_locator_split_safe_template_check_mh067_mh068(
         self,
     ) -> None:
@@ -8418,6 +8539,48 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 for site in row["nag_site_validations"]
             )
         )
+
+    def test_family_panel_source_free_locator_glycoside_substrate_coordinate_scout(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_glycoside_substrate_"
+                "coordinate_scout_external_glycoside_panel_current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            scout["status"],
+            "source_free_locator_glycoside_substrate_coordinate_scout_blocked_no_substrate_like_local_coordinate_review_only",
+        )
+        self.assertEqual(scout["counts"]["target_rows"], 1)
+        self.assertEqual(scout["counts"]["same_accession_coordinate_records"], 4)
+        self.assertEqual(
+            scout["counts"]["same_accession_records_with_rejected_glycan_or_buffer_ligands"],
+            1,
+        )
+        self.assertEqual(scout["counts"]["substrate_like_coordinate_candidates"], 0)
+        self.assertFalse(scout["decision"]["substrate_coordinate_gate_cleared"])
+        self.assertFalse(scout["decision"]["raw_acetate_or_nag_locator_copy_allowed"])
+        self.assertFalse(
+            scout["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(scout["guardrails"]["new_coordinates_fetched"])
+
+        pdb_records = [
+            row
+            for row in scout["coordinate_records"]
+            if row["coordinate_kind"] == "pdb_mmcif"
+        ]
+        self.assertEqual(len(pdb_records), 1)
+        self.assertEqual(
+            pdb_records[0]["rejected_glycan_or_buffer_ligand_counts"]["NAG"],
+            434,
+        )
+        self.assertEqual(pdb_records[0]["substrate_like_ligand_counts"], {})
 
     def test_family_panel_source_free_locator_policy_blockers_mh064_q59490(
         self,

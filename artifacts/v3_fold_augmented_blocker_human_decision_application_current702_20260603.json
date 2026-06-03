@@ -1,0 +1,179 @@
+{
+  "artifact_id": "v3_fold_augmented_blocker_human_decision_application_current702_20260603",
+  "counts": {
+    "approved_source_feature_sidecars": 3,
+    "blocked_source_feature_approvals": 0,
+    "human_or_policy_decision_blockers_remaining": 0,
+    "human_or_policy_decision_rows": 5,
+    "materialization_or_rerun_steps_remaining": 4,
+    "p10746_keep_fold_only_policy_rows": 1,
+    "p10746_non_residue_sidecar_approved_rows": 0,
+    "p23007_coordinate_fetch_authorized_now": 1,
+    "p23007_replacement_authorized_now": 1,
+    "source_feature_sidecars_authorized_for_materialization": 3
+  },
+  "created_utc": "2026-06-03T00:11:35Z",
+  "decision": {
+    "deployment_closed_now": false,
+    "human_or_policy_decisions_complete": true,
+    "next_action": "Materialize the approved source-feature sidecars, fetch the P00889 AFDB coordinate as an ortholog surrogate, rerun the combined geometry/fold channel at the fixed threshold, and keep P10746 fold-only with the policy caveat disclosed.",
+    "p10746_fold_only_exception_recorded": true,
+    "ready_to_fetch_p23007_alternate_coordinate": true,
+    "ready_to_materialize_source_feature_sidecars": true,
+    "reviewer": "Vivek"
+  },
+  "guardrails": {
+    "coordinate_fetched_now": false,
+    "deployment_closed_now": false,
+    "ec_or_rhea_ids_used_as_predictive_features": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_used_as_predictive_feature": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "sidecars_materialized_now": false,
+    "source_ids_used_as_predictive_features": false,
+    "target_names_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "materialization_plan": [
+    "materialize_approved_source_feature_sidecars_into_scoring_surface",
+    "fetch_afdb_coordinate_for_p00889_ortholog_surrogate",
+    "rerun_fold_channel_with_p00889_substitution_at_fixed_threshold",
+    "record_p10746_fold_only_exception_in_readout"
+  ],
+  "p10746_decision": {
+    "accession": "P10746",
+    "approval_note": "Keep P10746 fold-only. No source-feature rows or curated residue nodes exist, and mechanism text is forbidden as a predictive anchor. Do not fabricate a non-residue sidecar.",
+    "approval_provenance": "user_human_gate_decision_20260602",
+    "decision": "keep_fold_only_no_non_residue_sidecar",
+    "deployment_closed_now": false,
+    "entry_id": "m_csa:204",
+    "non_residue_sidecar_authorized_now": false,
+    "reviewer": "Vivek",
+    "source_new_evidence_future_optional": true
+  },
+  "p23007_decision": {
+    "approval_note": "Use P00889 pig heart citrate synthase as the ortholog surrogate for P23007. The four mammalian citrate synthase candidates are interchangeable on recorded fields; P00889 is the canonical, structurally characterized choice. Record as an ortholog surrogate, not as P23007 itself.",
+    "approval_provenance": "user_human_gate_decision_20260602",
+    "blocked_accession": "P23007",
+    "coordinate_fetch_authorized_now": true,
+    "decision": "authorize_ortholog_surrogate_replacement",
+    "deployment_closed_now": false,
+    "entry_id": "m_csa:78",
+    "fold_channel_rerun_required": true,
+    "reviewer": "Vivek",
+    "selected_alternate_accession": "P00889",
+    "selected_alternate_row": {
+      "active_site_positions": [
+        301,
+        347,
+        402
+      ],
+      "afdb_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P00889-F1-model_v6.cif",
+      "alphafold_db_available": true,
+      "blocked_actions_without_policy": [
+        "fetch_alternate_accession_coordinate_bundle",
+        "substitute_candidate_for_p23007",
+        "rerun_fold_channel_with_replacement",
+        "claim_deployment_blocker_cleared"
+      ],
+      "candidate_accession": "P00889",
+      "coordinate_fetch_authorized_now": false,
+      "deployment_blocker_cleared_now": false,
+      "organism": "Sus scrofa",
+      "oxaloacetate_binding_positions": [
+        356,
+        428,
+        448
+      ],
+      "pattern_compatible_with_p23007_source_features": true,
+      "policy_review_ready": true,
+      "position_offset_vs_p23007_active_sites": 27,
+      "protein_name": "Citrate synthase, mitochondrial",
+      "ready_for_predicted_fold_channel_now": false,
+      "replacement_authorized_now": false,
+      "sequence_length": 464,
+      "uniprotkb_id": "CISY_PIG"
+    }
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_blocker_human_decision_application",
+  "scope": "Human decision application for the five Lever 3 production blocker rows. This records approval/policy decisions and authorizes the next materialization steps; it does not edit labels, registries, ontologies, imports, thresholds, model weights, or heldout tuning.",
+  "source_artifacts": {
+    "non_residue_interaction_sidecar_policy_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json",
+      "sha256": "c999065e69c58de83ab52cd3dbfcec27f6d7fa5f29cff620818056c4e0622677"
+    },
+    "p23007_alternate_accession_policy_gate": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json",
+      "sha256": "f80a603dc001edbc983803801f4cc5e5fd59bb6c53039fa7f94e5e11c468f3e5"
+    },
+    "source_feature_sidecar_review_gate": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.json",
+      "sha256": "8accb5b16f52b3d652317cb3431f1a8c5263a9df54f270f214652aedfe8ceaa7"
+    }
+  },
+  "source_feature_sidecar_decisions": [
+    {
+      "accession": "P31572",
+      "approval_note": "Approved by Vivek. P31572/L-carnitine CoA-transferase has strong source-feature support: Asp169 nucleophile is ECO:0000305/0255 and independently corroborated by the local M-CSA graph; CoA binding is ECO:0000269 experimental.",
+      "approval_provenance": "user_human_gate_decision_20260602",
+      "authorized_next_actions": [
+        "copy_candidate_sidecar_to_scoring_surface",
+        "rerun_combined_geometry_fold_channel_at_fixed_threshold"
+      ],
+      "decision": "approve_source_feature_sidecar",
+      "deployment_closed_now": false,
+      "entry_id": "m_csa:531",
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 2
+      },
+      "reviewer": "Vivek",
+      "source_feature_support_count": 3
+    },
+    {
+      "accession": "P78549",
+      "approval_note": "Approved by Vivek. NTHL1 Lys212 active-site evidence is ECO:0000269 experimental; the [4Fe-4S] binding annotation is inferred (ECO:0000255). Keep as a Fe-S cofactor-confounded negative.",
+      "approval_provenance": "user_human_gate_decision_20260602",
+      "authorized_next_actions": [
+        "copy_candidate_sidecar_to_scoring_surface",
+        "rerun_combined_geometry_fold_channel_at_fixed_threshold"
+      ],
+      "decision": "approve_source_feature_sidecar",
+      "deployment_closed_now": false,
+      "entry_id": "uniprot:P78549",
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 4,
+        "Site": 1
+      },
+      "reviewer": "Vivek",
+      "source_feature_support_count": 6
+    },
+    {
+      "accession": "Q3LXA3",
+      "approval_note": "Approved by Vivek with inferred-anchor caveat. TKFC His221 active-site evidence is ECO:0000255 and ATP/DHA binding is mostly ECO:0000250; acceptable because this row is a negative abstention-calibration row, not a positive mechanism assertion. Keep as an FMN cofactor-confounded negative.",
+      "approval_provenance": "user_human_gate_decision_20260602",
+      "authorized_next_actions": [
+        "copy_candidate_sidecar_to_scoring_surface",
+        "rerun_combined_geometry_fold_channel_at_fixed_threshold"
+      ],
+      "decision": "approve_source_feature_sidecar",
+      "deployment_closed_now": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "feature_type_counts": {
+        "Active site": 1,
+        "Binding site": 8
+      },
+      "reviewer": "Vivek",
+      "source_feature_support_count": 9
+    }
+  ],
+  "status": "fold_augmented_blocker_human_decision_application_ready_materialization_pending"
+}

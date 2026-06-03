@@ -117,6 +117,9 @@ FOLD_AUGMENTED_P23007_ALTERNATE_ACCESSION_SCOUT_ID = (
 FOLD_AUGMENTED_REMAINING_BLOCKER_DECISION_MATRIX_ID = (
     "v3_fold_augmented_remaining_blocker_decision_matrix_current702_20260602"
 )
+FOLD_AUGMENTED_BLOCKER_HUMAN_DECISION_APPLICATION_ID = (
+    "v3_fold_augmented_blocker_human_decision_application_current702_20260603"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -191,6 +194,15 @@ FAMILY_PANEL_SOURCE_FREE_LOCATOR_BLOCKED_ROW_RESCUE_MANIFEST_ID = (
 )
 FAMILY_PANEL_SOURCE_FREE_LOCATOR_HUMAN_DECISION_MATRIX_ID = (
     "v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_LOCATOR_MATCHING_COORDINATE_SCOUT_MH065_MH072_ID = (
+    "v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602"
+)
+FAMILY_PANEL_SOURCE_FREE_LOCATOR_GLYCOSIDE_SUBSTRATE_COORDINATE_SCOUT_ID = (
+    "v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602"
+)
+FAMILY_PANEL_SOURCE_FREE_LOCATOR_Q59490_ALTERNATE_SOURCE_CACHE_SCOUT_ID = (
+    "v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602"
 )
 FAMILY_PANEL_SOURCE_FREE_LOCATOR_COPY_DECISION_MH067_MH068_ID = (
     "v3_family_panel_source_free_locator_copy_decision_mh067_mh068_current702_20260602"
@@ -11095,6 +11107,811 @@ def write_family_panel_source_free_locator_blocked_row_rescue_manifest(
     return audit
 
 
+MH065_MH072_MATCHING_COORDINATE_TARGETS = {
+    "mh_065": "Q79MP6",
+    "mh_072": "P0A6P9",
+}
+
+
+def _coordinate_filename_accessions(path: Path) -> list[str]:
+    stem = path.stem
+    matches = []
+    af_match = re.match(r"AF-([A-Z0-9]+)-F\d+-model_v\d+$", stem, re.IGNORECASE)
+    if af_match:
+        matches.append(af_match.group(1).upper())
+    legacy_match = re.match(r"afdb_([A-Z0-9]+)$", stem, re.IGNORECASE)
+    if legacy_match:
+        matches.append(legacy_match.group(1).upper())
+    return sorted(set(matches))
+
+
+def _struct_ref_accessions(cif_text: str) -> list[str]:
+    accessions: set[str] = set()
+    for category in ("_struct_ref_seq.", "_struct_ref."):
+        for row in _parse_mmcif_category_rows(cif_text, category):
+            for field in ("pdbx_db_accession", "db_code"):
+                value = str(row.get(field) or "").strip()
+                if value and value not in {".", "?"}:
+                    accessions.add(value.upper())
+    return sorted(accessions)
+
+
+def _coordinate_kind(path: Path) -> str:
+    name = path.name.lower()
+    if name.startswith("pdb_"):
+        return "pdb_mmcif"
+    if name.startswith("af-") or name.startswith("afdb_"):
+        return "alphafolddb_predicted_cif"
+    return "local_coordinate"
+
+
+def _iter_local_coordinate_files(roots: list[Path]) -> list[Path]:
+    paths: set[Path] = set()
+    for root in roots:
+        if root.is_file() and root.suffix.lower() in {".cif", ".mmcif"}:
+            paths.add(root)
+            continue
+        if not root.exists() or not root.is_dir():
+            continue
+        for suffix in ("*.cif", "*.mmcif"):
+            paths.update(path for path in root.rglob(suffix) if path.is_file())
+    return sorted(paths, key=lambda path: str(path))
+
+
+def _matching_coordinate_record(
+    *,
+    path: Path,
+    requested_accession: str,
+) -> dict[str, Any] | None:
+    try:
+        cif_text = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None
+    struct_ref_accessions = _struct_ref_accessions(cif_text)
+    filename_accessions = _coordinate_filename_accessions(path)
+    requested = requested_accession.upper()
+    struct_ref_match = requested in struct_ref_accessions
+    filename_match = requested in filename_accessions
+    if not struct_ref_match and not filename_match:
+        return None
+    coordinate_kind = _coordinate_kind(path)
+    hetatm_counts = _hetatm_comp_counts(path)
+    nonwater_counts = {
+        code: count
+        for code, count in hetatm_counts.items()
+        if code not in LOCATOR_CANDIDATE_IGNORED_LIGAND_CODES
+    }
+    return {
+        "path": str(path),
+        "sha256": _sha256(path),
+        "coordinate_kind": coordinate_kind,
+        "struct_ref_accessions": struct_ref_accessions,
+        "filename_accessions": filename_accessions,
+        "requested_accession_struct_ref_match": struct_ref_match,
+        "requested_accession_filename_match": filename_match,
+        "hetatm_comp_counts": hetatm_counts,
+        "nonwater_hetatm_comp_counts": nonwater_counts,
+        "can_clear_matching_coordinate_gate": bool(
+            struct_ref_match and coordinate_kind != "alphafolddb_predicted_cif"
+        ),
+    }
+
+
+def build_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072(
+    *,
+    accession_equivalence_audit_path: Path,
+    coordinate_roots: list[Path],
+) -> dict[str, Any]:
+    prior_audit = _read_json(accession_equivalence_audit_path)
+    coordinate_files = _iter_local_coordinate_files(coordinate_roots)
+    prior_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in prior_audit.get("audit_rows", [])
+        if isinstance(row, dict)
+    }
+    coordinate_records_by_accession: dict[str, list[dict[str, Any]]] = {
+        accession: [] for accession in MH065_MH072_MATCHING_COORDINATE_TARGETS.values()
+    }
+    for path in coordinate_files:
+        for accession in coordinate_records_by_accession:
+            record = _matching_coordinate_record(
+                path=path,
+                requested_accession=accession,
+            )
+            if record is not None:
+                coordinate_records_by_accession[accession].append(record)
+    row_scouts = []
+    for entry_id, accession in MH065_MH072_MATCHING_COORDINATE_TARGETS.items():
+        prior_row = prior_by_entry.get(entry_id, {})
+        records = sorted(
+            coordinate_records_by_accession.get(accession, []),
+            key=lambda row: str(row.get("path") or ""),
+        )
+        replacement_records = [
+            row for row in records if row.get("can_clear_matching_coordinate_gate")
+        ]
+        afdb_records = [
+            row
+            for row in records
+            if row.get("coordinate_kind") == "alphafolddb_predicted_cif"
+        ]
+        if replacement_records:
+            decision_status = (
+                "matching_replacement_coordinate_found_pending_locator_rerun"
+            )
+            required_next_action = (
+                "Rerun source-free locator candidate extraction on the matching "
+                "frozen coordinate, then repeat schema and guardrail review "
+                "before any audited locator copy."
+            )
+        elif afdb_records:
+            decision_status = (
+                "only_requested_afdb_coordinate_present_prior_residue_mismatch"
+            )
+            required_next_action = (
+                "Do not copy the representative-coordinate locators. The only "
+                "same-accession local coordinate is the requested AFDB model, "
+                "and the prior accession-equivalence audit found all candidate "
+                "residue positions mismatched there."
+            )
+        else:
+            decision_status = "no_matching_local_coordinate_found"
+            required_next_action = (
+                "Provide a frozen coordinate whose struct_ref maps to the source "
+                "accession, or record explicit alignment/remapped-locator approval "
+                "before any raw representative-coordinate locator copy."
+            )
+        row_scouts.append(
+            {
+                "entry_id": entry_id,
+                "source_accession": f"uniprot:{accession}",
+                "selected_structure_id": prior_row.get("selected_structure_id"),
+                "selected_pdb_struct_ref_accessions": prior_row.get(
+                    "selected_pdb_struct_ref_accessions",
+                    [],
+                ),
+                "prior_requested_afdb_coordinate_path": prior_row.get(
+                    "requested_afdb_coordinate_path"
+                ),
+                "prior_requested_afdb_expected_code_match_count": prior_row.get(
+                    "requested_afdb_expected_code_match_count"
+                ),
+                "prior_requested_afdb_expected_code_mismatch_count": prior_row.get(
+                    "requested_afdb_expected_code_mismatch_count"
+                ),
+                "matching_coordinate_records": records,
+                "matching_replacement_coordinate_count": len(replacement_records),
+                "same_accession_struct_ref_coordinate_count": sum(
+                    1
+                    for record in records
+                    if record.get("requested_accession_struct_ref_match")
+                ),
+                "same_accession_afdb_coordinate_count": len(afdb_records),
+                "decision_status": decision_status,
+                "approved_locator_copy_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "required_next_action": required_next_action,
+            }
+        )
+    total_replacement_matches = sum(
+        int(row["matching_replacement_coordinate_count"]) for row in row_scouts
+    )
+    status = (
+        "source_free_locator_matching_coordinate_scout_found_pending_review_only"
+        if total_replacement_matches
+        else "source_free_locator_matching_coordinate_scout_blocked_no_replacement_matches_review_only"
+    )
+    return {
+        "artifact_id": (
+            FAMILY_PANEL_SOURCE_FREE_LOCATOR_MATCHING_COORDINATE_SCOUT_MH065_MH072_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_locator_matching_coordinate_scout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Local-cache-only scout for the mh_065/mh_072 matching-coordinate "
+            "decision class. It searches already-frozen coordinates for exact "
+            "source-accession struct_ref mappings and records whether any can "
+            "replace the representative-coordinate locator path."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "new_coordinates_fetched": False,
+            "new_source_data_fetched": False,
+            "approved_locator_sidecars_created_or_copied": False,
+            "candidate_sidecars_modified": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training": False,
+            "source_text_or_label_fields_used_as_predictive_features": False,
+        },
+        "counts": {
+            "target_rows": len(row_scouts),
+            "coordinate_roots": len(coordinate_roots),
+            "local_coordinate_files_scanned": len(coordinate_files),
+            "rows_with_matching_replacement_coordinate": sum(
+                1 for row in row_scouts if row["matching_replacement_coordinate_count"]
+            ),
+            "matching_replacement_coordinates": total_replacement_matches,
+            "same_accession_struct_ref_coordinates": sum(
+                int(row["same_accession_struct_ref_coordinate_count"])
+                for row in row_scouts
+            ),
+            "rows_with_same_accession_afdb_coordinate_only": sum(
+                1
+                for row in row_scouts
+                if row["same_accession_afdb_coordinate_count"]
+                and not row["matching_replacement_coordinate_count"]
+            ),
+            "approved_locator_copy_authorized_rows": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+        },
+        "coordinate_roots": [str(path) for path in coordinate_roots],
+        "row_scouts": row_scouts,
+        "source_artifacts": {
+            "accession_equivalence_position_audit": _source_path_record(
+                accession_equivalence_audit_path
+            ),
+        },
+        "decision": {
+            "matching_coordinate_gate_cleared": bool(total_replacement_matches),
+            "raw_representative_coordinate_copy_allowed": False,
+            "new_countable_labels_authorized": False,
+            "next_action": (
+                "For mh_065/mh_072, matching non-AFDB replacement coordinates "
+                "are absent. Same-accession AFDB files exist but already failed "
+                "the prior residue-position transfer, so do not copy the raw "
+                "1DDK/1E9I locators; provide matching frozen PDB/mmCIF "
+                "coordinates or explicit remapped-locator approval."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Source-Free Locator Matching-Coordinate Scout: mh_065/mh_072 - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Local coordinate files scanned: {counts['local_coordinate_files_scanned']}",
+        (
+            "- Rows with matching replacement coordinate: "
+            f"{counts['rows_with_matching_replacement_coordinate']}"
+        ),
+        (
+            "- Same-accession struct_ref coordinates: "
+            f"{counts['same_accession_struct_ref_coordinates']}"
+        ),
+        (
+            "- Rows with same-accession AFDB coordinate only: "
+            f"{counts['rows_with_same_accession_afdb_coordinate_only']}"
+        ),
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        "",
+        "## Row Scouts",
+        "",
+        (
+            "| row | accession | selected PDB | selected struct_ref | "
+            "replacement matches | AFDB matches | decision |"
+        ),
+        "| --- | --- | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in audit["row_scouts"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{row['selected_structure_id']} | "
+            f"{', '.join(row.get('selected_pdb_struct_ref_accessions') or [])} | "
+            f"{row['matching_replacement_coordinate_count']} | "
+            f"{row['same_accession_afdb_coordinate_count']} | "
+            f"{row['decision_status']} |"
+        )
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- Local-cache-only scout; no coordinates or source data were fetched.",
+        "- No locator sidecars were copied, created, or marked scoring-ready.",
+        "- No labels, registries, ontologies, imports, thresholds, training data, or model weights changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072(
+    *,
+    accession_equivalence_audit_path: Path,
+    coordinate_roots: list[Path],
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072(
+        accession_equivalence_audit_path=accession_equivalence_audit_path,
+        coordinate_roots=coordinate_roots,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+GLYCOSIDE_SUBSTRATE_SCOUT_EXCLUDED_LIGAND_CODES = {
+    "ACT",
+    "ACY",
+    "BMA",
+    "BGC",
+    "FUC",
+    "GAL",
+    "GLA",
+    "GLC",
+    "GOL",
+    "MAN",
+    "MLI",
+    "NAG",
+    "NDG",
+    "SIA",
+}
+
+
+def _substrate_like_ligand_counts(hetatm_counts: dict[str, int]) -> dict[str, int]:
+    return {
+        code: count
+        for code, count in hetatm_counts.items()
+        if code not in LOCATOR_CANDIDATE_IGNORED_LIGAND_CODES
+        and code not in GLYCOSIDE_SUBSTRATE_SCOUT_EXCLUDED_LIGAND_CODES
+    }
+
+
+def build_family_panel_source_free_locator_glycoside_substrate_coordinate_scout(
+    *,
+    glycoside_nag_validator_path: Path,
+    coordinate_roots: list[Path],
+) -> dict[str, Any]:
+    validator = _read_json(glycoside_nag_validator_path)
+    target_accession = "Q6NSJ0"
+    coordinate_files = _iter_local_coordinate_files(coordinate_roots)
+    candidate_records = []
+    for path in coordinate_files:
+        record = _matching_coordinate_record(
+            path=path,
+            requested_accession=target_accession,
+        )
+        if record is None:
+            continue
+        rejected_counts = {
+            code: count
+            for code, count in record.get("nonwater_hetatm_comp_counts", {}).items()
+            if code in GLYCOSIDE_SUBSTRATE_SCOUT_EXCLUDED_LIGAND_CODES
+        }
+        substrate_counts = _substrate_like_ligand_counts(
+            record.get("hetatm_comp_counts", {})
+        )
+        candidate_records.append(
+            {
+                **record,
+                "rejected_glycan_or_buffer_ligand_counts": rejected_counts,
+                "substrate_like_ligand_counts": substrate_counts,
+                "can_clear_substrate_coordinate_gate": bool(
+                    record.get("requested_accession_struct_ref_match")
+                    and record.get("coordinate_kind") != "alphafolddb_predicted_cif"
+                    and substrate_counts
+                ),
+            }
+        )
+    candidate_records.sort(key=lambda row: str(row.get("path") or ""))
+    clear_records = [
+        row for row in candidate_records if row["can_clear_substrate_coordinate_gate"]
+    ]
+    afdb_records = [
+        row
+        for row in candidate_records
+        if row.get("coordinate_kind") == "alphafolddb_predicted_cif"
+    ]
+    rejected_records = [
+        row
+        for row in candidate_records
+        if row.get("rejected_glycan_or_buffer_ligand_counts")
+        and not row["can_clear_substrate_coordinate_gate"]
+    ]
+    status = (
+        "source_free_locator_glycoside_substrate_coordinate_scout_found_pending_review_only"
+        if clear_records
+        else "source_free_locator_glycoside_substrate_coordinate_scout_blocked_no_substrate_like_local_coordinate_review_only"
+    )
+    return {
+        "artifact_id": (
+            FAMILY_PANEL_SOURCE_FREE_LOCATOR_GLYCOSIDE_SUBSTRATE_COORDINATE_SCOUT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_locator_glycoside_substrate_coordinate_scout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Local-cache-only scout for external_glycoside_panel after the NAG "
+            "validator rejected glycan-context retargeting. It looks for already "
+            "cached same-accession coordinates with non-glycan, non-buffer "
+            "ligands that could be manually reviewed as substrate-complex "
+            "locator candidates."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "new_coordinates_fetched": False,
+            "new_source_data_fetched": False,
+            "approved_locator_sidecars_created_or_copied": False,
+            "candidate_sidecars_modified": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training": False,
+            "source_text_or_label_fields_used_as_predictive_features": False,
+        },
+        "counts": {
+            "target_rows": 1,
+            "coordinate_roots": len(coordinate_roots),
+            "local_coordinate_files_scanned": len(coordinate_files),
+            "same_accession_coordinate_records": len(candidate_records),
+            "same_accession_afdb_records": len(afdb_records),
+            "same_accession_records_with_rejected_glycan_or_buffer_ligands": len(
+                rejected_records
+            ),
+            "substrate_like_coordinate_candidates": len(clear_records),
+            "approved_locator_copy_authorized_rows": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+        },
+        "target_row": {
+            "entry_id": "external_glycoside_panel",
+            "source_accession": "uniprot:Q6NSJ0",
+            "prior_validator_status": validator.get("status"),
+            "prior_validator_next_action": validator.get("next_action"),
+        },
+        "coordinate_roots": [str(path) for path in coordinate_roots],
+        "coordinate_records": candidate_records,
+        "source_artifacts": {
+            "glycoside_nag_validator": _source_path_record(glycoside_nag_validator_path),
+        },
+        "decision": {
+            "substrate_coordinate_gate_cleared": bool(clear_records),
+            "raw_acetate_or_nag_locator_copy_allowed": False,
+            "new_countable_labels_authorized": False,
+            "next_action": (
+                "No cached same-accession substrate-like coordinate clears the "
+                "external_glycoside_panel gate unless substrate-like candidates "
+                "are listed. Provide an explicit substrate-complex coordinate or "
+                "expert-approved non-glycan locator before any audited locator "
+                "copy or scoring."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Source-Free Locator Glycoside Substrate-Coordinate Scout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Local coordinate files scanned: {counts['local_coordinate_files_scanned']}",
+        f"- Same-accession coordinate records: {counts['same_accession_coordinate_records']}",
+        f"- Same-accession AFDB records: {counts['same_accession_afdb_records']}",
+        (
+            "- Records with rejected glycan/buffer ligands: "
+            f"{counts['same_accession_records_with_rejected_glycan_or_buffer_ligands']}"
+        ),
+        (
+            "- Substrate-like coordinate candidates: "
+            f"{counts['substrate_like_coordinate_candidates']}"
+        ),
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        "",
+        "## Coordinate Records",
+        "",
+        "| coordinate | kind | struct_ref | rejected ligands | substrate-like ligands | clears gate |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["coordinate_records"]:
+        lines.append(
+            f"| {row['path']} | {row['coordinate_kind']} | "
+            f"{', '.join(row.get('struct_ref_accessions') or [])} | "
+            f"{row['rejected_glycan_or_buffer_ligand_counts']} | "
+            f"{row['substrate_like_ligand_counts']} | "
+            f"{row['can_clear_substrate_coordinate_gate']} |"
+        )
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- Local-cache-only scout; no coordinates or source data were fetched.",
+        "- No locator sidecars were copied, created, or marked scoring-ready.",
+        "- No labels, registries, ontologies, imports, thresholds, training data, or model weights changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_locator_glycoside_substrate_coordinate_scout(
+    *,
+    glycoside_nag_validator_path: Path,
+    coordinate_roots: list[Path],
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_locator_glycoside_substrate_coordinate_scout(
+        glycoside_nag_validator_path=glycoside_nag_validator_path,
+        coordinate_roots=coordinate_roots,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _local_coordinate_paths_by_token(coordinate_roots: list[Path]) -> dict[str, list[str]]:
+    paths_by_token: dict[str, list[str]] = defaultdict(list)
+    for path in _iter_local_coordinate_files(coordinate_roots):
+        stem = path.stem.upper()
+        paths_by_token[stem].append(str(path))
+        if stem.startswith("PDB_"):
+            paths_by_token[stem.removeprefix("PDB_")].append(str(path))
+        if stem.startswith("AFDB_"):
+            paths_by_token[stem.removeprefix("AFDB_")].append(str(path))
+        af_match = re.match(r"AF-([A-Z0-9]+)-F\d+-MODEL_V\d+$", stem)
+        if af_match:
+            paths_by_token[af_match.group(1)].append(str(path))
+    return {token: sorted(set(paths)) for token, paths in paths_by_token.items()}
+
+
+def build_family_panel_source_free_locator_q59490_alternate_source_cache_scout(
+    *,
+    q59490_nonlabel_locator_feasibility_path: Path,
+    cobalamin_blocker_review_path: Path,
+    coordinate_roots: list[Path],
+) -> dict[str, Any]:
+    feasibility = _read_json(q59490_nonlabel_locator_feasibility_path)
+    cobalamin_review = _read_json(cobalamin_blocker_review_path)
+    coordinate_paths_by_token = _local_coordinate_paths_by_token(coordinate_roots)
+    eligible_rows = [
+        row
+        for row in cobalamin_review.get("eligible_rows", [])
+        if isinstance(row, dict)
+    ]
+    excluded_rows = [
+        row
+        for row in cobalamin_review.get("excluded_rows_sample", [])
+        if isinstance(row, dict)
+    ]
+    primary_rows = [row for row in eligible_rows if row.get("accession") == "Q59490"]
+    alternate_eligible_rows = [
+        row for row in eligible_rows if row.get("accession") != "Q59490"
+    ]
+    excluded_with_local_coordinates = []
+    for row in excluded_rows:
+        accession = str(row.get("accession") or "").upper()
+        pdb_ids = [str(pdb_id).upper() for pdb_id in row.get("pdb_ids_sample", [])]
+        local_paths = list(coordinate_paths_by_token.get(accession, []))
+        for pdb_id in pdb_ids:
+            local_paths.extend(coordinate_paths_by_token.get(pdb_id, []))
+        if local_paths:
+            excluded_with_local_coordinates.append(
+                {
+                    "accession": accession,
+                    "entry_name": row.get("entry_name"),
+                    "primary_ec": row.get("primary_ec"),
+                    "exclusion_reasons": row.get("exclusion_reasons", []),
+                    "pdb_ids_sample": pdb_ids,
+                    "local_coordinate_paths": sorted(set(local_paths)),
+                }
+            )
+    primary_local_paths = []
+    for row in primary_rows:
+        accession = str(row.get("accession") or "").upper()
+        primary_local_paths.extend(coordinate_paths_by_token.get(accession, []))
+        for pdb_id in row.get("pdb_ids_sample", []):
+            primary_local_paths.extend(
+                coordinate_paths_by_token.get(str(pdb_id).upper(), [])
+            )
+    status = (
+        "source_free_locator_q59490_alternate_source_cache_scout_found_pending_review_only"
+        if alternate_eligible_rows
+        else "source_free_locator_q59490_alternate_source_cache_scout_blocked_no_eligible_alternate_source_review_only"
+    )
+    return {
+        "artifact_id": (
+            FAMILY_PANEL_SOURCE_FREE_LOCATOR_Q59490_ALTERNATE_SOURCE_CACHE_SCOUT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_locator_q59490_alternate_source_cache_scout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Local-cache-only scout for the Q59490 nonlabel-locator blocker. "
+            "It checks whether the cobalamin blocker review already contains "
+            "an eligible alternate source row with local coordinates, without "
+            "authorizing alternate-source substitution, coordinate fetches, "
+            "locator creation, scoring, or imports."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "alternate_source_authorized": False,
+            "new_coordinates_fetched": False,
+            "new_source_data_fetched": False,
+            "approved_locator_sidecars_created_or_copied": False,
+            "candidate_sidecars_modified": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training": False,
+            "source_text_or_label_fields_used_as_predictive_features": False,
+        },
+        "counts": {
+            "target_rows": 1,
+            "coordinate_roots": len(coordinate_roots),
+            "eligible_source_rows": len(eligible_rows),
+            "primary_q59490_eligible_rows": len(primary_rows),
+            "alternate_eligible_source_rows": len(alternate_eligible_rows),
+            "primary_q59490_local_coordinate_paths": len(set(primary_local_paths)),
+            "excluded_rows_sample": len(excluded_rows),
+            "excluded_rows_with_local_coordinates": len(
+                excluded_with_local_coordinates
+            ),
+            "approved_locator_copy_authorized_rows": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+        },
+        "target_row": {
+            "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+            "source_accession": "uniprot:Q59490",
+            "feasibility_status": feasibility.get("status"),
+            "feasibility_next_action": (feasibility.get("decision") or {}).get(
+                "next_action"
+            ),
+            "primary_local_coordinate_paths": sorted(set(primary_local_paths)),
+        },
+        "alternate_eligible_rows": alternate_eligible_rows,
+        "excluded_rows_with_local_coordinates": excluded_with_local_coordinates,
+        "source_artifacts": {
+            "q59490_nonlabel_locator_feasibility": _source_path_record(
+                q59490_nonlabel_locator_feasibility_path
+            ),
+            "cobalamin_blocker_review": _source_path_record(
+                cobalamin_blocker_review_path
+            ),
+        },
+        "decision": {
+            "alternate_source_gate_cleared": bool(alternate_eligible_rows),
+            "alternate_source_substitution_authorized": False,
+            "new_countable_labels_authorized": False,
+            "next_action": (
+                "No eligible alternate cobalamin source row is available in the "
+                "current review packet. Keep Q59490 blocked until an alternate "
+                "source row/coordinate is explicitly authorized or a nonlabel "
+                "strategy with at least two source-free sequence-position "
+                "locators is defined."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_locator_q59490_alternate_source_cache_scout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Source-Free Locator Q59490 Alternate-Source Cache Scout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Eligible source rows: {counts['eligible_source_rows']}",
+        f"- Alternate eligible source rows: {counts['alternate_eligible_source_rows']}",
+        (
+            "- Primary Q59490 local coordinate paths: "
+            f"{counts['primary_q59490_local_coordinate_paths']}"
+        ),
+        (
+            "- Excluded rows with local coordinates: "
+            f"{counts['excluded_rows_with_local_coordinates']}"
+        ),
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        "",
+        "## Target",
+        "",
+        f"- Feasibility status: {audit['target_row']['feasibility_status']}",
+        f"- Local coordinate paths: {audit['target_row']['primary_local_coordinate_paths']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Local-cache-only scout; no coordinates or source data were fetched.",
+        "- No alternate source row was authorized.",
+        "- No locator sidecars were copied, created, or marked scoring-ready.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_locator_q59490_alternate_source_cache_scout(
+    *,
+    q59490_nonlabel_locator_feasibility_path: Path,
+    cobalamin_blocker_review_path: Path,
+    coordinate_roots: list[Path],
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_locator_q59490_alternate_source_cache_scout(
+        q59490_nonlabel_locator_feasibility_path=q59490_nonlabel_locator_feasibility_path,
+        cobalamin_blocker_review_path=cobalamin_blocker_review_path,
+        coordinate_roots=coordinate_roots,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_locator_q59490_alternate_source_cache_scout_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
 LOCATOR_HUMAN_DECISION_PRIORITY = {
     "human_locator_copy_approval_after_split_safe_pass": 1,
     "accession_equivalence_or_matching_coordinate_required": 2,
@@ -11140,9 +11957,30 @@ def build_family_panel_source_free_locator_human_decision_matrix(
     *,
     blocker_resolution_status_path: Path,
     remaining_blocker_action_queue_path: Path,
+    matching_coordinate_scout_path: Path | None = None,
+    glycoside_substrate_coordinate_scout_path: Path | None = None,
+    q59490_alternate_source_cache_scout_path: Path | None = None,
 ) -> dict[str, Any]:
     status = _read_json(blocker_resolution_status_path)
     action_queue = _read_json(remaining_blocker_action_queue_path)
+    matching_coordinate_scout = (
+        _read_json(matching_coordinate_scout_path)
+        if matching_coordinate_scout_path is not None
+        and matching_coordinate_scout_path.exists()
+        else {}
+    )
+    glycoside_substrate_coordinate_scout = (
+        _read_json(glycoside_substrate_coordinate_scout_path)
+        if glycoside_substrate_coordinate_scout_path is not None
+        and glycoside_substrate_coordinate_scout_path.exists()
+        else {}
+    )
+    q59490_alternate_source_cache_scout = (
+        _read_json(q59490_alternate_source_cache_scout_path)
+        if q59490_alternate_source_cache_scout_path is not None
+        and q59490_alternate_source_cache_scout_path.exists()
+        else {}
+    )
     resolution_rows = [
         row for row in status.get("resolution_rows", []) if isinstance(row, dict)
     ]
@@ -11154,6 +11992,101 @@ def build_family_panel_source_free_locator_human_decision_matrix(
         decision, after_approval, risk = _locator_human_decision_text(
             resolution_class
         )
+        supporting_gate: dict[str, Any] | None = None
+        if (
+            resolution_class == "accession_equivalence_or_matching_coordinate_required"
+            and matching_coordinate_scout
+        ):
+            scout_counts = matching_coordinate_scout.get("counts") or {}
+            scout_decision = matching_coordinate_scout.get("decision") or {}
+            supporting_gate = {
+                "matching_coordinate_scout_status": matching_coordinate_scout.get(
+                    "status"
+                ),
+                "matching_replacement_coordinates": scout_counts.get(
+                    "matching_replacement_coordinates"
+                ),
+                "same_accession_struct_ref_coordinates": scout_counts.get(
+                    "same_accession_struct_ref_coordinates"
+                ),
+                "rows_with_same_accession_afdb_coordinate_only": scout_counts.get(
+                    "rows_with_same_accession_afdb_coordinate_only"
+                ),
+                "matching_coordinate_gate_cleared": scout_decision.get(
+                    "matching_coordinate_gate_cleared"
+                ),
+            }
+            if not scout_decision.get("matching_coordinate_gate_cleared"):
+                decision = (
+                    "No matching non-AFDB replacement coordinate is cached for "
+                    "mh_065/mh_072; provide matching frozen PDB/mmCIF coordinates "
+                    "or explicitly approve alignment/remapped locators before "
+                    "any raw representative-coordinate copy."
+                )
+        if (
+            resolution_class
+            == "ligand_specificity_validator_or_substrate_coordinate_required"
+            and glycoside_substrate_coordinate_scout
+        ):
+            scout_counts = glycoside_substrate_coordinate_scout.get("counts") or {}
+            scout_decision = glycoside_substrate_coordinate_scout.get("decision") or {}
+            supporting_gate = {
+                "glycoside_substrate_coordinate_scout_status": (
+                    glycoside_substrate_coordinate_scout.get("status")
+                ),
+                "substrate_like_coordinate_candidates": scout_counts.get(
+                    "substrate_like_coordinate_candidates"
+                ),
+                "same_accession_coordinate_records": scout_counts.get(
+                    "same_accession_coordinate_records"
+                ),
+                "same_accession_records_with_rejected_glycan_or_buffer_ligands": (
+                    scout_counts.get(
+                        "same_accession_records_with_rejected_glycan_or_buffer_ligands"
+                    )
+                ),
+                "substrate_coordinate_gate_cleared": scout_decision.get(
+                    "substrate_coordinate_gate_cleared"
+                ),
+            }
+            if not scout_decision.get("substrate_coordinate_gate_cleared"):
+                decision = (
+                    "No cached same-accession substrate-like coordinate clears "
+                    "external_glycoside_panel; provide an explicit "
+                    "substrate-complex coordinate or expert-approved non-glycan "
+                    "locator before rerunning schema/scoring."
+                )
+        if (
+            resolution_class
+            == "nonlabel_locator_strategy_or_alternate_source_required"
+            and q59490_alternate_source_cache_scout
+        ):
+            scout_counts = q59490_alternate_source_cache_scout.get("counts") or {}
+            scout_decision = q59490_alternate_source_cache_scout.get("decision") or {}
+            supporting_gate = {
+                "q59490_alternate_source_cache_scout_status": (
+                    q59490_alternate_source_cache_scout.get("status")
+                ),
+                "alternate_eligible_source_rows": scout_counts.get(
+                    "alternate_eligible_source_rows"
+                ),
+                "primary_q59490_local_coordinate_paths": scout_counts.get(
+                    "primary_q59490_local_coordinate_paths"
+                ),
+                "excluded_rows_with_local_coordinates": scout_counts.get(
+                    "excluded_rows_with_local_coordinates"
+                ),
+                "alternate_source_gate_cleared": scout_decision.get(
+                    "alternate_source_gate_cleared"
+                ),
+            }
+            if not scout_decision.get("alternate_source_gate_cleared"):
+                decision = (
+                    "No eligible alternate source row is available for Q59490; "
+                    "authorize an alternate source row/coordinate or define an "
+                    "explicit nonlabel strategy with at least two source-free "
+                    "sequence-position locators."
+                )
         decision_classes.append(
             {
                 "priority": LOCATOR_HUMAN_DECISION_PRIORITY.get(
@@ -11168,6 +12101,7 @@ def build_family_panel_source_free_locator_human_decision_matrix(
                 "automation_can_continue_without_decision": False,
                 "main_risk_or_blocker": risk,
                 "row_next_actions": [row.get("next_action") for row in rows],
+                "supporting_gate": supporting_gate,
             }
         )
     decision_classes.sort(
@@ -11216,10 +12150,35 @@ def build_family_panel_source_free_locator_human_decision_matrix(
             "remaining_blocker_action_queue": _source_path_record(
                 remaining_blocker_action_queue_path
             ),
+            "matching_coordinate_scout": (
+                _source_path_record(matching_coordinate_scout_path)
+                if matching_coordinate_scout_path is not None
+                and matching_coordinate_scout_path.exists()
+                else None
+            ),
+            "glycoside_substrate_coordinate_scout": (
+                _source_path_record(glycoside_substrate_coordinate_scout_path)
+                if glycoside_substrate_coordinate_scout_path is not None
+                and glycoside_substrate_coordinate_scout_path.exists()
+                else None
+            ),
+            "q59490_alternate_source_cache_scout": (
+                _source_path_record(q59490_alternate_source_cache_scout_path)
+                if q59490_alternate_source_cache_scout_path is not None
+                and q59490_alternate_source_cache_scout_path.exists()
+                else None
+            ),
         },
         "source_status": {
             "blocker_resolution_status": status.get("status"),
             "remaining_blocker_action_queue": action_queue.get("status"),
+            "matching_coordinate_scout": matching_coordinate_scout.get("status"),
+            "glycoside_substrate_coordinate_scout": (
+                glycoside_substrate_coordinate_scout.get("status")
+            ),
+            "q59490_alternate_source_cache_scout": (
+                q59490_alternate_source_cache_scout.get("status")
+            ),
         },
         "interpretation": {
             "headline": (
@@ -11279,12 +12238,18 @@ def write_family_panel_source_free_locator_human_decision_matrix(
     *,
     blocker_resolution_status_path: Path,
     remaining_blocker_action_queue_path: Path,
+    matching_coordinate_scout_path: Path | None = None,
+    glycoside_substrate_coordinate_scout_path: Path | None = None,
+    q59490_alternate_source_cache_scout_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
     audit = build_family_panel_source_free_locator_human_decision_matrix(
         blocker_resolution_status_path=blocker_resolution_status_path,
         remaining_blocker_action_queue_path=remaining_blocker_action_queue_path,
+        matching_coordinate_scout_path=matching_coordinate_scout_path,
+        glycoside_substrate_coordinate_scout_path=glycoside_substrate_coordinate_scout_path,
+        q59490_alternate_source_cache_scout_path=q59490_alternate_source_cache_scout_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -16635,6 +17600,370 @@ def write_fold_augmented_p23007_alternate_accession_policy_gate(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_p23007_alternate_accession_policy_gate_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+FOLD_AUGMENTED_BLOCKER_DECISION_NOTES: dict[str, str] = {
+    "m_csa:531": (
+        "Approved by Vivek. P31572/L-carnitine CoA-transferase has strong "
+        "source-feature support: Asp169 nucleophile is ECO:0000305/0255 and "
+        "independently corroborated by the local M-CSA graph; CoA binding is "
+        "ECO:0000269 experimental."
+    ),
+    "uniprot:P78549": (
+        "Approved by Vivek. NTHL1 Lys212 active-site evidence is ECO:0000269 "
+        "experimental; the [4Fe-4S] binding annotation is inferred "
+        "(ECO:0000255). Keep as a Fe-S cofactor-confounded negative."
+    ),
+    "uniprot:Q3LXA3": (
+        "Approved by Vivek with inferred-anchor caveat. TKFC His221 active-site "
+        "evidence is ECO:0000255 and ATP/DHA binding is mostly ECO:0000250; "
+        "acceptable because this row is a negative abstention-calibration row, "
+        "not a positive mechanism assertion. Keep as an FMN cofactor-confounded "
+        "negative."
+    ),
+}
+
+
+def build_fold_augmented_blocker_human_decision_application(
+    *,
+    source_feature_sidecar_review_gate_path: Path,
+    p23007_alternate_accession_policy_gate_path: Path,
+    non_residue_interaction_sidecar_policy_preflight_path: Path,
+    approved_source_feature_sidecar_entry_ids: list[str] | None = None,
+    selected_p23007_alternate_accession: str = "P00889",
+    p10746_policy_decision: str = "keep_fold_only_no_non_residue_sidecar",
+    reviewer: str = "Vivek",
+) -> dict[str, Any]:
+    review_gate = _read_json(source_feature_sidecar_review_gate_path)
+    p23007_policy = _read_json(p23007_alternate_accession_policy_gate_path)
+    p10746_preflight = _read_json(non_residue_interaction_sidecar_policy_preflight_path)
+    approved_ids = approved_source_feature_sidecar_entry_ids or [
+        "m_csa:531",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3",
+    ]
+    review_rows = {
+        str(row.get("entry_id") or ""): row
+        for row in review_gate.get("review_gate_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    candidate_rows = {
+        str(row.get("candidate_accession") or ""): row
+        for row in p23007_policy.get("candidate_policy_rows", [])
+        if isinstance(row, dict) and row.get("candidate_accession")
+    }
+    p10746_rows = [
+        row
+        for row in p10746_preflight.get("policy_preflight_rows", [])
+        if isinstance(row, dict)
+    ]
+    approved_sidecars = []
+    blocked_approvals = []
+    for entry_id in approved_ids:
+        row = review_rows.get(entry_id)
+        if not row:
+            blocked_approvals.append(
+                {
+                    "entry_id": entry_id,
+                    "decision": "blocked",
+                    "reason": "entry_not_present_in_review_gate",
+                }
+            )
+            continue
+        if not row.get("ready_for_manual_approval_review"):
+            blocked_approvals.append(
+                {
+                    "entry_id": entry_id,
+                    "decision": "blocked",
+                    "reason": "entry_not_ready_for_manual_approval_review",
+                }
+            )
+            continue
+        approved_sidecars.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "decision": "approve_source_feature_sidecar",
+                "reviewer": reviewer,
+                "approval_provenance": "user_human_gate_decision_20260602",
+                "approval_note": FOLD_AUGMENTED_BLOCKER_DECISION_NOTES.get(
+                    entry_id,
+                    "Approved by reviewer for source-feature sidecar materialization.",
+                ),
+                "source_feature_support_count": row.get(
+                    "active_site_feature_support_count"
+                ),
+                "feature_type_counts": row.get("feature_type_counts", {}),
+                "authorized_next_actions": [
+                    "copy_candidate_sidecar_to_scoring_surface",
+                    "rerun_combined_geometry_fold_channel_at_fixed_threshold",
+                ],
+                "deployment_closed_now": False,
+            }
+        )
+    selected_candidate = candidate_rows.get(selected_p23007_alternate_accession)
+    p23007_replacement_authorized = bool(
+        selected_candidate and selected_candidate.get("policy_review_ready")
+    )
+    p10746_row = p10746_rows[0] if p10746_rows else {}
+    p10746_keep_fold_only = (
+        p10746_policy_decision == "keep_fold_only_no_non_residue_sidecar"
+    )
+    materialization_steps = []
+    if approved_sidecars:
+        materialization_steps.append(
+            "materialize_approved_source_feature_sidecars_into_scoring_surface"
+        )
+    if p23007_replacement_authorized:
+        materialization_steps.extend(
+            [
+                "fetch_afdb_coordinate_for_p00889_ortholog_surrogate",
+                "rerun_fold_channel_with_p00889_substitution_at_fixed_threshold",
+            ]
+        )
+    if p10746_keep_fold_only:
+        materialization_steps.append("record_p10746_fold_only_exception_in_readout")
+    human_or_policy_blockers_remaining = (
+        len(blocked_approvals)
+        + (0 if p23007_replacement_authorized else 1)
+        + (0 if p10746_keep_fold_only else 1)
+    )
+    status = (
+        "fold_augmented_blocker_human_decision_application_ready_materialization_pending"
+        if human_or_policy_blockers_remaining == 0
+        else "fold_augmented_blocker_human_decision_application_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_BLOCKER_HUMAN_DECISION_APPLICATION_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_blocker_human_decision_application"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Human decision application for the five Lever 3 production blocker "
+            "rows. This records approval/policy decisions and authorizes the "
+            "next materialization steps; it does not edit labels, registries, "
+            "ontologies, imports, thresholds, model weights, or heldout tuning."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_used_as_predictive_feature": False,
+            "ec_or_rhea_ids_used_as_predictive_features": False,
+            "source_ids_used_as_predictive_features": False,
+            "target_names_used_as_predictive_features": False,
+            "sidecars_materialized_now": False,
+            "coordinate_fetched_now": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "deployment_closed_now": False,
+        },
+        "counts": {
+            "human_or_policy_decision_rows": 5,
+            "approved_source_feature_sidecars": len(approved_sidecars),
+            "blocked_source_feature_approvals": len(blocked_approvals),
+            "source_feature_sidecars_authorized_for_materialization": len(
+                approved_sidecars
+            ),
+            "p23007_replacement_authorized_now": int(
+                p23007_replacement_authorized
+            ),
+            "p23007_coordinate_fetch_authorized_now": int(
+                p23007_replacement_authorized
+            ),
+            "p10746_keep_fold_only_policy_rows": int(p10746_keep_fold_only),
+            "p10746_non_residue_sidecar_approved_rows": 0,
+            "human_or_policy_decision_blockers_remaining": (
+                human_or_policy_blockers_remaining
+            ),
+            "materialization_or_rerun_steps_remaining": len(materialization_steps),
+        },
+        "source_feature_sidecar_decisions": approved_sidecars + blocked_approvals,
+        "p23007_decision": {
+            "entry_id": "m_csa:78",
+            "blocked_accession": "P23007",
+            "decision": (
+                "authorize_ortholog_surrogate_replacement"
+                if p23007_replacement_authorized
+                else "blocked_selected_alternate_not_review_ready"
+            ),
+            "selected_alternate_accession": selected_p23007_alternate_accession,
+            "selected_alternate_row": selected_candidate,
+            "reviewer": reviewer,
+            "approval_provenance": "user_human_gate_decision_20260602",
+            "approval_note": (
+                "Use P00889 pig heart citrate synthase as the ortholog surrogate "
+                "for P23007. The four mammalian citrate synthase candidates are "
+                "interchangeable on recorded fields; P00889 is the canonical, "
+                "structurally characterized choice. Record as an ortholog "
+                "surrogate, not as P23007 itself."
+            ),
+            "coordinate_fetch_authorized_now": p23007_replacement_authorized,
+            "fold_channel_rerun_required": p23007_replacement_authorized,
+            "deployment_closed_now": False,
+        },
+        "p10746_decision": {
+            "entry_id": "m_csa:204",
+            "accession": p10746_row.get("accession") or "P10746",
+            "decision": p10746_policy_decision,
+            "reviewer": reviewer,
+            "approval_provenance": "user_human_gate_decision_20260602",
+            "approval_note": (
+                "Keep P10746 fold-only. No source-feature rows or curated "
+                "residue nodes exist, and mechanism text is forbidden as a "
+                "predictive anchor. Do not fabricate a non-residue sidecar."
+            ),
+            "non_residue_sidecar_authorized_now": False,
+            "source_new_evidence_future_optional": True,
+            "deployment_closed_now": False,
+        },
+        "decision": {
+            "reviewer": reviewer,
+            "human_or_policy_decisions_complete": (
+                human_or_policy_blockers_remaining == 0
+            ),
+            "ready_to_materialize_source_feature_sidecars": bool(
+                approved_sidecars and not blocked_approvals
+            ),
+            "ready_to_fetch_p23007_alternate_coordinate": (
+                p23007_replacement_authorized
+            ),
+            "p10746_fold_only_exception_recorded": p10746_keep_fold_only,
+            "deployment_closed_now": False,
+            "next_action": (
+                "Materialize the approved source-feature sidecars, fetch the "
+                "P00889 AFDB coordinate as an ortholog surrogate, rerun the "
+                "combined geometry/fold channel at the fixed threshold, and "
+                "keep P10746 fold-only with the policy caveat disclosed."
+                if human_or_policy_blockers_remaining == 0
+                else "Resolve blocked approvals before materialization."
+            ),
+        },
+        "materialization_plan": materialization_steps,
+        "source_artifacts": {
+            "source_feature_sidecar_review_gate": _source_path_record(
+                source_feature_sidecar_review_gate_path
+            ),
+            "p23007_alternate_accession_policy_gate": _source_path_record(
+                p23007_alternate_accession_policy_gate_path
+            ),
+            "non_residue_interaction_sidecar_policy_preflight": (
+                _source_path_record(non_residue_interaction_sidecar_policy_preflight_path)
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_blocker_human_decision_application_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Blocker Human Decision Application - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        (
+            "- Approved source-feature sidecars: "
+            f"{counts['approved_source_feature_sidecars']}"
+        ),
+        (
+            "- P23007 replacement authorized now: "
+            f"{counts['p23007_replacement_authorized_now']}"
+        ),
+        (
+            "- P10746 keep-fold-only policy rows: "
+            f"{counts['p10746_keep_fold_only_policy_rows']}"
+        ),
+        (
+            "- Human/policy decision blockers remaining: "
+            f"{counts['human_or_policy_decision_blockers_remaining']}"
+        ),
+        "",
+        "## Sidecar Decisions",
+        "",
+        "| row | accession | decision | features |",
+        "| --- | --- | --- | ---: |",
+    ]
+    for row in audit["source_feature_sidecar_decisions"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row['decision']} | {row.get('source_feature_support_count', '')} |"
+        )
+    lines += [
+        "",
+        "## P23007",
+        "",
+        (
+            f"- Selected alternate accession: "
+            f"{audit['p23007_decision']['selected_alternate_accession']}"
+        ),
+        f"- Decision: {audit['p23007_decision']['decision']}",
+        f"- Note: {audit['p23007_decision']['approval_note']}",
+        "",
+        "## P10746",
+        "",
+        f"- Decision: {audit['p10746_decision']['decision']}",
+        f"- Note: {audit['p10746_decision']['approval_note']}",
+        "",
+        "## Next Action",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_blocker_human_decision_application(
+    *,
+    source_feature_sidecar_review_gate_path: Path,
+    p23007_alternate_accession_policy_gate_path: Path,
+    non_residue_interaction_sidecar_policy_preflight_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    approved_source_feature_sidecar_entry_ids: list[str] | None = None,
+    selected_p23007_alternate_accession: str = "P00889",
+    p10746_policy_decision: str = "keep_fold_only_no_non_residue_sidecar",
+    reviewer: str = "Vivek",
+) -> dict[str, Any]:
+    audit = build_fold_augmented_blocker_human_decision_application(
+        source_feature_sidecar_review_gate_path=(
+            source_feature_sidecar_review_gate_path
+        ),
+        p23007_alternate_accession_policy_gate_path=(
+            p23007_alternate_accession_policy_gate_path
+        ),
+        non_residue_interaction_sidecar_policy_preflight_path=(
+            non_residue_interaction_sidecar_policy_preflight_path
+        ),
+        approved_source_feature_sidecar_entry_ids=(
+            approved_source_feature_sidecar_entry_ids
+        ),
+        selected_p23007_alternate_accession=selected_p23007_alternate_accession,
+        p10746_policy_decision=p10746_policy_decision,
+        reviewer=reviewer,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_blocker_human_decision_application_report(
                 audit
             ),
             encoding="utf-8",

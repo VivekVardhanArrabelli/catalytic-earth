@@ -60,12 +60,16 @@ from .northstar_next_levers import (
     write_family_panel_source_free_active_site_locator_template_bundle,
     write_family_panel_source_free_locator_blocked_row_rescue_manifest,
     write_family_panel_source_free_locator_copy_decision_mh067_mh068,
+    write_family_panel_source_free_locator_glycoside_substrate_coordinate_scout,
     write_family_panel_source_free_locator_human_decision_matrix,
+    write_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072,
+    write_family_panel_source_free_locator_q59490_alternate_source_cache_scout,
     write_family_panel_source_free_predicted_geometry_retrieval,
     write_family_panel_source_free_predicted_geometry_source_check_preflight,
     write_family_panel_source_free_predicted_geometry_sidecar_manifest,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
+    write_fold_augmented_blocker_human_decision_application,
     write_fold_augmented_family_panel_countability_gate_preflight,
     write_fold_augmented_family_panel_import_preview_blocker_gate,
     write_fold_augmented_family_panel_m_csa_primary_channel_repair,
@@ -11530,6 +11534,19 @@ def cmd_build_family_panel_source_free_locator_human_decision_matrix(
     audit = write_family_panel_source_free_locator_human_decision_matrix(
         blocker_resolution_status_path=Path(args.blocker_resolution_status),
         remaining_blocker_action_queue_path=Path(args.remaining_blocker_action_queue),
+        matching_coordinate_scout_path=Path(args.matching_coordinate_scout)
+        if args.matching_coordinate_scout
+        else None,
+        glycoside_substrate_coordinate_scout_path=Path(
+            args.glycoside_substrate_coordinate_scout
+        )
+        if args.glycoside_substrate_coordinate_scout
+        else None,
+        q59490_alternate_source_cache_scout_path=Path(
+            args.q59490_alternate_source_cache_scout
+        )
+        if args.q59490_alternate_source_cache_scout
+        else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
     )
@@ -11537,6 +11554,63 @@ def cmd_build_family_panel_source_free_locator_human_decision_matrix(
     print(
         "Wrote family-panel source-free locator human decision matrix to "
         f"{args.out} (decision classes: {counts.get('decision_classes')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072(
+        accession_equivalence_audit_path=Path(args.accession_equivalence_audit),
+        coordinate_roots=[Path(path) for path in args.coordinate_roots],
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free locator matching-coordinate scout "
+        f"mh065/mh072 to {args.out} (replacement matches: "
+        f"{counts.get('matching_replacement_coordinates')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_locator_glycoside_substrate_coordinate_scout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_locator_glycoside_substrate_coordinate_scout(
+        glycoside_nag_validator_path=Path(args.glycoside_nag_validator),
+        coordinate_roots=[Path(path) for path in args.coordinate_roots],
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free locator glycoside substrate-coordinate "
+        f"scout to {args.out} (substrate candidates: "
+        f"{counts.get('substrate_like_coordinate_candidates')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_locator_q59490_alternate_source_cache_scout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_locator_q59490_alternate_source_cache_scout(
+        q59490_nonlabel_locator_feasibility_path=Path(
+            args.q59490_nonlabel_locator_feasibility
+        ),
+        cobalamin_blocker_review_path=Path(args.cobalamin_blocker_review),
+        coordinate_roots=[Path(path) for path in args.coordinate_roots],
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free locator Q59490 alternate-source cache "
+        f"scout to {args.out} (alternate eligible rows: "
+        f"{counts.get('alternate_eligible_source_rows')})"
     )
     return 0
 
@@ -11900,6 +11974,39 @@ def cmd_build_fold_augmented_p23007_alternate_accession_scout(
         f"{args.out} (candidates: "
         f"{counts.get('candidate_alternate_accessions')}, "
         f"authorized now: {counts.get('replacement_authorized_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_blocker_human_decision_application(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_blocker_human_decision_application(
+        source_feature_sidecar_review_gate_path=Path(
+            args.source_feature_sidecar_review_gate
+        ),
+        p23007_alternate_accession_policy_gate_path=Path(
+            args.p23007_alternate_accession_policy_gate
+        ),
+        non_residue_interaction_sidecar_policy_preflight_path=Path(
+            args.non_residue_interaction_sidecar_policy_preflight
+        ),
+        approved_source_feature_sidecar_entry_ids=args.approved_source_feature_sidecars,
+        selected_p23007_alternate_accession=args.selected_p23007_alternate_accession,
+        p10746_policy_decision=args.p10746_policy_decision,
+        reviewer=args.reviewer,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented blocker human decision application to "
+        f"{args.out} (approved sidecars: "
+        f"{counts.get('approved_source_feature_sidecars')}, "
+        f"P23007 authorized: "
+        f"{counts.get('p23007_replacement_authorized_now')}, "
+        f"decision blockers remaining: "
+        f"{counts.get('human_or_policy_decision_blockers_remaining')})"
     )
     return 0
 
@@ -25818,6 +25925,27 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     family_panel_source_free_locator_human_decision_matrix.add_argument(
+        "--matching-coordinate-scout",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_matching_coordinate_"
+            "scout_mh065_mh072_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.add_argument(
+        "--glycoside-substrate-coordinate-scout",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_glycoside_substrate_"
+            "coordinate_scout_external_glycoside_panel_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.add_argument(
+        "--q59490-alternate-source-cache-scout",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_q59490_alternate_"
+            "source_cache_scout_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.add_argument(
         "--out",
         default=(
             "artifacts/v3_family_panel_source_free_locator_human_decision_matrix_"
@@ -25833,6 +25961,142 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_source_free_locator_human_decision_matrix.set_defaults(
         func=cmd_build_family_panel_source_free_locator_human_decision_matrix
+    )
+
+    family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072 = (
+        subparsers.add_parser(
+            "build-family-panel-source-free-locator-matching-coordinate-scout-mh065-mh072",
+            help=(
+                "search local frozen coordinates for mh_065/mh_072 exact "
+                "source-accession struct_ref matches"
+            ),
+        )
+    )
+    family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072.add_argument(
+        "--accession-equivalence-audit",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_accession_equivalence_"
+            "position_audit_mh065_mh072_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072.add_argument(
+        "--coordinate-roots",
+        nargs="+",
+        default=[
+            "artifacts/family_panel_source_backed_coordinates_current702_20260601",
+            "artifacts/v3_foldseek_coordinates_1000",
+        ],
+    )
+    family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_matching_coordinate_"
+            "scout_mh065_mh072_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_locator_matching_coordinate_scout_"
+            "mh065_mh072_current702_20260602.md"
+        ),
+    )
+    family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072.set_defaults(
+        func=(
+            cmd_build_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072
+        )
+    )
+
+    family_panel_source_free_locator_glycoside_substrate_coordinate_scout = (
+        subparsers.add_parser(
+            "build-family-panel-source-free-locator-glycoside-substrate-coordinate-scout",
+            help=(
+                "search local coordinates for external_glycoside_panel "
+                "non-glycan substrate-like ligand candidates"
+            ),
+        )
+    )
+    family_panel_source_free_locator_glycoside_substrate_coordinate_scout.add_argument(
+        "--glycoside-nag-validator",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_glycoside_nag_"
+            "validator_external_glycoside_panel_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_glycoside_substrate_coordinate_scout.add_argument(
+        "--coordinate-roots",
+        nargs="+",
+        default=[
+            "artifacts/family_panel_source_backed_coordinates_current702_20260601",
+            "artifacts/v3_external_structural_coordinates_1025",
+            "artifacts/v3_external_structural_coordinates_1025_all30",
+        ],
+    )
+    family_panel_source_free_locator_glycoside_substrate_coordinate_scout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_glycoside_substrate_"
+            "coordinate_scout_external_glycoside_panel_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_glycoside_substrate_coordinate_scout.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_locator_glycoside_substrate_"
+            "coordinate_scout_external_glycoside_panel_current702_20260602.md"
+        ),
+    )
+    family_panel_source_free_locator_glycoside_substrate_coordinate_scout.set_defaults(
+        func=cmd_build_family_panel_source_free_locator_glycoside_substrate_coordinate_scout
+    )
+
+    family_panel_source_free_locator_q59490_alternate_source_cache_scout = (
+        subparsers.add_parser(
+            "build-family-panel-source-free-locator-q59490-alternate-source-cache-scout",
+            help=(
+                "check local cobalamin review/cache state for an authorized "
+                "Q59490 alternate source row"
+            ),
+        )
+    )
+    family_panel_source_free_locator_q59490_alternate_source_cache_scout.add_argument(
+        "--q59490-nonlabel-locator-feasibility",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_q59490_nonlabel_"
+            "locator_feasibility_audit_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_q59490_alternate_source_cache_scout.add_argument(
+        "--cobalamin-blocker-review",
+        default=(
+            "artifacts/v3_prospective_external_cobalamin_radical_minicampaign_"
+            "blocker_review_20260521.json"
+        ),
+    )
+    family_panel_source_free_locator_q59490_alternate_source_cache_scout.add_argument(
+        "--coordinate-roots",
+        nargs="+",
+        default=[
+            "artifacts/family_panel_source_backed_coordinates_current702_20260601",
+            "artifacts/v3_foldseek_coordinates_1000",
+        ],
+    )
+    family_panel_source_free_locator_q59490_alternate_source_cache_scout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_q59490_alternate_"
+            "source_cache_scout_current702_20260602.json"
+        ),
+    )
+    family_panel_source_free_locator_q59490_alternate_source_cache_scout.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_locator_q59490_alternate_source_"
+            "cache_scout_current702_20260602.md"
+        ),
+    )
+    family_panel_source_free_locator_q59490_alternate_source_cache_scout.set_defaults(
+        func=cmd_build_family_panel_source_free_locator_q59490_alternate_source_cache_scout
     )
 
     family_panel_source_free_locator_copy_decision_mh067_mh068 = subparsers.add_parser(
@@ -26562,6 +26826,70 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p23007_alternate_scout.set_defaults(
         func=cmd_build_fold_augmented_p23007_alternate_accession_scout
+    )
+
+    blocker_human_decision_application = subparsers.add_parser(
+        "build-fold-augmented-blocker-human-decision-application",
+        help=(
+            "record human decisions for the Lever 3 sidecar, P23007, and "
+            "P10746 blocker gates without materializing sidecars or rerunning "
+            "thresholded channels"
+        ),
+    )
+    blocker_human_decision_application.add_argument(
+        "--source-feature-sidecar-review-gate",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_"
+            "current702_20260602.json"
+        ),
+    )
+    blocker_human_decision_application.add_argument(
+        "--p23007-alternate-accession-policy-gate",
+        default=(
+            "artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_"
+            "current702_20260602.json"
+        ),
+    )
+    blocker_human_decision_application.add_argument(
+        "--non-residue-interaction-sidecar-policy-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    blocker_human_decision_application.add_argument(
+        "--approved-source-feature-sidecars",
+        nargs="+",
+        default=["m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+    )
+    blocker_human_decision_application.add_argument(
+        "--selected-p23007-alternate-accession",
+        default="P00889",
+    )
+    blocker_human_decision_application.add_argument(
+        "--p10746-policy-decision",
+        default="keep_fold_only_no_non_residue_sidecar",
+    )
+    blocker_human_decision_application.add_argument(
+        "--reviewer",
+        default="Vivek",
+    )
+    blocker_human_decision_application.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_blocker_human_decision_application_"
+            "current702_20260603.json"
+        ),
+    )
+    blocker_human_decision_application.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_blocker_human_decision_application_"
+            "current702_20260603.md"
+        ),
+    )
+    blocker_human_decision_application.set_defaults(
+        func=cmd_build_fold_augmented_blocker_human_decision_application
     )
 
     remaining_blocker_decision_matrix = subparsers.add_parser(

@@ -140,15 +140,17 @@ artifacts first.
   active-site evidence, an alternate predicted coordinate, or an explicitly
   authorized experimental-coordinate-only policy.
 - Those same five Lever 3 fold-channel deployment blockers now have
-  blocker-specific review gates. Three coordinate-available rows (`m_csa:531`,
-  `uniprot:P78549`, and `uniprot:Q3LXA3`) are strict-audit-clean draft
-  source-feature sidecars requiring manual approval; `m_csa:78`/P23007 has four
-  AFDB-backed alternate-accession candidates but no authorized replacement; and
-  `m_csa:204`/P10746 remains blocked by the absence of source-feature rows,
-  curated residue nodes, or an approved non-residue interaction sidecar policy.
-  The regenerated confounded readiness gate still keeps threshold `0.44155`,
-  remains research-ready for the 5/6 confounded abstention result, and stays
-  deployment-blocked until those decisions are made.
+  blocker-specific review gates plus a decision-application record. Three
+  coordinate-available rows (`m_csa:531`, `uniprot:P78549`, and
+  `uniprot:Q3LXA3`) now have approved source-feature sidecars pending
+  materialization into the scoring surface. `m_csa:78`/P23007 has P00889
+  authorized as an ortholog surrogate and still needs the AFDB coordinate fetch
+  plus fixed-threshold fold-channel rerun. `m_csa:204`/P10746 is explicitly
+  kept fold-only with the no-non-residue-sidecar policy caveat. The regenerated
+  confounded readiness gate still keeps threshold `0.44155`, remains
+  research-ready for the 5/6 confounded abstention result, and stays
+  deployment-blocked until materialization/fetch/rerun/caveat disclosure are
+  completed.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel
@@ -304,44 +306,45 @@ artifacts first.
   `metal_dependent_hydrolase` and the nearest predicted-fold hit is a
   `plp_dependent_enzyme` seed. The row remains secondary review-only evidence,
   not import-ready family promotion support.
-- A remaining source-free locator blocker action queue now classifies the seven
-  still-blocked family-panel rows after the three source checks. The least
-  ambiguous next work is UniProt position validation for `mh_065` and `mh_072`,
-  followed by split-safe template checks for `mh_067`/`mh_068`, ligand
-  specificity review for `external_glycoside_panel`, and policy decisions for
-  `mh_064`/Q59490.
+- A remaining source-free locator blocker action queue initially classified
+  seven family-panel rows after the three source checks. Two rows,
+  `mh_067`/`mh_068`, have since passed copy approval, source-free geometry
+  scoring, and source checks as review-only/no-promotion rows. The remaining
+  five blocker rows are `mh_065`, `mh_072`, `external_glycoside_panel`,
+  `mh_064`, and `secondary_probe::cobalamin_radical_rearrangement` (Q59490).
 - The `mh_065`/`mh_072` UniProt position-validation attempt is complete and
   keeps both rows blocked. Their candidate contacts are coordinate-local, but
   frozen selected PDB mappings point to `Q932P5` for `1DDK` and `P08324` for
   `1E9I`, not the source accessions `Q79MP6` and `P0A6P9`. Do not copy these
   locator sidecars or score source-free predicted geometry until an explicit
   representative-accession equivalence policy or matching frozen coordinate is
-  available.
-- The `mh_067`/`mh_068` split-safe template check passes as review-only
-  evidence: same-accession current702 matches are in-distribution seeds
-  (`m_csa:216` and `m_csa:158`), not heldout rows, and the candidate sidecars
-  have no forbidden predictive source/label fields. This does not authorize
-  copying locator sidecars; manual copy approval remains required before
-  source-free predicted-geometry scoring.
-- The `external_glycoside_panel` ligand-specificity review rejects the selected
-  acetate (`ACT`) locator from unliganded MYORG `7QQF`. NAG contacts are present
-  in the candidate extraction but are glycan/glycosylation-context evidence, not
-  an automatic catalytic-substrate replacement. Do not copy or score this row
-  until a dedicated glycoside-ligand validator or approved substrate-complex
-  coordinate is available.
+  available. A local-cache matching-coordinate scout found 0 non-AFDB
+  replacement coordinates; same-accession AFDB files exist but already failed
+  the residue-transfer check.
+- The `external_glycoside_panel` ligand-specificity path remains blocked.
+  The selected acetate (`ACT`) locator from unliganded MYORG `7QQF` was
+  rejected, NAG contacts remain glycan/glycosylation-context evidence, and a
+  local-cache substrate-coordinate scout found 0 same-accession substrate-like
+  candidates. Do not copy or score this row until a dedicated substrate-complex
+  coordinate or expert-approved non-glycan locator exists.
 - The final no-ligand locator blocker packet isolates two policy decisions:
   `mh_064` needs explicit approval before fetching five frozen alternate PDBs
   (`3RKJ`, `3RKK`, `3SBL`, `3SFP`, `3SPU`), and Q59490 needs a nonlabel
-  locator strategy or approved alternate source row. Automation did not fetch
-  coordinates, copy sidecars, or score predicted geometry.
-- A refreshed source-free locator blocker status now consolidates all seven
-  unresolved rows. Automation discovery is complete, 0/7 are scoring-ready, and
-  every row now needs a policy or human-review decision rather than another
-  blind locator-discovery pass.
-- A compact human-decision matrix now groups those seven blockers into five
-  decision classes and recommends starting with the `mh_067`/`mh_068` locator
-  copy decision because their split-safe template check already passed and no
-  coordinate fetch is needed. The matrix authorizes no copy, fetch, or scoring.
+  locator strategy or approved alternate source row. A local-cache Q59490
+  alternate-source scout found 0 eligible alternate rows. Automation did not
+  fetch coordinates, copy sidecars, or score predicted geometry for either
+  blocker.
+- A refreshed source-free locator blocker status plus human-decision matrix now
+  consolidates the five remaining blocker rows into four decision classes.
+  Automation discovery is complete, 0/5 are automation-clearable, 0 are
+  import-preview-ready, and the next decision is `mh_065`/`mh_072` matching
+  coordinates or explicit remapped-locator approval. The matrix authorizes no
+  copy, fetch, scoring, import, or label action.
+- The family-panel import-preview blocker gate has been refreshed against that
+  enriched matrix. It still reports 0/22 import-preview-ready rows, 0 countable
+  label candidates, 11 completed source checks that remain review-only/no
+  promotion, 6 expert family-admission blockers, and 5 source-free
+  locator/primary-channel blockers.
 - A refreshed current-run artifact integrity audit indexes 28 JSON artifacts
   and 28 matching work reports from this run, including the P0 train/cal
   feature sidecar, coverage-gap audit, and calibration review packet. All
@@ -668,6 +671,11 @@ artifacts first.
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`
 - `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`
 - `artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json`
+- `artifacts/v3_fold_augmented_source_feature_active_site_sidecar_review_gate_current702_20260602.json`
+- `artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json`
+- `artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json`
+- `artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json`
+- `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.json`
@@ -718,8 +726,14 @@ artifacts first.
 - `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_source_check_completion_reconciliation_current702_20260602.json`
+- `artifacts/v3_fold_augmented_family_panel_countability_gate_preflight_current702_20260602.json`
+- `artifacts/v3_fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.json`
 - `artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602.json`
+- `artifacts/v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602.json`
+- `artifacts/v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602.json`
 - `artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`

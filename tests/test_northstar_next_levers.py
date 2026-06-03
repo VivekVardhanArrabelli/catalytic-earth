@@ -11,6 +11,7 @@ from catalytic_earth.northstar_next_levers import (
     build_family_panel_evidence_packet,
     build_family_panel_high_value_glycyl_radical_readiness_packet,
     build_fold_augmented_abstention_gate,
+    build_fold_augmented_blocker_human_decision_application,
     build_fold_augmented_confounded_deployment_closure_audit,
     build_fold_augmented_fold_only_deployment_contract_decision,
     build_fold_augmented_family_panel_m_csa_primary_channel_repair,
@@ -33,6 +34,9 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision,
     build_fold_only_train_cal_oos_negative_surface,
     build_family_panel_source_free_locator_human_decision_matrix,
+    build_family_panel_source_free_locator_glycoside_substrate_coordinate_scout,
+    build_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072,
+    build_family_panel_source_free_locator_q59490_alternate_source_cache_scout,
     build_family_panel_source_free_predicted_geometry_retrieval,
     build_family_panel_source_free_predicted_geometry_source_check_preflight,
     build_learned_mechanism_feature_embedding_plan,
@@ -988,6 +992,210 @@ class NorthstarNextLeversTests(unittest.TestCase):
             matrix["decision_classes"][0]["automation_can_continue_without_decision"]
         )
         self.assertFalse(matrix["guardrails"]["new_coordinates_fetched"])
+
+    def test_source_free_locator_matching_coordinate_scout_blocks_on_afdb_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            audit_path = root / "accession_audit.json"
+            coordinate_root = root / "coordinates"
+            coordinate_root.mkdir()
+            audit_path.write_text(
+                json.dumps(
+                    {
+                        "audit_rows": [
+                            {
+                                "entry_id": "mh_065",
+                                "selected_structure_id": "1DDK",
+                                "selected_pdb_struct_ref_accessions": ["Q932P5"],
+                                "requested_afdb_coordinate_path": (
+                                    "coordinates/AF-Q79MP6-F1-model_v6.cif"
+                                ),
+                                "requested_afdb_expected_code_match_count": 0,
+                                "requested_afdb_expected_code_mismatch_count": 3,
+                            },
+                            {
+                                "entry_id": "mh_072",
+                                "selected_structure_id": "1E9I",
+                                "selected_pdb_struct_ref_accessions": ["P08324"],
+                                "requested_afdb_coordinate_path": (
+                                    "coordinates/AF-P0A6P9-F1-model_v6.cif"
+                                ),
+                                "requested_afdb_expected_code_match_count": 0,
+                                "requested_afdb_expected_code_mismatch_count": 3,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (coordinate_root / "AF-Q79MP6-F1-model_v6.cif").write_text(
+                "data_AF_Q79MP6\n#\n",
+                encoding="utf-8",
+            )
+            (coordinate_root / "AF-P0A6P9-F1-model_v6.cif").write_text(
+                "data_AF_P0A6P9\n#\n",
+                encoding="utf-8",
+            )
+
+            scout = build_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072(
+                accession_equivalence_audit_path=audit_path,
+                coordinate_roots=[coordinate_root],
+            )
+
+        self.assertEqual(
+            scout["status"],
+            "source_free_locator_matching_coordinate_scout_blocked_no_replacement_matches_review_only",
+        )
+        self.assertEqual(
+            scout["counts"]["rows_with_same_accession_afdb_coordinate_only"],
+            2,
+        )
+        self.assertEqual(scout["counts"]["matching_replacement_coordinates"], 0)
+        by_entry = {row["entry_id"]: row for row in scout["row_scouts"]}
+        self.assertEqual(
+            by_entry["mh_065"]["decision_status"],
+            "only_requested_afdb_coordinate_present_prior_residue_mismatch",
+        )
+        self.assertFalse(
+            scout["decision"]["raw_representative_coordinate_copy_allowed"]
+        )
+        self.assertFalse(scout["guardrails"]["new_coordinates_fetched"])
+
+    def test_source_free_locator_glycoside_substrate_coordinate_scout_blocks_glycan_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            validator_path = root / "validator.json"
+            coordinate_root = root / "coordinates"
+            coordinate_root.mkdir()
+            validator_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "source_free_locator_glycoside_nag_validator_"
+                            "rejected_nag_glycan_review_only"
+                        ),
+                        "next_action": "provide substrate-complex coordinate",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (coordinate_root / "pdb_7QQF.cif").write_text(
+                "\n".join(
+                    [
+                        "data_7QQF",
+                        "loop_",
+                        "_struct_ref_seq.align_id",
+                        "_struct_ref_seq.ref_id",
+                        "_struct_ref_seq.pdbx_db_accession",
+                        "_struct_ref_seq.pdbx_strand_id",
+                        "_struct_ref_seq.seq_align_beg",
+                        "_struct_ref_seq.seq_align_end",
+                        "_struct_ref_seq.db_align_beg",
+                        "_struct_ref_seq.db_align_end",
+                        "1 1 Q6NSJ0 A 1 10 1 10",
+                        "#",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_seq_id",
+                        "_atom_site.auth_comp_id",
+                        "HETATM 1 C C1 NAG A 801 1.0 1.0 1.0 801 NAG",
+                        "HETATM 2 C C1 ACT A 805 2.0 2.0 2.0 805 ACT",
+                        "#",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            scout = build_family_panel_source_free_locator_glycoside_substrate_coordinate_scout(
+                glycoside_nag_validator_path=validator_path,
+                coordinate_roots=[coordinate_root],
+            )
+
+        self.assertEqual(
+            scout["status"],
+            "source_free_locator_glycoside_substrate_coordinate_scout_blocked_no_substrate_like_local_coordinate_review_only",
+        )
+        self.assertEqual(scout["counts"]["same_accession_coordinate_records"], 1)
+        self.assertEqual(scout["counts"]["substrate_like_coordinate_candidates"], 0)
+        self.assertFalse(scout["decision"]["substrate_coordinate_gate_cleared"])
+        self.assertFalse(scout["guardrails"]["new_coordinates_fetched"])
+
+    def test_source_free_locator_q59490_alternate_source_cache_scout_blocks_without_alternate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            feasibility = root / "feasibility.json"
+            cobalamin = root / "cobalamin.json"
+            coordinate_root = root / "coordinates"
+            coordinate_root.mkdir()
+            feasibility.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "source_free_locator_q59490_nonlabel_locator_"
+                            "feasibility_blocked_no_coordinate_anchor_review_only"
+                        ),
+                        "decision": {"next_action": "define nonlabel strategy"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cobalamin.write_text(
+                json.dumps(
+                    {
+                        "eligible_rows": [
+                            {
+                                "accession": "Q59490",
+                                "entry_name": "RTPR_LACLE",
+                                "pdb_ids_sample": ["1L1L"],
+                            }
+                        ],
+                        "excluded_rows_sample": [
+                            {
+                                "accession": "P11653",
+                                "entry_name": "MUTB_PROFR",
+                                "exclusion_reasons": ["not_authorized"],
+                                "pdb_ids_sample": ["1REQ"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (coordinate_root / "pdb_1L1L.cif").write_text(
+                "data_1L1L\n#\n",
+                encoding="utf-8",
+            )
+
+            scout = build_family_panel_source_free_locator_q59490_alternate_source_cache_scout(
+                q59490_nonlabel_locator_feasibility_path=feasibility,
+                cobalamin_blocker_review_path=cobalamin,
+                coordinate_roots=[coordinate_root],
+            )
+
+        self.assertEqual(
+            scout["status"],
+            "source_free_locator_q59490_alternate_source_cache_scout_blocked_no_eligible_alternate_source_review_only",
+        )
+        self.assertEqual(scout["counts"]["eligible_source_rows"], 1)
+        self.assertEqual(scout["counts"]["alternate_eligible_source_rows"], 0)
+        self.assertFalse(scout["decision"]["alternate_source_gate_cleared"])
+        self.assertFalse(scout["guardrails"]["alternate_source_authorized"])
 
     def test_fold_augmented_gate_combines_fold_geometry_and_cofactor(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -2311,6 +2519,93 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(audit["decision"]["replacement_authorized_now"])
         self.assertFalse(audit["guardrails"]["coordinate_fetch_authorized"])
+
+    def test_blocker_human_decision_application_records_vivek_approvals(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            review_gate = root / "review_gate.json"
+            p23007_gate = root / "p23007_gate.json"
+            p10746_preflight = root / "p10746_preflight.json"
+            review_gate.write_text(
+                json.dumps(
+                    {
+                        "review_gate_rows": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "ready_for_manual_approval_review": True,
+                                "active_site_feature_support_count": 3,
+                            },
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "ready_for_manual_approval_review": True,
+                                "active_site_feature_support_count": 6,
+                            },
+                            {
+                                "entry_id": "uniprot:Q3LXA3",
+                                "accession": "Q3LXA3",
+                                "ready_for_manual_approval_review": True,
+                                "active_site_feature_support_count": 9,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p23007_gate.write_text(
+                json.dumps(
+                    {
+                        "candidate_policy_rows": [
+                            {
+                                "candidate_accession": "P00889",
+                                "uniprotkb_id": "CISY_PIG",
+                                "organism": "Sus scrofa",
+                                "policy_review_ready": True,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p10746_preflight.write_text(
+                json.dumps(
+                    {
+                        "policy_preflight_rows": [
+                            {"entry_id": "m_csa:204", "accession": "P10746"}
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_blocker_human_decision_application(
+                source_feature_sidecar_review_gate_path=review_gate,
+                p23007_alternate_accession_policy_gate_path=p23007_gate,
+                non_residue_interaction_sidecar_policy_preflight_path=p10746_preflight,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_blocker_human_decision_application_ready_materialization_pending",
+        )
+        self.assertEqual(audit["counts"]["approved_source_feature_sidecars"], 3)
+        self.assertEqual(audit["counts"]["p23007_replacement_authorized_now"], 1)
+        self.assertEqual(audit["counts"]["p10746_keep_fold_only_policy_rows"], 1)
+        self.assertEqual(
+            audit["counts"]["human_or_policy_decision_blockers_remaining"], 0
+        )
+        self.assertEqual(
+            audit["p23007_decision"]["selected_alternate_accession"], "P00889"
+        )
+        self.assertEqual(
+            audit["p10746_decision"]["decision"],
+            "keep_fold_only_no_non_residue_sidecar",
+        )
+        self.assertFalse(audit["guardrails"]["sidecars_materialized_now"])
+        self.assertFalse(audit["guardrails"]["coordinate_fetched_now"])
 
     def test_source_feature_sidecar_review_gate_requires_manual_decisions(
         self,

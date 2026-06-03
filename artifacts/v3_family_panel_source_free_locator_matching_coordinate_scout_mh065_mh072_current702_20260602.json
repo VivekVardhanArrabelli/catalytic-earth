@@ -1,0 +1,124 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602",
+  "coordinate_roots": [
+    "artifacts/family_panel_source_backed_coordinates_current702_20260601",
+    "artifacts/v3_foldseek_coordinates_1000"
+  ],
+  "counts": {
+    "approved_locator_copy_authorized_rows": 0,
+    "coordinate_roots": 2,
+    "local_coordinate_files_scanned": 712,
+    "matching_replacement_coordinates": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "rows_with_matching_replacement_coordinate": 0,
+    "rows_with_same_accession_afdb_coordinate_only": 2,
+    "same_accession_struct_ref_coordinates": 2,
+    "target_rows": 2
+  },
+  "created_utc": "2026-06-02T23:10:49Z",
+  "decision": {
+    "matching_coordinate_gate_cleared": false,
+    "new_countable_labels_authorized": false,
+    "next_action": "For mh_065/mh_072, matching non-AFDB replacement coordinates are absent. Same-accession AFDB files exist but already failed the prior residue-position transfer, so do not copy the raw 1DDK/1E9I locators; provide matching frozen PDB/mmCIF coordinates or explicit remapped-locator approval.",
+    "raw_representative_coordinate_copy_allowed": false
+  },
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "new_coordinates_fetched": false,
+    "new_source_data_fetched": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_used_as_predictive_features": false
+  },
+  "row_scouts": [
+    {
+      "approved_locator_copy_allowed_now": false,
+      "decision_status": "only_requested_afdb_coordinate_present_prior_residue_mismatch",
+      "entry_id": "mh_065",
+      "matching_coordinate_records": [
+        {
+          "can_clear_matching_coordinate_gate": false,
+          "coordinate_kind": "alphafolddb_predicted_cif",
+          "filename_accessions": [
+            "Q79MP6"
+          ],
+          "hetatm_comp_counts": {},
+          "nonwater_hetatm_comp_counts": {},
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v6.cif",
+          "requested_accession_filename_match": true,
+          "requested_accession_struct_ref_match": true,
+          "sha256": "26cde0b0a16e5fa8f051f86674f591ad3f156e210d929406258a249220a47c36",
+          "struct_ref_accessions": [
+            "Q79MP6",
+            "Q79MP6_PSEAI"
+          ]
+        }
+      ],
+      "matching_replacement_coordinate_count": 0,
+      "prior_requested_afdb_coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v6.cif",
+      "prior_requested_afdb_expected_code_match_count": 0,
+      "prior_requested_afdb_expected_code_mismatch_count": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "required_next_action": "Do not copy the representative-coordinate locators. The only same-accession local coordinate is the requested AFDB model, and the prior accession-equivalence audit found all candidate residue positions mismatched there.",
+      "same_accession_afdb_coordinate_count": 1,
+      "same_accession_struct_ref_coordinate_count": 1,
+      "selected_pdb_struct_ref_accessions": [
+        "Q932P5"
+      ],
+      "selected_structure_id": "1DDK",
+      "source_accession": "uniprot:Q79MP6"
+    },
+    {
+      "approved_locator_copy_allowed_now": false,
+      "decision_status": "only_requested_afdb_coordinate_present_prior_residue_mismatch",
+      "entry_id": "mh_072",
+      "matching_coordinate_records": [
+        {
+          "can_clear_matching_coordinate_gate": false,
+          "coordinate_kind": "alphafolddb_predicted_cif",
+          "filename_accessions": [
+            "P0A6P9"
+          ],
+          "hetatm_comp_counts": {},
+          "nonwater_hetatm_comp_counts": {},
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v6.cif",
+          "requested_accession_filename_match": true,
+          "requested_accession_struct_ref_match": true,
+          "sha256": "ad6dc6116c071abf3ade1df3bfedd181d97334a5b5bbd625da5eadec6b8eed27",
+          "struct_ref_accessions": [
+            "ENO_ECOLI",
+            "P0A6P9"
+          ]
+        }
+      ],
+      "matching_replacement_coordinate_count": 0,
+      "prior_requested_afdb_coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v6.cif",
+      "prior_requested_afdb_expected_code_match_count": 0,
+      "prior_requested_afdb_expected_code_mismatch_count": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "required_next_action": "Do not copy the representative-coordinate locators. The only same-accession local coordinate is the requested AFDB model, and the prior accession-equivalence audit found all candidate residue positions mismatched there.",
+      "same_accession_afdb_coordinate_count": 1,
+      "same_accession_struct_ref_coordinate_count": 1,
+      "selected_pdb_struct_ref_accessions": [
+        "P08324"
+      ],
+      "selected_structure_id": "1E9I",
+      "source_accession": "uniprot:P0A6P9"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_locator_matching_coordinate_scout",
+  "scope": "Local-cache-only scout for the mh_065/mh_072 matching-coordinate decision class. It searches already-frozen coordinates for exact source-accession struct_ref mappings and records whether any can replace the representative-coordinate locator path.",
+  "source_artifacts": {
+    "accession_equivalence_position_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_locator_accession_equivalence_position_audit_mh065_mh072_current702_20260602.json",
+      "sha256": "53a5d06da3112e661a4a5789c3ecb59c8b750c95d5da651737f88d54f00b2066"
+    }
+  },
+  "status": "source_free_locator_matching_coordinate_scout_blocked_no_replacement_matches_review_only"
+}
