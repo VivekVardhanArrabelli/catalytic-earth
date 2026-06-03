@@ -163,6 +163,21 @@ artifacts first.
   remains research-ready for the 5/6 confounded abstention result, and stays
   deployment-blocked until P10746 is resolved by policy acceptance or an
   approved non-residue sidecar.
+- Two confounded-proxy train/cal scoring tranches have now been materialized
+  and joined back to the deployable predicted-structure-vs-train-atlas surface.
+  The first 50-row tranche fetched 48/50 AFDB-v6 query CIFs and produced
+  47/50 full-channel rows. The second 66-row structural tranche fetched 64/66
+  query CIFs, ran Foldseek against the train atlas, and produced 64/66
+  full-channel rows; `P00806` and `P04531` have no AFDB-v6 prediction. The
+  composed
+  `v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603`
+  gives 186/192 train/cal OOS full-channel rows. At the fixed threshold
+  `0.44155`, the proxy audit abstains on 63/186 calibration OOS rows overall,
+  but 0/4 high-cofactor proxy rows and only 10/55 strict same-family structural
+  proxy rows. The current candidate pool still has 170 unscored ready
+  train/cal OOS rows, but 0 high-cofactor-axis and 0 structural-axis rows under
+  the current proxy gate, so the next scoring-tranche plan selects 0 rows and
+  the input manifest fails closed on `scoring_tranche_plan_empty`.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel

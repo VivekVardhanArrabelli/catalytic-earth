@@ -104,6 +104,8 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_evidence_extension_plan,
     write_fold_augmented_confounded_proxy_acquisition_queue,
     write_fold_augmented_confounded_proxy_train_cal_candidate_pool,
+    write_fold_augmented_confounded_proxy_extended_train_cal_oos_surface,
+    write_fold_augmented_confounded_proxy_train_cal_scored_extension,
     write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
     write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
     write_fold_augmented_oos_calibrated_threshold_contract,
@@ -12472,6 +12474,54 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
         f"{counts.get('scoring_tranche_rows')}, query coordinates missing: "
         f"{counts.get('query_coordinate_files_missing')}, train targets "
         f"missing: {counts.get('train_atlas_target_coordinate_files_missing')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_train_cal_scored_extension(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_proxy_train_cal_scored_extension(
+        scoring_input_manifest_path=Path(args.scoring_input_manifest),
+        scoring_tranche_plan_path=Path(args.scoring_tranche_plan),
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        selected_organic_cofactor_sidecar_path=Path(
+            args.selected_organic_cofactor_sidecar
+        ),
+        foldseek_result_tsv=Path(args.foldseek_result_tsv)
+        if args.foldseek_result_tsv
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        alphafold_version=args.alphafold_version,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal scored extension to "
+        f"{args.out} (full-channel rows: "
+        f"{counts.get('candidate_rows_with_full_channel_scores')}/"
+        f"{counts.get('scoring_tranche_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
+        base_train_cal_oos_surface_path=Path(args.base_train_cal_oos_surface),
+        scored_extension_path=Path(args.scored_extension),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy extended train/cal OOS surface "
+        f"to {args.out} (extended full-channel rows: "
+        f"{counts.get('candidate_rows_with_full_channel_scores')}/"
+        f"{counts.get('extended_candidate_rows')})"
     )
     return 0
 
@@ -28681,6 +28731,112 @@ def build_parser() -> argparse.ArgumentParser:
     )
     confounded_proxy_train_cal_scoring_input.set_defaults(
         func=cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest
+    )
+
+    confounded_proxy_train_cal_scored_extension = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-scored-extension",
+        help=(
+            "parse the scored confounded-proxy train/cal tranche and compute "
+            "combined geometry/fold channel rows without threshold tuning"
+        ),
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--scoring-input-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scoring_input_manifest_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--scoring-tranche-plan",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scoring_tranche_plan_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--foldseek-result-tsv",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601_coordinates_foldseek_results/"
+            "confounded_proxy_train_cal_tranche_vs_train_atlas.tsv"
+        ),
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--alphafold-version",
+        default="auto",
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scored_extension_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_scored_extension_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_scored_extension.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_train_cal_scored_extension
+    )
+
+    confounded_proxy_extended_train_cal_oos_surface = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-extended-train-cal-oos-surface",
+        help=(
+            "append scored confounded-proxy train/cal tranche rows to the "
+            "expanded train/cal OOS surface without changing thresholds"
+        ),
+    )
+    confounded_proxy_extended_train_cal_oos_surface.add_argument(
+        "--base-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_"
+            "surface_scores_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extended_train_cal_oos_surface.add_argument(
+        "--scored-extension",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scored_extension_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extended_train_cal_oos_surface.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extended_train_cal_oos_surface.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_extended_train_cal_oos_surface_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_extended_train_cal_oos_surface.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

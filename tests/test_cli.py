@@ -1144,6 +1144,26 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "scored-extension"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "scored_extension"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-extended-train-"
+                    "cal-oos-surface"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_extended_"
+                    "train_cal_oos_surface"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-p10746-deployment-caveat-decision-"
                     "packet"
                 ),

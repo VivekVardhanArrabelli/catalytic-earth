@@ -50,6 +50,101 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 15
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T15:02:08Z`
+- STARTED_LOCAL: `2026-06-03T10:02:08-0500 CDT`
+- ENDED_AT: `2026-06-03T15:57:25Z`
+- ENDED_LOCAL: `2026-06-03T10:57:25-0500 CDT`
+- ELAPSED_MINUTES: `55.3`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "70139", "started_at": "2026-06-03T15:02:08Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue inside active Levers 2/3/4 from Run 14. Follow the exact next action
+from the prior handoff after syncing the repo and reading the required current
+context files.
+
+#### What changed
+
+- Executed the Run 14 exact next Lever 3 action and then continued to the next
+  highest-value mechanical move inside the same lever.
+- Materialized the first 50-row confounded-proxy train/cal tranche query set:
+  48/50 AFDB-v6 CIFs downloaded; `P07071` and `P07658` were AFDB 404/no
+  prediction. Ran the recorded Foldseek pass against the threshold-contract
+  train atlas and parsed it into
+  `v3_fold_augmented_confounded_proxy_train_cal_scored_extension_current702_20260603`.
+  The first extension has 47/50 full-channel rows; `m_csa:416`, `m_csa:562`,
+  and `m_csa:604` remain unscored.
+- Composed the first extension into a frozen after-tranche-1 surface
+  (122/126 full-channel rows), then immediately advanced the current structural
+  tranche: 64/66 second-tranche AFDB-v6 CIFs downloaded, `P00806` and `P04531`
+  were AFDB 404/no prediction, Foldseek completed, and
+  `v3_fold_augmented_confounded_proxy_train_cal_scored_extension_tranche2_current702_20260603`
+  records 64/66 full-channel rows with stable tranche-specific plan/input/TSV
+  provenance.
+- Composed both extensions into
+  `v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603`.
+  The deployable train/cal OOS surface is now 186/192 full-channel rows.
+- Reran the fixed-threshold confounded-proxy audit chain without changing
+  threshold `0.44155` and without heldout threshold tuning. The audit now has
+  63/186 all-calibration OOS rows abstained, 0/4 high-cofactor proxy rows
+  abstained, and 10/55 strict same-family structural proxy rows abstained.
+  Heldout carry-through remains 5/6 confounded OOS abstained and 45/47
+  in-scope retained.
+- Reran gap targets, threshold stress, evidence extension, acquisition queue,
+  candidate pool, scoring-tranche plan, input manifest, and active-lever audit.
+  The current scoring-tranche plan selects 0 rows: 170 unscored ready
+  train/cal OOS rows remain, but 0 high-cofactor-axis and 0 structural-axis
+  candidates satisfy the current proxy gate. The input manifest now fails
+  closed on `scoring_tranche_plan_empty`.
+- Added CLI commands plus unit, CLI-registration, direct artifact-regression,
+  and downstream current-artifact regression coverage for the scored-extension
+  and extended-surface path.
+- Updated `docs/artifact_index.md`, `docs/project_state.md`, appended the
+  measured progress-log entry, and regenerated `work/status.md`.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, source decision packets, reviewer decisions, or heldout threshold
+  tuning were changed.
+- M-CSA-derived row-specific features remained train/cal-only. Heldout
+  confounded rows were read only through the frozen carry-through readout.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were used
+  as predictive features.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest -q tests/test_northstar_next_levers.py -k 'confounded_proxy_train_cal_scored_extension or confounded_proxy_train_cal_scoring_input_manifest or confounded_proxy_train_cal_candidate_pool or confounded_proxy_train_cal_scoring_tranche_plan or confounded_proxy_operating_point_audit'`
+  passed: 5 passed, 151 deselected.
+- `PYTHONPATH=src python -m pytest -q tests/test_geometry_artifact_regression.py -k 'confounded_proxy'`
+  passed: 9 passed, 176 deselected.
+- `PYTHONPATH=src python -m pytest -q tests/test_cli.py -k 'current702_northstar_carryover_commands_are_registered'`
+  passed: 1 passed, 117 deselected, 120 subtests passed.
+- `PYTHONPATH=src python -m pytest -q` passed: 1330 passed, 146 subtests
+  passed, one existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1285 tests.
+- `PYTHONPATH=src python -m compileall -q src`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
+  and JSON parse checks for 15 changed/new current artifacts passed.
+
+#### Exact next action
+
+- Active Lever 3 automatic scoring is mechanically exhausted under the current
+  proxy axes: the current tranche plan is empty and the input manifest blocks on
+  `scoring_tranche_plan_empty`. Next run should first apply any reviewed source
+  decisions if available; otherwise the highest-value action is to create the
+  smallest new evidence/proxy-axis blocker artifact explaining why the 170
+  remaining train/cal OOS rows are background-only and cannot satisfy the
+  high-cofactor or strict structural proxy shortfalls, then pivot within active
+  Levers 2/3/4 only if a new mechanical gate is opened.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 14
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

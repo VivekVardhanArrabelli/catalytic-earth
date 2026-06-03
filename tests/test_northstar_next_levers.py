@@ -29,7 +29,9 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_threshold_stress,
     build_fold_augmented_confounded_proxy_evidence_extension_plan,
     build_fold_augmented_confounded_proxy_acquisition_queue,
+    build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface,
     build_fold_augmented_confounded_proxy_train_cal_candidate_pool,
+    build_fold_augmented_confounded_proxy_train_cal_scored_extension,
     build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
     build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
     build_fold_augmented_family_panel_accepted_import_preview,
@@ -2753,6 +2755,249 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(manifest["decision"]["score_tranche_now"])
         self.assertFalse(manifest["decision"]["proxy_calibration_rerun_ready_now"])
         self.assertFalse(manifest["guardrails"]["coordinate_downloads_performed"])
+
+    def test_confounded_proxy_train_cal_scored_extension_composes_surface(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            scoring_input = root / "scoring_input.json"
+            plan = root / "plan.json"
+            labels = root / "labels.json"
+            graph = root / "graph.json"
+            experimental = root / "experimental.json"
+            sidecar = root / "sidecar.json"
+            tsv = root / "foldseek.tsv"
+            query_path = root / "coords" / "queries" / "afdb_PQUERY_v6.cif"
+            target_path = root / "coords" / "targets" / "afdb_PTRAIN_v6.cif"
+            query_path.parent.mkdir(parents=True)
+            target_path.parent.mkdir(parents=True)
+            query_path.write_text("data_query\n", encoding="utf-8")
+            target_path.write_text("data_target\n", encoding="utf-8")
+            tsv.write_text(
+                "afdb_PQUERY_v6\tafdb_PTRAIN_v6\t0.42\t0.41\t0.40\t0.9\t10\n",
+                encoding="utf-8",
+            )
+            scoring_input.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "result_tsv": str(tsv),
+                            "coordinate_request_groups": {
+                                "confounded_proxy_train_cal_tranche_queries": [
+                                    {
+                                        "accession": "PQUERY",
+                                        "alphafold_version": 6,
+                                        "expected_local_path": str(query_path),
+                                        "local_file_exists": True,
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:1",
+                                                "split_assignment": "in_distribution",
+                                            }
+                                        ],
+                                        "entry_ids": ["m_csa:1"],
+                                    }
+                                ],
+                                "threshold_contract_train_atlas_targets": [
+                                    {
+                                        "accession": "PTRAIN",
+                                        "alphafold_version": 6,
+                                        "expected_local_path": str(target_path),
+                                        "local_file_exists": True,
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:10",
+                                                "split_assignment": "in_distribution",
+                                                "true_fingerprint_id": (
+                                                    "metal_dependent_hydrolase"
+                                                ),
+                                            }
+                                        ],
+                                        "entry_ids": ["m_csa:10"],
+                                    }
+                                ],
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            plan.write_text(
+                json.dumps(
+                    {
+                        "scoring_tranche_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "split_assignment": "in_distribution",
+                                "label_type": "out_of_scope",
+                                "priority_bucket": 1,
+                                "organic_cofactor_max_score": 0.8,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "high_cofactor_signature_proxy",
+                                    "same_family_structural_proxy",
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "PQUERY",
+                                "sequence_id": "PQUERY",
+                                "split_assignment": "in_distribution",
+                                "benchmark_role": "oos_tier::unknown_oos",
+                                "label_type": "out_of_scope",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {
+                                "id": "m_csa:1:residue:1",
+                                "type": "catalytic_residue",
+                                "roles": ["metal_ligand"],
+                                "sequence_positions": [
+                                    {
+                                        "is_reference": True,
+                                        "resid": 10,
+                                        "code": "Asp",
+                                        "uniprot_id": "PQUERY",
+                                    }
+                                ],
+                            },
+                            {
+                                "id": "m_csa:1:residue:2",
+                                "type": "catalytic_residue",
+                                "roles": ["water_activator"],
+                                "sequence_positions": [
+                                    {
+                                        "is_reference": True,
+                                        "resid": 20,
+                                        "code": "His",
+                                        "uniprot_id": "PQUERY",
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            experimental.write_text(
+                json.dumps({"entries": [{"entry_id": "m_csa:1", "status": "ok"}]}),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "class": "flavin",
+                                "selected_score": 0.8,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def fake_fetcher(accession: str, version: str = "auto"):
+                cif = """data_fake
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM 1 C CA ASP A 10 A 10 0.0 0.0 0.0
+ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
+#
+"""
+                return cif, {"accession": accession, "alphafold_version": 6}
+
+            extension = build_fold_augmented_confounded_proxy_train_cal_scored_extension(
+                scoring_input_manifest_path=scoring_input,
+                scoring_tranche_plan_path=plan,
+                label_manifest_path=labels,
+                graph_path=graph,
+                experimental_geometry_features_path=experimental,
+                selected_organic_cofactor_sidecar_path=sidecar,
+                foldseek_result_tsv=tsv,
+                artifact_id="custom_scored_extension",
+                fetcher=fake_fetcher,
+            )
+            base_surface = root / "base_surface.json"
+            extension_path = root / "extension.json"
+            base_surface.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_expanded_train_cal_oos_negative_surface_scores",
+                        "counts": {"candidate_rows_with_full_channel_scores": 1},
+                        "blockers": [],
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.6
+                                },
+                            }
+                        ],
+                        "guardrails": {},
+                        "source_artifacts": {},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            extension_path.write_text(json.dumps(extension), encoding="utf-8")
+
+            composed = build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
+                base_train_cal_oos_surface_path=base_surface,
+                scored_extension_path=extension_path,
+                artifact_id="custom_extended_surface",
+            )
+
+        self.assertEqual(extension["artifact_id"], "custom_scored_extension")
+        self.assertEqual(
+            extension["status"],
+            "confounded_proxy_train_cal_scored_extension_complete",
+        )
+        self.assertEqual(
+            extension["counts"]["candidate_rows_with_full_channel_scores"], 1
+        )
+        self.assertEqual(
+            extension["candidate_row_scores"][0]["proxy_membership"],
+            ["high_cofactor_signature_proxy", "same_family_structural_proxy"],
+        )
+        self.assertIsNotNone(
+            extension["candidate_row_scores"][0]["channel_scores"][
+                "combined_mean_geometry_fold"
+            ]
+        )
+        self.assertEqual(composed["artifact_id"], "custom_extended_surface")
+        self.assertEqual(composed["counts"]["scored_extension_appended_rows"], 1)
+        self.assertEqual(composed["counts"]["extended_candidate_rows"], 2)
+        self.assertEqual(composed["counts"]["candidate_rows_with_full_channel_scores"], 2)
+        self.assertFalse(composed["guardrails"]["threshold_selected_or_tuned"])
 
     def test_fold_only_negative_surface_keeps_fold_scored_geometry_gaps(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

@@ -3,21 +3,21 @@
     {
       "current_surface_unused_rows": 0,
       "eligible_family_panel_scenario_rows_now": 0,
-      "minimum_new_abstained_rows_for_80pct": 4,
+      "minimum_new_abstained_rows_for_80pct": 16,
       "next_action": "Source or review non-heldout train/cal OOS rows with source-free organic-cofactor locus evidence; do not use the current heldout confounded canaries for calibration.",
       "proxy_axis": "high_cofactor_signature_proxy",
-      "shortfall_after_current_scenario": 4,
+      "shortfall_after_current_scenario": 16,
       "status": "blocked_need_new_train_cal_oos_proxy_rows",
       "track": "high_cofactor_train_cal_oos_extension"
     },
     {
       "eligible_family_panel_scenario_rows_now": 0,
-      "loose_current_surface_abstain_recall": 0.3214,
-      "loose_current_surface_extra_rows": 11,
-      "minimum_new_abstained_rows_for_80pct": 48,
+      "loose_current_surface_abstain_recall": 0.3289,
+      "loose_current_surface_extra_rows": 21,
+      "minimum_new_abstained_rows_for_80pct": 170,
       "next_action": "Add non-heldout train/cal structural counteraxis rows beyond the current metal-hydrolase-like retained-gap surface before rerunning the fixed-threshold proxy audit.",
       "proxy_axis": "same_family_structural_proxy",
-      "shortfall_after_current_scenario": 48,
+      "shortfall_after_current_scenario": 170,
       "status": "blocked_need_new_train_cal_oos_structural_proxy_rows",
       "track": "same_family_structural_train_cal_oos_extension"
     },
@@ -32,7 +32,7 @@
     {
       "next_action": "Resolve P10746 through the explicit caveat or approved non-residue sidecar path; do not treat it as the required multi-row proxy calibration evidence.",
       "proxy_axis": "deployment_caveat_or_non_residue_sidecar",
-      "scenario_rows": 1,
+      "scenario_rows": 6,
       "status": "blocked_missing_predicted_geometry_not_scale_evidence",
       "track": "p10746_unscored_current_surface_candidate",
       "train_cal_oos_calibration_eligible_rows_now": 0
@@ -40,8 +40,8 @@
   ],
   "artifact_id": "v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603",
   "blockers": [
-    "high_cofactor_proxy_acquisition_shortfall_4",
-    "same_family_structural_proxy_acquisition_shortfall_48",
+    "high_cofactor_proxy_acquisition_shortfall_16",
+    "same_family_structural_proxy_acquisition_shortfall_170",
     "family_panel_acceptance_scenario_rows_do_not_close_train_cal_proxy_calibration",
     "heldout_confounded_scenario_rows_guardrailed",
     "current_surface_unscored_candidate_not_scale_evidence",
@@ -49,9 +49,9 @@
   ],
   "counts": {
     "blockers": 6,
-    "current_surface_unscored_candidate_rows": 1,
-    "evidence_request_rows": 14,
-    "existing_retained_gap_queue_rows": 14,
+    "current_surface_unscored_candidate_rows": 6,
+    "evidence_request_rows": 48,
+    "existing_retained_gap_queue_rows": 48,
     "family_panel_acceptance_scenario_rows": 6,
     "family_panel_scenario_heldout_confounded_rows": 4,
     "family_panel_scenario_high_cofactor_axis_rows": 5,
@@ -60,13 +60,13 @@
     "family_panel_scenario_train_cal_in_scope_or_seed_rows": 1,
     "family_panel_scenario_train_cal_oos_but_unscored_rows": 0,
     "family_panel_scenario_train_cal_oos_eligible_now": 0,
-    "high_cofactor_min_new_abstained_rows_for_80pct": 4,
-    "high_cofactor_shortfall_after_current_scenario": 4,
-    "loose_same_family_current_surface_rows": 11,
-    "same_family_structural_min_new_abstained_rows_for_80pct": 48,
-    "same_family_structural_shortfall_after_current_scenario": 48
+    "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+    "high_cofactor_shortfall_after_current_scenario": 16,
+    "loose_same_family_current_surface_rows": 21,
+    "same_family_structural_min_new_abstained_rows_for_80pct": 170,
+    "same_family_structural_shortfall_after_current_scenario": 170
   },
-  "created_utc": "2026-06-03T14:19:09Z",
+  "created_utc": "2026-06-03T15:39:12Z",
   "current_surface_unscored_candidate_rows": [
     {
       "accession": "P10746",
@@ -75,6 +75,46 @@
       "nearest_train_atlas_tm_score": 0.5651,
       "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
       "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "Q43088",
+      "entry_id": "m_csa:604",
+      "nearest_train_atlas_entry_id": "m_csa:528",
+      "nearest_train_atlas_tm_score": 0.4713,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P07658",
+      "entry_id": "m_csa:562",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P07071",
+      "entry_id": "m_csa:416",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P04531",
+      "entry_id": "m_csa:637",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P00806",
+      "entry_id": "m_csa:586",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
     }
   ],
   "decision": {
@@ -86,6 +126,46 @@
     "proxy_calibration_rerun_ready_now": false
   },
   "existing_retained_gap_queue": [
+    {
+      "axis": "high_cofactor_confounded_proxy_extension",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:289",
+      "fixed_channel_score": 0.6398,
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy",
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Add or review train/cal OOS rows with source-free organic-cofactor locus evidence and rerun the proxy audit at the fixed threshold.",
+      "threshold_margin": 0.19825
+    },
+    {
+      "axis": "high_cofactor_confounded_proxy_extension",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:298",
+      "fixed_channel_score": 0.5344,
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Add or review train/cal OOS rows with source-free organic-cofactor locus evidence and rerun the proxy audit at the fixed threshold.",
+      "threshold_margin": 0.09285
+    },
+    {
+      "axis": "high_cofactor_confounded_proxy_extension",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:361",
+      "fixed_channel_score": 0.45695,
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Add or review train/cal OOS rows with source-free organic-cofactor locus evidence and rerun the proxy audit at the fixed threshold.",
+      "threshold_margin": 0.0154
+    },
     {
       "axis": "high_cofactor_confounded_proxy_extension",
       "can_close_80pct_scale_gap_without_new_rows": false,
@@ -102,6 +182,45 @@
     {
       "axis": "hard_same_family_structural_counteraxis",
       "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:308",
+      "fixed_channel_score": 0.68115,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2396
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:187",
+      "fixed_channel_score": 0.65175,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2102
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:269",
+      "fixed_channel_score": 0.65065,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2091
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
       "entry_id": "m_csa:104",
       "fixed_channel_score": 0.6498,
       "priority": "priority_2_hard_retained_structural_proxy_gap",
@@ -111,6 +230,71 @@
       "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.20825
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:348",
+      "fixed_channel_score": 0.649,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.20745
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:468",
+      "fixed_channel_score": 0.64225,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2007
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:488",
+      "fixed_channel_score": 0.64045,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1989
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:206",
+      "fixed_channel_score": 0.63845,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1969
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:190",
+      "fixed_channel_score": 0.6365,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.19495
     },
     {
       "axis": "hard_same_family_structural_counteraxis",
@@ -141,6 +325,32 @@
     {
       "axis": "hard_same_family_structural_counteraxis",
       "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:500",
+      "fixed_channel_score": 0.61935,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1778
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:256",
+      "fixed_channel_score": 0.61925,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1777
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
       "entry_id": "m_csa:52",
       "fixed_channel_score": 0.6154,
       "priority": "priority_2_hard_retained_structural_proxy_gap",
@@ -150,6 +360,32 @@
       "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.17385
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:74",
+      "fixed_channel_score": 0.61305,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1715
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:59",
+      "fixed_channel_score": 0.60775,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1662
     },
     {
       "axis": "hard_same_family_structural_counteraxis",
@@ -167,6 +403,58 @@
     {
       "axis": "hard_same_family_structural_counteraxis",
       "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:502",
+      "fixed_channel_score": 0.5957,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.15415
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:451",
+      "fixed_channel_score": 0.588,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.14645
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:638",
+      "fixed_channel_score": 0.5862,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.14465
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:84",
+      "fixed_channel_score": 0.56755,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.126
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
       "entry_id": "m_csa:503",
       "fixed_channel_score": 0.55265,
       "priority": "priority_2_hard_retained_structural_proxy_gap",
@@ -176,6 +464,45 @@
       "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.1111
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:463",
+      "fixed_channel_score": 0.54765,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1061
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:229",
+      "fixed_channel_score": 0.5438,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.10225
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:533",
+      "fixed_channel_score": 0.5423,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.10075
     },
     {
       "axis": "hard_same_family_structural_counteraxis",
@@ -193,6 +520,32 @@
     {
       "axis": "hard_same_family_structural_counteraxis",
       "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:322",
+      "fixed_channel_score": 0.53375,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.0922
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:135",
+      "fixed_channel_score": 0.5317,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.09015
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
       "entry_id": "m_csa:36",
       "fixed_channel_score": 0.51785,
       "priority": "priority_2_hard_retained_structural_proxy_gap",
@@ -202,6 +555,58 @@
       "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.0763
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:223",
+      "fixed_channel_score": 0.5078,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.06625
+    },
+    {
+      "axis": "hard_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:645",
+      "fixed_channel_score": 0.50615,
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.0646
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:585",
+      "fixed_channel_score": 0.4867,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.04515
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:405",
+      "fixed_channel_score": 0.4837,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.04215
     },
     {
       "axis": "near_threshold_same_family_structural_counteraxis",
@@ -232,6 +637,19 @@
     {
       "axis": "near_threshold_same_family_structural_counteraxis",
       "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:240",
+      "fixed_channel_score": 0.4716,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.03005
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
       "entry_id": "m_csa:299",
       "fixed_channel_score": 0.4712,
       "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
@@ -254,6 +672,71 @@
       "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
       "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
       "threshold_margin": 0.0268
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:621",
+      "fixed_channel_score": 0.4602,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.01865
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:91",
+      "fixed_channel_score": 0.45895,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.0174
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:234",
+      "fixed_channel_score": 0.45495,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.0134
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:280",
+      "fixed_channel_score": 0.44705,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.0055
+    },
+    {
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "can_close_80pct_scale_gap_without_new_rows": false,
+      "entry_id": "m_csa:498",
+      "fixed_channel_score": 0.4466,
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "queue_role": "diagnose retained train/cal proxy gaps; does not add new abstained proxy evidence by itself",
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.00505
     },
     {
       "axis": "near_threshold_same_family_structural_counteraxis",
@@ -396,7 +879,7 @@
   "interpretation": {
     "headline": "The current family-panel acceptance scenario supplies 0 train/cal OOS rows for the Lever 3 proxy-calibration rerun.",
     "next_action": "Do not raise the threshold or reuse heldout canaries. Source new train/cal proxy rows outside the current scored surface, score them at the unchanged threshold, and rerun the proxy operating-point/stress artifacts.",
-    "result": "The fixed-threshold Lever 3 gap remains a new-evidence problem: 4 high-cofactor and 48 structural abstained train/cal proxy rows are still needed under the all-new-rows-abstain lower bound."
+    "result": "The fixed-threshold Lever 3 gap remains a new-evidence problem: 16 high-cofactor and 170 structural abstained train/cal proxy rows are still needed under the all-new-rows-abstain lower bound."
   },
   "loose_same_family_current_surface_rows": [
     {
@@ -419,12 +902,57 @@
     },
     {
       "abstained": true,
+      "combined_score": 0.37695,
+      "entry_id": "m_csa:539",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0646
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.3817,
+      "entry_id": "m_csa:350",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.05985
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.38295,
+      "entry_id": "m_csa:282",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0586
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.38735,
+      "entry_id": "m_csa:450",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0542
+    },
+    {
+      "abstained": true,
       "combined_score": 0.3933,
       "entry_id": "m_csa:439",
       "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
       "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
       "threshold_margin": -0.04825
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.3987,
+      "entry_id": "m_csa:648",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.04285
     },
     {
       "abstained": true,
@@ -443,6 +971,51 @@
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
       "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
       "threshold_margin": -0.0377
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.40915,
+      "entry_id": "m_csa:540",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0324
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.40925,
+      "entry_id": "m_csa:134",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0323
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.41015,
+      "entry_id": "m_csa:130",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0314
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.41345,
+      "entry_id": "m_csa:88",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.0281
+    },
+    {
+      "abstained": true,
+      "combined_score": 0.4348,
+      "entry_id": "m_csa:209",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "queue_role": "loose same-family current-surface evidence; diagnostic only because relaxed membership still misses the 80% abstention bar",
+      "threshold_margin": -0.00675
     },
     {
       "abstained": false,
@@ -505,7 +1078,7 @@
     "confounded_proxy_evidence_extension_plan": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json",
-      "sha256": "f8d546aa686e462c09ad83aacfb6ecd34131a3e5414502e81d61b28d24dd69c3"
+      "sha256": "69f63677067d8f2dcf276ba30544900255dc9ec252f439b301d65ec0962c1017"
     },
     "family_panel_acceptance_scenario_plan": {
       "exists": true,
@@ -524,8 +1097,8 @@
     },
     "train_cal_oos_surface": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.json",
-      "sha256": "b002f3d53f0ea5cc30b4d92ebe4148a2f02d07d9a730aa89462544db70a4f772"
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "8d9dceb3272826a53ae761fdec5f39720dcc9e6021ca6d794cf6c4f886b0b0cd"
     }
   },
   "status": "fold_augmented_confounded_proxy_acquisition_queue_blocked"

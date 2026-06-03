@@ -1,6 +1,6 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T14:36:10Z
+Run: 2026-06-03T15:40:35Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
@@ -16,24 +16,24 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 - Source-decision invalid rows: 0
 - Lever 2 pending locator approvals: 55
 - Lever 2 event-axis linker rows: 0
-- Lever 3 structural proxy abstained: 4/17
-- Lever 3 retained proxy gap rows: 14
+- Lever 3 structural proxy abstained: 10/55
+- Lever 3 retained proxy gap rows: 48
 - Lever 3 proxy stress blockers: 2
-- Lever 3 proxy evidence request rows: 14
-- Lever 3 high-cofactor min new abstained rows for 80%: 4
-- Lever 3 structural min new abstained rows for 80%: 48
+- Lever 3 proxy evidence request rows: 48
+- Lever 3 high-cofactor min new abstained rows for 80%: 16
+- Lever 3 structural min new abstained rows for 80%: 170
 - Lever 3 proxy evidence-extension blockers: 6
 - Lever 3 proxy acquisition family-panel eligible rows: 0
-- Lever 3 proxy acquisition high-cofactor shortfall: 4
-- Lever 3 proxy acquisition structural shortfall: 48
+- Lever 3 proxy acquisition high-cofactor shortfall: 16
+- Lever 3 proxy acquisition structural shortfall: 170
 - Lever 3 proxy acquisition heldout-guardrail rows: 4
 - Lever 3 proxy acquisition blockers: 6
-- Lever 3 proxy candidate-pool unscored rows: 286
-- Lever 3 proxy candidate-pool high-axis rows: 13
-- Lever 3 proxy candidate-pool structural-axis rows: 114
-- Lever 3 proxy scoring-tranche rows: 50
-- Lever 3 proxy scoring-tranche high/structural rows: 13/48
-- Lever 3 proxy scoring-tranche ready for plan: True
+- Lever 3 proxy candidate-pool unscored rows: 170
+- Lever 3 proxy candidate-pool high-axis rows: 0
+- Lever 3 proxy candidate-pool structural-axis rows: 0
+- Lever 3 proxy scoring-tranche rows: 0
+- Lever 3 proxy scoring-tranche high/structural rows: 0/0
+- Lever 3 proxy scoring-tranche ready for plan: False
 - Lever 4 acceptance scenario rows: 6
 - Lever 4 acceptance scenario panels: 5
 - Lever 4 label-factory candidates if scenario accepted: 6
