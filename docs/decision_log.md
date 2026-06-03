@@ -280,6 +280,38 @@ Artifacts:
 and
 `work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`.
 
+## 2026-06-03: Priority-1 Source-Free Locator Preflight Is Not Copy Approval
+
+Decision: the 55 priority-1 current702 heldout coordinate-anchor locator rows
+that passed rewrite preflight remain blocked until an explicit approval-decision
+artifact supplies matching candidate and planned-payload hashes. Preflight alone
+does not authorize copying locator sidecars into the audited directory, scoring
+heldout rows, or applying the frozen row-specific residual threshold.
+The approval packet is an intake worksheet, not an approval artifact: it stages
+55 pending approve/reject records with immutable candidate and planned-payload
+hashes, while recording 0 approvals.
+
+Rationale: the calibrated Lever 2 row-specific feature pair still needs a
+source-free heldout locator surface and a source-free proton-transfer event
+axis. Copying from preflight without explicit approval would bypass the manual
+forbidden-feature review gate that separates source-free locator evidence from
+heldout M-CSA mechanism text and curated role labels. The approval packet now
+names the exact hash-matched records reviewers must produce; the new gate
+consumes approvals mechanically when they exist but fails closed now: 55
+preflight rows, 0 explicit approvals, 0 locator writes, and 0 heldout reads.
+The composed pre-threshold readiness gate additionally requires materialized
+source-free event-axis linkers and a complete heldout-safe pair application
+surface before the frozen residual threshold can be applied once.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json`,
+and
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.md`.
+
 ## 2026-06-02: Source-Free Pair Deployment Blocks On Event Linker; His-Only Fallback Is Lower Recall
 
 Decision: keep the calibrated row-specific best-token follow-up pair as

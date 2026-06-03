@@ -71,6 +71,9 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar,
@@ -10023,6 +10026,687 @@ class NorthstarNextLeversTests(unittest.TestCase):
             preflight["preflight_rows"][1]["approval_review_class"],
             "candidate_blocked_before_approval",
         )
+
+    def test_followup_pair_locator_rewrite_approval_packet_prepares_pending_hash_stubs(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight_path = root / "preflight.json"
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "preflight_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "source_accession": "P00002",
+                                "review_order": 2,
+                                "candidate_path": "candidates/m_csa_2_P00002.json",
+                                "candidate_sha256": "b" * 64,
+                                "planned_audited_locator_sidecar_path": (
+                                    "audited/m_csa_2_P00002.json"
+                                ),
+                                "planned_locator_payload_sha256": "c" * 64,
+                                "selected_structure_id": "2ABC",
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "ZN",
+                                    "residue_id": "301",
+                                },
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "coordinate_contact_preflight": {
+                                    "warnings": [
+                                        "minimum_residue_locator_count_only"
+                                    ]
+                                },
+                                "approval_review_class": (
+                                    "candidate_minimum_locator_warning_pending_explicit_approval"
+                                ),
+                                "preflight_status": (
+                                    "preflight_passed_pending_explicit_approval"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "review_order": 1,
+                                "candidate_path": "candidates/m_csa_1_P00001.json",
+                                "candidate_sha256": "a" * 64,
+                                "planned_audited_locator_sidecar_path": (
+                                    "audited/m_csa_1_P00001.json"
+                                ),
+                                "planned_locator_payload_sha256": "d" * 64,
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "FAD",
+                                    "residue_id": "500",
+                                },
+                                "candidate_residue_locator_count": 8,
+                                "sequence_position_validated_locator_count": 8,
+                                "coordinate_contact_preflight": {"warnings": []},
+                                "approval_review_class": (
+                                    "candidate_clean_pending_explicit_approval"
+                                ),
+                                "preflight_status": (
+                                    "preflight_passed_pending_explicit_approval"
+                                ),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet(
+                coordinate_anchor_priority1_rewrite_preflight_path=preflight_path,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["decision_stub_rows"], 2)
+        self.assertEqual(packet["counts"]["pending_reviewer_decisions"], 2)
+        self.assertEqual(packet["counts"]["approved_decision_records"], 0)
+        self.assertEqual(
+            packet["counts"]["materialization_gate_ready_if_approved_rows"], 2
+        )
+        self.assertEqual(packet["counts"]["clean_review_rows"], 1)
+        self.assertEqual(packet["counts"]["warning_review_rows"], 1)
+        self.assertIn("reviewer_decisions_not_recorded", packet["blockers"])
+        self.assertIn(
+            "locator_rewrite_decision_stubs",
+            packet["approval_decision_schema"][
+                "decision_container_keys_accepted_by_gate"
+            ],
+        )
+        self.assertFalse(packet["decision"]["approved_locator_rewrites_available"])
+        self.assertFalse(packet["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertFalse(
+            packet["guardrails"]["locator_sidecars_created_or_copied"]
+        )
+        first = packet["locator_rewrite_decision_stubs"][0]
+        self.assertEqual(first["entry_id"], "m_csa:1")
+        self.assertEqual(first["reviewer_decision"], "pending_reviewer_decision")
+        self.assertEqual(
+            first["accepted_approval_decision_value"],
+            "explicit_approve_locator_rewrite",
+        )
+        self.assertTrue(first["materialization_gate_input_ready_if_approved"])
+
+    def test_followup_pair_locator_rewrite_materialization_gate_blocks_without_approval(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema_path = root / "schema.json"
+            preflight_path = root / "preflight.json"
+            candidate_path = root / "candidate.json"
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "entry_id": "m_csa:1",
+                        "source_accession": "P00001",
+                        "candidate_path": (
+                            "artifacts/mechanism_feature_row_specific_bond_change_"
+                            "p0_oos_augmented_best_token_followup_pair_source_free_"
+                            "coordinate_anchor_candidates_current702_20260602/"
+                            "m_csa_1_P00001.json"
+                        ),
+                        "status": (
+                            "source_free_coordinate_anchor_candidate_staged_review_required"
+                        ),
+                        "locator_evidence_class": (
+                            "structure_local_ligand_geometry_without_source_text"
+                        ),
+                        "residue_locators": [
+                            {
+                                "residue_code": "HIS",
+                                "sequence_position": 10,
+                                "role_hint": "ligand_contact",
+                                "locator_confidence": "medium",
+                                "locator_evidence_class": (
+                                    "structure_local_ligand_geometry_without_source_text"
+                                ),
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                    "sequence_position_source": "struct_ref_seq",
+                                },
+                                "candidate_contact_evidence": {
+                                    "distance_angstrom": 2.1,
+                                    "ligand_atom": "N1",
+                                    "residue_atom": "NE2",
+                                },
+                            },
+                            {
+                                "residue_code": "ASP",
+                                "sequence_position": 20,
+                                "role_hint": "ligand_contact",
+                                "locator_confidence": "medium",
+                                "locator_evidence_class": (
+                                    "structure_local_ligand_geometry_without_source_text"
+                                ),
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                    "sequence_position_source": "struct_ref_seq",
+                                },
+                                "candidate_contact_evidence": {
+                                    "distance_angstrom": 2.4,
+                                    "ligand_atom": "N2",
+                                    "residue_atom": "OD1",
+                                },
+                            },
+                        ],
+                        "candidate_guardrails": {
+                            "candidate_only": True,
+                            "written_outside_audited_locator_dir": True,
+                            "copied_to_audited_locator_dir": False,
+                            "heldout_rows_evaluated": False,
+                            "m_csa_heldout_active_site_roles_used_as_locator_source": False,
+                            "predicted_geometry_scored": False,
+                            "source_text_or_label_fields_used_as_predictive_features": False,
+                        },
+                        "candidate_blockers": [
+                            "candidate_sidecar_not_approved_for_scoring",
+                            "candidate_sidecar_not_in_audited_locator_dir",
+                            "manual_review_required_before_copy_to_audited_dir",
+                        ],
+                        "forbidden_feature_audit": {
+                            "source_prose": False,
+                            "mechanism_text": False,
+                        },
+                        "split_protection": {
+                            "review_only": True,
+                            "allowed_for_training": False,
+                            "allowed_for_threshold_selection": False,
+                            "ready_for_label_import": False,
+                        },
+                        "ready_for_predicted_geometry_scoring": False,
+                        "coordinate_anchor_summary": {
+                            "has_source_free_coordinate_local_anchor_candidate": True,
+                            "selected_pdb_coordinate_found": True,
+                        },
+                        "coordinate_candidate_evidence": {
+                            "extraction": {
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "FAD",
+                                    "residue_id": "500",
+                                    "structure_id": "1ABC",
+                                }
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_locator_evidence_classes": [
+                            "structure_local_ligand_geometry_without_source_text"
+                        ],
+                        "counts": {"required_residue_locator_minimum": 2},
+                        "forbidden_predictive_fields": [
+                            "source_prose",
+                            "mechanism_text",
+                        ],
+                        "sidecar_required_top_level_fields": [
+                            "artifact_id",
+                            "schema_version",
+                            "created_utc",
+                            "entry_id",
+                            "source_accession",
+                            "locator_policy",
+                            "locator_evidence_class",
+                            "source_free_active_site_locator_status",
+                            "residue_locators",
+                            "forbidden_feature_audit",
+                            "split_protection",
+                            "ready_for_predicted_geometry_scoring",
+                        ],
+                        "residue_locator_required_fields": [
+                            "residue_code",
+                            "sequence_position",
+                            "role_hint",
+                            "locator_confidence",
+                            "locator_evidence_class",
+                            "coordinate_independent_provenance",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            worksheet_path = root / "worksheet.json"
+            worksheet_path.write_text(
+                json.dumps(
+                    {
+                        "worksheet_rows": [
+                            {
+                                "priority": 1,
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "candidate_path": str(candidate_path),
+                                "candidate_sha256": hashlib.sha256(
+                                    candidate_path.read_bytes()
+                                ).hexdigest(),
+                                "candidate_file_exists": True,
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "FAD",
+                                    "residue_id": "500",
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+                coordinate_anchor_priority1_review_worksheet_path=worksheet_path,
+                source_free_locator_schema_path=schema_path,
+                audited_locator_dir=root / "audited",
+            )
+            preflight_path.write_text(json.dumps(preflight), encoding="utf-8")
+
+            gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+                coordinate_anchor_priority1_rewrite_preflight_path=preflight_path,
+                source_free_locator_schema_path=schema_path,
+                audited_locator_dir=root / "audited",
+            )
+
+        self.assertEqual(
+            gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_ready_blocked",
+        )
+        self.assertEqual(gate["counts"]["preflight_rows"], 1)
+        self.assertEqual(gate["counts"]["approved_decision_records"], 0)
+        self.assertEqual(gate["counts"]["approved_locator_sidecars_written"], 0)
+        self.assertEqual(gate["counts"]["rows_without_explicit_approval"], 1)
+        self.assertIn(
+            "explicit_locator_rewrite_approval_decisions_missing",
+            gate["blockers"],
+        )
+        self.assertFalse(gate["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertFalse(gate["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_locator_rewrite_materialization_gate_consumes_hash_matched_approval(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema_path = root / "schema.json"
+            preflight_path = root / "preflight.json"
+            approval_path = root / "approval.json"
+            candidate_path = root / "candidate.json"
+            candidate_payload = {
+                "entry_id": "m_csa:1",
+                "source_accession": "P00001",
+                "candidate_path": (
+                    "artifacts/mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_"
+                    "coordinate_anchor_candidates_current702_20260602/"
+                    "m_csa_1_P00001.json"
+                ),
+                "status": (
+                    "source_free_coordinate_anchor_candidate_staged_review_required"
+                ),
+                "locator_evidence_class": (
+                    "structure_local_ligand_geometry_without_source_text"
+                ),
+                "residue_locators": [
+                    {
+                        "residue_code": "HIS",
+                        "sequence_position": 10,
+                        "role_hint": "ligand_contact",
+                        "locator_confidence": "medium",
+                        "locator_evidence_class": (
+                            "structure_local_ligand_geometry_without_source_text"
+                        ),
+                        "coordinate_independent_provenance": {
+                            "source_text_used": False,
+                            "heldout_rows_used": False,
+                            "sequence_position_uniprot_validated": True,
+                            "sequence_position_source": "struct_ref_seq",
+                        },
+                        "candidate_contact_evidence": {
+                            "distance_angstrom": 2.1,
+                            "ligand_atom": "N1",
+                            "residue_atom": "NE2",
+                        },
+                    },
+                    {
+                        "residue_code": "ASP",
+                        "sequence_position": 20,
+                        "role_hint": "ligand_contact",
+                        "locator_confidence": "medium",
+                        "locator_evidence_class": (
+                            "structure_local_ligand_geometry_without_source_text"
+                        ),
+                        "coordinate_independent_provenance": {
+                            "source_text_used": False,
+                            "heldout_rows_used": False,
+                            "sequence_position_uniprot_validated": True,
+                            "sequence_position_source": "struct_ref_seq",
+                        },
+                        "candidate_contact_evidence": {
+                            "distance_angstrom": 2.4,
+                            "ligand_atom": "N2",
+                            "residue_atom": "OD1",
+                        },
+                    },
+                ],
+                "candidate_guardrails": {
+                    "candidate_only": True,
+                    "written_outside_audited_locator_dir": True,
+                    "copied_to_audited_locator_dir": False,
+                    "heldout_rows_evaluated": False,
+                    "m_csa_heldout_active_site_roles_used_as_locator_source": False,
+                    "predicted_geometry_scored": False,
+                    "source_text_or_label_fields_used_as_predictive_features": False,
+                },
+                "candidate_blockers": [
+                    "candidate_sidecar_not_approved_for_scoring",
+                    "candidate_sidecar_not_in_audited_locator_dir",
+                    "manual_review_required_before_copy_to_audited_dir",
+                ],
+                "forbidden_feature_audit": {
+                    "source_prose": False,
+                    "mechanism_text": False,
+                },
+                "split_protection": {
+                    "review_only": True,
+                    "allowed_for_training": False,
+                    "allowed_for_threshold_selection": False,
+                    "ready_for_label_import": False,
+                },
+                "ready_for_predicted_geometry_scoring": False,
+                "coordinate_anchor_summary": {
+                    "has_source_free_coordinate_local_anchor_candidate": True,
+                    "selected_pdb_coordinate_found": True,
+                },
+                "coordinate_candidate_evidence": {
+                    "extraction": {
+                        "selected_ligand_site": {
+                            "chain_id": "A",
+                            "comp_id": "FAD",
+                            "residue_id": "500",
+                            "structure_id": "1ABC",
+                        }
+                    }
+                },
+            }
+            candidate_path.write_text(json.dumps(candidate_payload), encoding="utf-8")
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_locator_evidence_classes": [
+                            "structure_local_ligand_geometry_without_source_text"
+                        ],
+                        "counts": {"required_residue_locator_minimum": 2},
+                        "forbidden_predictive_fields": [
+                            "source_prose",
+                            "mechanism_text",
+                        ],
+                        "sidecar_required_top_level_fields": [
+                            "artifact_id",
+                            "schema_version",
+                            "created_utc",
+                            "entry_id",
+                            "source_accession",
+                            "locator_policy",
+                            "locator_evidence_class",
+                            "source_free_active_site_locator_status",
+                            "residue_locators",
+                            "forbidden_feature_audit",
+                            "split_protection",
+                            "ready_for_predicted_geometry_scoring",
+                        ],
+                        "residue_locator_required_fields": [
+                            "residue_code",
+                            "sequence_position",
+                            "role_hint",
+                            "locator_confidence",
+                            "locator_evidence_class",
+                            "coordinate_independent_provenance",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            worksheet_path = root / "worksheet.json"
+            worksheet_path.write_text(
+                json.dumps(
+                    {
+                        "worksheet_rows": [
+                            {
+                                "priority": 1,
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "candidate_path": str(candidate_path),
+                                "candidate_sha256": hashlib.sha256(
+                                    candidate_path.read_bytes()
+                                ).hexdigest(),
+                                "candidate_file_exists": True,
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "FAD",
+                                    "residue_id": "500",
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+                coordinate_anchor_priority1_review_worksheet_path=worksheet_path,
+                source_free_locator_schema_path=schema_path,
+                audited_locator_dir=root / "audited",
+            )
+            preflight_path.write_text(json.dumps(preflight), encoding="utf-8")
+            approval_path.write_text(
+                json.dumps(
+                    {
+                        "locator_rewrite_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "decision": "explicit_approve_locator_rewrite",
+                                "reviewer": "Vivek",
+                                "candidate_sha256": preflight["preflight_rows"][0][
+                                    "candidate_sha256"
+                                ],
+                                "planned_locator_payload_sha256": preflight[
+                                    "preflight_rows"
+                                ][0]["planned_locator_payload_sha256"],
+                                "planned_audited_locator_sidecar_path": preflight[
+                                    "preflight_rows"
+                                ][0]["planned_audited_locator_sidecar_path"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+                coordinate_anchor_priority1_rewrite_preflight_path=preflight_path,
+                source_free_locator_schema_path=schema_path,
+                audited_locator_dir=root / "audited",
+                approval_decisions_path=approval_path,
+                write_approved_locator_sidecars=True,
+            )
+
+        self.assertEqual(
+            gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized",
+        )
+        self.assertEqual(gate["counts"]["approved_decision_records"], 1)
+        self.assertEqual(gate["counts"]["approved_locator_sidecars_written"], 1)
+        self.assertTrue(gate["decision"]["approved_source_free_locator_surface_ready"])
+        self.assertFalse(gate["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertEqual(len(gate["materialized_sidecars"]), 1)
+        sidecar = next(iter(gate["materialized_sidecars"].values()))
+        self.assertTrue(sidecar["ready_for_predicted_geometry_scoring"])
+        self.assertEqual(
+            sidecar["locator_policy"],
+            "human_approved_structure_local_ligand_geometry_without_source_text",
+        )
+
+    def test_followup_pair_source_free_pre_threshold_readiness_composes_blockers(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            contract_path = root / "contract.json"
+            surface_path = root / "surface.json"
+            event_schema_path = root / "event_schema.json"
+            locator_gate_path = root / "locator_gate.json"
+            approval_packet_path = root / "approval_packet.json"
+            locator_input_path = root / "locator_input.json"
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+                        ),
+                        "decision": {
+                            "preferred_contract": "residual_distance_threshold"
+                        },
+                        "calibration_contract": {
+                            "residual_distance": {
+                                "threshold": 3.21469422,
+                                "oos_abstain_recall": 0.857143,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "heldout_safe_pair_application_surface_ready": False
+                        },
+                        "counts": {
+                            "heldout_rows_in_manifest": 140,
+                            "source_free_residue_count_feature_rows": 0,
+                            "source_free_event_residue_role_feature_rows": 0,
+                        },
+                        "blockers": [
+                            "source_free_current702_heldout_locator_rows_missing",
+                            "source_free_proton_transfer_event_axis_missing",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_schema_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linkers_materialized": False},
+                        "counts": {"materialized_linker_rows": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator_gate_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "approved_source_free_locator_surface_ready": False
+                        },
+                        "counts": {
+                            "preflight_rows": 55,
+                            "approval_records_total": 0,
+                            "approved_decision_records": 0,
+                            "approved_locator_sidecars_written": 0,
+                        },
+                        "blockers": [
+                            "explicit_locator_rewrite_approval_decisions_missing"
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            approval_packet_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "pending_reviewer_decisions": 55,
+                            "warning_review_rows": 6,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator_input_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval": 55
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readiness = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
+                pair_operating_point_contract_path=contract_path,
+                source_free_application_surface_path=surface_path,
+                event_axis_linker_schema_path=event_schema_path,
+                locator_rewrite_materialization_gate_path=locator_gate_path,
+                locator_rewrite_approval_packet_path=approval_packet_path,
+                source_free_locator_input_audit_path=locator_input_path,
+            )
+
+        self.assertEqual(
+            readiness["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_blocked",
+        )
+        self.assertTrue(
+            readiness["readiness_inputs"]["pair_operating_point_contract_ready"]
+        )
+        self.assertFalse(
+            readiness["readiness_inputs"][
+                "approved_source_free_locator_surface_ready"
+            ]
+        )
+        self.assertEqual(
+            readiness["counts"]["locator_preflight_rows"],
+            55,
+        )
+        self.assertEqual(readiness["counts"]["locator_approval_records"], 0)
+        self.assertEqual(readiness["counts"]["locator_sidecars_written"], 0)
+        self.assertEqual(
+            readiness["counts"]["locator_pending_reviewer_decisions"], 55
+        )
+        self.assertEqual(readiness["counts"]["locator_review_warning_rows"], 6)
+        self.assertEqual(
+            readiness["counts"]["event_axis_materialized_linker_rows"], 0
+        )
+        self.assertIn(
+            "approved_source_free_locator_surface_missing",
+            readiness["blockers"],
+        )
+        self.assertIn(
+            "source_free_event_axis_linkers_missing",
+            readiness["blockers"],
+        )
+        self.assertFalse(
+            readiness["decision"]["ready_to_apply_frozen_residual_threshold_once"]
+        )
+        self.assertFalse(readiness["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertFalse(readiness["guardrails"]["heldout_rows_evaluated"])
 
     def test_followup_pair_source_free_locator_input_audit_blocks_without_anchors(
         self,

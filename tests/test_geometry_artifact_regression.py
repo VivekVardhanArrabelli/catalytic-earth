@@ -5633,6 +5633,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "anchor_priority1_rewrite_preflight_current702_20260602.json"
             )
         )
+        pair_locator_rewrite_approval_packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+                "rewrite_approval_packet_current702_20260603.json"
+            )
+        )
+        pair_locator_rewrite_gate = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+                "rewrite_materialization_gate_current702_20260603.json"
+            )
+        )
+        pair_pre_threshold_readiness = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_"
+                "readiness_current702_20260603.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -6263,6 +6290,157 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_locator_input["decision"]["auto_create_locator_sidecars_now"]
         )
         self.assertFalse(pair_locator_input["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            pair_locator_rewrite_approval_packet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_ready_review_only",
+        )
+        self.assertEqual(
+            pair_locator_rewrite_approval_packet["counts"]["decision_stub_rows"],
+            55,
+        )
+        self.assertEqual(
+            pair_locator_rewrite_approval_packet["counts"][
+                "pending_reviewer_decisions"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_locator_rewrite_approval_packet["counts"][
+                "materialization_gate_ready_if_approved_rows"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_locator_rewrite_approval_packet["counts"]["warning_review_rows"],
+            6,
+        )
+        self.assertIn(
+            "reviewer_decisions_not_recorded",
+            pair_locator_rewrite_approval_packet["blockers"],
+        )
+        self.assertFalse(
+            pair_locator_rewrite_approval_packet["decision"][
+                "approved_locator_rewrites_available"
+            ]
+        )
+        self.assertFalse(
+            pair_locator_rewrite_approval_packet["guardrails"][
+                "locator_sidecars_created_or_copied"
+            ]
+        )
+        self.assertEqual(
+            pair_locator_rewrite_gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_ready_blocked",
+        )
+        self.assertEqual(pair_locator_rewrite_gate["counts"]["preflight_rows"], 55)
+        self.assertEqual(
+            pair_locator_rewrite_gate["counts"]["approval_records_total"], 0
+        )
+        self.assertEqual(
+            pair_locator_rewrite_gate["counts"]["approved_decision_records"], 0
+        )
+        self.assertEqual(
+            pair_locator_rewrite_gate["counts"]["approved_locator_sidecars_written"],
+            0,
+        )
+        self.assertEqual(
+            pair_locator_rewrite_gate["counts"]["rows_without_explicit_approval"],
+            55,
+        )
+        self.assertIn(
+            "explicit_locator_rewrite_approval_decisions_missing",
+            pair_locator_rewrite_gate["blockers"],
+        )
+        self.assertFalse(
+            pair_locator_rewrite_gate["decision"][
+                "approved_source_free_locator_surface_ready"
+            ]
+        )
+        self.assertFalse(
+            pair_locator_rewrite_gate["decision"]["apply_frozen_pair_threshold_now"]
+        )
+        self.assertFalse(
+            pair_locator_rewrite_gate["guardrails"]["locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(
+            pair_locator_rewrite_gate["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_blocked",
+        )
+        self.assertTrue(
+            pair_pre_threshold_readiness["readiness_inputs"][
+                "pair_operating_point_contract_ready"
+            ]
+        )
+        self.assertFalse(
+            pair_pre_threshold_readiness["readiness_inputs"][
+                "approved_source_free_locator_surface_ready"
+            ]
+        )
+        self.assertFalse(
+            pair_pre_threshold_readiness["readiness_inputs"][
+                "source_free_event_axis_linkers_materialized"
+            ]
+        )
+        self.assertFalse(
+            pair_pre_threshold_readiness["readiness_inputs"][
+                "heldout_safe_pair_application_surface_ready"
+            ]
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["frozen_contract"][
+                "residual_distance_threshold"
+            ],
+            3.21469422,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"]["locator_preflight_rows"], 55
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"]["locator_approval_records"], 0
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "locator_pending_reviewer_decisions"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"]["locator_review_warning_rows"],
+            6,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"]["locator_sidecars_written"], 0
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "event_axis_materialized_linker_rows"
+            ],
+            0,
+        )
+        self.assertIn(
+            "approved_source_free_locator_surface_missing",
+            pair_pre_threshold_readiness["blockers"],
+        )
+        self.assertIn(
+            "source_free_event_axis_linkers_missing",
+            pair_pre_threshold_readiness["blockers"],
+        )
+        self.assertFalse(
+            pair_pre_threshold_readiness["decision"][
+                "ready_to_apply_frozen_residual_threshold_once"
+            ]
+        )
+        self.assertFalse(
+            pair_pre_threshold_readiness["decision"][
+                "apply_frozen_pair_threshold_now"
+            ]
+        )
+        self.assertFalse(
+            pair_pre_threshold_readiness["guardrails"]["heldout_rows_evaluated"]
+        )
         self.assertEqual(
             pair_coordinate_anchor["status"],
             "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_ready_review_only",

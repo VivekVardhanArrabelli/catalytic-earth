@@ -441,6 +441,15 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_PRIORITY1_REWRITE_PREFLIGHT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_REWRITE_APPROVAL_PACKET_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_REWRITE_MATERIALIZATION_GATE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PRE_THRESHOLD_READINESS_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603"
+)
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
 RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
@@ -42559,6 +42568,1059 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return preflight
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet(
+    *,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path,
+) -> dict[str, Any]:
+    preflight = _read_json(coordinate_anchor_priority1_rewrite_preflight_path)
+    created_utc = _utc_now_iso()
+    preflight_rows = [
+        row
+        for row in preflight.get("preflight_rows", [])
+        if isinstance(row, dict)
+    ]
+    explicit_queue_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in preflight.get("explicit_approval_queue", [])
+        if isinstance(row, dict)
+    }
+    decision_stubs: list[dict[str, Any]] = []
+    for row in preflight_rows:
+        entry_id = str(row.get("entry_id") or "")
+        queue_row = explicit_queue_by_entry.get(entry_id, {})
+        materialization_ready = (
+            row.get("preflight_status") == "preflight_passed_pending_explicit_approval"
+            and bool(row.get("candidate_sha256"))
+            and bool(row.get("planned_locator_payload_sha256"))
+            and bool(row.get("planned_audited_locator_sidecar_path"))
+        )
+        contact = row.get("coordinate_contact_preflight") or {}
+        contact_warnings = (
+            contact.get("warnings")
+            if isinstance(contact.get("warnings"), list)
+            else queue_row.get("coordinate_contact_warnings", [])
+        )
+        decision_stubs.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "source_accession": row.get("source_accession"),
+                "review_order": row.get("review_order")
+                or queue_row.get("review_order"),
+                "reviewer_decision": "pending_reviewer_decision",
+                "approved": False,
+                "reviewer": "",
+                "reviewed_utc": "",
+                "approval_basis": [],
+                "accepted_approval_decision_value": "explicit_approve_locator_rewrite",
+                "accepted_rejection_decision_value": "reject_locator_rewrite",
+                "candidate_path": row.get("candidate_path"),
+                "candidate_sha256": row.get("candidate_sha256"),
+                "planned_audited_locator_sidecar_path": row.get(
+                    "planned_audited_locator_sidecar_path"
+                ),
+                "planned_locator_payload_sha256": row.get(
+                    "planned_locator_payload_sha256"
+                ),
+                "selected_structure_id": row.get("selected_structure_id")
+                or queue_row.get("selected_structure_id"),
+                "selected_ligand_site": row.get("selected_ligand_site")
+                or queue_row.get("selected_ligand_site"),
+                "candidate_residue_locator_count": row.get(
+                    "candidate_residue_locator_count"
+                )
+                or queue_row.get("candidate_residue_locator_count"),
+                "sequence_position_validated_locator_count": row.get(
+                    "sequence_position_validated_locator_count"
+                )
+                or queue_row.get("sequence_position_validated_locator_count"),
+                "coordinate_contact_warning_count": len(contact_warnings),
+                "coordinate_contact_warnings": contact_warnings,
+                "approval_review_class": row.get("approval_review_class"),
+                "preflight_status": row.get("preflight_status"),
+                "materialization_gate_input_ready_if_approved": materialization_ready,
+                "required_reviewer_attestations": [
+                    "candidate_locator_is_source_free",
+                    "candidate_locator_uses_no_mechanism_text_or_source_prose",
+                    "candidate_locator_is_fit_for_heldout_once_only_evaluation",
+                    "approve_copy_to_audited_locator_dir_if_hashes_match",
+                ],
+            }
+        )
+
+    materialization_ready_rows = [
+        row
+        for row in decision_stubs
+        if row["materialization_gate_input_ready_if_approved"]
+    ]
+    warning_rows = [
+        row for row in decision_stubs if row["coordinate_contact_warning_count"]
+    ]
+    clean_rows = [
+        row
+        for row in decision_stubs
+        if row["materialization_gate_input_ready_if_approved"]
+        and not row["coordinate_contact_warning_count"]
+    ]
+    blockers: list[str] = []
+    if not decision_stubs:
+        blockers.append("priority1_preflight_rows_missing")
+    if len(materialization_ready_rows) != len(decision_stubs):
+        blockers.append("some_preflight_rows_not_ready_for_explicit_review")
+    blockers.append("reviewer_decisions_not_recorded")
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_REWRITE_APPROVAL_PACKET_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet"
+        ),
+        "created_utc": created_utc,
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_ready_review_only"
+        ),
+        "scope": (
+            "Review-only approval intake packet for priority-1 current702 "
+            "source-free locator rewrites. It converts the rewrite preflight "
+            "into pending approve/reject records with candidate and "
+            "planned-payload hashes required by the materialization gate. It "
+            "does not approve rows, copy locator sidecars, score heldout rows, "
+            "or apply the frozen residual threshold."
+        ),
+        "approval_decision_schema": {
+            "decision_container_keys_accepted_by_gate": [
+                "locator_rewrite_decision_stubs",
+                "approved_locator_rewrites",
+                "locator_rewrite_decisions",
+                "approval_decisions",
+                "decisions",
+            ],
+            "approval_decision_values_accepted_by_gate": [
+                "approve",
+                "approved",
+                "approve_locator_rewrite",
+                "explicit_approve_locator_rewrite",
+                "approved_for_audited_locator_copy_review_only",
+            ],
+            "rejection_decision_value": "reject_locator_rewrite",
+            "required_hash_fields": [
+                "entry_id",
+                "candidate_sha256",
+                "planned_locator_payload_sha256",
+            ],
+            "optional_but_checked_fields": [
+                "planned_audited_locator_sidecar_path",
+                "reviewer",
+                "approved_utc",
+                "approval_basis",
+            ],
+        },
+        "locator_rewrite_decision_stubs": sorted(
+            decision_stubs,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": False,
+            "review_only": True,
+        },
+        "counts": {
+            "preflight_rows": len(preflight_rows),
+            "decision_stub_rows": len(decision_stubs),
+            "pending_reviewer_decisions": len(decision_stubs),
+            "approved_decision_records": 0,
+            "rejected_decision_records": 0,
+            "materialization_gate_ready_if_approved_rows": len(
+                materialization_ready_rows
+            ),
+            "clean_review_rows": len(clean_rows),
+            "warning_review_rows": len(warning_rows),
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "approval_packet_ready_for_review": bool(decision_stubs),
+            "approved_locator_rewrites_available": False,
+            "approved_source_free_locator_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Review the pending stubs, move approved rows into an "
+                "approval-decision artifact using the accepted approval value "
+                "and unchanged hashes, then rerun the locator rewrite "
+                "materialization gate with the approval artifact and explicit "
+                "write flag."
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_anchor_priority1_rewrite_preflight": _source_path_record(
+                coordinate_anchor_priority1_rewrite_preflight_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(decision_stubs)} pending locator rewrite decisions were "
+                "prepared; 0 rows are approved by this packet."
+            ),
+            "next_action": (
+                "Make explicit approve/reject decisions outside this packet, "
+                "preserve the candidate and planned-payload hashes for every "
+                "approved row, and keep the frozen residual threshold unapplied "
+                "until materialized locators and event-axis linkers exist."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Locator Rewrite Approval Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Preflight rows: {counts['preflight_rows']}",
+        f"- Decision stubs: {counts['decision_stub_rows']}",
+        f"- Pending reviewer decisions: {counts['pending_reviewer_decisions']}",
+        "- Materialization-ready if approved rows: "
+        f"{counts['materialization_gate_ready_if_approved_rows']}",
+        f"- Clean review rows: {counts['clean_review_rows']}",
+        f"- Warning review rows: {counts['warning_review_rows']}",
+        f"- Blockers: {', '.join(packet['blockers'])}",
+        "",
+        "## Decision",
+        "",
+        f"- Approval packet ready for review: {decision['approval_packet_ready_for_review']}",
+        "- Approved locator rewrites available: "
+        f"{decision['approved_locator_rewrites_available']}",
+        "- Approved source-free locator surface ready: "
+        f"{decision['approved_source_free_locator_surface_ready']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Decision Stubs",
+        "",
+        "| row | accession | decision | class | locators | warnings | candidate sha | planned payload sha |",
+        "| --- | --- | --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for row in packet.get("locator_rewrite_decision_stubs", [])[:80]:
+        candidate_sha = str(row.get("candidate_sha256") or "")
+        planned_sha = str(row.get("planned_locator_payload_sha256") or "")
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{row['reviewer_decision']} | {row['approval_review_class']} | "
+            f"{row['candidate_residue_locator_count']} | "
+            f"{row['coordinate_contact_warning_count']} | "
+            f"{candidate_sha[:12]} | {planned_sha[:12]} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet(
+    *,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet(
+        coordinate_anchor_priority1_rewrite_preflight_path=coordinate_anchor_priority1_rewrite_preflight_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def _source_free_locator_rewrite_approval_records(
+    approval_decisions_path: Path | None,
+) -> list[dict[str, Any]]:
+    if approval_decisions_path is None or not Path(approval_decisions_path).exists():
+        return []
+    payload = _read_json(approval_decisions_path)
+    for key in (
+        "locator_rewrite_decision_stubs",
+        "approved_locator_rewrites",
+        "locator_rewrite_decisions",
+        "approval_decisions",
+        "decisions",
+    ):
+        rows = payload.get(key)
+        if isinstance(rows, list):
+            return [row for row in rows if isinstance(row, dict)]
+    return []
+
+
+def _source_free_locator_rewrite_decision_is_approved(
+    decision: dict[str, Any],
+) -> bool:
+    value = str(
+        decision.get("decision")
+        or decision.get("reviewer_decision")
+        or decision.get("approval_decision")
+        or ""
+    )
+    return bool(decision.get("approved") is True) or value in {
+        "approve",
+        "approved",
+        "approve_locator_rewrite",
+        "explicit_approve_locator_rewrite",
+        "approved_for_audited_locator_copy_review_only",
+    }
+
+
+def _source_free_locator_materialized_payload(
+    *,
+    planned_payload: dict[str, Any],
+    preflight_row: dict[str, Any],
+    approval_record: dict[str, Any],
+    created_utc: str,
+) -> dict[str, Any]:
+    payload = dict(planned_payload)
+    payload["created_utc"] = created_utc
+    payload["locator_policy"] = (
+        "human_approved_structure_local_ligand_geometry_without_source_text"
+    )
+    payload["ready_for_predicted_geometry_scoring"] = True
+    payload["manual_review_approval"] = {
+        "approval_scope": "source_free_active_site_locator_only",
+        "approval_source": "explicit_locator_rewrite_decision_artifact",
+        "approved_by": approval_record.get("reviewer")
+        or approval_record.get("approved_by")
+        or "unspecified_reviewer",
+        "approved_utc": approval_record.get("approved_utc") or created_utc,
+        "candidate_path": preflight_row.get("candidate_path"),
+        "candidate_sha256": preflight_row.get("candidate_sha256"),
+        "planned_locator_payload_sha256": preflight_row.get(
+            "planned_locator_payload_sha256"
+        ),
+        "selected_structure_id": preflight_row.get("selected_structure_id"),
+        "selected_ligand_site": preflight_row.get("selected_ligand_site"),
+        "approval_basis": approval_record.get("approval_basis") or [
+            "priority1_rewrite_preflight_passed",
+            "forbidden_feature_audit_clear",
+            "coordinate_contact_preflight_supported",
+            "explicit_reviewer_approval",
+        ],
+        "labels_registries_ontologies_changed": False,
+        "imports_or_promotions_performed": False,
+        "production_thresholds_changed": False,
+        "heldout_rows_used_for_training_or_threshold_tuning": False,
+        "heldout_rows_evaluated": False,
+        "source_text_or_label_fields_used_as_predictive_features": False,
+    }
+    return payload
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+    *,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path,
+    source_free_locator_schema_path: Path,
+    audited_locator_dir: Path,
+    approval_decisions_path: Path | None = None,
+    write_approved_locator_sidecars: bool = False,
+) -> dict[str, Any]:
+    preflight = _read_json(coordinate_anchor_priority1_rewrite_preflight_path)
+    locator_schema = _read_json(source_free_locator_schema_path)
+    created_utc = _utc_now_iso()
+    approval_records = _source_free_locator_rewrite_approval_records(
+        approval_decisions_path
+    )
+    approved_decisions = [
+        row for row in approval_records if _source_free_locator_rewrite_decision_is_approved(row)
+    ]
+    approvals_by_entry: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in approved_decisions:
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id:
+            approvals_by_entry[entry_id].append(row)
+
+    preflight_rows = [
+        row
+        for row in preflight.get("preflight_rows", [])
+        if isinstance(row, dict)
+    ]
+    preflight_created_utc = str(preflight.get("created_utc") or created_utc)
+    row_decisions: list[dict[str, Any]] = []
+    materialized_sidecars: dict[str, dict[str, Any]] = {}
+    approval_matched_entries: set[str] = set()
+    for row in preflight_rows:
+        entry_id = str(row.get("entry_id") or "")
+        approvals = approvals_by_entry.get(entry_id, [])
+        approval = approvals[0] if approvals else None
+        candidate_path = Path(str(row.get("candidate_path") or ""))
+        candidate = _read_json(candidate_path) if candidate_path.exists() else {}
+        planned_payload_for_hash = _coordinate_anchor_priority1_planned_locator_sidecar_payload(
+            candidate=candidate,
+            schema=locator_schema,
+            created_utc=preflight_created_utc,
+        )
+        planned_payload = _coordinate_anchor_priority1_planned_locator_sidecar_payload(
+            candidate=candidate,
+            schema=locator_schema,
+            created_utc=created_utc,
+        )
+        planned_sha = hashlib.sha256(
+            (
+                json.dumps(planned_payload_for_hash, indent=2, sort_keys=True)
+                + "\n"
+            ).encode("utf-8")
+        ).hexdigest()
+        planned_path = str(
+            _locator_sidecar_path(
+                entry_id,
+                str(row.get("source_accession") or ""),
+                audited_locator_dir,
+            )
+        )
+        violations: list[str] = []
+        if row.get("preflight_status") != "preflight_passed_pending_explicit_approval":
+            violations.append("preflight_not_passed")
+        if not candidate_path.exists():
+            violations.append("candidate_file_missing")
+        candidate_actual_sha = _sha256(candidate_path) if candidate_path.exists() else None
+        if candidate_actual_sha != row.get("candidate_sha256"):
+            violations.append("candidate_sha256_mismatch_preflight")
+        if planned_sha != row.get("planned_locator_payload_sha256"):
+            violations.append("planned_locator_payload_sha256_mismatch_preflight")
+        if approval is None:
+            decision = "not_materialized_no_explicit_approval"
+        else:
+            approval_matched_entries.add(entry_id)
+            if approval.get("candidate_sha256") != row.get("candidate_sha256"):
+                violations.append("approval_candidate_sha256_mismatch")
+            if approval.get("planned_locator_payload_sha256") != row.get(
+                "planned_locator_payload_sha256"
+            ):
+                violations.append("approval_planned_payload_sha256_mismatch")
+            if approval.get("planned_audited_locator_sidecar_path") not in {
+                None,
+                planned_path,
+                row.get("planned_audited_locator_sidecar_path"),
+            }:
+                violations.append("approval_planned_path_mismatch")
+            decision = (
+                "approved_ready_for_materialization"
+                if not violations
+                else "not_materialized_approval_or_preflight_violation"
+            )
+        sidecar_written = False
+        approved_locator_sha256 = None
+        if (
+            decision == "approved_ready_for_materialization"
+            and write_approved_locator_sidecars
+        ):
+            materialized_payload = _source_free_locator_materialized_payload(
+                planned_payload=planned_payload,
+                preflight_row=row,
+                approval_record=approval or {},
+                created_utc=created_utc,
+            )
+            materialized_sidecars[planned_path] = materialized_payload
+            sidecar_written = True
+            approved_locator_sha256 = hashlib.sha256(
+                (
+                    json.dumps(materialized_payload, indent=2, sort_keys=True)
+                    + "\n"
+                ).encode("utf-8")
+            ).hexdigest()
+            decision = "materialized_to_audited_locator_dir"
+        row_decisions.append(
+            {
+                "entry_id": entry_id,
+                "source_accession": row.get("source_accession"),
+                "candidate_path": str(candidate_path),
+                "candidate_sha256": row.get("candidate_sha256"),
+                "planned_audited_locator_sidecar_path": planned_path,
+                "planned_locator_payload_sha256": row.get(
+                    "planned_locator_payload_sha256"
+                ),
+                "approval_present": approval is not None,
+                "approval_review_class": row.get("approval_review_class"),
+                "decision": decision,
+                "critical_violations": sorted(set(violations)),
+                "approved_locator_sidecar_written": sidecar_written,
+                "approved_locator_sha256": approved_locator_sha256,
+                "ready_for_predicted_geometry_scoring_after_write": sidecar_written,
+            }
+        )
+
+    unmatched_approved_decisions = [
+        row
+        for row in approved_decisions
+        if str(row.get("entry_id") or "") not in approval_matched_entries
+    ]
+    approved_ready = [
+        row
+        for row in row_decisions
+        if row["decision"] == "approved_ready_for_materialization"
+    ]
+    materialized = [
+        row
+        for row in row_decisions
+        if row["decision"] == "materialized_to_audited_locator_dir"
+    ]
+    invalid_approvals = [
+        row
+        for row in row_decisions
+        if row["decision"] == "not_materialized_approval_or_preflight_violation"
+    ]
+    blockers: list[str] = []
+    if not approval_records:
+        blockers.append("explicit_locator_rewrite_approval_decisions_missing")
+    if not approved_ready and not materialized:
+        blockers.append("approved_locator_rewrite_rows_missing")
+    if invalid_approvals or unmatched_approved_decisions:
+        blockers.append("approval_decision_integrity_violations_present")
+    if not write_approved_locator_sidecars:
+        blockers.append("approved_locator_sidecar_write_flag_not_enabled")
+    if not materialized:
+        blockers.append("approved_locator_sidecars_not_materialized")
+    status = (
+        "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized"
+        if materialized and not invalid_approvals and write_approved_locator_sidecars
+        else "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_ready_blocked"
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_REWRITE_MATERIALIZATION_GATE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate"
+        ),
+        "created_utc": created_utc,
+        "status": status,
+        "scope": (
+            "Fail-closed materialization gate for priority-1 current702 "
+            "heldout coordinate-anchor locator rewrites. It consumes the "
+            "rewrite preflight and an explicit approval-decision artifact, "
+            "verifies candidate and planned-payload hashes, and writes "
+            "approved source-free locator sidecars only when the write flag is "
+            "explicitly enabled. It does not score heldout rows or apply the "
+            "frozen row-specific residual threshold."
+        ),
+        "row_decisions": sorted(
+            row_decisions,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "unmatched_approved_decisions": unmatched_approved_decisions,
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": bool(materialized),
+            "approved_locator_sidecar_write_flag_enabled": bool(
+                write_approved_locator_sidecars
+            ),
+            "review_only": True,
+        },
+        "counts": {
+            "preflight_rows": len(preflight_rows),
+            "approval_records_total": len(approval_records),
+            "approved_decision_records": len(approved_decisions),
+            "unmatched_approved_decisions": len(unmatched_approved_decisions),
+            "approved_ready_for_materialization": len(approved_ready),
+            "approved_locator_sidecars_written": len(materialized),
+            "invalid_approval_or_preflight_rows": len(invalid_approvals),
+            "rows_without_explicit_approval": sum(
+                1 for row in row_decisions if not row["approval_present"]
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": sum(
+                len(row.get("critical_violations", [])) for row in row_decisions
+            )
+            + len(unmatched_approved_decisions),
+        },
+        "decision": {
+            "approved_locator_rewrites_available": bool(
+                approved_ready or materialized
+            ),
+            "write_approved_locator_sidecars": bool(write_approved_locator_sidecars),
+            "approved_source_free_locator_surface_ready": bool(materialized),
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Provide explicit approval decisions with matching candidate "
+                "and planned-payload hashes, rerun this gate with locator "
+                "writes enabled, then rerun locator input, application-surface, "
+                "event-linker, and heldout-safe surface-plan audits before any "
+                "heldout threshold read."
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_anchor_priority1_rewrite_preflight": _source_path_record(
+                coordinate_anchor_priority1_rewrite_preflight_path
+            ),
+            "source_free_locator_schema": _source_path_record(
+                source_free_locator_schema_path
+            ),
+            "approval_decisions": (
+                _source_path_record(approval_decisions_path)
+                if approval_decisions_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "audited_locator_dir": _source_free_locator_dir_record(
+                audited_locator_dir
+            ),
+        },
+        "materialized_sidecars": materialized_sidecars,
+        "interpretation": {
+            "result": (
+                f"{len(approved_decisions)} explicit approval decisions were "
+                f"found; {len(materialized)} locator sidecars were written to "
+                "the audited directory."
+            ),
+            "next_action": (
+                "Do not copy priority-1 locator sidecars from preflight alone. "
+                "Consume explicit approvals only, keep the event-axis blocker "
+                "separate, and leave the frozen residual threshold unapplied "
+                "until the source-free heldout surface is complete."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_report(
+    gate: dict[str, Any],
+) -> str:
+    counts = gate["counts"]
+    decision = gate["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Locator Rewrite Materialization Gate - current702",
+        "",
+        f"Run: {gate['created_utc']}",
+        "",
+        gate["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {gate['status']}",
+        f"- Preflight rows: {counts['preflight_rows']}",
+        f"- Approval records: {counts['approval_records_total']}",
+        f"- Approved decisions: {counts['approved_decision_records']}",
+        "- Approved ready for materialization: "
+        f"{counts['approved_ready_for_materialization']}",
+        "- Approved locator sidecars written: "
+        f"{counts['approved_locator_sidecars_written']}",
+        f"- Invalid approval/preflight rows: {counts['invalid_approval_or_preflight_rows']}",
+        f"- Rows without explicit approval: {counts['rows_without_explicit_approval']}",
+        f"- Blockers: {', '.join(gate['blockers'])}",
+        "",
+        "## Decision",
+        "",
+        "- Approved locator rewrites available: "
+        f"{decision['approved_locator_rewrites_available']}",
+        "- Write approved locator sidecars: "
+        f"{decision['write_approved_locator_sidecars']}",
+        "- Approved source-free locator surface ready: "
+        f"{decision['approved_source_free_locator_surface_ready']}",
+        "- Heldout-safe pair application surface ready: "
+        f"{decision['heldout_safe_pair_application_surface_ready']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Row Decisions",
+        "",
+        "| row | accession | approval | decision | violations |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in gate.get("row_decisions", [])[:80]:
+        violations = row.get("critical_violations") or []
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{int(bool(row['approval_present']))} | {row['decision']} | "
+            f"{', '.join(violations) if violations else 'none'} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {gate['interpretation']['result']}",
+        f"- {gate['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+    *,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path,
+    source_free_locator_schema_path: Path,
+    audited_locator_dir: Path,
+    out_path: Path,
+    approval_decisions_path: Path | None = None,
+    write_approved_locator_sidecars: bool = False,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+        coordinate_anchor_priority1_rewrite_preflight_path=coordinate_anchor_priority1_rewrite_preflight_path,
+        source_free_locator_schema_path=source_free_locator_schema_path,
+        audited_locator_dir=audited_locator_dir,
+        approval_decisions_path=approval_decisions_path,
+        write_approved_locator_sidecars=write_approved_locator_sidecars,
+    )
+    sidecars = gate.pop("materialized_sidecars", {})
+    if sidecars and write_approved_locator_sidecars:
+        for path_text, payload in sorted(sidecars.items()):
+            path = Path(path_text)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(
+                json.dumps(payload, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(gate, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_report(
+                gate
+            ),
+            encoding="utf-8",
+        )
+    return gate
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
+    *,
+    pair_operating_point_contract_path: Path,
+    source_free_application_surface_path: Path,
+    event_axis_linker_schema_path: Path,
+    locator_rewrite_materialization_gate_path: Path,
+    locator_rewrite_approval_packet_path: Path | None = None,
+    source_free_locator_input_audit_path: Path | None = None,
+) -> dict[str, Any]:
+    contract = _read_json(pair_operating_point_contract_path)
+    surface = _read_json(source_free_application_surface_path)
+    event_schema = _read_json(event_axis_linker_schema_path)
+    locator_gate = _read_json(locator_rewrite_materialization_gate_path)
+    locator_input = (
+        _read_json(source_free_locator_input_audit_path)
+        if source_free_locator_input_audit_path is not None
+        and Path(source_free_locator_input_audit_path).exists()
+        else None
+    )
+    approval_packet = (
+        _read_json(locator_rewrite_approval_packet_path)
+        if locator_rewrite_approval_packet_path is not None
+        and Path(locator_rewrite_approval_packet_path).exists()
+        else None
+    )
+    contract_ready = (
+        contract.get("status")
+        == "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+    )
+    surface_ready = bool(
+        surface.get("decision", {}).get("heldout_safe_pair_application_surface_ready")
+    )
+    event_linkers_materialized = bool(
+        event_schema.get("decision", {}).get("event_axis_linkers_materialized")
+    )
+    locator_surface_ready = bool(
+        locator_gate.get("decision", {}).get("approved_source_free_locator_surface_ready")
+    )
+    blockers: list[str] = []
+    if not contract_ready:
+        blockers.append("pair_operating_point_contract_not_ready")
+    if not locator_surface_ready:
+        blockers.append("approved_source_free_locator_surface_missing")
+    if not event_linkers_materialized:
+        blockers.append("source_free_event_axis_linkers_missing")
+    if not surface_ready:
+        blockers.append("heldout_safe_pair_application_surface_missing")
+    for blocker in locator_gate.get("blockers", []):
+        if blocker not in blockers:
+            blockers.append(str(blocker))
+    for blocker in surface.get("blockers", []):
+        if blocker not in blockers:
+            blockers.append(str(blocker))
+
+    ready = contract_ready and locator_surface_ready and event_linkers_materialized and surface_ready
+    locator_counts = locator_gate.get("counts", {})
+    surface_counts = surface.get("counts", {})
+    event_counts = event_schema.get("counts", {})
+    locator_input_counts = (locator_input or {}).get("counts", {})
+    approval_packet_counts = (approval_packet or {}).get("counts", {})
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PRE_THRESHOLD_READINESS_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_ready"
+            if ready
+            else "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_blocked"
+        ),
+        "scope": (
+            "Composed pre-threshold readiness gate for applying the frozen "
+            "Lever 2 row-specific residual contract to heldout exactly once. "
+            "It requires a calibration-only contract, approved source-free "
+            "heldout locator sidecars, materialized source-free event-axis "
+            "linkers, and a complete heldout-safe pair application surface. It "
+            "does not apply the threshold or read heldout outcomes."
+        ),
+        "readiness_inputs": {
+            "pair_operating_point_contract_ready": contract_ready,
+            "approved_source_free_locator_surface_ready": locator_surface_ready,
+            "source_free_event_axis_linkers_materialized": event_linkers_materialized,
+            "heldout_safe_pair_application_surface_ready": surface_ready,
+        },
+        "frozen_contract": {
+            "preferred_contract": contract.get("decision", {}).get(
+                "preferred_contract"
+            ),
+            "residual_distance_threshold": (
+                contract.get("calibration_contract", {})
+                .get("residual_distance", {})
+                .get("threshold")
+            ),
+            "calibration_oos_abstain_recall": (
+                contract.get("calibration_contract", {})
+                .get("residual_distance", {})
+                .get("oos_abstain_recall")
+            ),
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "review_only": True,
+        },
+        "counts": {
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+            "heldout_rows_in_manifest": surface_counts.get("heldout_rows_in_manifest"),
+            "source_free_residue_count_feature_rows": surface_counts.get(
+                "source_free_residue_count_feature_rows"
+            ),
+            "source_free_event_residue_role_feature_rows": surface_counts.get(
+                "source_free_event_residue_role_feature_rows"
+            ),
+            "locator_preflight_rows": locator_counts.get("preflight_rows"),
+            "locator_approval_records": locator_counts.get("approval_records_total"),
+            "locator_approved_decision_records": locator_counts.get(
+                "approved_decision_records"
+            ),
+            "locator_sidecars_written": locator_counts.get(
+                "approved_locator_sidecars_written"
+            ),
+            "locator_input_priority1_preflight_pending": locator_input_counts.get(
+                "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
+            ),
+            "locator_pending_reviewer_decisions": approval_packet_counts.get(
+                "pending_reviewer_decisions"
+            ),
+            "locator_review_warning_rows": approval_packet_counts.get(
+                "warning_review_rows"
+            ),
+            "event_axis_materialized_linker_rows": event_counts.get(
+                "materialized_linker_rows"
+            ),
+        },
+        "decision": {
+            "ready_to_apply_frozen_residual_threshold_once": ready,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Supply explicit locator rewrite approvals, materialize the "
+                "approved heldout locator sidecars, fill the source-free event "
+                "axis linker schema, rerun the source-free application surface, "
+                "then rerun this readiness gate before applying the frozen "
+                "residual threshold exactly once."
+            ),
+        },
+        "source_artifacts": {
+            "pair_operating_point_contract": _source_path_record(
+                pair_operating_point_contract_path
+            ),
+            "source_free_application_surface": _source_path_record(
+                source_free_application_surface_path
+            ),
+            "event_axis_linker_schema": _source_path_record(
+                event_axis_linker_schema_path
+            ),
+            "locator_rewrite_materialization_gate": _source_path_record(
+                locator_rewrite_materialization_gate_path
+            ),
+            "locator_rewrite_approval_packet": (
+                _source_path_record(locator_rewrite_approval_packet_path)
+                if locator_rewrite_approval_packet_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "source_free_locator_input_audit": (
+                _source_path_record(source_free_locator_input_audit_path)
+                if source_free_locator_input_audit_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The frozen residual contract is calibrated, but the heldout "
+                "application surface is not ready because approved source-free "
+                "locator sidecars and source-free event-axis linkers are still "
+                "absent."
+            ),
+            "next_action": (
+                "Consume explicit locator approvals first; preflight rows alone "
+                "must not become heldout features, and the residual threshold "
+                "must remain unapplied until this readiness gate passes."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_report(
+    readiness: dict[str, Any],
+) -> str:
+    counts = readiness["counts"]
+    decision = readiness["decision"]
+    inputs = readiness["readiness_inputs"]
+    contract = readiness["frozen_contract"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Pre-Threshold Readiness - current702",
+        "",
+        f"Run: {readiness['created_utc']}",
+        "",
+        readiness["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readiness['status']}",
+        "- Pair operating-point contract ready: "
+        f"{inputs['pair_operating_point_contract_ready']}",
+        "- Approved source-free locator surface ready: "
+        f"{inputs['approved_source_free_locator_surface_ready']}",
+        "- Source-free event-axis linkers materialized: "
+        f"{inputs['source_free_event_axis_linkers_materialized']}",
+        "- Heldout-safe pair application surface ready: "
+        f"{inputs['heldout_safe_pair_application_surface_ready']}",
+        f"- Locator preflight rows: {counts['locator_preflight_rows']}",
+        f"- Locator approval records: {counts['locator_approval_records']}",
+        "- Locator pending reviewer decisions: "
+        f"{counts['locator_pending_reviewer_decisions']}",
+        f"- Locator review warning rows: {counts['locator_review_warning_rows']}",
+        f"- Locator sidecars written: {counts['locator_sidecars_written']}",
+        "- Source-free residue-count feature rows: "
+        f"{counts['source_free_residue_count_feature_rows']}",
+        "- Source-free event/residue-role feature rows: "
+        f"{counts['source_free_event_residue_role_feature_rows']}",
+        f"- Event-axis materialized linker rows: {counts['event_axis_materialized_linker_rows']}",
+        f"- Blockers: {', '.join(readiness['blockers'])}",
+        "",
+        "## Frozen Contract",
+        "",
+        f"- Preferred contract: {contract['preferred_contract']}",
+        f"- Residual distance threshold: {contract['residual_distance_threshold']}",
+        "- Calibration OOS abstain recall: "
+        f"{contract['calibration_oos_abstain_recall']}",
+        "",
+        "## Decision",
+        "",
+        "- Ready to apply frozen residual threshold once: "
+        f"{decision['ready_to_apply_frozen_residual_threshold_once']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readiness['interpretation']['result']}",
+        f"- {readiness['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
+    *,
+    pair_operating_point_contract_path: Path,
+    source_free_application_surface_path: Path,
+    event_axis_linker_schema_path: Path,
+    locator_rewrite_materialization_gate_path: Path,
+    out_path: Path,
+    locator_rewrite_approval_packet_path: Path | None = None,
+    source_free_locator_input_audit_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    readiness = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
+        pair_operating_point_contract_path=pair_operating_point_contract_path,
+        source_free_application_surface_path=source_free_application_surface_path,
+        event_axis_linker_schema_path=event_axis_linker_schema_path,
+        locator_rewrite_materialization_gate_path=locator_rewrite_materialization_gate_path,
+        locator_rewrite_approval_packet_path=locator_rewrite_approval_packet_path,
+        source_free_locator_input_audit_path=source_free_locator_input_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readiness, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_report(
+                readiness
+            ),
+            encoding="utf-8",
+        )
+    return readiness
 
 
 def _predicted_geometry_source_free_anchor_summary(

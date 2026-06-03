@@ -129,6 +129,9 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
@@ -13942,6 +13945,89 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"{counts.get('preflight_passed_pending_explicit_approval')}, "
         f"clean queue: {counts.get('explicit_approval_queue_clean_rows')}, "
         f"warning queue: {counts.get('explicit_approval_queue_warning_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet(
+    args: argparse.Namespace,
+) -> int:
+    packet = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet(
+        coordinate_anchor_priority1_rewrite_preflight_path=Path(
+            args.coordinate_anchor_priority1_rewrite_preflight
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free locator rewrite approval packet to "
+        f"{args.out} (status: {packet.get('status')}, pending decisions: "
+        f"{counts.get('pending_reviewer_decisions')}, warning rows: "
+        f"{counts.get('warning_review_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+    args: argparse.Namespace,
+) -> int:
+    gate = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+        coordinate_anchor_priority1_rewrite_preflight_path=Path(
+            args.coordinate_anchor_priority1_rewrite_preflight
+        ),
+        source_free_locator_schema_path=Path(args.source_free_locator_schema),
+        audited_locator_dir=Path(args.audited_locator_dir),
+        approval_decisions_path=(
+            Path(args.approval_decisions) if args.approval_decisions else None
+        ),
+        write_approved_locator_sidecars=bool(args.write_approved_locator_sidecars),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = gate.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free locator rewrite materialization gate to "
+        f"{args.out} (status: {gate.get('status')}, approvals: "
+        f"{counts.get('approved_decision_records')}, locator writes: "
+        f"{counts.get('approved_locator_sidecars_written')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
+    args: argparse.Namespace,
+) -> int:
+    readiness = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
+        pair_operating_point_contract_path=Path(args.pair_operating_point_contract),
+        source_free_application_surface_path=Path(args.source_free_application_surface),
+        event_axis_linker_schema_path=Path(args.event_axis_linker_schema),
+        locator_rewrite_materialization_gate_path=Path(
+            args.locator_rewrite_materialization_gate
+        ),
+        locator_rewrite_approval_packet_path=(
+            Path(args.locator_rewrite_approval_packet)
+            if args.locator_rewrite_approval_packet
+            else None
+        ),
+        source_free_locator_input_audit_path=(
+            Path(args.source_free_locator_input_audit)
+            if args.source_free_locator_input_audit
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = readiness.get("counts", {})
+    decision = readiness.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free pre-threshold readiness to "
+        f"{args.out} (status: {readiness.get('status')}, ready: "
+        f"{decision.get('ready_to_apply_frozen_residual_threshold_once')}, "
+        f"blockers: {counts.get('blockers')})"
     )
     return 0
 
@@ -31433,6 +31519,189 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_approval_packet = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "locator-rewrite-approval-packet"
+        ),
+        help=(
+            "prepare explicit approve/reject stubs for priority-1 source-free "
+            "locator rewrites without approving, copying, scoring, or "
+            "evaluating heldout rows"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_approval_packet.add_argument(
+        "--coordinate-anchor-priority1-rewrite-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_rewrite_preflight_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_approval_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_approval_packet_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_approval_packet.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_approval_packet_current702_20260603.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_approval_packet.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "locator-rewrite-materialization-gate"
+        ),
+        help=(
+            "consume explicit priority-1 locator rewrite approvals and "
+            "materialize only hash-matched source-free locator sidecars"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.add_argument(
+        "--coordinate-anchor-priority1-rewrite-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_rewrite_preflight_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.add_argument(
+        "--source-free-locator-schema",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.add_argument(
+        "--audited-locator-dir",
+        default="artifacts/family_panel_source_free_active_site_locators_current702_20260601",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.add_argument(
+        "--approval-decisions",
+        default="",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.add_argument(
+        "--write-approved-locator-sidecars",
+        action="store_true",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_materialization_gate_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_materialization_gate_current702_20260603.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_rewrite_gate.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "pre-threshold-readiness"
+        ),
+        help=(
+            "compose the frozen pair contract, locator materialization gate, "
+            "event-axis schema, and source-free surface before any heldout read"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--pair-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--event-axis-linker-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_schema_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--locator-rewrite-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_materialization_gate_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--locator-rewrite-approval-packet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_approval_packet_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--source-free-locator-input-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_"
+            "readiness_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_"
+            "readiness_current702_20260603.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness
         )
     )
 

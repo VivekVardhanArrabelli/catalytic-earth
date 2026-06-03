@@ -50,6 +50,99 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 6
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T06:07:34Z`
+- STARTED_LOCAL: `2026-06-03T01:07:34-0500 CDT`
+- ENDED_AT: `2026-06-03T06:40:22Z`
+- ENDED_LOCAL: `2026-06-03T01:40:22-0500 CDT`
+- ELAPSED_MINUTES: `32.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "5622", "started_at": "2026-06-03T06:07:34Z", "started_local": "2026-06-03T01:07:34-0500 CDT", "status": "acquired"}`
+
+#### Current intent
+
+Use the active handoff as primary truth, continue inside Levers 2/3/4 from
+current `main`, and make the highest-value deployable forward move without
+editing labels, registries, ontologies, imports, production thresholds, or any
+heldout-tuned surfaces.
+
+#### What changed
+
+- Lever 2: added
+  `v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603`
+  and report. It normalizes the 55 priority-1 source-free locator rewrite
+  preflight rows into pending approve/reject records with the candidate and
+  planned-payload hashes required by the materialization gate. It records 49
+  clean review rows, 6 warning rows, 0 approvals, 0 locator sidecar copies, and
+  0 heldout reads.
+- Lever 2: added a fail-closed
+  `v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603`.
+  It consumes explicit approval decisions, verifies candidate and planned
+  payload hashes, and writes approved source-free locator sidecars only when
+  the explicit write flag is set. Current run state remains blocked: 55
+  preflight rows, 0 approval records, 0 approved rows, and 0 locator writes.
+  The gate now accepts reviewed versions of the approval packet's
+  `locator_rewrite_decision_stubs` container directly.
+- Lever 2: added
+  `v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603`
+  and report. It composes the calibration-only pair contract, source-free
+  application surface, event-axis linker schema, locator input audit, approval
+  packet, and materialization gate. The frozen residual threshold remains
+  unapplied because the readiness gate still sees 55 pending locator decisions,
+  0 written locator sidecars, 0 materialized event-axis linker rows, and an
+  incomplete heldout-safe application surface.
+- Updated CLI commands, unit tests, artifact-regression tests, and durable docs
+  for the approval packet, materialization gate, and composed readiness gate.
+  Regenerated the current-docs artifact-reference check with 0 missing
+  references.
+- Stopped before the 55-minute target because this safe Lever 2 increment was
+  complete and the remaining blockers require explicit human approval or
+  source-free event-axis evidence. No labels, registries, ontologies, imports,
+  production thresholds, model weights, sidecar copies, heldout tuning, or
+  heldout threshold reads changed.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'locator_rewrite_approval_packet or locator_rewrite_materialization_gate or pre_threshold_readiness' -q`
+  passed: 4 tests, 120 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change_p0_oos_augmented' -q`
+  passed: 5 tests, 156 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`
+  passed: 1 test, 94 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  passed: 403 tests, 101 subtests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 curated labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `python -m json.tool` passed for the approval packet, materialization gate,
+  and pre-threshold readiness JSON artifacts.
+- `PYTHONPATH=src python -m pytest -q` passed: 1274 tests, 120 subtests; 1
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1229 tests;
+  same existing sklearn/SciPy deprecation warning.
+- `git diff --check` passed.
+
+#### Exact next action
+
+- Do not copy priority-1 locator sidecars from preflight alone. First fill an
+  explicit approval-decision artifact, preferably by reviewing
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603.json`
+  and setting approved rows to `explicit_approve_locator_rewrite` with
+  unchanged `candidate_sha256` and `planned_locator_payload_sha256` values.
+  Then rerun the materialization gate with that approval artifact and
+  `--write-approved-locator-sidecars`, rerun locator input/application-surface
+  audits, fill or approve the source-free
+  `proton_transfer|electrostatic_stabiliser` event-axis linkers, rerun
+  pre-threshold readiness, and only then apply the frozen residual threshold
+  exactly once. If no approvals or event-axis evidence are supplied, Lever 3
+  and Lever 4 remain the prior policy/scientific blockers.
+
 ### 2026-06-02 Lever 3/2/4 Forward Push Active Run 5
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

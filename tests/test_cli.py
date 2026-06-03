@@ -781,6 +781,39 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "locator-rewrite-approval-packet"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "locator-rewrite-materialization-gate"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "pre-threshold-readiness"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness"
+                ),
+            ),
+            (
+                (
                     "audit-mechanism-feature-row-specific-bond-change-"
                     "p0-oos-augmented-best-token-followup-pair-source-free-"
                     "locator-input"

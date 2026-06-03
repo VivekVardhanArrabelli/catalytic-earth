@@ -661,6 +661,21 @@ artifacts first.
    after approved current702 heldout locator sidecars exist; fallback path is
    explicitly accepting the lower-recall His-count-only contract in
    `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.json`.
+   The current approval packet
+   `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603.json`
+   normalizes the 55 priority-1 locator rewrites into pending approve/reject
+   records with candidate and planned-payload hashes; it records 49 clean rows,
+   6 warning rows, and 0 approvals.
+   The current locator rewrite materialization gate
+   `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json`
+   is fail-closed: 55 preflight-passed rows have 0 explicit approvals and 0
+   copied locator sidecars, so preflight alone is not enough to build the
+   heldout application surface.
+   The composed pre-threshold readiness gate
+   `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json`
+   keeps the frozen residual threshold unapplied until approved locators,
+   event-axis linkers, and the heldout-safe source-free application surface all
+   exist.
    In both cases, do not apply any frozen residual threshold or read heldout
    until the chosen source-free application surface is complete and guardrail
    audited.
