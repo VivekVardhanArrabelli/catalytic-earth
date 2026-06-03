@@ -594,6 +594,20 @@ artifacts first.
   current702 heldout locator surface. A His-count-only fallback avoids the
   event axis but drops calibration OOS abstention to 0.642857 and requires
   explicit acceptance before any heldout read.
+- 2026-06-03 Lever 2 outcome (see `docs/decision_log.md`): the 53 priority-1
+  source-free heldout locators were reviewed (approve 53, reject `m_csa:723`,
+  `m_csa:599`) and materialized into the audited locator dir. The source-free
+  proton-transfer/electrostatic-stabiliser event axis was then drafted by a
+  deterministic label-blind rubric and reviewed, but **not signed off**: only
+  14/53 rows can evidence the pair source-free (cofactor-anchored locators miss
+  the substrate-proximal catalytic machinery for metal/heme sites). A train/cal
+  source-free token re-selection (heldout never read) then showed **no
+  source-free-replicable token clears a useful bar** — multivariate LOO-CV AUC
+  0.538, and the His-count fallback's signal was role-dependent (source-free,
+  `HIS>=3` fires only on OOS rows). Decision: **defer Lever 2**; do not spend the
+  one-shot heldout read on any Lever 2 token. The 53 approved locators are banked
+  as a split-protected asset; the source-free discriminative value lives in the
+  geometry/fold channel (AUC 0.81-0.91).
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
