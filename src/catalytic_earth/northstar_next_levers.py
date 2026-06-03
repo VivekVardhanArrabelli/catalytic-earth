@@ -189,6 +189,9 @@ ACTIVE_LEVER_MECHANICAL_ACTIONABILITY_AUDIT_ID = (
 ACTIVE_LEVER_PRIORITY_DECISION_TEMPLATES_ID = (
     "v3_active_lever_priority_decision_templates_current702_20260603"
 )
+ACTIVE_LEVER_SOURCE_DECISION_INTAKE_PREFLIGHT_ID = (
+    "v3_active_lever_source_decision_intake_preflight_current702_20260603"
+)
 FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_QUEUE_ID = (
     "v3_fold_augmented_family_panel_source_check_queue_current702_20260601"
 )
@@ -20466,6 +20469,9 @@ def build_fold_augmented_p10746_deployment_caveat_decision_packet(
         "entry_id": "m_csa:204",
         "accession": "P10746",
         "review_status": "pending_explicit_decision",
+        "decision_field_to_update": "decision",
+        "review_status_field_to_update": "review_status",
+        "required_review_status_after_decision": "reviewed_explicit_decision",
         "allowed_decisions": [
             "explicit_accept_p10746_fold_only_deployment_caveat",
             "reject_p10746_caveat_require_approved_non_residue_sidecar",
@@ -20622,6 +20628,9 @@ def _render_fold_augmented_p10746_deployment_caveat_decision_packet_report(
         "",
         f"- Entry: {stub['entry_id']} / {stub['accession']}",
         f"- Review status: {stub['review_status']}",
+        f"- Decision field to update: `{stub['decision_field_to_update']}`",
+        "- Required review status after decision: "
+        f"`{stub['required_review_status_after_decision']}`",
         f"- Decision context SHA-256: `{stub['decision_context_sha256']}`",
         "- Allowed decisions:",
     ]
@@ -24006,6 +24015,11 @@ def build_fold_augmented_family_panel_expert_import_decision_packet(
                 "entry_id": row.get("entry_id"),
                 "panel_id": row.get("panel_id"),
                 "review_status": "pending_expert_import_decision",
+                "decision_field_to_update": "decision",
+                "review_status_field_to_update": "review_status",
+                "recommended_review_status_after_decision": (
+                    "reviewed_expert_import_decision"
+                ),
                 "default_decision": "pending_review",
                 "allowed_decisions": [
                     "explicit_accept_family_panel_import_candidate",
@@ -25137,6 +25151,15 @@ def build_active_lever_reviewer_decision_queue(
                     "priority": 1,
                     "review_status": stub.get("review_status"),
                     "allowed_decisions": stub.get("allowed_decisions") or [],
+                    "decision_field_to_update": stub.get(
+                        "decision_field_to_update"
+                    ),
+                    "review_status_field_to_update": stub.get(
+                        "review_status_field_to_update"
+                    ),
+                    "required_review_status_after_decision": stub.get(
+                        "required_review_status_after_decision"
+                    ),
                     "decision_context_sha256": stub.get(
                         "decision_context_sha256"
                     ),
@@ -25176,6 +25199,15 @@ def build_active_lever_reviewer_decision_queue(
                     "priority": priority,
                     "review_status": stub.get("review_status"),
                     "allowed_decisions": stub.get("allowed_decisions") or [],
+                    "decision_field_to_update": stub.get(
+                        "decision_field_to_update"
+                    ),
+                    "review_status_field_to_update": stub.get(
+                        "review_status_field_to_update"
+                    ),
+                    "recommended_review_status_after_decision": stub.get(
+                        "recommended_review_status_after_decision"
+                    ),
                     "decision_context_sha256": stub.get(
                         "decision_context_sha256"
                     ),
@@ -25219,6 +25251,15 @@ def build_active_lever_reviewer_decision_queue(
                         stub.get("accepted_approval_decision_value"),
                         stub.get("accepted_rejection_decision_value"),
                     ],
+                    "decision_field_to_update": stub.get(
+                        "decision_field_to_update"
+                    ),
+                    "approved_boolean_field_to_update": stub.get(
+                        "approved_boolean_field_to_update"
+                    ),
+                    "required_approved_value_if_approving": stub.get(
+                        "required_approved_value_if_approving"
+                    ),
                     "decision_context_sha256": None,
                     "candidate_sha256": stub.get("candidate_sha256"),
                     "planned_locator_payload_sha256": stub.get(
@@ -25521,6 +25562,7 @@ def write_active_lever_reviewer_decision_queue(
 def build_active_lever_mechanical_actionability_audit(
     *,
     active_lever_reviewer_decision_queue_path: Path,
+    active_lever_source_decision_intake_preflight_path: Path | None = None,
     lever2_pre_threshold_readiness_path: Path | None = None,
     lever2_event_axis_linker_schema_path: Path | None = None,
     lever2_event_axis_linker_materialization_gate_path: Path | None = None,
@@ -25530,6 +25572,12 @@ def build_active_lever_mechanical_actionability_audit(
     queue = (
         _read_json(active_lever_reviewer_decision_queue_path)
         if Path(active_lever_reviewer_decision_queue_path).exists()
+        else {}
+    )
+    source_intake = (
+        _read_json(active_lever_source_decision_intake_preflight_path)
+        if active_lever_source_decision_intake_preflight_path is not None
+        and Path(active_lever_source_decision_intake_preflight_path).exists()
         else {}
     )
     lever2_readiness = (
@@ -25569,6 +25617,19 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(item, dict)
     ]
     queue_counts = queue.get("counts", {}) if isinstance(queue, dict) else {}
+    source_intake_counts = (
+        source_intake.get("counts", {})
+        if isinstance(source_intake, dict)
+        else {}
+    )
+    source_intake_decision = (
+        source_intake.get("decision", {})
+        if isinstance(source_intake, dict)
+        else {}
+    )
+    source_intake_ready = bool(
+        source_intake_decision.get("run_any_matching_gate_now")
+    )
     decision_class_counts = Counter(
         str(item.get("decision_class")) for item in queue_items
     )
@@ -25647,6 +25708,19 @@ def build_active_lever_mechanical_actionability_audit(
 
     gate_checks = [
         {
+            "lever": "Lever 2/3/4",
+            "gate": "source_decision_intake_preflight",
+            "ready_now": source_intake_ready,
+            "blocking_reason": (
+                "source_decision_intake_preflight_not_ready"
+                if source_intake
+                else "source_decision_intake_preflight_missing"
+            ),
+            "next_command_after_decision": (
+                "build-active-lever-source-decision-intake-preflight"
+            ),
+        },
+        {
             "lever": "Lever 3",
             "gate": "p10746_post_decision_deployment_closure",
             "ready_now": bool(
@@ -25716,8 +25790,12 @@ def build_active_lever_mechanical_actionability_audit(
     blockers: list[str] = []
     if not queue_items:
         blockers.append("active_lever_reviewer_decision_queue_missing_or_empty")
-    if automation_allowed == 0:
+    if automation_allowed == 0 and not source_intake_ready:
         blockers.append("no_active_lever_mechanical_gate_ready")
+    if source_intake and not source_intake_decision.get("run_any_matching_gate_now"):
+        blockers.append("source_decision_intake_preflight_not_ready")
+    if source_intake_counts.get("invalid_decision_rows"):
+        blockers.append("source_decision_intake_integrity_violations")
     if p10746_pending:
         blockers.append("p10746_policy_decision_missing")
     if lever4_pending:
@@ -25741,6 +25819,13 @@ def build_active_lever_mechanical_actionability_audit(
             "decision_class": item.get("decision_class"),
             "review_status": item.get("review_status"),
             "allowed_decisions": item.get("allowed_decisions") or [],
+            "decision_field_to_update": item.get("decision_field_to_update"),
+            "review_status_field_to_update": item.get(
+                "review_status_field_to_update"
+            ),
+            "approved_boolean_field_to_update": item.get(
+                "approved_boolean_field_to_update"
+            ),
             "decision_context_sha256": item.get("decision_context_sha256"),
             "candidate_sha256": item.get("candidate_sha256"),
             "planned_locator_payload_sha256": item.get(
@@ -25770,6 +25855,15 @@ def build_active_lever_mechanical_actionability_audit(
             ),
             "external_decision_required_items": external_decision_required_items,
             "automation_action_allowed_now_items": automation_allowed,
+            "source_decision_intake_pending_rows": int(
+                source_intake_counts.get("pending_decision_rows") or 0
+            ),
+            "source_decision_intake_invalid_rows": int(
+                source_intake_counts.get("invalid_decision_rows") or 0
+            ),
+            "source_decision_follow_on_gate_ready_rows": int(
+                source_intake_counts.get("follow_on_gate_ready_rows") or 0
+            ),
             "p10746_pending_policy_decisions": len(p10746_pending),
             "lever4_pending_expert_import_decisions": len(lever4_pending),
             "lever4_import_preview_candidate_if_accepted_items": int(
@@ -25801,7 +25895,7 @@ def build_active_lever_mechanical_actionability_audit(
         "next_review_items": next_review_items,
         "blockers": blockers,
         "decision": {
-            "apply_any_decision_gate_now": False,
+            "apply_any_decision_gate_now": source_intake_ready,
             "copy_locator_sidecars_now": False,
             "apply_frozen_residual_threshold_now": False,
             "run_label_factory_gate_now": False,
@@ -25830,6 +25924,11 @@ def build_active_lever_mechanical_actionability_audit(
         "source_artifacts": {
             "active_lever_reviewer_decision_queue": _source_path_record(
                 active_lever_reviewer_decision_queue_path
+            ),
+            "active_lever_source_decision_intake_preflight": (
+                _source_path_record(active_lever_source_decision_intake_preflight_path)
+                if active_lever_source_decision_intake_preflight_path is not None
+                else {"path": None, "exists": False, "sha256": None}
             ),
             "lever2_pre_threshold_readiness": (
                 _source_path_record(lever2_pre_threshold_readiness_path)
@@ -25904,6 +26003,12 @@ def _render_active_lever_mechanical_actionability_audit_report(
         f"{counts['automation_action_allowed_now_items']}",
         "- Mechanical gates ready now: "
         f"{counts['mechanical_gates_ready_now']}",
+        "- Source-decision follow-on gate-ready rows: "
+        f"{counts['source_decision_follow_on_gate_ready_rows']}",
+        "- Source-decision pending rows: "
+        f"{counts['source_decision_intake_pending_rows']}",
+        "- Source-decision invalid rows: "
+        f"{counts['source_decision_intake_invalid_rows']}",
         "- Lever 2 pending locator approvals: "
         f"{counts['lever2_pending_locator_approvals']}",
         "- Lever 2 event-axis linker rows: "
@@ -25935,13 +26040,14 @@ def _render_active_lever_mechanical_actionability_audit_report(
         "",
         "## Next Review Items",
         "",
-        "| priority | lever | row | decision class | status |",
-        "| ---: | --- | --- | --- | --- |",
+        "| priority | lever | row | decision class | status | decision field |",
+        "| ---: | --- | --- | --- | --- | --- |",
     ]
     for item in audit.get("next_review_items", []):
         lines.append(
             f"| {item['priority']} | {item['lever']} | {item['entry_id']} | "
-            f"{item['decision_class']} | {item['review_status']} |"
+            f"{item['decision_class']} | {item['review_status']} | "
+            f"{item.get('decision_field_to_update')} |"
         )
     lines += [
         "",
@@ -25957,6 +26063,7 @@ def _render_active_lever_mechanical_actionability_audit_report(
 def write_active_lever_mechanical_actionability_audit(
     *,
     active_lever_reviewer_decision_queue_path: Path,
+    active_lever_source_decision_intake_preflight_path: Path | None = None,
     lever2_pre_threshold_readiness_path: Path | None = None,
     lever2_event_axis_linker_schema_path: Path | None = None,
     lever2_event_axis_linker_materialization_gate_path: Path | None = None,
@@ -25968,6 +26075,9 @@ def write_active_lever_mechanical_actionability_audit(
     audit = build_active_lever_mechanical_actionability_audit(
         active_lever_reviewer_decision_queue_path=(
             active_lever_reviewer_decision_queue_path
+        ),
+        active_lever_source_decision_intake_preflight_path=(
+            active_lever_source_decision_intake_preflight_path
         ),
         lever2_pre_threshold_readiness_path=lever2_pre_threshold_readiness_path,
         lever2_event_axis_linker_schema_path=lever2_event_axis_linker_schema_path,
@@ -26112,6 +26222,18 @@ def build_active_lever_priority_decision_templates(
                 {
                     "entry_id": item.get("entry_id"),
                     "decision": "pending_explicit_decision",
+                    "review_status": item.get("review_status"),
+                    "decision_field_to_update": (
+                        item.get("decision_field_to_update") or "decision"
+                    ),
+                    "review_status_field_to_update": (
+                        item.get("review_status_field_to_update")
+                        or "review_status"
+                    ),
+                    "required_review_status_after_decision": (
+                        item.get("required_review_status_after_decision")
+                        or "reviewed_explicit_decision"
+                    ),
                     "allowed_decisions": item.get("allowed_decisions") or [],
                     "decision_context_sha256": item.get(
                         "decision_context_sha256"
@@ -26135,6 +26257,16 @@ def build_active_lever_priority_decision_templates(
                 "entry_id": item.get("entry_id"),
                 "panel_id": item.get("panel_or_scope"),
                 "decision": "pending_expert_import_decision",
+                "review_status": item.get("review_status"),
+                "decision_field_to_update": (
+                    item.get("decision_field_to_update") or "decision"
+                ),
+                "review_status_field_to_update": item.get(
+                    "review_status_field_to_update"
+                ),
+                "recommended_review_status_after_decision": item.get(
+                    "recommended_review_status_after_decision"
+                ),
                 "allowed_decisions": item.get("allowed_decisions") or [],
                 "decision_context_sha256": item.get("decision_context_sha256"),
                 "reviewer": "",
@@ -26162,6 +26294,15 @@ def build_active_lever_priority_decision_templates(
             template = {
                 "entry_id": item.get("entry_id"),
                 "reviewer_decision": "pending_reviewer_decision",
+                "decision_field_to_update": (
+                    item.get("decision_field_to_update") or "reviewer_decision"
+                ),
+                "approved_boolean_field_to_update": item.get(
+                    "approved_boolean_field_to_update"
+                ),
+                "required_approved_value_if_approving": item.get(
+                    "required_approved_value_if_approving"
+                ),
                 "allowed_decisions": item.get("allowed_decisions") or [],
                 "approved": False,
                 "candidate_sha256": item.get("candidate_sha256"),
@@ -26402,7 +26543,7 @@ def _render_active_lever_priority_decision_templates_report(
     ]
     for group, rows in templates.get("template_groups", {}).items():
         for row in rows[:12]:
-            field = (
+            field = row.get("decision_field_to_update") or (
                 "reviewer_decision"
                 if "reviewer_decision" in row
                 else "decision"
@@ -26447,6 +26588,666 @@ def write_active_lever_priority_decision_templates(
             encoding="utf-8",
         )
     return templates
+
+
+def _active_lever_template_rows(
+    templates: dict[str, Any],
+) -> list[tuple[str, dict[str, Any]]]:
+    rows: list[tuple[str, dict[str, Any]]] = []
+    groups = templates.get("template_groups", {})
+    if not isinstance(groups, dict):
+        return rows
+    for group, group_rows in groups.items():
+        if not isinstance(group_rows, list):
+            continue
+        for row in group_rows:
+            if isinstance(row, dict):
+                rows.append((str(group), row))
+    return rows
+
+
+def _active_lever_decision_class_from_template(row: dict[str, Any]) -> str:
+    packet_key = str(row.get("target_packet_key") or "")
+    if packet_key == "decision_stubs":
+        return "p10746_fold_only_deployment_caveat"
+    if packet_key == "expert_import_decision_stubs":
+        return "family_panel_expert_import_decision"
+    if packet_key == "locator_rewrite_decision_stubs":
+        return "source_free_locator_rewrite_approval"
+    return "unknown_decision_class"
+
+
+def _active_lever_packet_path(
+    *,
+    templates_path: Path,
+    templates: dict[str, Any],
+    source_artifact_key: str,
+    explicit_path: Path | None,
+) -> Path | None:
+    if explicit_path is not None:
+        return Path(explicit_path)
+    source_packets = (
+        (templates.get("source_artifacts") or {}).get("target_source_packets")
+        or {}
+    )
+    record = source_packets.get(source_artifact_key)
+    if not isinstance(record, dict) or not record.get("path"):
+        return None
+    raw = Path(str(record["path"]))
+    if raw.is_absolute():
+        return raw
+    candidates = [
+        raw,
+        templates_path.parent / raw,
+        templates_path.parent.parent / raw,
+    ]
+    return next((path for path in candidates if path.exists()), raw)
+
+
+def _json_pointer_lookup(payload: Any, pointer: str | None) -> Any:
+    if not pointer or not pointer.startswith("/"):
+        return None
+    current: Any = payload
+    for raw_part in pointer.strip("/").split("/"):
+        part = raw_part.replace("~1", "/").replace("~0", "~")
+        if isinstance(current, list):
+            try:
+                current = current[int(part)]
+            except (ValueError, IndexError):
+                return None
+        elif isinstance(current, dict):
+            current = current.get(part)
+        else:
+            return None
+    return current
+
+
+def _active_lever_source_row(
+    *,
+    packet: dict[str, Any] | None,
+    template: dict[str, Any],
+) -> dict[str, Any] | None:
+    if packet is None:
+        return None
+    pointer_row = _json_pointer_lookup(
+        packet,
+        str(template.get("source_json_pointer") or ""),
+    )
+    if isinstance(pointer_row, dict):
+        return pointer_row
+    packet_key = str(template.get("target_packet_key") or "")
+    rows = packet.get(packet_key, [])
+    if not isinstance(rows, list):
+        return None
+    entry_id = str(template.get("entry_id") or "")
+    hash_fields = (
+        "decision_context_sha256",
+        "candidate_sha256",
+        "planned_locator_payload_sha256",
+    )
+    matches = []
+    for row in rows:
+        if not isinstance(row, dict) or str(row.get("entry_id") or "") != entry_id:
+            continue
+        if all(
+            not template.get(field)
+            or not row.get(field)
+            or template.get(field) == row.get(field)
+            for field in hash_fields
+        ):
+            matches.append(row)
+    return matches[0] if len(matches) == 1 else None
+
+
+def _decision_value_is_pending(value: Any) -> bool:
+    return str(value or "").strip() in {
+        "",
+        "pending_review",
+        "pending_explicit_decision",
+        "pending_expert_import_decision",
+        "pending_reviewer_decision",
+    }
+
+
+def _active_lever_intake_group_priority(group: str) -> int:
+    return {
+        "p10746_policy_decisions": 1,
+        "family_panel_import_preview_candidates": 2,
+        "clean_locator_rewrite_approvals": 3,
+        "other_family_panel_expert_decisions": 4,
+        "warning_locator_rewrite_approvals": 5,
+    }.get(group, 99)
+
+
+def _active_lever_locator_decision_value(row: dict[str, Any]) -> str:
+    if _source_free_locator_rewrite_decision_is_approved(row):
+        return "explicit_approve_locator_rewrite"
+    return str(
+        row.get("decision")
+        or row.get("reviewer_decision")
+        or row.get("approval_decision")
+        or ""
+    )
+
+
+def _active_lever_intake_row(
+    *,
+    group: str,
+    template: dict[str, Any],
+    packet: dict[str, Any] | None,
+    packet_path: Path | None,
+) -> dict[str, Any]:
+    decision_class = _active_lever_decision_class_from_template(template)
+    source_row = _active_lever_source_row(packet=packet, template=template)
+    blockers: list[str] = []
+    if packet is None:
+        blockers.append("source_packet_missing")
+    if source_row is None:
+        blockers.append("source_packet_row_missing")
+        source_row = {}
+    if source_row and source_row.get("entry_id") != template.get("entry_id"):
+        blockers.append("source_packet_row_entry_id_mismatch")
+
+    allowed = set(template.get("allowed_decisions") or [])
+    decision_value = ""
+    hash_ok = True
+    explicit_decision = False
+    ready_for_follow_on_gate = False
+    accepted_import_preview_candidate = False
+    locator_approval = False
+    locator_rejection = False
+    intake_status = "pending_external_decision"
+    edit_contract_ok = True
+
+    if decision_class == "p10746_fold_only_deployment_caveat":
+        expected_decision_field = template.get("decision_field_to_update") or "decision"
+        expected_review_status_field = (
+            template.get("review_status_field_to_update") or "review_status"
+        )
+        edit_contract_ok = (
+            source_row.get("decision_field_to_update") == expected_decision_field
+            and source_row.get("review_status_field_to_update")
+            == expected_review_status_field
+        )
+        if not edit_contract_ok:
+            blockers.append("source_packet_edit_contract_fields_missing")
+        decision_value = str(
+            source_row.get("decision") or source_row.get("selected_decision") or ""
+        )
+        review_status = str(source_row.get("review_status") or "")
+        expected_hash = template.get("decision_context_sha256")
+        observed_hash = source_row.get("decision_context_sha256")
+        hash_ok = bool(expected_hash) and observed_hash == expected_hash
+        if _decision_value_is_pending(decision_value):
+            blockers.append("explicit_decision_missing")
+        elif decision_value not in allowed:
+            blockers.append("decision_not_allowed_by_source_packet")
+        elif not hash_ok:
+            blockers.append("decision_context_sha256_changed")
+        elif review_status == "pending_explicit_decision":
+            blockers.append("p10746_review_status_still_pending")
+        else:
+            explicit_decision = True
+            ready_for_follow_on_gate = True
+            intake_status = "ready_for_p10746_application_gate"
+
+    elif decision_class == "family_panel_expert_import_decision":
+        expected_decision_field = template.get("decision_field_to_update") or "decision"
+        edit_contract_ok = (
+            source_row.get("decision_field_to_update") == expected_decision_field
+        )
+        if not edit_contract_ok:
+            blockers.append("source_packet_edit_contract_fields_missing")
+        decision_value = _family_panel_expert_import_decision_value(source_row)
+        expected_hash = template.get("decision_context_sha256")
+        observed_hash = source_row.get("decision_context_sha256")
+        hash_ok = bool(expected_hash) and observed_hash == expected_hash
+        if _decision_value_is_pending(decision_value):
+            blockers.append("explicit_decision_missing")
+        elif decision_value not in allowed:
+            blockers.append("decision_not_allowed_by_source_packet")
+        elif not hash_ok:
+            blockers.append("decision_context_sha256_changed")
+        else:
+            explicit_decision = True
+            ready_for_follow_on_gate = True
+            accepted_import_preview_candidate = (
+                decision_value == "explicit_accept_family_panel_import_candidate"
+                and bool(template.get("import_preview_candidate_if_accepted_now"))
+            )
+            intake_status = "ready_for_family_panel_application_gate"
+
+    elif decision_class == "source_free_locator_rewrite_approval":
+        expected_decision_field = (
+            template.get("decision_field_to_update") or "reviewer_decision"
+        )
+        edit_contract_ok = (
+            source_row.get("decision_field_to_update") == expected_decision_field
+        )
+        if not edit_contract_ok:
+            blockers.append("source_packet_edit_contract_fields_missing")
+        decision_value = _active_lever_locator_decision_value(source_row)
+        candidate_hash_ok = (
+            bool(template.get("candidate_sha256"))
+            and source_row.get("candidate_sha256") == template.get("candidate_sha256")
+        )
+        planned_hash_ok = (
+            bool(template.get("planned_locator_payload_sha256"))
+            and source_row.get("planned_locator_payload_sha256")
+            == template.get("planned_locator_payload_sha256")
+        )
+        hash_ok = candidate_hash_ok and planned_hash_ok
+        locator_approval = _source_free_locator_rewrite_decision_is_approved(
+            source_row
+        )
+        locator_rejection = decision_value == "reject_locator_rewrite"
+        if _decision_value_is_pending(decision_value):
+            blockers.append("explicit_decision_missing")
+        elif not (locator_approval or locator_rejection):
+            blockers.append("decision_not_allowed_by_source_packet")
+        elif not candidate_hash_ok:
+            blockers.append("candidate_sha256_changed")
+        elif not planned_hash_ok:
+            blockers.append("planned_locator_payload_sha256_changed")
+        elif locator_approval and not bool(
+            template.get("materialization_gate_input_ready_if_approved", True)
+        ):
+            blockers.append("locator_approved_but_not_materialization_ready")
+        else:
+            explicit_decision = True
+            ready_for_follow_on_gate = locator_approval
+            intake_status = (
+                "ready_for_locator_materialization_gate"
+                if locator_approval
+                else "reviewed_locator_rejection_no_materialization"
+            )
+
+    else:
+        blockers.append("unknown_decision_class")
+
+    if blockers and blockers != ["explicit_decision_missing"]:
+        intake_status = "invalid_source_decision_row"
+    elif blockers:
+        intake_status = "pending_external_decision"
+
+    return {
+        "group": group,
+        "priority_order": _active_lever_intake_group_priority(group),
+        "lever": (
+            "Lever 3"
+            if decision_class == "p10746_fold_only_deployment_caveat"
+            else "Lever 4"
+            if decision_class == "family_panel_expert_import_decision"
+            else "Lever 2"
+            if decision_class == "source_free_locator_rewrite_approval"
+            else "unknown"
+        ),
+        "decision_class": decision_class,
+        "entry_id": template.get("entry_id"),
+        "panel_id": template.get("panel_id"),
+        "source_packet_key": template.get("target_packet_key"),
+        "source_json_pointer": template.get("source_json_pointer"),
+        "source_packet_path": str(packet_path) if packet_path is not None else None,
+        "decision_field_to_update": template.get("decision_field_to_update"),
+        "review_status_field_to_update": template.get(
+            "review_status_field_to_update"
+        ),
+        "approved_boolean_field_to_update": (
+            template.get("approved_boolean_field_to_update")
+            or (
+                "approved"
+                if decision_class == "source_free_locator_rewrite_approval"
+                else None
+            )
+        ),
+        "required_review_status_after_decision": template.get(
+            "required_review_status_after_decision"
+        ),
+        "recommended_review_status_after_decision": template.get(
+            "recommended_review_status_after_decision"
+        ),
+        "required_approved_value_if_approving": (
+            template.get("required_approved_value_if_approving")
+            if template.get("required_approved_value_if_approving") is not None
+            else (
+                True
+                if decision_class == "source_free_locator_rewrite_approval"
+                else None
+            )
+        ),
+        "decision": decision_value or None,
+        "source_edit_contract_fields_match_template": edit_contract_ok,
+        "explicit_decision_recorded": explicit_decision,
+        "decision_hashes_match_source_template": hash_ok,
+        "accepted_import_preview_candidate_if_applied": (
+            accepted_import_preview_candidate
+        ),
+        "locator_approval_ready_for_materialization": locator_approval
+        and ready_for_follow_on_gate,
+        "locator_rejection_recorded": locator_rejection and explicit_decision,
+        "ready_for_follow_on_gate": ready_for_follow_on_gate,
+        "follow_on_gate": template.get("target_gate_after_edit"),
+        "intake_status": intake_status,
+        "blockers": sorted(set(blockers)),
+    }
+
+
+def build_active_lever_source_decision_intake_preflight(
+    *,
+    active_lever_priority_decision_templates_path: Path,
+    p10746_decision_packet_path: Path | None = None,
+    family_panel_expert_import_decision_packet_path: Path | None = None,
+    lever2_locator_rewrite_approval_packet_path: Path | None = None,
+) -> dict[str, Any]:
+    templates_path = Path(active_lever_priority_decision_templates_path)
+    templates = _read_json(templates_path)
+    packet_paths = {
+        "p10746_decision_packet": _active_lever_packet_path(
+            templates_path=templates_path,
+            templates=templates,
+            source_artifact_key="p10746_decision_packet",
+            explicit_path=p10746_decision_packet_path,
+        ),
+        "family_panel_expert_import_decision_packet": _active_lever_packet_path(
+            templates_path=templates_path,
+            templates=templates,
+            source_artifact_key="family_panel_expert_import_decision_packet",
+            explicit_path=family_panel_expert_import_decision_packet_path,
+        ),
+        "lever2_locator_rewrite_approval_packet": _active_lever_packet_path(
+            templates_path=templates_path,
+            templates=templates,
+            source_artifact_key="lever2_locator_rewrite_approval_packet",
+            explicit_path=lever2_locator_rewrite_approval_packet_path,
+        ),
+    }
+    packets = {
+        key: _read_json(path) if path is not None and Path(path).exists() else None
+        for key, path in packet_paths.items()
+    }
+    intake_rows: list[dict[str, Any]] = []
+    for group, template in _active_lever_template_rows(templates):
+        source_key = str(template.get("target_source_artifact_key") or "")
+        intake_rows.append(
+            _active_lever_intake_row(
+                group=group,
+                template=template,
+                packet=packets.get(source_key),
+                packet_path=packet_paths.get(source_key),
+            )
+        )
+
+    class_counts = Counter(row["decision_class"] for row in intake_rows)
+    status_counts = Counter(row["intake_status"] for row in intake_rows)
+    invalid_rows = [
+        row
+        for row in intake_rows
+        if row["blockers"] and row["blockers"] != ["explicit_decision_missing"]
+    ]
+    pending_rows = [
+        row
+        for row in intake_rows
+        if row["blockers"] == ["explicit_decision_missing"]
+    ]
+    follow_on_rows = [row for row in intake_rows if row["ready_for_follow_on_gate"]]
+    p10746_ready = [
+        row
+        for row in follow_on_rows
+        if row["decision_class"] == "p10746_fold_only_deployment_caveat"
+    ]
+    family_ready = [
+        row
+        for row in follow_on_rows
+        if row["decision_class"] == "family_panel_expert_import_decision"
+    ]
+    family_accepts = [
+        row
+        for row in family_ready
+        if row["accepted_import_preview_candidate_if_applied"]
+    ]
+    locator_ready = [
+        row
+        for row in follow_on_rows
+        if row["decision_class"] == "source_free_locator_rewrite_approval"
+    ]
+    locator_rejections = [
+        row for row in intake_rows if row["locator_rejection_recorded"]
+    ]
+    blockers: list[str] = []
+    if pending_rows:
+        blockers.append("explicit_source_decisions_missing")
+    if invalid_rows:
+        blockers.append("source_decision_integrity_violations")
+    if not follow_on_rows:
+        blockers.append("no_hash_valid_decision_rows_ready_for_gate")
+
+    return {
+        "artifact_id": ACTIVE_LEVER_SOURCE_DECISION_INTAKE_PREFLIGHT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.active_lever_source_decision_intake_preflight",
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "active_lever_source_decision_intake_preflight_ready"
+            if follow_on_rows and not invalid_rows
+            else "active_lever_source_decision_intake_preflight_blocked"
+        ),
+        "scope": (
+            "Fail-closed preflight for reviewed source decision packets across "
+            "active Levers 2/3/4. It compares the source packet rows to the "
+            "hash-preserving priority templates and reports which downstream "
+            "application/materialization gates are worth rerunning. It does not "
+            "apply decisions, copy locator sidecars, write import previews, run "
+            "label-factory gates, edit labels or registries, train models, or "
+            "read heldout rows."
+        ),
+        "intake_rows": sorted(
+            intake_rows,
+            key=lambda row: (
+                int(row.get("priority_order") or 99),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+            ),
+        ),
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "decisions_applied": False,
+            "locator_sidecars_created_or_copied": False,
+            "imports_or_promotions_performed": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+            "labels_registries_ontologies_changed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_evaluated": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+        },
+        "counts": {
+            "template_rows": len(intake_rows),
+            "decision_class_counts": dict(sorted(class_counts.items())),
+            "intake_status_counts": dict(sorted(status_counts.items())),
+            "explicit_decision_rows": sum(
+                1 for row in intake_rows if row["explicit_decision_recorded"]
+            ),
+            "pending_decision_rows": len(pending_rows),
+            "invalid_decision_rows": len(invalid_rows),
+            "source_edit_contract_violation_rows": sum(
+                1
+                for row in intake_rows
+                if not row["source_edit_contract_fields_match_template"]
+            ),
+            "follow_on_gate_ready_rows": len(follow_on_rows),
+            "p10746_application_ready_rows": len(p10746_ready),
+            "family_panel_application_ready_rows": len(family_ready),
+            "family_panel_import_preview_candidate_accept_rows": len(
+                family_accepts
+            ),
+            "locator_materialization_ready_approval_rows": len(locator_ready),
+            "locator_rejection_rows": len(locator_rejections),
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "p10746_application_gate_ready": bool(p10746_ready),
+            "family_panel_application_gate_ready": bool(family_ready),
+            "family_panel_import_preview_candidate_accepts_ready": bool(
+                family_accepts
+            ),
+            "locator_materialization_gate_ready": bool(locator_ready),
+            "run_any_matching_gate_now": bool(follow_on_rows and not invalid_rows),
+            "copy_locator_sidecars_now": False,
+            "run_label_factory_gate_now": False,
+            "apply_frozen_residual_threshold_now": False,
+            "next_gate": (
+                "Run only the matching application/materialization gate for "
+                "hash-valid reviewed rows. If this preflight remains blocked, "
+                "edit the source decision packets, not the derived template "
+                "artifact."
+            ),
+        },
+        "source_artifacts": {
+            "active_lever_priority_decision_templates": _source_path_record(
+                templates_path
+            ),
+            "p10746_decision_packet": (
+                _source_path_record(packet_paths["p10746_decision_packet"])
+                if packet_paths["p10746_decision_packet"] is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "family_panel_expert_import_decision_packet": (
+                _source_path_record(
+                    packet_paths["family_panel_expert_import_decision_packet"]
+                )
+                if packet_paths["family_panel_expert_import_decision_packet"]
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever2_locator_rewrite_approval_packet": (
+                _source_path_record(
+                    packet_paths["lever2_locator_rewrite_approval_packet"]
+                )
+                if packet_paths["lever2_locator_rewrite_approval_packet"]
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(follow_on_rows)} hash-valid reviewed source decisions "
+                "are ready for matching follow-on gates."
+            ),
+            "result": (
+                "The active lever source packets remain fail-closed unless "
+                "reviewed decisions use allowed values and preserve every "
+                "decision-context, candidate, and planned-payload hash."
+            ),
+            "next_action": (
+                "Record source packet decisions for the P10746 policy caveat, "
+                "priority family-panel import rows, or locator rewrite "
+                "approvals, then rerun this preflight before application gates."
+            ),
+        },
+    }
+
+
+def _render_active_lever_source_decision_intake_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    decision = preflight["decision"]
+    lines = [
+        "# Active Lever Source Decision Intake Preflight - current702",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        f"- Template rows: {counts['template_rows']}",
+        f"- Explicit decision rows: {counts['explicit_decision_rows']}",
+        f"- Pending decision rows: {counts['pending_decision_rows']}",
+        f"- Invalid decision rows: {counts['invalid_decision_rows']}",
+        "- Source edit-contract violation rows: "
+        f"{counts['source_edit_contract_violation_rows']}",
+        "- Follow-on gate-ready rows: "
+        f"{counts['follow_on_gate_ready_rows']}",
+        "- Family-panel accepted candidate rows: "
+        f"{counts['family_panel_import_preview_candidate_accept_rows']}",
+        "- Locator materialization-ready approvals: "
+        f"{counts['locator_materialization_ready_approval_rows']}",
+        f"- Blockers: {preflight['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- P10746 application gate ready: {decision['p10746_application_gate_ready']}",
+        "- Family-panel application gate ready: "
+        f"{decision['family_panel_application_gate_ready']}",
+        "- Locator materialization gate ready: "
+        f"{decision['locator_materialization_gate_ready']}",
+        f"- Run any matching gate now: {decision['run_any_matching_gate_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Intake Rows",
+        "",
+        "| priority | lever | row | source pointer | decision field | decision | status | follow-on ready | blockers |",
+        "| ---: | --- | --- | --- | --- | --- | --- | ---: | --- |",
+    ]
+    for row in preflight.get("intake_rows", [])[:90]:
+        lines.append(
+            f"| {row.get('priority_order')} | {row['lever']} | {row['entry_id']} | "
+            f"{row.get('source_json_pointer')} | "
+            f"{row.get('decision_field_to_update')} | "
+            f"{row.get('decision')} | "
+            f"{row['intake_status']} | "
+            f"{int(bool(row['ready_for_follow_on_gate']))} | "
+            f"{', '.join(row.get('blockers') or []) if row.get('blockers') else 'none'} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['headline']}",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_active_lever_source_decision_intake_preflight(
+    *,
+    active_lever_priority_decision_templates_path: Path,
+    out_path: Path,
+    p10746_decision_packet_path: Path | None = None,
+    family_panel_expert_import_decision_packet_path: Path | None = None,
+    lever2_locator_rewrite_approval_packet_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    preflight = build_active_lever_source_decision_intake_preflight(
+        active_lever_priority_decision_templates_path=(
+            active_lever_priority_decision_templates_path
+        ),
+        p10746_decision_packet_path=p10746_decision_packet_path,
+        family_panel_expert_import_decision_packet_path=(
+            family_panel_expert_import_decision_packet_path
+        ),
+        lever2_locator_rewrite_approval_packet_path=(
+            lever2_locator_rewrite_approval_packet_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_active_lever_source_decision_intake_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
 
 
 def _source_check_focus(row: dict[str, Any]) -> list[str]:
@@ -46478,6 +47279,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "review_order": row.get("review_order")
                 or queue_row.get("review_order"),
                 "reviewer_decision": "pending_reviewer_decision",
+                "decision_field_to_update": "reviewer_decision",
+                "approved_boolean_field_to_update": "approved",
+                "required_approved_value_if_approving": True,
                 "approved": False,
                 "reviewer": "",
                 "reviewed_utc": "",

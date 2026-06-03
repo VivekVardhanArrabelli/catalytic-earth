@@ -48,6 +48,7 @@ from .northstar_next_levers import (
     write_active_lever_mechanical_actionability_audit,
     write_active_lever_priority_decision_templates,
     write_active_lever_reviewer_decision_queue,
+    write_active_lever_source_decision_intake_preflight,
     write_family_set_expansion_targets,
     write_family_panel_evidence_packet,
     write_family_panel_high_value_glycyl_radical_readiness_packet,
@@ -12605,6 +12606,11 @@ def cmd_build_active_lever_mechanical_actionability_audit(
         active_lever_reviewer_decision_queue_path=Path(
             args.active_lever_reviewer_decision_queue
         ),
+        active_lever_source_decision_intake_preflight_path=Path(
+            args.active_lever_source_decision_intake_preflight
+        )
+        if args.active_lever_source_decision_intake_preflight
+        else None,
         lever2_pre_threshold_readiness_path=Path(args.lever2_pre_threshold_readiness)
         if args.lever2_pre_threshold_readiness
         else None,
@@ -12655,6 +12661,38 @@ def cmd_build_active_lever_priority_decision_templates(
         "Wrote active lever priority decision templates to "
         f"{args.out} (status: {templates.get('status')}, template rows: "
         f"{counts.get('template_rows')})"
+    )
+    return 0
+
+
+def cmd_build_active_lever_source_decision_intake_preflight(
+    args: argparse.Namespace,
+) -> int:
+    preflight = write_active_lever_source_decision_intake_preflight(
+        active_lever_priority_decision_templates_path=Path(
+            args.active_lever_priority_decision_templates
+        ),
+        p10746_decision_packet_path=Path(args.p10746_decision_packet)
+        if args.p10746_decision_packet
+        else None,
+        family_panel_expert_import_decision_packet_path=Path(
+            args.family_panel_expert_import_decision_packet
+        )
+        if args.family_panel_expert_import_decision_packet
+        else None,
+        lever2_locator_rewrite_approval_packet_path=Path(
+            args.lever2_locator_rewrite_approval_packet
+        )
+        if args.lever2_locator_rewrite_approval_packet
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = preflight.get("counts", {})
+    print(
+        "Wrote active lever source decision intake preflight to "
+        f"{args.out} (status: {preflight.get('status')}, follow-on ready rows: "
+        f"{counts.get('follow_on_gate_ready_rows')})"
     )
     return 0
 
@@ -28550,6 +28588,13 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     active_lever_actionability.add_argument(
+        "--active-lever-source-decision-intake-preflight",
+        default=(
+            "artifacts/v3_active_lever_source_decision_intake_preflight_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
         "--lever2-pre-threshold-readiness",
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
@@ -28635,6 +28680,60 @@ def build_parser() -> argparse.ArgumentParser:
     )
     active_lever_templates.set_defaults(
         func=cmd_build_active_lever_priority_decision_templates
+    )
+
+    active_lever_source_intake = subparsers.add_parser(
+        "build-active-lever-source-decision-intake-preflight",
+        help=(
+            "preflight reviewed active Lever 2/3/4 source decision packets "
+            "against hash-preserving templates without applying decisions"
+        ),
+    )
+    active_lever_source_intake.add_argument(
+        "--active-lever-priority-decision-templates",
+        default=(
+            "artifacts/v3_active_lever_priority_decision_templates_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_source_intake.add_argument(
+        "--p10746-decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    active_lever_source_intake.add_argument(
+        "--family-panel-expert-import-decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    active_lever_source_intake.add_argument(
+        "--lever2-locator-rewrite-approval-packet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_approval_packet_current702_20260603.json"
+        ),
+    )
+    active_lever_source_intake.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_active_lever_source_decision_intake_preflight_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_source_intake.add_argument(
+        "--report",
+        default=(
+            "work/active_lever_source_decision_intake_preflight_current702_"
+            "20260603.md"
+        ),
+    )
+    active_lever_source_intake.set_defaults(
+        func=cmd_build_active_lever_source_decision_intake_preflight
     )
 
     family_panel_source_queue = subparsers.add_parser(

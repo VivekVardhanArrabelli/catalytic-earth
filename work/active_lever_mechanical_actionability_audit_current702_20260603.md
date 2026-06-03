@@ -1,6 +1,6 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T09:52:42Z
+Run: 2026-06-03T10:43:51Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
@@ -11,10 +11,13 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 - External decisions required: 78
 - Automation-action-allowed-now items: 0
 - Mechanical gates ready now: 0
+- Source-decision follow-on gate-ready rows: 0
+- Source-decision pending rows: 78
+- Source-decision invalid rows: 0
 - Lever 2 pending locator approvals: 55
 - Lever 2 event-axis linker rows: 0
 - Lever 4 label-factory gate input rows: 0
-- Blockers: ['no_active_lever_mechanical_gate_ready', 'p10746_policy_decision_missing', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
+- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
 
 ## Decision
 
@@ -28,6 +31,7 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 
 | lever | gate | ready now | blocker | next command after decision |
 | --- | --- | --- | --- | --- |
+| Lever 2/3/4 | source_decision_intake_preflight | False | source_decision_intake_preflight_not_ready | build-active-lever-source-decision-intake-preflight |
 | Lever 3 | p10746_post_decision_deployment_closure | False | p10746_policy_decision_missing | apply-fold-augmented-p10746-deployment-caveat-decision |
 | Lever 4 | family_panel_label_factory_gate_readiness | False | family_panel_expert_import_decisions_missing | apply-fold-augmented-family-panel-expert-import-decision |
 | Lever 2 | source_free_locator_materialization_and_pre_threshold_readiness | False | source_free_locator_rewrite_approvals_missing | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
@@ -35,20 +39,20 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 
 ## Next Review Items
 
-| priority | lever | row | decision class | status |
-| ---: | --- | --- | --- | --- |
-| 1 | Lever 3 | m_csa:204 | p10746_fold_only_deployment_caveat | pending_explicit_decision |
-| 2 | Lever 4 | m_csa:10 | family_panel_expert_import_decision | pending_expert_import_decision |
-| 2 | Lever 4 | m_csa:30 | family_panel_expert_import_decision | pending_expert_import_decision |
-| 2 | Lever 4 | m_csa:31 | family_panel_expert_import_decision | pending_expert_import_decision |
-| 2 | Lever 4 | m_csa:191 | family_panel_expert_import_decision | pending_expert_import_decision |
-| 2 | Lever 4 | m_csa:448 | family_panel_expert_import_decision | pending_expert_import_decision |
-| 2 | Lever 4 | m_csa:973 | family_panel_expert_import_decision | pending_expert_import_decision |
-| 3 | Lever 2 | m_csa:3 | source_free_locator_rewrite_approval | pending_reviewer_decision |
-| 3 | Lever 2 | m_csa:9 | source_free_locator_rewrite_approval | pending_reviewer_decision |
-| 3 | Lever 2 | m_csa:32 | source_free_locator_rewrite_approval | pending_reviewer_decision |
-| 3 | Lever 2 | m_csa:43 | source_free_locator_rewrite_approval | pending_reviewer_decision |
-| 3 | Lever 2 | m_csa:44 | source_free_locator_rewrite_approval | pending_reviewer_decision |
+| priority | lever | row | decision class | status | decision field |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | Lever 3 | m_csa:204 | p10746_fold_only_deployment_caveat | pending_explicit_decision | decision |
+| 2 | Lever 4 | m_csa:10 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
+| 2 | Lever 4 | m_csa:30 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
+| 2 | Lever 4 | m_csa:31 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
+| 2 | Lever 4 | m_csa:191 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
+| 2 | Lever 4 | m_csa:448 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
+| 2 | Lever 4 | m_csa:973 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
+| 3 | Lever 2 | m_csa:3 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
+| 3 | Lever 2 | m_csa:9 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
+| 3 | Lever 2 | m_csa:32 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
+| 3 | Lever 2 | m_csa:43 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
+| 3 | Lever 2 | m_csa:44 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
 
 ## Interpretation
 

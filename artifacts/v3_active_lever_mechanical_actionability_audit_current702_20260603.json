@@ -2,6 +2,7 @@
   "artifact_id": "v3_active_lever_mechanical_actionability_audit_current702_20260603",
   "blockers": [
     "no_active_lever_mechanical_gate_ready",
+    "source_decision_intake_preflight_not_ready",
     "p10746_policy_decision_missing",
     "family_panel_expert_import_decisions_missing",
     "source_free_locator_rewrite_approvals_missing",
@@ -12,7 +13,7 @@
   ],
   "counts": {
     "automation_action_allowed_now_items": 0,
-    "blockers": 8,
+    "blockers": 9,
     "decision_items": 78,
     "external_decision_required_items": 78,
     "lever2_clean_locator_rewrite_items": 49,
@@ -23,9 +24,12 @@
     "lever4_label_factory_gate_input_rows": 0,
     "lever4_pending_expert_import_decisions": 22,
     "mechanical_gates_ready_now": 0,
-    "p10746_pending_policy_decisions": 1
+    "p10746_pending_policy_decisions": 1,
+    "source_decision_follow_on_gate_ready_rows": 0,
+    "source_decision_intake_invalid_rows": 0,
+    "source_decision_intake_pending_rows": 78
   },
-  "created_utc": "2026-06-03T09:52:42Z",
+  "created_utc": "2026-06-03T10:43:51Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
@@ -40,6 +44,13 @@
     "source_free_locator_rewrite_approval": 55
   },
   "gate_checks": [
+    {
+      "blocking_reason": "source_decision_intake_preflight_not_ready",
+      "gate": "source_decision_intake_preflight",
+      "lever": "Lever 2/3/4",
+      "next_command_after_decision": "build-active-lever-source-decision-intake-preflight",
+      "ready_now": false
+    },
     {
       "blocking_reason": "p10746_policy_decision_missing",
       "gate": "p10746_post_decision_deployment_closure",
@@ -94,14 +105,17 @@
         "explicit_accept_p10746_fold_only_deployment_caveat",
         "reject_p10746_caveat_require_approved_non_residue_sidecar"
       ],
+      "approved_boolean_field_to_update": null,
       "candidate_sha256": null,
       "decision_class": "p10746_fold_only_deployment_caveat",
       "decision_context_sha256": "8b5d0ca064b82b0b091d53ba1ba7ea4caa382545bb69754ab11e18e200f00996",
+      "decision_field_to_update": "decision",
       "entry_id": "m_csa:204",
       "lever": "Lever 3",
       "planned_locator_payload_sha256": null,
       "priority": 1,
-      "review_status": "pending_explicit_decision"
+      "review_status": "pending_explicit_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
@@ -109,14 +123,17 @@
         "reject_family_panel_import_candidate",
         "keep_family_panel_review_only_require_more_evidence"
       ],
+      "approved_boolean_field_to_update": null,
       "candidate_sha256": null,
       "decision_class": "family_panel_expert_import_decision",
       "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+      "decision_field_to_update": "decision",
       "entry_id": "m_csa:10",
       "lever": "Lever 4",
       "planned_locator_payload_sha256": null,
       "priority": 2,
-      "review_status": "pending_expert_import_decision"
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
@@ -124,14 +141,17 @@
         "reject_family_panel_import_candidate",
         "keep_family_panel_review_only_require_more_evidence"
       ],
+      "approved_boolean_field_to_update": null,
       "candidate_sha256": null,
       "decision_class": "family_panel_expert_import_decision",
       "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+      "decision_field_to_update": "decision",
       "entry_id": "m_csa:30",
       "lever": "Lever 4",
       "planned_locator_payload_sha256": null,
       "priority": 2,
-      "review_status": "pending_expert_import_decision"
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
@@ -139,14 +159,17 @@
         "reject_family_panel_import_candidate",
         "keep_family_panel_review_only_require_more_evidence"
       ],
+      "approved_boolean_field_to_update": null,
       "candidate_sha256": null,
       "decision_class": "family_panel_expert_import_decision",
       "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+      "decision_field_to_update": "decision",
       "entry_id": "m_csa:31",
       "lever": "Lever 4",
       "planned_locator_payload_sha256": null,
       "priority": 2,
-      "review_status": "pending_expert_import_decision"
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
@@ -154,14 +177,17 @@
         "reject_family_panel_import_candidate",
         "keep_family_panel_review_only_require_more_evidence"
       ],
+      "approved_boolean_field_to_update": null,
       "candidate_sha256": null,
       "decision_class": "family_panel_expert_import_decision",
       "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+      "decision_field_to_update": "decision",
       "entry_id": "m_csa:191",
       "lever": "Lever 4",
       "planned_locator_payload_sha256": null,
       "priority": 2,
-      "review_status": "pending_expert_import_decision"
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
@@ -169,14 +195,17 @@
         "reject_family_panel_import_candidate",
         "keep_family_panel_review_only_require_more_evidence"
       ],
+      "approved_boolean_field_to_update": null,
       "candidate_sha256": null,
       "decision_class": "family_panel_expert_import_decision",
       "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+      "decision_field_to_update": "decision",
       "entry_id": "m_csa:448",
       "lever": "Lever 4",
       "planned_locator_payload_sha256": null,
       "priority": 2,
-      "review_status": "pending_expert_import_decision"
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
@@ -184,84 +213,102 @@
         "reject_family_panel_import_candidate",
         "keep_family_panel_review_only_require_more_evidence"
       ],
+      "approved_boolean_field_to_update": null,
       "candidate_sha256": null,
       "decision_class": "family_panel_expert_import_decision",
       "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+      "decision_field_to_update": "decision",
       "entry_id": "m_csa:973",
       "lever": "Lever 4",
       "planned_locator_payload_sha256": null,
       "priority": 2,
-      "review_status": "pending_expert_import_decision"
+      "review_status": "pending_expert_import_decision",
+      "review_status_field_to_update": "review_status"
     },
     {
       "allowed_decisions": [
         "explicit_approve_locator_rewrite",
         "reject_locator_rewrite"
       ],
+      "approved_boolean_field_to_update": "approved",
       "candidate_sha256": "42ff54f4954c5eab5c379368bad9975644a773d6d5c503804b39313aa2054587",
       "decision_class": "source_free_locator_rewrite_approval",
       "decision_context_sha256": null,
+      "decision_field_to_update": "reviewer_decision",
       "entry_id": "m_csa:3",
       "lever": "Lever 2",
       "planned_locator_payload_sha256": "a0a60195fe080d4369111b9b6f33645b8c0d0b772a7b4deed1038f3075be7634",
       "priority": 3,
-      "review_status": "pending_reviewer_decision"
+      "review_status": "pending_reviewer_decision",
+      "review_status_field_to_update": null
     },
     {
       "allowed_decisions": [
         "explicit_approve_locator_rewrite",
         "reject_locator_rewrite"
       ],
+      "approved_boolean_field_to_update": "approved",
       "candidate_sha256": "790bbeacd166d2944c29b1d57e79636d25702a5aa58c8d81fe508f7c9a910cb0",
       "decision_class": "source_free_locator_rewrite_approval",
       "decision_context_sha256": null,
+      "decision_field_to_update": "reviewer_decision",
       "entry_id": "m_csa:9",
       "lever": "Lever 2",
       "planned_locator_payload_sha256": "a4674a271c4a0eb7934aa31940409fe24e2051342c97e8fc07745e7e388c7e41",
       "priority": 3,
-      "review_status": "pending_reviewer_decision"
+      "review_status": "pending_reviewer_decision",
+      "review_status_field_to_update": null
     },
     {
       "allowed_decisions": [
         "explicit_approve_locator_rewrite",
         "reject_locator_rewrite"
       ],
+      "approved_boolean_field_to_update": "approved",
       "candidate_sha256": "c9e6611728bff41d09141a148f4c4ea45ccf0a9d908a33440ba27c8164f4deea",
       "decision_class": "source_free_locator_rewrite_approval",
       "decision_context_sha256": null,
+      "decision_field_to_update": "reviewer_decision",
       "entry_id": "m_csa:32",
       "lever": "Lever 2",
       "planned_locator_payload_sha256": "3b92532aa5bf121756507d287ad02207a715a966aaddfcfc73c080243c3e9d3f",
       "priority": 3,
-      "review_status": "pending_reviewer_decision"
+      "review_status": "pending_reviewer_decision",
+      "review_status_field_to_update": null
     },
     {
       "allowed_decisions": [
         "explicit_approve_locator_rewrite",
         "reject_locator_rewrite"
       ],
+      "approved_boolean_field_to_update": "approved",
       "candidate_sha256": "ebea185c65639b7b2a5ccfa9d30522ccb031205eb42ed31ef599346f6c8bb0f1",
       "decision_class": "source_free_locator_rewrite_approval",
       "decision_context_sha256": null,
+      "decision_field_to_update": "reviewer_decision",
       "entry_id": "m_csa:43",
       "lever": "Lever 2",
       "planned_locator_payload_sha256": "2d6ac9b66074ca73a0a7052be7764d3ec197e68bad3932b48321572ec5644493",
       "priority": 3,
-      "review_status": "pending_reviewer_decision"
+      "review_status": "pending_reviewer_decision",
+      "review_status_field_to_update": null
     },
     {
       "allowed_decisions": [
         "explicit_approve_locator_rewrite",
         "reject_locator_rewrite"
       ],
+      "approved_boolean_field_to_update": "approved",
       "candidate_sha256": "e13bc109a4374aa55e6747ae63505b48ab35ab277140dcea964c27fa6ffb98b0",
       "decision_class": "source_free_locator_rewrite_approval",
       "decision_context_sha256": null,
+      "decision_field_to_update": "reviewer_decision",
       "entry_id": "m_csa:44",
       "lever": "Lever 2",
       "planned_locator_payload_sha256": "e9ad66fe5b44ca8d6a4830ed34a035d7a2897a5af1897c5094243c889c459551",
       "priority": 3,
-      "review_status": "pending_reviewer_decision"
+      "review_status": "pending_reviewer_decision",
+      "review_status_field_to_update": null
     }
   ],
   "schema_version": "northstar_next_levers.v0.active_lever_mechanical_actionability_audit",
@@ -270,12 +317,17 @@
     "active_lever_reviewer_decision_queue": {
       "exists": true,
       "path": "artifacts/v3_active_lever_reviewer_decision_queue_current702_20260603.json",
-      "sha256": "5f3e41db3e002feceb5efa19461a555e9d913467404c60aa2aaddfdb221924c7"
+      "sha256": "9dea743a06b64a93b89104e8b28f71fe61d3fc484e093c0956040c0aa3520683"
+    },
+    "active_lever_source_decision_intake_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json",
+      "sha256": "cd2b3e4bc50ef16b1ed32309613d28d35368788f65de9e3be7527e3edfee1274"
     },
     "family_panel_label_factory_gate_readiness": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_label_factory_gate_readiness_current702_20260603.json",
-      "sha256": "4f02f80eb1f7f1d17c045634e80accc0eec99b823aadd40e8f8f770d006befb2"
+      "sha256": "b3b8afac71d645762ae55038d52482e760b7327f99ff113ccbfc84ec1d96f4f9"
     },
     "lever2_event_axis_linker_materialization_gate": {
       "exists": true,
@@ -290,12 +342,12 @@
     "lever2_pre_threshold_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json",
-      "sha256": "b74ccbd698a9240cd678a7040114c995c07175e67b41c4db29296885f192248c"
+      "sha256": "bed65a5125db2499932a3a8695794982f240c6b61bd240f553f96f07b76fdc75"
     },
     "lever3_post_decision_deployment_closure_status": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_post_decision_deployment_closure_status_current702_20260603.json",
-      "sha256": "e563fe3388569afa2ad78042e890cf7f5c2ae773ebba1664aaee96f21b8a5ddd"
+      "sha256": "bb11d38ea3fd263cf3fc2a53b6486d6adfe46e35b115f5005439f16bcf8f6604"
     }
   },
   "status": "active_lever_mechanical_actionability_blocked_external_decisions"

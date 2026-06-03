@@ -17,7 +17,7 @@
     "review_only_rows": 0,
     "unmatched_decisions": 0
   },
-  "created_utc": "2026-06-03T08:12:02Z",
+  "created_utc": "2026-06-03T10:19:58Z",
   "decision": {
     "explicit_expert_import_decisions_recorded": false,
     "import_preview_can_run_now": false,
@@ -445,12 +445,12 @@
     "expert_decisions": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.json",
-      "sha256": "63892511fa812103e8cb08e0d6a274d2fe305862fc87906a965cc257a431e0bc"
+      "sha256": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8"
     },
     "expert_import_decision_packet": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.json",
-      "sha256": "63892511fa812103e8cb08e0d6a274d2fe305862fc87906a965cc257a431e0bc"
+      "sha256": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8"
     }
   },
   "status": "family_panel_expert_import_decision_application_blocked",

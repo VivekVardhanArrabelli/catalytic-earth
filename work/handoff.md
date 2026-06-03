@@ -50,6 +50,100 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 10
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T10:02:52Z`
+- STARTED_LOCAL: `2026-06-03T05:02:52-0500 CDT`
+- ENDED_AT: `2026-06-03T10:52:05Z`
+- ENDED_LOCAL: `2026-06-03T05:52:05-0500 CDT`
+- ELAPSED_MINUTES: `49.2`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "55053", "started_at": "2026-06-03T10:02:52Z", "started_local": "2026-06-03T05:02:52-0500 CDT", "status": "acquired"}`
+
+#### Current intent
+
+Use the active handoff as primary truth, continue inside Levers 2/3/4 from
+current `main`, and make the highest-value deployable forward move without
+editing labels, registries, ontologies, imports, production thresholds, or any
+heldout-tuned surfaces.
+
+#### What changed
+
+- Added
+  `v3_active_lever_source_decision_intake_preflight_current702_20260603` and
+  report. This fail-closed Lever 2/3/4 preflight reads the source decision
+  packets, compares each row to the hash-preserving priority templates, and
+  reports which matching application/materialization gates are safe to rerun.
+  Current state remains blocked: 78 template rows, 78 pending source decisions,
+  0 explicit decisions, 0 invalid rows, and 0 follow-on gate-ready rows.
+- Exposed source edit contracts directly in the intake surface: source JSON
+  pointer, decision field, review-status field where required, locator
+  `approved` field, and required post-decision values. The generated report now
+  lists P10746 first, the six Lever 4 import-preview candidates second, and
+  clean Lever 2 locator approvals next.
+- Wired the source-decision preflight into the active lever mechanical
+  actionability audit. The audit now records source-decision pending/invalid/
+  follow-on-ready counts, treats the intake preflight as the first gate check,
+  and will open `apply_any_decision_gate_now` only when a hash-valid reviewed
+  source row is ready.
+- Regenerated the dependent active Lever 2/3/4 packet/application/readiness
+  artifacts and reports so their source hashes and edit-contract fields are
+  current. The system still has 0 active mechanical gates runnable.
+- Added CLI support for
+  `build-active-lever-source-decision-intake-preflight` and extended
+  `build-active-lever-mechanical-actionability-audit` with the preflight input.
+- Added unit, CLI-registration, and current-artifact regression coverage for
+  pending, ready, invalid, and current blocked intake states.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, locator sidecars, reviewer decisions, or source decision values were
+  edited.
+- No heldout rows were trained on, threshold-tuned, evaluated through a new
+  operating point, or used for frozen threshold application. The new outputs are
+  review-only gate/preflight artifacts.
+
+#### Verification
+
+- `PYTHONPATH=src python -m pytest -q`: 1305 passed, 133 subtests passed, one
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1260 passed, same
+  existing warning.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_progress.py -q`:
+  121 passed, 107 subtests passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 702 labels, 8
+  fingerprints, and 15 ontology families validated.
+- `PYTHONPATH=src python -m compileall -q src`, `git diff --check`, and a
+  repo-wide JSON parse sweep over 3375 JSON files passed.
+- Changed-artifact source SHA audit checked 38 source records across the 12
+  changed JSON artifacts.
+
+#### Exact next action
+
+Do not edit the derived priority-template or preflight artifacts as source of
+truth. If reviewed decisions are available, edit only the source decision
+packets while preserving their context hashes:
+
+1. P10746 policy packet `/decision_stubs/0`: set `decision` to an allowed value
+   and change `review_status` to `reviewed_explicit_decision`.
+2. Six Lever 4 import-preview candidates in
+   `expert_import_decision_stubs`: set `decision` on the rows listed in the
+   preflight report.
+3. Lever 2 source-free locator approvals in
+   `locator_rewrite_decision_stubs`: set `reviewer_decision`, and set
+   `approved` only for explicit approvals.
+
+After any source packet decisions land, rerun
+`build-active-lever-source-decision-intake-preflight`, then run only the
+matching application/materialization gate indicated by the preflight. Rerun
+`build-active-lever-mechanical-actionability-audit` before locator copy,
+label-factory gates, heldout reads, or frozen residual-threshold application.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 9
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

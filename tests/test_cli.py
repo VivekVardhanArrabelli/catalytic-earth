@@ -899,6 +899,10 @@ class CliTests(unittest.TestCase):
                 "cmd_build_active_lever_priority_decision_templates",
             ),
             (
+                "build-active-lever-source-decision-intake-preflight",
+                "cmd_build_active_lever_source_decision_intake_preflight",
+            ),
+            (
                 "build-family-panel-source-free-locator-human-decision-matrix",
                 "cmd_build_family_panel_source_free_locator_human_decision_matrix",
             ),

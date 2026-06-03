@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Expert Import Decision Application - current702
 
-Run: 2026-06-03T08:12:02Z
+Run: 2026-06-03T10:19:58Z
 
 Fail-closed application gate for Lever 4 family-panel expert import decisions. It verifies row-context hashes and exposes accepted rows that may enter a separate import-preview artifact. It does not write an import preview, run label-factory gates, edit labels, change registries, or make rows countable.
 

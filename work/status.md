@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 325
-- Measured elapsed time: 9691.2 minutes (161.52 hours)
+- Entries: 326
+- Measured elapsed time: 9740.4 minutes (162.34 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 3001.6 measured minutes (50.03 hours)
+- post-v2: 3050.9 measured minutes (50.85 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
 - v3: 2578.1 measured minutes (42.97 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3446
-- Evidence references logged: 2859
+- Artifact references logged: 3456
+- Evidence references logged: 2866
 
 ## Recent Entries
-
-### 2026-05-25T13:37:58.445786+00:00 - sequence-nn-baseline
-
-- Task: current702 sequence-NN gated rerun and push check
-- Time mode: measured
-- Measured minutes: 4.967
-- Started: 2026-05-25T13:32:49Z
-- Ended: 2026-05-25T13:37:47Z
-- Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, work/handoff.md
-- Evidence: build-sequence-nn-baseline rerun deterministic blocked_before_sequence_nn_metrics with 1 split blocker, validate passed with 702 labels 8 fingerprints 15 ontology families, unittest discovery passed 936 tests, git diff --check passed, jq empty sequence-NN JSON artifacts passed, HTTPS push failed fatal could not read Username for https://github.com Device not configured, SSH push failed Permission denied publickey
-- Notes: No label import registry edit fingerprint edit ontology edit scoring threshold change model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched; predictions and metrics artifacts remain absent by contract.
 
 ### 2026-05-25T14:36:49.637815+00:00 - sequence-nn-baseline
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-06-03T09:53:23Z
 - Artifacts: artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, artifacts/v3_active_lever_priority_decision_templates_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, work/handoff.md
 - Evidence: 1300 pytest passed, 1255 unittest passed, 702 labels validated, 3374 JSON files parsed, 0 active mechanical gates runnable
+- Notes: No labels registries ontologies imports production thresholds model weights locator sidecars reviewer decisions or heldout threshold reads changed.
+
+### 2026-06-03T10:52:23.444858+00:00 - post-v2
+
+- Task: active Lever source decision intake preflight
+- Time mode: measured
+- Measured minutes: 49.217
+- Started: 2026-06-03T10:02:52Z
+- Ended: 2026-06-03T10:52:05Z
+- Artifacts: artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, artifacts/v3_active_lever_priority_decision_templates_current702_20260603.json, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, work/handoff.md, work/status.md
+- Evidence: 1305 pytest passed, 1260 unittest passed, 702 labels validated, 3375 JSON files parsed, 38 changed-artifact source SHA records checked, 0 active mechanical gates runnable, 78 source decisions still pending
 - Notes: No labels registries ontologies imports production thresholds model weights locator sidecars reviewer decisions or heldout threshold reads changed.
 
 ## Expectation Updates
@@ -375,6 +375,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-27T10:15:26Z: Next Packet 1/Wave 1 work should be expert review for m_csa:750 plus FMO acquisition; do not treat hydride sublabel as ready. Push requires GitHub credential repair.
 - 2026-05-27T13:12:54.482909+00:00: Wave 1 Packet 1 TM-pair claims are no longer capped by the prior 200-row retention limit; full 692-query all-vs-all remains unclaimed.
 - 2026-06-03T09:54:04.655478+00:00: Next run should start by applying explicit source-packet decisions if available; otherwise no mechanical gate is open.
+- 2026-06-03T10:52:23.444858+00:00: Next run should edit only source decision packets if reviewed decisions are available then rerun the source intake preflight before application or materialization gates.
 
 ## Scope Adjustments
 
@@ -571,3 +572,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-27T10:15:26Z: Packet 1 and Wave 1 are now read through additive review-only addenda rather than stale readiness/canary advertising.
 - 2026-05-27T13:12:54.482909+00:00: Closed evaluation-design evidence only with review-only Foldseek chunk artifacts and no registry scoring threshold import model or representation changes.
 - 2026-06-03T09:54:04.655478+00:00: Active Lever 2/3/4 remains review-gated; derived templates are patch aids only and not source-of-truth decisions.
+- 2026-06-03T10:52:23.444858+00:00: Active Lever 2/3/4 now has a hash-preserving source-decision intake preflight between review packets and application gates.

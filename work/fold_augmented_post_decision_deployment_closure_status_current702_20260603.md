@@ -1,6 +1,6 @@
 # Fold-Augmented Post-Decision Deployment Closure Status - current702
 
-Run: 2026-06-03T07:26:06Z
+Run: 2026-06-03T10:19:58Z
 
 Post-decision Lever 3 deployment closure status. It composes the post-rerun confounded closure audit with the P10746 decision application gate. It closes only if the P10746 fold-only caveat is explicitly accepted and the existing operating-point criteria remain met.
 

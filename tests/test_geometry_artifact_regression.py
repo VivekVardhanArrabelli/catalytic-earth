@@ -3416,6 +3416,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(stub["entry_id"], "m_csa:204")
         self.assertEqual(stub["accession"], "P10746")
         self.assertEqual(stub["review_status"], "pending_explicit_decision")
+        self.assertEqual(stub["decision_field_to_update"], "decision")
+        self.assertEqual(stub["review_status_field_to_update"], "review_status")
+        self.assertEqual(
+            stub["required_review_status_after_decision"],
+            "reviewed_explicit_decision",
+        )
         self.assertIn(
             "explicit_accept_p10746_fold_only_deployment_caveat",
             stub["allowed_decisions"],
@@ -6546,6 +6552,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "locator_sidecars_created_or_copied"
             ]
         )
+        first_locator_stub = pair_locator_rewrite_approval_packet[
+            "locator_rewrite_decision_stubs"
+        ][0]
+        self.assertEqual(
+            first_locator_stub["decision_field_to_update"], "reviewer_decision"
+        )
+        self.assertEqual(
+            first_locator_stub["approved_boolean_field_to_update"], "approved"
+        )
+        self.assertTrue(
+            first_locator_stub["required_approved_value_if_approving"]
+        )
         self.assertEqual(
             pair_locator_rewrite_gate["status"],
             "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_ready_blocked",
@@ -8201,6 +8219,17 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             by_entry["m_csa:30"]["import_preview_candidate_if_accepted_now"]
         )
+        self.assertEqual(
+            by_entry["m_csa:30"]["decision_field_to_update"], "decision"
+        )
+        self.assertEqual(
+            by_entry["m_csa:30"]["review_status_field_to_update"],
+            "review_status",
+        )
+        self.assertEqual(
+            by_entry["m_csa:30"]["recommended_review_status_after_decision"],
+            "reviewed_expert_import_decision",
+        )
         self.assertFalse(
             by_entry["mh_064"]["import_preview_candidate_if_accepted_now"]
         )
@@ -8424,12 +8453,35 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "p10746_fold_only_deployment_caveat",
         )
         self.assertEqual(queue["decision_queue"][0]["entry_id"], "m_csa:204")
+        self.assertEqual(
+            queue["decision_queue"][0]["decision_field_to_update"], "decision"
+        )
+        self.assertEqual(
+            queue["decision_queue"][0]["review_status_field_to_update"],
+            "review_status",
+        )
+        self.assertEqual(
+            queue["decision_queue"][0]["required_review_status_after_decision"],
+            "reviewed_explicit_decision",
+        )
         priority2_rows = [
             row
             for row in queue["decision_queue"]
             if row["priority"] == 2
         ]
         self.assertEqual(len(priority2_rows), 6)
+        self.assertEqual(priority2_rows[0]["decision_field_to_update"], "decision")
+        priority3_rows = [
+            row
+            for row in queue["decision_queue"]
+            if row["priority"] == 3
+        ]
+        self.assertEqual(
+            priority3_rows[0]["decision_field_to_update"], "reviewer_decision"
+        )
+        self.assertEqual(
+            priority3_rows[0]["approved_boolean_field_to_update"], "approved"
+        )
         self.assertTrue(queue["guardrails"]["review_only"])
         self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
         self.assertFalse(
@@ -8460,6 +8512,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
+        self.assertEqual(
+            audit["counts"]["source_decision_intake_pending_rows"], 78
+        )
+        self.assertEqual(
+            audit["counts"]["source_decision_intake_invalid_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["source_decision_follow_on_gate_ready_rows"], 0
+        )
         self.assertEqual(audit["counts"]["p10746_pending_policy_decisions"], 1)
         self.assertEqual(
             audit["counts"]["lever4_pending_expert_import_decisions"], 22
@@ -8474,6 +8535,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["lever4_label_factory_gate_input_rows"], 0
         )
         self.assertIn("no_active_lever_mechanical_gate_ready", audit["blockers"])
+        self.assertIn(
+            "source_decision_intake_preflight_not_ready", audit["blockers"]
+        )
         self.assertIn("p10746_policy_decision_missing", audit["blockers"])
         self.assertIn(
             "family_panel_expert_import_decisions_missing", audit["blockers"]
@@ -8496,6 +8560,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(audit["guardrails"]["review_only"])
         self.assertFalse(
             audit["guardrails"]["labels_registries_ontologies_changed"]
+        )
+        self.assertEqual(
+            audit["gate_checks"][0]["gate"], "source_decision_intake_preflight"
+        )
+        self.assertFalse(audit["gate_checks"][0]["ready_now"])
+        self.assertEqual(
+            audit["next_review_items"][0]["decision_field_to_update"],
+            "decision",
         )
 
     def test_active_lever_priority_decision_templates_current_counts(
@@ -8553,10 +8625,28 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "/decision_stubs/0",
         )
         self.assertEqual(
+            templates["template_groups"]["p10746_policy_decisions"][0][
+                "review_status_field_to_update"
+            ],
+            "review_status",
+        )
+        self.assertEqual(
+            templates["template_groups"]["p10746_policy_decisions"][0][
+                "required_review_status_after_decision"
+            ],
+            "reviewed_explicit_decision",
+        )
+        self.assertEqual(
             templates["template_groups"]["family_panel_import_preview_candidates"][
                 0
             ]["source_json_pointer"],
             "/expert_import_decision_stubs/12",
+        )
+        self.assertEqual(
+            templates["template_groups"]["clean_locator_rewrite_approvals"][0][
+                "decision_field_to_update"
+            ],
+            "reviewer_decision",
         )
         self.assertEqual(
             templates["template_groups"]["clean_locator_rewrite_approvals"][0][
@@ -8569,6 +8659,116 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(templates["guardrails"]["decisions_applied"])
         self.assertFalse(
             templates["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_active_lever_source_decision_intake_preflight_current_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_active_lever_source_decision_intake_preflight_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            "active_lever_source_decision_intake_preflight_blocked",
+        )
+        self.assertEqual(preflight["counts"]["template_rows"], 78)
+        self.assertEqual(
+            preflight["counts"]["decision_class_counts"],
+            {
+                "family_panel_expert_import_decision": 22,
+                "p10746_fold_only_deployment_caveat": 1,
+                "source_free_locator_rewrite_approval": 55,
+            },
+        )
+        self.assertEqual(
+            preflight["counts"]["intake_status_counts"],
+            {"pending_external_decision": 78},
+        )
+        self.assertEqual(preflight["counts"]["explicit_decision_rows"], 0)
+        self.assertEqual(preflight["counts"]["pending_decision_rows"], 78)
+        self.assertEqual(preflight["counts"]["invalid_decision_rows"], 0)
+        self.assertEqual(
+            preflight["counts"]["source_edit_contract_violation_rows"], 0
+        )
+        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 0)
+        self.assertEqual(
+            preflight["counts"]["p10746_application_ready_rows"], 0
+        )
+        self.assertEqual(
+            preflight["counts"]["family_panel_application_ready_rows"], 0
+        )
+        self.assertEqual(
+            preflight["counts"][
+                "family_panel_import_preview_candidate_accept_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            preflight["counts"]["locator_materialization_ready_approval_rows"],
+            0,
+        )
+        self.assertIn(
+            "explicit_source_decisions_missing", preflight["blockers"]
+        )
+        self.assertIn(
+            "no_hash_valid_decision_rows_ready_for_gate",
+            preflight["blockers"],
+        )
+        self.assertFalse(preflight["decision"]["run_any_matching_gate_now"])
+        self.assertFalse(preflight["decision"]["copy_locator_sidecars_now"])
+        self.assertFalse(preflight["decision"]["run_label_factory_gate_now"])
+        self.assertFalse(
+            preflight["decision"]["apply_frozen_residual_threshold_now"]
+        )
+        self.assertEqual(preflight["intake_rows"][0]["entry_id"], "m_csa:204")
+        self.assertEqual(
+            preflight["intake_rows"][0]["decision_class"],
+            "p10746_fold_only_deployment_caveat",
+        )
+        self.assertEqual(
+            preflight["intake_rows"][0]["source_json_pointer"],
+            "/decision_stubs/0",
+        )
+        self.assertEqual(
+            preflight["intake_rows"][0]["decision_field_to_update"],
+            "decision",
+        )
+        self.assertEqual(
+            preflight["intake_rows"][0]["review_status_field_to_update"],
+            "review_status",
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in preflight["intake_rows"][1:7]],
+            [
+                "m_csa:10",
+                "m_csa:30",
+                "m_csa:31",
+                "m_csa:191",
+                "m_csa:448",
+                "m_csa:973",
+            ],
+        )
+        locator_rows = [
+            row
+            for row in preflight["intake_rows"]
+            if row["decision_class"] == "source_free_locator_rewrite_approval"
+        ]
+        self.assertEqual(
+            locator_rows[0]["decision_field_to_update"], "reviewer_decision"
+        )
+        self.assertEqual(
+            locator_rows[0]["approved_boolean_field_to_update"], "approved"
+        )
+        self.assertTrue(preflight["guardrails"]["review_only"])
+        self.assertFalse(preflight["guardrails"]["decisions_applied"])
+        self.assertFalse(
+            preflight["guardrails"]["labels_registries_ontologies_changed"]
         )
 
     def test_fold_augmented_family_panel_source_check_queue_current_counts(self) -> None:

@@ -31,7 +31,7 @@
     "source_free_event_residue_role_feature_rows": 0,
     "source_free_residue_count_feature_rows": 0
   },
-  "created_utc": "2026-06-03T09:52:42Z",
+  "created_utc": "2026-06-03T10:19:59Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
@@ -83,7 +83,7 @@
     "locator_rewrite_approval_packet": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet_current702_20260603.json",
-      "sha256": "afafb0ad5ead5741d20e9fd0709de4371ebc42dc39cca7b5d289ac134a1df7a0"
+      "sha256": "3a8863bfa63ef7e8822dab4defc5edd9328dbf275fb20678d4be21ed523d8159"
     },
     "locator_rewrite_materialization_gate": {
       "exists": true,

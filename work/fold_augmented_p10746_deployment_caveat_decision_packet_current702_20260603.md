@@ -1,6 +1,6 @@
 # Fold-Augmented P10746 Deployment-Caveat Decision Packet - current702
 
-Run: 2026-06-03T07:16:53Z
+Run: 2026-06-03T10:19:58Z
 
 Review-only decision packet for the single remaining Lever 3 deployment caveat after the fixed-threshold rerun. It stages the explicit P10746 fold-only caveat accept/reject choice; it does not accept the caveat, create sidecars, score m_csa:204 in the combined channel, or close deployment.
 
@@ -18,6 +18,8 @@ Review-only decision packet for the single remaining Lever 3 deployment caveat a
 
 - Entry: m_csa:204 / P10746
 - Review status: pending_explicit_decision
+- Decision field to update: `decision`
+- Required review status after decision: `reviewed_explicit_decision`
 - Decision context SHA-256: `8b5d0ca064b82b0b091d53ba1ba7ea4caa382545bb69754ab11e18e200f00996`
 - Allowed decisions:
   - explicit_accept_p10746_fold_only_deployment_caveat

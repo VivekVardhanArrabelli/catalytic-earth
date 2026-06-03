@@ -12,7 +12,7 @@
     "label_factory_gate_input_rows": 0,
     "panels_represented": 0
   },
-  "created_utc": "2026-06-03T08:29:16Z",
+  "created_utc": "2026-06-03T10:19:58Z",
   "decision": {
     "accepted_import_preview_ready": false,
     "label_factory_gate_inputs_ready": false,
@@ -43,7 +43,7 @@
     "accepted_import_preview": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_accepted_import_preview_current702_20260603.json",
-      "sha256": "bdf12de71ba4915c44b853c7f32f5de09b55b4cb7f463c803de21bad9b5a7307"
+      "sha256": "d5b6e0e614d7b3c2732435af777059e66c355774f1e62db52b0c415fa646d20e"
     }
   },
   "status": "family_panel_label_factory_gate_readiness_blocked"

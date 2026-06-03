@@ -26,7 +26,7 @@
     "reviewed_decision_rows": 1,
     "source_decision_stub_rows": 1
   },
-  "created_utc": "2026-06-03T07:20:39Z",
+  "created_utc": "2026-06-03T10:19:58Z",
   "decision": {
     "deployment_closed_now": false,
     "next_gate": "If accepted, build a separate post-decision deployment closure artifact that explicitly discloses the P10746 fold-only caveat. If rejected or still pending, provide an approved non-residue sidecar before any deployment closure claim.",
@@ -57,12 +57,12 @@
     "decision_packet": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.json",
-      "sha256": "0d2cbb4b6fa0cc9f32fe057882eb673aa9c12a8193ac5cde001b498da206cce5"
+      "sha256": "2cbd51fbad10ca8362dc1dc3ddbf4ebf5555cf6c08c3c2e328d319d7400114a3"
     },
     "reviewed_decision_packet": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.json",
-      "sha256": "0d2cbb4b6fa0cc9f32fe057882eb673aa9c12a8193ac5cde001b498da206cce5"
+      "sha256": "2cbd51fbad10ca8362dc1dc3ddbf4ebf5555cf6c08c3c2e328d319d7400114a3"
     }
   },
   "status": "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision"

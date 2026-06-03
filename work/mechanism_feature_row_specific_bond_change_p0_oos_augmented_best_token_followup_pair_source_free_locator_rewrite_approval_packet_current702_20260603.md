@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Locator Rewrite Approval Packet - current702
 
-Run: 2026-06-03T06:36:46Z
+Run: 2026-06-03T10:19:59Z
 
 Review-only approval intake packet for priority-1 current702 source-free locator rewrites. It converts the rewrite preflight into pending approve/reject records with candidate and planned-payload hashes required by the materialization gate. It does not approve rows, copy locator sidecars, score heldout rows, or apply the frozen residual threshold.
 

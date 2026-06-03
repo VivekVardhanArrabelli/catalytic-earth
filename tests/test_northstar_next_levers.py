@@ -11,6 +11,7 @@ from catalytic_earth.northstar_next_levers import (
     build_active_lever_mechanical_actionability_audit,
     build_active_lever_priority_decision_templates,
     build_active_lever_reviewer_decision_queue,
+    build_active_lever_source_decision_intake_preflight,
     build_family_panel_evidence_packet,
     build_family_panel_high_value_glycyl_radical_readiness_packet,
     build_fold_augmented_abstention_gate,
@@ -3705,6 +3706,12 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(packet["decision"]["deployment_closed_now"])
         stub = packet["decision_stubs"][0]
         self.assertEqual(stub["review_status"], "pending_explicit_decision")
+        self.assertEqual(stub["decision_field_to_update"], "decision")
+        self.assertEqual(stub["review_status_field_to_update"], "review_status")
+        self.assertEqual(
+            stub["required_review_status_after_decision"],
+            "reviewed_explicit_decision",
+        )
         self.assertIn(
             "explicit_accept_p10746_fold_only_deployment_caveat",
             stub["allowed_decisions"],
@@ -10696,6 +10703,9 @@ class NorthstarNextLeversTests(unittest.TestCase):
         first = packet["locator_rewrite_decision_stubs"][0]
         self.assertEqual(first["entry_id"], "m_csa:1")
         self.assertEqual(first["reviewer_decision"], "pending_reviewer_decision")
+        self.assertEqual(first["decision_field_to_update"], "reviewer_decision")
+        self.assertEqual(first["approved_boolean_field_to_update"], "approved")
+        self.assertTrue(first["required_approved_value_if_approving"])
         self.assertEqual(
             first["accepted_approval_decision_value"],
             "explicit_approve_locator_rewrite",
@@ -13010,6 +13020,17 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(
             by_entry["m_csa:30"]["import_preview_candidate_if_accepted_now"]
         )
+        self.assertEqual(
+            by_entry["m_csa:30"]["decision_field_to_update"], "decision"
+        )
+        self.assertEqual(
+            by_entry["m_csa:30"]["review_status_field_to_update"],
+            "review_status",
+        )
+        self.assertEqual(
+            by_entry["m_csa:30"]["recommended_review_status_after_decision"],
+            "reviewed_expert_import_decision",
+        )
         self.assertFalse(
             by_entry["mh_064"]["import_preview_candidate_if_accepted_now"]
         )
@@ -13309,6 +13330,11 @@ class NorthstarNextLeversTests(unittest.TestCase):
                             {
                                 "entry_id": "m_csa:204",
                                 "review_status": "pending_explicit_decision",
+                                "decision_field_to_update": "decision",
+                                "review_status_field_to_update": "review_status",
+                                "required_review_status_after_decision": (
+                                    "reviewed_explicit_decision"
+                                ),
                                 "allowed_decisions": [
                                     "explicit_accept_p10746_fold_only_deployment_caveat"
                                 ],
@@ -13328,6 +13354,9 @@ class NorthstarNextLeversTests(unittest.TestCase):
                             {
                                 "entry_id": "m_csa:3",
                                 "reviewer_decision": "pending_reviewer_decision",
+                                "decision_field_to_update": "reviewer_decision",
+                                "approved_boolean_field_to_update": "approved",
+                                "required_approved_value_if_approving": True,
                                 "accepted_approval_decision_value": (
                                     "explicit_approve_locator_rewrite"
                                 ),
@@ -13355,6 +13384,11 @@ class NorthstarNextLeversTests(unittest.TestCase):
                                 ),
                                 "review_status": (
                                     "pending_expert_import_decision"
+                                ),
+                                "decision_field_to_update": "decision",
+                                "review_status_field_to_update": "review_status",
+                                "recommended_review_status_after_decision": (
+                                    "reviewed_expert_import_decision"
                                 ),
                                 "allowed_decisions": [
                                     "explicit_accept_family_panel_import_candidate"
@@ -13427,6 +13461,24 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(
             [row["lever"] for row in queue["decision_queue"]],
             ["Lever 3", "Lever 4", "Lever 2"],
+        )
+        self.assertEqual(
+            queue["decision_queue"][0]["decision_field_to_update"], "decision"
+        )
+        self.assertEqual(
+            queue["decision_queue"][0]["review_status_field_to_update"],
+            "review_status",
+        )
+        self.assertEqual(
+            queue["decision_queue"][1]["decision_field_to_update"], "decision"
+        )
+        self.assertEqual(
+            queue["decision_queue"][2]["decision_field_to_update"],
+            "reviewer_decision",
+        )
+        self.assertEqual(
+            queue["decision_queue"][2]["approved_boolean_field_to_update"],
+            "approved",
         )
         self.assertFalse(queue["decision"]["apply_decisions_now"])
         self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
@@ -13581,6 +13633,125 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(audit["decision"]["apply_any_decision_gate_now"])
         self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+
+    def test_active_lever_mechanical_actionability_audit_opens_ready_source_intake_gate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            source_intake_path = root / "source_intake.json"
+            lever2_path = root / "lever2.json"
+            event_path = root / "event.json"
+            closure_path = root / "closure.json"
+            family_path = root / "family.json"
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "decision_items": 1,
+                            "automation_action_allowed_now_items": 0,
+                            "decision_class_counts": {
+                                "p10746_fold_only_deployment_caveat": 1
+                            },
+                        },
+                        "decision_queue": [
+                            {
+                                "priority": 1,
+                                "lever": "Lever 3",
+                                "entry_id": "m_csa:204",
+                                "decision_class": (
+                                    "p10746_fold_only_deployment_caveat"
+                                ),
+                                "review_status": "reviewed_explicit_decision",
+                                "allowed_decisions": [
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ],
+                                "decision_field_to_update": "decision",
+                                "decision_context_sha256": "a" * 64,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_intake_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "pending_decision_rows": 0,
+                            "invalid_decision_rows": 0,
+                            "follow_on_gate_ready_rows": 1,
+                        },
+                        "decision": {"run_any_matching_gate_now": True},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            lever2_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"locator_sidecars_written": 0},
+                        "decision": {
+                            "ready_to_apply_frozen_residual_threshold_once": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"materialized_linker_rows": 1},
+                        "decision": {"event_axis_linkers_materialized": True},
+                        "blockers": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            closure_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "deployment_closed_with_p10746_caveat": False
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"label_factory_gate_input_rows": 1},
+                        "decision": {"label_factory_gate_inputs_ready": True},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_active_lever_mechanical_actionability_audit(
+                active_lever_reviewer_decision_queue_path=queue_path,
+                active_lever_source_decision_intake_preflight_path=(
+                    source_intake_path
+                ),
+                lever2_pre_threshold_readiness_path=lever2_path,
+                lever2_event_axis_linker_schema_path=event_path,
+                lever3_post_decision_deployment_closure_status_path=closure_path,
+                family_panel_label_factory_gate_readiness_path=family_path,
+            )
+
+        self.assertEqual(
+            audit["status"], "active_lever_mechanical_actionability_ready"
+        )
+        self.assertEqual(
+            audit["counts"]["source_decision_follow_on_gate_ready_rows"], 1
+        )
+        self.assertNotIn("no_active_lever_mechanical_gate_ready", audit["blockers"])
+        self.assertTrue(audit["gate_checks"][0]["ready_now"])
+        self.assertTrue(audit["decision"]["apply_any_decision_gate_now"])
+        self.assertFalse(audit["decision"]["copy_locator_sidecars_now"])
+        self.assertFalse(audit["decision"]["apply_frozen_residual_threshold_now"])
+        self.assertFalse(audit["decision"]["run_label_factory_gate_now"])
 
     def test_active_lever_priority_decision_templates_group_pending_rows(
         self,
@@ -13748,6 +13919,24 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ],
             "/decision_stubs/0",
         )
+        self.assertEqual(
+            templates["template_groups"]["p10746_policy_decisions"][0][
+                "review_status_field_to_update"
+            ],
+            "review_status",
+        )
+        self.assertEqual(
+            templates["template_groups"]["p10746_policy_decisions"][0][
+                "required_review_status_after_decision"
+            ],
+            "reviewed_explicit_decision",
+        )
+        self.assertEqual(
+            templates["template_groups"]["clean_locator_rewrite_approvals"][0][
+                "decision_field_to_update"
+            ],
+            "reviewer_decision",
+        )
         self.assertFalse(templates["guardrails"]["decisions_applied"])
 
     def test_active_lever_priority_decision_templates_block_unresolved_sources(
@@ -13796,6 +13985,393 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ],
             "source_artifact_not_listed",
         )
+
+    def test_active_lever_source_decision_intake_preflight_blocks_pending_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            templates_path = root / "templates.json"
+            p10746_packet_path = root / "p10746.json"
+            family_packet_path = root / "family.json"
+            locator_packet_path = root / "locator.json"
+            p10746_packet_path.write_text(
+                json.dumps(
+                    {
+                        "decision_stubs": [
+                            {
+                                "entry_id": "m_csa:204",
+                                "review_status": "pending_explicit_decision",
+                                "decision_field_to_update": "decision",
+                                "review_status_field_to_update": "review_status",
+                                "decision_context_sha256": "a" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family_packet_path.write_text(
+                json.dumps(
+                    {
+                        "expert_import_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": "panel_a",
+                                "review_status": "pending_expert_import_decision",
+                                "decision_field_to_update": "decision",
+                                "default_decision": "pending_review",
+                                "decision_context_sha256": "b" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator_packet_path.write_text(
+                json.dumps(
+                    {
+                        "locator_rewrite_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "reviewer_decision": "pending_reviewer_decision",
+                                "decision_field_to_update": "reviewer_decision",
+                                "candidate_sha256": "c" * 64,
+                                "planned_locator_payload_sha256": "d" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "source_artifacts": {
+                            "p10746_decision_packet": {
+                                "path": str(p10746_packet_path)
+                            },
+                            "family_panel_expert_import_decision_packet": {
+                                "path": str(family_packet_path)
+                            },
+                            "lever2_locator_rewrite_approval_packet": {
+                                "path": str(locator_packet_path)
+                            },
+                        },
+                        "decision_queue": [
+                            {
+                                "lever": "Lever 3",
+                                "entry_id": "m_csa:204",
+                                "decision_class": (
+                                    "p10746_fold_only_deployment_caveat"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ],
+                                "decision_context_sha256": "a" * 64,
+                            },
+                            {
+                                "lever": "Lever 4",
+                                "entry_id": "m_csa:30",
+                                "decision_class": (
+                                    "family_panel_expert_import_decision"
+                                ),
+                                "panel_or_scope": "panel_a",
+                                "allowed_decisions": [
+                                    "explicit_accept_family_panel_import_candidate"
+                                ],
+                                "decision_context_sha256": "b" * 64,
+                                "import_preview_candidate_if_accepted_now": True,
+                            },
+                            {
+                                "lever": "Lever 2",
+                                "entry_id": "m_csa:3",
+                                "decision_class": (
+                                    "source_free_locator_rewrite_approval"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_approve_locator_rewrite",
+                                    "reject_locator_rewrite",
+                                ],
+                                "candidate_sha256": "c" * 64,
+                                "planned_locator_payload_sha256": "d" * 64,
+                                "coordinate_contact_warning_count": 0,
+                                "materialization_gate_input_ready_if_approved": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            templates = build_active_lever_priority_decision_templates(
+                active_lever_reviewer_decision_queue_path=queue_path
+            )
+            templates_path.write_text(json.dumps(templates), encoding="utf-8")
+
+            preflight = build_active_lever_source_decision_intake_preflight(
+                active_lever_priority_decision_templates_path=templates_path
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "active_lever_source_decision_intake_preflight_blocked",
+        )
+        self.assertEqual(preflight["counts"]["template_rows"], 3)
+        self.assertEqual(preflight["counts"]["pending_decision_rows"], 3)
+        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 0)
+        self.assertIn("explicit_source_decisions_missing", preflight["blockers"])
+        self.assertIn(
+            "no_hash_valid_decision_rows_ready_for_gate",
+            preflight["blockers"],
+        )
+        first_row = preflight["intake_rows"][0]
+        self.assertEqual(first_row["source_json_pointer"], "/decision_stubs/0")
+        self.assertEqual(first_row["decision_field_to_update"], "decision")
+        self.assertEqual(
+            first_row["review_status_field_to_update"], "review_status"
+        )
+        self.assertFalse(preflight["decision"]["run_any_matching_gate_now"])
+        self.assertFalse(preflight["guardrails"]["decisions_applied"])
+
+    def test_active_lever_source_decision_intake_preflight_detects_ready_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            templates_path = root / "templates.json"
+            p10746_packet_path = root / "p10746.json"
+            family_packet_path = root / "family.json"
+            locator_packet_path = root / "locator.json"
+            p10746_packet = {
+                "decision_stubs": [
+                    {
+                        "entry_id": "m_csa:204",
+                        "review_status": "pending_explicit_decision",
+                        "decision_field_to_update": "decision",
+                        "review_status_field_to_update": "review_status",
+                        "decision_context_sha256": "a" * 64,
+                    }
+                ]
+            }
+            family_packet = {
+                "expert_import_decision_stubs": [
+                    {
+                        "entry_id": "m_csa:30",
+                        "panel_id": "panel_a",
+                        "review_status": "pending_expert_import_decision",
+                        "decision_field_to_update": "decision",
+                        "default_decision": "pending_review",
+                        "decision_context_sha256": "b" * 64,
+                    }
+                ]
+            }
+            locator_packet = {
+                "locator_rewrite_decision_stubs": [
+                    {
+                        "entry_id": "m_csa:3",
+                        "reviewer_decision": "pending_reviewer_decision",
+                        "decision_field_to_update": "reviewer_decision",
+                        "candidate_sha256": "c" * 64,
+                        "planned_locator_payload_sha256": "d" * 64,
+                    }
+                ]
+            }
+            p10746_packet_path.write_text(json.dumps(p10746_packet), encoding="utf-8")
+            family_packet_path.write_text(json.dumps(family_packet), encoding="utf-8")
+            locator_packet_path.write_text(json.dumps(locator_packet), encoding="utf-8")
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "source_artifacts": {
+                            "p10746_decision_packet": {
+                                "path": str(p10746_packet_path)
+                            },
+                            "family_panel_expert_import_decision_packet": {
+                                "path": str(family_packet_path)
+                            },
+                            "lever2_locator_rewrite_approval_packet": {
+                                "path": str(locator_packet_path)
+                            },
+                        },
+                        "decision_queue": [
+                            {
+                                "lever": "Lever 3",
+                                "entry_id": "m_csa:204",
+                                "decision_class": (
+                                    "p10746_fold_only_deployment_caveat"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ],
+                                "decision_context_sha256": "a" * 64,
+                            },
+                            {
+                                "lever": "Lever 4",
+                                "entry_id": "m_csa:30",
+                                "decision_class": (
+                                    "family_panel_expert_import_decision"
+                                ),
+                                "panel_or_scope": "panel_a",
+                                "allowed_decisions": [
+                                    "explicit_accept_family_panel_import_candidate"
+                                ],
+                                "decision_context_sha256": "b" * 64,
+                                "import_preview_candidate_if_accepted_now": True,
+                            },
+                            {
+                                "lever": "Lever 2",
+                                "entry_id": "m_csa:3",
+                                "decision_class": (
+                                    "source_free_locator_rewrite_approval"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_approve_locator_rewrite",
+                                    "reject_locator_rewrite",
+                                ],
+                                "candidate_sha256": "c" * 64,
+                                "planned_locator_payload_sha256": "d" * 64,
+                                "coordinate_contact_warning_count": 0,
+                                "materialization_gate_input_ready_if_approved": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            templates = build_active_lever_priority_decision_templates(
+                active_lever_reviewer_decision_queue_path=queue_path
+            )
+            templates_path.write_text(json.dumps(templates), encoding="utf-8")
+            p10746_packet["decision_stubs"][0]["review_status"] = (
+                "reviewed_explicit_decision"
+            )
+            p10746_packet["decision_stubs"][0]["decision"] = (
+                "explicit_accept_p10746_fold_only_deployment_caveat"
+            )
+            family_packet["expert_import_decision_stubs"][0]["decision"] = (
+                "explicit_accept_family_panel_import_candidate"
+            )
+            locator_packet["locator_rewrite_decision_stubs"][0]["decision"] = (
+                "explicit_approve_locator_rewrite"
+            )
+            locator_packet["locator_rewrite_decision_stubs"][0]["approved"] = True
+            p10746_packet_path.write_text(json.dumps(p10746_packet), encoding="utf-8")
+            family_packet_path.write_text(json.dumps(family_packet), encoding="utf-8")
+            locator_packet_path.write_text(json.dumps(locator_packet), encoding="utf-8")
+
+            preflight = build_active_lever_source_decision_intake_preflight(
+                active_lever_priority_decision_templates_path=templates_path
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "active_lever_source_decision_intake_preflight_ready",
+        )
+        self.assertEqual(preflight["counts"]["explicit_decision_rows"], 3)
+        self.assertEqual(preflight["counts"]["pending_decision_rows"], 0)
+        self.assertEqual(preflight["counts"]["invalid_decision_rows"], 0)
+        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 3)
+        self.assertEqual(preflight["counts"]["p10746_application_ready_rows"], 1)
+        self.assertEqual(
+            preflight["counts"][
+                "family_panel_import_preview_candidate_accept_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            preflight["counts"]["locator_materialization_ready_approval_rows"], 1
+        )
+        locator_row = [
+            row
+            for row in preflight["intake_rows"]
+            if row["decision_class"] == "source_free_locator_rewrite_approval"
+        ][0]
+        self.assertEqual(
+            locator_row["decision_field_to_update"], "reviewer_decision"
+        )
+        self.assertEqual(
+            locator_row["approved_boolean_field_to_update"], "approved"
+        )
+        self.assertTrue(preflight["decision"]["run_any_matching_gate_now"])
+        self.assertTrue(preflight["decision"]["p10746_application_gate_ready"])
+        self.assertTrue(preflight["decision"]["family_panel_application_gate_ready"])
+        self.assertTrue(preflight["decision"]["locator_materialization_gate_ready"])
+        self.assertFalse(preflight["guardrails"]["locator_sidecars_created_or_copied"])
+
+    def test_active_lever_source_decision_intake_preflight_requires_p10746_review_status(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            templates_path = root / "templates.json"
+            p10746_packet_path = root / "p10746.json"
+            p10746_packet_path.write_text(
+                json.dumps(
+                    {
+                        "decision_stubs": [
+                            {
+                                "entry_id": "m_csa:204",
+                                "review_status": "pending_explicit_decision",
+                                "decision": (
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ),
+                                "decision_context_sha256": "a" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            templates_path.write_text(
+                json.dumps(
+                    {
+                        "template_groups": {
+                            "p10746_policy_decisions": [
+                                {
+                                    "entry_id": "m_csa:204",
+                                    "decision": "pending_explicit_decision",
+                                    "allowed_decisions": [
+                                        "explicit_accept_p10746_fold_only_deployment_caveat"
+                                    ],
+                                    "decision_context_sha256": "a" * 64,
+                                    "target_packet_key": "decision_stubs",
+                                    "target_source_artifact_key": "p10746_decision_packet",
+                                    "target_gate_after_edit": (
+                                        "apply-fold-augmented-p10746-deployment-caveat-decision"
+                                    ),
+                                    "source_json_pointer": "/decision_stubs/0",
+                                }
+                            ]
+                        },
+                        "source_artifacts": {
+                            "target_source_packets": {
+                                "p10746_decision_packet": {
+                                    "path": str(p10746_packet_path)
+                                }
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_active_lever_source_decision_intake_preflight(
+                active_lever_priority_decision_templates_path=templates_path
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "active_lever_source_decision_intake_preflight_blocked",
+        )
+        self.assertEqual(preflight["counts"]["invalid_decision_rows"], 1)
+        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 0)
+        self.assertIn(
+            "p10746_review_status_still_pending",
+            preflight["intake_rows"][0]["blockers"],
+        )
+        self.assertFalse(preflight["decision"]["p10746_application_gate_ready"])
 
     def test_selected_organic_cofactor_sidecar_schema_audit_passes_complete_grid(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

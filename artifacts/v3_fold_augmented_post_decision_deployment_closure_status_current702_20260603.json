@@ -14,7 +14,7 @@
     "p10746_pending_decision_rows": 1,
     "remaining_combined_score_blocker_rows": 1
   },
-  "created_utc": "2026-06-03T07:26:06Z",
+  "created_utc": "2026-06-03T10:19:58Z",
   "decision": {
     "confounded_subset_target_met_for_research": true,
     "deployment_closed_now": false,
@@ -46,7 +46,7 @@
     "p10746_deployment_caveat_decision_application": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json",
-      "sha256": "6faf0d74699cba82bcb56b214473eb1ac73d0237d95ffa4dc95c2db3793fc8e3"
+      "sha256": "f0363bcadf43610427188a26412e8b8d809bdd1220ef6fdfb5a32775b1620c32"
     },
     "post_rerun_confounded_deployment_closure_audit": {
       "exists": true,
