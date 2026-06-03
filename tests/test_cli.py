@@ -13,6 +13,38 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CliTests(unittest.TestCase):
+    def test_active_lever_commands_default_to_reviewed_locator_decisions(
+        self,
+    ) -> None:
+        source_intake_args = build_parser().parse_args(
+            ["build-active-lever-source-decision-intake-preflight"]
+        )
+        reviewer_queue_args = build_parser().parse_args(
+            ["build-active-lever-reviewer-decision-queue"]
+        )
+        event_axis_gate_args = build_parser().parse_args(
+            [
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "event-axis-linker-materialization-gate"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "source_free_locator_rewrite_approval_decisions_current702_20260603.json",
+            source_intake_args.lever2_locator_rewrite_approval_packet,
+        )
+        self.assertIn(
+            "source_free_locator_rewrite_approval_decisions_current702_20260603.json",
+            reviewer_queue_args.lever2_locator_rewrite_approval_packet,
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_signoff_finalization_current702_20260603.json",
+            event_axis_gate_args.linker_rows,
+        )
+
     def test_label_factory_gate_cli_lineage_rejects_mismatched_slices(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -711,6 +743,17 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_mechanism_feature_row_specific_bond_change_"
                     "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "event-axis-linker-signoff-finalization"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization"
                 ),
             ),
             (

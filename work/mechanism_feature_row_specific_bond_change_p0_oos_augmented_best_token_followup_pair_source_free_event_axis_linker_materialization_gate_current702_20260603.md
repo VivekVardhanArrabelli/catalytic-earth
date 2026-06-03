@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Axis Linker Materialization Gate - current702
 
-Run: 2026-06-03T20:31:01Z
+Run: 2026-06-03T21:39:25Z
 
 Fail-closed validation gate for source-free event-axis linker rows. It validates only row/schema compatibility and leakage guardrails; it does not infer event axes, copy locator sidecars, evaluate heldout rows, or apply the frozen residual threshold.
 

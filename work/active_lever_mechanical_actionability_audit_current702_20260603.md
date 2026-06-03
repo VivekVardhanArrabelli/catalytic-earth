@@ -1,21 +1,27 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T20:31:11Z
+Run: 2026-06-03T21:46:16Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
 ## Status
 
 - active_lever_mechanical_actionability_blocked_external_decisions
-- Decision items: 78
-- External decisions required: 23
+- Decision items: 131
+- External decisions required: 76
 - Automation-action-allowed-now items: 0
 - Mechanical gates ready now: 0
 - Source-decision follow-on gate-ready rows: 0
 - Source-decision pending rows: 23
 - Source-decision invalid rows: 0
 - Lever 2 pending locator approvals: 0
+- Lever 2 pending event-axis signoffs: 53
 - Lever 2 event-axis linker rows: 0
+- Lever 2 event-axis signoff draft rows: 53
+- Lever 2 event-axis pending signoff rows: 53
+- Lever 2 event-axis explicit approved rows: 0
+- Lever 2 event-axis gate-consumable signoff rows: 0
+- Lever 2 event-axis priority 1/2/insufficient signoff rows: 3/11/33
 - Lever 3 structural proxy abstained: 10/55
 - Lever 3 retained proxy gap rows: 48
 - Lever 3 proxy stress blockers: 2
@@ -62,7 +68,7 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 
 | lever | gate | ready now | blocker | next command after decision |
 | --- | --- | --- | --- | --- |
-| Lever 2/3/4 | source_decision_intake_preflight | False | source_decision_intake_preflight_not_ready | build-active-lever-source-decision-intake-preflight |
+| Lever 2/3/4 | source_decision_intake_preflight | False | source_decision_follow_on_rows_already_consumed | build-active-lever-source-decision-intake-preflight |
 | Lever 3 | p10746_post_decision_deployment_closure | False | p10746_policy_decision_missing | apply-fold-augmented-p10746-deployment-caveat-decision |
 | Lever 3 | confounded_proxy_train_calibration | False | confounded_proxy_train_calibration_gap | build-fold-augmented-confounded-proxy-threshold-stress |
 | Lever 3 | confounded_proxy_evidence_extension | False | confounded_proxy_evidence_extension_scale_gap | build-fold-augmented-confounded-proxy-evidence-extension-plan |
@@ -88,14 +94,14 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 | 2 | Lever 4 | m_csa:191 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
 | 2 | Lever 4 | m_csa:448 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
 | 2 | Lever 4 | m_csa:973 | family_panel_expert_import_decision | pending_expert_import_decision | decision |
-| 3 | Lever 2 | m_csa:3 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
-| 3 | Lever 2 | m_csa:9 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
-| 3 | Lever 2 | m_csa:32 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
-| 3 | Lever 2 | m_csa:43 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
-| 3 | Lever 2 | m_csa:44 | source_free_locator_rewrite_approval | pending_reviewer_decision | reviewer_decision |
+| 3 | Lever 2 | m_csa:418 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision |
+| 3 | Lever 2 | m_csa:545 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision |
+| 3 | Lever 2 | m_csa:750 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision |
+| 4 | Lever 2 | m_csa:3 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision |
+| 4 | Lever 2 | m_csa:115 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision |
 
 ## Interpretation
 
 - No active Lever 2/3/4 gate is mechanically runnable on the current decision state.
-- Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. The unsupported-geometry coordinate repair path scanned 8 AFDB-v6 train/cal files and found zero source-free inorganic/cofactor locus evidence. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers.
-- Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first. Do not score or register the unsupported-geometry proxy from those AFDB files; use a different source-free protein-only structural proxy or reviewed P10746/Lever 4 decisions.
+- Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. The unsupported-geometry coordinate repair path scanned 8 AFDB-v6 train/cal files and found zero source-free inorganic/cofactor locus evidence. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 locator approvals are cleared and locator sidecars are written for 53 rows, but the 53 source-free event-axis signoffs and pre-threshold readiness remain blocked.
+- Review the first twelve queued rows here, starting with P10746, the six Lever 4 import-preview candidates, and the three priority-1 Lever 2 event-axis signoffs. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first. Do not score or register the unsupported-geometry proxy from those AFDB files; use a different source-free protein-only structural proxy or reviewed P10746/Lever 4 decisions.

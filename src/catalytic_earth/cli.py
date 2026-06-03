@@ -157,6 +157,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
@@ -13128,6 +13129,11 @@ def cmd_build_active_lever_reviewer_decision_queue(args: argparse.Namespace) -> 
         )
         if args.lever2_locator_rewrite_approval_packet
         else None,
+        lever2_event_axis_linker_signoff_finalization_path=Path(
+            args.lever2_event_axis_linker_signoff_finalization
+        )
+        if args.lever2_event_axis_linker_signoff_finalization
+        else None,
         family_panel_expert_import_decision_packet_path=Path(
             args.family_panel_expert_import_decision_packet
         )
@@ -14836,6 +14842,32 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
     return 0
 
 
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization(
+    args: argparse.Namespace,
+) -> int:
+    finalization = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization(
+        draft_rows_for_signoff_path=Path(args.draft_rows_for_signoff),
+        event_axis_linker_schema_path=(
+            Path(args.event_axis_linker_schema)
+            if args.event_axis_linker_schema
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = finalization.get("counts", {})
+    decision = finalization.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free event-axis linker signoff finalization "
+        f"to {args.out} (status: {finalization.get('status')}, "
+        "gate-consumable rows: "
+        f"{counts.get('gate_consumable_event_axis_linker_rows')}, ready: "
+        f"{decision.get('event_axis_linker_rows_ready_for_materialization_gate')})"
+    )
+    return 0
+
+
 def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
     args: argparse.Namespace,
 ) -> int:
@@ -15049,6 +15081,11 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         event_axis_linker_materialization_gate_path=(
             Path(args.event_axis_linker_materialization_gate)
             if args.event_axis_linker_materialization_gate
+            else None
+        ),
+        event_axis_linker_signoff_finalization_path=(
+            Path(args.event_axis_linker_signoff_finalization)
+            if args.event_axis_linker_signoff_finalization
             else None
         ),
         locator_rewrite_approval_packet_path=(
@@ -30225,7 +30262,15 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
             "oos_augmented_best_token_followup_pair_source_free_locator_"
-            "rewrite_approval_packet_current702_20260603.json"
+            "rewrite_approval_decisions_current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--lever2-event-axis-linker-signoff-finalization",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_signoff_finalization_current702_20260603.json"
         ),
     )
     active_lever_reviewer_queue.add_argument(
@@ -30516,7 +30561,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
             "oos_augmented_best_token_followup_pair_source_free_locator_"
-            "rewrite_approval_packet_current702_20260603.json"
+            "rewrite_approval_decisions_current702_20260603.json"
         ),
     )
     active_lever_source_intake.add_argument(
@@ -33983,6 +34028,55 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_signoff_finalization = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "event-axis-linker-signoff-finalization"
+        ),
+        help=(
+            "finalize explicitly approved event-axis linker signoff rows into "
+            "the materialization-gate input container"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_signoff_finalization.add_argument(
+        "--draft-rows-for-signoff",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_draft_rows_for_signoff_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_signoff_finalization.add_argument(
+        "--event-axis-linker-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_schema_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_signoff_finalization.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_signoff_finalization_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_signoff_finalization.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_signoff_finalization_current702_20260603.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_signoff_finalization.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization
+        )
+    )
+
     row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate = subparsers.add_parser(
         (
             "build-mechanism-feature-row-specific-bond-change-"
@@ -34004,7 +34098,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate.add_argument(
         "--linker-rows",
-        default=None,
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_signoff_finalization_current702_20260603.json"
+        ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate.add_argument(
         "--out",
@@ -34530,6 +34628,14 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
             "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
             "linker_materialization_gate_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--event-axis-linker-signoff-finalization",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_signoff_finalization_current702_20260603.json"
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(

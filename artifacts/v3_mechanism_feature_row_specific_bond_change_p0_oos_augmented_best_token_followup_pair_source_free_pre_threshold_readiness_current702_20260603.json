@@ -7,12 +7,23 @@
     "source_free_event_residue_role_extractor_missing",
     "source_free_proton_transfer_event_axis_missing",
     "source_free_event_axis_linker_rows_missing",
-    "source_free_event_axis_linkers_not_materialized"
+    "source_free_event_axis_linkers_not_materialized",
+    "event_axis_signoff_decisions_pending",
+    "explicit_event_axis_linker_approvals_missing"
   ],
   "counts": {
-    "blockers": 7,
+    "blockers": 9,
     "critical_violation_total": 0,
+    "event_axis_explicit_approved_rows": 0,
+    "event_axis_gate_consumable_signoff_rows": 0,
+    "event_axis_insufficient_event_axis_evidence_rewrite_or_reject_rows": 33,
     "event_axis_materialized_linker_rows": 0,
+    "event_axis_pending_reviewer_signoff_rows": 53,
+    "event_axis_priority_1_both_roles_moderate_evidence_review_rows": 3,
+    "event_axis_priority_2_both_roles_weak_evidence_review_rows": 11,
+    "event_axis_priority_3_weak_missing_both_roles_rewrite_review_rows": 6,
+    "event_axis_signoff_draft_rows": 53,
+    "event_axis_signoff_rows_with_both_roles": 14,
     "heldout_rows_in_manifest": 140,
     "locator_approval_records": 55,
     "locator_approved_decision_records": 53,
@@ -24,7 +35,7 @@
     "source_free_event_residue_role_feature_rows": 0,
     "source_free_residue_count_feature_rows": 53
   },
-  "created_utc": "2026-06-03T20:31:06Z",
+  "created_utc": "2026-06-03T21:39:26Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
@@ -58,6 +69,7 @@
     "approved_source_free_locator_surface_ready": true,
     "heldout_safe_pair_application_surface_ready": false,
     "pair_operating_point_contract_ready": true,
+    "source_free_event_axis_linker_signoff_finalization_ready": false,
     "source_free_event_axis_linkers_materialized": false
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness",
@@ -66,12 +78,17 @@
     "event_axis_linker_materialization_gate": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json",
-      "sha256": "12930b44236e11dc1d92e7b0249c9fad7fcdaa781197ac9491de86d71e2e7062"
+      "sha256": "f95d0c8aab4384ea21b1b4f1f51574fd31b61e43d21a9eaeb3c040d6fa0ffce2"
     },
     "event_axis_linker_schema": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json",
       "sha256": "0b6dfcbb0513553882fb61704dea361dff843c2ec9533fad874ac6dd15cf5380"
+    },
+    "event_axis_linker_signoff_finalization": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json",
+      "sha256": "6542929e835e54395b2264c081ce7be810d8ba6d65752fea226c28e2eb09dd12"
     },
     "locator_rewrite_approval_packet": {
       "exists": true,

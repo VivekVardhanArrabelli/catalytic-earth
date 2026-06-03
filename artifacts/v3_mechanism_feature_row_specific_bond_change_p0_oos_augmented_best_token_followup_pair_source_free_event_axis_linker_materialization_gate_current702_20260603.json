@@ -12,7 +12,7 @@
     "minimum_linkers_per_ready_row": 1,
     "submitted_linker_rows": 0
   },
-  "created_utc": "2026-06-03T20:31:01Z",
+  "created_utc": "2026-06-03T21:39:25Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "event_axis_linker_schema_ready": true,
@@ -50,9 +50,9 @@
       "sha256": "0b6dfcbb0513553882fb61704dea361dff843c2ec9533fad874ac6dd15cf5380"
     },
     "linker_rows": {
-      "exists": false,
-      "path": null,
-      "sha256": null
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json",
+      "sha256": "6542929e835e54395b2264c081ce7be810d8ba6d65752fea226c28e2eb09dd12"
     }
   },
   "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_blocked",

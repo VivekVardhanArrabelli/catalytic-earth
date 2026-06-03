@@ -7277,6 +7277,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "linker_materialization_gate_current702_20260603.json"
             )
         )
+        pair_event_axis_signoff_finalization = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+                "linker_signoff_finalization_current702_20260603.json"
+            )
+        )
         pair_locator_queue = _load_json(
             ROOT
             / "artifacts"
@@ -8002,6 +8011,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_event_axis_gate["counts"]["materialized_linker_rows"], 0
         )
         self.assertIn(
+            "event_axis_linker_signoff_finalization_current702_20260603.json",
+            pair_event_axis_gate["source_artifacts"]["linker_rows"]["path"],
+        )
+        self.assertIn(
             "source_free_event_axis_linker_rows_missing",
             pair_event_axis_gate["blockers"],
         )
@@ -8017,6 +8030,87 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(
             pair_event_axis_gate["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_blocked_review_only",
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"]["draft_signoff_rows"],
+            53,
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"]["rows_with_both_roles"],
+            14,
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"][
+                "priority_1_both_roles_moderate_evidence_review_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"][
+                "priority_2_both_roles_weak_evidence_review_rows"
+            ],
+            11,
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"][
+                "priority_review_rows"
+            ],
+            14,
+        )
+        self.assertEqual(
+            len(pair_event_axis_signoff_finalization["priority_review_rows"]),
+            14,
+        )
+        self.assertEqual(
+            [
+                row["entry_id"]
+                for row in pair_event_axis_signoff_finalization[
+                    "priority_review_rows"
+                ][:3]
+            ],
+            ["m_csa:418", "m_csa:545", "m_csa:750"],
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"][
+                "insufficient_event_axis_evidence_rewrite_or_reject_rows"
+            ],
+            33,
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"][
+                "pending_reviewer_signoff_rows"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"][
+                "explicit_approved_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_event_axis_signoff_finalization["counts"][
+                "gate_consumable_event_axis_linker_rows"
+            ],
+            0,
+        )
+        self.assertIn(
+            "event_axis_signoff_decisions_pending",
+            pair_event_axis_signoff_finalization["blockers"],
+        )
+        self.assertFalse(
+            pair_event_axis_signoff_finalization["decision"][
+                "event_axis_linker_rows_ready_for_materialization_gate"
+            ]
+        )
+        self.assertFalse(
+            pair_event_axis_signoff_finalization["guardrails"][
+                "heldout_rows_evaluated"
+            ]
         )
         self.assertEqual(
             pair_locator_queue["status"],
@@ -8270,6 +8364,40 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             0,
         )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"]["event_axis_signoff_draft_rows"],
+            53,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "event_axis_signoff_rows_with_both_roles"
+            ],
+            14,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "event_axis_pending_reviewer_signoff_rows"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "event_axis_gate_consumable_signoff_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "event_axis_priority_1_both_roles_moderate_evidence_review_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "event_axis_priority_2_both_roles_weak_evidence_review_rows"
+            ],
+            11,
+        )
         self.assertNotIn(
             "approved_source_free_locator_surface_missing",
             pair_pre_threshold_readiness["blockers"],
@@ -8281,6 +8409,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertIn(
             "source_free_event_axis_linker_rows_missing",
             pair_pre_threshold_readiness["blockers"],
+        )
+        self.assertIn(
+            "event_axis_signoff_decisions_pending",
+            pair_pre_threshold_readiness["blockers"],
+        )
+        self.assertTrue(
+            pair_pre_threshold_readiness["source_artifacts"][
+                "event_axis_linker_signoff_finalization"
+            ]["exists"]
         )
         self.assertTrue(
             pair_pre_threshold_readiness["source_artifacts"][
@@ -10084,23 +10221,38 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             queue["status"],
             "active_lever_reviewer_decision_queue_ready_review_only",
         )
-        self.assertEqual(queue["counts"]["decision_items"], 78)
+        self.assertEqual(queue["counts"]["decision_items"], 131)
+        self.assertEqual(queue["counts"]["pending_decision_items"], 76)
+        self.assertEqual(queue["counts"]["reviewed_decision_items"], 55)
         self.assertEqual(
             queue["counts"]["lever_counts"],
-            {"Lever 2": 55, "Lever 3": 1, "Lever 4": 22},
+            {"Lever 2": 108, "Lever 3": 1, "Lever 4": 22},
         )
         self.assertEqual(
             queue["counts"]["decision_class_counts"],
             {
                 "family_panel_expert_import_decision": 22,
                 "p10746_fold_only_deployment_caveat": 1,
+                "source_free_event_axis_linker_signoff": 53,
                 "source_free_locator_rewrite_approval": 55,
             },
         )
         self.assertEqual(queue["counts"]["p10746_policy_decision_items"], 1)
         self.assertEqual(queue["counts"]["lever2_locator_rewrite_items"], 55)
+        self.assertEqual(queue["counts"]["lever2_pending_locator_rewrite_items"], 0)
+        self.assertEqual(queue["counts"]["lever2_reviewed_locator_rewrite_items"], 55)
         self.assertEqual(
             queue["counts"]["lever2_clean_locator_rewrite_items"], 49
+        )
+        self.assertEqual(queue["counts"]["lever2_event_axis_signoff_items"], 53)
+        self.assertEqual(
+            queue["counts"]["lever2_pending_event_axis_signoff_items"], 53
+        )
+        self.assertEqual(
+            queue["counts"]["lever2_event_axis_priority1_signoff_items"], 3
+        )
+        self.assertEqual(
+            queue["counts"]["lever2_event_axis_priority2_signoff_items"], 11
         )
         self.assertEqual(queue["counts"]["lever4_expert_import_items"], 22)
         self.assertEqual(
@@ -10152,11 +10304,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             for row in queue["decision_queue"]
             if row["priority"] == 3
         ]
+        self.assertEqual(len(priority3_rows), 52)
         self.assertEqual(
             priority3_rows[0]["decision_field_to_update"], "reviewer_decision"
         )
         self.assertEqual(
             priority3_rows[0]["approved_boolean_field_to_update"], "approved"
+        )
+        self.assertTrue(
+            any(
+                row["decision_class"] == "source_free_event_axis_linker_signoff"
+                for row in priority3_rows
+            )
         )
         self.assertTrue(queue["guardrails"]["review_only"])
         self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
@@ -10180,9 +10339,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["status"],
             "active_lever_mechanical_actionability_blocked_external_decisions",
         )
-        self.assertEqual(audit["counts"]["decision_items"], 78)
+        self.assertEqual(audit["counts"]["decision_items"], 131)
         self.assertEqual(
-            audit["counts"]["external_decision_required_items"], 23
+            audit["counts"]["external_decision_required_items"], 76
         )
         self.assertEqual(
             audit["counts"]["automation_action_allowed_now_items"], 0
@@ -10403,10 +10562,37 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["lever2_pending_locator_approvals"], 0
         )
         self.assertEqual(
+            audit["counts"]["lever2_pending_event_axis_signoffs"], 53
+        )
+        self.assertEqual(
             audit["counts"]["lever2_locator_sidecars_written"], 53
         )
         self.assertEqual(
             audit["counts"]["lever2_event_axis_materialized_linker_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_signoff_draft_rows"], 53
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_signoff_rows_with_both_roles"], 14
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_pending_reviewer_signoff_rows"], 53
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_explicit_approved_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_gate_consumable_signoff_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_priority1_signoff_rows"], 3
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_priority2_signoff_rows"], 11
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_insufficient_signoff_rows"], 33
         )
         self.assertEqual(
             audit["counts"]["lever4_label_factory_gate_input_rows"], 0
@@ -10486,6 +10672,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "source_free_locator_rewrite_approvals_missing", audit["blockers"]
         )
         self.assertIn(
+            "Lever 2 locator approvals are cleared",
+            audit["interpretation"]["result"],
+        )
+        self.assertIn(
+            "53 source-free event-axis signoffs",
+            audit["interpretation"]["result"],
+        )
+        self.assertNotIn(
+            "Lever 2 is blocked by locator approvals plus",
+            audit["interpretation"]["result"],
+        )
+        self.assertIn(
             "source_free_event_axis_linker_gate_blocked", audit["blockers"]
         )
         self.assertIn(
@@ -10506,8 +10704,28 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(audit["gate_checks"][0]["ready_now"])
         self.assertEqual(
+            audit["gate_checks"][0]["blocking_reason"],
+            "source_decision_follow_on_rows_already_consumed",
+        )
+        self.assertEqual(
             audit["next_review_items"][0]["decision_field_to_update"],
             "decision",
+        )
+        next_review_classes = {
+            item["decision_class"] for item in audit["next_review_items"]
+        }
+        self.assertIn(
+            "source_free_event_axis_linker_signoff", next_review_classes
+        )
+        self.assertNotIn(
+            "source_free_locator_rewrite_approval", next_review_classes
+        )
+        self.assertEqual(
+            audit["next_review_items"][7]["entry_id"], "m_csa:418"
+        )
+        self.assertEqual(
+            audit["next_review_items"][7]["decision_field_to_update"],
+            "reviewer_event_axis_decision",
         )
 
     def test_active_lever_priority_decision_templates_current_counts(

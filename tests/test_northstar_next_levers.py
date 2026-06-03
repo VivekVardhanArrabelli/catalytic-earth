@@ -89,6 +89,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
@@ -11208,6 +11209,262 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertNotIn("event_axis_linker_rows", packet)
         self.assertFalse(packet["guardrails"]["heldout_rows_evaluated"])
 
+    def test_followup_pair_source_free_event_axis_linker_signoff_finalization_blocks_pending_drafts(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            draft_path = root / "draft.json"
+            schema_path = root / "schema.json"
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linker_schema_ready": True},
+                        "row_schema": {
+                            "allowed_event_types": ["proton_transfer"],
+                            "allowed_residue_roles": [
+                                "electrostatic_stabiliser"
+                            ],
+                            "minimum_linkers_per_ready_row": 1,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            draft_path.write_text(
+                json.dumps(
+                    {
+                        "event_axis_linker_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "P00003",
+                                "source_free_event_axis_status": (
+                                    "pending_reviewer_signoff"
+                                ),
+                                "event_type": "proton_transfer",
+                                "residue_role": "electrostatic_stabiliser",
+                                "draft_evidence_strength": "moderate",
+                                "draft_has_both_roles": True,
+                                "reviewer_event_axis_decision": (
+                                    "pending_reviewer_signoff"
+                                ),
+                                "event_residue_linkers": [
+                                    {
+                                        "residue_locator_id": "loc-1",
+                                        "residue_code": "HIS",
+                                        "sequence_position": 12,
+                                        "source_free_residue_role_evidence": (
+                                            "structure_local_polar_network"
+                                        ),
+                                        "source_free_event_axis_evidence": (
+                                            "source_free_hbond_geometry"
+                                        ),
+                                        "confidence": 0.7,
+                                    }
+                                ],
+                                "guardrail_audit": {
+                                    "labels_registries_ontologies_changed": False,
+                                    "imports_or_promotions_performed": False,
+                                    "production_thresholds_changed": False,
+                                    "heldout_rows_evaluated": False,
+                                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                                    "m_csa_heldout_row_specific_mechanism_text_used": False,
+                                    "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+                                    "source_text_or_source_ids_used_as_predictive_features": False,
+                                    "source_ids_used_as_predictive_features": False,
+                                    "target_names_used_as_predictive_features": False,
+                                    "ec_or_rhea_ids_used_as_predictive_features": False,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            finalization = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization(
+                draft_rows_for_signoff_path=draft_path,
+                event_axis_linker_schema_path=schema_path,
+            )
+
+        self.assertEqual(
+            finalization["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_blocked_review_only",
+        )
+        self.assertEqual(finalization["counts"]["draft_signoff_rows"], 1)
+        self.assertEqual(finalization["counts"]["rows_with_both_roles"], 1)
+        self.assertEqual(
+            finalization["counts"][
+                "priority_1_both_roles_moderate_evidence_review_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            finalization["signoff_rows"][0]["signoff_priority"],
+            "priority_1_both_roles_moderate_evidence_review",
+        )
+        self.assertEqual(finalization["counts"]["priority_review_rows"], 1)
+        self.assertEqual(len(finalization["priority_review_rows"]), 1)
+        self.assertEqual(
+            finalization["priority_review_rows"][0]["entry_id"], "m_csa:3"
+        )
+        self.assertEqual(finalization["counts"]["pending_reviewer_signoff_rows"], 1)
+        self.assertEqual(
+            finalization["counts"]["gate_consumable_event_axis_linker_rows"], 0
+        )
+        self.assertIn(
+            "event_axis_signoff_decisions_pending", finalization["blockers"]
+        )
+        self.assertIn(
+            "explicit_event_axis_linker_approvals_missing",
+            finalization["blockers"],
+        )
+        self.assertFalse(
+            finalization["decision"][
+                "event_axis_linker_rows_ready_for_materialization_gate"
+            ]
+        )
+        self.assertFalse(finalization["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_event_axis_linker_signoff_finalization_feeds_gate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            draft_path = root / "draft.json"
+            schema_path = root / "schema.json"
+            finalization_path = root / "finalization.json"
+            guardrails = {
+                "labels_registries_ontologies_changed": False,
+                "imports_or_promotions_performed": False,
+                "production_thresholds_changed": False,
+                "heldout_rows_evaluated": False,
+                "heldout_rows_used_for_training_or_threshold_tuning": False,
+                "m_csa_heldout_row_specific_mechanism_text_used": False,
+                "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+                "source_text_or_source_ids_used_as_predictive_features": False,
+                "source_ids_used_as_predictive_features": False,
+                "target_names_used_as_predictive_features": False,
+                "ec_or_rhea_ids_used_as_predictive_features": False,
+            }
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linker_schema_ready": True},
+                        "blockers_to_clear": [],
+                        "target_feature": {
+                            "event_type": "proton_transfer",
+                            "residue_role": "electrostatic_stabiliser",
+                        },
+                        "row_schema": {
+                            "required_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_free_event_axis_status",
+                                "event_type",
+                                "residue_role",
+                                "event_residue_linkers",
+                                "guardrail_audit",
+                            ],
+                            "event_residue_linker_required_fields": [
+                                "residue_locator_id",
+                                "residue_code",
+                                "sequence_position",
+                                "source_free_residue_role_evidence",
+                                "source_free_event_axis_evidence",
+                                "confidence",
+                            ],
+                            "allowed_event_types": ["proton_transfer"],
+                            "allowed_residue_roles": [
+                                "electrostatic_stabiliser"
+                            ],
+                            "minimum_linkers_per_ready_row": 1,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            draft_path.write_text(
+                json.dumps(
+                    {
+                        "event_axis_linker_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "P00003",
+                                "source_free_event_axis_status": (
+                                    "source_free_event_axis_linker_ready"
+                                ),
+                                "event_type": "proton_transfer",
+                                "residue_role": "electrostatic_stabiliser",
+                                "draft_evidence_strength": "moderate",
+                                "draft_has_both_roles": True,
+                                "approved": True,
+                                "reviewer_event_axis_decision": (
+                                    "explicit_approve_event_axis_linker"
+                                ),
+                                "reviewed_utc": "2026-06-03T21:20:00Z",
+                                "reviewer": "fixture_reviewer",
+                                "event_residue_linkers": [
+                                    {
+                                        "residue_locator_id": "loc-1",
+                                        "residue_code": "HIS",
+                                        "sequence_position": 12,
+                                        "source_free_residue_role_evidence": (
+                                            "structure_local_polar_network"
+                                        ),
+                                        "source_free_event_axis_evidence": (
+                                            "source_free_hbond_geometry"
+                                        ),
+                                        "confidence": 0.7,
+                                    }
+                                ],
+                                "guardrail_audit": guardrails,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            finalization = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization(
+                draft_rows_for_signoff_path=draft_path,
+                event_axis_linker_schema_path=schema_path,
+            )
+            finalization_path.write_text(json.dumps(finalization), encoding="utf-8")
+            gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+                event_axis_linker_schema_path=schema_path,
+                linker_rows_path=finalization_path,
+            )
+
+        self.assertEqual(
+            finalization["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_ready",
+        )
+        self.assertEqual(
+            finalization["counts"]["gate_consumable_event_axis_linker_rows"], 1
+        )
+        self.assertEqual(
+            finalization["counts"][
+                "priority_1_both_roles_moderate_evidence_review_rows"
+            ],
+            1,
+        )
+        self.assertEqual(finalization["counts"]["priority_review_rows"], 1)
+        self.assertEqual(len(finalization["priority_review_rows"]), 1)
+        self.assertEqual(finalization["counts"]["critical_violation_total"], 0)
+        self.assertTrue(
+            finalization["decision"][
+                "event_axis_linker_rows_ready_for_materialization_gate"
+            ]
+        )
+        self.assertEqual(
+            gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_ready",
+        )
+        self.assertEqual(gate["counts"]["materialized_linker_rows"], 1)
+        self.assertFalse(gate["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertFalse(gate["guardrails"]["heldout_rows_evaluated"])
+
     def test_followup_pair_source_free_event_axis_linker_gate_blocks_without_rows(
         self,
     ) -> None:
@@ -12845,6 +13102,7 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             surface_path = root / "surface.json"
             event_schema_path = root / "event_schema.json"
             event_gate_path = root / "event_gate.json"
+            event_finalization_path = root / "event_finalization.json"
             locator_gate_path = root / "locator_gate.json"
             approval_packet_path = root / "approval_packet.json"
             locator_input_path = root / "locator_input.json"
@@ -12905,6 +13163,31 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
                 ),
                 encoding="utf-8",
             )
+            event_finalization_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "event_axis_linker_rows_ready_for_materialization_gate": False
+                        },
+                        "counts": {
+                            "draft_signoff_rows": 53,
+                            "rows_with_both_roles": 14,
+                            "pending_reviewer_signoff_rows": 53,
+                            "explicit_approved_rows": 0,
+                            "gate_consumable_event_axis_linker_rows": 0,
+                            "priority_1_both_roles_moderate_evidence_review_rows": 3,
+                            "priority_2_both_roles_weak_evidence_review_rows": 11,
+                            "priority_3_weak_missing_both_roles_rewrite_review_rows": 6,
+                            "insufficient_event_axis_evidence_rewrite_or_reject_rows": 33,
+                        },
+                        "blockers": [
+                            "event_axis_signoff_decisions_pending",
+                            "explicit_event_axis_linker_approvals_missing",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
             locator_gate_path.write_text(
                 json.dumps(
                     {
@@ -12952,6 +13235,7 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
                 event_axis_linker_schema_path=event_schema_path,
                 locator_rewrite_materialization_gate_path=locator_gate_path,
                 event_axis_linker_materialization_gate_path=event_gate_path,
+                event_axis_linker_signoff_finalization_path=event_finalization_path,
                 locator_rewrite_approval_packet_path=approval_packet_path,
                 source_free_locator_input_audit_path=locator_input_path,
             )
@@ -12981,6 +13265,35 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertEqual(
             readiness["counts"]["event_axis_materialized_linker_rows"], 0
         )
+        self.assertEqual(readiness["counts"]["event_axis_signoff_draft_rows"], 53)
+        self.assertEqual(
+            readiness["counts"]["event_axis_signoff_rows_with_both_roles"], 14
+        )
+        self.assertEqual(
+            readiness["counts"]["event_axis_pending_reviewer_signoff_rows"], 53
+        )
+        self.assertEqual(readiness["counts"]["event_axis_explicit_approved_rows"], 0)
+        self.assertEqual(
+            readiness["counts"]["event_axis_gate_consumable_signoff_rows"], 0
+        )
+        self.assertEqual(
+            readiness["counts"][
+                "event_axis_priority_1_both_roles_moderate_evidence_review_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readiness["counts"][
+                "event_axis_priority_2_both_roles_weak_evidence_review_rows"
+            ],
+            11,
+        )
+        self.assertEqual(
+            readiness["counts"][
+                "event_axis_insufficient_event_axis_evidence_rewrite_or_reject_rows"
+            ],
+            33,
+        )
         self.assertIn(
             "approved_source_free_locator_surface_missing",
             readiness["blockers"],
@@ -12992,6 +13305,18 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertIn(
             "source_free_event_axis_linker_rows_missing",
             readiness["blockers"],
+        )
+        self.assertIn(
+            "event_axis_signoff_decisions_pending", readiness["blockers"]
+        )
+        self.assertIn(
+            "explicit_event_axis_linker_approvals_missing",
+            readiness["blockers"],
+        )
+        self.assertFalse(
+            readiness["readiness_inputs"][
+                "source_free_event_axis_linker_signoff_finalization_ready"
+            ]
         )
         self.assertFalse(
             readiness["decision"]["ready_to_apply_frozen_residual_threshold_once"]
@@ -15116,6 +15441,7 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             root = Path(tmpdir)
             p10746 = root / "p10746.json"
             lever2 = root / "lever2.json"
+            lever2_event_axis = root / "lever2_event_axis.json"
             lever4 = root / "lever4.json"
             app = root / "app.json"
             preview = root / "preview.json"
@@ -15164,6 +15490,27 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
                                 "planned_locator_payload_sha256": "b" * 64,
                                 "coordinate_contact_warning_count": 0,
                                 "materialization_gate_input_ready_if_approved": True,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            lever2_event_axis.write_text(
+                json.dumps(
+                    {
+                        "signoff_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "P00003",
+                                "reviewer_event_axis_decision": (
+                                    "pending_reviewer_signoff"
+                                ),
+                                "signoff_priority": (
+                                    "priority_1_both_roles_moderate_evidence_review"
+                                ),
+                                "draft_evidence_strength": "moderate",
+                                "event_residue_linker_count": 2,
                             }
                         ]
                     }
@@ -15229,6 +15576,9 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             queue = build_active_lever_reviewer_decision_queue(
                 p10746_decision_packet_path=p10746,
                 lever2_locator_rewrite_approval_packet_path=lever2,
+                lever2_event_axis_linker_signoff_finalization_path=(
+                    lever2_event_axis
+                ),
                 family_panel_expert_import_decision_packet_path=lever4,
                 family_panel_expert_import_decision_application_path=app,
                 family_panel_accepted_import_preview_path=preview,
@@ -15239,10 +15589,12 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             queue["status"],
             "active_lever_reviewer_decision_queue_ready_review_only",
         )
-        self.assertEqual(queue["counts"]["decision_items"], 3)
+        self.assertEqual(queue["counts"]["decision_items"], 4)
+        self.assertEqual(queue["counts"]["pending_decision_items"], 4)
+        self.assertEqual(queue["counts"]["reviewed_decision_items"], 0)
         self.assertEqual(
             queue["counts"]["lever_counts"],
-            {"Lever 2": 1, "Lever 3": 1, "Lever 4": 1},
+            {"Lever 2": 2, "Lever 3": 1, "Lever 4": 1},
         )
         self.assertEqual(
             queue["counts"]["lever4_import_preview_candidate_if_accepted_items"],
@@ -15251,13 +15603,22 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertEqual(queue["counts"]["lever4_accepted_import_preview_rows"], 1)
         self.assertEqual(queue["counts"]["lever4_label_factory_gate_input_rows"], 1)
         self.assertEqual(queue["counts"]["lever2_clean_locator_rewrite_items"], 1)
+        self.assertEqual(queue["counts"]["lever2_pending_locator_rewrite_items"], 1)
+        self.assertEqual(queue["counts"]["lever2_reviewed_locator_rewrite_items"], 0)
+        self.assertEqual(queue["counts"]["lever2_event_axis_signoff_items"], 1)
+        self.assertEqual(
+            queue["counts"]["lever2_pending_event_axis_signoff_items"], 1
+        )
+        self.assertEqual(
+            queue["counts"]["lever2_event_axis_priority1_signoff_items"], 1
+        )
         self.assertEqual(queue["counts"]["automation_action_allowed_now_items"], 0)
         self.assertTrue(
             queue["decision"]["lever4_label_factory_gate_inputs_ready"]
         )
         self.assertEqual(
             [row["lever"] for row in queue["decision_queue"]],
-            ["Lever 3", "Lever 4", "Lever 2"],
+            ["Lever 3", "Lever 4", "Lever 2", "Lever 2"],
         )
         self.assertEqual(
             queue["decision_queue"][0]["decision_field_to_update"], "decision"
@@ -15276,6 +15637,14 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertEqual(
             queue["decision_queue"][2]["approved_boolean_field_to_update"],
             "approved",
+        )
+        self.assertEqual(
+            queue["decision_queue"][3]["decision_class"],
+            "source_free_event_axis_linker_signoff",
+        )
+        self.assertEqual(
+            queue["decision_queue"][3]["decision_field_to_update"],
+            "reviewer_event_axis_decision",
         )
         self.assertFalse(queue["decision"]["apply_decisions_now"])
         self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
@@ -15297,14 +15666,16 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
                 json.dumps(
                     {
                         "counts": {
-                            "decision_items": 3,
+                            "decision_items": 4,
                             "automation_action_allowed_now_items": 0,
                             "lever2_clean_locator_rewrite_items": 1,
+                            "lever2_event_axis_signoff_items": 1,
                             "lever4_import_preview_candidate_if_accepted_items": 1,
                             "decision_class_counts": {
                                 "p10746_fold_only_deployment_caveat": 1,
                                 "family_panel_expert_import_decision": 1,
                                 "source_free_locator_rewrite_approval": 1,
+                                "source_free_event_axis_linker_signoff": 1,
                             },
                         },
                         "decision_queue": [
@@ -15351,6 +15722,19 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
                                 "candidate_sha256": "c" * 64,
                                 "planned_locator_payload_sha256": "d" * 64,
                             },
+                            {
+                                "priority": 3,
+                                "lever": "Lever 2",
+                                "entry_id": "m_csa:3",
+                                "decision_class": (
+                                    "source_free_event_axis_linker_signoff"
+                                ),
+                                "review_status": "pending_reviewer_signoff",
+                                "allowed_decisions": [
+                                    "explicit_approve_event_axis_linker",
+                                    "reject_event_axis_linker",
+                                ],
+                            },
                         ],
                     }
                 ),
@@ -15359,7 +15743,17 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             lever2_path.write_text(
                 json.dumps(
                     {
-                        "counts": {"locator_sidecars_written": 0},
+                        "counts": {
+                            "locator_sidecars_written": 0,
+                            "event_axis_signoff_draft_rows": 53,
+                            "event_axis_signoff_rows_with_both_roles": 14,
+                            "event_axis_pending_reviewer_signoff_rows": 53,
+                            "event_axis_explicit_approved_rows": 0,
+                            "event_axis_gate_consumable_signoff_rows": 0,
+                            "event_axis_priority_1_both_roles_moderate_evidence_review_rows": 3,
+                            "event_axis_priority_2_both_roles_weak_evidence_review_rows": 11,
+                            "event_axis_insufficient_event_axis_evidence_rewrite_or_reject_rows": 33,
+                        },
                         "decision": {
                             "ready_to_apply_frozen_residual_threshold_once": False
                         },
@@ -15455,9 +15849,10 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             audit["status"],
             "active_lever_mechanical_actionability_blocked_external_decisions",
         )
-        self.assertEqual(audit["counts"]["decision_items"], 3)
-        self.assertEqual(audit["counts"]["external_decision_required_items"], 3)
+        self.assertEqual(audit["counts"]["decision_items"], 4)
+        self.assertEqual(audit["counts"]["external_decision_required_items"], 4)
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
+        self.assertEqual(audit["counts"]["lever2_pending_event_axis_signoffs"], 1)
         self.assertIn("p10746_policy_decision_missing", audit["blockers"])
         self.assertIn(
             "source_free_event_axis_linker_gate_blocked", audit["blockers"]
@@ -15476,6 +15871,16 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_background_only_rows"], 5
         )
+        self.assertEqual(audit["counts"]["lever2_event_axis_signoff_draft_rows"], 53)
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_signoff_rows_with_both_roles"], 14
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_pending_reviewer_signoff_rows"], 53
+        )
+        self.assertEqual(audit["counts"]["lever2_event_axis_priority1_signoff_rows"], 3)
+        self.assertEqual(audit["counts"]["lever2_event_axis_priority2_signoff_rows"], 11)
+        self.assertEqual(audit["counts"]["lever2_event_axis_insufficient_signoff_rows"], 33)
         self.assertTrue(
             audit["counts"]["lever3_confounded_proxy_background_axis_exhausted"]
         )

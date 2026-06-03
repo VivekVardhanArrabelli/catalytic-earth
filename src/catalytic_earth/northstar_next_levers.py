@@ -519,6 +519,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_REVIEW_PACKET_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_SIGNOFF_FINALIZATION_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603"
+)
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_MATERIALIZATION_GATE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603"
 )
@@ -32595,6 +32598,7 @@ def build_active_lever_reviewer_decision_queue(
     *,
     p10746_decision_packet_path: Path | None = None,
     lever2_locator_rewrite_approval_packet_path: Path | None = None,
+    lever2_event_axis_linker_signoff_finalization_path: Path | None = None,
     family_panel_expert_import_decision_packet_path: Path | None = None,
     family_panel_expert_import_decision_application_path: Path | None = None,
     family_panel_accepted_import_preview_path: Path | None = None,
@@ -32610,6 +32614,12 @@ def build_active_lever_reviewer_decision_queue(
         _read_json(lever2_locator_rewrite_approval_packet_path)
         if lever2_locator_rewrite_approval_packet_path is not None
         and Path(lever2_locator_rewrite_approval_packet_path).exists()
+        else None
+    )
+    lever2_event_axis = (
+        _read_json(lever2_event_axis_linker_signoff_finalization_path)
+        if lever2_event_axis_linker_signoff_finalization_path is not None
+        and Path(lever2_event_axis_linker_signoff_finalization_path).exists()
         else None
     )
     lever4_packet = (
@@ -32792,10 +32802,83 @@ def build_active_lever_reviewer_decision_queue(
                 }
             )
 
+    if lever2_event_axis is not None:
+        for stub in lever2_event_axis.get("signoff_rows", []):
+            if not isinstance(stub, dict):
+                continue
+            signoff_priority = str(stub.get("signoff_priority") or "")
+            priority = {
+                "priority_1_both_roles_moderate_evidence_review": 3,
+                "priority_2_both_roles_weak_evidence_review": 4,
+                "priority_3_weak_missing_both_roles_rewrite_review": 7,
+                "insufficient_event_axis_evidence_rewrite_or_reject": 8,
+            }.get(signoff_priority, 8)
+            queue_items.append(
+                {
+                    "lever": "Lever 2",
+                    "decision_class": "source_free_event_axis_linker_signoff",
+                    "entry_id": stub.get("entry_id"),
+                    "panel_or_scope": "heldout_source_free_event_axis_surface",
+                    "priority": priority,
+                    "review_status": stub.get("reviewer_event_axis_decision"),
+                    "allowed_decisions": [
+                        "explicit_approve_event_axis_linker",
+                        "reject_event_axis_linker",
+                    ],
+                    "decision_field_to_update": "reviewer_event_axis_decision",
+                    "approved_boolean_field_to_update": "approved",
+                    "required_approved_value_if_approving": True,
+                    "decision_context_sha256": None,
+                    "unblock_effect_if_accepted": (
+                        "Allows this source-free event-axis row to be finalized "
+                        "into the event_axis_linker_rows container and then "
+                        "validated by the materialization gate."
+                    ),
+                    "unblock_effect_if_rejected": (
+                        "Keeps this row out of the event-axis linker surface "
+                        "until rewritten with stronger source-free evidence."
+                    ),
+                    "automation_action_allowed_now": False,
+                    "why_not_automatic": (
+                        "Event-axis linkage is a scientific reviewer decision; "
+                        "automation can only finalize explicitly approved rows."
+                    ),
+                    "next_gate_after_decision": (
+                        "build-mechanism-feature-row-specific-bond-change-"
+                        "p0-oos-augmented-best-token-followup-pair-source-free-"
+                        "event-axis-linker-signoff-finalization"
+                    ),
+                    "signoff_priority": signoff_priority,
+                    "draft_evidence_strength": stub.get(
+                        "draft_evidence_strength"
+                    ),
+                    "event_residue_linker_count": stub.get(
+                        "event_residue_linker_count"
+                    ),
+                    "materialization_gate_input_ready_if_approved": (
+                        signoff_priority
+                        in {
+                            "priority_1_both_roles_moderate_evidence_review",
+                            "priority_2_both_roles_weak_evidence_review",
+                        }
+                    ),
+                }
+            )
+
     lever_counts = Counter(str(item["lever"]) for item in queue_items)
     decision_class_counts = Counter(
         str(item["decision_class"]) for item in queue_items
     )
+    pending_queue_items = [
+        item
+        for item in queue_items
+        if str(item.get("review_status") or "").startswith("pending")
+    ]
+    reviewed_queue_items = [
+        item
+        for item in queue_items
+        if not str(item.get("review_status") or "").startswith("pending")
+    ]
     sorted_items = sorted(
         queue_items,
         key=lambda item: (
@@ -32847,6 +32930,8 @@ def build_active_lever_reviewer_decision_queue(
         },
         "counts": {
             "decision_items": len(queue_items),
+            "pending_decision_items": len(pending_queue_items),
+            "reviewed_decision_items": len(reviewed_queue_items),
             "lever_counts": dict(sorted(lever_counts.items())),
             "decision_class_counts": dict(sorted(decision_class_counts.items())),
             "p10746_policy_decision_items": decision_class_counts.get(
@@ -32855,11 +32940,46 @@ def build_active_lever_reviewer_decision_queue(
             "lever2_locator_rewrite_items": decision_class_counts.get(
                 "source_free_locator_rewrite_approval", 0
             ),
+            "lever2_pending_locator_rewrite_items": sum(
+                1
+                for item in queue_items
+                if item["decision_class"] == "source_free_locator_rewrite_approval"
+                and str(item.get("review_status") or "").startswith("pending")
+            ),
+            "lever2_reviewed_locator_rewrite_items": sum(
+                1
+                for item in queue_items
+                if item["decision_class"] == "source_free_locator_rewrite_approval"
+                and not str(item.get("review_status") or "").startswith("pending")
+            ),
             "lever2_clean_locator_rewrite_items": sum(
                 1
                 for item in queue_items
                 if item["decision_class"] == "source_free_locator_rewrite_approval"
                 and int(item.get("coordinate_contact_warning_count") or 0) == 0
+            ),
+            "lever2_event_axis_signoff_items": decision_class_counts.get(
+                "source_free_event_axis_linker_signoff", 0
+            ),
+            "lever2_pending_event_axis_signoff_items": sum(
+                1
+                for item in queue_items
+                if item["decision_class"] == "source_free_event_axis_linker_signoff"
+                and str(item.get("review_status") or "").startswith("pending")
+            ),
+            "lever2_event_axis_priority1_signoff_items": sum(
+                1
+                for item in queue_items
+                if item["decision_class"] == "source_free_event_axis_linker_signoff"
+                and item.get("signoff_priority")
+                == "priority_1_both_roles_moderate_evidence_review"
+            ),
+            "lever2_event_axis_priority2_signoff_items": sum(
+                1
+                for item in queue_items
+                if item["decision_class"] == "source_free_event_axis_linker_signoff"
+                and item.get("signoff_priority")
+                == "priority_2_both_roles_weak_evidence_review"
             ),
             "lever4_expert_import_items": decision_class_counts.get(
                 "family_panel_expert_import_decision", 0
@@ -32905,7 +33025,8 @@ def build_active_lever_reviewer_decision_queue(
             "next_gate": (
                 "Review priority-1/2 items first: P10746 caveat decision for "
                 "Lever 3 deployment closure, then the six Lever 4 expert-import "
-                "rows that can become import-preview candidates if accepted. "
+                "rows that can become import-preview candidates if accepted, "
+                "then the three priority-1 Lever 2 event-axis signoffs. "
                 "Only after explicit decisions are recorded should the matching "
                 "application gates be rerun."
             ),
@@ -32919,6 +33040,13 @@ def build_active_lever_reviewer_decision_queue(
             "lever2_locator_rewrite_approval_packet": (
                 _source_path_record(lever2_locator_rewrite_approval_packet_path)
                 if lever2_locator_rewrite_approval_packet_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever2_event_axis_linker_signoff_finalization": (
+                _source_path_record(
+                    lever2_event_axis_linker_signoff_finalization_path
+                )
+                if lever2_event_axis_linker_signoff_finalization_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
             "family_panel_expert_import_decision_packet": (
@@ -32955,8 +33083,9 @@ def build_active_lever_reviewer_decision_queue(
             "result": (
                 "The active lever blockers are now organized by unblock effect: "
                 "one P10746 policy caveat, six Lever 4 rows that could enter "
-                "import preview if accepted, and 55 Lever 2 locator rewrites "
-                "that still require explicit approval before materialization."
+                "import preview if accepted, Lever 2 locator rewrites, and "
+                "Lever 2 source-free event-axis signoffs that still require "
+                "explicit approval before materialization."
             ),
             "next_action": (
                 "Record reviewed decisions in the source packet formats with "
@@ -32983,6 +33112,8 @@ def _render_active_lever_reviewer_decision_queue_report(
         "",
         f"- {queue['status']}",
         f"- Decision items: {counts['decision_items']}",
+        f"- Pending decision items: {counts['pending_decision_items']}",
+        f"- Reviewed decision items: {counts['reviewed_decision_items']}",
         f"- Lever counts: {counts['lever_counts']}",
         f"- Decision classes: {counts['decision_class_counts']}",
         "- Lever 4 import-preview candidates if accepted: "
@@ -32993,6 +33124,16 @@ def _render_active_lever_reviewer_decision_queue_report(
         f"{counts['lever4_label_factory_gate_input_rows']}",
         "- Lever 2 clean locator rewrite items: "
         f"{counts['lever2_clean_locator_rewrite_items']}",
+        "- Lever 2 pending/reviewed locator rewrite items: "
+        f"{counts['lever2_pending_locator_rewrite_items']}/"
+        f"{counts['lever2_reviewed_locator_rewrite_items']}",
+        "- Lever 2 event-axis signoff items: "
+        f"{counts['lever2_event_axis_signoff_items']}",
+        "- Lever 2 pending event-axis signoff items: "
+        f"{counts['lever2_pending_event_axis_signoff_items']}",
+        "- Lever 2 event-axis priority 1/2 signoff items: "
+        f"{counts['lever2_event_axis_priority1_signoff_items']}/"
+        f"{counts['lever2_event_axis_priority2_signoff_items']}",
         "- Automation-action-allowed-now items: "
         f"{counts['automation_action_allowed_now_items']}",
         f"- Blockers: {queue['blockers']}",
@@ -33004,6 +33145,34 @@ def _render_active_lever_reviewer_decision_queue_report(
         "- Lever 4 label-factory gate inputs ready: "
         f"{decision['lever4_label_factory_gate_inputs_ready']}",
         f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Pending Review Items",
+        "",
+    ]
+    pending_report_items = [
+        item
+        for item in queue.get("decision_queue", [])
+        if str(item.get("review_status") or "").startswith("pending")
+    ]
+    lines.extend(
+        [
+            f"Pending review items shown: {min(40, len(pending_report_items))}/{len(pending_report_items)}",
+            "",
+            "| priority | lever | row | decision class | status | decision field | next gate |",
+            "| ---: | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    if pending_report_items:
+        for item in pending_report_items[:40]:
+            lines.append(
+                f"| {item['priority']} | {item['lever']} | {item['entry_id']} | "
+                f"{item['decision_class']} | {item['review_status']} | "
+                f"{item.get('decision_field_to_update')} | "
+                f"{item['next_gate_after_decision']} |"
+            )
+    else:
+        lines.append("| none | none | none | none | none | none | none |")
+    lines += [
         "",
         "## Queue",
         "",
@@ -33031,6 +33200,7 @@ def write_active_lever_reviewer_decision_queue(
     *,
     p10746_decision_packet_path: Path | None = None,
     lever2_locator_rewrite_approval_packet_path: Path | None = None,
+    lever2_event_axis_linker_signoff_finalization_path: Path | None = None,
     family_panel_expert_import_decision_packet_path: Path | None = None,
     family_panel_expert_import_decision_application_path: Path | None = None,
     family_panel_accepted_import_preview_path: Path | None = None,
@@ -33041,6 +33211,9 @@ def write_active_lever_reviewer_decision_queue(
     queue = build_active_lever_reviewer_decision_queue(
         p10746_decision_packet_path=p10746_decision_packet_path,
         lever2_locator_rewrite_approval_packet_path=lever2_locator_rewrite_approval_packet_path,
+        lever2_event_axis_linker_signoff_finalization_path=(
+            lever2_event_axis_linker_signoff_finalization_path
+        ),
         family_panel_expert_import_decision_packet_path=family_panel_expert_import_decision_packet_path,
         family_panel_expert_import_decision_application_path=family_panel_expert_import_decision_application_path,
         family_panel_accepted_import_preview_path=family_panel_accepted_import_preview_path,
@@ -33482,11 +33655,31 @@ def build_active_lever_mechanical_actionability_audit(
         if item.get("decision_class") == "source_free_locator_rewrite_approval"
         and str(item.get("review_status", "")).startswith("pending")
     ]
+    lever2_event_axis_pending = [
+        item
+        for item in queue_items
+        if item.get("decision_class") == "source_free_event_axis_linker_signoff"
+        and str(item.get("review_status", "")).startswith("pending")
+    ]
     effective_lever2_pending = (
         [] if source_intake_locator_follow_on_consumed else lever2_pending
     )
     external_decision_required_items = len(
-        p10746_pending + lever4_pending + effective_lever2_pending
+        p10746_pending
+        + lever4_pending
+        + effective_lever2_pending
+        + lever2_event_axis_pending
+    )
+    source_intake_blocking_reason = (
+        "source_decision_intake_preflight_missing"
+        if not source_intake
+        else (
+            "source_decision_follow_on_rows_already_consumed"
+            if source_intake_locator_follow_on_consumed
+            and source_intake_follow_on_ready == 0
+            and raw_source_intake_follow_on_ready > 0
+            else "source_decision_intake_preflight_not_ready"
+        )
     )
 
     gate_checks = [
@@ -33494,11 +33687,7 @@ def build_active_lever_mechanical_actionability_audit(
             "lever": "Lever 2/3/4",
             "gate": "source_decision_intake_preflight",
             "ready_now": source_intake_ready,
-            "blocking_reason": (
-                "source_decision_intake_preflight_not_ready"
-                if source_intake
-                else "source_decision_intake_preflight_missing"
-            ),
+            "blocking_reason": source_intake_blocking_reason,
             "next_command_after_decision": (
                 "build-active-lever-source-decision-intake-preflight"
             ),
@@ -33853,6 +34042,11 @@ def build_active_lever_mechanical_actionability_audit(
     if not lever2_decision.get("ready_to_apply_frozen_residual_threshold_once"):
         blockers.append("lever2_pre_threshold_readiness_not_ready")
 
+    pending_queue_items = [
+        item
+        for item in queue_items
+        if str(item.get("review_status") or "").startswith("pending")
+    ]
     next_review_items = [
         {
             "priority": item.get("priority"),
@@ -33874,7 +34068,7 @@ def build_active_lever_mechanical_actionability_audit(
                 "planned_locator_payload_sha256"
             ),
         }
-        for item in queue_items[:12]
+        for item in pending_queue_items[:12]
     ]
     lever3_background_exhausted = bool(
         lever3_proxy_background_axis_decision.get(
@@ -34002,6 +34196,23 @@ def build_active_lever_mechanical_actionability_audit(
             "AFDB files; use a different source-free protein-only structural "
             "proxy or reviewed P10746/Lever 4 decisions."
         )
+
+    lever2_result = (
+        "Lever 2 is still blocked by locator approvals plus source-free "
+        "event-axis linkers."
+        if effective_lever2_pending
+        else (
+            "Lever 2 locator approvals are cleared and locator sidecars are "
+            f"written for {lever2_locator_sidecars_written} rows, but the "
+            f"{len(lever2_event_axis_pending)} source-free event-axis signoffs "
+            "and pre-threshold readiness remain blocked."
+        )
+        if lever2_event_axis_pending
+        else (
+            "Lever 2 locator approvals and event-axis signoffs are cleared, "
+            "but pre-threshold readiness remains blocked."
+        )
+    )
 
     return {
         "artifact_id": ACTIVE_LEVER_MECHANICAL_ACTIONABILITY_AUDIT_ID,
@@ -34258,12 +34469,46 @@ def build_active_lever_mechanical_actionability_audit(
                 lever4_counts.get("label_factory_gate_input_rows") or 0
             ),
             "lever2_pending_locator_approvals": len(effective_lever2_pending),
+            "lever2_pending_event_axis_signoffs": len(lever2_event_axis_pending),
             "lever2_clean_locator_rewrite_items": int(
                 queue_counts.get("lever2_clean_locator_rewrite_items") or 0
             ),
             "lever2_locator_sidecars_written": lever2_locator_sidecars_written,
             "lever2_event_axis_materialized_linker_rows": int(
                 event_counts.get("materialized_linker_rows") or 0
+            ),
+            "lever2_event_axis_signoff_draft_rows": int(
+                lever2_counts.get("event_axis_signoff_draft_rows") or 0
+            ),
+            "lever2_event_axis_signoff_rows_with_both_roles": int(
+                lever2_counts.get("event_axis_signoff_rows_with_both_roles") or 0
+            ),
+            "lever2_event_axis_pending_reviewer_signoff_rows": int(
+                lever2_counts.get("event_axis_pending_reviewer_signoff_rows") or 0
+            ),
+            "lever2_event_axis_explicit_approved_rows": int(
+                lever2_counts.get("event_axis_explicit_approved_rows") or 0
+            ),
+            "lever2_event_axis_gate_consumable_signoff_rows": int(
+                lever2_counts.get("event_axis_gate_consumable_signoff_rows") or 0
+            ),
+            "lever2_event_axis_priority1_signoff_rows": int(
+                lever2_counts.get(
+                    "event_axis_priority_1_both_roles_moderate_evidence_review_rows"
+                )
+                or 0
+            ),
+            "lever2_event_axis_priority2_signoff_rows": int(
+                lever2_counts.get(
+                    "event_axis_priority_2_both_roles_weak_evidence_review_rows"
+                )
+                or 0
+            ),
+            "lever2_event_axis_insufficient_signoff_rows": int(
+                lever2_counts.get(
+                    "event_axis_insufficient_event_axis_evidence_rewrite_or_reject_rows"
+                )
+                or 0
             ),
             "mechanical_gates_ready_now": sum(
                 1 for check in gate_checks if check["ready_now"]
@@ -34448,12 +34693,12 @@ def build_active_lever_mechanical_actionability_audit(
             "result": (
                 f"{lever3_result} "
                 "Lever 4 is blocked before import preview by expert import "
-                "decisions, and Lever 2 is blocked by locator approvals plus "
-                "source-free event-axis linkers."
+                f"decisions, and {lever2_result}"
             ),
             "next_action": (
                 "Review the first twelve queued rows here, starting with "
-                "P10746 and the six Lever 4 import-preview candidates. "
+                "P10746, the six Lever 4 import-preview candidates, and the "
+                "three priority-1 Lever 2 event-axis signoffs. "
                 f"{lever3_next_action}"
             ),
         },
@@ -34490,8 +34735,22 @@ def _render_active_lever_mechanical_actionability_audit_report(
         f"{counts['source_decision_intake_invalid_rows']}",
         "- Lever 2 pending locator approvals: "
         f"{counts['lever2_pending_locator_approvals']}",
+        "- Lever 2 pending event-axis signoffs: "
+        f"{counts['lever2_pending_event_axis_signoffs']}",
         "- Lever 2 event-axis linker rows: "
         f"{counts['lever2_event_axis_materialized_linker_rows']}",
+        "- Lever 2 event-axis signoff draft rows: "
+        f"{counts['lever2_event_axis_signoff_draft_rows']}",
+        "- Lever 2 event-axis pending signoff rows: "
+        f"{counts['lever2_event_axis_pending_reviewer_signoff_rows']}",
+        "- Lever 2 event-axis explicit approved rows: "
+        f"{counts['lever2_event_axis_explicit_approved_rows']}",
+        "- Lever 2 event-axis gate-consumable signoff rows: "
+        f"{counts['lever2_event_axis_gate_consumable_signoff_rows']}",
+        "- Lever 2 event-axis priority 1/2/insufficient signoff rows: "
+        f"{counts['lever2_event_axis_priority1_signoff_rows']}/"
+        f"{counts['lever2_event_axis_priority2_signoff_rows']}/"
+        f"{counts['lever2_event_axis_insufficient_signoff_rows']}",
         "- Lever 3 structural proxy abstained: "
         f"{counts.get('lever3_confounded_structural_proxy_abstained')}/"
         f"{counts.get('lever3_confounded_structural_proxy_rows')}",
@@ -54137,6 +54396,536 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     return packet
 
 
+def _event_axis_linker_rows_from_signoff_payload(
+    payload: dict[str, Any],
+) -> list[dict[str, Any]]:
+    for key in (
+        "event_axis_linker_rows",
+        "source_free_event_axis_linkers",
+        "source_free_event_residue_role_linkers",
+        "linker_rows",
+        "rows",
+    ):
+        rows = payload.get(key)
+        if isinstance(rows, list):
+            return [row for row in rows if isinstance(row, dict)]
+    return []
+
+
+def _source_free_event_axis_linker_guardrail_violations(
+    guardrail_audit: Any,
+) -> list[str]:
+    required_false_keys = (
+        "labels_registries_ontologies_changed",
+        "imports_or_promotions_performed",
+        "production_thresholds_changed",
+        "heldout_rows_evaluated",
+        "heldout_rows_used_for_training_or_threshold_tuning",
+        "m_csa_heldout_row_specific_mechanism_text_used",
+        "m_csa_heldout_active_site_roles_used_as_predictive_features",
+        "source_text_or_source_ids_used_as_predictive_features",
+        "source_ids_used_as_predictive_features",
+        "target_names_used_as_predictive_features",
+        "ec_or_rhea_ids_used_as_predictive_features",
+    )
+    if not isinstance(guardrail_audit, dict):
+        return ["guardrail_audit_missing_or_not_object"]
+    violations: list[str] = []
+    for key in required_false_keys:
+        if key not in guardrail_audit:
+            violations.append(f"missing_guardrail_audit:{key}")
+        elif guardrail_audit.get(key):
+            violations.append(f"guardrail_violation:{key}")
+    return violations
+
+
+def _source_free_event_axis_linker_row_validation_violations(
+    row: dict[str, Any],
+    *,
+    allowed_event_types: set[str],
+    allowed_residue_roles: set[str],
+    minimum_linkers: int,
+) -> list[str]:
+    required_fields = (
+        "entry_id",
+        "accession",
+        "source_free_event_axis_status",
+        "event_type",
+        "residue_role",
+        "event_residue_linkers",
+        "guardrail_audit",
+    )
+    violations: list[str] = []
+    for field in required_fields:
+        if row.get(field) in (None, "", []):
+            violations.append(f"missing_required_field:{field}")
+    if allowed_event_types and row.get("event_type") not in allowed_event_types:
+        violations.append("event_type_not_allowed_by_schema")
+    if (
+        allowed_residue_roles
+        and row.get("residue_role") not in allowed_residue_roles
+    ):
+        violations.append("residue_role_not_allowed_by_schema")
+    if row.get("approved") is not True:
+        violations.append("approved_boolean_not_true")
+    if row.get("reviewer_event_axis_decision") != "explicit_approve_event_axis_linker":
+        violations.append("reviewer_event_axis_decision_not_explicit_approval")
+    if not row.get("reviewed_utc"):
+        violations.append("reviewed_utc_missing")
+    if not row.get("reviewer"):
+        violations.append("reviewer_missing")
+    status = str(row.get("source_free_event_axis_status") or "")
+    if status not in {
+        "source_free_event_axis_linker_ready",
+        "source_free_event_axis_ready",
+        "ready",
+    }:
+        violations.append("source_free_event_axis_status_not_ready")
+    linkers = row.get("event_residue_linkers")
+    if not isinstance(linkers, list):
+        violations.append("event_residue_linkers_not_list")
+        linkers = []
+    if len(linkers) < minimum_linkers:
+        violations.append("minimum_linker_count_not_met")
+    linker_required_fields = (
+        "residue_locator_id",
+        "residue_code",
+        "sequence_position",
+        "source_free_residue_role_evidence",
+        "source_free_event_axis_evidence",
+        "confidence",
+    )
+    for linker_index, linker in enumerate(linkers):
+        if not isinstance(linker, dict):
+            violations.append(f"linker_{linker_index}_not_object")
+            continue
+        for field in linker_required_fields:
+            if linker.get(field) in (None, "", []):
+                violations.append(
+                    f"linker_{linker_index}_missing_required_field:{field}"
+                )
+        try:
+            confidence = float(linker.get("confidence"))
+        except (TypeError, ValueError):
+            violations.append(f"linker_{linker_index}_confidence_not_float")
+        else:
+            if confidence < 0.0 or confidence > 1.0:
+                violations.append(f"linker_{linker_index}_confidence_out_of_range")
+    violations.extend(
+        _source_free_event_axis_linker_guardrail_violations(
+            row.get("guardrail_audit")
+        )
+    )
+    return sorted(set(violations))
+
+
+def _source_free_event_axis_signoff_priority(
+    *,
+    has_both_roles: bool,
+    strength: str,
+) -> str:
+    if has_both_roles and strength == "moderate":
+        return "priority_1_both_roles_moderate_evidence_review"
+    if has_both_roles:
+        return "priority_2_both_roles_weak_evidence_review"
+    if strength == "weak":
+        return "priority_3_weak_missing_both_roles_rewrite_review"
+    return "insufficient_event_axis_evidence_rewrite_or_reject"
+
+
+def _source_free_event_axis_signoff_priority_rank(priority: str) -> int:
+    ranks = {
+        "priority_1_both_roles_moderate_evidence_review": 1,
+        "priority_2_both_roles_weak_evidence_review": 2,
+        "priority_3_weak_missing_both_roles_rewrite_review": 3,
+        "insufficient_event_axis_evidence_rewrite_or_reject": 4,
+    }
+    return ranks.get(priority, 10)
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization(
+    *,
+    draft_rows_for_signoff_path: Path,
+    event_axis_linker_schema_path: Path | None = None,
+) -> dict[str, Any]:
+    draft = _read_json(draft_rows_for_signoff_path)
+    schema = _read_json(event_axis_linker_schema_path) if event_axis_linker_schema_path else {}
+    row_schema = schema.get("row_schema", {}) if isinstance(schema, dict) else {}
+    allowed_event_types = {
+        str(value)
+        for value in row_schema.get("allowed_event_types", [])
+        if value
+    }
+    allowed_residue_roles = {
+        str(value)
+        for value in row_schema.get("allowed_residue_roles", [])
+        if value
+    }
+    minimum_linkers = int(row_schema.get("minimum_linkers_per_ready_row") or 1)
+    rows = _event_axis_linker_rows_from_signoff_payload(draft)
+    finalized_rows: list[dict[str, Any]] = []
+    signoff_rows: list[dict[str, Any]] = []
+    priority_review_rows: list[dict[str, Any]] = []
+    approved_invalid_rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    strength_counts: Counter[str] = Counter()
+    priority_counts: Counter[str] = Counter()
+    status_counts: Counter[str] = Counter()
+    rows_with_both_roles = 0
+
+    for row in sorted(rows, key=lambda value: _entry_id_sort_key(str(value.get("entry_id") or ""))):
+        entry_id = str(row.get("entry_id") or "")
+        decision = str(row.get("reviewer_event_axis_decision") or "missing_decision")
+        status = str(row.get("source_free_event_axis_status") or "missing_status")
+        strength = str(row.get("draft_evidence_strength") or "unknown")
+        has_both_roles = bool(row.get("draft_has_both_roles"))
+        signoff_priority = _source_free_event_axis_signoff_priority(
+            has_both_roles=has_both_roles,
+            strength=strength,
+        )
+        decision_counts[decision] += 1
+        strength_counts[strength] += 1
+        priority_counts[signoff_priority] += 1
+        status_counts[status] += 1
+        if has_both_roles:
+            rows_with_both_roles += 1
+        if signoff_priority in {
+            "priority_1_both_roles_moderate_evidence_review",
+            "priority_2_both_roles_weak_evidence_review",
+        }:
+            linkers_for_review = (
+                row.get("event_residue_linkers", [])
+                if isinstance(row.get("event_residue_linkers"), list)
+                else []
+            )
+            priority_review_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "accession": row.get("accession"),
+                    "signoff_priority": signoff_priority,
+                    "draft_evidence_strength": strength,
+                    "event_residue_linker_count": len(linkers_for_review),
+                    "event_type": row.get("event_type"),
+                    "residue_role": row.get("residue_role"),
+                    "event_residue_linkers": linkers_for_review,
+                    "reviewer_event_axis_decision": decision,
+                    "source_free_event_axis_status": status,
+                    "next_reviewer_action": (
+                        "If the source-free event-axis and residue-role "
+                        "evidence is scientifically supported, set "
+                        "reviewer_event_axis_decision to "
+                        "explicit_approve_event_axis_linker, approved to true, "
+                        "source_free_event_axis_status to "
+                        "source_free_event_axis_linker_ready, and fill reviewer "
+                        "plus reviewed_utc; otherwise set reject_event_axis_linker."
+                    ),
+                }
+            )
+        violations: list[str] = []
+        gate_ready = False
+        if decision == "explicit_approve_event_axis_linker":
+            violations = _source_free_event_axis_linker_row_validation_violations(
+                row,
+                allowed_event_types=allowed_event_types,
+                allowed_residue_roles=allowed_residue_roles,
+                minimum_linkers=minimum_linkers,
+            )
+            if not violations:
+                gate_ready = True
+                finalized_rows.append(
+                    {
+                        "entry_id": row.get("entry_id"),
+                        "accession": row.get("accession"),
+                        "source_free_event_axis_status": row.get(
+                            "source_free_event_axis_status"
+                        ),
+                        "event_type": row.get("event_type"),
+                        "residue_role": row.get("residue_role"),
+                        "event_residue_linkers": row.get(
+                            "event_residue_linkers", []
+                        ),
+                        "guardrail_audit": row.get("guardrail_audit", {}),
+                        "reviewer_event_axis_decision": decision,
+                        "reviewed_utc": row.get("reviewed_utc"),
+                        "reviewer": row.get("reviewer"),
+                    }
+                )
+            else:
+                approved_invalid_rows.append(
+                    {
+                        "entry_id": entry_id,
+                        "accession": row.get("accession"),
+                        "critical_violations": violations,
+                    }
+                )
+        signoff_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "reviewer_event_axis_decision": decision,
+                "source_free_event_axis_status": status,
+                "draft_evidence_strength": strength,
+                "signoff_priority": signoff_priority,
+                "draft_has_both_roles": has_both_roles,
+                "event_residue_linker_count": len(
+                    row.get("event_residue_linkers", [])
+                    if isinstance(row.get("event_residue_linkers"), list)
+                    else []
+                ),
+                "materialization_gate_input_ready": gate_ready,
+                "critical_violations": violations,
+            }
+        )
+
+    approved_decisions = decision_counts.get("explicit_approve_event_axis_linker", 0)
+    rejected_decisions = decision_counts.get("reject_event_axis_linker", 0)
+    pending_decisions = sum(
+        count
+        for decision, count in decision_counts.items()
+        if decision.startswith("pending_") or decision == "missing_decision"
+    )
+    blockers: list[str] = []
+    if pending_decisions:
+        blockers.append("event_axis_signoff_decisions_pending")
+    if not approved_decisions:
+        blockers.append("explicit_event_axis_linker_approvals_missing")
+    if approved_invalid_rows:
+        blockers.append("approved_event_axis_linker_rows_incomplete")
+    if not finalized_rows:
+        blockers.append("source_free_event_axis_linker_rows_missing")
+    if event_axis_linker_schema_path and not schema.get("decision", {}).get(
+        "event_axis_linker_schema_ready"
+    ):
+        blockers.append("source_free_event_axis_linker_schema_not_ready")
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_SIGNOFF_FINALIZATION_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_ready"
+            if finalized_rows and not approved_invalid_rows
+            else "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_blocked_review_only"
+        ),
+        "scope": (
+            "Review-to-gate bridge for source-free event-axis linker rows. It "
+            "copies only explicitly approved, fully attested linker rows into "
+            "the event_axis_linker_rows container consumed by the materialization "
+            "gate; pending, rejected, incomplete, or guardrail-violating rows "
+            "remain non-consumable."
+        ),
+        "event_axis_linker_rows": finalized_rows,
+        "signoff_rows": signoff_rows,
+        "priority_review_rows": sorted(
+            priority_review_rows,
+            key=lambda row: (
+                _source_free_event_axis_signoff_priority_rank(
+                    str(row.get("signoff_priority") or "")
+                ),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+            ),
+        ),
+        "approved_invalid_rows": approved_invalid_rows,
+        "decision_counts": dict(sorted(decision_counts.items())),
+        "draft_evidence_strength_counts": dict(sorted(strength_counts.items())),
+        "signoff_priority_counts": dict(sorted(priority_counts.items())),
+        "source_free_event_axis_status_counts": dict(sorted(status_counts.items())),
+        "blockers": sorted(set(blockers)),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "source_ids_used_as_predictive_features": False,
+            "target_names_used_as_predictive_features": False,
+            "ec_or_rhea_ids_used_as_predictive_features": False,
+            "event_axis_linker_rows_inferred_by_this_bridge": False,
+            "review_only": True,
+        },
+        "counts": {
+            "draft_signoff_rows": len(rows),
+            "rows_with_both_roles": rows_with_both_roles,
+            "priority_review_rows": len(priority_review_rows),
+            "priority_1_both_roles_moderate_evidence_review_rows": (
+                priority_counts.get("priority_1_both_roles_moderate_evidence_review")
+            ),
+            "priority_2_both_roles_weak_evidence_review_rows": (
+                priority_counts.get("priority_2_both_roles_weak_evidence_review")
+            ),
+            "priority_3_weak_missing_both_roles_rewrite_review_rows": (
+                priority_counts.get(
+                    "priority_3_weak_missing_both_roles_rewrite_review"
+                )
+            ),
+            "insufficient_event_axis_evidence_rewrite_or_reject_rows": (
+                priority_counts.get(
+                    "insufficient_event_axis_evidence_rewrite_or_reject"
+                )
+            ),
+            "pending_reviewer_signoff_rows": pending_decisions,
+            "explicit_approved_rows": approved_decisions,
+            "explicit_rejected_rows": rejected_decisions,
+            "approved_invalid_rows": len(approved_invalid_rows),
+            "gate_consumable_event_axis_linker_rows": len(finalized_rows),
+            "minimum_linkers_per_ready_row": minimum_linkers,
+            "critical_violation_total": sum(
+                len(row["critical_violations"]) for row in signoff_rows
+            ),
+            "blockers": len(set(blockers)),
+        },
+        "decision": {
+            "event_axis_reviewer_decisions_available": bool(
+                approved_decisions or rejected_decisions
+            ),
+            "event_axis_linker_rows_ready_for_materialization_gate": bool(
+                finalized_rows
+            ),
+            "event_axis_linkers_materialized": False,
+            "materialization_gate_ready_now": bool(finalized_rows),
+            "heldout_safe_event_axis_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Collect explicit event-axis signoff decisions. Once one or "
+                "more rows are approved with ready status, reviewer metadata, "
+                "filled source-free evidence, confidence values, and clean "
+                "guardrail audits, pass this artifact to the event-axis "
+                "materialization gate."
+            ),
+        },
+        "source_artifacts": {
+            "draft_rows_for_signoff": _source_path_record(
+                draft_rows_for_signoff_path
+            ),
+            "event_axis_linker_schema": (
+                _source_path_record(event_axis_linker_schema_path)
+                if event_axis_linker_schema_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(finalized_rows)} gate-consumable linker rows finalized "
+                f"from {len(rows)} draft signoff rows; {pending_decisions} rows "
+                "still await reviewer signoff."
+            ),
+            "next_action": (
+                "Do not rerun the heldout threshold. First secure explicit "
+                "event-axis approvals and rerun the materialization gate on "
+                "this finalized rows artifact."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_report(
+    finalization: dict[str, Any],
+) -> str:
+    counts = finalization["counts"]
+    decision = finalization["decision"]
+    priority_rows = finalization.get("priority_review_rows", [])
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Axis Linker Signoff Finalization - current702",
+        "",
+        f"Run: {finalization['created_utc']}",
+        "",
+        finalization["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {finalization['status']}",
+        f"- Draft signoff rows: {counts['draft_signoff_rows']}",
+        f"- Rows with both roles: {counts['rows_with_both_roles']}",
+        "- Priority 1 both-roles moderate evidence rows: "
+        f"{counts['priority_1_both_roles_moderate_evidence_review_rows']}",
+        "- Priority 2 both-roles weak evidence rows: "
+        f"{counts['priority_2_both_roles_weak_evidence_review_rows']}",
+        "- Priority 3 weak missing-both-roles rewrite rows: "
+        f"{counts['priority_3_weak_missing_both_roles_rewrite_review_rows']}",
+        "- Insufficient event-axis evidence rewrite/reject rows: "
+        f"{counts['insufficient_event_axis_evidence_rewrite_or_reject_rows']}",
+        f"- Pending reviewer signoff rows: {counts['pending_reviewer_signoff_rows']}",
+        f"- Explicit approved rows: {counts['explicit_approved_rows']}",
+        f"- Explicit rejected rows: {counts['explicit_rejected_rows']}",
+        f"- Gate-consumable rows: {counts['gate_consumable_event_axis_linker_rows']}",
+        f"- Priority review rows: {counts['priority_review_rows']}",
+        f"- Approved invalid rows: {counts['approved_invalid_rows']}",
+        f"- Blockers: {finalization['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Reviewer decisions available: "
+        f"{decision['event_axis_reviewer_decisions_available']}",
+        "- Rows ready for materialization gate: "
+        f"{decision['event_axis_linker_rows_ready_for_materialization_gate']}",
+        "- Event-axis linkers materialized: "
+        f"{decision['event_axis_linkers_materialized']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Priority Review Rows",
+        "",
+    ]
+    if priority_rows:
+        for row in priority_rows:
+            lines.append(
+                "- "
+                f"{row.get('entry_id')} {row.get('accession')} "
+                f"{row.get('signoff_priority')} "
+                f"linkers={row.get('event_residue_linker_count')}"
+            )
+    else:
+        lines.append("- none")
+    lines.extend(
+        [
+            "",
+        "## Interpretation",
+        "",
+        f"- {finalization['interpretation']['result']}",
+        f"- {finalization['interpretation']['next_action']}",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization(
+    *,
+    draft_rows_for_signoff_path: Path,
+    out_path: Path,
+    event_axis_linker_schema_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    finalization = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization(
+        draft_rows_for_signoff_path=draft_rows_for_signoff_path,
+        event_axis_linker_schema_path=event_axis_linker_schema_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(finalization, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_report(
+                finalization
+            ),
+            encoding="utf-8",
+        )
+    return finalization
+
+
 def _source_free_event_axis_linker_rows(
     linker_rows_path: Path | None,
 ) -> list[dict[str, Any]]:
@@ -57544,6 +58333,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     event_axis_linker_schema_path: Path,
     locator_rewrite_materialization_gate_path: Path,
     event_axis_linker_materialization_gate_path: Path | None = None,
+    event_axis_linker_signoff_finalization_path: Path | None = None,
     locator_rewrite_approval_packet_path: Path | None = None,
     source_free_locator_input_audit_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -57554,6 +58344,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         _read_json(event_axis_linker_materialization_gate_path)
         if event_axis_linker_materialization_gate_path is not None
         and Path(event_axis_linker_materialization_gate_path).exists()
+        else None
+    )
+    event_signoff = (
+        _read_json(event_axis_linker_signoff_finalization_path)
+        if event_axis_linker_signoff_finalization_path is not None
+        and Path(event_axis_linker_signoff_finalization_path).exists()
         else None
     )
     locator_gate = _read_json(locator_rewrite_materialization_gate_path)
@@ -57607,11 +58403,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 continue
             if blocker not in blockers:
                 blockers.append(str(blocker))
+    if event_signoff is not None:
+        for blocker in event_signoff.get("blockers", []):
+            if blocker not in blockers:
+                blockers.append(str(blocker))
 
     ready = contract_ready and locator_surface_ready and event_linkers_materialized and surface_ready
     locator_counts = locator_gate.get("counts", {})
     surface_counts = surface.get("counts", {})
     event_counts = event_artifact.get("counts", {})
+    event_signoff_counts = (event_signoff or {}).get("counts", {})
     locator_input_counts = (locator_input or {}).get("counts", {})
     approval_packet_counts = (approval_packet or {}).get("counts", {})
     locator_preflight_rows = int(locator_counts.get("preflight_rows") or 0)
@@ -57660,6 +58461,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "pair_operating_point_contract_ready": contract_ready,
             "approved_source_free_locator_surface_ready": locator_surface_ready,
             "source_free_event_axis_linkers_materialized": event_linkers_materialized,
+            "source_free_event_axis_linker_signoff_finalization_ready": bool(
+                (event_signoff or {})
+                .get("decision", {})
+                .get("event_axis_linker_rows_ready_for_materialization_gate")
+            ),
             "heldout_safe_pair_application_surface_ready": surface_ready,
         },
         "frozen_contract": {
@@ -57720,6 +58526,41 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "event_axis_materialized_linker_rows": event_counts.get(
                 "materialized_linker_rows"
             ),
+            "event_axis_signoff_draft_rows": event_signoff_counts.get(
+                "draft_signoff_rows"
+            ),
+            "event_axis_signoff_rows_with_both_roles": event_signoff_counts.get(
+                "rows_with_both_roles"
+            ),
+            "event_axis_pending_reviewer_signoff_rows": event_signoff_counts.get(
+                "pending_reviewer_signoff_rows"
+            ),
+            "event_axis_explicit_approved_rows": event_signoff_counts.get(
+                "explicit_approved_rows"
+            ),
+            "event_axis_gate_consumable_signoff_rows": event_signoff_counts.get(
+                "gate_consumable_event_axis_linker_rows"
+            ),
+            "event_axis_priority_1_both_roles_moderate_evidence_review_rows": (
+                event_signoff_counts.get(
+                    "priority_1_both_roles_moderate_evidence_review_rows"
+                )
+            ),
+            "event_axis_priority_2_both_roles_weak_evidence_review_rows": (
+                event_signoff_counts.get(
+                    "priority_2_both_roles_weak_evidence_review_rows"
+                )
+            ),
+            "event_axis_priority_3_weak_missing_both_roles_rewrite_review_rows": (
+                event_signoff_counts.get(
+                    "priority_3_weak_missing_both_roles_rewrite_review_rows"
+                )
+            ),
+            "event_axis_insufficient_event_axis_evidence_rewrite_or_reject_rows": (
+                event_signoff_counts.get(
+                    "insufficient_event_axis_evidence_rewrite_or_reject_rows"
+                )
+            ),
         },
         "decision": {
             "ready_to_apply_frozen_residual_threshold_once": ready,
@@ -57740,6 +58581,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "event_axis_linker_materialization_gate": (
                 _source_path_record(event_axis_linker_materialization_gate_path)
                 if event_axis_linker_materialization_gate_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "event_axis_linker_signoff_finalization": (
+                _source_path_record(event_axis_linker_signoff_finalization_path)
+                if event_axis_linker_signoff_finalization_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
             "locator_rewrite_materialization_gate": _source_path_record(
@@ -57795,6 +58641,8 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{inputs['approved_source_free_locator_surface_ready']}",
         "- Source-free event-axis linkers materialized: "
         f"{inputs['source_free_event_axis_linkers_materialized']}",
+        "- Source-free event-axis signoff finalization ready: "
+        f"{inputs['source_free_event_axis_linker_signoff_finalization_ready']}",
         "- Heldout-safe pair application surface ready: "
         f"{inputs['heldout_safe_pair_application_surface_ready']}",
         f"- Locator preflight rows: {counts['locator_preflight_rows']}",
@@ -57808,6 +58656,24 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         "- Source-free event/residue-role feature rows: "
         f"{counts['source_free_event_residue_role_feature_rows']}",
         f"- Event-axis materialized linker rows: {counts['event_axis_materialized_linker_rows']}",
+        "- Event-axis signoff draft rows: "
+        f"{counts['event_axis_signoff_draft_rows']}",
+        "- Event-axis signoff rows with both roles: "
+        f"{counts['event_axis_signoff_rows_with_both_roles']}",
+        "- Event-axis pending reviewer signoff rows: "
+        f"{counts['event_axis_pending_reviewer_signoff_rows']}",
+        "- Event-axis explicit approved rows: "
+        f"{counts['event_axis_explicit_approved_rows']}",
+        "- Event-axis gate-consumable signoff rows: "
+        f"{counts['event_axis_gate_consumable_signoff_rows']}",
+        "- Event-axis priority 1 signoff rows: "
+        f"{counts['event_axis_priority_1_both_roles_moderate_evidence_review_rows']}",
+        "- Event-axis priority 2 signoff rows: "
+        f"{counts['event_axis_priority_2_both_roles_weak_evidence_review_rows']}",
+        "- Event-axis priority 3 signoff rows: "
+        f"{counts['event_axis_priority_3_weak_missing_both_roles_rewrite_review_rows']}",
+        "- Event-axis insufficient signoff rows: "
+        f"{counts['event_axis_insufficient_event_axis_evidence_rewrite_or_reject_rows']}",
         f"- Blockers: {', '.join(readiness['blockers'])}",
         "",
         "## Frozen Contract",
@@ -57841,6 +58707,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     locator_rewrite_materialization_gate_path: Path,
     out_path: Path,
     event_axis_linker_materialization_gate_path: Path | None = None,
+    event_axis_linker_signoff_finalization_path: Path | None = None,
     locator_rewrite_approval_packet_path: Path | None = None,
     source_free_locator_input_audit_path: Path | None = None,
     report_path: Path | None = None,
@@ -57852,6 +58719,9 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         locator_rewrite_materialization_gate_path=locator_rewrite_materialization_gate_path,
         event_axis_linker_materialization_gate_path=(
             event_axis_linker_materialization_gate_path
+        ),
+        event_axis_linker_signoff_finalization_path=(
+            event_axis_linker_signoff_finalization_path
         ),
         locator_rewrite_approval_packet_path=locator_rewrite_approval_packet_path,
         source_free_locator_input_audit_path=source_free_locator_input_audit_path,

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 336
-- Measured elapsed time: 10127.4 minutes (168.79 hours)
+- Entries: 337
+- Measured elapsed time: 10182.6 minutes (169.71 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,6 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
+- northstar-lever-2: 55.2 measured minutes (0.92 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
 - northstar-lever3: 178.2 measured minutes (2.97 hours)
 - ops: 130.6 measured minutes (2.18 hours)
@@ -31,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3530
-- Evidence references logged: 2917
+- Artifact references logged: 3536
+- Evidence references logged: 2921
 
 ## Recent Entries
-
-### 2026-06-03T13:26:31.723906+00:00 - post-v2
-
-- Task: Lever 3 proxy evidence extension and Lever 4 acceptance scenario
-- Time mode: measured
-- Measured minutes: 24.0
-- Started: 2026-06-03T13:02:11Z
-- Ended: 2026-06-03T13:26:11Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json, work/fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.md, artifacts/v3_fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603.json, work/fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md
-- Evidence: Lever 3 fixed threshold unchanged; high-cofactor proxy needs 4 new abstained train/cal rows for 80pct and structural proxy needs 48; current scored surface has 0 unused high-cofactor rows and 11 loose same-family extras with 9/28 abstained; Lever 4 has 6 accept-if-accepted scenario rows across 5 panels and 0 countable labels now
-- Notes: No labels registries ontologies imports production thresholds source decisions sidecars model weights or heldout threshold tuning changed.
 
 ### 2026-06-03T14:51:20.045307+00:00 - northstar-lever3
 
@@ -123,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.json
 - Evidence: 1296 unittest pass; 469 pytest pass; validate pass
 - Notes: 53 approved locator rewrites materialized; 2 rejected rows excluded; event-axis packet now shows 53 pending signoffs and 0 pending locator dependencies; six Lever 3 combined-score blockers classified as not mechanically clearable.
+
+### 2026-06-03T21:57:28.555409+00:00 - northstar-lever-2
+
+- Task: Event-axis signoff finalization bridge and active decision queue
+- Time mode: measured
+- Measured minutes: 55.2
+- Started: 2026-06-03T21:02:02Z
+- Ended: 2026-06-03T21:57:14Z
+- Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, artifacts/v3_active_lever_reviewer_decision_queue_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json
+- Evidence: signoff finalization: 53 draft rows, 14 both-role priority rows, 0 explicit approvals, 0 gate-consumable linkers; active queue: 76 pending decisions and 55 reviewed locator decisions; full pytest 1344 passed/154 subtests with one existing sklearn warning; unittest 1299 passed; validate passed with 702 labels
+- Notes: No labels registries ontologies imports production thresholds model weights heldout reads or threshold tuning changed; event-axis rows remain review-only until explicit approval.
 
 ## Expectation Updates
 

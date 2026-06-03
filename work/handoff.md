@@ -1,5 +1,15 @@
 # Handoff
 
+## Current automation run
+
+- Automation ID: `catalytic-earth-lever-3-2-forward-push`
+- STARTED_AT_UTC: `2026-06-03T21:02:02Z`
+- STARTED_AT_LOCAL: `2026-06-03T16:02:02-0500 CDT`
+- ENDED_AT_UTC: `2026-06-03T21:57:14Z`
+- ENDED_AT_LOCAL: `2026-06-03T16:57:14-0500 CDT`
+- ELAPSED_MINUTES: `55.2`
+- Status: completed and pushed
+
 ## Mission
 
 Continue Catalytic Earth: an open mechanism-level atlas of enzyme function.
@@ -49,6 +59,102 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 21
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T21:02:02Z`
+- STARTED_LOCAL: `2026-06-03T16:02:02-0500 CDT`
+- ENDED_AT: `2026-06-03T21:57:14Z`
+- ENDED_LOCAL: `2026-06-03T16:57:14-0500 CDT`
+- ELAPSED_MINUTES: `55.2`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work.
+  A stray `work/.automation-lock/` was also created during startup and removed
+  during wrap.
+
+#### Current intent
+
+Continue from Run 20 inside Lever 2. The exact next action was to bridge the
+53 source-free event-axis draft rows into gate-consumable rows only when
+reviewer signoff is explicit, hash-safe, and fully attested.
+
+#### What changed
+
+- Added a review-to-gate finalization artifact for the source-free event-axis
+  linker rows:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json`.
+  It reads the 53 draft signoff rows, emits zero gate-consumable
+  `event_axis_linker_rows` until explicit approvals arrive, and exposes 14
+  priority review rows: 3 priority-1 both-role/moderate rows and 11
+  priority-2 both-role/weak rows. The remaining split is 6 priority-3 rewrite
+  rows and 33 insufficient-evidence rewrite/reject rows.
+- Wired the finalization artifact into the event-axis materialization gate and
+  source-free pre-threshold readiness. Current Lever 2 state remains
+  fail-closed: 0 explicit event-axis approvals, 0 gate-consumable event-axis
+  rows, 0 materialized event-axis linkers, and no heldout threshold read.
+- Updated the active reviewer queue to include the 53 event-axis signoff rows,
+  while defaulting locator-related active commands to the reviewed locator
+  decisions artifact instead of the unsigned locator packet. The queue now
+  reports 131 total review records, 76 pending decisions, 55 reviewed locator
+  decisions, 0 pending locator approvals, and 53 pending event-axis signoffs.
+  The Markdown queue has a pending-only table that surfaces P10746, the six
+  Lever 4 import-preview candidates, then the three priority-1 Lever 2
+  event-axis signoffs (`m_csa:418`, `m_csa:545`, `m_csa:750`).
+- Updated the active mechanical audit so already-consumed locator follow-on
+  rows are reported as `source_decision_follow_on_rows_already_consumed`,
+  not as a failing source-decision preflight. The audit still reports zero
+  mechanical gates ready and 76 external decisions required.
+- Added CLI coverage for the new signoff finalization command and defaults so
+  future default reruns use the reviewed locator decisions and the signoff
+  finalization artifact.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, split assignments, reviewer decisions, or heldout thresholds were
+  changed.
+- No M-CSA heldout rows were used for training, threshold selection, or
+  evaluation. The frozen residual threshold was not applied and no heldout read
+  was performed.
+- The finalization bridge does not infer event-axis rows; it copies only rows
+  with explicit approval, ready status, reviewer metadata, filled source-free
+  evidence/confidence values, and clean guardrail audit.
+- Mechanism text, EC/Rhea IDs, source IDs, target names, labels, and family
+  names remain excluded from predictive features.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest -q` -> 1344 passed, 154 subtests passed, 1
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` -> 1299 passed.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q` -> 472 passed, 135 subtests passed.
+- Focused Lever 2/active audit slices passed after each regeneration.
+- `PYTHONPATH=src python -m compileall -q src tests`, `git diff --check`,
+  JSON syntax checks for changed artifacts, and
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+
+#### Exact next action
+
+Do not run the heldout threshold. Review and record explicit decisions for the
+three priority-1 event-axis signoff rows first:
+`m_csa:418`, `m_csa:545`, and `m_csa:750`. After those decisions are written
+into the signoff source rows with reviewer/reviewed metadata and unchanged
+source-free evidence, rerun:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization
+PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-materialization-gate
+PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-pre-threshold-readiness
+PYTHONPATH=src python -m catalytic_earth.cli build-active-lever-reviewer-decision-queue
+PYTHONPATH=src python -m catalytic_earth.cli build-active-lever-mechanical-actionability-audit
+```
+
+Proceed to the frozen residual threshold only if pre-threshold readiness passes;
+otherwise continue clearing explicit review decisions in the active queue.
 
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 20
 
