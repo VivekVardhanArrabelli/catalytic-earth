@@ -9,6 +9,7 @@ from catalytic_earth.predicted_geometry_robustness import (
     _target_manifest_row_selection,
     build_alphafold_predicted_geometry_features,
     build_esmfold2_robustness_experiment_contract,
+    build_predicted_geometry_failure_decomposition,
     build_predicted_geometry_in_distribution_atlas_retrieval,
     build_predicted_geometry_distillation_audit,
     build_predicted_geometry_robustness_audit,
@@ -509,6 +510,94 @@ class ESMFold2ExperimentContractTests(unittest.TestCase):
                 contract["staging_status"]["accessions_with_staged_cif"], 2
             )
             self.assertIsNone(contract["staging_status"]["blocker"])
+
+
+class FailureDecompositionTests(unittest.TestCase):
+    def _row(self, entry_id, *, primary=False, oos=False, abstained=False,
+             correct=False, miss=0, true_fp=None, called_fp=None):
+        return {
+            "entry_id": entry_id,
+            "canonical_primary_support_mask": primary,
+            "pure_oos_support_mask": oos,
+            "secondary_probe_support_mask": False,
+            "abstained": abstained,
+            "primary_top1_correct_if_applicable": correct,
+            "predicted_missing_positions": miss,
+            "true_fingerprint_id": true_fp,
+            "top1_fingerprint_id": called_fp,
+            "top1_score": 0.5,
+        }
+
+    def _audit(self, rows, exp_cof_by_entry):
+        predicted_entries = [
+            {"entry_id": eid, "ligand_context": {"cofactor_families": []}}
+            for eid in exp_cof_by_entry
+        ]
+        return {
+            "status": "complete",
+            "artifact_id": "audit",
+            "scope": {"backend": "alphafold_db", "split_assignment": "heldout"},
+            "hand_router_on_predicted_geometry": {"threshold": 0.4115, "rows": rows},
+            "predicted_geometry_features": {"entries": predicted_entries},
+        }
+
+    def test_classifies_failure_modes_and_ceiling(self) -> None:
+        rows = [
+            # cofactor-apo-loss lost primary (had cofactor exp, apo predicted)
+            self._row("cof", primary=True, abstained=True, true_fp="plp_dependent_enzyme"),
+            # fold/side-chain lost primary (no exp cofactor)
+            self._row("fold", primary=True, abstained=False, correct=False),
+            # missing-residue lost primary
+            self._row("miss", primary=True, abstained=True, miss=2),
+            # correct primary with cofactor (control)
+            self._row("ok", primary=True, abstained=False, correct=True),
+            # OOS false positive with metal (cofactor-apo-loss mode)
+            self._row("oosfp", oos=True, abstained=False, called_fp="metal_dependent_hydrolase"),
+            # OOS correctly abstained (not an FP)
+            self._row("oosok", oos=True, abstained=True),
+        ]
+        exp = {
+            "entries": [
+                {"entry_id": "cof", "ligand_context": {"cofactor_families": ["plp"]}},
+                {"entry_id": "fold", "ligand_context": {"cofactor_families": []}},
+                {"entry_id": "miss", "ligand_context": {"cofactor_families": ["flavin"]}},
+                {"entry_id": "ok", "ligand_context": {"cofactor_families": ["heme"]}},
+                {"entry_id": "oosfp", "ligand_context": {"cofactor_families": ["metal_ion"]}},
+                {"entry_id": "oosok", "ligand_context": {"cofactor_families": []}},
+            ]
+        }
+        audit = self._audit(rows, {r["entry_id"]: None for r in rows})
+        d = build_predicted_geometry_failure_decomposition(
+            robustness_audit=audit, experimental_geometry_features=exp
+        )
+        self.assertEqual(d["status"], "complete")
+        self.assertEqual(d["lost_primary"]["total"], 3)
+        self.assertEqual(
+            d["lost_primary"]["by_mode"],
+            {"cofactor_apo_loss": 1, "fold_or_sidechain": 1, "missing_residue": 1},
+        )
+        self.assertEqual(d["oos_false_positives"]["total"], 1)
+        self.assertEqual(
+            d["oos_false_positives"]["by_mode"], {"cofactor_apo_loss": 1}
+        )
+        self.assertEqual(d["controls"]["correct_primary_total"], 1)
+        self.assertEqual(d["controls"]["correct_primary_with_experimental_cofactor"], 1)
+        self.assertEqual(
+            d["esmfold2_ceiling"]["primary_recoverable_upper_bound_fold_or_sidechain"], 1
+        )
+        self.assertEqual(
+            d["esmfold2_ceiling"]["primary_unrecoverable_cofactor_apo_loss"], 1
+        )
+        self.assertFalse(d["guardrails"]["heldout_labels_used_for_fit_or_threshold"])
+        self.assertFalse(d["guardrails"]["trained_a_model"])
+
+    def test_blocked_when_audit_incomplete(self) -> None:
+        d = build_predicted_geometry_failure_decomposition(
+            robustness_audit={"status": "blocked"},
+            experimental_geometry_features={"entries": []},
+        )
+        self.assertEqual(d["status"], "blocked")
+        self.assertEqual(d["blocker"], "robustness_audit_not_complete")
 
 
 if __name__ == "__main__":

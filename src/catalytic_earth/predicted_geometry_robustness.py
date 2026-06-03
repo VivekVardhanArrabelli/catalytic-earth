@@ -1406,6 +1406,316 @@ def _esmfold2_experiment_contract_markdown_report(contract: dict[str, Any]) -> s
     return "\n".join(lines)
 
 
+PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_ARTIFACT_ID = (
+    "v3_predicted_geometry_failure_decomposition_current702_20260603"
+)
+PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_SCHEMA = (
+    "predicted_geometry_failure_decomposition.v1"
+)
+
+
+def _row_failure_mode(
+    *,
+    predicted_missing_positions: int,
+    experimental_cofactor_families: list[str],
+    predicted_cofactor_families: list[str],
+) -> str:
+    """Classify why a predicted-geometry call degraded for one row.
+
+    Priority: a residue that cannot be placed dominates; otherwise a cofactor or
+    metal that was proximal in the experimental site but absent in the predicted
+    (apo) structure dominates; otherwise the residual is pure fold/side-chain
+    pocket geometry. This separates the failures an apo sequence folder (e.g.
+    ESMFold2) physically cannot fix (cofactor loss) from the ones a better apo
+    structure could plausibly recover (fold/side-chain).
+    """
+    if predicted_missing_positions and predicted_missing_positions > 0:
+        return "missing_residue"
+    if experimental_cofactor_families and not predicted_cofactor_families:
+        return "cofactor_apo_loss"
+    return "fold_or_sidechain"
+
+
+def build_predicted_geometry_failure_decomposition(
+    *,
+    robustness_audit: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+) -> dict[str, Any]:
+    """Decompose predicted-geometry router failures by mechanism (no fit).
+
+    Reads an existing predicted-geometry robustness audit and the experimental
+    geometry features, and partitions the lost primary calls and the OOS/secondary
+    false positives into failure modes. It trains nothing, selects no threshold,
+    and reads no new heldout label; it only categorizes outcomes already computed
+    by the robustness audit. The decomposition is backend-agnostic, so it applies
+    to an AlphaFoldDB-v6 audit or a future ESMFold2 audit unchanged.
+    """
+    if robustness_audit.get("status") != "complete":
+        return {
+            "artifact_id": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_ARTIFACT_ID,
+            "schema_version": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_SCHEMA,
+            "created_utc": _utc_now_iso(),
+            "status": "blocked",
+            "blocker": "robustness_audit_not_complete",
+            "detail": (
+                "the input robustness audit is not complete (status="
+                f"{robustness_audit.get('status')!r}); decomposition needs scored "
+                "predicted-geometry rows"
+            ),
+        }
+
+    backend = (robustness_audit.get("scope", {}) or {}).get("backend", "unknown")
+    hand = robustness_audit.get("hand_router_on_predicted_geometry", {}) or {}
+    rows = hand.get("rows", []) or []
+    predicted_entries = {
+        str(entry.get("entry_id")): entry
+        for entry in (
+            robustness_audit.get("predicted_geometry_features", {}) or {}
+        ).get("entries", [])
+        if isinstance(entry, dict)
+    }
+    experimental_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in experimental_geometry_features.get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+
+    def _exp_cof(entry_id: str) -> list[str]:
+        ctx = (experimental_by_entry.get(entry_id, {}) or {}).get("ligand_context", {}) or {}
+        return list(ctx.get("cofactor_families") or [])
+
+    def _pred_cof(entry_id: str) -> list[str]:
+        ctx = (predicted_entries.get(entry_id, {}) or {}).get("ligand_context", {}) or {}
+        return list(ctx.get("cofactor_families") or [])
+
+    lost_primary_rows: list[dict[str, Any]] = []
+    oos_false_positive_rows: list[dict[str, Any]] = []
+    correct_primary_with_experimental_cofactor = 0
+    correct_primary_total = 0
+    readthrough_excluded = {"m_csa:497", "m_csa:750"}
+
+    for row in rows:
+        entry_id = str(row.get("entry_id") or "")
+        is_primary = bool(row.get("canonical_primary_support_mask"))
+        is_oos = bool(row.get("pure_oos_support_mask")) or bool(
+            row.get("secondary_probe_support_mask")
+        )
+        abstained = bool(row.get("abstained"))
+        exp_cof = _exp_cof(entry_id)
+        pred_cof = _pred_cof(entry_id)
+        miss = int(row.get("predicted_missing_positions") or 0)
+        record = {
+            "entry_id": entry_id,
+            "true_fingerprint_id": row.get("true_fingerprint_id"),
+            "called_fingerprint_id": row.get("top1_fingerprint_id"),
+            "top1_score": row.get("top1_score"),
+            "predicted_missing_positions": miss,
+            "experimental_cofactor_families": exp_cof,
+            "predicted_cofactor_families": pred_cof,
+            "failure_mode": _row_failure_mode(
+                predicted_missing_positions=miss,
+                experimental_cofactor_families=exp_cof,
+                predicted_cofactor_families=pred_cof,
+            ),
+            "wave1_readthrough_excluded": entry_id in readthrough_excluded,
+        }
+        if is_primary:
+            correct = (not abstained) and bool(
+                row.get("primary_top1_correct_if_applicable")
+            )
+            if correct:
+                correct_primary_total += 1
+                if exp_cof:
+                    correct_primary_with_experimental_cofactor += 1
+            else:
+                record["outcome"] = "abstained" if abstained else "wrong_nonabstained"
+                lost_primary_rows.append(record)
+        elif is_oos and not abstained:
+            record["outcome"] = "false_positive"
+            oos_false_positive_rows.append(record)
+
+    def _mode_counts(records: list[dict[str, Any]]) -> dict[str, int]:
+        counts: Counter[str] = Counter(r["failure_mode"] for r in records)
+        return dict(sorted(counts.items()))
+
+    lost_modes = _mode_counts(lost_primary_rows)
+    oos_modes = _mode_counts(oos_false_positive_rows)
+    lost_readthrough = [r for r in lost_primary_rows if not r["wave1_readthrough_excluded"]]
+
+    esmfold2_primary_recoverable_upper_bound = lost_modes.get("fold_or_sidechain", 0)
+    cofactor_apo_loss_count = lost_modes.get("cofactor_apo_loss", 0)
+
+    return {
+        "artifact_id": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_ARTIFACT_ID,
+        "schema_version": PREDICTED_GEOMETRY_FAILURE_DECOMPOSITION_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "scope": {
+            "backend": backend,
+            "source_robustness_audit": robustness_audit.get("artifact_id"),
+            "hand_router_threshold": hand.get("threshold"),
+            "split_assignment": (robustness_audit.get("scope", {}) or {}).get(
+                "split_assignment"
+            ),
+        },
+        "failure_mode_taxonomy": {
+            "missing_residue": (
+                "a catalytic residue could not be placed in the predicted "
+                "structure (predicted_missing_positions > 0)"
+            ),
+            "cofactor_apo_loss": (
+                "a cofactor/metal was proximal in the experimental site but absent "
+                "in the predicted apo structure; an apo sequence folder cannot fix "
+                "this"
+            ),
+            "fold_or_sidechain": (
+                "residues resolved and no experimental cofactor dependence; the "
+                "residual is fold/side-chain pocket geometry a better apo folder "
+                "could plausibly recover"
+            ),
+        },
+        "lost_primary": {
+            "total": len(lost_primary_rows),
+            "by_mode": lost_modes,
+            "wave1_readthrough_total": len(lost_readthrough),
+            "wave1_readthrough_by_mode": _mode_counts(lost_readthrough),
+            "rows": lost_primary_rows,
+        },
+        "oos_false_positives": {
+            "total": len(oos_false_positive_rows),
+            "by_mode": oos_modes,
+            "rows": oos_false_positive_rows,
+        },
+        "controls": {
+            "correct_primary_total": correct_primary_total,
+            "correct_primary_with_experimental_cofactor": (
+                correct_primary_with_experimental_cofactor
+            ),
+            "note": (
+                "correct calls that had an experimental cofactor prove apo geometry "
+                "alone can suffice for some rows; the lost rows are where stripping "
+                "the cofactor breaks the signal"
+            ),
+        },
+        "esmfold2_ceiling": {
+            "primary_recoverable_upper_bound_fold_or_sidechain": (
+                esmfold2_primary_recoverable_upper_bound
+            ),
+            "primary_unrecoverable_cofactor_apo_loss": cofactor_apo_loss_count,
+            "interpretation": (
+                "ESMFold2 is also apo, so it cannot supply the missing cofactor. "
+                f"{cofactor_apo_loss_count} of {len(lost_primary_rows)} lost primary "
+                "rows are cofactor_apo_loss and cannot be recovered by swapping in "
+                "ESMFold2 coordinates; only "
+                f"{esmfold2_primary_recoverable_upper_bound} are fold/side-chain "
+                "limited (the rows a better apo folder could plausibly recover). "
+                "The degradation is cofactor-loss-dominated, so the primary lever is "
+                "cofactor-awareness, not a better apo folder. ESMFold2's plausible "
+                "contributions are OOS false-positive reduction (better apo pocket "
+                "packing) and pLDDT-gated abstention, not primary recovery."
+            ),
+        },
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "trained_a_model": False,
+            "note": (
+                "descriptive readout: categorizes outcomes already computed by the "
+                "robustness audit; selects no threshold and fits no model"
+            ),
+        },
+        "source_artifacts": {
+            "robustness_audit": robustness_audit.get("artifact_id"),
+            "experimental_geometry_features": (
+                "artifacts/v3_geometry_features_1025.json"
+            ),
+        },
+    }
+
+
+def write_predicted_geometry_failure_decomposition(
+    *,
+    robustness_audit_path: Path,
+    experimental_geometry_features_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    with robustness_audit_path.open("r", encoding="utf-8") as handle:
+        robustness_audit = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    decomposition = build_predicted_geometry_failure_decomposition(
+        robustness_audit=robustness_audit,
+        experimental_geometry_features=experimental_geometry_features,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(decomposition, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _predicted_geometry_failure_decomposition_markdown_report(decomposition),
+            encoding="utf-8",
+        )
+    return decomposition
+
+
+def _predicted_geometry_failure_decomposition_markdown_report(
+    decomposition: dict[str, Any],
+) -> str:
+    if decomposition.get("status") != "complete":
+        return (
+            "# Predicted Geometry Failure Decomposition\n\n"
+            f"Status: `{decomposition.get('status')}`\n\n"
+            f"Blocker: `{decomposition.get('blocker')}`\n"
+        )
+    scope = decomposition.get("scope", {})
+    lost = decomposition.get("lost_primary", {})
+    oos = decomposition.get("oos_false_positives", {})
+    controls = decomposition.get("controls", {})
+    ceiling = decomposition.get("esmfold2_ceiling", {})
+    lines = [
+        "# Predicted Geometry Failure Decomposition",
+        "",
+        f"Backend: `{scope.get('backend')}` | source audit: "
+        f"`{scope.get('source_robustness_audit')}`",
+        "",
+        "## Why do predicted-geometry primary calls degrade?",
+        "",
+        f"- Lost primary rows: {lost.get('total')} (by mode: {lost.get('by_mode')})",
+        f"- Wave 1 readthrough (excl. m_csa:497/750): "
+        f"{lost.get('wave1_readthrough_total')} "
+        f"(by mode: {lost.get('wave1_readthrough_by_mode')})",
+        f"- OOS/secondary false positives: {oos.get('total')} "
+        f"(by mode: {oos.get('by_mode')})",
+        "",
+        "## Control",
+        "",
+        f"- Correct primaries: {controls.get('correct_primary_total')}, of which "
+        f"{controls.get('correct_primary_with_experimental_cofactor')} had an "
+        "experimental cofactor (apo geometry can suffice for some rows).",
+        "",
+        "## ESMFold2 ceiling",
+        "",
+        f"- Fold/side-chain-limited (a better apo folder could plausibly recover): "
+        f"{ceiling.get('primary_recoverable_upper_bound_fold_or_sidechain')}",
+        f"- Cofactor-apo-loss (ESMFold2 cannot recover, it is also apo): "
+        f"{ceiling.get('primary_unrecoverable_cofactor_apo_loss')}",
+        "",
+        ceiling.get("interpretation", ""),
+        "",
+        "This is a descriptive readout: it categorizes outcomes already computed by "
+        "the robustness audit, selects no threshold, and fits no model.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def _enriched_predicted_retrieval_results(
     *,
     retrieval_results: list[dict[str, Any]],

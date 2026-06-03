@@ -3,6 +3,49 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Predicted-Geometry Degradation Is Cofactor-Loss-Dominated
+
+Decision: Problem 2's primary lever is **cofactor-awareness, not a better apo
+structure predictor**. A no-fit failure decomposition of the AlphaFoldDB-v6
+robustness audit shows the 45/45 -> 23/45 primary drop is driven entirely by
+missing cofactor geometry, so swapping AlphaFoldDB for ESMFold2 (also apo) cannot
+recover the lost primary rows. ESMFold2 is demoted from "expected primary-recovery
+lever" to a secondary role: OOS false-positive reduction and pLDDT-gated
+abstention only.
+
+Method (descriptive, no fit, no new heldout read): for each predicted-geometry
+hand-router row, compare experimental vs predicted proximal cofactor/metal context
+and missing residues, and classify each lost primary / OOS false positive as
+`cofactor_apo_loss` (cofactor/metal proximal experimentally, absent in the apo
+prediction), `fold_or_sidechain` (residues resolved, no experimental cofactor
+dependence), or `missing_residue`. This only categorizes outcomes the robustness
+audit already computed.
+
+Result: of 22 lost primary rows, **22/22 are `cofactor_apo_loss`** (flavin 10,
+PLP 6, metal 4, heme 4, Fe-S 2; all with `predicted_missing_positions == 0`) and
+**0 are `fold_or_sidechain`**. Wave 1 readthrough (excluding `m_csa:497`/`m_csa:750`)
+is 20/20 cofactor_apo_loss. The 10 OOS false positives are 7 cofactor_apo_loss + 3
+fold_or_sidechain (9/10 mis-called `metal_dependent_hydrolase`). Control: 13/23
+correctly-called primaries also had an experimental cofactor, proving apo geometry
+can suffice for some rows — the lost rows are exactly where stripping the cofactor
+breaks the signal.
+
+Implication: the ESMFold2 coordinate-swap primary-recovery upper bound is **0**
+(no fold/side-chain-limited row exists for a better apo folder to grab). The
+right Problem-2 lever is cofactor-aware (place/dock the cofactor into the
+predicted structure, or a sequence cofactor-presence channel — the repo already
+has `sequence_cofactor_channel.py` / `cofactor_channel_probe.py`). The staged
+ESMFold2 experiment remains worth running only for (a) OOS false-positive
+reduction via better apo pocket packing and (b) pLDDT-gated abstention — both
+selected on train/cal, heldout one-shot.
+
+Reusable: the decomposition is backend-agnostic and should be re-run on a future
+ESMFold2 robustness audit to confirm the same cofactor-loss-dominated pattern.
+
+Artifacts:
+`artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json`,
+`work/predicted_geometry_failure_decomposition_current702_20260603.md`.
+
 ## 2026-06-03: ESMFold2 Robustness Experiment Staged (No-Fit), Backend Added
 
 Decision: address Problem 2 (robustness to predicted vs experimental active-site

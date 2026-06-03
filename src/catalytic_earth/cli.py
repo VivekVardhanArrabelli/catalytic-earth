@@ -230,6 +230,7 @@ from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
     write_esmfold2_robustness_experiment_contract,
+    write_predicted_geometry_failure_decomposition,
     write_predicted_geometry_in_distribution_atlas_retrieval,
     write_predicted_geometry_distillation_audit,
     write_predicted_geometry_robustness_audit,
@@ -2374,6 +2375,27 @@ def cmd_build_esmfold2_robustness_experiment_contract(args: argparse.Namespace) 
         f"heldout={inventory.get('heldout_row_count')}, "
         f"staged={staging.get('accessions_with_staged_cif')}/"
         f"{staging.get('accessions_needed')})"
+    )
+    return 0
+
+
+def cmd_build_predicted_geometry_failure_decomposition(
+    args: argparse.Namespace,
+) -> int:
+    decomposition = write_predicted_geometry_failure_decomposition(
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    lost = decomposition.get("lost_primary", {})
+    ceiling = decomposition.get("esmfold2_ceiling", {})
+    print(
+        "Wrote predicted geometry failure decomposition to "
+        f"{args.out} ({decomposition.get('status')}; "
+        f"lost_primary={lost.get('total')} by_mode={lost.get('by_mode')}; "
+        "fold_recoverable_upper_bound="
+        f"{ceiling.get('primary_recoverable_upper_bound_fold_or_sidechain')})"
     )
     return 0
 
@@ -17058,6 +17080,41 @@ def build_parser() -> argparse.ArgumentParser:
     )
     esmfold2_experiment_contract.set_defaults(
         func=cmd_build_esmfold2_robustness_experiment_contract
+    )
+
+    predicted_geometry_failure_decomposition = subparsers.add_parser(
+        "build-predicted-geometry-failure-decomposition",
+        help=(
+            "decompose predicted-geometry router failures into cofactor-apo-loss "
+            "vs fold/side-chain vs missing-residue (backend-agnostic; runs on the "
+            "AlphaFoldDB-v6 or a future ESMFold2 audit)"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_geometry_failure_decomposition"
+            "_current702_20260603.json"
+        ),
+    )
+    predicted_geometry_failure_decomposition.add_argument(
+        "--report",
+        default=(
+            "work/predicted_geometry_failure_decomposition_current702_20260603.md"
+        ),
+    )
+    predicted_geometry_failure_decomposition.set_defaults(
+        func=cmd_build_predicted_geometry_failure_decomposition
     )
 
     mechanism_relationship_eval = subparsers.add_parser(

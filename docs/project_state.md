@@ -675,6 +675,18 @@ artifacts first.
   cofactor geometry, so expect only partial help. Run via
   `build-esmfold2-robustness-experiment-contract` and the three predicted-geometry
   commands with `--backend esmfold2 --esmfold2-staged-dir <DIR>`.
+- 2026-06-03 predicted-geometry failure decomposition (see `docs/decision_log.md`,
+  backend-agnostic, no fit): the AlphaFoldDB-v6 45/45 -> 23/45 primary drop is
+  **cofactor-loss-dominated**. Of 22 lost primary rows, **22/22 are
+  `cofactor_apo_loss`** (cofactor/metal proximal experimentally, absent in the apo
+  prediction; all residues resolved) and **0 are fold/side-chain-limited**. So an
+  apo folder (ESMFold2) has a primary-recovery upper bound of 0 here and is
+  demoted to a secondary role: OOS false-positive reduction (10 FPs: 7
+  cofactor-apo-loss + 3 fold) and pLDDT-gated abstention. The real Problem-2 lever
+  is **cofactor-awareness** (place/dock the cofactor, or a sequence
+  cofactor-presence channel). Control: 13/23 correct primaries also had an
+  experimental cofactor, so apo geometry can suffice for some rows. Re-run the
+  decomposition on a future ESMFold2 audit to confirm the pattern.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
@@ -715,19 +727,25 @@ artifacts first.
 
 ## Next Gates
 
-0. Problem 2 / ESMFold2 (recommended, but compute/network-gated): the experiment
-   is staged as a no-fit contract
+0. Problem 2 (recommended): the failure decomposition reframed the lever. The
+   45/45 -> 23/45 drop is cofactor-loss-dominated (22/22 lost primaries are
+   `cofactor_apo_loss`), so the **primary lever is cofactor-awareness**, not a
+   better apo folder. Next step: a cofactor-aware experiment — place/dock the
+   M-CSA cofactor into the predicted structure (restore the proximal cofactor
+   geometry) or build/strengthen a sequence cofactor-presence channel
+   (`sequence_cofactor_channel.py` / `cofactor_channel_probe.py`), selected on
+   train/cal with heldout one-shot. The ESMFold2 coordinate-swap experiment stays
+   staged as a no-fit contract
    (`artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`)
-   with a runnable `esmfold2` coordinate-supplier backend. In an environment with
-   ESMFold2 access (open `esm` + weights, the Biohub platform, or the ESM Atlas)
-   and `foldseek`: predict the 323 accessions, stage them as mmCIF keyed by
-   accession, then run `build-predicted-geometry-robustness-audit`,
+   with a runnable `esmfold2` backend, but is now scoped to its secondary value
+   only: OOS false-positive reduction and pLDDT-gated abstention. To run it in an
+   env with ESMFold2 access + `foldseek`: predict the 323 accessions, stage as
+   mmCIF keyed by accession, run `build-predicted-geometry-robustness-audit`,
    `build-predicted-geometry-in-distribution-atlas-retrieval`, and
    `build-predicted-geometry-distillation-audit` with `--backend esmfold2
-   --esmfold2-staged-dir <DIR>`. Select all thresholds/models on in-distribution
-   train/cal; read heldout once. Compare to the AlphaFoldDB-v6 baseline (recover
-   23/45, cut 12.3% OOS FP, test pLDDT-gated abstention vs the 0.44155 gate).
-   Expect only partial help (apo / no cofactor geometry).
+   --esmfold2-staged-dir <DIR>`, then re-run
+   `build-predicted-geometry-failure-decomposition` on the ESMFold2 audit to
+   confirm the pattern. Thresholds on train/cal; heldout once.
 1. Use the fold-augmented research gate with the disclosed 71/76 train/cal
    OOS-negative surface when running downstream diagnostics; clear the remaining
    five source-geometry/coordinate/sidecar blockers before any stronger
@@ -836,6 +854,7 @@ artifacts first.
 - `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.json`
 - `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json`
 - `artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`
+- `artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
