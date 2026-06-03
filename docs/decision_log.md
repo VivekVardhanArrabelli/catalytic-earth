@@ -3,6 +3,55 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Organic-Score Follow-Up Proxy Axis Scored, Still Partial
+
+Decision: keep the `organic_score_0_30_to_below_high_axis_threshold` Lever 3
+follow-up proxy axis as a bounded train/cal-only tranche readout. It excludes
+the already scored overlap row `m_csa:89`, scores only the four remaining
+contracted rows, and does not authorize a global fixed-threshold proxy audit
+rerun or deployment closure claim. No labels, registries, ontologies, imports,
+production thresholds, splits, model weights, source decisions, or heldout
+threshold tuning changed.
+
+Result: the follow-up contract selects `m_csa:60`, `m_csa:75`, `m_csa:214`,
+and `m_csa:288`. All four now have AFDB-v6 query coordinates, nearest-train
+Foldseek/TM hits, predicted-geometry scores, selected cofactor scores, and
+combined geometry/fold channel scores. At fixed threshold `0.44155`, only
+`m_csa:288` abstains. The composed train/cal OOS surface expands to 196/202
+full-channel rows and remains partial because six prior/base blockers are still
+unresolved. The post-follow-up background-axis scout now reports 160 remaining
+background-only rows, 0 active-site-count candidates, 0 organic-score
+candidates, and 8 unsupported-geometry rows that remain data-quality blockers
+rather than countable abstention evidence. A repair-only queue now records all
+eight unsupported-geometry rows with accessions and required coordinate/locus
+repair gates; 0/8 expected AFDB-v6 coordinate files are local and 0 rows are
+ready to score.
+
+Consequence / next gate: do not promote this readout to an operating-point
+claim. First clear the remaining prior/base full-channel and policy/calibration
+blockers, starting with the P10746 decision if reviewed, or pre-register another
+non-overlapping train/cal-only source-free proxy-axis contract before further
+scoring.
+
+Artifacts:
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_contract_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_contract_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scoring_input_manifest_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scoring_input_manifest_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scored_extension_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_scored_extension_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_fixed_threshold_readout_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_fixed_threshold_readout_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_extended_train_cal_oos_surface_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_extended_train_cal_oos_surface_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_blocker_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_blocker_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_scout_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_post_followup_background_axis_scout_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.json`,
+and
+`work/fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.md`.
+
 ## 2026-06-03: Active-Site-Count Proxy Axis Scored, Not Closure-Sufficient
 
 Decision: keep the new `active_site_residue_count_10_plus` Lever 3 proxy axis

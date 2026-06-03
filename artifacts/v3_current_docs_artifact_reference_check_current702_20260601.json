@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 692
+    "references_checked": 754
   },
-  "created_utc": "2026-06-03T08:36:54Z",
+  "created_utc": "2026-06-03T18:22:36Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -88,6 +88,12 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "docs/agent_runbook.md"
+    },
+    {
+      "checked_path": "artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json"
     },
     {
       "checked_path": "data/registries/curated_mechanism_labels.json",
@@ -304,12 +310,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_fold_augmented_p10746_source_feature_refresh_audit_current702_20260603.json"
-    },
-    {
-      "checked_path": "artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

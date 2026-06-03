@@ -197,6 +197,22 @@ artifacts first.
   from this partial surface; clear the prior/base full-channel and
   policy/calibration blockers or pre-register another train/cal-only proxy axis
   before any new operating-point claim.
+- A non-overlapping follow-up source-free proxy axis has now been materialized
+  and scored. The `organic_score_0_30_to_below_high_axis_threshold` contract
+  excludes the already scored overlap row `m_csa:89` and selects four
+  train/cal-only rows (`m_csa:60`, `m_csa:75`, `m_csa:214`, and `m_csa:288`).
+  All four have AFDB-v6 query coordinates, nearest-train Foldseek/TM hits,
+  predicted-geometry scores, selected cofactor scores, and combined
+  fold/geometry/cofactor channel scores. At unchanged threshold `0.44155`,
+  only `m_csa:288` abstains. Composing the follow-up tranche gives a partial
+  196/202 train/cal OOS full-channel surface with six inherited prior/base
+  blockers. The post-follow-up background scout reports 160 remaining
+  background-only rows, 0 active-site-count candidates, 0 organic-score
+  candidates, and 8 unsupported-geometry rows that require data-quality repair
+  rather than scoring. A repair-only queue now lists those 8 rows with
+  accessions and required coordinate/locus gates; 0/8 expected AFDB-v6
+  coordinate files are local and 0 are ready to score. This remains a measured
+  tranche readout rather than a deployable operating-point closure.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel
