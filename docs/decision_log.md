@@ -3,6 +3,35 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Lever 2 Source-Free Token Re-Selection — No Token Clears The Bar
+
+Decision: defer the Lever 2 source-free row-specific feature. A train/cal-only
+re-selection (heldout never read) shows **no source-free-replicable token clears a
+useful bar**, so the one-shot heldout read will not be spent on any Lever 2 token.
+The 53 approved source-free locators remain a banked, split-protected asset; the
+source-free discriminative value lives in the geometry/fold structural channel.
+
+Method: on the 43 OOS-augmented train/cal rows (15 in-scope primary, 28 OOS), the
+only source-free-replicable feature family is residue-identity counts
+(`event_residue_code` / `event_residue_code_count` — countable from a source-free
+locator). All role/bond/event-type families are source-derived and excluded.
+Labels were used only as the selection target, never as a predictive feature.
+
+Result: multivariate LOO-CV AUC of all source-free residue counts = **0.538**
+(≈ random). Best univariate token is His at dir-adjusted AUC 0.601 but
+**OOS-pointing** (His is higher in OOS rows). The calibrated His-count fallback
+(0.643) was role-dependent: stripped to a raw source-free His count, `HIS>=3`
+fires on 4 train/cal rows, all OOS (in-scope precision 0.000). The Lever 2 signal
+is entirely in M-CSA role/event bindings, which do not survive source-free.
+
+Contrast: the predicted-structure fold/TM channel is AUC 0.814 (in vs all OOS) and
+0.908 for the no-fit geometry+fold mean — a different structural channel and the
+project's real source-free signal.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_free_token_reselection_train_cal_current702_20260603.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_free_token_reselection_train_cal_current702_20260603.md`.
+
 ## 2026-06-03: Lever 2 Source-Free Event Axis Reviewed, NOT Signed Off (Too Thin)
 
 Decision: the source-free proton-transfer / electrostatic-stabiliser event-axis

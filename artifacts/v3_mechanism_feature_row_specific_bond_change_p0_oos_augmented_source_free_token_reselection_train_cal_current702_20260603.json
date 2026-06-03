@@ -1,0 +1,161 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_free_token_reselection_train_cal_current702_20260603",
+  "contrast_existing_source_free_structural_channel": {
+    "no_fit_geometry_plus_fold_mean_auc_overall": 0.907622,
+    "note": "Documented in docs/project_state.md; not recomputed here. This is a different (structural) channel and is the project's real source-free signal.",
+    "predicted_structure_fold_tm_auc_in_vs_all_oos": 0.814301
+  },
+  "created_utc": "2026-06-03T17:10:00Z",
+  "decision": {
+    "any_source_free_token_clears_useful_bar": false,
+    "recommendation": "Defer Lever 2 source-free row-feature. Bank the 53 approved locators as a split-protected asset. The source-free value is the geometry/fold channel.",
+    "spend_one_shot_heldout_read_on_lever2_token": false
+  },
+  "guardrails": {
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "labels_or_fingerprints_used_as_predictive_input": false,
+    "note": "Labels were used ONLY as the train/cal selection target (standard), never as a predictive feature; heldout untouched.",
+    "review_only": true
+  },
+  "his_count_fallback_analysis": {
+    "calibrated_oos_abstain_recall_in_contract": 0.642857,
+    "fallback_token": "residue_code_count:his=3",
+    "interpretation": "The fallback's signal came from the source-derived proton-transfer ROLE binding, not from raw His identity. Source-free, the token has no in-scope discrimination.",
+    "source_free_stripped_result": "His count is HIGHER in OOS rows on train/cal (dir-adjusted AUC 0.601, OOS-pointing); His>=3 fires on 4 train/cal rows, all OOS (in-scope precision 0.000)."
+  },
+  "method": {
+    "in_scope_primary": 15,
+    "label": "in-scope primary (5 v1 fingerprints) vs out-of-scope; train/cal pool from the OOS-augmented expanded surface",
+    "note": "event-residue counts are an UPPER BOUND on source-free locator counts (M-CSA names exact residues; source-free counting is noisier), so a null result here is conservative.",
+    "out_of_scope": 28,
+    "rows": 43,
+    "source_derived_families_excluded": [
+      "event_residue_role_count",
+      "residue_role_count",
+      "event_mapped_residue_bucket",
+      "event_mapped_residue_count",
+      "event_participant_arity",
+      "event_type_sequence",
+      "bond_broken_count",
+      "bond_formed_count",
+      "bond_change_event_count",
+      "bond_order_changed_count",
+      "electron_transfer_count",
+      "proton_transfer_count",
+      "has_*_event"
+    ],
+    "source_free_replicable_family": "event_residue_code / event_residue_code_count (residue-identity counts replicable by counting residue codes near a source-free locator)"
+  },
+  "multivariate_loo_cv_auc": 0.538,
+  "schema_version": "northstar_next_levers.v0.source_free_token_reselection_train_cal",
+  "scope": "Train/cal-only re-selection of the strongest SOURCE-FREE-replicable token in the row-specific bond-change mechanism-feature family. Heldout never read. Establishes whether any source-free token justifies the one-shot heldout read before spending it.",
+  "status": "source_free_token_reselection_complete_no_token_clears_bar",
+  "univariate_residue_count_auc": [
+    {
+      "coverage_rows": 25,
+      "direction": "out_of_scope",
+      "direction_adjusted_auc": 0.601,
+      "residue_code": "HIS",
+      "univariate_auc": 0.399
+    },
+    {
+      "coverage_rows": 10,
+      "direction": "out_of_scope",
+      "direction_adjusted_auc": 0.562,
+      "residue_code": "ARG",
+      "univariate_auc": 0.438
+    },
+    {
+      "coverage_rows": 11,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.555,
+      "residue_code": "SER",
+      "univariate_auc": 0.555
+    },
+    {
+      "coverage_rows": 3,
+      "direction": "out_of_scope",
+      "direction_adjusted_auc": 0.554,
+      "residue_code": "ASN",
+      "univariate_auc": 0.446
+    },
+    {
+      "coverage_rows": 3,
+      "direction": "out_of_scope",
+      "direction_adjusted_auc": 0.554,
+      "residue_code": "PHE",
+      "univariate_auc": 0.446
+    },
+    {
+      "coverage_rows": 3,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.549,
+      "residue_code": "THR",
+      "univariate_auc": 0.549
+    },
+    {
+      "coverage_rows": 14,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.545,
+      "residue_code": "ASP",
+      "univariate_auc": 0.545
+    },
+    {
+      "coverage_rows": 1,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.533,
+      "residue_code": "LEU",
+      "univariate_auc": 0.533
+    },
+    {
+      "coverage_rows": 1,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.533,
+      "residue_code": "MET",
+      "univariate_auc": 0.533
+    },
+    {
+      "coverage_rows": 1,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.533,
+      "residue_code": "TRP",
+      "univariate_auc": 0.533
+    },
+    {
+      "coverage_rows": 14,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.529,
+      "residue_code": "LYS",
+      "univariate_auc": 0.529
+    },
+    {
+      "coverage_rows": 4,
+      "direction": "out_of_scope",
+      "direction_adjusted_auc": 0.52,
+      "residue_code": "GLY",
+      "univariate_auc": 0.48
+    },
+    {
+      "coverage_rows": 10,
+      "direction": "in_scope",
+      "direction_adjusted_auc": 0.517,
+      "residue_code": "TYR",
+      "univariate_auc": 0.517
+    },
+    {
+      "coverage_rows": 11,
+      "direction": "out_of_scope",
+      "direction_adjusted_auc": 0.515,
+      "residue_code": "GLU",
+      "univariate_auc": 0.485
+    },
+    {
+      "coverage_rows": 8,
+      "direction": "out_of_scope",
+      "direction_adjusted_auc": 0.501,
+      "residue_code": "CYS",
+      "univariate_auc": 0.499
+    }
+  ]
+}
