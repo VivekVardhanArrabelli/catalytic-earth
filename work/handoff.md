@@ -50,6 +50,99 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 3/2/4 Forward Push Active Run 4
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T00:30:03Z`
+- STARTED_LOCAL: `2026-06-02T19:30:03-0500 CDT`
+- ENDED_AT: `2026-06-03T00:32:53Z`
+- ENDED_LOCAL: `2026-06-02T19:32:53-0500 CDT`
+- ELAPSED_MINUTES: `2.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "44732", "started_at": "2026-06-03T00:30:03Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the recovered dirty Lever 3/4 worktree state, finish the
+fixed-threshold rerun-readiness gate if mechanically possible, and keep
+progress inside Lever 2, 3, or 4 without touching labels, registries,
+ontologies, imports, production thresholds, or heldout-tuned surfaces.
+
+#### What changed
+
+- Recorded Vivek's `mh_065`/`mh_072` human decision as
+  `v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603`:
+  both rows remain blocked, no raw `1DDK`/`1E9I` locator copy is authorized,
+  no remapped locators are approved, and unblocking requires matching frozen
+  coordinates or a real expert alignment resolving residue-code mismatches.
+- Preserved and completed the recovered Lever 3 materialization work:
+  `v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603`
+  materializes 3 approved source-feature sidecar rows with 18 support records.
+- Recorded the authorized `P00889` AFDB ortholog coordinate for the P23007
+  blocker in
+  `v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603`;
+  the local CIF is present and hashed.
+- Added
+  `v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603`,
+  which reports ready = true, 0 remaining pre-rerun blockers, and fixed
+  threshold `0.44155`.
+- Added CLI commands and regression coverage for the approved-sidecar
+  materialization, P00889 coordinate manifest, and fixed-threshold pre-rerun
+  readiness gate.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`
+  passed: 116 tests.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -q`
+  passed: 152 tests, 7 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q`
+  passed: 118 tests, 87 subtests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `git diff --cached --check -- . ':(exclude)artifacts/v3_fold_augmented_p00889_ortholog_coordinate_current702_20260603/AF-P00889-F1-model_v6.cif'`
+  passed. The raw AFDB mmCIF is intentionally hash-preserved and contains
+  padded mmCIF table fields that trip generic trailing-whitespace checks.
+
+#### Exact next action
+
+- Run the combined geometry/fold channel once at fixed threshold `0.44155`
+  using the materialized approved source-feature sidecars plus the fetched
+  `P00889` ortholog coordinate, and disclose the `P10746` fold-only caveat in
+  that readout. Do not tune thresholds, train on heldout rows, or edit labels,
+  registries, ontologies, imports, or production thresholds.
+
+### 2026-06-03 Family-Panel Locator Decision: mh_065/mh_072
+
+#### What changed
+
+- Added `v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603`
+  and matching work report.
+- Human decision: leave `mh_065` and `mh_072` blocked. Do not copy raw
+  `1DDK`/`1E9I` locators and do not approve remapped locators from current
+  evidence.
+- Rationale: 0 matching non-AFDB replacement coordinates across 712 local
+  files; selected PDB `struct_ref` accessions are `Q932P5`/`P08324` rather
+  than requested `Q79MP6`/`P0A6P9`; same-accession AFDB transfer already
+  failed 0/6 expected residue-code matches.
+
+#### Exact next action
+
+- For Lever 4 family-panel source-free locators, skip further automation on
+  `mh_065`/`mh_072` unless matching frozen coordinates or a real expert
+  residue-code-resolving alignment are supplied. The remaining open locator
+  decisions are `external_glycoside_panel`, `mh_064`, and Q59490.
+- The Lever 3 next action from the prior section still stands separately:
+  the three approved source-feature sidecars are materialized and the `P00889`
+  AFDB ortholog coordinate is fetched/hash-recorded. The fixed-threshold
+  pre-rerun readiness gate reports 0 remaining pre-rerun blockers, so rerun the
+  combined geometry/fold channel at threshold `0.44155` and keep `P10746`
+  fold-only.
+
 ### 2026-06-02 Lever 3/2/4 Forward Push Active Run 3
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

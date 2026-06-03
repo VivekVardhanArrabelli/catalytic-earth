@@ -1,0 +1,54 @@
+{
+  "artifact_id": "v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603",
+  "blockers": [],
+  "counts": {
+    "human_or_policy_decision_blockers_remaining": 0,
+    "materialized_sidecar_rows": 3,
+    "p00889_coordinate_fetched_now": 1,
+    "remaining_pre_rerun_blockers": 0,
+    "source_feature_support_rows": 18
+  },
+  "created_utc": "2026-06-03T00:31:18Z",
+  "decision": {
+    "deployment_closed_now": false,
+    "next_action": "Run the combined geometry/fold channel once at fixed threshold 0.44155 using the approved source-feature sidecars and P00889 ortholog coordinate; disclose the P10746 fold-only caveat.",
+    "ready_for_fixed_threshold_combined_rerun": true
+  },
+  "fixed_threshold": 0.44155,
+  "guardrails": {
+    "combined_channel_rerun_performed": false,
+    "deployment_closed_now": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_fixed_threshold_rerun_readiness",
+  "scope": "Pre-rerun readiness gate for the Lever 3 fixed-threshold combined geometry/fold channel after human decisions, approved source-feature sidecar materialization, and P00889 coordinate fetch. This does not run scoring or close deployment.",
+  "source_artifacts": {
+    "approved_source_feature_sidecar_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.json",
+      "sha256": "ab762a60c19149f35a4de2bd0140263ee01f16f7212c553ddab24c2157d15808"
+    },
+    "blocker_human_decision_application": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json",
+      "sha256": "877907b3bbb5ac6d74d22aa69892995a4e68b5e43b63375292100dda79a46f4f"
+    },
+    "confounded_operating_point_readiness": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json",
+      "sha256": "6d50e94e545d90e509d60576ab4328e9a3054d8e4f4c21b36f4fac994a496972"
+    },
+    "p00889_coordinate_fetch_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.json",
+      "sha256": "bbcc1504d0bfdc9a05eb6440cd81129061709c373529be817530a354316045a1"
+    }
+  },
+  "status": "fold_augmented_fixed_threshold_rerun_readiness_ready"
+}

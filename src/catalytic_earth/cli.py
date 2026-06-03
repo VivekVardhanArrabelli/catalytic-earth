@@ -69,6 +69,7 @@ from .northstar_next_levers import (
     write_family_panel_source_free_predicted_geometry_sidecar_manifest,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
+    write_fold_augmented_approved_source_feature_active_site_sidecar_materialization,
     write_fold_augmented_blocker_human_decision_application,
     write_fold_augmented_family_panel_countability_gate_preflight,
     write_fold_augmented_family_panel_import_preview_blocker_gate,
@@ -80,10 +81,12 @@ from .northstar_next_levers import (
     write_fold_augmented_family_panel_source_check_queue,
     write_fold_augmented_confounded_deployment_closure_audit,
     write_fold_augmented_fold_only_deployment_contract_decision,
+    write_fold_augmented_fixed_threshold_rerun_readiness,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_non_residue_interaction_sidecar_policy_preflight,
     write_fold_augmented_p23007_alternate_accession_scout,
     write_fold_augmented_p23007_alternate_accession_policy_gate,
+    write_fold_augmented_p00889_ortholog_coordinate_fetch_manifest,
     write_fold_augmented_remaining_blocker_decision_matrix,
     write_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit,
     write_fold_augmented_source_feature_active_site_sidecar_candidates,
@@ -12007,6 +12010,85 @@ def cmd_build_fold_augmented_blocker_human_decision_application(
         f"{counts.get('p23007_replacement_authorized_now')}, "
         f"decision blockers remaining: "
         f"{counts.get('human_or_policy_decision_blockers_remaining')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_approved_source_feature_active_site_sidecar_materialization(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_approved_source_feature_active_site_sidecar_materialization(
+        source_feature_sidecar_candidates_path=Path(
+            args.source_feature_sidecar_candidates
+        ),
+        source_feature_sidecar_candidate_strict_audit_path=Path(
+            args.source_feature_sidecar_candidate_strict_audit
+        ),
+        blocker_human_decision_application_path=Path(
+            args.blocker_human_decision_application
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented approved source-feature sidecar materialization "
+        f"to {args.out} (materialized rows: "
+        f"{counts.get('materialized_sidecar_rows')}, "
+        f"rerun performed: {int(audit['guardrails']['combined_channel_rerun_performed'])})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_p00889_ortholog_coordinate_fetch_manifest(
+        blocker_human_decision_application_path=Path(
+            args.blocker_human_decision_application
+        ),
+        approved_source_feature_sidecar_materialization_path=Path(
+            args.approved_source_feature_sidecar_materialization
+        ),
+        coordinate_path=Path(args.coordinate),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented P00889 ortholog coordinate fetch manifest to "
+        f"{args.out} (coordinate fetched: "
+        f"{counts.get('p23007_coordinate_fetched_now')}, "
+        f"rerun ready: {int(audit['decision']['ready_for_fixed_threshold_combined_rerun'])})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_fixed_threshold_rerun_readiness(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_fixed_threshold_rerun_readiness(
+        blocker_human_decision_application_path=Path(
+            args.blocker_human_decision_application
+        ),
+        approved_source_feature_sidecar_materialization_path=Path(
+            args.approved_source_feature_sidecar_materialization
+        ),
+        p00889_coordinate_fetch_manifest_path=Path(
+            args.p00889_coordinate_fetch_manifest
+        ),
+        confounded_operating_point_readiness_path=Path(
+            args.confounded_operating_point_readiness
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented fixed-threshold rerun readiness to "
+        f"{args.out} (ready: "
+        f"{int(audit['decision']['ready_for_fixed_threshold_combined_rerun'])}, "
+        f"pre-rerun blockers: {counts.get('remaining_pre_rerun_blockers')})"
     )
     return 0
 
@@ -26890,6 +26972,151 @@ def build_parser() -> argparse.ArgumentParser:
     )
     blocker_human_decision_application.set_defaults(
         func=cmd_build_fold_augmented_blocker_human_decision_application
+    )
+
+    approved_source_feature_sidecar_materialization = subparsers.add_parser(
+        "build-fold-augmented-approved-source-feature-active-site-sidecar-materialization",
+        help=(
+            "materialize the approved Lever 3 source-feature sidecar surface "
+            "for a later fixed-threshold combined channel rerun"
+        ),
+    )
+    approved_source_feature_sidecar_materialization.add_argument(
+        "--source-feature-sidecar-candidates",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidates_"
+            "current702_20260602.json"
+        ),
+    )
+    approved_source_feature_sidecar_materialization.add_argument(
+        "--source-feature-sidecar-candidate-strict-audit",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidate_"
+            "strict_audit_current702_20260602.json"
+        ),
+    )
+    approved_source_feature_sidecar_materialization.add_argument(
+        "--blocker-human-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_blocker_human_decision_application_"
+            "current702_20260603.json"
+        ),
+    )
+    approved_source_feature_sidecar_materialization.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_"
+            "materialization_current702_20260603.json"
+        ),
+    )
+    approved_source_feature_sidecar_materialization.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_approved_source_feature_active_site_sidecar_"
+            "materialization_current702_20260603.md"
+        ),
+    )
+    approved_source_feature_sidecar_materialization.set_defaults(
+        func=cmd_build_fold_augmented_approved_source_feature_active_site_sidecar_materialization
+    )
+
+    p00889_ortholog_coordinate_fetch_manifest = subparsers.add_parser(
+        "build-fold-augmented-p00889-ortholog-coordinate-fetch-manifest",
+        help=(
+            "record the fetched P00889 AFDB coordinate provenance for the "
+            "authorized P23007 ortholog surrogate without rerunning scores"
+        ),
+    )
+    p00889_ortholog_coordinate_fetch_manifest.add_argument(
+        "--blocker-human-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_blocker_human_decision_application_"
+            "current702_20260603.json"
+        ),
+    )
+    p00889_ortholog_coordinate_fetch_manifest.add_argument(
+        "--approved-source-feature-sidecar-materialization",
+        default=(
+            "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_"
+            "materialization_current702_20260603.json"
+        ),
+    )
+    p00889_ortholog_coordinate_fetch_manifest.add_argument(
+        "--coordinate",
+        default=(
+            "artifacts/v3_fold_augmented_p00889_ortholog_coordinate_current702_"
+            "20260603/AF-P00889-F1-model_v6.cif"
+        ),
+    )
+    p00889_ortholog_coordinate_fetch_manifest.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_"
+            "manifest_current702_20260603.json"
+        ),
+    )
+    p00889_ortholog_coordinate_fetch_manifest.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p00889_ortholog_coordinate_fetch_manifest_"
+            "current702_20260603.md"
+        ),
+    )
+    p00889_ortholog_coordinate_fetch_manifest.set_defaults(
+        func=cmd_build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest
+    )
+
+    fixed_threshold_rerun_readiness = subparsers.add_parser(
+        "build-fold-augmented-fixed-threshold-rerun-readiness",
+        help=(
+            "compose Lever 3 decision, sidecar, and P00889 coordinate artifacts "
+            "into the pre-rerun fixed-threshold readiness gate"
+        ),
+    )
+    fixed_threshold_rerun_readiness.add_argument(
+        "--blocker-human-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_blocker_human_decision_application_"
+            "current702_20260603.json"
+        ),
+    )
+    fixed_threshold_rerun_readiness.add_argument(
+        "--approved-source-feature-sidecar-materialization",
+        default=(
+            "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_"
+            "materialization_current702_20260603.json"
+        ),
+    )
+    fixed_threshold_rerun_readiness.add_argument(
+        "--p00889-coordinate-fetch-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_"
+            "manifest_current702_20260603.json"
+        ),
+    )
+    fixed_threshold_rerun_readiness.add_argument(
+        "--confounded-operating-point-readiness",
+        default=(
+            "artifacts/v3_predicted_structure_fold_confounded_operating_point_"
+            "readiness_current702_20260602.json"
+        ),
+    )
+    fixed_threshold_rerun_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_rerun_readiness_"
+            "current702_20260603.json"
+        ),
+    )
+    fixed_threshold_rerun_readiness.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_fixed_threshold_rerun_readiness_"
+            "current702_20260603.md"
+        ),
+    )
+    fixed_threshold_rerun_readiness.set_defaults(
+        func=cmd_build_fold_augmented_fixed_threshold_rerun_readiness
     )
 
     remaining_blocker_decision_matrix = subparsers.add_parser(

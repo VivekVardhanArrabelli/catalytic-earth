@@ -1,0 +1,55 @@
+{
+  "artifact_id": "v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603",
+  "blockers": [],
+  "coordinate_record": {
+    "authorized_for_p23007_ortholog_surrogate": true,
+    "bytes": 427882,
+    "coordinate_kind": "alphafolddb_predicted_cif",
+    "exists": true,
+    "path": "artifacts/v3_fold_augmented_p00889_ortholog_coordinate_current702_20260603/AF-P00889-F1-model_v6.cif",
+    "selected_alternate_accession": "P00889",
+    "sha256": "8e41533a17c8c156b4d30640ee99f4d25e5156a1ddb9e0ab8df4e88a6a737b36",
+    "source_url": "https://alphafold.ebi.ac.uk/files/AF-P00889-F1-model_v6.cif"
+  },
+  "counts": {
+    "approved_source_feature_sidecar_rows": 3,
+    "blocking_conditions": 0,
+    "coordinate_bytes": 427882,
+    "coordinate_files_recorded": 1,
+    "p23007_coordinate_fetch_authorized_now": 1,
+    "p23007_coordinate_fetched_now": 1
+  },
+  "created_utc": "2026-06-03T00:25:16Z",
+  "decision": {
+    "deployment_closed_now": false,
+    "next_action": "Rerun the combined geometry/fold channel at threshold 0.44155 using the approved source-feature sidecars and the P00889 ortholog coordinate; disclose the P10746 fold-only exception.",
+    "ready_for_fixed_threshold_combined_rerun": true
+  },
+  "guardrails": {
+    "combined_channel_rerun_performed": false,
+    "coordinate_fetched_now": true,
+    "deployment_closed_now": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p00889_ortholog_coordinate_fetch_manifest",
+  "scope": "Coordinate-fetch provenance manifest for the P00889 AFDB ortholog surrogate authorized for the P23007 Lever 3 blocker. This records the local CIF hash and rerun readiness without running Foldseek/TM or changing thresholds.",
+  "source_artifacts": {
+    "approved_source_feature_sidecar_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.json",
+      "sha256": "8e3c440ddcbd4162d34b587e6c67fdbabffbcd194fa64a309f8c4ba961e489ce"
+    },
+    "blocker_human_decision_application": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json",
+      "sha256": "877907b3bbb5ac6d74d22aa69892995a4e68b5e43b63375292100dda79a46f4f"
+    }
+  },
+  "status": "fold_augmented_p00889_ortholog_coordinate_fetch_manifest_ready_rerun_pending"
+}

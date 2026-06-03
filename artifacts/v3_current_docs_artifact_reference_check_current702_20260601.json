@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 608
+    "references_checked": 624
   },
-  "created_utc": "2026-06-03T00:16:50Z",
+  "created_utc": "2026-06-03T00:33:27Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -306,10 +306,10 @@
       "reference": "artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json"
     },
     {
-      "checked_path": "artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json",
+      "checked_path": "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.json",
       "doc": "docs/artifact_index.md",
       "exists": true,
-      "reference": "artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json"
+      "reference": "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

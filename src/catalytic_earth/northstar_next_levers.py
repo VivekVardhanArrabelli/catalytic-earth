@@ -120,6 +120,15 @@ FOLD_AUGMENTED_REMAINING_BLOCKER_DECISION_MATRIX_ID = (
 FOLD_AUGMENTED_BLOCKER_HUMAN_DECISION_APPLICATION_ID = (
     "v3_fold_augmented_blocker_human_decision_application_current702_20260603"
 )
+FOLD_AUGMENTED_APPROVED_SOURCE_FEATURE_ACTIVE_SITE_SIDECAR_MATERIALIZATION_ID = (
+    "v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603"
+)
+FOLD_AUGMENTED_P00889_ORTHOLOG_COORDINATE_FETCH_MANIFEST_ID = (
+    "v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603"
+)
+FOLD_AUGMENTED_FIXED_THRESHOLD_RERUN_READINESS_ID = (
+    "v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -17966,6 +17975,608 @@ def write_fold_augmented_blocker_human_decision_application(
             _render_fold_augmented_blocker_human_decision_application_report(
                 audit
             ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_approved_source_feature_active_site_sidecar_materialization(
+    *,
+    source_feature_sidecar_candidates_path: Path,
+    source_feature_sidecar_candidate_strict_audit_path: Path,
+    blocker_human_decision_application_path: Path,
+) -> dict[str, Any]:
+    candidates = _read_json(source_feature_sidecar_candidates_path)
+    strict_audit = _read_json(source_feature_sidecar_candidate_strict_audit_path)
+    decision_application = _read_json(blocker_human_decision_application_path)
+    candidate_rows = {
+        str(row.get("entry_id") or ""): row
+        for row in candidates.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    strict_passed = {
+        str(row.get("entry_id") or "")
+        for row in strict_audit.get("row_audits", [])
+        if isinstance(row, dict) and row.get("audit_status") == "passed"
+    }
+    approved_decisions = [
+        row
+        for row in decision_application.get("source_feature_sidecar_decisions", [])
+        if isinstance(row, dict)
+        and row.get("decision") == "approve_source_feature_sidecar"
+    ]
+    materialized_rows = []
+    blocked_rows = []
+    for decision_row in approved_decisions:
+        entry_id = str(decision_row.get("entry_id") or "")
+        candidate = candidate_rows.get(entry_id)
+        if candidate is None:
+            blocked_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "blocker": "approved_entry_missing_from_candidate_packet",
+                }
+            )
+            continue
+        if entry_id not in strict_passed:
+            blocked_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "blocker": "approved_entry_missing_strict_audit_pass",
+                }
+            )
+            continue
+        materialized = dict(candidate)
+        materialized.update(
+            {
+                "review_status": "approved_for_fixed_threshold_rerun",
+                "manual_review_decision": {
+                    "decision": decision_row.get("decision"),
+                    "reviewer": decision_row.get("reviewer"),
+                    "approval_provenance": decision_row.get("approval_provenance"),
+                    "approval_note": decision_row.get("approval_note"),
+                    "authorized_next_actions": decision_row.get(
+                        "authorized_next_actions", []
+                    ),
+                },
+                "copy_authorized_now": True,
+                "allowed_for_combined_channel_now": True,
+                "ready_for_predicted_geometry_scoring": True,
+                "deployment_blocker_cleared_now": False,
+                "combined_channel_rerun_required": True,
+                "blockers": ["combined_channel_not_rerun"],
+                "predictive_payload_policy": {
+                    "source_text_used_as_predictive_feature": False,
+                    "source_ids_used_as_predictive_feature": False,
+                    "target_names_used_as_predictive_feature": False,
+                    "ec_or_rhea_ids_used_as_predictive_feature": False,
+                    "labels_or_outcomes_used_as_predictive_feature": False,
+                    "allowed_payload": (
+                        "source-backed active-site or ligand/cofactor feature "
+                        "positions and feature classes only; provenance fields "
+                        "are retained for audit and are not model inputs"
+                    ),
+                },
+            }
+        )
+        materialized_rows.append(materialized)
+    status = (
+        "fold_augmented_approved_source_feature_active_site_sidecar_materialization_ready_rerun_pending"
+        if materialized_rows and not blocked_rows
+        else "fold_augmented_approved_source_feature_active_site_sidecar_materialization_blocked"
+    )
+    p23007_decision = decision_application.get("p23007_decision", {})
+    p10746_decision = decision_application.get("p10746_decision", {})
+    source_feature_support_rows = sum(
+        len(row.get("active_site_feature_support", [])) for row in materialized_rows
+    )
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_APPROVED_SOURCE_FEATURE_ACTIVE_SITE_SIDECAR_MATERIALIZATION_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_approved_source_feature_active_site_sidecar_materialization"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Approved source-feature active-site sidecar materialization surface "
+            "for the three Lever 3 coordinate-available production blockers. "
+            "This writes the approved sidecar surface for the next fixed-threshold "
+            "combined geometry/fold rerun, but does not fetch coordinates, rerun "
+            "Foldseek/TM, tune thresholds, or close deployment."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_used_as_predictive_feature": False,
+            "ec_or_rhea_ids_used_as_predictive_features": False,
+            "source_ids_used_as_predictive_features": False,
+            "target_names_used_as_predictive_features": False,
+            "labels_or_outcomes_used_as_predictive_features": False,
+            "approved_sidecar_surface_written": bool(materialized_rows),
+            "coordinate_fetched_now": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "combined_channel_rerun_performed": False,
+            "deployment_closed_now": False,
+        },
+        "counts": {
+            "approved_decision_rows": len(approved_decisions),
+            "materialized_sidecar_rows": len(materialized_rows),
+            "blocked_materialization_rows": len(blocked_rows),
+            "source_feature_support_rows": source_feature_support_rows,
+            "ready_for_predicted_geometry_scoring": len(materialized_rows),
+            "allowed_for_combined_channel_now": len(materialized_rows),
+            "combined_channel_rerun_required_rows": len(materialized_rows),
+            "p23007_coordinate_fetch_authorized_now": int(
+                bool(p23007_decision.get("coordinate_fetch_authorized_now"))
+            ),
+            "p23007_coordinate_fetched_now": 0,
+            "p10746_fold_only_exception_recorded": int(
+                p10746_decision.get("decision")
+                == "keep_fold_only_no_non_residue_sidecar"
+            ),
+        },
+        "materialized_sidecar_rows": sorted(
+            materialized_rows, key=lambda row: _entry_id_sort_key(str(row["entry_id"]))
+        ),
+        "blocked_materialization_rows": blocked_rows,
+        "remaining_steps": [
+            "fetch_afdb_coordinate_for_p00889_ortholog_surrogate",
+            "rerun_combined_geometry_fold_channel_at_fixed_threshold",
+            "record_p10746_fold_only_exception_in_readout",
+        ],
+        "decision": {
+            "approved_sidecar_materialization_complete": (
+                bool(materialized_rows) and not blocked_rows
+            ),
+            "deployment_closed_now": False,
+            "next_action": (
+                "Fetch the P00889 AFDB coordinate as the authorized ortholog "
+                "surrogate, rerun the combined geometry/fold channel at the "
+                "fixed threshold with these approved sidecars, and disclose the "
+                "P10746 fold-only exception."
+                if materialized_rows and not blocked_rows
+                else "Resolve blocked approved sidecar materialization rows before rerun."
+            ),
+        },
+        "source_artifacts": {
+            "source_feature_sidecar_candidates": _source_path_record(
+                source_feature_sidecar_candidates_path
+            ),
+            "source_feature_sidecar_candidate_strict_audit": _source_path_record(
+                source_feature_sidecar_candidate_strict_audit_path
+            ),
+            "blocker_human_decision_application": _source_path_record(
+                blocker_human_decision_application_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_approved_source_feature_active_site_sidecar_materialization_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Approved Source-Feature Active-Site Sidecar Materialization - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Materialized sidecar rows: {counts['materialized_sidecar_rows']}",
+        f"- Source-feature support rows: {counts['source_feature_support_rows']}",
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        (
+            "- P23007 coordinate fetch authorized now: "
+            f"{counts['p23007_coordinate_fetch_authorized_now']}"
+        ),
+        "- P23007 coordinate fetched now: 0",
+        "",
+        "## Materialized Rows",
+        "",
+        "| row | accession | features | review status | rerun required |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in audit["materialized_sidecar_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{len(row.get('active_site_feature_support', []))} | "
+            f"{row.get('review_status')} | "
+            f"{row.get('combined_channel_rerun_required')} |"
+        )
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- Approved sidecar surface written for rerun input; no coordinate was fetched.",
+        "- No Foldseek/TM or combined-channel rerun was performed.",
+        "- No threshold, label, registry, ontology, import, split, model-weight, or heldout-training surface changed.",
+        "",
+        "## Next Action",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_approved_source_feature_active_site_sidecar_materialization(
+    *,
+    source_feature_sidecar_candidates_path: Path,
+    source_feature_sidecar_candidate_strict_audit_path: Path,
+    blocker_human_decision_application_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_approved_source_feature_active_site_sidecar_materialization(
+        source_feature_sidecar_candidates_path=source_feature_sidecar_candidates_path,
+        source_feature_sidecar_candidate_strict_audit_path=(
+            source_feature_sidecar_candidate_strict_audit_path
+        ),
+        blocker_human_decision_application_path=blocker_human_decision_application_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_approved_source_feature_active_site_sidecar_materialization_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest(
+    *,
+    blocker_human_decision_application_path: Path,
+    approved_source_feature_sidecar_materialization_path: Path,
+    coordinate_path: Path,
+) -> dict[str, Any]:
+    decision_application = _read_json(blocker_human_decision_application_path)
+    materialization = _read_json(approved_source_feature_sidecar_materialization_path)
+    p23007_decision = decision_application.get("p23007_decision", {})
+    coordinate_exists = coordinate_path.exists()
+    selected_accession = str(
+        p23007_decision.get("selected_alternate_accession") or ""
+    )
+    fetch_authorized = bool(p23007_decision.get("coordinate_fetch_authorized_now"))
+    coordinate_record = {
+        "path": str(coordinate_path),
+        "exists": coordinate_exists,
+        "sha256": _sha256(coordinate_path) if coordinate_exists else None,
+        "bytes": coordinate_path.stat().st_size if coordinate_exists else 0,
+        "source_url": (
+            "https://alphafold.ebi.ac.uk/files/AF-P00889-F1-model_v6.cif"
+        ),
+        "coordinate_kind": "alphafolddb_predicted_cif",
+        "selected_alternate_accession": selected_accession,
+        "authorized_for_p23007_ortholog_surrogate": (
+            fetch_authorized and selected_accession == "P00889"
+        ),
+    }
+    blockers = []
+    if not fetch_authorized:
+        blockers.append("p00889_coordinate_fetch_not_authorized")
+    if selected_accession != "P00889":
+        blockers.append("selected_alternate_accession_not_p00889")
+    if not coordinate_exists:
+        blockers.append("p00889_coordinate_file_missing")
+    if not materialization.get("decision", {}).get(
+        "approved_sidecar_materialization_complete"
+    ):
+        blockers.append("approved_sidecar_materialization_not_complete")
+    status = (
+        "fold_augmented_p00889_ortholog_coordinate_fetch_manifest_ready_rerun_pending"
+        if not blockers
+        else "fold_augmented_p00889_ortholog_coordinate_fetch_manifest_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_P00889_ORTHOLOG_COORDINATE_FETCH_MANIFEST_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_p00889_ortholog_coordinate_fetch_manifest"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Coordinate-fetch provenance manifest for the P00889 AFDB ortholog "
+            "surrogate authorized for the P23007 Lever 3 blocker. This records "
+            "the local CIF hash and rerun readiness without running Foldseek/TM "
+            "or changing thresholds."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "coordinate_fetched_now": coordinate_exists,
+            "foldseek_or_tm_rerun_performed": False,
+            "combined_channel_rerun_performed": False,
+            "deployment_closed_now": False,
+        },
+        "counts": {
+            "coordinate_files_recorded": int(coordinate_exists),
+            "coordinate_bytes": coordinate_record["bytes"],
+            "p23007_coordinate_fetch_authorized_now": int(fetch_authorized),
+            "p23007_coordinate_fetched_now": int(coordinate_exists),
+            "approved_source_feature_sidecar_rows": materialization.get(
+                "counts", {}
+            ).get("materialized_sidecar_rows", 0),
+            "blocking_conditions": len(blockers),
+        },
+        "coordinate_record": coordinate_record,
+        "blockers": blockers,
+        "decision": {
+            "ready_for_fixed_threshold_combined_rerun": not blockers,
+            "deployment_closed_now": False,
+            "next_action": (
+                "Rerun the combined geometry/fold channel at threshold 0.44155 "
+                "using the approved source-feature sidecars and the P00889 "
+                "ortholog coordinate; disclose the P10746 fold-only exception."
+                if not blockers
+                else "Resolve coordinate/materialization blockers before rerun."
+            ),
+        },
+        "source_artifacts": {
+            "blocker_human_decision_application": _source_path_record(
+                blocker_human_decision_application_path
+            ),
+            "approved_source_feature_sidecar_materialization": _source_path_record(
+                approved_source_feature_sidecar_materialization_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    coord = audit["coordinate_record"]
+    lines = [
+        "# Fold-Augmented P00889 Ortholog Coordinate Fetch Manifest - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Coordinate files recorded: {counts['coordinate_files_recorded']}",
+        f"- Coordinate bytes: {counts['coordinate_bytes']}",
+        f"- P23007 fetch authorized now: {counts['p23007_coordinate_fetch_authorized_now']}",
+        f"- P23007 coordinate fetched now: {counts['p23007_coordinate_fetched_now']}",
+        f"- Blocking conditions: {counts['blocking_conditions']}",
+        "",
+        "## Coordinate",
+        "",
+        f"- Path: {coord['path']}",
+        f"- SHA-256: {coord['sha256']}",
+        f"- Source URL: {coord['source_url']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Coordinate provenance recorded; no Foldseek/TM or combined-channel rerun was performed.",
+        "- No threshold, label, registry, ontology, import, split, model-weight, or heldout-training surface changed.",
+        "",
+        "## Next Action",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_p00889_ortholog_coordinate_fetch_manifest(
+    *,
+    blocker_human_decision_application_path: Path,
+    approved_source_feature_sidecar_materialization_path: Path,
+    coordinate_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest(
+        blocker_human_decision_application_path=blocker_human_decision_application_path,
+        approved_source_feature_sidecar_materialization_path=(
+            approved_source_feature_sidecar_materialization_path
+        ),
+        coordinate_path=coordinate_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_fixed_threshold_rerun_readiness(
+    *,
+    blocker_human_decision_application_path: Path,
+    approved_source_feature_sidecar_materialization_path: Path,
+    p00889_coordinate_fetch_manifest_path: Path,
+    confounded_operating_point_readiness_path: Path,
+) -> dict[str, Any]:
+    decision_application = _read_json(blocker_human_decision_application_path)
+    materialization = _read_json(approved_source_feature_sidecar_materialization_path)
+    coordinate_fetch = _read_json(p00889_coordinate_fetch_manifest_path)
+    prior_readiness = _read_json(confounded_operating_point_readiness_path)
+    fixed_threshold = prior_readiness.get("operating_point_summary", {}).get(
+        "fixed_operating_threshold"
+    )
+    blockers = []
+    if not decision_application.get("decision", {}).get(
+        "human_or_policy_decisions_complete"
+    ):
+        blockers.append("human_or_policy_decisions_incomplete")
+    if not materialization.get("decision", {}).get(
+        "approved_sidecar_materialization_complete"
+    ):
+        blockers.append("approved_sidecar_materialization_incomplete")
+    if not coordinate_fetch.get("decision", {}).get(
+        "ready_for_fixed_threshold_combined_rerun"
+    ):
+        blockers.append("p00889_coordinate_fetch_not_rerun_ready")
+    if fixed_threshold != 0.44155:
+        blockers.append("fixed_threshold_contract_not_044155")
+    status = (
+        "fold_augmented_fixed_threshold_rerun_readiness_ready"
+        if not blockers
+        else "fold_augmented_fixed_threshold_rerun_readiness_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FIXED_THRESHOLD_RERUN_READINESS_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_fixed_threshold_rerun_readiness"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Pre-rerun readiness gate for the Lever 3 fixed-threshold combined "
+            "geometry/fold channel after human decisions, approved source-feature "
+            "sidecar materialization, and P00889 coordinate fetch. This does not "
+            "run scoring or close deployment."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "combined_channel_rerun_performed": False,
+            "deployment_closed_now": False,
+        },
+        "counts": {
+            "human_or_policy_decision_blockers_remaining": decision_application.get(
+                "counts", {}
+            ).get("human_or_policy_decision_blockers_remaining", 0),
+            "materialized_sidecar_rows": materialization.get("counts", {}).get(
+                "materialized_sidecar_rows", 0
+            ),
+            "source_feature_support_rows": materialization.get("counts", {}).get(
+                "source_feature_support_rows", 0
+            ),
+            "p00889_coordinate_fetched_now": coordinate_fetch.get("counts", {}).get(
+                "p23007_coordinate_fetched_now", 0
+            ),
+            "remaining_pre_rerun_blockers": len(blockers),
+        },
+        "fixed_threshold": fixed_threshold,
+        "blockers": blockers,
+        "decision": {
+            "ready_for_fixed_threshold_combined_rerun": not blockers,
+            "deployment_closed_now": False,
+            "next_action": (
+                "Run the combined geometry/fold channel once at fixed threshold "
+                "0.44155 using the approved source-feature sidecars and P00889 "
+                "ortholog coordinate; disclose the P10746 fold-only caveat."
+                if not blockers
+                else "Resolve pre-rerun blockers before scoring."
+            ),
+        },
+        "source_artifacts": {
+            "blocker_human_decision_application": _source_path_record(
+                blocker_human_decision_application_path
+            ),
+            "approved_source_feature_sidecar_materialization": _source_path_record(
+                approved_source_feature_sidecar_materialization_path
+            ),
+            "p00889_coordinate_fetch_manifest": _source_path_record(
+                p00889_coordinate_fetch_manifest_path
+            ),
+            "confounded_operating_point_readiness": _source_path_record(
+                confounded_operating_point_readiness_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_fixed_threshold_rerun_readiness_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Fixed-Threshold Rerun Readiness - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fixed threshold: {audit['fixed_threshold']}",
+        (
+            "- Human/policy blockers remaining: "
+            f"{counts['human_or_policy_decision_blockers_remaining']}"
+        ),
+        f"- Materialized sidecar rows: {counts['materialized_sidecar_rows']}",
+        f"- Source-feature support rows: {counts['source_feature_support_rows']}",
+        f"- P00889 coordinate fetched now: {counts['p00889_coordinate_fetched_now']}",
+        f"- Remaining pre-rerun blockers: {counts['remaining_pre_rerun_blockers']}",
+        "",
+        "## Guardrails",
+        "",
+        "- No Foldseek/TM or combined-channel rerun was performed.",
+        "- No threshold, label, registry, ontology, import, split, model-weight, or heldout-training surface changed.",
+        "",
+        "## Next Action",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_fixed_threshold_rerun_readiness(
+    *,
+    blocker_human_decision_application_path: Path,
+    approved_source_feature_sidecar_materialization_path: Path,
+    p00889_coordinate_fetch_manifest_path: Path,
+    confounded_operating_point_readiness_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_fixed_threshold_rerun_readiness(
+        blocker_human_decision_application_path=blocker_human_decision_application_path,
+        approved_source_feature_sidecar_materialization_path=(
+            approved_source_feature_sidecar_materialization_path
+        ),
+        p00889_coordinate_fetch_manifest_path=p00889_coordinate_fetch_manifest_path,
+        confounded_operating_point_readiness_path=confounded_operating_point_readiness_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_fixed_threshold_rerun_readiness_report(audit),
             encoding="utf-8",
         )
     return audit

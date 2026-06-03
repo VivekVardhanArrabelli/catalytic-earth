@@ -11,9 +11,11 @@ from catalytic_earth.northstar_next_levers import (
     build_family_panel_evidence_packet,
     build_family_panel_high_value_glycyl_radical_readiness_packet,
     build_fold_augmented_abstention_gate,
+    build_fold_augmented_approved_source_feature_active_site_sidecar_materialization,
     build_fold_augmented_blocker_human_decision_application,
     build_fold_augmented_confounded_deployment_closure_audit,
     build_fold_augmented_fold_only_deployment_contract_decision,
+    build_fold_augmented_fixed_threshold_rerun_readiness,
     build_fold_augmented_family_panel_m_csa_primary_channel_repair,
     build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     build_fold_augmented_family_panel_missing_primary_channel_queue,
@@ -22,6 +24,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_oos_calibrated_threshold_contract,
     build_fold_augmented_abstention_threshold_contract,
     build_fold_augmented_non_residue_interaction_sidecar_policy_preflight,
+    build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest,
     build_fold_augmented_p23007_alternate_accession_scout,
     build_fold_augmented_p23007_alternate_accession_policy_gate,
     build_fold_augmented_remaining_blocker_decision_matrix,
@@ -2606,6 +2609,232 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(audit["guardrails"]["sidecars_materialized_now"])
         self.assertFalse(audit["guardrails"]["coordinate_fetched_now"])
+
+    def test_approved_source_feature_sidecar_materialization_stays_rerun_pending(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidates = root / "candidates.json"
+            strict = root / "strict.json"
+            decision = root / "decision.json"
+            candidates.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "review_status": "draft",
+                                "active_site_feature_support": [
+                                    {
+                                        "feature_type": "Active site",
+                                        "sequence_position": 169,
+                                        "source_database": "UniProtKB",
+                                    }
+                                ],
+                                "copy_authorized_now": False,
+                                "allowed_for_combined_channel_now": False,
+                                "ready_for_predicted_geometry_scoring": False,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {"entry_id": "m_csa:531", "audit_status": "passed"}
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            decision.write_text(
+                json.dumps(
+                    {
+                        "source_feature_sidecar_decisions": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "decision": "approve_source_feature_sidecar",
+                                "reviewer": "Vivek",
+                                "approval_provenance": (
+                                    "user_human_gate_decision_20260602"
+                                ),
+                                "approval_note": "approved",
+                                "authorized_next_actions": [
+                                    "copy_candidate_sidecar_to_scoring_surface"
+                                ],
+                            }
+                        ],
+                        "p23007_decision": {
+                            "coordinate_fetch_authorized_now": True
+                        },
+                        "p10746_decision": {
+                            "decision": "keep_fold_only_no_non_residue_sidecar"
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_approved_source_feature_active_site_sidecar_materialization(
+                source_feature_sidecar_candidates_path=candidates,
+                source_feature_sidecar_candidate_strict_audit_path=strict,
+                blocker_human_decision_application_path=decision,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_approved_source_feature_active_site_sidecar_materialization_ready_rerun_pending",
+        )
+        self.assertEqual(audit["counts"]["materialized_sidecar_rows"], 1)
+        self.assertEqual(audit["counts"]["source_feature_support_rows"], 1)
+        self.assertEqual(audit["counts"]["p23007_coordinate_fetch_authorized_now"], 1)
+        self.assertEqual(audit["counts"]["p23007_coordinate_fetched_now"], 0)
+        self.assertTrue(audit["guardrails"]["approved_sidecar_surface_written"])
+        self.assertFalse(audit["guardrails"]["coordinate_fetched_now"])
+        self.assertFalse(audit["guardrails"]["combined_channel_rerun_performed"])
+        row = audit["materialized_sidecar_rows"][0]
+        self.assertEqual(row["review_status"], "approved_for_fixed_threshold_rerun")
+        self.assertEqual(row["blockers"], ["combined_channel_not_rerun"])
+
+    def test_p00889_ortholog_coordinate_fetch_manifest_records_local_cif(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            decision = root / "decision.json"
+            materialization = root / "materialization.json"
+            coordinate = root / "AF-P00889-F1-model_v6.cif"
+            coordinate.write_text("data_AF-P00889\n#\n", encoding="utf-8")
+            decision.write_text(
+                json.dumps(
+                    {
+                        "p23007_decision": {
+                            "selected_alternate_accession": "P00889",
+                            "coordinate_fetch_authorized_now": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            materialization.write_text(
+                json.dumps(
+                    {
+                        "counts": {"materialized_sidecar_rows": 3},
+                        "decision": {
+                            "approved_sidecar_materialization_complete": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest(
+                blocker_human_decision_application_path=decision,
+                approved_source_feature_sidecar_materialization_path=materialization,
+                coordinate_path=coordinate,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_p00889_ortholog_coordinate_fetch_manifest_ready_rerun_pending",
+        )
+        self.assertEqual(audit["counts"]["coordinate_files_recorded"], 1)
+        self.assertEqual(audit["counts"]["p23007_coordinate_fetched_now"], 1)
+        self.assertEqual(audit["counts"]["approved_source_feature_sidecar_rows"], 3)
+        self.assertEqual(audit["blockers"], [])
+        self.assertTrue(
+            audit["decision"]["ready_for_fixed_threshold_combined_rerun"]
+        )
+        self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
+
+    def test_fixed_threshold_rerun_readiness_composes_pre_rerun_gates(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            decision = root / "decision.json"
+            materialization = root / "materialization.json"
+            fetch = root / "fetch.json"
+            readiness = root / "readiness.json"
+            decision.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "human_or_policy_decisions_complete": True
+                        },
+                        "counts": {
+                            "human_or_policy_decision_blockers_remaining": 0
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            materialization.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "approved_sidecar_materialization_complete": True
+                        },
+                        "counts": {
+                            "materialized_sidecar_rows": 3,
+                            "source_feature_support_rows": 18,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fetch.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "ready_for_fixed_threshold_combined_rerun": True
+                        },
+                        "counts": {"p23007_coordinate_fetched_now": 1},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "operating_point_summary": {
+                            "fixed_operating_threshold": 0.44155
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_fixed_threshold_rerun_readiness(
+                blocker_human_decision_application_path=decision,
+                approved_source_feature_sidecar_materialization_path=materialization,
+                p00889_coordinate_fetch_manifest_path=fetch,
+                confounded_operating_point_readiness_path=readiness,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_fixed_threshold_rerun_readiness_ready",
+        )
+        self.assertEqual(audit["fixed_threshold"], 0.44155)
+        self.assertEqual(
+            audit["counts"]["human_or_policy_decision_blockers_remaining"], 0
+        )
+        self.assertEqual(audit["counts"]["materialized_sidecar_rows"], 3)
+        self.assertEqual(audit["counts"]["source_feature_support_rows"], 18)
+        self.assertEqual(audit["counts"]["p00889_coordinate_fetched_now"], 1)
+        self.assertEqual(audit["counts"]["remaining_pre_rerun_blockers"], 0)
+        self.assertTrue(
+            audit["decision"]["ready_for_fixed_threshold_combined_rerun"]
+        )
+        self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
+        self.assertFalse(audit["guardrails"]["combined_channel_rerun_performed"])
+        self.assertFalse(audit["decision"]["deployment_closed_now"])
 
     def test_source_feature_sidecar_review_gate_requires_manual_decisions(
         self,

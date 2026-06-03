@@ -1,0 +1,90 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603",
+  "counts": {
+    "approved_locator_copy_authorized_rows": 0,
+    "blocked_rows": 2,
+    "matching_replacement_coordinates": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "remapped_locator_approvals": 0,
+    "requested_afdb_expected_code_matches": 0,
+    "requested_afdb_expected_code_mismatches": 6,
+    "rows_with_same_accession_afdb_coordinate_only": 2
+  },
+  "created_utc": "2026-06-03T00:19:02Z",
+  "decision": {
+    "approved_locator_copy_now": false,
+    "decision_class": "accession_equivalence_or_matching_coordinate_required",
+    "decision_result": "leave_blocked",
+    "expert_alignment_authorized_now": false,
+    "matching_frozen_coordinate_required_for_unblock": true,
+    "ready_for_predicted_geometry_scoring": false,
+    "remapped_locator_authorized_now": false,
+    "reviewer": "Vivek",
+    "unblock_conditions": [
+      "Provide a matching frozen coordinate whose struct_ref maps to Q79MP6 for mh_065 or P0A6P9 for mh_072.",
+      "Or provide a real expert alignment/remapping that resolves the residue-code mismatch, not just a numeric offset.",
+      "After either unblock condition, rerun locator schema/integrity review before any source-free predicted-geometry scoring."
+    ]
+  },
+  "decision_rows": [
+    {
+      "afdb_position_transfer_result": "failed_0_of_3_expected_residue_code_matches",
+      "decision": "leave_blocked",
+      "entry_id": "mh_065",
+      "matching_replacement_coordinate_count": 0,
+      "requested_source_accession": "uniprot:Q79MP6",
+      "same_accession_afdb_coordinate_count": 1,
+      "selected_pdb_struct_ref_accessions": [
+        "Q932P5"
+      ],
+      "selected_structure_id": "1DDK",
+      "unblock_condition": "matching frozen coordinate with struct_ref Q79MP6 or expert remap resolving residue-code mismatch"
+    },
+    {
+      "afdb_position_transfer_result": "failed_0_of_3_expected_residue_code_matches",
+      "decision": "leave_blocked",
+      "entry_id": "mh_072",
+      "matching_replacement_coordinate_count": 0,
+      "requested_source_accession": "uniprot:P0A6P9",
+      "same_accession_afdb_coordinate_count": 1,
+      "selected_pdb_struct_ref_accessions": [
+        "P08324"
+      ],
+      "selected_structure_id": "1E9I",
+      "unblock_condition": "matching frozen coordinate with struct_ref P0A6P9 or expert remap resolving residue-code mismatch"
+    }
+  ],
+  "guardrails": {
+    "approved_locator_sidecars_created_or_copied": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_used_as_predictive_feature": false,
+    "new_coordinates_fetched": false,
+    "predicted_geometry_scores_created": false,
+    "production_thresholds_changed": false,
+    "raw_1ddk_1e9i_locator_copy_authorized": false,
+    "remapped_locator_authorized": false
+  },
+  "interpretation": {
+    "headline": "mh_065 and mh_072 remain blocked; raw representative-coordinate locators are not approved.",
+    "rationale": "The matching-coordinate scout found 0 matching non-AFDB coordinates across 712 local files. The selected PDBs map by struct_ref to Q932P5 and P08324, not the requested Q79MP6 and P0A6P9 source rows. The only same-accession AFDB models already failed residue-position transfer with 0/6 expected residue-code matches. Approving remapped locators here would accept the exact unverified-transfer failure mode the locator schema is designed to block.",
+    "next_action": "Leave both rows review-only/non-countable until matching frozen coordinates or a real expert alignment resolving the residue-code mismatch are available."
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_locator_mh065_mh072_block_decision",
+  "source_artifacts": {
+    "accession_equivalence_position_audit": {
+      "path": "artifacts/v3_family_panel_source_free_locator_accession_equivalence_position_audit_mh065_mh072_current702_20260602.json",
+      "sha256": "53a5d06da3112e661a4a5789c3ecb59c8b750c95d5da651737f88d54f00b2066"
+    },
+    "human_decision_matrix": {
+      "path": "artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json",
+      "sha256": "190719702410aa1b199a1b5f8ea13576ba8f78308b7fc39f14769654655571f9"
+    },
+    "matching_coordinate_scout": {
+      "path": "artifacts/v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602.json",
+      "sha256": "9cd78f37a50ac6f3026107cfd3869c3993588be8bc81b93a091fb7a4b9b3108b"
+    }
+  },
+  "status": "source_free_locator_mh065_mh072_block_decision_leave_blocked_review_only"
+}

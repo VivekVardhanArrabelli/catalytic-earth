@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-06-02
+Last refreshed: 2026-06-03
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -142,15 +142,17 @@ artifacts first.
 - Those same five Lever 3 fold-channel deployment blockers now have
   blocker-specific review gates plus a decision-application record. Three
   coordinate-available rows (`m_csa:531`, `uniprot:P78549`, and
-  `uniprot:Q3LXA3`) now have approved source-feature sidecars pending
-  materialization into the scoring surface. `m_csa:78`/P23007 has P00889
-  authorized as an ortholog surrogate and still needs the AFDB coordinate fetch
-  plus fixed-threshold fold-channel rerun. `m_csa:204`/P10746 is explicitly
-  kept fold-only with the no-non-residue-sidecar policy caveat. The regenerated
-  confounded readiness gate still keeps threshold `0.44155`, remains
-  research-ready for the 5/6 confounded abstention result, and stays
-  deployment-blocked until materialization/fetch/rerun/caveat disclosure are
-  completed.
+  `uniprot:Q3LXA3`) now have an approved source-feature sidecar surface
+  materialized for rerun input, with 3 rows and 18 source-feature support
+  records. `m_csa:78`/P23007 has P00889 authorized as an ortholog surrogate and
+  the AFDB coordinate has been fetched and hashed; it still needs the
+  fixed-threshold fold-channel rerun. A pre-rerun readiness gate reports 0
+  remaining pre-rerun blockers for that fixed-threshold rerun.
+  `m_csa:204`/P10746 is explicitly kept fold-only with the
+  no-non-residue-sidecar policy caveat. The regenerated confounded readiness
+  gate still keeps threshold `0.44155`, remains research-ready for the 5/6
+  confounded abstention result, and stays deployment-blocked until the
+  fixed-threshold rerun and caveat disclosure are completed.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel
@@ -316,11 +318,12 @@ artifacts first.
   keeps both rows blocked. Their candidate contacts are coordinate-local, but
   frozen selected PDB mappings point to `Q932P5` for `1DDK` and `P08324` for
   `1E9I`, not the source accessions `Q79MP6` and `P0A6P9`. Do not copy these
-  locator sidecars or score source-free predicted geometry until an explicit
-  representative-accession equivalence policy or matching frozen coordinate is
-  available. A local-cache matching-coordinate scout found 0 non-AFDB
-  replacement coordinates; same-accession AFDB files exist but already failed
-  the residue-transfer check.
+  locator sidecars or score source-free predicted geometry. A local-cache
+  matching-coordinate scout found 0 non-AFDB replacement coordinates;
+  same-accession AFDB files exist but already failed residue-transfer with 0/6
+  expected residue-code matches. The human decision is to leave both rows
+  blocked; unblock only with matching frozen coordinates or a real expert
+  alignment/remap that resolves the residue-code mismatch.
 - The `external_glycoside_panel` ligand-specificity path remains blocked.
   The selected acetate (`ACT`) locator from unliganded MYORG `7QQF` was
   rejected, NAG contacts remain glycan/glycosylation-context evidence, and a
@@ -337,8 +340,9 @@ artifacts first.
 - A refreshed source-free locator blocker status plus human-decision matrix now
   consolidates the five remaining blocker rows into four decision classes.
   Automation discovery is complete, 0/5 are automation-clearable, 0 are
-  import-preview-ready, and the next decision is `mh_065`/`mh_072` matching
-  coordinates or explicit remapped-locator approval. The matrix authorizes no
+  import-preview-ready, and `mh_065`/`mh_072` have now been explicitly left
+  blocked rather than remapped. The remaining open locator-policy decisions are
+  `external_glycoside_panel`, `mh_064`, and Q59490. The matrix authorizes no
   copy, fetch, scoring, import, or label action.
 - The family-panel import-preview blocker gate has been refreshed against that
   enriched matrix. It still reports 0/22 import-preview-ready rows, 0 countable
@@ -615,8 +619,9 @@ artifacts first.
    inputs visible to the source-free surface. `mh_067`/`mh_068` passed the
    split-safe check, were approved/copied into the audited locator directory,
    and are source-checked as review-only/no-promotion. The import-preview gate
-   still reports 0/22 import-ready rows: the remaining priority locator rows
-   are `mh_065`/`mh_072` (matching coordinate or approved remap required),
+   still reports 0/22 import-ready rows: `mh_065`/`mh_072` are explicitly left
+   blocked until matching coordinates or a residue-code-resolving expert remap
+   exist; the remaining open priority locator decisions are
    `external_glycoside_panel` (ligand-specificity validator or substrate
    coordinate), `mh_064` (alternate-coordinate fetch policy), and Q59490 /
    `secondary_probe::cobalamin_radical_rearrangement` (nonlabel locator
@@ -675,6 +680,9 @@ artifacts first.
 - `artifacts/v3_fold_augmented_p23007_alternate_accession_policy_gate_current702_20260602.json`
 - `artifacts/v3_fold_augmented_non_residue_interaction_sidecar_policy_preflight_current702_20260602.json`
 - `artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json`
+- `artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.json`
+- `artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.json`
+- `artifacts/v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
@@ -732,6 +740,7 @@ artifacts first.
 - `artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_locator_matching_coordinate_scout_mh065_mh072_current702_20260602.json`
+- `artifacts/v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603.json`
 - `artifacts/v3_family_panel_source_free_locator_glycoside_substrate_coordinate_scout_external_glycoside_panel_current702_20260602.json`
 - `artifacts/v3_family_panel_source_free_locator_q59490_alternate_source_cache_scout_current702_20260602.json`
 - `artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`

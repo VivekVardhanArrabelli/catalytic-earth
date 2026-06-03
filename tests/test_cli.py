@@ -888,6 +888,30 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-fold-augmented-approved-source-feature-active-site-"
+                    "sidecar-materialization"
+                ),
+                (
+                    "cmd_build_fold_augmented_approved_source_feature_active_site_"
+                    "sidecar_materialization"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-p00889-ortholog-coordinate-fetch-"
+                    "manifest"
+                ),
+                (
+                    "cmd_build_fold_augmented_p00889_ortholog_coordinate_"
+                    "fetch_manifest"
+                ),
+            ),
+            (
+                "build-fold-augmented-fixed-threshold-rerun-readiness",
+                "cmd_build_fold_augmented_fixed_threshold_rerun_readiness",
+            ),
+            (
                 "audit-fold-augmented-confounded-deployment-closure",
                 "cmd_audit_fold_augmented_confounded_deployment_closure",
             ),

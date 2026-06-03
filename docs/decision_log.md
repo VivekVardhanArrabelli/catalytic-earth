@@ -3,31 +3,64 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
-## 2026-06-03: Lever 3 Human Decisions Applied; Materialization Still Pending
+## 2026-06-03: mh_065/mh_072 Remapped Locators Rejected; Leave Blocked
+
+Decision: leave `mh_065` and `mh_072` blocked. Do not copy the raw
+`1DDK`/`1E9I` locators and do not approve alignment/remapped locators from the
+current evidence.
+
+Rationale: the matching-coordinate scout scanned 712 local coordinate files and
+found 0 matching non-AFDB replacement coordinates. The selected PDBs map by
+`struct_ref` to `Q932P5` and `P08324`, not the requested source rows `Q79MP6`
+and `P0A6P9`. The only same-accession AFDB options already failed residue-code
+transfer with 0/6 expected residue-code matches. Approving remapped locators
+would accept the unverified-transfer failure mode the locator schema is meant
+to block.
+
+Consequence / next gate: these rows remain review-only/non-countable and
+source-free predicted-geometry scoring stays blocked. Unblock only with a
+matching frozen coordinate whose `struct_ref` maps to the requested source
+accession, or with a real expert alignment/remapping that resolves the
+residue-code mismatch, followed by locator schema/integrity review.
+
+Artifacts:
+`artifacts/v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603.json`
+and
+`work/family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603.md`.
+
+## 2026-06-03: Lever 3 Human Decisions Applied; Rerun Readiness Ready
 
 Decision: record the five Lever 3 production-blocker human/policy decisions as
-a decision-application artifact, while leaving materialization and scoring
-unperformed. The three strict-audit-clean source-feature sidecars are approved
-for materialization, P00889 is authorized as the P23007 ortholog surrogate, and
-P10746 is kept fold-only with the non-residue-sidecar policy caveat. No
-coordinates were fetched, no sidecars were copied, no Foldseek/TM or combined
-channel rerun was performed, and no labels, registries, ontologies, imports,
+a decision-application artifact, materialize the three approved source-feature
+sidecars, fetch/hash the authorized P00889 ortholog surrogate coordinate, and
+compose a fixed-threshold pre-rerun readiness gate. P10746 is kept fold-only
+with the non-residue-sidecar policy caveat. No Foldseek/TM or combined-channel
+rerun was performed, and no labels, registries, ontologies, imports,
 thresholds, splits, model weights, or heldout-tuned surfaces changed.
 
 Result: the human/policy decision blockers are now 0, but deployment closure is
-still false. Four materialization/rerun steps remain: copy the approved
-source-feature sidecars into the scoring surface, fetch the P00889 AFDB
-coordinate as an ortholog surrogate, rerun the combined geometry/fold channel
-at the fixed threshold, and disclose the P10746 fold-only exception in the
-readout.
+still false. The approved source-feature sidecar surface has been materialized
+for rerun input with 3 rows and 18 source-feature support records. The P00889
+AFDB CIF has been fetched and hashed (`8e41533a...`). The pre-rerun readiness
+gate reports ready=true with 0 remaining pre-rerun blockers. Two steps remain:
+rerun the combined geometry/fold channel at the fixed threshold and disclose
+the P10746 fold-only exception in the readout.
 
-Consequence / next gate: perform only those materialization steps under the
-fixed threshold contract; do not tune thresholds or train on heldout rows.
+Consequence / next gate: run the fixed-threshold combined geometry/fold
+readout using the materialized sidecars plus the fetched P00889 coordinate, and
+carry the P10746 fold-only caveat into the readout. Do not tune thresholds or
+train on heldout rows.
 
 Artifacts:
-`artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json`
+`artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json`,
+`work/fold_augmented_blocker_human_decision_application_current702_20260603.md`,
+`artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.json`,
+`work/fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.md`,
+`artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.json`,
+`work/fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.md`,
+`artifacts/v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.json`,
 and
-`work/fold_augmented_blocker_human_decision_application_current702_20260603.md`.
+`work/fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.md`.
 
 ## 2026-06-03: Lever 4 Local-Cache Locator Discovery Closes With Five Human/Policy Blockers
 

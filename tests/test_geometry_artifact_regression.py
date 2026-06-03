@@ -2961,6 +2961,106 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["sidecars_materialized_now"])
         self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
 
+    def test_fold_augmented_approved_source_feature_sidecar_materialization_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_approved_source_feature_active_site_sidecar_"
+                "materialization_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_approved_source_feature_active_site_sidecar_materialization_ready_rerun_pending",
+        )
+        self.assertEqual(audit["counts"]["approved_decision_rows"], 3)
+        self.assertEqual(audit["counts"]["materialized_sidecar_rows"], 3)
+        self.assertEqual(audit["counts"]["blocked_materialization_rows"], 0)
+        self.assertEqual(audit["counts"]["source_feature_support_rows"], 18)
+        self.assertEqual(audit["counts"]["ready_for_predicted_geometry_scoring"], 3)
+        self.assertEqual(audit["counts"]["p23007_coordinate_fetch_authorized_now"], 1)
+        self.assertEqual(audit["counts"]["p23007_coordinate_fetched_now"], 0)
+        self.assertTrue(audit["guardrails"]["approved_sidecar_surface_written"])
+        self.assertFalse(audit["guardrails"]["coordinate_fetched_now"])
+        self.assertFalse(audit["guardrails"]["combined_channel_rerun_performed"])
+        rows = {row["entry_id"]: row for row in audit["materialized_sidecar_rows"]}
+        self.assertEqual(
+            sorted(rows),
+            ["m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            rows["m_csa:531"]["review_status"],
+            "approved_for_fixed_threshold_rerun",
+        )
+        self.assertEqual(rows["uniprot:P78549"]["blockers"], ["combined_channel_not_rerun"])
+
+    def test_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_p00889_ortholog_coordinate_fetch_manifest_ready_rerun_pending",
+        )
+        self.assertEqual(audit["counts"]["coordinate_files_recorded"], 1)
+        self.assertEqual(audit["counts"]["p23007_coordinate_fetch_authorized_now"], 1)
+        self.assertEqual(audit["counts"]["p23007_coordinate_fetched_now"], 1)
+        self.assertEqual(audit["counts"]["approved_source_feature_sidecar_rows"], 3)
+        self.assertEqual(audit["counts"]["blocking_conditions"], 0)
+        self.assertEqual(
+            audit["coordinate_record"]["sha256"],
+            "8e41533a17c8c156b4d30640ee99f4d25e5156a1ddb9e0ab8df4e88a6a737b36",
+        )
+        self.assertTrue(
+            audit["decision"]["ready_for_fixed_threshold_combined_rerun"]
+        )
+        self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
+        self.assertFalse(audit["guardrails"]["combined_channel_rerun_performed"])
+
+    def test_fold_augmented_fixed_threshold_rerun_readiness_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_fixed_threshold_rerun_readiness_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_fixed_threshold_rerun_readiness_ready",
+        )
+        self.assertEqual(audit["fixed_threshold"], 0.44155)
+        self.assertEqual(
+            audit["counts"]["human_or_policy_decision_blockers_remaining"], 0
+        )
+        self.assertEqual(audit["counts"]["materialized_sidecar_rows"], 3)
+        self.assertEqual(audit["counts"]["source_feature_support_rows"], 18)
+        self.assertEqual(audit["counts"]["p00889_coordinate_fetched_now"], 1)
+        self.assertEqual(audit["counts"]["remaining_pre_rerun_blockers"], 0)
+        self.assertEqual(audit["blockers"], [])
+        self.assertTrue(
+            audit["decision"]["ready_for_fixed_threshold_combined_rerun"]
+        )
+        self.assertFalse(audit["decision"]["deployment_closed_now"])
+        self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
+        self.assertFalse(audit["guardrails"]["combined_channel_rerun_performed"])
+
     def test_fold_augmented_remaining_blocker_decision_matrix_current_counts(
         self,
     ) -> None:
