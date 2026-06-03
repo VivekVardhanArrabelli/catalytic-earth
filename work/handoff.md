@@ -50,6 +50,94 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 17
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T17:01:45Z`
+- STARTED_LOCAL: `2026-06-03T12:01:45-0500 CDT`
+- ENDED_AT: `2026-06-03T17:55:54Z`
+- ENDED_LOCAL: `2026-06-03T12:55:54-0500 CDT`
+- ELAPSED_MINUTES: `54.2`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "53958", "started_at": "2026-06-03T17:01:36Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue inside active Levers 2/3/4 from Run 16. Execute the exact Lever 3 next
+action by pre-registering one train/cal-only source-free proxy-axis contract,
+scoring it without heldout tuning, and deciding whether it closes the
+confounded-proxy operating-point gap.
+
+#### What changed
+
+- Materialized
+  `v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603`.
+  The contract registers exactly one source-free/train-cal-only axis,
+  `active_site_residue_count_10_plus`, selecting six rows:
+  `m_csa:89`, `m_csa:90`, `m_csa:143`, `m_csa:253`, `m_csa:466`, and
+  `m_csa:501`.
+- Built the matching scoring-input manifest, staged/downloaded 6/6 AFDB-v6
+  query CIFs, ran Foldseek against 133 train-atlas targets, and parsed
+  `v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603`.
+  All six contracted rows now have full predicted-geometry, Foldseek/TM,
+  cofactor, and combined-channel scores.
+- Added an opt-in predicted-only sequence-position repair in
+  `predicted_geometry_robustness` and enabled it only for this Lever 3 tranche.
+  It admits rows with reference sequence positions when experimental structure
+  positions are absent; this cleared `m_csa:501` without changing the default
+  selector behavior.
+- Composed the new scores into
+  `v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603`.
+  The surface is still partial at 192/198 full-channel rows because six
+  prior/base blockers remain.
+- Read out the new axis at unchanged threshold `0.44155` in
+  `v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603`.
+  Only `m_csa:466` abstains; the other five rows are retained. This is a
+  measured tranche readout, not an operating-point or deployment-closure claim.
+- Refreshed the active mechanical audit, project state, decision log, artifact
+  index, progress log, and status report. The active audit now reports 0
+  mechanical gates ready and 15 blockers; the new-axis tranche is fully scored
+  but the broader surface/calibration remains blocked.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, source decisions, reviewer decisions, locator sidecars, event
+  linkers, or heldout threshold tuning were changed.
+- The new proxy-axis contract and scored rows are train/cal-only. The
+  fixed-threshold readout keeps threshold `0.44155` unchanged and does not tune
+  or refit on heldout rows.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were used
+  as predictive features.
+
+#### Tests run
+
+- Focused post-implementation regression:
+  `PYTHONPATH=src python -m pytest tests/test_predicted_geometry_robustness.py tests/test_geometry_artifact_regression.py -q`
+  passed: 197 tests and 7 subtests.
+- Full post-final-patch validation:
+  `PYTHONPATH=src python -m pytest -q` passed: 1340 tests, 148 subtests, and
+  one existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1295 tests.
+- `PYTHONPATH=src python -m compileall -q src`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  changed-JSON `jq` parse checks, and `git diff --check` passed.
+
+#### Exact next action
+
+- Lever 3: do not rerun the global fixed-threshold confounded-proxy audit from
+  the new partial/base-blocked surface. First clear the remaining prior/base
+  full-channel and policy/calibration blockers, starting with the P10746
+  decision if reviewed, or pre-register a no-duplicate follow-up train/cal-only
+  proxy-axis contract (the scout's low organic-score axis has five candidates,
+  one overlapping the now-scored active-site axis) before any further scoring.
+- If hash-valid reviewed source decisions arrive first, rerun source-decision
+  intake and only the matching application/materialization gate before touching
+  any Lever 2/3/4 downstream surface.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 16
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

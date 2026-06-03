@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 
 from catalytic_earth.predicted_geometry_robustness import (
+    _target_manifest_row_selection,
     build_alphafold_predicted_geometry_features,
     build_predicted_geometry_in_distribution_atlas_retrieval,
     build_predicted_geometry_distillation_audit,
@@ -114,6 +115,94 @@ class PredictedGeometryRobustnessTests(unittest.TestCase):
         self.assertEqual(entry["missing_positions"], 0)
         self.assertEqual(len(entry["pairwise_distances_angstrom"]), 1)
         self.assertEqual(entry["mechanism_text_snippets"], [])
+
+    def test_target_selection_can_opt_into_predicted_only_sequence_positions(
+        self,
+    ) -> None:
+        graph = {
+            "nodes": [
+                {
+                    "id": "m_csa:1:residue:1",
+                    "type": "catalytic_residue",
+                    "roles": ["proton acceptor"],
+                    "sequence_positions": [
+                        {
+                            "code": "Asp",
+                            "is_reference": True,
+                            "resid": 10,
+                            "uniprot_id": "TEST",
+                        }
+                    ],
+                },
+                {
+                    "id": "m_csa:1:residue:2",
+                    "type": "catalytic_residue",
+                    "roles": ["proton donor"],
+                    "sequence_positions": [
+                        {
+                            "code": "His",
+                            "is_reference": True,
+                            "resid": 30,
+                            "uniprot_id": "TEST",
+                        }
+                    ],
+                },
+            ],
+        }
+        label_manifest = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:1",
+                    "accession": "TEST",
+                    "sequence_id": "TEST",
+                    "benchmark_role": "oos_tier::unknown_oos",
+                    "split_assignment": "in_distribution",
+                }
+            ]
+        }
+        experimental = {
+            "entries": [
+                {
+                    "entry_id": "m_csa:1",
+                    "status": "no_structure_positions",
+                    "pdb_id": None,
+                }
+            ]
+        }
+
+        strict_rows, strict_excluded = _target_manifest_row_selection(
+            label_manifest=label_manifest,
+            graph=graph,
+            experimental_geometry_features=experimental,
+            split_assignment=None,
+            max_rows=0,
+        )
+        self.assertEqual(strict_rows, [])
+        self.assertEqual(
+            strict_excluded[0]["reason"],
+            "experimental_geometry_not_ok:no_structure_positions",
+        )
+
+        repaired_rows, repaired_excluded = _target_manifest_row_selection(
+            label_manifest=label_manifest,
+            graph=graph,
+            experimental_geometry_features=experimental,
+            split_assignment=None,
+            max_rows=0,
+            allow_missing_experimental_geometry_if_sequence_positions=True,
+        )
+        self.assertEqual(repaired_excluded, [])
+        self.assertEqual(repaired_rows[0]["entry_id"], "m_csa:1")
+        self.assertEqual(
+            repaired_rows[0]["predicted_geometry_accession_repair"]["policy"],
+            "reference_sequence_positions_without_experimental_structure_positions",
+        )
+        self.assertEqual(
+            repaired_rows[0]["predicted_geometry_accession_repair"][
+                "selected_residue_count"
+            ],
+            2,
+        )
 
     def test_esmfold_backend_is_precise_blocker(self) -> None:
         audit = build_predicted_geometry_robustness_audit(

@@ -1,0 +1,298 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603",
+  "blockers": [],
+  "counts": {
+    "active_site_residue_count_minimum": 10,
+    "background_axis_blocker_rows": 170,
+    "background_axis_scout_rows": 170,
+    "blockers": 0,
+    "candidate_axis_tests_from_scout": 3,
+    "contracted_scoring_rows": 6,
+    "heldout_like_rows": 0,
+    "missing_background_rows": 0,
+    "selected_axis_candidate_rows_from_scout": 6,
+    "selected_proxy_axes": 1
+  },
+  "created_utc": "2026-06-03T17:10:27Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "new_proxy_axis_ready_to_score_now": true,
+    "new_proxy_axis_registered": true,
+    "next_gate": "Use this contract artifact as the scoring tranche input for the train/cal scoring-input manifest, then materialize or stage the listed coordinates and run Foldseek before parsing any scores. Do not rerun the fixed-threshold proxy audit until the contracted rows have real full-channel scores.",
+    "proxy_calibration_rerun_ready_now": false,
+    "run_fixed_threshold_audit_now": false,
+    "score_contract_tranche_now": false,
+    "scoring_tranche_rows_ready_now": true
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "exactly_one_proxy_axis_registered": true,
+    "foldseek_or_tmsearch_run_now": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "new_proxy_axis_registered": true,
+    "production_thresholds_changed": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "headline": "Registered active_site_residue_count_10_plus as a train/cal-only source-free proxy-axis contract with 6 rows.",
+    "next_action": "Build the scoring-input manifest from this contract and run only the contracted train/cal rows through predicted-structure-vs-atlas Foldseek scoring.",
+    "result": "This removes the missing-contract blocker but creates no abstained evidence until the contracted rows are scored at the unchanged fixed threshold."
+  },
+  "nonselected_candidate_axis_tests": [
+    {
+      "axis_id": "organic_score_0_30_to_below_high_axis_threshold",
+      "blocking_reason": "would_create_new_proxy_axis_without_pre_registered_calibration_contract",
+      "candidate_rows": 5,
+      "example_entry_ids": [
+        "m_csa:60",
+        "m_csa:75",
+        "m_csa:89",
+        "m_csa:214",
+        "m_csa:288"
+      ],
+      "mechanically_ready_now": false,
+      "source_free_feature": "selected_organic_cofactor_max_score"
+    },
+    {
+      "axis_id": "unsupported_inorganic_locus_geometry",
+      "blocking_reason": "unsupported_or_missing_geometry_is_a_data-quality_blocker_not_abstained_evidence",
+      "candidate_rows": 9,
+      "example_entry_ids": [
+        "m_csa:105",
+        "m_csa:137",
+        "m_csa:318",
+        "m_csa:327",
+        "m_csa:360",
+        "m_csa:501",
+        "m_csa:610",
+        "m_csa:618",
+        "m_csa:649"
+      ],
+      "mechanically_ready_now": false,
+      "source_free_feature": "inorganic_locus_statuses"
+    }
+  ],
+  "open_items": [
+    "contracted_tranche_not_scored"
+  ],
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_new_proxy_axis_contract",
+  "scope": "Train/cal-only pre-registration contract for one source-free replacement proxy axis after the current high-cofactor and inorganic/structural axes were exhausted. It freezes membership for a bounded future scoring tranche but does not score rows, tune thresholds, read heldout rows, or count any row as abstained evidence.",
+  "scoring_tranche_rows": [
+    {
+      "active_site_residue_count": 13,
+      "active_site_residue_count_bin": "10_plus",
+      "background_axis_exclusion_reasons": [
+        "organic_cofactor_below_high_axis_threshold",
+        "no_high_inorganic_cofactor_locus",
+        "no_source_free_inorganic_structural_locus"
+      ],
+      "benchmark_role": "train_cal_oos_negative_proxy_calibration",
+      "entry_id": "m_csa:89",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "new_proxy_axis_id": "active_site_residue_count_10_plus",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.398339,
+      "priority_bucket": 3,
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "recommended_proxy_axes_after_scoring": [
+        "active_site_residue_count_10_plus_proxy",
+        "background_train_cal_oos_structural_pool"
+      ],
+      "role_graph_status": "ok",
+      "selection_reason": "pre_registered_active_site_residue_count_10_plus_proxy_axis",
+      "split_assignment": "in_distribution"
+    },
+    {
+      "active_site_residue_count": 14,
+      "active_site_residue_count_bin": "10_plus",
+      "background_axis_exclusion_reasons": [
+        "organic_cofactor_below_high_axis_threshold",
+        "no_high_inorganic_cofactor_locus",
+        "no_source_free_inorganic_structural_locus"
+      ],
+      "benchmark_role": "train_cal_oos_negative_proxy_calibration",
+      "entry_id": "m_csa:90",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "new_proxy_axis_id": "active_site_residue_count_10_plus",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.014237,
+      "priority_bucket": 3,
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "recommended_proxy_axes_after_scoring": [
+        "active_site_residue_count_10_plus_proxy",
+        "background_train_cal_oos_structural_pool"
+      ],
+      "role_graph_status": "ok",
+      "selection_reason": "pre_registered_active_site_residue_count_10_plus_proxy_axis",
+      "split_assignment": "in_distribution"
+    },
+    {
+      "active_site_residue_count": 16,
+      "active_site_residue_count_bin": "10_plus",
+      "background_axis_exclusion_reasons": [
+        "organic_cofactor_below_high_axis_threshold",
+        "no_high_inorganic_cofactor_locus",
+        "no_source_free_inorganic_structural_locus"
+      ],
+      "benchmark_role": "train_cal_oos_negative_proxy_calibration",
+      "entry_id": "m_csa:143",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "new_proxy_axis_id": "active_site_residue_count_10_plus",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.05565,
+      "priority_bucket": 3,
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "recommended_proxy_axes_after_scoring": [
+        "active_site_residue_count_10_plus_proxy",
+        "background_train_cal_oos_structural_pool"
+      ],
+      "role_graph_status": "ok",
+      "selection_reason": "pre_registered_active_site_residue_count_10_plus_proxy_axis",
+      "split_assignment": "in_distribution"
+    },
+    {
+      "active_site_residue_count": 10,
+      "active_site_residue_count_bin": "10_plus",
+      "background_axis_exclusion_reasons": [
+        "organic_cofactor_below_high_axis_threshold",
+        "no_high_inorganic_cofactor_locus",
+        "no_source_free_inorganic_structural_locus"
+      ],
+      "benchmark_role": "train_cal_oos_negative_proxy_calibration",
+      "entry_id": "m_csa:253",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "new_proxy_axis_id": "active_site_residue_count_10_plus",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.024512,
+      "priority_bucket": 3,
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "recommended_proxy_axes_after_scoring": [
+        "active_site_residue_count_10_plus_proxy",
+        "background_train_cal_oos_structural_pool"
+      ],
+      "role_graph_status": "ok",
+      "selection_reason": "pre_registered_active_site_residue_count_10_plus_proxy_axis",
+      "split_assignment": "in_distribution"
+    },
+    {
+      "active_site_residue_count": 12,
+      "active_site_residue_count_bin": "10_plus",
+      "background_axis_exclusion_reasons": [
+        "organic_cofactor_below_high_axis_threshold",
+        "no_high_inorganic_cofactor_locus",
+        "no_source_free_inorganic_structural_locus"
+      ],
+      "benchmark_role": "train_cal_oos_negative_proxy_calibration",
+      "entry_id": "m_csa:466",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "new_proxy_axis_id": "active_site_residue_count_10_plus",
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.00075,
+      "priority_bucket": 3,
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "recommended_proxy_axes_after_scoring": [
+        "active_site_residue_count_10_plus_proxy",
+        "background_train_cal_oos_structural_pool"
+      ],
+      "role_graph_status": "ok",
+      "selection_reason": "pre_registered_active_site_residue_count_10_plus_proxy_axis",
+      "split_assignment": "in_distribution"
+    },
+    {
+      "active_site_residue_count": 10,
+      "active_site_residue_count_bin": "10_plus",
+      "background_axis_exclusion_reasons": [
+        "organic_cofactor_below_high_axis_threshold",
+        "no_high_inorganic_cofactor_locus",
+        "no_source_free_inorganic_structural_locus",
+        "some_inorganic_locus_geometry_unsupported_or_missing"
+      ],
+      "benchmark_role": "train_cal_oos_negative_proxy_calibration",
+      "entry_id": "m_csa:501",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "label_type": "out_of_scope",
+      "new_proxy_axis_id": "active_site_residue_count_10_plus",
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.015665,
+      "priority_bucket": 3,
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "recommended_proxy_axes_after_scoring": [
+        "active_site_residue_count_10_plus_proxy",
+        "background_train_cal_oos_structural_pool"
+      ],
+      "role_graph_status": "ok",
+      "selection_reason": "pre_registered_active_site_residue_count_10_plus_proxy_axis",
+      "split_assignment": "in_distribution"
+    }
+  ],
+  "selected_proxy_axis": {
+    "acceptance_contract": [
+      "Use only rows emitted by the current train/cal background-axis scout.",
+      "Require active_site_residue_count_bin == 10_plus and numeric active_site_residue_count >= 10.",
+      "Keep all rows non-heldout and out-of-scope calibration rows.",
+      "Run predicted-structure-vs-atlas scoring before any abstention claim.",
+      "Rerun the fixed-threshold proxy audit only with threshold values unchanged."
+    ],
+    "axis_id": "active_site_residue_count_10_plus",
+    "axis_membership_is_source_free": true,
+    "axis_membership_rows_are_train_cal_only": true,
+    "intended_proxy_family": "background_train_cal_oos_structural_pool",
+    "membership_rule": "active_site_residue_count >= 10",
+    "prior_scout_blocking_reason": "axis_has_no_pre_registered_train_cal_acceptance_criterion",
+    "scout_candidate_rows": 6,
+    "source_free_feature": "active_site_residue_count"
+  },
+  "source_artifacts": {
+    "background_axis_blocker": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current702_20260603.json",
+      "sha256": "05d7727da612f1472f25ec4f15e20c5660ea72d8f143d731522457ad34a33090"
+    },
+    "background_axis_scout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603.json",
+      "sha256": "8ebe3e64b0d62393a81025f49a7ab859b4283dc4bf9d4782e80577f373cccbdd"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_ready"
+}

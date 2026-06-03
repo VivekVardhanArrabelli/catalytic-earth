@@ -10,7 +10,6 @@
     "lever3_confounded_proxy_acquisition_shortfall",
     "lever3_confounded_proxy_train_cal_scoring_tranche_not_run",
     "lever3_confounded_proxy_background_axis_exhausted",
-    "lever3_confounded_proxy_new_axis_contract_missing",
     "family_panel_expert_import_decisions_missing",
     "source_free_locator_rewrite_approvals_missing",
     "source_free_event_axis_linker_gate_blocked",
@@ -20,7 +19,7 @@
   ],
   "counts": {
     "automation_action_allowed_now_items": 0,
-    "blockers": 16,
+    "blockers": 15,
     "decision_items": 78,
     "external_decision_required_items": 78,
     "lever2_clean_locator_rewrite_items": 49,
@@ -45,6 +44,12 @@
     "lever3_confounded_proxy_candidate_pool_unscored_rows": 170,
     "lever3_confounded_proxy_evidence_extension_blockers": 6,
     "lever3_confounded_proxy_evidence_request_rows": 48,
+    "lever3_confounded_proxy_new_axis_contract_blockers": 0,
+    "lever3_confounded_proxy_new_axis_contracted_rows": 6,
+    "lever3_confounded_proxy_new_axis_full_channel_rows": 6,
+    "lever3_confounded_proxy_new_axis_missing_full_score_rows": 0,
+    "lever3_confounded_proxy_new_axis_registered": true,
+    "lever3_confounded_proxy_new_axis_scored_extension_blockers": 0,
     "lever3_confounded_proxy_retained_gap_rows": 48,
     "lever3_confounded_proxy_scoring_tranche_blockers": 3,
     "lever3_confounded_proxy_scoring_tranche_high_rows": 0,
@@ -67,7 +72,7 @@
     "source_decision_intake_invalid_rows": 0,
     "source_decision_intake_pending_rows": 78
   },
-  "created_utc": "2026-06-03T16:18:49Z",
+  "created_utc": "2026-06-03T17:39:43Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
@@ -139,8 +144,15 @@
       "ready_now": false
     },
     {
-      "blocking_reason": "confounded_proxy_new_axis_contract_missing",
+      "blocking_reason": "current_scout_axis_scored_no_ready_followup_axis",
       "gate": "confounded_proxy_train_cal_background_axis_scout",
+      "lever": "Lever 3",
+      "next_command_after_decision": "build-fold-augmented-confounded-proxy-train-cal-background-axis-scout",
+      "ready_now": false
+    },
+    {
+      "blocking_reason": "contracted_proxy_axis_fully_scored_surface_still_blocked",
+      "gate": "confounded_proxy_train_cal_new_proxy_axis_contract",
       "lever": "Lever 3",
       "next_command_after_decision": "build-fold-augmented-confounded-proxy-train-cal-background-axis-scout",
       "ready_now": false
@@ -183,8 +195,8 @@
   },
   "interpretation": {
     "headline": "No active Lever 2/3/4 gate is mechanically runnable on the current decision state.",
-    "next_action": "Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, apply hash-valid reviewed source decisions if they arrive; otherwise pre-register one train/cal-only source-free proxy axis contract before any new scoring tranche or fixed-threshold audit rerun.",
-    "result": "Lever 3 is blocked by the P10746 policy caveat, the fixed-threshold confounded-proxy calibration gap, and exhausted current proxy axes: the remaining train/cal OOS rows are background-only and the scout has no pre-registered new axis ready to score. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers."
+    "next_action": "Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first.",
+    "result": "Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers."
   },
   "next_review_items": [
     {
@@ -470,6 +482,16 @@
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json",
       "sha256": "d65d32fce6a49611fb9140685721b31023b00ee14b1ca6c2705f297db4c9edf3"
+    },
+    "lever3_confounded_proxy_train_cal_new_proxy_axis_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json",
+      "sha256": "c092a571fe31ce657407372828bc5945f6ee63f13c1ee22bf92ce2f4ccd5c35b"
+    },
+    "lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json",
+      "sha256": "3f267b63a05f931ce3f921465d9b722c1e1b4a8245e88e076252b541abc76705"
     },
     "lever3_confounded_proxy_train_cal_scoring_tranche_plan": {
       "exists": true,

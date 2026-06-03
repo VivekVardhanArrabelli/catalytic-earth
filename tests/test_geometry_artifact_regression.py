@@ -3969,6 +3969,75 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "no_pre_registered_new_proxy_axis_contract", scout["blockers"]
         )
 
+    def test_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_"
+                "proxy_axis_contract_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_"
+                "proxy_axis_contract_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "contract_ready"
+            ),
+        )
+        self.assertEqual(
+            contract["selected_proxy_axis"]["axis_id"],
+            "active_site_residue_count_10_plus",
+        )
+        self.assertEqual(
+            contract["selected_proxy_axis"]["membership_rule"],
+            "active_site_residue_count >= 10",
+        )
+        self.assertEqual(contract["counts"]["contracted_scoring_rows"], 6)
+        self.assertEqual(contract["counts"]["heldout_like_rows"], 0)
+        self.assertEqual(contract["counts"]["blockers"], 0)
+        self.assertTrue(contract["decision"]["new_proxy_axis_registered"])
+        self.assertTrue(contract["decision"]["scoring_tranche_rows_ready_now"])
+        self.assertFalse(contract["decision"]["score_contract_tranche_now"])
+        self.assertFalse(contract["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertFalse(contract["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(contract["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(
+            contract["guardrails"][
+                "heldout_rows_read_for_training_or_threshold_tuning"
+            ]
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in contract["scoring_tranche_rows"]],
+            [
+                "m_csa:89",
+                "m_csa:90",
+                "m_csa:143",
+                "m_csa:253",
+                "m_csa:466",
+                "m_csa:501",
+            ],
+        )
+        self.assertEqual(
+            contract["scoring_tranche_rows"][0][
+                "recommended_proxy_axes_after_scoring"
+            ],
+            [
+                "active_site_residue_count_10_plus_proxy",
+                "background_train_cal_oos_structural_pool",
+            ],
+        )
+
     def test_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current_counts(
         self,
     ) -> None:
@@ -4031,6 +4100,186 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(manifest["guardrails"]["coordinate_downloads_performed"])
         self.assertFalse(manifest["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_"
+                "proxy_axis_scoring_input_manifest_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            manifest["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "scoring_input_manifest_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            manifest["status"],
+            "confounded_proxy_train_cal_scoring_input_manifest_scored_ready_to_parse",
+        )
+        self.assertEqual(manifest["counts"]["scoring_tranche_rows"], 6)
+        self.assertEqual(manifest["counts"]["unique_query_accessions"], 6)
+        self.assertEqual(manifest["counts"]["query_coordinate_files_missing"], 0)
+        self.assertEqual(
+            manifest["counts"]["train_atlas_target_coordinate_files_missing"],
+            0,
+        )
+        self.assertEqual(
+            manifest["counts"]["foldseek_result_current_query_hits"], 6
+        )
+        self.assertEqual(manifest["counts"]["blockers"], 0)
+        self.assertFalse(manifest["decision"]["score_tranche_now"])
+        self.assertFalse(manifest["decision"]["apply_or_change_threshold_now"])
+        self.assertTrue(
+            manifest["decision"]["foldseek_ready_to_run_after_coordinates"]
+        )
+
+    def test_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current_counts(
+        self,
+    ) -> None:
+        extension = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_"
+                "proxy_axis_scored_extension_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            extension["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "scored_extension_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            extension["status"],
+            "confounded_proxy_train_cal_scored_extension_complete",
+        )
+        self.assertEqual(extension["counts"]["scoring_tranche_rows"], 6)
+        self.assertEqual(
+            extension["counts"]["candidate_rows_with_full_channel_scores"], 6
+        )
+        self.assertEqual(extension["counts"]["foldseek_rows_with_nearest_train_hits"], 6)
+        self.assertEqual(extension["missing_full_score_entry_ids"], [])
+        self.assertEqual(extension["blockers"], [])
+        rows = {row["entry_id"]: row for row in extension["candidate_row_scores"]}
+        self.assertEqual(
+            rows["m_csa:90"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.49735,
+        )
+        self.assertEqual(
+            rows["m_csa:501"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.601,
+        )
+        self.assertEqual(
+            rows["m_csa:501"]["predicted_geometry_accession_repair"]["policy"],
+            "reference_sequence_positions_without_experimental_structure_positions",
+        )
+        self.assertFalse(
+            extension["guardrails"][
+                "heldout_rows_read_for_training_or_threshold_tuning"
+            ]
+        )
+
+    def test_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_surface_current_counts(
+        self,
+    ) -> None:
+        surface = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "extended_train_cal_oos_surface_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            surface["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "extended_train_cal_oos_surface_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            surface["status"],
+            "confounded_proxy_extended_train_cal_oos_surface_partial",
+        )
+        self.assertEqual(surface["counts"]["extended_candidate_rows"], 198)
+        self.assertEqual(
+            surface["counts"]["candidate_rows_with_full_channel_scores"], 192
+        )
+        self.assertEqual(surface["counts"]["appended_full_channel_rows"], 6)
+        self.assertEqual(
+            surface["counts"]["remaining_combined_score_blocker_rows"], 6
+        )
+        self.assertIn("scored_extension_has_blockers", surface["blockers"])
+        self.assertIn(
+            "some_extended_train_cal_oos_rows_missing_full_channel_scores",
+            surface["blockers"],
+        )
+        self.assertIn(
+            "clear the remaining full-channel score blockers first",
+            surface["interpretation"]["next_action"],
+        )
+
+    def test_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "fixed_threshold_readout_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "fixed_threshold_readout_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+                "fixed_threshold_readout_ready"
+            ),
+        )
+        self.assertEqual(readout["fixed_threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["contracted_scored_rows"], 6)
+        self.assertEqual(readout["counts"]["full_channel_rows"], 6)
+        self.assertEqual(readout["counts"]["abstained_at_fixed_threshold"], 1)
+        self.assertEqual(readout["counts"]["retained_at_fixed_threshold"], 5)
+        self.assertEqual(readout["counts"]["blockers"], 0)
+        self.assertEqual(readout["abstained_entry_ids"], ["m_csa:466"])
+        self.assertEqual(
+            readout["retained_entry_ids"],
+            ["m_csa:89", "m_csa:90", "m_csa:143", "m_csa:253", "m_csa:501"],
+        )
+        rows = {row["entry_id"]: row for row in readout["readout"]["rows"]}
+        self.assertTrue(rows["m_csa:466"]["abstains_at_fixed_threshold"])
+        self.assertEqual(rows["m_csa:466"]["threshold_margin"], -0.056)
+        self.assertFalse(
+            readout["decision"]["global_operating_point_audit_ready_now"]
+        )
+        self.assertFalse(readout["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(
+            readout["guardrails"][
+                "heldout_rows_read_for_training_or_threshold_tuning"
+            ]
+        )
 
     def test_fold_augmented_confounded_proxy_scored_extension_surfaces_current_counts(
         self,
@@ -9321,7 +9570,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
-        self.assertEqual(audit["counts"]["blockers"], 16)
+        self.assertEqual(audit["counts"]["blockers"], 15)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 78
         )
@@ -9448,6 +9697,31 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]["lever3_confounded_proxy_background_axis_scout_ready_axes"],
             0,
         )
+        self.assertTrue(
+            audit["counts"]["lever3_confounded_proxy_new_axis_registered"]
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_new_axis_contracted_rows"],
+            6,
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_new_axis_contract_blockers"],
+            0,
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_new_axis_full_channel_rows"],
+            6,
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_new_axis_missing_full_score_rows"],
+            0,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_new_axis_scored_extension_blockers"],
+            0,
+        )
         self.assertEqual(
             audit["counts"]["lever4_pending_expert_import_decisions"], 22
         )
@@ -9492,9 +9766,30 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "lever3_confounded_proxy_background_axis_exhausted",
             audit["blockers"],
         )
-        self.assertIn(
+        self.assertNotIn(
             "lever3_confounded_proxy_new_axis_contract_missing",
             audit["blockers"],
+        )
+        self.assertNotIn(
+            "lever3_confounded_proxy_new_axis_contract_tranche_not_scored",
+            audit["blockers"],
+        )
+        self.assertNotIn(
+            "lever3_confounded_proxy_new_axis_contract_tranche_partial_scores",
+            audit["blockers"],
+        )
+        gates = {row["gate"]: row for row in audit["gate_checks"]}
+        self.assertEqual(
+            gates["confounded_proxy_train_cal_background_axis_scout"][
+                "blocking_reason"
+            ],
+            "current_scout_axis_scored_no_ready_followup_axis",
+        )
+        self.assertEqual(
+            gates["confounded_proxy_train_cal_new_proxy_axis_contract"][
+                "blocking_reason"
+            ],
+            "contracted_proxy_axis_fully_scored_surface_still_blocked",
         )
         self.assertIn(
             "source_decision_intake_preflight_not_ready", audit["blockers"]

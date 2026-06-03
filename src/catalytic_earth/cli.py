@@ -108,6 +108,8 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_train_cal_scored_extension,
     write_fold_augmented_confounded_proxy_train_cal_background_axis_blocker,
     write_fold_augmented_confounded_proxy_train_cal_background_axis_scout,
+    write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract,
+    write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout,
     write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
     write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
     write_fold_augmented_oos_calibrated_threshold_contract,
@@ -12496,9 +12498,34 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
+    args: argparse.Namespace,
+) -> int:
+    contract = write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
+        background_axis_scout_path=Path(args.background_axis_scout),
+        background_axis_blocker_path=Path(args.background_axis_blocker),
+        selected_axis_id=args.selected_axis_id,
+        min_active_site_residue_count=args.min_active_site_residue_count,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = contract.get("counts", {})
+    decision = contract.get("decision", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal new proxy-axis "
+        f"contract to {args.out} (axis registered: "
+        f"{decision.get('new_proxy_axis_registered')}, contracted rows: "
+        f"{counts.get('contracted_scoring_rows')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     manifest = write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
         scoring_tranche_plan_path=Path(args.scoring_tranche_plan),
         sequence_manifest_path=Path(args.sequence_manifest),
@@ -12514,6 +12541,7 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
         report_path=Path(args.report) if args.report else None,
         foldseek_binary=args.foldseek_binary,
         threads=args.threads,
+        **writer_kwargs,
     )
     counts = manifest.get("counts", {})
     print(
@@ -12529,6 +12557,9 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
 def cmd_build_fold_augmented_confounded_proxy_train_cal_scored_extension(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     audit = write_fold_augmented_confounded_proxy_train_cal_scored_extension(
         scoring_input_manifest_path=Path(args.scoring_input_manifest),
         scoring_tranche_plan_path=Path(args.scoring_tranche_plan),
@@ -12544,6 +12575,7 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_scored_extension(
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
         alphafold_version=args.alphafold_version,
+        **writer_kwargs,
     )
     counts = audit.get("counts", {})
     print(
@@ -12555,14 +12587,39 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_scored_extension(
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout(
+        scored_extension_path=Path(args.scored_extension),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal new proxy-axis "
+        f"fixed-threshold readout to {args.out} (abstained: "
+        f"{counts.get('abstained_at_fixed_threshold')}/"
+        f"{counts.get('full_channel_rows')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     audit = write_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
         base_train_cal_oos_surface_path=Path(args.base_train_cal_oos_surface),
         scored_extension_path=Path(args.scored_extension),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
     )
     counts = audit.get("counts", {})
     print(
@@ -13022,6 +13079,16 @@ def cmd_build_active_lever_mechanical_actionability_audit(
             args.lever3_confounded_proxy_train_cal_background_axis_scout
         )
         if args.lever3_confounded_proxy_train_cal_background_axis_scout
+        else None,
+        lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path=Path(
+            args.lever3_confounded_proxy_train_cal_new_proxy_axis_contract
+        )
+        if args.lever3_confounded_proxy_train_cal_new_proxy_axis_contract
+        else None,
+        lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path=Path(
+            args.lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension
+        )
+        if args.lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension
         else None,
         lever4_acceptance_scenario_plan_path=Path(
             args.lever4_acceptance_scenario_plan
@@ -28823,6 +28890,54 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_confounded_proxy_train_cal_background_axis_scout
     )
 
+    confounded_proxy_train_cal_new_proxy_axis = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-new-proxy-axis-contract",
+        help=(
+            "pre-register exactly one train/cal-only source-free proxy-axis "
+            "contract before any new confounded-proxy scoring tranche"
+        ),
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--background-axis-scout",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "background_axis_scout_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--background-axis-blocker",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "background_axis_blocker_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--selected-axis-id",
+        default="active_site_residue_count_10_plus",
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--min-active-site-residue-count",
+        type=int,
+        default=10,
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_"
+            "proxy_axis_contract_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_new_proxy_axis.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+            "contract_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_new_proxy_axis.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract
+    )
+
     confounded_proxy_train_cal_scoring_input = subparsers.add_parser(
         "build-fold-augmented-confounded-proxy-train-cal-scoring-input-manifest",
         help=(
@@ -28871,6 +28986,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--threads",
         type=int,
         default=4,
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--artifact-id",
+        default=None,
     )
     confounded_proxy_train_cal_scoring_input.add_argument(
         "--out",
@@ -28940,6 +29059,10 @@ def build_parser() -> argparse.ArgumentParser:
         default="auto",
     )
     confounded_proxy_train_cal_scored_extension.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_scored_extension.add_argument(
         "--out",
         default=(
             "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
@@ -28955,6 +29078,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     confounded_proxy_train_cal_scored_extension.set_defaults(
         func=cmd_build_fold_augmented_confounded_proxy_train_cal_scored_extension
+    )
+
+    confounded_proxy_new_axis_fixed_readout = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-new-proxy-axis-fixed-threshold-readout",
+        help=(
+            "read out the newly contracted train/cal proxy-axis tranche at the "
+            "unchanged fixed geometry/fold threshold"
+        ),
+    )
+    confounded_proxy_new_axis_fixed_readout.add_argument(
+        "--scored-extension",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_"
+            "proxy_axis_scored_extension_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_new_axis_fixed_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_new_axis_fixed_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_"
+            "proxy_axis_fixed_threshold_readout_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_new_axis_fixed_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_"
+            "fixed_threshold_readout_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_new_axis_fixed_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout
+        )
     )
 
     confounded_proxy_extended_train_cal_oos_surface = subparsers.add_parser(
@@ -28977,6 +29141,10 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
             "scored_extension_current702_20260603.json"
         ),
+    )
+    confounded_proxy_extended_train_cal_oos_surface.add_argument(
+        "--artifact-id",
+        default=None,
     )
     confounded_proxy_extended_train_cal_oos_surface.add_argument(
         "--out",
@@ -29787,6 +29955,20 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
             "background_axis_scout_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-train-cal-new-proxy-axis-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_"
+            "proxy_axis_contract_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-train-cal-new-proxy-axis-scored-extension",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_"
+            "proxy_axis_scored_extension_current702_20260603.json"
         ),
     )
     active_lever_actionability.add_argument(
