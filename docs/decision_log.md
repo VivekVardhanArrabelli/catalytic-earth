@@ -3,6 +3,58 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Lever 2 Locator Rewrites — 53 Approved, 2 Rejected (723, 599)
+
+Decision: after a full per-row review of the 55 priority-1 current702 source-free
+locator rewrites, record explicit reviewer decisions: **approve 53, reject
+`m_csa:723` and `m_csa:599`**. Decisions are recorded in a separate
+approval-decisions artifact with candidate and planned-payload hashes preserved
+unchanged; the committed review-only approval packet and materialization gate are
+left pending and untouched (they remain regression-pinned to the pre-decision
+state). No locator sidecars were copied, no heldout rows read, and no frozen
+residual threshold applied.
+
+Rationale: the 55 heldout rows split into 32 in-scope primaries
+(`seed_fingerprint`, which the model must retain) and 23 out-of-scope negatives
+(which it must abstain on). In-scope rows require the locator to land on the
+genuine catalytic center; OOS rows only require a faithful source-free pointer to
+the real cofactor/metal site. All 55 are integrity-clean (hashes match, zero
+forbidden-feature flags, split-protected). 30/32 in-scope rows anchor correctly
+(PLP catalytic-Lys Schiff base ~1.3 A, covalent 8a-His-FAD, Cys-ligated heme,
+His/Asp/Glu-metal first shells, 4Fe-4S Cys ligation). All 23 OOS rows are
+faithful source-free anchors (structural-metal anchors such as KDM4A Cys3His zinc
+and MetRS zinc knuckle remain out-of-distribution).
+
+The two rejected rows are both in-scope `ser_his_acid_hydrolase`:
+`m_csa:723` (subtilisin) anchored on the structural Ca loop, not the Ser-His-Asp
+triad; `m_csa:599` anchored on a crystallographic Cd ion (curated rationale: "no
+metal required"), missing the Ser nucleophile. They expose a method gap:
+ligand-proximity locators structurally cannot reach cofactorless catalytic
+triads.
+
+Consequence / next gate: (1) the source-free locator surface for the 53 approved
+rows is materialization-ready — run the locator rewrite materialization gate with
+this approval-decisions artifact and the explicit write flag to copy the 53
+sidecars into the audited locator directory (separate authorization). (2) Build a
+source-free catalytic-triad geometric locator for serine hydrolases (decision:
+design): detect a Ser/Cys/Thr-His-Asp/Glu triad from coordinates + residue
+identity only, under the same forbidden-feature contract, emitting the same
+`residue_locators` schema, then re-decide `m_csa:723`/`m_csa:599`. Do not apply
+the frozen residual threshold or read heldout until approved locators, event-axis
+linkers, and the heldout-safe application surface all exist.
+
+Verification (read-only, no writes): materialization gate reports 53
+`approved_ready_for_materialization`, 0 critical violations, 0 sidecars written;
+intake preflight reports status ready with 53 locator-materialization-ready
+approvals, 2 rejections, 0 invalid, 0 source-edit-contract violations.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_decisions_current702_20260603.json`,
+`artifacts/v3_active_lever_source_decision_intake_preflight_lever2_decision_applied_current702_20260603.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_decision_applied_readiness_current702_20260603.json`,
+and
+`work/active_lever_lever2_locator_rewrite_reviewer_decision_record_current702_20260603.md`.
+
 ## 2026-06-03: Source-Free Locator Policy Queue Closed For Automation
 
 Decision: close the remaining family-panel source-free locator policy queue for
