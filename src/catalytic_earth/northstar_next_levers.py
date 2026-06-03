@@ -129,6 +129,15 @@ FOLD_AUGMENTED_P00889_ORTHOLOG_COORDINATE_FETCH_MANIFEST_ID = (
 FOLD_AUGMENTED_FIXED_THRESHOLD_RERUN_READINESS_ID = (
     "v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603"
 )
+FOLD_AUGMENTED_FIXED_THRESHOLD_COMBINED_RERUN_READOUT_ID = (
+    "v3_fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603"
+)
+FOLD_AUGMENTED_FIXED_THRESHOLD_COMBINED_RERUN_CALIBRATION_IMPACT_ID = (
+    "v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603"
+)
+FOLD_AUGMENTED_POST_RERUN_DEPLOYMENT_CLOSURE_STATUS_ID = (
+    "v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -18577,6 +18586,1153 @@ def write_fold_augmented_fixed_threshold_rerun_readiness(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_fixed_threshold_rerun_readiness_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _approved_source_feature_roles(feature: dict[str, Any]) -> list[str]:
+    feature_type = str(feature.get("feature_type") or "").strip().lower()
+    ligand = str(feature.get("ligand") or "").strip().lower()
+    roles: list[str] = []
+    if "active" in feature_type:
+        roles.append("active site")
+    if "binding" in feature_type:
+        roles.append("binding site")
+    if feature_type == "site":
+        roles.append("functional site")
+    if ligand:
+        roles.append(f"{ligand} binding")
+    if "4fe-4s" in ligand or "fe-s" in ligand:
+        roles.extend(["iron-sulfur cluster ligand", "redox"])
+    return sorted(set(roles)) or ["source feature"]
+
+
+def _approved_source_feature_coordinate_path(
+    accession: str,
+    *,
+    coordinate_root: Path,
+) -> Path:
+    candidates = [
+        coordinate_root / f"afdb_{_safe_path_token(f'{accession}_v6')}.cif",
+        Path("artifacts/v3_external_hard_negative_next_candidate_structural_coordinates_1025")
+        / f"afdb_{accession}.cif",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0]
+
+
+def _feature_position_rows_from_sidecar(
+    sidecar_row: dict[str, Any],
+) -> list[dict[str, Any]]:
+    rows = []
+    for index, feature in enumerate(
+        sidecar_row.get("active_site_feature_support", []),
+        start=1,
+    ):
+        if not isinstance(feature, dict):
+            continue
+        position = feature.get("sequence_position")
+        if position is None:
+            continue
+        rows.append(
+            {
+                "feature_id": feature.get("feature_id")
+                or f"{sidecar_row.get('entry_id')}:source_feature:{index}",
+                "sequence_position": position,
+                "feature_type": feature.get("feature_type"),
+                "ligand": feature.get("ligand"),
+                "roles": _approved_source_feature_roles(feature),
+            }
+        )
+    return rows
+
+
+def _p00889_surrogate_feature_rows() -> list[dict[str, Any]]:
+    candidate = next(
+        row
+        for row in P23007_ALTERNATE_ACCESSION_SCOUT_CANDIDATES
+        if row["accession"] == "P00889"
+    )
+    rows = []
+    for index, position in enumerate(candidate["active_site_positions"], start=1):
+        rows.append(
+            {
+                "feature_id": f"m_csa:78:p00889_active_site:{index}",
+                "sequence_position": position,
+                "feature_type": "Active site",
+                "ligand": None,
+                "roles": ["active site"],
+            }
+        )
+    for index, position in enumerate(
+        candidate["oxaloacetate_binding_positions"],
+        start=1,
+    ):
+        rows.append(
+            {
+                "feature_id": f"m_csa:78:p00889_oxaloacetate_binding:{index}",
+                "sequence_position": position,
+                "feature_type": "Binding site",
+                "ligand": "oxaloacetate",
+                "roles": ["binding site", "oxaloacetate binding"],
+            }
+        )
+    return rows
+
+
+def _geometry_entry_from_feature_positions(
+    *,
+    entry_id: str,
+    accession: str,
+    coordinate_path: Path,
+    feature_rows: list[dict[str, Any]],
+    source_kind: str,
+) -> dict[str, Any]:
+    atoms: list[dict[str, Any]] = []
+    if coordinate_path.exists():
+        atoms = parse_atom_site_loop(
+            coordinate_path.read_text(encoding="utf-8", errors="replace")
+        )
+    resolved: list[dict[str, Any]] = []
+    missing_details: list[dict[str, Any]] = []
+    for feature in feature_rows:
+        position = feature.get("sequence_position")
+        residue_atoms = select_residue_atoms(
+            atoms,
+            chain_name=None,
+            resid=position,
+            code=None,
+        )
+        if not residue_atoms:
+            missing_details.append(
+                {
+                    "feature_id": feature.get("feature_id"),
+                    "resid": position,
+                    "expected_code": None,
+                    "observed_codes_at_position": [],
+                }
+            )
+            continue
+        code = (
+            residue_atoms[0].get("auth_comp_id")
+            or residue_atoms[0].get("label_comp_id")
+            or ""
+        ).upper()
+        resolved.append(
+            {
+                "residue_node_id": feature.get("feature_id"),
+                "code": code,
+                "chain_name": None,
+                "resid": position,
+                "atom_count": len(residue_atoms),
+                "centroid": residue_centroid(residue_atoms),
+                "ca": atom_position(residue_atoms, "CA"),
+                "roles": feature.get("roles", []),
+                "sequence_position_uniprot_id": accession,
+            }
+        )
+    pairwise = pairwise_distances(resolved)
+    status = "ok" if len(resolved) >= 2 else "insufficient_resolved_residues"
+    return {
+        "entry_id": entry_id,
+        "entry_name": None,
+        "accession": accession,
+        "pdb_id": coordinate_path.stem if coordinate_path.exists() else None,
+        "status": status if coordinate_path.exists() else "coordinate_missing",
+        "source_kind": source_kind,
+        "coordinate_path": str(coordinate_path),
+        "coordinate_sha256": _sha256(coordinate_path) if coordinate_path.exists() else None,
+        "residue_count": len(feature_rows),
+        "resolved_residue_count": len(resolved),
+        "missing_positions": len(feature_rows) - len(resolved),
+        "missing_position_details": missing_details,
+        "residues": resolved,
+        "pairwise_distances_angstrom": pairwise,
+        "ligand_context": ligand_context_from_atoms(atoms, resolved),
+        "pocket_context": pocket_context_from_atoms(atoms, resolved),
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+    }
+
+
+def _fold_hit_from_surface_row(row: dict[str, Any]) -> dict[str, Any] | None:
+    fold = row.get("predicted_structure_fold_channel") or {}
+    score = fold.get("nearest_train_atlas_tm_score")
+    if score is None:
+        return None
+    return {
+        "query_entry_id": row.get("entry_id"),
+        "query_accession": row.get("accession"),
+        "raw_query_name": fold.get("raw_query_name"),
+        "nearest_atlas_entry_id": fold.get("nearest_train_atlas_entry_id"),
+        "nearest_atlas_true_fingerprint_id": fold.get(
+            "nearest_train_atlas_true_fingerprint_id"
+        ),
+        "raw_target_name": fold.get("raw_target_name"),
+        "tm_score": float(score),
+    }
+
+
+def _p00889_fold_hit(
+    *,
+    p00889_coordinate_fetch_manifest: dict[str, Any],
+    prior_train_cal_oos_surface: dict[str, Any],
+    p00889_foldseek_tsv_path: Path,
+) -> dict[str, Any] | None:
+    coordinate = p00889_coordinate_fetch_manifest.get("coordinate_record") or {}
+    query_requests = [
+        {
+            "role": "authorized_p00889_ortholog_surrogate_query",
+            "status": "materialized",
+            "accession": "P00889",
+            "alphafold_version": 6,
+            "predicted_pdb_id": "AF-P00889-F1-model_v6",
+            "expected_local_path": coordinate.get("path"),
+            "local_file_exists": bool(coordinate.get("exists")),
+            "entry_ids": ["m_csa:78"],
+            "rows": [
+                {
+                    "entry_id": "m_csa:78",
+                    "split_assignment": "in_distribution",
+                    "true_fingerprint_id": None,
+                    "benchmark_role": "oos_tier::unknown_oos",
+                }
+            ],
+        }
+    ]
+    target_requests = (
+        prior_train_cal_oos_surface.get("foldseek_input_manifest", {})
+        .get("coordinate_request_groups", {})
+        .get("train_atlas_targets", [])
+    )
+    parsed = _parse_foldseek_tsv_hits(
+        result_tsv=p00889_foldseek_tsv_path,
+        query_requests=query_requests,
+        target_requests=target_requests,
+    )
+    hits = parsed.get("nearest_atlas_hits") or []
+    return hits[0] if hits else None
+
+
+def _fixed_threshold_readout_row(
+    *,
+    entry_id: str,
+    accession: str,
+    geometry_result: dict[str, Any],
+    geometry_entry: dict[str, Any],
+    fold_hit: dict[str, Any] | None,
+    prior_surface_row: dict[str, Any],
+    fixed_threshold: float,
+    geometry_source: str,
+    fold_source: str,
+) -> dict[str, Any]:
+    top = _top1_fingerprint(geometry_result) or {}
+    geometry_score = top.get("score")
+    fold_score = fold_hit.get("tm_score") if fold_hit else None
+    cofactor_max = prior_surface_row.get("selected_organic_cofactor_max_score")
+    channel_scores = None
+    combined = None
+    abstains = None
+    if geometry_score is not None and fold_score is not None:
+        channel_scores = _fold_augmented_channel_scores(
+            geometry_score=float(geometry_score),
+            cofactor_max_score=float(cofactor_max or 0.0),
+            fold_tm_score=float(fold_score),
+        )
+        combined = channel_scores["combined_mean_geometry_fold"]
+        abstains = float(combined) < float(fixed_threshold)
+    return {
+        "entry_id": entry_id,
+        "accession": accession,
+        "status": (
+            "fixed_threshold_combined_readout"
+            if channel_scores is not None
+            else "fixed_threshold_combined_readout_blocked"
+        ),
+        "geometry_source": geometry_source,
+        "fold_source": fold_source,
+        "geometry_status": geometry_entry.get("status"),
+        "geometry_resolved_residue_count": geometry_entry.get(
+            "resolved_residue_count"
+        ),
+        "geometry_missing_positions": geometry_entry.get("missing_positions"),
+        "geometry_top1": {
+            "fingerprint_id": top.get("fingerprint_id"),
+            "score": geometry_score,
+            "role_match_fraction": top.get("role_match_fraction"),
+            "cofactor_context_score": top.get("cofactor_context_score"),
+            "counterevidence_reasons": top.get("counterevidence_reasons"),
+        },
+        "fold_nearest_train_atlas": {
+            "entry_id": fold_hit.get("nearest_atlas_entry_id") if fold_hit else None,
+            "true_fingerprint_id": (
+                fold_hit.get("nearest_atlas_true_fingerprint_id") if fold_hit else None
+            ),
+            "tm_score": fold_score,
+            "raw_query_name": fold_hit.get("raw_query_name") if fold_hit else None,
+            "raw_target_name": fold_hit.get("raw_target_name") if fold_hit else None,
+        },
+        "channel_scores": channel_scores,
+        "fixed_threshold": fixed_threshold,
+        "abstains_at_fixed_threshold": abstains,
+        "deployment_blocker_cleared_now": False,
+    }
+
+
+def _geometry_entry_readout_summary(entry: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "entry_id": entry.get("entry_id"),
+        "accession": entry.get("accession"),
+        "source_kind": entry.get("source_kind"),
+        "coordinate_path": entry.get("coordinate_path"),
+        "coordinate_sha256": entry.get("coordinate_sha256"),
+        "status": entry.get("status"),
+        "residue_count": entry.get("residue_count"),
+        "resolved_residue_count": entry.get("resolved_residue_count"),
+        "missing_positions": entry.get("missing_positions"),
+        "resolved_residues": [
+            {
+                "residue_node_id": residue.get("residue_node_id"),
+                "code": residue.get("code"),
+                "resid": residue.get("resid"),
+                "roles": residue.get("roles", []),
+            }
+            for residue in entry.get("residues", [])
+        ],
+        "pairwise_distances_angstrom": entry.get("pairwise_distances_angstrom", []),
+        "proximal_ligand_codes": (
+            entry.get("ligand_context", {}).get("ligand_codes", [])
+        ),
+        "pocket_descriptors": entry.get("pocket_context", {}).get("descriptors", {}),
+    }
+
+
+def _geometry_retrieval_readout_summary(
+    retrieval: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "metadata": retrieval.get("metadata", {}),
+        "top_fingerprints_by_entry": [
+            {
+                "entry_id": row.get("entry_id"),
+                "status": row.get("status"),
+                "top_fingerprints": row.get("top_fingerprints", [])[:5],
+            }
+            for row in retrieval.get("results", [])
+            if isinstance(row, dict) and row.get("entry_id")
+        ],
+    }
+
+
+def build_fold_augmented_fixed_threshold_combined_rerun_readout(
+    *,
+    fixed_threshold_rerun_readiness_path: Path,
+    approved_source_feature_sidecar_materialization_path: Path,
+    p00889_coordinate_fetch_manifest_path: Path,
+    prior_train_cal_oos_surface_path: Path,
+    p00889_foldseek_tsv_path: Path,
+    approved_coordinate_root: Path,
+) -> dict[str, Any]:
+    readiness = _read_json(fixed_threshold_rerun_readiness_path)
+    materialization = _read_json(approved_source_feature_sidecar_materialization_path)
+    p00889_fetch = _read_json(p00889_coordinate_fetch_manifest_path)
+    prior_surface = _read_json(prior_train_cal_oos_surface_path)
+    fixed_threshold = float(readiness.get("fixed_threshold") or 0.44155)
+    prior_rows = {
+        str(row.get("entry_id")): row
+        for row in prior_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    geometry_entries: list[dict[str, Any]] = []
+    sidecar_rows = [
+        row
+        for row in materialization.get("materialized_sidecar_rows", [])
+        if isinstance(row, dict) and row.get("ready_for_predicted_geometry_scoring")
+    ]
+    for row in sidecar_rows:
+        accession = str(row.get("accession") or "")
+        coordinate_path = _approved_source_feature_coordinate_path(
+            accession,
+            coordinate_root=approved_coordinate_root,
+        )
+        geometry_entries.append(
+            _geometry_entry_from_feature_positions(
+                entry_id=str(row.get("entry_id")),
+                accession=accession,
+                coordinate_path=coordinate_path,
+                feature_rows=_feature_position_rows_from_sidecar(row),
+                source_kind="approved_source_feature_sidecar",
+            )
+        )
+    p00889_coordinate = p00889_fetch.get("coordinate_record") or {}
+    p00889_coordinate_path = Path(str(p00889_coordinate.get("path") or ""))
+    geometry_entries.append(
+        _geometry_entry_from_feature_positions(
+            entry_id="m_csa:78",
+            accession="P00889",
+            coordinate_path=p00889_coordinate_path,
+            feature_rows=_p00889_surrogate_feature_rows(),
+            source_kind="authorized_p00889_ortholog_surrogate",
+        )
+    )
+    geometry_retrieval = run_geometry_retrieval({"entries": geometry_entries})
+    retrieval_by_entry = {
+        str(row.get("entry_id")): row
+        for row in geometry_retrieval.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in geometry_entries
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    p00889_fold_hit = _p00889_fold_hit(
+        p00889_coordinate_fetch_manifest=p00889_fetch,
+        prior_train_cal_oos_surface=prior_surface,
+        p00889_foldseek_tsv_path=p00889_foldseek_tsv_path,
+    )
+    readout_rows = []
+    for entry_id in ["m_csa:78", "m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"]:
+        prior_row = prior_rows.get(entry_id, {})
+        fold_hit = (
+            p00889_fold_hit
+            if entry_id == "m_csa:78"
+            else _fold_hit_from_surface_row(prior_row)
+        )
+        geometry_entry = geometry_by_entry.get(entry_id, {})
+        geometry_result = retrieval_by_entry.get(entry_id, {})
+        readout_rows.append(
+            _fixed_threshold_readout_row(
+                entry_id=entry_id,
+                accession=str(
+                    geometry_entry.get("accession")
+                    or prior_row.get("accession")
+                    or ""
+                ),
+                geometry_result=geometry_result,
+                geometry_entry=geometry_entry,
+                fold_hit=fold_hit,
+                prior_surface_row=prior_row,
+                fixed_threshold=fixed_threshold,
+                geometry_source=(
+                    "authorized_p00889_ortholog_surrogate"
+                    if entry_id == "m_csa:78"
+                    else "approved_source_feature_sidecar"
+                ),
+                fold_source=(
+                    "current_run_p00889_vs_train_atlas_foldseek"
+                    if entry_id == "m_csa:78"
+                    else "existing_train_cal_oos_foldseek_surface"
+                ),
+            )
+        )
+
+    p10746_prior = prior_rows.get("m_csa:204", {})
+    p10746_fold = _fold_hit_from_surface_row(p10746_prior)
+    fold_only_caveat_row = {
+        "entry_id": "m_csa:204",
+        "accession": "P10746",
+        "status": "fold_only_policy_caveat_not_combined_scored",
+        "geometry_source": None,
+        "fold_source": "existing_train_cal_oos_foldseek_surface",
+        "fold_nearest_train_atlas": {
+            "entry_id": (
+                p10746_fold.get("nearest_atlas_entry_id") if p10746_fold else None
+            ),
+            "true_fingerprint_id": (
+                p10746_fold.get("nearest_atlas_true_fingerprint_id")
+                if p10746_fold
+                else None
+            ),
+            "tm_score": p10746_fold.get("tm_score") if p10746_fold else None,
+            "raw_query_name": p10746_fold.get("raw_query_name") if p10746_fold else None,
+            "raw_target_name": p10746_fold.get("raw_target_name") if p10746_fold else None,
+        },
+        "fixed_threshold": fixed_threshold,
+        "abstains_at_fixed_threshold": None,
+        "deployment_blocker_cleared_now": False,
+        "caveat": (
+            "P10746 remains fold-only because no approved non-residue sidecar was "
+            "created; it is excluded from combined-channel scoring."
+        ),
+    }
+    abstained_rows = [
+        row for row in readout_rows if row.get("abstains_at_fixed_threshold") is True
+    ]
+    retained_rows = [
+        row for row in readout_rows if row.get("abstains_at_fixed_threshold") is False
+    ]
+    blocked_rows = [
+        row for row in readout_rows if row.get("abstains_at_fixed_threshold") is None
+    ]
+    status = (
+        "fold_augmented_fixed_threshold_combined_rerun_readout_complete_with_caveat"
+        if not blocked_rows and p00889_fold_hit is not None
+        else "fold_augmented_fixed_threshold_combined_rerun_readout_partial"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FIXED_THRESHOLD_COMBINED_RERUN_READOUT_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_fixed_threshold_combined_rerun_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Fixed-threshold Lever 3 readout over the newly approved source-feature "
+            "sidecar rows plus the authorized P00889 ortholog surrogate. It applies "
+            "the frozen 0.44155 combined_mean_geometry_fold threshold and records "
+            "the P10746 fold-only caveat; it does not tune thresholds or close "
+            "deployment."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_used_as_predictive_feature": False,
+            "ec_or_rhea_ids_used_as_predictive_features": False,
+            "source_ids_used_as_predictive_features": False,
+            "target_names_used_as_predictive_features": False,
+            "source_feature_descriptions_used_as_predictive_features": False,
+            "p00889_foldseek_or_tm_rerun_performed": p00889_fold_hit is not None,
+            "combined_channel_rerun_performed": not blocked_rows,
+            "deployment_closed_now": False,
+            "p10746_kept_fold_only": True,
+        },
+        "counts": {
+            "approved_source_feature_sidecar_rows": len(sidecar_rows),
+            "geometry_rows_ok": sum(
+                1 for row in geometry_entries if row.get("status") == "ok"
+            ),
+            "source_feature_geometry_rows_ok": sum(
+                1
+                for row in geometry_entries
+                if row.get("status") == "ok"
+                and row.get("source_kind") == "approved_source_feature_sidecar"
+            ),
+            "p00889_surrogate_geometry_rows_ok": sum(
+                1
+                for row in geometry_entries
+                if row.get("status") == "ok"
+                and row.get("source_kind") == "authorized_p00889_ortholog_surrogate"
+            ),
+            "fixed_threshold_combined_readout_rows": len(readout_rows),
+            "combined_rows_abstained_at_fixed_threshold": len(abstained_rows),
+            "combined_rows_retained_at_fixed_threshold": len(retained_rows),
+            "combined_rows_blocked": len(blocked_rows),
+            "p00889_foldseek_nearest_hits": 1 if p00889_fold_hit else 0,
+            "fold_only_caveat_rows": 1,
+        },
+        "fixed_threshold": fixed_threshold,
+        "readout_rows": readout_rows,
+        "fold_only_caveat_rows": [fold_only_caveat_row],
+        "geometry_feature_entries": [
+            _geometry_entry_readout_summary(entry) for entry in geometry_entries
+        ],
+        "geometry_retrieval": _geometry_retrieval_readout_summary(geometry_retrieval),
+        "p00889_foldseek": {
+            "result_tsv": _source_path_record(p00889_foldseek_tsv_path),
+            "nearest_hit": p00889_fold_hit,
+        },
+        "decision": {
+            "fixed_threshold_readout_complete": not blocked_rows,
+            "deployment_closed_now": False,
+            "abstained_entry_ids": [row["entry_id"] for row in abstained_rows],
+            "non_abstained_entry_ids": [row["entry_id"] for row in retained_rows],
+            "next_gate": (
+                "Fold the four combined readout rows into the train/cal OOS "
+                "calibration contract without touching heldout rows, and carry "
+                "the P10746 fold-only caveat into the deployment-closure audit."
+            ),
+        },
+        "source_artifacts": {
+            "fixed_threshold_rerun_readiness": _source_path_record(
+                fixed_threshold_rerun_readiness_path
+            ),
+            "approved_source_feature_sidecar_materialization": _source_path_record(
+                approved_source_feature_sidecar_materialization_path
+            ),
+            "p00889_coordinate_fetch_manifest": _source_path_record(
+                p00889_coordinate_fetch_manifest_path
+            ),
+            "prior_train_cal_oos_surface": _source_path_record(
+                prior_train_cal_oos_surface_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_fixed_threshold_combined_rerun_readout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Fixed-Threshold Combined Rerun Readout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fixed threshold: {audit['fixed_threshold']}",
+        "- Combined rows abstained at fixed threshold: "
+        f"{counts['combined_rows_abstained_at_fixed_threshold']}",
+        "- Combined rows retained at fixed threshold: "
+        f"{counts['combined_rows_retained_at_fixed_threshold']}",
+        f"- Fold-only caveat rows: {counts['fold_only_caveat_rows']}",
+        "",
+        "## Combined Rows",
+        "",
+        "| row | accession | geometry top1 | geometry score | fold TM | combined | abstains |",
+        "| --- | --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for row in audit["readout_rows"]:
+        top = row.get("geometry_top1") or {}
+        fold = row.get("fold_nearest_train_atlas") or {}
+        channel = row.get("channel_scores") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{top.get('fingerprint_id')} | {top.get('score')} | "
+            f"{fold.get('tm_score')} | {channel.get('combined_mean_geometry_fold')} | "
+            f"{row.get('abstains_at_fixed_threshold')} |"
+        )
+    lines += [
+        "",
+        "## Fold-Only Caveat",
+        "",
+        "| row | fold TM | caveat |",
+        "| --- | ---: | --- |",
+    ]
+    for row in audit["fold_only_caveat_rows"]:
+        fold = row.get("fold_nearest_train_atlas") or {}
+        lines.append(f"| {row['entry_id']} | {fold.get('tm_score')} | {row['caveat']} |")
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- P00889 Foldseek/TM was rerun against the existing train atlas.",
+        "- No threshold, label, registry, ontology, import, split, model-weight, or heldout-training surface changed.",
+        "- Source-feature geometry used approved feature classes, ligand classes, and sequence positions; source ids, target names, EC/Rhea IDs, mechanism text, and feature descriptions were not predictive inputs.",
+        "",
+        "## Next Gate",
+        "",
+        f"- {audit['decision']['next_gate']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_fixed_threshold_combined_rerun_readout(
+    *,
+    fixed_threshold_rerun_readiness_path: Path,
+    approved_source_feature_sidecar_materialization_path: Path,
+    p00889_coordinate_fetch_manifest_path: Path,
+    prior_train_cal_oos_surface_path: Path,
+    p00889_foldseek_tsv_path: Path,
+    approved_coordinate_root: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_fixed_threshold_combined_rerun_readout(
+        fixed_threshold_rerun_readiness_path=fixed_threshold_rerun_readiness_path,
+        approved_source_feature_sidecar_materialization_path=(
+            approved_source_feature_sidecar_materialization_path
+        ),
+        p00889_coordinate_fetch_manifest_path=p00889_coordinate_fetch_manifest_path,
+        prior_train_cal_oos_surface_path=prior_train_cal_oos_surface_path,
+        p00889_foldseek_tsv_path=p00889_foldseek_tsv_path,
+        approved_coordinate_root=approved_coordinate_root,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_fixed_threshold_combined_rerun_readout_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _row_abstains_at_fixed_threshold(row: dict[str, Any], threshold: float) -> bool | None:
+    channel = row.get("channel_scores") or {}
+    score = channel.get("combined_mean_geometry_fold")
+    if score is None:
+        return None
+    return float(score) < float(threshold)
+
+
+def build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact(
+    *,
+    fixed_threshold_combined_rerun_readout_path: Path,
+    prior_train_cal_oos_surface_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+) -> dict[str, Any]:
+    readout = _read_json(fixed_threshold_combined_rerun_readout_path)
+    prior_surface = _read_json(prior_train_cal_oos_surface_path)
+    threshold_contract = _read_json(oos_calibrated_threshold_contract_path)
+    fixed_threshold = float(readout.get("fixed_threshold") or 0.44155)
+    prior_rows = [
+        row
+        for row in prior_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    prior_full_rows = [row for row in prior_rows if row.get("channel_scores")]
+    readout_rows = [
+        row
+        for row in readout.get("readout_rows", [])
+        if isinstance(row, dict) and row.get("channel_scores")
+    ]
+    readout_entry_ids = {str(row["entry_id"]) for row in readout_rows}
+    expanded_rows = [
+        row for row in prior_full_rows if str(row.get("entry_id")) not in readout_entry_ids
+    ] + readout_rows
+    prior_abstained = sum(
+        1 for row in prior_full_rows if _row_abstains_at_fixed_threshold(row, fixed_threshold)
+    )
+    expanded_abstained = sum(
+        1 for row in expanded_rows if _row_abstains_at_fixed_threshold(row, fixed_threshold)
+    )
+    expanded_retained = len(expanded_rows) - expanded_abstained
+    requested = int(
+        prior_surface.get("counts", {}).get("candidate_ids_requested")
+        or len(prior_surface.get("candidate_entry_ids", []))
+        or len(prior_rows)
+    )
+    fold_only_rows = readout.get("fold_only_caveat_rows", [])
+    remaining_blocker_ids = [
+        str(row.get("entry_id"))
+        for row in fold_only_rows
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    selected = (
+        threshold_contract.get("primary_channel_readout", {})
+        .get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    status = (
+        "fold_augmented_fixed_threshold_combined_rerun_calibration_impact_ready"
+        if len(expanded_rows) >= len(prior_full_rows)
+        else "fold_augmented_fixed_threshold_combined_rerun_calibration_impact_blocked"
+    )
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_FIXED_THRESHOLD_COMBINED_RERUN_CALIBRATION_IMPACT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_fixed_threshold_combined_rerun_calibration_impact"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Fixed-threshold calibration-impact audit after the Lever 3 combined "
+            "rerun readout. It adds the four newly combined-score rows to the "
+            "prior train/cal OOS negative surface at the frozen 0.44155 threshold, "
+            "keeps P10746 as a fold-only caveat, and does not select a new "
+            "threshold or inspect heldout rows."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "deployment_closed_now": False,
+        },
+        "fixed_threshold": fixed_threshold,
+        "prior_contract_threshold": selected.get("threshold"),
+        "counts": {
+            "candidate_ids_requested": requested,
+            "prior_full_channel_score_rows": len(prior_full_rows),
+            "new_combined_readout_rows": len(readout_rows),
+            "expanded_full_channel_score_rows": len(expanded_rows),
+            "remaining_combined_score_blocker_rows": len(remaining_blocker_ids),
+            "prior_oos_abstained_at_fixed_threshold": prior_abstained,
+            "prior_oos_retained_at_fixed_threshold": len(prior_full_rows) - prior_abstained,
+            "expanded_oos_abstained_at_fixed_threshold": expanded_abstained,
+            "expanded_oos_retained_at_fixed_threshold": expanded_retained,
+            "expanded_oos_abstain_recall_at_fixed_threshold": (
+                round(expanded_abstained / len(expanded_rows), 6)
+                if expanded_rows
+                else None
+            ),
+            "coverage_after_rerun": (
+                round(len(expanded_rows) / requested, 6) if requested else None
+            ),
+        },
+        "new_readout_rows": [
+            {
+                "entry_id": row.get("entry_id"),
+                "combined_mean_geometry_fold": (
+                    row.get("channel_scores") or {}
+                ).get("combined_mean_geometry_fold"),
+                "abstains_at_fixed_threshold": row.get(
+                    "abstains_at_fixed_threshold"
+                ),
+            }
+            for row in readout_rows
+        ],
+        "remaining_combined_score_blocker_entry_ids": remaining_blocker_ids,
+        "decision": {
+            "calibration_surface_expanded_without_heldout": True,
+            "deployment_closed_now": False,
+            "next_gate": (
+                "Regenerate the OOS-calibrated threshold contract from the expanded "
+                "train/cal surface only if a threshold-selection run is explicitly "
+                "wanted; otherwise carry this fixed-threshold impact and the P10746 "
+                "fold-only caveat into the deployment-closure audit."
+            ),
+        },
+        "source_artifacts": {
+            "fixed_threshold_combined_rerun_readout": _source_path_record(
+                fixed_threshold_combined_rerun_readout_path
+            ),
+            "prior_train_cal_oos_surface": _source_path_record(
+                prior_train_cal_oos_surface_path
+            ),
+            "oos_calibrated_threshold_contract": _source_path_record(
+                oos_calibrated_threshold_contract_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Fixed-Threshold Combined Rerun Calibration Impact - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fixed threshold: {audit['fixed_threshold']}",
+        "- Prior full-channel rows: "
+        f"{counts['prior_full_channel_score_rows']}",
+        "- Expanded full-channel rows: "
+        f"{counts['expanded_full_channel_score_rows']}/"
+        f"{counts['candidate_ids_requested']}",
+        "- Expanded abstained at fixed threshold: "
+        f"{counts['expanded_oos_abstained_at_fixed_threshold']}",
+        "- Expanded retained at fixed threshold: "
+        f"{counts['expanded_oos_retained_at_fixed_threshold']}",
+        "- Remaining combined-score blockers: "
+        f"{counts['remaining_combined_score_blocker_rows']}",
+        "",
+        "## New Rows",
+        "",
+        "| row | combined | abstains |",
+        "| --- | ---: | --- |",
+    ]
+    for row in audit["new_readout_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['combined_mean_geometry_fold']} | "
+            f"{row['abstains_at_fixed_threshold']} |"
+        )
+    lines += [
+        "",
+        "## Remaining Blockers",
+        "",
+    ]
+    if audit["remaining_combined_score_blocker_entry_ids"]:
+        lines += [
+            f"- {entry_id}"
+            for entry_id in audit["remaining_combined_score_blocker_entry_ids"]
+        ]
+    else:
+        lines.append("- None")
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- No threshold was selected or changed.",
+        "- No heldout rows were read for this calibration-impact audit.",
+        "",
+        "## Next Gate",
+        "",
+        f"- {audit['decision']['next_gate']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_fixed_threshold_combined_rerun_calibration_impact(
+    *,
+    fixed_threshold_combined_rerun_readout_path: Path,
+    prior_train_cal_oos_surface_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact(
+        fixed_threshold_combined_rerun_readout_path=(
+            fixed_threshold_combined_rerun_readout_path
+        ),
+        prior_train_cal_oos_surface_path=prior_train_cal_oos_surface_path,
+        oos_calibrated_threshold_contract_path=oos_calibrated_threshold_contract_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_post_rerun_deployment_closure_status(
+    *,
+    confounded_operating_point_readiness_path: Path,
+    fixed_threshold_combined_rerun_readout_path: Path,
+    fixed_threshold_combined_rerun_calibration_impact_path: Path,
+) -> dict[str, Any]:
+    readiness = _read_json(confounded_operating_point_readiness_path)
+    readout = _read_json(fixed_threshold_combined_rerun_readout_path)
+    calibration = _read_json(fixed_threshold_combined_rerun_calibration_impact_path)
+    operating = readiness.get("operating_point_summary") or {}
+    calibration_counts = calibration.get("counts") or {}
+    readout_counts = readout.get("counts") or {}
+    remaining_blockers = calibration.get("remaining_combined_score_blocker_entry_ids") or []
+    fixed_threshold = calibration.get("fixed_threshold") or readout.get("fixed_threshold")
+    blocker_disposition = []
+    for row in readout.get("readout_rows", []):
+        if not isinstance(row, dict):
+            continue
+        blocker_disposition.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "status": row.get("status"),
+                "combined_mean_geometry_fold": (
+                    row.get("channel_scores") or {}
+                ).get("combined_mean_geometry_fold"),
+                "abstains_at_fixed_threshold": row.get(
+                    "abstains_at_fixed_threshold"
+                ),
+                "deployment_blocker_cleared_now": False,
+            }
+        )
+    for row in readout.get("fold_only_caveat_rows", []):
+        if not isinstance(row, dict):
+            continue
+        blocker_disposition.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "status": row.get("status"),
+                "combined_mean_geometry_fold": None,
+                "abstains_at_fixed_threshold": None,
+                "deployment_blocker_cleared_now": False,
+                "caveat": row.get("caveat"),
+            }
+        )
+    deployable = not remaining_blockers
+    status = (
+        "fold_augmented_post_rerun_deployment_closure_status_closed"
+        if deployable
+        else "fold_augmented_post_rerun_deployment_closure_status_blocked_p10746_caveat"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_POST_RERUN_DEPLOYMENT_CLOSURE_STATUS_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_post_rerun_deployment_closure_status"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Deployment-closure status after the fixed-threshold Lever 3 combined "
+            "rerun readout and calibration-impact audit. This composes prior "
+            "confounded-readiness metrics with the new train/cal blocker status; "
+            "it does not rerun scores, tune thresholds, or inspect heldout rows."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "new_scores_computed_now": False,
+            "deployment_closed_now": deployable,
+        },
+        "fixed_threshold": fixed_threshold,
+        "counts": {
+            "prior_remaining_production_blocker_rows": operating.get(
+                "remaining_production_blocker_rows"
+            ),
+            "fixed_threshold_combined_readout_rows": readout_counts.get(
+                "fixed_threshold_combined_readout_rows"
+            ),
+            "combined_rows_abstained_at_fixed_threshold": readout_counts.get(
+                "combined_rows_abstained_at_fixed_threshold"
+            ),
+            "combined_rows_retained_at_fixed_threshold": readout_counts.get(
+                "combined_rows_retained_at_fixed_threshold"
+            ),
+            "expanded_full_channel_score_rows": calibration_counts.get(
+                "expanded_full_channel_score_rows"
+            ),
+            "candidate_ids_requested": calibration_counts.get("candidate_ids_requested"),
+            "remaining_combined_score_blocker_rows": calibration_counts.get(
+                "remaining_combined_score_blocker_rows"
+            ),
+            "heldout_confounded_oos_abstained": operating.get(
+                "heldout_confounded_oos_abstained"
+            ),
+            "heldout_confounded_oos_total": operating.get(
+                "heldout_confounded_oos_total"
+            ),
+            "heldout_confounded_oos_abstain_recall": operating.get(
+                "heldout_confounded_oos_abstain_recall"
+            ),
+            "heldout_in_scope_retain_recall": operating.get(
+                "heldout_in_scope_retain_recall"
+            ),
+        },
+        "blocker_disposition": blocker_disposition,
+        "remaining_blockers": [
+            {
+                "entry_id": entry_id,
+                "blocker": "fold_only_policy_caveat_not_combined_scored",
+                "next_action": (
+                    "Decide whether the P10746 fold-only caveat is acceptable for "
+                    "deployment closure, or provide an approved non-residue sidecar."
+                ),
+            }
+            for entry_id in remaining_blockers
+        ],
+        "decision": {
+            "research_confounded_operating_point_still_ready": bool(
+                operating.get("confounded_subset_target_met_for_research")
+            ),
+            "deployable_without_production_caveat": deployable,
+            "deployment_closed_now": deployable,
+            "next_gate": (
+                "Resolve the P10746 fold-only caveat or explicitly accept it as a "
+                "deployment caveat; no additional mechanical combined-score blockers "
+                "remain after the fixed-threshold rerun."
+                if remaining_blockers
+                else "Deployment closure can be considered against policy because no "
+                "combined-score blocker rows remain."
+            ),
+        },
+        "source_artifacts": {
+            "confounded_operating_point_readiness": _source_path_record(
+                confounded_operating_point_readiness_path
+            ),
+            "fixed_threshold_combined_rerun_readout": _source_path_record(
+                fixed_threshold_combined_rerun_readout_path
+            ),
+            "fixed_threshold_combined_rerun_calibration_impact": _source_path_record(
+                fixed_threshold_combined_rerun_calibration_impact_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_post_rerun_deployment_closure_status_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Post-Rerun Deployment Closure Status - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fixed threshold: {audit['fixed_threshold']}",
+        "- Prior remaining production blocker rows: "
+        f"{counts['prior_remaining_production_blocker_rows']}",
+        "- Remaining combined-score blocker rows: "
+        f"{counts['remaining_combined_score_blocker_rows']}",
+        "- Expanded full-channel score rows: "
+        f"{counts['expanded_full_channel_score_rows']}/"
+        f"{counts['candidate_ids_requested']}",
+        "- Heldout confounded OOS abstained: "
+        f"{counts['heldout_confounded_oos_abstained']}/"
+        f"{counts['heldout_confounded_oos_total']}",
+        "",
+        "## Blocker Disposition",
+        "",
+        "| row | status | combined | abstains |",
+        "| --- | --- | ---: | --- |",
+    ]
+    for row in audit["blocker_disposition"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['status']} | "
+            f"{row.get('combined_mean_geometry_fold')} | "
+            f"{row.get('abstains_at_fixed_threshold')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Deployable without production caveat: "
+        f"{decision['deployable_without_production_caveat']}",
+        f"- {decision['next_gate']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_post_rerun_deployment_closure_status(
+    *,
+    confounded_operating_point_readiness_path: Path,
+    fixed_threshold_combined_rerun_readout_path: Path,
+    fixed_threshold_combined_rerun_calibration_impact_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_post_rerun_deployment_closure_status(
+        confounded_operating_point_readiness_path=(
+            confounded_operating_point_readiness_path
+        ),
+        fixed_threshold_combined_rerun_readout_path=(
+            fixed_threshold_combined_rerun_readout_path
+        ),
+        fixed_threshold_combined_rerun_calibration_impact_path=(
+            fixed_threshold_combined_rerun_calibration_impact_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_post_rerun_deployment_closure_status_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit

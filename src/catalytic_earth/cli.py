@@ -81,12 +81,15 @@ from .northstar_next_levers import (
     write_fold_augmented_family_panel_source_check_queue,
     write_fold_augmented_confounded_deployment_closure_audit,
     write_fold_augmented_fold_only_deployment_contract_decision,
+    write_fold_augmented_fixed_threshold_combined_rerun_calibration_impact,
+    write_fold_augmented_fixed_threshold_combined_rerun_readout,
     write_fold_augmented_fixed_threshold_rerun_readiness,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_non_residue_interaction_sidecar_policy_preflight,
     write_fold_augmented_p23007_alternate_accession_scout,
     write_fold_augmented_p23007_alternate_accession_policy_gate,
     write_fold_augmented_p00889_ortholog_coordinate_fetch_manifest,
+    write_fold_augmented_post_rerun_deployment_closure_status,
     write_fold_augmented_remaining_blocker_decision_matrix,
     write_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit,
     write_fold_augmented_source_feature_active_site_sidecar_candidates,
@@ -12089,6 +12092,85 @@ def cmd_build_fold_augmented_fixed_threshold_rerun_readiness(
         f"{args.out} (ready: "
         f"{int(audit['decision']['ready_for_fixed_threshold_combined_rerun'])}, "
         f"pre-rerun blockers: {counts.get('remaining_pre_rerun_blockers')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_fixed_threshold_combined_rerun_readout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_fixed_threshold_combined_rerun_readout(
+        fixed_threshold_rerun_readiness_path=Path(
+            args.fixed_threshold_rerun_readiness
+        ),
+        approved_source_feature_sidecar_materialization_path=Path(
+            args.approved_source_feature_sidecar_materialization
+        ),
+        p00889_coordinate_fetch_manifest_path=Path(
+            args.p00889_coordinate_fetch_manifest
+        ),
+        prior_train_cal_oos_surface_path=Path(args.prior_train_cal_oos_surface),
+        p00889_foldseek_tsv_path=Path(args.p00889_foldseek_tsv),
+        approved_coordinate_root=Path(args.approved_coordinate_root),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented fixed-threshold combined rerun readout to "
+        f"{args.out} (abstained: "
+        f"{counts.get('combined_rows_abstained_at_fixed_threshold')}, "
+        f"retained: {counts.get('combined_rows_retained_at_fixed_threshold')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_fixed_threshold_combined_rerun_calibration_impact(
+        fixed_threshold_combined_rerun_readout_path=Path(
+            args.fixed_threshold_combined_rerun_readout
+        ),
+        prior_train_cal_oos_surface_path=Path(args.prior_train_cal_oos_surface),
+        oos_calibrated_threshold_contract_path=Path(
+            args.oos_calibrated_threshold_contract
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented fixed-threshold combined rerun calibration impact "
+        f"to {args.out} (expanded rows: "
+        f"{counts.get('expanded_full_channel_score_rows')}, "
+        f"remaining blockers: {counts.get('remaining_combined_score_blocker_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_post_rerun_deployment_closure_status(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_post_rerun_deployment_closure_status(
+        confounded_operating_point_readiness_path=Path(
+            args.confounded_operating_point_readiness
+        ),
+        fixed_threshold_combined_rerun_readout_path=Path(
+            args.fixed_threshold_combined_rerun_readout
+        ),
+        fixed_threshold_combined_rerun_calibration_impact_path=Path(
+            args.fixed_threshold_combined_rerun_calibration_impact
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented post-rerun deployment closure status to "
+        f"{args.out} (remaining blockers: "
+        f"{counts.get('remaining_combined_score_blocker_rows')}, "
+        f"deployment closed: {audit['decision']['deployment_closed_now']})"
     )
     return 0
 
@@ -27117,6 +27199,162 @@ def build_parser() -> argparse.ArgumentParser:
     )
     fixed_threshold_rerun_readiness.set_defaults(
         func=cmd_build_fold_augmented_fixed_threshold_rerun_readiness
+    )
+
+    fixed_threshold_combined_rerun_readout = subparsers.add_parser(
+        "build-fold-augmented-fixed-threshold-combined-rerun-readout",
+        help=(
+            "score the approved Lever 3 source-feature/P00889 blocker rows at "
+            "the frozen combined_mean_geometry_fold threshold"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--fixed-threshold-rerun-readiness",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_rerun_readiness_"
+            "current702_20260603.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--approved-source-feature-sidecar-materialization",
+        default=(
+            "artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_"
+            "materialization_current702_20260603.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--p00889-coordinate-fetch-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_"
+            "manifest_current702_20260603.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--prior-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--p00889-foldseek-tsv",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "current702_20260603_foldseek_results/p00889_vs_train_atlas.tsv"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--approved-coordinate-root",
+        default="/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/calibration_oos_queries",
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "readout_current702_20260603.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_fixed_threshold_combined_rerun_readout_"
+            "current702_20260603.md"
+        ),
+    )
+    fixed_threshold_combined_rerun_readout.set_defaults(
+        func=cmd_build_fold_augmented_fixed_threshold_combined_rerun_readout
+    )
+
+    fixed_threshold_combined_rerun_calibration_impact = subparsers.add_parser(
+        "build-fold-augmented-fixed-threshold-combined-rerun-calibration-impact",
+        help=(
+            "summarize the train/cal OOS calibration impact of the fixed-threshold "
+            "combined rerun without selecting a new threshold"
+        ),
+    )
+    fixed_threshold_combined_rerun_calibration_impact.add_argument(
+        "--fixed-threshold-combined-rerun-readout",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "readout_current702_20260603.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_calibration_impact.add_argument(
+        "--prior-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_calibration_impact.add_argument(
+        "--oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_calibration_impact.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "calibration_impact_current702_20260603.json"
+        ),
+    )
+    fixed_threshold_combined_rerun_calibration_impact.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_fixed_threshold_combined_rerun_calibration_"
+            "impact_current702_20260603.md"
+        ),
+    )
+    fixed_threshold_combined_rerun_calibration_impact.set_defaults(
+        func=cmd_build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact
+    )
+
+    post_rerun_deployment_closure_status = subparsers.add_parser(
+        "build-fold-augmented-post-rerun-deployment-closure-status",
+        help=(
+            "compose the fixed-threshold rerun readout and calibration impact "
+            "into the current Lever 3 deployment-closure status"
+        ),
+    )
+    post_rerun_deployment_closure_status.add_argument(
+        "--confounded-operating-point-readiness",
+        default=(
+            "artifacts/v3_predicted_structure_fold_confounded_operating_point_"
+            "readiness_current702_20260602.json"
+        ),
+    )
+    post_rerun_deployment_closure_status.add_argument(
+        "--fixed-threshold-combined-rerun-readout",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "readout_current702_20260603.json"
+        ),
+    )
+    post_rerun_deployment_closure_status.add_argument(
+        "--fixed-threshold-combined-rerun-calibration-impact",
+        default=(
+            "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_"
+            "calibration_impact_current702_20260603.json"
+        ),
+    )
+    post_rerun_deployment_closure_status.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_post_rerun_deployment_closure_status_"
+            "current702_20260603.json"
+        ),
+    )
+    post_rerun_deployment_closure_status.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_post_rerun_deployment_closure_status_"
+            "current702_20260603.md"
+        ),
+    )
+    post_rerun_deployment_closure_status.set_defaults(
+        func=cmd_build_fold_augmented_post_rerun_deployment_closure_status
     )
 
     remaining_blocker_decision_matrix = subparsers.add_parser(

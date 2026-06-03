@@ -58,63 +58,72 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 - STARTED_AT: `2026-06-03T00:30:03Z`
 - STARTED_LOCAL: `2026-06-02T19:30:03-0500 CDT`
-- ENDED_AT: `2026-06-03T00:32:53Z`
-- ENDED_LOCAL: `2026-06-02T19:32:53-0500 CDT`
-- ELAPSED_MINUTES: `2.8`
+- ENDED_AT: `2026-06-03T00:58:14Z`
+- ENDED_LOCAL: `2026-06-02T19:58:14-0500 CDT`
+- ELAPSED_MINUTES: `28.2`
 - Lock acquire result:
   `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "44732", "started_at": "2026-06-03T00:30:03Z", "status": "acquired"}`
 
 #### Current intent
 
-Continue from the recovered dirty Lever 3/4 worktree state, finish the
-fixed-threshold rerun-readiness gate if mechanically possible, and keep
-progress inside Lever 2, 3, or 4 without touching labels, registries,
-ontologies, imports, production thresholds, or heldout-tuned surfaces.
+Continue from the recovered dirty Lever 3/4 worktree state, complete the
+fixed-threshold rerun path if mechanically possible, and stop only once the
+remaining blocker is policy/scientific rather than a scoring/artifact gap.
 
 #### What changed
 
-- Recorded Vivek's `mh_065`/`mh_072` human decision as
-  `v3_family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603`:
-  both rows remain blocked, no raw `1DDK`/`1E9I` locator copy is authorized,
-  no remapped locators are approved, and unblocking requires matching frozen
-  coordinates or a real expert alignment resolving residue-code mismatches.
-- Preserved and completed the recovered Lever 3 materialization work:
-  `v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603`
-  materializes 3 approved source-feature sidecar rows with 18 support records.
-- Recorded the authorized `P00889` AFDB ortholog coordinate for the P23007
-  blocker in
-  `v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603`;
-  the local CIF is present and hashed.
+- Completed the fixed-threshold rerun path after the readiness gate. The
+  readiness artifact still reports ready = true, 0 pre-rerun blockers, and
+  fixed threshold `0.44155`.
+- Ran a bounded P00889-vs-train-atlas Foldseek query and recorded the TSV at
+  `artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_current702_20260603_foldseek_results/p00889_vs_train_atlas.tsv`.
 - Added
-  `v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603`,
-  which reports ready = true, 0 remaining pre-rerun blockers, and fixed
-  threshold `0.44155`.
-- Added CLI commands and regression coverage for the approved-sidecar
-  materialization, P00889 coordinate manifest, and fixed-threshold pre-rerun
-  readiness gate.
+  `v3_fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603`:
+  four combined rows are scored at the frozen threshold. `m_csa:78` and
+  `uniprot:P78549` abstain; `m_csa:531` and `uniprot:Q3LXA3` are retained.
+  `m_csa:204`/P10746 remains fold-only.
+- Added
+  `v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603`:
+  train/cal OOS combined-score coverage expands from 71/76 to 75/76 rows, and
+  fixed-threshold abstentions become 30/75.
+- Added
+  `v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603`:
+  prior production blockers are reduced from 5 to the single P10746 fold-only
+  caveat. Deployment remains unclosed without policy acceptance or an approved
+  non-residue sidecar.
+- Updated `docs/artifact_index.md`, `docs/project_state.md`, and
+  `docs/decision_log.md`; regenerated the docs artifact-reference check with
+  0 missing references.
+- Added CLI commands plus unit and artifact-regression tests for the readiness,
+  readout, calibration-impact, and post-rerun closure-status artifacts.
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, heldout tuning, or heldout training surfaces changed.
 
 #### Tests run
 
-- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`
-  passed: 116 tests.
-- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -q`
-  passed: 152 tests, 7 subtests.
-- `PYTHONPATH=src python -m pytest tests/test_cli.py -q`
-  passed: 118 tests, 87 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'fixed_threshold_combined_rerun_readout or fixed_threshold_combined_rerun_calibration_impact or post_rerun_deployment_closure_status or fixed_threshold_rerun_readiness' -q`
+  passed: 4 tests.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'fixed_threshold_combined_rerun_readout or fixed_threshold_combined_rerun_calibration_impact or post_rerun_deployment_closure_status or fixed_threshold_rerun_readiness' -q`
+  passed: 4 tests.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`
+  passed: 1 test, 90 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  passed: 392 tests, 97 subtests.
+- `PYTHONPATH=src python -m pytest -q` passed: 1263 tests, 116 subtests;
+  1 sklearn/scipy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1218 tests.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
 - `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
   passed with 0 missing references.
-- `git diff --cached --check -- . ':(exclude)artifacts/v3_fold_augmented_p00889_ortholog_coordinate_current702_20260603/AF-P00889-F1-model_v6.cif'`
-  passed. The raw AFDB mmCIF is intentionally hash-preserved and contains
-  padded mmCIF table fields that trip generic trailing-whitespace checks.
+- `git diff --check` passed.
 
 #### Exact next action
 
-- Run the combined geometry/fold channel once at fixed threshold `0.44155`
-  using the materialized approved source-feature sidecars plus the fetched
-  `P00889` ortholog coordinate, and disclose the `P10746` fold-only caveat in
-  that readout. Do not tune thresholds, train on heldout rows, or edit labels,
-  registries, ontologies, imports, or production thresholds.
+- Resolve the single remaining Lever 3 deployment blocker: decide whether the
+  P10746 fold-only caveat is acceptable for deployment closure, or provide an
+  approved non-residue sidecar for `m_csa:204`. If a threshold-selection run is
+  wanted, regenerate the OOS-calibrated threshold contract from the expanded
+  train/cal surface only; do not tune on heldout rows.
 
 ### 2026-06-03 Family-Panel Locator Decision: mh_065/mh_072
 

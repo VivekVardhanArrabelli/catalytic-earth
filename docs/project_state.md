@@ -145,14 +145,19 @@ artifacts first.
   `uniprot:Q3LXA3`) now have an approved source-feature sidecar surface
   materialized for rerun input, with 3 rows and 18 source-feature support
   records. `m_csa:78`/P23007 has P00889 authorized as an ortholog surrogate and
-  the AFDB coordinate has been fetched and hashed; it still needs the
-  fixed-threshold fold-channel rerun. A pre-rerun readiness gate reports 0
-  remaining pre-rerun blockers for that fixed-threshold rerun.
+  the AFDB coordinate has been fetched and hashed. The fixed-threshold combined
+  readout has now been run over the four newly combined-score rows:
+  `m_csa:78` and `uniprot:P78549` abstain at threshold `0.44155`, while
+  `m_csa:531` and `uniprot:Q3LXA3` are retained. The calibration-impact audit
+  expands the train/cal OOS combined-score surface from 71/76 to 75/76 rows and
+  raises fixed-threshold OOS abstentions from 28 to 30.
   `m_csa:204`/P10746 is explicitly kept fold-only with the
-  no-non-residue-sidecar policy caveat. The regenerated confounded readiness
-  gate still keeps threshold `0.44155`, remains research-ready for the 5/6
-  confounded abstention result, and stays deployment-blocked until the
-  fixed-threshold rerun and caveat disclosure are completed.
+  no-non-residue-sidecar policy caveat. The post-rerun closure-status gate
+  reduces the prior five production blockers to this single caveat. The
+  regenerated confounded readiness gate still keeps threshold `0.44155`,
+  remains research-ready for the 5/6 confounded abstention result, and stays
+  deployment-blocked until P10746 is resolved by policy acceptance or an
+  approved non-residue sidecar.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel
@@ -683,6 +688,9 @@ artifacts first.
 - `artifacts/v3_fold_augmented_approved_source_feature_active_site_sidecar_materialization_current702_20260603.json`
 - `artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.json`
 - `artifacts/v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.json`
+- `artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603.json`
+- `artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603.json`
+- `artifacts/v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`

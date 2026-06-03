@@ -1,0 +1,80 @@
+{
+  "artifact_id": "v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603",
+  "counts": {
+    "candidate_ids_requested": 76,
+    "coverage_after_rerun": 0.986842,
+    "expanded_full_channel_score_rows": 75,
+    "expanded_oos_abstain_recall_at_fixed_threshold": 0.4,
+    "expanded_oos_abstained_at_fixed_threshold": 30,
+    "expanded_oos_retained_at_fixed_threshold": 45,
+    "new_combined_readout_rows": 4,
+    "prior_full_channel_score_rows": 71,
+    "prior_oos_abstained_at_fixed_threshold": 28,
+    "prior_oos_retained_at_fixed_threshold": 43,
+    "remaining_combined_score_blocker_rows": 1
+  },
+  "created_utc": "2026-06-03T00:57:46Z",
+  "decision": {
+    "calibration_surface_expanded_without_heldout": true,
+    "deployment_closed_now": false,
+    "next_gate": "Regenerate the OOS-calibrated threshold contract from the expanded train/cal surface only if a threshold-selection run is explicitly wanted; otherwise carry this fixed-threshold impact and the P10746 fold-only caveat into the deployment-closure audit."
+  },
+  "fixed_threshold": 0.44155,
+  "guardrails": {
+    "deployment_closed_now": false,
+    "heldout_rows_read_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "new_readout_rows": [
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.4054,
+      "entry_id": "m_csa:78"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4756,
+      "entry_id": "m_csa:531"
+    },
+    {
+      "abstains_at_fixed_threshold": true,
+      "combined_mean_geometry_fold": 0.42485,
+      "entry_id": "uniprot:P78549"
+    },
+    {
+      "abstains_at_fixed_threshold": false,
+      "combined_mean_geometry_fold": 0.4483,
+      "entry_id": "uniprot:Q3LXA3"
+    }
+  ],
+  "prior_contract_threshold": 0.44155,
+  "remaining_combined_score_blocker_entry_ids": [
+    "m_csa:204"
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_fixed_threshold_combined_rerun_calibration_impact",
+  "scope": "Fixed-threshold calibration-impact audit after the Lever 3 combined rerun readout. It adds the four newly combined-score rows to the prior train/cal OOS negative surface at the frozen 0.44155 threshold, keeps P10746 as a fold-only caveat, and does not select a new threshold or inspect heldout rows.",
+  "source_artifacts": {
+    "fixed_threshold_combined_rerun_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603.json",
+      "sha256": "a3826bab85d72b0937b1af574a2b35ca35cacec48a47d336e6b67104693aaf0b"
+    },
+    "oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
+      "sha256": "8bd974b131270091502c9a6b9d06354a1fac937f1b3a4f02a2035ee88c95d829"
+    },
+    "prior_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json",
+      "sha256": "05d4a70aada32d883b275de9d135d7650213d11c6ecfe7e61f570d023db7769e"
+    }
+  },
+  "status": "fold_augmented_fixed_threshold_combined_rerun_calibration_impact_ready"
+}

@@ -15,6 +15,8 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_blocker_human_decision_application,
     build_fold_augmented_confounded_deployment_closure_audit,
     build_fold_augmented_fold_only_deployment_contract_decision,
+    build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact,
+    build_fold_augmented_fixed_threshold_combined_rerun_readout,
     build_fold_augmented_fixed_threshold_rerun_readiness,
     build_fold_augmented_family_panel_m_csa_primary_channel_repair,
     build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
@@ -27,6 +29,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest,
     build_fold_augmented_p23007_alternate_accession_scout,
     build_fold_augmented_p23007_alternate_accession_policy_gate,
+    build_fold_augmented_post_rerun_deployment_closure_status,
     build_fold_augmented_remaining_blocker_decision_matrix,
     build_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit,
     build_fold_augmented_source_feature_active_site_sidecar_candidates,
@@ -2835,6 +2838,482 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
         self.assertFalse(audit["guardrails"]["combined_channel_rerun_performed"])
         self.assertFalse(audit["decision"]["deployment_closed_now"])
+
+    def test_fixed_threshold_combined_rerun_readout_scores_approved_rows(
+        self,
+    ) -> None:
+        def mini_cif(positions: list[tuple[int, str]]) -> str:
+            atom_lines = []
+            atom_id = 1
+            for index, (position, code) in enumerate(positions):
+                x = float(index * 4)
+                atom_lines.append(
+                    "ATOM {atom_id} N N . {code} A 1 {pos} ? {x:.1f} 0.0 0.0 "
+                    "1.00 90.0 ? {pos} {code} A N 1".format(
+                        atom_id=atom_id,
+                        code=code,
+                        pos=position,
+                        x=x,
+                    )
+                )
+                atom_id += 1
+                atom_lines.append(
+                    "ATOM {atom_id} C CA . {code} A 1 {pos} ? {x:.1f} 1.0 0.0 "
+                    "1.00 90.0 ? {pos} {code} A CA 1".format(
+                        atom_id=atom_id,
+                        code=code,
+                        pos=position,
+                        x=x,
+                    )
+                )
+                atom_id += 1
+            return (
+                "data_AF-TEST-F1\n#\nloop_\n"
+                "_atom_site.group_PDB\n"
+                "_atom_site.id\n"
+                "_atom_site.type_symbol\n"
+                "_atom_site.label_atom_id\n"
+                "_atom_site.label_alt_id\n"
+                "_atom_site.label_comp_id\n"
+                "_atom_site.label_asym_id\n"
+                "_atom_site.label_entity_id\n"
+                "_atom_site.label_seq_id\n"
+                "_atom_site.pdbx_PDB_ins_code\n"
+                "_atom_site.Cartn_x\n"
+                "_atom_site.Cartn_y\n"
+                "_atom_site.Cartn_z\n"
+                "_atom_site.occupancy\n"
+                "_atom_site.B_iso_or_equiv\n"
+                "_atom_site.pdbx_formal_charge\n"
+                "_atom_site.auth_seq_id\n"
+                "_atom_site.auth_comp_id\n"
+                "_atom_site.auth_asym_id\n"
+                "_atom_site.auth_atom_id\n"
+                "_atom_site.pdbx_PDB_model_num\n"
+                + "\n".join(atom_lines)
+                + "\n#\n"
+            )
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            coord_root = root / "coords"
+            coord_root.mkdir()
+            for accession in ["P31572", "P78549", "Q3LXA3"]:
+                (coord_root / f"afdb_{accession}_v6.cif").write_text(
+                    mini_cif([(10, "ASP"), (30, "HIS")]),
+                    encoding="utf-8",
+                )
+            p00889_coord = root / "AF-P00889-F1-model_v6.cif"
+            p00889_coord.write_text(
+                mini_cif(
+                    [
+                        (301, "HIS"),
+                        (347, "HIS"),
+                        (402, "ASP"),
+                        (356, "ARG"),
+                        (428, "ARG"),
+                        (448, "ARG"),
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            readiness = root / "readiness.json"
+            materialization = root / "materialization.json"
+            fetch = root / "fetch.json"
+            surface = root / "surface.json"
+            tsv = root / "p00889.tsv"
+            readiness.write_text(
+                json.dumps({"fixed_threshold": 0.44155}),
+                encoding="utf-8",
+            )
+            materialization.write_text(
+                json.dumps(
+                    {
+                        "materialized_sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "ready_for_predicted_geometry_scoring": True,
+                                "active_site_feature_support": [
+                                    {
+                                        "feature_id": "m_csa:531:f1",
+                                        "feature_type": "Active site",
+                                        "sequence_position": 10,
+                                    },
+                                    {
+                                        "feature_id": "m_csa:531:f2",
+                                        "feature_type": "Binding site",
+                                        "sequence_position": 30,
+                                    },
+                                ],
+                            },
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "ready_for_predicted_geometry_scoring": True,
+                                "active_site_feature_support": [
+                                    {
+                                        "feature_id": "uniprot:P78549:f1",
+                                        "feature_type": "Active site",
+                                        "sequence_position": 10,
+                                    },
+                                    {
+                                        "feature_id": "uniprot:P78549:f2",
+                                        "feature_type": "Binding site",
+                                        "sequence_position": 30,
+                                    },
+                                ],
+                            },
+                            {
+                                "entry_id": "uniprot:Q3LXA3",
+                                "accession": "Q3LXA3",
+                                "ready_for_predicted_geometry_scoring": True,
+                                "active_site_feature_support": [
+                                    {
+                                        "feature_id": "uniprot:Q3LXA3:f1",
+                                        "feature_type": "Active site",
+                                        "sequence_position": 10,
+                                    },
+                                    {
+                                        "feature_id": "uniprot:Q3LXA3:f2",
+                                        "feature_type": "Binding site",
+                                        "sequence_position": 30,
+                                    },
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fetch.write_text(
+                json.dumps(
+                    {
+                        "coordinate_record": {
+                            "exists": True,
+                            "path": str(p00889_coord),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "selected_organic_cofactor_max_score": 0.0,
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:train",
+                                    "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "nearest_train_atlas_tm_score": 0.6,
+                                    "raw_query_name": "afdb_P31572_v6",
+                                    "raw_target_name": "afdb_TRAIN_v6",
+                                },
+                            },
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "selected_organic_cofactor_max_score": 0.0,
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:train",
+                                    "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "nearest_train_atlas_tm_score": 0.4,
+                                    "raw_query_name": "afdb_P78549_v6",
+                                    "raw_target_name": "afdb_TRAIN_v6",
+                                },
+                            },
+                            {
+                                "entry_id": "uniprot:Q3LXA3",
+                                "accession": "Q3LXA3",
+                                "selected_organic_cofactor_max_score": 0.0,
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:train",
+                                    "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "nearest_train_atlas_tm_score": 0.7,
+                                    "raw_query_name": "afdb_Q3LXA3_v6",
+                                    "raw_target_name": "afdb_TRAIN_v6",
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:204",
+                                "accession": "P10746",
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:train",
+                                    "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "nearest_train_atlas_tm_score": 0.5,
+                                    "raw_query_name": "afdb_P10746_v6",
+                                    "raw_target_name": "afdb_TRAIN_v6",
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:78",
+                                "accession": "P23007",
+                                "selected_organic_cofactor_max_score": 0.0,
+                            },
+                        ],
+                        "foldseek_input_manifest": {
+                            "coordinate_request_groups": {
+                                "train_atlas_targets": [
+                                    {
+                                        "accession": "TRAIN",
+                                        "alphafold_version": 6,
+                                        "expected_local_path": str(root / "train.cif"),
+                                        "predicted_pdb_id": "AF-TRAIN-F1-model_v6",
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:train",
+                                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                            }
+                                        ],
+                                    }
+                                ]
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            tsv.write_text(
+                "afdb_P00889_v6\tafdb_TRAIN_v6\t0.3\t0.5\t0.4\t0.1\t10\n",
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_fixed_threshold_combined_rerun_readout(
+                fixed_threshold_rerun_readiness_path=readiness,
+                approved_source_feature_sidecar_materialization_path=materialization,
+                p00889_coordinate_fetch_manifest_path=fetch,
+                prior_train_cal_oos_surface_path=surface,
+                p00889_foldseek_tsv_path=tsv,
+                approved_coordinate_root=coord_root,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_fixed_threshold_combined_rerun_readout_complete_with_caveat",
+        )
+        self.assertEqual(audit["fixed_threshold"], 0.44155)
+        self.assertEqual(audit["counts"]["fixed_threshold_combined_readout_rows"], 4)
+        self.assertEqual(audit["counts"]["fold_only_caveat_rows"], 1)
+        self.assertEqual(audit["counts"]["p00889_foldseek_nearest_hits"], 1)
+        self.assertTrue(audit["guardrails"]["p00889_foldseek_or_tm_rerun_performed"])
+        self.assertTrue(audit["guardrails"]["combined_channel_rerun_performed"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(
+            audit["guardrails"]["source_feature_descriptions_used_as_predictive_features"]
+        )
+        rows = {row["entry_id"]: row for row in audit["readout_rows"]}
+        self.assertEqual(
+            rows["m_csa:78"]["fold_nearest_train_atlas"]["tm_score"], 0.5
+        )
+        self.assertIsInstance(
+            rows["m_csa:531"]["channel_scores"]["combined_mean_geometry_fold"],
+            float,
+        )
+        self.assertEqual(
+            audit["fold_only_caveat_rows"][0]["status"],
+            "fold_only_policy_caveat_not_combined_scored",
+        )
+        self.assertFalse(audit["decision"]["deployment_closed_now"])
+
+    def test_fixed_threshold_combined_rerun_calibration_impact_expands_surface(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            readout = root / "readout.json"
+            surface = root / "surface.json"
+            contract = root / "contract.json"
+            readout.write_text(
+                json.dumps(
+                    {
+                        "fixed_threshold": 0.44155,
+                        "readout_rows": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.4
+                                },
+                                "abstains_at_fixed_threshold": True,
+                            },
+                            {
+                                "entry_id": "m_csa:531",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.5
+                                },
+                                "abstains_at_fixed_threshold": False,
+                            },
+                        ],
+                        "fold_only_caveat_rows": [{"entry_id": "m_csa:204"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface.write_text(
+                json.dumps(
+                    {
+                        "counts": {"candidate_ids_requested": 4},
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.3
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.6
+                                },
+                            },
+                            {"entry_id": "m_csa:78", "channel_scores": None},
+                            {"entry_id": "m_csa:204", "channel_scores": None},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.44155
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact(
+                fixed_threshold_combined_rerun_readout_path=readout,
+                prior_train_cal_oos_surface_path=surface,
+                oos_calibrated_threshold_contract_path=contract,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_fixed_threshold_combined_rerun_calibration_impact_ready",
+        )
+        self.assertEqual(audit["counts"]["candidate_ids_requested"], 4)
+        self.assertEqual(audit["counts"]["prior_full_channel_score_rows"], 2)
+        self.assertEqual(audit["counts"]["new_combined_readout_rows"], 2)
+        self.assertEqual(audit["counts"]["expanded_full_channel_score_rows"], 4)
+        self.assertEqual(
+            audit["counts"]["remaining_combined_score_blocker_rows"], 1
+        )
+        self.assertEqual(
+            audit["counts"]["expanded_oos_abstained_at_fixed_threshold"], 2
+        )
+        self.assertEqual(
+            audit["counts"]["expanded_oos_abstain_recall_at_fixed_threshold"], 0.5
+        )
+        self.assertTrue(
+            audit["decision"]["calibration_surface_expanded_without_heldout"]
+        )
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+
+    def test_post_rerun_deployment_closure_status_keeps_p10746_blocker(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            readiness = root / "readiness.json"
+            readout = root / "readout.json"
+            calibration = root / "calibration.json"
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "operating_point_summary": {
+                            "fixed_operating_threshold": 0.44155,
+                            "remaining_production_blocker_rows": 5,
+                            "heldout_confounded_oos_abstained": 5,
+                            "heldout_confounded_oos_total": 6,
+                            "heldout_confounded_oos_abstain_recall": 0.8333,
+                            "heldout_in_scope_retain_recall": 0.9574,
+                            "confounded_subset_target_met_for_research": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readout.write_text(
+                json.dumps(
+                    {
+                        "fixed_threshold": 0.44155,
+                        "counts": {
+                            "fixed_threshold_combined_readout_rows": 4,
+                            "combined_rows_abstained_at_fixed_threshold": 2,
+                            "combined_rows_retained_at_fixed_threshold": 2,
+                        },
+                        "readout_rows": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "status": "fixed_threshold_combined_readout",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.4054
+                                },
+                                "abstains_at_fixed_threshold": True,
+                            }
+                        ],
+                        "fold_only_caveat_rows": [
+                            {
+                                "entry_id": "m_csa:204",
+                                "status": "fold_only_policy_caveat_not_combined_scored",
+                                "caveat": "kept fold-only",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            calibration.write_text(
+                json.dumps(
+                    {
+                        "fixed_threshold": 0.44155,
+                        "counts": {
+                            "expanded_full_channel_score_rows": 75,
+                            "candidate_ids_requested": 76,
+                            "remaining_combined_score_blocker_rows": 1,
+                        },
+                        "remaining_combined_score_blocker_entry_ids": [
+                            "m_csa:204"
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_post_rerun_deployment_closure_status(
+                confounded_operating_point_readiness_path=readiness,
+                fixed_threshold_combined_rerun_readout_path=readout,
+                fixed_threshold_combined_rerun_calibration_impact_path=calibration,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_post_rerun_deployment_closure_status_blocked_p10746_caveat",
+        )
+        self.assertEqual(audit["fixed_threshold"], 0.44155)
+        self.assertEqual(
+            audit["counts"]["prior_remaining_production_blocker_rows"], 5
+        )
+        self.assertEqual(
+            audit["counts"]["remaining_combined_score_blocker_rows"], 1
+        )
+        self.assertEqual(
+            audit["remaining_blockers"][0]["entry_id"], "m_csa:204"
+        )
+        self.assertTrue(
+            audit["decision"]["research_confounded_operating_point_still_ready"]
+        )
+        self.assertFalse(audit["decision"]["deployable_without_production_caveat"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
 
     def test_source_feature_sidecar_review_gate_requires_manual_decisions(
         self,

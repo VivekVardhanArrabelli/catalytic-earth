@@ -28,28 +28,38 @@ Artifacts:
 and
 `work/family_panel_source_free_locator_mh065_mh072_block_decision_current702_20260603.md`.
 
-## 2026-06-03: Lever 3 Human Decisions Applied; Rerun Readiness Ready
+## 2026-06-03: Lever 3 Human Decisions Applied; Combined Rerun Readout Lands
 
 Decision: record the five Lever 3 production-blocker human/policy decisions as
 a decision-application artifact, materialize the three approved source-feature
 sidecars, fetch/hash the authorized P00889 ortholog surrogate coordinate, and
 compose a fixed-threshold pre-rerun readiness gate. P10746 is kept fold-only
 with the non-residue-sidecar policy caveat. No Foldseek/TM or combined-channel
-rerun was performed, and no labels, registries, ontologies, imports,
-thresholds, splits, model weights, or heldout-tuned surfaces changed.
+rerun was performed before the readiness gate. A follow-on fixed-threshold
+readout then reran only the P00889 surrogate Foldseek query against the existing
+train atlas, scored the four combined rows at threshold `0.44155`, and kept
+P10746 fold-only. No labels, registries, ontologies, imports, thresholds,
+splits, model weights, or heldout-tuned surfaces changed.
 
 Result: the human/policy decision blockers are now 0, but deployment closure is
 still false. The approved source-feature sidecar surface has been materialized
 for rerun input with 3 rows and 18 source-feature support records. The P00889
 AFDB CIF has been fetched and hashed (`8e41533a...`). The pre-rerun readiness
-gate reports ready=true with 0 remaining pre-rerun blockers. Two steps remain:
-rerun the combined geometry/fold channel at the fixed threshold and disclose
-the P10746 fold-only exception in the readout.
+gate reports ready=true with 0 remaining pre-rerun blockers. The fixed-threshold
+combined readout scores four rows: `m_csa:78` and `uniprot:P78549` abstain,
+while `m_csa:531` and `uniprot:Q3LXA3` are retained. The calibration-impact
+audit expands the train/cal OOS combined-score surface from 71/76 to 75/76
+rows, with 30/75 abstained at the fixed threshold and only `m_csa:204` still
+blocked from combined scoring. The post-rerun closure-status gate therefore
+reduces the prior five production blockers to one unresolved P10746 fold-only
+caveat, while preserving the existing 5/6 heldout confounded OOS abstention
+readout from the prior readiness artifact.
 
-Consequence / next gate: run the fixed-threshold combined geometry/fold
-readout using the materialized sidecars plus the fetched P00889 coordinate, and
-carry the P10746 fold-only caveat into the readout. Do not tune thresholds or
-train on heldout rows.
+Consequence / next gate: carry the fixed-threshold impact and P10746 fold-only
+caveat into the deployment decision. Either explicitly accept the P10746
+fold-only caveat for deployment closure or provide an approved non-residue
+sidecar. A separate OOS-calibrated threshold regeneration may be run from the
+expanded train/cal surface only if wanted; do not tune on heldout rows.
 
 Artifacts:
 `artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json`,
@@ -59,8 +69,14 @@ Artifacts:
 `artifacts/v3_fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.json`,
 `work/fold_augmented_p00889_ortholog_coordinate_fetch_manifest_current702_20260603.md`,
 `artifacts/v3_fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.json`,
+`work/fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.md`,
+`artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603.json`,
+`work/fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603.md`,
+`artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603.json`,
+`work/fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603.md`,
+`artifacts/v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603.json`,
 and
-`work/fold_augmented_fixed_threshold_rerun_readiness_current702_20260603.md`.
+`work/fold_augmented_post_rerun_deployment_closure_status_current702_20260603.md`.
 
 ## 2026-06-03: Lever 4 Local-Cache Locator Discovery Closes With Five Human/Policy Blockers
 

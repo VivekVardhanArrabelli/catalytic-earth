@@ -3061,6 +3061,171 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["foldseek_or_tm_rerun_performed"])
         self.assertFalse(audit["guardrails"]["combined_channel_rerun_performed"])
 
+    def test_fold_augmented_fixed_threshold_combined_rerun_readout_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_fixed_threshold_combined_rerun_readout_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_fixed_threshold_combined_rerun_readout_complete_with_caveat",
+        )
+        self.assertEqual(audit["fixed_threshold"], 0.44155)
+        self.assertEqual(audit["counts"]["approved_source_feature_sidecar_rows"], 3)
+        self.assertEqual(audit["counts"]["geometry_rows_ok"], 4)
+        self.assertEqual(audit["counts"]["source_feature_geometry_rows_ok"], 3)
+        self.assertEqual(audit["counts"]["p00889_surrogate_geometry_rows_ok"], 1)
+        self.assertEqual(audit["counts"]["fixed_threshold_combined_readout_rows"], 4)
+        self.assertEqual(
+            audit["counts"]["combined_rows_abstained_at_fixed_threshold"], 2
+        )
+        self.assertEqual(
+            audit["counts"]["combined_rows_retained_at_fixed_threshold"], 2
+        )
+        self.assertEqual(audit["counts"]["combined_rows_blocked"], 0)
+        self.assertEqual(audit["counts"]["fold_only_caveat_rows"], 1)
+        self.assertEqual(audit["counts"]["p00889_foldseek_nearest_hits"], 1)
+        self.assertEqual(
+            audit["decision"]["abstained_entry_ids"],
+            ["m_csa:78", "uniprot:P78549"],
+        )
+        self.assertEqual(
+            audit["decision"]["non_abstained_entry_ids"],
+            ["m_csa:531", "uniprot:Q3LXA3"],
+        )
+        rows = {row["entry_id"]: row for row in audit["readout_rows"]}
+        self.assertEqual(
+            rows["m_csa:78"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.4054,
+        )
+        self.assertTrue(rows["m_csa:78"]["abstains_at_fixed_threshold"])
+        self.assertEqual(
+            rows["m_csa:531"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.4756,
+        )
+        self.assertFalse(rows["m_csa:531"]["abstains_at_fixed_threshold"])
+        self.assertEqual(
+            rows["uniprot:P78549"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.42485,
+        )
+        self.assertTrue(rows["uniprot:P78549"]["abstains_at_fixed_threshold"])
+        self.assertEqual(
+            rows["uniprot:Q3LXA3"]["channel_scores"]["combined_mean_geometry_fold"],
+            0.4483,
+        )
+        self.assertFalse(rows["uniprot:Q3LXA3"]["abstains_at_fixed_threshold"])
+        self.assertEqual(
+            audit["fold_only_caveat_rows"][0]["status"],
+            "fold_only_policy_caveat_not_combined_scored",
+        )
+        self.assertTrue(
+            audit["guardrails"]["p00889_foldseek_or_tm_rerun_performed"]
+        )
+        self.assertTrue(audit["guardrails"]["combined_channel_rerun_performed"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(audit["decision"]["deployment_closed_now"])
+
+    def test_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_fixed_threshold_combined_rerun_calibration_"
+                "impact_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_fixed_threshold_combined_rerun_calibration_impact_ready",
+        )
+        self.assertEqual(audit["fixed_threshold"], 0.44155)
+        self.assertEqual(audit["prior_contract_threshold"], 0.44155)
+        self.assertEqual(audit["counts"]["candidate_ids_requested"], 76)
+        self.assertEqual(audit["counts"]["prior_full_channel_score_rows"], 71)
+        self.assertEqual(audit["counts"]["new_combined_readout_rows"], 4)
+        self.assertEqual(audit["counts"]["expanded_full_channel_score_rows"], 75)
+        self.assertEqual(
+            audit["counts"]["remaining_combined_score_blocker_rows"], 1
+        )
+        self.assertEqual(
+            audit["counts"]["prior_oos_abstained_at_fixed_threshold"], 28
+        )
+        self.assertEqual(
+            audit["counts"]["expanded_oos_abstained_at_fixed_threshold"], 30
+        )
+        self.assertEqual(
+            audit["counts"]["expanded_oos_abstain_recall_at_fixed_threshold"],
+            0.4,
+        )
+        self.assertEqual(audit["counts"]["coverage_after_rerun"], 0.986842)
+        self.assertEqual(
+            audit["remaining_combined_score_blocker_entry_ids"], ["m_csa:204"]
+        )
+        self.assertTrue(
+            audit["decision"]["calibration_surface_expanded_without_heldout"]
+        )
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(audit["decision"]["deployment_closed_now"])
+
+    def test_fold_augmented_post_rerun_deployment_closure_status_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_post_rerun_deployment_closure_status_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_post_rerun_deployment_closure_status_blocked_p10746_caveat",
+        )
+        self.assertEqual(audit["fixed_threshold"], 0.44155)
+        self.assertEqual(
+            audit["counts"]["prior_remaining_production_blocker_rows"], 5
+        )
+        self.assertEqual(
+            audit["counts"]["remaining_combined_score_blocker_rows"], 1
+        )
+        self.assertEqual(audit["counts"]["expanded_full_channel_score_rows"], 75)
+        self.assertEqual(audit["counts"]["candidate_ids_requested"], 76)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_abstained"], 5)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_total"], 6)
+        self.assertEqual(
+            audit["remaining_blockers"][0]["entry_id"], "m_csa:204"
+        )
+        self.assertTrue(
+            audit["decision"]["research_confounded_operating_point_still_ready"]
+        )
+        self.assertFalse(audit["decision"]["deployable_without_production_caveat"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        disposition = {
+            row["entry_id"]: row for row in audit["blocker_disposition"]
+        }
+        self.assertTrue(disposition["m_csa:78"]["abstains_at_fixed_threshold"])
+        self.assertFalse(
+            disposition["m_csa:531"]["abstains_at_fixed_threshold"]
+        )
+        self.assertEqual(
+            disposition["m_csa:204"]["status"],
+            "fold_only_policy_caveat_not_combined_scored",
+        )
+
     def test_fold_augmented_remaining_blocker_decision_matrix_current_counts(
         self,
     ) -> None:

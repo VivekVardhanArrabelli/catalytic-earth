@@ -912,6 +912,24 @@ class CliTests(unittest.TestCase):
                 "cmd_build_fold_augmented_fixed_threshold_rerun_readiness",
             ),
             (
+                "build-fold-augmented-fixed-threshold-combined-rerun-readout",
+                "cmd_build_fold_augmented_fixed_threshold_combined_rerun_readout",
+            ),
+            (
+                (
+                    "build-fold-augmented-fixed-threshold-combined-rerun-"
+                    "calibration-impact"
+                ),
+                (
+                    "cmd_build_fold_augmented_fixed_threshold_combined_rerun_"
+                    "calibration_impact"
+                ),
+            ),
+            (
+                "build-fold-augmented-post-rerun-deployment-closure-status",
+                "cmd_build_fold_augmented_post_rerun_deployment_closure_status",
+            ),
+            (
                 "audit-fold-augmented-confounded-deployment-closure",
                 "cmd_audit_fold_augmented_confounded_deployment_closure",
             ),
