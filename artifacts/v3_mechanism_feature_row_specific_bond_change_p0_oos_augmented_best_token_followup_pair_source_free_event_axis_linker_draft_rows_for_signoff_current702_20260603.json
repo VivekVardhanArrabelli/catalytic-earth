@@ -18,6 +18,7 @@
   "event_axis_linker_rows": [
     {
       "accession": "P15559",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:3",
@@ -54,13 +55,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P31153",
+      "approved": false,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:9",
@@ -80,13 +83,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q04760",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:32",
@@ -106,13 +111,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P80366",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:43",
@@ -132,13 +139,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00634",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:44",
@@ -158,13 +167,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P43379",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:45",
@@ -184,13 +195,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P14385",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:46",
@@ -210,13 +223,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0ABF6",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:97",
@@ -236,13 +251,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q02127",
+      "approved": false,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:109",
@@ -262,13 +279,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q9T0N8",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:115",
@@ -321,13 +340,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P07850",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:121",
@@ -356,13 +377,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P20586",
+      "approved": false,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:131",
@@ -382,13 +405,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0A434",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:159",
@@ -408,13 +433,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0A7Y4",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:163",
@@ -434,13 +461,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00730",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:171",
@@ -460,13 +489,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P35505",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:180",
@@ -486,13 +517,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P09147",
+      "approved": false,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:188",
@@ -512,13 +545,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P38489",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:211",
@@ -587,13 +622,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P20906",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:220",
@@ -613,13 +650,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00433",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:239",
@@ -672,13 +711,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q8I914",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:242",
@@ -698,13 +739,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P04963",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:250",
@@ -741,13 +784,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P00924",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:311",
@@ -767,13 +812,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P09155",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:321",
@@ -793,13 +840,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P05314",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:323",
@@ -819,13 +868,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q9RUB5",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:333",
@@ -845,13 +896,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00949",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:352",
@@ -871,13 +924,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "O75164",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:370",
@@ -897,13 +952,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P23395",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:384",
@@ -923,13 +980,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P07801",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:392",
@@ -949,13 +1008,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P04063",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:397",
@@ -975,13 +1036,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P07584",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:403",
@@ -1001,13 +1064,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P37821",
+      "approved": true,
       "draft_evidence_strength": "moderate",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:418",
@@ -1060,13 +1125,14 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:07:03Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "O52552",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:419",
@@ -1103,13 +1169,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q9FDN7",
+      "approved": false,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:497",
@@ -1129,13 +1197,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P61517",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:517",
@@ -1155,13 +1225,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P11708",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:526",
@@ -1181,13 +1253,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q7M523",
+      "approved": true,
       "draft_evidence_strength": "moderate",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:545",
@@ -1232,13 +1306,14 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:07:03Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P15245",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:551",
@@ -1258,13 +1333,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00431",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:709",
@@ -1317,13 +1394,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P25524",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:710",
@@ -1343,13 +1422,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0ABI8",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:714",
@@ -1378,13 +1459,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P55792",
+      "approved": true,
       "draft_evidence_strength": "moderate",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:750",
@@ -1421,13 +1504,14 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:07:03Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P31570",
+      "approved": false,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:853",
@@ -1447,13 +1531,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P80147",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:854",
@@ -1490,13 +1576,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P9WI55",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:916",
@@ -1516,13 +1604,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q8GS60",
+      "approved": true,
       "draft_evidence_strength": "weak",
       "draft_has_both_roles": true,
       "entry_id": "m_csa:990",
@@ -1559,13 +1649,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "reviewer_note": "Approved as weak-confidence source-free event-axis linker; filled event-axis and residue-role evidence retained unchanged for downstream confidence weighting.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q9Y3Z3",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:994",
@@ -1585,13 +1677,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q9WZW0",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:56",
@@ -1611,13 +1705,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P04425",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:199",
@@ -1637,13 +1733,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P14769",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:356",
@@ -1663,13 +1761,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P26214",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:480",
@@ -1689,13 +1789,15 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P75430",
+      "approved": false,
       "draft_evidence_strength": "insufficient",
       "draft_has_both_roles": false,
       "entry_id": "m_csa:541",
@@ -1715,10 +1817,11 @@
         "target_names_used_as_predictive_features": false
       },
       "residue_role": "electrostatic_stabiliser",
-      "reviewed_utc": "",
-      "reviewer": "",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "reviewed_utc": "2026-06-03T23:12:48Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
+      "reviewer_note": "Rejected for this gate because source-free event-axis or residue-role evidence is insufficient/incomplete; row remains out of materialization until rewritten.",
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     }
   ],
   "guardrails": {

@@ -3,12 +3,12 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-03T21:02:02Z`
-- STARTED_AT_LOCAL: `2026-06-03T16:02:02-0500 CDT`
-- ENDED_AT_UTC: `2026-06-03T21:57:14Z`
-- ENDED_AT_LOCAL: `2026-06-03T16:57:14-0500 CDT`
-- ELAPSED_MINUTES: `55.2`
-- Status: completed and pushed
+- STARTED_AT_UTC: `2026-06-03T23:03:17Z`
+- STARTED_AT_LOCAL: `2026-06-03T18:03:17-0500 CDT`
+- ENDED_AT_UTC: `2026-06-03T23:39:07Z`
+- ENDED_AT_LOCAL: `2026-06-03T18:39:07-0500 CDT`
+- ELAPSED_MINUTES: `35.8`
+- Status: wrapped and validated; final commit/push follows this record
 
 ## Mission
 
@@ -59,6 +59,111 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 22
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T23:03:17Z`
+- STARTED_LOCAL: `2026-06-03T18:03:17-0500 CDT`
+- ENDED_AT: `2026-06-03T23:39:07Z`
+- ENDED_LOCAL: `2026-06-03T18:39:07-0500 CDT`
+- ELAPSED_MINUTES: `35.8`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work.
+  A stray `work/.automation.lock/` was also created during startup and removed
+  during wrap.
+
+#### Current intent
+
+Continue from Run 21 inside Lever 2. This run completed the explicit
+event-axis signoff pass and moved the remaining Lever 2 blocker to source-free
+locator coverage / heldout-safe application-surface policy before any frozen
+threshold read.
+
+#### What changed
+
+- Resolved the 53 source-free event-axis signoff rows from
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.json`:
+  14 rows are explicitly approved for the source-free linker gate and 39 rows
+  are explicitly rejected until rewritten. The approved set includes the three
+  priority-1 both-role rows (`m_csa:418`, `m_csa:545`, `m_csa:750`) plus the
+  11 weak-but-both-role priority-2 rows.
+- Regenerated the event-axis signoff finalization and materialization gate.
+  The materialization gate is now ready with 14 gate-consumable review-only
+  linker rows, 0 pending signoffs, and 0 blockers.
+- Wired the source-free application surface builder to consume the approved
+  event-axis materialization gate and emit row-specific binary
+  `event_residue_role:proton_transfer` /
+  `event_residue_role:electrostatic_stabiliser` features where approved rows
+  exist. The refreshed source-free application surface now has 53 residue-count
+  rows, 14 event/residue-role feature rows, and no event/proton feature
+  blocker.
+- Regenerated pre-threshold readiness, active reviewer queue, and active
+  mechanical audit. Lever 2 no longer blocks on event-axis signoff; readiness is
+  now blocked only by `heldout_safe_pair_application_surface_missing` and
+  `source_free_current702_heldout_locator_coverage_incomplete`.
+- Added the locator coverage gap artifact:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_coverage_gap_after_event_axis_current702_20260603.json`
+  and its Markdown readout. It records 140 heldout rows, 53 with approved
+  locator sidecars, 87 still missing locator sidecars, and 14 rows with both
+  locator and approved event-axis features.
+- Updated CLI defaults and regression coverage so the source-free application
+  surface uses the event-axis materialization gate by default and the active
+  audit reports this gate as materialized rather than missing.
+- Tightened the application surface to store sanitized event-axis
+  materialization references with stable row hashes, not the full
+  materialization rows. This keeps accession-bearing gate metadata out of the
+  heldout application surface while preserving traceability.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, frozen thresholds, heldout training, heldout tuning, or heldout
+  threshold reads changed.
+- The event-axis decisions are source-free review-gate decisions only. Evidence
+  strings/confidences were retained, and rejected rows are not materialized.
+- The heldout application surface exposes only the binary event/residue-role
+  feature plus sanitized materialization references; accession-bearing gate rows
+  are not copied into surface rows.
+
+#### Verification
+
+- Baseline `PYTHONPATH=src python -m unittest discover -s tests`: 1299 tests
+  passed before edits.
+- Focused Lever 2 regression slice:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'source_free_application_surface or event_axis_linker or pre_threshold_readiness or active_lever_mechanical_actionability' -q`:
+  11 passed.
+- Focused artifact regression slice:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'source_free_application_surface or event_axis_linker or pre_threshold_readiness or active_lever_mechanical_actionability' -q`:
+  1 passed.
+- CLI regression suite: `PYTHONPATH=src python -m pytest tests/test_cli.py -q`:
+  119 passed and 128 subtests passed.
+- Full pytest: `PYTHONPATH=src python -m pytest -q`: 1345 passed and
+  154 subtests passed, with one existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, 702 labels.
+- `PYTHONPATH=src python -m compileall -q src tests`.
+- `git diff --check`.
+- JSON syntax checks passed for the changed JSON artifacts.
+- Sanitization check: 14 event-axis materialization references are present in
+  the application surface, all with 64-character row hashes and no `accession`
+  field.
+- Final `PYTHONPATH=src python -m unittest discover -s tests`: 1300 tests
+  passed, with the same existing sklearn/SciPy deprecation warning.
+
+#### Exact next action
+
+Do not run the frozen residual threshold yet. Clear the Lever 2 locator coverage
+blocker by creating approved source-free locator sidecars for the 87 missing
+current702 heldout rows, or by writing an explicit heldout-safe partial-surface
+policy gate. Then rerun the source-free application surface, pre-threshold
+readiness, and active mechanical audit. Only after both
+`heldout_safe_pair_application_surface_missing` and
+`source_free_current702_heldout_locator_coverage_incomplete` are cleared should
+the frozen residual threshold be read.
 
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 21
 

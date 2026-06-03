@@ -1,22 +1,19 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603",
-  "blockers": [
-    "source_free_event_axis_linker_rows_missing",
-    "source_free_event_axis_linkers_not_materialized"
-  ],
+  "blockers": [],
   "counts": {
-    "blockers": 2,
+    "blockers": 0,
     "critical_violation_total": 0,
     "invalid_linker_rows": 0,
-    "materialized_linker_rows": 0,
+    "materialized_linker_rows": 14,
     "minimum_linkers_per_ready_row": 1,
-    "submitted_linker_rows": 0
+    "submitted_linker_rows": 14
   },
-  "created_utc": "2026-06-03T21:39:25Z",
+  "created_utc": "2026-06-03T23:13:43Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "event_axis_linker_schema_ready": true,
-    "event_axis_linkers_materialized": false,
+    "event_axis_linkers_materialized": true,
     "heldout_read_once_performed": false,
     "heldout_safe_event_axis_surface_ready": false,
     "next_gate": "Supply source-free linker rows that satisfy this schema only after approved heldout locator sidecars exist. Then rerun the event-linker blocker audit and source-free application surface before any heldout threshold read."
@@ -38,9 +35,150 @@
   },
   "interpretation": {
     "next_action": "After locator approvals land, provide explicit linker rows with guardrail audits; rerun this gate before recomputing Lever 2 pre-threshold readiness.",
-    "result": "0 source-free event-axis linker rows validated. The gate remains review-only and cannot make the heldout application surface ready without approved locator coverage."
+    "result": "14 source-free event-axis linker rows validated. The gate remains review-only and cannot make the heldout application surface ready without approved locator coverage."
   },
-  "materialization_rows": [],
+  "materialization_rows": [
+    {
+      "accession": "P15559",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:3",
+      "event_residue_linker_count": 2,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "Q9T0N8",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:115",
+      "event_residue_linker_count": 4,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P07850",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:121",
+      "event_residue_linker_count": 1,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P38489",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:211",
+      "event_residue_linker_count": 6,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P00433",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:239",
+      "event_residue_linker_count": 4,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P04963",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:250",
+      "event_residue_linker_count": 2,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P37821",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:418",
+      "event_residue_linker_count": 4,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "O52552",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:419",
+      "event_residue_linker_count": 2,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "Q7M523",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:545",
+      "event_residue_linker_count": 3,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P00431",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:709",
+      "event_residue_linker_count": 4,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P0ABI8",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:714",
+      "event_residue_linker_count": 1,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P55792",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:750",
+      "event_residue_linker_count": 2,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P80147",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:854",
+      "event_residue_linker_count": 2,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "Q8GS60",
+      "critical_violations": [],
+      "decision": "materialized_event_axis_linker_review_only",
+      "entry_id": "m_csa:990",
+      "event_residue_linker_count": 2,
+      "event_type": "proton_transfer",
+      "residue_role": "electrostatic_stabiliser",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    }
+  ],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate",
   "scope": "Fail-closed validation gate for source-free event-axis linker rows. It validates only row/schema compatibility and leakage guardrails; it does not infer event axes, copy locator sidecars, evaluate heldout rows, or apply the frozen residual threshold.",
   "source_artifacts": {
@@ -52,10 +190,10 @@
     "linker_rows": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json",
-      "sha256": "6542929e835e54395b2264c081ce7be810d8ba6d65752fea226c28e2eb09dd12"
+      "sha256": "8d129b15e0b96e29ccafef2e35dec062624f88e9d45ce1a3ac13e26114d7dc1a"
     }
   },
-  "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_blocked",
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_ready",
   "target_feature": {
     "companion_source_free_fallback_token": "residue_code_count:his=3",
     "event_residue_role_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",

@@ -1,21 +1,21 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Axis Linker Materialization Gate - current702
 
-Run: 2026-06-03T21:39:25Z
+Run: 2026-06-03T23:13:43Z
 
 Fail-closed validation gate for source-free event-axis linker rows. It validates only row/schema compatibility and leakage guardrails; it does not infer event axes, copy locator sidecars, evaluate heldout rows, or apply the frozen residual threshold.
 
 ## Status
 
-- p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_blocked
-- Submitted linker rows: 0
-- Materialized linker rows: 0
+- p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_ready
+- Submitted linker rows: 14
+- Materialized linker rows: 14
 - Invalid linker rows: 0
-- Blockers: ['source_free_event_axis_linker_rows_missing', 'source_free_event_axis_linkers_not_materialized']
+- Blockers: []
 
 ## Decision
 
 - Event-axis schema ready: True
-- Event-axis linkers materialized: False
+- Event-axis linkers materialized: True
 - Heldout-safe event-axis surface ready: False
 - Apply frozen pair threshold now: False
 - Heldout read once performed: False
@@ -23,5 +23,5 @@ Fail-closed validation gate for source-free event-axis linker rows. It validates
 
 ## Interpretation
 
-- 0 source-free event-axis linker rows validated. The gate remains review-only and cannot make the heldout application surface ready without approved locator coverage.
+- 14 source-free event-axis linker rows validated. The gate remains review-only and cannot make the heldout application surface ready without approved locator coverage.
 - After locator approvals land, provide explicit linker rows with guardrail audits; rerun this gate before recomputing Lever 2 pre-threshold readiness.

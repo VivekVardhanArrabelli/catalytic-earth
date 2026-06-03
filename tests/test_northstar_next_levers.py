@@ -10685,7 +10685,7 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertEqual(
             surface["counts"]["source_free_residue_count_his3_hit_rows"], 1
         )
-        self.assertIsNone(
+        self.assertFalse(
             surface["surface_rows"][0]["source_free_pair_features"][
                 "event_residue_role:proton_transfer|electrostatic_stabiliser"
             ]
@@ -10695,6 +10695,160 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             "source_free_event_residue_role_extractor_missing",
             surface["blockers"],
         )
+
+    def test_followup_pair_source_free_application_surface_uses_event_axis_gate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pair_plan_path = root / "pair_plan.json"
+            contract_path = root / "contract.json"
+            manifest_path = root / "manifest.json"
+            locator_dir = root / "locators"
+            source_free_manifest_path = root / "source_free_manifest.json"
+            event_gate_path = root / "event_gate.json"
+            locator_dir.mkdir()
+            pair_plan_path.write_text(
+                json.dumps(
+                    {
+                        "selected_feature_pair": {
+                            "event_residue_role_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                            "residue_count_token": "residue_code_count:his=3",
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+                        ),
+                        "calibration_contract": {"residual_distance": {}},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "heldout",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_free_manifest_path.write_text(
+                json.dumps({"counts": {"source_free_geometry_ready_rows": 1}}),
+                encoding="utf-8",
+            )
+            event_gate_path.write_text(
+                json.dumps(
+                    {
+                        "blockers": [],
+                        "decision": {"event_axis_linkers_materialized": True},
+                        "materialization_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "event_type": "proton_transfer",
+                                "residue_role": "electrostatic_stabiliser",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (locator_dir / "m_csa_2.json").write_text(
+                json.dumps(
+                    {
+                        "entry_id": "m_csa:2",
+                        "source_free_active_site_locator_status": "ready",
+                        "ready_for_predicted_geometry_scoring": True,
+                        "forbidden_feature_audit": {
+                            "label_type": False,
+                            "mechanism_text": False,
+                            "source_prose": False,
+                        },
+                        "split_protection": {
+                            "review_only": True,
+                            "allowed_for_training": False,
+                            "allowed_for_threshold_selection": False,
+                            "ready_for_label_import": False,
+                        },
+                        "residue_locators": [
+                            {
+                                "residue_code": "HIS",
+                                "sequence_position": 10,
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                },
+                            },
+                            {
+                                "residue_code": "HIS",
+                                "sequence_position": 20,
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                },
+                            },
+                            {
+                                "residue_code": "HIS",
+                                "sequence_position": 30,
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            surface = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
+                pair_surface_plan_path=pair_plan_path,
+                pair_operating_point_contract_path=contract_path,
+                label_manifest_path=manifest_path,
+                source_free_locator_dir=locator_dir,
+                source_free_predicted_geometry_manifest_path=source_free_manifest_path,
+                event_axis_linker_materialization_gate_path=event_gate_path,
+            )
+
+        self.assertEqual(
+            surface["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_ready",
+        )
+        self.assertEqual(surface["blockers"], [])
+        self.assertEqual(
+            surface["counts"]["source_free_event_residue_role_feature_rows"], 1
+        )
+        self.assertTrue(
+            surface["decision"]["source_free_event_residue_role_surface_ready"]
+        )
+        self.assertTrue(
+            surface["surface_rows"][0]["source_free_pair_features"][
+                "event_residue_role:proton_transfer|electrostatic_stabiliser"
+            ]
+        )
+        event_reference = surface["surface_rows"][0][
+            "event_axis_materialization_reference"
+        ]
+        self.assertEqual(event_reference["entry_id"], "m_csa:2")
+        self.assertEqual(len(event_reference["materialization_row_sha256"]), 64)
+        self.assertNotIn("accession", event_reference)
+        self.assertFalse(surface["guardrails"]["heldout_rows_evaluated"])
 
     def test_followup_pair_source_free_event_linker_audit_blocks_leaky_role_graph(
         self,

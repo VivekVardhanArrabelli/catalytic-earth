@@ -1,48 +1,708 @@
 {
   "approved_invalid_rows": [],
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603",
-  "blockers": [
-    "event_axis_signoff_decisions_pending",
-    "explicit_event_axis_linker_approvals_missing",
-    "source_free_event_axis_linker_rows_missing"
-  ],
+  "blockers": [],
   "counts": {
     "approved_invalid_rows": 0,
-    "blockers": 3,
+    "blockers": 0,
     "critical_violation_total": 0,
     "draft_signoff_rows": 53,
-    "explicit_approved_rows": 0,
-    "explicit_rejected_rows": 0,
-    "gate_consumable_event_axis_linker_rows": 0,
+    "explicit_approved_rows": 14,
+    "explicit_rejected_rows": 39,
+    "gate_consumable_event_axis_linker_rows": 14,
     "insufficient_event_axis_evidence_rewrite_or_reject_rows": 33,
     "minimum_linkers_per_ready_row": 1,
-    "pending_reviewer_signoff_rows": 53,
+    "pending_reviewer_signoff_rows": 0,
     "priority_1_both_roles_moderate_evidence_review_rows": 3,
     "priority_2_both_roles_weak_evidence_review_rows": 11,
     "priority_3_weak_missing_both_roles_rewrite_review_rows": 6,
     "priority_review_rows": 14,
     "rows_with_both_roles": 14
   },
-  "created_utc": "2026-06-03T21:17:19Z",
+  "created_utc": "2026-06-03T23:13:43Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
-    "event_axis_linker_rows_ready_for_materialization_gate": false,
+    "event_axis_linker_rows_ready_for_materialization_gate": true,
     "event_axis_linkers_materialized": false,
-    "event_axis_reviewer_decisions_available": false,
+    "event_axis_reviewer_decisions_available": true,
     "heldout_read_once_performed": false,
     "heldout_safe_event_axis_surface_ready": false,
-    "materialization_gate_ready_now": false,
-    "next_gate": "Collect explicit event-axis signoff decisions. Once one or more rows are approved with ready status, reviewer metadata, filled source-free evidence, confidence values, and clean guardrail audits, pass this artifact to the event-axis materialization gate."
+    "materialization_gate_ready_now": true,
+    "next_gate": "Pass the finalized approved rows to the event-axis materialization gate, keeping rejected rows out of the gate input until rewritten."
   },
   "decision_counts": {
-    "pending_reviewer_signoff": 53
+    "explicit_approve_event_axis_linker": 14,
+    "reject_event_axis_linker": 39
   },
   "draft_evidence_strength_counts": {
     "insufficient": 33,
     "moderate": 3,
     "weak": 17
   },
-  "event_axis_linker_rows": [],
+  "event_axis_linker_rows": [
+    {
+      "accession": "P15559",
+      "entry_id": "m_csa:3",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.264,
+          "residue_code": "HIS",
+          "residue_locator_id": "m_csa:3:HIS12:source_free_locator",
+          "sequence_position": 12,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr OH->O2 proton donor at 2.729A",
+          "source_free_residue_role_evidence": "His NE2 (cationic form) stabilises anionic phosphate O O2P at 2.723A [role_hint:flavin_redox_contact_candidate]"
+        },
+        {
+          "confidence": 0.209,
+          "residue_code": "ASN",
+          "residue_locator_id": "m_csa:3:ASN19:source_free_locator",
+          "sequence_position": 19,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr OH->O2 proton donor at 2.729A",
+          "source_free_residue_role_evidence": "H-bond donor ASN ND2 (oxyanion-hole-like) at O1P 2.669A [role_hint:flavin_binding_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "Q9T0N8",
+      "entry_id": "m_csa:115",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.207,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:115:SER106:source_free_locator",
+          "sequence_position": 106,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr OH->O2 proton donor at 2.575A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O1A 2.679A [role_hint:flavin_binding_contact_candidate]"
+        },
+        {
+          "confidence": 0.202,
+          "residue_code": "GLN",
+          "residue_locator_id": "m_csa:115:GLN110:source_free_locator",
+          "sequence_position": 110,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr OH->O2 proton donor at 2.575A",
+          "source_free_residue_role_evidence": "H-bond donor GLN O (oxyanion-hole-like) at O3B 2.72A [role_hint:flavin_binding_contact_candidate]"
+        },
+        {
+          "confidence": 0.2,
+          "residue_code": "THR",
+          "residue_locator_id": "m_csa:115:THR174:source_free_locator",
+          "sequence_position": 174,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr OH->O2 proton donor at 2.575A",
+          "source_free_residue_role_evidence": "H-bond donor THR OG1 (oxyanion-hole-like) at O1P 2.738A [role_hint:flavin_binding_contact_candidate]"
+        },
+        {
+          "confidence": 0.196,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:115:SER527:source_free_locator",
+          "sequence_position": 527,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr OH->O2 proton donor at 2.575A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O2B 2.766A [role_hint:flavin_binding_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P07850",
+      "entry_id": "m_csa:121",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.205,
+          "residue_code": "HIS",
+          "residue_locator_id": "m_csa:121:HIS69:source_free_locator",
+          "sequence_position": 69,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.032A",
+          "source_free_residue_role_evidence": "His NE2 (cationic form) stabilises anionic phosphate O O2A at 3.16A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P38489",
+      "entry_id": "m_csa:211",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.252,
+          "residue_code": "ARG",
+          "residue_locator_id": "m_csa:211:ARG207:source_free_locator",
+          "sequence_position": 207,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: GLU N->N5 general acid/base at reactive ring atom 2.987A",
+          "source_free_residue_role_evidence": "cationic ARG NH2 stabilises anionic phosphate O O3P at 2.679A [role_hint:flavin_redox_contact_candidate]"
+        },
+        {
+          "confidence": 0.252,
+          "residue_code": "ARG",
+          "residue_locator_id": "m_csa:211:ARG10:source_free_locator",
+          "sequence_position": 10,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: GLU N->N5 general acid/base at reactive ring atom 2.987A",
+          "source_free_residue_role_evidence": "cationic ARG NH1 stabilises anionic phosphate O O2P at 2.815A [role_hint:flavin_redox_contact_candidate]"
+        },
+        {
+          "confidence": 0.252,
+          "residue_code": "LYS",
+          "residue_locator_id": "m_csa:211:LYS205:source_free_locator",
+          "sequence_position": 205,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: GLU N->N5 general acid/base at reactive ring atom 2.987A",
+          "source_free_residue_role_evidence": "cationic LYS NZ stabilises anionic phosphate O O3P at 2.824A [role_hint:flavin_binding_contact_candidate]"
+        },
+        {
+          "confidence": 0.252,
+          "residue_code": "LYS",
+          "residue_locator_id": "m_csa:211:LYS14:source_free_locator",
+          "sequence_position": 14,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: GLU N->N5 general acid/base at reactive ring atom 2.987A",
+          "source_free_residue_role_evidence": "cationic LYS NZ stabilises anionic O O2 at 2.659A [role_hint:flavin_binding_contact_candidate]"
+        },
+        {
+          "confidence": 0.252,
+          "residue_code": "LYS",
+          "residue_locator_id": "m_csa:211:LYS74:source_free_locator",
+          "sequence_position": 74,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: GLU N->N5 general acid/base at reactive ring atom 2.987A",
+          "source_free_residue_role_evidence": "cationic LYS NZ stabilises anionic O O2 at 2.758A [role_hint:flavin_binding_contact_candidate]"
+        },
+        {
+          "confidence": 0.206,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:211:SER12:source_free_locator",
+          "sequence_position": 12,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: GLU N->N5 general acid/base at reactive ring atom 2.987A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O2P 2.692A [role_hint:flavin_binding_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P00433",
+      "entry_id": "m_csa:239",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.317,
+          "residue_code": "ARG",
+          "residue_locator_id": "m_csa:239:ARG61:source_free_locator",
+          "sequence_position": 61,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.079A",
+          "source_free_residue_role_evidence": "cationic ARG NE stabilises anionic O O2D at 2.86A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.292,
+          "residue_code": "LYS",
+          "residue_locator_id": "m_csa:239:LYS204:source_free_locator",
+          "sequence_position": 204,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.079A",
+          "source_free_residue_role_evidence": "cationic LYS N stabilises anionic O O2D at 2.972A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.203,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:239:SER103:source_free_locator",
+          "sequence_position": 103,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.079A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O1A 2.718A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.182,
+          "residue_code": "GLN",
+          "residue_locator_id": "m_csa:239:GLN206:source_free_locator",
+          "sequence_position": 206,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.079A",
+          "source_free_residue_role_evidence": "H-bond donor GLN N (oxyanion-hole-like) at O2A 2.874A [role_hint:ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P04963",
+      "entry_id": "m_csa:250",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.254,
+          "residue_code": "HIS",
+          "residue_locator_id": "m_csa:250:HIS126:source_free_locator",
+          "sequence_position": 126,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Cys SG->FE thiol proton/nucleophile at 2.28A",
+          "source_free_residue_role_evidence": "His N (cationic form) stabilises anionic phosphate O O2A at 2.89A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.208,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:250:SER129:source_free_locator",
+          "sequence_position": 129,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Cys SG->FE thiol proton/nucleophile at 2.28A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O1A 2.674A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P37821",
+      "entry_id": "m_csa:418",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.468,
+          "residue_code": "ARG",
+          "residue_locator_id": "m_csa:418:ARG281:source_free_locator",
+          "sequence_position": 281,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.325A",
+          "source_free_residue_role_evidence": "cationic ARG NH2 stabilises anionic phosphate O O1P at 2.674A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.231,
+          "residue_code": "THR",
+          "residue_locator_id": "m_csa:418:THR121:source_free_locator",
+          "sequence_position": 121,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.325A",
+          "source_free_residue_role_evidence": "H-bond donor THR OG1 (oxyanion-hole-like) at O2P 2.495A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.207,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:418:SER272:source_free_locator",
+          "sequence_position": 272,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.325A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O3P 2.686A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.19,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:418:SER270:source_free_locator",
+          "sequence_position": 270,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.325A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O3P 2.812A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:07:03Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "O52552",
+      "entry_id": "m_csa:419",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.219,
+          "residue_code": "THR",
+          "residue_locator_id": "m_csa:419:THR63:source_free_locator",
+          "sequence_position": 63,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.451A",
+          "source_free_residue_role_evidence": "H-bond donor THR OG1 (oxyanion-hole-like) at O1P 2.593A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.214,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:419:SER183:source_free_locator",
+          "sequence_position": 183,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.451A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O2P 2.63A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "Q7M523",
+      "entry_id": "m_csa:545",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.455,
+          "residue_code": "LYS",
+          "residue_locator_id": "m_csa:545:LYS54:source_free_locator",
+          "sequence_position": 54,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.322A",
+          "source_free_residue_role_evidence": "cationic LYS NZ stabilises anionic phosphate O O2P at 2.721A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.241,
+          "residue_code": "THR",
+          "residue_locator_id": "m_csa:545:THR202:source_free_locator",
+          "sequence_position": 202,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.322A",
+          "source_free_residue_role_evidence": "H-bond donor THR OG1 (oxyanion-hole-like) at O3P 2.421A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.224,
+          "residue_code": "THR",
+          "residue_locator_id": "m_csa:545:THR205:source_free_locator",
+          "sequence_position": 205,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.322A",
+          "source_free_residue_role_evidence": "H-bond donor THR OG1 (oxyanion-hole-like) at O2P 2.547A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:07:03Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P00431",
+      "entry_id": "m_csa:709",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.292,
+          "residue_code": "HIS",
+          "residue_locator_id": "m_csa:709:HIS248:source_free_locator",
+          "sequence_position": 248,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.062A",
+          "source_free_residue_role_evidence": "His ND1 (cationic form) stabilises anionic phosphate O O2A at 2.68A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.247,
+          "residue_code": "LYS",
+          "residue_locator_id": "m_csa:709:LYS246:source_free_locator",
+          "sequence_position": 246,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.062A",
+          "source_free_residue_role_evidence": "cationic LYS N stabilises anionic O O2D at 3.177A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.201,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:709:SER252:source_free_locator",
+          "sequence_position": 252,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.062A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O1A 2.733A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.178,
+          "residue_code": "ASN",
+          "residue_locator_id": "m_csa:709:ASN251:source_free_locator",
+          "sequence_position": 251,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.062A",
+          "source_free_residue_role_evidence": "H-bond donor ASN ND2 (oxyanion-hole-like) at O2A 2.911A [role_hint:ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P0ABI8",
+      "entry_id": "m_csa:714",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.333,
+          "residue_code": "HIS",
+          "residue_locator_id": "m_csa:714:HIS411:source_free_locator",
+          "sequence_position": 411,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His NE2->FE (metal-water activator) general acid/base at 2.21A",
+          "source_free_residue_role_evidence": "His ND1 (cationic form) stabilises anionic phosphate O O2A at 2.447A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P55792",
+      "entry_id": "m_csa:750",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.397,
+          "residue_code": "ARG",
+          "residue_locator_id": "m_csa:750:ARG156:source_free_locator",
+          "sequence_position": 156,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His O->N5 (ring redox/proton site) general acid/base at 2.699A",
+          "source_free_residue_role_evidence": "cationic ARG NH2 stabilises anionic phosphate O O2P at 2.876A [role_hint:flavin_redox_contact_candidate]"
+        },
+        {
+          "confidence": 0.389,
+          "residue_code": "LYS",
+          "residue_locator_id": "m_csa:750:LYS153:source_free_locator",
+          "sequence_position": 153,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: His O->N5 (ring redox/proton site) general acid/base at 2.699A",
+          "source_free_residue_role_evidence": "cationic LYS NZ stabilises anionic phosphate O O1A at 2.95A [role_hint:flavin_binding_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:07:03Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "P80147",
+      "entry_id": "m_csa:854",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.225,
+          "residue_code": "SER",
+          "residue_locator_id": "m_csa:854:SER165:source_free_locator",
+          "sequence_position": 165,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.424A",
+          "source_free_residue_role_evidence": "H-bond donor SER OG (oxyanion-hole-like) at O2P 2.545A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        },
+        {
+          "confidence": 0.221,
+          "residue_code": "THR",
+          "residue_locator_id": "m_csa:854:THR381:source_free_locator",
+          "sequence_position": 381,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Lys NZ->C4A Schiff-base proton shuttle at 1.424A",
+          "source_free_residue_role_evidence": "H-bond donor THR OG1 (oxyanion-hole-like) at O3P 2.572A [role_hint:polar_or_catalytic_ligand_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    },
+    {
+      "accession": "Q8GS60",
+      "entry_id": "m_csa:990",
+      "event_residue_linkers": [
+        {
+          "confidence": 0.261,
+          "residue_code": "THR",
+          "residue_locator_id": "m_csa:990:THR137:source_free_locator",
+          "sequence_position": 137,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr N->O2 proton donor at 2.51A",
+          "source_free_residue_role_evidence": "H-bond donor THR OG1 (oxyanion-hole-like) at O1A 2.262A [role_hint:flavin_binding_contact_candidate]"
+        },
+        {
+          "confidence": 0.178,
+          "residue_code": "GLN",
+          "residue_locator_id": "m_csa:990:GLN332:source_free_locator",
+          "sequence_position": 332,
+          "source_free_event_axis_evidence": "co-located proton-transfer axis: Tyr N->O2 proton donor at 2.51A",
+          "source_free_residue_role_evidence": "H-bond donor GLN NE2 (oxyanion-hole-like) at O2P 2.912A [role_hint:flavin_binding_contact_candidate]"
+        }
+      ],
+      "event_type": "proton_transfer",
+      "guardrail_audit": {
+        "ec_or_rhea_ids_used_as_predictive_features": false,
+        "heldout_rows_evaluated": false,
+        "heldout_rows_used_for_training_or_threshold_tuning": false,
+        "imports_or_promotions_performed": false,
+        "labels_registries_ontologies_changed": false,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+        "m_csa_heldout_row_specific_mechanism_text_used": false,
+        "production_thresholds_changed": false,
+        "source_ids_used_as_predictive_features": false,
+        "source_text_or_source_ids_used_as_predictive_features": false,
+        "target_names_used_as_predictive_features": false
+      },
+      "residue_role": "electrostatic_stabiliser",
+      "reviewed_utc": "2026-06-03T23:11:16Z",
+      "reviewer": "codex_automation_scientific_review",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
+    }
+  ],
   "guardrails": {
     "ec_or_rhea_ids_used_as_predictive_features": false,
     "event_axis_linker_rows_inferred_by_this_bridge": false,
@@ -62,8 +722,8 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Do not rerun the heldout threshold. First secure explicit event-axis approvals and rerun the materialization gate on this finalized rows artifact.",
-    "result": "0 gate-consumable linker rows finalized from 53 draft signoff rows; 53 rows still await reviewer signoff."
+    "next_action": "Rerun the event-axis materialization gate on this finalized rows artifact; do not rerun the heldout threshold until pre-threshold readiness passes.",
+    "result": "14 gate-consumable linker rows finalized from 53 draft signoff rows; 0 rows still await reviewer signoff."
   },
   "priority_review_rows": [
     {
@@ -108,9 +768,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_1_both_roles_moderate_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q7M523",
@@ -146,9 +806,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_1_both_roles_moderate_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P55792",
@@ -176,9 +836,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_1_both_roles_moderate_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P15559",
@@ -206,9 +866,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q9T0N8",
@@ -252,9 +912,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P07850",
@@ -274,9 +934,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P38489",
@@ -336,9 +996,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P00433",
@@ -382,9 +1042,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P04963",
@@ -412,9 +1072,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "O52552",
@@ -442,9 +1102,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P00431",
@@ -488,9 +1148,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P0ABI8",
@@ -510,9 +1170,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P80147",
@@ -540,9 +1200,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q8GS60",
@@ -570,9 +1230,9 @@
       "event_type": "proton_transfer",
       "next_reviewer_action": "If the source-free event-axis and residue-role evidence is scientifically supported, set reviewer_event_axis_decision to explicit_approve_event_axis_linker, approved to true, source_free_event_axis_status to source_free_event_axis_linker_ready, and fill reviewer plus reviewed_utc; otherwise set reject_event_axis_linker.",
       "residue_role": "electrostatic_stabiliser",
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     }
   ],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization",
@@ -591,10 +1251,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:3",
       "event_residue_linker_count": 2,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P31153",
@@ -604,9 +1264,9 @@
       "entry_id": "m_csa:9",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "priority_3_weak_missing_both_roles_rewrite_review",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q04760",
@@ -616,9 +1276,9 @@
       "entry_id": "m_csa:32",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P80366",
@@ -628,9 +1288,9 @@
       "entry_id": "m_csa:43",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00634",
@@ -640,9 +1300,9 @@
       "entry_id": "m_csa:44",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P43379",
@@ -652,9 +1312,9 @@
       "entry_id": "m_csa:45",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P14385",
@@ -664,9 +1324,9 @@
       "entry_id": "m_csa:46",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q9WZW0",
@@ -676,9 +1336,9 @@
       "entry_id": "m_csa:56",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0ABF6",
@@ -688,9 +1348,9 @@
       "entry_id": "m_csa:97",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q02127",
@@ -700,9 +1360,9 @@
       "entry_id": "m_csa:109",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "priority_3_weak_missing_both_roles_rewrite_review",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q9T0N8",
@@ -711,10 +1371,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:115",
       "event_residue_linker_count": 4,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P07850",
@@ -723,10 +1383,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:121",
       "event_residue_linker_count": 1,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P20586",
@@ -736,9 +1396,9 @@
       "entry_id": "m_csa:131",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "priority_3_weak_missing_both_roles_rewrite_review",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0A434",
@@ -748,9 +1408,9 @@
       "entry_id": "m_csa:159",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0A7Y4",
@@ -760,9 +1420,9 @@
       "entry_id": "m_csa:163",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00730",
@@ -772,9 +1432,9 @@
       "entry_id": "m_csa:171",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P35505",
@@ -784,9 +1444,9 @@
       "entry_id": "m_csa:180",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P09147",
@@ -796,9 +1456,9 @@
       "entry_id": "m_csa:188",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "priority_3_weak_missing_both_roles_rewrite_review",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P04425",
@@ -808,9 +1468,9 @@
       "entry_id": "m_csa:199",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P38489",
@@ -819,10 +1479,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:211",
       "event_residue_linker_count": 6,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P20906",
@@ -832,9 +1492,9 @@
       "entry_id": "m_csa:220",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00433",
@@ -843,10 +1503,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:239",
       "event_residue_linker_count": 4,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q8I914",
@@ -856,9 +1516,9 @@
       "entry_id": "m_csa:242",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P04963",
@@ -867,10 +1527,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:250",
       "event_residue_linker_count": 2,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P00924",
@@ -880,9 +1540,9 @@
       "entry_id": "m_csa:311",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P09155",
@@ -892,9 +1552,9 @@
       "entry_id": "m_csa:321",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P05314",
@@ -904,9 +1564,9 @@
       "entry_id": "m_csa:323",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q9RUB5",
@@ -916,9 +1576,9 @@
       "entry_id": "m_csa:333",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00949",
@@ -928,9 +1588,9 @@
       "entry_id": "m_csa:352",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P14769",
@@ -940,9 +1600,9 @@
       "entry_id": "m_csa:356",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "O75164",
@@ -952,9 +1612,9 @@
       "entry_id": "m_csa:370",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P23395",
@@ -964,9 +1624,9 @@
       "entry_id": "m_csa:384",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P07801",
@@ -976,9 +1636,9 @@
       "entry_id": "m_csa:392",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P04063",
@@ -988,9 +1648,9 @@
       "entry_id": "m_csa:397",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P07584",
@@ -1000,9 +1660,9 @@
       "entry_id": "m_csa:403",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P37821",
@@ -1011,10 +1671,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:418",
       "event_residue_linker_count": 4,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_1_both_roles_moderate_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "O52552",
@@ -1023,10 +1683,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:419",
       "event_residue_linker_count": 2,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P26214",
@@ -1036,9 +1696,9 @@
       "entry_id": "m_csa:480",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q9FDN7",
@@ -1048,9 +1708,9 @@
       "entry_id": "m_csa:497",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "priority_3_weak_missing_both_roles_rewrite_review",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P61517",
@@ -1060,9 +1720,9 @@
       "entry_id": "m_csa:517",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P11708",
@@ -1072,9 +1732,9 @@
       "entry_id": "m_csa:526",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P75430",
@@ -1084,9 +1744,9 @@
       "entry_id": "m_csa:541",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q7M523",
@@ -1095,10 +1755,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:545",
       "event_residue_linker_count": 3,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_1_both_roles_moderate_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P15245",
@@ -1108,9 +1768,9 @@
       "entry_id": "m_csa:551",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P00431",
@@ -1119,10 +1779,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:709",
       "event_residue_linker_count": 4,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P25524",
@@ -1132,9 +1792,9 @@
       "entry_id": "m_csa:710",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P0ABI8",
@@ -1143,10 +1803,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:714",
       "event_residue_linker_count": 1,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P55792",
@@ -1155,10 +1815,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:750",
       "event_residue_linker_count": 2,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_1_both_roles_moderate_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P31570",
@@ -1168,9 +1828,9 @@
       "entry_id": "m_csa:853",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "priority_3_weak_missing_both_roles_rewrite_review",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "P80147",
@@ -1179,10 +1839,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:854",
       "event_residue_linker_count": 2,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "P9WI55",
@@ -1192,9 +1852,9 @@
       "entry_id": "m_csa:916",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     },
     {
       "accession": "Q8GS60",
@@ -1203,10 +1863,10 @@
       "draft_has_both_roles": true,
       "entry_id": "m_csa:990",
       "event_residue_linker_count": 2,
-      "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "materialization_gate_input_ready": true,
+      "reviewer_event_axis_decision": "explicit_approve_event_axis_linker",
       "signoff_priority": "priority_2_both_roles_weak_evidence_review",
-      "source_free_event_axis_status": "draft_pending_reviewer_signoff"
+      "source_free_event_axis_status": "source_free_event_axis_linker_ready"
     },
     {
       "accession": "Q9Y3Z3",
@@ -1216,16 +1876,16 @@
       "entry_id": "m_csa:994",
       "event_residue_linker_count": 0,
       "materialization_gate_input_ready": false,
-      "reviewer_event_axis_decision": "pending_reviewer_signoff",
+      "reviewer_event_axis_decision": "reject_event_axis_linker",
       "signoff_priority": "insufficient_event_axis_evidence_rewrite_or_reject",
-      "source_free_event_axis_status": "insufficient_source_free_event_axis_evidence_pending_review"
+      "source_free_event_axis_status": "source_free_event_axis_linker_rejected_requires_rewrite"
     }
   ],
   "source_artifacts": {
     "draft_rows_for_signoff": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.json",
-      "sha256": "506772dc8176c5f41143b626aac958316cd1c7ef6d66d0e29c66b9f92b8d923e"
+      "sha256": "31c8a75161daa7aec7409700d4a9861ac8f0c3899f592f61eaf7855c048b42a0"
     },
     "event_axis_linker_schema": {
       "exists": true,
@@ -1234,8 +1894,8 @@
     }
   },
   "source_free_event_axis_status_counts": {
-    "draft_pending_reviewer_signoff": 14,
-    "insufficient_source_free_event_axis_evidence_pending_review": 39
+    "source_free_event_axis_linker_ready": 14,
+    "source_free_event_axis_linker_rejected_requires_rewrite": 39
   },
-  "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_blocked_review_only"
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_ready"
 }

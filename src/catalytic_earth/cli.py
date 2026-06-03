@@ -14699,6 +14699,11 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         source_free_predicted_geometry_manifest_path=Path(
             args.source_free_predicted_geometry_manifest
         ),
+        event_axis_linker_materialization_gate_path=(
+            Path(args.event_axis_linker_materialization_gate)
+            if args.event_axis_linker_materialization_gate
+            else None
+        ),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
     )
@@ -33747,6 +33752,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_family_panel_source_free_predicted_geometry_"
             "sidecar_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_materialization_gate_current702_20260603.json"
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(

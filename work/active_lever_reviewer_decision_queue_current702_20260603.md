@@ -1,6 +1,6 @@
 # Active Lever Reviewer Decision Queue - current702
 
-Run: 2026-06-03T21:46:16Z
+Run: 2026-06-03T23:34:43Z
 
 Review-only consolidated decision queue across the active Lever 2/3/4 blockers. It composes existing decision packets so reviewer actions are visible and hash-verifiable; it does not apply decisions, copy locator sidecars, write imports, edit labels, change registries, train models, or tune thresholds.
 
@@ -8,8 +8,8 @@ Review-only consolidated decision queue across the active Lever 2/3/4 blockers. 
 
 - active_lever_reviewer_decision_queue_ready_review_only
 - Decision items: 131
-- Pending decision items: 76
-- Reviewed decision items: 55
+- Pending decision items: 23
+- Reviewed decision items: 108
 - Lever counts: {'Lever 2': 108, 'Lever 3': 1, 'Lever 4': 22}
 - Decision classes: {'family_panel_expert_import_decision': 22, 'p10746_fold_only_deployment_caveat': 1, 'source_free_event_axis_linker_signoff': 53, 'source_free_locator_rewrite_approval': 55}
 - Lever 4 import-preview candidates if accepted: 6
@@ -18,7 +18,7 @@ Review-only consolidated decision queue across the active Lever 2/3/4 blockers. 
 - Lever 2 clean locator rewrite items: 49
 - Lever 2 pending/reviewed locator rewrite items: 0/55
 - Lever 2 event-axis signoff items: 53
-- Lever 2 pending event-axis signoff items: 53
+- Lever 2 pending event-axis signoff items: 0
 - Lever 2 event-axis priority 1/2 signoff items: 3/11
 - Automation-action-allowed-now items: 0
 - Blockers: []
@@ -32,7 +32,7 @@ Review-only consolidated decision queue across the active Lever 2/3/4 blockers. 
 
 ## Pending Review Items
 
-Pending review items shown: 40/76
+Pending review items shown: 23/23
 
 | priority | lever | row | decision class | status | decision field | next gate |
 | ---: | --- | --- | --- | --- | --- | --- |
@@ -43,20 +43,6 @@ Pending review items shown: 40/76
 | 2 | Lever 4 | m_csa:191 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 2 | Lever 4 | m_csa:448 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 2 | Lever 4 | m_csa:973 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
-| 3 | Lever 2 | m_csa:418 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 3 | Lever 2 | m_csa:545 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 3 | Lever 2 | m_csa:750 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:3 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:115 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:121 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:211 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:239 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:250 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:419 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:709 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:714 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:854 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:990 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
 | 4 | Lever 4 | m_csa:116 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 4 | Lever 4 | m_csa:131 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 4 | Lever 4 | m_csa:132 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
@@ -73,9 +59,6 @@ Pending review items shown: 40/76
 | 5 | Lever 4 | mh_065 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 5 | Lever 4 | mh_072 | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 5 | Lever 4 | secondary_probe::cobalamin_radical_rearrangement | family_panel_expert_import_decision | pending_expert_import_decision | decision | apply-fold-augmented-family-panel-expert-import-decision |
-| 7 | Lever 2 | m_csa:9 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 7 | Lever 2 | m_csa:109 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 7 | Lever 2 | m_csa:131 | source_free_event_axis_linker_signoff | pending_reviewer_signoff | reviewer_event_axis_decision | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
 
 ## Queue
 
@@ -121,36 +104,36 @@ Pending review items shown: 40/76
 | 3 | Lever 2 | m_csa:397 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:403 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:418 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
-| 3 | Lever 2 | m_csa:418 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 3 | Lever 2 | m_csa:418 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
 | 3 | Lever 2 | m_csa:419 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:497 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:517 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:526 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:545 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
-| 3 | Lever 2 | m_csa:545 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 3 | Lever 2 | m_csa:545 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
 | 3 | Lever 2 | m_csa:551 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:709 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:710 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:714 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:723 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | reject_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:750 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
-| 3 | Lever 2 | m_csa:750 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 3 | Lever 2 | m_csa:750 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
 | 3 | Lever 2 | m_csa:853 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:854 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:916 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:990 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | 3 | Lever 2 | m_csa:994 | source_free_locator_rewrite_approval | heldout_source_free_locator_surface | explicit_approve_locator_rewrite | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
-| 4 | Lever 2 | m_csa:3 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:115 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:121 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:211 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:239 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:250 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:419 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:709 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:714 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:854 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
-| 4 | Lever 2 | m_csa:990 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | pending_reviewer_signoff | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:3 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:115 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:121 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:211 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:239 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:250 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:419 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:709 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:714 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:854 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
+| 4 | Lever 2 | m_csa:990 | source_free_event_axis_linker_signoff | heldout_source_free_event_axis_surface | explicit_approve_event_axis_linker | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-signoff-finalization |
 | 4 | Lever 4 | m_csa:116 | family_panel_expert_import_decision | near_orphan_glycoside_or_nucleoside_hydrolase_controls | pending_expert_import_decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 4 | Lever 4 | m_csa:131 | family_panel_expert_import_decision | flavin_monooxygenase_and_flavin_oxygen_transfer | pending_expert_import_decision | apply-fold-augmented-family-panel-expert-import-decision |
 | 4 | Lever 4 | m_csa:132 | family_panel_expert_import_decision | flavin_monooxygenase_and_flavin_oxygen_transfer | pending_expert_import_decision | apply-fold-augmented-family-panel-expert-import-decision |

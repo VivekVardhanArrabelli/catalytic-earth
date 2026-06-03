@@ -33924,9 +33924,14 @@ def build_active_lever_mechanical_actionability_audit(
             )
             and not event_blockers,
             "blocking_reason": (
-                "source_free_event_axis_linker_gate_blocked"
-                if event_blockers
-                else "source_free_event_axis_linkers_missing"
+                "source_free_event_axis_linkers_materialized"
+                if event_decision.get("event_axis_linkers_materialized")
+                and not event_blockers
+                else (
+                    "source_free_event_axis_linker_gate_blocked"
+                    if event_blockers
+                    else "source_free_event_axis_linkers_missing"
+                )
             ),
             "next_command_after_decision": (
                 "build-mechanism-feature-row-specific-bond-change-p0-oos-"
@@ -34212,6 +34217,39 @@ def build_active_lever_mechanical_actionability_audit(
             "Lever 2 locator approvals and event-axis signoffs are cleared, "
             "but pre-threshold readiness remains blocked."
         )
+    )
+    active_mechanical_gate_ready_count = sum(
+        1 for check in gate_checks if check["ready_now"]
+    )
+    pending_review_parts: list[str] = []
+    if p10746_pending:
+        pending_review_parts.append("P10746 policy decision")
+    lever4_import_preview_pending = [
+        item
+        for item in pending_queue_items
+        if item.get("decision_class") == "family_panel_expert_import_decision"
+        and item.get("import_preview_candidate_if_accepted_now") is True
+    ]
+    if lever4_import_preview_pending:
+        pending_review_parts.append(
+            f"{len(lever4_import_preview_pending)} Lever 4 import-preview candidates"
+        )
+    pending_event_axis_ids = [
+        str(item.get("entry_id"))
+        for item in pending_queue_items
+        if item.get("decision_class") == "source_free_event_axis_linker_signoff"
+    ][:3]
+    if pending_event_axis_ids:
+        pending_review_parts.append(
+            "remaining Lever 2 event-axis signoffs "
+            f"({', '.join(pending_event_axis_ids)})"
+        )
+    pending_review_clause = (
+        "Review the next queued pending rows: "
+        + "; ".join(pending_review_parts)
+        + ". "
+        if pending_review_parts
+        else "No pending reviewer rows are currently queued. "
     )
 
     return {
@@ -34687,8 +34725,14 @@ def build_active_lever_mechanical_actionability_audit(
         },
         "interpretation": {
             "headline": (
-                "No active Lever 2/3/4 gate is mechanically runnable on the "
-                "current decision state."
+                f"{active_mechanical_gate_ready_count} active Lever 2/3/4 gate"
+                f"{'' if active_mechanical_gate_ready_count == 1 else 's'} "
+                "mechanically ready on the current decision state."
+                if active_mechanical_gate_ready_count
+                else (
+                    "No active Lever 2/3/4 gate is mechanically runnable on "
+                    "the current decision state."
+                )
             ),
             "result": (
                 f"{lever3_result} "
@@ -34696,10 +34740,8 @@ def build_active_lever_mechanical_actionability_audit(
                 f"decisions, and {lever2_result}"
             ),
             "next_action": (
-                "Review the first twelve queued rows here, starting with "
-                "P10746, the six Lever 4 import-preview candidates, and the "
-                "three priority-1 Lever 2 event-axis signoffs. "
-                f"{lever3_next_action}"
+                pending_review_clause
+                + f"{lever3_next_action}"
             ),
         },
     }
@@ -52605,11 +52647,18 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     label_manifest_path: Path,
     source_free_locator_dir: Path,
     source_free_predicted_geometry_manifest_path: Path,
+    event_axis_linker_materialization_gate_path: Path | None = None,
 ) -> dict[str, Any]:
     pair_surface_plan = _read_json(pair_surface_plan_path)
     pair_contract = _read_json(pair_operating_point_contract_path)
     manifest = _read_json(label_manifest_path)
     source_free_manifest = _read_json(source_free_predicted_geometry_manifest_path)
+    event_axis_gate = (
+        _read_json(event_axis_linker_materialization_gate_path)
+        if event_axis_linker_materialization_gate_path is not None
+        and Path(event_axis_linker_materialization_gate_path).exists()
+        else {}
+    )
     locator_sidecars = _locator_sidecars_by_entry(source_free_locator_dir)
 
     manifest_rows = [
@@ -52636,6 +52685,21 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         else {}
     )
     source_free_counts = source_free_manifest.get("counts") or {}
+    event_axis_materialization_rows = [
+        row
+        for row in event_axis_gate.get("materialization_rows", [])
+        if isinstance(row, dict)
+        and row.get("event_type") == "proton_transfer"
+        and row.get("residue_role") == "electrostatic_stabiliser"
+    ]
+    event_axis_entries = {
+        str(row.get("entry_id")): row
+        for row in event_axis_materialization_rows
+        if row.get("entry_id")
+    }
+    event_axis_gate_ready = bool(
+        event_axis_gate.get("decision", {}).get("event_axis_linkers_materialized")
+    ) and not event_axis_gate.get("blockers")
     surface_rows: list[dict[str, Any]] = []
     guardrail_violation_rows: list[dict[str, Any]] = []
     for entry_id in current702_heldout_locator_entries:
@@ -52654,11 +52718,35 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             continue
         residue_code_counts = _source_free_locator_residue_code_counts(locator)
         his_count = int(residue_code_counts.get("his") or 0)
+        event_axis_row = event_axis_entries.get(entry_id)
+        event_axis_feature_ready = event_axis_gate_ready and event_axis_row is not None
+        event_axis_reference = None
+        if event_axis_row is not None:
+            event_axis_reference = {
+                "entry_id": str(event_axis_row.get("entry_id")),
+                "event_type": str(event_axis_row.get("event_type")),
+                "residue_role": str(event_axis_row.get("residue_role")),
+                "event_residue_linker_count": int(
+                    event_axis_row.get("event_residue_linker_count") or 0
+                ),
+                "decision": event_axis_row.get("decision"),
+                "source_free_event_axis_status": event_axis_row.get(
+                    "source_free_event_axis_status"
+                ),
+                "materialization_row_sha256": hashlib.sha256(
+                    json.dumps(
+                        event_axis_row,
+                        sort_keys=True,
+                        separators=(",", ":"),
+                    ).encode("utf-8")
+                ).hexdigest(),
+            }
         surface_rows.append(
             {
                 "entry_id": entry_id,
                 "locator_path": str(locator_path),
                 "locator_sha256": _sha256(locator_path) if locator_path.exists() else None,
+                "event_axis_materialization_reference": event_axis_reference,
                 "feature_guardrails": {
                     "accession_excluded_from_features": True,
                     "heldout_labels_excluded_from_features": True,
@@ -52670,12 +52758,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "source_free_pair_features": {
                     "residue_code_count:his": his_count,
                     "residue_code_count:his=3": his_count == 3,
-                    "event_residue_role:proton_transfer|electrostatic_stabiliser": None,
+                    "event_residue_role:proton_transfer|electrostatic_stabiliser": (
+                        event_axis_feature_ready
+                    ),
                 },
                 "feature_status": {
                     "residue_code_count_surface": "ready_from_source_free_locator",
                     "event_residue_role_surface": (
-                        "blocked_source_free_event_axis_missing"
+                        "ready_from_approved_source_free_event_axis_linker"
+                        if event_axis_feature_ready
+                        else "not_observed_in_approved_source_free_event_axis_linkers"
                     ),
                 },
             }
@@ -52684,7 +52776,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     locator_coverage_complete = len(surface_rows) == len(heldout_rows) and bool(
         heldout_rows
     )
-    event_surface_ready = False
+    source_free_event_rows = sum(
+        1
+        for row in surface_rows
+        if row["source_free_pair_features"][
+            "event_residue_role:proton_transfer|electrostatic_stabiliser"
+        ]
+    )
+    event_surface_ready = event_axis_gate_ready and source_free_event_rows > 0
     residue_surface_ready = locator_coverage_complete
     contract_ready = (
         pair_contract.get("status")
@@ -52700,6 +52799,8 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     if guardrail_violation_rows:
         blockers.append("source_free_locator_guardrail_violations_present")
     if not event_surface_ready:
+        if event_axis_gate and not event_axis_gate_ready:
+            blockers.append("source_free_event_axis_linker_materialization_gate_not_ready")
         blockers.append("source_free_event_residue_role_extractor_missing")
         blockers.append("source_free_proton_transfer_event_axis_missing")
 
@@ -52721,9 +52822,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "Source-free heldout application-surface materialization audit for "
             "the calibrated best-token follow-up pair. It computes the "
             "residue-code count token only from approved source-free locator "
-            "sidecars, keeps the event/residue-role token blocked until a "
-            "source-free event axis exists, and does not apply the frozen "
-            "residual threshold."
+            "sidecars and the event/residue-role token only from approved "
+            "source-free event-axis materialization rows. It does not apply "
+            "the frozen residual threshold."
         ),
         "selected_feature_pair": {
             "event_residue_role_token": event_residue_role_token,
@@ -52769,7 +52870,10 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 for row in surface_rows
                 if row["source_free_pair_features"]["residue_code_count:his=3"]
             ),
-            "source_free_event_residue_role_feature_rows": 0,
+            "source_free_event_residue_role_feature_rows": source_free_event_rows,
+            "source_free_event_axis_materialized_rows": len(
+                event_axis_materialization_rows
+            ),
             "source_free_locator_guardrail_violation_rows": len(
                 guardrail_violation_rows
             ),
@@ -52808,19 +52912,36 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "source_free_predicted_geometry_manifest": _source_path_record(
                 source_free_predicted_geometry_manifest_path
             ),
+            "event_axis_linker_materialization_gate": (
+                _source_path_record(event_axis_linker_materialization_gate_path)
+                if event_axis_linker_materialization_gate_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
         },
         "interpretation": {
             "result": (
                 "The selected pair is still not deployable on current702 "
                 "heldout: approved source-free locators do not cover the "
-                "heldout rows, and the event/residue-role token still lacks a "
-                "source-free proton-transfer event axis."
+                "heldout rows."
+                if event_surface_ready
+                else (
+                    "The selected pair is still not deployable on current702 "
+                    "heldout: approved source-free locators do not cover the "
+                    "heldout rows, and the event/residue-role token still lacks "
+                    "a source-free proton-transfer event axis."
+                )
             ),
             "next_action": (
-                "Materialize approved source-free locator sidecars for the "
-                "current702 heldout rows first; the His-count token can then be "
-                "computed, but the event/residue-role token still needs a "
-                "source-free event linker before any heldout read."
+                "Materialize the remaining approved source-free locator "
+                "sidecars or define a heldout-safe partial-surface policy before "
+                "any heldout read."
+                if event_surface_ready
+                else (
+                    "Materialize approved source-free locator sidecars for the "
+                    "current702 heldout rows first; the His-count token can then "
+                    "be computed, but the event/residue-role token still needs a "
+                    "source-free event linker before any heldout read."
+                )
             ),
         },
     }
@@ -52878,6 +52999,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     source_free_locator_dir: Path,
     source_free_predicted_geometry_manifest_path: Path,
     out_path: Path,
+    event_axis_linker_materialization_gate_path: Path | None = None,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
     surface = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
@@ -52886,6 +53008,9 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         label_manifest_path=label_manifest_path,
         source_free_locator_dir=source_free_locator_dir,
         source_free_predicted_geometry_manifest_path=source_free_predicted_geometry_manifest_path,
+        event_axis_linker_materialization_gate_path=(
+            event_axis_linker_materialization_gate_path
+        ),
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(
@@ -54697,6 +54822,37 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         "event_axis_linker_schema_ready"
     ):
         blockers.append("source_free_event_axis_linker_schema_not_ready")
+    if finalized_rows and not pending_decisions and not approved_invalid_rows:
+        next_gate = (
+            "Pass the finalized approved rows to the event-axis materialization "
+            "gate, keeping rejected rows out of the gate input until rewritten."
+        )
+        interpretation_next_action = (
+            "Rerun the event-axis materialization gate on this finalized rows "
+            "artifact; do not rerun the heldout threshold until pre-threshold "
+            "readiness passes."
+        )
+    elif finalized_rows:
+        next_gate = (
+            "Approved rows can be passed to the event-axis materialization gate "
+            "now, while pending/rejected rows remain non-consumable."
+        )
+        interpretation_next_action = (
+            "Rerun the event-axis materialization gate on approved rows and "
+            "continue collecting explicit decisions for remaining pending rows."
+        )
+    else:
+        next_gate = (
+            "Collect explicit event-axis signoff decisions. Once one or more "
+            "rows are approved with ready status, reviewer metadata, filled "
+            "source-free evidence, confidence values, and clean guardrail "
+            "audits, pass this artifact to the event-axis materialization gate."
+        )
+        interpretation_next_action = (
+            "Do not rerun the heldout threshold. First secure explicit "
+            "event-axis approvals and rerun the materialization gate on this "
+            "finalized rows artifact."
+        )
     return {
         "artifact_id": (
             MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_SIGNOFF_FINALIZATION_ID
@@ -54795,13 +54951,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "heldout_safe_event_axis_surface_ready": False,
             "apply_frozen_pair_threshold_now": False,
             "heldout_read_once_performed": False,
-            "next_gate": (
-                "Collect explicit event-axis signoff decisions. Once one or "
-                "more rows are approved with ready status, reviewer metadata, "
-                "filled source-free evidence, confidence values, and clean "
-                "guardrail audits, pass this artifact to the event-axis "
-                "materialization gate."
-            ),
+            "next_gate": next_gate,
         },
         "source_artifacts": {
             "draft_rows_for_signoff": _source_path_record(
@@ -54819,11 +54969,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 f"from {len(rows)} draft signoff rows; {pending_decisions} rows "
                 "still await reviewer signoff."
             ),
-            "next_action": (
-                "Do not rerun the heldout threshold. First secure explicit "
-                "event-axis approvals and rerun the materialization gate on "
-                "this finalized rows artifact."
-            ),
+            "next_action": interpretation_next_action,
         },
     }
 
