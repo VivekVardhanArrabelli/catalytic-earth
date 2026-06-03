@@ -90,7 +90,11 @@ from .northstar_next_levers import (
     write_fold_augmented_p23007_alternate_accession_scout,
     write_fold_augmented_p23007_alternate_accession_policy_gate,
     write_fold_augmented_p00889_ortholog_coordinate_fetch_manifest,
+    write_fold_augmented_p10746_deployment_caveat_decision_application,
+    write_fold_augmented_p10746_deployment_caveat_decision_packet,
+    write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
+    write_fold_augmented_post_rerun_confounded_deployment_closure_audit,
     write_fold_augmented_remaining_blocker_decision_matrix,
     write_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit,
     write_fold_augmented_source_feature_active_site_sidecar_candidates,
@@ -12199,6 +12203,106 @@ def cmd_build_fold_augmented_post_rerun_deployment_closure_status(
         f"{args.out} (remaining blockers: "
         f"{counts.get('remaining_combined_score_blocker_rows')}, "
         f"deployment closed: {audit['decision']['deployment_closed_now']})"
+    )
+    return 0
+
+
+def cmd_audit_fold_augmented_post_rerun_confounded_deployment_closure(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_post_rerun_confounded_deployment_closure_audit(
+        predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        contract_audit_path=Path(args.contract_audit),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        post_rerun_deployment_closure_status_path=Path(
+            args.post_rerun_deployment_closure_status
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented post-rerun confounded deployment closure audit to "
+        f"{args.out} (confounded abstained: "
+        f"{counts.get('heldout_confounded_oos_abstained')}/"
+        f"{counts.get('heldout_confounded_oos_total')}, "
+        f"remaining blockers: "
+        f"{counts.get('remaining_combined_score_blocker_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet(
+    args: argparse.Namespace,
+) -> int:
+    packet = write_fold_augmented_p10746_deployment_caveat_decision_packet(
+        post_rerun_confounded_deployment_closure_audit_path=Path(
+            args.post_rerun_confounded_deployment_closure_audit
+        ),
+        p10746_source_feature_refresh_audit_path=Path(
+            args.p10746_source_feature_refresh_audit
+        ),
+        non_residue_interaction_sidecar_policy_preflight_path=Path(
+            args.non_residue_interaction_sidecar_policy_preflight
+        ),
+        fold_only_deployment_contract_decision_path=Path(
+            args.fold_only_deployment_contract_decision
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented P10746 deployment-caveat decision packet to "
+        f"{args.out} (decision stubs: {counts.get('decision_stub_rows')}, "
+        f"ready: {packet['decision']['ready_for_explicit_policy_decision']})"
+    )
+    return 0
+
+
+def cmd_apply_fold_augmented_p10746_deployment_caveat_decision(
+    args: argparse.Namespace,
+) -> int:
+    application = write_fold_augmented_p10746_deployment_caveat_decision_application(
+        decision_packet_path=Path(args.decision_packet),
+        reviewed_decision_packet_path=(
+            Path(args.reviewed_decision_packet)
+            if args.reviewed_decision_packet
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = application.get("counts", {})
+    print(
+        "Wrote fold-augmented P10746 deployment-caveat decision application to "
+        f"{args.out} (accepted: "
+        f"{counts.get('accepted_p10746_caveat_rows')}, "
+        f"pending: {counts.get('pending_decision_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_post_decision_deployment_closure_status(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_post_decision_deployment_closure_status(
+        post_rerun_confounded_deployment_closure_audit_path=Path(
+            args.post_rerun_confounded_deployment_closure_audit
+        ),
+        p10746_deployment_caveat_decision_application_path=Path(
+            args.p10746_deployment_caveat_decision_application
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented post-decision deployment closure status to "
+        f"{args.out} (closed: {audit['decision']['deployment_closed_now']}, "
+        f"blockers: {counts.get('blockers')})"
     )
     return 0
 
@@ -27519,6 +27623,187 @@ def build_parser() -> argparse.ArgumentParser:
     )
     post_rerun_deployment_closure_status.set_defaults(
         func=cmd_build_fold_augmented_post_rerun_deployment_closure_status
+    )
+
+    post_rerun_confounded_closure = subparsers.add_parser(
+        "audit-fold-augmented-post-rerun-confounded-deployment-closure",
+        help=(
+            "compose the post-rerun Lever 3 confounded deployment closure audit "
+            "from the expanded threshold contract and current P10746 caveat"
+        ),
+    )
+    post_rerun_confounded_closure.add_argument(
+        "--predicted-structure-fold-channel",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601.json"
+        ),
+    )
+    post_rerun_confounded_closure.add_argument(
+        "--contract-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_contract_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    post_rerun_confounded_closure.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    post_rerun_confounded_closure.add_argument(
+        "--post-rerun-deployment-closure-status",
+        default=(
+            "artifacts/v3_fold_augmented_post_rerun_deployment_closure_status_"
+            "current702_20260603.json"
+        ),
+    )
+    post_rerun_confounded_closure.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_post_rerun_confounded_deployment_"
+            "closure_audit_current702_20260603.json"
+        ),
+    )
+    post_rerun_confounded_closure.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_post_rerun_confounded_deployment_closure_audit_"
+            "current702_20260603.md"
+        ),
+    )
+    post_rerun_confounded_closure.set_defaults(
+        func=cmd_audit_fold_augmented_post_rerun_confounded_deployment_closure
+    )
+
+    p10746_caveat_decision_packet = subparsers.add_parser(
+        "build-fold-augmented-p10746-deployment-caveat-decision-packet",
+        help=(
+            "stage the explicit P10746 fold-only deployment-caveat decision "
+            "after the post-rerun confounded closure audit"
+        ),
+    )
+    p10746_caveat_decision_packet.add_argument(
+        "--post-rerun-confounded-deployment-closure-audit",
+        default=(
+            "artifacts/v3_fold_augmented_post_rerun_confounded_deployment_"
+            "closure_audit_current702_20260603.json"
+        ),
+    )
+    p10746_caveat_decision_packet.add_argument(
+        "--p10746-source-feature-refresh-audit",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_source_feature_refresh_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    p10746_caveat_decision_packet.add_argument(
+        "--non-residue-interaction-sidecar-policy-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_non_residue_interaction_sidecar_"
+            "policy_preflight_current702_20260602.json"
+        ),
+    )
+    p10746_caveat_decision_packet.add_argument(
+        "--fold-only-deployment-contract-decision",
+        default=(
+            "artifacts/v3_fold_augmented_fold_only_deployment_contract_"
+            "decision_current702_20260601.json"
+        ),
+    )
+    p10746_caveat_decision_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
+            "packet_current702_20260603.json"
+        ),
+    )
+    p10746_caveat_decision_packet.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p10746_deployment_caveat_decision_packet_"
+            "current702_20260603.md"
+        ),
+    )
+    p10746_caveat_decision_packet.set_defaults(
+        func=cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet
+    )
+
+    p10746_caveat_decision_application = subparsers.add_parser(
+        "apply-fold-augmented-p10746-deployment-caveat-decision",
+        help=(
+            "validate and apply an explicit reviewed P10746 fold-only "
+            "deployment-caveat decision"
+        ),
+    )
+    p10746_caveat_decision_application.add_argument(
+        "--decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
+            "packet_current702_20260603.json"
+        ),
+    )
+    p10746_caveat_decision_application.add_argument(
+        "--reviewed-decision-packet",
+        default=None,
+    )
+    p10746_caveat_decision_application.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
+            "application_current702_20260603.json"
+        ),
+    )
+    p10746_caveat_decision_application.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p10746_deployment_caveat_decision_application_"
+            "current702_20260603.md"
+        ),
+    )
+    p10746_caveat_decision_application.set_defaults(
+        func=cmd_apply_fold_augmented_p10746_deployment_caveat_decision
+    )
+
+    post_decision_deployment_closure_status = subparsers.add_parser(
+        "build-fold-augmented-post-decision-deployment-closure-status",
+        help=(
+            "compose final Lever 3 closure status after applying the P10746 "
+            "deployment-caveat decision"
+        ),
+    )
+    post_decision_deployment_closure_status.add_argument(
+        "--post-rerun-confounded-deployment-closure-audit",
+        default=(
+            "artifacts/v3_fold_augmented_post_rerun_confounded_deployment_"
+            "closure_audit_current702_20260603.json"
+        ),
+    )
+    post_decision_deployment_closure_status.add_argument(
+        "--p10746-deployment-caveat-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
+            "application_current702_20260603.json"
+        ),
+    )
+    post_decision_deployment_closure_status.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_post_decision_deployment_closure_"
+            "status_current702_20260603.json"
+        ),
+    )
+    post_decision_deployment_closure_status.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_post_decision_deployment_closure_status_"
+            "current702_20260603.md"
+        ),
+    )
+    post_decision_deployment_closure_status.set_defaults(
+        func=cmd_build_fold_augmented_post_decision_deployment_closure_status
     )
 
     remaining_blocker_decision_matrix = subparsers.add_parser(

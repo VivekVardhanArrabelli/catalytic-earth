@@ -144,6 +144,18 @@ FOLD_AUGMENTED_EXPANDED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID = (
 FOLD_AUGMENTED_POST_RERUN_DEPLOYMENT_CLOSURE_STATUS_ID = (
     "v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603"
 )
+FOLD_AUGMENTED_POST_RERUN_CONFOUNDED_DEPLOYMENT_CLOSURE_AUDIT_ID = (
+    "v3_fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603"
+)
+FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_PACKET_ID = (
+    "v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603"
+)
+FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_APPLICATION_ID = (
+    "v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603"
+)
+FOLD_AUGMENTED_POST_DECISION_DEPLOYMENT_CLOSURE_STATUS_ID = (
+    "v3_fold_augmented_post_decision_deployment_closure_status_current702_20260603"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -20090,6 +20102,1019 @@ def write_fold_augmented_post_rerun_deployment_closure_status(
             encoding="utf-8",
         )
     return audit
+
+
+def build_fold_augmented_post_rerun_confounded_deployment_closure_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    post_rerun_deployment_closure_status_path: Path,
+) -> dict[str, Any]:
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    contract_audit = _read_json(contract_audit_path)
+    threshold_contract = _read_json(expanded_oos_calibrated_threshold_contract_path)
+    post_rerun = _read_json(post_rerun_deployment_closure_status_path)
+
+    contract_counts = contract_audit.get("counts") or {}
+    contract_critical = _contract_critical_violation_total(contract_audit)
+    priority_rows = int(contract_counts.get("priority_cofactor_confounded_oos_rows") or 0)
+    priority_hits = int(contract_counts.get("priority_nearest_hits") or 0)
+    priority_missing = max(0, priority_rows - priority_hits)
+    confounded_rows = _fold_augmented_confounded_priority_rows(fold_channel)
+
+    primary = threshold_contract.get("primary_channel_readout") or {}
+    selected = (
+        primary.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    heldout = primary.get("heldout_final_eval_at_90pct_oos_calibrated_threshold") or {}
+    post_counts = post_rerun.get("counts") or {}
+    blocker_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "current_blocker": row.get("blocker"),
+            "next_action": row.get("next_action"),
+        }
+        for row in post_rerun.get("remaining_blockers", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    remaining_blockers = int(
+        post_counts.get("remaining_combined_score_blocker_rows") or len(blocker_rows)
+    )
+    heldout_confounded_total = int(
+        heldout.get("heldout_confounded_oos_total")
+        or threshold_contract.get("counts", {}).get("heldout_confounded_oos")
+        or 0
+    )
+    heldout_confounded_abstained = int(
+        heldout.get("heldout_confounded_oos_abstained") or 0
+    )
+    in_scope_retain = heldout.get("heldout_in_scope_retain_recall")
+    confounded_recall = heldout.get("heldout_confounded_oos_abstain_recall")
+    confounded_target_met = (
+        float(confounded_recall or 0.0) >= 0.80
+        and float(in_scope_retain or 0.0) >= 0.85
+        and priority_missing == 0
+        and contract_critical == 0
+    )
+    critical_counts = {
+        "fold_contract_critical_violations": contract_critical,
+        "priority_confounded_missing_hits": priority_missing,
+        "post_rerun_combined_score_blocker_rows": remaining_blockers,
+    }
+    deployment_closed = (
+        bool(post_rerun.get("decision", {}).get("deployment_closed_now"))
+        and remaining_blockers == 0
+        and contract_critical == 0
+        and priority_missing == 0
+    )
+    status = (
+        "post_rerun_confounded_fold_channel_deployment_closed"
+        if deployment_closed
+        else "post_rerun_confounded_fold_channel_research_ready_p10746_caveat"
+        if confounded_target_met and remaining_blockers == 1
+        else "post_rerun_confounded_fold_channel_deployment_blocked"
+    )
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_POST_RERUN_CONFOUNDED_DEPLOYMENT_CLOSURE_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_post_rerun_confounded_deployment_closure_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Post-rerun Lever 3 synthesis for the predicted-structure-vs-atlas "
+            "fold channel at the expanded OOS-calibrated operating point, focused "
+            "on the six cofactor-confounded heldout OOS rows and the remaining "
+            "P10746 fold-only deployment caveat."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "experimental_pdb_metadata_used_as_channel_input": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "new_scores_computed_now": False,
+            "review_only": True,
+            "validation_only": True,
+        },
+        "counts": {
+            "priority_confounded_oos_rows": priority_rows,
+            "priority_nearest_hits": priority_hits,
+            "heldout_confounded_oos_abstained": heldout_confounded_abstained,
+            "heldout_confounded_oos_total": heldout_confounded_total,
+            "expanded_full_channel_score_rows": post_counts.get(
+                "expanded_full_channel_score_rows"
+            ),
+            "candidate_ids_requested": post_counts.get("candidate_ids_requested"),
+            "remaining_combined_score_blocker_rows": remaining_blockers,
+            "critical_counts": critical_counts,
+            "critical_violation_total": sum(critical_counts.values()),
+        },
+        "operating_point": {
+            "channel": primary.get("channel"),
+            "fixed_threshold": selected.get("threshold") or heldout.get("threshold"),
+            "threshold_source": (
+                "expanded_oos_calibrated_threshold_contract; heldout final readout "
+                "copied from the existing threshold contract"
+            ),
+            "calibration_oos_total": selected.get("calibration_oos_total"),
+            "calibration_oos_abstained": selected.get("calibration_oos_abstained"),
+            "calibration_oos_abstain_recall": selected.get(
+                "calibration_oos_abstain_recall"
+            ),
+            "heldout_in_scope_retain_recall": in_scope_retain,
+            "heldout_oos_abstain_recall": heldout.get("heldout_oos_abstain_recall"),
+            "heldout_confounded_oos_abstain_recall": confounded_recall,
+            "heldout_confounded_oos_abstained": heldout_confounded_abstained,
+            "heldout_confounded_oos_total": heldout_confounded_total,
+        },
+        "predicted_structure_vs_atlas_contract": {
+            "fold_channel_status": fold_channel.get("status"),
+            "contract_audit_status": contract_audit.get("status"),
+            "critical_counts": contract_counts.get("critical_counts") or {},
+            "heldout_rows_ok": contract_counts.get("heldout_rows_ok"),
+            "all_heldout_nearest_hits": contract_counts.get("all_heldout_nearest_hits"),
+            "priority_confounded_oos_rows": priority_rows,
+            "priority_nearest_hits": priority_hits,
+            "confounded_entry_ids": [row["entry_id"] for row in confounded_rows],
+            "confounded_fold_nearest_atlas_rows": confounded_rows,
+        },
+        "post_rerun_closure": {
+            "post_rerun_status": post_rerun.get("status"),
+            "expanded_full_channel_score_rows": post_counts.get(
+                "expanded_full_channel_score_rows"
+            ),
+            "candidate_ids_requested": post_counts.get("candidate_ids_requested"),
+            "remaining_blocker_rows": sorted(
+                blocker_rows,
+                key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+            ),
+        },
+        "decision": {
+            "confounded_subset_target_met_for_research": confounded_target_met,
+            "in_scope_retention_ok_at_operating_point": float(in_scope_retain or 0.0)
+            >= 0.85,
+            "deployable_without_production_caveat": deployment_closed,
+            "deployment_closed_now": deployment_closed,
+            "next_gate": (
+                "Resolve the P10746 fold-only caveat through an explicit deployment "
+                "caveat acceptance or an approved non-residue sidecar; do not rerun "
+                "threshold selection unless the train/cal OOS surface changes."
+            ),
+        },
+        "source_artifacts": {
+            "fold_channel": _source_path_record(predicted_structure_fold_channel_path),
+            "contract_audit": _source_path_record(contract_audit_path),
+            "expanded_oos_threshold_contract": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "post_rerun_deployment_closure_status": _source_path_record(
+                post_rerun_deployment_closure_status_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "After the fixed-threshold combined rerun, the confounded subset "
+                f"target remains met: {heldout_confounded_abstained}/"
+                f"{heldout_confounded_total} cofactor-confounded heldout OOS rows "
+                "abstain while in-scope retention is preserved."
+            ),
+            "next_action": (
+                "The only remaining deployment blocker recorded here is "
+                "m_csa:204/P10746, which lacks an approved non-residue sidecar and "
+                "therefore remains fold-only."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_post_rerun_confounded_deployment_closure_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    operating = audit["operating_point"]
+    lines = [
+        "# Fold-Augmented Post-Rerun Confounded Deployment Closure Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fixed threshold: {operating['channel']} >= {operating['fixed_threshold']}",
+        "- Expanded full-channel rows: "
+        f"{counts['expanded_full_channel_score_rows']}/"
+        f"{counts['candidate_ids_requested']}",
+        "- Confounded heldout OOS abstained: "
+        f"{counts['heldout_confounded_oos_abstained']}/"
+        f"{counts['heldout_confounded_oos_total']}",
+        "- Remaining combined-score blockers: "
+        f"{counts['remaining_combined_score_blocker_rows']}",
+        "",
+        "## Confounded Rows",
+        "",
+        "| row | nearest atlas | atlas fingerprint | TM |",
+        "| --- | --- | --- | ---: |",
+    ]
+    for row in audit["predicted_structure_vs_atlas_contract"][
+        "confounded_fold_nearest_atlas_rows"
+    ]:
+        lines.append(
+            f"| {row['entry_id']} | {row['nearest_atlas_entry_id']} | "
+            f"{row['nearest_atlas_true_fingerprint_id']} | "
+            f"{row['nearest_atlas_tm_score']} |"
+        )
+    lines += [
+        "",
+        "## Remaining Blocker",
+        "",
+        "| row | blocker | next action |",
+        "| --- | --- | --- |",
+    ]
+    for row in audit["post_rerun_closure"]["remaining_blocker_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['current_blocker']} | "
+            f"{row['next_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_post_rerun_confounded_deployment_closure_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    post_rerun_deployment_closure_status_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_post_rerun_confounded_deployment_closure_audit(
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        contract_audit_path=contract_audit_path,
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        post_rerun_deployment_closure_status_path=(
+            post_rerun_deployment_closure_status_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_post_rerun_confounded_deployment_closure_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_p10746_deployment_caveat_decision_packet(
+    *,
+    post_rerun_confounded_deployment_closure_audit_path: Path,
+    p10746_source_feature_refresh_audit_path: Path,
+    non_residue_interaction_sidecar_policy_preflight_path: Path,
+    fold_only_deployment_contract_decision_path: Path,
+) -> dict[str, Any]:
+    closure = _read_json(post_rerun_confounded_deployment_closure_audit_path)
+    refresh = _read_json(p10746_source_feature_refresh_audit_path)
+    non_residue = _read_json(non_residue_interaction_sidecar_policy_preflight_path)
+    fold_only = _read_json(fold_only_deployment_contract_decision_path)
+
+    blocker_rows = [
+        row
+        for row in closure.get("post_rerun_closure", {}).get(
+            "remaining_blocker_rows", []
+        )
+        if isinstance(row, dict)
+    ]
+    p10746_blocker_rows = [
+        row for row in blocker_rows if str(row.get("entry_id")) == "m_csa:204"
+    ]
+    refresh_counts = refresh.get("feature_audit") or {}
+    non_residue_counts = non_residue.get("counts") or {}
+    fold_only_decision = fold_only.get("decision") or {}
+    decision_context = {
+        "entry_id": "m_csa:204",
+        "accession": "P10746",
+        "post_rerun_closure_status": closure.get("status"),
+        "source_feature_refresh_status": refresh.get("status"),
+        "source_feature_refresh_response_sha256": (
+            refresh.get("source_record") or {}
+        ).get("response_sha256"),
+        "eligible_source_feature_count": refresh_counts.get(
+            "eligible_source_feature_count"
+        ),
+        "non_residue_policy_approved_rows": non_residue_counts.get(
+            "approved_policy_rows"
+        ),
+        "fold_only_deployment_contract_authorized": fold_only_decision.get(
+            "fold_only_deployment_contract_authorized"
+        ),
+    }
+    decision_context_sha256 = hashlib.sha256(
+        json.dumps(decision_context, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+    decision_stub = {
+        "entry_id": "m_csa:204",
+        "accession": "P10746",
+        "review_status": "pending_explicit_decision",
+        "allowed_decisions": [
+            "explicit_accept_p10746_fold_only_deployment_caveat",
+            "reject_p10746_caveat_require_approved_non_residue_sidecar",
+        ],
+        "default_decision": "pending_review",
+        "decision_context_sha256": decision_context_sha256,
+        "required_unchanged_context": decision_context,
+        "decision_effect_if_accepted": (
+            "Allows a policy-level deployment closure claim with the P10746 "
+            "fold-only caveat disclosed; does not create a combined-channel score "
+            "for m_csa:204."
+        ),
+        "decision_effect_if_rejected": (
+            "Keeps deployment closure blocked until an approved non-residue "
+            "interaction sidecar or another source-backed P10746 path is supplied."
+        ),
+    }
+    blockers = []
+    if not p10746_blocker_rows:
+        blockers.append("p10746_blocker_row_missing_from_post_rerun_closure")
+    if int(refresh_counts.get("eligible_source_feature_count") or 0) > 0:
+        blockers.append("p10746_source_refresh_changed_review_needed")
+    if int(non_residue_counts.get("approved_policy_rows") or 0) > 0:
+        blockers.append("p10746_non_residue_policy_already_approved")
+    if fold_only_decision.get("fold_only_deployment_contract_authorized"):
+        blockers.append("fold_only_contract_already_authorized")
+    return {
+        "artifact_id": FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_PACKET_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_p10746_deployment_caveat_decision_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "p10746_deployment_caveat_decision_packet_ready_review_only",
+        "scope": (
+            "Review-only decision packet for the single remaining Lever 3 "
+            "deployment caveat after the fixed-threshold rerun. It stages the "
+            "explicit P10746 fold-only caveat accept/reject choice; it does not "
+            "accept the caveat, create sidecars, score m_csa:204 in the combined "
+            "channel, or close deployment."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "non_residue_sidecar_created_or_copied": False,
+            "p10746_fold_only_caveat_accepted_now": False,
+            "deployment_closed_now": False,
+            "review_only": True,
+        },
+        "counts": {
+            "decision_stub_rows": 1,
+            "p10746_post_rerun_blocker_rows": len(p10746_blocker_rows),
+            "remaining_combined_score_blocker_rows": closure.get("counts", {}).get(
+                "remaining_combined_score_blocker_rows"
+            ),
+            "heldout_confounded_oos_abstained": closure.get("counts", {}).get(
+                "heldout_confounded_oos_abstained"
+            ),
+            "heldout_confounded_oos_total": closure.get("counts", {}).get(
+                "heldout_confounded_oos_total"
+            ),
+            "eligible_source_feature_count": refresh_counts.get(
+                "eligible_source_feature_count"
+            ),
+            "non_residue_policy_approved_rows": non_residue_counts.get(
+                "approved_policy_rows"
+            ),
+            "fold_only_contract_authorized": int(
+                bool(
+                    fold_only_decision.get(
+                        "fold_only_deployment_contract_authorized"
+                    )
+                )
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision_stubs": [decision_stub],
+        "blockers": blockers,
+        "decision": {
+            "p10746_fold_only_caveat_accepted_now": False,
+            "deployment_closed_now": False,
+            "ready_for_explicit_policy_decision": len(blockers) == 0,
+            "next_gate": (
+                "Set the decision stub to either "
+                "explicit_accept_p10746_fold_only_deployment_caveat or "
+                "reject_p10746_caveat_require_approved_non_residue_sidecar with "
+                "the decision_context_sha256 unchanged. Then build a separate "
+                "decision-application artifact before claiming deployment closure."
+            ),
+        },
+        "source_artifacts": {
+            "post_rerun_confounded_deployment_closure_audit": _source_path_record(
+                post_rerun_confounded_deployment_closure_audit_path
+            ),
+            "p10746_source_feature_refresh_audit": _source_path_record(
+                p10746_source_feature_refresh_audit_path
+            ),
+            "non_residue_interaction_sidecar_policy_preflight": _source_path_record(
+                non_residue_interaction_sidecar_policy_preflight_path
+            ),
+            "fold_only_deployment_contract_decision": _source_path_record(
+                fold_only_deployment_contract_decision_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The only deployment-caveat decision staged here is m_csa:204/"
+                "P10746. The latest source refresh still has zero eligible "
+                "source-feature rows, no non-residue policy is approved, and the "
+                "fold-only escape-hatch contract is not automatically authorized."
+            ),
+            "next_action": (
+                "Make an explicit policy decision on the stub. If accepted, "
+                "carry the caveat into a deployment-closure application artifact; "
+                "if rejected, provide an approved non-residue sidecar before any "
+                "closure claim."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_p10746_deployment_caveat_decision_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    stub = packet["decision_stubs"][0]
+    lines = [
+        "# Fold-Augmented P10746 Deployment-Caveat Decision Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- P10746 blocker rows: {counts['p10746_post_rerun_blocker_rows']}",
+        "- Heldout confounded OOS abstained: "
+        f"{counts['heldout_confounded_oos_abstained']}/"
+        f"{counts['heldout_confounded_oos_total']}",
+        f"- Eligible refreshed source features: {counts['eligible_source_feature_count']}",
+        f"- Non-residue policy approved rows: {counts['non_residue_policy_approved_rows']}",
+        f"- Fold-only contract authorized: {counts['fold_only_contract_authorized']}",
+        f"- Ready for explicit policy decision: {decision['ready_for_explicit_policy_decision']}",
+        "",
+        "## Decision Stub",
+        "",
+        f"- Entry: {stub['entry_id']} / {stub['accession']}",
+        f"- Review status: {stub['review_status']}",
+        f"- Decision context SHA-256: `{stub['decision_context_sha256']}`",
+        "- Allowed decisions:",
+    ]
+    for allowed in stub["allowed_decisions"]:
+        lines.append(f"  - {allowed}")
+    lines += [
+        "",
+        "## Next Gate",
+        "",
+        f"- {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_p10746_deployment_caveat_decision_packet(
+    *,
+    post_rerun_confounded_deployment_closure_audit_path: Path,
+    p10746_source_feature_refresh_audit_path: Path,
+    non_residue_interaction_sidecar_policy_preflight_path: Path,
+    fold_only_deployment_contract_decision_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_p10746_deployment_caveat_decision_packet(
+        post_rerun_confounded_deployment_closure_audit_path=(
+            post_rerun_confounded_deployment_closure_audit_path
+        ),
+        p10746_source_feature_refresh_audit_path=(
+            p10746_source_feature_refresh_audit_path
+        ),
+        non_residue_interaction_sidecar_policy_preflight_path=(
+            non_residue_interaction_sidecar_policy_preflight_path
+        ),
+        fold_only_deployment_contract_decision_path=(
+            fold_only_deployment_contract_decision_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_p10746_deployment_caveat_decision_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def _reviewed_p10746_decision_rows(packet: dict[str, Any]) -> list[dict[str, Any]]:
+    rows = packet.get("reviewed_decision_stubs")
+    if isinstance(rows, list):
+        return [row for row in rows if isinstance(row, dict)]
+    rows = packet.get("decision_stubs")
+    if isinstance(rows, list):
+        return [row for row in rows if isinstance(row, dict)]
+    return []
+
+
+def build_fold_augmented_p10746_deployment_caveat_decision_application(
+    *,
+    decision_packet_path: Path,
+    reviewed_decision_packet_path: Path | None = None,
+) -> dict[str, Any]:
+    source_packet = _read_json(decision_packet_path)
+    reviewed_packet = (
+        _read_json(reviewed_decision_packet_path)
+        if reviewed_decision_packet_path is not None
+        and Path(reviewed_decision_packet_path).exists()
+        else source_packet
+    )
+    source_stubs = [
+        row
+        for row in source_packet.get("decision_stubs", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    reviewed_rows = _reviewed_p10746_decision_rows(reviewed_packet)
+    source_by_entry = {str(row["entry_id"]): row for row in source_stubs}
+    application_rows = []
+    accepted_rows = []
+    rejected_rows = []
+    pending_rows = []
+    invalid_rows = []
+    for row in reviewed_rows:
+        entry_id = str(row.get("entry_id") or "")
+        source_row = source_by_entry.get(entry_id)
+        allowed = set((source_row or {}).get("allowed_decisions") or [])
+        review_status = row.get("review_status")
+        decision_value = row.get("decision") or row.get("selected_decision")
+        context_hash = row.get("decision_context_sha256")
+        source_context_hash = (source_row or {}).get("decision_context_sha256")
+        hash_matches = bool(context_hash) and context_hash == source_context_hash
+        status = "pending_explicit_decision"
+        blockers: list[str] = []
+        if source_row is None:
+            status = "invalid_unknown_decision_row"
+            blockers.append("source_decision_stub_missing")
+        elif review_status == "pending_explicit_decision" or not decision_value:
+            status = "pending_explicit_decision"
+            blockers.append("explicit_decision_missing")
+        elif decision_value not in allowed:
+            status = "invalid_decision_value"
+            blockers.append("decision_not_allowed_by_source_packet")
+        elif not hash_matches:
+            status = "invalid_context_hash_mismatch"
+            blockers.append("decision_context_sha256_changed")
+        elif decision_value == "explicit_accept_p10746_fold_only_deployment_caveat":
+            status = "accepted_p10746_fold_only_deployment_caveat"
+        elif (
+            decision_value
+            == "reject_p10746_caveat_require_approved_non_residue_sidecar"
+        ):
+            status = "rejected_require_approved_non_residue_sidecar"
+        else:
+            status = "invalid_unhandled_decision_value"
+            blockers.append("unhandled_decision_value")
+        application_row = {
+            "entry_id": entry_id,
+            "accession": row.get("accession") or (source_row or {}).get("accession"),
+            "review_status": review_status,
+            "decision": decision_value,
+            "application_status": status,
+            "decision_context_sha256_matches_source": hash_matches,
+            "blockers": blockers,
+        }
+        application_rows.append(application_row)
+        if status == "accepted_p10746_fold_only_deployment_caveat":
+            accepted_rows.append(application_row)
+        elif status == "rejected_require_approved_non_residue_sidecar":
+            rejected_rows.append(application_row)
+        elif blockers:
+            if status == "pending_explicit_decision":
+                pending_rows.append(application_row)
+            else:
+                invalid_rows.append(application_row)
+    if not reviewed_rows:
+        pending_rows.append(
+            {
+                "entry_id": "m_csa:204",
+                "accession": "P10746",
+                "review_status": None,
+                "decision": None,
+                "application_status": "pending_explicit_decision",
+                "decision_context_sha256_matches_source": False,
+                "blockers": ["reviewed_decision_rows_missing"],
+            }
+        )
+    blockers = []
+    if pending_rows:
+        blockers.append("explicit_p10746_caveat_decision_missing")
+    if invalid_rows:
+        blockers.append("invalid_p10746_caveat_decision_rows")
+    if len(accepted_rows) > 1 or (accepted_rows and rejected_rows):
+        blockers.append("conflicting_p10746_caveat_decisions")
+    accepted_now = len(accepted_rows) == 1 and not blockers
+    rejected_now = len(rejected_rows) == 1 and not pending_rows and not invalid_rows
+    status = (
+        "p10746_deployment_caveat_decision_application_accepted_review_only"
+        if accepted_now
+        else "p10746_deployment_caveat_decision_application_rejected_review_only"
+        if rejected_now and not accepted_rows
+        else "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision"
+    )
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_APPLICATION_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_p10746_deployment_caveat_decision_application"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Fail-closed application gate for the P10746 fold-only deployment "
+            "caveat decision packet. It validates explicit reviewed decisions "
+            "against the source decision_context_sha256 and does not by itself "
+            "close deployment."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "non_residue_sidecar_created_or_copied": False,
+            "deployment_closed_now": False,
+            "review_only": True,
+        },
+        "counts": {
+            "source_decision_stub_rows": len(source_stubs),
+            "reviewed_decision_rows": len(reviewed_rows),
+            "accepted_p10746_caveat_rows": len(accepted_rows),
+            "rejected_p10746_caveat_rows": len(rejected_rows),
+            "pending_decision_rows": len(pending_rows),
+            "invalid_decision_rows": len(invalid_rows),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "application_rows": application_rows if application_rows else pending_rows,
+        "blockers": blockers,
+        "decision": {
+            "p10746_fold_only_caveat_accepted_now": accepted_now,
+            "p10746_fold_only_caveat_rejected_now": rejected_now,
+            "deployment_closed_now": False,
+            "ready_for_deployment_closure_application": accepted_now,
+            "next_gate": (
+                "If accepted, build a separate post-decision deployment closure "
+                "artifact that explicitly discloses the P10746 fold-only caveat. "
+                "If rejected or still pending, provide an approved non-residue "
+                "sidecar before any deployment closure claim."
+            ),
+        },
+        "source_artifacts": {
+            "decision_packet": _source_path_record(decision_packet_path),
+            "reviewed_decision_packet": (
+                _source_path_record(reviewed_decision_packet_path)
+                if reviewed_decision_packet_path is not None
+                else _source_path_record(decision_packet_path)
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "No P10746 caveat acceptance is applied unless exactly one reviewed "
+                "decision selects the accepted value with an unchanged context hash."
+            ),
+            "next_action": (
+                "Review the P10746 decision stub. Keep this gate blocked until an "
+                "explicit accept/reject choice is supplied."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_p10746_deployment_caveat_decision_application_report(
+    application: dict[str, Any],
+) -> str:
+    counts = application["counts"]
+    decision = application["decision"]
+    lines = [
+        "# Fold-Augmented P10746 Deployment-Caveat Decision Application - current702",
+        "",
+        f"Run: {application['created_utc']}",
+        "",
+        application["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {application['status']}",
+        f"- Source decision stubs: {counts['source_decision_stub_rows']}",
+        f"- Reviewed decision rows: {counts['reviewed_decision_rows']}",
+        f"- Accepted rows: {counts['accepted_p10746_caveat_rows']}",
+        f"- Rejected rows: {counts['rejected_p10746_caveat_rows']}",
+        f"- Pending rows: {counts['pending_decision_rows']}",
+        f"- Invalid rows: {counts['invalid_decision_rows']}",
+        f"- Blockers: {', '.join(application['blockers']) if application['blockers'] else 'none'}",
+        "",
+        "## Application Rows",
+        "",
+        "| row | decision | status | hash ok | blockers |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in application["application_rows"]:
+        lines.append(
+            f"| {row.get('entry_id')} | {row.get('decision')} | "
+            f"{row.get('application_status')} | "
+            f"{row.get('decision_context_sha256_matches_source')} | "
+            f"{', '.join(row.get('blockers') or [])} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- P10746 fold-only caveat accepted now: "
+        f"{decision['p10746_fold_only_caveat_accepted_now']}",
+        "- Ready for deployment closure application: "
+        f"{decision['ready_for_deployment_closure_application']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {application['interpretation']['result']}",
+        f"- {application['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_p10746_deployment_caveat_decision_application(
+    *,
+    decision_packet_path: Path,
+    out_path: Path,
+    reviewed_decision_packet_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    application = build_fold_augmented_p10746_deployment_caveat_decision_application(
+        decision_packet_path=decision_packet_path,
+        reviewed_decision_packet_path=reviewed_decision_packet_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(application, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_p10746_deployment_caveat_decision_application_report(
+                application
+            ),
+            encoding="utf-8",
+        )
+    return application
+
+
+def build_fold_augmented_post_decision_deployment_closure_status(
+    *,
+    post_rerun_confounded_deployment_closure_audit_path: Path,
+    p10746_deployment_caveat_decision_application_path: Path,
+) -> dict[str, Any]:
+    closure = _read_json(post_rerun_confounded_deployment_closure_audit_path)
+    application = _read_json(p10746_deployment_caveat_decision_application_path)
+    closure_counts = closure.get("counts") or {}
+    application_decision = application.get("decision") or {}
+    p10746_accepted = bool(
+        application_decision.get("p10746_fold_only_caveat_accepted_now")
+    )
+    remaining_combined_blockers = int(
+        closure_counts.get("remaining_combined_score_blocker_rows") or 0
+    )
+    confounded_ready = bool(
+        closure.get("decision", {}).get("confounded_subset_target_met_for_research")
+    )
+    in_scope_ok = bool(
+        closure.get("decision", {}).get("in_scope_retention_ok_at_operating_point")
+    )
+    blockers = []
+    if not confounded_ready:
+        blockers.append("confounded_subset_target_not_met")
+    if not in_scope_ok:
+        blockers.append("in_scope_retention_not_ok")
+    if remaining_combined_blockers != 1:
+        blockers.append("unexpected_remaining_combined_score_blocker_count")
+    if not p10746_accepted:
+        blockers.append("p10746_fold_only_caveat_not_accepted")
+    deployment_closed_with_caveat = not blockers and p10746_accepted
+    status = (
+        "fold_augmented_post_decision_deployment_closure_closed_with_p10746_caveat"
+        if deployment_closed_with_caveat
+        else "fold_augmented_post_decision_deployment_closure_blocked_pending_p10746_decision"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_POST_DECISION_DEPLOYMENT_CLOSURE_STATUS_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_post_decision_deployment_closure_status"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Post-decision Lever 3 deployment closure status. It composes the "
+            "post-rerun confounded closure audit with the P10746 decision "
+            "application gate. It closes only if the P10746 fold-only caveat is "
+            "explicitly accepted and the existing operating-point criteria remain "
+            "met."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "non_residue_sidecar_created_or_copied": False,
+            "deployment_closed_without_explicit_p10746_decision": False,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_confounded_oos_abstained": closure_counts.get(
+                "heldout_confounded_oos_abstained"
+            ),
+            "heldout_confounded_oos_total": closure_counts.get(
+                "heldout_confounded_oos_total"
+            ),
+            "expanded_full_channel_score_rows": closure_counts.get(
+                "expanded_full_channel_score_rows"
+            ),
+            "candidate_ids_requested": closure_counts.get("candidate_ids_requested"),
+            "remaining_combined_score_blocker_rows": remaining_combined_blockers,
+            "p10746_caveat_accepted_rows": application.get("counts", {}).get(
+                "accepted_p10746_caveat_rows"
+            ),
+            "p10746_pending_decision_rows": application.get("counts", {}).get(
+                "pending_decision_rows"
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "blockers": blockers,
+        "decision": {
+            "confounded_subset_target_met_for_research": confounded_ready,
+            "in_scope_retention_ok_at_operating_point": in_scope_ok,
+            "p10746_fold_only_caveat_accepted_now": p10746_accepted,
+            "deployment_closed_with_p10746_caveat": deployment_closed_with_caveat,
+            "deployment_closed_now": deployment_closed_with_caveat,
+            "next_gate": (
+                "Apply an explicit P10746 accept decision with unchanged context "
+                "hash, then rerun this closure status. If the caveat is rejected, "
+                "provide an approved non-residue sidecar before closure."
+                if not deployment_closed_with_caveat
+                else "Record the deployment closure claim with the P10746 fold-only "
+                "caveat disclosed; do not remove the caveat from downstream claims."
+            ),
+        },
+        "source_artifacts": {
+            "post_rerun_confounded_deployment_closure_audit": _source_path_record(
+                post_rerun_confounded_deployment_closure_audit_path
+            ),
+            "p10746_deployment_caveat_decision_application": _source_path_record(
+                p10746_deployment_caveat_decision_application_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The fold channel remains research-ready at the operating point, "
+                "but deployment closure is blocked until the P10746 fold-only "
+                "caveat is explicitly accepted or replaced by an approved "
+                "non-residue sidecar."
+            ),
+            "next_action": (
+                "Review/apply the P10746 decision stub, then regenerate this "
+                "post-decision closure status."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_post_decision_deployment_closure_status_report(
+    status: dict[str, Any],
+) -> str:
+    counts = status["counts"]
+    decision = status["decision"]
+    lines = [
+        "# Fold-Augmented Post-Decision Deployment Closure Status - current702",
+        "",
+        f"Run: {status['created_utc']}",
+        "",
+        status["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {status['status']}",
+        "- Heldout confounded OOS abstained: "
+        f"{counts['heldout_confounded_oos_abstained']}/"
+        f"{counts['heldout_confounded_oos_total']}",
+        "- Expanded full-channel rows: "
+        f"{counts['expanded_full_channel_score_rows']}/"
+        f"{counts['candidate_ids_requested']}",
+        "- Remaining combined-score blockers: "
+        f"{counts['remaining_combined_score_blocker_rows']}",
+        "- P10746 caveat accepted rows: "
+        f"{counts['p10746_caveat_accepted_rows']}",
+        "- P10746 pending decision rows: "
+        f"{counts['p10746_pending_decision_rows']}",
+        f"- Blockers: {', '.join(status['blockers']) if status['blockers'] else 'none'}",
+        "",
+        "## Decision",
+        "",
+        "- Deployment closed with P10746 caveat: "
+        f"{decision['deployment_closed_with_p10746_caveat']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {status['interpretation']['result']}",
+        f"- {status['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_post_decision_deployment_closure_status(
+    *,
+    post_rerun_confounded_deployment_closure_audit_path: Path,
+    p10746_deployment_caveat_decision_application_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    status = build_fold_augmented_post_decision_deployment_closure_status(
+        post_rerun_confounded_deployment_closure_audit_path=(
+            post_rerun_confounded_deployment_closure_audit_path
+        ),
+        p10746_deployment_caveat_decision_application_path=(
+            p10746_deployment_caveat_decision_application_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(status, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_post_decision_deployment_closure_status_report(
+                status
+            ),
+            encoding="utf-8",
+        )
+    return status
 
 
 P23007_ALTERNATE_ACCESSION_SCOUT_CANDIDATES: list[dict[str, Any]] = [

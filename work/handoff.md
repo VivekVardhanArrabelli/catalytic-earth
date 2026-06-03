@@ -50,6 +50,97 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 7
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T07:03:08Z`
+- STARTED_LOCAL: `2026-06-03T02:03:08-0500 CDT`
+- ENDED_AT: `2026-06-03T07:30:28Z`
+- ENDED_LOCAL: `2026-06-03T02:30:28-0500 CDT`
+- ELAPSED_MINUTES: `27.3`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "39010", "started_at": "2026-06-03T07:03:08Z", "started_local": "2026-06-03T02:03:08-0500 CDT", "status": "acquired"}`
+
+#### Current intent
+
+Use the active handoff as primary truth, continue inside Levers 2/3/4 from
+current `main`, and make the highest-value deployable forward move without
+editing labels, registries, ontologies, imports, production thresholds, or any
+heldout-tuned surfaces.
+
+#### What changed
+
+- Lever 3: added
+  `v3_fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603`
+  and report. It composes the expanded OOS-calibrated threshold contract with
+  the fixed-threshold rerun closure status, preserving the operating-point
+  readout of 5/6 confounded heldout OOS abstained and 45/47 in-scope retained
+  while narrowing deployment blockers from the old five-row closure audit to
+  the single `m_csa:204`/P10746 fold-only caveat.
+- Lever 3: performed and recorded a current UniProtKB P10746 source-feature
+  refresh audit. The source record returned HTTP 200 and 63 total features, but
+  0 eligible active-site/binding-site/source-feature rows for a non-residue
+  sidecar path, so it does not mechanically clear the P10746 caveat.
+- Lever 3: added a review-only P10746 deployment-caveat decision packet, a
+  fail-closed decision-application gate, and a post-decision closure-status
+  gate. The current packet has one pending accept/reject stub with context hash
+  `8b5d0ca064b82b0b091d53ba1ba7ea4caa382545bb69754ab11e18e200f00996`;
+  the application gate is hash-valid but pending; deployment remains unclosed.
+- Lever 2 and Lever 4 were checked for mechanical pivots. Lever 2 remains
+  blocked by explicit locator approvals/event-axis linkers or explicit
+  lower-recall fallback acceptance. Lever 4 remains closed for automation with
+  0 mechanically clearable locator decisions and 5 rows requiring external
+  approval/evidence.
+- Updated CLI commands, focused unit tests, artifact-regression tests, and
+  current docs/artifact references. No labels, registries, ontologies,
+  imports, production thresholds, model weights, sidecar copies, heldout
+  training/tuning surfaces, or heldout threshold applications changed.
+- Stopped before the 55-minute target because the safe mechanical Lever 3
+  chain is complete and the remaining blocker is the explicit P10746 policy
+  decision staged in the decision packet/application gate.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'post_rerun_confounded_deployment_closure or post_rerun_deployment_closure_status' -q`
+  passed: 2 tests, 123 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'post_rerun_confounded_deployment_closure or post_rerun_deployment_closure_status' -q`
+  passed: 2 tests, 160 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'p10746_deployment_caveat_decision or post_decision_deployment_closure' -q`
+  passed: 3 tests, 125 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'p10746_deployment_caveat_decision or post_decision_deployment_closure or p10746_source_feature_refresh or post_rerun_confounded_deployment_closure' -q`
+  passed: 5 tests, 161 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`
+  passed: 1 test, 98 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  passed: 412 tests, 105 subtests.
+- `PYTHONPATH=src python -m pytest -q` passed: 1283 tests, 124 subtests; 1
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 curated labels.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1238 tests;
+  same existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `python -m json.tool` passed for the five new JSON artifacts.
+- `git diff --check` passed.
+
+#### Exact next action
+
+- Review
+  `artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.json`
+  and set the single `m_csa:204`/P10746 stub to either
+  `explicit_accept_p10746_fold_only_deployment_caveat` or
+  `reject_p10746_caveat_require_approved_non_residue_sidecar`, leaving
+  `decision_context_sha256` unchanged. Then rerun
+  `apply-fold-augmented-p10746-deployment-caveat-decision` with the reviewed
+  packet and rerun
+  `build-fold-augmented-post-decision-deployment-closure-status`. Do not claim
+  deployment closure unless the application gate accepts the caveat; if the
+  caveat is rejected, provide an approved non-residue sidecar instead.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 6
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

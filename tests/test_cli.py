@@ -973,6 +973,45 @@ class CliTests(unittest.TestCase):
                 "cmd_build_fold_augmented_post_rerun_deployment_closure_status",
             ),
             (
+                (
+                    "audit-fold-augmented-post-rerun-confounded-deployment-"
+                    "closure"
+                ),
+                (
+                    "cmd_audit_fold_augmented_post_rerun_confounded_"
+                    "deployment_closure"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-p10746-deployment-caveat-decision-"
+                    "packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_p10746_deployment_caveat_"
+                    "decision_packet"
+                ),
+            ),
+            (
+                (
+                    "apply-fold-augmented-p10746-deployment-caveat-decision"
+                ),
+                (
+                    "cmd_apply_fold_augmented_p10746_deployment_caveat_"
+                    "decision"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-post-decision-deployment-closure-"
+                    "status"
+                ),
+                (
+                    "cmd_build_fold_augmented_post_decision_deployment_"
+                    "closure_status"
+                ),
+            ),
+            (
                 "audit-fold-augmented-confounded-deployment-closure",
                 "cmd_audit_fold_augmented_confounded_deployment_closure",
             ),

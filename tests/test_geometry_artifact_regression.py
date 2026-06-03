@@ -3322,6 +3322,192 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "fold_only_policy_caveat_not_combined_scored",
         )
 
+    def test_fold_augmented_post_rerun_confounded_deployment_closure_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_post_rerun_confounded_deployment_closure_"
+                "audit_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "post_rerun_confounded_fold_channel_research_ready_p10746_caveat",
+        )
+        self.assertEqual(audit["operating_point"]["fixed_threshold"], 0.44155)
+        self.assertEqual(audit["counts"]["priority_confounded_oos_rows"], 6)
+        self.assertEqual(audit["counts"]["priority_nearest_hits"], 6)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_abstained"], 5)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_total"], 6)
+        self.assertEqual(audit["counts"]["expanded_full_channel_score_rows"], 75)
+        self.assertEqual(audit["counts"]["candidate_ids_requested"], 76)
+        self.assertEqual(audit["counts"]["remaining_combined_score_blocker_rows"], 1)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 1)
+        self.assertEqual(
+            audit["post_rerun_closure"]["remaining_blocker_rows"][0]["entry_id"],
+            "m_csa:204",
+        )
+        self.assertTrue(
+            audit["decision"]["confounded_subset_target_met_for_research"]
+        )
+        self.assertFalse(audit["decision"]["deployable_without_production_caveat"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_p10746_source_feature_refresh_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p10746_source_feature_refresh_audit_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p10746_source_feature_refresh_no_eligible_features",
+        )
+        self.assertEqual(audit["source_record"]["http_status"], 200)
+        self.assertEqual(audit["feature_audit"]["features_total"], 63)
+        self.assertEqual(audit["feature_audit"]["eligible_source_feature_count"], 0)
+        self.assertFalse(
+            audit["decision"]["p10746_source_features_available_for_sidecar_review"]
+        )
+        self.assertFalse(audit["decision"]["deployment_caveat_cleared_now"])
+        self.assertFalse(audit["guardrails"]["sidecars_created_or_copied"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_p10746_deployment_caveat_decision_packet_current_counts(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p10746_deployment_caveat_decision_packet_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["status"],
+            "p10746_deployment_caveat_decision_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["decision_stub_rows"], 1)
+        self.assertEqual(packet["counts"]["p10746_post_rerun_blocker_rows"], 1)
+        self.assertEqual(packet["counts"]["eligible_source_feature_count"], 0)
+        self.assertEqual(packet["counts"]["non_residue_policy_approved_rows"], 0)
+        self.assertEqual(packet["counts"]["fold_only_contract_authorized"], 0)
+        self.assertEqual(packet["counts"]["blockers"], 0)
+        self.assertEqual(packet["counts"]["heldout_confounded_oos_abstained"], 5)
+        self.assertEqual(packet["counts"]["heldout_confounded_oos_total"], 6)
+        self.assertTrue(packet["decision"]["ready_for_explicit_policy_decision"])
+        self.assertFalse(packet["decision"]["p10746_fold_only_caveat_accepted_now"])
+        self.assertFalse(packet["decision"]["deployment_closed_now"])
+        stub = packet["decision_stubs"][0]
+        self.assertEqual(stub["entry_id"], "m_csa:204")
+        self.assertEqual(stub["accession"], "P10746")
+        self.assertEqual(stub["review_status"], "pending_explicit_decision")
+        self.assertIn(
+            "explicit_accept_p10746_fold_only_deployment_caveat",
+            stub["allowed_decisions"],
+        )
+        self.assertIn(
+            "reject_p10746_caveat_require_approved_non_residue_sidecar",
+            stub["allowed_decisions"],
+        )
+        self.assertFalse(packet["guardrails"]["deployment_closed_now"])
+        self.assertFalse(packet["guardrails"]["heldout_rows_read_now"])
+
+    def test_fold_augmented_p10746_deployment_caveat_decision_application_current_counts(
+        self,
+    ) -> None:
+        application = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p10746_deployment_caveat_decision_"
+                "application_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            application["status"],
+            "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision",
+        )
+        self.assertEqual(application["counts"]["source_decision_stub_rows"], 1)
+        self.assertEqual(application["counts"]["reviewed_decision_rows"], 1)
+        self.assertEqual(application["counts"]["accepted_p10746_caveat_rows"], 0)
+        self.assertEqual(application["counts"]["pending_decision_rows"], 1)
+        self.assertEqual(application["counts"]["invalid_decision_rows"], 0)
+        self.assertIn(
+            "explicit_p10746_caveat_decision_missing",
+            application["blockers"],
+        )
+        self.assertEqual(
+            application["application_rows"][0]["entry_id"], "m_csa:204"
+        )
+        self.assertTrue(
+            application["application_rows"][0][
+                "decision_context_sha256_matches_source"
+            ]
+        )
+        self.assertFalse(
+            application["decision"]["p10746_fold_only_caveat_accepted_now"]
+        )
+        self.assertFalse(
+            application["decision"]["ready_for_deployment_closure_application"]
+        )
+        self.assertFalse(application["guardrails"]["deployment_closed_now"])
+        self.assertFalse(application["guardrails"]["heldout_rows_read_now"])
+
+    def test_fold_augmented_post_decision_deployment_closure_status_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_post_decision_deployment_closure_status_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_post_decision_deployment_closure_blocked_pending_p10746_decision",
+        )
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_abstained"], 5)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_total"], 6)
+        self.assertEqual(audit["counts"]["expanded_full_channel_score_rows"], 75)
+        self.assertEqual(audit["counts"]["candidate_ids_requested"], 76)
+        self.assertEqual(audit["counts"]["remaining_combined_score_blocker_rows"], 1)
+        self.assertEqual(audit["counts"]["p10746_caveat_accepted_rows"], 0)
+        self.assertEqual(audit["counts"]["p10746_pending_decision_rows"], 1)
+        self.assertIn("p10746_fold_only_caveat_not_accepted", audit["blockers"])
+        self.assertTrue(
+            audit["decision"]["confounded_subset_target_met_for_research"]
+        )
+        self.assertTrue(
+            audit["decision"]["in_scope_retention_ok_at_operating_point"]
+        )
+        self.assertFalse(audit["decision"]["deployment_closed_now"])
+        self.assertFalse(
+            audit["decision"]["deployment_closed_with_p10746_caveat"]
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(
+            audit["guardrails"]["deployment_closed_without_explicit_p10746_decision"]
+        )
+
     def test_fold_augmented_remaining_blocker_decision_matrix_current_counts(
         self,
     ) -> None:

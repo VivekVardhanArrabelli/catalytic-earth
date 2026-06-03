@@ -183,13 +183,23 @@ rows, with 30/75 abstained at the fixed threshold and only `m_csa:204` still
 blocked from combined scoring. The post-rerun closure-status gate therefore
 reduces the prior five production blockers to one unresolved P10746 fold-only
 caveat, while preserving the existing 5/6 heldout confounded OOS abstention
-readout from the prior readiness artifact.
+readout from the prior readiness artifact. The post-rerun confounded closure
+audit now composes the expanded threshold contract directly and records the
+current state as research-ready with one P10746 caveat, not five production
+blockers.
 
 Consequence / next gate: carry the fixed-threshold impact and P10746 fold-only
 caveat into the deployment decision. Either explicitly accept the P10746
 fold-only caveat for deployment closure or provide an approved non-residue
-sidecar. A separate OOS-calibrated threshold regeneration may be run from the
-expanded train/cal surface only if wanted; do not tune on heldout rows.
+sidecar. A 2026-06-03 UniProtKB refresh for P10746 returned HTTP 200 and 63
+features, but 0 eligible active-site/binding-site source-feature rows, so it
+does not open an automation-clearable sidecar path. A P10746 decision packet now
+stages the one remaining accept/reject choice with an unchanged context hash;
+the companion application gate validates the current packet as hash-matched
+but still pending. The post-decision closure gate therefore remains blocked
+only by the unaccepted P10746 caveat. No caveat was accepted and deployment
+remains unclosed. A separate OOS-calibrated threshold regeneration may be run
+from the expanded train/cal surface only if wanted; do not tune on heldout rows.
 
 Artifacts:
 `artifacts/v3_fold_augmented_blocker_human_decision_application_current702_20260603.json`,
@@ -204,9 +214,19 @@ Artifacts:
 `work/fold_augmented_fixed_threshold_combined_rerun_readout_current702_20260603.md`,
 `artifacts/v3_fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603.json`,
 `work/fold_augmented_fixed_threshold_combined_rerun_calibration_impact_current702_20260603.md`,
+`artifacts/v3_fold_augmented_p10746_source_feature_refresh_audit_current702_20260603.json`,
+`work/fold_augmented_p10746_source_feature_refresh_audit_current702_20260603.md`,
 `artifacts/v3_fold_augmented_post_rerun_deployment_closure_status_current702_20260603.json`,
+`work/fold_augmented_post_rerun_deployment_closure_status_current702_20260603.md`,
+`artifacts/v3_fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603.json`,
+`work/fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603.md`,
+`artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.json`,
+`work/fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.md`,
+`artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json`,
+`work/fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.md`,
+`artifacts/v3_fold_augmented_post_decision_deployment_closure_status_current702_20260603.json`,
 and
-`work/fold_augmented_post_rerun_deployment_closure_status_current702_20260603.md`.
+`work/fold_augmented_post_decision_deployment_closure_status_current702_20260603.md`.
 
 ## 2026-06-03: Lever 4 Local-Cache Locator Discovery Closes With Five Human/Policy Blockers
 

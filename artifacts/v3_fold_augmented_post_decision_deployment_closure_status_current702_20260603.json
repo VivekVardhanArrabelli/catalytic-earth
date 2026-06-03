@@ -1,0 +1,58 @@
+{
+  "artifact_id": "v3_fold_augmented_post_decision_deployment_closure_status_current702_20260603",
+  "blockers": [
+    "p10746_fold_only_caveat_not_accepted"
+  ],
+  "counts": {
+    "blockers": 1,
+    "candidate_ids_requested": 76,
+    "critical_violation_total": 0,
+    "expanded_full_channel_score_rows": 75,
+    "heldout_confounded_oos_abstained": 5,
+    "heldout_confounded_oos_total": 6,
+    "p10746_caveat_accepted_rows": 0,
+    "p10746_pending_decision_rows": 1,
+    "remaining_combined_score_blocker_rows": 1
+  },
+  "created_utc": "2026-06-03T07:26:06Z",
+  "decision": {
+    "confounded_subset_target_met_for_research": true,
+    "deployment_closed_now": false,
+    "deployment_closed_with_p10746_caveat": false,
+    "in_scope_retention_ok_at_operating_point": true,
+    "next_gate": "Apply an explicit P10746 accept decision with unchanged context hash, then rerun this closure status. If the caveat is rejected, provide an approved non-residue sidecar before closure.",
+    "p10746_fold_only_caveat_accepted_now": false
+  },
+  "guardrails": {
+    "deployment_closed_without_explicit_p10746_decision": false,
+    "heldout_rows_read_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "non_residue_sidecar_created_or_copied": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Review/apply the P10746 decision stub, then regenerate this post-decision closure status.",
+    "result": "The fold channel remains research-ready at the operating point, but deployment closure is blocked until the P10746 fold-only caveat is explicitly accepted or replaced by an approved non-residue sidecar."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_post_decision_deployment_closure_status",
+  "scope": "Post-decision Lever 3 deployment closure status. It composes the post-rerun confounded closure audit with the P10746 decision application gate. It closes only if the P10746 fold-only caveat is explicitly accepted and the existing operating-point criteria remain met.",
+  "source_artifacts": {
+    "p10746_deployment_caveat_decision_application": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json",
+      "sha256": "6faf0d74699cba82bcb56b214473eb1ac73d0237d95ffa4dc95c2db3793fc8e3"
+    },
+    "post_rerun_confounded_deployment_closure_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603.json",
+      "sha256": "d023961d85db0e0b58ba21f68eff8e3af37e864175e8d35ddefe28d4371aff40"
+    }
+  },
+  "status": "fold_augmented_post_decision_deployment_closure_blocked_pending_p10746_decision"
+}
