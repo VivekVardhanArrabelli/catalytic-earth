@@ -8,6 +8,8 @@ from pathlib import Path
 
 from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
+    build_active_lever_mechanical_actionability_audit,
+    build_active_lever_priority_decision_templates,
     build_active_lever_reviewer_decision_queue,
     build_family_panel_evidence_packet,
     build_family_panel_high_value_glycyl_radical_readiness_packet,
@@ -69,6 +71,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
@@ -9527,6 +9530,175 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(schema["counts"]["fallback_contract_available"], 1)
         self.assertFalse(schema["guardrails"]["heldout_rows_evaluated"])
 
+    def test_followup_pair_source_free_event_axis_linker_gate_blocks_without_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema_path = root / "schema.json"
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linker_schema_ready": True},
+                        "blockers_to_clear": [
+                            "source_free_current702_heldout_locator_surface_missing"
+                        ],
+                        "target_feature": {
+                            "event_type": "proton_transfer",
+                            "residue_role": "electrostatic_stabiliser",
+                        },
+                        "row_schema": {
+                            "required_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_free_event_axis_status",
+                                "event_type",
+                                "residue_role",
+                                "event_residue_linkers",
+                                "guardrail_audit",
+                            ],
+                            "event_residue_linker_required_fields": [
+                                "residue_locator_id",
+                                "residue_code",
+                                "sequence_position",
+                                "source_free_residue_role_evidence",
+                                "source_free_event_axis_evidence",
+                                "confidence",
+                            ],
+                            "allowed_event_types": ["proton_transfer"],
+                            "allowed_residue_roles": [
+                                "electrostatic_stabiliser"
+                            ],
+                            "minimum_linkers_per_ready_row": 1,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+                event_axis_linker_schema_path=schema_path,
+            )
+
+        self.assertEqual(
+            gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_blocked",
+        )
+        self.assertEqual(gate["counts"]["submitted_linker_rows"], 0)
+        self.assertEqual(gate["counts"]["materialized_linker_rows"], 0)
+        self.assertIn(
+            "source_free_event_axis_linker_rows_missing", gate["blockers"]
+        )
+        self.assertFalse(gate["decision"]["event_axis_linkers_materialized"])
+        self.assertFalse(gate["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_event_axis_linker_gate_validates_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema_path = root / "schema.json"
+            rows_path = root / "rows.json"
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linker_schema_ready": True},
+                        "blockers_to_clear": [],
+                        "target_feature": {
+                            "event_type": "proton_transfer",
+                            "residue_role": "electrostatic_stabiliser",
+                        },
+                        "row_schema": {
+                            "required_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_free_event_axis_status",
+                                "event_type",
+                                "residue_role",
+                                "event_residue_linkers",
+                                "guardrail_audit",
+                            ],
+                            "event_residue_linker_required_fields": [
+                                "residue_locator_id",
+                                "residue_code",
+                                "sequence_position",
+                                "source_free_residue_role_evidence",
+                                "source_free_event_axis_evidence",
+                                "confidence",
+                            ],
+                            "allowed_event_types": ["proton_transfer"],
+                            "allowed_residue_roles": [
+                                "electrostatic_stabiliser"
+                            ],
+                            "minimum_linkers_per_ready_row": 1,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rows_path.write_text(
+                json.dumps(
+                    {
+                        "event_axis_linker_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "P00003",
+                                "source_free_event_axis_status": (
+                                    "source_free_event_axis_linker_ready"
+                                ),
+                                "event_type": "proton_transfer",
+                                "residue_role": "electrostatic_stabiliser",
+                                "event_residue_linkers": [
+                                    {
+                                        "residue_locator_id": "loc-1",
+                                        "residue_code": "HIS",
+                                        "sequence_position": 12,
+                                        "source_free_residue_role_evidence": (
+                                            "structure_local_polar_network"
+                                        ),
+                                        "source_free_event_axis_evidence": (
+                                            "source_free_hbond_geometry"
+                                        ),
+                                        "confidence": 0.8,
+                                    }
+                                ],
+                                "guardrail_audit": {
+                                    "labels_registries_ontologies_changed": False,
+                                    "imports_or_promotions_performed": False,
+                                    "production_thresholds_changed": False,
+                                    "heldout_rows_evaluated": False,
+                                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                                    "m_csa_heldout_row_specific_mechanism_text_used": False,
+                                    "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+                                    "source_text_or_source_ids_used_as_predictive_features": False,
+                                    "source_ids_used_as_predictive_features": False,
+                                    "target_names_used_as_predictive_features": False,
+                                    "ec_or_rhea_ids_used_as_predictive_features": False,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+                event_axis_linker_schema_path=schema_path,
+                linker_rows_path=rows_path,
+            )
+
+        self.assertEqual(
+            gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_ready",
+        )
+        self.assertEqual(gate["counts"]["submitted_linker_rows"], 1)
+        self.assertEqual(gate["counts"]["materialized_linker_rows"], 1)
+        self.assertEqual(gate["counts"]["critical_violation_total"], 0)
+        self.assertEqual(gate["blockers"], [])
+        self.assertTrue(gate["decision"]["event_axis_linkers_materialized"])
+        self.assertFalse(gate["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertFalse(gate["guardrails"]["heldout_rows_evaluated"])
+
     def test_followup_pair_source_free_locator_action_queue_prioritizes_rows(
         self,
     ) -> None:
@@ -10963,6 +11135,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
             contract_path = root / "contract.json"
             surface_path = root / "surface.json"
             event_schema_path = root / "event_schema.json"
+            event_gate_path = root / "event_gate.json"
             locator_gate_path = root / "locator_gate.json"
             approval_packet_path = root / "approval_packet.json"
             locator_input_path = root / "locator_input.json"
@@ -11013,6 +11186,16 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            event_gate_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linkers_materialized": False},
+                        "counts": {"materialized_linker_rows": 0},
+                        "blockers": ["source_free_event_axis_linker_rows_missing"],
+                    }
+                ),
+                encoding="utf-8",
+            )
             locator_gate_path.write_text(
                 json.dumps(
                     {
@@ -11059,6 +11242,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 source_free_application_surface_path=surface_path,
                 event_axis_linker_schema_path=event_schema_path,
                 locator_rewrite_materialization_gate_path=locator_gate_path,
+                event_axis_linker_materialization_gate_path=event_gate_path,
                 locator_rewrite_approval_packet_path=approval_packet_path,
                 source_free_locator_input_audit_path=locator_input_path,
             )
@@ -11094,6 +11278,10 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertIn(
             "source_free_event_axis_linkers_missing",
+            readiness["blockers"],
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_rows_missing",
             readiness["blockers"],
         )
         self.assertFalse(
@@ -13242,6 +13430,372 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(queue["decision"]["apply_decisions_now"])
         self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
+
+    def test_active_lever_mechanical_actionability_audit_blocks_external_decisions(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            lever2_path = root / "lever2.json"
+            event_path = root / "event.json"
+            closure_path = root / "closure.json"
+            family_path = root / "family.json"
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "decision_items": 3,
+                            "automation_action_allowed_now_items": 0,
+                            "lever2_clean_locator_rewrite_items": 1,
+                            "lever4_import_preview_candidate_if_accepted_items": 1,
+                            "decision_class_counts": {
+                                "p10746_fold_only_deployment_caveat": 1,
+                                "family_panel_expert_import_decision": 1,
+                                "source_free_locator_rewrite_approval": 1,
+                            },
+                        },
+                        "decision_queue": [
+                            {
+                                "priority": 1,
+                                "lever": "Lever 3",
+                                "entry_id": "m_csa:204",
+                                "decision_class": (
+                                    "p10746_fold_only_deployment_caveat"
+                                ),
+                                "review_status": "pending_explicit_decision",
+                                "allowed_decisions": [
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ],
+                                "decision_context_sha256": "a" * 64,
+                            },
+                            {
+                                "priority": 2,
+                                "lever": "Lever 4",
+                                "entry_id": "m_csa:30",
+                                "decision_class": (
+                                    "family_panel_expert_import_decision"
+                                ),
+                                "review_status": (
+                                    "pending_expert_import_decision"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_accept_family_panel_import_candidate"
+                                ],
+                                "decision_context_sha256": "b" * 64,
+                            },
+                            {
+                                "priority": 3,
+                                "lever": "Lever 2",
+                                "entry_id": "m_csa:3",
+                                "decision_class": (
+                                    "source_free_locator_rewrite_approval"
+                                ),
+                                "review_status": "pending_reviewer_decision",
+                                "allowed_decisions": [
+                                    "explicit_approve_locator_rewrite",
+                                    "reject_locator_rewrite",
+                                ],
+                                "candidate_sha256": "c" * 64,
+                                "planned_locator_payload_sha256": "d" * 64,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            lever2_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"locator_sidecars_written": 0},
+                        "decision": {
+                            "ready_to_apply_frozen_residual_threshold_once": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"materialized_linker_rows": 1},
+                        "decision": {"event_axis_linkers_materialized": True},
+                        "blockers": [
+                            "approved_source_free_locator_surface_still_required"
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            closure_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "deployment_closed_with_p10746_caveat": False
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"label_factory_gate_input_rows": 0},
+                        "decision": {"label_factory_gate_inputs_ready": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_active_lever_mechanical_actionability_audit(
+                active_lever_reviewer_decision_queue_path=queue_path,
+                lever2_pre_threshold_readiness_path=lever2_path,
+                lever2_event_axis_linker_schema_path=event_path,
+                lever3_post_decision_deployment_closure_status_path=closure_path,
+                family_panel_label_factory_gate_readiness_path=family_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "active_lever_mechanical_actionability_blocked_external_decisions",
+        )
+        self.assertEqual(audit["counts"]["decision_items"], 3)
+        self.assertEqual(audit["counts"]["external_decision_required_items"], 3)
+        self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
+        self.assertIn("p10746_policy_decision_missing", audit["blockers"])
+        self.assertIn(
+            "source_free_event_axis_linker_gate_blocked", audit["blockers"]
+        )
+        self.assertNotIn(
+            "source_free_event_axis_linkers_missing", audit["blockers"]
+        )
+        event_checks = [
+            check
+            for check in audit["gate_checks"]
+            if check["gate"] == "source_free_event_axis_linkers"
+        ]
+        self.assertEqual(event_checks[0]["ready_now"], False)
+        self.assertEqual(
+            event_checks[0]["blocking_reason"],
+            "source_free_event_axis_linker_gate_blocked",
+        )
+        self.assertFalse(audit["decision"]["apply_any_decision_gate_now"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+
+    def test_active_lever_priority_decision_templates_group_pending_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            p10746_packet_path = root / "p10746.json"
+            family_packet_path = root / "family.json"
+            locator_packet_path = root / "locator.json"
+            p10746_packet_path.write_text(
+                json.dumps(
+                    {
+                        "decision_stubs": [
+                            {
+                                "entry_id": "m_csa:204",
+                                "decision_context_sha256": "a" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family_packet_path.write_text(
+                json.dumps(
+                    {
+                        "expert_import_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "decision_context_sha256": "b" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator_packet_path.write_text(
+                json.dumps(
+                    {
+                        "locator_rewrite_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "candidate_sha256": "c" * 64,
+                                "planned_locator_payload_sha256": "d" * 64,
+                            },
+                            {
+                                "entry_id": "m_csa:56",
+                                "candidate_sha256": "e" * 64,
+                                "planned_locator_payload_sha256": "f" * 64,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "source_artifacts": {
+                            "p10746_decision_packet": {
+                                "path": str(p10746_packet_path)
+                            },
+                            "family_panel_expert_import_decision_packet": {
+                                "path": str(family_packet_path)
+                            },
+                            "lever2_locator_rewrite_approval_packet": {
+                                "path": str(locator_packet_path)
+                            },
+                        },
+                        "decision_queue": [
+                            {
+                                "lever": "Lever 3",
+                                "entry_id": "m_csa:204",
+                                "decision_class": (
+                                    "p10746_fold_only_deployment_caveat"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ],
+                                "decision_context_sha256": "a" * 64,
+                            },
+                            {
+                                "lever": "Lever 4",
+                                "entry_id": "m_csa:30",
+                                "decision_class": (
+                                    "family_panel_expert_import_decision"
+                                ),
+                                "panel_or_scope": "panel_a",
+                                "allowed_decisions": [
+                                    "explicit_accept_family_panel_import_candidate"
+                                ],
+                                "decision_context_sha256": "b" * 64,
+                                "import_preview_candidate_if_accepted_now": True,
+                            },
+                            {
+                                "lever": "Lever 2",
+                                "entry_id": "m_csa:3",
+                                "decision_class": (
+                                    "source_free_locator_rewrite_approval"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_approve_locator_rewrite",
+                                    "reject_locator_rewrite",
+                                ],
+                                "candidate_sha256": "c" * 64,
+                                "planned_locator_payload_sha256": "d" * 64,
+                                "coordinate_contact_warning_count": 0,
+                            },
+                            {
+                                "lever": "Lever 2",
+                                "entry_id": "m_csa:56",
+                                "decision_class": (
+                                    "source_free_locator_rewrite_approval"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_approve_locator_rewrite",
+                                    "reject_locator_rewrite",
+                                ],
+                                "candidate_sha256": "e" * 64,
+                                "planned_locator_payload_sha256": "f" * 64,
+                                "coordinate_contact_warning_count": 1,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            templates = build_active_lever_priority_decision_templates(
+                active_lever_reviewer_decision_queue_path=queue_path
+            )
+
+        self.assertEqual(
+            templates["status"],
+            "active_lever_priority_decision_templates_ready_review_only",
+        )
+        self.assertEqual(templates["counts"]["template_rows"], 4)
+        self.assertEqual(
+            templates["counts"]["p10746_policy_decision_templates"], 1
+        )
+        self.assertEqual(
+            templates["counts"][
+                "family_panel_import_preview_candidate_templates"
+            ],
+            1,
+        )
+        self.assertEqual(
+            templates["counts"]["clean_locator_rewrite_approval_templates"], 1
+        )
+        self.assertEqual(
+            templates["counts"]["warning_locator_rewrite_approval_templates"], 1
+        )
+        self.assertEqual(templates["counts"]["source_locations_matched_by_hash"], 4)
+        self.assertEqual(templates["counts"]["source_locations_unresolved"], 0)
+        self.assertFalse(templates["decision"]["apply_templates_now"])
+        self.assertEqual(
+            templates["template_groups"]["clean_locator_rewrite_approvals"][0][
+                "reviewer_decision"
+            ],
+            "pending_reviewer_decision",
+        )
+        self.assertEqual(
+            templates["template_groups"]["p10746_policy_decisions"][0][
+                "source_json_pointer"
+            ],
+            "/decision_stubs/0",
+        )
+        self.assertFalse(templates["guardrails"]["decisions_applied"])
+
+    def test_active_lever_priority_decision_templates_block_unresolved_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "decision_queue": [
+                            {
+                                "lever": "Lever 3",
+                                "entry_id": "m_csa:204",
+                                "decision_class": (
+                                    "p10746_fold_only_deployment_caveat"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ],
+                                "decision_context_sha256": "a" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            templates = build_active_lever_priority_decision_templates(
+                active_lever_reviewer_decision_queue_path=queue_path
+            )
+
+        self.assertEqual(
+            templates["status"], "active_lever_priority_decision_templates_blocked"
+        )
+        self.assertIn(
+            "decision_template_source_locations_incomplete",
+            templates["blockers"],
+        )
+        self.assertEqual(templates["counts"]["source_locations_unresolved"], 1)
+        self.assertFalse(templates["decision"]["templates_ready_for_review"])
+        self.assertEqual(
+            templates["template_groups"]["p10746_policy_decisions"][0][
+                "source_location_status"
+            ],
+            "source_artifact_not_listed",
+        )
 
     def test_selected_organic_cofactor_sidecar_schema_audit_passes_complete_grid(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

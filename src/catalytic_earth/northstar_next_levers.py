@@ -183,6 +183,12 @@ FOLD_AUGMENTED_FAMILY_PANEL_LABEL_FACTORY_GATE_READINESS_ID = (
 ACTIVE_LEVER_REVIEWER_DECISION_QUEUE_ID = (
     "v3_active_lever_reviewer_decision_queue_current702_20260603"
 )
+ACTIVE_LEVER_MECHANICAL_ACTIONABILITY_AUDIT_ID = (
+    "v3_active_lever_mechanical_actionability_audit_current702_20260603"
+)
+ACTIVE_LEVER_PRIORITY_DECISION_TEMPLATES_ID = (
+    "v3_active_lever_priority_decision_templates_current702_20260603"
+)
 FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_QUEUE_ID = (
     "v3_fold_augmented_family_panel_source_check_queue_current702_20260601"
 )
@@ -443,6 +449,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_SCHEMA_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_MATERIALIZATION_GATE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603"
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_ACTION_QUEUE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_current702_20260602"
@@ -25509,6 +25518,937 @@ def write_active_lever_reviewer_decision_queue(
     return queue
 
 
+def build_active_lever_mechanical_actionability_audit(
+    *,
+    active_lever_reviewer_decision_queue_path: Path,
+    lever2_pre_threshold_readiness_path: Path | None = None,
+    lever2_event_axis_linker_schema_path: Path | None = None,
+    lever2_event_axis_linker_materialization_gate_path: Path | None = None,
+    lever3_post_decision_deployment_closure_status_path: Path | None = None,
+    family_panel_label_factory_gate_readiness_path: Path | None = None,
+) -> dict[str, Any]:
+    queue = (
+        _read_json(active_lever_reviewer_decision_queue_path)
+        if Path(active_lever_reviewer_decision_queue_path).exists()
+        else {}
+    )
+    lever2_readiness = (
+        _read_json(lever2_pre_threshold_readiness_path)
+        if lever2_pre_threshold_readiness_path is not None
+        and Path(lever2_pre_threshold_readiness_path).exists()
+        else {}
+    )
+    event_schema = (
+        _read_json(lever2_event_axis_linker_schema_path)
+        if lever2_event_axis_linker_schema_path is not None
+        and Path(lever2_event_axis_linker_schema_path).exists()
+        else {}
+    )
+    event_gate = (
+        _read_json(lever2_event_axis_linker_materialization_gate_path)
+        if lever2_event_axis_linker_materialization_gate_path is not None
+        and Path(lever2_event_axis_linker_materialization_gate_path).exists()
+        else {}
+    )
+    lever3_closure = (
+        _read_json(lever3_post_decision_deployment_closure_status_path)
+        if lever3_post_decision_deployment_closure_status_path is not None
+        and Path(lever3_post_decision_deployment_closure_status_path).exists()
+        else {}
+    )
+    lever4_readiness = (
+        _read_json(family_panel_label_factory_gate_readiness_path)
+        if family_panel_label_factory_gate_readiness_path is not None
+        and Path(family_panel_label_factory_gate_readiness_path).exists()
+        else {}
+    )
+
+    queue_items = [
+        item
+        for item in queue.get("decision_queue", [])
+        if isinstance(item, dict)
+    ]
+    queue_counts = queue.get("counts", {}) if isinstance(queue, dict) else {}
+    decision_class_counts = Counter(
+        str(item.get("decision_class")) for item in queue_items
+    )
+    if isinstance(queue_counts.get("decision_class_counts"), dict):
+        decision_class_counts.update(
+            {
+                str(key): int(value)
+                for key, value in queue_counts["decision_class_counts"].items()
+            }
+        )
+        decision_class_counts.subtract(
+            Counter(str(item.get("decision_class")) for item in queue_items)
+        )
+        decision_class_counts += Counter()
+
+    automation_allowed = int(
+        queue_counts.get("automation_action_allowed_now_items") or 0
+    )
+    lever2_counts = (
+        lever2_readiness.get("counts", {})
+        if isinstance(lever2_readiness, dict)
+        else {}
+    )
+    lever2_decision = (
+        lever2_readiness.get("decision", {})
+        if isinstance(lever2_readiness, dict)
+        else {}
+    )
+    event_source = event_gate if event_gate else event_schema
+    event_counts = (
+        event_source.get("counts", {}) if isinstance(event_source, dict) else {}
+    )
+    event_decision = (
+        event_source.get("decision", {}) if isinstance(event_source, dict) else {}
+    )
+    event_blockers = (
+        event_source.get("blockers", []) if isinstance(event_source, dict) else []
+    )
+    closure_decision = (
+        lever3_closure.get("decision", {})
+        if isinstance(lever3_closure, dict)
+        else {}
+    )
+    lever4_counts = (
+        lever4_readiness.get("counts", {})
+        if isinstance(lever4_readiness, dict)
+        else {}
+    )
+    lever4_decision = (
+        lever4_readiness.get("decision", {})
+        if isinstance(lever4_readiness, dict)
+        else {}
+    )
+
+    p10746_pending = [
+        item
+        for item in queue_items
+        if item.get("decision_class") == "p10746_fold_only_deployment_caveat"
+        and str(item.get("review_status", "")).startswith("pending")
+    ]
+    lever4_pending = [
+        item
+        for item in queue_items
+        if item.get("decision_class") == "family_panel_expert_import_decision"
+        and str(item.get("review_status", "")).startswith("pending")
+    ]
+    lever2_pending = [
+        item
+        for item in queue_items
+        if item.get("decision_class") == "source_free_locator_rewrite_approval"
+        and str(item.get("review_status", "")).startswith("pending")
+    ]
+    external_decision_required_items = len(
+        p10746_pending + lever4_pending + lever2_pending
+    )
+
+    gate_checks = [
+        {
+            "lever": "Lever 3",
+            "gate": "p10746_post_decision_deployment_closure",
+            "ready_now": bool(
+                closure_decision.get("deployment_closed_with_p10746_caveat")
+            ),
+            "blocking_reason": (
+                "p10746_policy_decision_missing"
+                if p10746_pending
+                else "deployment_closure_status_not_closed"
+            ),
+            "next_command_after_decision": (
+                "apply-fold-augmented-p10746-deployment-caveat-decision"
+            ),
+        },
+        {
+            "lever": "Lever 4",
+            "gate": "family_panel_label_factory_gate_readiness",
+            "ready_now": bool(
+                lever4_decision.get("label_factory_gate_inputs_ready")
+            ),
+            "blocking_reason": (
+                "family_panel_expert_import_decisions_missing"
+                if lever4_pending
+                else "label_factory_gate_input_rows_missing"
+            ),
+            "next_command_after_decision": (
+                "apply-fold-augmented-family-panel-expert-import-decision"
+            ),
+        },
+        {
+            "lever": "Lever 2",
+            "gate": "source_free_locator_materialization_and_pre_threshold_readiness",
+            "ready_now": bool(
+                lever2_decision.get("ready_to_apply_frozen_residual_threshold_once")
+            ),
+            "blocking_reason": (
+                "source_free_locator_rewrite_approvals_missing"
+                if lever2_pending
+                else "source_free_pre_threshold_readiness_blocked"
+            ),
+            "next_command_after_decision": (
+                "build-mechanism-feature-row-specific-bond-change-p0-oos-"
+                "augmented-best-token-followup-pair-source-free-locator-"
+                "rewrite-materialization-gate"
+            ),
+        },
+        {
+            "lever": "Lever 2",
+            "gate": "source_free_event_axis_linkers",
+            "ready_now": bool(
+                event_decision.get("event_axis_linkers_materialized")
+            )
+            and not event_blockers,
+            "blocking_reason": (
+                "source_free_event_axis_linker_gate_blocked"
+                if event_blockers
+                else "source_free_event_axis_linkers_missing"
+            ),
+            "next_command_after_decision": (
+                "build-mechanism-feature-row-specific-bond-change-p0-oos-"
+                "augmented-best-token-followup-pair-source-free-event-axis-"
+                "linker-materialization-gate"
+            ),
+        },
+    ]
+
+    blockers: list[str] = []
+    if not queue_items:
+        blockers.append("active_lever_reviewer_decision_queue_missing_or_empty")
+    if automation_allowed == 0:
+        blockers.append("no_active_lever_mechanical_gate_ready")
+    if p10746_pending:
+        blockers.append("p10746_policy_decision_missing")
+    if lever4_pending:
+        blockers.append("family_panel_expert_import_decisions_missing")
+    if lever2_pending:
+        blockers.append("source_free_locator_rewrite_approvals_missing")
+    if event_blockers:
+        blockers.append("source_free_event_axis_linker_gate_blocked")
+    if not event_decision.get("event_axis_linkers_materialized"):
+        blockers.append("source_free_event_axis_linkers_missing")
+    if not lever4_decision.get("label_factory_gate_inputs_ready"):
+        blockers.append("family_panel_label_factory_gate_inputs_missing")
+    if not lever2_decision.get("ready_to_apply_frozen_residual_threshold_once"):
+        blockers.append("lever2_pre_threshold_readiness_not_ready")
+
+    next_review_items = [
+        {
+            "priority": item.get("priority"),
+            "lever": item.get("lever"),
+            "entry_id": item.get("entry_id"),
+            "decision_class": item.get("decision_class"),
+            "review_status": item.get("review_status"),
+            "allowed_decisions": item.get("allowed_decisions") or [],
+            "decision_context_sha256": item.get("decision_context_sha256"),
+            "candidate_sha256": item.get("candidate_sha256"),
+            "planned_locator_payload_sha256": item.get(
+                "planned_locator_payload_sha256"
+            ),
+        }
+        for item in queue_items[:12]
+    ]
+
+    return {
+        "artifact_id": ACTIVE_LEVER_MECHANICAL_ACTIONABILITY_AUDIT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.active_lever_mechanical_actionability_audit",
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "active_lever_mechanical_actionability_ready"
+            if not blockers
+            else "active_lever_mechanical_actionability_blocked_external_decisions"
+        ),
+        "scope": (
+            "Review-only actionability audit across active Lever 2/3/4 gates. "
+            "It distinguishes mechanical gates that can run now from explicit "
+            "review or policy decisions that must remain fail-closed."
+        ),
+        "counts": {
+            "decision_items": int(
+                queue_counts.get("decision_items") or len(queue_items)
+            ),
+            "external_decision_required_items": external_decision_required_items,
+            "automation_action_allowed_now_items": automation_allowed,
+            "p10746_pending_policy_decisions": len(p10746_pending),
+            "lever4_pending_expert_import_decisions": len(lever4_pending),
+            "lever4_import_preview_candidate_if_accepted_items": int(
+                queue_counts.get(
+                    "lever4_import_preview_candidate_if_accepted_items"
+                )
+                or 0
+            ),
+            "lever4_label_factory_gate_input_rows": int(
+                lever4_counts.get("label_factory_gate_input_rows") or 0
+            ),
+            "lever2_pending_locator_approvals": len(lever2_pending),
+            "lever2_clean_locator_rewrite_items": int(
+                queue_counts.get("lever2_clean_locator_rewrite_items") or 0
+            ),
+            "lever2_locator_sidecars_written": int(
+                lever2_counts.get("locator_sidecars_written") or 0
+            ),
+            "lever2_event_axis_materialized_linker_rows": int(
+                event_counts.get("materialized_linker_rows") or 0
+            ),
+            "mechanical_gates_ready_now": sum(
+                1 for check in gate_checks if check["ready_now"]
+            ),
+            "blockers": len(blockers),
+        },
+        "decision_class_counts": dict(sorted(decision_class_counts.items())),
+        "gate_checks": gate_checks,
+        "next_review_items": next_review_items,
+        "blockers": blockers,
+        "decision": {
+            "apply_any_decision_gate_now": False,
+            "copy_locator_sidecars_now": False,
+            "apply_frozen_residual_threshold_now": False,
+            "run_label_factory_gate_now": False,
+            "deployment_closure_claim_ready_now": False,
+            "next_gate": (
+                "Record explicit decisions in the source packets with hashes "
+                "unchanged. Then rerun only the matching application or "
+                "materialization gates; do not read heldout or apply the frozen "
+                "Lever 2 threshold until pre-threshold readiness passes."
+            ),
+        },
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "locator_sidecars_created_or_copied": False,
+            "event_axis_linkers_materialized_by_this_audit": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+            "heldout_rows_evaluated": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "source_artifacts": {
+            "active_lever_reviewer_decision_queue": _source_path_record(
+                active_lever_reviewer_decision_queue_path
+            ),
+            "lever2_pre_threshold_readiness": (
+                _source_path_record(lever2_pre_threshold_readiness_path)
+                if lever2_pre_threshold_readiness_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever2_event_axis_linker_schema": (
+                _source_path_record(lever2_event_axis_linker_schema_path)
+                if lever2_event_axis_linker_schema_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever2_event_axis_linker_materialization_gate": (
+                _source_path_record(
+                    lever2_event_axis_linker_materialization_gate_path
+                )
+                if lever2_event_axis_linker_materialization_gate_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_post_decision_deployment_closure_status": (
+                _source_path_record(
+                    lever3_post_decision_deployment_closure_status_path
+                )
+                if lever3_post_decision_deployment_closure_status_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "family_panel_label_factory_gate_readiness": (
+                _source_path_record(family_panel_label_factory_gate_readiness_path)
+                if family_panel_label_factory_gate_readiness_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "No active Lever 2/3/4 gate is mechanically runnable on the "
+                "current decision state."
+            ),
+            "result": (
+                "Lever 3 is blocked by the P10746 policy caveat, Lever 4 is "
+                "blocked before import preview by expert import decisions, and "
+                "Lever 2 is blocked by locator approvals plus source-free "
+                "event-axis linkers."
+            ),
+            "next_action": (
+                "Review the first twelve queued rows here, starting with "
+                "P10746 and the six Lever 4 import-preview candidates. After "
+                "decisions land, regenerate this audit to verify a mechanical "
+                "gate is actually open."
+            ),
+        },
+    }
+
+
+def _render_active_lever_mechanical_actionability_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Active Lever Mechanical Actionability Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Decision items: {counts['decision_items']}",
+        "- External decisions required: "
+        f"{counts['external_decision_required_items']}",
+        "- Automation-action-allowed-now items: "
+        f"{counts['automation_action_allowed_now_items']}",
+        "- Mechanical gates ready now: "
+        f"{counts['mechanical_gates_ready_now']}",
+        "- Lever 2 pending locator approvals: "
+        f"{counts['lever2_pending_locator_approvals']}",
+        "- Lever 2 event-axis linker rows: "
+        f"{counts['lever2_event_axis_materialized_linker_rows']}",
+        "- Lever 4 label-factory gate input rows: "
+        f"{counts['lever4_label_factory_gate_input_rows']}",
+        f"- Blockers: {audit['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Apply any decision gate now: {decision['apply_any_decision_gate_now']}",
+        f"- Copy locator sidecars now: {decision['copy_locator_sidecars_now']}",
+        "- Apply frozen residual threshold now: "
+        f"{decision['apply_frozen_residual_threshold_now']}",
+        f"- Run label-factory gate now: {decision['run_label_factory_gate_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Gate Checks",
+        "",
+        "| lever | gate | ready now | blocker | next command after decision |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for check in audit.get("gate_checks", []):
+        lines.append(
+            f"| {check['lever']} | {check['gate']} | {check['ready_now']} | "
+            f"{check['blocking_reason']} | {check['next_command_after_decision']} |"
+        )
+    lines += [
+        "",
+        "## Next Review Items",
+        "",
+        "| priority | lever | row | decision class | status |",
+        "| ---: | --- | --- | --- | --- |",
+    ]
+    for item in audit.get("next_review_items", []):
+        lines.append(
+            f"| {item['priority']} | {item['lever']} | {item['entry_id']} | "
+            f"{item['decision_class']} | {item['review_status']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_active_lever_mechanical_actionability_audit(
+    *,
+    active_lever_reviewer_decision_queue_path: Path,
+    lever2_pre_threshold_readiness_path: Path | None = None,
+    lever2_event_axis_linker_schema_path: Path | None = None,
+    lever2_event_axis_linker_materialization_gate_path: Path | None = None,
+    lever3_post_decision_deployment_closure_status_path: Path | None = None,
+    family_panel_label_factory_gate_readiness_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_active_lever_mechanical_actionability_audit(
+        active_lever_reviewer_decision_queue_path=(
+            active_lever_reviewer_decision_queue_path
+        ),
+        lever2_pre_threshold_readiness_path=lever2_pre_threshold_readiness_path,
+        lever2_event_axis_linker_schema_path=lever2_event_axis_linker_schema_path,
+        lever2_event_axis_linker_materialization_gate_path=(
+            lever2_event_axis_linker_materialization_gate_path
+        ),
+        lever3_post_decision_deployment_closure_status_path=(
+            lever3_post_decision_deployment_closure_status_path
+        ),
+        family_panel_label_factory_gate_readiness_path=(
+            family_panel_label_factory_gate_readiness_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_active_lever_mechanical_actionability_audit_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_active_lever_priority_decision_templates(
+    *,
+    active_lever_reviewer_decision_queue_path: Path,
+) -> dict[str, Any]:
+    queue = _read_json(active_lever_reviewer_decision_queue_path)
+    queue_source_artifacts = (
+        queue.get("source_artifacts", {}) if isinstance(queue, dict) else {}
+    )
+    queue_items = [
+        item
+        for item in queue.get("decision_queue", [])
+        if isinstance(item, dict)
+    ]
+    p10746_templates: list[dict[str, Any]] = []
+    family_panel_templates: list[dict[str, Any]] = []
+    clean_locator_templates: list[dict[str, Any]] = []
+    warning_locator_templates: list[dict[str, Any]] = []
+
+    def _source_row_location(
+        *,
+        source_artifact_key: str,
+        packet_key: str,
+        item: dict[str, Any],
+    ) -> dict[str, Any]:
+        source_record = queue_source_artifacts.get(source_artifact_key)
+        if not isinstance(source_record, dict):
+            return {
+                "source_packet_row_index": None,
+                "source_json_pointer": f"/{packet_key}",
+                "source_location_status": "source_artifact_not_listed",
+            }
+        source_path = source_record.get("path")
+        if not source_path:
+            return {
+                "source_packet_row_index": None,
+                "source_json_pointer": f"/{packet_key}",
+                "source_location_status": "source_artifact_missing",
+            }
+        raw_source_path = Path(str(source_path))
+        source_path_candidates = [raw_source_path]
+        if not raw_source_path.is_absolute():
+            queue_path = Path(active_lever_reviewer_decision_queue_path)
+            source_path_candidates.extend(
+                [
+                    queue_path.parent / raw_source_path,
+                    queue_path.parent.parent / raw_source_path,
+                ]
+            )
+        resolved_source_path = next(
+            (path for path in source_path_candidates if path.exists()), None
+        )
+        if resolved_source_path is None:
+            return {
+                "source_packet_row_index": None,
+                "source_json_pointer": f"/{packet_key}",
+                "source_location_status": "source_artifact_missing",
+            }
+        packet = _read_json(resolved_source_path)
+        rows = packet.get(packet_key, []) if isinstance(packet, dict) else []
+        if not isinstance(rows, list):
+            return {
+                "source_packet_row_index": None,
+                "source_json_pointer": f"/{packet_key}",
+                "source_location_status": "source_packet_key_missing",
+            }
+        hash_fields = (
+            "decision_context_sha256",
+            "candidate_sha256",
+            "planned_locator_payload_sha256",
+        )
+        matches: list[tuple[int, int]] = []
+        for index, row in enumerate(rows):
+            if not isinstance(row, dict):
+                continue
+            if row.get("entry_id") != item.get("entry_id"):
+                continue
+            mismatch = False
+            hash_match_count = 0
+            for field in hash_fields:
+                item_value = item.get(field)
+                row_value = row.get(field)
+                if item_value and row_value:
+                    if item_value != row_value:
+                        mismatch = True
+                        break
+                    hash_match_count += 1
+            if not mismatch:
+                matches.append((index, hash_match_count))
+        if len(matches) == 1:
+            index, hash_match_count = matches[0]
+            return {
+                "source_packet_row_index": index,
+                "source_json_pointer": f"/{packet_key}/{index}",
+                "source_location_status": (
+                    "matched_by_entry_id_and_hash"
+                    if hash_match_count
+                    else "matched_by_entry_id"
+                ),
+            }
+        if len(matches) > 1:
+            return {
+                "source_packet_row_index": None,
+                "source_json_pointer": f"/{packet_key}",
+                "source_location_status": "source_row_ambiguous",
+            }
+        return {
+            "source_packet_row_index": None,
+            "source_json_pointer": f"/{packet_key}",
+            "source_location_status": "source_row_not_found",
+        }
+
+    for item in queue_items:
+        decision_class = item.get("decision_class")
+        if decision_class == "p10746_fold_only_deployment_caveat":
+            p10746_templates.append(
+                {
+                    "entry_id": item.get("entry_id"),
+                    "decision": "pending_explicit_decision",
+                    "allowed_decisions": item.get("allowed_decisions") or [],
+                    "decision_context_sha256": item.get(
+                        "decision_context_sha256"
+                    ),
+                    "reviewer": "",
+                    "reviewed_utc": "",
+                    "target_packet_key": "decision_stubs",
+                    "target_source_artifact_key": "p10746_decision_packet",
+                    "target_gate_after_edit": (
+                        "apply-fold-augmented-p10746-deployment-caveat-decision"
+                    ),
+                    **_source_row_location(
+                        source_artifact_key="p10746_decision_packet",
+                        packet_key="decision_stubs",
+                        item=item,
+                    ),
+                }
+            )
+        elif decision_class == "family_panel_expert_import_decision":
+            template = {
+                "entry_id": item.get("entry_id"),
+                "panel_id": item.get("panel_or_scope"),
+                "decision": "pending_expert_import_decision",
+                "allowed_decisions": item.get("allowed_decisions") or [],
+                "decision_context_sha256": item.get("decision_context_sha256"),
+                "reviewer": "",
+                "reviewed_utc": "",
+                "target_packet_key": "expert_import_decision_stubs",
+                "target_source_artifact_key": (
+                    "family_panel_expert_import_decision_packet"
+                ),
+                "target_gate_after_edit": (
+                    "apply-fold-augmented-family-panel-expert-import-decision"
+                ),
+                **_source_row_location(
+                    source_artifact_key=(
+                        "family_panel_expert_import_decision_packet"
+                    ),
+                    packet_key="expert_import_decision_stubs",
+                    item=item,
+                ),
+                "import_preview_candidate_if_accepted_now": item.get(
+                    "import_preview_candidate_if_accepted_now"
+                ),
+            }
+            family_panel_templates.append(template)
+        elif decision_class == "source_free_locator_rewrite_approval":
+            template = {
+                "entry_id": item.get("entry_id"),
+                "reviewer_decision": "pending_reviewer_decision",
+                "allowed_decisions": item.get("allowed_decisions") or [],
+                "approved": False,
+                "candidate_sha256": item.get("candidate_sha256"),
+                "planned_locator_payload_sha256": item.get(
+                    "planned_locator_payload_sha256"
+                ),
+                "reviewer": "",
+                "reviewed_utc": "",
+                "target_packet_key": "locator_rewrite_decision_stubs",
+                "target_source_artifact_key": (
+                    "lever2_locator_rewrite_approval_packet"
+                ),
+                "target_gate_after_edit": (
+                    "build-mechanism-feature-row-specific-bond-change-p0-oos-"
+                    "augmented-best-token-followup-pair-source-free-locator-"
+                    "rewrite-materialization-gate"
+                ),
+                **_source_row_location(
+                    source_artifact_key="lever2_locator_rewrite_approval_packet",
+                    packet_key="locator_rewrite_decision_stubs",
+                    item=item,
+                ),
+                "coordinate_contact_warning_count": int(
+                    item.get("coordinate_contact_warning_count") or 0
+                ),
+            }
+            if template["coordinate_contact_warning_count"]:
+                warning_locator_templates.append(template)
+            else:
+                clean_locator_templates.append(template)
+
+    priority_family_templates = [
+        row
+        for row in family_panel_templates
+        if row.get("import_preview_candidate_if_accepted_now") is True
+    ]
+    all_templates = (
+        p10746_templates
+        + priority_family_templates
+        + clean_locator_templates
+        + [
+            row
+            for row in family_panel_templates
+            if row.get("import_preview_candidate_if_accepted_now") is not True
+        ]
+        + warning_locator_templates
+    )
+    source_location_status_counts = Counter(
+        str(row.get("source_location_status"))
+        for row in all_templates
+        if row.get("source_location_status")
+    )
+    blockers: list[str] = []
+    if not all_templates:
+        blockers.append("active_lever_decision_templates_missing")
+    if any(
+        row.get("source_location_status")
+        not in {"matched_by_entry_id_and_hash", "matched_by_entry_id"}
+        for row in all_templates
+    ):
+        blockers.append("decision_template_source_locations_incomplete")
+    if any(
+        not row.get("allowed_decisions")
+        for row in all_templates
+        if row.get("target_packet_key") != "locator_rewrite_decision_stubs"
+    ):
+        blockers.append("decision_template_allowed_values_missing")
+    return {
+        "artifact_id": ACTIVE_LEVER_PRIORITY_DECISION_TEMPLATES_ID,
+        "schema_version": f"{SCHEMA_VERSION}.active_lever_priority_decision_templates",
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "active_lever_priority_decision_templates_ready_review_only"
+            if not blockers
+            else "active_lever_priority_decision_templates_blocked"
+        ),
+        "scope": (
+            "Review-only patch templates for the active Lever 2/3/4 decision "
+            "queue. The templates preserve hashes and allowed decision values "
+            "but leave every decision pending; they are not applied by "
+            "automation."
+        ),
+        "template_groups": {
+            "p10746_policy_decisions": p10746_templates,
+            "family_panel_import_preview_candidates": priority_family_templates,
+            "clean_locator_rewrite_approvals": clean_locator_templates,
+            "other_family_panel_expert_decisions": [
+                row
+                for row in family_panel_templates
+                if row.get("import_preview_candidate_if_accepted_now") is not True
+            ],
+            "warning_locator_rewrite_approvals": warning_locator_templates,
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "templates_only": True,
+            "decisions_applied": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "locator_sidecars_created_or_copied": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+            "heldout_rows_evaluated": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "counts": {
+            "template_rows": len(all_templates),
+            "p10746_policy_decision_templates": len(p10746_templates),
+            "family_panel_import_preview_candidate_templates": len(
+                priority_family_templates
+            ),
+            "other_family_panel_expert_decision_templates": len(
+                [
+                    row
+                    for row in family_panel_templates
+                    if row.get("import_preview_candidate_if_accepted_now")
+                    is not True
+                ]
+            ),
+            "clean_locator_rewrite_approval_templates": len(
+                clean_locator_templates
+            ),
+            "warning_locator_rewrite_approval_templates": len(
+                warning_locator_templates
+            ),
+            "source_locations_matched_by_hash": int(
+                source_location_status_counts.get(
+                    "matched_by_entry_id_and_hash", 0
+                )
+            ),
+            "source_locations_matched_by_entry_id_only": int(
+                source_location_status_counts.get("matched_by_entry_id", 0)
+            ),
+            "source_locations_unresolved": sum(
+                count
+                for status, count in source_location_status_counts.items()
+                if status
+                not in {"matched_by_entry_id_and_hash", "matched_by_entry_id"}
+            ),
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "templates_ready_for_review": bool(all_templates and not blockers),
+            "apply_templates_now": False,
+            "decisions_still_required": True,
+            "next_gate": (
+                "Copy only reviewed decisions back into the source decision "
+                "packets with hashes unchanged, then rerun the relevant "
+                "application or materialization gate. Pending template values "
+                "must not be consumed as approvals."
+            ),
+        },
+        "source_artifacts": {
+            "active_lever_reviewer_decision_queue": _source_path_record(
+                active_lever_reviewer_decision_queue_path
+            ),
+            "target_source_packets": {
+                "p10746_decision_packet": queue_source_artifacts.get(
+                    "p10746_decision_packet"
+                ),
+                "family_panel_expert_import_decision_packet": (
+                    queue_source_artifacts.get(
+                        "family_panel_expert_import_decision_packet"
+                    )
+                ),
+                "lever2_locator_rewrite_approval_packet": (
+                    queue_source_artifacts.get(
+                        "lever2_locator_rewrite_approval_packet"
+                    )
+                ),
+            },
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(all_templates)} decision templates are staged, with all "
+                "decision values still pending."
+            ),
+            "result": (
+                "The priority review surface is now patch-ready: one P10746 "
+                "policy template, six import-preview family-panel templates, "
+                "and 49 clean locator-approval templates are separated from "
+                "lower-priority or warning rows."
+            ),
+            "next_action": (
+                "Review and replace pending values in the source packets, not "
+                "in this derived template artifact; rerun actionability after "
+                "those packet edits land."
+            ),
+        },
+    }
+
+
+def _render_active_lever_priority_decision_templates_report(
+    templates: dict[str, Any],
+) -> str:
+    counts = templates["counts"]
+    decision = templates["decision"]
+    lines = [
+        "# Active Lever Priority Decision Templates - current702",
+        "",
+        f"Run: {templates['created_utc']}",
+        "",
+        templates["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {templates['status']}",
+        f"- Template rows: {counts['template_rows']}",
+        "- P10746 policy decision templates: "
+        f"{counts['p10746_policy_decision_templates']}",
+        "- Family-panel import-preview candidate templates: "
+        f"{counts['family_panel_import_preview_candidate_templates']}",
+        "- Clean locator rewrite approval templates: "
+        f"{counts['clean_locator_rewrite_approval_templates']}",
+        "- Warning locator rewrite approval templates: "
+        f"{counts['warning_locator_rewrite_approval_templates']}",
+        "- Source locations matched by hash: "
+        f"{counts['source_locations_matched_by_hash']}",
+        "- Source locations unresolved: "
+        f"{counts['source_locations_unresolved']}",
+        f"- Blockers: {templates['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Templates ready for review: {decision['templates_ready_for_review']}",
+        f"- Apply templates now: {decision['apply_templates_now']}",
+        f"- Decisions still required: {decision['decisions_still_required']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Priority Rows",
+        "",
+        "| group | row | source artifact | pending field | source pointer | allowed decisions |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for group, rows in templates.get("template_groups", {}).items():
+        for row in rows[:12]:
+            field = (
+                "reviewer_decision"
+                if "reviewer_decision" in row
+                else "decision"
+            )
+            lines.append(
+                f"| {group} | {row.get('entry_id')} | "
+                f"{row.get('target_source_artifact_key')} | {field} | "
+                f"{row.get('source_json_pointer')} | "
+                f"{row.get('allowed_decisions')} |"
+            )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {templates['interpretation']['headline']}",
+        f"- {templates['interpretation']['result']}",
+        f"- {templates['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_active_lever_priority_decision_templates(
+    *,
+    active_lever_reviewer_decision_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    templates = build_active_lever_priority_decision_templates(
+        active_lever_reviewer_decision_queue_path=(
+            active_lever_reviewer_decision_queue_path
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(templates, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_active_lever_priority_decision_templates_report(templates),
+            encoding="utf-8",
+        )
+    return templates
+
+
 def _source_check_focus(row: dict[str, Any]) -> list[str]:
     focus = [
         "row_specific_bond_change_and_mechanism_locus",
@@ -42918,6 +43858,312 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     return schema
 
 
+def _source_free_event_axis_linker_rows(
+    linker_rows_path: Path | None,
+) -> list[dict[str, Any]]:
+    if linker_rows_path is None or not Path(linker_rows_path).exists():
+        return []
+    payload = _read_json(linker_rows_path)
+    if isinstance(payload, list):
+        return [row for row in payload if isinstance(row, dict)]
+    for key in (
+        "event_axis_linker_rows",
+        "source_free_event_axis_linkers",
+        "source_free_event_residue_role_linkers",
+        "linker_rows",
+        "rows",
+    ):
+        rows = payload.get(key) if isinstance(payload, dict) else None
+        if isinstance(rows, list):
+            return [row for row in rows if isinstance(row, dict)]
+    return []
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+    *,
+    event_axis_linker_schema_path: Path,
+    linker_rows_path: Path | None = None,
+) -> dict[str, Any]:
+    schema = _read_json(event_axis_linker_schema_path)
+    rows = _source_free_event_axis_linker_rows(linker_rows_path)
+    row_schema = schema.get("row_schema", {})
+    required_fields = [
+        str(field)
+        for field in row_schema.get("required_fields", [])
+        if field
+    ]
+    linker_required_fields = [
+        str(field)
+        for field in row_schema.get("event_residue_linker_required_fields", [])
+        if field
+    ]
+    allowed_event_types = {
+        str(value)
+        for value in row_schema.get("allowed_event_types", [])
+        if value
+    }
+    allowed_residue_roles = {
+        str(value)
+        for value in row_schema.get("allowed_residue_roles", [])
+        if value
+    }
+    minimum_linkers = int(row_schema.get("minimum_linkers_per_ready_row") or 1)
+    forbidden_guardrail_keys = {
+        "labels_registries_ontologies_changed",
+        "imports_or_promotions_performed",
+        "production_thresholds_changed",
+        "heldout_rows_evaluated",
+        "heldout_rows_used_for_training_or_threshold_tuning",
+        "m_csa_heldout_row_specific_mechanism_text_used",
+        "m_csa_heldout_active_site_roles_used_as_predictive_features",
+        "source_text_or_source_ids_used_as_predictive_features",
+        "source_ids_used_as_predictive_features",
+        "target_names_used_as_predictive_features",
+        "ec_or_rhea_ids_used_as_predictive_features",
+    }
+
+    gate_rows: list[dict[str, Any]] = []
+    for row in rows:
+        violations: list[str] = []
+        for field in required_fields:
+            if row.get(field) in (None, "", []):
+                violations.append(f"missing_required_field:{field}")
+        if allowed_event_types and row.get("event_type") not in allowed_event_types:
+            violations.append("event_type_not_allowed_by_schema")
+        if (
+            allowed_residue_roles
+            and row.get("residue_role") not in allowed_residue_roles
+        ):
+            violations.append("residue_role_not_allowed_by_schema")
+        linkers = row.get("event_residue_linkers")
+        if not isinstance(linkers, list):
+            violations.append("event_residue_linkers_not_list")
+            linkers = []
+        if len(linkers) < minimum_linkers:
+            violations.append("minimum_linker_count_not_met")
+        for linker_index, linker in enumerate(linkers):
+            if not isinstance(linker, dict):
+                violations.append(f"linker_{linker_index}_not_object")
+                continue
+            for field in linker_required_fields:
+                if linker.get(field) in (None, "", []):
+                    violations.append(
+                        f"linker_{linker_index}_missing_required_field:{field}"
+                    )
+            try:
+                confidence = float(linker.get("confidence"))
+            except (TypeError, ValueError):
+                violations.append(f"linker_{linker_index}_confidence_not_float")
+            else:
+                if confidence < 0.0 or confidence > 1.0:
+                    violations.append(
+                        f"linker_{linker_index}_confidence_out_of_range"
+                    )
+        guardrail_audit = row.get("guardrail_audit")
+        if not isinstance(guardrail_audit, dict):
+            violations.append("guardrail_audit_missing_or_not_object")
+        else:
+            for key in forbidden_guardrail_keys:
+                if guardrail_audit.get(key):
+                    violations.append(f"guardrail_violation:{key}")
+        status = str(row.get("source_free_event_axis_status") or "")
+        if status not in {
+            "source_free_event_axis_linker_ready",
+            "source_free_event_axis_ready",
+            "ready",
+        }:
+            violations.append("source_free_event_axis_status_not_ready")
+        gate_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession"),
+                "event_type": row.get("event_type"),
+                "residue_role": row.get("residue_role"),
+                "source_free_event_axis_status": status,
+                "event_residue_linker_count": len(linkers),
+                "decision": (
+                    "materialized_event_axis_linker_review_only"
+                    if not violations
+                    else "blocked_event_axis_linker_validation"
+                ),
+                "critical_violations": sorted(set(violations)),
+            }
+        )
+
+    materialized_rows = [
+        row
+        for row in gate_rows
+        if row["decision"] == "materialized_event_axis_linker_review_only"
+    ]
+    invalid_rows = [
+        row
+        for row in gate_rows
+        if row["decision"] == "blocked_event_axis_linker_validation"
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("source_free_event_axis_linker_rows_missing")
+    if not materialized_rows:
+        blockers.append("source_free_event_axis_linkers_not_materialized")
+    if invalid_rows:
+        blockers.append("source_free_event_axis_linker_validation_violations")
+    if "source_free_current702_heldout_locator_surface_missing" in schema.get(
+        "blockers_to_clear", []
+    ):
+        blockers.append("approved_source_free_locator_surface_still_required")
+    event_axis_materialized = bool(materialized_rows) and not invalid_rows
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_MATERIALIZATION_GATE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_ready"
+            if event_axis_materialized and not blockers
+            else "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_blocked"
+        ),
+        "scope": (
+            "Fail-closed validation gate for source-free event-axis linker rows. "
+            "It validates only row/schema compatibility and leakage guardrails; "
+            "it does not infer event axes, copy locator sidecars, evaluate "
+            "heldout rows, or apply the frozen residual threshold."
+        ),
+        "target_feature": schema.get("target_feature", {}),
+        "materialization_rows": gate_rows,
+        "blockers": sorted(set(blockers)),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "event_axis_linkers_inferred_by_this_gate": False,
+            "review_only": True,
+        },
+        "counts": {
+            "submitted_linker_rows": len(rows),
+            "materialized_linker_rows": len(materialized_rows),
+            "invalid_linker_rows": len(invalid_rows),
+            "minimum_linkers_per_ready_row": minimum_linkers,
+            "critical_violation_total": sum(
+                len(row["critical_violations"]) for row in gate_rows
+            ),
+            "blockers": len(set(blockers)),
+        },
+        "decision": {
+            "event_axis_linker_schema_ready": bool(
+                schema.get("decision", {}).get("event_axis_linker_schema_ready")
+            ),
+            "event_axis_linkers_materialized": event_axis_materialized,
+            "heldout_safe_event_axis_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Supply source-free linker rows that satisfy this schema only "
+                "after approved heldout locator sidecars exist. Then rerun the "
+                "event-linker blocker audit and source-free application surface "
+                "before any heldout threshold read."
+            ),
+        },
+        "source_artifacts": {
+            "event_axis_linker_schema": _source_path_record(
+                event_axis_linker_schema_path
+            ),
+            "linker_rows": (
+                _source_path_record(linker_rows_path)
+                if linker_rows_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(materialized_rows)} source-free event-axis linker rows "
+                "validated. The gate remains review-only and cannot make the "
+                "heldout application surface ready without approved locator "
+                "coverage."
+            ),
+            "next_action": (
+                "After locator approvals land, provide explicit linker rows "
+                "with guardrail audits; rerun this gate before recomputing "
+                "Lever 2 pre-threshold readiness."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_report(
+    gate: dict[str, Any],
+) -> str:
+    counts = gate["counts"]
+    decision = gate["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Axis Linker Materialization Gate - current702",
+        "",
+        f"Run: {gate['created_utc']}",
+        "",
+        gate["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {gate['status']}",
+        f"- Submitted linker rows: {counts['submitted_linker_rows']}",
+        f"- Materialized linker rows: {counts['materialized_linker_rows']}",
+        f"- Invalid linker rows: {counts['invalid_linker_rows']}",
+        f"- Blockers: {gate['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Event-axis schema ready: {decision['event_axis_linker_schema_ready']}",
+        f"- Event-axis linkers materialized: {decision['event_axis_linkers_materialized']}",
+        "- Heldout-safe event-axis surface ready: "
+        f"{decision['heldout_safe_event_axis_surface_ready']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {gate['interpretation']['result']}",
+        f"- {gate['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+    *,
+    event_axis_linker_schema_path: Path,
+    out_path: Path,
+    linker_rows_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+        event_axis_linker_schema_path=event_axis_linker_schema_path,
+        linker_rows_path=linker_rows_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(gate, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_report(
+                gate
+            ),
+            encoding="utf-8",
+        )
+    return gate
+
+
 def _source_free_locator_queue_class(
     *,
     locator_present: bool,
@@ -45957,12 +47203,19 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     source_free_application_surface_path: Path,
     event_axis_linker_schema_path: Path,
     locator_rewrite_materialization_gate_path: Path,
+    event_axis_linker_materialization_gate_path: Path | None = None,
     locator_rewrite_approval_packet_path: Path | None = None,
     source_free_locator_input_audit_path: Path | None = None,
 ) -> dict[str, Any]:
     contract = _read_json(pair_operating_point_contract_path)
     surface = _read_json(source_free_application_surface_path)
     event_schema = _read_json(event_axis_linker_schema_path)
+    event_gate = (
+        _read_json(event_axis_linker_materialization_gate_path)
+        if event_axis_linker_materialization_gate_path is not None
+        and Path(event_axis_linker_materialization_gate_path).exists()
+        else None
+    )
     locator_gate = _read_json(locator_rewrite_materialization_gate_path)
     locator_input = (
         _read_json(source_free_locator_input_audit_path)
@@ -45983,8 +47236,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     surface_ready = bool(
         surface.get("decision", {}).get("heldout_safe_pair_application_surface_ready")
     )
+    event_artifact = event_gate if event_gate is not None else event_schema
     event_linkers_materialized = bool(
-        event_schema.get("decision", {}).get("event_axis_linkers_materialized")
+        event_artifact.get("decision", {}).get("event_axis_linkers_materialized")
     )
     locator_surface_ready = bool(
         locator_gate.get("decision", {}).get("approved_source_free_locator_surface_ready")
@@ -46004,11 +47258,15 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     for blocker in surface.get("blockers", []):
         if blocker not in blockers:
             blockers.append(str(blocker))
+    if event_gate is not None:
+        for blocker in event_gate.get("blockers", []):
+            if blocker not in blockers:
+                blockers.append(str(blocker))
 
     ready = contract_ready and locator_surface_ready and event_linkers_materialized and surface_ready
     locator_counts = locator_gate.get("counts", {})
     surface_counts = surface.get("counts", {})
-    event_counts = event_schema.get("counts", {})
+    event_counts = event_artifact.get("counts", {})
     locator_input_counts = (locator_input or {}).get("counts", {})
     approval_packet_counts = (approval_packet or {}).get("counts", {})
     return {
@@ -46105,10 +47363,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "heldout_read_once_performed": False,
             "next_gate": (
                 "Supply explicit locator rewrite approvals, materialize the "
-                "approved heldout locator sidecars, fill the source-free event "
-                "axis linker schema, rerun the source-free application surface, "
-                "then rerun this readiness gate before applying the frozen "
-                "residual threshold exactly once."
+                "approved heldout locator sidecars, validate source-free event "
+                "axis linker rows through the materialization gate, rerun the "
+                "source-free application surface, then rerun this readiness "
+                "gate before applying the frozen residual threshold exactly "
+                "once."
             ),
         },
         "source_artifacts": {
@@ -46120,6 +47379,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             ),
             "event_axis_linker_schema": _source_path_record(
                 event_axis_linker_schema_path
+            ),
+            "event_axis_linker_materialization_gate": (
+                _source_path_record(event_axis_linker_materialization_gate_path)
+                if event_axis_linker_materialization_gate_path is not None
+                else {"path": None, "exists": False, "sha256": None}
             ),
             "locator_rewrite_materialization_gate": _source_path_record(
                 locator_rewrite_materialization_gate_path
@@ -46139,8 +47403,8 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "result": (
                 "The frozen residual contract is calibrated, but the heldout "
                 "application surface is not ready because approved source-free "
-                "locator sidecars and source-free event-axis linkers are still "
-                "absent."
+                "locator sidecars and validated source-free event-axis linkers "
+                "are still absent."
             ),
             "next_action": (
                 "Consume explicit locator approvals first; preflight rows alone "
@@ -46219,6 +47483,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     event_axis_linker_schema_path: Path,
     locator_rewrite_materialization_gate_path: Path,
     out_path: Path,
+    event_axis_linker_materialization_gate_path: Path | None = None,
     locator_rewrite_approval_packet_path: Path | None = None,
     source_free_locator_input_audit_path: Path | None = None,
     report_path: Path | None = None,
@@ -46228,6 +47493,9 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         source_free_application_surface_path=source_free_application_surface_path,
         event_axis_linker_schema_path=event_axis_linker_schema_path,
         locator_rewrite_materialization_gate_path=locator_rewrite_materialization_gate_path,
+        event_axis_linker_materialization_gate_path=(
+            event_axis_linker_materialization_gate_path
+        ),
         locator_rewrite_approval_packet_path=locator_rewrite_approval_packet_path,
         source_free_locator_input_audit_path=source_free_locator_input_audit_path,
     )

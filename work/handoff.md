@@ -50,6 +50,103 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 9
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T09:02:27Z`
+- STARTED_LOCAL: `2026-06-03T04:02:27-0500 CDT`
+- ENDED_AT: `2026-06-03T09:53:23Z`
+- ENDED_LOCAL: `2026-06-03T04:53:23-0500 CDT`
+- ELAPSED_MINUTES: `50.9`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "8303", "started_at": "2026-06-03T09:02:27Z", "status": "acquired"}`
+
+#### Current intent
+
+Use the active handoff as primary truth, continue inside Levers 2/3/4 from
+current `main`, and make the highest-value deployable forward move without
+editing labels, registries, ontologies, imports, production thresholds, or any
+heldout-tuned surfaces.
+
+#### What changed
+
+- Added
+  `v3_active_lever_mechanical_actionability_audit_current702_20260603` and
+  report. It audits the active Lever 2/3/4 reviewer queue plus the current
+  Lever 2, Lever 3, and Lever 4 gates and confirms the present state is
+  fail-closed: 78/78 active rows still require external decisions, 0
+  automation-action-allowed rows are available, and 0 mechanical gates are
+  runnable now.
+- Added
+  `v3_active_lever_priority_decision_templates_current702_20260603` and report.
+  It stages 78 review-only patch templates without applying any decisions: 1
+  P10746 policy decision, 6 family-panel import-preview candidates, 49 clean
+  Lever 2 locator approvals, 16 other family-panel expert decisions, and 6
+  warning locator approvals. All 78 templates resolve back to exact source
+  packet JSON pointers by entry ID plus hash; unresolved source locations now
+  fail closed.
+- Added
+  `v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603`
+  and report. The gate validates future source-free event-axis linker rows
+  against the approved schema without inferring linkers, copying locators,
+  reading heldout rows, or applying the frozen residual threshold. Current
+  state remains blocked with 0 submitted/materialized linker rows.
+- Updated the Lever 2 source-free pre-threshold readiness artifact/report to
+  consume the event-axis linker materialization gate. Readiness remains blocked
+  with 14 blockers; the frozen pair threshold is still not deployable.
+- Added CLI commands for the new actionability audit, priority decision
+  templates, and event-axis linker materialization gate; extended the
+  pre-threshold readiness CLI with the event-axis materialization input.
+- Added focused unit tests, CLI registration coverage, current-artifact
+  regression checks, and fail-closed source-location coverage.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, locator sidecars, or reviewer decisions were edited.
+- No heldout rows were evaluated, trained on, threshold-tuned, or read through a
+  new operating point. The new artifacts are review-only gates/templates.
+
+#### Verification
+
+- `PYTHONPATH=src python -m pytest -q`: 1300 passed, 132 subtests passed, one
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1255 passed, same
+  existing sklearn/SciPy warning.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q`: 118 passed, 106
+  subtests passed.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`: 138
+  passed.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py
+  -q`: 173 passed, 7 subtests passed.
+- Final focused regenerated-artifact checks: active-lever/pre-threshold slices
+  passed; `git diff --check`, targeted `python -m json.tool`, and
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+- Repo-wide JSON parse sweep checked 3374 JSON files; source-artifact SHA audit
+  checked 19 path records and 18 SHA records.
+
+#### Exact next action
+
+Do not edit the derived decision-template artifact as the source of truth.
+Review and replace pending values in the source decision packets, preserving
+hashes:
+
+1. P10746 policy packet at `/decision_stubs/0`.
+2. Six Lever 4 import-preview candidates in
+   `expert_import_decision_stubs` (the priority template report lists exact
+   JSON pointers).
+3. Lever 2 source-free locator rewrite approvals in
+   `locator_rewrite_decision_stubs`, starting with the 49 clean rows before the
+   6 warning rows.
+
+After explicit decisions land in the source packets, rerun the matching
+application/materialization gate and then rerun
+`build-active-lever-mechanical-actionability-audit` before any locator copy,
+label-factory gate, heldout read, or frozen threshold application.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 8
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

@@ -706,6 +706,17 @@ class CliTests(unittest.TestCase):
                 (
                     "build-mechanism-feature-row-specific-bond-change-"
                     "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "event-axis-linker-materialization-gate"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
                     "locator-action-queue"
                 ),
                 (
@@ -878,6 +889,14 @@ class CliTests(unittest.TestCase):
             (
                 "build-active-lever-reviewer-decision-queue",
                 "cmd_build_active_lever_reviewer_decision_queue",
+            ),
+            (
+                "build-active-lever-mechanical-actionability-audit",
+                "cmd_build_active_lever_mechanical_actionability_audit",
+            ),
+            (
+                "build-active-lever-priority-decision-templates",
+                "cmd_build_active_lever_priority_decision_templates",
             ),
             (
                 "build-family-panel-source-free-locator-human-decision-matrix",

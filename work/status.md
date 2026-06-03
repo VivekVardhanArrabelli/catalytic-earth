@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 324
-- Measured elapsed time: 9640.3 minutes (160.67 hours)
+- Entries: 325
+- Measured elapsed time: 9691.2 minutes (161.52 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 2950.7 measured minutes (49.18 hours)
+- post-v2: 3001.6 measured minutes (50.03 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
 - v3: 2578.1 measured minutes (42.97 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3441
-- Evidence references logged: 2854
+- Artifact references logged: 3446
+- Evidence references logged: 2859
 
 ## Recent Entries
-
-### 2026-05-25T12:36:38Z - sequence-nn-baseline
-
-- Task: current702 sequence-NN split blocker detail
-- Time mode: measured
-- Measured minutes: 5.97
-- Started: 2026-05-25T12:30:40Z
-- Ended: 2026-05-25T12:36:38Z
-- Artifacts: artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, src/catalytic_earth/sequence_nn.py, tests/test_sequence_nn.py, README.md, work/handoff.md
-- Evidence: sequence-NN compliance now records row-level split blocker details for all 4 missing current702 split assignments, missing rows remain m_csa:204, uniprot:P06744, uniprot:P78549, and uniprot:Q3LXA3 with repaired sequence SHA-256 values recorded, PYTHONPATH=src python -m catalytic_earth.cli validate passed with 702 labels, PYTHONPATH=src python -m unittest discover -s tests passed with 936 tests, git diff --check and jq empty over sequence-NN JSON artifacts passed
-- Notes: No label import registry edit fingerprint edit ontology edit scoring change threshold change model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred; no new large artifact was created, so the admission guard condition was not triggered.
 
 ### 2026-05-25T13:37:58.445786+00:00 - sequence-nn-baseline
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json, tests/test_automation_small_win_artifacts.py, work/packet1_wave1_closure_cycle_20260527.md, work/handoff.md
 - Evidence: targeted Foldseek chunks completed for m_csa217 m_csa477 m_csa428 m_csa440, 2971 heldout-vs-train rows retained under 5000-row cap, 217 and 477 fully supported fold-conflict anchors, 428 caveated not capped, 440 near-orphan not fold-conflict, JSON parse passed, focused artifact tests passed, CLI validate passed, git diff check passed
 - Notes: No label registry edit ontology edit fingerprint edit threshold change import decision production scoring change model output edit representation artifact edit or artifact migration state change occurred.
+
+### 2026-06-03T09:54:04.655478+00:00 - post-v2
+
+- Task: active Lever 2/3/4 fail-closed actionability gates and decision templates
+- Time mode: measured
+- Measured minutes: 50.933
+- Started: 2026-06-03T09:02:27Z
+- Ended: 2026-06-03T09:53:23Z
+- Artifacts: artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, artifacts/v3_active_lever_priority_decision_templates_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, work/handoff.md
+- Evidence: 1300 pytest passed, 1255 unittest passed, 702 labels validated, 3374 JSON files parsed, 0 active mechanical gates runnable
+- Notes: No labels registries ontologies imports production thresholds model weights locator sidecars reviewer decisions or heldout threshold reads changed.
 
 ## Expectation Updates
 
@@ -374,6 +374,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T15:10:30.958833+00:00: Next work should inspect or compare the deterministic sequence baseline as a control rather than repairing split coverage.
 - 2026-05-27T10:15:26Z: Next Packet 1/Wave 1 work should be expert review for m_csa:750 plus FMO acquisition; do not treat hydride sublabel as ready. Push requires GitHub credential repair.
 - 2026-05-27T13:12:54.482909+00:00: Wave 1 Packet 1 TM-pair claims are no longer capped by the prior 200-row retention limit; full 692-query all-vs-all remains unclaimed.
+- 2026-06-03T09:54:04.655478+00:00: Next run should start by applying explicit source-packet decisions if available; otherwise no mechanical gate is open.
 
 ## Scope Adjustments
 
@@ -569,3 +570,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-26T04:27:02.589694+00:00: Wave 1 representation results are now framed as diagnostic structural-neighborhood evidence, not a bigger-model leaderboard.
 - 2026-05-27T10:15:26Z: Packet 1 and Wave 1 are now read through additive review-only addenda rather than stale readiness/canary advertising.
 - 2026-05-27T13:12:54.482909+00:00: Closed evaluation-design evidence only with review-only Foldseek chunk artifacts and no registry scoring threshold import model or representation changes.
+- 2026-06-03T09:54:04.655478+00:00: Active Lever 2/3/4 remains review-gated; derived templates are patch aids only and not source-of-truth decisions.

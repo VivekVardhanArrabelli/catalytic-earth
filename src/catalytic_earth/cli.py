@@ -45,6 +45,8 @@ from .mechanism_abstention_gate_eval import (
     write_mechanism_deployment_abstention_gate_eval,
 )
 from .northstar_next_levers import (
+    write_active_lever_mechanical_actionability_audit,
+    write_active_lever_priority_decision_templates,
     write_active_lever_reviewer_decision_queue,
     write_family_set_expansion_targets,
     write_family_panel_evidence_packet,
@@ -127,6 +129,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
@@ -12595,6 +12598,67 @@ def cmd_build_active_lever_reviewer_decision_queue(args: argparse.Namespace) -> 
     return 0
 
 
+def cmd_build_active_lever_mechanical_actionability_audit(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_active_lever_mechanical_actionability_audit(
+        active_lever_reviewer_decision_queue_path=Path(
+            args.active_lever_reviewer_decision_queue
+        ),
+        lever2_pre_threshold_readiness_path=Path(args.lever2_pre_threshold_readiness)
+        if args.lever2_pre_threshold_readiness
+        else None,
+        lever2_event_axis_linker_schema_path=Path(
+            args.lever2_event_axis_linker_schema
+        )
+        if args.lever2_event_axis_linker_schema
+        else None,
+        lever2_event_axis_linker_materialization_gate_path=Path(
+            args.lever2_event_axis_linker_materialization_gate
+        )
+        if args.lever2_event_axis_linker_materialization_gate
+        else None,
+        lever3_post_decision_deployment_closure_status_path=Path(
+            args.lever3_post_decision_deployment_closure_status
+        )
+        if args.lever3_post_decision_deployment_closure_status
+        else None,
+        family_panel_label_factory_gate_readiness_path=Path(
+            args.family_panel_label_factory_gate_readiness
+        )
+        if args.family_panel_label_factory_gate_readiness
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote active lever mechanical actionability audit to "
+        f"{args.out} (status: {audit.get('status')}, ready gates: "
+        f"{counts.get('mechanical_gates_ready_now')})"
+    )
+    return 0
+
+
+def cmd_build_active_lever_priority_decision_templates(
+    args: argparse.Namespace,
+) -> int:
+    templates = write_active_lever_priority_decision_templates(
+        active_lever_reviewer_decision_queue_path=Path(
+            args.active_lever_reviewer_decision_queue
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = templates.get("counts", {})
+    print(
+        "Wrote active lever priority decision templates to "
+        f"{args.out} (status: {templates.get('status')}, template rows: "
+        f"{counts.get('template_rows')})"
+    )
+    return 0
+
+
 def cmd_build_family_panel_high_value_glycyl_radical_readiness_packet(
     args: argparse.Namespace,
 ) -> int:
@@ -14022,6 +14086,27 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
     return 0
 
 
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+    args: argparse.Namespace,
+) -> int:
+    gate = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate(
+        event_axis_linker_schema_path=Path(args.event_axis_linker_schema),
+        linker_rows_path=Path(args.linker_rows) if args.linker_rows else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = gate.get("counts", {})
+    decision = gate.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free event-axis linker materialization gate "
+        f"to {args.out} (status: {gate.get('status')}, materialized: "
+        f"{counts.get('materialized_linker_rows')}, ready: "
+        f"{decision.get('event_axis_linkers_materialized')})"
+    )
+    return 0
+
+
 def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
     args: argparse.Namespace,
 ) -> int:
@@ -14231,6 +14316,11 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         event_axis_linker_schema_path=Path(args.event_axis_linker_schema),
         locator_rewrite_materialization_gate_path=Path(
             args.locator_rewrite_materialization_gate
+        ),
+        event_axis_linker_materialization_gate_path=(
+            Path(args.event_axis_linker_materialization_gate)
+            if args.event_axis_linker_materialization_gate
+            else None
         ),
         locator_rewrite_approval_packet_path=(
             Path(args.locator_rewrite_approval_packet)
@@ -28445,6 +28535,108 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_active_lever_reviewer_decision_queue
     )
 
+    active_lever_actionability = subparsers.add_parser(
+        "build-active-lever-mechanical-actionability-audit",
+        help=(
+            "audit whether any active Lever 2/3/4 mechanical gate can run "
+            "without external reviewer or policy decisions"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--active-lever-reviewer-decision-queue",
+        default=(
+            "artifacts/v3_active_lever_reviewer_decision_queue_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever2-pre-threshold-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_pre_"
+            "threshold_readiness_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever2-event-axis-linker-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_schema_current702_20260602.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever2-event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_materialization_gate_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-post-decision-deployment-closure-status",
+        default=(
+            "artifacts/v3_fold_augmented_post_decision_deployment_closure_"
+            "status_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--family-panel-label-factory-gate-readiness",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_label_factory_gate_"
+            "readiness_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_active_lever_mechanical_actionability_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--report",
+        default=(
+            "work/active_lever_mechanical_actionability_audit_current702_"
+            "20260603.md"
+        ),
+    )
+    active_lever_actionability.set_defaults(
+        func=cmd_build_active_lever_mechanical_actionability_audit
+    )
+
+    active_lever_templates = subparsers.add_parser(
+        "build-active-lever-priority-decision-templates",
+        help=(
+            "derive patch-ready pending decision templates from the active "
+            "Lever 2/3/4 reviewer queue without applying decisions"
+        ),
+    )
+    active_lever_templates.add_argument(
+        "--active-lever-reviewer-decision-queue",
+        default=(
+            "artifacts/v3_active_lever_reviewer_decision_queue_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_templates.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_active_lever_priority_decision_templates_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_templates.add_argument(
+        "--report",
+        default=(
+            "work/active_lever_priority_decision_templates_current702_"
+            "20260603.md"
+        ),
+    )
+    active_lever_templates.set_defaults(
+        func=cmd_build_active_lever_priority_decision_templates
+    )
+
     family_panel_source_queue = subparsers.add_parser(
         "build-fold-augmented-family-panel-source-check-queue",
         help=(
@@ -31773,6 +31965,51 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "event-axis-linker-materialization-gate"
+        ),
+        help=(
+            "validate source-free event-axis linker rows against the "
+            "best-token follow-up pair schema without applying heldout reads"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate.add_argument(
+        "--event-axis-linker-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_schema_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate.add_argument(
+        "--linker-rows",
+        default=None,
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_materialization_gate_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_materialization_gate_current702_20260603.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_gate.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate
+        )
+    )
+
     row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue = subparsers.add_parser(
         (
             "build-mechanism-feature-row-specific-bond-change-"
@@ -32267,6 +32504,14 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
             "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
             "linker_schema_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_materialization_gate_current702_20260603.json"
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(

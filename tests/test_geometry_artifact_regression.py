@@ -5747,6 +5747,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "linker_schema_current702_20260602.json"
             )
         )
+        pair_event_axis_gate = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+                "linker_materialization_gate_current702_20260603.json"
+            )
+        )
         pair_locator_queue = _load_json(
             ROOT
             / "artifacts"
@@ -6369,6 +6378,29 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_event_axis_schema["guardrails"]["heldout_rows_evaluated"]
         )
         self.assertEqual(
+            pair_event_axis_gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_blocked",
+        )
+        self.assertEqual(
+            pair_event_axis_gate["counts"]["submitted_linker_rows"], 0
+        )
+        self.assertEqual(
+            pair_event_axis_gate["counts"]["materialized_linker_rows"], 0
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_rows_missing",
+            pair_event_axis_gate["blockers"],
+        )
+        self.assertFalse(
+            pair_event_axis_gate["decision"]["event_axis_linkers_materialized"]
+        )
+        self.assertFalse(
+            pair_event_axis_gate["decision"]["apply_frozen_pair_threshold_now"]
+        )
+        self.assertFalse(
+            pair_event_axis_gate["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
             pair_locator_queue["status"],
             "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_ready",
         )
@@ -6613,6 +6645,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertIn(
             "source_free_event_axis_linkers_missing",
             pair_pre_threshold_readiness["blockers"],
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_rows_missing",
+            pair_pre_threshold_readiness["blockers"],
+        )
+        self.assertTrue(
+            pair_pre_threshold_readiness["source_artifacts"][
+                "event_axis_linker_materialization_gate"
+            ]["exists"]
         )
         self.assertFalse(
             pair_pre_threshold_readiness["decision"][
@@ -8393,6 +8434,141 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
         self.assertFalse(
             queue["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_active_lever_mechanical_actionability_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_active_lever_mechanical_actionability_audit_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "active_lever_mechanical_actionability_blocked_external_decisions",
+        )
+        self.assertEqual(audit["counts"]["decision_items"], 78)
+        self.assertEqual(
+            audit["counts"]["external_decision_required_items"], 78
+        )
+        self.assertEqual(
+            audit["counts"]["automation_action_allowed_now_items"], 0
+        )
+        self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
+        self.assertEqual(audit["counts"]["p10746_pending_policy_decisions"], 1)
+        self.assertEqual(
+            audit["counts"]["lever4_pending_expert_import_decisions"], 22
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_pending_locator_approvals"], 55
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_event_axis_materialized_linker_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["lever4_label_factory_gate_input_rows"], 0
+        )
+        self.assertIn("no_active_lever_mechanical_gate_ready", audit["blockers"])
+        self.assertIn("p10746_policy_decision_missing", audit["blockers"])
+        self.assertIn(
+            "family_panel_expert_import_decisions_missing", audit["blockers"]
+        )
+        self.assertIn(
+            "source_free_locator_rewrite_approvals_missing", audit["blockers"]
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_gate_blocked", audit["blockers"]
+        )
+        self.assertIn(
+            "source_free_event_axis_linkers_missing", audit["blockers"]
+        )
+        self.assertFalse(audit["decision"]["apply_any_decision_gate_now"])
+        self.assertFalse(audit["decision"]["copy_locator_sidecars_now"])
+        self.assertFalse(
+            audit["decision"]["apply_frozen_residual_threshold_now"]
+        )
+        self.assertFalse(audit["decision"]["run_label_factory_gate_now"])
+        self.assertTrue(audit["guardrails"]["review_only"])
+        self.assertFalse(
+            audit["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_active_lever_priority_decision_templates_current_counts(
+        self,
+    ) -> None:
+        templates = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_active_lever_priority_decision_templates_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            templates["status"],
+            "active_lever_priority_decision_templates_ready_review_only",
+        )
+        self.assertEqual(templates["counts"]["template_rows"], 78)
+        self.assertEqual(
+            templates["counts"]["p10746_policy_decision_templates"], 1
+        )
+        self.assertEqual(
+            templates["counts"][
+                "family_panel_import_preview_candidate_templates"
+            ],
+            6,
+        )
+        self.assertEqual(
+            templates["counts"]["other_family_panel_expert_decision_templates"],
+            16,
+        )
+        self.assertEqual(
+            templates["counts"]["clean_locator_rewrite_approval_templates"], 49
+        )
+        self.assertEqual(
+            templates["counts"]["warning_locator_rewrite_approval_templates"], 6
+        )
+        self.assertEqual(
+            templates["counts"]["source_locations_matched_by_hash"], 78
+        )
+        self.assertEqual(templates["counts"]["source_locations_unresolved"], 0)
+        source_location_statuses = {
+            row["source_location_status"]
+            for rows in templates["template_groups"].values()
+            for row in rows
+        }
+        self.assertEqual(
+            source_location_statuses, {"matched_by_entry_id_and_hash"}
+        )
+        self.assertEqual(
+            templates["template_groups"]["p10746_policy_decisions"][0][
+                "source_json_pointer"
+            ],
+            "/decision_stubs/0",
+        )
+        self.assertEqual(
+            templates["template_groups"]["family_panel_import_preview_candidates"][
+                0
+            ]["source_json_pointer"],
+            "/expert_import_decision_stubs/12",
+        )
+        self.assertEqual(
+            templates["template_groups"]["clean_locator_rewrite_approvals"][0][
+                "source_json_pointer"
+            ],
+            "/locator_rewrite_decision_stubs/0",
+        )
+        self.assertTrue(templates["decision"]["templates_ready_for_review"])
+        self.assertFalse(templates["decision"]["apply_templates_now"])
+        self.assertFalse(templates["guardrails"]["decisions_applied"])
+        self.assertFalse(
+            templates["guardrails"]["labels_registries_ontologies_changed"]
         )
 
     def test_fold_augmented_family_panel_source_check_queue_current_counts(self) -> None:
