@@ -29,7 +29,7 @@
     "source_decision_intake_invalid_rows": 0,
     "source_decision_intake_pending_rows": 78
   },
-  "created_utc": "2026-06-03T10:43:51Z",
+  "created_utc": "2026-06-03T11:20:34Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
@@ -317,17 +317,17 @@
     "active_lever_reviewer_decision_queue": {
       "exists": true,
       "path": "artifacts/v3_active_lever_reviewer_decision_queue_current702_20260603.json",
-      "sha256": "9dea743a06b64a93b89104e8b28f71fe61d3fc484e093c0956040c0aa3520683"
+      "sha256": "712f301ecbfb774266396a4abf45056e1b2906a2c78a6098df5becd2b3bac1c2"
     },
     "active_lever_source_decision_intake_preflight": {
       "exists": true,
       "path": "artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json",
-      "sha256": "cd2b3e4bc50ef16b1ed32309613d28d35368788f65de9e3be7527e3edfee1274"
+      "sha256": "7572e0b2d86fade03a877477cb1b6d82117f4fc61c727f07740cedde29ec81f1"
     },
     "family_panel_label_factory_gate_readiness": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_label_factory_gate_readiness_current702_20260603.json",
-      "sha256": "b3b8afac71d645762ae55038d52482e760b7327f99ff113ccbfc84ec1d96f4f9"
+      "sha256": "2e847fc8cb3128708209755f9aa6e256d04563574a4aac69fc875c711b795392"
     },
     "lever2_event_axis_linker_materialization_gate": {
       "exists": true,
@@ -342,12 +342,12 @@
     "lever2_pre_threshold_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json",
-      "sha256": "bed65a5125db2499932a3a8695794982f240c6b61bd240f553f96f07b76fdc75"
+      "sha256": "85628054c8b0e425f021ccd236db1378d957ae2c5962822e46c53de4b70e683f"
     },
     "lever3_post_decision_deployment_closure_status": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_post_decision_deployment_closure_status_current702_20260603.json",
-      "sha256": "bb11d38ea3fd263cf3fc2a53b6486d6adfe46e35b115f5005439f16bcf8f6604"
+      "sha256": "7cf2747942dda971340ea1d2730805cceccffe551cc6242a0fb6010e82db6562"
     }
   },
   "status": "active_lever_mechanical_actionability_blocked_external_decisions"

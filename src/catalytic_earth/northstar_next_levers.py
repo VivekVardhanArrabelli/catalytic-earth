@@ -192,6 +192,9 @@ ACTIVE_LEVER_PRIORITY_DECISION_TEMPLATES_ID = (
 ACTIVE_LEVER_SOURCE_DECISION_INTAKE_PREFLIGHT_ID = (
     "v3_active_lever_source_decision_intake_preflight_current702_20260603"
 )
+ACTIVE_LEVER_DECISION_APPLICATION_CONTRACT_AUDIT_ID = (
+    "v3_active_lever_decision_application_contract_audit_current702_20260603"
+)
 FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_QUEUE_ID = (
     "v3_fold_augmented_family_panel_source_check_queue_current702_20260601"
 )
@@ -20726,6 +20729,10 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
         entry_id = str(row.get("entry_id") or "")
         source_row = source_by_entry.get(entry_id)
         allowed = set((source_row or {}).get("allowed_decisions") or [])
+        required_review_status = (
+            (source_row or {}).get("required_review_status_after_decision")
+            or "reviewed_explicit_decision"
+        )
         review_status = row.get("review_status")
         decision_value = row.get("decision") or row.get("selected_decision")
         context_hash = row.get("decision_context_sha256")
@@ -20736,9 +20743,12 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
         if source_row is None:
             status = "invalid_unknown_decision_row"
             blockers.append("source_decision_stub_missing")
-        elif review_status == "pending_explicit_decision" or not decision_value:
+        elif not decision_value:
             status = "pending_explicit_decision"
             blockers.append("explicit_decision_missing")
+        elif review_status != required_review_status:
+            status = "invalid_review_status"
+            blockers.append("review_status_not_reviewed_explicit_decision")
         elif decision_value not in allowed:
             status = "invalid_decision_value"
             blockers.append("decision_not_allowed_by_source_packet")
@@ -20759,6 +20769,7 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
             "entry_id": entry_id,
             "accession": row.get("accession") or (source_row or {}).get("accession"),
             "review_status": review_status,
+            "required_review_status_after_decision": required_review_status,
             "decision": decision_value,
             "application_status": status,
             "decision_context_sha256_matches_source": hash_matches,
@@ -20780,6 +20791,7 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
                 "entry_id": "m_csa:204",
                 "accession": "P10746",
                 "review_status": None,
+                "required_review_status_after_decision": "reviewed_explicit_decision",
                 "decision": None,
                 "application_status": "pending_explicit_decision",
                 "decision_context_sha256_matches_source": False,
@@ -20795,6 +20807,13 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
         blockers.append("conflicting_p10746_caveat_decisions")
     accepted_now = len(accepted_rows) == 1 and not blockers
     rejected_now = len(rejected_rows) == 1 and not pending_rows and not invalid_rows
+    explicit_reviewed_rows = [
+        row
+        for row in application_rows
+        if row.get("decision")
+        and row.get("review_status")
+        == row.get("required_review_status_after_decision")
+    ]
     status = (
         "p10746_deployment_caveat_decision_application_accepted_review_only"
         if accepted_now
@@ -20832,7 +20851,8 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
         },
         "counts": {
             "source_decision_stub_rows": len(source_stubs),
-            "reviewed_decision_rows": len(reviewed_rows),
+            "decision_rows_checked": len(reviewed_rows),
+            "reviewed_decision_rows": len(explicit_reviewed_rows),
             "accepted_p10746_caveat_rows": len(accepted_rows),
             "rejected_p10746_caveat_rows": len(rejected_rows),
             "pending_decision_rows": len(pending_rows),
@@ -20891,6 +20911,7 @@ def _render_fold_augmented_p10746_deployment_caveat_decision_application_report(
         "",
         f"- {application['status']}",
         f"- Source decision stubs: {counts['source_decision_stub_rows']}",
+        f"- Decision rows checked: {counts['decision_rows_checked']}",
         f"- Reviewed decision rows: {counts['reviewed_decision_rows']}",
         f"- Accepted rows: {counts['accepted_p10746_caveat_rows']}",
         f"- Rejected rows: {counts['rejected_p10746_caveat_rows']}",
@@ -24356,6 +24377,13 @@ def build_fold_augmented_family_panel_expert_import_decision_application(
         decision_value = _family_panel_expert_import_decision_value(
             decision_record or stub
         )
+        review_status = str(
+            (decision_record or stub).get("review_status") or ""
+        )
+        required_review_status = str(
+            stub.get("recommended_review_status_after_decision")
+            or "reviewed_expert_import_decision"
+        )
         decision_present = decision_value in {
             accepted_value,
             rejected_value,
@@ -24369,6 +24397,10 @@ def build_fold_augmented_family_panel_expert_import_decision_application(
             )
             if observed_hash != expected_hash:
                 critical_violations.append("decision_context_sha256_mismatch")
+            if review_status != required_review_status:
+                critical_violations.append(
+                    "review_status_not_reviewed_expert_import_decision"
+                )
         accepted = decision_value == accepted_value
         rejected = decision_value == rejected_value
         keep_review_only = decision_value == review_only_value
@@ -24386,6 +24418,8 @@ def build_fold_augmented_family_panel_expert_import_decision_application(
             "panel_id": stub.get("panel_id"),
             "decision_present": decision_present,
             "decision": decision_value if decision_present else "pending_review",
+            "review_status": review_status or None,
+            "required_review_status_after_decision": required_review_status,
             "decision_context_sha256": stub.get("decision_context_sha256"),
             "primary_blocker_class": stub.get("primary_blocker_class"),
             "import_preview_candidate_if_accepted_now": import_preview_candidate,
@@ -24482,6 +24516,13 @@ def build_fold_augmented_family_panel_expert_import_decision_application(
             "explicit_decision_records": sum(
                 1 for row in row_decisions if row["decision_present"]
             ),
+            "reviewed_decision_records": sum(
+                1
+                for row in row_decisions
+                if row["decision_present"]
+                and row.get("review_status")
+                == row.get("required_review_status_after_decision")
+            ),
             "pending_decision_rows": len(pending_rows),
             "accepted_import_preview_candidate_rows": len(accepted_ready_rows),
             "accepted_but_still_blocked_rows": len(accepted_still_blocked_rows),
@@ -24555,6 +24596,7 @@ def _render_fold_augmented_family_panel_expert_import_decision_application_repor
         f"- {application['status']}",
         f"- Packet stubs: {counts['packet_stub_rows']}",
         f"- Decision records: {counts['decision_records_total']}",
+        f"- Reviewed decision records: {counts['reviewed_decision_records']}",
         f"- Pending decision rows: {counts['pending_decision_rows']}",
         "- Accepted import-preview candidates: "
         f"{counts['accepted_import_preview_candidate_rows']}",
@@ -26758,6 +26800,8 @@ def _active_lever_intake_row(
     locator_rejection = False
     intake_status = "pending_external_decision"
     edit_contract_ok = True
+    review_status_value: str | None = None
+    approved_value: bool | None = None
 
     if decision_class == "p10746_fold_only_deployment_caveat":
         expected_decision_field = template.get("decision_field_to_update") or "decision"
@@ -26775,6 +26819,11 @@ def _active_lever_intake_row(
             source_row.get("decision") or source_row.get("selected_decision") or ""
         )
         review_status = str(source_row.get("review_status") or "")
+        review_status_value = review_status or None
+        required_review_status = (
+            template.get("required_review_status_after_decision")
+            or "reviewed_explicit_decision"
+        )
         expected_hash = template.get("decision_context_sha256")
         observed_hash = source_row.get("decision_context_sha256")
         hash_ok = bool(expected_hash) and observed_hash == expected_hash
@@ -26784,8 +26833,12 @@ def _active_lever_intake_row(
             blockers.append("decision_not_allowed_by_source_packet")
         elif not hash_ok:
             blockers.append("decision_context_sha256_changed")
-        elif review_status == "pending_explicit_decision":
-            blockers.append("p10746_review_status_still_pending")
+        elif review_status != required_review_status:
+            blockers.append(
+                "p10746_review_status_still_pending"
+                if review_status == "pending_explicit_decision"
+                else "p10746_review_status_not_reviewed_explicit_decision"
+            )
         else:
             explicit_decision = True
             ready_for_follow_on_gate = True
@@ -26793,12 +26846,23 @@ def _active_lever_intake_row(
 
     elif decision_class == "family_panel_expert_import_decision":
         expected_decision_field = template.get("decision_field_to_update") or "decision"
+        expected_review_status_field = (
+            template.get("review_status_field_to_update") or "review_status"
+        )
         edit_contract_ok = (
             source_row.get("decision_field_to_update") == expected_decision_field
+            and source_row.get("review_status_field_to_update")
+            == expected_review_status_field
         )
         if not edit_contract_ok:
             blockers.append("source_packet_edit_contract_fields_missing")
         decision_value = _family_panel_expert_import_decision_value(source_row)
+        review_status = str(source_row.get("review_status") or "")
+        review_status_value = review_status or None
+        required_review_status = (
+            template.get("recommended_review_status_after_decision")
+            or "reviewed_expert_import_decision"
+        )
         expected_hash = template.get("decision_context_sha256")
         observed_hash = source_row.get("decision_context_sha256")
         hash_ok = bool(expected_hash) and observed_hash == expected_hash
@@ -26808,6 +26872,12 @@ def _active_lever_intake_row(
             blockers.append("decision_not_allowed_by_source_packet")
         elif not hash_ok:
             blockers.append("decision_context_sha256_changed")
+        elif review_status != required_review_status:
+            blockers.append(
+                "family_panel_review_status_still_pending"
+                if review_status == "pending_expert_import_decision"
+                else "family_panel_review_status_not_reviewed_expert_import_decision"
+            )
         else:
             explicit_decision = True
             ready_for_follow_on_gate = True
@@ -26823,6 +26893,11 @@ def _active_lever_intake_row(
         )
         edit_contract_ok = (
             source_row.get("decision_field_to_update") == expected_decision_field
+        )
+        approved_value = (
+            source_row.get("approved")
+            if isinstance(source_row.get("approved"), bool)
+            else None
         )
         if not edit_contract_ok:
             blockers.append("source_packet_edit_contract_fields_missing")
@@ -26840,9 +26915,14 @@ def _active_lever_intake_row(
         locator_approval = _source_free_locator_rewrite_decision_is_approved(
             source_row
         )
+        locator_approval_record_violations = (
+            _source_free_locator_rewrite_approval_record_violations(source_row)
+        )
         locator_rejection = decision_value == "reject_locator_rewrite"
         if _decision_value_is_pending(decision_value):
             blockers.append("explicit_decision_missing")
+        elif locator_approval_record_violations:
+            blockers.extend(locator_approval_record_violations)
         elif not (locator_approval or locator_rejection):
             blockers.append("decision_not_allowed_by_source_packet")
         elif not candidate_hash_ok:
@@ -26916,6 +26996,8 @@ def _active_lever_intake_row(
             )
         ),
         "decision": decision_value or None,
+        "review_status": review_status_value,
+        "approved": approved_value,
         "source_edit_contract_fields_match_template": edit_contract_ok,
         "explicit_decision_recorded": explicit_decision,
         "decision_hashes_match_source_template": hash_ok,
@@ -27189,8 +27271,8 @@ def _render_active_lever_source_decision_intake_preflight_report(
         "",
         "## Intake Rows",
         "",
-        "| priority | lever | row | source pointer | decision field | decision | status | follow-on ready | blockers |",
-        "| ---: | --- | --- | --- | --- | --- | --- | ---: | --- |",
+        "| priority | lever | row | source pointer | decision field | decision | review status | approved | status | follow-on ready | blockers |",
+        "| ---: | --- | --- | --- | --- | --- | --- | --- | --- | ---: | --- |",
     ]
     for row in preflight.get("intake_rows", [])[:90]:
         lines.append(
@@ -27198,6 +27280,8 @@ def _render_active_lever_source_decision_intake_preflight_report(
             f"{row.get('source_json_pointer')} | "
             f"{row.get('decision_field_to_update')} | "
             f"{row.get('decision')} | "
+            f"{row.get('review_status')} | "
+            f"{row.get('approved')} | "
             f"{row['intake_status']} | "
             f"{int(bool(row['ready_for_follow_on_gate']))} | "
             f"{', '.join(row.get('blockers') or []) if row.get('blockers') else 'none'} |"
@@ -27248,6 +27332,319 @@ def write_active_lever_source_decision_intake_preflight(
             encoding="utf-8",
         )
     return preflight
+
+
+def build_active_lever_decision_application_contract_audit(
+    *,
+    p10746_deployment_caveat_decision_application_path: Path,
+    family_panel_expert_import_decision_application_path: Path,
+    locator_rewrite_materialization_gate_path: Path,
+    active_lever_source_decision_intake_preflight_path: Path,
+    active_lever_mechanical_actionability_audit_path: Path | None = None,
+) -> dict[str, Any]:
+    p10746 = _read_json(p10746_deployment_caveat_decision_application_path)
+    family = _read_json(family_panel_expert_import_decision_application_path)
+    locator = _read_json(locator_rewrite_materialization_gate_path)
+    intake = _read_json(active_lever_source_decision_intake_preflight_path)
+    actionability = (
+        _read_json(active_lever_mechanical_actionability_audit_path)
+        if active_lever_mechanical_actionability_audit_path is not None
+        and Path(active_lever_mechanical_actionability_audit_path).exists()
+        else {}
+    )
+    p10746_counts = p10746.get("counts") or {}
+    family_counts = family.get("counts") or {}
+    locator_counts = locator.get("counts") or {}
+    intake_counts = intake.get("counts") or {}
+    action_counts = actionability.get("counts") or {}
+    contract_violations: list[str] = []
+    if (
+        p10746_counts.get("reviewed_decision_rows", 0)
+        and not intake_counts.get("p10746_application_ready_rows", 0)
+    ):
+        contract_violations.append("p10746_application_reviewed_but_intake_not_ready")
+    if (
+        family_counts.get("reviewed_decision_records", 0)
+        and not intake_counts.get("family_panel_application_ready_rows", 0)
+    ):
+        contract_violations.append("family_application_reviewed_but_intake_not_ready")
+    if (
+        locator_counts.get("approved_decision_records", 0)
+        and not intake_counts.get("locator_materialization_ready_approval_rows", 0)
+    ):
+        contract_violations.append("locator_application_approved_but_intake_not_ready")
+    if locator_counts.get("invalid_approval_records", 0):
+        contract_violations.append("locator_invalid_approval_records_present")
+    if family_counts.get("critical_violation_total", 0):
+        contract_violations.append("family_application_critical_violations_present")
+    if p10746_counts.get("invalid_decision_rows", 0):
+        contract_violations.append("p10746_application_invalid_decisions_present")
+    intake_ready = bool(
+        (intake.get("decision") or {}).get("run_any_matching_gate_now")
+    )
+    status = (
+        "active_lever_decision_application_contract_audit_blocked_contract_violations"
+        if contract_violations
+        else "active_lever_decision_application_contract_audit_passed_follow_on_ready"
+        if intake_ready
+        else "active_lever_decision_application_contract_audit_passed_pending_source_decisions"
+    )
+    return {
+        "artifact_id": ACTIVE_LEVER_DECISION_APPLICATION_CONTRACT_AUDIT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.active_lever_decision_application_contract_audit",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Read-only contract audit across the active Lever 2/3/4 source-decision "
+            "intake preflight and the three downstream decision application gates. "
+            "It checks that reviewed status, approval booleans, and application "
+            "readiness stay fail-closed before any follow-on gate is run."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "decisions_applied": False,
+            "locator_sidecars_created_or_copied": False,
+            "imports_or_promotions_performed": False,
+            "labels_registries_ontologies_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_read_now": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "counts": {
+            "contract_violations": len(contract_violations),
+            "source_intake_template_rows": intake_counts.get("template_rows"),
+            "source_intake_pending_rows": intake_counts.get("pending_decision_rows"),
+            "source_intake_invalid_rows": intake_counts.get("invalid_decision_rows"),
+            "source_intake_follow_on_ready_rows": intake_counts.get(
+                "follow_on_gate_ready_rows"
+            ),
+            "mechanical_gates_ready_now": action_counts.get(
+                "mechanical_gates_ready_now"
+            ),
+            "p10746_decision_rows_checked": p10746_counts.get(
+                "decision_rows_checked"
+            ),
+            "p10746_reviewed_decision_rows": p10746_counts.get(
+                "reviewed_decision_rows"
+            ),
+            "p10746_pending_decision_rows": p10746_counts.get(
+                "pending_decision_rows"
+            ),
+            "p10746_invalid_decision_rows": p10746_counts.get(
+                "invalid_decision_rows"
+            ),
+            "family_decision_records_total": family_counts.get(
+                "decision_records_total"
+            ),
+            "family_explicit_decision_records": family_counts.get(
+                "explicit_decision_records"
+            ),
+            "family_reviewed_decision_records": family_counts.get(
+                "reviewed_decision_records"
+            ),
+            "family_pending_decision_rows": family_counts.get(
+                "pending_decision_rows"
+            ),
+            "family_critical_violation_total": family_counts.get(
+                "critical_violation_total"
+            ),
+            "locator_approval_records_total": locator_counts.get(
+                "approval_records_total"
+            ),
+            "locator_approved_decision_records": locator_counts.get(
+                "approved_decision_records"
+            ),
+            "locator_invalid_approval_records": locator_counts.get(
+                "invalid_approval_records"
+            ),
+            "locator_approved_sidecars_written": locator_counts.get(
+                "approved_locator_sidecars_written"
+            ),
+        },
+        "contract_checks": [
+            {
+                "gate": "p10746_deployment_caveat_decision_application",
+                "status": p10746.get("status"),
+                "reviewed_rows": p10746_counts.get("reviewed_decision_rows"),
+                "pending_rows": p10746_counts.get("pending_decision_rows"),
+                "invalid_rows": p10746_counts.get("invalid_decision_rows"),
+                "source_intake_ready_rows": intake_counts.get(
+                    "p10746_application_ready_rows"
+                ),
+            },
+            {
+                "gate": "family_panel_expert_import_decision_application",
+                "status": family.get("status"),
+                "reviewed_rows": family_counts.get("reviewed_decision_records"),
+                "pending_rows": family_counts.get("pending_decision_rows"),
+                "critical_violations": family_counts.get("critical_violation_total"),
+                "source_intake_ready_rows": intake_counts.get(
+                    "family_panel_application_ready_rows"
+                ),
+            },
+            {
+                "gate": "locator_rewrite_materialization_gate",
+                "status": locator.get("status"),
+                "approved_records": locator_counts.get("approved_decision_records"),
+                "invalid_approval_records": locator_counts.get(
+                    "invalid_approval_records"
+                ),
+                "sidecars_written": locator_counts.get(
+                    "approved_locator_sidecars_written"
+                ),
+                "source_intake_ready_rows": intake_counts.get(
+                    "locator_materialization_ready_approval_rows"
+                ),
+            },
+        ],
+        "contract_violations": contract_violations,
+        "decision": {
+            "application_contracts_aligned": not contract_violations,
+            "run_any_matching_gate_now": intake_ready and not contract_violations,
+            "copy_locator_sidecars_now": False,
+            "run_label_factory_gate_now": False,
+            "apply_frozen_residual_threshold_now": False,
+            "next_gate": (
+                "If source intake is ready and this contract audit has zero "
+                "violations, rerun only the matching application/materialization "
+                "gate. Otherwise edit source decision packets, not derived "
+                "application artifacts."
+            ),
+        },
+        "source_artifacts": {
+            "p10746_deployment_caveat_decision_application": _source_path_record(
+                p10746_deployment_caveat_decision_application_path
+            ),
+            "family_panel_expert_import_decision_application": _source_path_record(
+                family_panel_expert_import_decision_application_path
+            ),
+            "locator_rewrite_materialization_gate": _source_path_record(
+                locator_rewrite_materialization_gate_path
+            ),
+            "active_lever_source_decision_intake_preflight": _source_path_record(
+                active_lever_source_decision_intake_preflight_path
+            ),
+            "active_lever_mechanical_actionability_audit": (
+                _source_path_record(active_lever_mechanical_actionability_audit_path)
+                if active_lever_mechanical_actionability_audit_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(contract_violations)} active decision application contract "
+                "violations found."
+            ),
+            "result": (
+                "The active decision applications and source intake remain "
+                "fail-closed while source decisions are pending."
+                if not contract_violations and not intake_ready
+                else "Follow-on application gates are visible only through the "
+                "source-intake preflight and must be rerun selectively."
+            ),
+            "next_action": (
+                "Record reviewed source decisions with required review statuses "
+                "and approval booleans, rerun intake, then rerun this contract audit."
+            ),
+        },
+    }
+
+
+def _render_active_lever_decision_application_contract_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Active Lever Decision Application Contract Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Contract violations: {counts['contract_violations']}",
+        f"- Source-intake pending rows: {counts['source_intake_pending_rows']}",
+        "- Source-intake follow-on ready rows: "
+        f"{counts['source_intake_follow_on_ready_rows']}",
+        f"- Mechanical gates ready now: {counts['mechanical_gates_ready_now']}",
+        "",
+        "## Gate Checks",
+        "",
+        "| gate | status | reviewed/approved | pending | invalid | intake ready |",
+        "| --- | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for check in audit["contract_checks"]:
+        reviewed = check.get("reviewed_rows", check.get("approved_records"))
+        invalid = check.get(
+            "invalid_rows",
+            check.get("critical_violations", check.get("invalid_approval_records")),
+        )
+        lines.append(
+            f"| {check['gate']} | {check['status']} | "
+            f"{reviewed} | {check.get('pending_rows')} | {invalid} | "
+            f"{check.get('source_intake_ready_rows')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Application contracts aligned: {decision['application_contracts_aligned']}",
+        f"- Run any matching gate now: {decision['run_any_matching_gate_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_active_lever_decision_application_contract_audit(
+    *,
+    p10746_deployment_caveat_decision_application_path: Path,
+    family_panel_expert_import_decision_application_path: Path,
+    locator_rewrite_materialization_gate_path: Path,
+    active_lever_source_decision_intake_preflight_path: Path,
+    out_path: Path,
+    active_lever_mechanical_actionability_audit_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_active_lever_decision_application_contract_audit(
+        p10746_deployment_caveat_decision_application_path=(
+            p10746_deployment_caveat_decision_application_path
+        ),
+        family_panel_expert_import_decision_application_path=(
+            family_panel_expert_import_decision_application_path
+        ),
+        locator_rewrite_materialization_gate_path=(
+            locator_rewrite_materialization_gate_path
+        ),
+        active_lever_source_decision_intake_preflight_path=(
+            active_lever_source_decision_intake_preflight_path
+        ),
+        active_lever_mechanical_actionability_audit_path=(
+            active_lever_mechanical_actionability_audit_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_active_lever_decision_application_contract_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
 
 
 def _source_check_focus(row: dict[str, Any]) -> list[str]:
@@ -47568,13 +47965,37 @@ def _source_free_locator_rewrite_decision_is_approved(
         or decision.get("approval_decision")
         or ""
     )
-    return bool(decision.get("approved") is True) or value in {
+    return decision.get("approved") is True and value in {
         "approve",
         "approved",
         "approve_locator_rewrite",
         "explicit_approve_locator_rewrite",
         "approved_for_audited_locator_copy_review_only",
     }
+
+
+def _source_free_locator_rewrite_approval_record_violations(
+    decision: dict[str, Any],
+) -> list[str]:
+    value = str(
+        decision.get("decision")
+        or decision.get("reviewer_decision")
+        or decision.get("approval_decision")
+        or ""
+    )
+    approval_values = {
+        "approve",
+        "approved",
+        "approve_locator_rewrite",
+        "explicit_approve_locator_rewrite",
+        "approved_for_audited_locator_copy_review_only",
+    }
+    violations: list[str] = []
+    if value in approval_values and decision.get("approved") is not True:
+        violations.append("approved_boolean_not_true_for_explicit_approval")
+    if decision.get("approved") is True and value not in approval_values:
+        violations.append("approved_boolean_true_without_explicit_approval_decision")
+    return violations
 
 
 def _source_free_locator_materialized_payload(
@@ -47634,6 +48055,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     approval_records = _source_free_locator_rewrite_approval_records(
         approval_decisions_path
     )
+    invalid_approval_records = [
+        {
+            "entry_id": str(row.get("entry_id") or ""),
+            "critical_violations": _source_free_locator_rewrite_approval_record_violations(
+                row
+            ),
+        }
+        for row in approval_records
+        if _source_free_locator_rewrite_approval_record_violations(row)
+    ]
     approved_decisions = [
         row for row in approval_records if _source_free_locator_rewrite_decision_is_approved(row)
     ]
@@ -47778,7 +48209,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         blockers.append("explicit_locator_rewrite_approval_decisions_missing")
     if not approved_ready and not materialized:
         blockers.append("approved_locator_rewrite_rows_missing")
-    if invalid_approvals or unmatched_approved_decisions:
+    if invalid_approvals or unmatched_approved_decisions or invalid_approval_records:
         blockers.append("approval_decision_integrity_violations_present")
     if not write_approved_locator_sidecars:
         blockers.append("approved_locator_sidecar_write_flag_not_enabled")
@@ -47812,6 +48243,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
         ),
         "unmatched_approved_decisions": unmatched_approved_decisions,
+        "invalid_approval_records": invalid_approval_records,
         "blockers": blockers,
         "guardrails": {
             "labels_registries_ontologies_changed": False,
@@ -47835,6 +48267,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "preflight_rows": len(preflight_rows),
             "approval_records_total": len(approval_records),
             "approved_decision_records": len(approved_decisions),
+            "invalid_approval_records": len(invalid_approval_records),
             "unmatched_approved_decisions": len(unmatched_approved_decisions),
             "approved_ready_for_materialization": len(approved_ready),
             "approved_locator_sidecars_written": len(materialized),
@@ -47846,7 +48279,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "critical_violation_total": sum(
                 len(row.get("critical_violations", [])) for row in row_decisions
             )
-            + len(unmatched_approved_decisions),
+            + len(unmatched_approved_decisions)
+            + sum(
+                len(row.get("critical_violations", []))
+                for row in invalid_approval_records
+            ),
         },
         "decision": {
             "approved_locator_rewrites_available": bool(
@@ -47916,6 +48353,7 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"- Preflight rows: {counts['preflight_rows']}",
         f"- Approval records: {counts['approval_records_total']}",
         f"- Approved decisions: {counts['approved_decision_records']}",
+        f"- Invalid approval records: {counts['invalid_approval_records']}",
         "- Approved ready for materialization: "
         f"{counts['approved_ready_for_materialization']}",
         "- Approved locator sidecars written: "

@@ -1,0 +1,105 @@
+{
+  "artifact_id": "v3_active_lever_decision_application_contract_audit_current702_20260603",
+  "contract_checks": [
+    {
+      "gate": "p10746_deployment_caveat_decision_application",
+      "invalid_rows": 0,
+      "pending_rows": 1,
+      "reviewed_rows": 0,
+      "source_intake_ready_rows": 0,
+      "status": "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision"
+    },
+    {
+      "critical_violations": 0,
+      "gate": "family_panel_expert_import_decision_application",
+      "pending_rows": 22,
+      "reviewed_rows": 0,
+      "source_intake_ready_rows": 0,
+      "status": "family_panel_expert_import_decision_application_blocked"
+    },
+    {
+      "approved_records": 0,
+      "gate": "locator_rewrite_materialization_gate",
+      "invalid_approval_records": 0,
+      "sidecars_written": 0,
+      "source_intake_ready_rows": 0,
+      "status": "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_ready_blocked"
+    }
+  ],
+  "contract_violations": [],
+  "counts": {
+    "contract_violations": 0,
+    "family_critical_violation_total": 0,
+    "family_decision_records_total": 22,
+    "family_explicit_decision_records": 0,
+    "family_pending_decision_rows": 22,
+    "family_reviewed_decision_records": 0,
+    "locator_approval_records_total": 0,
+    "locator_approved_decision_records": 0,
+    "locator_approved_sidecars_written": 0,
+    "locator_invalid_approval_records": 0,
+    "mechanical_gates_ready_now": 0,
+    "p10746_decision_rows_checked": 1,
+    "p10746_invalid_decision_rows": 0,
+    "p10746_pending_decision_rows": 1,
+    "p10746_reviewed_decision_rows": 0,
+    "source_intake_follow_on_ready_rows": 0,
+    "source_intake_invalid_rows": 0,
+    "source_intake_pending_rows": 78,
+    "source_intake_template_rows": 78
+  },
+  "created_utc": "2026-06-03T11:20:34Z",
+  "decision": {
+    "application_contracts_aligned": true,
+    "apply_frozen_residual_threshold_now": false,
+    "copy_locator_sidecars_now": false,
+    "next_gate": "If source intake is ready and this contract audit has zero violations, rerun only the matching application/materialization gate. Otherwise edit source decision packets, not derived application artifacts.",
+    "run_any_matching_gate_now": false,
+    "run_label_factory_gate_now": false
+  },
+  "guardrails": {
+    "decisions_applied": false,
+    "heldout_rows_read_now": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_sidecars_created_or_copied": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "headline": "0 active decision application contract violations found.",
+    "next_action": "Record reviewed source decisions with required review statuses and approval booleans, rerun intake, then rerun this contract audit.",
+    "result": "The active decision applications and source intake remain fail-closed while source decisions are pending."
+  },
+  "schema_version": "northstar_next_levers.v0.active_lever_decision_application_contract_audit",
+  "scope": "Read-only contract audit across the active Lever 2/3/4 source-decision intake preflight and the three downstream decision application gates. It checks that reviewed status, approval booleans, and application readiness stay fail-closed before any follow-on gate is run.",
+  "source_artifacts": {
+    "active_lever_mechanical_actionability_audit": {
+      "exists": true,
+      "path": "artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json",
+      "sha256": "80c2d1d57dda310e95f4e5ad0769ac609536098b066175d7e7c499ad46b3cbd4"
+    },
+    "active_lever_source_decision_intake_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json",
+      "sha256": "7572e0b2d86fade03a877477cb1b6d82117f4fc61c727f07740cedde29ec81f1"
+    },
+    "family_panel_expert_import_decision_application": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603.json",
+      "sha256": "ce662be7e487f27d2218db6daff345c1eaf5bc314ffac34b79641351b304b15c"
+    },
+    "locator_rewrite_materialization_gate": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json",
+      "sha256": "4f3c50333488b6bd6689de8ff4898e8832bb09123effa1af2cc3aab2b1f2c38b"
+    },
+    "p10746_deployment_caveat_decision_application": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json",
+      "sha256": "a4f75c121e43b2f5445dc0ab0beafa7f36889431576e491c1b735cd30e4d23cf"
+    }
+  },
+  "status": "active_lever_decision_application_contract_audit_passed_pending_source_decisions"
+}

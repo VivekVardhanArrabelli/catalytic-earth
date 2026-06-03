@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Locator Rewrite Materialization Gate - current702
 
-Run: 2026-06-03T06:17:09Z
+Run: 2026-06-03T11:11:09Z
 
 Fail-closed materialization gate for priority-1 current702 heldout coordinate-anchor locator rewrites. It consumes the rewrite preflight and an explicit approval-decision artifact, verifies candidate and planned-payload hashes, and writes approved source-free locator sidecars only when the write flag is explicitly enabled. It does not score heldout rows or apply the frozen row-specific residual threshold.
 
@@ -10,6 +10,7 @@ Fail-closed materialization gate for priority-1 current702 heldout coordinate-an
 - Preflight rows: 55
 - Approval records: 0
 - Approved decisions: 0
+- Invalid approval records: 0
 - Approved ready for materialization: 0
 - Approved locator sidecars written: 0
 - Invalid approval/preflight rows: 0

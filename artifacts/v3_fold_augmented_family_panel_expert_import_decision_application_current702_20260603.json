@@ -15,9 +15,10 @@
     "pending_decision_rows": 22,
     "rejected_rows": 0,
     "review_only_rows": 0,
+    "reviewed_decision_records": 0,
     "unmatched_decisions": 0
   },
-  "created_utc": "2026-06-03T10:19:58Z",
+  "created_utc": "2026-06-03T11:08:29Z",
   "decision": {
     "explicit_expert_import_decisions_recorded": false,
     "import_preview_can_run_now": false,
@@ -59,7 +60,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -78,7 +81,9 @@
         "label_factory_gate_required_after_import_preview",
         "materialize_primary_channel_score",
         "resolve_source_free_locator_or_coordinate_policy"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -96,7 +101,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -114,7 +121,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -132,7 +141,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -150,7 +161,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -167,7 +180,9 @@
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -184,7 +199,9 @@
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -201,7 +218,9 @@
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -219,7 +238,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -236,7 +257,9 @@
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -255,7 +278,9 @@
         "label_factory_gate_required_after_import_preview",
         "materialize_primary_channel_score",
         "resolve_source_free_locator_or_coordinate_policy"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -272,7 +297,9 @@
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -290,7 +317,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -308,7 +337,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -327,7 +358,9 @@
         "label_factory_gate_required_after_import_preview",
         "materialize_primary_channel_score",
         "resolve_source_free_locator_or_coordinate_policy"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -346,7 +379,9 @@
         "label_factory_gate_required_after_import_preview",
         "materialize_primary_channel_score",
         "resolve_source_free_locator_or_coordinate_policy"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -364,7 +399,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -382,7 +419,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -400,7 +439,9 @@
         "expert_import_decision_required",
         "family_promotion_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -419,7 +460,9 @@
         "label_factory_gate_required_after_import_preview",
         "materialize_primary_channel_score",
         "resolve_source_free_locator_or_coordinate_policy"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     },
     {
       "accepted_but_still_blocked": false,
@@ -436,7 +479,9 @@
       "remaining_actions_before_import_preview": [
         "expert_import_decision_required",
         "label_factory_gate_required_after_import_preview"
-      ]
+      ],
+      "required_review_status_after_decision": "reviewed_expert_import_decision",
+      "review_status": "pending_expert_import_decision"
     }
   ],
   "schema_version": "northstar_next_levers.v0.family_panel_expert_import_decision_application",

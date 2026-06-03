@@ -903,6 +903,13 @@ class CliTests(unittest.TestCase):
                 "cmd_build_active_lever_source_decision_intake_preflight",
             ),
             (
+                "build-active-lever-decision-application-contract-audit",
+                (
+                    "cmd_build_active_lever_decision_application_contract_"
+                    "audit"
+                ),
+            ),
+            (
                 "build-family-panel-source-free-locator-human-decision-matrix",
                 "cmd_build_family_panel_source_free_locator_human_decision_matrix",
             ),

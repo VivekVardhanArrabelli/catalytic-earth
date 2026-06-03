@@ -8,6 +8,7 @@ from pathlib import Path
 
 from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
+    build_active_lever_decision_application_contract_audit,
     build_active_lever_mechanical_actionability_audit,
     build_active_lever_priority_decision_templates,
     build_active_lever_reviewer_decision_queue,
@@ -3751,6 +3752,21 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 )
             )
 
+            partial_stub = dict(source_stub)
+            partial_stub[
+                "decision"
+            ] = "explicit_accept_p10746_fold_only_deployment_caveat"
+            reviewed_path.write_text(
+                json.dumps({"reviewed_decision_stubs": [partial_stub]}),
+                encoding="utf-8",
+            )
+            partial = (
+                build_fold_augmented_p10746_deployment_caveat_decision_application(
+                    decision_packet_path=packet_path,
+                    reviewed_decision_packet_path=reviewed_path,
+                )
+            )
+
             accepted_stub = dict(source_stub)
             accepted_stub["review_status"] = "reviewed_explicit_decision"
             accepted_stub[
@@ -3771,6 +3787,8 @@ class NorthstarNextLeversTests(unittest.TestCase):
             pending["status"],
             "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision",
         )
+        self.assertEqual(pending["counts"]["decision_rows_checked"], 1)
+        self.assertEqual(pending["counts"]["reviewed_decision_rows"], 0)
         self.assertEqual(pending["counts"]["pending_decision_rows"], 1)
         self.assertFalse(pending["decision"]["p10746_fold_only_caveat_accepted_now"])
         self.assertFalse(pending["decision"]["ready_for_deployment_closure_application"])
@@ -3780,9 +3798,23 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
 
         self.assertEqual(
+            partial["status"],
+            "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision",
+        )
+        self.assertEqual(partial["counts"]["decision_rows_checked"], 1)
+        self.assertEqual(partial["counts"]["reviewed_decision_rows"], 0)
+        self.assertEqual(partial["counts"]["invalid_decision_rows"], 1)
+        self.assertIn(
+            "review_status_not_reviewed_explicit_decision",
+            partial["application_rows"][0]["blockers"],
+        )
+
+        self.assertEqual(
             accepted["status"],
             "p10746_deployment_caveat_decision_application_accepted_review_only",
         )
+        self.assertEqual(accepted["counts"]["decision_rows_checked"], 1)
+        self.assertEqual(accepted["counts"]["reviewed_decision_rows"], 1)
         self.assertEqual(accepted["counts"]["accepted_p10746_caveat_rows"], 1)
         self.assertEqual(accepted["counts"]["pending_decision_rows"], 0)
         self.assertTrue(
@@ -11113,6 +11145,18 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
+            partial_gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
+                coordinate_anchor_priority1_rewrite_preflight_path=preflight_path,
+                source_free_locator_schema_path=schema_path,
+                audited_locator_dir=root / "audited",
+                approval_decisions_path=approval_path,
+                write_approved_locator_sidecars=True,
+            )
+
+            approval_payload = json.loads(approval_path.read_text(encoding="utf-8"))
+            approval_payload["locator_rewrite_decision_stubs"][0]["approved"] = True
+            approval_path.write_text(json.dumps(approval_payload), encoding="utf-8")
+
             gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate(
                 coordinate_anchor_priority1_rewrite_preflight_path=preflight_path,
                 source_free_locator_schema_path=schema_path,
@@ -11122,10 +11166,26 @@ class NorthstarNextLeversTests(unittest.TestCase):
             )
 
         self.assertEqual(
+            partial_gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_ready_blocked",
+        )
+        self.assertEqual(partial_gate["counts"]["approved_decision_records"], 0)
+        self.assertEqual(partial_gate["counts"]["invalid_approval_records"], 1)
+        self.assertIn(
+            "approved_boolean_not_true_for_explicit_approval",
+            partial_gate["invalid_approval_records"][0]["critical_violations"],
+        )
+        self.assertIn(
+            "approval_decision_integrity_violations_present",
+            partial_gate["blockers"],
+        )
+
+        self.assertEqual(
             gate["status"],
             "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized",
         )
         self.assertEqual(gate["counts"]["approved_decision_records"], 1)
+        self.assertEqual(gate["counts"]["invalid_approval_records"], 0)
         self.assertEqual(gate["counts"]["approved_locator_sidecars_written"], 1)
         self.assertTrue(gate["decision"]["approved_source_free_locator_surface_ready"])
         self.assertFalse(gate["decision"]["apply_frozen_pair_threshold_now"])
@@ -13103,6 +13163,17 @@ class NorthstarNextLeversTests(unittest.TestCase):
             packet_path.write_text(json.dumps(packet), encoding="utf-8")
             decisions_path.write_text(json.dumps(decisions), encoding="utf-8")
 
+            partial_application = (
+                build_fold_augmented_family_panel_expert_import_decision_application(
+                    expert_import_decision_packet_path=packet_path,
+                    expert_decisions_path=decisions_path,
+                )
+            )
+
+            for decision in decisions["decisions"]:
+                decision["review_status"] = "reviewed_expert_import_decision"
+            decisions_path.write_text(json.dumps(decisions), encoding="utf-8")
+
             application = (
                 build_fold_augmented_family_panel_expert_import_decision_application(
                     expert_import_decision_packet_path=packet_path,
@@ -13111,12 +13182,31 @@ class NorthstarNextLeversTests(unittest.TestCase):
             )
 
         self.assertEqual(
+            partial_application["status"],
+            "family_panel_expert_import_decision_application_blocked",
+        )
+        self.assertEqual(
+            partial_application["counts"]["explicit_decision_records"], 2
+        )
+        self.assertEqual(
+            partial_application["counts"]["reviewed_decision_records"], 0
+        )
+        self.assertEqual(
+            partial_application["counts"]["critical_violation_total"], 2
+        )
+        self.assertIn(
+            "review_status_not_reviewed_expert_import_decision",
+            partial_application["row_decisions"][0]["critical_violations"],
+        )
+
+        self.assertEqual(
             application["status"],
             (
                 "family_panel_expert_import_decision_application_ready_for_"
                 "import_preview_review_only"
             ),
         )
+        self.assertEqual(application["counts"]["reviewed_decision_records"], 2)
         self.assertEqual(
             application["counts"]["accepted_import_preview_candidate_rows"], 1
         )
@@ -14021,6 +14111,10 @@ class NorthstarNextLeversTests(unittest.TestCase):
                                 "panel_id": "panel_a",
                                 "review_status": "pending_expert_import_decision",
                                 "decision_field_to_update": "decision",
+                                "review_status_field_to_update": "review_status",
+                                "recommended_review_status_after_decision": (
+                                    "reviewed_expert_import_decision"
+                                ),
                                 "default_decision": "pending_review",
                                 "decision_context_sha256": "b" * 64,
                             }
@@ -14162,6 +14256,10 @@ class NorthstarNextLeversTests(unittest.TestCase):
                         "panel_id": "panel_a",
                         "review_status": "pending_expert_import_decision",
                         "decision_field_to_update": "decision",
+                        "review_status_field_to_update": "review_status",
+                        "recommended_review_status_after_decision": (
+                            "reviewed_expert_import_decision"
+                        ),
                         "default_decision": "pending_review",
                         "decision_context_sha256": "b" * 64,
                     }
@@ -14252,6 +14350,9 @@ class NorthstarNextLeversTests(unittest.TestCase):
             )
             family_packet["expert_import_decision_stubs"][0]["decision"] = (
                 "explicit_accept_family_panel_import_candidate"
+            )
+            family_packet["expert_import_decision_stubs"][0]["review_status"] = (
+                "reviewed_expert_import_decision"
             )
             locator_packet["locator_rewrite_decision_stubs"][0]["decision"] = (
                 "explicit_approve_locator_rewrite"
@@ -14372,6 +14473,283 @@ class NorthstarNextLeversTests(unittest.TestCase):
             preflight["intake_rows"][0]["blockers"],
         )
         self.assertFalse(preflight["decision"]["p10746_application_gate_ready"])
+
+    def test_active_lever_source_decision_intake_preflight_requires_family_review_status(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            templates_path = root / "templates.json"
+            family_packet_path = root / "family.json"
+            family_packet_path.write_text(
+                json.dumps(
+                    {
+                        "expert_import_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": "panel_a",
+                                "review_status": "pending_expert_import_decision",
+                                "review_status_field_to_update": "review_status",
+                                "decision_field_to_update": "decision",
+                                "decision": (
+                                    "explicit_accept_family_panel_import_candidate"
+                                ),
+                                "decision_context_sha256": "b" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            templates_path.write_text(
+                json.dumps(
+                    {
+                        "template_groups": {
+                            "family_panel_import_preview_candidates": [
+                                {
+                                    "entry_id": "m_csa:30",
+                                    "panel_id": "panel_a",
+                                    "decision_class": (
+                                        "family_panel_expert_import_decision"
+                                    ),
+                                    "allowed_decisions": [
+                                        "explicit_accept_family_panel_import_candidate"
+                                    ],
+                                    "decision_context_sha256": "b" * 64,
+                                    "decision_field_to_update": "decision",
+                                    "review_status_field_to_update": "review_status",
+                                    "recommended_review_status_after_decision": (
+                                        "reviewed_expert_import_decision"
+                                    ),
+                                    "target_packet_key": (
+                                        "expert_import_decision_stubs"
+                                    ),
+                                    "target_source_artifact_key": (
+                                        "family_panel_expert_import_decision_packet"
+                                    ),
+                                    "target_gate_after_edit": (
+                                        "apply-fold-augmented-family-panel-"
+                                        "expert-import-decision"
+                                    ),
+                                    "source_json_pointer": (
+                                        "/expert_import_decision_stubs/0"
+                                    ),
+                                    "import_preview_candidate_if_accepted_now": True,
+                                }
+                            ]
+                        },
+                        "source_artifacts": {
+                            "target_source_packets": {
+                                "family_panel_expert_import_decision_packet": {
+                                    "path": str(family_packet_path)
+                                }
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_active_lever_source_decision_intake_preflight(
+                active_lever_priority_decision_templates_path=templates_path
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "active_lever_source_decision_intake_preflight_blocked",
+        )
+        self.assertEqual(preflight["counts"]["invalid_decision_rows"], 1)
+        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 0)
+        self.assertIn(
+            "family_panel_review_status_still_pending",
+            preflight["intake_rows"][0]["blockers"],
+        )
+        self.assertFalse(preflight["decision"]["family_panel_application_gate_ready"])
+
+    def test_active_lever_source_decision_intake_preflight_requires_locator_approved_boolean(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            templates_path = root / "templates.json"
+            locator_packet_path = root / "locator.json"
+            locator_packet_path.write_text(
+                json.dumps(
+                    {
+                        "locator_rewrite_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "reviewer_decision": (
+                                    "explicit_approve_locator_rewrite"
+                                ),
+                                "decision_field_to_update": "reviewer_decision",
+                                "approved_boolean_field_to_update": "approved",
+                                "candidate_sha256": "c" * 64,
+                                "planned_locator_payload_sha256": "d" * 64,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            templates_path.write_text(
+                json.dumps(
+                    {
+                        "template_groups": {
+                            "clean_locator_rewrite_approvals": [
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "decision_class": (
+                                        "source_free_locator_rewrite_approval"
+                                    ),
+                                    "allowed_decisions": [
+                                        "explicit_approve_locator_rewrite",
+                                        "reject_locator_rewrite",
+                                    ],
+                                    "candidate_sha256": "c" * 64,
+                                    "planned_locator_payload_sha256": "d" * 64,
+                                    "decision_field_to_update": "reviewer_decision",
+                                    "approved_boolean_field_to_update": "approved",
+                                    "required_approved_value_if_approving": True,
+                                    "target_packet_key": (
+                                        "locator_rewrite_decision_stubs"
+                                    ),
+                                    "target_source_artifact_key": (
+                                        "lever2_locator_rewrite_approval_packet"
+                                    ),
+                                    "target_gate_after_edit": (
+                                        "build-mechanism-feature-row-specific-"
+                                        "bond-change-p0-oos-augmented-best-token-"
+                                        "followup-pair-source-free-locator-"
+                                        "rewrite-materialization-gate"
+                                    ),
+                                    "source_json_pointer": (
+                                        "/locator_rewrite_decision_stubs/0"
+                                    ),
+                                    "materialization_gate_input_ready_if_approved": True,
+                                }
+                            ]
+                        },
+                        "source_artifacts": {
+                            "target_source_packets": {
+                                "lever2_locator_rewrite_approval_packet": {
+                                    "path": str(locator_packet_path)
+                                }
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_active_lever_source_decision_intake_preflight(
+                active_lever_priority_decision_templates_path=templates_path
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "active_lever_source_decision_intake_preflight_blocked",
+        )
+        self.assertEqual(preflight["counts"]["invalid_decision_rows"], 1)
+        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 0)
+        self.assertIn(
+            "approved_boolean_not_true_for_explicit_approval",
+            preflight["intake_rows"][0]["blockers"],
+        )
+        self.assertFalse(preflight["decision"]["locator_materialization_gate_ready"])
+
+    def test_active_lever_decision_application_contract_audit_composes_pending_gates(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            p10746 = root / "p10746_app.json"
+            family = root / "family_app.json"
+            locator = root / "locator_gate.json"
+            intake = root / "intake.json"
+            actionability = root / "actionability.json"
+            p10746.write_text(
+                json.dumps(
+                    {
+                        "status": "p10746_blocked",
+                        "counts": {
+                            "decision_rows_checked": 1,
+                            "reviewed_decision_rows": 0,
+                            "pending_decision_rows": 1,
+                            "invalid_decision_rows": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family.write_text(
+                json.dumps(
+                    {
+                        "status": "family_blocked",
+                        "counts": {
+                            "decision_records_total": 2,
+                            "explicit_decision_records": 0,
+                            "reviewed_decision_records": 0,
+                            "pending_decision_rows": 2,
+                            "critical_violation_total": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator.write_text(
+                json.dumps(
+                    {
+                        "status": "locator_blocked",
+                        "counts": {
+                            "approval_records_total": 0,
+                            "approved_decision_records": 0,
+                            "invalid_approval_records": 0,
+                            "approved_locator_sidecars_written": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            intake.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "template_rows": 3,
+                            "pending_decision_rows": 3,
+                            "invalid_decision_rows": 0,
+                            "follow_on_gate_ready_rows": 0,
+                            "p10746_application_ready_rows": 0,
+                            "family_panel_application_ready_rows": 0,
+                            "locator_materialization_ready_approval_rows": 0,
+                        },
+                        "decision": {"run_any_matching_gate_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            actionability.write_text(
+                json.dumps({"counts": {"mechanical_gates_ready_now": 0}}),
+                encoding="utf-8",
+            )
+
+            audit = build_active_lever_decision_application_contract_audit(
+                p10746_deployment_caveat_decision_application_path=p10746,
+                family_panel_expert_import_decision_application_path=family,
+                locator_rewrite_materialization_gate_path=locator,
+                active_lever_source_decision_intake_preflight_path=intake,
+                active_lever_mechanical_actionability_audit_path=actionability,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "active_lever_decision_application_contract_audit_passed_pending_source_decisions",
+        )
+        self.assertEqual(audit["counts"]["contract_violations"], 0)
+        self.assertEqual(audit["counts"]["source_intake_pending_rows"], 3)
+        self.assertFalse(audit["decision"]["run_any_matching_gate_now"])
+        self.assertTrue(audit["decision"]["application_contracts_aligned"])
+        self.assertFalse(audit["guardrails"]["decisions_applied"])
 
     def test_selected_organic_cofactor_sidecar_schema_audit_passes_complete_grid(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

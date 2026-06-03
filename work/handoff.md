@@ -50,6 +50,99 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 11
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T11:02:21Z`
+- STARTED_LOCAL: `2026-06-03T06:02:21-0500 CDT`
+- ENDED_AT: `2026-06-03T11:23:05Z`
+- ENDED_LOCAL: `2026-06-03T06:23:05-0500 CDT`
+- ELAPSED_MINUTES: `20.7`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "10861", "started_at": "2026-06-03T11:02:02Z", "started_local": "2026-06-03T06:02:02-0500 America/Chicago", "status": "acquired"}`
+
+#### Current intent
+
+Continue inside active Levers 2/3/4 from current `main`, using the active
+handoff as primary truth. Start from the source-decision intake gate and only
+advance mechanical application/materialization gates if reviewed source packet
+decisions are present and hash-valid.
+
+#### What changed
+
+- Hardened the three active source-decision application/materialization gates:
+  P10746 deployment-caveat application now counts only exact
+  `reviewed_explicit_decision` rows as reviewed and treats partial decision
+  edits as invalid; family-panel expert-import application now requires
+  `reviewed_expert_import_decision`; Lever 2 locator materialization now
+  requires both `explicit_approve_locator_rewrite` and `approved: true`.
+- Tightened the shared active source-decision intake preflight to enforce the
+  same reviewed-status and approval-boolean contracts before marking any
+  follow-on gate ready. Its row/report output now exposes current
+  `review_status` and `approved` values so reviewers can see the exact missing
+  source-packet fields.
+- Added
+  `v3_active_lever_decision_application_contract_audit_current702_20260603`
+  and report. It composes P10746, family-panel, Lever 2 locator, source-intake,
+  and mechanical-actionability outputs and currently reports 0 contract
+  violations, 78 pending source decisions, and 0 follow-on-ready rows.
+- Regenerated dependent active Lever 2/3/4 artifacts/reports:
+  P10746 application/post-decision closure, family-panel application/preview/
+  label-factory readiness, Lever 2 locator materialization/pre-threshold
+  readiness, active reviewer queue/templates/source intake/actionability, and
+  the new contract audit.
+- Added unit, CLI-registration, and current-artifact regression coverage for
+  partial P10746 decisions, partial family-panel decisions, locator approvals
+  missing `approved: true`, stricter source-intake review status handling, and
+  the new contract audit.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, locator sidecars, reviewer decisions, source decision values, or
+  source packets were edited.
+- No heldout rows were trained on, threshold-tuned, evaluated through a new
+  operating point, or read through a frozen threshold application. All outputs
+  are fail-closed gate/audit artifacts.
+
+#### Verification
+
+- `PYTHONPATH=src python -m pytest -q`: 1309 passed, 134 subtests passed, one
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1264 passed, same
+  existing warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 702 labels, 8
+  fingerprints, and 15 ontology families validated.
+- `PYTHONPATH=src python -m compileall -q src`, `git diff --check`, and a
+  parse check over 12 changed/new JSON artifacts passed.
+- Focused active-lever tests passed:
+  `tests/test_northstar_next_levers.py -k 'active_lever or p10746_deployment_caveat_decision_application or family_panel_expert_import_decision_application or followup_pair_locator_rewrite_materialization_gate'`,
+  the active current-artifact regression slices, and
+  `tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered`.
+
+#### Exact next action
+
+Source decisions are still the only gate opener. Do not edit derived templates,
+application artifacts, or contract audits as source of truth. If reviewed
+decisions are available, edit only the source decision packets while preserving
+their hashes and required status fields:
+
+1. P10746 policy packet `/decision_stubs/0`: set `decision` to an allowed value
+   and `review_status` to `reviewed_explicit_decision`.
+2. Lever 4 expert import stubs: set `decision` and `review_status` to
+   `reviewed_expert_import_decision` on the reviewed rows.
+3. Lever 2 locator rewrite stubs: set `reviewer_decision`; for approvals also
+   set `approved: true`.
+
+Then rerun `build-active-lever-source-decision-intake-preflight`, rerun
+`build-active-lever-decision-application-contract-audit`, and only then run the
+matching application/materialization gate indicated by the preflight. If the
+contract audit reports any violation, fix the source packet row before running
+that gate.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 10
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

@@ -1,6 +1,6 @@
 # Active Lever Priority Decision Templates - current702
 
-Run: 2026-06-03T10:22:01Z
+Run: 2026-06-03T11:08:30Z
 
 Review-only patch templates for the active Lever 2/3/4 decision queue. The templates preserve hashes and allowed decision values but leave every decision pending; they are not applied by automation.
 

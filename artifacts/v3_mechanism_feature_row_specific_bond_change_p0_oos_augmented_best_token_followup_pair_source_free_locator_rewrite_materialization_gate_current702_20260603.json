@@ -14,11 +14,12 @@
     "blockers": 4,
     "critical_violation_total": 0,
     "invalid_approval_or_preflight_rows": 0,
+    "invalid_approval_records": 0,
     "preflight_rows": 55,
     "rows_without_explicit_approval": 55,
     "unmatched_approved_decisions": 0
   },
-  "created_utc": "2026-06-03T06:17:09Z",
+  "created_utc": "2026-06-03T11:11:09Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "approved_locator_rewrites_available": false,
@@ -48,6 +49,7 @@
     "next_action": "Do not copy priority-1 locator sidecars from preflight alone. Consume explicit approvals only, keep the event-axis blocker separate, and leave the frozen residual threshold unapplied until the source-free heldout surface is complete.",
     "result": "0 explicit approval decisions were found; 0 locator sidecars were written to the audited directory."
   },
+  "invalid_approval_records": [],
   "row_decisions": [
     {
       "approval_present": false,

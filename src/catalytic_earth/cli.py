@@ -45,6 +45,7 @@ from .mechanism_abstention_gate_eval import (
     write_mechanism_deployment_abstention_gate_eval,
 )
 from .northstar_next_levers import (
+    write_active_lever_decision_application_contract_audit,
     write_active_lever_mechanical_actionability_audit,
     write_active_lever_priority_decision_templates,
     write_active_lever_reviewer_decision_queue,
@@ -12693,6 +12694,39 @@ def cmd_build_active_lever_source_decision_intake_preflight(
         "Wrote active lever source decision intake preflight to "
         f"{args.out} (status: {preflight.get('status')}, follow-on ready rows: "
         f"{counts.get('follow_on_gate_ready_rows')})"
+    )
+    return 0
+
+
+def cmd_build_active_lever_decision_application_contract_audit(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_active_lever_decision_application_contract_audit(
+        p10746_deployment_caveat_decision_application_path=Path(
+            args.p10746_deployment_caveat_decision_application
+        ),
+        family_panel_expert_import_decision_application_path=Path(
+            args.family_panel_expert_import_decision_application
+        ),
+        locator_rewrite_materialization_gate_path=Path(
+            args.locator_rewrite_materialization_gate
+        ),
+        active_lever_source_decision_intake_preflight_path=Path(
+            args.active_lever_source_decision_intake_preflight
+        ),
+        active_lever_mechanical_actionability_audit_path=Path(
+            args.active_lever_mechanical_actionability_audit
+        )
+        if args.active_lever_mechanical_actionability_audit
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote active lever decision application contract audit to "
+        f"{args.out} (status: {audit.get('status')}, contract violations: "
+        f"{counts.get('contract_violations')})"
     )
     return 0
 
@@ -28734,6 +28768,67 @@ def build_parser() -> argparse.ArgumentParser:
     )
     active_lever_source_intake.set_defaults(
         func=cmd_build_active_lever_source_decision_intake_preflight
+    )
+
+    active_lever_contract_audit = subparsers.add_parser(
+        "build-active-lever-decision-application-contract-audit",
+        help=(
+            "audit that active Lever 2/3/4 decision application gates remain "
+            "aligned with the source-decision intake preflight"
+        ),
+    )
+    active_lever_contract_audit.add_argument(
+        "--p10746-deployment-caveat-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
+            "application_current702_20260603.json"
+        ),
+    )
+    active_lever_contract_audit.add_argument(
+        "--family-panel-expert-import-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_application_current702_20260603.json"
+        ),
+    )
+    active_lever_contract_audit.add_argument(
+        "--locator-rewrite-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_materialization_gate_current702_20260603.json"
+        ),
+    )
+    active_lever_contract_audit.add_argument(
+        "--active-lever-source-decision-intake-preflight",
+        default=(
+            "artifacts/v3_active_lever_source_decision_intake_preflight_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_contract_audit.add_argument(
+        "--active-lever-mechanical-actionability-audit",
+        default=(
+            "artifacts/v3_active_lever_mechanical_actionability_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_contract_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_active_lever_decision_application_contract_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_contract_audit.add_argument(
+        "--report",
+        default=(
+            "work/active_lever_decision_application_contract_audit_current702_"
+            "20260603.md"
+        ),
+    )
+    active_lever_contract_audit.set_defaults(
+        func=cmd_build_active_lever_decision_application_contract_audit
     )
 
     family_panel_source_queue = subparsers.add_parser(

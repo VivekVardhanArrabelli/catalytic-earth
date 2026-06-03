@@ -3450,7 +3450,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision",
         )
         self.assertEqual(application["counts"]["source_decision_stub_rows"], 1)
-        self.assertEqual(application["counts"]["reviewed_decision_rows"], 1)
+        self.assertEqual(application["counts"]["decision_rows_checked"], 1)
+        self.assertEqual(application["counts"]["reviewed_decision_rows"], 0)
         self.assertEqual(application["counts"]["accepted_p10746_caveat_rows"], 0)
         self.assertEqual(application["counts"]["pending_decision_rows"], 1)
         self.assertEqual(application["counts"]["invalid_decision_rows"], 0)
@@ -6576,6 +6577,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_locator_rewrite_gate["counts"]["approved_decision_records"], 0
         )
         self.assertEqual(
+            pair_locator_rewrite_gate["counts"]["invalid_approval_records"], 0
+        )
+        self.assertEqual(
             pair_locator_rewrite_gate["counts"]["approved_locator_sidecars_written"],
             0,
         )
@@ -8261,6 +8265,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(application["counts"]["packet_stub_rows"], 22)
         self.assertEqual(application["counts"]["decision_records_total"], 22)
         self.assertEqual(application["counts"]["explicit_decision_records"], 0)
+        self.assertEqual(application["counts"]["reviewed_decision_records"], 0)
         self.assertEqual(application["counts"]["pending_decision_rows"], 22)
         self.assertEqual(
             application["counts"]["accepted_import_preview_candidate_rows"], 0
@@ -8744,6 +8749,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "review_status",
         )
         self.assertEqual(
+            preflight["intake_rows"][0]["review_status"],
+            "pending_explicit_decision",
+        )
+        self.assertEqual(
             [row["entry_id"] for row in preflight["intake_rows"][1:7]],
             [
                 "m_csa:10",
@@ -8765,11 +8774,40 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             locator_rows[0]["approved_boolean_field_to_update"], "approved"
         )
+        self.assertFalse(locator_rows[0]["approved"])
         self.assertTrue(preflight["guardrails"]["review_only"])
         self.assertFalse(preflight["guardrails"]["decisions_applied"])
         self.assertFalse(
             preflight["guardrails"]["labels_registries_ontologies_changed"]
         )
+
+    def test_active_lever_decision_application_contract_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_active_lever_decision_application_contract_audit_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "active_lever_decision_application_contract_audit_passed_pending_source_decisions",
+        )
+        self.assertEqual(audit["counts"]["contract_violations"], 0)
+        self.assertEqual(audit["counts"]["source_intake_template_rows"], 78)
+        self.assertEqual(audit["counts"]["source_intake_pending_rows"], 78)
+        self.assertEqual(audit["counts"]["source_intake_follow_on_ready_rows"], 0)
+        self.assertEqual(audit["counts"]["p10746_reviewed_decision_rows"], 0)
+        self.assertEqual(audit["counts"]["family_reviewed_decision_records"], 0)
+        self.assertEqual(audit["counts"]["locator_approved_decision_records"], 0)
+        self.assertEqual(audit["counts"]["locator_invalid_approval_records"], 0)
+        self.assertFalse(audit["decision"]["run_any_matching_gate_now"])
+        self.assertTrue(audit["decision"]["application_contracts_aligned"])
+        self.assertFalse(audit["guardrails"]["decisions_applied"])
 
     def test_fold_augmented_family_panel_source_check_queue_current_counts(self) -> None:
         queue = _load_json(

@@ -9,6 +9,7 @@
       "decision": null,
       "decision_context_sha256_matches_source": true,
       "entry_id": "m_csa:204",
+      "required_review_status_after_decision": "reviewed_explicit_decision",
       "review_status": "pending_explicit_decision"
     }
   ],
@@ -20,13 +21,14 @@
     "accepted_p10746_caveat_rows": 0,
     "blockers": 1,
     "critical_violation_total": 0,
+    "decision_rows_checked": 1,
     "invalid_decision_rows": 0,
     "pending_decision_rows": 1,
     "rejected_p10746_caveat_rows": 0,
-    "reviewed_decision_rows": 1,
+    "reviewed_decision_rows": 0,
     "source_decision_stub_rows": 1
   },
-  "created_utc": "2026-06-03T10:19:58Z",
+  "created_utc": "2026-06-03T11:05:54Z",
   "decision": {
     "deployment_closed_now": false,
     "next_gate": "If accepted, build a separate post-decision deployment closure artifact that explicitly discloses the P10746 fold-only caveat. If rejected or still pending, provide an approved non-residue sidecar before any deployment closure claim.",

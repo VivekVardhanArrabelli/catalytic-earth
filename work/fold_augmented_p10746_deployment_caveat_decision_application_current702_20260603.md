@@ -1,6 +1,6 @@
 # Fold-Augmented P10746 Deployment-Caveat Decision Application - current702
 
-Run: 2026-06-03T10:19:58Z
+Run: 2026-06-03T11:05:54Z
 
 Fail-closed application gate for the P10746 fold-only deployment caveat decision packet. It validates explicit reviewed decisions against the source decision_context_sha256 and does not by itself close deployment.
 
@@ -8,7 +8,8 @@ Fail-closed application gate for the P10746 fold-only deployment caveat decision
 
 - p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision
 - Source decision stubs: 1
-- Reviewed decision rows: 1
+- Decision rows checked: 1
+- Reviewed decision rows: 0
 - Accepted rows: 0
 - Rejected rows: 0
 - Pending rows: 1
