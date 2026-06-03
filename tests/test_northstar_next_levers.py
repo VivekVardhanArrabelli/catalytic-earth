@@ -31,6 +31,8 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_acquisition_queue,
     build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface,
     build_fold_augmented_confounded_proxy_train_cal_candidate_pool,
+    build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker,
+    build_fold_augmented_confounded_proxy_train_cal_background_axis_scout,
     build_fold_augmented_confounded_proxy_train_cal_scored_extension,
     build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
     build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
@@ -2539,6 +2541,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 "candidate_pool_meets_structural_shortfall_by_count"
             ]
         )
+        self.assertFalse(pool["decision"]["current_proxy_axes_exhausted"])
         emitted = {row["entry_id"] for row in pool["priority_candidate_rows"]}
         self.assertEqual(emitted, {"m_csa:2", "m_csa:3"})
         self.assertFalse(pool["decision"]["apply_or_change_threshold_now"])
@@ -2624,6 +2627,218 @@ class NorthstarNextLeversTests(unittest.TestCase):
             [row["entry_id"] for row in plan["scoring_tranche_rows"]],
             ["m_csa:1", "m_csa:2", "m_csa:3"],
         )
+
+    def test_confounded_proxy_train_cal_background_axis_blocker_marks_exhausted_axes(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acquisition = root / "acquisition.json"
+            manifest = root / "manifest.json"
+            surface = root / "surface.json"
+            organic = root / "organic.json"
+            plan = root / "plan.json"
+            acquisition.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "high_cofactor_shortfall_after_current_scenario": 1,
+                            "same_family_structural_shortfall_after_current_scenario": 2,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "inorganic_locus_statuses": {
+                                    "cobalamin_locus": "no_cobalamin_context_detected",
+                                    "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+                                    "metal_ion_locus": "no_metal_context_detected",
+                                    "radical_sam_locus": "no_radical_sam_context_detected",
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "inorganic_locus_statuses": {
+                                    "cobalamin_locus": "unsupported_or_missing_geometry",
+                                    "iron_sulfur_locus": "unsupported_or_missing_geometry",
+                                    "metal_ion_locus": "unsupported_or_missing_geometry",
+                                    "radical_sam_locus": "unsupported_or_missing_geometry",
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface.write_text(json.dumps({"candidate_row_scores": []}), encoding="utf-8")
+            organic.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "class": "heme",
+                                "selected_score": 0.2,
+                                "score_available": True,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            plan.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "tranche_rows": 0,
+                            "selected_high_cofactor_axis_rows": 0,
+                            "selected_structural_axis_rows": 0,
+                        },
+                        "decision": {"score_tranche_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            blocker = build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
+                confounded_proxy_acquisition_queue_path=acquisition,
+                train_cal_input_manifest_path=manifest,
+                train_cal_oos_surface_path=surface,
+                selected_organic_cofactor_sidecar_path=organic,
+                scoring_tranche_plan_path=plan,
+                artifact_id="custom_background_axis_blocker",
+            )
+
+        self.assertEqual(blocker["artifact_id"], "custom_background_axis_blocker")
+        self.assertEqual(
+            blocker["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_background_axis_"
+                "blocker_complete"
+            ),
+        )
+        self.assertEqual(
+            blocker["counts"]["remaining_unscored_ready_train_cal_oos_rows"], 2
+        )
+        self.assertEqual(blocker["counts"]["background_only_rows"], 2)
+        self.assertEqual(blocker["counts"]["high_cofactor_axis_candidate_rows"], 0)
+        self.assertEqual(blocker["counts"]["structural_locus_candidate_rows"], 0)
+        self.assertTrue(
+            blocker["decision"]["all_remaining_rows_background_only_current_axes"]
+        )
+        self.assertFalse(blocker["decision"]["score_background_only_rows_now"])
+        self.assertIn(
+            "remaining_train_cal_oos_rows_background_only_current_axes",
+            blocker["blockers"],
+        )
+        self.assertIn(
+            "no_source_free_inorganic_structural_locus",
+            blocker["background_only_rows"][0]["background_axis_exclusion_reasons"],
+        )
+        self.assertFalse(blocker["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(
+            blocker["guardrails"]["heldout_rows_read_for_training_or_threshold_tuning"]
+        )
+
+    def test_confounded_proxy_train_cal_background_axis_scout_blocks_new_axis_scoring(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            blocker = root / "blocker.json"
+            manifest = root / "manifest.json"
+            blocker.write_text(
+                json.dumps(
+                    {
+                        "background_only_rows": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "organic_cofactor_max_class": "heme",
+                                "organic_cofactor_max_score": 0.35,
+                                "background_axis_exclusion_reasons": [
+                                    "organic_cofactor_below_high_axis_threshold",
+                                    "no_high_inorganic_cofactor_locus",
+                                    "no_source_free_inorganic_structural_locus",
+                                ],
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "no_metal_context_detected"
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "organic_cofactor_max_class": "plp",
+                                "organic_cofactor_max_score": 0.01,
+                                "background_axis_exclusion_reasons": [
+                                    "some_inorganic_locus_geometry_unsupported_or_missing"
+                                ],
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "unsupported_or_missing_geometry"
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "active_site_residue_count": 12,
+                                "role_graph_status": "ok",
+                                "reaction_template_status": (
+                                    "no_mechanism_fingerprint_oos_or_unlabeled"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "active_site_residue_count": 5,
+                                "role_graph_status": "ok",
+                                "reaction_template_status": (
+                                    "no_mechanism_fingerprint_oos_or_unlabeled"
+                                ),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            scout = build_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
+                background_axis_blocker_path=blocker,
+                train_cal_input_manifest_path=manifest,
+                artifact_id="custom_background_axis_scout",
+            )
+
+        self.assertEqual(scout["artifact_id"], "custom_background_axis_scout")
+        self.assertEqual(
+            scout["status"],
+            "fold_augmented_confounded_proxy_train_cal_background_axis_scout_blocked",
+        )
+        self.assertEqual(scout["counts"]["background_only_rows"], 2)
+        self.assertEqual(scout["counts"]["active_site_residue_count_10_plus_rows"], 1)
+        self.assertEqual(
+            scout["counts"]["organic_score_0_30_to_below_high_axis_rows"], 1
+        )
+        self.assertEqual(scout["counts"]["unsupported_geometry_rows"], 1)
+        self.assertEqual(scout["counts"]["mechanically_ready_axis_tests"], 0)
+        self.assertFalse(scout["decision"]["new_proxy_axis_ready_to_score_now"])
+        self.assertFalse(scout["guardrails"]["new_proxy_axis_registered"])
+        self.assertFalse(scout["guardrails"]["candidate_rows_scored_now"])
 
     def test_confounded_proxy_train_cal_scoring_input_manifest_maps_coordinates(
         self,
@@ -15075,6 +15290,7 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             event_path = root / "event.json"
             closure_path = root / "closure.json"
             extension_path = root / "extension.json"
+            background_axis_path = root / "background_axis.json"
             scenario_path = root / "scenario.json"
             family_path = root / "family.json"
             queue_path.write_text(
@@ -15189,6 +15405,17 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
                 ),
                 encoding="utf-8",
             )
+            background_axis_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"background_only_rows": 5, "blockers": 3},
+                        "decision": {
+                            "all_remaining_rows_background_only_current_axes": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
             scenario_path.write_text(
                 json.dumps(
                     {
@@ -15217,6 +15444,9 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
                 lever2_event_axis_linker_schema_path=event_path,
                 lever3_post_decision_deployment_closure_status_path=closure_path,
                 lever3_confounded_proxy_evidence_extension_plan_path=extension_path,
+                lever3_confounded_proxy_train_cal_background_axis_blocker_path=(
+                    background_axis_path
+                ),
                 lever4_acceptance_scenario_plan_path=scenario_path,
                 family_panel_label_factory_gate_readiness_path=family_path,
             )
@@ -15236,8 +15466,18 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             "lever3_confounded_proxy_evidence_extension_scale_gap",
             audit["blockers"],
         )
+        self.assertIn(
+            "lever3_confounded_proxy_background_axis_exhausted",
+            audit["blockers"],
+        )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_evidence_request_rows"], 2
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_background_only_rows"], 5
+        )
+        self.assertTrue(
+            audit["counts"]["lever3_confounded_proxy_background_axis_exhausted"]
         )
         self.assertEqual(
             audit[

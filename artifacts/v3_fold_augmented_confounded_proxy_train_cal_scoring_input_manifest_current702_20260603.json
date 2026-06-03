@@ -34,7 +34,7 @@
     "tranche_rows_with_accession": 0,
     "unique_query_accessions": 0
   },
-  "created_utc": "2026-06-03T15:40:35Z",
+  "created_utc": "2026-06-03T16:13:23Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "coordinate_manifest_ready_for_fetch": false,
@@ -3246,7 +3246,7 @@
     "scoring_tranche_plan": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603.json",
-      "sha256": "7bdb76044f1f14239b0324813cbc78557f1d37dc0d593e84331863c4d4518d6e"
+      "sha256": "b89fc505d129a2701a8fe07f1bd953b8ed67b36e6f94a23aa9b691fc0697db3d"
     },
     "sequence_manifest": {
       "exists": true,

@@ -177,7 +177,10 @@ artifacts first.
   proxy rows. The current candidate pool still has 170 unscored ready
   train/cal OOS rows, but 0 high-cofactor-axis and 0 structural-axis rows under
   the current proxy gate, so the next scoring-tranche plan selects 0 rows and
-  the input manifest fails closed on `scoring_tranche_plan_empty`.
+  the input manifest fails closed on `scoring_tranche_plan_empty`. The
+  background-axis blocker confirms all 170 remaining rows are background-only
+  under the current proxy axes, and the scout finds 0 mechanically ready
+  replacement axes without a pre-registered train/cal-only proxy-axis contract.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel

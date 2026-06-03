@@ -3806,6 +3806,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(pool["decision"]["apply_or_change_threshold_now"])
         self.assertFalse(pool["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertTrue(pool["decision"]["current_proxy_axes_exhausted"])
         self.assertIn(
             "candidate_pool_not_scored_at_fixed_threshold", pool["blockers"]
         )
@@ -3875,6 +3876,98 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             plan["guardrails"]["heldout_rows_read_for_training_or_threshold_tuning"]
         )
         self.assertFalse(plan["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current_counts(
+        self,
+    ) -> None:
+        blocker = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_background_"
+                "axis_blocker_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            blocker["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_background_"
+                "axis_blocker_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            blocker["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_background_axis_"
+                "blocker_complete"
+            ),
+        )
+        self.assertEqual(
+            blocker["counts"]["remaining_unscored_ready_train_cal_oos_rows"],
+            170,
+        )
+        self.assertEqual(blocker["counts"]["background_only_rows"], 170)
+        self.assertEqual(
+            blocker["counts"]["high_cofactor_axis_candidate_rows"], 0
+        )
+        self.assertEqual(blocker["counts"]["structural_locus_candidate_rows"], 0)
+        self.assertEqual(blocker["counts"]["scoring_tranche_rows"], 0)
+        self.assertEqual(
+            blocker["classification_counts"]["priority_bucket_counts"],
+            {"3": 170},
+        )
+        self.assertTrue(
+            blocker["decision"][
+                "all_remaining_rows_background_only_current_axes"
+            ]
+        )
+        self.assertFalse(blocker["decision"]["score_background_only_rows_now"])
+        self.assertIn(
+            "remaining_train_cal_oos_rows_background_only_current_axes",
+            blocker["blockers"],
+        )
+        self.assertEqual(len(blocker["background_only_rows"]), 170)
+        self.assertFalse(blocker["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(
+            blocker["guardrails"]["heldout_rows_read_for_training_or_threshold_tuning"]
+        )
+
+    def test_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current_counts(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_background_"
+                "axis_scout_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            scout["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_background_"
+                "axis_scout_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            scout["status"],
+            "fold_augmented_confounded_proxy_train_cal_background_axis_scout_blocked",
+        )
+        self.assertEqual(scout["counts"]["background_only_rows"], 170)
+        self.assertEqual(scout["counts"]["candidate_axis_tests"], 3)
+        self.assertEqual(scout["counts"]["mechanically_ready_axis_tests"], 0)
+        self.assertEqual(
+            scout["counts"]["unsupported_geometry_rows"], 9
+        )
+        self.assertFalse(scout["decision"]["new_proxy_axis_ready_to_score_now"])
+        self.assertFalse(scout["guardrails"]["new_proxy_axis_registered"])
+        self.assertFalse(scout["guardrails"]["candidate_rows_scored_now"])
+        self.assertIn(
+            "no_pre_registered_new_proxy_axis_contract", scout["blockers"]
+        )
 
     def test_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current_counts(
         self,
@@ -9228,7 +9321,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
-        self.assertEqual(audit["counts"]["blockers"], 14)
+        self.assertEqual(audit["counts"]["blockers"], 16)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 78
         )
@@ -9337,6 +9430,25 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             3,
         )
         self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_background_only_rows"], 170
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_background_axis_blockers"], 4
+        )
+        self.assertTrue(
+            audit["counts"]["lever3_confounded_proxy_background_axis_exhausted"]
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_background_axis_scout_axes"],
+            3,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_background_axis_scout_ready_axes"],
+            0,
+        )
+        self.assertEqual(
             audit["counts"]["lever4_pending_expert_import_decisions"], 22
         )
         self.assertEqual(audit["counts"]["lever4_acceptance_scenario_rows"], 6)
@@ -9374,6 +9486,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertIn(
             "lever3_confounded_proxy_train_cal_scoring_tranche_not_run",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "lever3_confounded_proxy_background_axis_exhausted",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "lever3_confounded_proxy_new_axis_contract_missing",
             audit["blockers"],
         )
         self.assertIn(

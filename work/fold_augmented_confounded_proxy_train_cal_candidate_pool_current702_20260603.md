@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy Train/Cal Candidate Pool - current702
 
-Run: 2026-06-03T15:39:12Z
+Run: 2026-06-03T16:13:13Z
 
 Train/cal-only source-free candidate pool for the Lever 3 confounded-proxy evidence acquisition gap. It filters out rows already in the current scored OOS surface and ranks the remaining train/cal OOS rows for future predicted-structure-vs-atlas scoring.
 
@@ -23,7 +23,8 @@ Train/cal-only source-free candidate pool for the Lever 3 confounded-proxy evide
 - Proxy calibration rerun ready now: False
 - Candidate pool meets high shortfall by count: False
 - Candidate pool meets structural shortfall by count: False
-- Next gate: Score a bounded tranche from priority_candidate_rows with the predicted-structure-vs-atlas channel, then rerun the fixed-threshold proxy operating-point audit only after new train/cal OOS rows have actual channel scores.
+- Current proxy axes exhausted: True
+- Next gate: Do not score background-only rows under the current proxy axes. Build the background-axis blocker, then wait for reviewed source decisions or define a new source-free proxy axis before any fixed-threshold proxy audit rerun.
 
 ## Priority Candidate Rows
 
@@ -114,4 +115,4 @@ Train/cal-only source-free candidate pool for the Lever 3 confounded-proxy evide
 
 - 170 ready train/cal OOS rows are outside the current scored surface.
 - 0 rows are plausible high-cofactor-axis candidates and 0 rows have source-free inorganic/structural locus context, but none has been scored or counted as new abstained evidence yet.
-- Run a bounded predicted-structure-vs-atlas scoring tranche from the priority candidate rows; keep the fixed threshold and do not read heldout rows for calibration.
+- Build the background-axis blocker and pivot to reviewed decisions or a new source-free proxy axis; keep the fixed threshold and do not read heldout rows for calibration.

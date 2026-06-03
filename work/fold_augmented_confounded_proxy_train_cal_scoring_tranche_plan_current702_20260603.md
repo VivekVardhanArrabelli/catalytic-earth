@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy Train/Cal Scoring Tranche Plan - current702
 
-Run: 2026-06-03T15:39:12Z
+Run: 2026-06-03T16:13:18Z
 
 Bounded train/cal-only scoring tranche plan for the Lever 3 confounded-proxy acquisition gap. It selects unscored candidate rows for future predicted-structure-vs-atlas scoring; it does not run scoring, read heldout rows, or change thresholds.
 
@@ -20,7 +20,7 @@ Bounded train/cal-only scoring tranche plan for the Lever 3 confounded-proxy acq
 - Apply/change threshold now: False
 - Proxy calibration rerun ready now: False
 - Tranche ready for scoring plan: False
-- Next gate: Run predicted-structure-vs-atlas scoring for exactly these tranche rows, join the resulting fixed-channel scores back to train/cal only, then rerun the proxy operating-point audit without changing threshold 0.44155.
+- Next gate: Do not run predicted-structure-vs-atlas scoring for an empty tranche. Build or refresh the background-axis blocker, then wait for reviewed source decisions or define a new source-free proxy axis.
 
 ## Scoring Tranche Rows
 
@@ -31,4 +31,4 @@ Bounded train/cal-only scoring tranche plan for the Lever 3 confounded-proxy acq
 
 - 0 train/cal OOS rows are selected for the next fixed-threshold scoring tranche.
 - The tranche covers 0 high-cofactor-axis rows for a 16-row lower bound and 0 structural-axis rows for a 170-row lower bound, by count only.
-- Score the tranche; do not count any row as new abstained proxy evidence until the actual fixed-threshold scores exist.
+- Do not score an empty tranche; refresh the background-axis blocker and keep the fixed threshold unchanged.

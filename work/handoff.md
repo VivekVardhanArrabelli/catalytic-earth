@@ -50,6 +50,96 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 16
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T16:01:32Z`
+- STARTED_LOCAL: `2026-06-03T11:01:32-0500 CDT`
+- ENDED_AT: `2026-06-03T16:23:14Z`
+- ENDED_LOCAL: `2026-06-03T11:23:14-0500 CDT`
+- ELAPSED_MINUTES: `21.7`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "23728", "started_at": "2026-06-03T16:01:32Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue inside active Levers 2/3/4 from Run 15. First apply any reviewed
+source decisions if available; otherwise create the smallest concrete Lever 3
+blocker artifact for the 170 remaining background-only train/cal OOS rows, then
+pivot within the active levers if another mechanical gate opens.
+
+#### What changed
+
+- Source-decision intake remained closed: the current preflight still has 78
+  pending external decisions and 0 follow-on gate-ready rows, so no reviewed
+  source decisions were applied.
+- Added
+  `v3_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current702_20260603`
+  plus report. It recomputes the current train/cal-only remainder against the
+  extended 186/192 full-channel OOS surface and confirms all 170 remaining
+  unscored ready train/cal OOS rows are background-only under the current
+  high-cofactor and inorganic/structural proxy axes. The current automatic
+  scoring tranche remains empty: 0 high-cofactor-axis rows, 0 structural-axis
+  rows, and 0 selected scoring rows.
+- Added
+  `v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603`
+  plus report. It summarizes three possible source-free scout axes
+  (`active_site_residue_count_10_plus`,
+  `organic_score_0_30_to_below_high_axis_threshold`, and
+  `unsupported_inorganic_locus_geometry`) but records 0 mechanically ready axes
+  because no train/cal-only proxy-axis contract is pre-registered.
+- Hardened the Lever 3 CLI defaults for the evidence-extension, acquisition,
+  candidate-pool, and background-blocker commands so they consume the current
+  extended train/cal OOS surface rather than the older expanded base surface.
+  Candidate-pool and scoring-tranche reports now fail closed on empty current
+  axes instead of saying to score a nonexistent tranche.
+- Refreshed the candidate pool, scoring-tranche plan, scoring-input manifest,
+  background blocker, background scout, active-lever actionability audit,
+  artifact index, project state, progress log, and status report. The active
+  audit now has 0 runnable mechanical gates and names the Lever 3 blocker as a
+  missing pre-registered new proxy-axis contract.
+- Early complete after the exact Run 15 next action and the follow-on scout were
+  complete, with no mechanical Lever 2/3/4 gate open without reviewed decisions
+  or a new train/cal-only proxy-axis contract.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, source decision packets, reviewer decisions, locator sidecars, or
+  heldout threshold tuning were changed.
+- The new blocker and scout are train/cal-only and review-only. They do not
+  score candidate rows, register a new proxy axis, run Foldseek, read heldout
+  rows for calibration, or count background rows as abstained evidence.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were used
+  as predictive features.
+
+#### Tests run
+
+- Startup `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1285 tests.
+- Focused unit/CLI/regression tests passed during implementation:
+  4 focused northstar tests, 1 CLI registration test with 122 subtests, and
+  6 current-artifact regression tests.
+- `PYTHONPATH=src python -m compileall -q src` passed.
+- Full `PYTHONPATH=src python -m pytest -q` passed: 1334 tests, 148 subtests,
+  one existing sklearn/SciPy deprecation warning.
+- Wrap `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1289 tests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
+  and JSON parse checks for 6 changed/new JSON artifacts passed.
+
+#### Exact next action
+
+- Lever 3 automatic scoring is exhausted under the current proxy axes. Next run
+  should first apply any hash-valid reviewed source decisions if available; if
+  none are available, pre-register exactly one train/cal-only source-free
+  replacement proxy-axis contract before any new scoring tranche or
+  fixed-threshold proxy audit rerun. Do not score background-only rows or run an
+  empty Foldseek/scoring tranche.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 15
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

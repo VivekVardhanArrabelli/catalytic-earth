@@ -16,10 +16,10 @@
     "structural_shortfall_from_acquisition_queue": 170,
     "tranche_rows": 0
   },
-  "created_utc": "2026-06-03T15:39:12Z",
+  "created_utc": "2026-06-03T16:13:18Z",
   "decision": {
     "apply_or_change_threshold_now": false,
-    "next_gate": "Run predicted-structure-vs-atlas scoring for exactly these tranche rows, join the resulting fixed-channel scores back to train/cal only, then rerun the proxy operating-point audit without changing threshold 0.44155.",
+    "next_gate": "Do not run predicted-structure-vs-atlas scoring for an empty tranche. Build or refresh the background-axis blocker, then wait for reviewed source decisions or define a new source-free proxy axis.",
     "proxy_calibration_rerun_ready_now": false,
     "score_tranche_now": false,
     "tranche_ready_for_scoring_plan": false
@@ -37,7 +37,7 @@
   },
   "interpretation": {
     "headline": "0 train/cal OOS rows are selected for the next fixed-threshold scoring tranche.",
-    "next_action": "Score the tranche; do not count any row as new abstained proxy evidence until the actual fixed-threshold scores exist.",
+    "next_action": "Do not score an empty tranche; refresh the background-axis blocker and keep the fixed threshold unchanged.",
     "result": "The tranche covers 0 high-cofactor-axis rows for a 16-row lower bound and 0 structural-axis rows for a 170-row lower bound, by count only."
   },
   "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_scoring_tranche_plan",
@@ -47,7 +47,7 @@
     "train_cal_candidate_pool": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json",
-      "sha256": "57d8de3f21d63ffefe1fe575f071c55af3b733b8c428156607a1e077998e00a0"
+      "sha256": "d65d32fce6a49611fb9140685721b31023b00ee14b1ca6c2705f297db4c9edf3"
     }
   },
   "status": "fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_blocked"

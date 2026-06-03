@@ -1135,6 +1135,26 @@ class CliTests(unittest.TestCase):
             (
                 (
                     "build-fold-augmented-confounded-proxy-train-cal-"
+                    "background-axis-blocker"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "background_axis_blocker"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "background-axis-scout"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "background_axis_scout"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
                     "scoring-input-manifest"
                 ),
                 (

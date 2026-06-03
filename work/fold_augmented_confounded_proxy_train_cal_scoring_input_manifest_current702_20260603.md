@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy Train/Cal Scoring Input Manifest - current702
 
-Run: 2026-06-03T15:40:35Z
+Run: 2026-06-03T16:13:23Z
 
 Read-only input manifest for scoring the selected Lever 3 confounded-proxy train/cal OOS tranche with predicted structures against the threshold-contract train atlas. It maps tranche rows to sequence-manifest accessions, expected AFDB-v6 CIF paths, train-atlas targets, and rerun commands without downloading coordinates or parsing scores.
 

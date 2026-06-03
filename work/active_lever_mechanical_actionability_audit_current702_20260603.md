@@ -1,6 +1,6 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T15:40:35Z
+Run: 2026-06-03T16:18:49Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
@@ -34,11 +34,14 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 - Lever 3 proxy scoring-tranche rows: 0
 - Lever 3 proxy scoring-tranche high/structural rows: 0/0
 - Lever 3 proxy scoring-tranche ready for plan: False
+- Lever 3 proxy background-only rows: 170
+- Lever 3 proxy background-axis exhausted: True
+- Lever 3 proxy background-axis scout ready axes: 0/3
 - Lever 4 acceptance scenario rows: 6
 - Lever 4 acceptance scenario panels: 5
 - Lever 4 label-factory candidates if scenario accepted: 6
 - Lever 4 label-factory gate input rows: 0
-- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'lever3_confounded_proxy_acquisition_shortfall', 'lever3_confounded_proxy_train_cal_scoring_tranche_not_run', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
+- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'lever3_confounded_proxy_acquisition_shortfall', 'lever3_confounded_proxy_train_cal_scoring_tranche_not_run', 'lever3_confounded_proxy_background_axis_exhausted', 'lever3_confounded_proxy_new_axis_contract_missing', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
 
 ## Decision
 
@@ -59,6 +62,8 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 | Lever 3 | confounded_proxy_acquisition_queue | False | confounded_proxy_acquisition_shortfall | build-fold-augmented-confounded-proxy-acquisition-queue |
 | Lever 3 | confounded_proxy_train_cal_candidate_pool | False | confounded_proxy_candidate_pool_not_scored | build-fold-augmented-confounded-proxy-train-cal-candidate-pool |
 | Lever 3 | confounded_proxy_train_cal_scoring_tranche | False | confounded_proxy_scoring_tranche_not_run | build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan |
+| Lever 3 | confounded_proxy_train_cal_background_axis_blocker | False | confounded_proxy_remaining_rows_background_only | build-fold-augmented-confounded-proxy-train-cal-background-axis-blocker |
+| Lever 3 | confounded_proxy_train_cal_background_axis_scout | False | confounded_proxy_new_axis_contract_missing | build-fold-augmented-confounded-proxy-train-cal-background-axis-scout |
 | Lever 4 | family_panel_label_factory_gate_readiness | False | family_panel_expert_import_decisions_missing | apply-fold-augmented-family-panel-expert-import-decision |
 | Lever 2 | source_free_locator_materialization_and_pre_threshold_readiness | False | source_free_locator_rewrite_approvals_missing | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | Lever 2 | source_free_event_axis_linkers | False | source_free_event_axis_linker_gate_blocked | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-materialization-gate |
@@ -83,5 +88,5 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 ## Interpretation
 
 - No active Lever 2/3/4 gate is mechanically runnable on the current decision state.
-- Lever 3 is blocked by the P10746 policy caveat plus a confounded-proxy calibration/evidence-extension scale gap, Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers.
-- Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3 calibration, add new train/cal proxy evidence outside the current scored surface before rerunning the fixed-threshold proxy audit.
+- Lever 3 is blocked by the P10746 policy caveat, the fixed-threshold confounded-proxy calibration gap, and exhausted current proxy axes: the remaining train/cal OOS rows are background-only and the scout has no pre-registered new axis ready to score. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers.
+- Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, apply hash-valid reviewed source decisions if they arrive; otherwise pre-register one train/cal-only source-free proxy axis contract before any new scoring tranche or fixed-threshold audit rerun.

@@ -23,12 +23,13 @@
     "unscored_ready_train_cal_oos_candidate_rows": 170,
     "unsupported_or_missing_geometry_locus_rows": 9
   },
-  "created_utc": "2026-06-03T15:39:12Z",
+  "created_utc": "2026-06-03T16:13:13Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "candidate_pool_meets_high_shortfall_by_count": false,
     "candidate_pool_meets_structural_shortfall_by_count": false,
-    "next_gate": "Score a bounded tranche from priority_candidate_rows with the predicted-structure-vs-atlas channel, then rerun the fixed-threshold proxy operating-point audit only after new train/cal OOS rows have actual channel scores.",
+    "current_proxy_axes_exhausted": true,
+    "next_gate": "Do not score background-only rows under the current proxy axes. Build the background-axis blocker, then wait for reviewed source decisions or define a new source-free proxy axis before any fixed-threshold proxy audit rerun.",
     "proxy_calibration_rerun_ready_now": false,
     "score_candidate_pool_now": false
   },
@@ -46,7 +47,7 @@
   },
   "interpretation": {
     "headline": "170 ready train/cal OOS rows are outside the current scored surface.",
-    "next_action": "Run a bounded predicted-structure-vs-atlas scoring tranche from the priority candidate rows; keep the fixed threshold and do not read heldout rows for calibration.",
+    "next_action": "Build the background-axis blocker and pivot to reviewed decisions or a new source-free proxy axis; keep the fixed threshold and do not read heldout rows for calibration.",
     "result": "0 rows are plausible high-cofactor-axis candidates and 0 rows have source-free inorganic/structural locus context, but none has been scored or counted as new abstained evidence yet."
   },
   "priority_candidate_rows": [
