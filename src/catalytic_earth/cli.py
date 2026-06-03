@@ -110,6 +110,10 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_train_cal_background_axis_scout,
     write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract,
     write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout,
+    write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest,
+    write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan,
+    write_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract,
+    write_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight,
     write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue,
     write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
     write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
@@ -12531,6 +12535,113 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_rep
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    manifest = write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest(
+        unsupported_geometry_repair_queue_path=Path(
+            args.unsupported_geometry_repair_queue
+        ),
+        coordinate_root=Path(args.coordinate_root) if args.coordinate_root else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = manifest.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal unsupported-geometry "
+        f"coordinate acquisition manifest to {args.out} (repair rows: "
+        f"{counts.get('repair_rows')}, missing coordinates: "
+        f"{counts.get('query_coordinate_files_missing')})"
+    )
+    return 0
+
+
+def cmd_scan_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_loci(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    scan = write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan(
+        coordinate_acquisition_manifest_path=Path(
+            args.coordinate_acquisition_manifest
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = scan.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal unsupported-geometry "
+        f"coordinate locus scan to {args.out} (files scanned: "
+        f"{counts.get('coordinate_files_scanned')}, locus-evidence files: "
+        f"{counts.get('files_with_source_free_inorganic_locus_evidence')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    preflight = write_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight(
+        unsupported_geometry_repair_queue_path=Path(
+            args.unsupported_geometry_repair_queue
+        ),
+        coordinate_locus_scan_path=Path(args.coordinate_locus_scan),
+        background_axis_scout_path=Path(args.background_axis_scout)
+        if args.background_axis_scout
+        else None,
+        new_proxy_axis_scored_extension_path=Path(args.new_proxy_axis_scored_extension)
+        if args.new_proxy_axis_scored_extension
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = preflight.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal protein-only proxy "
+        f"design preflight to {args.out} (design candidates: "
+        f"{counts.get('design_contract_candidate_options')}, score-now rows: "
+        f"{counts.get('ready_to_score_now_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    contract = write_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract(
+        protein_only_proxy_design_preflight_path=Path(
+            args.protein_only_proxy_design_preflight
+        ),
+        coordinate_acquisition_manifest_path=Path(
+            args.coordinate_acquisition_manifest
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = contract.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal protein-only "
+        f"fold-topology residual contract to {args.out} (contract rows: "
+        f"{counts.get('contract_rows')}, score-now rows: "
+        f"{counts.get('ready_to_score_now_rows')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
     args: argparse.Namespace,
 ) -> int:
@@ -13123,6 +13234,16 @@ def cmd_build_active_lever_mechanical_actionability_audit(
             args.lever3_confounded_proxy_train_cal_background_axis_scout
         )
         if args.lever3_confounded_proxy_train_cal_background_axis_scout
+        else None,
+        lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path=Path(
+            args.lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest
+        )
+        if args.lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest
+        else None,
+        lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path=Path(
+            args.lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan
+        )
+        if args.lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan
         else None,
         lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path=Path(
             args.lever3_confounded_proxy_train_cal_new_proxy_axis_contract
@@ -28988,6 +29109,202 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    confounded_proxy_train_cal_unsupported_geometry_coordinate_manifest = (
+        subparsers.add_parser(
+            "build-fold-augmented-confounded-proxy-train-cal-unsupported-geometry-coordinate-acquisition-manifest",
+            help=(
+                "build a coordinate acquisition manifest for the unsupported-"
+                "geometry repair queue without downloading or scoring rows"
+            ),
+        )
+    )
+    confounded_proxy_train_cal_unsupported_geometry_coordinate_manifest.add_argument(
+        "--unsupported-geometry-repair-queue",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "unsupported_geometry_repair_queue_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_coordinate_manifest.add_argument(
+        "--coordinate-root",
+        default=None,
+    )
+    confounded_proxy_train_cal_unsupported_geometry_coordinate_manifest.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_unsupported_geometry_coordinate_manifest.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "unsupported_geometry_coordinate_acquisition_manifest_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_coordinate_manifest.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_unsupported_"
+            "geometry_coordinate_acquisition_manifest_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_coordinate_manifest.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest
+        )
+    )
+
+    confounded_proxy_train_cal_unsupported_geometry_locus_scan = (
+        subparsers.add_parser(
+            "scan-fold-augmented-confounded-proxy-train-cal-unsupported-geometry-coordinate-loci",
+            help=(
+                "scan local AFDB-v6 repair CIFs for source-free inorganic/"
+                "cofactor locus evidence without scoring rows"
+            ),
+        )
+    )
+    confounded_proxy_train_cal_unsupported_geometry_locus_scan.add_argument(
+        "--coordinate-acquisition-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "unsupported_geometry_coordinate_acquisition_manifest_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_locus_scan.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_unsupported_geometry_locus_scan.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "unsupported_geometry_coordinate_locus_scan_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_locus_scan.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_unsupported_"
+            "geometry_coordinate_locus_scan_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_unsupported_geometry_locus_scan.set_defaults(
+        func=(
+            cmd_scan_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_loci
+        )
+    )
+
+    confounded_proxy_train_cal_protein_only_proxy_preflight = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-protein-only-proxy-design-preflight",
+        help=(
+            "write a fail-closed design preflight for the protein-only proxy "
+            "path after unsupported inorganic-locus coordinate repair"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.add_argument(
+        "--unsupported-geometry-repair-queue",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_unsupported_geometry_repair_queue_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.add_argument(
+        "--coordinate-locus-scan",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_unsupported_geometry_coordinate_locus_scan_current702_"
+            "20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.add_argument(
+        "--background-axis-scout",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "background_axis_scout_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.add_argument(
+        "--new-proxy-axis-scored-extension",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_"
+            "proxy_axis_scored_extension_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_proxy_design_preflight_current702_"
+            "20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_post_followup_"
+            "protein_only_proxy_design_preflight_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_proxy_preflight.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight
+        )
+    )
+
+    confounded_proxy_train_cal_protein_only_fold_contract = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-protein-only-fold-topology-residual-contract",
+        help=(
+            "pre-register a train/cal-only protein-only fold-topology residual "
+            "contract without running Foldseek or scoring rows"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_fold_contract.add_argument(
+        "--protein-only-proxy-design-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_proxy_design_preflight_current702_"
+            "20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_fold_contract.add_argument(
+        "--coordinate-acquisition-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_unsupported_geometry_coordinate_acquisition_manifest_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_fold_contract.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_train_cal_protein_only_fold_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_contract_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_fold_contract.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_post_followup_"
+            "protein_only_fold_topology_residual_contract_current702_"
+            "20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_protein_only_fold_contract.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract
+        )
+    )
+
     confounded_proxy_train_cal_new_proxy_axis = subparsers.add_parser(
         "build-fold-augmented-confounded-proxy-train-cal-new-proxy-axis-contract",
         help=(
@@ -30070,6 +30387,22 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
             "background_axis_scout_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-train-cal-unsupported-geometry-coordinate-acquisition-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_unsupported_geometry_coordinate_acquisition_manifest_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-train-cal-unsupported-geometry-coordinate-locus-scan",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_unsupported_geometry_coordinate_locus_scan_current702_"
+            "20260603.json"
         ),
     )
     active_lever_actionability.add_argument(

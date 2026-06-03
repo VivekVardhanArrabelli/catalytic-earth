@@ -1,0 +1,261 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_acquisition_manifest_current702_20260603",
+  "blockers": [
+    "locus_repair_audit_not_rerun_after_coordinate_materialization"
+  ],
+  "commands": {
+    "materialize_missing_query_coordinates": "python - <<'PY'\nimport json\nimport urllib.request\nfrom pathlib import Path\nartifact = json.loads(Path('artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_acquisition_manifest_current702_20260603.json').read_text())\nqueries = artifact['foldseek_input_manifest']['coordinate_request_groups']['confounded_proxy_train_cal_tranche_queries']\nfor item in queries:\n    path = item.get('expected_local_path')\n    url = item.get('url')\n    if not path or not url:\n        continue\n    target = Path(path)\n    target.parent.mkdir(parents=True, exist_ok=True)\n    if target.exists():\n        continue\n    urllib.request.urlretrieve(url, target)\nPY",
+    "next_background_scout_gate": "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-confounded-proxy-train-cal-background-axis-scout",
+    "rerun_manifest_after_fetch": "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-confounded-proxy-train-cal-unsupported-geometry-coordinate-acquisition-manifest"
+  },
+  "counts": {
+    "blockers": 1,
+    "query_coordinate_files_missing": 0,
+    "query_coordinate_files_observed": 8,
+    "query_coordinate_requests": 8,
+    "ready_to_score_now_rows": 0,
+    "repair_rows": 8,
+    "repair_rows_with_accession": 8,
+    "unique_query_accessions": 8
+  },
+  "created_utc": "2026-06-03T19:08:59Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "coordinate_fetch_still_required": false,
+    "coordinate_manifest_ready_for_fetch": false,
+    "new_proxy_axis_ready_to_score_now": false,
+    "next_gate": "Rerun the background-axis scout with the repaired local coordinates before registering any new proxy-axis contract.",
+    "proxy_calibration_rerun_ready_now": false,
+    "ready_for_locus_repair_audit": true,
+    "score_repair_rows_now": false
+  },
+  "foldseek_input_manifest": {
+    "confounded_proxy_tranche_query_dir": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries",
+    "coordinate_request_groups": {
+      "confounded_proxy_train_cal_tranche_queries": [
+        {
+          "accession": "P15807",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P15807-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+          "entry_ids": [
+            "m_csa:610"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:610",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P15807-F1-model_v6.cif"
+        },
+        {
+          "accession": "P18548",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P18548-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P18548_v6.cif",
+          "entry_ids": [
+            "m_csa:137"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P18548_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:137",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P18548-F1-model_v6.cif"
+        },
+        {
+          "accession": "P27000",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P27000-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P27000_v6.cif",
+          "entry_ids": [
+            "m_csa:318"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P27000_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:318",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P27000-F1-model_v6.cif"
+        },
+        {
+          "accession": "P68175",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P68175-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P68175_v6.cif",
+          "entry_ids": [
+            "m_csa:360"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P68175_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:360",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-P68175-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q46509",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q46509-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q46509_v6.cif",
+          "entry_ids": [
+            "m_csa:105"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q46509_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:105",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q46509-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q56310",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q56310-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q56310_v6.cif",
+          "entry_ids": [
+            "m_csa:327"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q56310_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:327",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q56310-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q7SIE1",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q7SIE1-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q7SIE1_v6.cif",
+          "entry_ids": [
+            "m_csa:649"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q7SIE1_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:649",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q7SIE1-F1-model_v6.cif"
+        },
+        {
+          "accession": "Q9P4R4",
+          "alphafold_version": 6,
+          "download_command": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q9P4R4-F1-model_v6.cif -o artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+          "entry_ids": [
+            "m_csa:618"
+          ],
+          "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+          "local_file_exists": true,
+          "predicted_pdb_id": null,
+          "role": "confounded_proxy_train_cal_unsupported_geometry_repair_query",
+          "rows": [
+            {
+              "benchmark_role": "out_of_scope_negative",
+              "entry_id": "m_csa:618",
+              "split_assignment": "train_cal",
+              "top1_fingerprint_id": null,
+              "true_fingerprint_id": null
+            }
+          ],
+          "status": "ready_to_materialize",
+          "url": "https://alphafold.ebi.ac.uk/files/AF-Q9P4R4-F1-model_v6.cif"
+        }
+      ]
+    },
+    "coordinate_root": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinate_acquisition_manifest_only": true,
+    "coordinate_downloads_performed": false,
+    "foldseek_or_tmsearch_run_now": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "new_proxy_axis_registered": false,
+    "production_thresholds_changed": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "headline": "8 unsupported-geometry repair rows map to 8 unique AFDB-v6 query accessions.",
+    "next_action": "Rerun the repair/background scout gates against the now-local AFDB-v6 CIFs before any new proxy axis is registered.",
+    "result": "0 query coordinate files are missing locally; no scoring or threshold read was performed."
+  },
+  "missing_accession_entry_ids": [],
+  "missing_query_coordinate_manifest": [],
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest",
+  "scope": "Train/cal-only coordinate-acquisition manifest for the Lever 3 unsupported-geometry repair queue. It maps each repair row to an expected AFDB-v6 CIF request and exact local path, but it does not download coordinates, score rows, register a proxy axis, tune thresholds, read heldout rows, or count unsupported geometry as abstention evidence.",
+  "source_artifacts": {
+    "coordinate_root": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates",
+      "sha256": null
+    },
+    "unsupported_geometry_repair_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.json",
+      "sha256": "0185a19e280562fec9c9a8e1edee53d531987967503039329dfc32cc441dcf7e"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_ready_for_locus_repair_audit"
+}

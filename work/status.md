@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 334
-- Measured elapsed time: 10016.6 minutes (166.94 hours)
+- Entries: 335
+- Measured elapsed time: 10071.8 minutes (167.86 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -21,7 +21,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- v3: 2578.1 measured minutes (42.97 hours)
+- v3: 2633.3 measured minutes (43.89 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -30,21 +30,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3525
-- Evidence references logged: 2915
+- Artifact references logged: 3527
+- Evidence references logged: 2916
 
 ## Recent Entries
-
-### 2026-06-03T11:23:19.905443+00:00 - post-v2
-
-- Task: active Lever decision-application contract hardening
-- Time mode: measured
-- Measured minutes: 20.733
-- Started: 2026-06-03T11:02:21Z
-- Ended: 2026-06-03T11:23:05Z
-- Artifacts: artifacts/v3_active_lever_decision_application_contract_audit_current702_20260603.json, artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json, artifacts/v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, work/handoff.md, work/status.md
-- Evidence: 1309 pytest passed, 1264 unittest passed, 702 labels validated, 12 changed JSON artifacts parsed, 0 active decision-application contract violations, 78 source decisions still pending, 0 active mechanical gates runnable
-- Notes: No labels registries ontologies imports production thresholds model weights locator sidecars reviewer decisions source decision values or heldout threshold reads changed.
 
 ### 2026-06-03T12:32:20.787493+00:00 - post-v2
 
@@ -122,6 +111,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_fixed_threshold_readout_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json
 - Evidence: PYTHONPATH=src python -m pytest -q, PYTHONPATH=src python -m unittest discover -s tests, PYTHONPATH=src python -m catalytic_earth.cli validate
 - Notes: Follow-up organic-score axis scored 4/4 rows; 1/4 abstains at fixed threshold 0.44155; post-follow-up scout leaves 160 background-only rows and repair queue has 8 unsupported-geometry rows with 0/8 local AFDB-v6 coordinates.
+
+### 2026-06-03T19:56:36.530027+00:00 - v3
+
+- Task: Lever 3 protein-only fold topology residual tranche
+- Time mode: measured
+- Measured minutes: 55.183
+- Started: 2026-06-03T19:01:07Z
+- Ended: 2026-06-03T19:56:18Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_locus_scan_current702_20260603.json
+- Evidence: full pytest 1341 passed; unittest 1296 passed; combined relevant pytest 469 passed
+- Notes: Fetched 8 AFDB-v6 query CIFs, confirmed protein-only/no locus evidence, ran 8x133 Foldseek, parsed 8 scored rows, composed surface to 204/210 full-channel rows.
 
 ## Expectation Updates
 
@@ -383,6 +383,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T14:51:20.045307+00:00: Lever 3 now has an executable 50-row train/cal scoring input manifest; next step is materializing query CIFs and scoring without heldout threshold tuning.
 - 2026-06-03T15:57:39.461549+00:00: Lever 3 proxy calibration is now mechanically exhausted under the current proxy axes; remaining progress needs source decisions, policy decisions, or a new proxy/evidence axis rather than another automatic scoring tranche.
 - 2026-06-03T17:56:13.579427+00:00: Next Lever 3 progress should clear prior/base full-channel and policy/calibration blockers, or pre-register a no-duplicate follow-up train/cal-only proxy axis before scoring.
+- 2026-06-03T19:56:36.530027+00:00: clear six remaining combined-score blockers before fixed-threshold confounded proxy audit
 
 ## Scope Adjustments
 
@@ -583,3 +584,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T11:23:19.905443+00:00: Active Lever 2/3/4 application gates now require explicit reviewed statuses and approval booleans before follow-on materialization/application gates can open.
 - 2026-06-03T16:23:45.947867+00:00: Lever 3 automatic scoring is exhausted under current proxy axes; a reviewed source decision or pre-registered new train/cal-only proxy-axis contract is required before more scoring.
 - 2026-06-03T17:56:13.579427+00:00: Lever 3 active-site-count proxy axis is fully scored but not closure-sufficient; do not rerun the global fixed-threshold proxy audit from the partial/base-blocked surface.
+- 2026-06-03T19:56:36.530027+00:00: train/cal-only Lever 3 protein-only fold topology residual after AFDB locus repair exhausted

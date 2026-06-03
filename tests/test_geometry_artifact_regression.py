@@ -4348,6 +4348,68 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "unsupported_geometry_repair_queue_current702_20260603.json"
             )
         )
+        coordinate_manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "unsupported_geometry_coordinate_acquisition_manifest_"
+                "current702_20260603.json"
+            )
+        )
+        locus_scan = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "unsupported_geometry_coordinate_locus_scan_"
+                "current702_20260603.json"
+            )
+        )
+        protein_only_preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "protein_only_proxy_design_preflight_current702_20260603.json"
+            )
+        )
+        protein_only_contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "protein_only_fold_topology_residual_contract_current702_"
+                "20260603.json"
+            )
+        )
+        protein_only_scoring_input = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "protein_only_fold_topology_residual_scoring_input_manifest_"
+                "current702_20260603.json"
+            )
+        )
+        protein_only_scored_readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "protein_only_fold_topology_residual_scored_readout_"
+                "current702_20260603.json"
+            )
+        )
+        protein_only_extended_surface = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_post_followup_"
+                "protein_only_fold_topology_residual_extended_train_cal_oos_"
+                "surface_current702_20260603.json"
+            )
+        )
 
         self.assertEqual(
             contract["selected_proxy_axis"]["axis_id"],
@@ -4405,10 +4467,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(repair_queue["counts"]["ready_to_score_now_rows"], 0)
         self.assertEqual(repair_queue["counts"]["rows_with_sequence_accession"], 8)
         self.assertEqual(
-            repair_queue["counts"]["local_afdb_v6_coordinate_files_observed"], 0
+            repair_queue["counts"]["local_afdb_v6_coordinate_files_observed"], 8
         )
         self.assertEqual(
-            repair_queue["counts"]["local_afdb_v6_coordinate_files_missing"], 8
+            repair_queue["counts"]["local_afdb_v6_coordinate_files_missing"], 0
         )
         self.assertEqual(
             [row["entry_id"] for row in repair_queue["repair_rows"]],
@@ -4425,6 +4487,311 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(
             repair_queue["decision"]["new_proxy_axis_ready_to_score_now"]
+        )
+        self.assertEqual(
+            coordinate_manifest["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_"
+                "coordinate_acquisition_manifest_ready_for_locus_repair_audit"
+            ),
+        )
+        self.assertEqual(coordinate_manifest["counts"]["repair_rows"], 8)
+        self.assertEqual(
+            coordinate_manifest["counts"]["query_coordinate_files_observed"], 8
+        )
+        self.assertEqual(
+            coordinate_manifest["counts"]["query_coordinate_files_missing"], 0
+        )
+        self.assertEqual(
+            coordinate_manifest["blockers"],
+            ["locus_repair_audit_not_rerun_after_coordinate_materialization"],
+        )
+        self.assertTrue(
+            coordinate_manifest["decision"]["ready_for_locus_repair_audit"]
+        )
+        self.assertFalse(
+            coordinate_manifest["decision"]["score_repair_rows_now"]
+        )
+        self.assertFalse(
+            coordinate_manifest["decision"]["new_proxy_axis_ready_to_score_now"]
+        )
+        self.assertEqual(
+            locus_scan["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_"
+                "coordinate_locus_scan_protein_only_no_locus_evidence"
+            ),
+        )
+        self.assertEqual(locus_scan["counts"]["coordinate_files_scanned"], 8)
+        self.assertEqual(locus_scan["counts"]["coordinate_files_missing"], 0)
+        self.assertEqual(
+            locus_scan["counts"]["protein_only_afdb_coordinate_files"], 8
+        )
+        self.assertEqual(locus_scan["counts"]["files_with_hetatm_rows"], 0)
+        self.assertEqual(
+            locus_scan["counts"][
+                "files_with_source_free_inorganic_locus_evidence"
+            ],
+            0,
+        )
+        self.assertEqual(
+            locus_scan["blockers"],
+            [
+                "afdb_predicted_coordinates_do_not_carry_ligands_or_metals",
+                "inorganic_locus_statuses_still_unsupported",
+            ],
+        )
+        self.assertFalse(
+            locus_scan["decision"][
+                "background_scout_rerun_can_create_structural_axis_now"
+            ]
+        )
+        self.assertEqual(
+            protein_only_preflight["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_protein_only_"
+                "proxy_design_preflight_ready_contract_selection"
+            ),
+        )
+        self.assertEqual(
+            protein_only_preflight["counts"]["unsupported_geometry_repair_rows"], 8
+        )
+        self.assertEqual(
+            protein_only_preflight["counts"]["protein_only_afdb_coordinate_files"], 8
+        )
+        self.assertEqual(
+            protein_only_preflight["counts"][
+                "files_with_source_free_inorganic_locus_evidence"
+            ],
+            0,
+        )
+        self.assertEqual(
+            protein_only_preflight["counts"]["design_contract_candidate_options"], 2
+        )
+        self.assertEqual(
+            protein_only_preflight["counts"]["ready_to_score_now_rows"], 0
+        )
+        self.assertTrue(
+            protein_only_preflight["decision"][
+                "design_preflight_ready_for_contract_selection"
+            ]
+        )
+        self.assertEqual(
+            protein_only_preflight["decision"]["preferred_next_axis_id"],
+            "protein_only_fold_topology_residual",
+        )
+        self.assertFalse(protein_only_preflight["decision"]["score_any_rows_now"])
+        self.assertFalse(
+            protein_only_preflight["decision"]["register_new_proxy_axis_now"]
+        )
+        self.assertTrue(protein_only_preflight["guardrails"]["design_only"])
+        self.assertFalse(protein_only_preflight["guardrails"]["rows_scored_now"])
+        self.assertFalse(
+            protein_only_preflight["guardrails"]["new_proxy_axis_registered"]
+        )
+        self.assertEqual(
+            protein_only_contract["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_protein_only_"
+                "fold_topology_residual_contract_ready"
+            ),
+        )
+        self.assertEqual(
+            protein_only_contract["selected_axis"]["axis_id"],
+            "protein_only_fold_topology_residual",
+        )
+        self.assertEqual(protein_only_contract["counts"]["contract_rows"], 8)
+        self.assertEqual(
+            protein_only_contract["counts"]["query_coordinate_files_observed"], 8
+        )
+        self.assertEqual(
+            protein_only_contract["counts"]["query_coordinate_files_missing"], 0
+        )
+        self.assertEqual(
+            protein_only_contract["counts"][
+                "ready_to_build_scoring_input_manifest_rows"
+            ],
+            8,
+        )
+        self.assertEqual(
+            protein_only_contract["counts"]["ready_to_score_now_rows"], 0
+        )
+        self.assertEqual(protein_only_contract["blockers"], [])
+        self.assertTrue(
+            protein_only_contract["decision"]["contract_pre_registered"]
+        )
+        self.assertTrue(
+            protein_only_contract["decision"]["build_scoring_input_manifest_next"]
+        )
+        self.assertFalse(
+            protein_only_contract["decision"]["score_contract_rows_now"]
+        )
+        self.assertFalse(
+            protein_only_contract["decision"]["register_deployable_axis_now"]
+        )
+        self.assertEqual(
+            sorted(row["entry_id"] for row in protein_only_contract["contract_rows"]),
+            [
+                "m_csa:105",
+                "m_csa:137",
+                "m_csa:318",
+                "m_csa:327",
+                "m_csa:360",
+                "m_csa:610",
+                "m_csa:618",
+                "m_csa:649",
+            ],
+        )
+        forbidden_features = set(
+            protein_only_contract["feature_contract"]["forbidden_predictive_features"]
+        )
+        self.assertIn("nearest-hit entry IDs", forbidden_features)
+        self.assertIn("nearest-hit target names", forbidden_features)
+        self.assertIn("curated labels or family names", forbidden_features)
+        self.assertIn("heldout M-CSA rows", forbidden_features)
+        self.assertTrue(protein_only_contract["guardrails"]["contract_only"])
+        self.assertFalse(protein_only_contract["guardrails"]["rows_scored_now"])
+        self.assertFalse(
+            protein_only_contract["guardrails"]["deployable_axis_registered"]
+        )
+        self.assertEqual(
+            protein_only_scoring_input["status"],
+            "confounded_proxy_train_cal_scoring_input_manifest_scored_ready_to_parse",
+        )
+        self.assertEqual(
+            protein_only_scoring_input["counts"]["scoring_tranche_rows"], 8
+        )
+        self.assertEqual(
+            protein_only_scoring_input["counts"]["query_coordinate_files_missing"],
+            0,
+        )
+        self.assertEqual(
+            protein_only_scoring_input["counts"][
+                "train_atlas_target_coordinate_files_missing"
+            ],
+            0,
+        )
+        self.assertEqual(
+            protein_only_scoring_input["counts"][
+                "foldseek_result_current_query_hits"
+            ],
+            8,
+        )
+        self.assertEqual(protein_only_scoring_input["blockers"], [])
+        self.assertEqual(
+            protein_only_scoring_input["existing_foldseek_parse_summary"][
+                "mapped_pair_count"
+            ],
+            580,
+        )
+        self.assertEqual(
+            protein_only_scoring_input["existing_foldseek_parse_summary"][
+                "min_nearest_atlas_tm_score"
+            ],
+            0.3715,
+        )
+        self.assertEqual(
+            protein_only_scoring_input["existing_foldseek_parse_summary"][
+                "max_nearest_atlas_tm_score"
+            ],
+            0.7752,
+        )
+        self.assertFalse(
+            protein_only_scoring_input["guardrails"]["heldout_rows_read_for_training_or_threshold_tuning"]
+        )
+        protein_only_tsv = (
+            ROOT
+            / "artifacts"
+            / "v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results"
+            / "protein_only_fold_topology_residual_vs_train_atlas.tsv"
+        )
+        with protein_only_tsv.open() as handle:
+            self.assertEqual(sum(1 for _ in handle), 580)
+        self.assertEqual(
+            protein_only_scored_readout["status"],
+            "confounded_proxy_train_cal_scored_extension_complete",
+        )
+        self.assertEqual(
+            protein_only_scored_readout["counts"]["scoring_tranche_rows"], 8
+        )
+        self.assertEqual(
+            protein_only_scored_readout["counts"][
+                "foldseek_rows_with_nearest_train_hits"
+            ],
+            8,
+        )
+        self.assertEqual(
+            protein_only_scored_readout["counts"][
+                "candidate_rows_with_full_channel_scores"
+            ],
+            8,
+        )
+        self.assertEqual(
+            protein_only_scored_readout["counts"]["missing_full_score_rows"], 0
+        )
+        self.assertEqual(
+            protein_only_scored_readout["blockers"],
+            ["some_tranche_rows_missing_predicted_geometry"],
+        )
+        scored_rows = {
+            row["entry_id"]: row
+            for row in protein_only_scored_readout["candidate_row_scores"]
+        }
+        self.assertEqual(
+            scored_rows["m_csa:360"][
+                "predicted_structure_fold_channel"
+            ]["nearest_train_atlas_tm_score"],
+            0.7752,
+        )
+        self.assertEqual(
+            scored_rows["m_csa:360"]["channel_scores"][
+                "combined_mean_geometry_fold"
+            ],
+            0.5407,
+        )
+        self.assertFalse(
+            protein_only_scored_readout["guardrails"][
+                "heldout_rows_read_for_training_or_threshold_tuning"
+            ]
+        )
+        self.assertFalse(
+            protein_only_scored_readout["guardrails"]["threshold_selected_or_tuned"]
+        )
+        self.assertEqual(
+            protein_only_extended_surface["status"],
+            "confounded_proxy_extended_train_cal_oos_surface_partial",
+        )
+        self.assertEqual(
+            protein_only_extended_surface["counts"]["appended_full_channel_rows"], 8
+        )
+        self.assertEqual(
+            protein_only_extended_surface["counts"]["candidate_rows_with_full_channel_scores"],
+            204,
+        )
+        self.assertEqual(
+            protein_only_extended_surface["counts"]["extended_candidate_rows"], 210
+        )
+        self.assertEqual(
+            protein_only_extended_surface["counts"]["remaining_combined_score_blocker_rows"],
+            6,
+        )
+        self.assertEqual(
+            protein_only_extended_surface["blockers"],
+            [
+                "remaining_fold_only_policy_caveat_not_combined_scored",
+                "scored_extension_has_blockers",
+                "some_extended_train_cal_oos_rows_missing_full_channel_scores",
+            ],
+        )
+        self.assertFalse(
+            protein_only_extended_surface["guardrails"][
+                "heldout_rows_read_now"
+            ]
+        )
+        self.assertFalse(
+            protein_only_extended_surface["guardrails"][
+                "threshold_selected_or_tuned"
+            ]
         )
 
     def test_fold_augmented_confounded_proxy_scored_extension_surfaces_current_counts(
@@ -9716,7 +10083,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
-        self.assertEqual(audit["counts"]["blockers"], 15)
+        self.assertEqual(audit["counts"]["blockers"], 16)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 78
         )
@@ -9825,7 +10192,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             3,
         )
         self.assertEqual(
-            audit["counts"]["lever3_confounded_proxy_background_only_rows"], 160
+            audit["counts"]["lever3_confounded_proxy_background_only_rows"], 170
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_background_axis_blockers"], 4
@@ -9843,12 +10210,60 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]["lever3_confounded_proxy_background_axis_scout_ready_axes"],
             0,
         )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_repair_rows"],
+            8,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_coordinate_files_observed"],
+            8,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_coordinate_files_missing"],
+            0,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_locus_files_scanned"],
+            8,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_locus_evidence_files"],
+            0,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_locus_protein_only_files"],
+            8,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_locus_ready_to_score_rows"],
+            0,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_unsupported_geometry_locus_blockers"],
+            2,
+        )
         self.assertTrue(
             audit["counts"]["lever3_confounded_proxy_new_axis_registered"]
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_contracted_rows"],
-            4,
+            6,
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_contract_blockers"],
@@ -9856,7 +10271,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_full_channel_rows"],
-            4,
+            6,
         )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_new_axis_missing_full_score_rows"],
@@ -9912,6 +10327,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "lever3_confounded_proxy_background_axis_exhausted",
             audit["blockers"],
         )
+        self.assertIn(
+            "lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis",
+            audit["blockers"],
+        )
         self.assertNotIn(
             "lever3_confounded_proxy_new_axis_contract_missing",
             audit["blockers"],
@@ -9930,6 +10349,17 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "blocking_reason"
             ],
             "current_scout_axis_scored_no_ready_followup_axis",
+        )
+        self.assertEqual(
+            gates["confounded_proxy_train_cal_unsupported_geometry_locus_scan"][
+                "blocking_reason"
+            ],
+            "unsupported_geometry_afdb_coordinates_protein_only_no_locus_evidence",
+        )
+        self.assertFalse(
+            gates["confounded_proxy_train_cal_unsupported_geometry_locus_scan"][
+                "ready_now"
+            ]
         )
         self.assertEqual(
             gates["confounded_proxy_train_cal_new_proxy_axis_contract"][

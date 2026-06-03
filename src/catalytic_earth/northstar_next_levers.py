@@ -38,7 +38,7 @@ from .predicted_geometry_robustness import (
     _target_manifest_row_selection,
     build_alphafold_predicted_geometry_features,
 )
-from .structure import METAL_ION_CODES, parse_atom_site_loop
+from .structure import COFACTOR_LIGAND_MAP, METAL_ION_CODES, parse_atom_site_loop
 from .structure import (
     atom_position,
     ligand_context_from_atoms,
@@ -185,6 +185,18 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_SCOUT_ID = (
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_REPAIR_QUEUE_ID = (
     "v3_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_queue_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_COORDINATE_ACQUISITION_MANIFEST_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_COORDINATE_LOCUS_SCAN_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_PROTEIN_ONLY_PROXY_DESIGN_PREFLIGHT_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_PROTEIN_ONLY_FOLD_TOPOLOGY_RESIDUAL_CONTRACT_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract_current702_20260603"
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_CONTRACT_ID = (
     "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603"
@@ -27598,6 +27610,1214 @@ def write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_repair_
     return queue
 
 
+def build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest(
+    *,
+    unsupported_geometry_repair_queue_path: Path,
+    coordinate_root: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_COORDINATE_ACQUISITION_MANIFEST_ID
+    ),
+) -> dict[str, Any]:
+    queue = _read_json(unsupported_geometry_repair_queue_path)
+    source_root = (
+        (queue.get("source_artifacts") or {}).get("coordinate_root") or {}
+    ).get("path")
+    root = Path(
+        coordinate_root
+        or source_root
+        or "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+    )
+    repair_rows = [
+        row
+        for row in queue.get("repair_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    query_rows = [
+        {
+            "entry_id": str(row["entry_id"]),
+            "accession": row.get("accession"),
+            "sequence_id": row.get("accession"),
+            "split_assignment": "train_cal",
+            "benchmark_role": "out_of_scope_negative",
+            "repair_blocker": row.get("repair_blocker"),
+            "required_repair": row.get("required_repair"),
+        }
+        for row in repair_rows
+    ]
+    query_requests = _coordinate_requests(
+        query_rows,
+        coordinate_root=root,
+        role="confounded_proxy_train_cal_unsupported_geometry_repair_query",
+        subdir="confounded_proxy_train_cal_tranche_queries",
+    )
+    missing_accession_entry_ids = [
+        str(row["entry_id"]) for row in query_rows if not row.get("accession")
+    ]
+    missing_coordinate_requests = [
+        request
+        for request in query_requests
+        if not request.get("local_file_exists")
+        or request.get("status") == "missing_accession"
+    ]
+    blockers: list[str] = []
+    if not repair_rows:
+        blockers.append("unsupported_geometry_repair_queue_empty")
+    if missing_accession_entry_ids:
+        blockers.append("repair_rows_missing_sequence_accession")
+    if missing_coordinate_requests:
+        blockers.append("repair_query_coordinate_files_missing")
+    if query_requests and not missing_coordinate_requests:
+        blockers.append("locus_repair_audit_not_rerun_after_coordinate_materialization")
+
+    output_artifact_path = Path(f"artifacts/{artifact_id}.json")
+    status = (
+        "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_ready_to_fetch"
+        if query_requests and missing_coordinate_requests
+        else (
+            "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_ready_for_locus_repair_audit"
+            if query_requests
+            else "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_empty"
+        )
+    )
+    unique_accessions = {
+        str(request.get("accession"))
+        for request in query_requests
+        if request.get("accession")
+    }
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Train/cal-only coordinate-acquisition manifest for the Lever 3 "
+            "unsupported-geometry repair queue. It maps each repair row to an "
+            "expected AFDB-v6 CIF request and exact local path, but it does not "
+            "download coordinates, score rows, register a proxy axis, tune "
+            "thresholds, read heldout rows, or count unsupported geometry as "
+            "abstention evidence."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "coordinate_acquisition_manifest_only": True,
+            "coordinate_downloads_performed": False,
+            "candidate_rows_scored_now": False,
+            "new_proxy_axis_registered": False,
+            "foldseek_or_tmsearch_run_now": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "repair_rows": len(repair_rows),
+            "repair_rows_with_accession": len(repair_rows)
+            - len(missing_accession_entry_ids),
+            "unique_query_accessions": len(unique_accessions),
+            "query_coordinate_requests": len(query_requests),
+            "query_coordinate_files_observed": len(query_requests)
+            - len(missing_coordinate_requests),
+            "query_coordinate_files_missing": len(missing_coordinate_requests),
+            "ready_to_score_now_rows": 0,
+            "blockers": len(blockers),
+        },
+        "missing_accession_entry_ids": sorted(
+            missing_accession_entry_ids, key=_entry_id_sort_key
+        ),
+        "missing_query_coordinate_manifest": [
+            _compact_coordinate_reproduction_record(
+                "confounded_proxy_train_cal_tranche_queries", request
+            )
+            for request in missing_coordinate_requests
+        ],
+        "foldseek_input_manifest": {
+            "coordinate_root": str(root),
+            "confounded_proxy_tranche_query_dir": str(
+                root / "confounded_proxy_train_cal_tranche_queries"
+            ),
+            "coordinate_request_groups": {
+                "confounded_proxy_train_cal_tranche_queries": query_requests,
+            },
+        },
+        "commands": {
+            "materialize_missing_query_coordinates": (
+                _materialize_confounded_proxy_tranche_coordinates_command(
+                    output_artifact_path
+                )
+            ),
+            "rerun_manifest_after_fetch": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-fold-augmented-confounded-proxy-train-cal-unsupported-"
+                "geometry-coordinate-acquisition-manifest"
+            ),
+            "next_background_scout_gate": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-fold-augmented-confounded-proxy-train-cal-background-axis-"
+                "scout"
+            ),
+        },
+        "blockers": blockers,
+        "decision": {
+            "coordinate_manifest_ready_for_fetch": bool(
+                query_requests and not missing_accession_entry_ids
+                and missing_coordinate_requests
+            ),
+            "coordinate_fetch_still_required": bool(missing_coordinate_requests),
+            "ready_for_locus_repair_audit": bool(
+                query_requests
+                and not missing_accession_entry_ids
+                and not missing_coordinate_requests
+            ),
+            "score_repair_rows_now": False,
+            "new_proxy_axis_ready_to_score_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Materialize the listed AFDB-v6 query CIFs, then rerun this "
+                "manifest and the background-axis scout before considering any "
+                "new proxy-axis contract."
+                if missing_coordinate_requests
+                else (
+                    "Rerun the background-axis scout with the repaired local "
+                    "coordinates before registering any new proxy-axis contract."
+                    if query_requests
+                    else "No unsupported-geometry coordinate acquisition remains."
+                )
+            ),
+        },
+        "source_artifacts": {
+            "unsupported_geometry_repair_queue": _source_path_record(
+                unsupported_geometry_repair_queue_path
+            ),
+            "coordinate_root": {
+                "path": str(root),
+                "exists": root.exists(),
+                "sha256": None,
+            },
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(repair_rows)} unsupported-geometry repair rows map to "
+                f"{len(unique_accessions)} unique AFDB-v6 query accessions."
+            ),
+            "result": (
+                f"{len(missing_coordinate_requests)} query coordinate files are "
+                "missing locally; no scoring or threshold read was performed."
+            ),
+            "next_action": (
+                (
+                    "Fetch or otherwise materialize the missing AFDB-v6 CIFs, "
+                    "then rerun the repair/background scout gates before any "
+                    "new proxy axis is registered."
+                )
+                if missing_coordinate_requests
+                else (
+                    "Rerun the repair/background scout gates against the now-"
+                    "local AFDB-v6 CIFs before any new proxy axis is registered."
+                )
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_report(
+    manifest: dict[str, Any],
+) -> str:
+    counts = manifest["counts"]
+    decision = manifest["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Unsupported-Geometry Coordinate Acquisition Manifest - current702",
+        "",
+        f"Run: {manifest['created_utc']}",
+        "",
+        manifest["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {manifest['status']}",
+        f"- Repair rows: {counts['repair_rows']}",
+        f"- Unique query accessions: {counts['unique_query_accessions']}",
+        "- Query coordinates observed: "
+        f"{counts['query_coordinate_files_observed']}/"
+        f"{counts['query_coordinate_requests']}",
+        f"- Ready to score now: {counts['ready_to_score_now_rows']}",
+        f"- Blockers: {manifest['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Coordinate manifest ready for fetch: "
+        f"{decision['coordinate_manifest_ready_for_fetch']}",
+        "- Coordinate fetch still required: "
+        f"{decision['coordinate_fetch_still_required']}",
+        "- Ready for locus-repair audit: "
+        f"{decision['ready_for_locus_repair_audit']}",
+        f"- Score repair rows now: {decision['score_repair_rows_now']}",
+        f"- New proxy axis ready now: {decision['new_proxy_axis_ready_to_score_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Missing Query Coordinates",
+        "",
+        "| accession | rows | local path | URL |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in manifest.get("missing_query_coordinate_manifest", []):
+        lines.append(
+            f"| {row.get('accession')} | "
+            f"{', '.join(row.get('entry_ids') or [])} | "
+            f"{row.get('expected_local_path')} | {row.get('url')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {manifest['interpretation']['headline']}",
+        f"- {manifest['interpretation']['result']}",
+        f"- {manifest['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest(
+    *,
+    unsupported_geometry_repair_queue_path: Path,
+    coordinate_root: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_COORDINATE_ACQUISITION_MANIFEST_ID
+    ),
+) -> dict[str, Any]:
+    manifest = build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest(
+        unsupported_geometry_repair_queue_path=unsupported_geometry_repair_queue_path,
+        coordinate_root=coordinate_root,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_report(
+                manifest
+            ),
+            encoding="utf-8",
+        )
+    return manifest
+
+
+INORGANIC_LOCUS_SCAN_IRON_SULFUR_CODES = {"F3S", "FE2", "FES", "FS4", "SF4"}
+INORGANIC_LOCUS_SCAN_RADICAL_SAM_CODES = {"MTA", "SAH", "SAM"}
+INORGANIC_LOCUS_SCAN_COBALAMIN_CODES = {
+    code for code, cofactor_class in COFACTOR_LIGAND_MAP.items()
+    if cofactor_class == "cobalamin"
+}
+
+
+def _comp_id_counts_from_hetatm(atoms: list[dict[str, Any]]) -> Counter[str]:
+    return Counter(
+        str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+    )
+
+
+def build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan(
+    *,
+    coordinate_acquisition_manifest_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_COORDINATE_LOCUS_SCAN_ID
+    ),
+) -> dict[str, Any]:
+    manifest = _read_json(coordinate_acquisition_manifest_path)
+    query_requests = (
+        (manifest.get("foldseek_input_manifest") or {})
+        .get("coordinate_request_groups", {})
+        .get("confounded_proxy_train_cal_tranche_queries", [])
+    )
+    scan_rows: list[dict[str, Any]] = []
+    missing_files: list[str] = []
+    for request in query_requests:
+        if not isinstance(request, dict):
+            continue
+        path_text = str(request.get("expected_local_path") or "")
+        path = Path(path_text) if path_text else None
+        entry_ids = [
+            str(entry_id)
+            for entry_id in request.get("entry_ids", [])
+            if entry_id is not None
+        ]
+        if path is None or not path.exists():
+            missing_files.extend(entry_ids)
+            scan_rows.append(
+                {
+                    "entry_ids": entry_ids,
+                    "accession": request.get("accession"),
+                    "expected_local_path": path_text or None,
+                    "scan_status": "coordinate_file_missing",
+                    "atom_site_rows": 0,
+                    "hetatm_rows": 0,
+                    "hetatm_comp_id_counts": {},
+                    "metal_ion_codes_observed": [],
+                    "iron_sulfur_codes_observed": [],
+                    "radical_sam_codes_observed": [],
+                    "cobalamin_codes_observed": [],
+                    "source_free_inorganic_locus_evidence_detected": False,
+                }
+            )
+            continue
+        atoms = parse_atom_site_loop(
+            path.read_text(encoding="utf-8", errors="replace")
+        )
+        hetatm_counts = _comp_id_counts_from_hetatm(atoms)
+        observed_codes = set(hetatm_counts)
+        metal_codes = sorted(observed_codes & set(METAL_ION_CODES))
+        iron_sulfur_codes = sorted(
+            observed_codes & INORGANIC_LOCUS_SCAN_IRON_SULFUR_CODES
+        )
+        radical_sam_codes = sorted(
+            observed_codes & INORGANIC_LOCUS_SCAN_RADICAL_SAM_CODES
+        )
+        cobalamin_codes = sorted(
+            observed_codes & INORGANIC_LOCUS_SCAN_COBALAMIN_CODES
+        )
+        evidence_detected = bool(
+            metal_codes or iron_sulfur_codes or radical_sam_codes or cobalamin_codes
+        )
+        scan_rows.append(
+            {
+                "entry_ids": entry_ids,
+                "accession": request.get("accession"),
+                "expected_local_path": str(path),
+                "sha256": _sha256(path),
+                "scan_status": (
+                    "source_free_inorganic_locus_evidence_detected"
+                    if evidence_detected
+                    else (
+                        "protein_only_afdb_no_locus_evidence"
+                        if not hetatm_counts
+                        else "hetatm_present_no_inorganic_locus_evidence"
+                    )
+                ),
+                "atom_site_rows": len(atoms),
+                "hetatm_rows": sum(hetatm_counts.values()),
+                "hetatm_comp_id_counts": dict(sorted(hetatm_counts.items())),
+                "metal_ion_codes_observed": metal_codes,
+                "iron_sulfur_codes_observed": iron_sulfur_codes,
+                "radical_sam_codes_observed": radical_sam_codes,
+                "cobalamin_codes_observed": cobalamin_codes,
+                "source_free_inorganic_locus_evidence_detected": evidence_detected,
+            }
+        )
+    evidence_rows = [
+        row for row in scan_rows
+        if row["source_free_inorganic_locus_evidence_detected"]
+    ]
+    protein_only_rows = [
+        row for row in scan_rows
+        if row["scan_status"] == "protein_only_afdb_no_locus_evidence"
+    ]
+    blockers: list[str] = []
+    if missing_files:
+        blockers.append("coordinate_locus_scan_missing_coordinate_files")
+    if scan_rows and not evidence_rows and not missing_files:
+        blockers.extend(
+            [
+                "afdb_predicted_coordinates_do_not_carry_ligands_or_metals",
+                "inorganic_locus_statuses_still_unsupported",
+            ]
+        )
+    status = (
+        "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_blocked_missing_coordinates"
+        if missing_files
+        else (
+            "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_ready_for_background_scout_rerun"
+            if evidence_rows
+            else "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_protein_only_no_locus_evidence"
+        )
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Train/cal-only source-free scan of the repaired AFDB-v6 CIF files "
+            "for inorganic/cofactor locus evidence. It checks only local "
+            "coordinate atom-site records and ligand/metal component IDs; it "
+            "does not score rows, register a proxy axis, tune thresholds, read "
+            "heldout rows, or count unsupported geometry as abstention evidence."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "source_free_coordinate_scan_only": True,
+            "candidate_rows_scored_now": False,
+            "new_proxy_axis_registered": False,
+            "foldseek_or_tmsearch_run_now": False,
+            "coordinate_downloads_performed": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "coordinate_requests_scanned": len(scan_rows),
+            "coordinate_files_missing": len(missing_files),
+            "coordinate_files_scanned": len(scan_rows) - len(missing_files),
+            "protein_only_afdb_coordinate_files": len(protein_only_rows),
+            "files_with_hetatm_rows": sum(
+                1 for row in scan_rows if row["hetatm_rows"] > 0
+            ),
+            "files_with_source_free_inorganic_locus_evidence": len(evidence_rows),
+            "ready_to_score_now_rows": 0,
+            "blockers": len(blockers),
+        },
+        "scan_rows": scan_rows,
+        "blockers": blockers,
+        "decision": {
+            "background_scout_rerun_can_create_structural_axis_now": bool(
+                evidence_rows and not missing_files
+            ),
+            "score_repair_rows_now": False,
+            "new_proxy_axis_ready_to_score_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "The repaired AFDB-v6 files are protein-only and do not repair "
+                "the inorganic/cofactor locus feature. Do not register an "
+                "unsupported-geometry proxy axis from these rows; next progress "
+                "requires a different source-free structural proxy or reviewed "
+                "P10746/Lever 4 decisions."
+                if scan_rows and not evidence_rows and not missing_files
+                else (
+                    "Rerun the background-axis scout after incorporating the "
+                    "detected source-free locus evidence into a train/cal-only "
+                    "input manifest."
+                    if evidence_rows
+                    else "Materialize missing coordinate files before scanning."
+                )
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_acquisition_manifest": _source_path_record(
+                coordinate_acquisition_manifest_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(scan_rows) - len(missing_files)}/{len(scan_rows)} AFDB-v6 "
+                "repair CIFs were scanned for source-free inorganic/cofactor "
+                "locus evidence."
+            ),
+            "result": (
+                f"{len(protein_only_rows)} files are protein-only and "
+                f"{len(evidence_rows)} files expose source-free inorganic/"
+                "cofactor locus evidence."
+            ),
+            "next_action": (
+                "Treat the coordinate-missing blocker as cleared but the "
+                "inorganic-locus evidence blocker as still open."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_report(
+    scan: dict[str, Any],
+) -> str:
+    counts = scan["counts"]
+    decision = scan["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Unsupported-Geometry Coordinate Locus Scan - current702",
+        "",
+        f"Run: {scan['created_utc']}",
+        "",
+        scan["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {scan['status']}",
+        "- Coordinate files scanned: "
+        f"{counts['coordinate_files_scanned']}/"
+        f"{counts['coordinate_requests_scanned']}",
+        "- Protein-only AFDB files: "
+        f"{counts['protein_only_afdb_coordinate_files']}",
+        "- Files with source-free locus evidence: "
+        f"{counts['files_with_source_free_inorganic_locus_evidence']}",
+        f"- Ready to score now: {counts['ready_to_score_now_rows']}",
+        f"- Blockers: {scan['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Background scout can create structural axis now: "
+        f"{decision['background_scout_rerun_can_create_structural_axis_now']}",
+        f"- Score repair rows now: {decision['score_repair_rows_now']}",
+        f"- New proxy axis ready now: {decision['new_proxy_axis_ready_to_score_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Scan Rows",
+        "",
+        "| accession | rows | atoms | HETATM | status | locus codes |",
+        "| --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for row in scan.get("scan_rows", []):
+        locus_codes = sorted(
+            set(row.get("metal_ion_codes_observed") or [])
+            | set(row.get("iron_sulfur_codes_observed") or [])
+            | set(row.get("radical_sam_codes_observed") or [])
+            | set(row.get("cobalamin_codes_observed") or [])
+        )
+        lines.append(
+            f"| {row.get('accession')} | {', '.join(row.get('entry_ids') or [])} | "
+            f"{row.get('atom_site_rows')} | {row.get('hetatm_rows')} | "
+            f"{row.get('scan_status')} | {', '.join(locus_codes) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {scan['interpretation']['headline']}",
+        f"- {scan['interpretation']['result']}",
+        f"- {scan['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan(
+    *,
+    coordinate_acquisition_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_UNSUPPORTED_GEOMETRY_COORDINATE_LOCUS_SCAN_ID
+    ),
+) -> dict[str, Any]:
+    scan = build_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan(
+        coordinate_acquisition_manifest_path=coordinate_acquisition_manifest_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(scan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_report(
+                scan
+            ),
+            encoding="utf-8",
+        )
+    return scan
+
+
+def build_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight(
+    *,
+    unsupported_geometry_repair_queue_path: Path,
+    coordinate_locus_scan_path: Path,
+    background_axis_scout_path: Path | None = None,
+    new_proxy_axis_scored_extension_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_PROTEIN_ONLY_PROXY_DESIGN_PREFLIGHT_ID,
+) -> dict[str, Any]:
+    repair_queue = _read_json(unsupported_geometry_repair_queue_path)
+    locus_scan = _read_json(coordinate_locus_scan_path)
+    background_axis_scout = (
+        _read_json(background_axis_scout_path)
+        if background_axis_scout_path is not None
+        and Path(background_axis_scout_path).exists()
+        else {}
+    )
+    scored_extension = (
+        _read_json(new_proxy_axis_scored_extension_path)
+        if new_proxy_axis_scored_extension_path is not None
+        and Path(new_proxy_axis_scored_extension_path).exists()
+        else {}
+    )
+
+    repair_counts = repair_queue.get("counts", {})
+    locus_counts = locus_scan.get("counts", {})
+    scout_counts = (
+        background_axis_scout.get("counts", {})
+        if isinstance(background_axis_scout, dict)
+        else {}
+    )
+    scored_counts = (
+        scored_extension.get("counts", {})
+        if isinstance(scored_extension, dict)
+        else {}
+    )
+    repair_rows = [
+        row for row in repair_queue.get("repair_rows", []) if isinstance(row, dict)
+    ]
+    scan_rows = [
+        row for row in locus_scan.get("scan_rows", []) if isinstance(row, dict)
+    ]
+    unsupported_entry_ids = sorted(
+        {
+            str(row.get("entry_id"))
+            for row in repair_rows
+            if row.get("entry_id") is not None
+        }
+    )
+    protein_only_files = int(
+        locus_counts.get("protein_only_afdb_coordinate_files") or 0
+    )
+    files_with_locus_evidence = int(
+        locus_counts.get("files_with_source_free_inorganic_locus_evidence") or 0
+    )
+    coordinate_files_missing = int(locus_counts.get("coordinate_files_missing") or 0)
+    existing_scored_proxy_rows = int(
+        scored_counts.get("candidate_rows_with_full_channel_scores") or 0
+    )
+
+    design_options = [
+        {
+            "axis_id": "unsupported_inorganic_locus_from_afdb_components",
+            "status": "rejected_by_coordinate_locus_scan",
+            "rows_or_files_available": protein_only_files,
+            "reason": (
+                "AFDB-v6 query coordinates are protein-only and contain zero "
+                "HETATM/source-free inorganic or cofactor locus evidence."
+            ),
+            "score_now": False,
+            "register_axis_now": False,
+        },
+        {
+            "axis_id": "protein_only_fold_topology_residual",
+            "status": "design_contract_candidate",
+            "rows_or_files_available": protein_only_files,
+            "source_free_inputs": [
+                "AFDB-v6 query protein coordinates",
+                "train-atlas coordinates",
+                "Foldseek/TM-score nearest-neighbor residuals",
+            ],
+            "required_next_artifact": (
+                "pre-registered train/cal-only source-free fold-topology "
+                "residual contract"
+            ),
+            "score_now": False,
+            "register_axis_now": False,
+        },
+        {
+            "axis_id": "protein_only_global_shape_confidence_residual",
+            "status": "design_contract_candidate",
+            "rows_or_files_available": protein_only_files,
+            "source_free_inputs": [
+                "AFDB-v6 protein-only atom coordinates",
+                "coordinate-derived size/contact-density summaries",
+                "coordinate confidence fields when present",
+            ],
+            "required_next_artifact": (
+                "explicit feature contract and train/cal-only calibration plan"
+            ),
+            "score_now": False,
+            "register_axis_now": False,
+        },
+        {
+            "axis_id": "mcsa_row_specific_active_site_or_source_locator_residual",
+            "status": "not_deployment_closed_for_new_axis",
+            "rows_or_files_available": len(unsupported_entry_ids),
+            "reason": (
+                "M-CSA row-specific active-site locations are train/cal-only "
+                "and source locators are not available for deployment queries; "
+                "do not use them to define the deployable confounded-safe axis."
+            ),
+            "score_now": False,
+            "register_axis_now": False,
+        },
+    ]
+    design_candidate_options = [
+        option
+        for option in design_options
+        if option["status"] == "design_contract_candidate"
+    ]
+    blockers: list[str] = []
+    if coordinate_files_missing:
+        blockers.append("protein_only_design_preflight_missing_coordinates")
+    if protein_only_files and files_with_locus_evidence == 0:
+        blockers.append("unsupported_geometry_afdb_coordinates_protein_only_no_locus_evidence")
+    if design_candidate_options:
+        blockers.append("protein_only_proxy_contract_not_selected")
+    else:
+        blockers.append("protein_only_proxy_design_candidates_missing")
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_protein_only_proxy_design_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight_ready_contract_selection"
+            if design_candidate_options
+            and not coordinate_files_missing
+            else "fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight_blocked"
+        ),
+        "scope": (
+            "Fail-closed design preflight for the protein-only path after the "
+            "unsupported inorganic-locus AFDB coordinate repair attempt. It does "
+            "not score rows, register a new proxy axis, tune thresholds, or read "
+            "heldout."
+        ),
+        "counts": {
+            "unsupported_geometry_repair_rows": int(
+                repair_counts.get("unsupported_geometry_repair_rows") or len(repair_rows)
+            ),
+            "unsupported_geometry_unique_entry_ids": len(unsupported_entry_ids),
+            "coordinate_files_scanned": int(
+                locus_counts.get("coordinate_files_scanned") or 0
+            ),
+            "coordinate_files_missing": coordinate_files_missing,
+            "protein_only_afdb_coordinate_files": protein_only_files,
+            "files_with_source_free_inorganic_locus_evidence": files_with_locus_evidence,
+            "background_axis_scout_rows": int(
+                scout_counts.get("background_axis_scout_rows")
+                or scout_counts.get("manifest_rows_joined")
+                or 0
+            ),
+            "background_axis_scout_candidate_axis_tests": int(
+                scout_counts.get("candidate_axis_tests") or 0
+            ),
+            "existing_scored_new_proxy_axis_rows": existing_scored_proxy_rows,
+            "design_options": len(design_options),
+            "design_contract_candidate_options": len(design_candidate_options),
+            "ready_to_score_now_rows": 0,
+            "blockers": len(blockers),
+        },
+        "unsupported_geometry_entry_ids": unsupported_entry_ids,
+        "scan_accessions": sorted(
+            {
+                str(row.get("accession"))
+                for row in scan_rows
+                if row.get("accession") is not None
+            }
+        ),
+        "design_options": design_options,
+        "blockers": blockers,
+        "decision": {
+            "design_preflight_ready_for_contract_selection": bool(
+                design_candidate_options and not coordinate_files_missing
+            ),
+            "preferred_next_axis_id": (
+                "protein_only_fold_topology_residual"
+                if design_candidate_options and not coordinate_files_missing
+                else None
+            ),
+            "score_any_rows_now": False,
+            "register_new_proxy_axis_now": False,
+            "run_fixed_threshold_audit_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Choose exactly one source-free protein-only proxy axis, "
+                "preferably the fold-topology residual, and write a "
+                "train/cal-only pre-registration contract before any scoring. "
+                "Do not score or register the unsupported inorganic-locus axis "
+                "from the protein-only AFDB files."
+            ),
+        },
+        "guardrails": {
+            "design_only": True,
+            "train_cal_only": True,
+            "coordinate_downloads_performed": False,
+            "foldseek_or_tmsearch_run_now": False,
+            "rows_scored_now": False,
+            "new_proxy_axis_registered": False,
+            "fixed_threshold_audit_rerun": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "source_artifacts": {
+            "unsupported_geometry_repair_queue": _source_path_record(
+                unsupported_geometry_repair_queue_path
+            ),
+            "coordinate_locus_scan": _source_path_record(coordinate_locus_scan_path),
+            "background_axis_scout": (
+                _source_path_record(background_axis_scout_path)
+                if background_axis_scout_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "new_proxy_axis_scored_extension": (
+                _source_path_record(new_proxy_axis_scored_extension_path)
+                if new_proxy_axis_scored_extension_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "The unsupported inorganic-locus coordinate path is exhausted, "
+                "but a protein-only proxy-axis design gate is available."
+            ),
+            "result": (
+                f"{protein_only_files} AFDB-v6 coordinate files were protein-only "
+                f"with {files_with_locus_evidence} source-free inorganic/cofactor "
+                "locus-evidence files; do not convert that locus axis into a "
+                "scoreable proxy."
+            ),
+            "next_action": (
+                "Pre-register one train/cal-only protein-only proxy contract "
+                "before scoring; fold-topology residual is the preferred first "
+                "contract because it matches the deployment-valid predicted-"
+                "structure-vs-atlas channel."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    decision = preflight["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Protein-Only Proxy Design Preflight",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        f"- Unsupported-geometry repair rows: {counts['unsupported_geometry_repair_rows']}",
+        f"- Coordinate files scanned: {counts['coordinate_files_scanned']}",
+        f"- Protein-only AFDB files: {counts['protein_only_afdb_coordinate_files']}",
+        "- Source-free inorganic/cofactor locus-evidence files: "
+        f"{counts['files_with_source_free_inorganic_locus_evidence']}",
+        "- Existing scored new-proxy-axis rows: "
+        f"{counts['existing_scored_new_proxy_axis_rows']}",
+        f"- Design contract candidate options: {counts['design_contract_candidate_options']}",
+        f"- Ready-to-score-now rows: {counts['ready_to_score_now_rows']}",
+        f"- Blockers: {preflight['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Design preflight ready for contract selection: "
+        f"{decision['design_preflight_ready_for_contract_selection']}",
+        f"- Preferred next axis: {decision['preferred_next_axis_id']}",
+        f"- Score any rows now: {decision['score_any_rows_now']}",
+        f"- Register new proxy axis now: {decision['register_new_proxy_axis_now']}",
+        f"- Run fixed-threshold audit now: {decision['run_fixed_threshold_audit_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Design Options",
+        "",
+        "| axis | status | rows/files | score now | register now |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for option in preflight.get("design_options", []):
+        lines.append(
+            f"| {option['axis_id']} | {option['status']} | "
+            f"{option['rows_or_files_available']} | {option['score_now']} | "
+            f"{option['register_axis_now']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['headline']}",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight(
+    *,
+    unsupported_geometry_repair_queue_path: Path,
+    coordinate_locus_scan_path: Path,
+    background_axis_scout_path: Path | None = None,
+    new_proxy_axis_scored_extension_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_PROTEIN_ONLY_PROXY_DESIGN_PREFLIGHT_ID,
+) -> dict[str, Any]:
+    preflight = build_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight(
+        unsupported_geometry_repair_queue_path=unsupported_geometry_repair_queue_path,
+        coordinate_locus_scan_path=coordinate_locus_scan_path,
+        background_axis_scout_path=background_axis_scout_path,
+        new_proxy_axis_scored_extension_path=new_proxy_axis_scored_extension_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_protein_only_proxy_design_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
+
+
+def build_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract(
+    *,
+    protein_only_proxy_design_preflight_path: Path,
+    coordinate_acquisition_manifest_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_PROTEIN_ONLY_FOLD_TOPOLOGY_RESIDUAL_CONTRACT_ID,
+) -> dict[str, Any]:
+    preflight = _read_json(protein_only_proxy_design_preflight_path)
+    coordinate_manifest = _read_json(coordinate_acquisition_manifest_path)
+    preflight_decision = preflight.get("decision", {})
+    request_groups = (
+        coordinate_manifest.get("foldseek_input_manifest", {})
+        .get("coordinate_request_groups", {})
+    )
+    query_requests = [
+        row
+        for row in request_groups.get("confounded_proxy_train_cal_tranche_queries", [])
+        if isinstance(row, dict)
+    ]
+    contract_rows: list[dict[str, Any]] = []
+    for request in query_requests:
+        for row in request.get("rows", []):
+            if not isinstance(row, dict):
+                continue
+            contract_rows.append(
+                {
+                    "entry_id": row.get("entry_id"),
+                    "accession": request.get("accession"),
+                    "split_assignment": row.get("split_assignment"),
+                    "benchmark_role": row.get("benchmark_role"),
+                    "query_coordinate_path": request.get("expected_local_path"),
+                    "query_coordinate_file_exists": bool(
+                        request.get("local_file_exists")
+                    ),
+                }
+            )
+    missing_coordinate_rows = [
+        row
+        for row in contract_rows
+        if not row.get("query_coordinate_file_exists")
+    ]
+    blockers: list[str] = []
+    if preflight_decision.get("preferred_next_axis_id") != (
+        "protein_only_fold_topology_residual"
+    ):
+        blockers.append("protein_only_fold_topology_residual_not_selected")
+    if not preflight_decision.get("design_preflight_ready_for_contract_selection"):
+        blockers.append("protein_only_design_preflight_not_ready")
+    if not contract_rows:
+        blockers.append("protein_only_fold_topology_contract_rows_missing")
+    if missing_coordinate_rows:
+        blockers.append("protein_only_fold_topology_query_coordinates_missing")
+
+    contract_ready = not blockers
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_protein_only_fold_topology_residual_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract_ready"
+            if contract_ready
+            else "fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract_blocked"
+        ),
+        "scope": (
+            "Pre-registration contract for a train/cal-only protein-only "
+            "fold-topology residual axis. It selects rows and feature rules only; "
+            "it does not run Foldseek, parse scores, register a deployable "
+            "threshold, or read heldout."
+        ),
+        "selected_axis": {
+            "axis_id": "protein_only_fold_topology_residual",
+            "source_free_surface": "predicted_structure_vs_train_atlas_numeric_tm_residual",
+            "selection_basis": (
+                "AFDB-v6 repair files are protein-only, so the next deployable "
+                "Lever 3 path must use protein coordinates rather than ligand/"
+                "metal HETATM evidence."
+            ),
+        },
+        "counts": {
+            "contract_rows": len(contract_rows),
+            "query_coordinate_requests": len(query_requests),
+            "query_coordinate_files_observed": sum(
+                1 for row in contract_rows if row.get("query_coordinate_file_exists")
+            ),
+            "query_coordinate_files_missing": len(missing_coordinate_rows),
+            "ready_to_build_scoring_input_manifest_rows": (
+                len(contract_rows) if contract_ready else 0
+            ),
+            "ready_to_score_now_rows": 0,
+            "blockers": len(blockers),
+        },
+        "contract_rows": contract_rows,
+        "feature_contract": {
+            "allowed_predictive_features": [
+                "numeric nearest-train-atlas Foldseek/TM-score summaries",
+                "numeric distance/residual-to-atlas-span summaries",
+                "numeric query-vs-atlas alignment coverage summaries",
+            ],
+            "forbidden_predictive_features": [
+                "nearest-hit entry IDs",
+                "nearest-hit source accessions",
+                "nearest-hit target names",
+                "EC or Rhea identifiers",
+                "mechanism text",
+                "curated labels or family names",
+                "heldout M-CSA rows",
+            ],
+            "calibration_discipline": (
+                "fit on train, choose thresholds on calibration only, then read "
+                "heldout once after pre-threshold readiness passes"
+            ),
+        },
+        "blockers": blockers,
+        "decision": {
+            "contract_pre_registered": contract_ready,
+            "build_scoring_input_manifest_next": contract_ready,
+            "score_contract_rows_now": False,
+            "register_deployable_axis_now": False,
+            "run_fixed_threshold_audit_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Build a scoring-input manifest for these eight train/cal rows "
+                "against the train atlas, run Foldseek/TM scoring, and parse only "
+                "numeric topology residual features. Do not use nearest-hit IDs, "
+                "labels, target names, or heldout rows as predictive features."
+            ),
+        },
+        "guardrails": {
+            "contract_only": True,
+            "train_cal_only": True,
+            "coordinate_downloads_performed": False,
+            "foldseek_or_tmsearch_run_now": False,
+            "rows_scored_now": False,
+            "deployable_axis_registered": False,
+            "fixed_threshold_audit_rerun": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "source_artifacts": {
+            "protein_only_proxy_design_preflight": _source_path_record(
+                protein_only_proxy_design_preflight_path
+            ),
+            "coordinate_acquisition_manifest": _source_path_record(
+                coordinate_acquisition_manifest_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "A protein-only fold-topology residual contract is pre-registered "
+                "for the eight unsupported-geometry train/cal rows."
+            ),
+            "result": (
+                f"{len(contract_rows)} train/cal rows have local AFDB query "
+                "coordinates and can be moved to a scoring-input manifest; no "
+                "row was scored by this contract."
+            ),
+            "next_action": (
+                "Build the scoring-input manifest and run the numeric "
+                "predicted-structure-vs-atlas scoring pass before any threshold "
+                "or fixed-audit claim."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    decision = contract["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Protein-Only Fold-Topology Residual Contract",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Contract rows: {counts['contract_rows']}",
+        "- Query coordinate files observed/missing: "
+        f"{counts['query_coordinate_files_observed']}/"
+        f"{counts['query_coordinate_files_missing']}",
+        "- Ready to build scoring-input rows: "
+        f"{counts['ready_to_build_scoring_input_manifest_rows']}",
+        f"- Ready-to-score-now rows: {counts['ready_to_score_now_rows']}",
+        f"- Blockers: {contract['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Contract pre-registered: {decision['contract_pre_registered']}",
+        "- Build scoring-input manifest next: "
+        f"{decision['build_scoring_input_manifest_next']}",
+        f"- Score contract rows now: {decision['score_contract_rows_now']}",
+        f"- Register deployable axis now: {decision['register_deployable_axis_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Contract Rows",
+        "",
+        "| entry | accession | split | coordinate exists |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in contract.get("contract_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['split_assignment']} | {row['query_coordinate_file_exists']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {contract['interpretation']['headline']}",
+        f"- {contract['interpretation']['result']}",
+        f"- {contract['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract(
+    *,
+    protein_only_proxy_design_preflight_path: Path,
+    coordinate_acquisition_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_PROTEIN_ONLY_FOLD_TOPOLOGY_RESIDUAL_CONTRACT_ID,
+) -> dict[str, Any]:
+    contract = build_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract(
+        protein_only_proxy_design_preflight_path=protein_only_proxy_design_preflight_path,
+        coordinate_acquisition_manifest_path=coordinate_acquisition_manifest_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
+
+
 def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
     *,
     background_axis_scout_path: Path,
@@ -28188,9 +29408,14 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
     )
 
     sequence_by_entry = _records_by_entry_from_payload(sequence_manifest, ("rows",))
+    raw_tranche_rows = (
+        plan.get("scoring_tranche_rows")
+        or plan.get("contract_rows")
+        or []
+    )
     tranche_rows = [
         row
-        for row in plan.get("scoring_tranche_rows", [])
+        for row in raw_tranche_rows
         if isinstance(row, dict) and row.get("entry_id")
     ]
     query_rows: list[dict[str, Any]] = []
@@ -28631,15 +29856,20 @@ def build_fold_augmented_confounded_proxy_train_cal_scored_extension(
     experimental_geometry_features = _read_json(experimental_geometry_features_path)
     cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
 
+    raw_candidate_rows = (
+        plan.get("scoring_tranche_rows")
+        or plan.get("contract_rows")
+        or []
+    )
     candidate_ids = [
         str(row.get("entry_id") or "")
-        for row in plan.get("scoring_tranche_rows", [])
+        for row in raw_candidate_rows
         if isinstance(row, dict) and row.get("entry_id")
     ]
     candidate_id_set = set(candidate_ids)
     plan_by_entry = {
         str(row.get("entry_id") or ""): row
-        for row in plan.get("scoring_tranche_rows", [])
+        for row in raw_candidate_rows
         if isinstance(row, dict) and row.get("entry_id")
     }
     manifest_rows = [
@@ -31846,6 +33076,8 @@ def build_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_train_cal_scoring_tranche_plan_path: Path | None = None,
     lever3_confounded_proxy_train_cal_background_axis_blocker_path: Path | None = None,
     lever3_confounded_proxy_train_cal_background_axis_scout_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path: Path | None = None,
     lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path: Path | None = None,
     lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path: Path | None = None,
     lever4_acceptance_scenario_plan_path: Path | None = None,
@@ -31940,6 +33172,28 @@ def build_active_lever_mechanical_actionability_audit(
         _read_json(lever3_confounded_proxy_train_cal_background_axis_scout_path)
         if lever3_confounded_proxy_train_cal_background_axis_scout_path is not None
         and Path(lever3_confounded_proxy_train_cal_background_axis_scout_path).exists()
+        else {}
+    )
+    lever3_proxy_unsupported_geometry_coordinate_acquisition = (
+        _read_json(
+            lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path
+        )
+        if lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path
+        is not None
+        and Path(
+            lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path
+        ).exists()
+        else {}
+    )
+    lever3_proxy_unsupported_geometry_locus_scan = (
+        _read_json(
+            lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path
+        )
+        if lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path
+        is not None
+        and Path(
+            lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path
+        ).exists()
         else {}
     )
     lever3_proxy_new_axis_contract = (
@@ -32115,6 +33369,26 @@ def build_active_lever_mechanical_actionability_audit(
     lever3_proxy_background_axis_scout_decision = (
         lever3_proxy_background_axis_scout.get("decision", {})
         if isinstance(lever3_proxy_background_axis_scout, dict)
+        else {}
+    )
+    lever3_proxy_unsupported_geometry_coordinate_counts = (
+        lever3_proxy_unsupported_geometry_coordinate_acquisition.get("counts", {})
+        if isinstance(lever3_proxy_unsupported_geometry_coordinate_acquisition, dict)
+        else {}
+    )
+    lever3_proxy_unsupported_geometry_coordinate_decision = (
+        lever3_proxy_unsupported_geometry_coordinate_acquisition.get("decision", {})
+        if isinstance(lever3_proxy_unsupported_geometry_coordinate_acquisition, dict)
+        else {}
+    )
+    lever3_proxy_unsupported_geometry_locus_counts = (
+        lever3_proxy_unsupported_geometry_locus_scan.get("counts", {})
+        if isinstance(lever3_proxy_unsupported_geometry_locus_scan, dict)
+        else {}
+    )
+    lever3_proxy_unsupported_geometry_locus_decision = (
+        lever3_proxy_unsupported_geometry_locus_scan.get("decision", {})
+        if isinstance(lever3_proxy_unsupported_geometry_locus_scan, dict)
         else {}
     )
     lever3_proxy_new_axis_contract_counts = (
@@ -32329,6 +33603,36 @@ def build_active_lever_mechanical_actionability_audit(
         },
         {
             "lever": "Lever 3",
+            "gate": "confounded_proxy_train_cal_unsupported_geometry_locus_scan",
+            "ready_now": bool(
+                lever3_proxy_unsupported_geometry_locus_decision.get(
+                    "background_scout_rerun_can_create_structural_axis_now"
+                )
+            ),
+            "blocking_reason": (
+                "unsupported_geometry_coordinate_locus_scan_missing"
+                if not lever3_proxy_unsupported_geometry_locus_scan
+                else (
+                    "unsupported_geometry_afdb_coordinates_protein_only_no_locus_evidence"
+                    if int(
+                        lever3_proxy_unsupported_geometry_locus_counts.get(
+                            "coordinate_files_scanned"
+                        )
+                        or 0
+                    )
+                    and not lever3_proxy_unsupported_geometry_locus_decision.get(
+                        "background_scout_rerun_can_create_structural_axis_now"
+                    )
+                    else "unsupported_geometry_coordinate_locus_scan_blocked"
+                )
+            ),
+            "next_command_after_decision": (
+                "scan-fold-augmented-confounded-proxy-train-cal-unsupported-"
+                "geometry-coordinate-loci"
+            ),
+        },
+        {
+            "lever": "Lever 3",
             "gate": "confounded_proxy_train_cal_new_proxy_axis_contract",
             "ready_now": bool(
                 lever3_proxy_new_axis_contract_decision.get(
@@ -32481,6 +33785,13 @@ def build_active_lever_mechanical_actionability_audit(
     ):
         blockers.append("lever3_confounded_proxy_new_axis_contract_missing")
     if (
+        lever3_proxy_unsupported_geometry_locus_scan
+        and not lever3_proxy_unsupported_geometry_locus_decision.get(
+            "background_scout_rerun_can_create_structural_axis_now"
+        )
+    ):
+        blockers.append("lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis")
+    if (
         lever3_proxy_new_axis_contract
         and lever3_proxy_new_axis_contract_decision.get("new_proxy_axis_registered")
         and not lever3_proxy_new_axis_contract_decision.get(
@@ -32567,6 +33878,27 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(lever3_proxy_new_axis_scored_extension, dict)
         else []
     )
+    lever3_locus_scan_scanned_files = int(
+        lever3_proxy_unsupported_geometry_locus_counts.get(
+            "coordinate_files_scanned"
+        )
+        or 0
+    )
+    lever3_locus_scan_evidence_files = int(
+        lever3_proxy_unsupported_geometry_locus_counts.get(
+            "files_with_source_free_inorganic_locus_evidence"
+        )
+        or 0
+    )
+    lever3_unsupported_geometry_locus_exhausted = bool(
+        lever3_proxy_unsupported_geometry_locus_scan
+    ) and (
+        lever3_locus_scan_scanned_files > 0
+        and lever3_locus_scan_evidence_files == 0
+        and not lever3_proxy_unsupported_geometry_locus_decision.get(
+            "background_scout_rerun_can_create_structural_axis_now"
+        )
+    )
     lever3_result = (
         "Lever 3 is blocked by the P10746 policy caveat, the fixed-threshold "
         "confounded-proxy calibration gap, and exhausted current proxy axes: "
@@ -32635,6 +33967,17 @@ def build_active_lever_mechanical_actionability_audit(
             "proxy audit."
         )
     )
+    if lever3_unsupported_geometry_locus_exhausted:
+        lever3_result += (
+            f" The unsupported-geometry coordinate repair path scanned "
+            f"{lever3_locus_scan_scanned_files} AFDB-v6 train/cal files and "
+            "found zero source-free inorganic/cofactor locus evidence."
+        )
+        lever3_next_action += (
+            " Do not score or register the unsupported-geometry proxy from those "
+            "AFDB files; use a different source-free protein-only structural "
+            "proxy or reviewed P10746/Lever 4 decisions."
+        )
 
     return {
         "artifact_id": ACTIVE_LEVER_MECHANICAL_ACTIONABILITY_AUDIT_ID,
@@ -32799,6 +34142,45 @@ def build_active_lever_mechanical_actionability_audit(
                     "mechanically_ready_axis_tests"
                 )
                 or 0
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_repair_rows": int(
+                lever3_proxy_unsupported_geometry_coordinate_counts.get(
+                    "repair_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_coordinate_files_missing": int(
+                lever3_proxy_unsupported_geometry_coordinate_counts.get(
+                    "query_coordinate_files_missing"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_coordinate_files_observed": int(
+                lever3_proxy_unsupported_geometry_coordinate_counts.get(
+                    "query_coordinate_files_observed"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_locus_files_scanned": (
+                lever3_locus_scan_scanned_files
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_locus_evidence_files": (
+                lever3_locus_scan_evidence_files
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_locus_protein_only_files": int(
+                lever3_proxy_unsupported_geometry_locus_counts.get(
+                    "protein_only_afdb_coordinate_files"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_locus_ready_to_score_rows": int(
+                lever3_proxy_unsupported_geometry_locus_counts.get(
+                    "ready_to_score_now_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_unsupported_geometry_locus_blockers": int(
+                lever3_proxy_unsupported_geometry_locus_counts.get("blockers") or 0
             ),
             "lever3_confounded_proxy_new_axis_registered": bool(
                 lever3_proxy_new_axis_contract_decision.get(
@@ -32993,6 +34375,22 @@ def build_active_lever_mechanical_actionability_audit(
                 is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
+            "lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path
+                )
+                if lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path
+                )
+                if lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
             "lever3_confounded_proxy_train_cal_new_proxy_axis_contract": (
                 _source_path_record(
                     lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path
@@ -33117,6 +34515,14 @@ def _render_active_lever_mechanical_actionability_audit_report(
         "- Lever 3 proxy background-axis scout ready axes: "
         f"{counts.get('lever3_confounded_proxy_background_axis_scout_ready_axes')}/"
         f"{counts.get('lever3_confounded_proxy_background_axis_scout_axes')}",
+        "- Lever 3 unsupported-geometry coordinates observed/missing: "
+        f"{counts.get('lever3_confounded_proxy_unsupported_geometry_coordinate_files_observed')}/"
+        f"{counts.get('lever3_confounded_proxy_unsupported_geometry_coordinate_files_missing')}",
+        "- Lever 3 unsupported-geometry locus evidence files: "
+        f"{counts.get('lever3_confounded_proxy_unsupported_geometry_locus_evidence_files')}/"
+        f"{counts.get('lever3_confounded_proxy_unsupported_geometry_locus_files_scanned')}",
+        "- Lever 3 unsupported-geometry protein-only files: "
+        f"{counts.get('lever3_confounded_proxy_unsupported_geometry_locus_protein_only_files')}",
         "- Lever 3 new proxy axis registered: "
         f"{counts.get('lever3_confounded_proxy_new_axis_registered')}",
         "- Lever 3 new proxy-axis contracted rows: "
@@ -33195,6 +34601,8 @@ def write_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_train_cal_scoring_tranche_plan_path: Path | None = None,
     lever3_confounded_proxy_train_cal_background_axis_blocker_path: Path | None = None,
     lever3_confounded_proxy_train_cal_background_axis_scout_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path: Path | None = None,
     lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path: Path | None = None,
     lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path: Path | None = None,
     lever4_acceptance_scenario_plan_path: Path | None = None,
@@ -33243,6 +34651,12 @@ def write_active_lever_mechanical_actionability_audit(
         ),
         lever3_confounded_proxy_train_cal_background_axis_scout_path=(
             lever3_confounded_proxy_train_cal_background_axis_scout_path
+        ),
+        lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path=(
+            lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_acquisition_manifest_path
+        ),
+        lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path=(
+            lever3_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_path
         ),
         lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path=(
             lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path

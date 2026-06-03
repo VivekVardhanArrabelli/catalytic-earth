@@ -1,0 +1,194 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_locus_scan_current702_20260603",
+  "blockers": [
+    "afdb_predicted_coordinates_do_not_carry_ligands_or_metals",
+    "inorganic_locus_statuses_still_unsupported"
+  ],
+  "counts": {
+    "blockers": 2,
+    "coordinate_files_missing": 0,
+    "coordinate_files_scanned": 8,
+    "coordinate_requests_scanned": 8,
+    "files_with_hetatm_rows": 0,
+    "files_with_source_free_inorganic_locus_evidence": 0,
+    "protein_only_afdb_coordinate_files": 8,
+    "ready_to_score_now_rows": 0
+  },
+  "created_utc": "2026-06-03T19:14:43Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "background_scout_rerun_can_create_structural_axis_now": false,
+    "new_proxy_axis_ready_to_score_now": false,
+    "next_gate": "The repaired AFDB-v6 files are protein-only and do not repair the inorganic/cofactor locus feature. Do not register an unsupported-geometry proxy axis from these rows; next progress requires a different source-free structural proxy or reviewed P10746/Lever 4 decisions.",
+    "proxy_calibration_rerun_ready_now": false,
+    "score_repair_rows_now": false
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinate_downloads_performed": false,
+    "foldseek_or_tmsearch_run_now": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "new_proxy_axis_registered": false,
+    "production_thresholds_changed": false,
+    "source_free_coordinate_scan_only": true,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "headline": "8/8 AFDB-v6 repair CIFs were scanned for source-free inorganic/cofactor locus evidence.",
+    "next_action": "Treat the coordinate-missing blocker as cleared but the inorganic-locus evidence blocker as still open.",
+    "result": "8 files are protein-only and 0 files expose source-free inorganic/cofactor locus evidence."
+  },
+  "scan_rows": [
+    {
+      "accession": "P15807",
+      "atom_site_rows": 2245,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:610"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "ed97eba4a8a1f0111b8a8a8bb0af6bbcdbff04b20cad69d711e698e00ee34df6",
+      "source_free_inorganic_locus_evidence_detected": false
+    },
+    {
+      "accession": "P18548",
+      "atom_site_rows": 2432,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:137"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P18548_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "a7e24b12c7ed4cd84dfb3785883437f5ebdcbb1565d6f27d7563006d6a503b0f",
+      "source_free_inorganic_locus_evidence_detected": false
+    },
+    {
+      "accession": "P27000",
+      "atom_site_rows": 3814,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:318"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P27000_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "d724126c745900e9338aafa4902c7799b0a5dcd9f5038b7d2497d00ffcaaf6d0",
+      "source_free_inorganic_locus_evidence_detected": false
+    },
+    {
+      "accession": "P68175",
+      "atom_site_rows": 2699,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:360"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P68175_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "4fa5742a58476cf38bf779be83928bb78eb6d3634975e0646bca919dc1f2b85c",
+      "source_free_inorganic_locus_evidence_detected": false
+    },
+    {
+      "accession": "Q46509",
+      "atom_site_rows": 6814,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:105"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q46509_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "849f2de6a530398d83afd70bf1ab9f93a0ee6e46f68d6c4da2c1feb75f3ecea4",
+      "source_free_inorganic_locus_evidence_detected": false
+    },
+    {
+      "accession": "Q56310",
+      "atom_site_rows": 5301,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:327"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q56310_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "38d5a3aec6029917fd15925555c8d65704b57e1645985ce69cea1a0359955ee8",
+      "source_free_inorganic_locus_evidence_detected": false
+    },
+    {
+      "accession": "Q7SIE1",
+      "atom_site_rows": 6060,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:649"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q7SIE1_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "4351bc41c3c411a727e64f05a454bfbb31de8e9175ac5a469d0e796aac544221",
+      "source_free_inorganic_locus_evidence_detected": false
+    },
+    {
+      "accession": "Q9P4R4",
+      "atom_site_rows": 3450,
+      "cobalamin_codes_observed": [],
+      "entry_ids": [
+        "m_csa:618"
+      ],
+      "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+      "hetatm_comp_id_counts": {},
+      "hetatm_rows": 0,
+      "iron_sulfur_codes_observed": [],
+      "metal_ion_codes_observed": [],
+      "radical_sam_codes_observed": [],
+      "scan_status": "protein_only_afdb_no_locus_evidence",
+      "sha256": "90bf1ee5a4877e8df367e10a7f4f5fff8d149119f04576950e39b6e35b12841c",
+      "source_free_inorganic_locus_evidence_detected": false
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan",
+  "scope": "Train/cal-only source-free scan of the repaired AFDB-v6 CIF files for inorganic/cofactor locus evidence. It checks only local coordinate atom-site records and ligand/metal component IDs; it does not score rows, register a proxy axis, tune thresholds, read heldout rows, or count unsupported geometry as abstention evidence.",
+  "source_artifacts": {
+    "coordinate_acquisition_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_acquisition_manifest_current702_20260603.json",
+      "sha256": "9aa6b63191b17e31b14d17d15ee745ed8dc8a89e1d90e8c2c4fa933311ac9243"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_train_cal_unsupported_geometry_coordinate_locus_scan_protein_only_no_locus_evidence"
+}

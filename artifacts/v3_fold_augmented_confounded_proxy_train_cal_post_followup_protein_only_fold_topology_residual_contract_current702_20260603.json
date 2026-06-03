@@ -1,0 +1,146 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract_current702_20260603",
+  "blockers": [],
+  "contract_rows": [
+    {
+      "accession": "P15807",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:610",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P15807_v6.cif",
+      "split_assignment": "train_cal"
+    },
+    {
+      "accession": "P18548",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:137",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P18548_v6.cif",
+      "split_assignment": "train_cal"
+    },
+    {
+      "accession": "P27000",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:318",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P27000_v6.cif",
+      "split_assignment": "train_cal"
+    },
+    {
+      "accession": "P68175",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:360",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_P68175_v6.cif",
+      "split_assignment": "train_cal"
+    },
+    {
+      "accession": "Q46509",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:105",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q46509_v6.cif",
+      "split_assignment": "train_cal"
+    },
+    {
+      "accession": "Q56310",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:327",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q56310_v6.cif",
+      "split_assignment": "train_cal"
+    },
+    {
+      "accession": "Q7SIE1",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:649",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q7SIE1_v6.cif",
+      "split_assignment": "train_cal"
+    },
+    {
+      "accession": "Q9P4R4",
+      "benchmark_role": "out_of_scope_negative",
+      "entry_id": "m_csa:618",
+      "query_coordinate_file_exists": true,
+      "query_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q9P4R4_v6.cif",
+      "split_assignment": "train_cal"
+    }
+  ],
+  "counts": {
+    "blockers": 0,
+    "contract_rows": 8,
+    "query_coordinate_files_missing": 0,
+    "query_coordinate_files_observed": 8,
+    "query_coordinate_requests": 8,
+    "ready_to_build_scoring_input_manifest_rows": 8,
+    "ready_to_score_now_rows": 0
+  },
+  "created_utc": "2026-06-03T19:31:45Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "build_scoring_input_manifest_next": true,
+    "contract_pre_registered": true,
+    "next_gate": "Build a scoring-input manifest for these eight train/cal rows against the train atlas, run Foldseek/TM scoring, and parse only numeric topology residual features. Do not use nearest-hit IDs, labels, target names, or heldout rows as predictive features.",
+    "register_deployable_axis_now": false,
+    "run_fixed_threshold_audit_now": false,
+    "score_contract_rows_now": false
+  },
+  "feature_contract": {
+    "allowed_predictive_features": [
+      "numeric nearest-train-atlas Foldseek/TM-score summaries",
+      "numeric distance/residual-to-atlas-span summaries",
+      "numeric query-vs-atlas alignment coverage summaries"
+    ],
+    "calibration_discipline": "fit on train, choose thresholds on calibration only, then read heldout once after pre-threshold readiness passes",
+    "forbidden_predictive_features": [
+      "nearest-hit entry IDs",
+      "nearest-hit source accessions",
+      "nearest-hit target names",
+      "EC or Rhea identifiers",
+      "mechanism text",
+      "curated labels or family names",
+      "heldout M-CSA rows"
+    ]
+  },
+  "guardrails": {
+    "contract_only": true,
+    "coordinate_downloads_performed": false,
+    "deployable_axis_registered": false,
+    "fixed_threshold_audit_rerun": false,
+    "foldseek_or_tmsearch_run_now": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "rows_scored_now": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "headline": "A protein-only fold-topology residual contract is pre-registered for the eight unsupported-geometry train/cal rows.",
+    "next_action": "Build the scoring-input manifest and run the numeric predicted-structure-vs-atlas scoring pass before any threshold or fixed-audit claim.",
+    "result": "8 train/cal rows have local AFDB query coordinates and can be moved to a scoring-input manifest; no row was scored by this contract."
+  },
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_protein_only_fold_topology_residual_contract",
+  "scope": "Pre-registration contract for a train/cal-only protein-only fold-topology residual axis. It selects rows and feature rules only; it does not run Foldseek, parse scores, register a deployable threshold, or read heldout.",
+  "selected_axis": {
+    "axis_id": "protein_only_fold_topology_residual",
+    "selection_basis": "AFDB-v6 repair files are protein-only, so the next deployable Lever 3 path must use protein coordinates rather than ligand/metal HETATM evidence.",
+    "source_free_surface": "predicted_structure_vs_train_atlas_numeric_tm_residual"
+  },
+  "source_artifacts": {
+    "coordinate_acquisition_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_acquisition_manifest_current702_20260603.json",
+      "sha256": "9aa6b63191b17e31b14d17d15ee745ed8dc8a89e1d90e8c2c4fa933311ac9243"
+    },
+    "protein_only_proxy_design_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_proxy_design_preflight_current702_20260603.json",
+      "sha256": "63f880eb0c5751a0c8971f52b6fe5e87c2b9ae4d085f97ffc8af943b192ebc19"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_train_cal_protein_only_fold_topology_residual_contract_ready"
+}

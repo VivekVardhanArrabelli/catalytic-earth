@@ -1,6 +1,6 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T18:15:50Z
+Run: 2026-06-03T19:21:13Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
@@ -34,18 +34,21 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 - Lever 3 proxy scoring-tranche rows: 0
 - Lever 3 proxy scoring-tranche high/structural rows: 0/0
 - Lever 3 proxy scoring-tranche ready for plan: False
-- Lever 3 proxy background-only rows: 160
+- Lever 3 proxy background-only rows: 170
 - Lever 3 proxy background-axis exhausted: True
 - Lever 3 proxy background-axis scout ready axes: 0/3
+- Lever 3 unsupported-geometry coordinates observed/missing: 8/0
+- Lever 3 unsupported-geometry locus evidence files: 0/8
+- Lever 3 unsupported-geometry protein-only files: 8
 - Lever 3 new proxy axis registered: True
-- Lever 3 new proxy-axis contracted rows: 4
-- Lever 3 new proxy-axis full-channel rows: 4
+- Lever 3 new proxy-axis contracted rows: 6
+- Lever 3 new proxy-axis full-channel rows: 6
 - Lever 3 new proxy-axis missing full-score rows: 0
 - Lever 4 acceptance scenario rows: 6
 - Lever 4 acceptance scenario panels: 5
 - Lever 4 label-factory candidates if scenario accepted: 6
 - Lever 4 label-factory gate input rows: 0
-- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'lever3_confounded_proxy_acquisition_shortfall', 'lever3_confounded_proxy_train_cal_scoring_tranche_not_run', 'lever3_confounded_proxy_background_axis_exhausted', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
+- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'lever3_confounded_proxy_acquisition_shortfall', 'lever3_confounded_proxy_train_cal_scoring_tranche_not_run', 'lever3_confounded_proxy_background_axis_exhausted', 'lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
 
 ## Decision
 
@@ -68,6 +71,7 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 | Lever 3 | confounded_proxy_train_cal_scoring_tranche | False | confounded_proxy_scoring_tranche_not_run | build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan |
 | Lever 3 | confounded_proxy_train_cal_background_axis_blocker | False | confounded_proxy_remaining_rows_background_only | build-fold-augmented-confounded-proxy-train-cal-background-axis-blocker |
 | Lever 3 | confounded_proxy_train_cal_background_axis_scout | False | current_scout_axis_scored_no_ready_followup_axis | build-fold-augmented-confounded-proxy-train-cal-background-axis-scout |
+| Lever 3 | confounded_proxy_train_cal_unsupported_geometry_locus_scan | False | unsupported_geometry_afdb_coordinates_protein_only_no_locus_evidence | scan-fold-augmented-confounded-proxy-train-cal-unsupported-geometry-coordinate-loci |
 | Lever 3 | confounded_proxy_train_cal_new_proxy_axis_contract | False | contracted_proxy_axis_fully_scored_surface_still_blocked | build-fold-augmented-confounded-proxy-train-cal-background-axis-scout |
 | Lever 4 | family_panel_label_factory_gate_readiness | False | family_panel_expert_import_decisions_missing | apply-fold-augmented-family-panel-expert-import-decision |
 | Lever 2 | source_free_locator_materialization_and_pre_threshold_readiness | False | source_free_locator_rewrite_approvals_missing | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
@@ -93,5 +97,5 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 ## Interpretation
 
 - No active Lever 2/3/4 gate is mechanically runnable on the current decision state.
-- Lever 3 has a pre-registered source-free proxy-axis contract with 4 train/cal rows and 4 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers.
-- Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first.
+- Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. The unsupported-geometry coordinate repair path scanned 8 AFDB-v6 train/cal files and found zero source-free inorganic/cofactor locus evidence. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers.
+- Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first. Do not score or register the unsupported-geometry proxy from those AFDB files; use a different source-free protein-only structural proxy or reviewed P10746/Lever 4 decisions.

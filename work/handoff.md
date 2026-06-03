@@ -50,6 +50,121 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 19
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T19:01:07Z`
+- STARTED_LOCAL: `2026-06-03T14:01:07-0500 CDT`
+- ENDED_AT: `2026-06-03T19:56:18Z`
+- ENDED_LOCAL: `2026-06-03T14:56:18-0500 CDT`
+- ELAPSED_MINUTES: `55.2`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "38586", "started_at": "2026-06-03T19:01:07Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from Run 18. First check for hash-valid reviewed source decisions; if
+none are available, work the Lever 3 coordinate/locus repair path for the 8
+unsupported-geometry rows before any new proxy-axis scoring or global
+fixed-threshold proxy audit.
+
+#### What changed
+
+- Fast-forwarded to current `origin/main` before substantive work. New durable
+  Lever 2 decisions were present: 53 source-free locators approved, 2 rejected,
+  and the Lever 2 source-free event axis deferred. This run therefore did not
+  spend the heldout read or reopen the Lever 2 threshold path.
+- Added a post-follow-up unsupported-geometry coordinate acquisition manifest
+  for the 8 train/cal Lever 3 rows (`m_csa:105`, `m_csa:137`, `m_csa:318`,
+  `m_csa:327`, `m_csa:360`, `m_csa:610`, `m_csa:618`, `m_csa:649`) and fetched
+  all 8 AFDB-v6 query CIFs into the existing predicted-structure coordinate
+  cache.
+- Regenerated the unsupported-geometry repair queue. It now observes 8/8 local
+  AFDB-v6 files and 0 missing coordinate files, but still has 0 rows ready to
+  score until the locus issue is resolved.
+- Added and ran the coordinate-locus scan. Result: all 8 AFDB-v6 files are
+  protein-only; 0 HETATM rows and 0 source-free inorganic/cofactor locus
+  evidence. The unsupported inorganic-locus axis is therefore exhausted and must
+  not be registered or scored.
+- Refreshed the active mechanical actionability audit so it records the new
+  unsupported-geometry locus blocker: 8 coordinates observed, 8 protein-only
+  files, 0 locus-evidence files, and 0 active Lever 2/3/4 mechanical gates ready.
+- Added a protein-only proxy design preflight. It rejects the AFDB HETATM/locus
+  path, marks the fold-topology residual as the preferred next source-free
+  protein-only axis, and keeps score/register/threshold flags false.
+- Pre-registered the train/cal-only `protein_only_fold_topology_residual`
+  contract for the same 8 rows. The contract allows only numeric
+  predicted-structure-vs-train-atlas Foldseek/TM residual features and forbids
+  nearest-hit IDs, source accessions, target names, EC/Rhea IDs, mechanism text,
+  curated labels/family names, and heldout rows as predictive features.
+- Built the protein-only fold-topology scoring-input manifest, staged 8 query
+  structures against 133 train-atlas targets, ran Foldseek, and regenerated the
+  manifest as scored-ready-to-parse. The TSV has 580 mapped pairs and 8/8
+  current-query hits, nearest train-atlas TM range 0.3715 to 0.7752.
+- Parsed the TSV into the protein-only fold-topology scored readout. It records
+  8/8 rows with fold hits and full channel scores; no threshold was selected,
+  tuned, or applied. A conservative inherited blocker remains:
+  `some_tranche_rows_missing_predicted_geometry`.
+- Composed the protein-only fold-topology scored readout onto the latest
+  follow-up extended train/cal OOS surface. The surface moves from 196/202 to
+  204/210 full-channel rows, appending all 8 protein-only rows, but remains
+  partial with 6 inherited combined-score blockers. No global fixed-threshold
+  proxy audit was rerun in this run.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, splits,
+  model weights, reviewer/source decisions, locator sidecars, event linkers, or
+  heldout threshold reads were changed.
+- All new Lever 3 artifacts are train/cal-only. The Foldseek run was the exact
+  8-query by 133-train-atlas pass from the generated manifest.
+- No heldout M-CSA rows were used for training, threshold tuning, scoring, or
+  readout.
+- The new protein-only fold-topology contract explicitly keeps IDs/names/labels
+  audit-only and out of predictive features. No mechanism text, EC/Rhea IDs,
+  source IDs, target names, or curated labels/family names were used as
+  predictive features.
+- The unsupported inorganic-locus AFDB path is fail-closed: protein-only files
+  do not become proxy-axis evidence.
+
+#### Tests run
+
+- Startup `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1296 tests.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'followup_proxy_axis or active_lever_mechanical_actionability_audit' -q`
+  passed: 2 tests, 191 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q` passed: 118 tests,
+  127 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`
+  passed: 158 tests.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -q`
+  passed: 193 tests, 7 subtests.
+- Full `PYTHONPATH=src python -m pytest -q` passed: 1341 tests, 153 subtests,
+  1 known sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1296 tests, same sklearn/SciPy deprecation warning.
+- Final combined relevant pytest after the composed-surface regression update:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_geometry_artifact_regression.py tests/test_northstar_next_levers.py -q`
+  passed: 469 tests, 134 subtests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`, changed JSON parse
+  checks, and `git diff --check` passed.
+
+#### Exact next action
+
+- Lever 3: clear the six remaining inherited combined-score blockers
+  (`m_csa:204`, `m_csa:416`, `m_csa:562`, `m_csa:586`, `m_csa:604`,
+  `m_csa:637`) before any fixed-threshold confounded proxy audit rerun. Do not
+  count the unsupported inorganic-locus AFDB path as evidence; it is exhausted
+  because the files are protein-only.
+- If reviewed source decisions arrive first, apply only the matching P10746 or
+  Lever 4 decision gates. Lever 4 remains blocked on explicit expert import
+  decisions. Lever 2 remains blocked before heldout by the missing source-free
+  event-axis/proton-transfer linker or an explicitly accepted fallback.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 18
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

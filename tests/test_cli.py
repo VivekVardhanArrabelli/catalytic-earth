@@ -1165,6 +1165,46 @@ class CliTests(unittest.TestCase):
             (
                 (
                     "build-fold-augmented-confounded-proxy-train-cal-"
+                    "unsupported-geometry-coordinate-acquisition-manifest"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "unsupported_geometry_coordinate_acquisition_manifest"
+                ),
+            ),
+            (
+                (
+                    "scan-fold-augmented-confounded-proxy-train-cal-"
+                    "unsupported-geometry-coordinate-loci"
+                ),
+                (
+                    "cmd_scan_fold_augmented_confounded_proxy_train_cal_"
+                    "unsupported_geometry_coordinate_loci"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "protein-only-proxy-design-preflight"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "protein_only_proxy_design_preflight"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "protein-only-fold-topology-residual-contract"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "protein_only_fold_topology_residual_contract"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
                     "scoring-input-manifest"
                 ),
                 (
