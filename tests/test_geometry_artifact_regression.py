@@ -11889,15 +11889,92 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             / "family_panel_source_free_active_site_locators_current702_20260601"
         )
 
+        # After the 2026-06-03 Lever 2 reviewer decision (approve 53, reject
+        # m_csa:723 and m_csa:599), the audited dir holds the 5 family-panel
+        # locators plus the 53 approved priority-1 source-free locators.
         self.assertEqual(
             sorted(path.name for path in locator_dir.glob("*.json")),
             [
+                "m_csa_109_Q02127.json",
+                "m_csa_115_Q9T0N8.json",
+                "m_csa_121_P07850.json",
+                "m_csa_131_P20586.json",
+                "m_csa_159_P0A434.json",
+                "m_csa_163_P0A7Y4.json",
+                "m_csa_171_P00730.json",
+                "m_csa_180_P35505.json",
+                "m_csa_188_P09147.json",
+                "m_csa_199_P04425.json",
+                "m_csa_211_P38489.json",
+                "m_csa_220_P20906.json",
+                "m_csa_239_P00433.json",
+                "m_csa_242_Q8I914.json",
+                "m_csa_250_P04963.json",
+                "m_csa_311_P00924.json",
+                "m_csa_321_P09155.json",
+                "m_csa_323_P05314.json",
+                "m_csa_32_Q04760.json",
+                "m_csa_333_Q9RUB5.json",
+                "m_csa_352_P00949.json",
+                "m_csa_356_P14769.json",
+                "m_csa_370_O75164.json",
+                "m_csa_384_P23395.json",
+                "m_csa_392_P07801.json",
+                "m_csa_397_P04063.json",
+                "m_csa_3_P15559.json",
+                "m_csa_403_P07584.json",
+                "m_csa_418_P37821.json",
+                "m_csa_419_O52552.json",
+                "m_csa_43_P80366.json",
+                "m_csa_44_P00634.json",
+                "m_csa_45_P43379.json",
+                "m_csa_46_P14385.json",
+                "m_csa_480_P26214.json",
+                "m_csa_497_Q9FDN7.json",
+                "m_csa_517_P61517.json",
+                "m_csa_526_P11708.json",
+                "m_csa_541_P75430.json",
+                "m_csa_545_Q7M523.json",
+                "m_csa_551_P15245.json",
+                "m_csa_56_Q9WZW0.json",
+                "m_csa_709_P00431.json",
+                "m_csa_710_P25524.json",
+                "m_csa_714_P0ABI8.json",
+                "m_csa_750_P55792.json",
+                "m_csa_853_P31570.json",
+                "m_csa_854_P80147.json",
+                "m_csa_916_P9WI55.json",
+                "m_csa_97_P0ABF6.json",
+                "m_csa_990_Q8GS60.json",
+                "m_csa_994_Q9Y3Z3.json",
+                "m_csa_9_P31153.json",
                 "mh_066_P52699.json",
                 "mh_067_P00918.json",
                 "mh_068_P15289.json",
                 "mh_073_P01112.json",
                 "secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
             ],
+        )
+        # The two rejected in-scope serine-hydrolase rows must not be materialized.
+        self.assertFalse((locator_dir / "m_csa_723_P00782.json").exists())
+        self.assertFalse((locator_dir / "m_csa_599_P36936.json").exists())
+        # A materialized Lever 2 sidecar carries the explicit reviewer signature
+        # and stays split-protected (review-only, not for training/threshold/import).
+        m_csa_3 = _load_json(locator_dir / "m_csa_3_P15559.json")
+        self.assertEqual(
+            m_csa_3["manual_review_approval"]["approved_by"], "VivekVardhanArrabelli"
+        )
+        self.assertEqual(
+            m_csa_3["manual_review_approval"]["approval_source"],
+            "explicit_locator_rewrite_decision_artifact",
+        )
+        self.assertTrue(m_csa_3["ready_for_predicted_geometry_scoring"])
+        self.assertTrue(m_csa_3["split_protection"]["review_only"])
+        self.assertFalse(m_csa_3["split_protection"]["allowed_for_training"])
+        self.assertFalse(m_csa_3["split_protection"]["allowed_for_threshold_selection"])
+        self.assertFalse(m_csa_3["split_protection"]["ready_for_label_import"])
+        self.assertTrue(
+            all(value is False for value in m_csa_3["forbidden_feature_audit"].values())
         )
         mh_067 = _load_json(locator_dir / "mh_067_P00918.json")
         self.assertEqual(

@@ -3,6 +3,139 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: Lever 2 Source-Free Token Re-Selection — No Token Clears The Bar
+
+Decision: defer the Lever 2 source-free row-specific feature. A train/cal-only
+re-selection (heldout never read) shows **no source-free-replicable token clears a
+useful bar**, so the one-shot heldout read will not be spent on any Lever 2 token.
+The 53 approved source-free locators remain a banked, split-protected asset; the
+source-free discriminative value lives in the geometry/fold structural channel.
+
+Method: on the 43 OOS-augmented train/cal rows (15 in-scope primary, 28 OOS), the
+only source-free-replicable feature family is residue-identity counts
+(`event_residue_code` / `event_residue_code_count` — countable from a source-free
+locator). All role/bond/event-type families are source-derived and excluded.
+Labels were used only as the selection target, never as a predictive feature.
+
+Result: multivariate LOO-CV AUC of all source-free residue counts = **0.538**
+(≈ random). Best univariate token is His at dir-adjusted AUC 0.601 but
+**OOS-pointing** (His is higher in OOS rows). The calibrated His-count fallback
+(0.643) was role-dependent: stripped to a raw source-free His count, `HIS>=3`
+fires on 4 train/cal rows, all OOS (in-scope precision 0.000). The Lever 2 signal
+is entirely in M-CSA role/event bindings, which do not survive source-free.
+
+Contrast: the predicted-structure fold/TM channel is AUC 0.814 (in vs all OOS) and
+0.908 for the no-fit geometry+fold mean — a different structural channel and the
+project's real source-free signal.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_free_token_reselection_train_cal_current702_20260603.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_free_token_reselection_train_cal_current702_20260603.md`.
+
+## 2026-06-03: Lever 2 Source-Free Event Axis Reviewed, NOT Signed Off (Too Thin)
+
+Decision: the source-free proton-transfer / electrostatic-stabiliser event-axis
+linker drafted for Path A is **not signed off**. The one-shot heldout read will
+not be spent on it. The reviewer judged the source-free feature too thin to
+justify the irreplaceable heldout-read budget. No event-axis linker was
+materialized, no application surface built, no frozen residual threshold applied,
+no heldout row read.
+
+What was drafted: a deterministic, label-blind structural rubric (residue
+identity + contacting atoms + distance + source-free role hints only; no label,
+fingerprint, EC/Rhea, source text, curated role, or target name) over the 53
+approved source-free locators. Result: **14/53 rows carry the token** (both roles
+evidenced; 12 in-scope + 2 boundary-OOS, concentrated in PLP/flavin/heme
+phosphate-cofactor enzymes), **39 token-absent**, all confidences modest
+(0.21–0.47).
+
+Root-cause diagnosis: the source-free locators anchor on the cofactor/metal, so
+the electrostatic-stabiliser role only fires when a cation clamps a cofactor
+phosphate (PLP/flavin), and the pair requires a co-located proton-transfer axis.
+Metal-hydrolase and many heme sites therefore cannot evidence the pair
+source-free — the catalytic proton-transfer / oxyanion machinery is
+substrate-proximal, not cofactor-proximal, and is not captured by a
+cofactor-proximity locator. The 12/14 in-scope skew emerged from structure, not
+the label (no leakage), but the surface is too sparse and low-confidence to read
+once.
+
+Consequence / next gate: do not feed this axis to the heldout read. Reconsider
+the strengthening strategy before spending the one-shot budget. The 53 approved
+locators remain a banked, split-protected asset. The draft and its full per-row
+evidence are retained as review-only documentation, not approved inputs.
+
+Artifacts (review-only, not signed off):
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.md`.
+
+## 2026-06-03: Lever 2 Locator Rewrites — 53 Approved, 2 Rejected (723, 599)
+
+Decision: after a full per-row review of the 55 priority-1 current702 source-free
+locator rewrites, record explicit reviewer decisions: **approve 53, reject
+`m_csa:723` and `m_csa:599`**. Decisions are recorded in a separate
+approval-decisions artifact with candidate and planned-payload hashes preserved
+unchanged; the committed review-only approval packet and materialization gate are
+left pending and untouched (they remain regression-pinned to the pre-decision
+state). No locator sidecars were copied, no heldout rows read, and no frozen
+residual threshold applied.
+
+Rationale: the 55 heldout rows split into 32 in-scope primaries
+(`seed_fingerprint`, which the model must retain) and 23 out-of-scope negatives
+(which it must abstain on). In-scope rows require the locator to land on the
+genuine catalytic center; OOS rows only require a faithful source-free pointer to
+the real cofactor/metal site. All 55 are integrity-clean (hashes match, zero
+forbidden-feature flags, split-protected). 30/32 in-scope rows anchor correctly
+(PLP catalytic-Lys Schiff base ~1.3 A, covalent 8a-His-FAD, Cys-ligated heme,
+His/Asp/Glu-metal first shells, 4Fe-4S Cys ligation). All 23 OOS rows are
+faithful source-free anchors (structural-metal anchors such as KDM4A Cys3His zinc
+and MetRS zinc knuckle remain out-of-distribution).
+
+The two rejected rows are both in-scope `ser_his_acid_hydrolase`:
+`m_csa:723` (subtilisin) anchored on the structural Ca loop, not the Ser-His-Asp
+triad; `m_csa:599` anchored on a crystallographic Cd ion (curated rationale: "no
+metal required"), missing the Ser nucleophile. They expose a method gap:
+ligand-proximity locators structurally cannot reach cofactorless catalytic
+triads.
+
+Materialization (done): the 53 approved source-free locator sidecars were copied
+into the audited locator directory
+`artifacts/family_panel_source_free_active_site_locators_current702_20260601/`
+(now 5 family-panel + 53 Lever 2 = 58 sidecars) via the write-enabled
+materialization gate. Each sidecar carries `manual_review_approval.approved_by:
+VivekVardhanArrabelli`, `locator_policy:
+human_approved_structure_local_ligand_geometry_without_source_text`,
+`ready_for_predicted_geometry_scoring: True`, and stays split-protected
+(review_only, not for training/threshold/import). The 2 rejected rows
+(`m_csa:723`, `m_csa:599`) were not written. The audited-dir regression snapshot
+test was updated to the 58-sidecar post-approval state. No heldout rows were read
+and no frozen residual threshold was applied.
+
+Consequence / next gate: (1) the approved source-free locator surface now exists;
+the frozen residual threshold and any heldout read remain blocked on the
+source-free event-axis proton-transfer linker (0 linker rows) or an explicit
+His-count fallback acceptance, plus the heldout-safe application surface. (2)
+Build a source-free catalytic-triad geometric locator for serine hydrolases
+(decision: design): detect a Ser/Cys/Thr-His-Asp/Glu triad from coordinates +
+residue identity only, under the same forbidden-feature contract, emitting the
+same `residue_locators` schema, then re-decide `m_csa:723`/`m_csa:599`.
+
+Verification: write-enabled materialization gate reports 53
+`approved_locator_sidecars_written`, 0 critical violations,
+`approved_source_free_locator_surface_ready: True`, with
+`heldout_rows_evaluated: False` and `frozen_residual_threshold_applied: False`;
+intake preflight reports status ready with 53 locator-materialization-ready
+approvals, 2 rejections, 0 invalid, 0 source-edit-contract violations.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_decisions_current702_20260603.json`,
+`artifacts/v3_active_lever_source_decision_intake_preflight_lever2_decision_applied_current702_20260603.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized_current702_20260603.json`,
+the 53 materialized sidecars under
+`artifacts/family_panel_source_free_active_site_locators_current702_20260601/`,
+and
+`work/active_lever_lever2_locator_rewrite_reviewer_decision_record_current702_20260603.md`.
+
 ## 2026-06-03: Organic-Score Follow-Up Proxy Axis Scored, Still Partial
 
 Decision: keep the `organic_score_0_30_to_below_high_axis_threshold` Lever 3
