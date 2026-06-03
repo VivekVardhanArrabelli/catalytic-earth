@@ -32,26 +32,41 @@ metal required"), missing the Ser nucleophile. They expose a method gap:
 ligand-proximity locators structurally cannot reach cofactorless catalytic
 triads.
 
-Consequence / next gate: (1) the source-free locator surface for the 53 approved
-rows is materialization-ready — run the locator rewrite materialization gate with
-this approval-decisions artifact and the explicit write flag to copy the 53
-sidecars into the audited locator directory (separate authorization). (2) Build a
-source-free catalytic-triad geometric locator for serine hydrolases (decision:
-design): detect a Ser/Cys/Thr-His-Asp/Glu triad from coordinates + residue
-identity only, under the same forbidden-feature contract, emitting the same
-`residue_locators` schema, then re-decide `m_csa:723`/`m_csa:599`. Do not apply
-the frozen residual threshold or read heldout until approved locators, event-axis
-linkers, and the heldout-safe application surface all exist.
+Materialization (done): the 53 approved source-free locator sidecars were copied
+into the audited locator directory
+`artifacts/family_panel_source_free_active_site_locators_current702_20260601/`
+(now 5 family-panel + 53 Lever 2 = 58 sidecars) via the write-enabled
+materialization gate. Each sidecar carries `manual_review_approval.approved_by:
+VivekVardhanArrabelli`, `locator_policy:
+human_approved_structure_local_ligand_geometry_without_source_text`,
+`ready_for_predicted_geometry_scoring: True`, and stays split-protected
+(review_only, not for training/threshold/import). The 2 rejected rows
+(`m_csa:723`, `m_csa:599`) were not written. The audited-dir regression snapshot
+test was updated to the 58-sidecar post-approval state. No heldout rows were read
+and no frozen residual threshold was applied.
 
-Verification (read-only, no writes): materialization gate reports 53
-`approved_ready_for_materialization`, 0 critical violations, 0 sidecars written;
+Consequence / next gate: (1) the approved source-free locator surface now exists;
+the frozen residual threshold and any heldout read remain blocked on the
+source-free event-axis proton-transfer linker (0 linker rows) or an explicit
+His-count fallback acceptance, plus the heldout-safe application surface. (2)
+Build a source-free catalytic-triad geometric locator for serine hydrolases
+(decision: design): detect a Ser/Cys/Thr-His-Asp/Glu triad from coordinates +
+residue identity only, under the same forbidden-feature contract, emitting the
+same `residue_locators` schema, then re-decide `m_csa:723`/`m_csa:599`.
+
+Verification: write-enabled materialization gate reports 53
+`approved_locator_sidecars_written`, 0 critical violations,
+`approved_source_free_locator_surface_ready: True`, with
+`heldout_rows_evaluated: False` and `frozen_residual_threshold_applied: False`;
 intake preflight reports status ready with 53 locator-materialization-ready
 approvals, 2 rejections, 0 invalid, 0 source-edit-contract violations.
 
 Artifacts:
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_decisions_current702_20260603.json`,
 `artifacts/v3_active_lever_source_decision_intake_preflight_lever2_decision_applied_current702_20260603.json`,
-`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_decision_applied_readiness_current702_20260603.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized_current702_20260603.json`,
+the 53 materialized sidecars under
+`artifacts/family_panel_source_free_active_site_locators_current702_20260601/`,
 and
 `work/active_lever_lever2_locator_rewrite_reviewer_decision_record_current702_20260603.md`.
 
