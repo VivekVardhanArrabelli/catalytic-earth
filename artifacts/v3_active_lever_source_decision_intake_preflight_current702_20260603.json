@@ -26,7 +26,7 @@
     "source_edit_contract_violation_rows": 0,
     "template_rows": 78
   },
-  "created_utc": "2026-06-03T11:20:34Z",
+  "created_utc": "2026-06-03T13:03:02Z",
   "decision": {
     "apply_frozen_residual_threshold_now": false,
     "copy_locator_sidecars_now": false,

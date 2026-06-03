@@ -3539,6 +3539,110 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
 
+    def test_fold_augmented_confounded_proxy_evidence_extension_plan_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_evidence_extension_plan_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_evidence_extension_plan_"
+                "current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_confounded_proxy_evidence_extension_plan_ready",
+        )
+        self.assertEqual(audit["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(audit["counts"]["retained_proxy_gap_rows"], 14)
+        self.assertEqual(audit["counts"]["evidence_request_rows"], 14)
+        self.assertEqual(
+            audit["counts"]["high_cofactor_min_new_abstained_rows_for_80pct"],
+            4,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["same_family_structural_min_new_abstained_rows_for_80pct"],
+            48,
+        )
+        self.assertEqual(
+            audit["counts"]["axis_counts"],
+            {
+                "hard_same_family_structural_counteraxis": 8,
+                "high_cofactor_confounded_proxy_extension": 1,
+                "near_threshold_same_family_structural_counteraxis": 5,
+            },
+        )
+        self.assertEqual(
+            audit["counts"]["current_surface_train_cal_oos_scored_rows"], 75
+        )
+        self.assertEqual(
+            audit["counts"]["current_surface_unused_high_cofactor_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"][
+                "current_surface_additional_same_family_rows_if_loosened"
+            ],
+            11,
+        )
+        self.assertEqual(
+            audit["counts"]["current_surface_unscored_candidate_rows"], 1
+        )
+        self.assertEqual(
+            audit["current_surface_unscored_candidate_rows"][0]["entry_id"],
+            "m_csa:204",
+        )
+        self.assertEqual(
+            audit["current_surface_unscored_candidate_rows"][0]["accession"],
+            "P10746",
+        )
+        self.assertFalse(
+            audit["current_surface_pool"][
+                "current_surface_can_satisfy_high_cofactor_80pct_without_new_rows"
+            ]
+        )
+        self.assertFalse(
+            audit["current_surface_pool"][
+                "current_surface_can_satisfy_structural_80pct_by_loosened_membership"
+            ]
+        )
+        self.assertEqual(
+            audit["current_surface_pool"][
+                "same_family_abstain_recall_without_component_thresholds"
+            ],
+            0.3214,
+        )
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(
+            audit["decision"]["evidence_extension_ready_for_threshold_rerun"]
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(
+            audit["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+        self.assertIn(
+            "same_family_structural_proxy_needs_48_more_abstained_train_cal_rows_at_fixed_threshold",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "current_train_cal_surface_lacks_high_cofactor_proxy_scale",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "current_train_cal_surface_cannot_reach_structural_proxy_80pct_by_loosened_membership",
+            audit["blockers"],
+        )
+
     def test_fold_augmented_p10746_source_feature_refresh_audit_current_counts(
         self,
     ) -> None:
@@ -8427,6 +8531,67 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             packet["guardrails"]["labels_registries_ontologies_changed"]
         )
 
+    def test_fold_augmented_family_panel_acceptance_scenario_plan_current_counts(
+        self,
+    ) -> None:
+        plan = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_acceptance_scenario_plan_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            plan["status"],
+            "family_panel_acceptance_scenario_plan_ready_review_only",
+        )
+        self.assertEqual(plan["counts"]["decision_stub_rows"], 22)
+        self.assertEqual(plan["counts"]["acceptance_scenario_rows"], 6)
+        self.assertEqual(plan["counts"]["non_preview_rows_if_accepted"], 16)
+        self.assertEqual(plan["counts"]["panels_represented"], 5)
+        self.assertEqual(
+            plan["counts"][
+                "label_factory_gate_candidate_rows_if_all_scenario_rows_accepted"
+            ],
+            6,
+        )
+        self.assertEqual(plan["counts"]["countable_label_candidate_count_now"], 0)
+        self.assertEqual(
+            plan["counts"]["scenario_rows_by_panel"],
+            {
+                "flavin_monooxygenase_and_flavin_oxygen_transfer": 1,
+                "glycyl_radical_or_thiamine_radical_lyase_boundary": 2,
+                "lipoamide_or_sulfur_transfer_redox_boundary": 1,
+                "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 1,
+                "thiol_disulfide_oxidoreductase_isomerase_boundary": 1,
+            },
+        )
+        self.assertEqual(
+            plan["counts"]["non_preview_rows_by_primary_blocker"],
+            {
+                "completed_source_check_review_only_no_promotion": 11,
+                "source_free_locator_or_primary_channel_missing": 5,
+            },
+        )
+        self.assertIn("expert_import_decisions_not_recorded", plan["blockers"])
+        self.assertFalse(plan["decision"]["apply_expert_decisions_now"])
+        self.assertFalse(plan["decision"]["write_import_preview_now"])
+        self.assertFalse(plan["decision"]["run_label_factory_gate_now"])
+        scenario_entries = {
+            row["entry_id"] for row in plan["acceptance_scenario_rows"]
+        }
+        self.assertEqual(
+            scenario_entries,
+            {"m_csa:10", "m_csa:30", "m_csa:31", "m_csa:191", "m_csa:448", "m_csa:973"},
+        )
+        self.assertTrue(plan["guardrails"]["review_only"])
+        self.assertFalse(plan["guardrails"]["imports_or_promotions_performed"])
+        self.assertFalse(
+            plan["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
     def test_fold_augmented_family_panel_expert_import_decision_application_current_counts(
         self,
     ) -> None:
@@ -8698,7 +8863,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
-        self.assertEqual(audit["counts"]["blockers"], 11)
+        self.assertEqual(audit["counts"]["blockers"], 12)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 78
         )
@@ -8722,7 +8887,34 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["lever3_confounded_proxy_threshold_stress_blockers"], 2
         )
         self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_evidence_request_rows"], 14
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct"],
+            4,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_structural_min_new_abstained_rows_for_80pct"],
+            48,
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_evidence_extension_blockers"],
+            6,
+        )
+        self.assertEqual(
             audit["counts"]["lever4_pending_expert_import_decisions"], 22
+        )
+        self.assertEqual(audit["counts"]["lever4_acceptance_scenario_rows"], 6)
+        self.assertEqual(audit["counts"]["lever4_acceptance_scenario_panels"], 5)
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever4_label_factory_candidates_if_all_scenario_rows_accepted"],
+            6,
         )
         self.assertEqual(
             audit["counts"]["lever2_pending_locator_approvals"], 55
@@ -8740,6 +8932,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertIn(
             "lever3_confounded_proxy_threshold_stress_retention_cost",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "lever3_confounded_proxy_evidence_extension_scale_gap",
             audit["blockers"],
         )
         self.assertIn(

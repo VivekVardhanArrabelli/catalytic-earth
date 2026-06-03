@@ -27,7 +27,9 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_operating_point_audit,
     build_fold_augmented_confounded_proxy_gap_targets,
     build_fold_augmented_confounded_proxy_threshold_stress,
+    build_fold_augmented_confounded_proxy_evidence_extension_plan,
     build_fold_augmented_family_panel_accepted_import_preview,
+    build_fold_augmented_family_panel_acceptance_scenario_plan,
     build_fold_augmented_family_panel_expert_import_decision_application,
     build_fold_augmented_family_panel_expert_import_decision_packet,
     build_fold_augmented_family_panel_label_factory_gate_readiness,
@@ -2115,6 +2117,131 @@ class NorthstarNextLeversTests(unittest.TestCase):
             audit["guardrails"]["counterfactual_thresholds_computed_not_applied"]
         )
         self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+
+    def test_confounded_proxy_evidence_extension_plan_sizes_train_cal_need(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            proxy = root / "proxy.json"
+            gaps = root / "gaps.json"
+            stress = root / "stress.json"
+            proxy.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.5,
+                        },
+                        "calibration_proxy_readout": {
+                            "high_cofactor_proxy_calibration_oos": {
+                                "row_count": 1,
+                                "abstained": 0,
+                                "abstain_recall": 0.0,
+                            },
+                            "same_family_structural_proxy_calibration_oos": {
+                                "row_count": 5,
+                                "abstained": 2,
+                                "abstain_recall": 0.4,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gaps.write_text(
+                json.dumps(
+                    {
+                        "retained_proxy_gap_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "priority": (
+                                    "priority_1_high_cofactor_retained_proxy_gap"
+                                ),
+                                "proxy_membership": [
+                                    "high_cofactor_signature_proxy"
+                                ],
+                                "fixed_channel_score": 0.7,
+                                "threshold_margin": 0.2,
+                                "nearest_train_atlas_true_fingerprint_id": (
+                                    "flavin_dehydrogenase_reductase"
+                                ),
+                                "predicted_geometry_top1_fingerprint_id": (
+                                    "heme_peroxidase_oxidase"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "priority": (
+                                    "priority_2_hard_retained_structural_proxy_gap"
+                                ),
+                                "proxy_membership": [
+                                    "same_family_structural_proxy"
+                                ],
+                                "fixed_channel_score": 0.65,
+                                "threshold_margin": 0.15,
+                                "nearest_train_atlas_true_fingerprint_id": (
+                                    "metal_dependent_hydrolase"
+                                ),
+                                "predicted_geometry_top1_fingerprint_id": (
+                                    "metal_dependent_hydrolase"
+                                ),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            stress.write_text(
+                json.dumps(
+                    {
+                        "blockers": [
+                            "structural_proxy_80pct_abstain_breaks_85pct_in_scope_retention"
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_confounded_proxy_evidence_extension_plan(
+                confounded_proxy_operating_point_audit_path=proxy,
+                confounded_proxy_gap_targets_path=gaps,
+                confounded_proxy_threshold_stress_path=stress,
+                artifact_id="custom_proxy_extension_plan",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_proxy_extension_plan")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_confounded_proxy_evidence_extension_plan_ready",
+        )
+        high = audit["extension_requirements"]["high_cofactor_signature_proxy"]
+        structural = audit["extension_requirements"]["same_family_structural_proxy"]
+        self.assertEqual(
+            high["minimum_new_abstained_rows_if_all_new_rows_abstain"]["0.8"],
+            4,
+        )
+        self.assertEqual(
+            structural["minimum_new_abstained_rows_if_all_new_rows_abstain"]["0.8"],
+            10,
+        )
+        self.assertEqual(audit["counts"]["evidence_request_rows"], 2)
+        axes = {row["entry_id"]: row["axis"] for row in audit["evidence_request_rows"]}
+        self.assertEqual(
+            axes["m_csa:1"], "high_cofactor_confounded_proxy_extension"
+        )
+        self.assertEqual(
+            axes["m_csa:2"], "hard_same_family_structural_counteraxis"
+        )
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(
+            audit["decision"]["evidence_extension_ready_for_threshold_rerun"]
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertIn(
+            "threshold_stress::structural_proxy_80pct_abstain_breaks_85pct_in_scope_retention",
+            audit["blockers"],
+        )
 
     def test_fold_only_negative_surface_keeps_fold_scored_geometry_gaps(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -13465,6 +13592,74 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(packet["guardrails"]["imports_or_promotions_performed"])
         self.assertFalse(packet["guardrails"]["labels_registries_ontologies_changed"])
 
+    def test_family_panel_acceptance_scenario_plan_is_counterfactual(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            packet_path = root / "packet.json"
+            packet_path.write_text(
+                json.dumps(
+                    {
+                        "expert_import_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": (
+                                    "glycyl_radical_or_thiamine_radical_lyase_boundary"
+                                ),
+                                "decision_context_sha256": "a" * 64,
+                                "recommended_review_status_after_decision": (
+                                    "reviewed_expert_import_decision"
+                                ),
+                                "primary_blocker_class": (
+                                    "expert_family_admission_decision_required"
+                                ),
+                                "import_preview_candidate_if_accepted_now": True,
+                                "decision_effect_if_accepted": "preview ready",
+                            },
+                            {
+                                "entry_id": "mh_064",
+                                "panel_id": (
+                                    "no_reliable_structure_metal_hydrolase_controls"
+                                ),
+                                "decision_context_sha256": "b" * 64,
+                                "primary_blocker_class": (
+                                    "source_free_locator_or_primary_channel_missing"
+                                ),
+                                "import_preview_candidate_if_accepted_now": False,
+                                "decision_effect_if_accepted": "still blocked",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            plan = build_fold_augmented_family_panel_acceptance_scenario_plan(
+                expert_import_decision_packet_path=packet_path,
+                artifact_id="custom_acceptance_scenario_plan",
+            )
+
+        self.assertEqual(plan["artifact_id"], "custom_acceptance_scenario_plan")
+        self.assertEqual(
+            plan["status"],
+            "family_panel_acceptance_scenario_plan_ready_review_only",
+        )
+        self.assertEqual(plan["counts"]["acceptance_scenario_rows"], 1)
+        self.assertEqual(plan["counts"]["non_preview_rows_if_accepted"], 1)
+        self.assertEqual(
+            plan["counts"]["label_factory_gate_candidate_rows_if_all_scenario_rows_accepted"],
+            1,
+        )
+        self.assertEqual(
+            plan["acceptance_scenario_rows"][0]["entry_id"], "m_csa:30"
+        )
+        self.assertFalse(plan["decision"]["apply_expert_decisions_now"])
+        self.assertFalse(plan["decision"]["write_import_preview_now"])
+        self.assertFalse(plan["decision"]["run_label_factory_gate_now"])
+        self.assertFalse(plan["guardrails"]["imports_or_promotions_performed"])
+        self.assertIn("expert_import_decisions_not_recorded", plan["blockers"])
+
     def test_family_panel_expert_import_decision_application_verifies_hashes(
         self,
     ) -> None:
@@ -13946,6 +14141,8 @@ class NorthstarNextLeversTests(unittest.TestCase):
             lever2_path = root / "lever2.json"
             event_path = root / "event.json"
             closure_path = root / "closure.json"
+            extension_path = root / "extension.json"
+            scenario_path = root / "scenario.json"
             family_path = root / "family.json"
             queue_path.write_text(
                 json.dumps(
@@ -14043,6 +14240,34 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            extension_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "evidence_request_rows": 2,
+                            "high_cofactor_min_new_abstained_rows_for_80pct": 4,
+                            "same_family_structural_min_new_abstained_rows_for_80pct": 10,
+                            "blockers": 2,
+                        },
+                        "decision": {
+                            "evidence_extension_ready_for_threshold_rerun": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scenario_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "acceptance_scenario_rows": 1,
+                            "panels_represented": 1,
+                            "label_factory_gate_candidate_rows_if_all_scenario_rows_accepted": 1,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
             family_path.write_text(
                 json.dumps(
                     {
@@ -14058,6 +14283,8 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 lever2_pre_threshold_readiness_path=lever2_path,
                 lever2_event_axis_linker_schema_path=event_path,
                 lever3_post_decision_deployment_closure_status_path=closure_path,
+                lever3_confounded_proxy_evidence_extension_plan_path=extension_path,
+                lever4_acceptance_scenario_plan_path=scenario_path,
                 family_panel_label_factory_gate_readiness_path=family_path,
             )
 
@@ -14071,6 +14298,27 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertIn("p10746_policy_decision_missing", audit["blockers"])
         self.assertIn(
             "source_free_event_axis_linker_gate_blocked", audit["blockers"]
+        )
+        self.assertIn(
+            "lever3_confounded_proxy_evidence_extension_scale_gap",
+            audit["blockers"],
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_evidence_request_rows"], 2
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_structural_min_new_abstained_rows_for_80pct"],
+            10,
+        )
+        self.assertEqual(audit["counts"]["lever4_acceptance_scenario_rows"], 1)
+        self.assertEqual(audit["counts"]["lever4_acceptance_scenario_panels"], 1)
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever4_label_factory_candidates_if_all_scenario_rows_accepted"],
+            1,
         )
         self.assertNotIn(
             "source_free_event_axis_linkers_missing", audit["blockers"]

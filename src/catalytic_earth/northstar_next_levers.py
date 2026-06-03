@@ -165,6 +165,9 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_GAP_TARGETS_ID = (
 FOLD_AUGMENTED_CONFOUNDED_PROXY_THRESHOLD_STRESS_ID = (
     "v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_EVIDENCE_EXTENSION_PLAN_ID = (
+    "v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -182,6 +185,9 @@ FOLD_AUGMENTED_FAMILY_PANEL_EXPERT_IMPORT_DECISION_PACKET_ID = (
 )
 FOLD_AUGMENTED_FAMILY_PANEL_EXPERT_IMPORT_DECISION_APPLICATION_ID = (
     "v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_ACCEPTANCE_SCENARIO_PLAN_ID = (
+    "v3_fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603"
 )
 FOLD_AUGMENTED_FAMILY_PANEL_ACCEPTED_IMPORT_PREVIEW_ID = (
     "v3_fold_augmented_family_panel_accepted_import_preview_current702_20260603"
@@ -16284,6 +16290,682 @@ def write_fold_augmented_confounded_proxy_threshold_stress(
     return audit
 
 
+def _additional_abstained_rows_needed(
+    *,
+    row_count: int,
+    abstained: int,
+    target_recall: float,
+) -> int | None:
+    if target_recall < 0.0 or target_recall > 1.0:
+        raise ValueError(f"target_recall must be between 0 and 1: {target_recall}")
+    if row_count <= 0:
+        return 0
+    current = abstained / row_count
+    if current >= target_recall:
+        return 0
+    if target_recall >= 1.0:
+        return None
+    needed = (target_recall * row_count - abstained) / (1.0 - target_recall)
+    return max(0, int(math.ceil(needed - 1e-12)))
+
+
+def _evidence_axis_for_confounded_proxy_gap(row: dict[str, Any]) -> dict[str, Any]:
+    priority = str(row.get("priority") or "")
+    proxies = set(row.get("proxy_membership") or [])
+    if "high_cofactor_signature_proxy" in proxies or priority.startswith("priority_1"):
+        return {
+            "axis": "high_cofactor_confounded_proxy_extension",
+            "recommended_action": (
+                "Add or review train/cal OOS rows with source-free organic-cofactor "
+                "locus evidence and rerun the proxy audit at the fixed threshold."
+            ),
+            "allowed_evidence": [
+                "source-free cofactor locus sidecar",
+                "approved non-residue interaction sidecar",
+                "predicted-structure-vs-atlas channel scores",
+            ],
+        }
+    if priority.startswith("priority_2"):
+        return {
+            "axis": "hard_same_family_structural_counteraxis",
+            "recommended_action": (
+                "Prioritize source-free active-site counteraxis review for hard "
+                "metal-hydrolase-like structural mimics before any threshold rerun."
+            ),
+            "allowed_evidence": [
+                "predicted-structure-vs-atlas channel scores",
+                "source-free local metal or cofactor topology sidecar",
+                "approved active-site non-residue interaction sidecar",
+            ],
+        }
+    return {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "recommended_action": (
+            "Hold for secondary review after hard retained structural gaps unless "
+            "the row is cheap to source-free annotate."
+        ),
+        "allowed_evidence": [
+            "predicted-structure-vs-atlas channel scores",
+            "source-free local topology sidecar",
+        ],
+    }
+
+
+def _proxy_extension_requirement(
+    *,
+    name: str,
+    readout: dict[str, Any],
+    target_recalls: list[float],
+) -> dict[str, Any]:
+    row_count = int(readout.get("row_count") or 0)
+    abstained = int(readout.get("abstained") or 0)
+    return {
+        "proxy": name,
+        "row_count": row_count,
+        "abstained_at_fixed_threshold": abstained,
+        "current_abstain_recall": readout.get("abstain_recall"),
+        "minimum_new_abstained_rows_if_all_new_rows_abstain": {
+            str(target): _additional_abstained_rows_needed(
+                row_count=row_count,
+                abstained=abstained,
+                target_recall=target,
+            )
+            for target in target_recalls
+        },
+        "assumption": (
+            "Minimums assume every added train/cal proxy row abstains at the "
+            "unchanged fixed threshold; mixed added rows require more evidence."
+        ),
+    }
+
+
+def _confounded_proxy_current_surface_pool(
+    *,
+    train_cal_oos_surface: dict[str, Any],
+    channel_name: str,
+    fixed_threshold: float | None,
+    cofactor_threshold: float,
+    fold_threshold: float | None,
+    geometry_threshold: float | None,
+    high_proxy_rows: int,
+    structural_proxy_rows: int,
+) -> dict[str, Any]:
+    rows = [
+        row
+        for row in train_cal_oos_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and isinstance(row.get("channel_scores"), dict)
+    ]
+    scored_rows = []
+    for row in rows:
+        channel_scores = row.get("channel_scores") or {}
+        score = channel_scores.get(channel_name)
+        if score is None:
+            continue
+        fold_score = channel_scores.get("fold_nearest_atlas_tm_score")
+        geometry_score = channel_scores.get("geometry_top1_score")
+        fold = row.get("predicted_structure_fold_channel") or {}
+        geometry_top1 = row.get("predicted_geometry_top1") or {}
+        nearest_fp = fold.get("nearest_train_atlas_true_fingerprint_id")
+        top1_fp = geometry_top1.get("fingerprint_id")
+        same_family = bool(nearest_fp and top1_fp and nearest_fp == top1_fp)
+        strict_structural = bool(
+            same_family
+            and fold_threshold is not None
+            and geometry_threshold is not None
+            and fold_score is not None
+            and geometry_score is not None
+            and float(fold_score) >= fold_threshold
+            and float(geometry_score) >= geometry_threshold
+        )
+        cofactor_score = _cofactor_proxy_score(row)
+        high_cofactor = (cofactor_score or 0.0) >= cofactor_threshold
+        abstained = (
+            bool(float(score) < fixed_threshold) if fixed_threshold is not None else False
+        )
+        threshold_margin = (
+            round(float(score) - fixed_threshold, 6)
+            if fixed_threshold is not None
+            else None
+        )
+        scored_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "combined_score": round(float(score), 6),
+                "threshold_margin": threshold_margin,
+                "fold_nearest_atlas_tm_score": (
+                    round(float(fold_score), 6) if fold_score is not None else None
+                ),
+                "geometry_top1_score": (
+                    round(float(geometry_score), 6)
+                    if geometry_score is not None
+                    else None
+                ),
+                "cofactor_proxy_score": (
+                    round(float(cofactor_score), 6)
+                    if cofactor_score is not None
+                    else None
+                ),
+                "nearest_train_atlas_true_fingerprint_id": nearest_fp,
+                "predicted_geometry_top1_fingerprint_id": top1_fp,
+                "same_family": same_family,
+                "strict_structural": strict_structural,
+                "high_cofactor": high_cofactor,
+                "abstained": abstained,
+            }
+        )
+
+    def _count(predicate: Callable[[dict[str, Any]], bool]) -> int:
+        return sum(1 for row in scored_rows if predicate(row))
+
+    high_rows = _count(lambda row: bool(row["high_cofactor"]))
+    high_abstained = _count(
+        lambda row: bool(row["high_cofactor"]) and bool(row["abstained"])
+    )
+    same_family_rows = _count(lambda row: bool(row["same_family"]))
+    same_family_abstained = _count(
+        lambda row: bool(row["same_family"]) and bool(row["abstained"])
+    )
+    strict_rows = _count(lambda row: bool(row["strict_structural"]))
+    strict_abstained = _count(
+        lambda row: bool(row["strict_structural"]) and bool(row["abstained"])
+    )
+
+    def _sort_pool_rows(pool_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        return sorted(
+            pool_rows,
+            key=lambda row: (
+                not bool(row["abstained"]),
+                -abs(float(row.get("threshold_margin") or 0.0)),
+                str(row.get("entry_id") or ""),
+            ),
+        )
+
+    return {
+        "train_cal_oos_scored_rows": len(scored_rows),
+        "fixed_threshold": fixed_threshold,
+        "high_cofactor_rows_at_current_threshold": high_rows,
+        "high_cofactor_abstained_at_fixed_threshold": high_abstained,
+        "high_cofactor_rows": _sort_pool_rows(
+            [row for row in scored_rows if row["high_cofactor"]]
+        ),
+        "unused_high_cofactor_rows_in_current_surface": max(
+            0, high_rows - high_proxy_rows
+        ),
+        "same_family_rows_without_component_thresholds": same_family_rows,
+        "same_family_abstained_without_component_thresholds": same_family_abstained,
+        "same_family_abstain_recall_without_component_thresholds": (
+            round(same_family_abstained / same_family_rows, 4)
+            if same_family_rows
+            else None
+        ),
+        "strict_same_family_structural_rows": strict_rows,
+        "strict_same_family_structural_abstained": strict_abstained,
+        "additional_same_family_rows_if_component_thresholds_loosened": max(
+            0, same_family_rows - structural_proxy_rows
+        ),
+        "same_family_extra_rows_if_component_thresholds_loosened": _sort_pool_rows(
+            [
+                row
+                for row in scored_rows
+                if row["same_family"] and not row["strict_structural"]
+            ]
+        ),
+        "current_surface_can_satisfy_high_cofactor_80pct_without_new_rows": (
+            bool(high_rows and high_abstained / high_rows >= 0.8)
+        ),
+        "current_surface_can_satisfy_structural_80pct_by_loosened_membership": (
+            bool(same_family_rows and same_family_abstained / same_family_rows >= 0.8)
+        ),
+    }
+
+
+def build_fold_augmented_confounded_proxy_evidence_extension_plan(
+    *,
+    confounded_proxy_operating_point_audit_path: Path,
+    confounded_proxy_gap_targets_path: Path,
+    confounded_proxy_threshold_stress_path: Path,
+    train_cal_oos_surface_path: Path | None = None,
+    target_recalls: list[float] | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_EVIDENCE_EXTENSION_PLAN_ID,
+) -> dict[str, Any]:
+    proxy = _read_json(confounded_proxy_operating_point_audit_path)
+    gaps = _read_json(confounded_proxy_gap_targets_path)
+    stress = _read_json(confounded_proxy_threshold_stress_path)
+    train_cal_oos_surface = (
+        _read_json(train_cal_oos_surface_path)
+        if train_cal_oos_surface_path is not None
+        and Path(train_cal_oos_surface_path).exists()
+        else {}
+    )
+    targets = target_recalls or [0.50, 0.80]
+
+    readout = proxy.get("calibration_proxy_readout") or {}
+    requirements = {
+        "high_cofactor_signature_proxy": _proxy_extension_requirement(
+            name="high_cofactor_signature_proxy",
+            readout=readout.get("high_cofactor_proxy_calibration_oos") or {},
+            target_recalls=targets,
+        ),
+        "same_family_structural_proxy": _proxy_extension_requirement(
+            name="same_family_structural_proxy",
+            readout=(
+                readout.get("same_family_structural_proxy_calibration_oos") or {}
+            ),
+            target_recalls=targets,
+        ),
+    }
+    high_80_needed = requirements["high_cofactor_signature_proxy"][
+        "minimum_new_abstained_rows_if_all_new_rows_abstain"
+    ].get("0.8")
+    structural_80_needed = requirements["same_family_structural_proxy"][
+        "minimum_new_abstained_rows_if_all_new_rows_abstain"
+    ].get("0.8")
+    fixed = proxy.get("fixed_operating_point") or {}
+    fixed_threshold = fixed.get("threshold")
+    fixed_threshold_float = (
+        float(fixed_threshold) if fixed_threshold is not None else None
+    )
+    cofactor_definition = proxy.get("calibration_proxy_definition") or {}
+    structural_definition = proxy.get("calibration_structural_proxy_definition") or {}
+    cofactor_threshold = float(
+        cofactor_definition.get("cofactor_proxy_threshold")
+        if cofactor_definition.get("cofactor_proxy_threshold") is not None
+        else COFACTOR_SIGNATURE_THRESHOLD
+    )
+    fold_threshold = structural_definition.get("fold_nearest_atlas_tm_score_threshold")
+    geometry_threshold = structural_definition.get("geometry_top1_score_threshold")
+    current_surface_pool = (
+        _confounded_proxy_current_surface_pool(
+            train_cal_oos_surface=train_cal_oos_surface,
+            channel_name=str(fixed.get("channel") or "combined_mean_geometry_fold"),
+            fixed_threshold=fixed_threshold_float,
+            cofactor_threshold=cofactor_threshold,
+            fold_threshold=(
+                float(fold_threshold) if fold_threshold is not None else None
+            ),
+            geometry_threshold=(
+                float(geometry_threshold) if geometry_threshold is not None else None
+            ),
+            high_proxy_rows=requirements["high_cofactor_signature_proxy"]["row_count"],
+            structural_proxy_rows=requirements["same_family_structural_proxy"][
+                "row_count"
+            ],
+        )
+        if train_cal_oos_surface
+        else None
+    )
+    channel_name = str(fixed.get("channel") or "combined_mean_geometry_fold")
+    current_surface_unscored_rows = []
+    if train_cal_oos_surface:
+        for row in train_cal_oos_surface.get("candidate_row_scores", []):
+            if not isinstance(row, dict):
+                continue
+            channel_scores = row.get("channel_scores")
+            if isinstance(channel_scores, dict) and channel_name in channel_scores:
+                continue
+            fold = row.get("predicted_structure_fold_channel") or {}
+            current_surface_unscored_rows.append(
+                {
+                    "entry_id": row.get("entry_id"),
+                    "accession": row.get("accession"),
+                    "predicted_geometry_status": row.get(
+                        "predicted_geometry_status"
+                    ),
+                    "nearest_train_atlas_entry_id": fold.get(
+                        "nearest_train_atlas_entry_id"
+                    ),
+                    "nearest_train_atlas_tm_score": fold.get(
+                        "nearest_train_atlas_tm_score"
+                    ),
+                    "nearest_train_atlas_true_fingerprint_id": fold.get(
+                        "nearest_train_atlas_true_fingerprint_id"
+                    ),
+                }
+            )
+
+    retained_rows = [
+        row
+        for row in gaps.get("retained_proxy_gap_rows", [])
+        if isinstance(row, dict)
+    ]
+    evidence_request_rows = []
+    for row in retained_rows:
+        axis = _evidence_axis_for_confounded_proxy_gap(row)
+        evidence_request_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "priority": row.get("priority"),
+                "proxy_membership": row.get("proxy_membership") or [],
+                "fixed_channel_score": row.get("fixed_channel_score"),
+                "threshold_margin": row.get("threshold_margin"),
+                "nearest_train_atlas_true_fingerprint_id": row.get(
+                    "nearest_train_atlas_true_fingerprint_id"
+                ),
+                "predicted_geometry_top1_fingerprint_id": row.get(
+                    "predicted_geometry_top1_fingerprint_id"
+                ),
+                **axis,
+            }
+        )
+    priority_counts = Counter(str(row.get("priority") or "missing") for row in retained_rows)
+    axis_counts = Counter(str(row.get("axis") or "missing") for row in evidence_request_rows)
+
+    blockers = []
+    if high_80_needed:
+        blockers.append(
+            "high_cofactor_proxy_needs_"
+            f"{high_80_needed}_more_abstained_train_cal_rows_at_fixed_threshold"
+        )
+    if structural_80_needed:
+        blockers.append(
+            "same_family_structural_proxy_needs_"
+            f"{structural_80_needed}_more_abstained_train_cal_rows_at_fixed_threshold"
+        )
+    for blocker in stress.get("blockers") or []:
+        blockers.append(f"threshold_stress::{blocker}")
+    if not retained_rows:
+        blockers.append("no_retained_proxy_gap_rows_available")
+    if current_surface_pool:
+        if not current_surface_pool[
+            "current_surface_can_satisfy_high_cofactor_80pct_without_new_rows"
+        ]:
+            blockers.append("current_train_cal_surface_lacks_high_cofactor_proxy_scale")
+        if not current_surface_pool[
+            "current_surface_can_satisfy_structural_80pct_by_loosened_membership"
+        ]:
+            blockers.append(
+                "current_train_cal_surface_cannot_reach_structural_proxy_80pct_by_loosened_membership"
+            )
+
+    extension_ready = not blockers
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_evidence_extension_plan"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_evidence_extension_plan_ready"
+            if retained_rows
+            else "fold_augmented_confounded_proxy_evidence_extension_plan_blocked"
+        ),
+        "scope": (
+            "Train/cal-only Lever 3 plan for extending confounded proxy evidence "
+            "after the fixed predicted-structure-vs-atlas operating point failed "
+            "to meet proxy calibration targets. It estimates how much additional "
+            "proxy evidence would be needed at the unchanged threshold and maps "
+            "retained proxy gaps to source-free evidence axes."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_read_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": False,
+            "experimental_pdb_metadata_used_as_channel_input": False,
+            "train_cal_oos_surface_read_for_pool_scout": bool(current_surface_pool),
+            "evidence_request_only": True,
+            "review_only": True,
+        },
+        "fixed_operating_point": fixed,
+        "extension_requirements": requirements,
+        "current_surface_pool": current_surface_pool,
+        "current_surface_unscored_candidate_rows": current_surface_unscored_rows,
+        "evidence_request_rows": evidence_request_rows,
+        "counts": {
+            "retained_proxy_gap_rows": len(retained_rows),
+            "evidence_request_rows": len(evidence_request_rows),
+            "priority_counts": dict(sorted(priority_counts.items())),
+            "axis_counts": dict(sorted(axis_counts.items())),
+            "high_cofactor_min_new_abstained_rows_for_80pct": high_80_needed,
+            "same_family_structural_min_new_abstained_rows_for_80pct": (
+                structural_80_needed
+            ),
+            "threshold_stress_blockers": len(stress.get("blockers") or []),
+            "current_surface_train_cal_oos_scored_rows": (
+                current_surface_pool["train_cal_oos_scored_rows"]
+                if current_surface_pool
+                else 0
+            ),
+            "current_surface_unused_high_cofactor_rows": (
+                current_surface_pool["unused_high_cofactor_rows_in_current_surface"]
+                if current_surface_pool
+                else 0
+            ),
+            "current_surface_additional_same_family_rows_if_loosened": (
+                current_surface_pool[
+                    "additional_same_family_rows_if_component_thresholds_loosened"
+                ]
+                if current_surface_pool
+                else 0
+            ),
+            "current_surface_unscored_candidate_rows": len(
+                current_surface_unscored_rows
+            ),
+            "blockers": len(blockers),
+        },
+        "blockers": blockers,
+        "decision": {
+            "apply_or_change_threshold_now": False,
+            "deployment_closed_now": False,
+            "evidence_extension_ready_for_threshold_rerun": extension_ready,
+            "minimums_assume_all_new_proxy_rows_abstain": True,
+            "next_gate": (
+                "Do not raise the fixed threshold. Add or review train/cal "
+                "confounded proxy rows beyond the currently scored surface on "
+                "the evidence axes listed here, then rerun the proxy operating-"
+                "point audit and threshold stress. Independently resolve the "
+                "P10746 caveat or approved non-residue sidecar before claiming "
+                "deployment closure."
+            ),
+        },
+        "source_artifacts": {
+            "confounded_proxy_operating_point_audit": _source_path_record(
+                confounded_proxy_operating_point_audit_path
+            ),
+            "confounded_proxy_gap_targets": _source_path_record(
+                confounded_proxy_gap_targets_path
+            ),
+            "confounded_proxy_threshold_stress": _source_path_record(
+                confounded_proxy_threshold_stress_path
+            ),
+            "train_cal_oos_surface": (
+                _source_path_record(train_cal_oos_surface_path)
+                if train_cal_oos_surface_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "At the unchanged fixed threshold, proxy calibration needs more "
+                "train/cal evidence rather than a higher deployment threshold."
+            ),
+            "next_action": (
+                "Start with the one high-cofactor retained gap, then the hard "
+                "same-family structural retained gaps; the current train/cal "
+                "surface has no unused high-cofactor pool and loose same-family "
+                "membership still misses the 80% target, so new proxy evidence "
+                "is required before a rerun can close the calibration claim."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_evidence_extension_plan(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    fixed = audit["fixed_operating_point"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Evidence Extension Plan - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        f"- Fixed channel: {fixed.get('channel')}",
+        f"- Fixed threshold: {fixed.get('threshold')}",
+        "- Retained proxy gaps: "
+        f"{counts['retained_proxy_gap_rows']}",
+        "- High-cofactor minimum new abstained rows for 80%: "
+        f"{counts['high_cofactor_min_new_abstained_rows_for_80pct']}",
+        "- Same-family structural minimum new abstained rows for 80%: "
+        f"{counts['same_family_structural_min_new_abstained_rows_for_80pct']}",
+        "- Current-surface unused high-cofactor rows: "
+        f"{counts.get('current_surface_unused_high_cofactor_rows')}",
+        "- Current-surface additional same-family rows if loosened: "
+        f"{counts.get('current_surface_additional_same_family_rows_if_loosened')}",
+        "- Current-surface unscored candidate rows: "
+        f"{counts.get('current_surface_unscored_candidate_rows')}",
+        "",
+        "## Extension Requirements",
+        "",
+        "| proxy | rows | fixed abstained | current recall | min new abstained @50% | min new abstained @80% |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for requirement in audit["extension_requirements"].values():
+        additions = requirement["minimum_new_abstained_rows_if_all_new_rows_abstain"]
+        lines.append(
+            f"| {requirement['proxy']} | {requirement['row_count']} | "
+            f"{requirement['abstained_at_fixed_threshold']} | "
+            f"{requirement['current_abstain_recall']} | "
+            f"{additions.get('0.5')} | {additions.get('0.8')} |"
+        )
+    pool = audit.get("current_surface_pool")
+    if pool:
+        lines += [
+            "",
+            "## Current Surface Pool",
+            "",
+            "| pool | rows | abstained | recall/capacity |",
+            "| --- | ---: | ---: | ---: |",
+            "| high-cofactor rows | "
+            f"{pool['high_cofactor_rows_at_current_threshold']} | "
+            f"{pool['high_cofactor_abstained_at_fixed_threshold']} | "
+            f"{pool['current_surface_can_satisfy_high_cofactor_80pct_without_new_rows']} |",
+            "| same-family loose rows | "
+            f"{pool['same_family_rows_without_component_thresholds']} | "
+            f"{pool['same_family_abstained_without_component_thresholds']} | "
+            f"{pool['same_family_abstain_recall_without_component_thresholds']} |",
+            "| strict same-family structural rows | "
+            f"{pool['strict_same_family_structural_rows']} | "
+            f"{pool['strict_same_family_structural_abstained']} | "
+            f"{pool['additional_same_family_rows_if_component_thresholds_loosened']} |",
+            "",
+            "### Current Surface High-Cofactor Rows",
+            "",
+            "| entry | score | margin | abstains | nearest fingerprint | top1 fingerprint |",
+            "| --- | ---: | ---: | --- | --- | --- |",
+        ]
+        for row in pool.get("high_cofactor_rows", []):
+            lines.append(
+                f"| {row['entry_id']} | {row['combined_score']} | "
+                f"{row['threshold_margin']} | {row['abstained']} | "
+                f"{row['nearest_train_atlas_true_fingerprint_id']} | "
+                f"{row['predicted_geometry_top1_fingerprint_id']} |"
+            )
+        lines += [
+            "",
+            "### Current Surface Same-Family Extras If Loosened",
+            "",
+            "| entry | score | margin | abstains | fold | geometry | fingerprint |",
+            "| --- | ---: | ---: | --- | ---: | ---: | --- |",
+        ]
+        for row in pool.get("same_family_extra_rows_if_component_thresholds_loosened", []):
+            lines.append(
+                f"| {row['entry_id']} | {row['combined_score']} | "
+                f"{row['threshold_margin']} | {row['abstained']} | "
+                f"{row['fold_nearest_atlas_tm_score']} | "
+                f"{row['geometry_top1_score']} | "
+                f"{row['nearest_train_atlas_true_fingerprint_id']} |"
+            )
+    unscored = audit.get("current_surface_unscored_candidate_rows") or []
+    if unscored:
+        lines += [
+            "",
+            "### Current Surface Unscored Candidates",
+            "",
+            "| entry | accession | geometry status | nearest atlas | nearest fingerprint | tm |",
+            "| --- | --- | --- | --- | --- | ---: |",
+        ]
+        for row in unscored:
+            lines.append(
+                f"| {row['entry_id']} | {row['accession']} | "
+                f"{row['predicted_geometry_status']} | "
+                f"{row['nearest_train_atlas_entry_id']} | "
+                f"{row['nearest_train_atlas_true_fingerprint_id']} | "
+                f"{row['nearest_train_atlas_tm_score']} |"
+            )
+    lines += [
+        "",
+        "## Evidence Requests",
+        "",
+        "| priority | entry | margin | axis | nearest fingerprint | top1 fingerprint |",
+        "| --- | --- | ---: | --- | --- | --- |",
+    ]
+    for row in audit["evidence_request_rows"]:
+        lines.append(
+            f"| {row['priority']} | {row['entry_id']} | "
+            f"{row['threshold_margin']} | {row['axis']} | "
+            f"{row['nearest_train_atlas_true_fingerprint_id']} | "
+            f"{row['predicted_geometry_top1_fingerprint_id']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Apply or change threshold now: {audit['decision']['apply_or_change_threshold_now']}",
+        f"- Deployment closed now: {audit['decision']['deployment_closed_now']}",
+        "- Evidence extension ready for threshold rerun: "
+        f"{audit['decision']['evidence_extension_ready_for_threshold_rerun']}",
+        f"- Next gate: {audit['decision']['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_evidence_extension_plan(
+    *,
+    confounded_proxy_operating_point_audit_path: Path,
+    confounded_proxy_gap_targets_path: Path,
+    confounded_proxy_threshold_stress_path: Path,
+    train_cal_oos_surface_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_EVIDENCE_EXTENSION_PLAN_ID,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_evidence_extension_plan(
+        confounded_proxy_operating_point_audit_path=(
+            confounded_proxy_operating_point_audit_path
+        ),
+        confounded_proxy_gap_targets_path=confounded_proxy_gap_targets_path,
+        confounded_proxy_threshold_stress_path=confounded_proxy_threshold_stress_path,
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_evidence_extension_plan(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def _fold_augmented_confounded_priority_rows(
     fold_channel: dict[str, Any],
 ) -> list[dict[str, Any]]:
@@ -25371,6 +26053,239 @@ def write_fold_augmented_family_panel_expert_import_decision_packet(
     return packet
 
 
+def build_fold_augmented_family_panel_acceptance_scenario_plan(
+    *,
+    expert_import_decision_packet_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_FAMILY_PANEL_ACCEPTANCE_SCENARIO_PLAN_ID,
+) -> dict[str, Any]:
+    packet = _read_json(expert_import_decision_packet_path)
+    stubs = [
+        row
+        for row in packet.get("expert_import_decision_stubs", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    scenario_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "panel_id": row.get("panel_id"),
+            "decision_context_sha256": row.get("decision_context_sha256"),
+            "required_decision": "explicit_accept_family_panel_import_candidate",
+            "required_review_status": row.get(
+                "recommended_review_status_after_decision"
+            ),
+            "primary_blocker_class": row.get("primary_blocker_class"),
+            "decision_effect_if_accepted": row.get("decision_effect_if_accepted"),
+            "would_enter_import_preview_if_accepted": True,
+            "would_be_countable_now": False,
+            "remaining_gate_after_accept": "accepted_import_preview_then_label_factory_gate",
+        }
+        for row in stubs
+        if row.get("import_preview_candidate_if_accepted_now") is True
+    ]
+    non_preview_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "panel_id": row.get("panel_id"),
+            "primary_blocker_class": row.get("primary_blocker_class"),
+            "reason": row.get("decision_effect_if_accepted"),
+        }
+        for row in stubs
+        if row.get("import_preview_candidate_if_accepted_now") is not True
+    ]
+    panel_counts = Counter(str(row.get("panel_id") or "") for row in scenario_rows)
+    blocker_counts = Counter(
+        str(row.get("primary_blocker_class") or "") for row in non_preview_rows
+    )
+    blockers = ["expert_import_decisions_not_recorded"]
+    if non_preview_rows:
+        blockers.append("some_family_panel_rows_still_blocked_after_accept_decision")
+    if not scenario_rows:
+        blockers.append("no_import_preview_candidates_if_accepted")
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_acceptance_scenario_plan"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "family_panel_acceptance_scenario_plan_ready_review_only"
+            if scenario_rows
+            else "family_panel_acceptance_scenario_plan_blocked_no_candidates"
+        ),
+        "scope": (
+            "Review-only Lever 4 counterfactual scenario for the pending expert "
+            "import decision packet. It lists rows that would become accepted "
+            "import-preview candidates if explicitly accepted with unchanged "
+            "context hashes. It does not apply decisions, write import preview "
+            "rows, run label-factory gates, edit labels, or make rows countable."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "counterfactual_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+            "family_panel_rows_countable_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "counts": {
+            "decision_stub_rows": len(stubs),
+            "acceptance_scenario_rows": len(scenario_rows),
+            "non_preview_rows_if_accepted": len(non_preview_rows),
+            "panels_represented": len(panel_counts),
+            "scenario_rows_by_panel": dict(sorted(panel_counts.items())),
+            "non_preview_rows_by_primary_blocker": dict(
+                sorted(blocker_counts.items())
+            ),
+            "label_factory_gate_candidate_rows_if_all_scenario_rows_accepted": len(
+                scenario_rows
+            ),
+            "countable_label_candidate_count_now": 0,
+            "blockers": len(blockers),
+        },
+        "acceptance_scenario_rows": sorted(
+            scenario_rows,
+            key=lambda row: (
+                str(row["panel_id"]),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "non_preview_rows_if_accepted": sorted(
+            non_preview_rows,
+            key=lambda row: (
+                str(row["panel_id"]),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "blockers": blockers,
+        "decision": {
+            "apply_expert_decisions_now": False,
+            "write_import_preview_now": False,
+            "run_label_factory_gate_now": False,
+            "new_countable_labels_authorized": False,
+            "acceptance_scenario_ready_for_review": bool(scenario_rows),
+            "next_gate": (
+                "If reviewers explicitly accept any scenario rows with unchanged "
+                "decision_context_sha256 values and reviewed_expert_import_decision "
+                "status, rerun the expert decision application, then build the "
+                "accepted import preview and label-factory readiness artifacts. "
+                "Do not count labels until the label-factory gate passes."
+            ),
+        },
+        "source_artifacts": {
+            "expert_import_decision_packet": _source_path_record(
+                expert_import_decision_packet_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(scenario_rows)} family-panel rows could reach import "
+                "preview if explicitly accepted; zero are countable now."
+            ),
+            "result": (
+                "The scenario isolates the near-term Lever 4 upside from rows "
+                "that still need family-promotion, locator, or primary-channel "
+                "work after an accept decision."
+            ),
+            "next_action": (
+                "Review the scenario rows first if the goal is to widen the "
+                "countable benchmark surface fastest; keep the non-preview rows "
+                "review-only until their primary blockers clear."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_acceptance_scenario_plan_report(
+    plan: dict[str, Any],
+) -> str:
+    counts = plan["counts"]
+    decision = plan["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Acceptance Scenario Plan - current702",
+        "",
+        f"Run: {plan['created_utc']}",
+        "",
+        plan["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {plan['status']}",
+        f"- Decision stubs: {counts['decision_stub_rows']}",
+        f"- Acceptance scenario rows: {counts['acceptance_scenario_rows']}",
+        f"- Non-preview rows if accepted: {counts['non_preview_rows_if_accepted']}",
+        f"- Panels represented: {counts['panels_represented']}",
+        "- Label-factory candidates if all scenario rows accepted: "
+        f"{counts['label_factory_gate_candidate_rows_if_all_scenario_rows_accepted']}",
+        "- Countable label candidates now: "
+        f"{counts['countable_label_candidate_count_now']}",
+        f"- Rows by panel: {counts['scenario_rows_by_panel']}",
+        f"- Non-preview blocker classes: {counts['non_preview_rows_by_primary_blocker']}",
+        f"- Blockers: {plan['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Apply expert decisions now: {decision['apply_expert_decisions_now']}",
+        f"- Write import preview now: {decision['write_import_preview_now']}",
+        f"- Run label-factory gate now: {decision['run_label_factory_gate_now']}",
+        "- New countable labels authorized: "
+        f"{decision['new_countable_labels_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Acceptance Scenario Rows",
+        "",
+        "| row | panel | required decision | decision context sha | next gate |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in plan.get("acceptance_scenario_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{row['required_decision']} | "
+            f"{str(row['decision_context_sha256'])[:12]} | "
+            f"{row['remaining_gate_after_accept']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {plan['interpretation']['headline']}",
+        f"- {plan['interpretation']['result']}",
+        f"- {plan['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_acceptance_scenario_plan(
+    *,
+    expert_import_decision_packet_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_FAMILY_PANEL_ACCEPTANCE_SCENARIO_PLAN_ID,
+) -> dict[str, Any]:
+    plan = build_fold_augmented_family_panel_acceptance_scenario_plan(
+        expert_import_decision_packet_path=expert_import_decision_packet_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_acceptance_scenario_plan_report(
+                plan
+            ),
+            encoding="utf-8",
+        )
+    return plan
+
+
 def _family_panel_expert_import_decision_records(
     expert_decisions_path: Path | None,
 ) -> list[dict[str, Any]]:
@@ -26669,6 +27584,8 @@ def build_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_operating_point_audit_path: Path | None = None,
     lever3_confounded_proxy_gap_targets_path: Path | None = None,
     lever3_confounded_proxy_threshold_stress_path: Path | None = None,
+    lever3_confounded_proxy_evidence_extension_plan_path: Path | None = None,
+    lever4_acceptance_scenario_plan_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
 ) -> dict[str, Any]:
     queue = (
@@ -26724,10 +27641,22 @@ def build_active_lever_mechanical_actionability_audit(
         and Path(lever3_confounded_proxy_threshold_stress_path).exists()
         else {}
     )
+    lever3_proxy_extension = (
+        _read_json(lever3_confounded_proxy_evidence_extension_plan_path)
+        if lever3_confounded_proxy_evidence_extension_plan_path is not None
+        and Path(lever3_confounded_proxy_evidence_extension_plan_path).exists()
+        else {}
+    )
     lever4_readiness = (
         _read_json(family_panel_label_factory_gate_readiness_path)
         if family_panel_label_factory_gate_readiness_path is not None
         and Path(family_panel_label_factory_gate_readiness_path).exists()
+        else {}
+    )
+    lever4_acceptance_scenario = (
+        _read_json(lever4_acceptance_scenario_plan_path)
+        if lever4_acceptance_scenario_plan_path is not None
+        and Path(lever4_acceptance_scenario_plan_path).exists()
         else {}
     )
 
@@ -26814,9 +27743,24 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(lever3_proxy_stress, dict)
         else {}
     )
+    lever3_proxy_extension_counts = (
+        lever3_proxy_extension.get("counts", {})
+        if isinstance(lever3_proxy_extension, dict)
+        else {}
+    )
+    lever3_proxy_extension_decision = (
+        lever3_proxy_extension.get("decision", {})
+        if isinstance(lever3_proxy_extension, dict)
+        else {}
+    )
     lever4_counts = (
         lever4_readiness.get("counts", {})
         if isinstance(lever4_readiness, dict)
+        else {}
+    )
+    lever4_acceptance_counts = (
+        lever4_acceptance_scenario.get("counts", {})
+        if isinstance(lever4_acceptance_scenario, dict)
         else {}
     )
     lever4_decision = (
@@ -26887,6 +27831,23 @@ def build_active_lever_mechanical_actionability_audit(
             ),
             "next_command_after_decision": (
                 "build-fold-augmented-confounded-proxy-threshold-stress"
+            ),
+        },
+        {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_evidence_extension",
+            "ready_now": bool(
+                lever3_proxy_extension_decision.get(
+                    "evidence_extension_ready_for_threshold_rerun"
+                )
+            ),
+            "blocking_reason": (
+                "confounded_proxy_evidence_extension_scale_gap"
+                if lever3_proxy_extension
+                else "confounded_proxy_evidence_extension_plan_missing"
+            ),
+            "next_command_after_decision": (
+                "build-fold-augmented-confounded-proxy-evidence-extension-plan"
             ),
         },
         {
@@ -26966,6 +27927,13 @@ def build_active_lever_mechanical_actionability_audit(
         )
     ):
         blockers.append("lever3_confounded_proxy_threshold_stress_retention_cost")
+    if (
+        lever3_proxy_extension
+        and not lever3_proxy_extension_decision.get(
+            "evidence_extension_ready_for_threshold_rerun"
+        )
+    ):
+        blockers.append("lever3_confounded_proxy_evidence_extension_scale_gap")
     if lever4_pending:
         blockers.append("family_panel_expert_import_decisions_missing")
     if lever2_pending:
@@ -27055,10 +28023,40 @@ def build_active_lever_mechanical_actionability_audit(
             "lever3_confounded_proxy_threshold_stress_blockers": int(
                 lever3_proxy_stress_counts.get("blockers") or 0
             ),
+            "lever3_confounded_proxy_evidence_request_rows": int(
+                lever3_proxy_extension_counts.get("evidence_request_rows") or 0
+            ),
+            "lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct": int(
+                lever3_proxy_extension_counts.get(
+                    "high_cofactor_min_new_abstained_rows_for_80pct"
+                )
+                or 0
+            ),
+            "lever3_confounded_structural_min_new_abstained_rows_for_80pct": int(
+                lever3_proxy_extension_counts.get(
+                    "same_family_structural_min_new_abstained_rows_for_80pct"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_evidence_extension_blockers": int(
+                lever3_proxy_extension_counts.get("blockers") or 0
+            ),
             "lever4_pending_expert_import_decisions": len(lever4_pending),
             "lever4_import_preview_candidate_if_accepted_items": int(
                 queue_counts.get(
                     "lever4_import_preview_candidate_if_accepted_items"
+                )
+                or 0
+            ),
+            "lever4_acceptance_scenario_rows": int(
+                lever4_acceptance_counts.get("acceptance_scenario_rows") or 0
+            ),
+            "lever4_acceptance_scenario_panels": int(
+                lever4_acceptance_counts.get("panels_represented") or 0
+            ),
+            "lever4_label_factory_candidates_if_all_scenario_rows_accepted": int(
+                lever4_acceptance_counts.get(
+                    "label_factory_gate_candidate_rows_if_all_scenario_rows_accepted"
                 )
                 or 0
             ),
@@ -27161,6 +28159,18 @@ def build_active_lever_mechanical_actionability_audit(
                 if lever3_confounded_proxy_threshold_stress_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
+            "lever3_confounded_proxy_evidence_extension_plan": (
+                _source_path_record(
+                    lever3_confounded_proxy_evidence_extension_plan_path
+                )
+                if lever3_confounded_proxy_evidence_extension_plan_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever4_acceptance_scenario_plan": (
+                _source_path_record(lever4_acceptance_scenario_plan_path)
+                if lever4_acceptance_scenario_plan_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
             "family_panel_label_factory_gate_readiness": (
                 _source_path_record(family_panel_label_factory_gate_readiness_path)
                 if family_panel_label_factory_gate_readiness_path is not None
@@ -27173,16 +28183,18 @@ def build_active_lever_mechanical_actionability_audit(
                 "current decision state."
             ),
             "result": (
-                "Lever 3 is blocked by the P10746 policy caveat, Lever 4 is "
-                "blocked before import preview by expert import decisions, and "
-                "Lever 2 is blocked by locator approvals plus source-free "
-                "event-axis linkers."
+                "Lever 3 is blocked by the P10746 policy caveat plus a "
+                "confounded-proxy calibration/evidence-extension scale gap, "
+                "Lever 4 is blocked before import preview by expert import "
+                "decisions, and Lever 2 is blocked by locator approvals plus "
+                "source-free event-axis linkers."
             ),
             "next_action": (
                 "Review the first twelve queued rows here, starting with "
-                "P10746 and the six Lever 4 import-preview candidates. After "
-                "decisions land, regenerate this audit to verify a mechanical "
-                "gate is actually open."
+                "P10746 and the six Lever 4 import-preview candidates. For "
+                "Lever 3 calibration, add new train/cal proxy evidence outside "
+                "the current scored surface before rerunning the fixed-threshold "
+                "proxy audit."
             ),
         },
     }
@@ -27227,6 +28239,20 @@ def _render_active_lever_mechanical_actionability_audit_report(
         f"{counts.get('lever3_confounded_proxy_retained_gap_rows')}",
         "- Lever 3 proxy stress blockers: "
         f"{counts.get('lever3_confounded_proxy_threshold_stress_blockers')}",
+        "- Lever 3 proxy evidence request rows: "
+        f"{counts.get('lever3_confounded_proxy_evidence_request_rows')}",
+        "- Lever 3 high-cofactor min new abstained rows for 80%: "
+        f"{counts.get('lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct')}",
+        "- Lever 3 structural min new abstained rows for 80%: "
+        f"{counts.get('lever3_confounded_structural_min_new_abstained_rows_for_80pct')}",
+        "- Lever 3 proxy evidence-extension blockers: "
+        f"{counts.get('lever3_confounded_proxy_evidence_extension_blockers')}",
+        "- Lever 4 acceptance scenario rows: "
+        f"{counts.get('lever4_acceptance_scenario_rows')}",
+        "- Lever 4 acceptance scenario panels: "
+        f"{counts.get('lever4_acceptance_scenario_panels')}",
+        "- Lever 4 label-factory candidates if scenario accepted: "
+        f"{counts.get('lever4_label_factory_candidates_if_all_scenario_rows_accepted')}",
         "- Lever 4 label-factory gate input rows: "
         f"{counts['lever4_label_factory_gate_input_rows']}",
         f"- Blockers: {audit['blockers']}",
@@ -27285,6 +28311,8 @@ def write_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_operating_point_audit_path: Path | None = None,
     lever3_confounded_proxy_gap_targets_path: Path | None = None,
     lever3_confounded_proxy_threshold_stress_path: Path | None = None,
+    lever3_confounded_proxy_evidence_extension_plan_path: Path | None = None,
+    lever4_acceptance_scenario_plan_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
@@ -27312,6 +28340,12 @@ def write_active_lever_mechanical_actionability_audit(
         ),
         lever3_confounded_proxy_threshold_stress_path=(
             lever3_confounded_proxy_threshold_stress_path
+        ),
+        lever3_confounded_proxy_evidence_extension_plan_path=(
+            lever3_confounded_proxy_evidence_extension_plan_path
+        ),
+        lever4_acceptance_scenario_plan_path=(
+            lever4_acceptance_scenario_plan_path
         ),
         family_panel_label_factory_gate_readiness_path=(
             family_panel_label_factory_gate_readiness_path

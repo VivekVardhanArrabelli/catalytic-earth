@@ -1,6 +1,6 @@
 # Active Lever Source Decision Intake Preflight - current702
 
-Run: 2026-06-03T11:20:34Z
+Run: 2026-06-03T13:03:02Z
 
 Fail-closed preflight for reviewed source decision packets across active Levers 2/3/4. It compares the source packet rows to the hash-preserving priority templates and reports which downstream application/materialization gates are worth rerunning. It does not apply decisions, copy locator sidecars, write import previews, run label-factory gates, edit labels or registries, train models, or read heldout rows.
 

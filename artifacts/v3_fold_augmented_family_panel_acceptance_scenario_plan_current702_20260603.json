@@ -1,0 +1,236 @@
+{
+  "acceptance_scenario_rows": [
+    {
+      "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+      "decision_effect_if_accepted": "Allows this review row to enter a separate import-preview artifact after the decision context hash is verified; it still creates no label and requires the label-factory gate.",
+      "entry_id": "m_csa:973",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "remaining_gate_after_accept": "accepted_import_preview_then_label_factory_gate",
+      "required_decision": "explicit_accept_family_panel_import_candidate",
+      "required_review_status": "reviewed_expert_import_decision",
+      "would_be_countable_now": false,
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+      "decision_effect_if_accepted": "Allows this review row to enter a separate import-preview artifact after the decision context hash is verified; it still creates no label and requires the label-factory gate.",
+      "entry_id": "m_csa:30",
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "remaining_gate_after_accept": "accepted_import_preview_then_label_factory_gate",
+      "required_decision": "explicit_accept_family_panel_import_candidate",
+      "required_review_status": "reviewed_expert_import_decision",
+      "would_be_countable_now": false,
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+      "decision_effect_if_accepted": "Allows this review row to enter a separate import-preview artifact after the decision context hash is verified; it still creates no label and requires the label-factory gate.",
+      "entry_id": "m_csa:31",
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "remaining_gate_after_accept": "accepted_import_preview_then_label_factory_gate",
+      "required_decision": "explicit_accept_family_panel_import_candidate",
+      "required_review_status": "reviewed_expert_import_decision",
+      "would_be_countable_now": false,
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+      "decision_effect_if_accepted": "Allows this review row to enter a separate import-preview artifact after the decision context hash is verified; it still creates no label and requires the label-factory gate.",
+      "entry_id": "m_csa:448",
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "remaining_gate_after_accept": "accepted_import_preview_then_label_factory_gate",
+      "required_decision": "explicit_accept_family_panel_import_candidate",
+      "required_review_status": "reviewed_expert_import_decision",
+      "would_be_countable_now": false,
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+      "decision_effect_if_accepted": "Allows this review row to enter a separate import-preview artifact after the decision context hash is verified; it still creates no label and requires the label-factory gate.",
+      "entry_id": "m_csa:10",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "remaining_gate_after_accept": "accepted_import_preview_then_label_factory_gate",
+      "required_decision": "explicit_accept_family_panel_import_candidate",
+      "required_review_status": "reviewed_expert_import_decision",
+      "would_be_countable_now": false,
+      "would_enter_import_preview_if_accepted": true
+    },
+    {
+      "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+      "decision_effect_if_accepted": "Allows this review row to enter a separate import-preview artifact after the decision context hash is verified; it still creates no label and requires the label-factory gate.",
+      "entry_id": "m_csa:191",
+      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "remaining_gate_after_accept": "accepted_import_preview_then_label_factory_gate",
+      "required_decision": "explicit_accept_family_panel_import_candidate",
+      "required_review_status": "reviewed_expert_import_decision",
+      "would_be_countable_now": false,
+      "would_enter_import_preview_if_accepted": true
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603",
+  "blockers": [
+    "expert_import_decisions_not_recorded",
+    "some_family_panel_rows_still_blocked_after_accept_decision"
+  ],
+  "counts": {
+    "acceptance_scenario_rows": 6,
+    "blockers": 2,
+    "countable_label_candidate_count_now": 0,
+    "decision_stub_rows": 22,
+    "label_factory_gate_candidate_rows_if_all_scenario_rows_accepted": 6,
+    "non_preview_rows_by_primary_blocker": {
+      "completed_source_check_review_only_no_promotion": 11,
+      "source_free_locator_or_primary_channel_missing": 5
+    },
+    "non_preview_rows_if_accepted": 16,
+    "panels_represented": 5,
+    "scenario_rows_by_panel": {
+      "flavin_monooxygenase_and_flavin_oxygen_transfer": 1,
+      "glycyl_radical_or_thiamine_radical_lyase_boundary": 2,
+      "lipoamide_or_sulfur_transfer_redox_boundary": 1,
+      "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 1,
+      "thiol_disulfide_oxidoreductase_isomerase_boundary": 1
+    }
+  },
+  "created_utc": "2026-06-03T13:20:58Z",
+  "decision": {
+    "acceptance_scenario_ready_for_review": true,
+    "apply_expert_decisions_now": false,
+    "new_countable_labels_authorized": false,
+    "next_gate": "If reviewers explicitly accept any scenario rows with unchanged decision_context_sha256 values and reviewed_expert_import_decision status, rerun the expert decision application, then build the accepted import preview and label-factory readiness artifacts. Do not count labels until the label-factory gate passes.",
+    "run_label_factory_gate_now": false,
+    "write_import_preview_now": false
+  },
+  "guardrails": {
+    "counterfactual_only": true,
+    "family_panel_rows_countable_now": false,
+    "heldout_rows_used_for_training": false,
+    "import_preview_written": false,
+    "imports_or_promotions_performed": false,
+    "label_factory_gate_run": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "6 family-panel rows could reach import preview if explicitly accepted; zero are countable now.",
+    "next_action": "Review the scenario rows first if the goal is to widen the countable benchmark surface fastest; keep the non-preview rows review-only until their primary blockers clear.",
+    "result": "The scenario isolates the near-term Lever 4 upside from rows that still need family-promotion, locator, or primary-channel work after an accept decision."
+  },
+  "non_preview_rows_if_accepted": [
+    {
+      "entry_id": "m_csa:750",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "reason": "Does not make the row import-preview ready by itself; source-free locator/coordinate policy and primary-channel scoring blockers must clear first."
+    },
+    {
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "m_csa:131",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "m_csa:132",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "m_csa:551",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "m_csa:267",
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "external_glycoside_panel",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "reason": "Does not make the row import-preview ready by itself; source-free locator/coordinate policy and primary-channel scoring blockers must clear first."
+    },
+    {
+      "entry_id": "m_csa:116",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "mh_073",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "mh_064",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "reason": "Does not make the row import-preview ready by itself; source-free locator/coordinate policy and primary-channel scoring blockers must clear first."
+    },
+    {
+      "entry_id": "mh_065",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "reason": "Does not make the row import-preview ready by itself; source-free locator/coordinate policy and primary-channel scoring blockers must clear first."
+    },
+    {
+      "entry_id": "mh_066",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "mh_067",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "mh_068",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "reason": "Does not make the row import-preview ready by itself; an explicit family-promotion override is still required because the completed source check is review-only/no-promotion."
+    },
+    {
+      "entry_id": "mh_072",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "reason": "Does not make the row import-preview ready by itself; source-free locator/coordinate policy and primary-channel scoring blockers must clear first."
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.family_panel_acceptance_scenario_plan",
+  "scope": "Review-only Lever 4 counterfactual scenario for the pending expert import decision packet. It lists rows that would become accepted import-preview candidates if explicitly accepted with unchanged context hashes. It does not apply decisions, write import preview rows, run label-factory gates, edit labels, or make rows countable.",
+  "source_artifacts": {
+    "expert_import_decision_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.json",
+      "sha256": "ea31f134d67b5f5692f7b55e5fbf1b58fabcf73d67caa1dfc4853e11bd1a40c8"
+    }
+  },
+  "status": "family_panel_acceptance_scenario_plan_ready_review_only"
+}

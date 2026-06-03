@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 328
-- Measured elapsed time: 9790.9 minutes (163.18 hours)
+- Entries: 329
+- Measured elapsed time: 9814.9 minutes (163.58 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 3101.4 measured minutes (51.69 hours)
+- post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
 - v3: 2578.1 measured minutes (42.97 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3480
-- Evidence references logged: 2882
+- Artifact references logged: 3486
+- Evidence references logged: 2883
 
 ## Recent Entries
-
-### 2026-05-26T03:29:07.990468+00:00 - v3
-
-- Task: mechanism evaluation sharpening and v2 sublabel audit
-- Time mode: measured
-- Measured minutes: 14.5
-- Started: 2026-05-26T03:16:20Z
-- Ended: 2026-05-26T03:30:50Z
-- Artifacts: artifacts/v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json, artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json, artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json, work/mechanism_eval_sharpening_handoff_20260525.md, work/handoff.md
-- Evidence: Fold-control pilot found 3 retained Foldseek OOS-vs-primary trap rows and 0 primary-vs-primary retained traps; orphan pilot found 35 heldout primary near-orphan rows with sequence-NN 25 useful abstentions 6 correct 4 wrong confident transfers; v2 audit assigned 226 v1 primary labels across 23 proposal-only sublabel buckets with 9 ready-after-expert-approval candidates
-- Notes: No label import registry edit fingerprint edit ontology edit production scoring threshold model training PLM embedding representation branch artifact edit or Foldseek win claim occurred; CATH/SCOP unavailable so Foldseek TM is provisional.
 
 ### 2026-05-26T04:27:02.589694+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, work/handoff.md, work/status.md
 - Evidence: 1315 pytest passed, 1270 unittest passed, 702 labels validated, 4 changed/new JSON artifacts parsed, Lever 3 fixed threshold kept unchanged, 1/1 high-cofactor proxy retained, 4/17 same-family structural proxy abstained, 14 train/cal retained proxy gap rows, 80pct structural proxy abstain would retain only 15/34 calibration in-scope rows
 - Notes: No labels registries ontologies imports production thresholds source decisions locator sidecars event linkers model weights or heldout threshold tuning changed.
+
+### 2026-06-03T13:26:31.723906+00:00 - post-v2
+
+- Task: Lever 3 proxy evidence extension and Lever 4 acceptance scenario
+- Time mode: measured
+- Measured minutes: 24.0
+- Started: 2026-06-03T13:02:11Z
+- Ended: 2026-06-03T13:26:11Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json, work/fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.md, artifacts/v3_fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603.json, work/fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md
+- Evidence: Lever 3 fixed threshold unchanged; high-cofactor proxy needs 4 new abstained train/cal rows for 80pct and structural proxy needs 48; current scored surface has 0 unused high-cofactor rows and 11 loose same-family extras with 9/28 abstained; Lever 4 has 6 accept-if-accepted scenario rows across 5 panels and 0 countable labels now
+- Notes: No labels registries ontologies imports production thresholds source decisions sidecars model weights or heldout threshold tuning changed.
 
 ## Expectation Updates
 

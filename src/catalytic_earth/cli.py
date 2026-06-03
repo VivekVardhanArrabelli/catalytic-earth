@@ -83,6 +83,7 @@ from .northstar_next_levers import (
     write_fold_augmented_family_panel_accepted_import_preview,
     write_fold_augmented_family_panel_expert_import_decision_packet,
     write_fold_augmented_family_panel_expert_import_decision_application,
+    write_fold_augmented_family_panel_acceptance_scenario_plan,
     write_fold_augmented_family_panel_import_preview_blocker_gate,
     write_fold_augmented_family_panel_label_factory_gate_readiness,
     write_fold_augmented_family_panel_m_csa_primary_channel_repair,
@@ -100,6 +101,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_operating_point_audit,
     write_fold_augmented_confounded_proxy_gap_targets,
     write_fold_augmented_confounded_proxy_threshold_stress,
+    write_fold_augmented_confounded_proxy_evidence_extension_plan,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_non_residue_interaction_sidecar_policy_preflight,
     write_fold_augmented_p23007_alternate_accession_scout,
@@ -12324,6 +12326,34 @@ def cmd_build_fold_augmented_confounded_proxy_threshold_stress(
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_evidence_extension_plan(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_proxy_evidence_extension_plan(
+        confounded_proxy_operating_point_audit_path=Path(
+            args.confounded_proxy_operating_point_audit
+        ),
+        confounded_proxy_gap_targets_path=Path(args.confounded_proxy_gap_targets),
+        confounded_proxy_threshold_stress_path=Path(
+            args.confounded_proxy_threshold_stress
+        ),
+        train_cal_oos_surface_path=Path(args.train_cal_oos_surface)
+        if args.train_cal_oos_surface
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy evidence extension plan to "
+        f"{args.out} (high-cofactor min new abstained rows for 80%: "
+        f"{counts.get('high_cofactor_min_new_abstained_rows_for_80pct')}, "
+        f"same-family structural min new abstained rows for 80%: "
+        f"{counts.get('same_family_structural_min_new_abstained_rows_for_80pct')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet(
     args: argparse.Namespace,
 ) -> int:
@@ -12581,6 +12611,24 @@ def cmd_build_fold_augmented_family_panel_expert_import_decision_packet(
     return 0
 
 
+def cmd_build_fold_augmented_family_panel_acceptance_scenario_plan(
+    args: argparse.Namespace,
+) -> int:
+    plan = write_fold_augmented_family_panel_acceptance_scenario_plan(
+        expert_import_decision_packet_path=Path(args.expert_import_decision_packet),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = plan.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel acceptance scenario plan to "
+        f"{args.out} (scenario rows: "
+        f"{counts.get('acceptance_scenario_rows')}, panels: "
+        f"{counts.get('panels_represented')})"
+    )
+    return 0
+
+
 def cmd_apply_fold_augmented_family_panel_expert_import_decision(
     args: argparse.Namespace,
 ) -> int:
@@ -12724,6 +12772,16 @@ def cmd_build_active_lever_mechanical_actionability_audit(
             args.lever3_confounded_proxy_threshold_stress
         )
         if args.lever3_confounded_proxy_threshold_stress
+        else None,
+        lever3_confounded_proxy_evidence_extension_plan_path=Path(
+            args.lever3_confounded_proxy_evidence_extension_plan
+        )
+        if args.lever3_confounded_proxy_evidence_extension_plan
+        else None,
+        lever4_acceptance_scenario_plan_path=Path(
+            args.lever4_acceptance_scenario_plan
+        )
+        if args.lever4_acceptance_scenario_plan
         else None,
         family_panel_label_factory_gate_readiness_path=Path(
             args.family_panel_label_factory_gate_readiness
@@ -28191,6 +28249,59 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_confounded_proxy_threshold_stress
     )
 
+    confounded_proxy_extension_plan = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-evidence-extension-plan",
+        help=(
+            "plan train/cal confounded-proxy evidence extension without changing "
+            "the fixed Lever 3 threshold"
+        ),
+    )
+    confounded_proxy_extension_plan.add_argument(
+        "--confounded-proxy-operating-point-audit",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extension_plan.add_argument(
+        "--confounded-proxy-gap-targets",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_gap_targets_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extension_plan.add_argument(
+        "--confounded-proxy-threshold-stress",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extension_plan.add_argument(
+        "--train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_"
+            "surface_scores_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extension_plan.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_"
+            "plan_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_extension_plan.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_evidence_extension_plan_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_extension_plan.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_evidence_extension_plan
+    )
+
     p10746_caveat_decision_packet = subparsers.add_parser(
         "build-fold-augmented-p10746-deployment-caveat-decision-packet",
         help=(
@@ -28665,6 +28776,38 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_family_panel_expert_import_decision_packet
     )
 
+    family_panel_acceptance_scenario = subparsers.add_parser(
+        "build-fold-augmented-family-panel-acceptance-scenario-plan",
+        help=(
+            "summarize which pending family-panel expert decisions would enter "
+            "import preview if explicitly accepted, without applying decisions"
+        ),
+    )
+    family_panel_acceptance_scenario.add_argument(
+        "--expert-import-decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    family_panel_acceptance_scenario.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_acceptance_scenario_"
+            "plan_current702_20260603.json"
+        ),
+    )
+    family_panel_acceptance_scenario.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_acceptance_scenario_plan_"
+            "current702_20260603.md"
+        ),
+    )
+    family_panel_acceptance_scenario.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_acceptance_scenario_plan
+    )
+
     family_panel_expert_import_application = subparsers.add_parser(
         "apply-fold-augmented-family-panel-expert-import-decision",
         help=(
@@ -28908,6 +29051,20 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_"
             "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-evidence-extension-plan",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_"
+            "plan_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever4-acceptance-scenario-plan",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_acceptance_scenario_"
+            "plan_current702_20260603.json"
         ),
     )
     active_lever_actionability.add_argument(

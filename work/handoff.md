@@ -50,6 +50,115 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 13
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T13:02:11Z`
+- STARTED_LOCAL: `2026-06-03T08:02:11-0500 America/Chicago`
+- ENDED_AT: `2026-06-03T13:26:11Z`
+- ENDED_LOCAL: `2026-06-03T08:26:11-0500 America/Chicago`
+- ELAPSED_MINUTES: `24.0`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired at `2026-06-03T13:02:11Z`
+  local `2026-06-03T08:02:11-0500 America/Chicago`.
+
+#### Current intent
+
+Continue from Run 12 inside active Levers 2/3/4. First sync current `main`,
+then follow the active source-decision intake gate. If reviewed source
+decisions are still absent, pivot to the highest-value mechanical Lever 2/3/4
+move without editing source-of-truth decisions.
+
+#### What changed
+
+- Source-decision intake remained closed: 78/78 active source decisions are
+  still pending, with 0 explicit decisions, 0 invalid rows, and 0 follow-on
+  gates ready. No source packets were edited.
+- Added
+  `v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603`
+  and report. It keeps the fixed `combined_mean_geometry_fold` threshold
+  `0.44155`, treats the prior train/cal proxy operating-point result as the
+  calibration floor, and quantifies the extra evidence needed to make the
+  confounded-safe claim deployable without tuning upward. At the fixed
+  threshold, the high-cofactor proxy needs 4 more abstained train/cal rows to
+  reach 80% abstention; the same-family structural proxy needs 48 more
+  abstained train/cal rows.
+- The current scored train/cal surface has no unused high-cofactor proxy rows
+  and only 11 additional loose same-family rows under relaxed proxy membership;
+  even the loose same-family pool is 9/28 abstained (`0.3214`), far below the
+  80% bar. The only unscored current-surface candidate is `m_csa:204` /
+  `P10746`, still missing predicted geometry and still requiring the explicit
+  caveat or approved non-residue sidecar path before deployment closure.
+- Integrated the Lever 3 evidence-extension plan into
+  `v3_active_lever_mechanical_actionability_audit_current702_20260603`.
+  The audit now records 14 retained proxy evidence-request rows, minimum new
+  abstained-row needs of 4 high-cofactor and 48 structural rows, and 6
+  evidence-extension blockers.
+- Added
+  `v3_fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603`
+  and report. This is review-only and counterfactual: if expert import
+  decisions are explicitly accepted, 6 rows across 5 family panels can enter
+  import preview (`m_csa:973`, `m_csa:30`, `m_csa:31`, `m_csa:448`,
+  `m_csa:10`, and `m_csa:191`). The other 16 stubs remain non-preview:
+  11 are completed-source-check review-only rows with no promotion, and 5 are
+  blocked by missing source-free locator or primary-channel evidence.
+- Integrated the Lever 4 acceptance scenario into the active mechanical
+  actionability audit: 6 acceptance-scenario rows, 5 panels, and 6
+  label-factory candidates if all scenario rows are accepted. No labels count
+  now; the scenario only names the next import-gate input if reviewed expert
+  decisions arrive.
+- Added CLI registrations plus unit, CLI-registration, and current-artifact
+  regression coverage for both new plan builders and the active actionability
+  integration.
+- Early complete after producing bounded Lever 3/4 artifacts and running full
+  validation. No risky new work was started after the measured wrap point.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, source decision packets, sidecars, reviewer decisions, or source
+  evidence rows were edited.
+- No heldout rows were used for training or threshold tuning. The Lever 3
+  evidence-extension plan is train/cal-only and keeps threshold `0.44155`
+  unchanged; the Lever 4 acceptance scenario is review-only/counterfactual and
+  does not count labels or apply import decisions.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were
+  introduced as predictive features.
+
+#### Verification
+
+- Focused coverage:
+  `PYTHONPATH=src python -m pytest -q tests/test_northstar_next_levers.py -k 'acceptance_scenario_plan or confounded_proxy_evidence_extension_plan or active_lever_mechanical_actionability' tests/test_geometry_artifact_regression.py -k 'acceptance_scenario_plan or confounded_proxy_evidence_extension_plan or active_lever_mechanical_actionability' tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered`
+  passed: 7 passed, 324 deselected.
+- `PYTHONPATH=src python -m compileall -q src`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
+  and JSON parse checks for the changed/new current artifacts passed.
+- `PYTHONPATH=src python -m pytest -q`: 1319 passed, 139 subtests passed, one
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1274 tests passed,
+  same existing warning.
+
+#### Exact next action
+
+- If reviewed source decisions arrive, edit only source decision packets with
+  hashes unchanged, then rerun
+  `build-active-lever-source-decision-intake-preflight`,
+  `build-active-lever-decision-application-contract-audit`, and only the
+  matching application/materialization gate.
+- Lever 3: do not raise the fixed `0.44155`
+  `combined_mean_geometry_fold` threshold. New train/cal proxy evidence outside
+  the current scored surface is required before a deployable proxy calibration
+  rerun can close; `P10746` remains the only unscored current-surface
+  candidate, and the explicit caveat or non-residue sidecar remains required.
+- Lever 4: review the six acceptance-scenario rows first (`m_csa:973`,
+  `m_csa:30`, `m_csa:31`, `m_csa:448`, `m_csa:10`, `m_csa:191`). If accepted
+  with unchanged hashes and `reviewed_expert_import_decision`, rerun expert
+  import application, accepted preview, and label-factory readiness. Do not
+  count labels until that gate passes.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 12
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

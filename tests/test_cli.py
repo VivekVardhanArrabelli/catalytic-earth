@@ -858,6 +858,16 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-family-panel-acceptance-"
+                    "scenario-plan"
+                ),
+                (
+                    "cmd_build_fold_augmented_family_panel_acceptance_"
+                    "scenario_plan"
+                ),
+            ),
+            (
+                (
                     "apply-fold-augmented-family-panel-expert-import-"
                     "decision"
                 ),
@@ -1070,6 +1080,16 @@ class CliTests(unittest.TestCase):
             (
                 "build-fold-augmented-confounded-proxy-threshold-stress",
                 "cmd_build_fold_augmented_confounded_proxy_threshold_stress",
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-evidence-extension-"
+                    "plan"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_evidence_"
+                    "extension_plan"
+                ),
             ),
             (
                 (
