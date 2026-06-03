@@ -1057,6 +1057,21 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                "audit-fold-augmented-confounded-proxy-operating-point",
+                (
+                    "cmd_audit_fold_augmented_confounded_proxy_operating_"
+                    "point"
+                ),
+            ),
+            (
+                "build-fold-augmented-confounded-proxy-gap-targets",
+                "cmd_build_fold_augmented_confounded_proxy_gap_targets",
+            ),
+            (
+                "build-fold-augmented-confounded-proxy-threshold-stress",
+                "cmd_build_fold_augmented_confounded_proxy_threshold_stress",
+            ),
+            (
                 (
                     "build-fold-augmented-p10746-deployment-caveat-decision-"
                     "packet"

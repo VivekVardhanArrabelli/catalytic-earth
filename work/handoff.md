@@ -50,6 +50,108 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 12
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T12:02:22Z`
+- STARTED_LOCAL: `2026-06-03T07:02:22-0500 CDT`
+- ENDED_AT: `2026-06-03T12:32:08Z`
+- ENDED_LOCAL: `2026-06-03T07:32:08-0500 CDT`
+- ELAPSED_MINUTES: `29.8`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired at `2026-06-03T12:02:22Z`
+  local `2026-06-03T07:02:22-0500 CDT`.
+
+#### Current intent
+
+Continue from Run 11. Follow the source-decision intake gate first; if no
+reviewed source decisions are available, pivot to the highest-value mechanical
+move inside active Levers 2/3/4 without editing source-of-truth decisions.
+
+#### What changed
+
+- Source-decision intake remained closed: 78/78 active source decisions are
+  still pending, with 0 explicit decisions, 0 invalid rows, and 0 follow-on
+  gates ready. No source packets were edited.
+- Added
+  `v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603`
+  and report. It keeps the fixed `combined_mean_geometry_fold` threshold
+  `0.44155`, reuses the canonical cofactor-signature threshold `0.5`, and
+  audits train/cal-only confounded proxies without selecting or changing any
+  threshold. Result: the carried heldout confounded readout remains 5/6
+  abstained with 45/47 in-scope retained, but calibration proxies are weaker:
+  0/1 high-cofactor proxy rows abstain and 4/17 same-family structural proxy
+  rows abstain.
+- Added
+  `v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603`
+  and report. It turns the proxy failure into 14 retained train/cal gap rows:
+  1 high-cofactor retained gap and 13 same-family structural retained gaps
+  (8 hard retained, 5 near-threshold).
+- Added
+  `v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603`
+  and report. Counterfactual train/cal-only stress shows raising the fixed
+  threshold to force 80% same-family structural proxy abstention would require
+  threshold `0.62295` and retain only 15/34 calibration in-scope rows
+  (`0.4412`), so the deployable path should not tune upward from the heldout
+  confounded readout. The high-cofactor 80% proxy stress would require
+  threshold `0.4682` and retain 30/34 (`0.8824`), below the 90% retention bar.
+- Integrated those Lever 3 proxy/stress outputs into
+  `v3_active_lever_mechanical_actionability_audit_current702_20260603`.
+  The audit still reports 0 runnable mechanical gates, now with explicit Lever
+  3 calibration-gap blockers: 17 same-family structural proxy rows, 4
+  abstained, 14 retained gap rows, and 2 proxy-threshold stress blockers.
+- Added CLI registrations plus unit, CLI-registration, and current-artifact
+  regression coverage for the new proxy audit, gap-target packet, threshold
+  stress diagnostic, and actionability integration.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, source decision packets, locator sidecars, event-axis linkers, or
+  reviewer decisions were edited.
+- No heldout rows were used for training or threshold tuning. The new stress
+  thresholds are train/cal-only counterfactual diagnostics and were not applied
+  as operating or production thresholds.
+- The active Lever 2/4 gates remain fail-closed: 55 locator approvals pending,
+  0 event-axis linker rows, 22 family-panel expert import decisions pending,
+  and 0 label-factory gate input rows.
+
+#### Verification
+
+- `PYTHONPATH=src python -m pytest -q`: 1315 passed, 137 subtests passed, one
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1270 passed, same
+  existing warning.
+- Focused new/changed coverage passed:
+  `tests/test_northstar_next_levers.py -k 'active_lever_mechanical_actionability or confounded_proxy or gap_targets or threshold_stress'`,
+  `tests/test_geometry_artifact_regression.py -k 'active_lever_mechanical_actionability_audit_current_counts or confounded_proxy'`,
+  and
+  `tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered`.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 702 labels, 8
+  fingerprints, 15 ontology families, and 12 source records validated.
+- `PYTHONPATH=src python -m compileall -q src`, `git diff --check`, and JSON
+  parse checks for the three new Lever 3 artifacts plus the regenerated active
+  actionability audit passed.
+
+#### Exact next action
+
+- Source decisions are still the only gate opener for mechanical application.
+  If reviewed decisions arrive, edit only the source decision packets with
+  hashes unchanged, then rerun
+  `build-active-lever-source-decision-intake-preflight`,
+  `build-active-lever-decision-application-contract-audit`, and only the
+  matching application/materialization gate.
+- For Lever 3 specifically: do not raise the fixed `0.44155`
+  `combined_mean_geometry_fold` threshold from heldout behavior. Resolve the
+  P10746 explicit caveat decision or approved non-residue sidecar first. If a
+  stronger deployable confounded calibration claim is required, add/review more
+  train/cal confounded proxy evidence starting from
+  `v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603`, then
+  rerun the train/cal threshold contract/stress before any deployment claim.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 11
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

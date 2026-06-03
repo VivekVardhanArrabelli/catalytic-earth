@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 327
-- Measured elapsed time: 9761.1 minutes (162.69 hours)
+- Entries: 328
+- Measured elapsed time: 9790.9 minutes (163.18 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
-- post-v2: 3071.6 measured minutes (51.19 hours)
+- post-v2: 3101.4 measured minutes (51.69 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
 - v3: 2578.1 measured minutes (42.97 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3469
-- Evidence references logged: 2873
+- Artifact references logged: 3480
+- Evidence references logged: 2882
 
 ## Recent Entries
-
-### 2026-05-25T15:10:30.958833+00:00 - sequence-nn-baseline
-
-- Task: current702 split assignment repair and deterministic sequence NN baseline
-- Time mode: measured
-- Measured minutes: 15.333
-- Started: 2026-05-25T14:54:56Z
-- Ended: 2026-05-25T15:10:16Z
-- Artifacts: artifacts/v3_sequence_split_assignment_repair_current702_20260525.json, artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json, artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl, artifacts/v3_sequence_nn_metrics_current702_20260525.json, src/catalytic_earth/sequence_nn.py, src/catalytic_earth/cli.py, tests/test_sequence_nn.py, README.md, work/handoff.md
-- Evidence: split assignment missing count 0, sequence identity target achieved max 0.284, sequence NN metrics reported 140 predictions, validate passed, 937 unit tests passed, diff check passed, jq JSON and JSONL parsing passed, artifact admission guard passed
-- Notes: No label import registry edit fingerprint edit ontology edit scoring threshold model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred.
 
 ### 2026-05-26T03:29:07.990468+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_active_lever_decision_application_contract_audit_current702_20260603.json, artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json, artifacts/v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, work/handoff.md, work/status.md
 - Evidence: 1309 pytest passed, 1264 unittest passed, 702 labels validated, 12 changed JSON artifacts parsed, 0 active decision-application contract violations, 78 source decisions still pending, 0 active mechanical gates runnable
 - Notes: No labels registries ontologies imports production thresholds model weights locator sidecars reviewer decisions source decision values or heldout threshold reads changed.
+
+### 2026-06-03T12:32:20.787493+00:00 - post-v2
+
+- Task: Lever 3 confounded proxy calibration stress
+- Time mode: measured
+- Measured minutes: 29.767
+- Started: 2026-06-03T12:02:22Z
+- Ended: 2026-06-03T12:32:08Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, work/handoff.md, work/status.md
+- Evidence: 1315 pytest passed, 1270 unittest passed, 702 labels validated, 4 changed/new JSON artifacts parsed, Lever 3 fixed threshold kept unchanged, 1/1 high-cofactor proxy retained, 4/17 same-family structural proxy abstained, 14 train/cal retained proxy gap rows, 80pct structural proxy abstain would retain only 15/34 calibration in-scope rows
+- Notes: No labels registries ontologies imports production thresholds source decisions locator sidecars event linkers model weights or heldout threshold tuning changed.
 
 ## Expectation Updates
 

@@ -24,6 +24,9 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact,
     build_fold_augmented_fixed_threshold_combined_rerun_readout,
     build_fold_augmented_fixed_threshold_rerun_readiness,
+    build_fold_augmented_confounded_proxy_operating_point_audit,
+    build_fold_augmented_confounded_proxy_gap_targets,
+    build_fold_augmented_confounded_proxy_threshold_stress,
     build_fold_augmented_family_panel_accepted_import_preview,
     build_fold_augmented_family_panel_expert_import_decision_application,
     build_fold_augmented_family_panel_expert_import_decision_packet,
@@ -1751,6 +1754,367 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ],
             1.0,
         )
+
+    def test_confounded_proxy_operating_point_audit_keeps_fixed_threshold(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            threshold = root / "threshold.json"
+            surface = root / "surface.json"
+            deployment = root / "deployment.json"
+            closure = root / "closure.json"
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.5,
+                                "calibration_in_scope_retain_recall": 0.9,
+                            },
+                            "heldout_final_eval_at_90pct_oos_calibrated_threshold": {
+                                "threshold": 0.5,
+                                "heldout_in_scope_retained": 9,
+                                "heldout_in_scope_total": 10,
+                                "heldout_confounded_oos_abstained": 2,
+                                "heldout_confounded_oos_total": 2,
+                            },
+                        },
+                        "threshold_contract": {
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.45
+                                }
+                            },
+                            "geometry_top1_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.35
+                                }
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                    "geometry_top1_score": 0.4,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_true_fingerprint_id": (
+                                        "metal_dependent_hydrolase"
+                                    )
+                                },
+                                "predicted_geometry_top1": {
+                                    "fingerprint_id": "metal_dependent_hydrolase"
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.7,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.05,
+                                    "combined_mean_geometry_fold": 0.3,
+                                    "fold_nearest_atlas_tm_score": 0.4,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            deployment.write_text(
+                json.dumps(
+                    {
+                        "status": "predicted_structure_fold_channel_deployment_inputs_predicted_only",
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "row_score_rows": 3,
+                            "coordinate_request_rows": 3,
+                        },
+                        "decision": {"deployment_input_contract_passed": True},
+                        "deployment_validity": {
+                            "predicted_structure_vs_atlas_only": True
+                        },
+                        "guardrails": {
+                            "experimental_pdb_metadata_used_as_channel_input": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            closure.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "heldout_confounded_oos_abstained": 2,
+                            "heldout_confounded_oos_total": 2,
+                            "remaining_combined_score_blocker_rows": 1,
+                        },
+                        "decision": {
+                            "confounded_subset_target_met_for_research": True,
+                            "in_scope_retention_ok_at_operating_point": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_confounded_proxy_operating_point_audit(
+                expanded_oos_calibrated_threshold_contract_path=threshold,
+                train_cal_oos_surface_path=surface,
+                deployment_input_audit_path=deployment,
+                post_rerun_confounded_closure_path=closure,
+                artifact_id="custom_confounded_proxy_audit",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_confounded_proxy_audit")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_confounded_proxy_operating_point_ready_with_proxy_caveat",
+        )
+        self.assertTrue(audit["decision"]["fixed_threshold_preserved"])
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(
+            audit["decision"]["calibration_high_cofactor_proxy_target_met"]
+        )
+        self.assertTrue(
+            audit["decision"]["calibration_same_family_structural_proxy_target_met"]
+        )
+        self.assertEqual(
+            audit["counts"]["high_cofactor_proxy_calibration_oos_rows"], 2
+        )
+        self.assertEqual(
+            audit["counts"]["high_cofactor_proxy_abstained_at_fixed_threshold"], 1
+        )
+        self.assertEqual(
+            audit["counts"]["same_family_structural_proxy_calibration_oos_rows"], 1
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["same_family_structural_proxy_abstained_at_fixed_threshold"],
+            1,
+        )
+        self.assertIn(
+            "calibration_high_cofactor_proxy_target_not_met",
+            audit["blockers"],
+        )
+        self.assertNotIn(
+            "calibration_same_family_structural_proxy_target_not_met",
+            audit["blockers"],
+        )
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(
+            audit["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
+    def test_confounded_proxy_gap_targets_prioritize_retained_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            proxy = root / "proxy.json"
+            proxy.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.5,
+                        },
+                        "calibration_proxy_readout": {
+                            "high_cofactor_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "threshold_margin": 0.2,
+                                    "abstains_at_fixed_threshold": False,
+                                    "cofactor_proxy_score": 0.9,
+                                    "nearest_train_atlas_true_fingerprint_id": (
+                                        "heme_peroxidase_oxidase"
+                                    ),
+                                    "predicted_geometry_top1_fingerprint_id": (
+                                        "heme_peroxidase_oxidase"
+                                    ),
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "threshold_margin": -0.1,
+                                    "abstains_at_fixed_threshold": True,
+                                },
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "threshold_margin": 0.2,
+                                    "abstains_at_fixed_threshold": False,
+                                    "cofactor_proxy_score": 0.9,
+                                    "nearest_train_atlas_true_fingerprint_id": (
+                                        "heme_peroxidase_oxidase"
+                                    ),
+                                    "predicted_geometry_top1_fingerprint_id": (
+                                        "heme_peroxidase_oxidase"
+                                    ),
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "combined_mean_geometry_fold": 0.56,
+                                    "threshold_margin": 0.06,
+                                    "abstains_at_fixed_threshold": False,
+                                    "cofactor_proxy_score": 0.1,
+                                    "nearest_train_atlas_true_fingerprint_id": (
+                                        "metal_dependent_hydrolase"
+                                    ),
+                                    "predicted_geometry_top1_fingerprint_id": (
+                                        "metal_dependent_hydrolase"
+                                    ),
+                                },
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_confounded_proxy_gap_targets(
+                confounded_proxy_operating_point_audit_path=proxy,
+                artifact_id="custom_gap_targets",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_gap_targets")
+        self.assertEqual(
+            audit["status"], "fold_augmented_confounded_proxy_gap_targets_ready"
+        )
+        self.assertEqual(audit["counts"]["retained_proxy_gap_rows"], 2)
+        self.assertEqual(audit["counts"]["high_cofactor_retained_proxy_gap_rows"], 1)
+        self.assertEqual(
+            audit["counts"]["same_family_structural_retained_proxy_gap_rows"], 2
+        )
+        rows = {row["entry_id"]: row for row in audit["retained_proxy_gap_rows"]}
+        self.assertEqual(
+            rows["m_csa:1"]["proxy_membership"],
+            ["high_cofactor_signature_proxy", "same_family_structural_proxy"],
+        )
+        self.assertEqual(
+            rows["m_csa:1"]["priority"],
+            "priority_1_high_cofactor_retained_proxy_gap",
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+
+    def test_confounded_proxy_threshold_stress_is_counterfactual(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            train_cal = root / "train_cal.json"
+            expanded = root / "expanded.json"
+            proxy = root / "proxy.json"
+            train_cal.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.8},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.6},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            expanded.write_text(
+                json.dumps(
+                    {
+                        "calibration_oos_negative_row_scores": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.4},
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.7},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            proxy.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.5,
+                        },
+                        "calibration_proxy_readout": {
+                            "high_cofactor_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:5",
+                                    "combined_mean_geometry_fold": 0.4,
+                                }
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:6",
+                                    "combined_mean_geometry_fold": 0.4,
+                                },
+                                {
+                                    "entry_id": "m_csa:7",
+                                    "combined_mean_geometry_fold": 0.7,
+                                },
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_confounded_proxy_threshold_stress(
+                train_cal_threshold_contract_path=train_cal,
+                expanded_oos_calibrated_threshold_contract_path=expanded,
+                confounded_proxy_operating_point_audit_path=proxy,
+                artifact_id="custom_threshold_stress",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_threshold_stress")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_confounded_proxy_threshold_stress_ready",
+        )
+        structural = audit["threshold_stress"]["same_family_structural_proxy"]
+        self.assertEqual(
+            structural["counterfactual_targets"]["0.5"]["threshold"], 0.6
+        )
+        self.assertEqual(
+            structural["counterfactual_targets"]["0.5"][
+                "calibration_in_scope_retain_recall"
+            ],
+            1.0,
+        )
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+        self.assertTrue(
+            audit["guardrails"]["counterfactual_thresholds_computed_not_applied"]
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
 
     def test_fold_only_negative_surface_keeps_fold_scored_geometry_gaps(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

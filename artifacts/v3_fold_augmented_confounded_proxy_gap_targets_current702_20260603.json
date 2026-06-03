@@ -1,0 +1,249 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603",
+  "counts": {
+    "high_cofactor_retained_proxy_gap_rows": 1,
+    "nearest_family_counts": {
+      "flavin_dehydrogenase_reductase": 1,
+      "metal_dependent_hydrolase": 13
+    },
+    "priority_counts": {
+      "priority_1_high_cofactor_retained_proxy_gap": 1,
+      "priority_2_hard_retained_structural_proxy_gap": 8,
+      "priority_3_near_threshold_retained_structural_proxy_gap": 5
+    },
+    "retained_proxy_gap_rows": 14,
+    "same_family_structural_retained_proxy_gap_rows": 13
+  },
+  "created_utc": "2026-06-03T12:17:17Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_closed_now": false,
+    "gap_targets_are_train_cal_only": true,
+    "next_gate": "Use these retained train/cal proxy rows to design or review additional calibration-confounded proxy evidence. Do not adjust the fixed operating threshold from these rows without rerunning the full train/cal contract, and do not tune on heldout."
+  },
+  "fixed_operating_point": {
+    "calibration_selection": {
+      "calibration_in_scope_retain_recall": 0.9118,
+      "calibration_in_scope_retained": 31,
+      "calibration_in_scope_total": 34,
+      "calibration_oos_abstain_recall": 0.4,
+      "calibration_oos_abstained": 30,
+      "calibration_oos_total": 75,
+      "min_retain_target": 0.9,
+      "objective": "maximize_calibration_oos_abstain_recall_subject_to_in_scope_retention",
+      "threshold": 0.44155
+    },
+    "channel": "combined_mean_geometry_fold",
+    "heldout_final_readout": {
+      "heldout_confounded_oos_abstain_recall": 0.8333,
+      "heldout_confounded_oos_abstained": 5,
+      "heldout_confounded_oos_total": 6,
+      "heldout_in_scope_retain_recall": 0.9574,
+      "heldout_in_scope_retained": 45,
+      "heldout_in_scope_total": 47,
+      "heldout_oos_abstain_recall": 0.557,
+      "heldout_oos_abstained": 44,
+      "heldout_oos_total": 79,
+      "threshold": 0.44155
+    },
+    "threshold": 0.44155,
+    "threshold_source": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json"
+  },
+  "guardrails": {
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_read_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "headline": "14 train/cal confounded-proxy rows are retained at the fixed fold operating point and define the next calibration gap surface.",
+    "next_action": "Prioritize high-cofactor retained gaps first, then hard retained same-family structural gaps with the largest positive margins."
+  },
+  "retained_proxy_gap_rows": [
+    {
+      "cofactor_proxy_score": 0.990498,
+      "entry_id": "m_csa:368",
+      "fixed_channel_score": 0.4537,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy"
+      ],
+      "threshold_margin": 0.01215
+    },
+    {
+      "cofactor_proxy_score": 0.009963,
+      "entry_id": "m_csa:104",
+      "fixed_channel_score": 0.6498,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.20825
+    },
+    {
+      "cofactor_proxy_score": 0.020918,
+      "entry_id": "m_csa:483",
+      "fixed_channel_score": 0.6341,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.19255
+    },
+    {
+      "cofactor_proxy_score": 0.161876,
+      "entry_id": "m_csa:25",
+      "fixed_channel_score": 0.6241,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.18255
+    },
+    {
+      "cofactor_proxy_score": 0.084691,
+      "entry_id": "m_csa:52",
+      "fixed_channel_score": 0.6154,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.17385
+    },
+    {
+      "cofactor_proxy_score": 0.028904,
+      "entry_id": "m_csa:464",
+      "fixed_channel_score": 0.60295,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1614
+    },
+    {
+      "cofactor_proxy_score": 0.043551,
+      "entry_id": "m_csa:503",
+      "fixed_channel_score": 0.55265,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1111
+    },
+    {
+      "cofactor_proxy_score": 0.174004,
+      "entry_id": "m_csa:646",
+      "fixed_channel_score": 0.54185,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1003
+    },
+    {
+      "cofactor_proxy_score": 0.016795,
+      "entry_id": "m_csa:36",
+      "fixed_channel_score": 0.51785,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0763
+    },
+    {
+      "cofactor_proxy_score": 0.058882,
+      "entry_id": "m_csa:422",
+      "fixed_channel_score": 0.47265,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0311
+    },
+    {
+      "cofactor_proxy_score": 0.037277,
+      "entry_id": "m_csa:244",
+      "fixed_channel_score": 0.4724,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.03085
+    },
+    {
+      "cofactor_proxy_score": 0.081064,
+      "entry_id": "m_csa:299",
+      "fixed_channel_score": 0.4712,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.02965
+    },
+    {
+      "cofactor_proxy_score": 0.00687,
+      "entry_id": "m_csa:565",
+      "fixed_channel_score": 0.46835,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0268
+    },
+    {
+      "cofactor_proxy_score": 0.118424,
+      "entry_id": "m_csa:119",
+      "fixed_channel_score": 0.4463,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.00475
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_gap_targets",
+  "scope": "Review-only Lever 3 packet of train/cal confounded-proxy rows that are retained by the fixed predicted-structure-vs-atlas fold operating point. It is derived from the proxy audit and does not read heldout rows or select a threshold.",
+  "source_artifacts": {
+    "confounded_proxy_operating_point_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json",
+      "sha256": "b7b4ef428a7b1a6668c0552269ae1efa8e7ce2823f83e40e07a053fdc88b1a1b"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_gap_targets_ready"
+}

@@ -1,0 +1,401 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603",
+  "blockers": [
+    "calibration_high_cofactor_proxy_target_not_met",
+    "calibration_same_family_structural_proxy_target_not_met"
+  ],
+  "calibration_proxy_definition": {
+    "cofactor_proxy_threshold": 0.5,
+    "cofactor_score_source": "channel_scores.cofactor_max_score or selected_organic_cofactor_max_score",
+    "proxy_rows_are_train_cal_oos_only": true,
+    "proxy_rows_do_not_select_or_change_threshold": true,
+    "target_for_flag_only": ">=0.80 abstain recall on high-cofactor train/cal OOS proxy rows"
+  },
+  "calibration_proxy_readout": {
+    "all_calibration_oos": {
+      "abstain_recall": 0.4,
+      "abstained": 30,
+      "retained": 45,
+      "retained_recall": 0.6,
+      "row_count": 75,
+      "threshold": 0.44155
+    },
+    "high_cofactor_proxy_calibration_oos": {
+      "abstain_recall": 0.0,
+      "abstained": 0,
+      "retained": 1,
+      "retained_recall": 1.0,
+      "row_count": 1,
+      "threshold": 0.44155
+    },
+    "high_cofactor_proxy_rows": [
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.990498,
+        "combined_mean_geometry_fold": 0.4537,
+        "entry_id": "m_csa:368",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:281",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.01215
+      }
+    ],
+    "low_cofactor_calibration_oos": {
+      "abstain_recall": 0.4054,
+      "abstained": 30,
+      "retained": 44,
+      "retained_recall": 0.5946,
+      "row_count": 74,
+      "threshold": 0.44155
+    },
+    "same_family_structural_proxy_calibration_oos": {
+      "abstain_recall": 0.2353,
+      "abstained": 4,
+      "retained": 13,
+      "retained_recall": 0.7647,
+      "row_count": 17,
+      "threshold": 0.44155
+    },
+    "same_family_structural_proxy_rows": [
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.118424,
+        "combined_mean_geometry_fold": 0.4463,
+        "entry_id": "m_csa:119",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:727",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.00475
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.00687,
+        "combined_mean_geometry_fold": 0.46835,
+        "entry_id": "m_csa:565",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:839",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.0268
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.081064,
+        "combined_mean_geometry_fold": 0.4712,
+        "entry_id": "m_csa:299",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:812",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.02965
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.037277,
+        "combined_mean_geometry_fold": 0.4724,
+        "entry_id": "m_csa:244",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:447",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.03085
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.058882,
+        "combined_mean_geometry_fold": 0.47265,
+        "entry_id": "m_csa:422",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:11",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.0311
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.016795,
+        "combined_mean_geometry_fold": 0.51785,
+        "entry_id": "m_csa:36",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:727",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.0763
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.174004,
+        "combined_mean_geometry_fold": 0.54185,
+        "entry_id": "m_csa:646",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:636",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.1003
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.043551,
+        "combined_mean_geometry_fold": 0.55265,
+        "entry_id": "m_csa:503",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:11",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.1111
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.028904,
+        "combined_mean_geometry_fold": 0.60295,
+        "entry_id": "m_csa:464",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:716",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.1614
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.084691,
+        "combined_mean_geometry_fold": 0.6154,
+        "entry_id": "m_csa:52",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:300",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.17385
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.161876,
+        "combined_mean_geometry_fold": 0.6241,
+        "entry_id": "m_csa:25",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:716",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.18255
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.020918,
+        "combined_mean_geometry_fold": 0.6341,
+        "entry_id": "m_csa:483",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:11",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.19255
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.009963,
+        "combined_mean_geometry_fold": 0.6498,
+        "entry_id": "m_csa:104",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:740",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.20825
+      },
+      {
+        "abstains_at_fixed_threshold": true,
+        "cofactor_proxy_score": 0.15676,
+        "combined_mean_geometry_fold": 0.4054,
+        "entry_id": "m_csa:78",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:395",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": -0.03615
+      },
+      {
+        "abstains_at_fixed_threshold": true,
+        "cofactor_proxy_score": 0.047288,
+        "combined_mean_geometry_fold": 0.4103,
+        "entry_id": "m_csa:189",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:596",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": -0.03125
+      },
+      {
+        "abstains_at_fixed_threshold": true,
+        "cofactor_proxy_score": 0.057451,
+        "combined_mean_geometry_fold": 0.42405,
+        "entry_id": "m_csa:22",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:623",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": -0.0175
+      },
+      {
+        "abstains_at_fixed_threshold": true,
+        "cofactor_proxy_score": 0.045025,
+        "combined_mean_geometry_fold": 0.43935,
+        "entry_id": "m_csa:342",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:839",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": -0.0022
+      }
+    ]
+  },
+  "calibration_structural_proxy_definition": {
+    "fold_nearest_atlas_tm_score_threshold": 0.4325,
+    "geometry_top1_score_threshold": 0.338,
+    "proxy": "train/cal OOS rows whose predicted-geometry top1 fingerprint matches the nearest predicted-structure atlas fingerprint and whose geometry and fold component scores meet their existing 90% calibration-retention thresholds",
+    "proxy_rows_are_train_cal_oos_only": true,
+    "proxy_rows_do_not_select_or_change_threshold": true,
+    "target_for_flag_only": ">=0.80 abstain recall on same-family structural proxy rows"
+  },
+  "counts": {
+    "all_calibration_oos_abstained_at_fixed_threshold": 30,
+    "calibration_oos_rows": 75,
+    "critical_violation_total": 2,
+    "heldout_confounded_oos_abstained": 5,
+    "heldout_confounded_oos_total": 6,
+    "heldout_in_scope_retained": 45,
+    "heldout_in_scope_total": 47,
+    "high_cofactor_proxy_abstained_at_fixed_threshold": 0,
+    "high_cofactor_proxy_calibration_oos_rows": 1,
+    "low_cofactor_calibration_oos_rows": 74,
+    "remaining_combined_score_blocker_rows": 1,
+    "same_family_structural_proxy_abstained_at_fixed_threshold": 4,
+    "same_family_structural_proxy_calibration_oos_rows": 17
+  },
+  "created_utc": "2026-06-03T12:14:37Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "calibration_high_cofactor_proxy_target_met": false,
+    "calibration_same_family_structural_proxy_target_met": false,
+    "deployment_closed_now": false,
+    "deployment_input_contract_passed": true,
+    "fixed_threshold_preserved": true,
+    "heldout_confounded_operating_point_met_from_existing_readout": true,
+    "in_scope_retention_ok_at_operating_point": true,
+    "next_gate": "Keep the fixed 0.44155 combined_mean_geometry_fold threshold unchanged. The heldout confounded operating point remains research-ready under predicted-only inputs, but the train/cal cofactor and same-family structural proxies do not by themselves meet a confounded-safe calibration target; deployment closure still needs the explicit P10746 caveat decision or an approved non-residue sidecar."
+  },
+  "deployment_input_contract": {
+    "coordinate_request_rows": 299,
+    "critical_violation_total": 0,
+    "passed": true,
+    "predicted_structure_vs_atlas_only": true,
+    "row_score_rows": 126,
+    "status": "predicted_structure_fold_channel_deployment_inputs_predicted_only"
+  },
+  "fixed_operating_point": {
+    "calibration_selection": {
+      "calibration_in_scope_retain_recall": 0.9118,
+      "calibration_in_scope_retained": 31,
+      "calibration_in_scope_total": 34,
+      "calibration_oos_abstain_recall": 0.4,
+      "calibration_oos_abstained": 30,
+      "calibration_oos_total": 75,
+      "min_retain_target": 0.9,
+      "objective": "maximize_calibration_oos_abstain_recall_subject_to_in_scope_retention",
+      "threshold": 0.44155
+    },
+    "channel": "combined_mean_geometry_fold",
+    "heldout_final_readout": {
+      "heldout_confounded_oos_abstain_recall": 0.8333,
+      "heldout_confounded_oos_abstained": 5,
+      "heldout_confounded_oos_total": 6,
+      "heldout_in_scope_retain_recall": 0.9574,
+      "heldout_in_scope_retained": 45,
+      "heldout_in_scope_total": 47,
+      "heldout_oos_abstain_recall": 0.557,
+      "heldout_oos_abstained": 44,
+      "heldout_oos_total": 79,
+      "threshold": 0.44155
+    },
+    "threshold": 0.44155,
+    "threshold_source": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json"
+  },
+  "guardrails": {
+    "experimental_pdb_metadata_used_as_channel_input": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_metrics_read_from_existing_contract": true,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_on_heldout": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "headline": "The fixed fold operating point remains predicted-input-valid, but train/cal confounded-proxy abstention is weaker than the heldout confounded readout.",
+    "next_action": "Do not tune on the six heldout confounded rows. Resolve the source-decision blocker for P10746, and if stronger deployable confounded calibration is required, add more reviewed train/cal confounded proxy rows rather than changing the threshold from heldout."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_operating_point_audit",
+  "scope": "Leakage-safe Lever 3 audit for the fixed predicted-structure-vs-atlas fold operating point. It preserves the existing train/cal-selected combined_mean_geometry_fold threshold, stratifies only train/cal OOS negatives by the existing cofactor-signature proxy, and carries the already-frozen heldout confounded readout without selecting thresholds on heldout rows.",
+  "source_artifacts": {
+    "deployment_input_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602.json",
+      "sha256": "ac6a42415a84e8461adc6b40ca06f37b519ff0fba16864aba55a899db4e625dd"
+    },
+    "expanded_oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de"
+    },
+    "post_rerun_confounded_closure": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_post_rerun_confounded_deployment_closure_audit_current702_20260603.json",
+      "sha256": "d023961d85db0e0b58ba21f68eff8e3af37e864175e8d35ddefe28d4371aff40"
+    },
+    "train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.json",
+      "sha256": "b002f3d53f0ea5cc30b4d92ebe4148a2f02d07d9a730aa89462544db70a4f772"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_operating_point_ready_with_proxy_caveat"
+}

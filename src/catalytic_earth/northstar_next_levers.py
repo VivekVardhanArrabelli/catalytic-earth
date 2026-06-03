@@ -156,6 +156,15 @@ FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_APPLICATION_ID = (
 FOLD_AUGMENTED_POST_DECISION_DEPLOYMENT_CLOSURE_STATUS_ID = (
     "v3_fold_augmented_post_decision_deployment_closure_status_current702_20260603"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_OPERATING_POINT_AUDIT_ID = (
+    "v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_GAP_TARGETS_ID = (
+    "v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_THRESHOLD_STRESS_ID = (
+    "v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -15227,6 +15236,1054 @@ def write_fold_augmented_oos_calibrated_threshold_contract(
     return audit
 
 
+def _cofactor_proxy_score(row: dict[str, Any]) -> float | None:
+    channel_scores = row.get("channel_scores") or {}
+    score = channel_scores.get("cofactor_max_score")
+    if score is None:
+        score = row.get("selected_organic_cofactor_max_score")
+    if score is None:
+        return None
+    try:
+        return float(score)
+    except (TypeError, ValueError):
+        return None
+
+
+def _fixed_threshold_row_readout(
+    rows: list[dict[str, Any]],
+    *,
+    channel_name: str,
+    threshold: float,
+) -> dict[str, Any]:
+    scored_rows: list[dict[str, Any]] = []
+    abstained = 0
+    for row in rows:
+        channel_scores = row.get("channel_scores") or {}
+        if channel_name not in channel_scores:
+            continue
+        score = float(channel_scores[channel_name])
+        abstains = score < threshold
+        if abstains:
+            abstained += 1
+        fold = row.get("predicted_structure_fold_channel") or {}
+        top1 = row.get("predicted_geometry_top1") or {}
+        scored_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "label_type": row.get("label_type"),
+                "oos_tier": row.get("oos_tier"),
+                "split_assignment": row.get("split_assignment"),
+                "cofactor_proxy_score": _cofactor_proxy_score(row),
+                channel_name: round(score, 6),
+                "threshold_margin": round(score - threshold, 6),
+                "abstains_at_fixed_threshold": abstains,
+                "nearest_train_atlas_entry_id": fold.get("nearest_train_atlas_entry_id"),
+                "nearest_train_atlas_true_fingerprint_id": fold.get(
+                    "nearest_train_atlas_true_fingerprint_id"
+                ),
+                "predicted_geometry_top1_fingerprint_id": top1.get("fingerprint_id"),
+            }
+        )
+    total = len(scored_rows)
+    return {
+        "threshold": round(threshold, 6),
+        "row_count": total,
+        "abstained": abstained,
+        "retained": total - abstained,
+        "abstain_recall": round(abstained / total, 4) if total else None,
+        "retained_recall": round((total - abstained) / total, 4) if total else None,
+        "rows": sorted(
+            scored_rows,
+            key=lambda row: (
+                row["abstains_at_fixed_threshold"],
+                row["threshold_margin"],
+                str(row.get("entry_id")),
+            ),
+        ),
+    }
+
+
+def _selected_90pct_threshold_for_channel(
+    threshold_contract: dict[str, Any],
+    channel_name: str,
+) -> float | None:
+    channel = (threshold_contract.get("threshold_contract") or {}).get(channel_name) or {}
+    selected = (
+        channel.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    threshold = selected.get("threshold")
+    if threshold is None:
+        return None
+    try:
+        return float(threshold)
+    except (TypeError, ValueError):
+        return None
+
+
+def build_fold_augmented_confounded_proxy_operating_point_audit(
+    *,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    train_cal_oos_surface_path: Path,
+    deployment_input_audit_path: Path,
+    post_rerun_confounded_closure_path: Path,
+    cofactor_proxy_threshold: float = COFACTOR_SIGNATURE_THRESHOLD,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_OPERATING_POINT_AUDIT_ID,
+) -> dict[str, Any]:
+    threshold_contract = _read_json(expanded_oos_calibrated_threshold_contract_path)
+    oos_surface = _read_json(train_cal_oos_surface_path)
+    deployment_input = _read_json(deployment_input_audit_path)
+    closure = _read_json(post_rerun_confounded_closure_path)
+
+    primary = threshold_contract.get("primary_channel_readout") or {}
+    selected = (
+        primary.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    heldout = primary.get("heldout_final_eval_at_90pct_oos_calibrated_threshold") or {}
+    channel_name = str(primary.get("channel") or "combined_mean_geometry_fold")
+    fixed_threshold = selected.get("threshold") or heldout.get("threshold")
+    blockers: list[str] = []
+    if fixed_threshold is None:
+        blockers.append("fixed_combined_mean_geometry_fold_threshold_missing")
+        threshold_value = 0.0
+    else:
+        threshold_value = float(fixed_threshold)
+
+    calibration_oos_rows = [
+        row
+        for row in oos_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("channel_scores")
+    ]
+    high_cofactor_rows = [
+        row
+        for row in calibration_oos_rows
+        if (_cofactor_proxy_score(row) or 0.0) >= cofactor_proxy_threshold
+    ]
+    low_cofactor_rows = [
+        row
+        for row in calibration_oos_rows
+        if (_cofactor_proxy_score(row) or 0.0) < cofactor_proxy_threshold
+    ]
+    fold_proxy_threshold = _selected_90pct_threshold_for_channel(
+        threshold_contract, "fold_nearest_atlas_tm_score"
+    )
+    geometry_proxy_threshold = _selected_90pct_threshold_for_channel(
+        threshold_contract, "geometry_top1_score"
+    )
+    structural_proxy_rows = []
+    if fold_proxy_threshold is not None and geometry_proxy_threshold is not None:
+        for row in calibration_oos_rows:
+            channel_scores = row.get("channel_scores") or {}
+            fold = channel_scores.get("fold_nearest_atlas_tm_score")
+            geometry = channel_scores.get("geometry_top1_score")
+            fold_channel = row.get("predicted_structure_fold_channel") or {}
+            geometry_top1 = row.get("predicted_geometry_top1") or {}
+            nearest_fp = fold_channel.get("nearest_train_atlas_true_fingerprint_id")
+            top1_fp = geometry_top1.get("fingerprint_id")
+            same_family = bool(nearest_fp and top1_fp and nearest_fp == top1_fp)
+            if (
+                same_family
+                and fold is not None
+                and geometry is not None
+                and float(fold) >= fold_proxy_threshold
+                and float(geometry) >= geometry_proxy_threshold
+            ):
+                structural_proxy_rows.append(row)
+    if not calibration_oos_rows:
+        blockers.append("no_calibration_oos_rows_available")
+    if not high_cofactor_rows:
+        blockers.append("no_high_cofactor_proxy_calibration_oos_rows_available")
+    if fold_proxy_threshold is None or geometry_proxy_threshold is None:
+        blockers.append("structural_proxy_component_thresholds_missing")
+    if not structural_proxy_rows:
+        blockers.append("no_same_family_structural_proxy_calibration_oos_rows_available")
+
+    all_readout = _fixed_threshold_row_readout(
+        calibration_oos_rows,
+        channel_name=channel_name,
+        threshold=threshold_value,
+    )
+    proxy_readout = _fixed_threshold_row_readout(
+        high_cofactor_rows,
+        channel_name=channel_name,
+        threshold=threshold_value,
+    )
+    low_readout = _fixed_threshold_row_readout(
+        low_cofactor_rows,
+        channel_name=channel_name,
+        threshold=threshold_value,
+    )
+    structural_readout = _fixed_threshold_row_readout(
+        structural_proxy_rows,
+        channel_name=channel_name,
+        threshold=threshold_value,
+    )
+    deployment_counts = deployment_input.get("counts") or {}
+    deployment_decision = deployment_input.get("decision") or {}
+    deployment_validity = deployment_input.get("deployment_validity") or {}
+    deployment_guardrails = deployment_input.get("guardrails") or {}
+    deployment_input_passed = bool(
+        deployment_input.get("status")
+        == "predicted_structure_fold_channel_deployment_inputs_predicted_only"
+        and deployment_decision.get("deployment_input_contract_passed")
+        and int(deployment_counts.get("critical_violation_total") or 0) == 0
+        and deployment_validity.get("predicted_structure_vs_atlas_only")
+    )
+    if not deployment_input_passed:
+        blockers.append("deployment_input_contract_not_passing")
+
+    closure_counts = closure.get("counts") or {}
+    closure_decision = closure.get("decision") or {}
+    heldout_confounded_ready = bool(
+        closure_decision.get("confounded_subset_target_met_for_research")
+    )
+    in_scope_retention_ok = bool(
+        closure_decision.get("in_scope_retention_ok_at_operating_point")
+    )
+    calibration_proxy_target_met = bool(
+        proxy_readout["abstain_recall"] is not None
+        and float(proxy_readout["abstain_recall"]) >= 0.80
+    )
+    if not calibration_proxy_target_met:
+        blockers.append("calibration_high_cofactor_proxy_target_not_met")
+    structural_proxy_target_met = bool(
+        structural_readout["abstain_recall"] is not None
+        and float(structural_readout["abstain_recall"]) >= 0.80
+    )
+    if not structural_proxy_target_met:
+        blockers.append("calibration_same_family_structural_proxy_target_not_met")
+
+    status = (
+        "fold_augmented_confounded_proxy_operating_point_ready_with_proxy_caveat"
+        if deployment_input_passed
+        and heldout_confounded_ready
+        and in_scope_retention_ok
+        and fixed_threshold is not None
+        else "fold_augmented_confounded_proxy_operating_point_blocked"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_operating_point_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Leakage-safe Lever 3 audit for the fixed predicted-structure-vs-atlas "
+            "fold operating point. It preserves the existing train/cal-selected "
+            "combined_mean_geometry_fold threshold, stratifies only train/cal OOS "
+            "negatives by the existing cofactor-signature proxy, and carries the "
+            "already-frozen heldout confounded readout without selecting thresholds "
+            "on heldout rows."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "threshold_selected_on_heldout": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_metrics_read_from_existing_contract": True,
+            "foldseek_or_tm_rerun_performed": False,
+            "experimental_pdb_metadata_used_as_channel_input": bool(
+                deployment_guardrails.get(
+                    "experimental_pdb_metadata_used_as_channel_input"
+                )
+            ),
+            "validation_only": True,
+            "review_only": True,
+        },
+        "fixed_operating_point": {
+            "channel": channel_name,
+            "threshold": round(threshold_value, 6) if fixed_threshold is not None else None,
+            "threshold_source": str(expanded_oos_calibrated_threshold_contract_path),
+            "calibration_selection": selected,
+            "heldout_final_readout": heldout,
+        },
+        "calibration_proxy_definition": {
+            "cofactor_score_source": "channel_scores.cofactor_max_score or selected_organic_cofactor_max_score",
+            "cofactor_proxy_threshold": cofactor_proxy_threshold,
+            "proxy_rows_are_train_cal_oos_only": True,
+            "proxy_rows_do_not_select_or_change_threshold": True,
+            "target_for_flag_only": ">=0.80 abstain recall on high-cofactor train/cal OOS proxy rows",
+        },
+        "calibration_structural_proxy_definition": {
+            "proxy": (
+                "train/cal OOS rows whose predicted-geometry top1 fingerprint "
+                "matches the nearest predicted-structure atlas fingerprint and "
+                "whose geometry and fold component scores meet their existing "
+                "90% calibration-retention thresholds"
+            ),
+            "geometry_top1_score_threshold": geometry_proxy_threshold,
+            "fold_nearest_atlas_tm_score_threshold": fold_proxy_threshold,
+            "proxy_rows_are_train_cal_oos_only": True,
+            "proxy_rows_do_not_select_or_change_threshold": True,
+            "target_for_flag_only": ">=0.80 abstain recall on same-family structural proxy rows",
+        },
+        "calibration_proxy_readout": {
+            "all_calibration_oos": {
+                key: value for key, value in all_readout.items() if key != "rows"
+            },
+            "high_cofactor_proxy_calibration_oos": {
+                key: value for key, value in proxy_readout.items() if key != "rows"
+            },
+            "low_cofactor_calibration_oos": {
+                key: value for key, value in low_readout.items() if key != "rows"
+            },
+            "same_family_structural_proxy_calibration_oos": {
+                key: value for key, value in structural_readout.items() if key != "rows"
+            },
+            "high_cofactor_proxy_rows": proxy_readout["rows"],
+            "same_family_structural_proxy_rows": structural_readout["rows"],
+        },
+        "deployment_input_contract": {
+            "passed": deployment_input_passed,
+            "status": deployment_input.get("status"),
+            "critical_violation_total": deployment_counts.get("critical_violation_total"),
+            "predicted_structure_vs_atlas_only": deployment_validity.get(
+                "predicted_structure_vs_atlas_only"
+            ),
+            "row_score_rows": deployment_counts.get("row_score_rows"),
+            "coordinate_request_rows": deployment_counts.get("coordinate_request_rows"),
+        },
+        "counts": {
+            "calibration_oos_rows": len(calibration_oos_rows),
+            "high_cofactor_proxy_calibration_oos_rows": len(high_cofactor_rows),
+            "low_cofactor_calibration_oos_rows": len(low_cofactor_rows),
+            "same_family_structural_proxy_calibration_oos_rows": len(
+                structural_proxy_rows
+            ),
+            "high_cofactor_proxy_abstained_at_fixed_threshold": proxy_readout[
+                "abstained"
+            ],
+            "same_family_structural_proxy_abstained_at_fixed_threshold": (
+                structural_readout["abstained"]
+            ),
+            "all_calibration_oos_abstained_at_fixed_threshold": all_readout[
+                "abstained"
+            ],
+            "heldout_confounded_oos_abstained": closure_counts.get(
+                "heldout_confounded_oos_abstained"
+            ),
+            "heldout_confounded_oos_total": closure_counts.get(
+                "heldout_confounded_oos_total"
+            ),
+            "heldout_in_scope_retained": heldout.get("heldout_in_scope_retained"),
+            "heldout_in_scope_total": heldout.get("heldout_in_scope_total"),
+            "remaining_combined_score_blocker_rows": closure_counts.get(
+                "remaining_combined_score_blocker_rows"
+            ),
+            "critical_violation_total": len(blockers),
+        },
+        "blockers": blockers,
+        "decision": {
+            "fixed_threshold_preserved": True,
+            "deployment_input_contract_passed": deployment_input_passed,
+            "heldout_confounded_operating_point_met_from_existing_readout": (
+                heldout_confounded_ready
+            ),
+            "in_scope_retention_ok_at_operating_point": in_scope_retention_ok,
+            "calibration_high_cofactor_proxy_target_met": calibration_proxy_target_met,
+            "calibration_same_family_structural_proxy_target_met": (
+                structural_proxy_target_met
+            ),
+            "apply_or_change_threshold_now": False,
+            "deployment_closed_now": False,
+            "next_gate": (
+                "Keep the fixed 0.44155 combined_mean_geometry_fold threshold "
+                "unchanged. The heldout confounded operating point remains research-"
+                "ready under predicted-only inputs, but the train/cal cofactor and "
+                "same-family structural proxies do not by themselves meet a "
+                "confounded-safe calibration target; "
+                "deployment closure still needs the explicit P10746 caveat decision "
+                "or an approved non-residue sidecar."
+            ),
+        },
+        "source_artifacts": {
+            "expanded_oos_calibrated_threshold_contract": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "train_cal_oos_surface": _source_path_record(train_cal_oos_surface_path),
+            "deployment_input_audit": _source_path_record(deployment_input_audit_path),
+            "post_rerun_confounded_closure": _source_path_record(
+                post_rerun_confounded_closure_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "The fixed fold operating point remains predicted-input-valid, "
+                "but train/cal confounded-proxy abstention is weaker than the "
+                "heldout confounded readout."
+            ),
+            "next_action": (
+                "Do not tune on the six heldout confounded rows. Resolve the "
+                "source-decision blocker for P10746, and if stronger deployable "
+                "confounded calibration is required, add more reviewed train/cal "
+                "confounded proxy rows rather than changing the threshold from heldout."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_operating_point_audit(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    fixed = audit["fixed_operating_point"]
+    proxy = audit["calibration_proxy_readout"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Operating-Point Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        f"- Fixed channel: {fixed['channel']}",
+        f"- Fixed threshold: {fixed['threshold']}",
+        "- Deployment input contract passed: "
+        f"{decision['deployment_input_contract_passed']}",
+        "- Heldout confounded operating point met: "
+        f"{decision['heldout_confounded_operating_point_met_from_existing_readout']}",
+        "- Calibration high-cofactor proxy target met: "
+        f"{decision['calibration_high_cofactor_proxy_target_met']}",
+        "- Calibration same-family structural proxy target met: "
+        f"{decision['calibration_same_family_structural_proxy_target_met']}",
+        "",
+        "## Readout",
+        "",
+        "| subset | rows | abstained | abstain recall |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for name, readout in [
+        ("all calibration OOS", proxy["all_calibration_oos"]),
+        ("high-cofactor calibration OOS", proxy["high_cofactor_proxy_calibration_oos"]),
+        ("low-cofactor calibration OOS", proxy["low_cofactor_calibration_oos"]),
+        (
+            "same-family structural proxy OOS",
+            proxy["same_family_structural_proxy_calibration_oos"],
+        ),
+    ]:
+        lines.append(
+            f"| {name} | {readout['row_count']} | {readout['abstained']} | "
+            f"{readout['abstain_recall']} |"
+        )
+    lines += [
+        "",
+        "## Heldout Carry-Through",
+        "",
+        "- Confounded OOS abstained: "
+        f"{counts['heldout_confounded_oos_abstained']}/"
+        f"{counts['heldout_confounded_oos_total']}",
+        "- In-scope retained: "
+        f"{counts['heldout_in_scope_retained']}/"
+        f"{counts['heldout_in_scope_total']}",
+        "",
+        "## High-Cofactor Train/Cal Rows",
+        "",
+        "| entry | cofactor | score | margin | abstains | nearest atlas fingerprint | top1 geometry fingerprint |",
+        "| --- | ---: | ---: | ---: | --- | --- | --- |",
+    ]
+    channel = fixed["channel"]
+    for row in proxy["high_cofactor_proxy_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['cofactor_proxy_score']} | "
+            f"{row[channel]} | {row['threshold_margin']} | "
+            f"{row['abstains_at_fixed_threshold']} | "
+            f"{row['nearest_train_atlas_true_fingerprint_id']} | "
+            f"{row['predicted_geometry_top1_fingerprint_id']} |"
+        )
+    lines += [
+        "",
+        "## Same-Family Structural Train/Cal Rows",
+        "",
+        "| entry | cofactor | score | margin | abstains | nearest atlas fingerprint | top1 geometry fingerprint |",
+        "| --- | ---: | ---: | ---: | --- | --- | --- |",
+    ]
+    for row in proxy["same_family_structural_proxy_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['cofactor_proxy_score']} | "
+            f"{row[channel]} | {row['threshold_margin']} | "
+            f"{row['abstains_at_fixed_threshold']} | "
+            f"{row['nearest_train_atlas_true_fingerprint_id']} | "
+            f"{row['predicted_geometry_top1_fingerprint_id']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Fixed threshold preserved: {decision['fixed_threshold_preserved']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Deployment closed now: {decision['deployment_closed_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_operating_point_audit(
+    *,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    train_cal_oos_surface_path: Path,
+    deployment_input_audit_path: Path,
+    post_rerun_confounded_closure_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    cofactor_proxy_threshold: float = COFACTOR_SIGNATURE_THRESHOLD,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_OPERATING_POINT_AUDIT_ID,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_operating_point_audit(
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        deployment_input_audit_path=deployment_input_audit_path,
+        post_rerun_confounded_closure_path=post_rerun_confounded_closure_path,
+        cofactor_proxy_threshold=cofactor_proxy_threshold,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_operating_point_audit(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _proxy_gap_priority(row: dict[str, Any]) -> str:
+    margin = float(row.get("threshold_margin") or 0.0)
+    proxy_membership = set(row.get("proxy_membership") or [])
+    if "high_cofactor_signature_proxy" in proxy_membership:
+        return "priority_1_high_cofactor_retained_proxy_gap"
+    if margin >= 0.05:
+        return "priority_2_hard_retained_structural_proxy_gap"
+    return "priority_3_near_threshold_retained_structural_proxy_gap"
+
+
+def build_fold_augmented_confounded_proxy_gap_targets(
+    *,
+    confounded_proxy_operating_point_audit_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_GAP_TARGETS_ID,
+) -> dict[str, Any]:
+    proxy_audit = _read_json(confounded_proxy_operating_point_audit_path)
+    fixed = proxy_audit.get("fixed_operating_point") or {}
+    readout = proxy_audit.get("calibration_proxy_readout") or {}
+    high_cofactor_rows = [
+        row
+        for row in readout.get("high_cofactor_proxy_rows", [])
+        if isinstance(row, dict)
+    ]
+    structural_rows = [
+        row
+        for row in readout.get("same_family_structural_proxy_rows", [])
+        if isinstance(row, dict)
+    ]
+    by_entry: dict[str, dict[str, Any]] = {}
+    for proxy_name, rows in [
+        ("high_cofactor_signature_proxy", high_cofactor_rows),
+        ("same_family_structural_proxy", structural_rows),
+    ]:
+        for row in rows:
+            entry_id = str(row.get("entry_id") or "")
+            if not entry_id or row.get("abstains_at_fixed_threshold"):
+                continue
+            item = by_entry.setdefault(
+                entry_id,
+                {
+                    "entry_id": entry_id,
+                    "cofactor_proxy_score": row.get("cofactor_proxy_score"),
+                    "fixed_channel_score": row.get(fixed.get("channel")),
+                    "threshold_margin": row.get("threshold_margin"),
+                    "nearest_train_atlas_true_fingerprint_id": row.get(
+                        "nearest_train_atlas_true_fingerprint_id"
+                    ),
+                    "predicted_geometry_top1_fingerprint_id": row.get(
+                        "predicted_geometry_top1_fingerprint_id"
+                    ),
+                    "proxy_membership": [],
+                },
+            )
+            if proxy_name not in item["proxy_membership"]:
+                item["proxy_membership"].append(proxy_name)
+    retained_rows = []
+    for row in by_entry.values():
+        row["priority"] = _proxy_gap_priority(row)
+        retained_rows.append(row)
+    retained_rows.sort(
+        key=lambda row: (
+            row["priority"],
+            -float(row.get("threshold_margin") or 0.0),
+            row["entry_id"],
+        )
+    )
+    priority_counts = Counter(row["priority"] for row in retained_rows)
+    family_counts = Counter(
+        row.get("nearest_train_atlas_true_fingerprint_id") or "missing"
+        for row in retained_rows
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_gap_targets"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_gap_targets_ready"
+            if retained_rows
+            else "fold_augmented_confounded_proxy_gap_targets_empty"
+        ),
+        "scope": (
+            "Review-only Lever 3 packet of train/cal confounded-proxy rows that "
+            "are retained by the fixed predicted-structure-vs-atlas fold operating "
+            "point. It is derived from the proxy audit and does not read heldout "
+            "rows or select a threshold."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_read_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "validation_only": True,
+            "review_only": True,
+        },
+        "fixed_operating_point": fixed,
+        "counts": {
+            "retained_proxy_gap_rows": len(retained_rows),
+            "high_cofactor_retained_proxy_gap_rows": sum(
+                1
+                for row in retained_rows
+                if "high_cofactor_signature_proxy" in row["proxy_membership"]
+            ),
+            "same_family_structural_retained_proxy_gap_rows": sum(
+                1
+                for row in retained_rows
+                if "same_family_structural_proxy" in row["proxy_membership"]
+            ),
+            "priority_counts": dict(sorted(priority_counts.items())),
+            "nearest_family_counts": dict(sorted(family_counts.items())),
+        },
+        "retained_proxy_gap_rows": retained_rows,
+        "decision": {
+            "apply_or_change_threshold_now": False,
+            "deployment_closed_now": False,
+            "gap_targets_are_train_cal_only": True,
+            "next_gate": (
+                "Use these retained train/cal proxy rows to design or review "
+                "additional calibration-confounded proxy evidence. Do not adjust "
+                "the fixed operating threshold from these rows without rerunning "
+                "the full train/cal contract, and do not tune on heldout."
+            ),
+        },
+        "source_artifacts": {
+            "confounded_proxy_operating_point_audit": _source_path_record(
+                confounded_proxy_operating_point_audit_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(retained_rows)} train/cal confounded-proxy rows are retained "
+                "at the fixed fold operating point and define the next calibration "
+                "gap surface."
+            ),
+            "next_action": (
+                "Prioritize high-cofactor retained gaps first, then hard retained "
+                "same-family structural gaps with the largest positive margins."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_gap_targets(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    fixed = audit["fixed_operating_point"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Gap Targets - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fixed channel: {fixed.get('channel')}",
+        f"- Fixed threshold: {fixed.get('threshold')}",
+        f"- Retained proxy gap rows: {counts['retained_proxy_gap_rows']}",
+        "- High-cofactor retained proxy gaps: "
+        f"{counts['high_cofactor_retained_proxy_gap_rows']}",
+        "- Same-family structural retained proxy gaps: "
+        f"{counts['same_family_structural_retained_proxy_gap_rows']}",
+        "",
+        "## Priority Counts",
+        "",
+    ]
+    for key, value in counts["priority_counts"].items():
+        lines.append(f"- {key}: {value}")
+    lines += [
+        "",
+        "## Retained Gap Rows",
+        "",
+        "| priority | entry | margin | score | proxies | nearest fingerprint | top1 fingerprint |",
+        "| --- | --- | ---: | ---: | --- | --- | --- |",
+    ]
+    for row in audit["retained_proxy_gap_rows"]:
+        lines.append(
+            f"| {row['priority']} | {row['entry_id']} | "
+            f"{row['threshold_margin']} | {row['fixed_channel_score']} | "
+            f"{', '.join(row['proxy_membership'])} | "
+            f"{row['nearest_train_atlas_true_fingerprint_id']} | "
+            f"{row['predicted_geometry_top1_fingerprint_id']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Apply or change threshold now: {audit['decision']['apply_or_change_threshold_now']}",
+        f"- Deployment closed now: {audit['decision']['deployment_closed_now']}",
+        f"- Next gate: {audit['decision']['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_gap_targets(
+    *,
+    confounded_proxy_operating_point_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_GAP_TARGETS_ID,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_gap_targets(
+        confounded_proxy_operating_point_audit_path=(
+            confounded_proxy_operating_point_audit_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_gap_targets(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _channel_scores_from_rows(rows: list[dict[str, Any]], channel_name: str) -> list[float]:
+    scores: list[float] = []
+    for row in rows:
+        if channel_name in row:
+            value = row.get(channel_name)
+        else:
+            value = (row.get("channel_scores") or {}).get(channel_name)
+        if value is None:
+            continue
+        scores.append(float(value))
+    return scores
+
+
+def _threshold_stress_for_target(
+    *,
+    in_scope_scores: list[float],
+    proxy_scores: list[float],
+    target_abstain_recall: float,
+) -> dict[str, Any] | None:
+    if not in_scope_scores or not proxy_scores:
+        return None
+    candidates = sorted({round(score, 6) for score in in_scope_scores + proxy_scores})
+    for threshold in candidates:
+        proxy_abstained = sum(1 for score in proxy_scores if score < threshold)
+        proxy_recall = proxy_abstained / len(proxy_scores)
+        if proxy_recall < target_abstain_recall:
+            continue
+        retained = sum(1 for score in in_scope_scores if score >= threshold)
+        retain_recall = retained / len(in_scope_scores)
+        return {
+            "threshold": threshold,
+            "target_abstain_recall": target_abstain_recall,
+            "proxy_abstain_recall": round(proxy_recall, 4),
+            "proxy_abstained": proxy_abstained,
+            "proxy_total": len(proxy_scores),
+            "calibration_in_scope_retain_recall": round(retain_recall, 4),
+            "calibration_in_scope_retained": retained,
+            "calibration_in_scope_total": len(in_scope_scores),
+        }
+    return None
+
+
+def build_fold_augmented_confounded_proxy_threshold_stress(
+    *,
+    train_cal_threshold_contract_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    confounded_proxy_operating_point_audit_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_THRESHOLD_STRESS_ID,
+) -> dict[str, Any]:
+    train_cal = _read_json(train_cal_threshold_contract_path)
+    expanded = _read_json(expanded_oos_calibrated_threshold_contract_path)
+    proxy = _read_json(confounded_proxy_operating_point_audit_path)
+    fixed = proxy.get("fixed_operating_point") or {}
+    channel_name = str(fixed.get("channel") or "combined_mean_geometry_fold")
+    fixed_threshold = fixed.get("threshold")
+    calibration_in_scope_rows = [
+        row
+        for row in train_cal.get("calibration_row_scores", [])
+        if isinstance(row, dict)
+    ]
+    in_scope_scores = _channel_scores_from_rows(calibration_in_scope_rows, channel_name)
+    readout = proxy.get("calibration_proxy_readout") or {}
+    proxy_sets = {
+        "high_cofactor_signature_proxy": readout.get("high_cofactor_proxy_rows", []),
+        "same_family_structural_proxy": readout.get(
+            "same_family_structural_proxy_rows", []
+        ),
+        "all_expanded_calibration_oos": expanded.get(
+            "calibration_oos_negative_row_scores", []
+        ),
+    }
+    targets = [0.50, 0.80, 1.00]
+    stress: dict[str, Any] = {}
+    for name, rows in proxy_sets.items():
+        row_list = [row for row in rows if isinstance(row, dict)]
+        scores = _channel_scores_from_rows(row_list, channel_name)
+        current_abstained = (
+            sum(1 for score in scores if fixed_threshold is not None and score < float(fixed_threshold))
+            if scores
+            else 0
+        )
+        stress[name] = {
+            "row_count": len(scores),
+            "current_fixed_threshold": fixed_threshold,
+            "current_fixed_threshold_abstained": current_abstained,
+            "current_fixed_threshold_abstain_recall": (
+                round(current_abstained / len(scores), 4) if scores else None
+            ),
+            "counterfactual_targets": {
+                str(target): _threshold_stress_for_target(
+                    in_scope_scores=in_scope_scores,
+                    proxy_scores=scores,
+                    target_abstain_recall=target,
+                )
+                for target in targets
+            },
+        }
+    structural_80 = (
+        stress.get("same_family_structural_proxy", {})
+        .get("counterfactual_targets", {})
+        .get("0.8")
+    )
+    high_80 = (
+        stress.get("high_cofactor_signature_proxy", {})
+        .get("counterfactual_targets", {})
+        .get("0.8")
+    )
+    blockers = []
+    if not in_scope_scores:
+        blockers.append("no_calibration_in_scope_scores_available")
+    if structural_80 and float(structural_80["calibration_in_scope_retain_recall"]) < 0.85:
+        blockers.append("structural_proxy_80pct_abstain_breaks_85pct_in_scope_retention")
+    if high_80 and float(high_80["calibration_in_scope_retain_recall"]) < 0.90:
+        blockers.append("high_cofactor_proxy_80pct_abstain_breaks_90pct_in_scope_retention")
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_threshold_stress"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_threshold_stress_ready"
+            if in_scope_scores
+            else "fold_augmented_confounded_proxy_threshold_stress_blocked"
+        ),
+        "scope": (
+            "Train/cal-only counterfactual threshold stress for Lever 3 confounded "
+            "proxy rows. It reports the in-scope retention cost of forcing proxy "
+            "abstention targets, without changing the fixed operating threshold "
+            "or reading heldout rows."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "counterfactual_thresholds_computed_not_applied": True,
+            "heldout_rows_read_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "validation_only": True,
+            "review_only": True,
+        },
+        "fixed_operating_point": fixed,
+        "counts": {
+            "calibration_in_scope_rows": len(in_scope_scores),
+            "high_cofactor_proxy_rows": stress["high_cofactor_signature_proxy"][
+                "row_count"
+            ],
+            "same_family_structural_proxy_rows": stress[
+                "same_family_structural_proxy"
+            ]["row_count"],
+            "all_expanded_calibration_oos_rows": stress[
+                "all_expanded_calibration_oos"
+            ]["row_count"],
+            "blockers": len(blockers),
+        },
+        "blockers": blockers,
+        "threshold_stress": stress,
+        "decision": {
+            "apply_or_change_threshold_now": False,
+            "deployment_closed_now": False,
+            "structural_proxy_80pct_abstain_retention_ok": bool(
+                structural_80
+                and float(structural_80["calibration_in_scope_retain_recall"]) >= 0.85
+            ),
+            "high_cofactor_proxy_80pct_abstain_retention_ok": bool(
+                high_80
+                and float(high_80["calibration_in_scope_retain_recall"]) >= 0.90
+            ),
+            "next_gate": (
+                "Do not raise the fixed threshold from heldout behavior. The "
+                "train/cal stress shows whether proxy abstention targets can be "
+                "met while preserving calibration in-scope retention; use it to "
+                "decide whether more train/cal proxy evidence is needed."
+            ),
+        },
+        "source_artifacts": {
+            "train_cal_threshold_contract": _source_path_record(
+                train_cal_threshold_contract_path
+            ),
+            "expanded_oos_calibrated_threshold_contract": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "confounded_proxy_operating_point_audit": _source_path_record(
+                confounded_proxy_operating_point_audit_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Counterfactual proxy-abstention thresholds are not adopted; "
+                "they expose the train/cal retention cost of stricter confounded "
+                "proxy behavior."
+            ),
+            "next_action": (
+                "If the retention cost is unacceptable, add or review more "
+                "train/cal confounded proxy rows rather than changing the fixed "
+                "operating point from heldout readout."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_threshold_stress(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    fixed = audit["fixed_operating_point"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Threshold Stress - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        f"- Fixed channel: {fixed.get('channel')}",
+        f"- Fixed threshold: {fixed.get('threshold')}",
+        f"- Calibration in-scope rows: {counts['calibration_in_scope_rows']}",
+        "",
+        "## Stress",
+        "",
+        "| subset | rows | fixed abstain | target | counterfactual threshold | proxy abstain | in-scope retain |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for name, stress in audit["threshold_stress"].items():
+        for target, row in stress["counterfactual_targets"].items():
+            row = row or {}
+            lines.append(
+                f"| {name} | {stress['row_count']} | "
+                f"{stress['current_fixed_threshold_abstain_recall']} | "
+                f"{target} | {row.get('threshold')} | "
+                f"{row.get('proxy_abstain_recall')} | "
+                f"{row.get('calibration_in_scope_retain_recall')} |"
+            )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Apply or change threshold now: {audit['decision']['apply_or_change_threshold_now']}",
+        "- Structural proxy 80% abstain retention ok: "
+        f"{audit['decision']['structural_proxy_80pct_abstain_retention_ok']}",
+        "- High-cofactor proxy 80% abstain retention ok: "
+        f"{audit['decision']['high_cofactor_proxy_80pct_abstain_retention_ok']}",
+        f"- Next gate: {audit['decision']['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_threshold_stress(
+    *,
+    train_cal_threshold_contract_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    confounded_proxy_operating_point_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_THRESHOLD_STRESS_ID,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_threshold_stress(
+        train_cal_threshold_contract_path=train_cal_threshold_contract_path,
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        confounded_proxy_operating_point_audit_path=(
+            confounded_proxy_operating_point_audit_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_threshold_stress(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def _fold_augmented_confounded_priority_rows(
     fold_channel: dict[str, Any],
 ) -> list[dict[str, Any]]:
@@ -25609,6 +26666,9 @@ def build_active_lever_mechanical_actionability_audit(
     lever2_event_axis_linker_schema_path: Path | None = None,
     lever2_event_axis_linker_materialization_gate_path: Path | None = None,
     lever3_post_decision_deployment_closure_status_path: Path | None = None,
+    lever3_confounded_proxy_operating_point_audit_path: Path | None = None,
+    lever3_confounded_proxy_gap_targets_path: Path | None = None,
+    lever3_confounded_proxy_threshold_stress_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
 ) -> dict[str, Any]:
     queue = (
@@ -25644,6 +26704,24 @@ def build_active_lever_mechanical_actionability_audit(
         _read_json(lever3_post_decision_deployment_closure_status_path)
         if lever3_post_decision_deployment_closure_status_path is not None
         and Path(lever3_post_decision_deployment_closure_status_path).exists()
+        else {}
+    )
+    lever3_proxy = (
+        _read_json(lever3_confounded_proxy_operating_point_audit_path)
+        if lever3_confounded_proxy_operating_point_audit_path is not None
+        and Path(lever3_confounded_proxy_operating_point_audit_path).exists()
+        else {}
+    )
+    lever3_proxy_gaps = (
+        _read_json(lever3_confounded_proxy_gap_targets_path)
+        if lever3_confounded_proxy_gap_targets_path is not None
+        and Path(lever3_confounded_proxy_gap_targets_path).exists()
+        else {}
+    )
+    lever3_proxy_stress = (
+        _read_json(lever3_confounded_proxy_threshold_stress_path)
+        if lever3_confounded_proxy_threshold_stress_path is not None
+        and Path(lever3_confounded_proxy_threshold_stress_path).exists()
         else {}
     )
     lever4_readiness = (
@@ -25715,6 +26793,27 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(lever3_closure, dict)
         else {}
     )
+    lever3_proxy_counts = (
+        lever3_proxy.get("counts", {}) if isinstance(lever3_proxy, dict) else {}
+    )
+    lever3_proxy_decision = (
+        lever3_proxy.get("decision", {}) if isinstance(lever3_proxy, dict) else {}
+    )
+    lever3_proxy_gap_counts = (
+        lever3_proxy_gaps.get("counts", {})
+        if isinstance(lever3_proxy_gaps, dict)
+        else {}
+    )
+    lever3_proxy_stress_counts = (
+        lever3_proxy_stress.get("counts", {})
+        if isinstance(lever3_proxy_stress, dict)
+        else {}
+    )
+    lever3_proxy_stress_decision = (
+        lever3_proxy_stress.get("decision", {})
+        if isinstance(lever3_proxy_stress, dict)
+        else {}
+    )
     lever4_counts = (
         lever4_readiness.get("counts", {})
         if isinstance(lever4_readiness, dict)
@@ -25775,6 +26874,19 @@ def build_active_lever_mechanical_actionability_audit(
             ),
             "next_command_after_decision": (
                 "apply-fold-augmented-p10746-deployment-caveat-decision"
+            ),
+        },
+        {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_train_calibration",
+            "ready_now": False,
+            "blocking_reason": (
+                "confounded_proxy_train_calibration_gap"
+                if lever3_proxy
+                else "confounded_proxy_train_calibration_audit_missing"
+            ),
+            "next_command_after_decision": (
+                "build-fold-augmented-confounded-proxy-threshold-stress"
             ),
         },
         {
@@ -25840,6 +26952,20 @@ def build_active_lever_mechanical_actionability_audit(
         blockers.append("source_decision_intake_integrity_violations")
     if p10746_pending:
         blockers.append("p10746_policy_decision_missing")
+    if (
+        lever3_proxy
+        and not lever3_proxy_decision.get(
+            "calibration_same_family_structural_proxy_target_met"
+        )
+    ):
+        blockers.append("lever3_confounded_structural_proxy_calibration_gap")
+    if (
+        lever3_proxy_stress
+        and not lever3_proxy_stress_decision.get(
+            "structural_proxy_80pct_abstain_retention_ok"
+        )
+    ):
+        blockers.append("lever3_confounded_proxy_threshold_stress_retention_cost")
     if lever4_pending:
         blockers.append("family_panel_expert_import_decisions_missing")
     if lever2_pending:
@@ -25907,6 +27033,28 @@ def build_active_lever_mechanical_actionability_audit(
                 source_intake_counts.get("follow_on_gate_ready_rows") or 0
             ),
             "p10746_pending_policy_decisions": len(p10746_pending),
+            "lever3_confounded_high_cofactor_proxy_rows": int(
+                lever3_proxy_counts.get("high_cofactor_proxy_calibration_oos_rows")
+                or 0
+            ),
+            "lever3_confounded_structural_proxy_rows": int(
+                lever3_proxy_counts.get(
+                    "same_family_structural_proxy_calibration_oos_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_structural_proxy_abstained": int(
+                lever3_proxy_counts.get(
+                    "same_family_structural_proxy_abstained_at_fixed_threshold"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_retained_gap_rows": int(
+                lever3_proxy_gap_counts.get("retained_proxy_gap_rows") or 0
+            ),
+            "lever3_confounded_proxy_threshold_stress_blockers": int(
+                lever3_proxy_stress_counts.get("blockers") or 0
+            ),
             "lever4_pending_expert_import_decisions": len(lever4_pending),
             "lever4_import_preview_candidate_if_accepted_items": int(
                 queue_counts.get(
@@ -25996,6 +27144,23 @@ def build_active_lever_mechanical_actionability_audit(
                 if lever3_post_decision_deployment_closure_status_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
+            "lever3_confounded_proxy_operating_point_audit": (
+                _source_path_record(
+                    lever3_confounded_proxy_operating_point_audit_path
+                )
+                if lever3_confounded_proxy_operating_point_audit_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_gap_targets": (
+                _source_path_record(lever3_confounded_proxy_gap_targets_path)
+                if lever3_confounded_proxy_gap_targets_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_threshold_stress": (
+                _source_path_record(lever3_confounded_proxy_threshold_stress_path)
+                if lever3_confounded_proxy_threshold_stress_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
             "family_panel_label_factory_gate_readiness": (
                 _source_path_record(family_panel_label_factory_gate_readiness_path)
                 if family_panel_label_factory_gate_readiness_path is not None
@@ -26055,6 +27220,13 @@ def _render_active_lever_mechanical_actionability_audit_report(
         f"{counts['lever2_pending_locator_approvals']}",
         "- Lever 2 event-axis linker rows: "
         f"{counts['lever2_event_axis_materialized_linker_rows']}",
+        "- Lever 3 structural proxy abstained: "
+        f"{counts.get('lever3_confounded_structural_proxy_abstained')}/"
+        f"{counts.get('lever3_confounded_structural_proxy_rows')}",
+        "- Lever 3 retained proxy gap rows: "
+        f"{counts.get('lever3_confounded_proxy_retained_gap_rows')}",
+        "- Lever 3 proxy stress blockers: "
+        f"{counts.get('lever3_confounded_proxy_threshold_stress_blockers')}",
         "- Lever 4 label-factory gate input rows: "
         f"{counts['lever4_label_factory_gate_input_rows']}",
         f"- Blockers: {audit['blockers']}",
@@ -26110,6 +27282,9 @@ def write_active_lever_mechanical_actionability_audit(
     lever2_event_axis_linker_schema_path: Path | None = None,
     lever2_event_axis_linker_materialization_gate_path: Path | None = None,
     lever3_post_decision_deployment_closure_status_path: Path | None = None,
+    lever3_confounded_proxy_operating_point_audit_path: Path | None = None,
+    lever3_confounded_proxy_gap_targets_path: Path | None = None,
+    lever3_confounded_proxy_threshold_stress_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
@@ -26128,6 +27303,15 @@ def write_active_lever_mechanical_actionability_audit(
         ),
         lever3_post_decision_deployment_closure_status_path=(
             lever3_post_decision_deployment_closure_status_path
+        ),
+        lever3_confounded_proxy_operating_point_audit_path=(
+            lever3_confounded_proxy_operating_point_audit_path
+        ),
+        lever3_confounded_proxy_gap_targets_path=(
+            lever3_confounded_proxy_gap_targets_path
+        ),
+        lever3_confounded_proxy_threshold_stress_path=(
+            lever3_confounded_proxy_threshold_stress_path
         ),
         family_panel_label_factory_gate_readiness_path=(
             family_panel_label_factory_gate_readiness_path

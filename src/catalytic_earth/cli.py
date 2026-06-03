@@ -36,7 +36,10 @@ from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .mechanism_relationship_surface_eval import write_mechanism_relationship_surface_eval
-from .mechanism_novelty_abstention_eval import write_mechanism_novelty_abstention_eval
+from .mechanism_novelty_abstention_eval import (
+    COFACTOR_SIGNATURE_THRESHOLD,
+    write_mechanism_novelty_abstention_eval,
+)
 from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
 from .mechanism_feature_residual_robustness import write_residual_robustness_audit
 from .mechanism_residual_gate_integration import write_residual_gate_integration_eval
@@ -94,6 +97,9 @@ from .northstar_next_levers import (
     write_fold_augmented_fixed_threshold_combined_rerun_calibration_impact,
     write_fold_augmented_fixed_threshold_combined_rerun_readout,
     write_fold_augmented_fixed_threshold_rerun_readiness,
+    write_fold_augmented_confounded_proxy_operating_point_audit,
+    write_fold_augmented_confounded_proxy_gap_targets,
+    write_fold_augmented_confounded_proxy_threshold_stress,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_non_residue_interaction_sidecar_policy_preflight,
     write_fold_augmented_p23007_alternate_accession_scout,
@@ -12244,6 +12250,80 @@ def cmd_audit_fold_augmented_post_rerun_confounded_deployment_closure(
     return 0
 
 
+def cmd_audit_fold_augmented_confounded_proxy_operating_point(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_proxy_operating_point_audit(
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        train_cal_oos_surface_path=Path(args.train_cal_oos_surface),
+        deployment_input_audit_path=Path(args.deployment_input_audit),
+        post_rerun_confounded_closure_path=Path(
+            args.post_rerun_confounded_closure
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        cofactor_proxy_threshold=float(args.cofactor_proxy_threshold),
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy operating-point audit to "
+        f"{args.out} (high-cofactor proxy abstained: "
+        f"{counts.get('high_cofactor_proxy_abstained_at_fixed_threshold')}/"
+        f"{counts.get('high_cofactor_proxy_calibration_oos_rows')}, "
+        f"heldout confounded abstained: "
+        f"{counts.get('heldout_confounded_oos_abstained')}/"
+        f"{counts.get('heldout_confounded_oos_total')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_gap_targets(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_proxy_gap_targets(
+        confounded_proxy_operating_point_audit_path=Path(
+            args.confounded_proxy_operating_point_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy gap targets to "
+        f"{args.out} (retained gaps: {counts.get('retained_proxy_gap_rows')}, "
+        f"high-cofactor gaps: "
+        f"{counts.get('high_cofactor_retained_proxy_gap_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_threshold_stress(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_confounded_proxy_threshold_stress(
+        train_cal_threshold_contract_path=Path(args.train_cal_threshold_contract),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        confounded_proxy_operating_point_audit_path=Path(
+            args.confounded_proxy_operating_point_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented confounded proxy threshold stress to "
+        f"{args.out} (structural 80% retention ok: "
+        f"{decision.get('structural_proxy_80pct_abstain_retention_ok')}, "
+        f"high-cofactor 80% retention ok: "
+        f"{decision.get('high_cofactor_proxy_80pct_abstain_retention_ok')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet(
     args: argparse.Namespace,
 ) -> int:
@@ -12629,6 +12709,21 @@ def cmd_build_active_lever_mechanical_actionability_audit(
             args.lever3_post_decision_deployment_closure_status
         )
         if args.lever3_post_decision_deployment_closure_status
+        else None,
+        lever3_confounded_proxy_operating_point_audit_path=Path(
+            args.lever3_confounded_proxy_operating_point_audit
+        )
+        if args.lever3_confounded_proxy_operating_point_audit
+        else None,
+        lever3_confounded_proxy_gap_targets_path=Path(
+            args.lever3_confounded_proxy_gap_targets
+        )
+        if args.lever3_confounded_proxy_gap_targets
+        else None,
+        lever3_confounded_proxy_threshold_stress_path=Path(
+            args.lever3_confounded_proxy_threshold_stress
+        )
+        if args.lever3_confounded_proxy_threshold_stress
         else None,
         family_panel_label_factory_gate_readiness_path=Path(
             args.family_panel_label_factory_gate_readiness
@@ -27961,6 +28056,141 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_fold_augmented_post_rerun_confounded_deployment_closure
     )
 
+    confounded_proxy_operating_point = subparsers.add_parser(
+        "audit-fold-augmented-confounded-proxy-operating-point",
+        help=(
+            "audit the fixed Lever 3 operating threshold against train/cal "
+            "high-cofactor OOS proxy rows without tuning on heldout"
+        ),
+    )
+    confounded_proxy_operating_point.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_operating_point.add_argument(
+        "--train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_"
+            "surface_scores_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_operating_point.add_argument(
+        "--deployment-input-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_deployment_input_"
+            "audit_current702_20260602.json"
+        ),
+    )
+    confounded_proxy_operating_point.add_argument(
+        "--post-rerun-confounded-closure",
+        default=(
+            "artifacts/v3_fold_augmented_post_rerun_confounded_deployment_"
+            "closure_audit_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_operating_point.add_argument(
+        "--cofactor-proxy-threshold",
+        default=str(COFACTOR_SIGNATURE_THRESHOLD),
+    )
+    confounded_proxy_operating_point.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_operating_point.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_operating_point_audit_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_operating_point.set_defaults(
+        func=cmd_audit_fold_augmented_confounded_proxy_operating_point
+    )
+
+    confounded_proxy_gap_targets = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-gap-targets",
+        help=(
+            "build a train/cal retained-gap target packet from the fixed "
+            "confounded proxy operating-point audit"
+        ),
+    )
+    confounded_proxy_gap_targets.add_argument(
+        "--confounded-proxy-operating-point-audit",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_gap_targets.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_gap_targets_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_gap_targets.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_gap_targets_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_gap_targets.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_gap_targets
+    )
+
+    confounded_proxy_threshold_stress = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-threshold-stress",
+        help=(
+            "compute train/cal-only counterfactual threshold stress for "
+            "confounded proxy abstention targets"
+        ),
+    )
+    confounded_proxy_threshold_stress.add_argument(
+        "--train-cal-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    confounded_proxy_threshold_stress.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_threshold_stress.add_argument(
+        "--confounded-proxy-operating-point-audit",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_threshold_stress.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_threshold_stress.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_threshold_stress_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_threshold_stress.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_threshold_stress
+    )
+
     p10746_caveat_decision_packet = subparsers.add_parser(
         "build-fold-augmented-p10746-deployment-caveat-decision-packet",
         help=(
@@ -28657,6 +28887,27 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_fold_augmented_post_decision_deployment_closure_"
             "status_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-operating-point-audit",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-gap-targets",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_gap_targets_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-threshold-stress",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_"
+            "current702_20260603.json"
         ),
     )
     active_lever_actionability.add_argument(

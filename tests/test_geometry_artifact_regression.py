@@ -3358,6 +3358,187 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
         self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_confounded_proxy_operating_point_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_operating_point_audit_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_operating_point_audit_"
+                "current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_confounded_proxy_operating_point_ready_with_proxy_caveat",
+        )
+        self.assertEqual(audit["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(audit["counts"]["calibration_oos_rows"], 75)
+        self.assertEqual(
+            audit["counts"]["high_cofactor_proxy_calibration_oos_rows"], 1
+        )
+        self.assertEqual(
+            audit["counts"]["high_cofactor_proxy_abstained_at_fixed_threshold"],
+            0,
+        )
+        self.assertEqual(
+            audit["counts"]["same_family_structural_proxy_calibration_oos_rows"],
+            17,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["same_family_structural_proxy_abstained_at_fixed_threshold"],
+            4,
+        )
+        self.assertEqual(
+            audit["calibration_proxy_readout"][
+                "high_cofactor_proxy_calibration_oos"
+            ]["abstain_recall"],
+            0.0,
+        )
+        self.assertEqual(
+            audit["calibration_proxy_readout"][
+                "same_family_structural_proxy_calibration_oos"
+            ]["abstain_recall"],
+            0.2353,
+        )
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_abstained"], 5)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_total"], 6)
+        self.assertFalse(
+            audit["decision"]["calibration_high_cofactor_proxy_target_met"]
+        )
+        self.assertFalse(
+            audit["decision"]["calibration_same_family_structural_proxy_target_met"]
+        )
+        self.assertTrue(
+            audit["decision"][
+                "heldout_confounded_operating_point_met_from_existing_readout"
+            ]
+        )
+        self.assertIn(
+            "calibration_high_cofactor_proxy_target_not_met",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "calibration_same_family_structural_proxy_target_not_met",
+            audit["blockers"],
+        )
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(
+            audit["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
+    def test_fold_augmented_confounded_proxy_gap_targets_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_gap_targets_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["artifact_id"],
+            "v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603",
+        )
+        self.assertEqual(
+            audit["status"], "fold_augmented_confounded_proxy_gap_targets_ready"
+        )
+        self.assertEqual(audit["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(audit["counts"]["retained_proxy_gap_rows"], 14)
+        self.assertEqual(
+            audit["counts"]["high_cofactor_retained_proxy_gap_rows"], 1
+        )
+        self.assertEqual(
+            audit["counts"]["same_family_structural_retained_proxy_gap_rows"],
+            13,
+        )
+        self.assertEqual(
+            audit["counts"]["priority_counts"],
+            {
+                "priority_1_high_cofactor_retained_proxy_gap": 1,
+                "priority_2_hard_retained_structural_proxy_gap": 8,
+                "priority_3_near_threshold_retained_structural_proxy_gap": 5,
+            },
+        )
+        rows = {row["entry_id"]: row for row in audit["retained_proxy_gap_rows"]}
+        self.assertIn("m_csa:368", rows)
+        self.assertEqual(
+            rows["m_csa:368"]["priority"],
+            "priority_1_high_cofactor_retained_proxy_gap",
+        )
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+        self.assertFalse(
+            audit["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
+    def test_fold_augmented_confounded_proxy_threshold_stress_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_threshold_stress_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["artifact_id"],
+            "v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603",
+        )
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_confounded_proxy_threshold_stress_ready",
+        )
+        self.assertEqual(audit["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(audit["counts"]["high_cofactor_proxy_rows"], 1)
+        self.assertEqual(audit["counts"]["same_family_structural_proxy_rows"], 17)
+        self.assertEqual(audit["counts"]["all_expanded_calibration_oos_rows"], 75)
+        high_80 = audit["threshold_stress"]["high_cofactor_signature_proxy"][
+            "counterfactual_targets"
+        ]["0.8"]
+        structural_80 = audit["threshold_stress"]["same_family_structural_proxy"][
+            "counterfactual_targets"
+        ]["0.8"]
+        all_oos_80 = audit["threshold_stress"]["all_expanded_calibration_oos"][
+            "counterfactual_targets"
+        ]["0.8"]
+        self.assertEqual(high_80["threshold"], 0.4682)
+        self.assertEqual(high_80["calibration_in_scope_retain_recall"], 0.8824)
+        self.assertEqual(structural_80["threshold"], 0.62295)
+        self.assertEqual(
+            structural_80["calibration_in_scope_retain_recall"], 0.4412
+        )
+        self.assertEqual(all_oos_80["threshold"], 0.5365)
+        self.assertEqual(all_oos_80["calibration_in_scope_retain_recall"], 0.7353)
+        self.assertFalse(
+            audit["decision"]["structural_proxy_80pct_abstain_retention_ok"]
+        )
+        self.assertFalse(
+            audit["decision"]["high_cofactor_proxy_80pct_abstain_retention_ok"]
+        )
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+        self.assertTrue(
+            audit["guardrails"]["counterfactual_thresholds_computed_not_applied"]
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_read_now"])
+
     def test_fold_augmented_p10746_source_feature_refresh_audit_current_counts(
         self,
     ) -> None:
@@ -8517,6 +8698,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
+        self.assertEqual(audit["counts"]["blockers"], 11)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 78
         )
@@ -8527,6 +8709,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["source_decision_follow_on_gate_ready_rows"], 0
         )
         self.assertEqual(audit["counts"]["p10746_pending_policy_decisions"], 1)
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_structural_proxy_rows"], 17
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_structural_proxy_abstained"], 4
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_retained_gap_rows"], 14
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_threshold_stress_blockers"], 2
+        )
         self.assertEqual(
             audit["counts"]["lever4_pending_expert_import_decisions"], 22
         )
@@ -8540,6 +8734,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["lever4_label_factory_gate_input_rows"], 0
         )
         self.assertIn("no_active_lever_mechanical_gate_ready", audit["blockers"])
+        self.assertIn(
+            "lever3_confounded_structural_proxy_calibration_gap",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "lever3_confounded_proxy_threshold_stress_retention_cost",
+            audit["blockers"],
+        )
         self.assertIn(
             "source_decision_intake_preflight_not_ready", audit["blockers"]
         )

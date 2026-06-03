@@ -1,0 +1,204 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603",
+  "blockers": [
+    "structural_proxy_80pct_abstain_breaks_85pct_in_scope_retention",
+    "high_cofactor_proxy_80pct_abstain_breaks_90pct_in_scope_retention"
+  ],
+  "counts": {
+    "all_expanded_calibration_oos_rows": 75,
+    "blockers": 2,
+    "calibration_in_scope_rows": 34,
+    "high_cofactor_proxy_rows": 1,
+    "same_family_structural_proxy_rows": 17
+  },
+  "created_utc": "2026-06-03T12:20:58Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_closed_now": false,
+    "high_cofactor_proxy_80pct_abstain_retention_ok": false,
+    "next_gate": "Do not raise the fixed threshold from heldout behavior. The train/cal stress shows whether proxy abstention targets can be met while preserving calibration in-scope retention; use it to decide whether more train/cal proxy evidence is needed.",
+    "structural_proxy_80pct_abstain_retention_ok": false
+  },
+  "fixed_operating_point": {
+    "calibration_selection": {
+      "calibration_in_scope_retain_recall": 0.9118,
+      "calibration_in_scope_retained": 31,
+      "calibration_in_scope_total": 34,
+      "calibration_oos_abstain_recall": 0.4,
+      "calibration_oos_abstained": 30,
+      "calibration_oos_total": 75,
+      "min_retain_target": 0.9,
+      "objective": "maximize_calibration_oos_abstain_recall_subject_to_in_scope_retention",
+      "threshold": 0.44155
+    },
+    "channel": "combined_mean_geometry_fold",
+    "heldout_final_readout": {
+      "heldout_confounded_oos_abstain_recall": 0.8333,
+      "heldout_confounded_oos_abstained": 5,
+      "heldout_confounded_oos_total": 6,
+      "heldout_in_scope_retain_recall": 0.9574,
+      "heldout_in_scope_retained": 45,
+      "heldout_in_scope_total": 47,
+      "heldout_oos_abstain_recall": 0.557,
+      "heldout_oos_abstained": 44,
+      "heldout_oos_total": 79,
+      "threshold": 0.44155
+    },
+    "threshold": 0.44155,
+    "threshold_source": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json"
+  },
+  "guardrails": {
+    "counterfactual_thresholds_computed_not_applied": true,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_read_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "headline": "Counterfactual proxy-abstention thresholds are not adopted; they expose the train/cal retention cost of stricter confounded proxy behavior.",
+    "next_action": "If the retention cost is unacceptable, add or review more train/cal confounded proxy rows rather than changing the fixed operating point from heldout readout."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_threshold_stress",
+  "scope": "Train/cal-only counterfactual threshold stress for Lever 3 confounded proxy rows. It reports the in-scope retention cost of forcing proxy abstention targets, without changing the fixed operating threshold or reading heldout rows.",
+  "source_artifacts": {
+    "confounded_proxy_operating_point_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json",
+      "sha256": "b7b4ef428a7b1a6668c0552269ae1efa8e7ce2823f83e40e07a053fdc88b1a1b"
+    },
+    "expanded_oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de"
+    },
+    "train_cal_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_threshold_stress_ready",
+  "threshold_stress": {
+    "all_expanded_calibration_oos": {
+      "counterfactual_targets": {
+        "0.5": {
+          "calibration_in_scope_retain_recall": 0.8824,
+          "calibration_in_scope_retained": 30,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 0.5067,
+          "proxy_abstained": 38,
+          "proxy_total": 75,
+          "target_abstain_recall": 0.5,
+          "threshold": 0.46725
+        },
+        "0.8": {
+          "calibration_in_scope_retain_recall": 0.7353,
+          "calibration_in_scope_retained": 25,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 0.8,
+          "proxy_abstained": 60,
+          "proxy_total": 75,
+          "target_abstain_recall": 0.8,
+          "threshold": 0.5365
+        },
+        "1.0": {
+          "calibration_in_scope_retain_recall": 0.2941,
+          "calibration_in_scope_retained": 10,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 1.0,
+          "proxy_abstained": 75,
+          "proxy_total": 75,
+          "target_abstain_recall": 1.0,
+          "threshold": 0.6621
+        }
+      },
+      "current_fixed_threshold": 0.44155,
+      "current_fixed_threshold_abstain_recall": 0.4,
+      "current_fixed_threshold_abstained": 30,
+      "row_count": 75
+    },
+    "high_cofactor_signature_proxy": {
+      "counterfactual_targets": {
+        "0.5": {
+          "calibration_in_scope_retain_recall": 0.8824,
+          "calibration_in_scope_retained": 30,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 1.0,
+          "proxy_abstained": 1,
+          "proxy_total": 1,
+          "target_abstain_recall": 0.5,
+          "threshold": 0.4682
+        },
+        "0.8": {
+          "calibration_in_scope_retain_recall": 0.8824,
+          "calibration_in_scope_retained": 30,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 1.0,
+          "proxy_abstained": 1,
+          "proxy_total": 1,
+          "target_abstain_recall": 0.8,
+          "threshold": 0.4682
+        },
+        "1.0": {
+          "calibration_in_scope_retain_recall": 0.8824,
+          "calibration_in_scope_retained": 30,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 1.0,
+          "proxy_abstained": 1,
+          "proxy_total": 1,
+          "target_abstain_recall": 1.0,
+          "threshold": 0.4682
+        }
+      },
+      "current_fixed_threshold": 0.44155,
+      "current_fixed_threshold_abstain_recall": 0.0,
+      "current_fixed_threshold_abstained": 0,
+      "row_count": 1
+    },
+    "same_family_structural_proxy": {
+      "counterfactual_targets": {
+        "0.5": {
+          "calibration_in_scope_retain_recall": 0.8235,
+          "calibration_in_scope_retained": 28,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 0.5294,
+          "proxy_abstained": 9,
+          "proxy_total": 17,
+          "target_abstain_recall": 0.5,
+          "threshold": 0.4806
+        },
+        "0.8": {
+          "calibration_in_scope_retain_recall": 0.4412,
+          "calibration_in_scope_retained": 15,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 0.8235,
+          "proxy_abstained": 14,
+          "proxy_total": 17,
+          "target_abstain_recall": 0.8,
+          "threshold": 0.62295
+        },
+        "1.0": {
+          "calibration_in_scope_retain_recall": 0.2941,
+          "calibration_in_scope_retained": 10,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 1.0,
+          "proxy_abstained": 17,
+          "proxy_total": 17,
+          "target_abstain_recall": 1.0,
+          "threshold": 0.6621
+        }
+      },
+      "current_fixed_threshold": 0.44155,
+      "current_fixed_threshold_abstain_recall": 0.2353,
+      "current_fixed_threshold_abstained": 4,
+      "row_count": 17
+    }
+  }
+}
