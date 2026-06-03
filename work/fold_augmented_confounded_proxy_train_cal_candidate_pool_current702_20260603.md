@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy Train/Cal Candidate Pool - current702
 
-Run: 2026-06-03T14:28:05Z
+Run: 2026-06-03T16:13:13Z
 
 Train/cal-only source-free candidate pool for the Lever 3 confounded-proxy evidence acquisition gap. It filters out rows already in the current scored OOS surface and ranks the remaining train/cal OOS rows for future predicted-structure-vs-atlas scoring.
 
@@ -8,110 +8,111 @@ Train/cal-only source-free candidate pool for the Lever 3 confounded-proxy evide
 
 - fold_augmented_confounded_proxy_train_cal_candidate_pool_ready_for_scoring_plan
 - Ready train/cal OOS rows: 353
-- Current scored train/cal OOS rows: 76
-- Unscored ready train/cal OOS candidate rows: 286
-- High-cofactor-axis candidate rows: 13
-- Structural-locus candidate rows: 114
+- Current scored train/cal OOS rows: 192
+- Unscored ready train/cal OOS candidate rows: 170
+- High-cofactor-axis candidate rows: 0
+- Structural-locus candidate rows: 0
 - Priority rows emitted: 80
-- Priority bucket counts: {'1': 13, '2': 103, '3': 170}
-- Blockers: ['candidate_pool_not_scored_at_fixed_threshold']
+- Priority bucket counts: {'3': 170}
+- Blockers: ['high_cofactor_candidate_pool_below_shortfall', 'structural_candidate_pool_below_shortfall', 'candidate_pool_not_scored_at_fixed_threshold']
 
 ## Decision
 
 - Score candidate pool now: False
 - Apply/change threshold now: False
 - Proxy calibration rerun ready now: False
-- Candidate pool meets high shortfall by count: True
-- Candidate pool meets structural shortfall by count: True
-- Next gate: Score a bounded tranche from priority_candidate_rows with the predicted-structure-vs-atlas channel, then rerun the fixed-threshold proxy operating-point audit only after new train/cal OOS rows have actual channel scores.
+- Candidate pool meets high shortfall by count: False
+- Candidate pool meets structural shortfall by count: False
+- Current proxy axes exhausted: True
+- Next gate: Do not score background-only rows under the current proxy axes. Build the background-axis blocker, then wait for reviewed source decisions or define a new source-free proxy axis before any fixed-threshold proxy audit rerun.
 
 ## Priority Candidate Rows
 
 | row | bucket | axes | organic max | inorganic context |
 | --- | ---: | --- | --- | --- |
-| m_csa:289 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | flavin:0.980742 | 1 |
-| m_csa:361 | 1 | high_cofactor_signature_proxy | heme:0.97392 | 0 |
-| m_csa:604 | 1 | high_cofactor_signature_proxy | flavin:0.605709 | 0 |
-| m_csa:298 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | flavin:0.515522 | 1 |
-| m_csa:268 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | plp:0.267672 | 1 |
-| m_csa:332 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | heme:0.109821 | 1 |
-| m_csa:398 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | flavin:0.09856 | 1 |
-| m_csa:127 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | flavin:0.068596 | 1 |
-| m_csa:427 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | heme:0.048754 | 1 |
-| m_csa:130 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | flavin:0.044528 | 1 |
-| m_csa:276 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | heme:0.03172 | 1 |
-| m_csa:562 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | flavin:0.012957 | 1 |
-| m_csa:23 | 1 | high_cofactor_signature_proxy, same_family_structural_proxy | heme:0.001625 | 1 |
-| m_csa:215 | 2 | same_family_structural_proxy | flavin:0.379526 | 1 |
-| m_csa:263 | 2 | same_family_structural_proxy | heme:0.343767 | 1 |
-| m_csa:367 | 2 | same_family_structural_proxy | flavin:0.325641 | 1 |
-| m_csa:21 | 2 | same_family_structural_proxy | plp:0.302412 | 1 |
-| m_csa:308 | 2 | same_family_structural_proxy | heme:0.291653 | 1 |
-| m_csa:182 | 2 | same_family_structural_proxy | plp:0.268877 | 1 |
-| m_csa:139 | 2 | same_family_structural_proxy | plp:0.253779 | 1 |
-| m_csa:221 | 2 | same_family_structural_proxy | flavin:0.246079 | 1 |
-| m_csa:540 | 2 | same_family_structural_proxy | plp:0.216 | 1 |
-| m_csa:502 | 2 | same_family_structural_proxy | plp:0.206148 | 1 |
-| m_csa:468 | 2 | same_family_structural_proxy | plp:0.181268 | 1 |
-| m_csa:331 | 2 | same_family_structural_proxy | plp:0.172985 | 1 |
-| m_csa:135 | 2 | same_family_structural_proxy | heme:0.153072 | 1 |
-| m_csa:648 | 2 | same_family_structural_proxy | plp:0.151453 | 1 |
-| m_csa:134 | 2 | same_family_structural_proxy | heme:0.151172 | 1 |
-| m_csa:270 | 2 | same_family_structural_proxy | plp:0.138432 | 1 |
-| m_csa:326 | 2 | same_family_structural_proxy | plp:0.133397 | 1 |
-| m_csa:251 | 2 | same_family_structural_proxy | heme:0.13156 | 1 |
-| m_csa:601 | 2 | same_family_structural_proxy | heme:0.120138 | 1 |
-| m_csa:552 | 2 | same_family_structural_proxy | heme:0.119035 | 1 |
-| m_csa:416 | 2 | same_family_structural_proxy | plp:0.115904 | 1 |
-| m_csa:51 | 2 | same_family_structural_proxy | plp:0.113362 | 1 |
-| m_csa:365 | 2 | same_family_structural_proxy | plp:0.109043 | 1 |
-| m_csa:240 | 2 | same_family_structural_proxy | heme:0.102791 | 1 |
-| m_csa:514 | 2 | same_family_structural_proxy | heme:0.101561 | 1 |
-| m_csa:539 | 2 | same_family_structural_proxy | plp:0.100854 | 1 |
-| m_csa:99 | 2 | same_family_structural_proxy | heme:0.09978 | 1 |
-| m_csa:652 | 2 | same_family_structural_proxy | flavin:0.099308 | 1 |
-| m_csa:272 | 2 | same_family_structural_proxy | flavin:0.095155 | 1 |
-| m_csa:498 | 2 | same_family_structural_proxy | plp:0.094616 | 1 |
-| m_csa:287 | 2 | same_family_structural_proxy | heme:0.092806 | 1 |
-| m_csa:7 | 2 | same_family_structural_proxy | plp:0.086786 | 1 |
-| m_csa:259 | 2 | same_family_structural_proxy | heme:0.08665 | 1 |
-| m_csa:488 | 2 | same_family_structural_proxy | heme:0.084131 | 1 |
-| m_csa:95 | 2 | same_family_structural_proxy | flavin:0.082176 | 1 |
-| m_csa:179 | 2 | same_family_structural_proxy | flavin:0.081808 | 1 |
-| m_csa:207 | 2 | same_family_structural_proxy | plp:0.07504 | 1 |
-| m_csa:309 | 2 | same_family_structural_proxy | plp:0.073222 | 1 |
-| m_csa:138 | 2 | same_family_structural_proxy | heme:0.070443 | 1 |
-| m_csa:380 | 2 | same_family_structural_proxy | flavin:0.070437 | 1 |
-| m_csa:48 | 2 | same_family_structural_proxy | flavin:0.069563 | 1 |
-| m_csa:637 | 2 | same_family_structural_proxy | plp:0.069548 | 1 |
-| m_csa:223 | 2 | same_family_structural_proxy | flavin:0.068591 | 1 |
-| m_csa:508 | 2 | same_family_structural_proxy | plp:0.067949 | 1 |
-| m_csa:451 | 2 | same_family_structural_proxy | flavin:0.064766 | 1 |
-| m_csa:231 | 2 | same_family_structural_proxy | flavin:0.064335 | 1 |
-| m_csa:350 | 2 | same_family_structural_proxy | plp:0.062013 | 1 |
-| m_csa:280 | 2 | same_family_structural_proxy | flavin:0.059279 | 1 |
-| m_csa:70 | 2 | same_family_structural_proxy | plp:0.058751 | 1 |
-| m_csa:150 | 2 | same_family_structural_proxy | heme:0.058092 | 1 |
-| m_csa:151 | 2 | same_family_structural_proxy | flavin:0.05522 | 1 |
-| m_csa:310 | 2 | same_family_structural_proxy | plp:0.053663 | 1 |
-| m_csa:359 | 2 | same_family_structural_proxy | heme:0.05146 | 1 |
-| m_csa:72 | 2 | same_family_structural_proxy | plp:0.050862 | 1 |
-| m_csa:640 | 2 | same_family_structural_proxy | heme:0.048929 | 1 |
-| m_csa:84 | 2 | same_family_structural_proxy | plp:0.048876 | 1 |
-| m_csa:194 | 2 | same_family_structural_proxy | flavin:0.048628 | 1 |
-| m_csa:463 | 2 | same_family_structural_proxy | flavin:0.048582 | 1 |
-| m_csa:190 | 2 | same_family_structural_proxy | plp:0.047669 | 1 |
-| m_csa:450 | 2 | same_family_structural_proxy | flavin:0.0458 | 1 |
-| m_csa:224 | 2 | same_family_structural_proxy | heme:0.045267 | 1 |
-| m_csa:405 | 2 | same_family_structural_proxy | flavin:0.042608 | 1 |
-| m_csa:638 | 2 | same_family_structural_proxy | flavin:0.041957 | 1 |
-| m_csa:312 | 2 | same_family_structural_proxy | heme:0.041514 | 1 |
-| m_csa:256 | 2 | same_family_structural_proxy | flavin:0.038203 | 1 |
-| m_csa:587 | 2 | same_family_structural_proxy | flavin:0.036184 | 1 |
-| m_csa:74 | 2 | same_family_structural_proxy | flavin:0.033547 | 1 |
+| m_csa:288 | 3 | background_train_cal_oos_structural_pool | heme:0.407563 | 0 |
+| m_csa:89 | 3 | background_train_cal_oos_structural_pool | heme:0.398339 | 0 |
+| m_csa:214 | 3 | background_train_cal_oos_structural_pool | plp:0.353171 | 0 |
+| m_csa:75 | 3 | background_train_cal_oos_structural_pool | heme:0.34378 | 0 |
+| m_csa:60 | 3 | background_train_cal_oos_structural_pool | plp:0.337092 | 0 |
+| m_csa:583 | 3 | background_train_cal_oos_structural_pool | heme:0.296056 | 0 |
+| m_csa:64 | 3 | background_train_cal_oos_structural_pool | plp:0.246623 | 0 |
+| m_csa:607 | 3 | background_train_cal_oos_structural_pool | heme:0.236789 | 0 |
+| m_csa:610 | 3 | background_train_cal_oos_structural_pool | plp:0.222226 | 0 |
+| m_csa:618 | 3 | background_train_cal_oos_structural_pool | flavin:0.215006 | 0 |
+| m_csa:555 | 3 | background_train_cal_oos_structural_pool | flavin:0.213904 | 0 |
+| m_csa:404 | 3 | background_train_cal_oos_structural_pool | heme:0.193581 | 0 |
+| m_csa:26 | 3 | background_train_cal_oos_structural_pool | plp:0.177608 | 0 |
+| m_csa:515 | 3 | background_train_cal_oos_structural_pool | plp:0.150245 | 0 |
+| m_csa:232 | 3 | background_train_cal_oos_structural_pool | plp:0.147019 | 0 |
+| m_csa:351 | 3 | background_train_cal_oos_structural_pool | plp:0.144021 | 0 |
+| m_csa:81 | 3 | background_train_cal_oos_structural_pool | plp:0.141 | 0 |
+| m_csa:394 | 3 | background_train_cal_oos_structural_pool | plp:0.132044 | 0 |
+| m_csa:162 | 3 | background_train_cal_oos_structural_pool | plp:0.131705 | 0 |
+| m_csa:235 | 3 | background_train_cal_oos_structural_pool | plp:0.126653 | 0 |
+| m_csa:175 | 3 | background_train_cal_oos_structural_pool | heme:0.12583 | 0 |
+| m_csa:306 | 3 | background_train_cal_oos_structural_pool | heme:0.119577 | 0 |
+| m_csa:296 | 3 | background_train_cal_oos_structural_pool | plp:0.118926 | 0 |
+| m_csa:128 | 3 | background_train_cal_oos_structural_pool | plp:0.11803 | 0 |
+| m_csa:616 | 3 | background_train_cal_oos_structural_pool | plp:0.117715 | 0 |
+| m_csa:245 | 3 | background_train_cal_oos_structural_pool | flavin:0.112395 | 0 |
+| m_csa:417 | 3 | background_train_cal_oos_structural_pool | flavin:0.110319 | 0 |
+| m_csa:279 | 3 | background_train_cal_oos_structural_pool | heme:0.109212 | 0 |
+| m_csa:148 | 3 | background_train_cal_oos_structural_pool | plp:0.10865 | 0 |
+| m_csa:633 | 3 | background_train_cal_oos_structural_pool | plp:0.106909 | 0 |
+| m_csa:92 | 3 | background_train_cal_oos_structural_pool | plp:0.106514 | 0 |
+| m_csa:316 | 3 | background_train_cal_oos_structural_pool | plp:0.104929 | 0 |
+| m_csa:49 | 3 | background_train_cal_oos_structural_pool | flavin:0.098011 | 0 |
+| m_csa:257 | 3 | background_train_cal_oos_structural_pool | flavin:0.095406 | 0 |
+| m_csa:455 | 3 | background_train_cal_oos_structural_pool | plp:0.088367 | 0 |
+| m_csa:373 | 3 | background_train_cal_oos_structural_pool | heme:0.088163 | 0 |
+| m_csa:374 | 3 | background_train_cal_oos_structural_pool | heme:0.088163 | 0 |
+| m_csa:386 | 3 | background_train_cal_oos_structural_pool | heme:0.088163 | 0 |
+| m_csa:570 | 3 | background_train_cal_oos_structural_pool | heme:0.079017 | 0 |
+| m_csa:459 | 3 | background_train_cal_oos_structural_pool | heme:0.078375 | 0 |
+| m_csa:202 | 3 | background_train_cal_oos_structural_pool | plp:0.074818 | 0 |
+| m_csa:174 | 3 | background_train_cal_oos_structural_pool | plp:0.070105 | 0 |
+| m_csa:252 | 3 | background_train_cal_oos_structural_pool | flavin:0.069699 | 0 |
+| m_csa:389 | 3 | background_train_cal_oos_structural_pool | flavin:0.069644 | 0 |
+| m_csa:458 | 3 | background_train_cal_oos_structural_pool | flavin:0.069644 | 0 |
+| m_csa:635 | 3 | background_train_cal_oos_structural_pool | heme:0.068761 | 0 |
+| m_csa:340 | 3 | background_train_cal_oos_structural_pool | plp:0.067825 | 0 |
+| m_csa:574 | 3 | background_train_cal_oos_structural_pool | flavin:0.066149 | 0 |
+| m_csa:153 | 3 | background_train_cal_oos_structural_pool | flavin:0.063819 | 0 |
+| m_csa:357 | 3 | background_train_cal_oos_structural_pool | heme:0.063288 | 0 |
+| m_csa:436 | 3 | background_train_cal_oos_structural_pool | heme:0.061443 | 0 |
+| m_csa:343 | 3 | background_train_cal_oos_structural_pool | flavin:0.060874 | 0 |
+| m_csa:210 | 3 | background_train_cal_oos_structural_pool | heme:0.060519 | 0 |
+| m_csa:582 | 3 | background_train_cal_oos_structural_pool | heme:0.060256 | 0 |
+| m_csa:461 | 3 | background_train_cal_oos_structural_pool | flavin:0.059011 | 0 |
+| m_csa:524 | 3 | background_train_cal_oos_structural_pool | plp:0.05567 | 0 |
+| m_csa:143 | 3 | background_train_cal_oos_structural_pool | heme:0.05565 | 0 |
+| m_csa:18 | 3 | background_train_cal_oos_structural_pool | plp:0.055247 | 0 |
+| m_csa:336 | 3 | background_train_cal_oos_structural_pool | flavin:0.054143 | 0 |
+| m_csa:629 | 3 | background_train_cal_oos_structural_pool | flavin:0.053871 | 0 |
+| m_csa:50 | 3 | background_train_cal_oos_structural_pool | plp:0.052999 | 0 |
+| m_csa:576 | 3 | background_train_cal_oos_structural_pool | heme:0.052322 | 0 |
+| m_csa:164 | 3 | background_train_cal_oos_structural_pool | plp:0.051493 | 0 |
+| m_csa:479 | 3 | background_train_cal_oos_structural_pool | heme:0.051428 | 0 |
+| m_csa:226 | 3 | background_train_cal_oos_structural_pool | flavin:0.051011 | 0 |
+| m_csa:339 | 3 | background_train_cal_oos_structural_pool | flavin:0.05048 | 0 |
+| m_csa:382 | 3 | background_train_cal_oos_structural_pool | plp:0.049148 | 0 |
+| m_csa:457 | 3 | background_train_cal_oos_structural_pool | plp:0.048767 | 0 |
+| m_csa:328 | 3 | background_train_cal_oos_structural_pool | plp:0.048545 | 0 |
+| m_csa:434 | 3 | background_train_cal_oos_structural_pool | plp:0.047994 | 0 |
+| m_csa:100 | 3 | background_train_cal_oos_structural_pool | flavin:0.047641 | 0 |
+| m_csa:492 | 3 | background_train_cal_oos_structural_pool | plp:0.045923 | 0 |
+| m_csa:478 | 3 | background_train_cal_oos_structural_pool | flavin:0.04383 | 0 |
+| m_csa:481 | 3 | background_train_cal_oos_structural_pool | heme:0.04365 | 0 |
+| m_csa:532 | 3 | background_train_cal_oos_structural_pool | heme:0.043106 | 0 |
+| m_csa:569 | 3 | background_train_cal_oos_structural_pool | flavin:0.042567 | 0 |
+| m_csa:335 | 3 | background_train_cal_oos_structural_pool | plp:0.042031 | 0 |
+| m_csa:324 | 3 | background_train_cal_oos_structural_pool | plp:0.041833 | 0 |
+| m_csa:571 | 3 | background_train_cal_oos_structural_pool | heme:0.03997 | 0 |
+| m_csa:550 | 3 | background_train_cal_oos_structural_pool | plp:0.037938 | 0 |
 
 ## Interpretation
 
-- 286 ready train/cal OOS rows are outside the current scored surface.
-- 13 rows are plausible high-cofactor-axis candidates and 114 rows have source-free inorganic/structural locus context, but none has been scored or counted as new abstained evidence yet.
-- Run a bounded predicted-structure-vs-atlas scoring tranche from the priority candidate rows; keep the fixed threshold and do not read heldout rows for calibration.
+- 170 ready train/cal OOS rows are outside the current scored surface.
+- 0 rows are plausible high-cofactor-axis candidates and 0 rows have source-free inorganic/structural locus context, but none has been scored or counted as new abstained evidence yet.
+- Build the background-axis blocker and pivot to reviewed decisions or a new source-free proxy axis; keep the fixed threshold and do not read heldout rows for calibration.

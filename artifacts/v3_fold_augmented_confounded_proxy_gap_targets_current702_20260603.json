@@ -1,20 +1,21 @@
 {
   "artifact_id": "v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603",
   "counts": {
-    "high_cofactor_retained_proxy_gap_rows": 1,
+    "high_cofactor_retained_proxy_gap_rows": 4,
     "nearest_family_counts": {
-      "flavin_dehydrogenase_reductase": 1,
-      "metal_dependent_hydrolase": 13
+      "flavin_dehydrogenase_reductase": 4,
+      "metal_dependent_hydrolase": 42,
+      "ser_his_acid_hydrolase": 2
     },
     "priority_counts": {
-      "priority_1_high_cofactor_retained_proxy_gap": 1,
-      "priority_2_hard_retained_structural_proxy_gap": 8,
-      "priority_3_near_threshold_retained_structural_proxy_gap": 5
+      "priority_1_high_cofactor_retained_proxy_gap": 4,
+      "priority_2_hard_retained_structural_proxy_gap": 31,
+      "priority_3_near_threshold_retained_structural_proxy_gap": 13
     },
-    "retained_proxy_gap_rows": 14,
-    "same_family_structural_retained_proxy_gap_rows": 13
+    "retained_proxy_gap_rows": 48,
+    "same_family_structural_retained_proxy_gap_rows": 45
   },
-  "created_utc": "2026-06-03T12:17:17Z",
+  "created_utc": "2026-06-03T15:39:12Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "deployment_closed_now": false,
@@ -63,10 +64,47 @@
     "validation_only": true
   },
   "interpretation": {
-    "headline": "14 train/cal confounded-proxy rows are retained at the fixed fold operating point and define the next calibration gap surface.",
+    "headline": "48 train/cal confounded-proxy rows are retained at the fixed fold operating point and define the next calibration gap surface.",
     "next_action": "Prioritize high-cofactor retained gaps first, then hard retained same-family structural gaps with the largest positive margins."
   },
   "retained_proxy_gap_rows": [
+    {
+      "cofactor_proxy_score": 0.980742,
+      "entry_id": "m_csa:289",
+      "fixed_channel_score": 0.6398,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy",
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.19825
+    },
+    {
+      "cofactor_proxy_score": 0.515522,
+      "entry_id": "m_csa:298",
+      "fixed_channel_score": 0.5344,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "flavin_monooxygenase",
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy"
+      ],
+      "threshold_margin": 0.09285
+    },
+    {
+      "cofactor_proxy_score": 0.97392,
+      "entry_id": "m_csa:361",
+      "fixed_channel_score": 0.45695,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy"
+      ],
+      "threshold_margin": 0.0154
+    },
     {
       "cofactor_proxy_score": 0.990498,
       "entry_id": "m_csa:368",
@@ -80,6 +118,42 @@
       "threshold_margin": 0.01215
     },
     {
+      "cofactor_proxy_score": 0.291653,
+      "entry_id": "m_csa:308",
+      "fixed_channel_score": 0.68115,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.2396
+    },
+    {
+      "cofactor_proxy_score": 0.005281,
+      "entry_id": "m_csa:187",
+      "fixed_channel_score": 0.65175,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.2102
+    },
+    {
+      "cofactor_proxy_score": 0.003333,
+      "entry_id": "m_csa:269",
+      "fixed_channel_score": 0.65065,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.2091
+    },
+    {
       "cofactor_proxy_score": 0.009963,
       "entry_id": "m_csa:104",
       "fixed_channel_score": 0.6498,
@@ -90,6 +164,66 @@
         "same_family_structural_proxy"
       ],
       "threshold_margin": 0.20825
+    },
+    {
+      "cofactor_proxy_score": 0.002478,
+      "entry_id": "m_csa:348",
+      "fixed_channel_score": 0.649,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.20745
+    },
+    {
+      "cofactor_proxy_score": 0.181268,
+      "entry_id": "m_csa:468",
+      "fixed_channel_score": 0.64225,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.2007
+    },
+    {
+      "cofactor_proxy_score": 0.084131,
+      "entry_id": "m_csa:488",
+      "fixed_channel_score": 0.64045,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1989
+    },
+    {
+      "cofactor_proxy_score": 0.007512,
+      "entry_id": "m_csa:206",
+      "fixed_channel_score": 0.63845,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1969
+    },
+    {
+      "cofactor_proxy_score": 0.047669,
+      "entry_id": "m_csa:190",
+      "fixed_channel_score": 0.6365,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.19495
     },
     {
       "cofactor_proxy_score": 0.020918,
@@ -116,6 +250,30 @@
       "threshold_margin": 0.18255
     },
     {
+      "cofactor_proxy_score": 0.016116,
+      "entry_id": "m_csa:500",
+      "fixed_channel_score": 0.61935,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1778
+    },
+    {
+      "cofactor_proxy_score": 0.038203,
+      "entry_id": "m_csa:256",
+      "fixed_channel_score": 0.61925,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1777
+    },
+    {
       "cofactor_proxy_score": 0.084691,
       "entry_id": "m_csa:52",
       "fixed_channel_score": 0.6154,
@@ -126,6 +284,30 @@
         "same_family_structural_proxy"
       ],
       "threshold_margin": 0.17385
+    },
+    {
+      "cofactor_proxy_score": 0.033547,
+      "entry_id": "m_csa:74",
+      "fixed_channel_score": 0.61305,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1715
+    },
+    {
+      "cofactor_proxy_score": 0.003362,
+      "entry_id": "m_csa:59",
+      "fixed_channel_score": 0.60775,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1662
     },
     {
       "cofactor_proxy_score": 0.028904,
@@ -140,6 +322,54 @@
       "threshold_margin": 0.1614
     },
     {
+      "cofactor_proxy_score": 0.206148,
+      "entry_id": "m_csa:502",
+      "fixed_channel_score": 0.5957,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.15415
+    },
+    {
+      "cofactor_proxy_score": 0.064766,
+      "entry_id": "m_csa:451",
+      "fixed_channel_score": 0.588,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.14645
+    },
+    {
+      "cofactor_proxy_score": 0.041957,
+      "entry_id": "m_csa:638",
+      "fixed_channel_score": 0.5862,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.14465
+    },
+    {
+      "cofactor_proxy_score": 0.048876,
+      "entry_id": "m_csa:84",
+      "fixed_channel_score": 0.56755,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.126
+    },
+    {
       "cofactor_proxy_score": 0.043551,
       "entry_id": "m_csa:503",
       "fixed_channel_score": 0.55265,
@@ -150,6 +380,42 @@
         "same_family_structural_proxy"
       ],
       "threshold_margin": 0.1111
+    },
+    {
+      "cofactor_proxy_score": 0.048582,
+      "entry_id": "m_csa:463",
+      "fixed_channel_score": 0.54765,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.1061
+    },
+    {
+      "cofactor_proxy_score": 0.027164,
+      "entry_id": "m_csa:229",
+      "fixed_channel_score": 0.5438,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.10225
+    },
+    {
+      "cofactor_proxy_score": 0.015353,
+      "entry_id": "m_csa:533",
+      "fixed_channel_score": 0.5423,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.10075
     },
     {
       "cofactor_proxy_score": 0.174004,
@@ -164,6 +430,30 @@
       "threshold_margin": 0.1003
     },
     {
+      "cofactor_proxy_score": 0.011284,
+      "entry_id": "m_csa:322",
+      "fixed_channel_score": 0.53375,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0922
+    },
+    {
+      "cofactor_proxy_score": 0.153072,
+      "entry_id": "m_csa:135",
+      "fixed_channel_score": 0.5317,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.09015
+    },
+    {
       "cofactor_proxy_score": 0.016795,
       "entry_id": "m_csa:36",
       "fixed_channel_score": 0.51785,
@@ -174,6 +464,54 @@
         "same_family_structural_proxy"
       ],
       "threshold_margin": 0.0763
+    },
+    {
+      "cofactor_proxy_score": 0.068591,
+      "entry_id": "m_csa:223",
+      "fixed_channel_score": 0.5078,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.06625
+    },
+    {
+      "cofactor_proxy_score": 0.018774,
+      "entry_id": "m_csa:645",
+      "fixed_channel_score": 0.50615,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0646
+    },
+    {
+      "cofactor_proxy_score": 0.027437,
+      "entry_id": "m_csa:585",
+      "fixed_channel_score": 0.4867,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.04515
+    },
+    {
+      "cofactor_proxy_score": 0.042608,
+      "entry_id": "m_csa:405",
+      "fixed_channel_score": 0.4837,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.04215
     },
     {
       "cofactor_proxy_score": 0.058882,
@@ -200,6 +538,18 @@
       "threshold_margin": 0.03085
     },
     {
+      "cofactor_proxy_score": 0.102791,
+      "entry_id": "m_csa:240",
+      "fixed_channel_score": 0.4716,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.03005
+    },
+    {
       "cofactor_proxy_score": 0.081064,
       "entry_id": "m_csa:299",
       "fixed_channel_score": 0.4712,
@@ -224,6 +574,66 @@
       "threshold_margin": 0.0268
     },
     {
+      "cofactor_proxy_score": 0.016341,
+      "entry_id": "m_csa:621",
+      "fixed_channel_score": 0.4602,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.01865
+    },
+    {
+      "cofactor_proxy_score": 0.006689,
+      "entry_id": "m_csa:91",
+      "fixed_channel_score": 0.45895,
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0174
+    },
+    {
+      "cofactor_proxy_score": 0.017819,
+      "entry_id": "m_csa:234",
+      "fixed_channel_score": 0.45495,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0134
+    },
+    {
+      "cofactor_proxy_score": 0.059279,
+      "entry_id": "m_csa:280",
+      "fixed_channel_score": 0.44705,
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.0055
+    },
+    {
+      "cofactor_proxy_score": 0.094616,
+      "entry_id": "m_csa:498",
+      "fixed_channel_score": 0.4466,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "threshold_margin": 0.00505
+    },
+    {
       "cofactor_proxy_score": 0.118424,
       "entry_id": "m_csa:119",
       "fixed_channel_score": 0.4463,
@@ -242,7 +652,7 @@
     "confounded_proxy_operating_point_audit": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json",
-      "sha256": "b7b4ef428a7b1a6668c0552269ae1efa8e7ce2823f83e40e07a053fdc88b1a1b"
+      "sha256": "d8a4f0e281a6e3bd5ba4015e17d0cc6ccd632c0f07e280f39f8f1981930fd865"
     }
   },
   "status": "fold_augmented_confounded_proxy_gap_targets_ready"

@@ -1,34 +1,35 @@
 {
   "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603",
   "blockers": [
+    "high_cofactor_candidate_pool_below_shortfall",
+    "structural_candidate_pool_below_shortfall",
     "candidate_pool_not_scored_at_fixed_threshold"
   ],
   "counts": {
-    "blockers": 1,
-    "current_scored_train_cal_oos_rows": 76,
-    "high_cofactor_axis_candidate_rows": 13,
-    "high_cofactor_shortfall_from_acquisition_queue": 4,
-    "high_inorganic_cofactor_locus_candidate_rows": 9,
-    "high_organic_cofactor_candidate_rows": 4,
-    "metal_structural_locus_candidate_rows": 103,
+    "blockers": 3,
+    "current_scored_train_cal_oos_rows": 192,
+    "high_cofactor_axis_candidate_rows": 0,
+    "high_cofactor_shortfall_from_acquisition_queue": 16,
+    "high_inorganic_cofactor_locus_candidate_rows": 0,
+    "high_organic_cofactor_candidate_rows": 0,
+    "metal_structural_locus_candidate_rows": 0,
     "priority_bucket_counts": {
-      "1": 13,
-      "2": 103,
       "3": 170
     },
     "priority_candidate_rows_emitted": 80,
     "ready_train_cal_oos_rows": 353,
-    "structural_locus_candidate_rows": 114,
-    "structural_shortfall_from_acquisition_queue": 48,
-    "unscored_ready_train_cal_oos_candidate_rows": 286,
-    "unsupported_or_missing_geometry_locus_rows": 10
+    "structural_locus_candidate_rows": 0,
+    "structural_shortfall_from_acquisition_queue": 170,
+    "unscored_ready_train_cal_oos_candidate_rows": 170,
+    "unsupported_or_missing_geometry_locus_rows": 9
   },
-  "created_utc": "2026-06-03T14:28:05Z",
+  "created_utc": "2026-06-03T16:13:13Z",
   "decision": {
     "apply_or_change_threshold_now": false,
-    "candidate_pool_meets_high_shortfall_by_count": true,
-    "candidate_pool_meets_structural_shortfall_by_count": true,
-    "next_gate": "Score a bounded tranche from priority_candidate_rows with the predicted-structure-vs-atlas channel, then rerun the fixed-threshold proxy operating-point audit only after new train/cal OOS rows have actual channel scores.",
+    "candidate_pool_meets_high_shortfall_by_count": false,
+    "candidate_pool_meets_structural_shortfall_by_count": false,
+    "current_proxy_axes_exhausted": true,
+    "next_gate": "Do not score background-only rows under the current proxy axes. Build the background-axis blocker, then wait for reviewed source decisions or define a new source-free proxy axis before any fixed-threshold proxy audit rerun.",
     "proxy_calibration_rerun_ready_now": false,
     "score_candidate_pool_now": false
   },
@@ -45,41 +46,16 @@
     "train_cal_only": true
   },
   "interpretation": {
-    "headline": "286 ready train/cal OOS rows are outside the current scored surface.",
-    "next_action": "Run a bounded predicted-structure-vs-atlas scoring tranche from the priority candidate rows; keep the fixed threshold and do not read heldout rows for calibration.",
-    "result": "13 rows are plausible high-cofactor-axis candidates and 114 rows have source-free inorganic/structural locus context, but none has been scored or counted as new abstained evidence yet."
+    "headline": "170 ready train/cal OOS rows are outside the current scored surface.",
+    "next_action": "Build the background-axis blocker and pivot to reviewed decisions or a new source-free proxy axis; keep the fixed threshold and do not read heldout rows for calibration.",
+    "result": "0 rows are plausible high-cofactor-axis candidates and 0 rows have source-free inorganic/structural locus context, but none has been scored or counted as new abstained evidence yet."
   },
   "priority_candidate_rows": [
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:289",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": true,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.980742,
-      "priority_bucket": 1,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
       "any_inorganic_locus_context": false,
-      "entry_id": "m_csa:361",
+      "entry_id": "m_csa:288",
       "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": true,
+      "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
@@ -90,20 +66,212 @@
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.97392,
-      "priority_bucket": 1,
+      "organic_cofactor_max_score": 0.407563,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
       "any_inorganic_locus_context": false,
-      "entry_id": "m_csa:604",
+      "entry_id": "m_csa:89",
       "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": true,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.398339,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:214",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.353171,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:75",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.34378,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:60",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.337092,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:583",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.296056,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:64",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.246623,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:607",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.236789,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:610",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.222226,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": true
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:618",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "unsupported_or_missing_geometry",
         "iron_sulfur_locus": "unsupported_or_missing_geometry",
@@ -114,47 +282,70 @@
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.605709,
-      "priority_bucket": 1,
+      "organic_cofactor_max_score": 0.215006,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": true
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:298",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:555",
       "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": true,
+      "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.515522,
-      "priority_bucket": 1,
+      "organic_cofactor_max_score": 0.213904,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:268",
-      "high_inorganic_cofactor_locus": true,
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:404",
+      "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
-        "cobalamin_locus": "proximal_cobalamin_context_available",
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.193581,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:26",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
         "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
@@ -163,680 +354,191 @@
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.267672,
-      "priority_bucket": 1,
+      "organic_cofactor_max_score": 0.177608,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:332",
-      "high_inorganic_cofactor_locus": true,
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:515",
+      "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "no_metal_context_detected",
-        "radical_sam_locus": "proximal_radical_sam_context_available"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": false,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.109821,
-      "priority_bucket": 1,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:398",
-      "high_inorganic_cofactor_locus": true,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "proximal_iron_sulfur_context_available",
         "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.09856,
-      "priority_bucket": 1,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.150245,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:127",
-      "high_inorganic_cofactor_locus": true,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "proximal_iron_sulfur_context_available",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.068596,
-      "priority_bucket": 1,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:427",
-      "high_inorganic_cofactor_locus": true,
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:232",
+      "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "no_metal_context_detected",
-        "radical_sam_locus": "proximal_radical_sam_context_available"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": false,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.048754,
-      "priority_bucket": 1,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:130",
-      "high_inorganic_cofactor_locus": true,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "proximal_iron_sulfur_context_available",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.044528,
-      "priority_bucket": 1,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:276",
-      "high_inorganic_cofactor_locus": true,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "proximal_iron_sulfur_context_available",
         "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.03172,
-      "priority_bucket": 1,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.147019,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:562",
-      "high_inorganic_cofactor_locus": true,
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:351",
+      "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "proximal_iron_sulfur_context_available",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
         "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.012957,
-      "priority_bucket": 1,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.144021,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:23",
-      "high_inorganic_cofactor_locus": true,
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:81",
+      "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
         "metal_ion_locus": "no_metal_context_detected",
-        "radical_sam_locus": "proximal_radical_sam_context_available"
+        "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.001625,
-      "priority_bucket": 1,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.141,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "high_cofactor_signature_proxy",
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:215",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:394",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.379526,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:263",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.343767,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:367",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.325641,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:21",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.302412,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.132044,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:308",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:162",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.291653,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:182",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.268877,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.131705,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:139",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:235",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "structure_wide_iron_sulfur_context_only",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.253779,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.126653,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:221",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:175",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.246079,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:540",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.216,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:502",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.206148,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:468",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.181268,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:331",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.172985,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:135",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.153072,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:648",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.151453,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:134",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.151172,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:270",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.138432,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:326",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.133397,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:251",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.13156,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:601",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.120138,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:552",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "structure_wide_iron_sulfur_context_only",
         "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
@@ -844,1139 +546,1427 @@
       "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.119035,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.12583,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:416",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:306",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.115904,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:51",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.113362,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:365",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.109043,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:240",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.102791,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.119577,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:514",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:296",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.118926,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:128",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.11803,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:616",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.117715,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:245",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.112395,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:417",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.110319,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:279",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.101561,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.109212,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:539",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:148",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.100854,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.10865,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:99",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:633",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.106909,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:92",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.106514,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:316",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.104929,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:49",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.098011,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:257",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.095406,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:455",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.088367,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:373",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.09978,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.088163,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:652",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:374",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.099308,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:272",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.095155,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:498",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.094616,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:287",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.092806,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.088163,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:7",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:386",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.086786,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:259",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.08665,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.088163,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:488",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:570",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.084131,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.079017,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:95",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:459",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.082176,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:179",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.081808,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:207",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.07504,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:309",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.073222,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:138",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.070443,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.078375,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:380",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:202",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.070437,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:48",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.069563,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:637",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.069548,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.074818,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:223",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:174",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.068591,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:508",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.067949,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.070105,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:451",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:252",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.064766,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.069699,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:231",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:389",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.064335,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.069644,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:350",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:458",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.062013,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:280",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.059279,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.069644,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:70",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:635",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.058751,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:150",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.058092,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.068761,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:151",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:340",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.05522,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:310",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.053663,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.067825,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:359",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:574",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.066149,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:153",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.063819,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:357",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.05146,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.063288,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:72",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:436",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.061443,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:343",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.060874,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:210",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.060519,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:582",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.060256,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:461",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.059011,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:524",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.050862,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.05567,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:640",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:143",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.048929,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.05565,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:84",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:18",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.048876,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.055247,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:194",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:336",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.048628,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.054143,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:463",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:629",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.048582,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.053871,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:190",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:50",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "plp",
-      "organic_cofactor_max_score": 0.047669,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.052999,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:450",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:576",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.0458,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:224",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.045267,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.052322,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:405",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:164",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.042608,
-      "priority_bucket": 2,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.051493,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:638",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:479",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
-      "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.041957,
-      "priority_bucket": 2,
-      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
-      "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
-      ],
-      "split_assignment": "in_distribution",
-      "unsupported_or_missing_geometry_locus": false
-    },
-    {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:312",
-      "high_inorganic_cofactor_locus": false,
-      "high_organic_cofactor_signature": false,
-      "inorganic_locus_statuses": {
-        "cobalamin_locus": "no_cobalamin_context_detected",
-        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
-        "radical_sam_locus": "no_radical_sam_context_detected"
-      },
-      "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "heme",
-      "organic_cofactor_max_score": 0.041514,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.051428,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:256",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:226",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.038203,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.051011,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:587",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:339",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "structure_wide_metal_context_only",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
       "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.036184,
-      "priority_bucket": 2,
+      "organic_cofactor_max_score": 0.05048,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
     },
     {
-      "any_inorganic_locus_context": true,
-      "entry_id": "m_csa:74",
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:382",
       "high_inorganic_cofactor_locus": false,
       "high_organic_cofactor_signature": false,
       "inorganic_locus_statuses": {
         "cobalamin_locus": "no_cobalamin_context_detected",
         "iron_sulfur_locus": "no_iron_sulfur_context_detected",
-        "metal_ion_locus": "proximal_metal_context_available",
+        "metal_ion_locus": "no_metal_context_detected",
         "radical_sam_locus": "no_radical_sam_context_detected"
       },
       "label_type": "out_of_scope",
-      "metal_structural_locus_context": true,
+      "metal_structural_locus_context": false,
       "minimal_train_cal_feature_bundle_ready": true,
-      "organic_cofactor_max_class": "flavin",
-      "organic_cofactor_max_score": 0.033547,
-      "priority_bucket": 2,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.049148,
+      "priority_bucket": 3,
       "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
       "recommended_proxy_axes_after_scoring": [
-        "same_family_structural_proxy"
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:457",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.048767,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:328",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.048545,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:434",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.047994,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:100",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.047641,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:492",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.045923,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:478",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.04383,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:481",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.04365,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:532",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.043106,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:569",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.042567,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:335",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.042031,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:324",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.041833,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:571",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.03997,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:550",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.037938,
+      "priority_bucket": 3,
+      "queue_role": "score_with_predicted_structure_vs_atlas_before any fixed-threshold proxy rerun",
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
       ],
       "split_assignment": "in_distribution",
       "unsupported_or_missing_geometry_locus": false
@@ -1988,7 +1978,7 @@
     "confounded_proxy_acquisition_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json",
-      "sha256": "3d4042d28c265ffcc3db3ab2cd463cefbf38352568b35f31afc33d17b99ac41f"
+      "sha256": "05fd9dc0d1c94abf07b3eb5ef61204947a638572a9693a3dc31c0e7ed39159aa"
     },
     "selected_organic_cofactor_sidecar": {
       "exists": true,
@@ -2002,8 +1992,8 @@
     },
     "train_cal_oos_surface": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.json",
-      "sha256": "b002f3d53f0ea5cc30b4d92ebe4148a2f02d07d9a730aa89462544db70a4f772"
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "8d9dceb3272826a53ae761fdec5f39720dcc9e6021ca6d794cf6c4f886b0b0cd"
     }
   },
   "status": "fold_augmented_confounded_proxy_train_cal_candidate_pool_ready_for_scoring_plan"

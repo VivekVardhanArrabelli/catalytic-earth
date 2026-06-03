@@ -1,8 +1,8 @@
 {
   "artifact_id": "v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603",
   "blockers": [
-    "high_cofactor_proxy_needs_4_more_abstained_train_cal_rows_at_fixed_threshold",
-    "same_family_structural_proxy_needs_48_more_abstained_train_cal_rows_at_fixed_threshold",
+    "high_cofactor_proxy_needs_16_more_abstained_train_cal_rows_at_fixed_threshold",
+    "same_family_structural_proxy_needs_170_more_abstained_train_cal_rows_at_fixed_threshold",
     "threshold_stress::structural_proxy_80pct_abstain_breaks_85pct_in_scope_retention",
     "threshold_stress::high_cofactor_proxy_80pct_abstain_breaks_90pct_in_scope_retention",
     "current_train_cal_surface_lacks_high_cofactor_proxy_scale",
@@ -10,34 +10,76 @@
   ],
   "counts": {
     "axis_counts": {
-      "hard_same_family_structural_counteraxis": 8,
-      "high_cofactor_confounded_proxy_extension": 1,
-      "near_threshold_same_family_structural_counteraxis": 5
+      "hard_same_family_structural_counteraxis": 31,
+      "high_cofactor_confounded_proxy_extension": 4,
+      "near_threshold_same_family_structural_counteraxis": 13
     },
     "blockers": 6,
-    "current_surface_additional_same_family_rows_if_loosened": 11,
-    "current_surface_train_cal_oos_scored_rows": 75,
-    "current_surface_unscored_candidate_rows": 1,
+    "current_surface_additional_same_family_rows_if_loosened": 21,
+    "current_surface_train_cal_oos_scored_rows": 186,
+    "current_surface_unscored_candidate_rows": 6,
     "current_surface_unused_high_cofactor_rows": 0,
-    "evidence_request_rows": 14,
-    "high_cofactor_min_new_abstained_rows_for_80pct": 4,
+    "evidence_request_rows": 48,
+    "high_cofactor_min_new_abstained_rows_for_80pct": 16,
     "priority_counts": {
-      "priority_1_high_cofactor_retained_proxy_gap": 1,
-      "priority_2_hard_retained_structural_proxy_gap": 8,
-      "priority_3_near_threshold_retained_structural_proxy_gap": 5
+      "priority_1_high_cofactor_retained_proxy_gap": 4,
+      "priority_2_hard_retained_structural_proxy_gap": 31,
+      "priority_3_near_threshold_retained_structural_proxy_gap": 13
     },
-    "retained_proxy_gap_rows": 14,
-    "same_family_structural_min_new_abstained_rows_for_80pct": 48,
+    "retained_proxy_gap_rows": 48,
+    "same_family_structural_min_new_abstained_rows_for_80pct": 170,
     "threshold_stress_blockers": 2
   },
-  "created_utc": "2026-06-03T13:17:42Z",
+  "created_utc": "2026-06-03T15:39:12Z",
   "current_surface_pool": {
-    "additional_same_family_rows_if_component_thresholds_loosened": 11,
+    "additional_same_family_rows_if_component_thresholds_loosened": 21,
     "current_surface_can_satisfy_high_cofactor_80pct_without_new_rows": false,
     "current_surface_can_satisfy_structural_80pct_by_loosened_membership": false,
     "fixed_threshold": 0.44155,
     "high_cofactor_abstained_at_fixed_threshold": 0,
     "high_cofactor_rows": [
+      {
+        "abstained": false,
+        "cofactor_proxy_score": 0.980742,
+        "combined_score": 0.6398,
+        "entry_id": "m_csa:289",
+        "fold_nearest_atlas_tm_score": 0.9129,
+        "geometry_top1_score": 0.3667,
+        "high_cofactor": true,
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "predicted_geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "same_family": true,
+        "strict_structural": true,
+        "threshold_margin": 0.19825
+      },
+      {
+        "abstained": false,
+        "cofactor_proxy_score": 0.515522,
+        "combined_score": 0.5344,
+        "entry_id": "m_csa:298",
+        "fold_nearest_atlas_tm_score": 0.8832,
+        "geometry_top1_score": 0.1856,
+        "high_cofactor": true,
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "predicted_geometry_top1_fingerprint_id": "flavin_monooxygenase",
+        "same_family": false,
+        "strict_structural": false,
+        "threshold_margin": 0.09285
+      },
+      {
+        "abstained": false,
+        "cofactor_proxy_score": 0.97392,
+        "combined_score": 0.45695,
+        "entry_id": "m_csa:361",
+        "fold_nearest_atlas_tm_score": 0.3865,
+        "geometry_top1_score": 0.5274,
+        "high_cofactor": true,
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": false,
+        "strict_structural": false,
+        "threshold_margin": 0.0154
+      },
       {
         "abstained": false,
         "cofactor_proxy_score": 0.990498,
@@ -53,9 +95,9 @@
         "threshold_margin": 0.01215
       }
     ],
-    "high_cofactor_rows_at_current_threshold": 1,
-    "same_family_abstain_recall_without_component_thresholds": 0.3214,
-    "same_family_abstained_without_component_thresholds": 9,
+    "high_cofactor_rows_at_current_threshold": 4,
+    "same_family_abstain_recall_without_component_thresholds": 0.3289,
+    "same_family_abstained_without_component_thresholds": 25,
     "same_family_extra_rows_if_component_thresholds_loosened": [
       {
         "abstained": true,
@@ -87,6 +129,62 @@
       },
       {
         "abstained": true,
+        "cofactor_proxy_score": 0.100854,
+        "combined_score": 0.37695,
+        "entry_id": "m_csa:539",
+        "fold_nearest_atlas_tm_score": 0.4091,
+        "geometry_top1_score": 0.3448,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.0646
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.062013,
+        "combined_score": 0.3817,
+        "entry_id": "m_csa:350",
+        "fold_nearest_atlas_tm_score": 0.3984,
+        "geometry_top1_score": 0.365,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.05985
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.031086,
+        "combined_score": 0.38295,
+        "entry_id": "m_csa:282",
+        "fold_nearest_atlas_tm_score": 0.41,
+        "geometry_top1_score": 0.3559,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.0586
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.0458,
+        "combined_score": 0.38735,
+        "entry_id": "m_csa:450",
+        "fold_nearest_atlas_tm_score": 0.4026,
+        "geometry_top1_score": 0.3721,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.0542
+      },
+      {
+        "abstained": true,
         "cofactor_proxy_score": 0.026978,
         "combined_score": 0.3933,
         "entry_id": "m_csa:439",
@@ -98,6 +196,20 @@
         "same_family": true,
         "strict_structural": false,
         "threshold_margin": -0.04825
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.151453,
+        "combined_score": 0.3987,
+        "entry_id": "m_csa:648",
+        "fold_nearest_atlas_tm_score": 0.4684,
+        "geometry_top1_score": 0.329,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.04285
       },
       {
         "abstained": true,
@@ -126,6 +238,76 @@
         "same_family": true,
         "strict_structural": false,
         "threshold_margin": -0.0377
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.216,
+        "combined_score": 0.40915,
+        "entry_id": "m_csa:540",
+        "fold_nearest_atlas_tm_score": 0.4002,
+        "geometry_top1_score": 0.4181,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.0324
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.151172,
+        "combined_score": 0.40925,
+        "entry_id": "m_csa:134",
+        "fold_nearest_atlas_tm_score": 0.391,
+        "geometry_top1_score": 0.4275,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.0323
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.044528,
+        "combined_score": 0.41015,
+        "entry_id": "m_csa:130",
+        "fold_nearest_atlas_tm_score": 0.4061,
+        "geometry_top1_score": 0.4142,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.0314
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.004591,
+        "combined_score": 0.41345,
+        "entry_id": "m_csa:88",
+        "fold_nearest_atlas_tm_score": 0.4188,
+        "geometry_top1_score": 0.4081,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.0281
+      },
+      {
+        "abstained": true,
+        "cofactor_proxy_score": 0.015282,
+        "combined_score": 0.4348,
+        "entry_id": "m_csa:209",
+        "fold_nearest_atlas_tm_score": 0.5398,
+        "geometry_top1_score": 0.3298,
+        "high_cofactor": false,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "same_family": true,
+        "strict_structural": false,
+        "threshold_margin": -0.00675
       },
       {
         "abstained": false,
@@ -212,10 +394,10 @@
         "threshold_margin": 0.0094
       }
     ],
-    "same_family_rows_without_component_thresholds": 28,
-    "strict_same_family_structural_abstained": 4,
-    "strict_same_family_structural_rows": 17,
-    "train_cal_oos_scored_rows": 75,
+    "same_family_rows_without_component_thresholds": 76,
+    "strict_same_family_structural_abstained": 10,
+    "strict_same_family_structural_rows": 55,
+    "train_cal_oos_scored_rows": 186,
     "unused_high_cofactor_rows_in_current_surface": 0
   },
   "current_surface_unscored_candidate_rows": [
@@ -226,6 +408,46 @@
       "nearest_train_atlas_tm_score": 0.5651,
       "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
       "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "Q43088",
+      "entry_id": "m_csa:604",
+      "nearest_train_atlas_entry_id": "m_csa:528",
+      "nearest_train_atlas_tm_score": 0.4713,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P07658",
+      "entry_id": "m_csa:562",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P07071",
+      "entry_id": "m_csa:416",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P04531",
+      "entry_id": "m_csa:637",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P00806",
+      "entry_id": "m_csa:586",
+      "nearest_train_atlas_entry_id": null,
+      "nearest_train_atlas_tm_score": null,
+      "nearest_train_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
     }
   ],
   "decision": {
@@ -236,6 +458,61 @@
     "next_gate": "Do not raise the fixed threshold. Add or review train/cal confounded proxy rows beyond the currently scored surface on the evidence axes listed here, then rerun the proxy operating-point audit and threshold stress. Independently resolve the P10746 caveat or approved non-residue sidecar before claiming deployment closure."
   },
   "evidence_request_rows": [
+    {
+      "allowed_evidence": [
+        "source-free cofactor locus sidecar",
+        "approved non-residue interaction sidecar",
+        "predicted-structure-vs-atlas channel scores"
+      ],
+      "axis": "high_cofactor_confounded_proxy_extension",
+      "entry_id": "m_csa:289",
+      "fixed_channel_score": 0.6398,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy",
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Add or review train/cal OOS rows with source-free organic-cofactor locus evidence and rerun the proxy audit at the fixed threshold.",
+      "threshold_margin": 0.19825
+    },
+    {
+      "allowed_evidence": [
+        "source-free cofactor locus sidecar",
+        "approved non-residue interaction sidecar",
+        "predicted-structure-vs-atlas channel scores"
+      ],
+      "axis": "high_cofactor_confounded_proxy_extension",
+      "entry_id": "m_csa:298",
+      "fixed_channel_score": 0.5344,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "flavin_monooxygenase",
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy"
+      ],
+      "recommended_action": "Add or review train/cal OOS rows with source-free organic-cofactor locus evidence and rerun the proxy audit at the fixed threshold.",
+      "threshold_margin": 0.09285
+    },
+    {
+      "allowed_evidence": [
+        "source-free cofactor locus sidecar",
+        "approved non-residue interaction sidecar",
+        "predicted-structure-vs-atlas channel scores"
+      ],
+      "axis": "high_cofactor_confounded_proxy_extension",
+      "entry_id": "m_csa:361",
+      "fixed_channel_score": 0.45695,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_1_high_cofactor_retained_proxy_gap",
+      "proxy_membership": [
+        "high_cofactor_signature_proxy"
+      ],
+      "recommended_action": "Add or review train/cal OOS rows with source-free organic-cofactor locus evidence and rerun the proxy audit at the fixed threshold.",
+      "threshold_margin": 0.0154
+    },
     {
       "allowed_evidence": [
         "source-free cofactor locus sidecar",
@@ -261,6 +538,60 @@
         "approved active-site non-residue interaction sidecar"
       ],
       "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:308",
+      "fixed_channel_score": 0.68115,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2396
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:187",
+      "fixed_channel_score": 0.65175,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2102
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:269",
+      "fixed_channel_score": 0.65065,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2091
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
       "entry_id": "m_csa:104",
       "fixed_channel_score": 0.6498,
       "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
@@ -271,6 +602,96 @@
       ],
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.20825
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:348",
+      "fixed_channel_score": 0.649,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.20745
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:468",
+      "fixed_channel_score": 0.64225,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.2007
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:488",
+      "fixed_channel_score": 0.64045,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1989
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:206",
+      "fixed_channel_score": 0.63845,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1969
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:190",
+      "fixed_channel_score": 0.6365,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.19495
     },
     {
       "allowed_evidence": [
@@ -315,6 +736,42 @@
         "approved active-site non-residue interaction sidecar"
       ],
       "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:500",
+      "fixed_channel_score": 0.61935,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1778
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:256",
+      "fixed_channel_score": 0.61925,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1777
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
       "entry_id": "m_csa:52",
       "fixed_channel_score": 0.6154,
       "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
@@ -325,6 +782,42 @@
       ],
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.17385
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:74",
+      "fixed_channel_score": 0.61305,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1715
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:59",
+      "fixed_channel_score": 0.60775,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1662
     },
     {
       "allowed_evidence": [
@@ -351,6 +844,78 @@
         "approved active-site non-residue interaction sidecar"
       ],
       "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:502",
+      "fixed_channel_score": 0.5957,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.15415
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:451",
+      "fixed_channel_score": 0.588,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.14645
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:638",
+      "fixed_channel_score": 0.5862,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.14465
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:84",
+      "fixed_channel_score": 0.56755,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.126
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
       "entry_id": "m_csa:503",
       "fixed_channel_score": 0.55265,
       "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
@@ -361,6 +926,60 @@
       ],
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.1111
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:463",
+      "fixed_channel_score": 0.54765,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.1061
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:229",
+      "fixed_channel_score": 0.5438,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.10225
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:533",
+      "fixed_channel_score": 0.5423,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.10075
     },
     {
       "allowed_evidence": [
@@ -387,6 +1006,42 @@
         "approved active-site non-residue interaction sidecar"
       ],
       "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:322",
+      "fixed_channel_score": 0.53375,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.0922
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:135",
+      "fixed_channel_score": 0.5317,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.09015
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
       "entry_id": "m_csa:36",
       "fixed_channel_score": 0.51785,
       "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
@@ -397,6 +1052,76 @@
       ],
       "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
       "threshold_margin": 0.0763
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:223",
+      "fixed_channel_score": 0.5078,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.06625
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local metal or cofactor topology sidecar",
+        "approved active-site non-residue interaction sidecar"
+      ],
+      "axis": "hard_same_family_structural_counteraxis",
+      "entry_id": "m_csa:645",
+      "fixed_channel_score": 0.50615,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_2_hard_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Prioritize source-free active-site counteraxis review for hard metal-hydrolase-like structural mimics before any threshold rerun.",
+      "threshold_margin": 0.0646
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:585",
+      "fixed_channel_score": 0.4867,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.04515
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:405",
+      "fixed_channel_score": 0.4837,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.04215
     },
     {
       "allowed_evidence": [
@@ -438,6 +1163,23 @@
         "source-free local topology sidecar"
       ],
       "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:240",
+      "fixed_channel_score": 0.4716,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.03005
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
       "entry_id": "m_csa:299",
       "fixed_channel_score": 0.4712,
       "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
@@ -472,6 +1214,91 @@
         "source-free local topology sidecar"
       ],
       "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:621",
+      "fixed_channel_score": 0.4602,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.01865
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:91",
+      "fixed_channel_score": 0.45895,
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.0174
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:234",
+      "fixed_channel_score": 0.45495,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.0134
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:280",
+      "fixed_channel_score": 0.44705,
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.0055
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
+      "entry_id": "m_csa:498",
+      "fixed_channel_score": 0.4466,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+      "proxy_membership": [
+        "same_family_structural_proxy"
+      ],
+      "recommended_action": "Hold for secondary review after hard retained structural gaps unless the row is cheap to source-free annotate.",
+      "threshold_margin": 0.00505
+    },
+    {
+      "allowed_evidence": [
+        "predicted-structure-vs-atlas channel scores",
+        "source-free local topology sidecar"
+      ],
+      "axis": "near_threshold_same_family_structural_counteraxis",
       "entry_id": "m_csa:119",
       "fixed_channel_score": 0.4463,
       "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
@@ -490,22 +1317,22 @@
       "assumption": "Minimums assume every added train/cal proxy row abstains at the unchanged fixed threshold; mixed added rows require more evidence.",
       "current_abstain_recall": 0.0,
       "minimum_new_abstained_rows_if_all_new_rows_abstain": {
-        "0.5": 1,
-        "0.8": 4
+        "0.5": 4,
+        "0.8": 16
       },
       "proxy": "high_cofactor_signature_proxy",
-      "row_count": 1
+      "row_count": 4
     },
     "same_family_structural_proxy": {
-      "abstained_at_fixed_threshold": 4,
+      "abstained_at_fixed_threshold": 10,
       "assumption": "Minimums assume every added train/cal proxy row abstains at the unchanged fixed threshold; mixed added rows require more evidence.",
-      "current_abstain_recall": 0.2353,
+      "current_abstain_recall": 0.1818,
       "minimum_new_abstained_rows_if_all_new_rows_abstain": {
-        "0.5": 9,
-        "0.8": 48
+        "0.5": 35,
+        "0.8": 170
       },
       "proxy": "same_family_structural_proxy",
-      "row_count": 17
+      "row_count": 55
     }
   },
   "fixed_operating_point": {
@@ -561,22 +1388,22 @@
     "confounded_proxy_gap_targets": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603.json",
-      "sha256": "2c04c33b4a1ececcec8b9d7a6983bb9ea24ef53c83f3039bd5246b5229effe98"
+      "sha256": "41e6cbc5ed5c845df78b127402ae6973e53ba546f1807aceb430f3c28aa6fdb3"
     },
     "confounded_proxy_operating_point_audit": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json",
-      "sha256": "b7b4ef428a7b1a6668c0552269ae1efa8e7ce2823f83e40e07a053fdc88b1a1b"
+      "sha256": "d8a4f0e281a6e3bd5ba4015e17d0cc6ccd632c0f07e280f39f8f1981930fd865"
     },
     "confounded_proxy_threshold_stress": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603.json",
-      "sha256": "a2ca3f719cbebff0dfabcd97748a374250135f26a0318c6ad7139281a32b36c5"
+      "sha256": "73c6758ff7b4c36a609e60679a9e7081e68e9894be6e0faba7900b1db427f4ff"
     },
     "train_cal_oos_surface": {
       "exists": true,
-      "path": "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_surface_scores_current702_20260603.json",
-      "sha256": "b002f3d53f0ea5cc30b4d92ebe4148a2f02d07d9a730aa89462544db70a4f772"
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "8d9dceb3272826a53ae761fdec5f39720dcc9e6021ca6d794cf6c4f886b0b0cd"
     }
   },
   "status": "fold_augmented_confounded_proxy_evidence_extension_plan_ready"

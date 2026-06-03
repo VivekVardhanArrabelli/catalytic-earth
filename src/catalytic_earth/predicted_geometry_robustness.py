@@ -1002,6 +1002,7 @@ def _target_manifest_row_selection(
     max_rows: int,
     allow_accession_compatible_residue_subset: bool = False,
     allow_best_real_sequence_accession: bool = False,
+    allow_missing_experimental_geometry_if_sequence_positions: bool = False,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     residues_by_entry = _residue_nodes_by_entry(graph)
     experimental_by_entry = {
@@ -1020,8 +1021,32 @@ def _target_manifest_row_selection(
         if not entry_id.startswith("m_csa:"):
             excluded_rows.append(_excluded_target_row(row, "not_m_csa_entry"))
             continue
+        residue_nodes = residues_by_entry.get(entry_id, [])
+        accession = str(row.get("accession") or row.get("sequence_id") or "")
         experimental = experimental_by_entry.get(entry_id)
         if not experimental or experimental.get("status") != "ok":
+            if (
+                allow_missing_experimental_geometry_if_sequence_positions
+                and experimental
+                and _has_reference_sequence_positions(residue_nodes, accession)
+            ):
+                repaired = dict(row)
+                repaired["predicted_geometry_accession_repair"] = {
+                    "policy": (
+                        "reference_sequence_positions_without_experimental_"
+                        "structure_positions"
+                    ),
+                    "experimental_geometry_status": experimental.get("status"),
+                    "selected_accession": accession,
+                    "selected_residue_count": _reference_sequence_position_count(
+                        residue_nodes, accession
+                    ),
+                    "total_residue_node_count": len(residue_nodes),
+                }
+                rows.append(repaired)
+                if max_rows and len(rows) >= max_rows:
+                    break
+                continue
             excluded_rows.append(
                 _excluded_target_row(
                     row,
@@ -1029,8 +1054,6 @@ def _target_manifest_row_selection(
                 )
             )
             continue
-        residue_nodes = residues_by_entry.get(entry_id, [])
-        accession = str(row.get("accession") or row.get("sequence_id") or "")
         if _has_reference_sequence_positions(residue_nodes, accession):
             rows.append(dict(row))
             if max_rows and len(rows) >= max_rows:

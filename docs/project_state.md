@@ -163,6 +163,40 @@ artifacts first.
   remains research-ready for the 5/6 confounded abstention result, and stays
   deployment-blocked until P10746 is resolved by policy acceptance or an
   approved non-residue sidecar.
+- Two confounded-proxy train/cal scoring tranches have now been materialized
+  and joined back to the deployable predicted-structure-vs-train-atlas surface.
+  The first 50-row tranche fetched 48/50 AFDB-v6 query CIFs and produced
+  47/50 full-channel rows. The second 66-row structural tranche fetched 64/66
+  query CIFs, ran Foldseek against the train atlas, and produced 64/66
+  full-channel rows; `P00806` and `P04531` have no AFDB-v6 prediction. The
+  composed
+  `v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603`
+  gives 186/192 train/cal OOS full-channel rows. At the fixed threshold
+  `0.44155`, the proxy audit abstains on 63/186 calibration OOS rows overall,
+  but 0/4 high-cofactor proxy rows and only 10/55 strict same-family structural
+  proxy rows. The current candidate pool still has 170 unscored ready
+  train/cal OOS rows, but 0 high-cofactor-axis and 0 structural-axis rows under
+  the current proxy gate, so the next scoring-tranche plan selects 0 rows and
+  the input manifest fails closed on `scoring_tranche_plan_empty`. The
+  background-axis blocker confirms all 170 remaining rows are background-only
+  under the current proxy axes, and the scout finds 0 mechanically ready
+  replacement axes without a pre-registered train/cal-only proxy-axis contract.
+- The first pre-registered source-free replacement proxy axis is now
+  materialized and scored. The `active_site_residue_count_10_plus` contract
+  selects six train/cal-only rows (`m_csa:89`, `m_csa:90`, `m_csa:143`,
+  `m_csa:253`, `m_csa:466`, and `m_csa:501`). All six have AFDB-v6 query
+  coordinates, nearest-train Foldseek/TM hits, predicted-geometry scores, and
+  combined fold/geometry/cofactor channel scores. `m_csa:501` was admitted only
+  through the new opt-in predicted-only sequence-position repair policy, which
+  uses reference sequence positions when experimental structure positions are
+  absent. Composing the new tranche gives a partial 192/198 train/cal OOS
+  full-channel surface with six remaining prior/base blockers. At unchanged
+  threshold `0.44155`, the new proxy axis abstains 1/6 rows (`m_csa:466`) and
+  retains 5/6, so it is a measured tranche readout, not a deployable
+  operating-point closure. Do not rerun the global fixed-threshold proxy audit
+  from this partial surface; clear the prior/base full-channel and
+  policy/calibration blockers or pre-register another train/cal-only proxy axis
+  before any new operating-point claim.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel
@@ -744,6 +778,12 @@ artifacts first.
 - `artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.json`
 - `artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json`
 - `artifacts/v3_fold_augmented_post_decision_deployment_closure_status_current702_20260603.json`
+- `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json`
+- `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.json`
+- `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json`
+- `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.json`
+- `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.json`
+- `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`

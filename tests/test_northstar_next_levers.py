@@ -29,7 +29,11 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_threshold_stress,
     build_fold_augmented_confounded_proxy_evidence_extension_plan,
     build_fold_augmented_confounded_proxy_acquisition_queue,
+    build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface,
     build_fold_augmented_confounded_proxy_train_cal_candidate_pool,
+    build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker,
+    build_fold_augmented_confounded_proxy_train_cal_background_axis_scout,
+    build_fold_augmented_confounded_proxy_train_cal_scored_extension,
     build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
     build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
     build_fold_augmented_family_panel_accepted_import_preview,
@@ -2537,6 +2541,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 "candidate_pool_meets_structural_shortfall_by_count"
             ]
         )
+        self.assertFalse(pool["decision"]["current_proxy_axes_exhausted"])
         emitted = {row["entry_id"] for row in pool["priority_candidate_rows"]}
         self.assertEqual(emitted, {"m_csa:2", "m_csa:3"})
         self.assertFalse(pool["decision"]["apply_or_change_threshold_now"])
@@ -2622,6 +2627,218 @@ class NorthstarNextLeversTests(unittest.TestCase):
             [row["entry_id"] for row in plan["scoring_tranche_rows"]],
             ["m_csa:1", "m_csa:2", "m_csa:3"],
         )
+
+    def test_confounded_proxy_train_cal_background_axis_blocker_marks_exhausted_axes(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acquisition = root / "acquisition.json"
+            manifest = root / "manifest.json"
+            surface = root / "surface.json"
+            organic = root / "organic.json"
+            plan = root / "plan.json"
+            acquisition.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "high_cofactor_shortfall_after_current_scenario": 1,
+                            "same_family_structural_shortfall_after_current_scenario": 2,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "inorganic_locus_statuses": {
+                                    "cobalamin_locus": "no_cobalamin_context_detected",
+                                    "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+                                    "metal_ion_locus": "no_metal_context_detected",
+                                    "radical_sam_locus": "no_radical_sam_context_detected",
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "inorganic_locus_statuses": {
+                                    "cobalamin_locus": "unsupported_or_missing_geometry",
+                                    "iron_sulfur_locus": "unsupported_or_missing_geometry",
+                                    "metal_ion_locus": "unsupported_or_missing_geometry",
+                                    "radical_sam_locus": "unsupported_or_missing_geometry",
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface.write_text(json.dumps({"candidate_row_scores": []}), encoding="utf-8")
+            organic.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "class": "heme",
+                                "selected_score": 0.2,
+                                "score_available": True,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            plan.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "tranche_rows": 0,
+                            "selected_high_cofactor_axis_rows": 0,
+                            "selected_structural_axis_rows": 0,
+                        },
+                        "decision": {"score_tranche_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            blocker = build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
+                confounded_proxy_acquisition_queue_path=acquisition,
+                train_cal_input_manifest_path=manifest,
+                train_cal_oos_surface_path=surface,
+                selected_organic_cofactor_sidecar_path=organic,
+                scoring_tranche_plan_path=plan,
+                artifact_id="custom_background_axis_blocker",
+            )
+
+        self.assertEqual(blocker["artifact_id"], "custom_background_axis_blocker")
+        self.assertEqual(
+            blocker["status"],
+            (
+                "fold_augmented_confounded_proxy_train_cal_background_axis_"
+                "blocker_complete"
+            ),
+        )
+        self.assertEqual(
+            blocker["counts"]["remaining_unscored_ready_train_cal_oos_rows"], 2
+        )
+        self.assertEqual(blocker["counts"]["background_only_rows"], 2)
+        self.assertEqual(blocker["counts"]["high_cofactor_axis_candidate_rows"], 0)
+        self.assertEqual(blocker["counts"]["structural_locus_candidate_rows"], 0)
+        self.assertTrue(
+            blocker["decision"]["all_remaining_rows_background_only_current_axes"]
+        )
+        self.assertFalse(blocker["decision"]["score_background_only_rows_now"])
+        self.assertIn(
+            "remaining_train_cal_oos_rows_background_only_current_axes",
+            blocker["blockers"],
+        )
+        self.assertIn(
+            "no_source_free_inorganic_structural_locus",
+            blocker["background_only_rows"][0]["background_axis_exclusion_reasons"],
+        )
+        self.assertFalse(blocker["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(
+            blocker["guardrails"]["heldout_rows_read_for_training_or_threshold_tuning"]
+        )
+
+    def test_confounded_proxy_train_cal_background_axis_scout_blocks_new_axis_scoring(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            blocker = root / "blocker.json"
+            manifest = root / "manifest.json"
+            blocker.write_text(
+                json.dumps(
+                    {
+                        "background_only_rows": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "organic_cofactor_max_class": "heme",
+                                "organic_cofactor_max_score": 0.35,
+                                "background_axis_exclusion_reasons": [
+                                    "organic_cofactor_below_high_axis_threshold",
+                                    "no_high_inorganic_cofactor_locus",
+                                    "no_source_free_inorganic_structural_locus",
+                                ],
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "no_metal_context_detected"
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "organic_cofactor_max_class": "plp",
+                                "organic_cofactor_max_score": 0.01,
+                                "background_axis_exclusion_reasons": [
+                                    "some_inorganic_locus_geometry_unsupported_or_missing"
+                                ],
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "unsupported_or_missing_geometry"
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "active_site_residue_count": 12,
+                                "role_graph_status": "ok",
+                                "reaction_template_status": (
+                                    "no_mechanism_fingerprint_oos_or_unlabeled"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "active_site_residue_count": 5,
+                                "role_graph_status": "ok",
+                                "reaction_template_status": (
+                                    "no_mechanism_fingerprint_oos_or_unlabeled"
+                                ),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            scout = build_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
+                background_axis_blocker_path=blocker,
+                train_cal_input_manifest_path=manifest,
+                artifact_id="custom_background_axis_scout",
+            )
+
+        self.assertEqual(scout["artifact_id"], "custom_background_axis_scout")
+        self.assertEqual(
+            scout["status"],
+            "fold_augmented_confounded_proxy_train_cal_background_axis_scout_blocked",
+        )
+        self.assertEqual(scout["counts"]["background_only_rows"], 2)
+        self.assertEqual(scout["counts"]["active_site_residue_count_10_plus_rows"], 1)
+        self.assertEqual(
+            scout["counts"]["organic_score_0_30_to_below_high_axis_rows"], 1
+        )
+        self.assertEqual(scout["counts"]["unsupported_geometry_rows"], 1)
+        self.assertEqual(scout["counts"]["mechanically_ready_axis_tests"], 0)
+        self.assertFalse(scout["decision"]["new_proxy_axis_ready_to_score_now"])
+        self.assertFalse(scout["guardrails"]["new_proxy_axis_registered"])
+        self.assertFalse(scout["guardrails"]["candidate_rows_scored_now"])
 
     def test_confounded_proxy_train_cal_scoring_input_manifest_maps_coordinates(
         self,
@@ -2753,6 +2970,249 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(manifest["decision"]["score_tranche_now"])
         self.assertFalse(manifest["decision"]["proxy_calibration_rerun_ready_now"])
         self.assertFalse(manifest["guardrails"]["coordinate_downloads_performed"])
+
+    def test_confounded_proxy_train_cal_scored_extension_composes_surface(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            scoring_input = root / "scoring_input.json"
+            plan = root / "plan.json"
+            labels = root / "labels.json"
+            graph = root / "graph.json"
+            experimental = root / "experimental.json"
+            sidecar = root / "sidecar.json"
+            tsv = root / "foldseek.tsv"
+            query_path = root / "coords" / "queries" / "afdb_PQUERY_v6.cif"
+            target_path = root / "coords" / "targets" / "afdb_PTRAIN_v6.cif"
+            query_path.parent.mkdir(parents=True)
+            target_path.parent.mkdir(parents=True)
+            query_path.write_text("data_query\n", encoding="utf-8")
+            target_path.write_text("data_target\n", encoding="utf-8")
+            tsv.write_text(
+                "afdb_PQUERY_v6\tafdb_PTRAIN_v6\t0.42\t0.41\t0.40\t0.9\t10\n",
+                encoding="utf-8",
+            )
+            scoring_input.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "result_tsv": str(tsv),
+                            "coordinate_request_groups": {
+                                "confounded_proxy_train_cal_tranche_queries": [
+                                    {
+                                        "accession": "PQUERY",
+                                        "alphafold_version": 6,
+                                        "expected_local_path": str(query_path),
+                                        "local_file_exists": True,
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:1",
+                                                "split_assignment": "in_distribution",
+                                            }
+                                        ],
+                                        "entry_ids": ["m_csa:1"],
+                                    }
+                                ],
+                                "threshold_contract_train_atlas_targets": [
+                                    {
+                                        "accession": "PTRAIN",
+                                        "alphafold_version": 6,
+                                        "expected_local_path": str(target_path),
+                                        "local_file_exists": True,
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:10",
+                                                "split_assignment": "in_distribution",
+                                                "true_fingerprint_id": (
+                                                    "metal_dependent_hydrolase"
+                                                ),
+                                            }
+                                        ],
+                                        "entry_ids": ["m_csa:10"],
+                                    }
+                                ],
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            plan.write_text(
+                json.dumps(
+                    {
+                        "scoring_tranche_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "split_assignment": "in_distribution",
+                                "label_type": "out_of_scope",
+                                "priority_bucket": 1,
+                                "organic_cofactor_max_score": 0.8,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "high_cofactor_signature_proxy",
+                                    "same_family_structural_proxy",
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "PQUERY",
+                                "sequence_id": "PQUERY",
+                                "split_assignment": "in_distribution",
+                                "benchmark_role": "oos_tier::unknown_oos",
+                                "label_type": "out_of_scope",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {
+                                "id": "m_csa:1:residue:1",
+                                "type": "catalytic_residue",
+                                "roles": ["metal_ligand"],
+                                "sequence_positions": [
+                                    {
+                                        "is_reference": True,
+                                        "resid": 10,
+                                        "code": "Asp",
+                                        "uniprot_id": "PQUERY",
+                                    }
+                                ],
+                            },
+                            {
+                                "id": "m_csa:1:residue:2",
+                                "type": "catalytic_residue",
+                                "roles": ["water_activator"],
+                                "sequence_positions": [
+                                    {
+                                        "is_reference": True,
+                                        "resid": 20,
+                                        "code": "His",
+                                        "uniprot_id": "PQUERY",
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            experimental.write_text(
+                json.dumps({"entries": [{"entry_id": "m_csa:1", "status": "ok"}]}),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "class": "flavin",
+                                "selected_score": 0.8,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def fake_fetcher(accession: str, version: str = "auto"):
+                cif = """data_fake
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM 1 C CA ASP A 10 A 10 0.0 0.0 0.0
+ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
+#
+"""
+                return cif, {"accession": accession, "alphafold_version": 6}
+
+            extension = build_fold_augmented_confounded_proxy_train_cal_scored_extension(
+                scoring_input_manifest_path=scoring_input,
+                scoring_tranche_plan_path=plan,
+                label_manifest_path=labels,
+                graph_path=graph,
+                experimental_geometry_features_path=experimental,
+                selected_organic_cofactor_sidecar_path=sidecar,
+                foldseek_result_tsv=tsv,
+                artifact_id="custom_scored_extension",
+                fetcher=fake_fetcher,
+            )
+            base_surface = root / "base_surface.json"
+            extension_path = root / "extension.json"
+            base_surface.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_expanded_train_cal_oos_negative_surface_scores",
+                        "counts": {"candidate_rows_with_full_channel_scores": 1},
+                        "blockers": [],
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.6
+                                },
+                            }
+                        ],
+                        "guardrails": {},
+                        "source_artifacts": {},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            extension_path.write_text(json.dumps(extension), encoding="utf-8")
+
+            composed = build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
+                base_train_cal_oos_surface_path=base_surface,
+                scored_extension_path=extension_path,
+                artifact_id="custom_extended_surface",
+            )
+
+        self.assertEqual(extension["artifact_id"], "custom_scored_extension")
+        self.assertEqual(
+            extension["status"],
+            "confounded_proxy_train_cal_scored_extension_complete",
+        )
+        self.assertEqual(
+            extension["counts"]["candidate_rows_with_full_channel_scores"], 1
+        )
+        self.assertEqual(
+            extension["candidate_row_scores"][0]["proxy_membership"],
+            ["high_cofactor_signature_proxy", "same_family_structural_proxy"],
+        )
+        self.assertIsNotNone(
+            extension["candidate_row_scores"][0]["channel_scores"][
+                "combined_mean_geometry_fold"
+            ]
+        )
+        self.assertEqual(composed["artifact_id"], "custom_extended_surface")
+        self.assertEqual(composed["counts"]["scored_extension_appended_rows"], 1)
+        self.assertEqual(composed["counts"]["extended_candidate_rows"], 2)
+        self.assertEqual(composed["counts"]["candidate_rows_with_full_channel_scores"], 2)
+        self.assertFalse(composed["guardrails"]["threshold_selected_or_tuned"])
 
     def test_fold_only_negative_surface_keeps_fold_scored_geometry_gaps(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -14830,6 +15290,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
             event_path = root / "event.json"
             closure_path = root / "closure.json"
             extension_path = root / "extension.json"
+            background_axis_path = root / "background_axis.json"
             scenario_path = root / "scenario.json"
             family_path = root / "family.json"
             queue_path.write_text(
@@ -14944,6 +15405,17 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            background_axis_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"background_only_rows": 5, "blockers": 3},
+                        "decision": {
+                            "all_remaining_rows_background_only_current_axes": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
             scenario_path.write_text(
                 json.dumps(
                     {
@@ -14972,6 +15444,9 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 lever2_event_axis_linker_schema_path=event_path,
                 lever3_post_decision_deployment_closure_status_path=closure_path,
                 lever3_confounded_proxy_evidence_extension_plan_path=extension_path,
+                lever3_confounded_proxy_train_cal_background_axis_blocker_path=(
+                    background_axis_path
+                ),
                 lever4_acceptance_scenario_plan_path=scenario_path,
                 family_panel_label_factory_gate_readiness_path=family_path,
             )
@@ -14991,8 +15466,18 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "lever3_confounded_proxy_evidence_extension_scale_gap",
             audit["blockers"],
         )
+        self.assertIn(
+            "lever3_confounded_proxy_background_axis_exhausted",
+            audit["blockers"],
+        )
         self.assertEqual(
             audit["counts"]["lever3_confounded_proxy_evidence_request_rows"], 2
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_background_only_rows"], 5
+        )
+        self.assertTrue(
+            audit["counts"]["lever3_confounded_proxy_background_axis_exhausted"]
         )
         self.assertEqual(
             audit[

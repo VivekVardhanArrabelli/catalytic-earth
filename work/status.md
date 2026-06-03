@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 330
-- Measured elapsed time: 9862.0 minutes (164.37 hours)
+- Entries: 333
+- Measured elapsed time: 9993.1 minutes (166.55 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- northstar-lever3: 47.1 measured minutes (0.78 hours)
+- northstar-lever3: 178.2 measured minutes (2.97 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -29,44 +29,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3492
-- Evidence references logged: 2888
+- Artifact references logged: 3522
+- Evidence references logged: 2912
 
 ## Recent Entries
-
-### 2026-05-27T10:15:26Z - v3
-
-- Task: Packet 1 and Wave 1 follow-through lock-down
-- Time mode: measured
-- Measured minutes: 35.0
-- Started: 2026-05-27T09:40:00Z
-- Ended: 2026-05-27T10:15:26Z
-- Artifacts: artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json, artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json, artifacts/v3_packet1_wave1_lockdown_addendum_702_20260527.json, artifacts/v3_m_csa750_review_packet_702_20260527.json, artifacts/v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527.json, artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json, artifacts/v3_m_csa43_wave1_canary_mechanism_check_702_20260527.json, tests/test_automation_small_win_artifacts.py, work/packet1_wave1_followthrough_20260527.md, work/handoff.md, work/status.md
-- Evidence: integrated the two pre-existing review-only artifacts after JSON validation, locked Packet 1 cells: 217/477 verified anchors, 428 caveated, 440 near-orphan OOS, 497 excluded after OOS relabel, demoted flavin.dehydrogenase_oxidase_hydride_transfer to expert review, flagged m_csa:750 as review-blocked and unsafe for Wave 1 canary use, generated 210-row label_factory_review_import heuristic mismatch shortlist without automatic relabeling, created FMO acquisition packet with n>=6 before primary-promotion reconsideration, m_csa:43 remains valid as metal-dependent hydrolase canary, JSON validation passed, focused artifact tests passed, PYTHONPATH=src python -m catalytic_earth.cli validate passed, git diff --check passed, push blocked: HTTPS credential prompt unavailable and SSH publickey denied
-- Commit: `local_unpushed_commit`
-- Notes: No label registry edit ontology edit fingerprint edit threshold change import decision production scoring change model retraining or representation output edit occurred in this run. Local commit exists but origin/main is still one commit behind because both HTTPS and SSH push paths failed auth.
-
-### 2026-05-27T13:12:54.482909+00:00 - v3
-
-- Task: Wave 1 TM-pair expansion blocker closure
-- Time mode: measured
-- Measured minutes: 90.0
-- Started: 2026-05-27T11:42:00Z
-- Ended: 2026-05-27T13:12:00Z
-- Artifacts: artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json, tests/test_automation_small_win_artifacts.py, work/packet1_wave1_closure_cycle_20260527.md, work/handoff.md
-- Evidence: targeted Foldseek chunks completed for m_csa217 m_csa477 m_csa428 m_csa440, 2971 heldout-vs-train rows retained under 5000-row cap, 217 and 477 fully supported fold-conflict anchors, 428 caveated not capped, 440 near-orphan not fold-conflict, JSON parse passed, focused artifact tests passed, CLI validate passed, git diff check passed
-- Notes: No label registry edit ontology edit fingerprint edit threshold change import decision production scoring change model output edit representation artifact edit or artifact migration state change occurred.
-
-### 2026-06-03T09:54:04.655478+00:00 - post-v2
-
-- Task: active Lever 2/3/4 fail-closed actionability gates and decision templates
-- Time mode: measured
-- Measured minutes: 50.933
-- Started: 2026-06-03T09:02:27Z
-- Ended: 2026-06-03T09:53:23Z
-- Artifacts: artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, artifacts/v3_active_lever_priority_decision_templates_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, work/handoff.md
-- Evidence: 1300 pytest passed, 1255 unittest passed, 702 labels validated, 3374 JSON files parsed, 0 active mechanical gates runnable
-- Notes: No labels registries ontologies imports production thresholds model weights locator sidecars reviewer decisions or heldout threshold reads changed.
 
 ### 2026-06-03T10:52:23.444858+00:00 - post-v2
 
@@ -122,6 +88,39 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603.json, work/handoff.md, work/status.md
 - Evidence: 8 focused tests passed, full pytest 1327 passed and 143 subtests passed, unittest discovery 1282 passed, validate passed with 702 labels, 50 tranche query CIFs manifested and 0 train-target CIFs missing
 - Notes: Early complete after bounded Lever 3 artifacts, full validation, and no source-decision intake changes.
+
+### 2026-06-03T15:57:39.461549+00:00 - northstar-lever3
+
+- Task: Confounded proxy train/cal tranche scoring
+- Time mode: measured
+- Measured minutes: 55.283
+- Started: 2026-06-03T15:02:08Z
+- Ended: 2026-06-03T15:57:25Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_scored_extension_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scored_extension_tranche2_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/handoff.md, work/status.md
+- Evidence: 50-row tranche scored 47/50 full-channel rows, second 66-row tranche scored 64/66 full-channel rows, extended train/cal OOS surface now 186/192 full-channel rows, fixed threshold abstains 0/4 high-cofactor and 10/55 structural proxy rows, current scoring tranche is empty and fail-closed, 1330 pytest passed, 1285 unittest passed, validate passed with 702 labels
+- Notes: No labels registries ontologies imports production thresholds model weights source decisions reviewer decisions or heldout threshold tuning changed.
+
+### 2026-06-03T16:23:45.947867+00:00 - northstar-lever3
+
+- Task: Lever 3 background-axis blocker and scout
+- Time mode: measured
+- Measured minutes: 21.7
+- Started: 2026-06-03T16:01:32Z
+- Ended: 2026-06-03T16:23:14Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/handoff.md, work/status.md
+- Evidence: 170 remaining train/cal OOS rows classified as background-only, 0 high-cofactor-axis candidates, 0 structural-axis candidates, 3 scout axes summarized with 0 mechanically ready, 1334 pytest passed, 1289 unittest passed, validate passed with 702 labels
+- Notes: Early complete after exact next blocker artifact plus follow-on scout; no labels registries ontologies imports thresholds model weights source decisions or heldout tuning changed.
+
+### 2026-06-03T17:56:13.579427+00:00 - northstar-lever3
+
+- Task: Lever 3 active-site-count proxy-axis scoring
+- Time mode: measured
+- Measured minutes: 54.15
+- Started: 2026-06-03T17:01:45Z
+- Ended: 2026-06-03T17:55:54Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md, docs/project_state.md, docs/decision_log.md, docs/artifact_index.md, work/handoff.md, work/status.md
+- Evidence: active-site-count proxy contract selected 6 train/cal-only rows, 6/6 AFDB-v6 query CIFs staged and Foldseek scored against 133 train-atlas targets, 6/6 rows reached full geometry fold cofactor combined-channel scores, new partial extended surface is 192/198 full-channel rows, fixed threshold 0.44155 abstains 1/6 new-axis rows and retains 5/6, active audit reports 0 mechanical gates ready and 15 blockers, 1340 pytest passed with 148 subtests and one existing sklearn SciPy deprecation warning, 1295 unittest discovery passed, validate passed with 702 labels
+- Notes: No labels registries ontologies imports production thresholds model weights source decisions reviewer decisions locator sidecars event linkers or heldout threshold tuning changed.
 
 ## Expectation Updates
 
@@ -381,6 +380,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T10:52:23.444858+00:00: Next run should edit only source decision packets if reviewed decisions are available then rerun the source intake preflight before application or materialization gates.
 - 2026-06-03T11:23:19.905443+00:00: Next run should edit source decision packets only if reviewed decisions are available, then rerun source intake and the decision-application contract audit before any matching gate.
 - 2026-06-03T14:51:20.045307+00:00: Lever 3 now has an executable 50-row train/cal scoring input manifest; next step is materializing query CIFs and scoring without heldout threshold tuning.
+- 2026-06-03T15:57:39.461549+00:00: Lever 3 proxy calibration is now mechanically exhausted under the current proxy axes; remaining progress needs source decisions, policy decisions, or a new proxy/evidence axis rather than another automatic scoring tranche.
+- 2026-06-03T17:56:13.579427+00:00: Next Lever 3 progress should clear prior/base full-channel and policy/calibration blockers, or pre-register a no-duplicate follow-up train/cal-only proxy axis before scoring.
 
 ## Scope Adjustments
 
@@ -579,3 +580,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T09:54:04.655478+00:00: Active Lever 2/3/4 remains review-gated; derived templates are patch aids only and not source-of-truth decisions.
 - 2026-06-03T10:52:23.444858+00:00: Active Lever 2/3/4 now has a hash-preserving source-decision intake preflight between review packets and application gates.
 - 2026-06-03T11:23:19.905443+00:00: Active Lever 2/3/4 application gates now require explicit reviewed statuses and approval booleans before follow-on materialization/application gates can open.
+- 2026-06-03T16:23:45.947867+00:00: Lever 3 automatic scoring is exhausted under current proxy axes; a reviewed source decision or pre-registered new train/cal-only proxy-axis contract is required before more scoring.
+- 2026-06-03T17:56:13.579427+00:00: Lever 3 active-site-count proxy axis is fully scored but not closure-sufficient; do not rerun the global fixed-threshold proxy audit from the partial/base-blocked surface.

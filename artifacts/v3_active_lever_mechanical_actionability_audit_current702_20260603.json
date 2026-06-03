@@ -9,6 +9,7 @@
     "lever3_confounded_proxy_evidence_extension_scale_gap",
     "lever3_confounded_proxy_acquisition_shortfall",
     "lever3_confounded_proxy_train_cal_scoring_tranche_not_run",
+    "lever3_confounded_proxy_background_axis_exhausted",
     "family_panel_expert_import_decisions_missing",
     "source_free_locator_rewrite_approvals_missing",
     "source_free_event_axis_linker_gate_blocked",
@@ -18,36 +19,47 @@
   ],
   "counts": {
     "automation_action_allowed_now_items": 0,
-    "blockers": 14,
+    "blockers": 15,
     "decision_items": 78,
     "external_decision_required_items": 78,
     "lever2_clean_locator_rewrite_items": 49,
     "lever2_event_axis_materialized_linker_rows": 0,
     "lever2_locator_sidecars_written": 0,
     "lever2_pending_locator_approvals": 55,
-    "lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct": 4,
-    "lever3_confounded_high_cofactor_proxy_rows": 1,
+    "lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct": 16,
+    "lever3_confounded_high_cofactor_proxy_rows": 4,
     "lever3_confounded_proxy_acquisition_blockers": 6,
     "lever3_confounded_proxy_acquisition_family_panel_eligible_rows": 0,
     "lever3_confounded_proxy_acquisition_heldout_guardrail_rows": 4,
-    "lever3_confounded_proxy_acquisition_high_shortfall": 4,
-    "lever3_confounded_proxy_acquisition_structural_shortfall": 48,
-    "lever3_confounded_proxy_candidate_pool_blockers": 1,
-    "lever3_confounded_proxy_candidate_pool_high_axis_rows": 13,
-    "lever3_confounded_proxy_candidate_pool_structural_axis_rows": 114,
-    "lever3_confounded_proxy_candidate_pool_unscored_rows": 286,
+    "lever3_confounded_proxy_acquisition_high_shortfall": 16,
+    "lever3_confounded_proxy_acquisition_structural_shortfall": 170,
+    "lever3_confounded_proxy_background_axis_blockers": 4,
+    "lever3_confounded_proxy_background_axis_exhausted": true,
+    "lever3_confounded_proxy_background_axis_scout_axes": 3,
+    "lever3_confounded_proxy_background_axis_scout_ready_axes": 0,
+    "lever3_confounded_proxy_background_only_rows": 170,
+    "lever3_confounded_proxy_candidate_pool_blockers": 3,
+    "lever3_confounded_proxy_candidate_pool_high_axis_rows": 0,
+    "lever3_confounded_proxy_candidate_pool_structural_axis_rows": 0,
+    "lever3_confounded_proxy_candidate_pool_unscored_rows": 170,
     "lever3_confounded_proxy_evidence_extension_blockers": 6,
-    "lever3_confounded_proxy_evidence_request_rows": 14,
-    "lever3_confounded_proxy_retained_gap_rows": 14,
-    "lever3_confounded_proxy_scoring_tranche_blockers": 1,
-    "lever3_confounded_proxy_scoring_tranche_high_rows": 13,
-    "lever3_confounded_proxy_scoring_tranche_ready_for_plan": true,
-    "lever3_confounded_proxy_scoring_tranche_rows": 50,
-    "lever3_confounded_proxy_scoring_tranche_structural_rows": 48,
+    "lever3_confounded_proxy_evidence_request_rows": 48,
+    "lever3_confounded_proxy_new_axis_contract_blockers": 0,
+    "lever3_confounded_proxy_new_axis_contracted_rows": 6,
+    "lever3_confounded_proxy_new_axis_full_channel_rows": 6,
+    "lever3_confounded_proxy_new_axis_missing_full_score_rows": 0,
+    "lever3_confounded_proxy_new_axis_registered": true,
+    "lever3_confounded_proxy_new_axis_scored_extension_blockers": 0,
+    "lever3_confounded_proxy_retained_gap_rows": 48,
+    "lever3_confounded_proxy_scoring_tranche_blockers": 3,
+    "lever3_confounded_proxy_scoring_tranche_high_rows": 0,
+    "lever3_confounded_proxy_scoring_tranche_ready_for_plan": false,
+    "lever3_confounded_proxy_scoring_tranche_rows": 0,
+    "lever3_confounded_proxy_scoring_tranche_structural_rows": 0,
     "lever3_confounded_proxy_threshold_stress_blockers": 2,
-    "lever3_confounded_structural_min_new_abstained_rows_for_80pct": 48,
-    "lever3_confounded_structural_proxy_abstained": 4,
-    "lever3_confounded_structural_proxy_rows": 17,
+    "lever3_confounded_structural_min_new_abstained_rows_for_80pct": 170,
+    "lever3_confounded_structural_proxy_abstained": 10,
+    "lever3_confounded_structural_proxy_rows": 55,
     "lever4_acceptance_scenario_panels": 5,
     "lever4_acceptance_scenario_rows": 6,
     "lever4_import_preview_candidate_if_accepted_items": 6,
@@ -60,7 +72,7 @@
     "source_decision_intake_invalid_rows": 0,
     "source_decision_intake_pending_rows": 78
   },
-  "created_utc": "2026-06-03T14:36:10Z",
+  "created_utc": "2026-06-03T17:39:43Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
@@ -125,6 +137,27 @@
       "ready_now": false
     },
     {
+      "blocking_reason": "confounded_proxy_remaining_rows_background_only",
+      "gate": "confounded_proxy_train_cal_background_axis_blocker",
+      "lever": "Lever 3",
+      "next_command_after_decision": "build-fold-augmented-confounded-proxy-train-cal-background-axis-blocker",
+      "ready_now": false
+    },
+    {
+      "blocking_reason": "current_scout_axis_scored_no_ready_followup_axis",
+      "gate": "confounded_proxy_train_cal_background_axis_scout",
+      "lever": "Lever 3",
+      "next_command_after_decision": "build-fold-augmented-confounded-proxy-train-cal-background-axis-scout",
+      "ready_now": false
+    },
+    {
+      "blocking_reason": "contracted_proxy_axis_fully_scored_surface_still_blocked",
+      "gate": "confounded_proxy_train_cal_new_proxy_axis_contract",
+      "lever": "Lever 3",
+      "next_command_after_decision": "build-fold-augmented-confounded-proxy-train-cal-background-axis-scout",
+      "ready_now": false
+    },
+    {
       "blocking_reason": "family_panel_expert_import_decisions_missing",
       "gate": "family_panel_label_factory_gate_readiness",
       "lever": "Lever 4",
@@ -162,8 +195,8 @@
   },
   "interpretation": {
     "headline": "No active Lever 2/3/4 gate is mechanically runnable on the current decision state.",
-    "next_action": "Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3 calibration, add new train/cal proxy evidence outside the current scored surface before rerunning the fixed-threshold proxy audit.",
-    "result": "Lever 3 is blocked by the P10746 policy caveat plus a confounded-proxy calibration/evidence-extension scale gap, Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers."
+    "next_action": "Review the first twelve queued rows here, starting with P10746 and the six Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first.",
+    "result": "Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 is blocked by locator approvals plus source-free event-axis linkers."
   },
   "next_review_items": [
     {
@@ -413,37 +446,57 @@
     "lever3_confounded_proxy_acquisition_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json",
-      "sha256": "3d4042d28c265ffcc3db3ab2cd463cefbf38352568b35f31afc33d17b99ac41f"
+      "sha256": "05fd9dc0d1c94abf07b3eb5ef61204947a638572a9693a3dc31c0e7ed39159aa"
     },
     "lever3_confounded_proxy_evidence_extension_plan": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json",
-      "sha256": "f8d546aa686e462c09ad83aacfb6ecd34131a3e5414502e81d61b28d24dd69c3"
+      "sha256": "69f63677067d8f2dcf276ba30544900255dc9ec252f439b301d65ec0962c1017"
     },
     "lever3_confounded_proxy_gap_targets": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603.json",
-      "sha256": "2c04c33b4a1ececcec8b9d7a6983bb9ea24ef53c83f3039bd5246b5229effe98"
+      "sha256": "41e6cbc5ed5c845df78b127402ae6973e53ba546f1807aceb430f3c28aa6fdb3"
     },
     "lever3_confounded_proxy_operating_point_audit": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json",
-      "sha256": "b7b4ef428a7b1a6668c0552269ae1efa8e7ce2823f83e40e07a053fdc88b1a1b"
+      "sha256": "d8a4f0e281a6e3bd5ba4015e17d0cc6ccd632c0f07e280f39f8f1981930fd865"
     },
     "lever3_confounded_proxy_threshold_stress": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603.json",
-      "sha256": "a2ca3f719cbebff0dfabcd97748a374250135f26a0318c6ad7139281a32b36c5"
+      "sha256": "73c6758ff7b4c36a609e60679a9e7081e68e9894be6e0faba7900b1db427f4ff"
+    },
+    "lever3_confounded_proxy_train_cal_background_axis_blocker": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current702_20260603.json",
+      "sha256": "05d7727da612f1472f25ec4f15e20c5660ea72d8f143d731522457ad34a33090"
+    },
+    "lever3_confounded_proxy_train_cal_background_axis_scout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603.json",
+      "sha256": "8ebe3e64b0d62393a81025f49a7ab859b4283dc4bf9d4782e80577f373cccbdd"
     },
     "lever3_confounded_proxy_train_cal_candidate_pool": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json",
-      "sha256": "4e2f399cdf1d1b92dfc5be961e393183e4b06756bbd6021e719153337a525fdc"
+      "sha256": "d65d32fce6a49611fb9140685721b31023b00ee14b1ca6c2705f297db4c9edf3"
+    },
+    "lever3_confounded_proxy_train_cal_new_proxy_axis_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json",
+      "sha256": "c092a571fe31ce657407372828bc5945f6ee63f13c1ee22bf92ce2f4ccd5c35b"
+    },
+    "lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json",
+      "sha256": "3f267b63a05f931ce3f921465d9b722c1e1b4a8245e88e076252b541abc76705"
     },
     "lever3_confounded_proxy_train_cal_scoring_tranche_plan": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603.json",
-      "sha256": "2818e12a41e81858aebf2caed6a556ec01e4746ce1e27a2a84cf65eb9d319569"
+      "sha256": "b89fc505d129a2701a8fe07f1bd953b8ed67b36e6f94a23aa9b691fc0697db3d"
     },
     "lever3_post_decision_deployment_closure_status": {
       "exists": true,

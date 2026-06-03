@@ -177,8 +177,26 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_CANDIDATE_POOL_ID = (
 FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_TRANCHE_PLAN_ID = (
     "v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_BLOCKER_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_SCOUT_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_background_axis_scout_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_CONTRACT_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_FIXED_THRESHOLD_READOUT_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603"
+)
 FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_INPUT_MANIFEST_ID = (
     "v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORED_EXTENSION_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_scored_extension_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_EXTENDED_TRAIN_CAL_OOS_SURFACE_ID = (
+    "v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603"
 )
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
@@ -26123,6 +26141,33 @@ def build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
     if len(structural_axis_rows) < structural_shortfall:
         blockers.append("structural_candidate_pool_below_shortfall")
     blockers.append("candidate_pool_not_scored_at_fixed_threshold")
+    current_proxy_axes_exhausted = (
+        bool(candidate_rows) and not high_axis_rows and not structural_axis_rows
+    )
+    candidate_next_gate = (
+        "Do not score background-only rows under the current proxy axes. Build "
+        "the background-axis blocker, then wait for reviewed source decisions "
+        "or define a new source-free proxy axis before any fixed-threshold "
+        "proxy audit rerun."
+        if current_proxy_axes_exhausted
+        else (
+            "Score a bounded tranche from priority_candidate_rows with the "
+            "predicted-structure-vs-atlas channel, then rerun the "
+            "fixed-threshold proxy operating-point audit only after new "
+            "train/cal OOS rows have actual channel scores."
+        )
+    )
+    candidate_next_action = (
+        "Build the background-axis blocker and pivot to reviewed decisions or "
+        "a new source-free proxy axis; keep the fixed threshold and do not read "
+        "heldout rows for calibration."
+        if current_proxy_axes_exhausted
+        else (
+            "Run a bounded predicted-structure-vs-atlas scoring tranche from "
+            "the priority candidate rows; keep the fixed threshold and do not "
+            "read heldout rows for calibration."
+        )
+    )
 
     return {
         "artifact_id": artifact_id,
@@ -26189,12 +26234,8 @@ def build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
             "candidate_pool_meets_structural_shortfall_by_count": (
                 len(structural_axis_rows) >= structural_shortfall
             ),
-            "next_gate": (
-                "Score a bounded tranche from priority_candidate_rows with the "
-                "predicted-structure-vs-atlas channel, then rerun the "
-                "fixed-threshold proxy operating-point audit only after new "
-                "train/cal OOS rows have actual channel scores."
-            ),
+            "current_proxy_axes_exhausted": current_proxy_axes_exhausted,
+            "next_gate": candidate_next_gate,
         },
         "blockers": blockers,
         "priority_candidate_rows": priority_rows,
@@ -26223,11 +26264,7 @@ def build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
                 "free inorganic/structural locus context, but none has been "
                 "scored or counted as new abstained evidence yet."
             ),
-            "next_action": (
-                "Run a bounded predicted-structure-vs-atlas scoring tranche "
-                "from the priority candidate rows; keep the fixed threshold and "
-                "do not read heldout rows for calibration."
-            ),
+            "next_action": candidate_next_action,
         },
     }
 
@@ -26271,6 +26308,8 @@ def _render_fold_augmented_confounded_proxy_train_cal_candidate_pool_report(
         f"{decision['candidate_pool_meets_high_shortfall_by_count']}",
         "- Candidate pool meets structural shortfall by count: "
         f"{decision['candidate_pool_meets_structural_shortfall_by_count']}",
+        "- Current proxy axes exhausted: "
+        f"{decision.get('current_proxy_axes_exhausted')}",
         f"- Next gate: {decision['next_gate']}",
         "",
         "## Priority Candidate Rows",
@@ -26419,6 +26458,28 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
         blockers.append("selected_high_cofactor_rows_below_shortfall")
     if len(structural_selected) < structural_shortfall:
         blockers.append("selected_structural_rows_below_shortfall")
+    tranche_empty = not tranche_rows
+    tranche_next_gate = (
+        "Do not run predicted-structure-vs-atlas scoring for an empty tranche. "
+        "Build or refresh the background-axis blocker, then wait for reviewed "
+        "source decisions or define a new source-free proxy axis."
+        if tranche_empty
+        else (
+            "Run predicted-structure-vs-atlas scoring for exactly these "
+            "tranche rows, join the resulting fixed-channel scores back "
+            "to train/cal only, then rerun the proxy operating-point audit "
+            "without changing threshold 0.44155."
+        )
+    )
+    tranche_next_action = (
+        "Do not score an empty tranche; refresh the background-axis blocker "
+        "and keep the fixed threshold unchanged."
+        if tranche_empty
+        else (
+            "Score the tranche; do not count any row as new abstained "
+            "proxy evidence until the actual fixed-threshold scores exist."
+        )
+    )
 
     return {
         "artifact_id": artifact_id,
@@ -26472,12 +26533,7 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
                 len(high_selected) >= high_shortfall
                 and len(structural_selected) >= structural_shortfall
             ),
-            "next_gate": (
-                "Run predicted-structure-vs-atlas scoring for exactly these "
-                "tranche rows, join the resulting fixed-channel scores back "
-                "to train/cal only, then rerun the proxy operating-point audit "
-                "without changing threshold 0.44155."
-            ),
+            "next_gate": tranche_next_gate,
         },
         "blockers": blockers,
         "scoring_tranche_rows": tranche_rows,
@@ -26497,10 +26553,7 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
                 f"{len(structural_selected)} structural-axis rows for a "
                 f"{structural_shortfall}-row lower bound, by count only."
             ),
-            "next_action": (
-                "Score the tranche; do not count any row as new abstained "
-                "proxy evidence until the actual fixed-threshold scores exist."
-            ),
+            "next_action": tranche_next_action,
         },
     }
 
@@ -26595,6 +26648,1045 @@ def write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
             encoding="utf-8",
         )
     return plan
+
+
+def _background_axis_exclusion_reasons(row: dict[str, Any]) -> list[str]:
+    reasons = []
+    if not row.get("high_organic_cofactor_signature"):
+        reasons.append("organic_cofactor_below_high_axis_threshold")
+    if not row.get("high_inorganic_cofactor_locus"):
+        reasons.append("no_high_inorganic_cofactor_locus")
+    if not row.get("any_inorganic_locus_context"):
+        reasons.append("no_source_free_inorganic_structural_locus")
+    if row.get("unsupported_or_missing_geometry_locus"):
+        reasons.append("some_inorganic_locus_geometry_unsupported_or_missing")
+    return reasons
+
+
+def _status_counter_from_loci(rows: list[dict[str, Any]], locus_name: str) -> dict[str, int]:
+    return dict(
+        sorted(
+            Counter(
+                str((row.get("inorganic_locus_statuses") or {}).get(locus_name) or "missing")
+                for row in rows
+            ).items()
+        )
+    )
+
+
+def build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
+    *,
+    confounded_proxy_acquisition_queue_path: Path,
+    train_cal_input_manifest_path: Path,
+    train_cal_oos_surface_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    scoring_tranche_plan_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_BLOCKER_ID
+    ),
+) -> dict[str, Any]:
+    full_pool = build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
+        confounded_proxy_acquisition_queue_path=(
+            confounded_proxy_acquisition_queue_path
+        ),
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        selected_organic_cofactor_sidecar_path=(
+            selected_organic_cofactor_sidecar_path
+        ),
+        artifact_id=(
+            f"{artifact_id}_diagnostic_full_candidate_pool_not_written"
+        ),
+        max_priority_rows=1_000_000,
+    )
+    plan = _read_json(scoring_tranche_plan_path)
+    rows = [
+        row
+        for row in full_pool.get("priority_candidate_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    background_rows = [
+        row
+        for row in rows
+        if row.get("recommended_proxy_axes_after_scoring")
+        == ["background_train_cal_oos_structural_pool"]
+    ]
+    high_axis_rows = [
+        row
+        for row in rows
+        if "high_cofactor_signature_proxy"
+        in (row.get("recommended_proxy_axes_after_scoring") or [])
+    ]
+    structural_axis_rows = [
+        row
+        for row in rows
+        if "same_family_structural_proxy"
+        in (row.get("recommended_proxy_axes_after_scoring") or [])
+    ]
+    scoring_counts = plan.get("counts") or {}
+    scoring_decision = plan.get("decision") or {}
+    all_remaining_rows_background_only = bool(rows) and len(background_rows) == len(rows)
+    scoring_tranche_empty = int(scoring_counts.get("tranche_rows") or 0) == 0
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("no_remaining_train_cal_oos_rows_to_classify")
+    if all_remaining_rows_background_only:
+        blockers.append("remaining_train_cal_oos_rows_background_only_current_axes")
+    if not high_axis_rows:
+        blockers.append("no_high_cofactor_axis_candidates_available")
+    if not structural_axis_rows:
+        blockers.append("no_structural_locus_axis_candidates_available")
+    if scoring_tranche_empty:
+        blockers.append("scoring_tranche_plan_empty_for_current_proxy_axes")
+    if scoring_decision.get("score_tranche_now"):
+        blockers.append("unexpected_scoring_tranche_ready")
+
+    organic_counter = Counter(
+        str(row.get("organic_cofactor_max_class") or "none") for row in rows
+    )
+    background_records = [
+        {
+            "entry_id": row["entry_id"],
+            "split_assignment": row.get("split_assignment"),
+            "label_type": row.get("label_type"),
+            "priority_bucket": row.get("priority_bucket"),
+            "organic_cofactor_max_class": row.get("organic_cofactor_max_class"),
+            "organic_cofactor_max_score": row.get("organic_cofactor_max_score"),
+            "recommended_proxy_axes_after_scoring": row.get(
+                "recommended_proxy_axes_after_scoring"
+            )
+            or [],
+            "background_axis_exclusion_reasons": _background_axis_exclusion_reasons(
+                row
+            ),
+            "inorganic_locus_statuses": row.get("inorganic_locus_statuses") or {},
+        }
+        for row in sorted(background_rows, key=lambda item: _entry_id_sort_key(str(item["entry_id"])))
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_background_axis_blocker"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_train_cal_background_axis_blocker_complete"
+            if all_remaining_rows_background_only and scoring_tranche_empty
+            else "fold_augmented_confounded_proxy_train_cal_background_axis_blocker_partial"
+        ),
+        "scope": (
+            "Train/cal-only blocker artifact for the exhausted Lever 3 "
+            "confounded-proxy acquisition axes. It classifies the unscored "
+            "ready OOS rows against the current high-cofactor and inorganic/"
+            "structural proxy axes, records why the scoring tranche is empty, "
+            "and does not score rows, tune thresholds, read heldout rows, or "
+            "change labels."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "review_only_blocker": True,
+            "candidate_rows_scored_now": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "ready_train_cal_oos_rows": full_pool["counts"].get(
+                "ready_train_cal_oos_rows"
+            ),
+            "current_scored_train_cal_oos_rows": full_pool["counts"].get(
+                "current_scored_train_cal_oos_rows"
+            ),
+            "remaining_unscored_ready_train_cal_oos_rows": len(rows),
+            "background_only_rows": len(background_rows),
+            "high_cofactor_axis_candidate_rows": len(high_axis_rows),
+            "structural_locus_candidate_rows": len(structural_axis_rows),
+            "high_cofactor_shortfall_from_acquisition_queue": full_pool[
+                "counts"
+            ].get("high_cofactor_shortfall_from_acquisition_queue"),
+            "structural_shortfall_from_acquisition_queue": full_pool["counts"].get(
+                "structural_shortfall_from_acquisition_queue"
+            ),
+            "scoring_tranche_rows": int(scoring_counts.get("tranche_rows") or 0),
+            "selected_high_cofactor_axis_rows": int(
+                scoring_counts.get("selected_high_cofactor_axis_rows") or 0
+            ),
+            "selected_structural_axis_rows": int(
+                scoring_counts.get("selected_structural_axis_rows") or 0
+            ),
+            "unsupported_or_missing_geometry_locus_rows": full_pool["counts"].get(
+                "unsupported_or_missing_geometry_locus_rows"
+            ),
+            "blockers": len(blockers),
+        },
+        "classification_counts": {
+            "priority_bucket_counts": full_pool["counts"].get(
+                "priority_bucket_counts"
+            )
+            or {},
+            "organic_cofactor_max_class_counts": dict(
+                sorted(organic_counter.items())
+            ),
+            "cobalamin_locus_status_counts": _status_counter_from_loci(
+                rows, "cobalamin_locus"
+            ),
+            "iron_sulfur_locus_status_counts": _status_counter_from_loci(
+                rows, "iron_sulfur_locus"
+            ),
+            "metal_ion_locus_status_counts": _status_counter_from_loci(
+                rows, "metal_ion_locus"
+            ),
+            "radical_sam_locus_status_counts": _status_counter_from_loci(
+                rows, "radical_sam_locus"
+            ),
+        },
+        "blockers": blockers,
+        "decision": {
+            "all_remaining_rows_background_only_current_axes": (
+                all_remaining_rows_background_only
+            ),
+            "score_background_only_rows_now": False,
+            "score_tranche_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "apply_or_change_threshold_now": False,
+            "new_proxy_axis_or_reviewed_source_decisions_required": True,
+            "next_gate": (
+                "Do not run an empty Foldseek/scoring tranche. Apply hash-valid "
+                "reviewed source decisions if they arrive; otherwise open a new "
+                "source-free proxy axis or pivot within Levers 2/4, because the "
+                "current 170-row train/cal remainder is background-only under "
+                "the high-cofactor and inorganic/structural proxy axes."
+            ),
+        },
+        "background_only_rows": background_records,
+        "source_artifacts": {
+            "confounded_proxy_acquisition_queue": _source_path_record(
+                confounded_proxy_acquisition_queue_path
+            ),
+            "train_cal_input_manifest": _source_path_record(
+                train_cal_input_manifest_path
+            ),
+            "train_cal_oos_surface": _source_path_record(train_cal_oos_surface_path),
+            "selected_organic_cofactor_sidecar": _source_path_record(
+                selected_organic_cofactor_sidecar_path
+            ),
+            "scoring_tranche_plan": _source_path_record(scoring_tranche_plan_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(background_rows)}/{len(rows)} remaining unscored ready "
+                "train/cal OOS rows are background-only under the current "
+                "confounded-proxy axes."
+            ),
+            "result": (
+                f"0 high-cofactor-axis rows and 0 inorganic/structural-axis "
+                f"rows remain for shortfalls of "
+                f"{full_pool['counts'].get('high_cofactor_shortfall_from_acquisition_queue')} "
+                f"and {full_pool['counts'].get('structural_shortfall_from_acquisition_queue')}."
+            ),
+            "next_action": (
+                "Treat the current Lever 3 automatic scoring path as exhausted "
+                "until reviewed decisions or a new source-free proxy axis create "
+                "non-background train/cal evidence."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Background-Axis Blocker - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Remaining unscored ready train/cal OOS rows: "
+        f"{counts['remaining_unscored_ready_train_cal_oos_rows']}",
+        f"- Background-only rows: {counts['background_only_rows']}",
+        "- High-cofactor-axis rows: "
+        f"{counts['high_cofactor_axis_candidate_rows']}",
+        "- Structural-axis rows: "
+        f"{counts['structural_locus_candidate_rows']}",
+        "- Scoring tranche rows: "
+        f"{counts['scoring_tranche_rows']}",
+        "- High/structural shortfalls: "
+        f"{counts['high_cofactor_shortfall_from_acquisition_queue']}/"
+        f"{counts['structural_shortfall_from_acquisition_queue']}",
+        f"- Blockers: {audit['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- All remaining rows background-only under current axes: "
+        f"{decision['all_remaining_rows_background_only_current_axes']}",
+        f"- Score background-only rows now: {decision['score_background_only_rows_now']}",
+        f"- Score tranche now: {decision['score_tranche_now']}",
+        "- Proxy calibration rerun ready now: "
+        f"{decision['proxy_calibration_rerun_ready_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Classification Counts",
+        "",
+        f"- Priority buckets: {audit['classification_counts']['priority_bucket_counts']}",
+        "- Organic cofactor max classes: "
+        f"{audit['classification_counts']['organic_cofactor_max_class_counts']}",
+        "- Metal-ion locus statuses: "
+        f"{audit['classification_counts']['metal_ion_locus_status_counts']}",
+        "",
+        "## Background-Only Rows",
+        "",
+        "| row | bucket | organic max | exclusion reasons |",
+        "| --- | ---: | --- | --- |",
+    ]
+    for row in audit.get("background_only_rows", [])[:80]:
+        organic = (
+            f"{row['organic_cofactor_max_class']}:{row['organic_cofactor_max_score']}"
+            if row.get("organic_cofactor_max_class") is not None
+            else "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['priority_bucket']} | {organic} | "
+            f"{', '.join(row['background_axis_exclusion_reasons'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
+    *,
+    confounded_proxy_acquisition_queue_path: Path,
+    train_cal_input_manifest_path: Path,
+    train_cal_oos_surface_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    scoring_tranche_plan_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_BLOCKER_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_train_cal_background_axis_blocker(
+        confounded_proxy_acquisition_queue_path=(
+            confounded_proxy_acquisition_queue_path
+        ),
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        selected_organic_cofactor_sidecar_path=(
+            selected_organic_cofactor_sidecar_path
+        ),
+        scoring_tranche_plan_path=scoring_tranche_plan_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_background_axis_blocker_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _active_site_residue_count_bin(value: Any) -> str:
+    count = _parse_optional_float(value)
+    if count is None:
+        return "missing"
+    if count <= 3:
+        return "1_to_3"
+    if count <= 6:
+        return "4_to_6"
+    if count <= 9:
+        return "7_to_9"
+    return "10_plus"
+
+
+def _organic_subthreshold_score_bin(value: Any) -> str:
+    score = _parse_optional_float(value)
+    if score is None:
+        return "missing"
+    if score < 0.05:
+        return "lt_0_05"
+    if score < 0.15:
+        return "0_05_to_0_15"
+    if score < 0.30:
+        return "0_15_to_0_30"
+    return "0_30_to_below_high_axis"
+
+
+def build_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
+    *,
+    background_axis_blocker_path: Path,
+    train_cal_input_manifest_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_SCOUT_ID
+    ),
+) -> dict[str, Any]:
+    blocker = _read_json(background_axis_blocker_path)
+    manifest = _read_json(train_cal_input_manifest_path)
+    manifest_by_entry = _records_by_entry_from_payload(manifest, ("row_records",))
+    background_rows = [
+        row
+        for row in blocker.get("background_only_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    enriched_rows: list[dict[str, Any]] = []
+    for row in background_rows:
+        entry_id = str(row["entry_id"])
+        manifest_row = manifest_by_entry.get(entry_id, {})
+        active_site_count = manifest_row.get("active_site_residue_count")
+        organic_score = row.get("organic_cofactor_max_score")
+        enriched_rows.append(
+            {
+                "entry_id": entry_id,
+                "active_site_residue_count": active_site_count,
+                "active_site_residue_count_bin": _active_site_residue_count_bin(
+                    active_site_count
+                ),
+                "organic_cofactor_max_class": row.get("organic_cofactor_max_class"),
+                "organic_cofactor_max_score": organic_score,
+                "organic_subthreshold_score_bin": _organic_subthreshold_score_bin(
+                    organic_score
+                ),
+                "role_graph_status": manifest_row.get("role_graph_status"),
+                "reaction_template_status": manifest_row.get(
+                    "reaction_template_status"
+                ),
+                "background_axis_exclusion_reasons": row.get(
+                    "background_axis_exclusion_reasons"
+                )
+                or [],
+                "inorganic_locus_statuses": row.get("inorganic_locus_statuses")
+                or {},
+            }
+        )
+
+    high_active_site_rows = [
+        row
+        for row in enriched_rows
+        if row["active_site_residue_count_bin"] == "10_plus"
+    ]
+    subthreshold_organic_rows = [
+        row
+        for row in enriched_rows
+        if row["organic_subthreshold_score_bin"] == "0_30_to_below_high_axis"
+    ]
+    unsupported_geometry_rows = [
+        row
+        for row in enriched_rows
+        if "some_inorganic_locus_geometry_unsupported_or_missing"
+        in row["background_axis_exclusion_reasons"]
+    ]
+    active_site_bins = Counter(row["active_site_residue_count_bin"] for row in enriched_rows)
+    organic_bins = Counter(row["organic_subthreshold_score_bin"] for row in enriched_rows)
+    role_statuses = Counter(str(row.get("role_graph_status") or "missing") for row in enriched_rows)
+    template_statuses = Counter(
+        str(row.get("reaction_template_status") or "missing")
+        for row in enriched_rows
+    )
+    candidate_axis_tests = [
+        {
+            "axis_id": "active_site_residue_count_10_plus",
+            "source_free_feature": "active_site_residue_count",
+            "candidate_rows": len(high_active_site_rows),
+            "example_entry_ids": [
+                row["entry_id"] for row in high_active_site_rows[:20]
+            ],
+            "mechanically_ready_now": False,
+            "blocking_reason": (
+                "axis_has_no_pre_registered_train_cal_acceptance_criterion"
+            ),
+        },
+        {
+            "axis_id": "organic_score_0_30_to_below_high_axis_threshold",
+            "source_free_feature": "selected_organic_cofactor_max_score",
+            "candidate_rows": len(subthreshold_organic_rows),
+            "example_entry_ids": [
+                row["entry_id"] for row in subthreshold_organic_rows[:20]
+            ],
+            "mechanically_ready_now": False,
+            "blocking_reason": (
+                "would_create_new_proxy_axis_without_pre_registered_calibration_contract"
+            ),
+        },
+        {
+            "axis_id": "unsupported_inorganic_locus_geometry",
+            "source_free_feature": "inorganic_locus_statuses",
+            "candidate_rows": len(unsupported_geometry_rows),
+            "example_entry_ids": [
+                row["entry_id"] for row in unsupported_geometry_rows[:20]
+            ],
+            "mechanically_ready_now": False,
+            "blocking_reason": (
+                "unsupported_or_missing_geometry_is_a_data-quality_blocker_not_abstained_evidence"
+            ),
+        },
+    ]
+    blockers = [
+        "no_pre_registered_new_proxy_axis_contract",
+        "background_rows_not_countable_as_current_axis_evidence",
+    ]
+    if unsupported_geometry_rows:
+        blockers.append("unsupported_geometry_rows_require_coordinate_or_locus_repair")
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_background_axis_scout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "fold_augmented_confounded_proxy_train_cal_background_axis_scout_blocked",
+        "scope": (
+            "Train/cal-only scout over the 170 background-only Lever 3 "
+            "confounded-proxy rows. It summarizes source-free feature axes "
+            "that could inspire a future proxy-axis contract, but it does not "
+            "register an axis, score rows, tune thresholds, read heldout rows, "
+            "or count any background row as abstained evidence."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "review_only_scout": True,
+            "candidate_rows_scored_now": False,
+            "new_proxy_axis_registered": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "background_only_rows": len(enriched_rows),
+            "manifest_rows_joined": sum(
+                1 for row in enriched_rows if row["active_site_residue_count"] is not None
+            ),
+            "active_site_residue_count_10_plus_rows": len(high_active_site_rows),
+            "organic_score_0_30_to_below_high_axis_rows": len(
+                subthreshold_organic_rows
+            ),
+            "unsupported_geometry_rows": len(unsupported_geometry_rows),
+            "candidate_axis_tests": len(candidate_axis_tests),
+            "mechanically_ready_axis_tests": sum(
+                1 for row in candidate_axis_tests if row["mechanically_ready_now"]
+            ),
+            "blockers": len(blockers),
+        },
+        "feature_distribution": {
+            "active_site_residue_count_bins": dict(sorted(active_site_bins.items())),
+            "organic_subthreshold_score_bins": dict(sorted(organic_bins.items())),
+            "role_graph_status_counts": dict(sorted(role_statuses.items())),
+            "reaction_template_status_counts": dict(sorted(template_statuses.items())),
+        },
+        "candidate_axis_tests": candidate_axis_tests,
+        "blockers": blockers,
+        "decision": {
+            "new_proxy_axis_ready_to_score_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Pre-register a train/cal-only acceptance contract for exactly "
+                "one source-free proxy axis before scoring or rerunning the "
+                "fixed-threshold audit. Otherwise continue with reviewed source "
+                "decisions or Lever 2/4 gates."
+            ),
+        },
+        "source_artifacts": {
+            "background_axis_blocker": _source_path_record(
+                background_axis_blocker_path
+            ),
+            "train_cal_input_manifest": _source_path_record(
+                train_cal_input_manifest_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(enriched_rows)} background-only rows expose "
+                f"{len(candidate_axis_tests)} possible source-free scout axes, "
+                "but 0 are mechanically ready to score."
+            ),
+            "result": (
+                "The remaining row features are useful for designing a future "
+                "proxy-axis contract, not for counting abstained evidence under "
+                "the current high-cofactor or inorganic/structural axes."
+            ),
+            "next_action": (
+                "If Lever 3 continues without reviewer decisions, define a "
+                "pre-registered train/cal-only proxy-axis contract before any "
+                "new scoring tranche."
+            ),
+        },
+        "background_axis_scout_rows": enriched_rows,
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_background_axis_scout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Background-Axis Scout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Background-only rows: {counts['background_only_rows']}",
+        "- Active-site residue-count 10+ rows: "
+        f"{counts['active_site_residue_count_10_plus_rows']}",
+        "- Organic score 0.30 to below high-axis rows: "
+        f"{counts['organic_score_0_30_to_below_high_axis_rows']}",
+        f"- Unsupported geometry rows: {counts['unsupported_geometry_rows']}",
+        "- Mechanically ready axis tests: "
+        f"{counts['mechanically_ready_axis_tests']}/"
+        f"{counts['candidate_axis_tests']}",
+        f"- Blockers: {audit['blockers']}",
+        "",
+        "## Feature Distribution",
+        "",
+        "- Active-site residue-count bins: "
+        f"{audit['feature_distribution']['active_site_residue_count_bins']}",
+        "- Organic score bins: "
+        f"{audit['feature_distribution']['organic_subthreshold_score_bins']}",
+        "- Role graph statuses: "
+        f"{audit['feature_distribution']['role_graph_status_counts']}",
+        "",
+        "## Candidate Axis Tests",
+        "",
+        "| axis | rows | ready now | blocker |",
+        "| --- | ---: | --- | --- |",
+    ]
+    for axis in audit["candidate_axis_tests"]:
+        lines.append(
+            f"| {axis['axis_id']} | {axis['candidate_rows']} | "
+            f"{axis['mechanically_ready_now']} | {axis['blocking_reason']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- New proxy axis ready to score now: {decision['new_proxy_axis_ready_to_score_now']}",
+        f"- Proxy calibration rerun ready now: {decision['proxy_calibration_rerun_ready_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
+    *,
+    background_axis_blocker_path: Path,
+    train_cal_input_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_BACKGROUND_AXIS_SCOUT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_train_cal_background_axis_scout(
+        background_axis_blocker_path=background_axis_blocker_path,
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_background_axis_scout_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
+    *,
+    background_axis_scout_path: Path,
+    background_axis_blocker_path: Path,
+    selected_axis_id: str = "active_site_residue_count_10_plus",
+    min_active_site_residue_count: int = 10,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_CONTRACT_ID
+    ),
+) -> dict[str, Any]:
+    scout = _read_json(background_axis_scout_path)
+    blocker = _read_json(background_axis_blocker_path)
+    axis_tests = [
+        row
+        for row in scout.get("candidate_axis_tests", [])
+        if isinstance(row, dict) and row.get("axis_id")
+    ]
+    selected_axis = next(
+        (row for row in axis_tests if row.get("axis_id") == selected_axis_id),
+        None,
+    )
+    background_by_entry = {
+        str(row.get("entry_id")): row
+        for row in blocker.get("background_only_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    scout_rows = [
+        row
+        for row in scout.get("background_axis_scout_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    blockers: list[str] = []
+    if selected_axis is None:
+        blockers.append("selected_proxy_axis_not_in_scout")
+    if selected_axis_id != "active_site_residue_count_10_plus":
+        blockers.append("selected_proxy_axis_contract_not_implemented")
+
+    selected_rows: list[dict[str, Any]] = []
+    if selected_axis_id == "active_site_residue_count_10_plus":
+        for row in scout_rows:
+            active_site_count = _parse_optional_float(
+                row.get("active_site_residue_count")
+            )
+            if (
+                row.get("active_site_residue_count_bin") == "10_plus"
+                and active_site_count is not None
+                and active_site_count >= min_active_site_residue_count
+            ):
+                selected_rows.append(row)
+    if not selected_rows:
+        blockers.append("selected_proxy_axis_has_no_train_cal_rows")
+
+    selected_rows = sorted(
+        selected_rows,
+        key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+    )
+    scoring_rows: list[dict[str, Any]] = []
+    heldout_like_rows: list[str] = []
+    missing_background_rows: list[str] = []
+    for row in selected_rows:
+        entry_id = str(row["entry_id"])
+        background = background_by_entry.get(entry_id)
+        if background is None:
+            missing_background_rows.append(entry_id)
+            background = {}
+        split_assignment = background.get("split_assignment")
+        if str(split_assignment or "").startswith("heldout"):
+            heldout_like_rows.append(entry_id)
+        scoring_rows.append(
+            {
+                "entry_id": entry_id,
+                "split_assignment": split_assignment,
+                "label_type": background.get("label_type"),
+                "benchmark_role": "train_cal_oos_negative_proxy_calibration",
+                "priority_bucket": background.get("priority_bucket"),
+                "selection_reason": (
+                    "pre_registered_active_site_residue_count_10_plus_proxy_axis"
+                ),
+                "recommended_proxy_axes_after_scoring": [
+                    "active_site_residue_count_10_plus_proxy",
+                    "background_train_cal_oos_structural_pool",
+                ],
+                "new_proxy_axis_id": selected_axis_id,
+                "active_site_residue_count": row.get("active_site_residue_count"),
+                "active_site_residue_count_bin": row.get(
+                    "active_site_residue_count_bin"
+                ),
+                "role_graph_status": row.get("role_graph_status"),
+                "reaction_template_status": row.get("reaction_template_status"),
+                "organic_cofactor_max_class": row.get(
+                    "organic_cofactor_max_class"
+                ),
+                "organic_cofactor_max_score": row.get(
+                    "organic_cofactor_max_score"
+                ),
+                "background_axis_exclusion_reasons": row.get(
+                    "background_axis_exclusion_reasons"
+                )
+                or [],
+                "inorganic_locus_statuses": row.get("inorganic_locus_statuses")
+                or {},
+            }
+        )
+    if missing_background_rows:
+        blockers.append("selected_proxy_axis_rows_missing_background_record")
+    if heldout_like_rows:
+        blockers.append("selected_proxy_axis_includes_heldout_rows")
+
+    status = (
+        "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_ready"
+        if not blockers
+        else "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_blocked"
+    )
+    new_axis_registered = status.endswith("_ready")
+    selected_axis_summary = (
+        {
+            "axis_id": selected_axis_id,
+            "source_free_feature": selected_axis.get("source_free_feature"),
+            "scout_candidate_rows": selected_axis.get("candidate_rows"),
+            "prior_scout_blocking_reason": selected_axis.get("blocking_reason"),
+        }
+        if selected_axis is not None
+        else {
+            "axis_id": selected_axis_id,
+            "source_free_feature": None,
+            "scout_candidate_rows": None,
+            "prior_scout_blocking_reason": None,
+        }
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_new_proxy_axis_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Train/cal-only pre-registration contract for one source-free "
+            "replacement proxy axis after the current high-cofactor and "
+            "inorganic/structural axes were exhausted. It freezes membership "
+            "for a bounded future scoring tranche but does not score rows, "
+            "tune thresholds, read heldout rows, or count any row as abstained "
+            "evidence."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "exactly_one_proxy_axis_registered": new_axis_registered,
+            "new_proxy_axis_registered": new_axis_registered,
+            "candidate_rows_scored_now": False,
+            "foldseek_or_tmsearch_run_now": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "background_axis_scout_rows": len(scout_rows),
+            "background_axis_blocker_rows": len(background_by_entry),
+            "candidate_axis_tests_from_scout": len(axis_tests),
+            "selected_proxy_axes": 1 if selected_axis is not None else 0,
+            "selected_axis_candidate_rows_from_scout": int(
+                selected_axis.get("candidate_rows") or 0
+            )
+            if selected_axis is not None
+            else 0,
+            "contracted_scoring_rows": len(scoring_rows),
+            "active_site_residue_count_minimum": int(min_active_site_residue_count),
+            "heldout_like_rows": len(heldout_like_rows),
+            "missing_background_rows": len(missing_background_rows),
+            "blockers": len(blockers),
+        },
+        "selected_proxy_axis": {
+            **selected_axis_summary,
+            "membership_rule": (
+                "active_site_residue_count >= "
+                f"{int(min_active_site_residue_count)}"
+            ),
+            "axis_membership_is_source_free": True,
+            "axis_membership_rows_are_train_cal_only": not heldout_like_rows,
+            "intended_proxy_family": "background_train_cal_oos_structural_pool",
+            "acceptance_contract": [
+                "Use only rows emitted by the current train/cal background-axis scout.",
+                "Require active_site_residue_count_bin == 10_plus and numeric active_site_residue_count >= 10.",
+                "Keep all rows non-heldout and out-of-scope calibration rows.",
+                "Run predicted-structure-vs-atlas scoring before any abstention claim.",
+                "Rerun the fixed-threshold proxy audit only with threshold values unchanged.",
+            ],
+        },
+        "blockers": blockers,
+        "open_items": (
+            ["contracted_tranche_not_scored"]
+            if new_axis_registered
+            else ["contract_blocked_before_scoring"]
+        ),
+        "scoring_tranche_rows": scoring_rows,
+        "nonselected_candidate_axis_tests": [
+            row for row in axis_tests if row.get("axis_id") != selected_axis_id
+        ],
+        "decision": {
+            "new_proxy_axis_registered": new_axis_registered,
+            "new_proxy_axis_ready_to_score_now": new_axis_registered,
+            "scoring_tranche_rows_ready_now": bool(scoring_rows and not blockers),
+            "score_contract_tranche_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "apply_or_change_threshold_now": False,
+            "run_fixed_threshold_audit_now": False,
+            "next_gate": (
+                "Use this contract artifact as the scoring tranche input for "
+                "the train/cal scoring-input manifest, then materialize or "
+                "stage the listed coordinates and run Foldseek before parsing "
+                "any scores. Do not rerun the fixed-threshold proxy audit until "
+                "the contracted rows have real full-channel scores."
+            )
+            if new_axis_registered
+            else (
+                "Repair the selected proxy-axis contract blockers before any "
+                "new scoring tranche or fixed-threshold proxy audit rerun."
+            ),
+        },
+        "source_artifacts": {
+            "background_axis_scout": _source_path_record(
+                background_axis_scout_path
+            ),
+            "background_axis_blocker": _source_path_record(
+                background_axis_blocker_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"Registered {selected_axis_id} as a train/cal-only source-free "
+                f"proxy-axis contract with {len(scoring_rows)} rows."
+            )
+            if new_axis_registered
+            else f"{selected_axis_id} proxy-axis contract is blocked.",
+            "result": (
+                "This removes the missing-contract blocker but creates no "
+                "abstained evidence until the contracted rows are scored at the "
+                "unchanged fixed threshold."
+            )
+            if new_axis_registered
+            else "The contract did not meet its fail-closed guardrails.",
+            "next_action": (
+                "Build the scoring-input manifest from this contract and run "
+                "only the contracted train/cal rows through predicted-structure-"
+                "vs-atlas Foldseek scoring."
+            )
+            if new_axis_registered
+            else "Fix the contract blockers before scoring.",
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    decision = contract["decision"]
+    axis = contract["selected_proxy_axis"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal New Proxy-Axis Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Selected axis: {axis['axis_id']}",
+        f"- Membership rule: {axis['membership_rule']}",
+        f"- Contracted scoring rows: {counts['contracted_scoring_rows']}",
+        f"- Heldout-like rows: {counts['heldout_like_rows']}",
+        f"- Blockers: {contract['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- New proxy axis registered: {decision['new_proxy_axis_registered']}",
+        "- New proxy axis ready to score now: "
+        f"{decision['new_proxy_axis_ready_to_score_now']}",
+        "- Scoring tranche rows ready now: "
+        f"{decision['scoring_tranche_rows_ready_now']}",
+        f"- Score contract tranche now: {decision['score_contract_tranche_now']}",
+        "- Proxy calibration rerun ready now: "
+        f"{decision['proxy_calibration_rerun_ready_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Contracted Rows",
+        "",
+        "| row | active-site count | split | label type | organic max |",
+        "| --- | ---: | --- | --- | --- |",
+    ]
+    for row in contract.get("scoring_tranche_rows", []):
+        organic = (
+            f"{row['organic_cofactor_max_class']}:{row['organic_cofactor_max_score']}"
+            if row.get("organic_cofactor_max_class") is not None
+            else "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['active_site_residue_count']} | "
+            f"{row.get('split_assignment')} | {row.get('label_type')} | "
+            f"{organic} |"
+        )
+    lines += [
+        "",
+        "## Acceptance Contract",
+        "",
+    ]
+    lines += [f"- {item}" for item in axis.get("acceptance_contract", [])]
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {contract['interpretation']['headline']}",
+        f"- {contract['interpretation']['result']}",
+        f"- {contract['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
+    *,
+    background_axis_scout_path: Path,
+    background_axis_blocker_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    selected_axis_id: str = "active_site_residue_count_10_plus",
+    min_active_site_residue_count: int = 10,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_CONTRACT_ID
+    ),
+) -> dict[str, Any]:
+    contract = build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract(
+        background_axis_scout_path=background_axis_scout_path,
+        background_axis_blocker_path=background_axis_blocker_path,
+        selected_axis_id=selected_axis_id,
+        min_active_site_residue_count=min_active_site_residue_count,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
 
 
 def _sequence_manifest_accession(row: dict[str, Any]) -> str | None:
@@ -26788,10 +27880,28 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
         atlas_requests,
         train_entry_ids,
     )
+    parsed_existing_foldseek = (
+        _parse_foldseek_tsv_hits(
+            result_tsv=result_tsv,
+            query_requests=query_requests,
+            target_requests=train_target_requests,
+        )
+        if result_tsv.exists()
+        else {
+            "status": "result_tsv_missing",
+            "nearest_atlas_hits": [],
+            "summary": {"query_entry_count_with_hits": 0},
+        }
+    )
+    current_query_hit_count = len(
+        parsed_existing_foldseek.get("nearest_atlas_hits", [])
+    )
     foldseek = _foldseek_binary_info(foldseek_binary)
     query_missing = _missing_coordinate_count(query_requests)
     target_missing = _missing_coordinate_count(train_target_requests)
     blockers: list[str] = []
+    if not tranche_rows:
+        blockers.append("scoring_tranche_plan_empty")
     if missing_sequence_rows:
         blockers.append("tranche_rows_missing_from_sequence_manifest")
     if missing_accession_rows:
@@ -26804,14 +27914,18 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
         blockers.append("tranche_query_coordinate_files_missing")
     if target_missing:
         blockers.append("train_atlas_target_coordinate_files_missing")
-    if not result_tsv.exists():
-        blockers.append("tranche_foldseek_tsv_not_run")
+    if query_requests:
+        if not result_tsv.exists():
+            blockers.append("tranche_foldseek_tsv_not_run")
+        elif not current_query_hit_count:
+            blockers.append("tranche_foldseek_tsv_not_run_for_current_manifest")
     if result_tsv.exists() and not blockers:
         status = "confounded_proxy_train_cal_scoring_input_manifest_scored_ready_to_parse"
     elif (
         not missing_sequence_rows
         and not missing_accession_rows
         and train_target_requests
+        and query_requests
         and not query_missing
         and not target_missing
         and foldseek.get("available")
@@ -26872,6 +27986,7 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
             "train_atlas_target_coordinate_requests": len(train_target_requests),
             "train_atlas_target_coordinate_files_missing": target_missing,
             "foldseek_result_tsv_exists": int(result_tsv.exists()),
+            "foldseek_result_current_query_hits": current_query_hit_count,
             "foldseek_runtime_available": bool(foldseek.get("available")),
             "blockers": len(blockers),
         },
@@ -26961,14 +28076,20 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
                 and not missing_accession_rows
             ),
             "foldseek_ready_to_run_after_coordinates": bool(
-                train_target_requests and not target_missing
+                query_requests and train_target_requests and not target_missing
             ),
             "next_gate": (
-                "Materialize the 50 missing tranche query AFDB-v6 CIFs, stage "
-                "the tranche query and threshold-contract train-target "
-                "Foldseek directories, run the recorded Foldseek command, then "
-                "parse scores back into train/cal OOS rows before rerunning the "
-                "fixed-threshold proxy audit."
+                f"Materialize the {query_missing} missing tranche query "
+                "AFDB-v6 CIFs if available; if the Foldseek TSV already has "
+                f"{current_query_hit_count} current-query hits, parse those "
+                "partial scores back into train/cal OOS rows before rerunning "
+                "the fixed-threshold proxy audit."
+            )
+            if query_requests
+            else (
+                "No train/cal scoring tranche rows are currently selected; "
+                "return to the acquisition/evidence gate rather than running "
+                "an empty Foldseek pass."
             ),
         },
         "source_artifacts": {
@@ -26980,6 +28101,9 @@ def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
             "threshold_contract": _source_path_record(threshold_contract_path),
             "foldseek_result_tsv": _source_path_record(result_tsv),
         },
+        "existing_foldseek_parse_summary": parsed_existing_foldseek.get(
+            "summary", {}
+        ),
         "interpretation": {
             "headline": (
                 f"{len(tranche_rows)} selected train/cal OOS rows are mapped "
@@ -27022,6 +28146,8 @@ def _render_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_rep
         f"{counts['train_atlas_target_coordinate_files_missing']}",
         "- Foldseek result TSV exists: "
         f"{counts['foldseek_result_tsv_exists']}",
+        "- Foldseek current-query hits: "
+        f"{counts['foldseek_result_current_query_hits']}",
         f"- Foldseek runtime available: {counts['foldseek_runtime_available']}",
         f"- Blockers: {manifest['blockers']}",
         "",
@@ -27118,6 +28244,935 @@ def write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
             encoding="utf-8",
         )
     return manifest
+
+
+def build_fold_augmented_confounded_proxy_train_cal_scored_extension(
+    *,
+    scoring_input_manifest_path: Path,
+    scoring_tranche_plan_path: Path,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    foldseek_result_tsv: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORED_EXTENSION_ID
+    ),
+    alphafold_version: str = "auto",
+    fetcher: Any | None = None,
+) -> dict[str, Any]:
+    manifest = _read_json(scoring_input_manifest_path)
+    plan = _read_json(scoring_tranche_plan_path)
+    label_manifest = _read_json(label_manifest_path)
+    graph = _read_json(graph_path)
+    experimental_geometry_features = _read_json(experimental_geometry_features_path)
+    cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+
+    candidate_ids = [
+        str(row.get("entry_id") or "")
+        for row in plan.get("scoring_tranche_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    candidate_id_set = set(candidate_ids)
+    plan_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in plan.get("scoring_tranche_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    manifest_rows = [
+        row for row in label_manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    manifest_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in manifest_rows
+        if row.get("entry_id")
+    }
+    candidate_manifest_rows = [
+        manifest_by_entry[entry_id]
+        for entry_id in candidate_ids
+        if entry_id in manifest_by_entry
+    ]
+    missing_manifest_ids = [
+        entry_id for entry_id in candidate_ids if entry_id not in manifest_by_entry
+    ]
+
+    selected_geometry_rows_all, excluded_geometry_rows_all = _target_manifest_row_selection(
+        label_manifest=label_manifest,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        split_assignment=None,
+        max_rows=0,
+        allow_accession_compatible_residue_subset=True,
+        allow_best_real_sequence_accession=True,
+        allow_missing_experimental_geometry_if_sequence_positions=True,
+    )
+    geometry_target_rows = [
+        row
+        for row in selected_geometry_rows_all
+        if str(row.get("entry_id") or "") in candidate_id_set
+    ]
+    excluded_geometry_rows = [
+        row
+        for row in excluded_geometry_rows_all
+        if str(row.get("entry_id") or "") in candidate_id_set
+    ]
+    predicted_geometry = (
+        build_alphafold_predicted_geometry_features(
+            label_manifest_rows=geometry_target_rows,
+            graph=graph,
+            experimental_geometry_features=experimental_geometry_features,
+            alphafold_version=alphafold_version,
+            fetcher=fetcher,
+        )
+        if geometry_target_rows
+        else _empty_predicted_geometry_features()
+    )
+    predicted_retrieval = run_geometry_retrieval(predicted_geometry)
+    candidate_predicted_rows = _enriched_predicted_retrieval_results(
+        retrieval_results=predicted_retrieval.get("results", []),
+        manifest_rows=manifest_rows,
+        predicted_entries=predicted_geometry.get("entries", []),
+    )
+    predicted_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in candidate_predicted_rows
+        if row.get("entry_id")
+    }
+
+    groups = (
+        (manifest.get("foldseek_input_manifest") or {})
+        .get("coordinate_request_groups")
+        or {}
+    )
+    query_requests = groups.get("confounded_proxy_train_cal_tranche_queries") or []
+    target_requests = groups.get("threshold_contract_train_atlas_targets") or []
+    result_tsv = Path(
+        foldseek_result_tsv
+        or (manifest.get("foldseek_input_manifest") or {}).get("result_tsv")
+        or "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/confounded_proxy_train_cal_tranche_vs_train_atlas.tsv"
+    )
+    parsed_foldseek = _parse_foldseek_tsv_hits(
+        result_tsv=result_tsv,
+        query_requests=query_requests,
+        target_requests=target_requests,
+    )
+    fold_by_entry = {
+        str(row.get("query_entry_id") or ""): row
+        for row in parsed_foldseek.get("nearest_atlas_hits", [])
+    }
+
+    candidate_row_scores: list[dict[str, Any]] = []
+    for entry_id in candidate_ids:
+        manifest_row = manifest_by_entry.get(entry_id, {})
+        plan_row = plan_by_entry.get(entry_id, {})
+        geo = predicted_by_entry.get(entry_id, {})
+        fold_hit = fold_by_entry.get(entry_id)
+        top = _top1_fingerprint(geo) if geo else None
+        geom_score = (
+            float(top.get("score")) if top and top.get("score") is not None else None
+        )
+        fold_score = (
+            float(fold_hit.get("tm_score"))
+            if fold_hit and fold_hit.get("tm_score") is not None
+            else None
+        )
+        cofactor_scores = _cofactor_scores_for_entry(cofactor_sidecar, entry_id)
+        cofactor_max = max(cofactor_scores.values()) if cofactor_scores else None
+        if cofactor_max is None:
+            cofactor_max = _parse_optional_float(
+                plan_row.get("organic_cofactor_max_score")
+            )
+        channel_scores = (
+            _fold_augmented_channel_scores(
+                geometry_score=geom_score,
+                cofactor_max_score=float(cofactor_max),
+                fold_tm_score=fold_score,
+            )
+            if geom_score is not None
+            and fold_score is not None
+            and cofactor_max is not None
+            else None
+        )
+        candidate_row_scores.append(
+            {
+                "entry_id": entry_id,
+                "accession": manifest_row.get("accession")
+                or manifest_row.get("sequence_id"),
+                "predicted_geometry_accession": (
+                    geo.get("predicted_geometry_accession")
+                    or geo.get("accession")
+                    or None
+                ),
+                "predicted_geometry_manifest_accession": (
+                    geo.get("manifest_accession")
+                    or manifest_row.get("accession")
+                    or manifest_row.get("sequence_id")
+                ),
+                "predicted_geometry_accession_repair": (
+                    geo.get("predicted_geometry_accession_repair") if geo else None
+                ),
+                "split_assignment": manifest_row.get("split_assignment")
+                or plan_row.get("split_assignment"),
+                "benchmark_role": manifest_row.get("benchmark_role")
+                or plan_row.get("benchmark_role"),
+                "oos_tier": manifest_row.get("oos_tier"),
+                "label_type": manifest_row.get("label_type")
+                or plan_row.get("label_type"),
+                "is_calibration_oos_negative": True,
+                "predicted_geometry_status": (
+                    _predicted_row_status(geo) if geo else "missing"
+                ),
+                "predicted_geometry_top1": {
+                    "fingerprint_id": top.get("fingerprint_id") if top else None,
+                    "score": geom_score,
+                    "role_match_fraction": (
+                        top.get("role_match_fraction") if top else None
+                    ),
+                    "cofactor_context_score": (
+                        top.get("cofactor_context_score") if top else None
+                    ),
+                },
+                "selected_organic_cofactor_max_score": cofactor_max,
+                "predicted_structure_fold_channel": {
+                    "nearest_train_atlas_entry_id": (
+                        fold_hit.get("nearest_atlas_entry_id") if fold_hit else None
+                    ),
+                    "nearest_train_atlas_true_fingerprint_id": (
+                        fold_hit.get("nearest_atlas_true_fingerprint_id")
+                        if fold_hit
+                        else None
+                    ),
+                    "nearest_train_atlas_tm_score": fold_score,
+                    "raw_query_name": (
+                        fold_hit.get("raw_query_name") if fold_hit else None
+                    ),
+                    "raw_target_name": (
+                        fold_hit.get("raw_target_name") if fold_hit else None
+                    ),
+                },
+                "channel_scores": channel_scores,
+                "proxy_membership": plan_row.get(
+                    "recommended_proxy_axes_after_scoring"
+                )
+                or [],
+                "priority_bucket": plan_row.get("priority_bucket"),
+                "extension_source": "confounded_proxy_train_cal_tranche_foldseek",
+            }
+        )
+
+    rows_with_geometry = [
+        row
+        for row in candidate_row_scores
+        if row.get("predicted_geometry_status") == "ok"
+    ]
+    rows_with_fold = [
+        row
+        for row in candidate_row_scores
+        if (row.get("predicted_structure_fold_channel") or {}).get(
+            "nearest_train_atlas_tm_score"
+        )
+        is not None
+    ]
+    rows_with_full_scores = [
+        row for row in candidate_row_scores if row.get("channel_scores")
+    ]
+    missing_full_score_entry_ids = [
+        row["entry_id"] for row in candidate_row_scores if not row.get("channel_scores")
+    ]
+    query_missing = _missing_coordinate_count(query_requests)
+    target_missing = _missing_coordinate_count(target_requests)
+    blockers: list[str] = []
+    if missing_manifest_ids:
+        blockers.append("some_tranche_rows_missing_from_label_manifest")
+    if excluded_geometry_rows or len(rows_with_geometry) < len(candidate_ids):
+        blockers.append("some_tranche_rows_missing_predicted_geometry")
+    if parsed_foldseek.get("status") != "parsed":
+        blockers.append("tranche_foldseek_tsv_missing_or_unparsed")
+    if len(rows_with_fold) < len(candidate_ids):
+        blockers.append("some_tranche_rows_missing_fold_scores")
+    if query_missing:
+        blockers.append("tranche_query_coordinate_files_missing")
+    if target_missing:
+        blockers.append("train_atlas_target_coordinate_files_missing")
+    if not rows_with_full_scores:
+        blockers.append("no_tranche_rows_have_full_channel_scores")
+
+    if rows_with_full_scores and parsed_foldseek.get("status") == "parsed":
+        status = (
+            "confounded_proxy_train_cal_scored_extension_complete"
+            if len(rows_with_full_scores) == len(candidate_ids)
+            else "confounded_proxy_train_cal_scored_extension_partial"
+        )
+    elif result_tsv.exists():
+        status = "confounded_proxy_train_cal_scored_extension_blocked_unparsed"
+    else:
+        status = "confounded_proxy_train_cal_scored_extension_waiting_on_foldseek"
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_scored_extension"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Train/cal-only scored extension for the Lever 3 confounded-proxy "
+            "evidence tranche. It parses the tranche-vs-train-atlas Foldseek "
+            "TSV, recomputes source-free predicted geometry for the same "
+            "non-heldout OOS rows, and applies no threshold tuning."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "score_fabrication": False,
+        },
+        "counts": {
+            "scoring_tranche_rows": len(candidate_ids),
+            "candidate_manifest_rows_found": len(candidate_manifest_rows),
+            "candidate_geometry_target_rows": len(geometry_target_rows),
+            "candidate_geometry_excluded_rows": len(excluded_geometry_rows),
+            "candidate_predicted_geometry_rows": len(candidate_predicted_rows),
+            "candidate_predicted_geometry_ok_rows": len(rows_with_geometry),
+            "tranche_query_coordinate_requests": len(query_requests),
+            "tranche_query_coordinate_files_observed": len(query_requests)
+            - query_missing,
+            "tranche_query_coordinate_files_missing": query_missing,
+            "train_atlas_target_coordinate_requests": len(target_requests),
+            "train_atlas_target_coordinate_files_missing": target_missing,
+            "foldseek_rows_with_nearest_train_hits": len(rows_with_fold),
+            "candidate_rows_with_full_channel_scores": len(rows_with_full_scores),
+            "missing_manifest_ids": len(missing_manifest_ids),
+            "missing_full_score_rows": len(missing_full_score_entry_ids),
+            "blockers": len(blockers),
+        },
+        "blockers": blockers,
+        "candidate_entry_ids": candidate_ids,
+        "missing_manifest_entry_ids": missing_manifest_ids,
+        "missing_full_score_entry_ids": sorted(
+            missing_full_score_entry_ids, key=_entry_id_sort_key
+        ),
+        "excluded_candidate_geometry_rows": excluded_geometry_rows,
+        "predicted_geometry_candidate_retrieval": {
+            "metadata": predicted_retrieval.get("metadata", {}),
+            "predicted_geometry_metadata": predicted_geometry.get("metadata", {}),
+            "results": candidate_predicted_rows,
+        },
+        "parsed_tranche_foldseek": parsed_foldseek,
+        "candidate_row_scores": candidate_row_scores,
+        "source_artifacts": {
+            "scoring_input_manifest": _source_path_record(scoring_input_manifest_path),
+            "scoring_tranche_plan": _source_path_record(scoring_tranche_plan_path),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "graph": _source_path_record(graph_path),
+            "experimental_geometry_features": _source_path_record(
+                experimental_geometry_features_path
+            ),
+            "selected_organic_cofactor_sidecar": _source_path_record(
+                selected_organic_cofactor_sidecar_path
+            ),
+            "foldseek_result_tsv": _source_path_record(result_tsv),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(rows_with_full_scores)}/{len(candidate_ids)} tranche rows "
+                "now have full geometry/fold/cofactor channel scores."
+            ),
+            "next_action": (
+                "Compose these train/cal-only scores into an extended OOS "
+                "surface, then rerun the fixed-threshold confounded proxy audit "
+                "without changing the threshold."
+            )
+            if rows_with_full_scores
+            else (
+                "Clear the listed coordinate, geometry, or Foldseek blockers "
+                "before counting this tranche as proxy-calibration evidence."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_scored_extension_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Scored Extension - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        "- Full-channel rows: "
+        f"{counts['candidate_rows_with_full_channel_scores']}/"
+        f"{counts['scoring_tranche_rows']}",
+        "- Query coordinate files observed: "
+        f"{counts['tranche_query_coordinate_files_observed']}/"
+        f"{counts['tranche_query_coordinate_requests']}",
+        "- Foldseek nearest-train hits: "
+        f"{counts['foldseek_rows_with_nearest_train_hits']}",
+        "",
+        "## Score Preview",
+        "",
+        "| row | axes | geometry top1 | geometry | nearest train | TM | combined |",
+        "| --- | --- | --- | ---: | --- | ---: | ---: |",
+    ]
+    for row in audit["candidate_row_scores"][:30]:
+        channel = row.get("channel_scores") or {}
+        geo = row.get("predicted_geometry_top1") or {}
+        fold = row.get("predicted_structure_fold_channel") or {}
+        lines.append(
+            f"| {row['entry_id']} | {', '.join(row.get('proxy_membership') or [])} | "
+            f"{geo.get('fingerprint_id')} | {geo.get('score')} | "
+            f"{fold.get('nearest_train_atlas_entry_id')} | "
+            f"{fold.get('nearest_train_atlas_tm_score')} | "
+            f"{channel.get('combined_mean_geometry_fold')} |"
+        )
+    lines += [
+        "",
+        "## Missing Full Scores",
+        "",
+    ]
+    if audit["missing_full_score_entry_ids"]:
+        lines += [f"- {entry_id}" for entry_id in audit["missing_full_score_entry_ids"]]
+    else:
+        lines.append("- None")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_scored_extension(
+    *,
+    scoring_input_manifest_path: Path,
+    scoring_tranche_plan_path: Path,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    foldseek_result_tsv: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORED_EXTENSION_ID
+    ),
+    alphafold_version: str = "auto",
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_train_cal_scored_extension(
+        scoring_input_manifest_path=scoring_input_manifest_path,
+        scoring_tranche_plan_path=scoring_tranche_plan_path,
+        label_manifest_path=label_manifest_path,
+        graph_path=graph_path,
+        experimental_geometry_features_path=experimental_geometry_features_path,
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+        foldseek_result_tsv=foldseek_result_tsv,
+        artifact_id=artifact_id,
+        alphafold_version=alphafold_version,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_scored_extension_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout(
+    *,
+    scored_extension_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_FIXED_THRESHOLD_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    extension = _read_json(scored_extension_path)
+    threshold_contract = _read_json(expanded_oos_calibrated_threshold_contract_path)
+    fixed_threshold = _fixed_combined_mean_geometry_fold_threshold(threshold_contract)
+    rows = [
+        row
+        for row in extension.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    full_rows = [row for row in rows if row.get("channel_scores")]
+    blockers: list[str] = []
+    if fixed_threshold is None:
+        blockers.append("fixed_threshold_missing")
+    if extension.get("blockers"):
+        blockers.append("scored_extension_has_blockers")
+    if len(full_rows) < len(rows):
+        blockers.append("some_new_axis_rows_missing_full_channel_scores")
+    readout = (
+        _fixed_threshold_row_readout(
+            full_rows,
+            channel_name="combined_mean_geometry_fold",
+            threshold=float(fixed_threshold),
+        )
+        if fixed_threshold is not None
+        else {
+            "threshold": None,
+            "row_count": len(full_rows),
+            "abstained": 0,
+            "retained": len(full_rows),
+            "abstain_recall": None,
+            "retained_recall": None,
+            "rows": [],
+        }
+    )
+    abstained_ids = [
+        str(row.get("entry_id"))
+        for row in readout.get("rows", [])
+        if row.get("abstains_at_fixed_threshold")
+    ]
+    retained_ids = [
+        str(row.get("entry_id"))
+        for row in readout.get("rows", [])
+        if not row.get("abstains_at_fixed_threshold")
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_ready"
+            if not blockers
+            else "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_blocked"
+        ),
+        "scope": (
+            "Train/cal-only fixed-threshold readout for the newly contracted "
+            "source-free proxy-axis tranche. It reports the six scored rows at "
+            "the already selected combined geometry/fold threshold and does not "
+            "rerun the global operating-point audit, tune thresholds, read "
+            "heldout rows, edit labels, or count new benchmark labels."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "readout_only": True,
+            "global_operating_point_audit_rerun": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "contracted_scored_rows": len(rows),
+            "full_channel_rows": len(full_rows),
+            "abstained_at_fixed_threshold": int(readout.get("abstained") or 0),
+            "retained_at_fixed_threshold": int(readout.get("retained") or 0),
+            "missing_full_channel_rows": max(len(rows) - len(full_rows), 0),
+            "blockers": len(blockers),
+        },
+        "fixed_threshold": (
+            round(float(fixed_threshold), 6)
+            if fixed_threshold is not None
+            else None
+        ),
+        "readout": readout,
+        "abstained_entry_ids": sorted(abstained_ids, key=_entry_id_sort_key),
+        "retained_entry_ids": sorted(retained_ids, key=_entry_id_sort_key),
+        "blockers": blockers,
+        "decision": {
+            "global_operating_point_audit_ready_now": False,
+            "new_proxy_axis_closes_structural_shortfall_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Do not rerun the global fixed-threshold audit from this "
+                "readout alone. The new axis contributes "
+                f"{int(readout.get('abstained') or 0)} abstained rows at the "
+                "fixed threshold; clear prior/base surface blockers or add "
+                "additional train/cal proxy evidence before any operating-point "
+                "claim."
+            ),
+        },
+        "source_artifacts": {
+            "scored_extension": _source_path_record(scored_extension_path),
+            "expanded_oos_calibrated_threshold_contract": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{int(readout.get('abstained') or 0)}/{len(full_rows)} new "
+                "proxy-axis rows abstain at the unchanged fixed threshold."
+            ),
+            "result": (
+                "The active-site-count proxy axis is now deployably scored, "
+                "but its fixed-threshold contribution is too small to close "
+                "the Lever 3 structural proxy shortfall by itself."
+            ),
+            "next_action": (
+                "Keep this as a tranche readout; do not promote it to an "
+                "operating-point claim until the broader extended surface is "
+                "complete or another pre-registered train/cal proxy axis is "
+                "scored."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal New Proxy-Axis Fixed-Threshold Readout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fixed threshold: {audit['fixed_threshold']}",
+        f"- Full-channel rows: {counts['full_channel_rows']}",
+        "- Abstained/retained at fixed threshold: "
+        f"{counts['abstained_at_fixed_threshold']}/"
+        f"{counts['retained_at_fixed_threshold']}",
+        f"- Blockers: {audit['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Global operating-point audit ready now: "
+        f"{decision['global_operating_point_audit_ready_now']}",
+        "- New proxy axis closes structural shortfall now: "
+        f"{decision['new_proxy_axis_closes_structural_shortfall_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Row Readout",
+        "",
+        "| row | combined | margin | abstains | nearest train | top1 |",
+        "| --- | ---: | ---: | --- | --- | --- |",
+    ]
+    for row in audit.get("readout", {}).get("rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['combined_mean_geometry_fold']} | "
+            f"{row['threshold_margin']} | {row['abstains_at_fixed_threshold']} | "
+            f"{row.get('nearest_train_atlas_entry_id')} | "
+            f"{row.get('predicted_geometry_top1_fingerprint_id')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout(
+    *,
+    scored_extension_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_NEW_PROXY_AXIS_FIXED_THRESHOLD_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout(
+        scored_extension_path=scored_extension_path,
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
+    *,
+    base_train_cal_oos_surface_path: Path,
+    scored_extension_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_EXTENDED_TRAIN_CAL_OOS_SURFACE_ID
+    ),
+) -> dict[str, Any]:
+    base = _read_json(base_train_cal_oos_surface_path)
+    extension = _read_json(scored_extension_path)
+    base_rows = [
+        row
+        for row in base.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    extension_rows = [
+        row
+        for row in extension.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    base_ids = {str(row["entry_id"]) for row in base_rows}
+    appended_rows = [
+        copy.deepcopy(row)
+        for row in extension_rows
+        if str(row["entry_id"]) not in base_ids
+    ]
+    duplicate_extension_ids = sorted(
+        {str(row["entry_id"]) for row in extension_rows if str(row["entry_id"]) in base_ids},
+        key=_entry_id_sort_key,
+    )
+    extended_rows = copy.deepcopy(base_rows) + appended_rows
+    full_rows = [row for row in extended_rows if row.get("channel_scores")]
+    missing_full_score_ids = sorted(
+        [
+            str(row["entry_id"])
+            for row in extended_rows
+            if not row.get("channel_scores")
+        ],
+        key=_entry_id_sort_key,
+    )
+    appended_full_rows = [row for row in appended_rows if row.get("channel_scores")]
+    blockers = list(dict.fromkeys(base.get("blockers") or []))
+    def append_blocker(blocker: str) -> None:
+        if blocker not in blockers:
+            blockers.append(blocker)
+
+    if extension.get("blockers"):
+        append_blocker("scored_extension_has_blockers")
+    if duplicate_extension_ids:
+        append_blocker("extension_rows_already_present_in_base_surface")
+    if missing_full_score_ids:
+        append_blocker("some_extended_train_cal_oos_rows_missing_full_channel_scores")
+    status = (
+        "confounded_proxy_extended_train_cal_oos_surface_complete"
+        if not blockers
+        else "confounded_proxy_extended_train_cal_oos_surface_partial"
+    )
+    counts = copy.deepcopy(base.get("counts") or {})
+    counts.update(
+        {
+            "base_candidate_rows": len(base_rows),
+            "base_full_channel_score_rows": sum(
+                1 for row in base_rows if row.get("channel_scores")
+            ),
+            "scored_extension_rows": len(extension_rows),
+            "scored_extension_appended_rows": len(appended_rows),
+            "scored_extension_full_channel_rows": len(
+                [
+                    row
+                    for row in extension_rows
+                    if row.get("channel_scores")
+                ]
+            ),
+            "appended_full_channel_rows": len(appended_full_rows),
+            "extended_candidate_rows": len(extended_rows),
+            "candidate_rows_with_full_channel_scores": len(full_rows),
+            "expanded_full_channel_score_rows": len(full_rows),
+            "remaining_combined_score_blocker_rows": len(missing_full_score_ids),
+            "duplicate_extension_rows": len(duplicate_extension_ids),
+            "blockers": len(blockers),
+        }
+    )
+    audit = copy.deepcopy(base)
+    audit.update(
+        {
+            "artifact_id": artifact_id,
+            "schema_version": (
+                f"{SCHEMA_VERSION}.confounded_proxy_extended_train_cal_oos_surface"
+            ),
+            "created_utc": _utc_now_iso(),
+            "status": status,
+            "scope": (
+                "Extended train/cal OOS-negative surface for the Lever 3 "
+                "confounded-proxy operating-point audit. It appends scored "
+                "non-heldout tranche rows to the existing expanded surface and "
+                "does not select, tune, or change thresholds."
+            ),
+            "candidate_row_scores": extended_rows,
+            "candidate_entry_ids": sorted(
+                {str(row["entry_id"]) for row in extended_rows},
+                key=_entry_id_sort_key,
+            ),
+            "counts": counts,
+            "blockers": blockers,
+            "extended_surface_summary": {
+                "base_surface_entry_ids": sorted(base_ids, key=_entry_id_sort_key),
+                "appended_extension_entry_ids": sorted(
+                    [str(row["entry_id"]) for row in appended_rows],
+                    key=_entry_id_sort_key,
+                ),
+                "appended_full_channel_entry_ids": sorted(
+                    [str(row["entry_id"]) for row in appended_full_rows],
+                    key=_entry_id_sort_key,
+                ),
+                "duplicate_extension_entry_ids": duplicate_extension_ids,
+                "remaining_combined_score_blocker_entry_ids": missing_full_score_ids,
+            },
+            "remaining_combined_score_blocker_entry_ids": missing_full_score_ids,
+            "guardrails": {
+                **copy.deepcopy(base.get("guardrails") or {}),
+                "labels_registries_ontologies_changed": False,
+                "imports_or_promotions_performed": False,
+                "production_thresholds_changed": False,
+                "threshold_selected_or_tuned": False,
+                "threshold_values_changed": False,
+                "model_weights_fit_or_refit": False,
+                "heldout_rows_used_for_training_or_threshold_tuning": False,
+                "heldout_rows_read_now": False,
+                "scored_extension_composed_only": True,
+            },
+            "interpretation": {
+                "headline": (
+                    "The extended train/cal OOS surface now has "
+                    f"{len(full_rows)}/{len(extended_rows)} full-channel rows, "
+                    f"including {len(appended_full_rows)} newly appended scored "
+                    "tranche rows."
+                ),
+                "next_action": (
+                    (
+                        "Rerun the fixed-threshold confounded proxy "
+                        "operating-point audit against this extended surface; "
+                        "keep the threshold unchanged and heldout final-only."
+                    )
+                    if not blockers
+                    else (
+                        "Do not rerun the fixed-threshold confounded proxy "
+                        "operating-point audit on this partial surface yet; "
+                        "clear the remaining full-channel score blockers first."
+                    )
+                ),
+            },
+            "source_artifacts": {
+                **copy.deepcopy(base.get("source_artifacts") or {}),
+                "base_train_cal_oos_surface": _source_path_record(
+                    base_train_cal_oos_surface_path
+                ),
+                "scored_extension": _source_path_record(scored_extension_path),
+            },
+        }
+    )
+    return audit
+
+
+def _render_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    summary = audit["extended_surface_summary"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Extended Train/Cal OOS Surface - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        "- Full-channel rows: "
+        f"{counts['candidate_rows_with_full_channel_scores']}/"
+        f"{counts['extended_candidate_rows']}",
+        f"- Appended rows: {counts['scored_extension_appended_rows']}",
+        f"- Appended full-channel rows: {counts['appended_full_channel_rows']}",
+        "- Remaining combined-score blockers: "
+        f"{counts['remaining_combined_score_blocker_rows']}",
+        "",
+        "## Appended Rows",
+        "",
+        "| row | combined | abstains if fixed threshold applied |",
+        "| --- | ---: | --- |",
+    ]
+    for row in audit["candidate_row_scores"]:
+        if row.get("entry_id") not in summary["appended_extension_entry_ids"]:
+            continue
+        channel = row.get("channel_scores") or {}
+        combined = channel.get("combined_mean_geometry_fold")
+        lines.append(
+            f"| {row['entry_id']} | {combined} | "
+            f"{'unscored' if combined is None else 'see operating-point audit'} |"
+        )
+    lines += [
+        "",
+        "## Remaining Blockers",
+        "",
+    ]
+    if summary["remaining_combined_score_blocker_entry_ids"]:
+        lines += [
+            f"- {entry_id}"
+            for entry_id in summary["remaining_combined_score_blocker_entry_ids"]
+        ]
+    else:
+        lines.append("- None")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
+    *,
+    base_train_cal_oos_surface_path: Path,
+    scored_extension_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_EXTENDED_TRAIN_CAL_OOS_SURFACE_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
+        base_train_cal_oos_surface_path=base_train_cal_oos_surface_path,
+        scored_extension_path=scored_extension_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
 
 
 def _family_panel_import_preview_primary_blocker(
@@ -29426,6 +31481,10 @@ def build_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_acquisition_queue_path: Path | None = None,
     lever3_confounded_proxy_train_cal_candidate_pool_path: Path | None = None,
     lever3_confounded_proxy_train_cal_scoring_tranche_plan_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_background_axis_blocker_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_background_axis_scout_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path: Path | None = None,
     lever4_acceptance_scenario_plan_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -29504,6 +31563,39 @@ def build_active_lever_mechanical_actionability_audit(
         _read_json(lever3_confounded_proxy_train_cal_scoring_tranche_plan_path)
         if lever3_confounded_proxy_train_cal_scoring_tranche_plan_path is not None
         and Path(lever3_confounded_proxy_train_cal_scoring_tranche_plan_path).exists()
+        else {}
+    )
+    lever3_proxy_background_axis_blocker = (
+        _read_json(lever3_confounded_proxy_train_cal_background_axis_blocker_path)
+        if lever3_confounded_proxy_train_cal_background_axis_blocker_path is not None
+        and Path(
+            lever3_confounded_proxy_train_cal_background_axis_blocker_path
+        ).exists()
+        else {}
+    )
+    lever3_proxy_background_axis_scout = (
+        _read_json(lever3_confounded_proxy_train_cal_background_axis_scout_path)
+        if lever3_confounded_proxy_train_cal_background_axis_scout_path is not None
+        and Path(lever3_confounded_proxy_train_cal_background_axis_scout_path).exists()
+        else {}
+    )
+    lever3_proxy_new_axis_contract = (
+        _read_json(lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path)
+        if lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path is not None
+        and Path(
+            lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path
+        ).exists()
+        else {}
+    )
+    lever3_proxy_new_axis_scored_extension = (
+        _read_json(
+            lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path
+        )
+        if lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path
+        is not None
+        and Path(
+            lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path
+        ).exists()
         else {}
     )
     lever4_readiness = (
@@ -29641,6 +31733,62 @@ def build_active_lever_mechanical_actionability_audit(
         lever3_proxy_scoring_tranche.get("decision", {})
         if isinstance(lever3_proxy_scoring_tranche, dict)
         else {}
+    )
+    lever3_proxy_background_axis_counts = (
+        lever3_proxy_background_axis_blocker.get("counts", {})
+        if isinstance(lever3_proxy_background_axis_blocker, dict)
+        else {}
+    )
+    lever3_proxy_background_axis_decision = (
+        lever3_proxy_background_axis_blocker.get("decision", {})
+        if isinstance(lever3_proxy_background_axis_blocker, dict)
+        else {}
+    )
+    lever3_proxy_background_axis_scout_counts = (
+        lever3_proxy_background_axis_scout.get("counts", {})
+        if isinstance(lever3_proxy_background_axis_scout, dict)
+        else {}
+    )
+    lever3_proxy_background_axis_scout_decision = (
+        lever3_proxy_background_axis_scout.get("decision", {})
+        if isinstance(lever3_proxy_background_axis_scout, dict)
+        else {}
+    )
+    lever3_proxy_new_axis_contract_counts = (
+        lever3_proxy_new_axis_contract.get("counts", {})
+        if isinstance(lever3_proxy_new_axis_contract, dict)
+        else {}
+    )
+    lever3_proxy_new_axis_contract_decision = (
+        lever3_proxy_new_axis_contract.get("decision", {})
+        if isinstance(lever3_proxy_new_axis_contract, dict)
+        else {}
+    )
+    lever3_proxy_new_axis_scored_extension_counts = (
+        lever3_proxy_new_axis_scored_extension.get("counts", {})
+        if isinstance(lever3_proxy_new_axis_scored_extension, dict)
+        else {}
+    )
+    lever3_proxy_new_axis_scored_extension_blockers = (
+        lever3_proxy_new_axis_scored_extension.get("blockers", [])
+        if isinstance(lever3_proxy_new_axis_scored_extension, dict)
+        else []
+    )
+    lever3_proxy_new_axis_contract_rows_for_gate = int(
+        lever3_proxy_new_axis_contract_counts.get("contracted_scoring_rows") or 0
+    )
+    lever3_proxy_new_axis_full_rows_for_gate = int(
+        lever3_proxy_new_axis_scored_extension_counts.get(
+            "candidate_rows_with_full_channel_scores"
+        )
+        or 0
+    )
+    lever3_proxy_new_axis_scored_extension_complete = bool(
+        lever3_proxy_new_axis_scored_extension
+    ) and (
+        lever3_proxy_new_axis_full_rows_for_gate
+        >= lever3_proxy_new_axis_contract_rows_for_gate
+        and not lever3_proxy_new_axis_scored_extension_blockers
     )
     lever4_counts = (
         lever4_readiness.get("counts", {})
@@ -29783,6 +31931,80 @@ def build_active_lever_mechanical_actionability_audit(
             ),
         },
         {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_train_cal_background_axis_blocker",
+            "ready_now": False,
+            "blocking_reason": (
+                "confounded_proxy_remaining_rows_background_only"
+                if lever3_proxy_background_axis_blocker
+                else "confounded_proxy_background_axis_blocker_missing"
+            ),
+            "next_command_after_decision": (
+                "build-fold-augmented-confounded-proxy-train-cal-background-axis-blocker"
+            ),
+        },
+        {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_train_cal_background_axis_scout",
+            "ready_now": bool(
+                lever3_proxy_background_axis_scout_decision.get(
+                    "new_proxy_axis_ready_to_score_now"
+                )
+            ),
+            "blocking_reason": (
+                (
+                    "current_scout_axis_scored_no_ready_followup_axis"
+                    if lever3_proxy_new_axis_scored_extension_complete
+                    else "confounded_proxy_new_axis_contract_missing"
+                )
+                if lever3_proxy_background_axis_scout
+                else "confounded_proxy_background_axis_scout_missing"
+            ),
+            "next_command_after_decision": (
+                "build-fold-augmented-confounded-proxy-train-cal-background-axis-scout"
+            ),
+        },
+        {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_train_cal_new_proxy_axis_contract",
+            "ready_now": bool(
+                lever3_proxy_new_axis_contract_decision.get(
+                    "scoring_tranche_rows_ready_now"
+                )
+                and not lever3_proxy_new_axis_scored_extension
+            ),
+            "blocking_reason": (
+                "contracted_proxy_axis_ready_for_scoring_input"
+                if lever3_proxy_new_axis_contract_decision.get(
+                    "scoring_tranche_rows_ready_now"
+                )
+                and not lever3_proxy_new_axis_scored_extension
+                else (
+                    "confounded_proxy_new_axis_contract_missing"
+                    if not lever3_proxy_new_axis_contract
+                    else (
+                        "contracted_proxy_axis_fully_scored_surface_still_blocked"
+                        if lever3_proxy_new_axis_scored_extension_complete
+                        else (
+                            "confounded_proxy_new_axis_contract_partial_scores"
+                            if lever3_proxy_new_axis_scored_extension
+                            else "confounded_proxy_new_axis_contract_blocked"
+                        )
+                    )
+                )
+            ),
+            "next_command_after_decision": (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-background-axis-scout"
+                )
+                if lever3_proxy_new_axis_scored_extension_complete
+                else (
+                    "build-fold-augmented-confounded-proxy-train-cal-scoring-input-manifest "
+                    "--scoring-tranche-plan artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json"
+                )
+            ),
+        },
+        {
             "lever": "Lever 4",
             "gate": "family_panel_label_factory_gate_readiness",
             "ready_now": bool(
@@ -29837,7 +32059,10 @@ def build_active_lever_mechanical_actionability_audit(
     blockers: list[str] = []
     if not queue_items:
         blockers.append("active_lever_reviewer_decision_queue_missing_or_empty")
-    if automation_allowed == 0 and not source_intake_ready:
+    active_mechanical_gate_ready = any(
+        bool(check.get("ready_now")) for check in gate_checks
+    )
+    if automation_allowed == 0 and not source_intake_ready and not active_mechanical_gate_ready:
         blockers.append("no_active_lever_mechanical_gate_ready")
     if source_intake and not source_intake_decision.get("run_any_matching_gate_now"):
         blockers.append("source_decision_intake_preflight_not_ready")
@@ -29878,6 +32103,45 @@ def build_active_lever_mechanical_actionability_audit(
         and not lever3_proxy_scoring_tranche_decision.get("score_tranche_now")
     ):
         blockers.append("lever3_confounded_proxy_train_cal_scoring_tranche_not_run")
+    if (
+        lever3_proxy_background_axis_blocker
+        and lever3_proxy_background_axis_decision.get(
+            "all_remaining_rows_background_only_current_axes"
+        )
+    ):
+        blockers.append("lever3_confounded_proxy_background_axis_exhausted")
+    if (
+        lever3_proxy_background_axis_scout
+        and not lever3_proxy_new_axis_contract_decision.get(
+            "new_proxy_axis_registered"
+        )
+    ):
+        blockers.append("lever3_confounded_proxy_new_axis_contract_missing")
+    if (
+        lever3_proxy_new_axis_contract
+        and lever3_proxy_new_axis_contract_decision.get("new_proxy_axis_registered")
+        and not lever3_proxy_new_axis_contract_decision.get(
+            "proxy_calibration_rerun_ready_now"
+        )
+    ):
+        contracted_rows = int(
+            lever3_proxy_new_axis_contract_counts.get("contracted_scoring_rows")
+            or 0
+        )
+        full_rows = int(
+            lever3_proxy_new_axis_scored_extension_counts.get(
+                "candidate_rows_with_full_channel_scores"
+            )
+            or 0
+        )
+        if not lever3_proxy_new_axis_scored_extension:
+            blockers.append(
+                "lever3_confounded_proxy_new_axis_contract_tranche_not_scored"
+            )
+        elif full_rows < contracted_rows or lever3_proxy_new_axis_scored_extension_blockers:
+            blockers.append(
+                "lever3_confounded_proxy_new_axis_contract_tranche_partial_scores"
+            )
     if lever4_pending:
         blockers.append("family_panel_expert_import_decisions_missing")
     if lever2_pending:
@@ -29914,6 +32178,100 @@ def build_active_lever_mechanical_actionability_audit(
         }
         for item in queue_items[:12]
     ]
+    lever3_background_exhausted = bool(
+        lever3_proxy_background_axis_decision.get(
+            "all_remaining_rows_background_only_current_axes"
+        )
+    )
+    lever3_new_axis_ready = bool(
+        lever3_proxy_new_axis_contract_decision.get(
+            "new_proxy_axis_registered"
+        )
+    )
+    lever3_contract_rows = int(
+        lever3_proxy_new_axis_contract_counts.get("contracted_scoring_rows") or 0
+    )
+    lever3_new_axis_full_rows = int(
+        lever3_proxy_new_axis_scored_extension_counts.get(
+            "candidate_rows_with_full_channel_scores"
+        )
+        or 0
+    )
+    lever3_new_axis_missing_ids = (
+        lever3_proxy_new_axis_scored_extension.get(
+            "missing_full_score_entry_ids", []
+        )
+        if isinstance(lever3_proxy_new_axis_scored_extension, dict)
+        else []
+    )
+    lever3_result = (
+        "Lever 3 is blocked by the P10746 policy caveat, the fixed-threshold "
+        "confounded-proxy calibration gap, and exhausted current proxy axes: "
+        "the remaining train/cal OOS rows are background-only and the scout has "
+        "no pre-registered new axis ready to score."
+        if lever3_background_exhausted and not lever3_new_axis_ready
+        else (
+            "Lever 3 has a pre-registered source-free proxy-axis contract with "
+            f"{lever3_contract_rows} train/cal rows and "
+            f"{lever3_new_axis_full_rows} full-channel scores; the new tranche "
+            "is complete, but calibration remains blocked by the existing "
+            "fixed-threshold proxy and prior/base-surface gaps."
+            if lever3_proxy_new_axis_scored_extension
+            and lever3_new_axis_full_rows >= lever3_contract_rows
+            else (
+                "Lever 3 has a pre-registered source-free proxy-axis contract "
+                f"with {lever3_contract_rows} train/cal rows and "
+                f"{lever3_new_axis_full_rows} full-channel scores; calibration "
+                "remains blocked until the missing full-score rows are repaired."
+            )
+            if lever3_proxy_new_axis_scored_extension
+            else (
+                "Lever 3 has a pre-registered source-free proxy-axis contract "
+                f"with {lever3_contract_rows} train/cal rows, but calibration "
+                "remains blocked until that contracted tranche is scored at the "
+                "unchanged fixed threshold."
+            )
+        )
+        if lever3_background_exhausted and lever3_new_axis_ready
+        else (
+            "Lever 3 is blocked by the P10746 policy caveat plus a "
+            "confounded-proxy calibration/evidence-extension scale gap."
+        )
+    )
+    lever3_next_action = (
+        "For Lever 3, apply hash-valid reviewed source decisions if they "
+        "arrive; otherwise pre-register one train/cal-only source-free proxy "
+        "axis contract before any new scoring tranche or fixed-threshold audit "
+        "rerun."
+        if lever3_background_exhausted and not lever3_new_axis_ready
+        else (
+            (
+                "For Lever 3, the new proxy-axis tranche is fully scored. Do "
+                "not rerun the fixed-threshold audit on a partial/base-blocked "
+                "surface; clear the remaining prior/base full-channel and "
+                "policy/calibration blockers first."
+                if lever3_new_axis_full_rows >= lever3_contract_rows
+                else (
+                    "For Lever 3, repair the missing full-channel score rows "
+                    "from the new proxy-axis scored extension "
+                    f"({', '.join(map(str, lever3_new_axis_missing_ids)) or 'none'}) "
+                    "before any fixed-threshold audit rerun."
+                )
+            )
+            if lever3_proxy_new_axis_scored_extension
+            else (
+                "For Lever 3, build the scoring-input manifest from the new "
+                "proxy-axis contract and score only those contracted train/cal "
+                "rows before any fixed-threshold audit rerun."
+            )
+        )
+        if lever3_background_exhausted and lever3_new_axis_ready
+        else (
+            "For Lever 3 calibration, add new train/cal proxy evidence outside "
+            "the current scored surface before rerunning the fixed-threshold "
+            "proxy audit."
+        )
+    )
 
     return {
         "artifact_id": ACTIVE_LEVER_MECHANICAL_ACTIONABILITY_AUDIT_ID,
@@ -30055,6 +32413,58 @@ def build_active_lever_mechanical_actionability_audit(
             ),
             "lever3_confounded_proxy_scoring_tranche_blockers": int(
                 lever3_proxy_scoring_tranche_counts.get("blockers") or 0
+            ),
+            "lever3_confounded_proxy_background_only_rows": int(
+                lever3_proxy_background_axis_counts.get("background_only_rows") or 0
+            ),
+            "lever3_confounded_proxy_background_axis_blockers": int(
+                lever3_proxy_background_axis_counts.get("blockers") or 0
+            ),
+            "lever3_confounded_proxy_background_axis_exhausted": bool(
+                lever3_proxy_background_axis_decision.get(
+                    "all_remaining_rows_background_only_current_axes"
+                )
+            ),
+            "lever3_confounded_proxy_background_axis_scout_axes": int(
+                lever3_proxy_background_axis_scout_counts.get(
+                    "candidate_axis_tests"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_background_axis_scout_ready_axes": int(
+                lever3_proxy_background_axis_scout_counts.get(
+                    "mechanically_ready_axis_tests"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_new_axis_registered": bool(
+                lever3_proxy_new_axis_contract_decision.get(
+                    "new_proxy_axis_registered"
+                )
+            ),
+            "lever3_confounded_proxy_new_axis_contracted_rows": int(
+                lever3_proxy_new_axis_contract_counts.get(
+                    "contracted_scoring_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_new_axis_contract_blockers": int(
+                lever3_proxy_new_axis_contract_counts.get("blockers") or 0
+            ),
+            "lever3_confounded_proxy_new_axis_full_channel_rows": int(
+                lever3_proxy_new_axis_scored_extension_counts.get(
+                    "candidate_rows_with_full_channel_scores"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_new_axis_missing_full_score_rows": int(
+                lever3_proxy_new_axis_scored_extension_counts.get(
+                    "missing_full_score_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_new_axis_scored_extension_blockers": int(
+                lever3_proxy_new_axis_scored_extension_counts.get("blockers") or 0
             ),
             "lever4_pending_expert_import_decisions": len(lever4_pending),
             "lever4_import_preview_candidate_if_accepted_items": int(
@@ -30204,6 +32614,38 @@ def build_active_lever_mechanical_actionability_audit(
                 is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
+            "lever3_confounded_proxy_train_cal_background_axis_blocker": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_background_axis_blocker_path
+                )
+                if lever3_confounded_proxy_train_cal_background_axis_blocker_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_train_cal_background_axis_scout": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_background_axis_scout_path
+                )
+                if lever3_confounded_proxy_train_cal_background_axis_scout_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_train_cal_new_proxy_axis_contract": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path
+                )
+                if lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path
+                )
+                if lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
             "lever4_acceptance_scenario_plan": (
                 _source_path_record(lever4_acceptance_scenario_plan_path)
                 if lever4_acceptance_scenario_plan_path is not None
@@ -30221,18 +32663,15 @@ def build_active_lever_mechanical_actionability_audit(
                 "current decision state."
             ),
             "result": (
-                "Lever 3 is blocked by the P10746 policy caveat plus a "
-                "confounded-proxy calibration/evidence-extension scale gap, "
+                f"{lever3_result} "
                 "Lever 4 is blocked before import preview by expert import "
                 "decisions, and Lever 2 is blocked by locator approvals plus "
                 "source-free event-axis linkers."
             ),
             "next_action": (
                 "Review the first twelve queued rows here, starting with "
-                "P10746 and the six Lever 4 import-preview candidates. For "
-                "Lever 3 calibration, add new train/cal proxy evidence outside "
-                "the current scored surface before rerunning the fixed-threshold "
-                "proxy audit."
+                "P10746 and the six Lever 4 import-preview candidates. "
+                f"{lever3_next_action}"
             ),
         },
     }
@@ -30308,6 +32747,21 @@ def _render_active_lever_mechanical_actionability_audit_report(
         f"{counts.get('lever3_confounded_proxy_scoring_tranche_structural_rows')}",
         "- Lever 3 proxy scoring-tranche ready for plan: "
         f"{counts.get('lever3_confounded_proxy_scoring_tranche_ready_for_plan')}",
+        "- Lever 3 proxy background-only rows: "
+        f"{counts.get('lever3_confounded_proxy_background_only_rows')}",
+        "- Lever 3 proxy background-axis exhausted: "
+        f"{counts.get('lever3_confounded_proxy_background_axis_exhausted')}",
+        "- Lever 3 proxy background-axis scout ready axes: "
+        f"{counts.get('lever3_confounded_proxy_background_axis_scout_ready_axes')}/"
+        f"{counts.get('lever3_confounded_proxy_background_axis_scout_axes')}",
+        "- Lever 3 new proxy axis registered: "
+        f"{counts.get('lever3_confounded_proxy_new_axis_registered')}",
+        "- Lever 3 new proxy-axis contracted rows: "
+        f"{counts.get('lever3_confounded_proxy_new_axis_contracted_rows')}",
+        "- Lever 3 new proxy-axis full-channel rows: "
+        f"{counts.get('lever3_confounded_proxy_new_axis_full_channel_rows')}",
+        "- Lever 3 new proxy-axis missing full-score rows: "
+        f"{counts.get('lever3_confounded_proxy_new_axis_missing_full_score_rows')}",
         "- Lever 4 acceptance scenario rows: "
         f"{counts.get('lever4_acceptance_scenario_rows')}",
         "- Lever 4 acceptance scenario panels: "
@@ -30376,6 +32830,10 @@ def write_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_acquisition_queue_path: Path | None = None,
     lever3_confounded_proxy_train_cal_candidate_pool_path: Path | None = None,
     lever3_confounded_proxy_train_cal_scoring_tranche_plan_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_background_axis_blocker_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_background_axis_scout_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path: Path | None = None,
     lever4_acceptance_scenario_plan_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
     out_path: Path,
@@ -30416,6 +32874,18 @@ def write_active_lever_mechanical_actionability_audit(
         ),
         lever3_confounded_proxy_train_cal_scoring_tranche_plan_path=(
             lever3_confounded_proxy_train_cal_scoring_tranche_plan_path
+        ),
+        lever3_confounded_proxy_train_cal_background_axis_blocker_path=(
+            lever3_confounded_proxy_train_cal_background_axis_blocker_path
+        ),
+        lever3_confounded_proxy_train_cal_background_axis_scout_path=(
+            lever3_confounded_proxy_train_cal_background_axis_scout_path
+        ),
+        lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path=(
+            lever3_confounded_proxy_train_cal_new_proxy_axis_contract_path
+        ),
+        lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path=(
+            lever3_confounded_proxy_train_cal_new_proxy_axis_scored_extension_path
         ),
         lever4_acceptance_scenario_plan_path=(
             lever4_acceptance_scenario_plan_path

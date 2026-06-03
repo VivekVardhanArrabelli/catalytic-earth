@@ -1135,11 +1135,51 @@ class CliTests(unittest.TestCase):
             (
                 (
                     "build-fold-augmented-confounded-proxy-train-cal-"
+                    "background-axis-blocker"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "background_axis_blocker"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "background-axis-scout"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "background_axis_scout"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
                     "scoring-input-manifest"
                 ),
                 (
                     "cmd_build_fold_augmented_confounded_proxy_train_cal_"
                     "scoring_input_manifest"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "scored-extension"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "scored_extension"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-extended-train-"
+                    "cal-oos-surface"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_extended_"
+                    "train_cal_oos_surface"
                 ),
             ),
             (

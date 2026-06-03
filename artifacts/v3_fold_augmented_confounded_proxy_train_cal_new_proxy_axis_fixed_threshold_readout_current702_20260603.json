@@ -1,0 +1,151 @@
+{
+  "abstained_entry_ids": [
+    "m_csa:466"
+  ],
+  "artifact_id": "v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603",
+  "blockers": [],
+  "counts": {
+    "abstained_at_fixed_threshold": 1,
+    "blockers": 0,
+    "contracted_scored_rows": 6,
+    "full_channel_rows": 6,
+    "missing_full_channel_rows": 0,
+    "retained_at_fixed_threshold": 5
+  },
+  "created_utc": "2026-06-03T17:25:38Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "global_operating_point_audit_ready_now": false,
+    "new_proxy_axis_closes_structural_shortfall_now": false,
+    "next_gate": "Do not rerun the global fixed-threshold audit from this readout alone. The new axis contributes 1 abstained rows at the fixed threshold; clear prior/base surface blockers or add additional train/cal proxy evidence before any operating-point claim."
+  },
+  "fixed_threshold": 0.44155,
+  "guardrails": {
+    "global_operating_point_audit_rerun": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "readout_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "headline": "1/6 new proxy-axis rows abstain at the unchanged fixed threshold.",
+    "next_action": "Keep this as a tranche readout; do not promote it to an operating-point claim until the broader extended surface is complete or another pre-registered train/cal proxy axis is scored.",
+    "result": "The active-site-count proxy axis is now deployably scored, but its fixed-threshold contribution is too small to close the Lever 3 structural proxy shortfall by itself."
+  },
+  "readout": {
+    "abstain_recall": 0.1667,
+    "abstained": 1,
+    "retained": 5,
+    "retained_recall": 0.8333,
+    "row_count": 6,
+    "rows": [
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.398339,
+        "combined_mean_geometry_fold": 0.45,
+        "entry_id": "m_csa:89",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:83",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.00845
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.05565,
+        "combined_mean_geometry_fold": 0.49495,
+        "entry_id": "m_csa:143",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:142",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.0534
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.014237,
+        "combined_mean_geometry_fold": 0.49735,
+        "entry_id": "m_csa:90",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:445",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.0558
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.024512,
+        "combined_mean_geometry_fold": 0.5158,
+        "entry_id": "m_csa:253",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:528",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.07425
+      },
+      {
+        "abstains_at_fixed_threshold": false,
+        "cofactor_proxy_score": 0.015665,
+        "combined_mean_geometry_fold": 0.601,
+        "entry_id": "m_csa:501",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:716",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": 0.15945
+      },
+      {
+        "abstains_at_fixed_threshold": true,
+        "cofactor_proxy_score": 0.00075,
+        "combined_mean_geometry_fold": 0.38555,
+        "entry_id": "m_csa:466",
+        "label_type": "out_of_scope",
+        "nearest_train_atlas_entry_id": "m_csa:412",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "oos_tier": "unknown_oos",
+        "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "split_assignment": "in_distribution",
+        "threshold_margin": -0.056
+      }
+    ],
+    "threshold": 0.44155
+  },
+  "retained_entry_ids": [
+    "m_csa:89",
+    "m_csa:90",
+    "m_csa:143",
+    "m_csa:253",
+    "m_csa:501"
+  ],
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout",
+  "scope": "Train/cal-only fixed-threshold readout for the newly contracted source-free proxy-axis tranche. It reports the six scored rows at the already selected combined geometry/fold threshold and does not rerun the global operating-point audit, tune thresholds, read heldout rows, edit labels, or count new benchmark labels.",
+  "source_artifacts": {
+    "expanded_oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de"
+    },
+    "scored_extension": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json",
+      "sha256": "3f267b63a05f931ce3f921465d9b722c1e1b4a8245e88e076252b541abc76705"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_ready"
+}

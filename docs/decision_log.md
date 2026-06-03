@@ -135,6 +135,40 @@ the 53 materialized sidecars under
 `artifacts/family_panel_source_free_active_site_locators_current702_20260601/`,
 and
 `work/active_lever_lever2_locator_rewrite_reviewer_decision_record_current702_20260603.md`.
+## 2026-06-03: Active-Site-Count Proxy Axis Scored, Not Closure-Sufficient
+
+Decision: keep the new `active_site_residue_count_10_plus` Lever 3 proxy axis
+as a bounded train/cal-only readout. It is pre-registered and fully scored, but
+it does not authorize a global fixed-threshold proxy audit rerun or deployment
+closure claim. No labels, registries, ontologies, imports, production
+thresholds, splits, model weights, source decisions, or heldout threshold tuning
+changed.
+
+Result: the contract selects six train/cal rows and the scoring extension gives
+6/6 full-channel geometry/fold/cofactor rows. The appended surface has 192/198
+train/cal OOS full-channel rows and remains partial because six prior/base
+blockers are still unresolved. At fixed threshold `0.44155`, the new proxy axis
+abstains only `m_csa:466` and retains the other five rows.
+
+Consequence / next gate: do not promote this readout to an operating-point
+claim. First clear the remaining prior/base full-channel and policy/calibration
+blockers, or pre-register another train/cal-only source-free proxy-axis contract
+before further scoring.
+
+Artifacts:
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.md`,
+`artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.json`,
+`work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.md`,
+`artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json`,
+and
+`work/active_lever_mechanical_actionability_audit_current702_20260603.md`.
 
 ## 2026-06-03: Source-Free Locator Policy Queue Closed For Automation
 

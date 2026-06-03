@@ -8,10 +8,10 @@
     "all_expanded_calibration_oos_rows": 75,
     "blockers": 2,
     "calibration_in_scope_rows": 34,
-    "high_cofactor_proxy_rows": 1,
-    "same_family_structural_proxy_rows": 17
+    "high_cofactor_proxy_rows": 4,
+    "same_family_structural_proxy_rows": 55
   },
-  "created_utc": "2026-06-03T12:20:58Z",
+  "created_utc": "2026-06-03T15:39:12Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "deployment_closed_now": false,
@@ -71,7 +71,7 @@
     "confounded_proxy_operating_point_audit": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json",
-      "sha256": "b7b4ef428a7b1a6668c0552269ae1efa8e7ce2823f83e40e07a053fdc88b1a1b"
+      "sha256": "d8a4f0e281a6e3bd5ba4015e17d0cc6ccd632c0f07e280f39f8f1981930fd865"
     },
     "expanded_oos_calibrated_threshold_contract": {
       "exists": true,
@@ -130,75 +130,75 @@
           "calibration_in_scope_retain_recall": 0.8824,
           "calibration_in_scope_retained": 30,
           "calibration_in_scope_total": 34,
-          "proxy_abstain_recall": 1.0,
-          "proxy_abstained": 1,
-          "proxy_total": 1,
+          "proxy_abstain_recall": 0.5,
+          "proxy_abstained": 2,
+          "proxy_total": 4,
           "target_abstain_recall": 0.5,
           "threshold": 0.4682
         },
         "0.8": {
-          "calibration_in_scope_retain_recall": 0.8824,
-          "calibration_in_scope_retained": 30,
+          "calibration_in_scope_retain_recall": 0.3529,
+          "calibration_in_scope_retained": 12,
           "calibration_in_scope_total": 34,
           "proxy_abstain_recall": 1.0,
-          "proxy_abstained": 1,
-          "proxy_total": 1,
+          "proxy_abstained": 4,
+          "proxy_total": 4,
           "target_abstain_recall": 0.8,
-          "threshold": 0.4682
+          "threshold": 0.6399
         },
         "1.0": {
-          "calibration_in_scope_retain_recall": 0.8824,
-          "calibration_in_scope_retained": 30,
+          "calibration_in_scope_retain_recall": 0.3529,
+          "calibration_in_scope_retained": 12,
           "calibration_in_scope_total": 34,
           "proxy_abstain_recall": 1.0,
-          "proxy_abstained": 1,
-          "proxy_total": 1,
+          "proxy_abstained": 4,
+          "proxy_total": 4,
           "target_abstain_recall": 1.0,
-          "threshold": 0.4682
+          "threshold": 0.6399
         }
       },
       "current_fixed_threshold": 0.44155,
       "current_fixed_threshold_abstain_recall": 0.0,
       "current_fixed_threshold_abstained": 0,
-      "row_count": 1
+      "row_count": 4
     },
     "same_family_structural_proxy": {
       "counterfactual_targets": {
         "0.5": {
-          "calibration_in_scope_retain_recall": 0.8235,
-          "calibration_in_scope_retained": 28,
+          "calibration_in_scope_retain_recall": 0.7353,
+          "calibration_in_scope_retained": 25,
           "calibration_in_scope_total": 34,
-          "proxy_abstain_recall": 0.5294,
-          "proxy_abstained": 9,
-          "proxy_total": 17,
+          "proxy_abstain_recall": 0.5091,
+          "proxy_abstained": 28,
+          "proxy_total": 55,
           "target_abstain_recall": 0.5,
-          "threshold": 0.4806
+          "threshold": 0.54185
         },
         "0.8": {
-          "calibration_in_scope_retain_recall": 0.4412,
-          "calibration_in_scope_retained": 15,
+          "calibration_in_scope_retain_recall": 0.3824,
+          "calibration_in_scope_retained": 13,
           "calibration_in_scope_total": 34,
-          "proxy_abstain_recall": 0.8235,
-          "proxy_abstained": 14,
-          "proxy_total": 17,
+          "proxy_abstain_recall": 0.8,
+          "proxy_abstained": 44,
+          "proxy_total": 55,
           "target_abstain_recall": 0.8,
-          "threshold": 0.62295
+          "threshold": 0.63105
         },
         "1.0": {
-          "calibration_in_scope_retain_recall": 0.2941,
-          "calibration_in_scope_retained": 10,
+          "calibration_in_scope_retain_recall": 0.2059,
+          "calibration_in_scope_retained": 7,
           "calibration_in_scope_total": 34,
           "proxy_abstain_recall": 1.0,
-          "proxy_abstained": 17,
-          "proxy_total": 17,
+          "proxy_abstained": 55,
+          "proxy_total": 55,
           "target_abstain_recall": 1.0,
-          "threshold": 0.6621
+          "threshold": 0.69605
         }
       },
       "current_fixed_threshold": 0.44155,
-      "current_fixed_threshold_abstain_recall": 0.2353,
-      "current_fixed_threshold_abstained": 4,
-      "row_count": 17
+      "current_fixed_threshold_abstain_recall": 0.1818,
+      "current_fixed_threshold_abstained": 10,
+      "row_count": 55
     }
   }
 }

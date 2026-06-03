@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy Threshold Stress - current702
 
-Run: 2026-06-03T12:20:58Z
+Run: 2026-06-03T15:39:12Z
 
 Train/cal-only counterfactual threshold stress for Lever 3 confounded proxy rows. It reports the in-scope retention cost of forcing proxy abstention targets, without changing the fixed operating threshold or reading heldout rows.
 
@@ -16,12 +16,12 @@ Train/cal-only counterfactual threshold stress for Lever 3 confounded proxy rows
 
 | subset | rows | fixed abstain | target | counterfactual threshold | proxy abstain | in-scope retain |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| high_cofactor_signature_proxy | 1 | 0.0 | 0.5 | 0.4682 | 1.0 | 0.8824 |
-| high_cofactor_signature_proxy | 1 | 0.0 | 0.8 | 0.4682 | 1.0 | 0.8824 |
-| high_cofactor_signature_proxy | 1 | 0.0 | 1.0 | 0.4682 | 1.0 | 0.8824 |
-| same_family_structural_proxy | 17 | 0.2353 | 0.5 | 0.4806 | 0.5294 | 0.8235 |
-| same_family_structural_proxy | 17 | 0.2353 | 0.8 | 0.62295 | 0.8235 | 0.4412 |
-| same_family_structural_proxy | 17 | 0.2353 | 1.0 | 0.6621 | 1.0 | 0.2941 |
+| high_cofactor_signature_proxy | 4 | 0.0 | 0.5 | 0.4682 | 0.5 | 0.8824 |
+| high_cofactor_signature_proxy | 4 | 0.0 | 0.8 | 0.6399 | 1.0 | 0.3529 |
+| high_cofactor_signature_proxy | 4 | 0.0 | 1.0 | 0.6399 | 1.0 | 0.3529 |
+| same_family_structural_proxy | 55 | 0.1818 | 0.5 | 0.54185 | 0.5091 | 0.7353 |
+| same_family_structural_proxy | 55 | 0.1818 | 0.8 | 0.63105 | 0.8 | 0.3824 |
+| same_family_structural_proxy | 55 | 0.1818 | 1.0 | 0.69605 | 1.0 | 0.2059 |
 | all_expanded_calibration_oos | 75 | 0.4 | 0.5 | 0.46725 | 0.5067 | 0.8824 |
 | all_expanded_calibration_oos | 75 | 0.4 | 0.8 | 0.5365 | 0.8 | 0.7353 |
 | all_expanded_calibration_oos | 75 | 0.4 | 1.0 | 0.6621 | 1.0 | 0.2941 |
