@@ -1,0 +1,54 @@
+{
+  "accepted_import_preview_rows": [],
+  "artifact_id": "v3_fold_augmented_family_panel_accepted_import_preview_current702_20260603",
+  "blockers": [
+    "expert_import_decision_application_not_ready",
+    "accepted_import_preview_candidate_rows_missing"
+  ],
+  "counts": {
+    "accepted_import_preview_candidate_rows": 0,
+    "application_row_decisions": 22,
+    "blockers": 2,
+    "countable_label_candidate_count": 0,
+    "label_factory_gate_candidate_rows": 0,
+    "panels_represented": 0,
+    "preview_rows": 0,
+    "preview_rows_by_panel": {}
+  },
+  "created_utc": "2026-06-03T08:23:29Z",
+  "decision": {
+    "accepted_import_preview_ready": false,
+    "expert_import_decision_application_ready": false,
+    "label_factory_gate_can_run_after_preview_review": false,
+    "label_factory_gate_ready": false,
+    "new_countable_labels_authorized": false,
+    "next_gate": "Record explicit expert accept decisions in the family-panel expert import decision packet, rerun the application gate, then rebuild this accepted-only import preview."
+  },
+  "guardrails": {
+    "family_panel_rows_countable_now": false,
+    "heldout_rows_used_for_training": false,
+    "import_preview_artifact_written": false,
+    "imports_or_promotions_performed": false,
+    "label_factory_gate_run": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "0 accepted family-panel rows are staged for review-only import preview.",
+    "next_action": "Complete expert import decisions, rerun the application gate, then rebuild this preview and run the label-factory gate only on accepted preview rows.",
+    "result": "Current rows remain non-countable. The artifact only stages explicitly accepted rows for the next label-factory gate and preserves the no-label/no-import/no-threshold-change guardrails."
+  },
+  "schema_version": "northstar_next_levers.v0.family_panel_accepted_import_preview",
+  "scope": "Review-only accepted import preview for Lever 4 family-panel rows. It consumes the fail-closed expert-decision application and emits only rows with explicit accepted decisions, unchanged row-context hashes, and no remaining pre-preview blockers. It does not run the label-factory gate or make rows countable.",
+  "source_artifacts": {
+    "expert_import_decision_application": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603.json",
+      "sha256": "dab5b275253e98c392845c1a3afab19926174857fcfe0624148b4df6ecd8e2bb"
+    }
+  },
+  "status": "family_panel_accepted_import_preview_blocked"
+}

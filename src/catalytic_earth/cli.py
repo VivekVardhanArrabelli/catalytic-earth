@@ -45,6 +45,7 @@ from .mechanism_abstention_gate_eval import (
     write_mechanism_deployment_abstention_gate_eval,
 )
 from .northstar_next_levers import (
+    write_active_lever_reviewer_decision_queue,
     write_family_set_expansion_targets,
     write_family_panel_evidence_packet,
     write_family_panel_high_value_glycyl_radical_readiness_packet,
@@ -72,7 +73,11 @@ from .northstar_next_levers import (
     write_fold_augmented_approved_source_feature_active_site_sidecar_materialization,
     write_fold_augmented_blocker_human_decision_application,
     write_fold_augmented_family_panel_countability_gate_preflight,
+    write_fold_augmented_family_panel_accepted_import_preview,
+    write_fold_augmented_family_panel_expert_import_decision_packet,
+    write_fold_augmented_family_panel_expert_import_decision_application,
     write_fold_augmented_family_panel_import_preview_blocker_gate,
+    write_fold_augmented_family_panel_label_factory_gate_readiness,
     write_fold_augmented_family_panel_m_csa_primary_channel_repair,
     write_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     write_fold_augmented_family_panel_missing_primary_channel_queue,
@@ -12470,6 +12475,122 @@ def cmd_build_fold_augmented_family_panel_import_preview_blocker_gate(
         "Wrote fold-augmented family-panel import-preview blocker gate to "
         f"{args.out} (status: {audit.get('status')}, import-ready rows: "
         f"{counts.get('import_preview_ready_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_expert_import_decision_packet(
+    args: argparse.Namespace,
+) -> int:
+    packet = write_fold_augmented_family_panel_expert_import_decision_packet(
+        import_preview_blocker_gate_path=Path(args.import_preview_blocker_gate),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel expert import decision packet to "
+        f"{args.out} (status: {packet.get('status')}, decision stubs: "
+        f"{counts.get('decision_stub_rows')})"
+    )
+    return 0
+
+
+def cmd_apply_fold_augmented_family_panel_expert_import_decision(
+    args: argparse.Namespace,
+) -> int:
+    application = write_fold_augmented_family_panel_expert_import_decision_application(
+        expert_import_decision_packet_path=Path(args.expert_import_decision_packet),
+        expert_decisions_path=Path(args.expert_decisions)
+        if args.expert_decisions
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = application.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel expert import decision application "
+        f"to {args.out} (status: {application.get('status')}, accepted "
+        "import-preview candidates: "
+        f"{counts.get('accepted_import_preview_candidate_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_accepted_import_preview(
+    args: argparse.Namespace,
+) -> int:
+    preview = write_fold_augmented_family_panel_accepted_import_preview(
+        expert_import_decision_application_path=Path(
+            args.expert_import_decision_application
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = preview.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel accepted import preview to "
+        f"{args.out} (status: {preview.get('status')}, preview rows: "
+        f"{counts.get('preview_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_label_factory_gate_readiness(
+    args: argparse.Namespace,
+) -> int:
+    readiness = write_fold_augmented_family_panel_label_factory_gate_readiness(
+        accepted_import_preview_path=Path(args.accepted_import_preview),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = readiness.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel label-factory gate readiness to "
+        f"{args.out} (status: {readiness.get('status')}, gate input rows: "
+        f"{counts.get('label_factory_gate_input_rows')})"
+    )
+    return 0
+
+
+def cmd_build_active_lever_reviewer_decision_queue(args: argparse.Namespace) -> int:
+    queue = write_active_lever_reviewer_decision_queue(
+        p10746_decision_packet_path=Path(args.p10746_decision_packet)
+        if args.p10746_decision_packet
+        else None,
+        lever2_locator_rewrite_approval_packet_path=Path(
+            args.lever2_locator_rewrite_approval_packet
+        )
+        if args.lever2_locator_rewrite_approval_packet
+        else None,
+        family_panel_expert_import_decision_packet_path=Path(
+            args.family_panel_expert_import_decision_packet
+        )
+        if args.family_panel_expert_import_decision_packet
+        else None,
+        family_panel_expert_import_decision_application_path=Path(
+            args.family_panel_expert_import_decision_application
+        )
+        if args.family_panel_expert_import_decision_application
+        else None,
+        family_panel_accepted_import_preview_path=Path(
+            args.family_panel_accepted_import_preview
+        )
+        if args.family_panel_accepted_import_preview
+        else None,
+        family_panel_label_factory_gate_readiness_path=Path(
+            args.family_panel_label_factory_gate_readiness
+        )
+        if args.family_panel_label_factory_gate_readiness
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote active lever reviewer decision queue to "
+        f"{args.out} (status: {queue.get('status')}, decision items: "
+        f"{counts.get('decision_items')})"
     )
     return 0
 
@@ -28118,6 +28239,210 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_import_blockers.set_defaults(
         func=cmd_build_fold_augmented_family_panel_import_preview_blocker_gate
+    )
+
+    family_panel_expert_import_packet = subparsers.add_parser(
+        "build-fold-augmented-family-panel-expert-import-decision-packet",
+        help=(
+            "stage explicit expert import decisions for review-only family-panel "
+            "rows without creating imports or countable labels"
+        ),
+    )
+    family_panel_expert_import_packet.add_argument(
+        "--import-preview-blocker-gate",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_import_preview_"
+            "blocker_gate_current702_20260602.json"
+        ),
+    )
+    family_panel_expert_import_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    family_panel_expert_import_packet.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_expert_import_decision_packet_"
+            "current702_20260603.md"
+        ),
+    )
+    family_panel_expert_import_packet.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_expert_import_decision_packet
+    )
+
+    family_panel_expert_import_application = subparsers.add_parser(
+        "apply-fold-augmented-family-panel-expert-import-decision",
+        help=(
+            "verify expert import decisions and expose accepted family-panel "
+            "rows for a separate import-preview gate"
+        ),
+    )
+    family_panel_expert_import_application.add_argument(
+        "--expert-import-decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    family_panel_expert_import_application.add_argument(
+        "--expert-decisions",
+        default=None,
+        help=(
+            "optional reviewed expert decision artifact; defaults to the "
+            "decision packet itself"
+        ),
+    )
+    family_panel_expert_import_application.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_application_current702_20260603.json"
+        ),
+    )
+    family_panel_expert_import_application.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_expert_import_decision_"
+            "application_current702_20260603.md"
+        ),
+    )
+    family_panel_expert_import_application.set_defaults(
+        func=cmd_apply_fold_augmented_family_panel_expert_import_decision
+    )
+
+    family_panel_accepted_import_preview = subparsers.add_parser(
+        "build-fold-augmented-family-panel-accepted-import-preview",
+        help=(
+            "stage accepted family-panel expert import decisions as a "
+            "review-only import preview without running label-factory gates"
+        ),
+    )
+    family_panel_accepted_import_preview.add_argument(
+        "--expert-import-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_application_current702_20260603.json"
+        ),
+    )
+    family_panel_accepted_import_preview.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_accepted_import_"
+            "preview_current702_20260603.json"
+        ),
+    )
+    family_panel_accepted_import_preview.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_accepted_import_preview_"
+            "current702_20260603.md"
+        ),
+    )
+    family_panel_accepted_import_preview.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_accepted_import_preview
+    )
+
+    family_panel_label_factory_readiness = subparsers.add_parser(
+        "build-fold-augmented-family-panel-label-factory-gate-readiness",
+        help=(
+            "stage accepted family-panel import-preview rows as review-only "
+            "label-factory gate inputs without running the gate"
+        ),
+    )
+    family_panel_label_factory_readiness.add_argument(
+        "--accepted-import-preview",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_accepted_import_"
+            "preview_current702_20260603.json"
+        ),
+    )
+    family_panel_label_factory_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_label_factory_gate_"
+            "readiness_current702_20260603.json"
+        ),
+    )
+    family_panel_label_factory_readiness.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_label_factory_gate_readiness_"
+            "current702_20260603.md"
+        ),
+    )
+    family_panel_label_factory_readiness.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_label_factory_gate_readiness
+    )
+
+    active_lever_reviewer_queue = subparsers.add_parser(
+        "build-active-lever-reviewer-decision-queue",
+        help=(
+            "compose active Lever 2/3/4 review decision packets into one "
+            "fail-closed reviewer queue"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--p10746-decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--lever2-locator-rewrite-approval-packet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_approval_packet_current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--family-panel-expert-import-decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_packet_current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--family-panel-expert-import-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_expert_import_"
+            "decision_application_current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--family-panel-accepted-import-preview",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_accepted_import_"
+            "preview_current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--family-panel-label-factory-gate-readiness",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_label_factory_gate_"
+            "readiness_current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_active_lever_reviewer_decision_queue_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_reviewer_queue.add_argument(
+        "--report",
+        default=(
+            "work/active_lever_reviewer_decision_queue_current702_"
+            "20260603.md"
+        ),
+    )
+    active_lever_reviewer_queue.set_defaults(
+        func=cmd_build_active_lever_reviewer_decision_queue
     )
 
     family_panel_source_queue = subparsers.add_parser(

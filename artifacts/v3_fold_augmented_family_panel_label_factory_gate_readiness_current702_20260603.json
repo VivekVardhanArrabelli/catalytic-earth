@@ -1,0 +1,50 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_label_factory_gate_readiness_current702_20260603",
+  "blockers": [
+    "accepted_import_preview_not_ready",
+    "label_factory_gate_input_rows_missing"
+  ],
+  "counts": {
+    "accepted_import_preview_rows": 0,
+    "blockers": 2,
+    "countable_label_candidate_count": 0,
+    "gate_input_rows_by_panel": {},
+    "label_factory_gate_input_rows": 0,
+    "panels_represented": 0
+  },
+  "created_utc": "2026-06-03T08:29:16Z",
+  "decision": {
+    "accepted_import_preview_ready": false,
+    "label_factory_gate_inputs_ready": false,
+    "label_factory_gate_run": false,
+    "new_countable_labels_authorized": false,
+    "next_gate": "Complete the expert import decisions and accepted import preview first; no family-panel label-factory gate can run from the current zero-row input."
+  },
+  "guardrails": {
+    "family_panel_rows_countable_now": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "label_factory_gate_run": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "0 family-panel rows are ready as review-only label-factory gate inputs.",
+    "next_action": "After expert accept decisions are recorded, rebuild the accepted import preview and this readiness artifact, then run the label-factory gate only on the emitted gate-input rows.",
+    "result": "The readiness artifact keeps the import-preview path closed until accepted rows exist and still leaves countability to a separate label-factory gate result."
+  },
+  "label_factory_gate_input_rows": [],
+  "schema_version": "northstar_next_levers.v0.family_panel_label_factory_gate_readiness",
+  "scope": "Fail-closed readiness artifact for the Lever 4 family-panel label-factory gate. It consumes only the accepted import-preview rows and prepares review-only gate inputs; it does not run the label-factory gate, edit imports, or make rows countable.",
+  "source_artifacts": {
+    "accepted_import_preview": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_accepted_import_preview_current702_20260603.json",
+      "sha256": "bdf12de71ba4915c44b853c7f32f5de09b55b4cb7f463c803de21bad9b5a7307"
+    }
+  },
+  "status": "family_panel_label_factory_gate_readiness_blocked"
+}

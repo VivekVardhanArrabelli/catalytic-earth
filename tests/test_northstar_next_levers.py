@@ -8,6 +8,7 @@ from pathlib import Path
 
 from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
+    build_active_lever_reviewer_decision_queue,
     build_family_panel_evidence_packet,
     build_family_panel_high_value_glycyl_radical_readiness_packet,
     build_fold_augmented_abstention_gate,
@@ -19,6 +20,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_fixed_threshold_combined_rerun_calibration_impact,
     build_fold_augmented_fixed_threshold_combined_rerun_readout,
     build_fold_augmented_fixed_threshold_rerun_readiness,
+    build_fold_augmented_family_panel_accepted_import_preview,
+    build_fold_augmented_family_panel_expert_import_decision_application,
+    build_fold_augmented_family_panel_expert_import_decision_packet,
+    build_fold_augmented_family_panel_label_factory_gate_readiness,
     build_fold_augmented_family_panel_m_csa_primary_channel_repair,
     build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     build_fold_augmented_family_panel_missing_primary_channel_queue,
@@ -12713,6 +12718,530 @@ class NorthstarNextLeversTests(unittest.TestCase):
             audit["panel"]["candidate_family"],
             "lipoamide_or_sulfur_transfer_redox_boundary",
         )
+
+    def test_family_panel_expert_import_decision_packet_stages_fail_closed_stubs(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            blocker_gate = root / "import_blockers.json"
+            blocker_gate.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "family_panel_import_preview_blocker_gate_ready_blocked"
+                        ),
+                        "row_blockers": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": (
+                                    "glycyl_radical_or_thiamine_radical_lyase_boundary"
+                                ),
+                                "research_gate_status": (
+                                    "abstained_at_research_threshold"
+                                ),
+                                "primary_blocker_class": (
+                                    "expert_family_admission_decision_required"
+                                ),
+                                "source_check_completion_status": None,
+                                "source_check_family_promotion_ready": None,
+                                "locator_resolution_status": None,
+                                "locator_decision_class": None,
+                                "required_actions_before_import_preview": [
+                                    "expert_import_decision_required",
+                                    "label_factory_gate_required_after_import_preview",
+                                ],
+                                "gate_blockers": [
+                                    "countable_import_preview_missing",
+                                    "label_factory_gate_not_run_for_family_panel_row",
+                                    "review_packet_not_expert_import_decision",
+                                ],
+                            },
+                            {
+                                "entry_id": "mh_064",
+                                "panel_id": (
+                                    "no_reliable_structure_metal_hydrolase_controls"
+                                ),
+                                "research_gate_status": (
+                                    "not_score_complete_for_primary_channel"
+                                ),
+                                "primary_blocker_class": (
+                                    "source_free_locator_or_primary_channel_missing"
+                                ),
+                                "source_check_completion_status": None,
+                                "source_check_family_promotion_ready": None,
+                                "locator_resolution_status": (
+                                    "blocked_pending_fetch_policy_no_local_alternates_cached"
+                                ),
+                                "locator_decision_class": (
+                                    "alternate_coordinate_fetch_approval_required"
+                                ),
+                                "required_actions_before_import_preview": [
+                                    "expert_import_decision_required",
+                                    "label_factory_gate_required_after_import_preview",
+                                    "materialize_primary_channel_score",
+                                    "resolve_source_free_locator_or_coordinate_policy",
+                                ],
+                                "gate_blockers": [
+                                    "primary_channel_score_missing",
+                                    (
+                                        "source_free_locator_human_or_policy_"
+                                        "decision_required"
+                                    ),
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_family_panel_expert_import_decision_packet(
+                import_preview_blocker_gate_path=blocker_gate,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "family_panel_expert_import_decision_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["decision_stub_rows"], 2)
+        self.assertEqual(
+            packet["counts"]["import_preview_candidate_if_accepted_rows"], 1
+        )
+        self.assertEqual(
+            packet["counts"]["locator_or_primary_channel_blocked_rows"], 1
+        )
+        self.assertIn("expert_import_decisions_not_recorded", packet["blockers"])
+        self.assertIn(
+            "locator_or_primary_channel_blockers_remain", packet["blockers"]
+        )
+        by_entry = {
+            row["entry_id"]: row
+            for row in packet["expert_import_decision_stubs"]
+        }
+        self.assertTrue(
+            by_entry["m_csa:30"]["import_preview_candidate_if_accepted_now"]
+        )
+        self.assertFalse(
+            by_entry["mh_064"]["import_preview_candidate_if_accepted_now"]
+        )
+        self.assertEqual(
+            len(by_entry["m_csa:30"]["decision_context_sha256"]), 64
+        )
+        self.assertFalse(packet["decision"]["import_preview_can_run_now"])
+        self.assertFalse(packet["guardrails"]["imports_or_promotions_performed"])
+        self.assertFalse(packet["guardrails"]["labels_registries_ontologies_changed"])
+
+    def test_family_panel_expert_import_decision_application_verifies_hashes(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            packet_path = root / "packet.json"
+            decisions_path = root / "decisions.json"
+            packet = {
+                "expert_import_decision_stubs": [
+                    {
+                        "entry_id": "m_csa:30",
+                        "panel_id": (
+                            "glycyl_radical_or_thiamine_radical_lyase_boundary"
+                        ),
+                        "decision_context_sha256": "a" * 64,
+                        "primary_blocker_class": (
+                            "expert_family_admission_decision_required"
+                        ),
+                        "import_preview_candidate_if_accepted_now": True,
+                        "required_actions_before_import_preview": [
+                            "expert_import_decision_required",
+                            "label_factory_gate_required_after_import_preview",
+                        ],
+                    },
+                    {
+                        "entry_id": "mh_064",
+                        "panel_id": (
+                            "no_reliable_structure_metal_hydrolase_controls"
+                        ),
+                        "decision_context_sha256": "b" * 64,
+                        "primary_blocker_class": (
+                            "source_free_locator_or_primary_channel_missing"
+                        ),
+                        "import_preview_candidate_if_accepted_now": False,
+                        "required_actions_before_import_preview": [
+                            "materialize_primary_channel_score",
+                            "resolve_source_free_locator_or_coordinate_policy",
+                        ],
+                    },
+                ]
+            }
+            decisions = {
+                "decisions": [
+                    {
+                        "entry_id": "m_csa:30",
+                        "decision": (
+                            "explicit_accept_family_panel_import_candidate"
+                        ),
+                        "decision_context_sha256": "a" * 64,
+                    },
+                    {
+                        "entry_id": "mh_064",
+                        "decision": (
+                            "explicit_accept_family_panel_import_candidate"
+                        ),
+                        "decision_context_sha256": "b" * 64,
+                    },
+                ]
+            }
+            packet_path.write_text(json.dumps(packet), encoding="utf-8")
+            decisions_path.write_text(json.dumps(decisions), encoding="utf-8")
+
+            application = (
+                build_fold_augmented_family_panel_expert_import_decision_application(
+                    expert_import_decision_packet_path=packet_path,
+                    expert_decisions_path=decisions_path,
+                )
+            )
+
+        self.assertEqual(
+            application["status"],
+            (
+                "family_panel_expert_import_decision_application_ready_for_"
+                "import_preview_review_only"
+            ),
+        )
+        self.assertEqual(
+            application["counts"]["accepted_import_preview_candidate_rows"], 1
+        )
+        self.assertEqual(
+            application["counts"]["accepted_but_still_blocked_rows"], 1
+        )
+        self.assertEqual(application["counts"]["pending_decision_rows"], 0)
+        self.assertEqual(application["counts"]["critical_violation_total"], 0)
+        self.assertTrue(application["decision"]["import_preview_can_run_now"])
+        by_entry = {
+            row["entry_id"]: row for row in application["row_decisions"]
+        }
+        self.assertTrue(
+            by_entry["m_csa:30"]["accepted_import_preview_candidate"]
+        )
+        self.assertTrue(by_entry["mh_064"]["accepted_but_still_blocked"])
+        self.assertIn(
+            "accepted_rows_still_have_source_or_promotion_blockers",
+            application["blockers"],
+        )
+        self.assertFalse(application["guardrails"]["imports_or_promotions_performed"])
+
+    def test_family_panel_accepted_import_preview_uses_only_accepted_ready_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            application_path = root / "application.json"
+            application_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "family_panel_expert_import_decision_application_"
+                            "ready_for_import_preview_review_only"
+                        ),
+                        "decision": {"import_preview_can_run_now": True},
+                        "row_decisions": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": (
+                                    "glycyl_radical_or_thiamine_radical_"
+                                    "lyase_boundary"
+                                ),
+                                "decision": (
+                                    "explicit_accept_family_panel_import_"
+                                    "candidate"
+                                ),
+                                "decision_context_sha256": "a" * 64,
+                                "primary_blocker_class": (
+                                    "expert_family_admission_decision_required"
+                                ),
+                                "accepted_import_preview_candidate": True,
+                                "accepted_but_still_blocked": False,
+                                "remaining_actions_before_import_preview": [],
+                                "critical_violations": [],
+                            },
+                            {
+                                "entry_id": "mh_064",
+                                "panel_id": (
+                                    "no_reliable_structure_metal_"
+                                    "hydrolase_controls"
+                                ),
+                                "decision": (
+                                    "explicit_accept_family_panel_import_"
+                                    "candidate"
+                                ),
+                                "decision_context_sha256": "b" * 64,
+                                "primary_blocker_class": (
+                                    "source_free_locator_or_primary_channel_"
+                                    "missing"
+                                ),
+                                "accepted_import_preview_candidate": False,
+                                "accepted_but_still_blocked": True,
+                                "remaining_actions_before_import_preview": [
+                                    "materialize_primary_channel_score"
+                                ],
+                                "critical_violations": [],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preview = build_fold_augmented_family_panel_accepted_import_preview(
+                expert_import_decision_application_path=application_path,
+            )
+
+        self.assertEqual(
+            preview["status"],
+            "family_panel_accepted_import_preview_ready_review_only",
+        )
+        self.assertEqual(preview["counts"]["preview_rows"], 1)
+        self.assertEqual(
+            preview["counts"]["label_factory_gate_candidate_rows"], 1
+        )
+        self.assertEqual(preview["counts"]["countable_label_candidate_count"], 0)
+        self.assertIn("label_factory_gate_not_run", preview["blockers"])
+        self.assertTrue(
+            preview["decision"]["label_factory_gate_can_run_after_preview_review"]
+        )
+        self.assertFalse(preview["decision"]["new_countable_labels_authorized"])
+        preview_rows = preview["accepted_import_preview_rows"]
+        self.assertEqual([row["entry_id"] for row in preview_rows], ["m_csa:30"])
+        self.assertEqual(
+            preview_rows[0]["benchmark_role"],
+            "review_only_family_panel_import_preview_candidate",
+        )
+        self.assertTrue(
+            preview["guardrails"]["import_preview_artifact_written"]
+        )
+        self.assertFalse(preview["guardrails"]["imports_or_promotions_performed"])
+        self.assertFalse(
+            preview["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_family_panel_label_factory_readiness_stages_preview_rows_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preview_path = root / "preview.json"
+            preview_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "family_panel_accepted_import_preview_"
+                            "ready_review_only"
+                        ),
+                        "decision": {
+                            "label_factory_gate_can_run_after_preview_review": True
+                        },
+                        "accepted_import_preview_rows": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": (
+                                    "glycyl_radical_or_thiamine_radical_"
+                                    "lyase_boundary"
+                                ),
+                                "candidate_family_id": (
+                                    "glycyl_radical_or_thiamine_radical_"
+                                    "lyase_boundary"
+                                ),
+                                "split_assignment": (
+                                    "review_only_family_panel"
+                                ),
+                                "benchmark_role": (
+                                    "review_only_family_panel_import_preview_"
+                                    "candidate"
+                                ),
+                                "decision_context_sha256": "a" * 64,
+                                "import_preview_row_status": (
+                                    "accepted_expert_import_decision_"
+                                    "review_only"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readiness = (
+                build_fold_augmented_family_panel_label_factory_gate_readiness(
+                    accepted_import_preview_path=preview_path,
+                )
+            )
+
+        self.assertEqual(
+            readiness["status"],
+            "family_panel_label_factory_gate_readiness_ready_review_only",
+        )
+        self.assertEqual(
+            readiness["counts"]["label_factory_gate_input_rows"], 1
+        )
+        self.assertEqual(
+            readiness["counts"]["countable_label_candidate_count"], 0
+        )
+        self.assertIn("label_factory_gate_not_run", readiness["blockers"])
+        self.assertTrue(
+            readiness["decision"]["label_factory_gate_inputs_ready"]
+        )
+        self.assertFalse(readiness["decision"]["new_countable_labels_authorized"])
+        rows = readiness["label_factory_gate_input_rows"]
+        self.assertEqual([row["entry_id"] for row in rows], ["m_csa:30"])
+        self.assertEqual(
+            rows[0]["label_factory_gate_input_status"],
+            "ready_for_label_factory_gate_review_only",
+        )
+        self.assertFalse(readiness["guardrails"]["label_factory_gate_run"])
+        self.assertFalse(readiness["guardrails"]["imports_or_promotions_performed"])
+        self.assertFalse(
+            readiness["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_active_lever_reviewer_decision_queue_composes_active_packets(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            p10746 = root / "p10746.json"
+            lever2 = root / "lever2.json"
+            lever4 = root / "lever4.json"
+            app = root / "app.json"
+            preview = root / "preview.json"
+            readiness = root / "readiness.json"
+            p10746.write_text(
+                json.dumps(
+                    {
+                        "decision_stubs": [
+                            {
+                                "entry_id": "m_csa:204",
+                                "review_status": "pending_explicit_decision",
+                                "allowed_decisions": [
+                                    "explicit_accept_p10746_fold_only_deployment_caveat"
+                                ],
+                                "decision_context_sha256": "c" * 64,
+                                "decision_effect_if_accepted": "accept caveat",
+                                "decision_effect_if_rejected": "stay blocked",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            lever2.write_text(
+                json.dumps(
+                    {
+                        "locator_rewrite_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "reviewer_decision": "pending_reviewer_decision",
+                                "accepted_approval_decision_value": (
+                                    "explicit_approve_locator_rewrite"
+                                ),
+                                "accepted_rejection_decision_value": (
+                                    "reject_locator_rewrite"
+                                ),
+                                "candidate_sha256": "a" * 64,
+                                "planned_locator_payload_sha256": "b" * 64,
+                                "coordinate_contact_warning_count": 0,
+                                "materialization_gate_input_ready_if_approved": True,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            lever4.write_text(
+                json.dumps(
+                    {
+                        "expert_import_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": (
+                                    "glycyl_radical_or_thiamine_radical_lyase_boundary"
+                                ),
+                                "review_status": (
+                                    "pending_expert_import_decision"
+                                ),
+                                "allowed_decisions": [
+                                    "explicit_accept_family_panel_import_candidate"
+                                ],
+                                "decision_context_sha256": "d" * 64,
+                                "decision_effect_if_accepted": "preview",
+                                "decision_effect_if_rejected": "review-only",
+                                "import_preview_candidate_if_accepted_now": True,
+                                "primary_blocker_class": (
+                                    "expert_family_admission_decision_required"
+                                ),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            app.write_text(json.dumps({"status": "blocked"}), encoding="utf-8")
+            preview.write_text(
+                json.dumps(
+                    {
+                        "accepted_import_preview_rows": [
+                            {"entry_id": "m_csa:30", "panel_id": "panel_a"}
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "decision": {"label_factory_gate_inputs_ready": True},
+                        "label_factory_gate_input_rows": [
+                            {"entry_id": "m_csa:30", "panel_id": "panel_a"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            queue = build_active_lever_reviewer_decision_queue(
+                p10746_decision_packet_path=p10746,
+                lever2_locator_rewrite_approval_packet_path=lever2,
+                family_panel_expert_import_decision_packet_path=lever4,
+                family_panel_expert_import_decision_application_path=app,
+                family_panel_accepted_import_preview_path=preview,
+                family_panel_label_factory_gate_readiness_path=readiness,
+            )
+
+        self.assertEqual(
+            queue["status"],
+            "active_lever_reviewer_decision_queue_ready_review_only",
+        )
+        self.assertEqual(queue["counts"]["decision_items"], 3)
+        self.assertEqual(
+            queue["counts"]["lever_counts"],
+            {"Lever 2": 1, "Lever 3": 1, "Lever 4": 1},
+        )
+        self.assertEqual(
+            queue["counts"]["lever4_import_preview_candidate_if_accepted_items"],
+            1,
+        )
+        self.assertEqual(queue["counts"]["lever4_accepted_import_preview_rows"], 1)
+        self.assertEqual(queue["counts"]["lever4_label_factory_gate_input_rows"], 1)
+        self.assertEqual(queue["counts"]["lever2_clean_locator_rewrite_items"], 1)
+        self.assertEqual(queue["counts"]["automation_action_allowed_now_items"], 0)
+        self.assertTrue(
+            queue["decision"]["lever4_label_factory_gate_inputs_ready"]
+        )
+        self.assertEqual(
+            [row["lever"] for row in queue["decision_queue"]],
+            ["Lever 3", "Lever 4", "Lever 2"],
+        )
+        self.assertFalse(queue["decision"]["apply_decisions_now"])
+        self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
 
     def test_selected_organic_cofactor_sidecar_schema_audit_passes_complete_grid(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

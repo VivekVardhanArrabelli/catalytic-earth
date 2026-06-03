@@ -50,6 +50,115 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 8
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T08:02:57Z`
+- STARTED_LOCAL: `2026-06-03T03:02:57-0500 CDT`
+- ENDED_AT: `2026-06-03T08:35:44Z`
+- ENDED_LOCAL: `2026-06-03T03:35:44-0500 CDT`
+- ELAPSED_MINUTES: `32.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "70441", "started_at": "2026-06-03T08:02:57Z", "started_local": "2026-06-03T03:02:57-0500 CDT", "status": "acquired"}`
+
+#### Current intent
+
+Use the active handoff as primary truth, continue inside Levers 2/3/4 from
+current `main`, and make the highest-value deployable forward move without
+editing labels, registries, ontologies, imports, production thresholds, or any
+heldout-tuned surfaces.
+
+#### What changed
+
+- Lever 4: treated the prior P10746 caveat as an explicit policy blocker and
+  pivoted to family-panel countability intake without editing labels,
+  registries, ontologies, imports, thresholds, model weights, or heldout-tuned
+  surfaces.
+- Added
+  `v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603`
+  and report. It converts the family-panel import-preview blocker gate into 22
+  hash-stabilized expert decision stubs across 7 panels. Current state: 6 rows
+  could become import-preview candidates if accepted, 11 need family-promotion
+  override before import preview, 5 remain locator/primary-channel blocked, and
+  all 22 expert decisions are still pending.
+- Added
+  `v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603`
+  and report. It fail-closes the expert decisions by verifying row-context
+  hashes and exposing only accepted rows with no remaining pre-preview
+  blockers. Current state remains blocked: 22 pending rows, 0 accepted
+  import-preview candidates, 0 critical violations.
+- Added
+  `v3_fold_augmented_family_panel_accepted_import_preview_current702_20260603`
+  and report. It is the accepted-only review import preview for future
+  decisions. Current state remains blocked: 0 accepted preview rows and 0
+  label-factory candidate rows.
+- Added
+  `v3_fold_augmented_family_panel_label_factory_gate_readiness_current702_20260603`
+  and report. It consumes only accepted import-preview rows and prepares
+  review-only label-factory gate inputs. Current state remains blocked: 0
+  gate-input rows and no countable label candidates.
+- Added
+  `v3_active_lever_reviewer_decision_queue_current702_20260603` and report. It
+  consolidates 78 active Lever 2/3/4 reviewer decisions: 1 Lever 3 P10746
+  policy caveat, 22 Lever 4 expert import decisions, and 55 Lever 2 source-free
+  locator rewrite approvals. It also reports 0 accepted Lever 4 import-preview
+  rows and 0 label-factory gate-input rows. The queue applies no decisions
+  automatically.
+- Updated CLI commands, focused unit tests, artifact-regression tests, and the
+  current702 command-registration test. Stopped before the 55-minute target
+  because the safe mechanical Lever 4 path is now staged through the next
+  label-factory readiness gate and all remaining progress requires explicit
+  reviewer/policy decisions.
+
+#### Tests run
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'family_panel_label_factory_readiness or family_panel_accepted_import_preview or family_panel_expert_import_decision or active_lever_reviewer_decision_queue' -q`
+  passed: 5 tests, 128 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'family_panel_label_factory_gate_readiness or family_panel_accepted_import_preview or family_panel_expert_import_decision or active_lever_reviewer_decision_queue' -q`
+  passed: 5 tests, 166 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`
+  passed: 1 test, 103 subtests.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  passed: 422 tests, 110 subtests.
+- `PYTHONPATH=src python -m pytest -q` passed: 1293 tests, 129 subtests; 1
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed: 1248 tests; same
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 curated labels.
+- `PYTHONPATH=src python -m compileall -q src` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `python -m json.tool` passed for the five new JSON artifacts.
+- `git diff --check` passed.
+
+#### Exact next action
+
+- First review
+  `artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603.json`
+  and set the single `m_csa:204`/P10746 stub to either
+  `explicit_accept_p10746_fold_only_deployment_caveat` or
+  `reject_p10746_caveat_require_approved_non_residue_sidecar`, leaving
+  `decision_context_sha256` unchanged.
+- In parallel or next, review
+  `artifacts/v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.json`.
+  For the six priority Lever 4 rows (`m_csa:10`, `m_csa:30`, `m_csa:31`,
+  `m_csa:191`, `m_csa:448`, `m_csa:973`), set each stub to
+  `explicit_accept_family_panel_import_candidate`,
+  `reject_family_panel_import_candidate`, or
+  `keep_family_panel_review_only_require_more_evidence` with
+  `decision_context_sha256` unchanged.
+- After decisions are recorded, rerun
+  `apply-fold-augmented-family-panel-expert-import-decision`,
+  `build-fold-augmented-family-panel-accepted-import-preview`,
+  `build-fold-augmented-family-panel-label-factory-gate-readiness`, and
+  `build-active-lever-reviewer-decision-queue`. Do not run or claim a
+  label-factory countability gate until accepted preview rows exist and the
+  readiness artifact emits nonzero gate-input rows.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 7
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

@@ -168,6 +168,21 @@ FOLD_AUGMENTED_FAMILY_PANEL_COUNTABILITY_GATE_PREFLIGHT_ID = (
 FOLD_AUGMENTED_FAMILY_PANEL_IMPORT_PREVIEW_BLOCKER_GATE_ID = (
     "v3_fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602"
 )
+FOLD_AUGMENTED_FAMILY_PANEL_EXPERT_IMPORT_DECISION_PACKET_ID = (
+    "v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_EXPERT_IMPORT_DECISION_APPLICATION_ID = (
+    "v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_ACCEPTED_IMPORT_PREVIEW_ID = (
+    "v3_fold_augmented_family_panel_accepted_import_preview_current702_20260603"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_LABEL_FACTORY_GATE_READINESS_ID = (
+    "v3_fold_augmented_family_panel_label_factory_gate_readiness_current702_20260603"
+)
+ACTIVE_LEVER_REVIEWER_DECISION_QUEUE_ID = (
+    "v3_active_lever_reviewer_decision_queue_current702_20260603"
+)
 FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_QUEUE_ID = (
     "v3_fold_augmented_family_panel_source_check_queue_current702_20260601"
 )
@@ -23909,6 +23924,1589 @@ def write_fold_augmented_family_panel_import_preview_blocker_gate(
             encoding="utf-8",
         )
     return audit
+
+
+def _family_panel_expert_decision_context_hash(row: dict[str, Any]) -> str:
+    payload = {
+        "entry_id": row.get("entry_id"),
+        "panel_id": row.get("panel_id"),
+        "primary_blocker_class": row.get("primary_blocker_class"),
+        "research_gate_status": row.get("research_gate_status"),
+        "source_check_completion_status": row.get(
+            "source_check_completion_status"
+        ),
+        "source_check_family_promotion_ready": row.get(
+            "source_check_family_promotion_ready"
+        ),
+        "locator_resolution_status": row.get("locator_resolution_status"),
+        "locator_decision_class": row.get("locator_decision_class"),
+        "required_actions_before_import_preview": row.get(
+            "required_actions_before_import_preview"
+        )
+        or [],
+        "gate_blockers": row.get("gate_blockers") or [],
+    }
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode(
+            "utf-8"
+        )
+    ).hexdigest()
+
+
+def _family_panel_expert_decision_acceptance_effect(row: dict[str, Any]) -> str:
+    primary = row.get("primary_blocker_class")
+    if primary == "expert_family_admission_decision_required":
+        return (
+            "Allows this review row to enter a separate import-preview artifact "
+            "after the decision context hash is verified; it still creates no "
+            "label and requires the label-factory gate."
+        )
+    if primary == "completed_source_check_review_only_no_promotion":
+        return (
+            "Does not make the row import-preview ready by itself; an explicit "
+            "family-promotion override is still required because the completed "
+            "source check is review-only/no-promotion."
+        )
+    if primary == "source_free_locator_or_primary_channel_missing":
+        return (
+            "Does not make the row import-preview ready by itself; source-free "
+            "locator/coordinate policy and primary-channel scoring blockers "
+            "must clear first."
+        )
+    return "Keeps the row fail-closed unless a later gate recognizes the decision."
+
+
+def build_fold_augmented_family_panel_expert_import_decision_packet(
+    *,
+    import_preview_blocker_gate_path: Path,
+) -> dict[str, Any]:
+    gate = _read_json(import_preview_blocker_gate_path)
+    blocker_rows = [
+        row
+        for row in gate.get("row_blockers", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    decision_stubs: list[dict[str, Any]] = []
+    for row in blocker_rows:
+        primary = str(row.get("primary_blocker_class") or "")
+        import_preview_candidate_if_accepted = (
+            primary == "expert_family_admission_decision_required"
+        )
+        decision_stubs.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "panel_id": row.get("panel_id"),
+                "review_status": "pending_expert_import_decision",
+                "default_decision": "pending_review",
+                "allowed_decisions": [
+                    "explicit_accept_family_panel_import_candidate",
+                    "reject_family_panel_import_candidate",
+                    "keep_family_panel_review_only_require_more_evidence",
+                ],
+                "decision_context_sha256": (
+                    _family_panel_expert_decision_context_hash(row)
+                ),
+                "primary_blocker_class": primary,
+                "research_gate_status": row.get("research_gate_status"),
+                "source_check_completion_status": row.get(
+                    "source_check_completion_status"
+                ),
+                "source_check_family_promotion_ready": row.get(
+                    "source_check_family_promotion_ready"
+                ),
+                "locator_decision_class": row.get("locator_decision_class"),
+                "locator_resolution_status": row.get(
+                    "locator_resolution_status"
+                ),
+                "gate_blockers": row.get("gate_blockers") or [],
+                "required_actions_before_import_preview": row.get(
+                    "required_actions_before_import_preview"
+                )
+                or [],
+                "import_preview_candidate_if_accepted_now": (
+                    import_preview_candidate_if_accepted
+                ),
+                "decision_effect_if_accepted": (
+                    _family_panel_expert_decision_acceptance_effect(row)
+                ),
+                "decision_effect_if_rejected": (
+                    "Keeps this family-panel row review-only and outside "
+                    "import preview, label-factory, registry, training, and "
+                    "threshold use."
+                ),
+            }
+        )
+
+    primary_counter = Counter(
+        str(row.get("primary_blocker_class") or "") for row in blocker_rows
+    )
+    panel_counter = Counter(str(row.get("panel_id") or "") for row in blocker_rows)
+    import_preview_candidate_rows = [
+        row
+        for row in decision_stubs
+        if row["import_preview_candidate_if_accepted_now"]
+    ]
+    completed_source_check_no_promotion_rows = [
+        row
+        for row in decision_stubs
+        if row["primary_blocker_class"]
+        == "completed_source_check_review_only_no_promotion"
+    ]
+    locator_or_primary_blocked_rows = [
+        row
+        for row in decision_stubs
+        if row["primary_blocker_class"]
+        == "source_free_locator_or_primary_channel_missing"
+    ]
+    blockers: list[str] = []
+    if not decision_stubs:
+        blockers.append("family_panel_import_blocker_rows_missing")
+    blockers.append("expert_import_decisions_not_recorded")
+    if completed_source_check_no_promotion_rows:
+        blockers.append("family_promotion_override_decisions_missing")
+    if locator_or_primary_blocked_rows:
+        blockers.append("locator_or_primary_channel_blockers_remain")
+
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_FAMILY_PANEL_EXPERT_IMPORT_DECISION_PACKET_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_expert_import_decision_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "family_panel_expert_import_decision_packet_ready_review_only"
+            if decision_stubs
+            else "family_panel_expert_import_decision_packet_blocked_no_rows"
+        ),
+        "scope": (
+            "Review-only expert-decision intake packet for Lever 4 family-panel "
+            "rows blocked before import preview. It stages explicit accept/"
+            "reject/keep-review-only decisions with row-context hashes; it "
+            "does not write an import preview, run the label-factory gate, "
+            "edit labels, change registries, or make any row countable."
+        ),
+        "decision_schema": {
+            "decision_container_keys_accepted_by_future_gate": [
+                "expert_import_decision_stubs",
+                "expert_import_decisions",
+                "decisions",
+            ],
+            "accepted_import_decision_value": (
+                "explicit_accept_family_panel_import_candidate"
+            ),
+            "rejection_decision_value": "reject_family_panel_import_candidate",
+            "review_only_decision_value": (
+                "keep_family_panel_review_only_require_more_evidence"
+            ),
+            "required_hash_field": "decision_context_sha256",
+        },
+        "expert_import_decision_stubs": sorted(
+            decision_stubs,
+            key=lambda row: (
+                str(row["panel_id"]),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+            "family_panel_rows_countable_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "counts": {
+            "decision_stub_rows": len(decision_stubs),
+            "panels_represented": len(panel_counter),
+            "pending_expert_import_decisions": len(decision_stubs),
+            "accepted_decision_records": 0,
+            "rejected_decision_records": 0,
+            "import_preview_candidate_if_accepted_rows": len(
+                import_preview_candidate_rows
+            ),
+            "family_promotion_override_needed_rows": len(
+                completed_source_check_no_promotion_rows
+            ),
+            "locator_or_primary_channel_blocked_rows": len(
+                locator_or_primary_blocked_rows
+            ),
+            "primary_blocker_class_counts": dict(
+                sorted(primary_counter.items())
+            ),
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "expert_import_packet_ready_for_review": bool(decision_stubs),
+            "explicit_expert_import_decisions_recorded": False,
+            "import_preview_can_run_now": False,
+            "label_factory_gate_ready": False,
+            "new_countable_labels_authorized": False,
+            "next_gate": (
+                "Record explicit expert decisions using the unchanged "
+                "decision_context_sha256 values. Only accepted rows whose "
+                "remaining blockers are import-preview/label-factory gates "
+                "can move to a separate import-preview artifact; rows with "
+                "locator, primary-channel, or family-promotion blockers remain "
+                "review-only until those blockers clear."
+            ),
+        },
+        "source_artifacts": {
+            "import_preview_blocker_gate": _source_path_record(
+                import_preview_blocker_gate_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(import_preview_candidate_rows)}/{len(decision_stubs)} "
+                "family-panel rows could become import-preview candidates after "
+                "explicit expert accept decisions."
+            ),
+            "result": (
+                "The packet makes Lever 4 reviewer decisions countable by a "
+                "future gate while keeping current rows fail-closed: accepted "
+                "decisions alone do not override source-free locator, primary "
+                "channel, family-promotion, import-preview, or label-factory "
+                "requirements."
+            ),
+            "next_action": (
+                "Review the expert import stubs, set accepted/rejected/"
+                "review-only decisions with hashes unchanged, then add or run "
+                "a separate import-preview application gate before any "
+                "label-factory countability action."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_expert_import_decision_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Expert Import Decision Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Decision stubs: {counts['decision_stub_rows']}",
+        f"- Panels represented: {counts['panels_represented']}",
+        "- Import-preview candidates if accepted: "
+        f"{counts['import_preview_candidate_if_accepted_rows']}",
+        "- Family-promotion override needed rows: "
+        f"{counts['family_promotion_override_needed_rows']}",
+        "- Locator/primary-channel blocked rows: "
+        f"{counts['locator_or_primary_channel_blocked_rows']}",
+        f"- Primary blocker classes: {counts['primary_blocker_class_counts']}",
+        f"- Blockers: {packet['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Expert import packet ready for review: "
+        f"{decision['expert_import_packet_ready_for_review']}",
+        "- Explicit expert decisions recorded: "
+        f"{decision['explicit_expert_import_decisions_recorded']}",
+        f"- Import preview can run now: {decision['import_preview_can_run_now']}",
+        f"- Label-factory gate ready: {decision['label_factory_gate_ready']}",
+        "- New countable labels authorized: "
+        f"{decision['new_countable_labels_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Decision Stubs",
+        "",
+        "| row | panel | primary blocker | candidate if accepted | decision context sha |",
+        "| --- | --- | --- | ---: | --- |",
+    ]
+    for row in packet.get("expert_import_decision_stubs", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{row['primary_blocker_class']} | "
+            f"{int(bool(row['import_preview_candidate_if_accepted_now']))} | "
+            f"{str(row['decision_context_sha256'])[:12]} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['headline']}",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_expert_import_decision_packet(
+    *,
+    import_preview_blocker_gate_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_family_panel_expert_import_decision_packet(
+        import_preview_blocker_gate_path=import_preview_blocker_gate_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_expert_import_decision_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def _family_panel_expert_import_decision_records(
+    expert_decisions_path: Path | None,
+) -> list[dict[str, Any]]:
+    if expert_decisions_path is None or not Path(expert_decisions_path).exists():
+        return []
+    payload = _read_json(expert_decisions_path)
+    for key in (
+        "expert_import_decision_stubs",
+        "expert_import_decisions",
+        "decisions",
+    ):
+        rows = payload.get(key)
+        if isinstance(rows, list):
+            return [row for row in rows if isinstance(row, dict)]
+    return []
+
+
+def _family_panel_expert_import_decision_value(row: dict[str, Any]) -> str:
+    return str(
+        row.get("decision")
+        or row.get("expert_decision")
+        or row.get("reviewer_decision")
+        or row.get("default_decision")
+        or ""
+    )
+
+
+def build_fold_augmented_family_panel_expert_import_decision_application(
+    *,
+    expert_import_decision_packet_path: Path,
+    expert_decisions_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = _read_json(expert_import_decision_packet_path)
+    stubs = [
+        row
+        for row in packet.get("expert_import_decision_stubs", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    decisions = _family_panel_expert_import_decision_records(
+        expert_decisions_path or expert_import_decision_packet_path
+    )
+    decisions_by_entry = {
+        str(row.get("entry_id")): row
+        for row in decisions
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    row_decisions: list[dict[str, Any]] = []
+    accepted_ready_rows: list[dict[str, Any]] = []
+    accepted_still_blocked_rows: list[dict[str, Any]] = []
+    rejected_rows: list[dict[str, Any]] = []
+    review_only_rows: list[dict[str, Any]] = []
+    pending_rows: list[dict[str, Any]] = []
+    critical_violation_total = 0
+    accepted_value = "explicit_accept_family_panel_import_candidate"
+    rejected_value = "reject_family_panel_import_candidate"
+    review_only_value = "keep_family_panel_review_only_require_more_evidence"
+
+    for stub in stubs:
+        entry_id = str(stub["entry_id"])
+        decision_record = decisions_by_entry.get(entry_id, {})
+        decision_value = _family_panel_expert_import_decision_value(
+            decision_record or stub
+        )
+        decision_present = decision_value in {
+            accepted_value,
+            rejected_value,
+            review_only_value,
+        }
+        critical_violations: list[str] = []
+        if decision_present:
+            expected_hash = str(stub.get("decision_context_sha256") or "")
+            observed_hash = str(
+                decision_record.get("decision_context_sha256") or ""
+            )
+            if observed_hash != expected_hash:
+                critical_violations.append("decision_context_sha256_mismatch")
+        accepted = decision_value == accepted_value
+        rejected = decision_value == rejected_value
+        keep_review_only = decision_value == review_only_value
+        import_preview_candidate = bool(
+            stub.get("import_preview_candidate_if_accepted_now")
+        )
+        accepted_ready = (
+            accepted and import_preview_candidate and not critical_violations
+        )
+        accepted_still_blocked = (
+            accepted and not import_preview_candidate and not critical_violations
+        )
+        row = {
+            "entry_id": entry_id,
+            "panel_id": stub.get("panel_id"),
+            "decision_present": decision_present,
+            "decision": decision_value if decision_present else "pending_review",
+            "decision_context_sha256": stub.get("decision_context_sha256"),
+            "primary_blocker_class": stub.get("primary_blocker_class"),
+            "import_preview_candidate_if_accepted_now": import_preview_candidate,
+            "accepted_import_preview_candidate": accepted_ready,
+            "accepted_but_still_blocked": accepted_still_blocked,
+            "rejected_or_review_only": rejected or keep_review_only,
+            "remaining_actions_before_import_preview": (
+                []
+                if accepted_ready
+                else stub.get("required_actions_before_import_preview") or []
+            ),
+            "critical_violations": critical_violations,
+        }
+        row_decisions.append(row)
+        critical_violation_total += len(critical_violations)
+        if accepted_ready:
+            accepted_ready_rows.append(row)
+        elif accepted_still_blocked:
+            accepted_still_blocked_rows.append(row)
+        elif rejected:
+            rejected_rows.append(row)
+        elif keep_review_only:
+            review_only_rows.append(row)
+        else:
+            pending_rows.append(row)
+
+    unmatched_decisions = [
+        {
+            "entry_id": str(row.get("entry_id") or ""),
+            "critical_violations": ["decision_entry_not_in_packet"],
+        }
+        for row in decisions
+        if row.get("entry_id") and str(row.get("entry_id")) not in {
+            str(stub.get("entry_id")) for stub in stubs
+        }
+    ]
+    critical_violation_total += len(unmatched_decisions)
+    blockers: list[str] = []
+    if not stubs:
+        blockers.append("expert_import_decision_packet_rows_missing")
+    if critical_violation_total:
+        blockers.append("expert_import_decision_context_violations")
+    if pending_rows:
+        blockers.append("explicit_expert_import_decisions_missing")
+    if accepted_still_blocked_rows:
+        blockers.append("accepted_rows_still_have_source_or_promotion_blockers")
+    if not accepted_ready_rows:
+        blockers.append("accepted_import_preview_candidate_rows_missing")
+
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_FAMILY_PANEL_EXPERT_IMPORT_DECISION_APPLICATION_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_expert_import_decision_application"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "family_panel_expert_import_decision_application_ready_for_import_preview_review_only"
+            if accepted_ready_rows and not critical_violation_total
+            else "family_panel_expert_import_decision_application_blocked"
+        ),
+        "scope": (
+            "Fail-closed application gate for Lever 4 family-panel expert import "
+            "decisions. It verifies row-context hashes and exposes accepted "
+            "rows that may enter a separate import-preview artifact. It does "
+            "not write an import preview, run label-factory gates, edit labels, "
+            "change registries, or make rows countable."
+        ),
+        "row_decisions": sorted(
+            row_decisions,
+            key=lambda row: (
+                str(row["panel_id"]),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "unmatched_decisions": unmatched_decisions,
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+            "family_panel_rows_countable_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "counts": {
+            "packet_stub_rows": len(stubs),
+            "decision_records_total": len(decisions),
+            "explicit_decision_records": sum(
+                1 for row in row_decisions if row["decision_present"]
+            ),
+            "pending_decision_rows": len(pending_rows),
+            "accepted_import_preview_candidate_rows": len(accepted_ready_rows),
+            "accepted_but_still_blocked_rows": len(accepted_still_blocked_rows),
+            "rejected_rows": len(rejected_rows),
+            "review_only_rows": len(review_only_rows),
+            "unmatched_decisions": len(unmatched_decisions),
+            "critical_violation_total": critical_violation_total,
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "explicit_expert_import_decisions_recorded": bool(
+                row_decisions and not pending_rows
+            ),
+            "import_preview_can_run_now": bool(
+                accepted_ready_rows and not critical_violation_total
+            ),
+            "label_factory_gate_ready": False,
+            "new_countable_labels_authorized": False,
+            "next_gate": (
+                "If import_preview_can_run_now is true, build a separate "
+                "family-panel import-preview artifact for the accepted rows "
+                "and then run the label-factory gate. Otherwise, record missing "
+                "expert decisions or clear the remaining locator, primary-channel, "
+                "or family-promotion blockers first."
+            ),
+        },
+        "source_artifacts": {
+            "expert_import_decision_packet": _source_path_record(
+                expert_import_decision_packet_path
+            ),
+            "expert_decisions": (
+                _source_path_record(expert_decisions_path)
+                if expert_decisions_path is not None
+                else _source_path_record(expert_import_decision_packet_path)
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(accepted_ready_rows)} accepted family-panel rows are "
+                "ready for a separate import-preview artifact."
+            ),
+            "result": (
+                "The gate keeps current family-panel rows fail-closed unless "
+                "an explicit accepted decision is present with the unchanged "
+                "row-context hash and no remaining source-free locator, primary "
+                "channel, or family-promotion blocker."
+            ),
+            "next_action": (
+                "Review and apply expert decisions with hashes unchanged; then "
+                "build a separate import-preview artifact only for accepted "
+                "rows marked accepted_import_preview_candidate."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_expert_import_decision_application_report(
+    application: dict[str, Any],
+) -> str:
+    counts = application["counts"]
+    decision = application["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Expert Import Decision Application - current702",
+        "",
+        f"Run: {application['created_utc']}",
+        "",
+        application["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {application['status']}",
+        f"- Packet stubs: {counts['packet_stub_rows']}",
+        f"- Decision records: {counts['decision_records_total']}",
+        f"- Pending decision rows: {counts['pending_decision_rows']}",
+        "- Accepted import-preview candidates: "
+        f"{counts['accepted_import_preview_candidate_rows']}",
+        "- Accepted but still blocked rows: "
+        f"{counts['accepted_but_still_blocked_rows']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        f"- Blockers: {application['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Explicit expert decisions recorded: "
+        f"{decision['explicit_expert_import_decisions_recorded']}",
+        f"- Import preview can run now: {decision['import_preview_can_run_now']}",
+        f"- Label-factory gate ready: {decision['label_factory_gate_ready']}",
+        "- New countable labels authorized: "
+        f"{decision['new_countable_labels_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Row Decisions",
+        "",
+        "| row | panel | decision | accepted candidate | still blocked | violations |",
+        "| --- | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in application.get("row_decisions", []):
+        violations = row.get("critical_violations") or []
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{row['decision']} | "
+            f"{int(bool(row['accepted_import_preview_candidate']))} | "
+            f"{int(bool(row['accepted_but_still_blocked']))} | "
+            f"{', '.join(violations) if violations else 'none'} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {application['interpretation']['headline']}",
+        f"- {application['interpretation']['result']}",
+        f"- {application['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_expert_import_decision_application(
+    *,
+    expert_import_decision_packet_path: Path,
+    expert_decisions_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    application = (
+        build_fold_augmented_family_panel_expert_import_decision_application(
+            expert_import_decision_packet_path=expert_import_decision_packet_path,
+            expert_decisions_path=expert_decisions_path,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(application, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_expert_import_decision_application_report(
+                application
+            ),
+            encoding="utf-8",
+        )
+    return application
+
+
+def _family_panel_accepted_import_preview_row(
+    row: dict[str, Any],
+) -> dict[str, Any]:
+    panel_id = str(row.get("panel_id") or "")
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "panel_id": panel_id,
+        "candidate_family_id": panel_id,
+        "split_assignment": "review_only_family_panel",
+        "benchmark_role": "review_only_family_panel_import_preview_candidate",
+        "expert_import_decision": row.get("decision"),
+        "decision_context_sha256": row.get("decision_context_sha256"),
+        "primary_blocker_class": row.get("primary_blocker_class"),
+        "remaining_actions_before_import_preview": (
+            row.get("remaining_actions_before_import_preview") or []
+        ),
+        "import_preview_row_status": (
+            "accepted_expert_import_decision_review_only"
+        ),
+        "ready_for_label_factory_gate_after_preview_review": True,
+        "countable_label_candidate_now": False,
+        "required_next_gate": "label_factory_gate_before_counting",
+        "guardrail_note": (
+            "review-only import preview; do not edit labels, registries, "
+            "ontologies, imports, or threshold surfaces from this row"
+        ),
+    }
+
+
+def build_fold_augmented_family_panel_accepted_import_preview(
+    *,
+    expert_import_decision_application_path: Path,
+) -> dict[str, Any]:
+    application = _read_json(expert_import_decision_application_path)
+    row_decisions = [
+        row
+        for row in application.get("row_decisions", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    accepted_rows = [
+        row
+        for row in row_decisions
+        if row.get("accepted_import_preview_candidate") is True
+        and not (row.get("critical_violations") or [])
+    ]
+    preview_rows = [
+        _family_panel_accepted_import_preview_row(row) for row in accepted_rows
+    ]
+    panel_counts = Counter(row["panel_id"] for row in preview_rows)
+    application_ready = bool(
+        application.get("decision", {}).get("import_preview_can_run_now")
+    )
+    blockers: list[str] = []
+    if not row_decisions:
+        blockers.append("expert_import_decision_application_rows_missing")
+    if not application_ready:
+        blockers.append("expert_import_decision_application_not_ready")
+    if not preview_rows:
+        blockers.append("accepted_import_preview_candidate_rows_missing")
+    if preview_rows:
+        blockers.append("label_factory_gate_not_run")
+
+    status = (
+        "family_panel_accepted_import_preview_ready_review_only"
+        if preview_rows and application_ready
+        else "family_panel_accepted_import_preview_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_ACCEPTED_IMPORT_PREVIEW_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_accepted_import_preview"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only accepted import preview for Lever 4 family-panel "
+            "rows. It consumes the fail-closed expert-decision application "
+            "and emits only rows with explicit accepted decisions, unchanged "
+            "row-context hashes, and no remaining pre-preview blockers. It "
+            "does not run the label-factory gate or make rows countable."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "import_preview_artifact_written": bool(preview_rows),
+            "label_factory_gate_run": False,
+            "family_panel_rows_countable_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "counts": {
+            "application_row_decisions": len(row_decisions),
+            "accepted_import_preview_candidate_rows": len(accepted_rows),
+            "preview_rows": len(preview_rows),
+            "panels_represented": len(panel_counts),
+            "preview_rows_by_panel": dict(sorted(panel_counts.items())),
+            "label_factory_gate_candidate_rows": len(preview_rows),
+            "countable_label_candidate_count": 0,
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "expert_import_decision_application_ready": application_ready,
+            "accepted_import_preview_ready": bool(
+                preview_rows and application_ready
+            ),
+            "label_factory_gate_can_run_after_preview_review": bool(
+                preview_rows and application_ready
+            ),
+            "label_factory_gate_ready": False,
+            "new_countable_labels_authorized": False,
+            "next_gate": (
+                "Run the family-panel label-factory gate on the accepted "
+                "review-only import preview rows; do not count labels until "
+                "that gate passes."
+                if preview_rows and application_ready
+                else (
+                    "Record explicit expert accept decisions in the family-panel "
+                    "expert import decision packet, rerun the application gate, "
+                    "then rebuild this accepted-only import preview."
+                )
+            ),
+        },
+        "blockers": blockers,
+        "accepted_import_preview_rows": sorted(
+            preview_rows,
+            key=lambda row: (
+                str(row["panel_id"]),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "source_artifacts": {
+            "expert_import_decision_application": _source_path_record(
+                expert_import_decision_application_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(preview_rows)} accepted family-panel rows are staged "
+                "for review-only import preview."
+            ),
+            "result": (
+                "Current rows remain non-countable. The artifact only stages "
+                "explicitly accepted rows for the next label-factory gate and "
+                "preserves the no-label/no-import/no-threshold-change guardrails."
+            ),
+            "next_action": (
+                "Complete expert import decisions, rerun the application gate, "
+                "then rebuild this preview and run the label-factory gate only "
+                "on accepted preview rows."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_accepted_import_preview_report(
+    preview: dict[str, Any],
+) -> str:
+    counts = preview["counts"]
+    decision = preview["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Accepted Import Preview - current702",
+        "",
+        f"Run: {preview['created_utc']}",
+        "",
+        preview["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preview['status']}",
+        f"- Application row decisions: {counts['application_row_decisions']}",
+        "- Accepted import-preview candidates: "
+        f"{counts['accepted_import_preview_candidate_rows']}",
+        f"- Preview rows: {counts['preview_rows']}",
+        f"- Panels represented: {counts['panels_represented']}",
+        "- Label-factory candidate rows: "
+        f"{counts['label_factory_gate_candidate_rows']}",
+        f"- Countable label candidates now: {counts['countable_label_candidate_count']}",
+        f"- Blockers: {preview['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Expert decision application ready: "
+        f"{decision['expert_import_decision_application_ready']}",
+        "- Accepted import preview ready: "
+        f"{decision['accepted_import_preview_ready']}",
+        "- Label-factory gate can run after preview review: "
+        f"{decision['label_factory_gate_can_run_after_preview_review']}",
+        f"- Label-factory gate ready: {decision['label_factory_gate_ready']}",
+        "- New countable labels authorized: "
+        f"{decision['new_countable_labels_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Accepted Preview Rows",
+        "",
+        "| row | panel | decision sha | next gate |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in preview.get("accepted_import_preview_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{str(row['decision_context_sha256'])[:12]} | "
+            f"{row['required_next_gate']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {preview['interpretation']['headline']}",
+        f"- {preview['interpretation']['result']}",
+        f"- {preview['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_accepted_import_preview(
+    *,
+    expert_import_decision_application_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    preview = build_fold_augmented_family_panel_accepted_import_preview(
+        expert_import_decision_application_path=(
+            expert_import_decision_application_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preview, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_accepted_import_preview_report(
+                preview
+            ),
+            encoding="utf-8",
+        )
+    return preview
+
+
+def build_fold_augmented_family_panel_label_factory_gate_readiness(
+    *,
+    accepted_import_preview_path: Path,
+) -> dict[str, Any]:
+    preview = _read_json(accepted_import_preview_path)
+    accepted_preview_rows = [
+        row
+        for row in preview.get("accepted_import_preview_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    gate_input_rows = []
+    for row in accepted_preview_rows:
+        gate_input_rows.append(
+            {
+                "entry_id": str(row.get("entry_id") or ""),
+                "panel_id": row.get("panel_id"),
+                "candidate_family_id": row.get("candidate_family_id")
+                or row.get("panel_id"),
+                "split_assignment": row.get("split_assignment")
+                or "review_only_family_panel",
+                "benchmark_role": row.get("benchmark_role")
+                or "review_only_family_panel_import_preview_candidate",
+                "decision_context_sha256": row.get("decision_context_sha256"),
+                "source_preview_row_status": row.get(
+                    "import_preview_row_status"
+                ),
+                "label_factory_gate_input_status": (
+                    "ready_for_label_factory_gate_review_only"
+                ),
+                "countable_label_candidate_now": False,
+                "required_gate_before_counting": "label_factory_gate_check",
+            }
+        )
+    panel_counts = Counter(
+        str(row.get("panel_id") or "") for row in gate_input_rows
+    )
+    preview_ready = bool(
+        preview.get("decision", {}).get(
+            "label_factory_gate_can_run_after_preview_review"
+        )
+    )
+    blockers: list[str] = []
+    if not preview_ready:
+        blockers.append("accepted_import_preview_not_ready")
+    if not gate_input_rows:
+        blockers.append("label_factory_gate_input_rows_missing")
+    if gate_input_rows:
+        blockers.append("label_factory_gate_not_run")
+
+    status = (
+        "family_panel_label_factory_gate_readiness_ready_review_only"
+        if preview_ready and gate_input_rows
+        else "family_panel_label_factory_gate_readiness_blocked"
+    )
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_FAMILY_PANEL_LABEL_FACTORY_GATE_READINESS_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_label_factory_gate_readiness"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Fail-closed readiness artifact for the Lever 4 family-panel "
+            "label-factory gate. It consumes only the accepted import-preview "
+            "rows and prepares review-only gate inputs; it does not run the "
+            "label-factory gate, edit imports, or make rows countable."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "label_factory_gate_run": False,
+            "family_panel_rows_countable_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "counts": {
+            "accepted_import_preview_rows": len(accepted_preview_rows),
+            "label_factory_gate_input_rows": len(gate_input_rows),
+            "panels_represented": len(panel_counts),
+            "gate_input_rows_by_panel": dict(sorted(panel_counts.items())),
+            "countable_label_candidate_count": 0,
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "accepted_import_preview_ready": preview_ready,
+            "label_factory_gate_inputs_ready": bool(
+                preview_ready and gate_input_rows
+            ),
+            "label_factory_gate_run": False,
+            "new_countable_labels_authorized": False,
+            "next_gate": (
+                "Run the label-factory gate on these review-only gate-input "
+                "rows, then use that gate output as the sole authority for any "
+                "future countable family-panel labels."
+                if preview_ready and gate_input_rows
+                else (
+                    "Complete the expert import decisions and accepted import "
+                    "preview first; no family-panel label-factory gate can run "
+                    "from the current zero-row input."
+                )
+            ),
+        },
+        "blockers": blockers,
+        "label_factory_gate_input_rows": sorted(
+            gate_input_rows,
+            key=lambda row: (
+                str(row["panel_id"]),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "source_artifacts": {
+            "accepted_import_preview": _source_path_record(
+                accepted_import_preview_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(gate_input_rows)} family-panel rows are ready as "
+                "review-only label-factory gate inputs."
+            ),
+            "result": (
+                "The readiness artifact keeps the import-preview path closed "
+                "until accepted rows exist and still leaves countability to a "
+                "separate label-factory gate result."
+            ),
+            "next_action": (
+                "After expert accept decisions are recorded, rebuild the "
+                "accepted import preview and this readiness artifact, then run "
+                "the label-factory gate only on the emitted gate-input rows."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_label_factory_gate_readiness_report(
+    readiness: dict[str, Any],
+) -> str:
+    counts = readiness["counts"]
+    decision = readiness["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Label-Factory Gate Readiness - current702",
+        "",
+        f"Run: {readiness['created_utc']}",
+        "",
+        readiness["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readiness['status']}",
+        "- Accepted import-preview rows: "
+        f"{counts['accepted_import_preview_rows']}",
+        "- Label-factory gate input rows: "
+        f"{counts['label_factory_gate_input_rows']}",
+        f"- Panels represented: {counts['panels_represented']}",
+        f"- Countable label candidates now: {counts['countable_label_candidate_count']}",
+        f"- Blockers: {readiness['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- Accepted import preview ready: "
+        f"{decision['accepted_import_preview_ready']}",
+        "- Label-factory gate inputs ready: "
+        f"{decision['label_factory_gate_inputs_ready']}",
+        f"- Label-factory gate run: {decision['label_factory_gate_run']}",
+        "- New countable labels authorized: "
+        f"{decision['new_countable_labels_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Gate Input Rows",
+        "",
+        "| row | panel | candidate family | required gate |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in readiness.get("label_factory_gate_input_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{row['candidate_family_id']} | "
+            f"{row['required_gate_before_counting']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {readiness['interpretation']['headline']}",
+        f"- {readiness['interpretation']['result']}",
+        f"- {readiness['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_label_factory_gate_readiness(
+    *,
+    accepted_import_preview_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    readiness = build_fold_augmented_family_panel_label_factory_gate_readiness(
+        accepted_import_preview_path=accepted_import_preview_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_label_factory_gate_readiness_report(
+                readiness
+            ),
+            encoding="utf-8",
+        )
+    return readiness
+
+
+def build_active_lever_reviewer_decision_queue(
+    *,
+    p10746_decision_packet_path: Path | None = None,
+    lever2_locator_rewrite_approval_packet_path: Path | None = None,
+    family_panel_expert_import_decision_packet_path: Path | None = None,
+    family_panel_expert_import_decision_application_path: Path | None = None,
+    family_panel_accepted_import_preview_path: Path | None = None,
+    family_panel_label_factory_gate_readiness_path: Path | None = None,
+) -> dict[str, Any]:
+    p10746 = (
+        _read_json(p10746_decision_packet_path)
+        if p10746_decision_packet_path is not None
+        and Path(p10746_decision_packet_path).exists()
+        else None
+    )
+    lever2 = (
+        _read_json(lever2_locator_rewrite_approval_packet_path)
+        if lever2_locator_rewrite_approval_packet_path is not None
+        and Path(lever2_locator_rewrite_approval_packet_path).exists()
+        else None
+    )
+    lever4_packet = (
+        _read_json(family_panel_expert_import_decision_packet_path)
+        if family_panel_expert_import_decision_packet_path is not None
+        and Path(family_panel_expert_import_decision_packet_path).exists()
+        else None
+    )
+    lever4_application = (
+        _read_json(family_panel_expert_import_decision_application_path)
+        if family_panel_expert_import_decision_application_path is not None
+        and Path(family_panel_expert_import_decision_application_path).exists()
+        else None
+    )
+    lever4_accepted_preview = (
+        _read_json(family_panel_accepted_import_preview_path)
+        if family_panel_accepted_import_preview_path is not None
+        and Path(family_panel_accepted_import_preview_path).exists()
+        else None
+    )
+    lever4_label_factory_readiness = (
+        _read_json(family_panel_label_factory_gate_readiness_path)
+        if family_panel_label_factory_gate_readiness_path is not None
+        and Path(family_panel_label_factory_gate_readiness_path).exists()
+        else None
+    )
+
+    queue_items: list[dict[str, Any]] = []
+    if p10746 is not None:
+        for stub in p10746.get("decision_stubs", []):
+            if not isinstance(stub, dict):
+                continue
+            queue_items.append(
+                {
+                    "lever": "Lever 3",
+                    "decision_class": "p10746_fold_only_deployment_caveat",
+                    "entry_id": stub.get("entry_id"),
+                    "panel_or_scope": "confounded_deployment_closure",
+                    "priority": 1,
+                    "review_status": stub.get("review_status"),
+                    "allowed_decisions": stub.get("allowed_decisions") or [],
+                    "decision_context_sha256": stub.get(
+                        "decision_context_sha256"
+                    ),
+                    "unblock_effect_if_accepted": stub.get(
+                        "decision_effect_if_accepted"
+                    ),
+                    "unblock_effect_if_rejected": stub.get(
+                        "decision_effect_if_rejected"
+                    ),
+                    "automation_action_allowed_now": False,
+                    "why_not_automatic": (
+                        "Fold-only P10746 deployment closure is an explicit "
+                        "policy caveat; automation must not accept it without "
+                        "a reviewed decision."
+                    ),
+                    "next_gate_after_decision": (
+                        "apply-fold-augmented-p10746-deployment-caveat-decision"
+                    ),
+                }
+            )
+
+    if lever4_packet is not None:
+        for stub in lever4_packet.get("expert_import_decision_stubs", []):
+            if not isinstance(stub, dict):
+                continue
+            priority = 2 if stub.get("import_preview_candidate_if_accepted_now") else 4
+            if stub.get("primary_blocker_class") == (
+                "source_free_locator_or_primary_channel_missing"
+            ):
+                priority = 5
+            queue_items.append(
+                {
+                    "lever": "Lever 4",
+                    "decision_class": "family_panel_expert_import_decision",
+                    "entry_id": stub.get("entry_id"),
+                    "panel_or_scope": stub.get("panel_id"),
+                    "priority": priority,
+                    "review_status": stub.get("review_status"),
+                    "allowed_decisions": stub.get("allowed_decisions") or [],
+                    "decision_context_sha256": stub.get(
+                        "decision_context_sha256"
+                    ),
+                    "unblock_effect_if_accepted": stub.get(
+                        "decision_effect_if_accepted"
+                    ),
+                    "unblock_effect_if_rejected": stub.get(
+                        "decision_effect_if_rejected"
+                    ),
+                    "automation_action_allowed_now": False,
+                    "why_not_automatic": (
+                        "Family-panel countability requires explicit expert "
+                        "import/family-admission decisions; this queue only "
+                        "stages hash-verified intake."
+                    ),
+                    "next_gate_after_decision": (
+                        "apply-fold-augmented-family-panel-expert-import-decision"
+                    ),
+                    "import_preview_candidate_if_accepted_now": stub.get(
+                        "import_preview_candidate_if_accepted_now"
+                    ),
+                    "primary_blocker_class": stub.get("primary_blocker_class"),
+                }
+            )
+
+    if lever2 is not None:
+        for stub in lever2.get("locator_rewrite_decision_stubs", []):
+            if not isinstance(stub, dict):
+                continue
+            warning_count = int(stub.get("coordinate_contact_warning_count") or 0)
+            priority = 3 if warning_count == 0 else 6
+            queue_items.append(
+                {
+                    "lever": "Lever 2",
+                    "decision_class": "source_free_locator_rewrite_approval",
+                    "entry_id": stub.get("entry_id"),
+                    "panel_or_scope": "heldout_source_free_locator_surface",
+                    "priority": priority,
+                    "review_status": stub.get("reviewer_decision"),
+                    "allowed_decisions": [
+                        stub.get("accepted_approval_decision_value"),
+                        stub.get("accepted_rejection_decision_value"),
+                    ],
+                    "decision_context_sha256": None,
+                    "candidate_sha256": stub.get("candidate_sha256"),
+                    "planned_locator_payload_sha256": stub.get(
+                        "planned_locator_payload_sha256"
+                    ),
+                    "unblock_effect_if_accepted": (
+                        "Allows this hash-matched locator rewrite to be "
+                        "materialized into the audited source-free locator "
+                        "surface; event-axis linkers and heldout-safe surface "
+                        "checks still remain."
+                    ),
+                    "unblock_effect_if_rejected": (
+                        "Keeps this heldout locator row out of the source-free "
+                        "application surface until rewritten."
+                    ),
+                    "automation_action_allowed_now": False,
+                    "why_not_automatic": (
+                        "Priority-1 locator rewrites require explicit reviewer "
+                        "approval before copy/materialization."
+                    ),
+                    "next_gate_after_decision": (
+                        "build-mechanism-feature-row-specific-bond-change-"
+                        "p0-oos-augmented-best-token-followup-pair-source-free-"
+                        "locator-rewrite-materialization-gate"
+                    ),
+                    "coordinate_contact_warning_count": warning_count,
+                    "materialization_gate_input_ready_if_approved": stub.get(
+                        "materialization_gate_input_ready_if_approved"
+                    ),
+                }
+            )
+
+    lever_counts = Counter(str(item["lever"]) for item in queue_items)
+    decision_class_counts = Counter(
+        str(item["decision_class"]) for item in queue_items
+    )
+    sorted_items = sorted(
+        queue_items,
+        key=lambda item: (
+            int(item["priority"]),
+            str(item["lever"]),
+            _entry_id_sort_key(str(item.get("entry_id") or "")),
+        ),
+    )
+    blockers: list[str] = []
+    if not queue_items:
+        blockers.append("active_lever_decision_packets_missing")
+    if p10746 is None:
+        blockers.append("p10746_decision_packet_missing")
+    if lever2 is None:
+        blockers.append("lever2_locator_rewrite_approval_packet_missing")
+    if lever4_packet is None:
+        blockers.append("family_panel_expert_import_decision_packet_missing")
+    return {
+        "artifact_id": ACTIVE_LEVER_REVIEWER_DECISION_QUEUE_ID,
+        "schema_version": f"{SCHEMA_VERSION}.active_lever_reviewer_decision_queue",
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "active_lever_reviewer_decision_queue_ready_review_only"
+            if queue_items and not blockers
+            else "active_lever_reviewer_decision_queue_blocked"
+        ),
+        "scope": (
+            "Review-only consolidated decision queue across the active Lever "
+            "2/3/4 blockers. It composes existing decision packets so reviewer "
+            "actions are visible and hash-verifiable; it does not apply "
+            "decisions, copy locator sidecars, write imports, edit labels, "
+            "change registries, train models, or tune thresholds."
+        ),
+        "decision_queue": sorted_items,
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "locator_sidecars_created_or_copied": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+            "family_panel_rows_countable_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "heldout_rows_evaluated": False,
+        },
+        "counts": {
+            "decision_items": len(queue_items),
+            "lever_counts": dict(sorted(lever_counts.items())),
+            "decision_class_counts": dict(sorted(decision_class_counts.items())),
+            "p10746_policy_decision_items": decision_class_counts.get(
+                "p10746_fold_only_deployment_caveat", 0
+            ),
+            "lever2_locator_rewrite_items": decision_class_counts.get(
+                "source_free_locator_rewrite_approval", 0
+            ),
+            "lever2_clean_locator_rewrite_items": sum(
+                1
+                for item in queue_items
+                if item["decision_class"] == "source_free_locator_rewrite_approval"
+                and int(item.get("coordinate_contact_warning_count") or 0) == 0
+            ),
+            "lever4_expert_import_items": decision_class_counts.get(
+                "family_panel_expert_import_decision", 0
+            ),
+            "lever4_accepted_import_preview_rows": (
+                len(
+                    lever4_accepted_preview.get(
+                        "accepted_import_preview_rows", []
+                    )
+                )
+                if isinstance(lever4_accepted_preview, dict)
+                else 0
+            ),
+            "lever4_label_factory_gate_input_rows": (
+                len(
+                    lever4_label_factory_readiness.get(
+                        "label_factory_gate_input_rows", []
+                    )
+                )
+                if isinstance(lever4_label_factory_readiness, dict)
+                else 0
+            ),
+            "lever4_import_preview_candidate_if_accepted_items": sum(
+                1
+                for item in queue_items
+                if item["decision_class"] == "family_panel_expert_import_decision"
+                and item.get("import_preview_candidate_if_accepted_now") is True
+            ),
+            "automation_action_allowed_now_items": sum(
+                1 for item in queue_items if item["automation_action_allowed_now"]
+            ),
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "queue_ready_for_review": bool(queue_items and not blockers),
+            "apply_decisions_now": False,
+            "lever4_label_factory_gate_inputs_ready": bool(
+                isinstance(lever4_label_factory_readiness, dict)
+                and lever4_label_factory_readiness.get("decision", {}).get(
+                    "label_factory_gate_inputs_ready"
+                )
+            ),
+            "next_gate": (
+                "Review priority-1/2 items first: P10746 caveat decision for "
+                "Lever 3 deployment closure, then the six Lever 4 expert-import "
+                "rows that can become import-preview candidates if accepted. "
+                "Only after explicit decisions are recorded should the matching "
+                "application gates be rerun."
+            ),
+        },
+        "source_artifacts": {
+            "p10746_decision_packet": (
+                _source_path_record(p10746_decision_packet_path)
+                if p10746_decision_packet_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever2_locator_rewrite_approval_packet": (
+                _source_path_record(lever2_locator_rewrite_approval_packet_path)
+                if lever2_locator_rewrite_approval_packet_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "family_panel_expert_import_decision_packet": (
+                _source_path_record(family_panel_expert_import_decision_packet_path)
+                if family_panel_expert_import_decision_packet_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "family_panel_expert_import_decision_application": (
+                _source_path_record(
+                    family_panel_expert_import_decision_application_path
+                )
+                if family_panel_expert_import_decision_application_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "family_panel_accepted_import_preview": (
+                _source_path_record(family_panel_accepted_import_preview_path)
+                if family_panel_accepted_import_preview_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "family_panel_label_factory_gate_readiness": (
+                _source_path_record(
+                    family_panel_label_factory_gate_readiness_path
+                )
+                if family_panel_label_factory_gate_readiness_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(queue_items)} active Lever 2/3/4 reviewer decisions are "
+                "queued; none are applied automatically."
+            ),
+            "result": (
+                "The active lever blockers are now organized by unblock effect: "
+                "one P10746 policy caveat, six Lever 4 rows that could enter "
+                "import preview if accepted, and 55 Lever 2 locator rewrites "
+                "that still require explicit approval before materialization."
+            ),
+            "next_action": (
+                "Record reviewed decisions in the source packet formats with "
+                "hashes unchanged, then rerun only the relevant application or "
+                "materialization gate."
+            ),
+        },
+    }
+
+
+def _render_active_lever_reviewer_decision_queue_report(
+    queue: dict[str, Any],
+) -> str:
+    counts = queue["counts"]
+    decision = queue["decision"]
+    lines = [
+        "# Active Lever Reviewer Decision Queue - current702",
+        "",
+        f"Run: {queue['created_utc']}",
+        "",
+        queue["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {queue['status']}",
+        f"- Decision items: {counts['decision_items']}",
+        f"- Lever counts: {counts['lever_counts']}",
+        f"- Decision classes: {counts['decision_class_counts']}",
+        "- Lever 4 import-preview candidates if accepted: "
+        f"{counts['lever4_import_preview_candidate_if_accepted_items']}",
+        "- Lever 4 accepted import-preview rows: "
+        f"{counts['lever4_accepted_import_preview_rows']}",
+        "- Lever 4 label-factory gate input rows: "
+        f"{counts['lever4_label_factory_gate_input_rows']}",
+        "- Lever 2 clean locator rewrite items: "
+        f"{counts['lever2_clean_locator_rewrite_items']}",
+        "- Automation-action-allowed-now items: "
+        f"{counts['automation_action_allowed_now_items']}",
+        f"- Blockers: {queue['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Queue ready for review: {decision['queue_ready_for_review']}",
+        f"- Apply decisions now: {decision['apply_decisions_now']}",
+        "- Lever 4 label-factory gate inputs ready: "
+        f"{decision['lever4_label_factory_gate_inputs_ready']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Queue",
+        "",
+        "| priority | lever | row | decision class | scope | status | next gate |",
+        "| ---: | --- | --- | --- | --- | --- | --- |",
+    ]
+    for item in queue.get("decision_queue", [])[:90]:
+        lines.append(
+            f"| {item['priority']} | {item['lever']} | {item['entry_id']} | "
+            f"{item['decision_class']} | {item['panel_or_scope']} | "
+            f"{item['review_status']} | {item['next_gate_after_decision']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {queue['interpretation']['headline']}",
+        f"- {queue['interpretation']['result']}",
+        f"- {queue['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_active_lever_reviewer_decision_queue(
+    *,
+    p10746_decision_packet_path: Path | None = None,
+    lever2_locator_rewrite_approval_packet_path: Path | None = None,
+    family_panel_expert_import_decision_packet_path: Path | None = None,
+    family_panel_expert_import_decision_application_path: Path | None = None,
+    family_panel_accepted_import_preview_path: Path | None = None,
+    family_panel_label_factory_gate_readiness_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    queue = build_active_lever_reviewer_decision_queue(
+        p10746_decision_packet_path=p10746_decision_packet_path,
+        lever2_locator_rewrite_approval_packet_path=lever2_locator_rewrite_approval_packet_path,
+        family_panel_expert_import_decision_packet_path=family_panel_expert_import_decision_packet_path,
+        family_panel_expert_import_decision_application_path=family_panel_expert_import_decision_application_path,
+        family_panel_accepted_import_preview_path=family_panel_accepted_import_preview_path,
+        family_panel_label_factory_gate_readiness_path=family_panel_label_factory_gate_readiness_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(queue, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_active_lever_reviewer_decision_queue_report(queue),
+            encoding="utf-8",
+        )
+    return queue
 
 
 def _source_check_focus(row: dict[str, Any]) -> list[str]:

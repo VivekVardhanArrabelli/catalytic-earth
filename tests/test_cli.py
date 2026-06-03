@@ -836,6 +836,50 @@ class CliTests(unittest.TestCase):
                 "cmd_build_family_panel_high_value_glycyl_radical_readiness_packet",
             ),
             (
+                (
+                    "build-fold-augmented-family-panel-expert-import-"
+                    "decision-packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_family_panel_expert_import_"
+                    "decision_packet"
+                ),
+            ),
+            (
+                (
+                    "apply-fold-augmented-family-panel-expert-import-"
+                    "decision"
+                ),
+                (
+                    "cmd_apply_fold_augmented_family_panel_expert_import_"
+                    "decision"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-family-panel-accepted-import-"
+                    "preview"
+                ),
+                (
+                    "cmd_build_fold_augmented_family_panel_accepted_import_"
+                    "preview"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-family-panel-label-factory-gate-"
+                    "readiness"
+                ),
+                (
+                    "cmd_build_fold_augmented_family_panel_label_factory_"
+                    "gate_readiness"
+                ),
+            ),
+            (
+                "build-active-lever-reviewer-decision-queue",
+                "cmd_build_active_lever_reviewer_decision_queue",
+            ),
+            (
                 "build-family-panel-source-free-locator-human-decision-matrix",
                 "cmd_build_family_panel_source_free_locator_human_decision_matrix",
             ),

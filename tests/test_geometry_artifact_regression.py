@@ -8102,6 +8102,299 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(gate["guardrails"]["review_only"])
         self.assertFalse(gate["guardrails"]["imports_or_promotions_performed"])
 
+    def test_fold_augmented_family_panel_expert_import_decision_packet_current_counts(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_expert_import_decision_packet_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["status"],
+            "family_panel_expert_import_decision_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["decision_stub_rows"], 22)
+        self.assertEqual(packet["counts"]["panels_represented"], 7)
+        self.assertEqual(
+            packet["counts"]["pending_expert_import_decisions"], 22
+        )
+        self.assertEqual(packet["counts"]["accepted_decision_records"], 0)
+        self.assertEqual(packet["counts"]["rejected_decision_records"], 0)
+        self.assertEqual(
+            packet["counts"]["import_preview_candidate_if_accepted_rows"], 6
+        )
+        self.assertEqual(
+            packet["counts"]["family_promotion_override_needed_rows"], 11
+        )
+        self.assertEqual(
+            packet["counts"]["locator_or_primary_channel_blocked_rows"], 5
+        )
+        self.assertEqual(
+            packet["counts"]["primary_blocker_class_counts"],
+            {
+                "completed_source_check_review_only_no_promotion": 11,
+                "expert_family_admission_decision_required": 6,
+                "source_free_locator_or_primary_channel_missing": 5,
+            },
+        )
+        self.assertIn(
+            "expert_import_decisions_not_recorded", packet["blockers"]
+        )
+        self.assertIn(
+            "family_promotion_override_decisions_missing", packet["blockers"]
+        )
+        self.assertIn(
+            "locator_or_primary_channel_blockers_remain", packet["blockers"]
+        )
+        self.assertFalse(packet["decision"]["import_preview_can_run_now"])
+        self.assertFalse(packet["decision"]["new_countable_labels_authorized"])
+        by_entry = {
+            row["entry_id"]: row
+            for row in packet["expert_import_decision_stubs"]
+        }
+        self.assertTrue(
+            by_entry["m_csa:30"]["import_preview_candidate_if_accepted_now"]
+        )
+        self.assertFalse(
+            by_entry["mh_064"]["import_preview_candidate_if_accepted_now"]
+        )
+        self.assertEqual(
+            len(by_entry["m_csa:30"]["decision_context_sha256"]), 64
+        )
+        self.assertTrue(packet["guardrails"]["review_only"])
+        self.assertFalse(packet["guardrails"]["imports_or_promotions_performed"])
+        self.assertFalse(
+            packet["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_fold_augmented_family_panel_expert_import_decision_application_current_counts(
+        self,
+    ) -> None:
+        application = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_expert_import_decision_"
+                "application_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            application["status"],
+            "family_panel_expert_import_decision_application_blocked",
+        )
+        self.assertEqual(application["counts"]["packet_stub_rows"], 22)
+        self.assertEqual(application["counts"]["decision_records_total"], 22)
+        self.assertEqual(application["counts"]["explicit_decision_records"], 0)
+        self.assertEqual(application["counts"]["pending_decision_rows"], 22)
+        self.assertEqual(
+            application["counts"]["accepted_import_preview_candidate_rows"], 0
+        )
+        self.assertEqual(
+            application["counts"]["accepted_but_still_blocked_rows"], 0
+        )
+        self.assertEqual(application["counts"]["rejected_rows"], 0)
+        self.assertEqual(application["counts"]["review_only_rows"], 0)
+        self.assertEqual(application["counts"]["critical_violation_total"], 0)
+        self.assertIn(
+            "explicit_expert_import_decisions_missing",
+            application["blockers"],
+        )
+        self.assertIn(
+            "accepted_import_preview_candidate_rows_missing",
+            application["blockers"],
+        )
+        self.assertFalse(application["decision"]["import_preview_can_run_now"])
+        self.assertFalse(application["decision"]["new_countable_labels_authorized"])
+        by_entry = {
+            row["entry_id"]: row for row in application["row_decisions"]
+        }
+        self.assertEqual(by_entry["m_csa:30"]["decision"], "pending_review")
+        self.assertFalse(
+            by_entry["m_csa:30"]["accepted_import_preview_candidate"]
+        )
+        self.assertTrue(application["guardrails"]["review_only"])
+        self.assertFalse(
+            application["guardrails"]["imports_or_promotions_performed"]
+        )
+        self.assertFalse(
+            application["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_fold_augmented_family_panel_accepted_import_preview_current_counts(
+        self,
+    ) -> None:
+        preview = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_accepted_import_preview_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            preview["status"],
+            "family_panel_accepted_import_preview_blocked",
+        )
+        self.assertEqual(preview["counts"]["application_row_decisions"], 22)
+        self.assertEqual(
+            preview["counts"]["accepted_import_preview_candidate_rows"], 0
+        )
+        self.assertEqual(preview["counts"]["preview_rows"], 0)
+        self.assertEqual(preview["counts"]["panels_represented"], 0)
+        self.assertEqual(
+            preview["counts"]["label_factory_gate_candidate_rows"], 0
+        )
+        self.assertEqual(preview["counts"]["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "expert_import_decision_application_not_ready",
+            preview["blockers"],
+        )
+        self.assertIn(
+            "accepted_import_preview_candidate_rows_missing",
+            preview["blockers"],
+        )
+        self.assertFalse(
+            preview["decision"]["accepted_import_preview_ready"]
+        )
+        self.assertFalse(
+            preview["decision"][
+                "label_factory_gate_can_run_after_preview_review"
+            ]
+        )
+        self.assertFalse(preview["decision"]["new_countable_labels_authorized"])
+        self.assertEqual(preview["accepted_import_preview_rows"], [])
+        self.assertTrue(preview["guardrails"]["review_only"])
+        self.assertFalse(
+            preview["guardrails"]["import_preview_artifact_written"]
+        )
+        self.assertFalse(preview["guardrails"]["imports_or_promotions_performed"])
+        self.assertFalse(
+            preview["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_fold_augmented_family_panel_label_factory_gate_readiness_current_counts(
+        self,
+    ) -> None:
+        readiness = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_label_factory_gate_readiness_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            readiness["status"],
+            "family_panel_label_factory_gate_readiness_blocked",
+        )
+        self.assertEqual(readiness["counts"]["accepted_import_preview_rows"], 0)
+        self.assertEqual(
+            readiness["counts"]["label_factory_gate_input_rows"], 0
+        )
+        self.assertEqual(readiness["counts"]["panels_represented"], 0)
+        self.assertEqual(
+            readiness["counts"]["countable_label_candidate_count"], 0
+        )
+        self.assertIn(
+            "accepted_import_preview_not_ready", readiness["blockers"]
+        )
+        self.assertIn(
+            "label_factory_gate_input_rows_missing", readiness["blockers"]
+        )
+        self.assertFalse(
+            readiness["decision"]["accepted_import_preview_ready"]
+        )
+        self.assertFalse(
+            readiness["decision"]["label_factory_gate_inputs_ready"]
+        )
+        self.assertFalse(readiness["decision"]["label_factory_gate_run"])
+        self.assertFalse(readiness["decision"]["new_countable_labels_authorized"])
+        self.assertEqual(readiness["label_factory_gate_input_rows"], [])
+        self.assertTrue(readiness["guardrails"]["review_only"])
+        self.assertFalse(readiness["guardrails"]["label_factory_gate_run"])
+        self.assertFalse(
+            readiness["guardrails"]["imports_or_promotions_performed"]
+        )
+        self.assertFalse(
+            readiness["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_active_lever_reviewer_decision_queue_current_counts(self) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_active_lever_reviewer_decision_queue_current702_20260603.json"
+        )
+
+        self.assertEqual(
+            queue["status"],
+            "active_lever_reviewer_decision_queue_ready_review_only",
+        )
+        self.assertEqual(queue["counts"]["decision_items"], 78)
+        self.assertEqual(
+            queue["counts"]["lever_counts"],
+            {"Lever 2": 55, "Lever 3": 1, "Lever 4": 22},
+        )
+        self.assertEqual(
+            queue["counts"]["decision_class_counts"],
+            {
+                "family_panel_expert_import_decision": 22,
+                "p10746_fold_only_deployment_caveat": 1,
+                "source_free_locator_rewrite_approval": 55,
+            },
+        )
+        self.assertEqual(queue["counts"]["p10746_policy_decision_items"], 1)
+        self.assertEqual(queue["counts"]["lever2_locator_rewrite_items"], 55)
+        self.assertEqual(
+            queue["counts"]["lever2_clean_locator_rewrite_items"], 49
+        )
+        self.assertEqual(queue["counts"]["lever4_expert_import_items"], 22)
+        self.assertEqual(
+            queue["counts"]["lever4_accepted_import_preview_rows"], 0
+        )
+        self.assertEqual(
+            queue["counts"]["lever4_label_factory_gate_input_rows"], 0
+        )
+        self.assertEqual(
+            queue["counts"][
+                "lever4_import_preview_candidate_if_accepted_items"
+            ],
+            6,
+        )
+        self.assertEqual(
+            queue["counts"]["automation_action_allowed_now_items"], 0
+        )
+        self.assertEqual(queue["blockers"], [])
+        self.assertTrue(queue["decision"]["queue_ready_for_review"])
+        self.assertFalse(queue["decision"]["apply_decisions_now"])
+        self.assertFalse(
+            queue["decision"]["lever4_label_factory_gate_inputs_ready"]
+        )
+        self.assertEqual(
+            queue["decision_queue"][0]["decision_class"],
+            "p10746_fold_only_deployment_caveat",
+        )
+        self.assertEqual(queue["decision_queue"][0]["entry_id"], "m_csa:204")
+        priority2_rows = [
+            row
+            for row in queue["decision_queue"]
+            if row["priority"] == 2
+        ]
+        self.assertEqual(len(priority2_rows), 6)
+        self.assertTrue(queue["guardrails"]["review_only"])
+        self.assertFalse(queue["guardrails"]["imports_or_promotions_performed"])
+        self.assertFalse(
+            queue["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
     def test_fold_augmented_family_panel_source_check_queue_current_counts(self) -> None:
         queue = _load_json(
             ROOT

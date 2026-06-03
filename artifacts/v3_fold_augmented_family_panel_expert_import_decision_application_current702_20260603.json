@@ -1,0 +1,458 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_expert_import_decision_application_current702_20260603",
+  "blockers": [
+    "explicit_expert_import_decisions_missing",
+    "accepted_import_preview_candidate_rows_missing"
+  ],
+  "counts": {
+    "accepted_but_still_blocked_rows": 0,
+    "accepted_import_preview_candidate_rows": 0,
+    "blockers": 2,
+    "critical_violation_total": 0,
+    "decision_records_total": 22,
+    "explicit_decision_records": 0,
+    "packet_stub_rows": 22,
+    "pending_decision_rows": 22,
+    "rejected_rows": 0,
+    "review_only_rows": 0,
+    "unmatched_decisions": 0
+  },
+  "created_utc": "2026-06-03T08:12:02Z",
+  "decision": {
+    "explicit_expert_import_decisions_recorded": false,
+    "import_preview_can_run_now": false,
+    "label_factory_gate_ready": false,
+    "new_countable_labels_authorized": false,
+    "next_gate": "If import_preview_can_run_now is true, build a separate family-panel import-preview artifact for the accepted rows and then run the label-factory gate. Otherwise, record missing expert decisions or clear the remaining locator, primary-channel, or family-promotion blockers first."
+  },
+  "guardrails": {
+    "family_panel_rows_countable_now": false,
+    "heldout_rows_used_for_training": false,
+    "import_preview_written": false,
+    "imports_or_promotions_performed": false,
+    "label_factory_gate_run": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "0 accepted family-panel rows are ready for a separate import-preview artifact.",
+    "next_action": "Review and apply expert decisions with hashes unchanged; then build a separate import-preview artifact only for accepted rows marked accepted_import_preview_candidate.",
+    "result": "The gate keeps current family-panel rows fail-closed unless an explicit accepted decision is present with the unchanged row-context hash and no remaining source-free locator, primary channel, or family-promotion blocker."
+  },
+  "row_decisions": [
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "93a25d123a9982ff60cdf3f59c7b37b90d0503e9a215a3ae0415b6e892d7b09e",
+      "decision_present": false,
+      "entry_id": "m_csa:750",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "76e4d014d61588cf518a2f04ed9108821453c1318d4490366fb100a957baff71",
+      "decision_present": false,
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview",
+        "materialize_primary_channel_score",
+        "resolve_source_free_locator_or_coordinate_policy"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "c5e1512a334fcdea68abe7c9220109f1ea43e851b8652fb38e14ee08dfe028e9",
+      "decision_present": false,
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "2df2367c794c10e8d9b1a1e25a7fb752bd5b69a86538ba8d2d1ae6617d7d2b4f",
+      "decision_present": false,
+      "entry_id": "m_csa:131",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "bf6fd180920d46c6d6528d640046eb910f7b9d97de62a8bda1849ce3e1ec219c",
+      "decision_present": false,
+      "entry_id": "m_csa:132",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "8652136523d52c0716ebcf47e211f7354182fc04639c783d39b12c4ede968f47",
+      "decision_present": false,
+      "entry_id": "m_csa:551",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "1dabc7673a199d8be5d4cf2edb3e39d1cb0986f49e6899d52f1613fd7bcc2aa6",
+      "decision_present": false,
+      "entry_id": "m_csa:973",
+      "import_preview_candidate_if_accepted_now": true,
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "053f2650736313a00fefc90ce26c335c89e974cd778ad0b3a1cf1e0fed536885",
+      "decision_present": false,
+      "entry_id": "m_csa:30",
+      "import_preview_candidate_if_accepted_now": true,
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "53c1ef64975b92ca67c8f6891d8d4613b22afbaac820de9bc847bd65019209f4",
+      "decision_present": false,
+      "entry_id": "m_csa:31",
+      "import_preview_candidate_if_accepted_now": true,
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "3192416248745cf2bdb7051facaf00959424f2363960caa899104f09d4930de5",
+      "decision_present": false,
+      "entry_id": "m_csa:267",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "5b858c3589a6bfb25c0dc38822f5652903e9258dfbdd6bccc03eac0353df139d",
+      "decision_present": false,
+      "entry_id": "m_csa:448",
+      "import_preview_candidate_if_accepted_now": true,
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "60e499d3cc409a481c1bf7a458cf7d706bd9cd520f59c07f2ed0718caa66fd60",
+      "decision_present": false,
+      "entry_id": "external_glycoside_panel",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview",
+        "materialize_primary_channel_score",
+        "resolve_source_free_locator_or_coordinate_policy"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "7ed5f5d914a84d6e2140baf16528ae5b85e13698547b7710b2dc9985a761cee7",
+      "decision_present": false,
+      "entry_id": "m_csa:10",
+      "import_preview_candidate_if_accepted_now": true,
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "cea2ee2a21808597353a13885eec7e17421b794e84826900b8b770aedd19a978",
+      "decision_present": false,
+      "entry_id": "m_csa:116",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "e75dde48da5aa8f2dbdd77ef07b4bce136e02413ef014303351436c545074f33",
+      "decision_present": false,
+      "entry_id": "mh_073",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "40080da23147810796b2fc60b9e9939f32aa081f6ac40052e7a47d1e9de2c5d5",
+      "decision_present": false,
+      "entry_id": "mh_064",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview",
+        "materialize_primary_channel_score",
+        "resolve_source_free_locator_or_coordinate_policy"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "c705b3e334a6ec139c660157c239a2b5e114b08090291ce57b7957ed09d44f1b",
+      "decision_present": false,
+      "entry_id": "mh_065",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview",
+        "materialize_primary_channel_score",
+        "resolve_source_free_locator_or_coordinate_policy"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "ae915cfe306e6fc1b3385dbddb5a82fa56c11d2b9f08a6af74ff6eb14713a03f",
+      "decision_present": false,
+      "entry_id": "mh_066",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "23e7a8e70a90792bd79b6a8919dd98d880e3afc3719e8b7d8a99f3f1dd187345",
+      "decision_present": false,
+      "entry_id": "mh_067",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "83ab515e63be41b7023ef414f21932e3f66c3f94ea79cce508d5ac503cfd3304",
+      "decision_present": false,
+      "entry_id": "mh_068",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "completed_source_check_review_only_no_promotion",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "family_promotion_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "02378e497c32aba58d6f3f16030c9ebaa6ac7eb35949c29ac5d371f438199562",
+      "decision_present": false,
+      "entry_id": "mh_072",
+      "import_preview_candidate_if_accepted_now": false,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_blocker_class": "source_free_locator_or_primary_channel_missing",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview",
+        "materialize_primary_channel_score",
+        "resolve_source_free_locator_or_coordinate_policy"
+      ]
+    },
+    {
+      "accepted_but_still_blocked": false,
+      "accepted_import_preview_candidate": false,
+      "critical_violations": [],
+      "decision": "pending_review",
+      "decision_context_sha256": "ec8b364f55c8b22d8da245791ebc3f4a181c2fdfc93657db998bfaca375fcacb",
+      "decision_present": false,
+      "entry_id": "m_csa:191",
+      "import_preview_candidate_if_accepted_now": true,
+      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+      "primary_blocker_class": "expert_family_admission_decision_required",
+      "rejected_or_review_only": false,
+      "remaining_actions_before_import_preview": [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview"
+      ]
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.family_panel_expert_import_decision_application",
+  "scope": "Fail-closed application gate for Lever 4 family-panel expert import decisions. It verifies row-context hashes and exposes accepted rows that may enter a separate import-preview artifact. It does not write an import preview, run label-factory gates, edit labels, change registries, or make rows countable.",
+  "source_artifacts": {
+    "expert_decisions": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.json",
+      "sha256": "63892511fa812103e8cb08e0d6a274d2fe305862fc87906a965cc257a431e0bc"
+    },
+    "expert_import_decision_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_expert_import_decision_packet_current702_20260603.json",
+      "sha256": "63892511fa812103e8cb08e0d6a274d2fe305862fc87906a965cc257a431e0bc"
+    }
+  },
+  "status": "family_panel_expert_import_decision_application_blocked",
+  "unmatched_decisions": []
+}
