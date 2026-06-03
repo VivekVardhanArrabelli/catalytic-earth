@@ -3643,6 +3643,303 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["blockers"],
         )
 
+    def test_fold_augmented_confounded_proxy_acquisition_queue_current_counts(
+        self,
+    ) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_acquisition_queue_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            queue["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_acquisition_queue_"
+                "current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            queue["status"],
+            "fold_augmented_confounded_proxy_acquisition_queue_blocked",
+        )
+        self.assertEqual(queue["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(queue["counts"]["evidence_request_rows"], 14)
+        self.assertEqual(
+            queue["counts"]["existing_retained_gap_queue_rows"], 14
+        )
+        self.assertEqual(
+            queue["counts"]["loose_same_family_current_surface_rows"], 11
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_acceptance_scenario_rows"], 6
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_high_cofactor_axis_rows"], 5
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_structural_axis_rows"], 1
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_train_cal_oos_eligible_now"],
+            0,
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_heldout_confounded_rows"], 4
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_train_cal_in_scope_or_seed_rows"],
+            1,
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_not_on_train_cal_manifest_rows"],
+            5,
+        )
+        self.assertEqual(
+            queue["counts"]["high_cofactor_shortfall_after_current_scenario"], 4
+        )
+        self.assertEqual(
+            queue["counts"][
+                "same_family_structural_shortfall_after_current_scenario"
+            ],
+            48,
+        )
+        self.assertEqual(
+            queue["counts"]["current_surface_unscored_candidate_rows"], 1
+        )
+        by_id = {
+            row["entry_id"]: row
+            for row in queue["family_panel_scenario_calibration_screen"]
+        }
+        self.assertFalse(
+            by_id["m_csa:973"]["train_cal_oos_calibration_eligible_now"]
+        )
+        self.assertIn(
+            "not_train_cal_oos_calibration_row_label_type",
+            by_id["m_csa:973"]["non_eligible_reasons"],
+        )
+        self.assertTrue(by_id["m_csa:30"]["current_heldout_confounded_oos_row"])
+        self.assertIn(
+            "current_heldout_confounded_oos_row_not_allowed_for_train_cal_calibration",
+            by_id["m_csa:30"]["non_eligible_reasons"],
+        )
+        self.assertIn(
+            "family_panel_acceptance_scenario_rows_do_not_close_train_cal_proxy_calibration",
+            queue["blockers"],
+        )
+        self.assertIn(
+            "heldout_confounded_scenario_rows_guardrailed",
+            queue["blockers"],
+        )
+        self.assertFalse(queue["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(
+            queue["decision"]["proxy_calibration_rerun_ready_now"]
+        )
+        self.assertFalse(
+            queue["guardrails"]["heldout_confounded_rows_counted_as_calibration"]
+        )
+
+    def test_fold_augmented_confounded_proxy_train_cal_candidate_pool_current_counts(
+        self,
+    ) -> None:
+        pool = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_"
+                "current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            pool["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_"
+                "current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            pool["status"],
+            "fold_augmented_confounded_proxy_train_cal_candidate_pool_ready_for_scoring_plan",
+        )
+        self.assertEqual(pool["counts"]["ready_train_cal_oos_rows"], 353)
+        self.assertEqual(
+            pool["counts"]["current_scored_train_cal_oos_rows"], 76
+        )
+        self.assertEqual(
+            pool["counts"]["unscored_ready_train_cal_oos_candidate_rows"],
+            286,
+        )
+        self.assertEqual(
+            pool["counts"]["high_organic_cofactor_candidate_rows"], 4
+        )
+        self.assertEqual(
+            pool["counts"]["high_inorganic_cofactor_locus_candidate_rows"], 9
+        )
+        self.assertEqual(
+            pool["counts"]["high_cofactor_axis_candidate_rows"], 13
+        )
+        self.assertEqual(
+            pool["counts"]["structural_locus_candidate_rows"], 114
+        )
+        self.assertEqual(
+            pool["counts"]["metal_structural_locus_candidate_rows"], 103
+        )
+        self.assertEqual(
+            pool["counts"]["unsupported_or_missing_geometry_locus_rows"], 10
+        )
+        self.assertEqual(
+            pool["counts"]["priority_bucket_counts"],
+            {"1": 13, "2": 103, "3": 170},
+        )
+        self.assertEqual(pool["counts"]["priority_candidate_rows_emitted"], 80)
+        self.assertTrue(
+            pool["decision"]["candidate_pool_meets_high_shortfall_by_count"]
+        )
+        self.assertTrue(
+            pool["decision"][
+                "candidate_pool_meets_structural_shortfall_by_count"
+            ]
+        )
+        self.assertFalse(pool["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(pool["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertIn(
+            "candidate_pool_not_scored_at_fixed_threshold", pool["blockers"]
+        )
+        first = pool["priority_candidate_rows"][0]
+        self.assertEqual(first["entry_id"], "m_csa:289")
+        self.assertEqual(first["organic_cofactor_max_class"], "flavin")
+        self.assertEqual(first["organic_cofactor_max_score"], 0.980742)
+        self.assertFalse(
+            pool["guardrails"]["heldout_rows_read_for_training_or_threshold_tuning"]
+        )
+        self.assertFalse(pool["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current_counts(
+        self,
+    ) -> None:
+        plan = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_scoring_"
+                "tranche_plan_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            plan["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_scoring_"
+                "tranche_plan_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            plan["status"],
+            "fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_ready",
+        )
+        self.assertEqual(plan["counts"]["priority_candidate_rows_available"], 80)
+        self.assertEqual(plan["counts"]["tranche_rows"], 50)
+        self.assertEqual(
+            plan["counts"]["selected_high_cofactor_axis_rows"], 13
+        )
+        self.assertEqual(plan["counts"]["selected_structural_axis_rows"], 48)
+        self.assertEqual(
+            plan["counts"]["high_cofactor_shortfall_from_acquisition_queue"], 4
+        )
+        self.assertEqual(
+            plan["counts"]["structural_shortfall_from_acquisition_queue"], 48
+        )
+        self.assertTrue(
+            plan["counts"]["selected_high_rows_meet_shortfall_by_count"]
+        )
+        self.assertTrue(
+            plan["counts"]["selected_structural_rows_meet_shortfall_by_count"]
+        )
+        self.assertTrue(plan["decision"]["tranche_ready_for_scoring_plan"])
+        self.assertFalse(plan["decision"]["score_tranche_now"])
+        self.assertFalse(plan["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(plan["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertIn("scoring_tranche_not_run", plan["blockers"])
+        self.assertEqual(plan["scoring_tranche_rows"][0]["entry_id"], "m_csa:289")
+        self.assertEqual(
+            plan["scoring_tranche_rows"][0]["selection_reason"],
+            "high_cofactor_axis_candidate",
+        )
+        self.assertFalse(
+            plan["guardrails"]["heldout_rows_read_for_training_or_threshold_tuning"]
+        )
+        self.assertFalse(plan["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_train_cal_scoring_"
+                "input_manifest_current702_20260603.json"
+            )
+        )
+
+        self.assertEqual(
+            manifest["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_train_cal_scoring_"
+                "input_manifest_current702_20260603"
+            ),
+        )
+        self.assertEqual(
+            manifest["status"],
+            "confounded_proxy_train_cal_scoring_input_manifest_staged_missing_coordinates",
+        )
+        self.assertEqual(manifest["counts"]["scoring_tranche_rows"], 50)
+        self.assertEqual(
+            manifest["counts"]["sequence_manifest_rows_found"], 50
+        )
+        self.assertEqual(manifest["counts"]["tranche_rows_with_accession"], 50)
+        self.assertEqual(manifest["counts"]["unique_query_accessions"], 50)
+        self.assertEqual(manifest["counts"]["query_coordinate_requests"], 50)
+        self.assertEqual(manifest["counts"]["query_coordinate_files_observed"], 0)
+        self.assertEqual(manifest["counts"]["query_coordinate_files_missing"], 50)
+        self.assertEqual(
+            manifest["counts"]["train_atlas_target_coordinate_files_missing"],
+            0,
+        )
+        self.assertEqual(manifest["counts"]["foldseek_result_tsv_exists"], 0)
+        self.assertIn(
+            "tranche_query_coordinate_files_missing", manifest["blockers"]
+        )
+        self.assertIn("tranche_foldseek_tsv_not_run", manifest["blockers"])
+        self.assertTrue(
+            manifest["decision"]["coordinate_manifest_ready_for_fetch"]
+        )
+        self.assertTrue(
+            manifest["decision"]["foldseek_ready_to_run_after_coordinates"]
+        )
+        self.assertFalse(manifest["decision"]["score_tranche_now"])
+        self.assertFalse(
+            manifest["decision"]["proxy_calibration_rerun_ready_now"]
+        )
+        self.assertEqual(
+            len(manifest["missing_query_coordinate_manifest"]), 50
+        )
+        self.assertEqual(
+            manifest["missing_query_coordinate_manifest"][0]["accession"],
+            "O81192",
+        )
+        self.assertFalse(
+            manifest["guardrails"][
+                "heldout_rows_read_for_training_or_threshold_tuning"
+            ]
+        )
+        self.assertFalse(manifest["guardrails"]["coordinate_downloads_performed"])
+        self.assertFalse(manifest["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p10746_source_feature_refresh_audit_current_counts(
         self,
     ) -> None:
@@ -8863,7 +9160,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
-        self.assertEqual(audit["counts"]["blockers"], 12)
+        self.assertEqual(audit["counts"]["blockers"], 14)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 78
         )
@@ -8906,6 +9203,72 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             6,
         )
         self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_acquisition_family_panel_eligible_rows"],
+            0,
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_acquisition_high_shortfall"],
+            4,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_acquisition_structural_shortfall"],
+            48,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_acquisition_heldout_guardrail_rows"],
+            4,
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_acquisition_blockers"],
+            6,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_candidate_pool_unscored_rows"],
+            286,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_candidate_pool_high_axis_rows"],
+            13,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_candidate_pool_structural_axis_rows"],
+            114,
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_scoring_tranche_rows"], 50
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_scoring_tranche_high_rows"],
+            13,
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_scoring_tranche_structural_rows"],
+            48,
+        )
+        self.assertTrue(
+            audit[
+                "counts"
+            ]["lever3_confounded_proxy_scoring_tranche_ready_for_plan"]
+        )
+        self.assertEqual(
+            audit["counts"]["lever3_confounded_proxy_scoring_tranche_blockers"],
+            1,
+        )
+        self.assertEqual(
             audit["counts"]["lever4_pending_expert_import_decisions"], 22
         )
         self.assertEqual(audit["counts"]["lever4_acceptance_scenario_rows"], 6)
@@ -8936,6 +9299,13 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertIn(
             "lever3_confounded_proxy_evidence_extension_scale_gap",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "lever3_confounded_proxy_acquisition_shortfall", audit["blockers"]
+        )
+        self.assertIn(
+            "lever3_confounded_proxy_train_cal_scoring_tranche_not_run",
             audit["blockers"],
         )
         self.assertIn(

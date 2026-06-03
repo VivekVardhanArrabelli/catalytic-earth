@@ -28,6 +28,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_gap_targets,
     build_fold_augmented_confounded_proxy_threshold_stress,
     build_fold_augmented_confounded_proxy_evidence_extension_plan,
+    build_fold_augmented_confounded_proxy_acquisition_queue,
+    build_fold_augmented_confounded_proxy_train_cal_candidate_pool,
+    build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
+    build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
     build_fold_augmented_family_panel_accepted_import_preview,
     build_fold_augmented_family_panel_acceptance_scenario_plan,
     build_fold_augmented_family_panel_expert_import_decision_application,
@@ -79,6 +83,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
@@ -2242,6 +2247,512 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "threshold_stress::structural_proxy_80pct_abstain_breaks_85pct_in_scope_retention",
             audit["blockers"],
         )
+
+    def test_confounded_proxy_acquisition_queue_screens_family_scenario_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            extension = root / "extension.json"
+            scenario = root / "scenario.json"
+            manifest = root / "manifest.json"
+            surface = root / "surface.json"
+            fold_channel = root / "fold_channel.json"
+            extension.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.5,
+                        },
+                        "extension_requirements": {
+                            "high_cofactor_signature_proxy": {
+                                "minimum_new_abstained_rows_if_all_new_rows_abstain": {
+                                    "0.8": 4
+                                }
+                            },
+                            "same_family_structural_proxy": {
+                                "minimum_new_abstained_rows_if_all_new_rows_abstain": {
+                                    "0.8": 10
+                                }
+                            },
+                        },
+                        "evidence_request_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "axis": "high_cofactor_confounded_proxy_extension",
+                                "priority": (
+                                    "priority_1_high_cofactor_retained_proxy_gap"
+                                ),
+                                "proxy_membership": [
+                                    "high_cofactor_signature_proxy"
+                                ],
+                                "threshold_margin": 0.2,
+                            }
+                        ],
+                        "current_surface_pool": {
+                            "unused_high_cofactor_rows_in_current_surface": 0,
+                            "same_family_abstain_recall_without_component_thresholds": 0.3,
+                            "current_surface_can_satisfy_structural_80pct_by_loosened_membership": False,
+                            "same_family_extra_rows_if_component_thresholds_loosened": [
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "combined_score": 0.4,
+                                    "threshold_margin": -0.1,
+                                    "abstained": True,
+                                }
+                            ],
+                        },
+                        "current_surface_unscored_candidate_rows": [
+                            {"entry_id": "m_csa:204", "accession": "P10746"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scenario.write_text(
+                json.dumps(
+                    {
+                        "acceptance_scenario_rows": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "panel_id": (
+                                    "glycyl_radical_or_thiamine_radical_"
+                                    "lyase_boundary"
+                                ),
+                                "would_enter_import_preview_if_accepted": True,
+                                "decision_context_sha256": "abc",
+                            },
+                            {
+                                "entry_id": "m_csa:973",
+                                "panel_id": (
+                                    "flavin_monooxygenase_and_flavin_oxygen_"
+                                    "transfer"
+                                ),
+                                "would_enter_import_preview_if_accepted": True,
+                                "decision_context_sha256": "def",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:973",
+                                "label_type": "seed_fingerprint",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface.write_text(
+                json.dumps({"candidate_row_scores": []}),
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "target_rows": {
+                            "priority_cofactor_confounded_oos_entry_ids": [
+                                "m_csa:30"
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            queue = build_fold_augmented_confounded_proxy_acquisition_queue(
+                confounded_proxy_evidence_extension_plan_path=extension,
+                family_panel_acceptance_scenario_plan_path=scenario,
+                train_cal_input_manifest_path=manifest,
+                train_cal_oos_surface_path=surface,
+                predicted_structure_fold_channel_path=fold_channel,
+                artifact_id="custom_proxy_acquisition_queue",
+            )
+
+        self.assertEqual(queue["artifact_id"], "custom_proxy_acquisition_queue")
+        self.assertEqual(
+            queue["status"], "fold_augmented_confounded_proxy_acquisition_queue_blocked"
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_acceptance_scenario_rows"], 2
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_train_cal_oos_eligible_now"],
+            0,
+        )
+        self.assertEqual(
+            queue["counts"]["family_panel_scenario_heldout_confounded_rows"], 1
+        )
+        self.assertEqual(
+            queue["counts"]["high_cofactor_shortfall_after_current_scenario"], 4
+        )
+        self.assertEqual(
+            queue["counts"][
+                "same_family_structural_shortfall_after_current_scenario"
+            ],
+            10,
+        )
+        by_id = {
+            row["entry_id"]: row
+            for row in queue["family_panel_scenario_calibration_screen"]
+        }
+        self.assertIn(
+            "current_heldout_confounded_oos_row_not_allowed_for_train_cal_calibration",
+            by_id["m_csa:30"]["non_eligible_reasons"],
+        )
+        self.assertIn(
+            "not_train_cal_oos_calibration_row_label_type",
+            by_id["m_csa:973"]["non_eligible_reasons"],
+        )
+        self.assertFalse(queue["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(queue["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertFalse(
+            queue["guardrails"]["heldout_confounded_rows_counted_as_calibration"]
+        )
+
+    def test_confounded_proxy_train_cal_candidate_pool_excludes_scored_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acquisition = root / "acquisition.json"
+            manifest = root / "manifest.json"
+            surface = root / "surface.json"
+            organic = root / "organic.json"
+            acquisition.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "high_cofactor_shortfall_after_current_scenario": 1,
+                            "same_family_structural_shortfall_after_current_scenario": 1,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "no_metal_context_detected"
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "no_metal_context_detected"
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "proximal_metal_context_available"
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "minimal_train_cal_feature_bundle_ready": False,
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "proximal_metal_context_available"
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface.write_text(
+                json.dumps(
+                    {"candidate_row_scores": [{"entry_id": "m_csa:1"}]}
+                ),
+                encoding="utf-8",
+            )
+            organic.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "class": "flavin",
+                                "selected_score": 0.8,
+                                "score_available": True,
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "class": "heme",
+                                "selected_score": 0.1,
+                                "score_available": True,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            pool = build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
+                confounded_proxy_acquisition_queue_path=acquisition,
+                train_cal_input_manifest_path=manifest,
+                train_cal_oos_surface_path=surface,
+                selected_organic_cofactor_sidecar_path=organic,
+                artifact_id="custom_train_cal_candidate_pool",
+            )
+
+        self.assertEqual(pool["artifact_id"], "custom_train_cal_candidate_pool")
+        self.assertEqual(
+            pool["status"],
+            "fold_augmented_confounded_proxy_train_cal_candidate_pool_ready_for_scoring_plan",
+        )
+        self.assertEqual(
+            pool["counts"]["unscored_ready_train_cal_oos_candidate_rows"], 2
+        )
+        self.assertEqual(pool["counts"]["current_scored_train_cal_oos_rows"], 1)
+        self.assertEqual(pool["counts"]["high_cofactor_axis_candidate_rows"], 1)
+        self.assertEqual(pool["counts"]["structural_locus_candidate_rows"], 1)
+        self.assertTrue(
+            pool["decision"]["candidate_pool_meets_high_shortfall_by_count"]
+        )
+        self.assertTrue(
+            pool["decision"][
+                "candidate_pool_meets_structural_shortfall_by_count"
+            ]
+        )
+        emitted = {row["entry_id"] for row in pool["priority_candidate_rows"]}
+        self.assertEqual(emitted, {"m_csa:2", "m_csa:3"})
+        self.assertFalse(pool["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(pool["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertFalse(pool["guardrails"]["candidate_rows_scored_now"])
+
+    def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pool_path = root / "pool.json"
+            pool_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "high_cofactor_shortfall_from_acquisition_queue": 1,
+                            "structural_shortfall_from_acquisition_queue": 2,
+                        },
+                        "priority_candidate_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "priority_bucket": 1,
+                                "organic_cofactor_max_class": "flavin",
+                                "organic_cofactor_max_score": 0.9,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "high_cofactor_signature_proxy",
+                                    "same_family_structural_proxy",
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "priority_bucket": 1,
+                                "organic_cofactor_max_class": "heme",
+                                "organic_cofactor_max_score": 0.8,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "high_cofactor_signature_proxy"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "priority_bucket": 2,
+                                "organic_cofactor_max_class": "plp",
+                                "organic_cofactor_max_score": 0.2,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "same_family_structural_proxy"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "priority_bucket": 2,
+                                "organic_cofactor_max_class": "plp",
+                                "organic_cofactor_max_score": 0.1,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "same_family_structural_proxy"
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            plan = build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
+                train_cal_candidate_pool_path=pool_path,
+                artifact_id="custom_scoring_tranche",
+            )
+
+        self.assertEqual(plan["artifact_id"], "custom_scoring_tranche")
+        self.assertEqual(
+            plan["status"],
+            "fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_ready",
+        )
+        self.assertEqual(plan["counts"]["tranche_rows"], 3)
+        self.assertEqual(
+            plan["counts"]["selected_high_cofactor_axis_rows"], 2
+        )
+        self.assertEqual(plan["counts"]["selected_structural_axis_rows"], 2)
+        self.assertTrue(plan["decision"]["tranche_ready_for_scoring_plan"])
+        self.assertFalse(plan["decision"]["score_tranche_now"])
+        self.assertFalse(plan["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertEqual(
+            [row["entry_id"] for row in plan["scoring_tranche_rows"]],
+            ["m_csa:1", "m_csa:2", "m_csa:3"],
+        )
+
+    def test_confounded_proxy_train_cal_scoring_input_manifest_maps_coordinates(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            plan_path = root / "plan.json"
+            sequence_path = root / "sequence.json"
+            fold_channel_path = root / "fold.json"
+            threshold_path = root / "threshold.json"
+            target_path = root / "coords" / "atlas" / "afdb_PTRAIN_v6.cif"
+            target_path.parent.mkdir(parents=True)
+            target_path.write_text("data_test\n", encoding="utf-8")
+            plan_path.write_text(
+                json.dumps(
+                    {
+                        "scoring_tranche_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "split_assignment": "in_distribution",
+                                "label_type": "out_of_scope",
+                                "priority_bucket": 1,
+                                "selection_reason": "high_cofactor_axis_candidate",
+                                "recommended_proxy_axes_after_scoring": [
+                                    "high_cofactor_signature_proxy"
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sequence_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "sequence_records": [
+                                    {"accession_or_structure_id": "PQUERY"}
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_channel_path.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "coordinate_root": str(root / "coords"),
+                            "coordinate_request_groups": {
+                                "atlas_in_distribution": [
+                                    {
+                                        "role": "atlas_in_distribution_target",
+                                        "status": "ready_to_materialize",
+                                        "accession": "PTRAIN",
+                                        "alphafold_version": 6,
+                                        "predicted_pdb_id": (
+                                            "AF-PTRAIN-F1-model_v6"
+                                        ),
+                                        "url": (
+                                            "https://alphafold.ebi.ac.uk/files/"
+                                            "AF-PTRAIN-F1-model_v6.cif"
+                                        ),
+                                        "expected_local_path": str(target_path),
+                                        "local_file_exists": True,
+                                        "entry_ids": ["m_csa:10"],
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:10",
+                                                "split_assignment": (
+                                                    "in_distribution"
+                                                ),
+                                                "true_fingerprint_id": "fp_a",
+                                            }
+                                        ],
+                                    }
+                                ]
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "train_cal_partition": {
+                            "train_entry_ids": ["m_csa:10"],
+                            "calibration_entry_ids": ["m_csa:11"],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            manifest = build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
+                scoring_tranche_plan_path=plan_path,
+                sequence_manifest_path=sequence_path,
+                predicted_structure_fold_channel_path=fold_channel_path,
+                threshold_contract_path=threshold_path,
+                foldseek_binary=str(root / "missing_foldseek"),
+                artifact_id="custom_scoring_input_manifest",
+            )
+
+        self.assertEqual(manifest["artifact_id"], "custom_scoring_input_manifest")
+        self.assertEqual(
+            manifest["status"],
+            "confounded_proxy_train_cal_scoring_input_manifest_staged_missing_coordinates",
+        )
+        self.assertEqual(manifest["counts"]["scoring_tranche_rows"], 1)
+        self.assertEqual(manifest["counts"]["unique_query_accessions"], 1)
+        self.assertEqual(manifest["counts"]["query_coordinate_files_missing"], 1)
+        self.assertEqual(
+            manifest["counts"]["train_atlas_target_coordinate_files_missing"], 0
+        )
+        self.assertEqual(
+            manifest["missing_query_coordinate_manifest"][0]["accession"],
+            "PQUERY",
+        )
+        self.assertEqual(
+            manifest["foldseek_input_manifest"]["coordinate_request_groups"][
+                "threshold_contract_train_atlas_targets"
+            ][0]["entry_ids"],
+            ["m_csa:10"],
+        )
+        self.assertFalse(manifest["decision"]["score_tranche_now"])
+        self.assertFalse(manifest["decision"]["proxy_calibration_rerun_ready_now"])
+        self.assertFalse(manifest["guardrails"]["coordinate_downloads_performed"])
 
     def test_fold_only_negative_surface_keeps_fold_scored_geometry_gaps(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -10059,6 +10570,183 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertEqual(schema["counts"]["fallback_contract_available"], 1)
         self.assertFalse(schema["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_event_axis_linker_review_packet_stages_stubs(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema_path = root / "schema.json"
+            approval_path = root / "locator_approval.json"
+            preflight_path = root / "preflight.json"
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linker_schema_ready": True},
+                        "target_feature": {
+                            "event_residue_role_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                            "event_type": "proton_transfer",
+                            "residue_role": "electrostatic_stabiliser",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            approval_path.write_text(
+                json.dumps(
+                    {
+                        "locator_rewrite_decision_stubs": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "review_order": 1,
+                                "reviewer_decision": (
+                                    "pending_reviewer_decision"
+                                ),
+                                "approved": False,
+                                "candidate_sha256": "a" * 64,
+                                "planned_locator_payload_sha256": "b" * 64,
+                                "planned_audited_locator_sidecar_path": (
+                                    "audited/m_csa_1_P00001.json"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "source_accession": "P00002",
+                                "review_order": 2,
+                                "reviewer_decision": (
+                                    "pending_reviewer_decision"
+                                ),
+                                "approved": False,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "preflight_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "preflight_status": (
+                                    "preflight_passed_pending_explicit_approval"
+                                ),
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "FAD",
+                                    "residue_id": "500",
+                                },
+                                "planned_locator_payload_preview": {
+                                    "residue_locators": [
+                                        {
+                                            "residue_code": "HIS",
+                                            "sequence_position": 12,
+                                            "role_hint": (
+                                                "flavin_redox_contact_candidate"
+                                            ),
+                                            "locator_confidence": 0.25,
+                                            "locator_evidence_class": (
+                                                "structure_local_ligand_geometry_without_source_text"
+                                            ),
+                                        },
+                                        {
+                                            "residue_code": "LEU",
+                                            "sequence_position": 104,
+                                            "role_hint": (
+                                                "flavin_binding_contact_candidate"
+                                            ),
+                                            "locator_confidence": 0.25,
+                                        },
+                                    ]
+                                },
+                                "coordinate_contact_preflight": {
+                                    "locator_summaries": [
+                                        {
+                                            "residue_code": "HIS",
+                                            "sequence_position": 12,
+                                            "distance_angstrom": 2.7,
+                                            "ligand_atom": "O2P",
+                                            "residue_atom": "NE2",
+                                            "sequence_position_source": (
+                                                "struct_ref_seq.auth_seq_id"
+                                            ),
+                                        }
+                                    ]
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "source_accession": "P00002",
+                                "preflight_status": (
+                                    "preflight_passed_pending_explicit_approval"
+                                ),
+                                "planned_locator_payload_preview": {
+                                    "residue_locators": [
+                                        {
+                                            "residue_code": "LEU",
+                                            "sequence_position": 7,
+                                        }
+                                    ]
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet(
+                event_axis_linker_schema_path=schema_path,
+                locator_rewrite_approval_packet_path=approval_path,
+                coordinate_anchor_priority1_rewrite_preflight_path=preflight_path,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["event_axis_review_stub_rows"], 2)
+        self.assertEqual(packet["counts"]["candidate_event_residue_linkers"], 1)
+        self.assertEqual(packet["counts"]["review_stubs_with_candidate_linkers"], 1)
+        self.assertEqual(packet["counts"]["locator_dependency_pending_rows"], 2)
+        self.assertEqual(packet["counts"]["gate_consumable_event_axis_linker_rows"], 0)
+        self.assertIn(
+            "source_free_event_axis_linker_reviewer_decisions_not_recorded",
+            packet["blockers"],
+        )
+        self.assertIn(
+            "approved_source_free_locator_surface_missing",
+            packet["blockers"],
+        )
+        first = packet["event_axis_linker_review_stubs"][0]
+        self.assertEqual(
+            first["event_axis_review_class"],
+            "candidate_ready_for_event_axis_review_pending_locator_approval",
+        )
+        self.assertEqual(
+            first["draft_event_axis_linker_row_template"][
+                "source_free_event_axis_status"
+            ],
+            "pending_source_free_event_axis_review",
+        )
+        self.assertEqual(
+            first["draft_event_axis_linker_row_template"]["event_residue_linkers"][
+                0
+            ]["residue_code"],
+            "HIS",
+        )
+        self.assertFalse(first["materialization_gate_input_ready_now"])
+        self.assertFalse(packet["decision"]["event_axis_linkers_materialized"])
+        self.assertFalse(packet["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertNotIn("event_axis_linker_rows", packet)
+        self.assertFalse(packet["guardrails"]["heldout_rows_evaluated"])
 
     def test_followup_pair_source_free_event_axis_linker_gate_blocks_without_rows(
         self,

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 329
-- Measured elapsed time: 9814.9 minutes (163.58 hours)
+- Entries: 330
+- Measured elapsed time: 9862.0 minutes (164.37 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,6 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
+- northstar-lever3: 47.1 measured minutes (0.78 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -28,19 +29,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3486
-- Evidence references logged: 2883
+- Artifact references logged: 3492
+- Evidence references logged: 2888
 
 ## Recent Entries
-
-### 2026-05-26T04:27:02.589694+00:00 - v3
-
-- Task: Wave 1 structural-neighborhood representation diagnostic
-- Time mode: measured
-- Measured minutes: 50.0
-- Artifacts: artifacts/v3_wave1_structure_neighborhood_audit_20260526.json, artifacts/v3_wave1_representation_shootout_result_card_20260526.json, docs/wave1_representation_shootout.md, work/handoff.md
-- Evidence: joined 140 current702 heldout rows across Wave 1 baseline and representation tracks, reported metrics by structural-neighborhood bin for Foldseek ESM-2 ESM-C ProtT5 SaProt 3Di geometry and sequence-NN, identified fold-controlled contrast near-orphan and proposal-only v2 sublabel candidate rows, interpreted Wave 1 as structural-neighborhood transfer and abstention diagnostics, not a model-scaling win
-- Notes: No label import registry edit fingerprint edit ontology edit threshold change production scoring model scaling or representation branch artifact edit occurred.
 
 ### 2026-05-27T10:15:26Z - v3
 
@@ -119,6 +111,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json, work/fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.md, artifacts/v3_fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603.json, work/fold_augmented_family_panel_acceptance_scenario_plan_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md
 - Evidence: Lever 3 fixed threshold unchanged; high-cofactor proxy needs 4 new abstained train/cal rows for 80pct and structural proxy needs 48; current scored surface has 0 unused high-cofactor rows and 11 loose same-family extras with 9/28 abstained; Lever 4 has 6 accept-if-accepted scenario rows across 5 panels and 0 countable labels now
 - Notes: No labels registries ontologies imports production thresholds source decisions sidecars model weights or heldout threshold tuning changed.
+
+### 2026-06-03T14:51:20.045307+00:00 - northstar-lever3
+
+- Task: Confounded proxy train/cal scoring tranche input manifest
+- Time mode: measured
+- Measured minutes: 47.067
+- Started: 2026-06-03T14:03:24Z
+- Ended: 2026-06-03T14:50:28Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603.json, work/handoff.md, work/status.md
+- Evidence: 8 focused tests passed, full pytest 1327 passed and 143 subtests passed, unittest discovery 1282 passed, validate passed with 702 labels, 50 tranche query CIFs manifested and 0 train-target CIFs missing
+- Notes: Early complete after bounded Lever 3 artifacts, full validation, and no source-decision intake changes.
 
 ## Expectation Updates
 
@@ -377,6 +380,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T09:54:04.655478+00:00: Next run should start by applying explicit source-packet decisions if available; otherwise no mechanical gate is open.
 - 2026-06-03T10:52:23.444858+00:00: Next run should edit only source decision packets if reviewed decisions are available then rerun the source intake preflight before application or materialization gates.
 - 2026-06-03T11:23:19.905443+00:00: Next run should edit source decision packets only if reviewed decisions are available, then rerun source intake and the decision-application contract audit before any matching gate.
+- 2026-06-03T14:51:20.045307+00:00: Lever 3 now has an executable 50-row train/cal scoring input manifest; next step is materializing query CIFs and scoring without heldout threshold tuning.
 
 ## Scope Adjustments
 

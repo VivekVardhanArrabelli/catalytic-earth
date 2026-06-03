@@ -168,6 +168,18 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_THRESHOLD_STRESS_ID = (
 FOLD_AUGMENTED_CONFOUNDED_PROXY_EVIDENCE_EXTENSION_PLAN_ID = (
     "v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_ACQUISITION_QUEUE_ID = (
+    "v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_CANDIDATE_POOL_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_TRANCHE_PLAN_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_INPUT_MANIFEST_ID = (
+    "v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -470,6 +482,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_SCHEMA_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_REVIEW_PACKET_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603"
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_MATERIALIZATION_GATE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603"
@@ -25282,6 +25297,1829 @@ def write_fold_augmented_family_panel_countability_gate_preflight(
     return audit
 
 
+def _records_by_entry_from_payload(
+    payload: dict[str, Any],
+    keys: tuple[str, ...],
+) -> dict[str, dict[str, Any]]:
+    rows_by_entry: dict[str, dict[str, Any]] = {}
+    for key in keys:
+        rows = payload.get(key)
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if isinstance(row, dict) and row.get("entry_id"):
+                rows_by_entry[str(row["entry_id"])] = row
+    return rows_by_entry
+
+
+def _confounded_proxy_candidate_axes_for_panel(panel_id: str) -> list[str]:
+    high_cofactor_panels = {
+        "flavin_monooxygenase_and_flavin_oxygen_transfer",
+        "glycyl_radical_or_thiamine_radical_lyase_boundary",
+        "lipoamide_or_sulfur_transfer_redox_boundary",
+        "thiol_disulfide_oxidoreductase_isomerase_boundary",
+    }
+    structural_panels = {
+        "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+        "no_reliable_structure_metal_hydrolase_controls",
+    }
+    axes: list[str] = []
+    if panel_id in high_cofactor_panels:
+        axes.append("high_cofactor_signature_proxy")
+    if panel_id in structural_panels:
+        axes.append("same_family_structural_proxy")
+    return axes or ["family_panel_breadth_only"]
+
+
+def _minimum_new_abstained_rows_for_target(
+    requirement: dict[str, Any],
+    target: str = "0.8",
+) -> int:
+    return int(
+        (
+            requirement.get("minimum_new_abstained_rows_if_all_new_rows_abstain")
+            or {}
+        ).get(target)
+        or 0
+    )
+
+
+def build_fold_augmented_confounded_proxy_acquisition_queue(
+    *,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    family_panel_acceptance_scenario_plan_path: Path | None = None,
+    train_cal_input_manifest_path: Path | None = None,
+    train_cal_oos_surface_path: Path | None = None,
+    predicted_structure_fold_channel_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_ACQUISITION_QUEUE_ID,
+) -> dict[str, Any]:
+    extension = _read_json(confounded_proxy_evidence_extension_plan_path)
+    scenario = (
+        _read_json(family_panel_acceptance_scenario_plan_path)
+        if family_panel_acceptance_scenario_plan_path is not None
+        and Path(family_panel_acceptance_scenario_plan_path).exists()
+        else {}
+    )
+    train_cal_manifest = (
+        _read_json(train_cal_input_manifest_path)
+        if train_cal_input_manifest_path is not None
+        and Path(train_cal_input_manifest_path).exists()
+        else {}
+    )
+    train_cal_surface = (
+        _read_json(train_cal_oos_surface_path)
+        if train_cal_oos_surface_path is not None
+        and Path(train_cal_oos_surface_path).exists()
+        else {}
+    )
+    fold_channel = (
+        _read_json(predicted_structure_fold_channel_path)
+        if predicted_structure_fold_channel_path is not None
+        and Path(predicted_structure_fold_channel_path).exists()
+        else {}
+    )
+
+    requirements = extension.get("extension_requirements") or {}
+    high_requirement = requirements.get("high_cofactor_signature_proxy") or {}
+    structural_requirement = requirements.get("same_family_structural_proxy") or {}
+    high_min_80 = _minimum_new_abstained_rows_for_target(high_requirement, "0.8")
+    structural_min_80 = _minimum_new_abstained_rows_for_target(
+        structural_requirement, "0.8"
+    )
+    fixed_operating_point = extension.get("fixed_operating_point") or {}
+    current_surface_pool = extension.get("current_surface_pool") or {}
+    evidence_request_rows = [
+        row
+        for row in extension.get("evidence_request_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    current_surface_unscored = [
+        row
+        for row in extension.get("current_surface_unscored_candidate_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    scenario_rows = [
+        row
+        for row in scenario.get("acceptance_scenario_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+
+    train_cal_rows_by_entry = _records_by_entry_from_payload(
+        train_cal_manifest,
+        ("row_records", "split_records"),
+    )
+    train_cal_surface_rows_by_entry = _records_by_entry_from_payload(
+        train_cal_surface,
+        (
+            "candidate_row_scores",
+            "calibration_oos_negative_row_scores",
+            "expanded_full_channel_score_rows",
+        ),
+    )
+    heldout_confounded_ids = set(
+        str(entry_id)
+        for entry_id in (
+            (fold_channel.get("target_rows") or {}).get(
+                "priority_cofactor_confounded_oos_entry_ids"
+            )
+            or []
+        )
+    )
+
+    scenario_queue_rows: list[dict[str, Any]] = []
+    scenario_axis_counts: Counter[str] = Counter()
+    eligible_axis_counts: Counter[str] = Counter()
+    heldout_confounded_scenario_rows = 0
+    train_cal_in_scope_or_seed_rows = 0
+    not_on_train_cal_manifest_rows = 0
+    train_cal_oos_but_unscored_rows = 0
+    for row in scenario_rows:
+        entry_id = str(row["entry_id"])
+        panel_id = str(row.get("panel_id") or "")
+        axes = _confounded_proxy_candidate_axes_for_panel(panel_id)
+        for axis in axes:
+            scenario_axis_counts[axis] += 1
+        train_cal_row = train_cal_rows_by_entry.get(entry_id)
+        surface_row = train_cal_surface_rows_by_entry.get(entry_id)
+        label_type = (
+            str(train_cal_row.get("label_type"))
+            if train_cal_row is not None and train_cal_row.get("label_type")
+            else None
+        )
+        on_train_cal_manifest = train_cal_row is not None
+        on_train_cal_oos_surface = surface_row is not None
+        train_cal_oos_eligible_now = (
+            on_train_cal_manifest
+            and on_train_cal_oos_surface
+            and label_type == "out_of_scope"
+        )
+        non_eligible_reasons: list[str] = []
+        if entry_id in heldout_confounded_ids:
+            heldout_confounded_scenario_rows += 1
+            non_eligible_reasons.append(
+                "current_heldout_confounded_oos_row_not_allowed_for_train_cal_calibration"
+            )
+        if not on_train_cal_manifest:
+            not_on_train_cal_manifest_rows += 1
+            non_eligible_reasons.append("not_on_train_cal_feature_manifest")
+        elif label_type != "out_of_scope":
+            train_cal_in_scope_or_seed_rows += 1
+            non_eligible_reasons.append(
+                "not_train_cal_oos_calibration_row_label_type"
+            )
+        elif not on_train_cal_oos_surface:
+            train_cal_oos_but_unscored_rows += 1
+            non_eligible_reasons.append("train_cal_oos_row_not_in_scored_surface")
+        if train_cal_oos_eligible_now:
+            for axis in axes:
+                eligible_axis_counts[axis] += 1
+        scenario_queue_rows.append(
+            {
+                "entry_id": entry_id,
+                "panel_id": panel_id,
+                "candidate_proxy_axes": axes,
+                "would_enter_import_preview_if_accepted": bool(
+                    row.get("would_enter_import_preview_if_accepted")
+                ),
+                "decision_context_sha256": row.get("decision_context_sha256"),
+                "train_cal_oos_calibration_eligible_now": train_cal_oos_eligible_now,
+                "current_heldout_confounded_oos_row": entry_id
+                in heldout_confounded_ids,
+                "train_cal_feature_manifest_status": (
+                    "present" if on_train_cal_manifest else "missing"
+                ),
+                "train_cal_oos_scored_surface_status": (
+                    "present" if on_train_cal_oos_surface else "missing"
+                ),
+                "train_cal_manifest_label_type": label_type,
+                "non_eligible_reasons": non_eligible_reasons,
+            }
+        )
+
+    existing_retained_gap_queue = [
+        {
+            "entry_id": str(row.get("entry_id")),
+            "axis": row.get("axis"),
+            "priority": row.get("priority"),
+            "proxy_membership": row.get("proxy_membership") or [],
+            "threshold_margin": row.get("threshold_margin"),
+            "fixed_channel_score": row.get("fixed_channel_score"),
+            "queue_role": (
+                "diagnose retained train/cal proxy gaps; does not add new "
+                "abstained proxy evidence by itself"
+            ),
+            "can_close_80pct_scale_gap_without_new_rows": False,
+            "recommended_action": row.get("recommended_action"),
+        }
+        for row in evidence_request_rows
+    ]
+    loose_same_family_rows = [
+        {
+            "entry_id": str(row.get("entry_id")),
+            "combined_score": row.get("combined_score"),
+            "threshold_margin": row.get("threshold_margin"),
+            "abstained": row.get("abstained"),
+            "nearest_train_atlas_true_fingerprint_id": row.get(
+                "nearest_train_atlas_true_fingerprint_id"
+            ),
+            "predicted_geometry_top1_fingerprint_id": row.get(
+                "predicted_geometry_top1_fingerprint_id"
+            ),
+            "queue_role": (
+                "loose same-family current-surface evidence; diagnostic only "
+                "because relaxed membership still misses the 80% abstention bar"
+            ),
+        }
+        for row in current_surface_pool.get(
+            "same_family_extra_rows_if_component_thresholds_loosened", []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+
+    eligible_high_scenario_rows = int(
+        eligible_axis_counts.get("high_cofactor_signature_proxy") or 0
+    )
+    eligible_structural_scenario_rows = int(
+        eligible_axis_counts.get("same_family_structural_proxy") or 0
+    )
+    high_shortfall_after_scenario = max(
+        0, high_min_80 - eligible_high_scenario_rows
+    )
+    structural_shortfall_after_scenario = max(
+        0, structural_min_80 - eligible_structural_scenario_rows
+    )
+    blockers: list[str] = []
+    if high_shortfall_after_scenario:
+        blockers.append(
+            f"high_cofactor_proxy_acquisition_shortfall_{high_shortfall_after_scenario}"
+        )
+    if structural_shortfall_after_scenario:
+        blockers.append(
+            "same_family_structural_proxy_acquisition_shortfall_"
+            f"{structural_shortfall_after_scenario}"
+        )
+    if scenario_rows and not (
+        eligible_high_scenario_rows or eligible_structural_scenario_rows
+    ):
+        blockers.append(
+            "family_panel_acceptance_scenario_rows_do_not_close_train_cal_proxy_calibration"
+        )
+    if heldout_confounded_scenario_rows:
+        blockers.append("heldout_confounded_scenario_rows_guardrailed")
+    if current_surface_unscored:
+        blockers.append("current_surface_unscored_candidate_not_scale_evidence")
+    if current_surface_pool and not current_surface_pool.get(
+        "current_surface_can_satisfy_structural_80pct_by_loosened_membership"
+    ):
+        blockers.append("loosened_current_surface_still_below_structural_80pct")
+
+    acquisition_tracks = [
+        {
+            "track": "high_cofactor_train_cal_oos_extension",
+            "proxy_axis": "high_cofactor_signature_proxy",
+            "minimum_new_abstained_rows_for_80pct": high_min_80,
+            "eligible_family_panel_scenario_rows_now": eligible_high_scenario_rows,
+            "shortfall_after_current_scenario": high_shortfall_after_scenario,
+            "current_surface_unused_rows": int(
+                current_surface_pool.get("unused_high_cofactor_rows_in_current_surface")
+                or 0
+            ),
+            "status": (
+                "blocked_need_new_train_cal_oos_proxy_rows"
+                if high_shortfall_after_scenario
+                else "ready_for_fixed_threshold_proxy_rerun_after_gate_review"
+            ),
+            "next_action": (
+                "Source or review non-heldout train/cal OOS rows with "
+                "source-free organic-cofactor locus evidence; do not use the "
+                "current heldout confounded canaries for calibration."
+            ),
+        },
+        {
+            "track": "same_family_structural_train_cal_oos_extension",
+            "proxy_axis": "same_family_structural_proxy",
+            "minimum_new_abstained_rows_for_80pct": structural_min_80,
+            "eligible_family_panel_scenario_rows_now": (
+                eligible_structural_scenario_rows
+            ),
+            "shortfall_after_current_scenario": structural_shortfall_after_scenario,
+            "loose_current_surface_extra_rows": len(loose_same_family_rows),
+            "loose_current_surface_abstain_recall": current_surface_pool.get(
+                "same_family_abstain_recall_without_component_thresholds"
+            ),
+            "status": (
+                "blocked_need_new_train_cal_oos_structural_proxy_rows"
+                if structural_shortfall_after_scenario
+                else "ready_for_fixed_threshold_proxy_rerun_after_gate_review"
+            ),
+            "next_action": (
+                "Add non-heldout train/cal structural counteraxis rows beyond "
+                "the current metal-hydrolase-like retained-gap surface before "
+                "rerunning the fixed-threshold proxy audit."
+            ),
+        },
+        {
+            "track": "lever4_family_panel_breadth",
+            "proxy_axis": "benchmark_breadth_not_calibration",
+            "scenario_rows": len(scenario_rows),
+            "train_cal_oos_calibration_eligible_rows_now": (
+                eligible_high_scenario_rows + eligible_structural_scenario_rows
+            ),
+            "status": "review_only_breadth_path_not_lever3_calibration_closure",
+            "next_action": (
+                "Reviewer accept decisions can widen the family-panel benchmark "
+                "through import-preview and label-factory gates, but they do "
+                "not authorize train/cal threshold calibration use."
+            ),
+        },
+    ]
+    if current_surface_unscored:
+        acquisition_tracks.append(
+            {
+                "track": "p10746_unscored_current_surface_candidate",
+                "proxy_axis": "deployment_caveat_or_non_residue_sidecar",
+                "scenario_rows": len(current_surface_unscored),
+                "train_cal_oos_calibration_eligible_rows_now": 0,
+                "status": "blocked_missing_predicted_geometry_not_scale_evidence",
+                "next_action": (
+                    "Resolve P10746 through the explicit caveat or approved "
+                    "non-residue sidecar path; do not treat it as the required "
+                    "multi-row proxy calibration evidence."
+                ),
+            }
+        )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_acquisition_queue"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "fold_augmented_confounded_proxy_acquisition_queue_blocked",
+        "scope": (
+            "Lever 3 acquisition queue for closing the train/cal "
+            "confounded-proxy calibration gap at the fixed operating point. "
+            "It consumes the evidence-extension plan and family-panel "
+            "acceptance scenario to distinguish calibration-eligible train/cal "
+            "OOS rows from review-only breadth rows."
+        ),
+        "fixed_operating_point": {
+            "channel": fixed_operating_point.get("channel"),
+            "threshold": fixed_operating_point.get("threshold"),
+        },
+        "counts": {
+            "evidence_request_rows": len(evidence_request_rows),
+            "existing_retained_gap_queue_rows": len(existing_retained_gap_queue),
+            "loose_same_family_current_surface_rows": len(loose_same_family_rows),
+            "current_surface_unscored_candidate_rows": len(
+                current_surface_unscored
+            ),
+            "family_panel_acceptance_scenario_rows": len(scenario_rows),
+            "family_panel_scenario_high_cofactor_axis_rows": int(
+                scenario_axis_counts.get("high_cofactor_signature_proxy") or 0
+            ),
+            "family_panel_scenario_structural_axis_rows": int(
+                scenario_axis_counts.get("same_family_structural_proxy") or 0
+            ),
+            "family_panel_scenario_train_cal_oos_eligible_now": (
+                eligible_high_scenario_rows + eligible_structural_scenario_rows
+            ),
+            "family_panel_scenario_heldout_confounded_rows": (
+                heldout_confounded_scenario_rows
+            ),
+            "family_panel_scenario_train_cal_in_scope_or_seed_rows": (
+                train_cal_in_scope_or_seed_rows
+            ),
+            "family_panel_scenario_not_on_train_cal_manifest_rows": (
+                not_on_train_cal_manifest_rows
+            ),
+            "family_panel_scenario_train_cal_oos_but_unscored_rows": (
+                train_cal_oos_but_unscored_rows
+            ),
+            "high_cofactor_min_new_abstained_rows_for_80pct": high_min_80,
+            "same_family_structural_min_new_abstained_rows_for_80pct": (
+                structural_min_80
+            ),
+            "high_cofactor_shortfall_after_current_scenario": (
+                high_shortfall_after_scenario
+            ),
+            "same_family_structural_shortfall_after_current_scenario": (
+                structural_shortfall_after_scenario
+            ),
+            "blockers": len(blockers),
+        },
+        "acquisition_tracks": acquisition_tracks,
+        "existing_retained_gap_queue": sorted(
+            existing_retained_gap_queue,
+            key=lambda row: (
+                str(row.get("priority") or ""),
+                -float(row.get("threshold_margin") or 0.0),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+            ),
+        ),
+        "loose_same_family_current_surface_rows": sorted(
+            loose_same_family_rows,
+            key=lambda row: (
+                0 if row.get("abstained") else 1,
+                float(row.get("threshold_margin") or 0.0),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+            ),
+        ),
+        "family_panel_scenario_calibration_screen": sorted(
+            scenario_queue_rows,
+            key=lambda row: (
+                0
+                if row["train_cal_oos_calibration_eligible_now"]
+                else 1,
+                str(row["panel_id"]),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "current_surface_unscored_candidate_rows": current_surface_unscored,
+        "blockers": blockers,
+        "decision": {
+            "apply_or_change_threshold_now": False,
+            "deployment_closed_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "family_panel_acceptance_closes_proxy_calibration_now": False,
+            "heldout_rows_available_for_training_or_threshold_tuning": False,
+            "next_gate": (
+                "Acquire or review new non-heldout train/cal OOS proxy rows on "
+                "the high-cofactor and same-family structural axes, then rerun "
+                "the fixed-threshold proxy operating-point audit and threshold "
+                "stress. Keep family-panel accept decisions on the separate "
+                "Lever 4 import-preview/label-factory path."
+            ),
+        },
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_evaluated_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_confounded_rows_counted_as_calibration": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "source_artifacts": {
+            "confounded_proxy_evidence_extension_plan": _source_path_record(
+                confounded_proxy_evidence_extension_plan_path
+            ),
+            "family_panel_acceptance_scenario_plan": (
+                _source_path_record(family_panel_acceptance_scenario_plan_path)
+                if family_panel_acceptance_scenario_plan_path is not None
+                and Path(family_panel_acceptance_scenario_plan_path).exists()
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_input_manifest": (
+                _source_path_record(train_cal_input_manifest_path)
+                if train_cal_input_manifest_path is not None
+                and Path(train_cal_input_manifest_path).exists()
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_oos_surface": (
+                _source_path_record(train_cal_oos_surface_path)
+                if train_cal_oos_surface_path is not None
+                and Path(train_cal_oos_surface_path).exists()
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "predicted_structure_fold_channel": (
+                _source_path_record(predicted_structure_fold_channel_path)
+                if predicted_structure_fold_channel_path is not None
+                and Path(predicted_structure_fold_channel_path).exists()
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "The current family-panel acceptance scenario supplies "
+                f"{eligible_high_scenario_rows + eligible_structural_scenario_rows} "
+                "train/cal OOS rows for the Lever 3 proxy-calibration rerun."
+            ),
+            "result": (
+                "The fixed-threshold Lever 3 gap remains a new-evidence problem: "
+                f"{high_shortfall_after_scenario} high-cofactor and "
+                f"{structural_shortfall_after_scenario} structural abstained "
+                "train/cal proxy rows are still needed under the all-new-rows-"
+                "abstain lower bound."
+            ),
+            "next_action": (
+                "Do not raise the threshold or reuse heldout canaries. Source "
+                "new train/cal proxy rows outside the current scored surface, "
+                "score them at the unchanged threshold, and rerun the proxy "
+                "operating-point/stress artifacts."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_acquisition_queue_report(
+    queue: dict[str, Any],
+) -> str:
+    counts = queue["counts"]
+    decision = queue["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Acquisition Queue - current702",
+        "",
+        f"Run: {queue['created_utc']}",
+        "",
+        queue["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {queue['status']}",
+        "- Fixed threshold: "
+        f"{queue['fixed_operating_point']['threshold']} "
+        f"({queue['fixed_operating_point']['channel']})",
+        f"- Evidence request rows: {counts['evidence_request_rows']}",
+        "- Existing retained-gap queue rows: "
+        f"{counts['existing_retained_gap_queue_rows']}",
+        "- Loose same-family current-surface rows: "
+        f"{counts['loose_same_family_current_surface_rows']}",
+        "- Family-panel scenario rows: "
+        f"{counts['family_panel_acceptance_scenario_rows']}",
+        "- Scenario train/cal OOS eligible now: "
+        f"{counts['family_panel_scenario_train_cal_oos_eligible_now']}",
+        "- Scenario heldout confounded rows: "
+        f"{counts['family_panel_scenario_heldout_confounded_rows']}",
+        "- High-cofactor shortfall after scenario: "
+        f"{counts['high_cofactor_shortfall_after_current_scenario']}",
+        "- Structural shortfall after scenario: "
+        f"{counts['same_family_structural_shortfall_after_current_scenario']}",
+        f"- Blockers: {queue['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Apply/change threshold now: {decision['apply_or_change_threshold_now']}",
+        "- Proxy calibration rerun ready now: "
+        f"{decision['proxy_calibration_rerun_ready_now']}",
+        "- Family-panel acceptance closes proxy calibration now: "
+        f"{decision['family_panel_acceptance_closes_proxy_calibration_now']}",
+        "- Heldout rows available for train/tune: "
+        f"{decision['heldout_rows_available_for_training_or_threshold_tuning']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Acquisition Tracks",
+        "",
+        "| track | axis | eligible now | shortfall | status |",
+        "| --- | --- | ---: | ---: | --- |",
+    ]
+    for row in queue.get("acquisition_tracks", []):
+        lines.append(
+            f"| {row['track']} | {row['proxy_axis']} | "
+            f"{row.get('eligible_family_panel_scenario_rows_now', row.get('train_cal_oos_calibration_eligible_rows_now', 0))} | "
+            f"{row.get('shortfall_after_current_scenario', '')} | "
+            f"{row['status']} |"
+        )
+    lines += [
+        "",
+        "## Family-Panel Calibration Screen",
+        "",
+        "| row | panel | axes | eligible now | reasons |",
+        "| --- | --- | --- | ---: | --- |",
+    ]
+    for row in queue.get("family_panel_scenario_calibration_screen", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{', '.join(row['candidate_proxy_axes'])} | "
+            f"{int(bool(row['train_cal_oos_calibration_eligible_now']))} | "
+            f"{', '.join(row['non_eligible_reasons']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Retained Gap Queue",
+        "",
+        "| row | axis | priority | margin | role |",
+        "| --- | --- | --- | ---: | --- |",
+    ]
+    for row in queue.get("existing_retained_gap_queue", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['axis']} | {row['priority']} | "
+            f"{row['threshold_margin']} | {row['queue_role']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {queue['interpretation']['headline']}",
+        f"- {queue['interpretation']['result']}",
+        f"- {queue['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_acquisition_queue(
+    *,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    family_panel_acceptance_scenario_plan_path: Path | None = None,
+    train_cal_input_manifest_path: Path | None = None,
+    train_cal_oos_surface_path: Path | None = None,
+    predicted_structure_fold_channel_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_ACQUISITION_QUEUE_ID,
+) -> dict[str, Any]:
+    queue = build_fold_augmented_confounded_proxy_acquisition_queue(
+        confounded_proxy_evidence_extension_plan_path=(
+            confounded_proxy_evidence_extension_plan_path
+        ),
+        family_panel_acceptance_scenario_plan_path=(
+            family_panel_acceptance_scenario_plan_path
+        ),
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(queue, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_acquisition_queue_report(
+                queue
+            ),
+            encoding="utf-8",
+        )
+    return queue
+
+
+def _organic_cofactor_max_record(
+    scores: dict[str, Any],
+) -> tuple[str | None, float | None]:
+    max_class: str | None = None
+    max_score: float | None = None
+    for cofactor_class, record in scores.items():
+        if not isinstance(record, dict) or not record.get("score_available"):
+            continue
+        score = _parse_optional_float(record.get("selected_score"))
+        if score is None:
+            continue
+        if max_score is None or score > max_score:
+            max_score = score
+            max_class = str(cofactor_class)
+    return max_class, max_score
+
+
+def _inorganic_locus_available(status: Any) -> bool:
+    value = str(status or "")
+    return value.startswith("proximal_") or value.startswith("structure_wide_")
+
+
+def build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
+    *,
+    confounded_proxy_acquisition_queue_path: Path,
+    train_cal_input_manifest_path: Path,
+    train_cal_oos_surface_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_CANDIDATE_POOL_ID
+    ),
+    cofactor_proxy_threshold: float = COFACTOR_SIGNATURE_THRESHOLD,
+    max_priority_rows: int = 80,
+) -> dict[str, Any]:
+    acquisition = _read_json(confounded_proxy_acquisition_queue_path)
+    manifest = _read_json(train_cal_input_manifest_path)
+    train_cal_surface = _read_json(train_cal_oos_surface_path)
+    organic = _read_json(selected_organic_cofactor_sidecar_path)
+    acquisition_counts = acquisition.get("counts") or {}
+    high_shortfall = int(
+        acquisition_counts.get("high_cofactor_shortfall_after_current_scenario")
+        or 0
+    )
+    structural_shortfall = int(
+        acquisition_counts.get(
+            "same_family_structural_shortfall_after_current_scenario"
+        )
+        or 0
+    )
+    train_cal_rows = [
+        row
+        for row in manifest.get("row_records", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    scored_surface_ids = set(
+        _records_by_entry_from_payload(
+            train_cal_surface,
+            (
+                "candidate_row_scores",
+                "calibration_oos_negative_row_scores",
+                "expanded_full_channel_score_rows",
+            ),
+        )
+    )
+    organic_by_entry = _organic_cofactor_scores_by_entry(organic)
+    ready_oos_rows = [
+        row
+        for row in train_cal_rows
+        if row.get("label_type") == "out_of_scope"
+        and row.get("minimal_train_cal_feature_bundle_ready") is True
+    ]
+    candidate_rows: list[dict[str, Any]] = []
+    for row in ready_oos_rows:
+        entry_id = str(row["entry_id"])
+        if entry_id in scored_surface_ids:
+            continue
+        loci = row.get("inorganic_locus_statuses") or {}
+        max_class, max_score = _organic_cofactor_max_record(
+            organic_by_entry.get(entry_id, {})
+        )
+        high_organic = (
+            max_score is not None and max_score >= cofactor_proxy_threshold
+        )
+        high_inorganic_locus = any(
+            str(loci.get(name) or "").startswith("proximal_")
+            for name in (
+                "cobalamin_locus",
+                "iron_sulfur_locus",
+                "radical_sam_locus",
+            )
+        )
+        any_inorganic_locus = any(
+            _inorganic_locus_available(status) for status in loci.values()
+        )
+        metal_structural_locus = _inorganic_locus_available(
+            loci.get("metal_ion_locus")
+        )
+        unsupported_geometry_locus = any(
+            str(status or "") == "unsupported_or_missing_geometry"
+            for status in loci.values()
+        )
+        recommended_axes: list[str] = []
+        if high_organic or high_inorganic_locus:
+            recommended_axes.append("high_cofactor_signature_proxy")
+        if any_inorganic_locus:
+            recommended_axes.append("same_family_structural_proxy")
+        if not recommended_axes:
+            recommended_axes.append("background_train_cal_oos_structural_pool")
+        priority_bucket = (
+            1
+            if high_organic or high_inorganic_locus
+            else 2
+            if any_inorganic_locus
+            else 3
+        )
+        candidate_rows.append(
+            {
+                "entry_id": entry_id,
+                "split_assignment": row.get("split_assignment"),
+                "label_type": row.get("label_type"),
+                "minimal_train_cal_feature_bundle_ready": row.get(
+                    "minimal_train_cal_feature_bundle_ready"
+                ),
+                "organic_cofactor_max_class": max_class,
+                "organic_cofactor_max_score": (
+                    round(max_score, 6) if max_score is not None else None
+                ),
+                "high_organic_cofactor_signature": high_organic,
+                "high_inorganic_cofactor_locus": high_inorganic_locus,
+                "any_inorganic_locus_context": any_inorganic_locus,
+                "metal_structural_locus_context": metal_structural_locus,
+                "unsupported_or_missing_geometry_locus": (
+                    unsupported_geometry_locus
+                ),
+                "inorganic_locus_statuses": loci,
+                "recommended_proxy_axes_after_scoring": recommended_axes,
+                "priority_bucket": priority_bucket,
+                "queue_role": (
+                    "score_with_predicted_structure_vs_atlas_before any "
+                    "fixed-threshold proxy rerun"
+                ),
+            }
+        )
+
+    priority_rows = sorted(
+        candidate_rows,
+        key=lambda row: (
+            int(row["priority_bucket"]),
+            -float(row.get("organic_cofactor_max_score") or 0.0),
+            _entry_id_sort_key(str(row["entry_id"])),
+        ),
+    )[:max_priority_rows]
+    high_axis_rows = [
+        row
+        for row in candidate_rows
+        if "high_cofactor_signature_proxy"
+        in row["recommended_proxy_axes_after_scoring"]
+    ]
+    structural_axis_rows = [
+        row
+        for row in candidate_rows
+        if "same_family_structural_proxy"
+        in row["recommended_proxy_axes_after_scoring"]
+    ]
+    priority_bucket_counts = Counter(
+        str(row["priority_bucket"]) for row in candidate_rows
+    )
+    blockers: list[str] = []
+    if not candidate_rows:
+        blockers.append("unscored_train_cal_oos_candidate_pool_empty")
+    if len(high_axis_rows) < high_shortfall:
+        blockers.append("high_cofactor_candidate_pool_below_shortfall")
+    if len(structural_axis_rows) < structural_shortfall:
+        blockers.append("structural_candidate_pool_below_shortfall")
+    blockers.append("candidate_pool_not_scored_at_fixed_threshold")
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_candidate_pool"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_train_cal_candidate_pool_ready_for_scoring_plan"
+            if candidate_rows
+            else "fold_augmented_confounded_proxy_train_cal_candidate_pool_blocked"
+        ),
+        "scope": (
+            "Train/cal-only source-free candidate pool for the Lever 3 "
+            "confounded-proxy evidence acquisition gap. It filters out rows "
+            "already in the current scored OOS surface and ranks the remaining "
+            "train/cal OOS rows for future predicted-structure-vs-atlas scoring."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "review_only_planning": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "candidate_rows_scored_now": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "ready_train_cal_oos_rows": len(ready_oos_rows),
+            "current_scored_train_cal_oos_rows": len(scored_surface_ids),
+            "unscored_ready_train_cal_oos_candidate_rows": len(candidate_rows),
+            "priority_candidate_rows_emitted": len(priority_rows),
+            "high_organic_cofactor_candidate_rows": sum(
+                1 for row in candidate_rows if row["high_organic_cofactor_signature"]
+            ),
+            "high_inorganic_cofactor_locus_candidate_rows": sum(
+                1 for row in candidate_rows if row["high_inorganic_cofactor_locus"]
+            ),
+            "high_cofactor_axis_candidate_rows": len(high_axis_rows),
+            "structural_locus_candidate_rows": len(structural_axis_rows),
+            "metal_structural_locus_candidate_rows": sum(
+                1 for row in candidate_rows if row["metal_structural_locus_context"]
+            ),
+            "unsupported_or_missing_geometry_locus_rows": sum(
+                1
+                for row in candidate_rows
+                if row["unsupported_or_missing_geometry_locus"]
+            ),
+            "high_cofactor_shortfall_from_acquisition_queue": high_shortfall,
+            "structural_shortfall_from_acquisition_queue": structural_shortfall,
+            "priority_bucket_counts": dict(sorted(priority_bucket_counts.items())),
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "score_candidate_pool_now": False,
+            "apply_or_change_threshold_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "candidate_pool_meets_high_shortfall_by_count": (
+                len(high_axis_rows) >= high_shortfall
+            ),
+            "candidate_pool_meets_structural_shortfall_by_count": (
+                len(structural_axis_rows) >= structural_shortfall
+            ),
+            "next_gate": (
+                "Score a bounded tranche from priority_candidate_rows with the "
+                "predicted-structure-vs-atlas channel, then rerun the "
+                "fixed-threshold proxy operating-point audit only after new "
+                "train/cal OOS rows have actual channel scores."
+            ),
+        },
+        "blockers": blockers,
+        "priority_candidate_rows": priority_rows,
+        "source_artifacts": {
+            "confounded_proxy_acquisition_queue": _source_path_record(
+                confounded_proxy_acquisition_queue_path
+            ),
+            "train_cal_input_manifest": _source_path_record(
+                train_cal_input_manifest_path
+            ),
+            "train_cal_oos_surface": _source_path_record(
+                train_cal_oos_surface_path
+            ),
+            "selected_organic_cofactor_sidecar": _source_path_record(
+                selected_organic_cofactor_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(candidate_rows)} ready train/cal OOS rows are outside "
+                "the current scored surface."
+            ),
+            "result": (
+                f"{len(high_axis_rows)} rows are plausible high-cofactor-axis "
+                f"candidates and {len(structural_axis_rows)} rows have source-"
+                "free inorganic/structural locus context, but none has been "
+                "scored or counted as new abstained evidence yet."
+            ),
+            "next_action": (
+                "Run a bounded predicted-structure-vs-atlas scoring tranche "
+                "from the priority candidate rows; keep the fixed threshold and "
+                "do not read heldout rows for calibration."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_candidate_pool_report(
+    pool: dict[str, Any],
+) -> str:
+    counts = pool["counts"]
+    decision = pool["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Candidate Pool - current702",
+        "",
+        f"Run: {pool['created_utc']}",
+        "",
+        pool["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {pool['status']}",
+        f"- Ready train/cal OOS rows: {counts['ready_train_cal_oos_rows']}",
+        "- Current scored train/cal OOS rows: "
+        f"{counts['current_scored_train_cal_oos_rows']}",
+        "- Unscored ready train/cal OOS candidate rows: "
+        f"{counts['unscored_ready_train_cal_oos_candidate_rows']}",
+        "- High-cofactor-axis candidate rows: "
+        f"{counts['high_cofactor_axis_candidate_rows']}",
+        "- Structural-locus candidate rows: "
+        f"{counts['structural_locus_candidate_rows']}",
+        "- Priority rows emitted: "
+        f"{counts['priority_candidate_rows_emitted']}",
+        f"- Priority bucket counts: {counts['priority_bucket_counts']}",
+        f"- Blockers: {pool['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Score candidate pool now: {decision['score_candidate_pool_now']}",
+        f"- Apply/change threshold now: {decision['apply_or_change_threshold_now']}",
+        "- Proxy calibration rerun ready now: "
+        f"{decision['proxy_calibration_rerun_ready_now']}",
+        "- Candidate pool meets high shortfall by count: "
+        f"{decision['candidate_pool_meets_high_shortfall_by_count']}",
+        "- Candidate pool meets structural shortfall by count: "
+        f"{decision['candidate_pool_meets_structural_shortfall_by_count']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Priority Candidate Rows",
+        "",
+        "| row | bucket | axes | organic max | inorganic context |",
+        "| --- | ---: | --- | --- | --- |",
+    ]
+    for row in pool.get("priority_candidate_rows", []):
+        organic = (
+            f"{row['organic_cofactor_max_class']}:{row['organic_cofactor_max_score']}"
+            if row.get("organic_cofactor_max_class") is not None
+            else "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['priority_bucket']} | "
+            f"{', '.join(row['recommended_proxy_axes_after_scoring'])} | "
+            f"{organic} | {int(bool(row['any_inorganic_locus_context']))} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {pool['interpretation']['headline']}",
+        f"- {pool['interpretation']['result']}",
+        f"- {pool['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_candidate_pool(
+    *,
+    confounded_proxy_acquisition_queue_path: Path,
+    train_cal_input_manifest_path: Path,
+    train_cal_oos_surface_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_CANDIDATE_POOL_ID
+    ),
+    max_priority_rows: int = 80,
+) -> dict[str, Any]:
+    pool = build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
+        confounded_proxy_acquisition_queue_path=(
+            confounded_proxy_acquisition_queue_path
+        ),
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        selected_organic_cofactor_sidecar_path=(
+            selected_organic_cofactor_sidecar_path
+        ),
+        artifact_id=artifact_id,
+        max_priority_rows=max_priority_rows,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(pool, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_candidate_pool_report(
+                pool
+            ),
+            encoding="utf-8",
+        )
+    return pool
+
+
+def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
+    *,
+    train_cal_candidate_pool_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_TRANCHE_PLAN_ID
+    ),
+) -> dict[str, Any]:
+    pool = _read_json(train_cal_candidate_pool_path)
+    counts = pool.get("counts") or {}
+    high_shortfall = int(
+        counts.get("high_cofactor_shortfall_from_acquisition_queue") or 0
+    )
+    structural_shortfall = int(
+        counts.get("structural_shortfall_from_acquisition_queue") or 0
+    )
+    priority_rows = [
+        row
+        for row in pool.get("priority_candidate_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    selected_by_entry: dict[str, dict[str, Any]] = {}
+    high_rows = [
+        row
+        for row in priority_rows
+        if "high_cofactor_signature_proxy"
+        in (row.get("recommended_proxy_axes_after_scoring") or [])
+    ]
+    for row in high_rows:
+        selected_by_entry[str(row["entry_id"])] = {
+            **row,
+            "selection_reason": "high_cofactor_axis_candidate",
+        }
+    structural_rows = [
+        row
+        for row in priority_rows
+        if "same_family_structural_proxy"
+        in (row.get("recommended_proxy_axes_after_scoring") or [])
+    ]
+    selected_structural = [
+        row
+        for row in selected_by_entry.values()
+        if "same_family_structural_proxy"
+        in (row.get("recommended_proxy_axes_after_scoring") or [])
+    ]
+    for row in structural_rows:
+        if len(selected_structural) >= structural_shortfall:
+            break
+        entry_id = str(row["entry_id"])
+        if entry_id not in selected_by_entry:
+            selected_by_entry[entry_id] = {
+                **row,
+                "selection_reason": "structural_locus_axis_candidate",
+            }
+            selected_structural.append(row)
+    tranche_rows = sorted(
+        selected_by_entry.values(),
+        key=lambda row: (
+            int(row.get("priority_bucket") or 99),
+            -float(row.get("organic_cofactor_max_score") or 0.0),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+    )
+    high_selected = [
+        row
+        for row in tranche_rows
+        if "high_cofactor_signature_proxy"
+        in (row.get("recommended_proxy_axes_after_scoring") or [])
+    ]
+    structural_selected = [
+        row
+        for row in tranche_rows
+        if "same_family_structural_proxy"
+        in (row.get("recommended_proxy_axes_after_scoring") or [])
+    ]
+    blockers: list[str] = ["scoring_tranche_not_run"]
+    if len(high_selected) < high_shortfall:
+        blockers.append("selected_high_cofactor_rows_below_shortfall")
+    if len(structural_selected) < structural_shortfall:
+        blockers.append("selected_structural_rows_below_shortfall")
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_scoring_tranche_plan"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_ready"
+            if len(high_selected) >= high_shortfall
+            and len(structural_selected) >= structural_shortfall
+            else "fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_blocked"
+        ),
+        "scope": (
+            "Bounded train/cal-only scoring tranche plan for the Lever 3 "
+            "confounded-proxy acquisition gap. It selects unscored candidate "
+            "rows for future predicted-structure-vs-atlas scoring; it does "
+            "not run scoring, read heldout rows, or change thresholds."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "candidate_rows_scored_now": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "priority_candidate_rows_available": len(priority_rows),
+            "tranche_rows": len(tranche_rows),
+            "selected_high_cofactor_axis_rows": len(high_selected),
+            "selected_structural_axis_rows": len(structural_selected),
+            "high_cofactor_shortfall_from_acquisition_queue": high_shortfall,
+            "structural_shortfall_from_acquisition_queue": structural_shortfall,
+            "selected_high_rows_meet_shortfall_by_count": (
+                len(high_selected) >= high_shortfall
+            ),
+            "selected_structural_rows_meet_shortfall_by_count": (
+                len(structural_selected) >= structural_shortfall
+            ),
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "score_tranche_now": False,
+            "apply_or_change_threshold_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "tranche_ready_for_scoring_plan": (
+                len(high_selected) >= high_shortfall
+                and len(structural_selected) >= structural_shortfall
+            ),
+            "next_gate": (
+                "Run predicted-structure-vs-atlas scoring for exactly these "
+                "tranche rows, join the resulting fixed-channel scores back "
+                "to train/cal only, then rerun the proxy operating-point audit "
+                "without changing threshold 0.44155."
+            ),
+        },
+        "blockers": blockers,
+        "scoring_tranche_rows": tranche_rows,
+        "source_artifacts": {
+            "train_cal_candidate_pool": _source_path_record(
+                train_cal_candidate_pool_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(tranche_rows)} train/cal OOS rows are selected for the "
+                "next fixed-threshold scoring tranche."
+            ),
+            "result": (
+                f"The tranche covers {len(high_selected)} high-cofactor-axis "
+                f"rows for a {high_shortfall}-row lower bound and "
+                f"{len(structural_selected)} structural-axis rows for a "
+                f"{structural_shortfall}-row lower bound, by count only."
+            ),
+            "next_action": (
+                "Score the tranche; do not count any row as new abstained "
+                "proxy evidence until the actual fixed-threshold scores exist."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_report(
+    plan: dict[str, Any],
+) -> str:
+    counts = plan["counts"]
+    decision = plan["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Scoring Tranche Plan - current702",
+        "",
+        f"Run: {plan['created_utc']}",
+        "",
+        plan["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {plan['status']}",
+        f"- Tranche rows: {counts['tranche_rows']}",
+        "- Selected high-cofactor-axis rows: "
+        f"{counts['selected_high_cofactor_axis_rows']}",
+        "- Selected structural-axis rows: "
+        f"{counts['selected_structural_axis_rows']}",
+        "- High shortfall: "
+        f"{counts['high_cofactor_shortfall_from_acquisition_queue']}",
+        "- Structural shortfall: "
+        f"{counts['structural_shortfall_from_acquisition_queue']}",
+        f"- Blockers: {plan['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Score tranche now: {decision['score_tranche_now']}",
+        f"- Apply/change threshold now: {decision['apply_or_change_threshold_now']}",
+        "- Proxy calibration rerun ready now: "
+        f"{decision['proxy_calibration_rerun_ready_now']}",
+        "- Tranche ready for scoring plan: "
+        f"{decision['tranche_ready_for_scoring_plan']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Scoring Tranche Rows",
+        "",
+        "| row | reason | bucket | axes | organic max |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in plan.get("scoring_tranche_rows", []):
+        organic = (
+            f"{row['organic_cofactor_max_class']}:{row['organic_cofactor_max_score']}"
+            if row.get("organic_cofactor_max_class") is not None
+            else "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['selection_reason']} | "
+            f"{row['priority_bucket']} | "
+            f"{', '.join(row['recommended_proxy_axes_after_scoring'])} | "
+            f"{organic} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {plan['interpretation']['headline']}",
+        f"- {plan['interpretation']['result']}",
+        f"- {plan['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
+    *,
+    train_cal_candidate_pool_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_TRANCHE_PLAN_ID
+    ),
+) -> dict[str, Any]:
+    plan = build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
+        train_cal_candidate_pool_path=train_cal_candidate_pool_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_report(
+                plan
+            ),
+            encoding="utf-8",
+        )
+    return plan
+
+
+def _sequence_manifest_accession(row: dict[str, Any]) -> str | None:
+    reference_ids = row.get("reference_uniprot_ids") or []
+    if reference_ids:
+        return str(reference_ids[0])
+    records = row.get("sequence_records") or []
+    if records and isinstance(records[0], dict):
+        accession = records[0].get("accession_or_structure_id")
+        if accession:
+            return str(accession)
+    return None
+
+
+def _filter_train_atlas_coordinate_requests(
+    atlas_requests: list[dict[str, Any]],
+    train_entry_ids: set[str],
+) -> list[dict[str, Any]]:
+    filtered = []
+    for request in atlas_requests:
+        rows = [
+            row
+            for row in request.get("rows", [])
+            if str(row.get("entry_id") or "") in train_entry_ids
+        ]
+        entry_ids = [
+            str(entry_id)
+            for entry_id in request.get("entry_ids", [])
+            if str(entry_id) in train_entry_ids
+        ]
+        if not rows and not entry_ids:
+            continue
+        record = copy.deepcopy(request)
+        record["role"] = "threshold_contract_train_atlas_target"
+        record["rows"] = rows
+        record["entry_ids"] = entry_ids or [
+            str(row.get("entry_id") or "") for row in rows if row.get("entry_id")
+        ]
+        expected = Path(str(record.get("expected_local_path") or ""))
+        record["local_file_exists"] = expected.exists() if str(expected) else False
+        filtered.append(record)
+    return filtered
+
+
+def _materialize_confounded_proxy_tranche_coordinates_command(
+    artifact_path: Path,
+) -> str:
+    return (
+        "python - <<'PY'\n"
+        "import json\n"
+        "import urllib.request\n"
+        "from pathlib import Path\n"
+        f"artifact = json.loads(Path({str(artifact_path)!r}).read_text())\n"
+        "queries = artifact['foldseek_input_manifest']['coordinate_request_groups']"
+        "['confounded_proxy_train_cal_tranche_queries']\n"
+        "for item in queries:\n"
+        "    path = item.get('expected_local_path')\n"
+        "    url = item.get('url')\n"
+        "    if not path or not url:\n"
+        "        continue\n"
+        "    target = Path(path)\n"
+        "    target.parent.mkdir(parents=True, exist_ok=True)\n"
+        "    if target.exists():\n"
+        "        continue\n"
+        "    urllib.request.urlretrieve(url, target)\n"
+        "PY"
+    )
+
+
+def _stage_confounded_proxy_tranche_foldseek_dirs_command(
+    artifact_path: Path,
+) -> str:
+    return (
+        "python - <<'PY'\n"
+        "import json\n"
+        "import shutil\n"
+        "from pathlib import Path\n"
+        f"artifact = json.loads(Path({str(artifact_path)!r}).read_text())\n"
+        "groups = artifact['foldseek_input_manifest']['coordinate_request_groups']\n"
+        "root = Path('/private/tmp/catalytic_confounded_proxy_tranche_foldseek')\n"
+        "if root.exists():\n"
+        "    shutil.rmtree(root)\n"
+        "query_dir = root / 'queries'\n"
+        "target_dir = root / 'train_atlas_targets'\n"
+        "query_dir.mkdir(parents=True)\n"
+        "target_dir.mkdir(parents=True)\n"
+        "for src_group, dst_dir in (\n"
+        "    ('confounded_proxy_train_cal_tranche_queries', query_dir),\n"
+        "    ('threshold_contract_train_atlas_targets', target_dir),\n"
+        "):\n"
+        "    for item in groups.get(src_group, []):\n"
+        "        src = Path(item.get('expected_local_path') or '')\n"
+        "        if not src.exists():\n"
+        "            continue\n"
+        "        dst = dst_dir / src.name\n"
+        "        if not dst.exists():\n"
+        "            dst.symlink_to(src.resolve())\n"
+        "print({'queries': len(list(query_dir.iterdir())), 'targets': len(list(target_dir.iterdir()))})\n"
+        "PY"
+    )
+
+
+def build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
+    *,
+    scoring_tranche_plan_path: Path,
+    sequence_manifest_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    threshold_contract_path: Path,
+    coordinate_root: Path | None = None,
+    foldseek_result_tsv: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_INPUT_MANIFEST_ID
+    ),
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    threads: int = 4,
+) -> dict[str, Any]:
+    plan = _read_json(scoring_tranche_plan_path)
+    sequence_manifest = _read_json(sequence_manifest_path)
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    threshold_contract = _read_json(threshold_contract_path)
+    coordinate_manifest = fold_channel.get("foldseek_input_manifest") or {}
+    root = Path(
+        coordinate_root
+        or coordinate_manifest.get("coordinate_root")
+        or "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+    )
+    result_tsv = Path(
+        foldseek_result_tsv
+        or (
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601_coordinates_foldseek_results/"
+            "confounded_proxy_train_cal_tranche_vs_train_atlas.tsv"
+        )
+    )
+
+    sequence_by_entry = _records_by_entry_from_payload(sequence_manifest, ("rows",))
+    tranche_rows = [
+        row
+        for row in plan.get("scoring_tranche_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    query_rows: list[dict[str, Any]] = []
+    missing_sequence_rows: list[str] = []
+    missing_accession_rows: list[str] = []
+    for row in tranche_rows:
+        entry_id = str(row["entry_id"])
+        seq_row = sequence_by_entry.get(entry_id)
+        if seq_row is None:
+            missing_sequence_rows.append(entry_id)
+            accession = None
+        else:
+            accession = _sequence_manifest_accession(seq_row)
+            if not accession:
+                missing_accession_rows.append(entry_id)
+        query_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": accession,
+                "sequence_id": accession,
+                "split_assignment": row.get("split_assignment"),
+                "label_type": row.get("label_type"),
+                "benchmark_role": row.get("benchmark_role"),
+                "priority_bucket": row.get("priority_bucket"),
+                "selection_reason": row.get("selection_reason"),
+                "recommended_proxy_axes_after_scoring": row.get(
+                    "recommended_proxy_axes_after_scoring"
+                )
+                or [],
+            }
+        )
+
+    query_requests = _coordinate_requests(
+        query_rows,
+        coordinate_root=root,
+        role="confounded_proxy_train_cal_oos_tranche_query",
+        subdir="confounded_proxy_train_cal_tranche_queries",
+    )
+    train_entry_ids = {
+        str(entry_id)
+        for entry_id in (
+            threshold_contract.get("train_cal_partition", {}).get(
+                "train_entry_ids"
+            )
+            or []
+        )
+    }
+    atlas_requests = (
+        coordinate_manifest.get("coordinate_request_groups") or {}
+    ).get("atlas_in_distribution") or []
+    train_target_requests = _filter_train_atlas_coordinate_requests(
+        atlas_requests,
+        train_entry_ids,
+    )
+    foldseek = _foldseek_binary_info(foldseek_binary)
+    query_missing = _missing_coordinate_count(query_requests)
+    target_missing = _missing_coordinate_count(train_target_requests)
+    blockers: list[str] = []
+    if missing_sequence_rows:
+        blockers.append("tranche_rows_missing_from_sequence_manifest")
+    if missing_accession_rows:
+        blockers.append("tranche_rows_missing_sequence_accession")
+    if not train_entry_ids:
+        blockers.append("threshold_contract_train_partition_missing")
+    if not train_target_requests:
+        blockers.append("threshold_contract_train_atlas_targets_missing")
+    if query_missing:
+        blockers.append("tranche_query_coordinate_files_missing")
+    if target_missing:
+        blockers.append("train_atlas_target_coordinate_files_missing")
+    if not result_tsv.exists():
+        blockers.append("tranche_foldseek_tsv_not_run")
+    if result_tsv.exists() and not blockers:
+        status = "confounded_proxy_train_cal_scoring_input_manifest_scored_ready_to_parse"
+    elif (
+        not missing_sequence_rows
+        and not missing_accession_rows
+        and train_target_requests
+        and not query_missing
+        and not target_missing
+        and foldseek.get("available")
+    ):
+        status = "confounded_proxy_train_cal_scoring_input_manifest_ready_to_run_foldseek"
+    else:
+        status = "confounded_proxy_train_cal_scoring_input_manifest_staged_missing_coordinates"
+
+    output_artifact_path = Path(
+        f"artifacts/{FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_INPUT_MANIFEST_ID}.json"
+    )
+    unique_query_accessions = {
+        request.get("accession")
+        for request in query_requests
+        if request.get("accession")
+    }
+    result_root = result_tsv.parent
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_train_cal_scoring_input_manifest"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Read-only input manifest for scoring the selected Lever 3 "
+            "confounded-proxy train/cal OOS tranche with predicted structures "
+            "against the threshold-contract train atlas. It maps tranche rows "
+            "to sequence-manifest accessions, expected AFDB-v6 CIF paths, "
+            "train-atlas targets, and rerun commands without downloading "
+            "coordinates or parsing scores."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "candidate_rows_scored_now": False,
+            "coordinate_downloads_performed": False,
+            "foldseek_or_tmsearch_run_now": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "scoring_tranche_rows": len(tranche_rows),
+            "sequence_manifest_rows_found": len(tranche_rows)
+            - len(missing_sequence_rows),
+            "tranche_rows_with_accession": len(tranche_rows)
+            - len(missing_sequence_rows)
+            - len(missing_accession_rows),
+            "unique_query_accessions": len(unique_query_accessions),
+            "query_coordinate_requests": len(query_requests),
+            "query_coordinate_files_observed": len(query_requests) - query_missing,
+            "query_coordinate_files_missing": query_missing,
+            "threshold_contract_train_entry_ids": len(train_entry_ids),
+            "train_atlas_target_coordinate_requests": len(train_target_requests),
+            "train_atlas_target_coordinate_files_missing": target_missing,
+            "foldseek_result_tsv_exists": int(result_tsv.exists()),
+            "foldseek_runtime_available": bool(foldseek.get("available")),
+            "blockers": len(blockers),
+        },
+        "missing_sequence_entry_ids": missing_sequence_rows,
+        "missing_accession_entry_ids": missing_accession_rows,
+        "missing_query_coordinate_manifest": [
+            _compact_coordinate_reproduction_record(
+                "confounded_proxy_train_cal_tranche_queries", request
+            )
+            for request in query_requests
+            if not request.get("local_file_exists")
+            or request.get("status") == "missing_accession"
+        ],
+        "missing_train_target_coordinate_manifest": [
+            _compact_coordinate_reproduction_record(
+                "threshold_contract_train_atlas_targets", request
+            )
+            for request in train_target_requests
+            if not request.get("local_file_exists")
+        ],
+        "foldseek_input_manifest": {
+            "coordinate_root": str(root),
+            "confounded_proxy_tranche_query_dir": str(
+                root / "confounded_proxy_train_cal_tranche_queries"
+            ),
+            "threshold_contract_train_target_staging_dir": (
+                "/private/tmp/catalytic_confounded_proxy_tranche_foldseek/"
+                "train_atlas_targets"
+            ),
+            "result_root": str(result_root),
+            "result_tsv": str(result_tsv),
+            "coordinate_request_groups": {
+                "confounded_proxy_train_cal_tranche_queries": query_requests,
+                "threshold_contract_train_atlas_targets": train_target_requests,
+            },
+        },
+        "runtime": {
+            "foldseek": foldseek,
+            "threads": max(1, int(threads)),
+        },
+        "commands": {
+            "materialize_missing_query_coordinates": (
+                _materialize_confounded_proxy_tranche_coordinates_command(
+                    output_artifact_path
+                )
+            ),
+            "stage_tranche_foldseek_dirs": (
+                _stage_confounded_proxy_tranche_foldseek_dirs_command(
+                    output_artifact_path
+                )
+            ),
+            "run_tranche_vs_train_atlas": _foldseek_easy_search_command(
+                binary=str(foldseek.get("resolved") or foldseek_binary),
+                query_dir=Path(
+                    "/private/tmp/catalytic_confounded_proxy_tranche_foldseek/queries"
+                ),
+                target_dir=Path(
+                    "/private/tmp/catalytic_confounded_proxy_tranche_foldseek/"
+                    "train_atlas_targets"
+                ),
+                result_tsv=result_tsv,
+                tmp_dir=result_root / "tmp_confounded_proxy_tranche_vs_train_atlas",
+                threads=threads,
+            ),
+            "rerun_manifest": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-fold-augmented-confounded-proxy-train-cal-scoring-input-manifest"
+            ),
+            "foldseek_tsv_columns": [
+                "query",
+                "target",
+                "qtmscore",
+                "ttmscore",
+                "alntmscore",
+                "prob",
+                "bits",
+            ],
+        },
+        "blockers": blockers,
+        "decision": {
+            "score_tranche_now": False,
+            "apply_or_change_threshold_now": False,
+            "proxy_calibration_rerun_ready_now": False,
+            "coordinate_manifest_ready_for_fetch": bool(
+                query_requests
+                and not missing_sequence_rows
+                and not missing_accession_rows
+            ),
+            "foldseek_ready_to_run_after_coordinates": bool(
+                train_target_requests and not target_missing
+            ),
+            "next_gate": (
+                "Materialize the 50 missing tranche query AFDB-v6 CIFs, stage "
+                "the tranche query and threshold-contract train-target "
+                "Foldseek directories, run the recorded Foldseek command, then "
+                "parse scores back into train/cal OOS rows before rerunning the "
+                "fixed-threshold proxy audit."
+            ),
+        },
+        "source_artifacts": {
+            "scoring_tranche_plan": _source_path_record(scoring_tranche_plan_path),
+            "sequence_manifest": _source_path_record(sequence_manifest_path),
+            "predicted_structure_fold_channel": _source_path_record(
+                predicted_structure_fold_channel_path
+            ),
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "foldseek_result_tsv": _source_path_record(result_tsv),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(tranche_rows)} selected train/cal OOS rows are mapped "
+                f"to {len(unique_query_accessions)} unique query accessions."
+            ),
+            "result": (
+                f"{query_missing} tranche query coordinate files are missing; "
+                f"{target_missing} threshold-contract train-atlas target files "
+                "are missing."
+            ),
+            "next_action": (
+                "Use the recorded materialization and Foldseek commands to "
+                "score exactly this train/cal tranche; do not count rows as "
+                "abstained evidence until parsed scores exist."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_report(
+    manifest: dict[str, Any],
+) -> str:
+    counts = manifest["counts"]
+    decision = manifest["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Train/Cal Scoring Input Manifest - current702",
+        "",
+        f"Run: {manifest['created_utc']}",
+        "",
+        manifest["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {manifest['status']}",
+        f"- Scoring tranche rows: {counts['scoring_tranche_rows']}",
+        f"- Unique query accessions: {counts['unique_query_accessions']}",
+        "- Query coordinate files missing: "
+        f"{counts['query_coordinate_files_missing']}",
+        "- Train-atlas target coordinate files missing: "
+        f"{counts['train_atlas_target_coordinate_files_missing']}",
+        "- Foldseek result TSV exists: "
+        f"{counts['foldseek_result_tsv_exists']}",
+        f"- Foldseek runtime available: {counts['foldseek_runtime_available']}",
+        f"- Blockers: {manifest['blockers']}",
+        "",
+        "## Decision",
+        "",
+        f"- Score tranche now: {decision['score_tranche_now']}",
+        f"- Apply/change threshold now: {decision['apply_or_change_threshold_now']}",
+        "- Proxy calibration rerun ready now: "
+        f"{decision['proxy_calibration_rerun_ready_now']}",
+        "- Coordinate manifest ready for fetch: "
+        f"{decision['coordinate_manifest_ready_for_fetch']}",
+        "- Foldseek ready to run after coordinates: "
+        f"{decision['foldseek_ready_to_run_after_coordinates']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Missing Query Coordinates",
+        "",
+        "| accession | rows | expected path |",
+        "| --- | --- | --- |",
+    ]
+    for row in manifest.get("missing_query_coordinate_manifest", [])[:60]:
+        lines.append(
+            f"| {row['accession']} | {', '.join(row['entry_ids'])} | "
+            f"{row['expected_local_path']} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "Materialize the missing tranche query coordinates:",
+        "",
+        "```bash",
+        manifest["commands"]["materialize_missing_query_coordinates"],
+        "```",
+        "",
+        "Stage the tranche Foldseek directories:",
+        "",
+        "```bash",
+        manifest["commands"]["stage_tranche_foldseek_dirs"],
+        "```",
+        "",
+        "Run the tranche against the threshold-contract train atlas:",
+        "",
+        "```bash",
+        manifest["commands"]["run_tranche_vs_train_atlas"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {manifest['interpretation']['headline']}",
+        f"- {manifest['interpretation']['result']}",
+        f"- {manifest['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
+    *,
+    scoring_tranche_plan_path: Path,
+    sequence_manifest_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    coordinate_root: Path | None = None,
+    foldseek_result_tsv: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORING_INPUT_MANIFEST_ID
+    ),
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    threads: int = 4,
+) -> dict[str, Any]:
+    manifest = build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
+        scoring_tranche_plan_path=scoring_tranche_plan_path,
+        sequence_manifest_path=sequence_manifest_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        threshold_contract_path=threshold_contract_path,
+        coordinate_root=coordinate_root,
+        foldseek_result_tsv=foldseek_result_tsv,
+        artifact_id=artifact_id,
+        foldseek_binary=foldseek_binary,
+        threads=threads,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_report(
+                manifest
+            ),
+            encoding="utf-8",
+        )
+    return manifest
+
+
 def _family_panel_import_preview_primary_blocker(
     row: dict[str, Any],
 ) -> str:
@@ -27585,6 +29423,9 @@ def build_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_gap_targets_path: Path | None = None,
     lever3_confounded_proxy_threshold_stress_path: Path | None = None,
     lever3_confounded_proxy_evidence_extension_plan_path: Path | None = None,
+    lever3_confounded_proxy_acquisition_queue_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_candidate_pool_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_scoring_tranche_plan_path: Path | None = None,
     lever4_acceptance_scenario_plan_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -27645,6 +29486,24 @@ def build_active_lever_mechanical_actionability_audit(
         _read_json(lever3_confounded_proxy_evidence_extension_plan_path)
         if lever3_confounded_proxy_evidence_extension_plan_path is not None
         and Path(lever3_confounded_proxy_evidence_extension_plan_path).exists()
+        else {}
+    )
+    lever3_proxy_acquisition_queue = (
+        _read_json(lever3_confounded_proxy_acquisition_queue_path)
+        if lever3_confounded_proxy_acquisition_queue_path is not None
+        and Path(lever3_confounded_proxy_acquisition_queue_path).exists()
+        else {}
+    )
+    lever3_proxy_candidate_pool = (
+        _read_json(lever3_confounded_proxy_train_cal_candidate_pool_path)
+        if lever3_confounded_proxy_train_cal_candidate_pool_path is not None
+        and Path(lever3_confounded_proxy_train_cal_candidate_pool_path).exists()
+        else {}
+    )
+    lever3_proxy_scoring_tranche = (
+        _read_json(lever3_confounded_proxy_train_cal_scoring_tranche_plan_path)
+        if lever3_confounded_proxy_train_cal_scoring_tranche_plan_path is not None
+        and Path(lever3_confounded_proxy_train_cal_scoring_tranche_plan_path).exists()
         else {}
     )
     lever4_readiness = (
@@ -27753,6 +29612,36 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(lever3_proxy_extension, dict)
         else {}
     )
+    lever3_proxy_acquisition_counts = (
+        lever3_proxy_acquisition_queue.get("counts", {})
+        if isinstance(lever3_proxy_acquisition_queue, dict)
+        else {}
+    )
+    lever3_proxy_acquisition_decision = (
+        lever3_proxy_acquisition_queue.get("decision", {})
+        if isinstance(lever3_proxy_acquisition_queue, dict)
+        else {}
+    )
+    lever3_proxy_candidate_pool_counts = (
+        lever3_proxy_candidate_pool.get("counts", {})
+        if isinstance(lever3_proxy_candidate_pool, dict)
+        else {}
+    )
+    lever3_proxy_candidate_pool_decision = (
+        lever3_proxy_candidate_pool.get("decision", {})
+        if isinstance(lever3_proxy_candidate_pool, dict)
+        else {}
+    )
+    lever3_proxy_scoring_tranche_counts = (
+        lever3_proxy_scoring_tranche.get("counts", {})
+        if isinstance(lever3_proxy_scoring_tranche, dict)
+        else {}
+    )
+    lever3_proxy_scoring_tranche_decision = (
+        lever3_proxy_scoring_tranche.get("decision", {})
+        if isinstance(lever3_proxy_scoring_tranche, dict)
+        else {}
+    )
     lever4_counts = (
         lever4_readiness.get("counts", {})
         if isinstance(lever4_readiness, dict)
@@ -27851,6 +29740,49 @@ def build_active_lever_mechanical_actionability_audit(
             ),
         },
         {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_acquisition_queue",
+            "ready_now": bool(
+                lever3_proxy_acquisition_decision.get(
+                    "proxy_calibration_rerun_ready_now"
+                )
+            ),
+            "blocking_reason": (
+                "confounded_proxy_acquisition_shortfall"
+                if lever3_proxy_acquisition_queue
+                else "confounded_proxy_acquisition_queue_missing"
+            ),
+            "next_command_after_decision": (
+                "build-fold-augmented-confounded-proxy-acquisition-queue"
+            ),
+        },
+        {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_train_cal_candidate_pool",
+            "ready_now": False,
+            "blocking_reason": (
+                "confounded_proxy_candidate_pool_not_scored"
+                if lever3_proxy_candidate_pool
+                else "confounded_proxy_train_cal_candidate_pool_missing"
+            ),
+            "next_command_after_decision": (
+                "build-fold-augmented-confounded-proxy-train-cal-candidate-pool"
+            ),
+        },
+        {
+            "lever": "Lever 3",
+            "gate": "confounded_proxy_train_cal_scoring_tranche",
+            "ready_now": False,
+            "blocking_reason": (
+                "confounded_proxy_scoring_tranche_not_run"
+                if lever3_proxy_scoring_tranche
+                else "confounded_proxy_train_cal_scoring_tranche_missing"
+            ),
+            "next_command_after_decision": (
+                "build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan"
+            ),
+        },
+        {
             "lever": "Lever 4",
             "gate": "family_panel_label_factory_gate_readiness",
             "ready_now": bool(
@@ -27934,6 +29866,18 @@ def build_active_lever_mechanical_actionability_audit(
         )
     ):
         blockers.append("lever3_confounded_proxy_evidence_extension_scale_gap")
+    if (
+        lever3_proxy_acquisition_queue
+        and not lever3_proxy_acquisition_decision.get(
+            "proxy_calibration_rerun_ready_now"
+        )
+    ):
+        blockers.append("lever3_confounded_proxy_acquisition_shortfall")
+    if (
+        lever3_proxy_scoring_tranche
+        and not lever3_proxy_scoring_tranche_decision.get("score_tranche_now")
+    ):
+        blockers.append("lever3_confounded_proxy_train_cal_scoring_tranche_not_run")
     if lever4_pending:
         blockers.append("family_panel_expert_import_decisions_missing")
     if lever2_pending:
@@ -28040,6 +29984,77 @@ def build_active_lever_mechanical_actionability_audit(
             ),
             "lever3_confounded_proxy_evidence_extension_blockers": int(
                 lever3_proxy_extension_counts.get("blockers") or 0
+            ),
+            "lever3_confounded_proxy_acquisition_family_panel_eligible_rows": int(
+                lever3_proxy_acquisition_counts.get(
+                    "family_panel_scenario_train_cal_oos_eligible_now"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_acquisition_high_shortfall": int(
+                lever3_proxy_acquisition_counts.get(
+                    "high_cofactor_shortfall_after_current_scenario"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_acquisition_structural_shortfall": int(
+                lever3_proxy_acquisition_counts.get(
+                    "same_family_structural_shortfall_after_current_scenario"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_acquisition_heldout_guardrail_rows": int(
+                lever3_proxy_acquisition_counts.get(
+                    "family_panel_scenario_heldout_confounded_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_acquisition_blockers": int(
+                lever3_proxy_acquisition_counts.get("blockers") or 0
+            ),
+            "lever3_confounded_proxy_candidate_pool_unscored_rows": int(
+                lever3_proxy_candidate_pool_counts.get(
+                    "unscored_ready_train_cal_oos_candidate_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_candidate_pool_high_axis_rows": int(
+                lever3_proxy_candidate_pool_counts.get(
+                    "high_cofactor_axis_candidate_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_candidate_pool_structural_axis_rows": int(
+                lever3_proxy_candidate_pool_counts.get(
+                    "structural_locus_candidate_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_candidate_pool_blockers": int(
+                lever3_proxy_candidate_pool_counts.get("blockers") or 0
+            ),
+            "lever3_confounded_proxy_scoring_tranche_rows": int(
+                lever3_proxy_scoring_tranche_counts.get("tranche_rows") or 0
+            ),
+            "lever3_confounded_proxy_scoring_tranche_high_rows": int(
+                lever3_proxy_scoring_tranche_counts.get(
+                    "selected_high_cofactor_axis_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_scoring_tranche_structural_rows": int(
+                lever3_proxy_scoring_tranche_counts.get(
+                    "selected_structural_axis_rows"
+                )
+                or 0
+            ),
+            "lever3_confounded_proxy_scoring_tranche_ready_for_plan": bool(
+                lever3_proxy_scoring_tranche_decision.get(
+                    "tranche_ready_for_scoring_plan"
+                )
+            ),
+            "lever3_confounded_proxy_scoring_tranche_blockers": int(
+                lever3_proxy_scoring_tranche_counts.get("blockers") or 0
             ),
             "lever4_pending_expert_import_decisions": len(lever4_pending),
             "lever4_import_preview_candidate_if_accepted_items": int(
@@ -28166,6 +30181,29 @@ def build_active_lever_mechanical_actionability_audit(
                 if lever3_confounded_proxy_evidence_extension_plan_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
+            "lever3_confounded_proxy_acquisition_queue": (
+                _source_path_record(
+                    lever3_confounded_proxy_acquisition_queue_path
+                )
+                if lever3_confounded_proxy_acquisition_queue_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_train_cal_candidate_pool": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_candidate_pool_path
+                )
+                if lever3_confounded_proxy_train_cal_candidate_pool_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever3_confounded_proxy_train_cal_scoring_tranche_plan": (
+                _source_path_record(
+                    lever3_confounded_proxy_train_cal_scoring_tranche_plan_path
+                )
+                if lever3_confounded_proxy_train_cal_scoring_tranche_plan_path
+                is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
             "lever4_acceptance_scenario_plan": (
                 _source_path_record(lever4_acceptance_scenario_plan_path)
                 if lever4_acceptance_scenario_plan_path is not None
@@ -28247,6 +30285,29 @@ def _render_active_lever_mechanical_actionability_audit_report(
         f"{counts.get('lever3_confounded_structural_min_new_abstained_rows_for_80pct')}",
         "- Lever 3 proxy evidence-extension blockers: "
         f"{counts.get('lever3_confounded_proxy_evidence_extension_blockers')}",
+        "- Lever 3 proxy acquisition family-panel eligible rows: "
+        f"{counts.get('lever3_confounded_proxy_acquisition_family_panel_eligible_rows')}",
+        "- Lever 3 proxy acquisition high-cofactor shortfall: "
+        f"{counts.get('lever3_confounded_proxy_acquisition_high_shortfall')}",
+        "- Lever 3 proxy acquisition structural shortfall: "
+        f"{counts.get('lever3_confounded_proxy_acquisition_structural_shortfall')}",
+        "- Lever 3 proxy acquisition heldout-guardrail rows: "
+        f"{counts.get('lever3_confounded_proxy_acquisition_heldout_guardrail_rows')}",
+        "- Lever 3 proxy acquisition blockers: "
+        f"{counts.get('lever3_confounded_proxy_acquisition_blockers')}",
+        "- Lever 3 proxy candidate-pool unscored rows: "
+        f"{counts.get('lever3_confounded_proxy_candidate_pool_unscored_rows')}",
+        "- Lever 3 proxy candidate-pool high-axis rows: "
+        f"{counts.get('lever3_confounded_proxy_candidate_pool_high_axis_rows')}",
+        "- Lever 3 proxy candidate-pool structural-axis rows: "
+        f"{counts.get('lever3_confounded_proxy_candidate_pool_structural_axis_rows')}",
+        "- Lever 3 proxy scoring-tranche rows: "
+        f"{counts.get('lever3_confounded_proxy_scoring_tranche_rows')}",
+        "- Lever 3 proxy scoring-tranche high/structural rows: "
+        f"{counts.get('lever3_confounded_proxy_scoring_tranche_high_rows')}/"
+        f"{counts.get('lever3_confounded_proxy_scoring_tranche_structural_rows')}",
+        "- Lever 3 proxy scoring-tranche ready for plan: "
+        f"{counts.get('lever3_confounded_proxy_scoring_tranche_ready_for_plan')}",
         "- Lever 4 acceptance scenario rows: "
         f"{counts.get('lever4_acceptance_scenario_rows')}",
         "- Lever 4 acceptance scenario panels: "
@@ -28312,6 +30373,9 @@ def write_active_lever_mechanical_actionability_audit(
     lever3_confounded_proxy_gap_targets_path: Path | None = None,
     lever3_confounded_proxy_threshold_stress_path: Path | None = None,
     lever3_confounded_proxy_evidence_extension_plan_path: Path | None = None,
+    lever3_confounded_proxy_acquisition_queue_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_candidate_pool_path: Path | None = None,
+    lever3_confounded_proxy_train_cal_scoring_tranche_plan_path: Path | None = None,
     lever4_acceptance_scenario_plan_path: Path | None = None,
     family_panel_label_factory_gate_readiness_path: Path | None = None,
     out_path: Path,
@@ -28343,6 +30407,15 @@ def write_active_lever_mechanical_actionability_audit(
         ),
         lever3_confounded_proxy_evidence_extension_plan_path=(
             lever3_confounded_proxy_evidence_extension_plan_path
+        ),
+        lever3_confounded_proxy_acquisition_queue_path=(
+            lever3_confounded_proxy_acquisition_queue_path
+        ),
+        lever3_confounded_proxy_train_cal_candidate_pool_path=(
+            lever3_confounded_proxy_train_cal_candidate_pool_path
+        ),
+        lever3_confounded_proxy_train_cal_scoring_tranche_plan_path=(
+            lever3_confounded_proxy_train_cal_scoring_tranche_plan_path
         ),
         lever4_acceptance_scenario_plan_path=(
             lever4_acceptance_scenario_plan_path
@@ -47272,6 +49345,478 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return schema
+
+
+_SOURCE_FREE_EVENT_AXIS_REVIEWABLE_RESIDUE_CODES = {
+    "ARG",
+    "ASN",
+    "ASP",
+    "CYS",
+    "GLN",
+    "GLU",
+    "HIS",
+    "LYS",
+    "SER",
+    "THR",
+    "TYR",
+}
+
+
+def _source_free_event_axis_candidate_linkers_from_preflight_row(
+    row: dict[str, Any],
+) -> list[dict[str, Any]]:
+    entry_id = str(row.get("entry_id") or "")
+    planned = row.get("planned_locator_payload_preview") or {}
+    planned_locators = [
+        locator
+        for locator in planned.get("residue_locators", []) or []
+        if isinstance(locator, dict)
+    ]
+    contact_summaries = [
+        summary
+        for summary in (
+            (row.get("coordinate_contact_preflight") or {}).get("locator_summaries")
+            or []
+        )
+        if isinstance(summary, dict)
+    ]
+    contacts_by_residue = {
+        (
+            str(summary.get("residue_code") or "").upper(),
+            str(summary.get("sequence_position") or ""),
+        ): summary
+        for summary in contact_summaries
+    }
+    candidates: list[dict[str, Any]] = []
+    for locator in planned_locators:
+        residue_code = str(locator.get("residue_code") or "").upper()
+        sequence_position = locator.get("sequence_position")
+        if residue_code not in _SOURCE_FREE_EVENT_AXIS_REVIEWABLE_RESIDUE_CODES:
+            continue
+        contact = contacts_by_residue.get(
+            (residue_code, str(sequence_position or "")),
+            {},
+        )
+        locator_id = f"{entry_id}:{residue_code}{sequence_position}:source_free_locator"
+        candidates.append(
+            {
+                "residue_locator_id": locator_id,
+                "residue_code": residue_code,
+                "sequence_position": sequence_position,
+                "role_hint": locator.get("role_hint"),
+                "locator_confidence": locator.get("locator_confidence"),
+                "locator_evidence_class": locator.get("locator_evidence_class"),
+                "coordinate_contact_context": {
+                    key: contact.get(key)
+                    for key in (
+                        "distance_angstrom",
+                        "ligand_atom",
+                        "residue_atom",
+                        "sequence_position_source",
+                    )
+                    if contact.get(key) is not None
+                },
+                "review_required_fields_to_fill": {
+                    "source_free_residue_role_evidence": "",
+                    "source_free_event_axis_evidence": "",
+                    "confidence": "",
+                },
+            }
+        )
+    return candidates
+
+
+def _source_free_event_axis_linker_template_guardrail_audit() -> dict[str, bool]:
+    return {
+        "labels_registries_ontologies_changed": False,
+        "imports_or_promotions_performed": False,
+        "production_thresholds_changed": False,
+        "heldout_rows_evaluated": False,
+        "heldout_rows_used_for_training_or_threshold_tuning": False,
+        "m_csa_heldout_row_specific_mechanism_text_used": False,
+        "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+        "source_text_or_source_ids_used_as_predictive_features": False,
+        "source_ids_used_as_predictive_features": False,
+        "target_names_used_as_predictive_features": False,
+        "ec_or_rhea_ids_used_as_predictive_features": False,
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet(
+    *,
+    event_axis_linker_schema_path: Path,
+    locator_rewrite_approval_packet_path: Path,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path,
+) -> dict[str, Any]:
+    schema = _read_json(event_axis_linker_schema_path)
+    approval_packet = _read_json(locator_rewrite_approval_packet_path)
+    preflight = _read_json(coordinate_anchor_priority1_rewrite_preflight_path)
+    schema_ready = bool(
+        schema.get("decision", {}).get("event_axis_linker_schema_ready")
+    )
+    target_feature = schema.get("target_feature", {})
+    event_type = target_feature.get("event_type")
+    residue_role = target_feature.get("residue_role")
+    preflight_by_entry = {
+        str(row.get("entry_id")): row
+        for row in preflight.get("preflight_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    locator_stubs = [
+        row
+        for row in approval_packet.get("locator_rewrite_decision_stubs", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    review_inputs = locator_stubs or list(preflight_by_entry.values())
+    review_stubs: list[dict[str, Any]] = []
+    review_class_counts: Counter[str] = Counter()
+    blocker_counts: Counter[str] = Counter()
+    candidate_linker_total = 0
+    pending_reviewer_decisions = 0
+    locator_dependency_pending = 0
+    locator_dependency_approved = 0
+
+    for order, input_row in enumerate(
+        sorted(
+            review_inputs,
+            key=lambda row: (
+                int(row.get("review_order") or 10**9),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+            ),
+        ),
+        start=1,
+    ):
+        entry_id = str(input_row.get("entry_id") or "")
+        preflight_row = preflight_by_entry.get(entry_id, input_row)
+        source_accession = input_row.get("source_accession") or preflight_row.get(
+            "source_accession"
+        )
+        candidate_linkers = _source_free_event_axis_candidate_linkers_from_preflight_row(
+            preflight_row
+        )
+        candidate_linker_total += len(candidate_linkers)
+        locator_decision = (
+            input_row.get("reviewer_decision")
+            or input_row.get("decision")
+            or "pending_reviewer_decision"
+        )
+        locator_approved = _source_free_locator_rewrite_decision_is_approved(
+            input_row
+        )
+        if locator_approved:
+            locator_dependency_approved += 1
+        else:
+            locator_dependency_pending += 1
+        blockers: list[str] = []
+        if not schema_ready:
+            blockers.append("source_free_event_axis_linker_schema_not_ready")
+        if not locator_approved:
+            blockers.append("approved_source_free_locator_dependency_missing")
+        if not candidate_linkers:
+            blockers.append("source_free_event_axis_candidate_linkers_missing")
+        if (
+            preflight_row.get("preflight_status")
+            != "preflight_passed_pending_explicit_approval"
+        ):
+            blockers.append("source_free_locator_preflight_not_passed")
+        blockers.append("explicit_event_axis_linker_review_required")
+        for blocker in blockers:
+            blocker_counts[blocker] += 1
+        if not candidate_linkers:
+            review_class = "event_axis_candidate_linkers_missing"
+        elif locator_approved:
+            review_class = "candidate_ready_for_event_axis_review_locator_approved"
+        else:
+            review_class = (
+                "candidate_ready_for_event_axis_review_pending_locator_approval"
+            )
+        review_class_counts[review_class] += 1
+        pending_reviewer_decisions += 1
+        draft_linkers = [
+            {
+                "residue_locator_id": linker["residue_locator_id"],
+                "residue_code": linker["residue_code"],
+                "sequence_position": linker["sequence_position"],
+                "source_free_residue_role_evidence": "",
+                "source_free_event_axis_evidence": "",
+                "confidence": "",
+                "source_free_candidate_context": {
+                    "role_hint": linker.get("role_hint"),
+                    "locator_confidence": linker.get("locator_confidence"),
+                    "locator_evidence_class": linker.get("locator_evidence_class"),
+                    "coordinate_contact_context": linker.get(
+                        "coordinate_contact_context"
+                    ),
+                },
+            }
+            for linker in candidate_linkers
+        ]
+        review_stubs.append(
+            {
+                "review_order": int(input_row.get("review_order") or order),
+                "entry_id": entry_id,
+                "accession": source_accession,
+                "event_type": event_type,
+                "residue_role": residue_role,
+                "event_axis_review_class": review_class,
+                "reviewer_event_axis_decision": "pending_reviewer_decision",
+                "decision_field_to_update": "reviewer_event_axis_decision",
+                "accepted_approval_decision_value": (
+                    "explicit_approve_event_axis_linker"
+                ),
+                "accepted_rejection_decision_value": "reject_event_axis_linker",
+                "approved": False,
+                "approved_boolean_field_to_update": "approved",
+                "required_approved_value_if_approving": True,
+                "reviewed_utc": "",
+                "reviewer": "",
+                "source_free_locator_dependency": {
+                    "locator_reviewer_decision": locator_decision,
+                    "locator_approved": locator_approved,
+                    "candidate_sha256": input_row.get("candidate_sha256")
+                    or preflight_row.get("candidate_sha256"),
+                    "planned_locator_payload_sha256": input_row.get(
+                        "planned_locator_payload_sha256"
+                    )
+                    or preflight_row.get("planned_locator_payload_sha256"),
+                    "planned_audited_locator_sidecar_path": input_row.get(
+                        "planned_audited_locator_sidecar_path"
+                    )
+                    or preflight_row.get("planned_audited_locator_sidecar_path"),
+                },
+                "selected_structure_id": input_row.get("selected_structure_id")
+                or preflight_row.get("selected_structure_id"),
+                "selected_ligand_site": input_row.get("selected_ligand_site")
+                or preflight_row.get("selected_ligand_site"),
+                "candidate_event_residue_linkers": candidate_linkers,
+                "draft_event_axis_linker_row_template": {
+                    "entry_id": entry_id,
+                    "accession": source_accession,
+                    "source_free_event_axis_status": (
+                        "pending_source_free_event_axis_review"
+                    ),
+                    "event_type": event_type,
+                    "residue_role": residue_role,
+                    "event_residue_linkers": draft_linkers,
+                    "guardrail_audit": (
+                        _source_free_event_axis_linker_template_guardrail_audit()
+                    ),
+                },
+                "required_reviewer_attestations": [
+                    "approved_source_free_locator_sidecar_exists_or_will_materialize_first",
+                    "event_axis_uses_coordinate_local_or_sequence_local_evidence_only",
+                    "event_axis_uses_no_m_csa_heldout_mechanism_text_or_role_graph",
+                    "event_axis_uses_no_source_ids_target_names_ec_or_rhea_ids",
+                    "proton_transfer_axis_and_electrostatic_stabiliser_role_are_scientifically_supported",
+                ],
+                "materialization_gate_input_ready_now": False,
+                "materialization_gate_input_ready_if_approved": (
+                    schema_ready and locator_approved and bool(candidate_linkers)
+                ),
+                "blockers": sorted(set(blockers)),
+            }
+        )
+
+    blockers = [
+        "source_free_event_axis_linker_reviewer_decisions_not_recorded",
+        "source_free_event_axis_linkers_not_materialized",
+    ]
+    if locator_dependency_pending:
+        blockers.append("approved_source_free_locator_surface_missing")
+    if candidate_linker_total == 0:
+        blockers.append("source_free_event_axis_candidate_linkers_missing")
+    if not schema_ready:
+        blockers.append("source_free_event_axis_linker_schema_not_ready")
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_REVIEW_PACKET_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_ready_review_only"
+            if schema_ready and review_stubs
+            else "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_blocked_review_only"
+        ),
+        "scope": (
+            "Review-only packet for source-free proton-transfer event-axis "
+            "linker decisions. It stages candidate residue/linker templates "
+            "from locator rewrite preflight rows and the frozen event-axis "
+            "schema, but it does not create gate-consumable linker rows, "
+            "approve locators, evaluate heldout rows, or apply thresholds."
+        ),
+        "target_feature": target_feature,
+        "event_axis_linker_review_stubs": review_stubs,
+        "review_decision_schema": {
+            "decision_container_key": "event_axis_linker_review_stubs",
+            "gate_consumable_container_key_after_review": "event_axis_linker_rows",
+            "accepted_approval_decision_value": (
+                "explicit_approve_event_axis_linker"
+            ),
+            "accepted_rejection_decision_value": "reject_event_axis_linker",
+            "required_status_for_gate_submission": (
+                "source_free_event_axis_linker_ready"
+            ),
+            "required_guardrail_audit_all_false": list(
+                _source_free_event_axis_linker_template_guardrail_audit().keys()
+            ),
+        },
+        "blockers": sorted(set(blockers)),
+        "review_class_counts": dict(sorted(review_class_counts.items())),
+        "blocker_counts": dict(sorted(blocker_counts.items())),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "event_axis_linker_rows_materialized": False,
+            "event_axis_linker_rows_inferred": False,
+            "review_only": True,
+        },
+        "counts": {
+            "event_axis_linker_schema_ready": int(schema_ready),
+            "locator_rewrite_decision_stubs": len(locator_stubs),
+            "preflight_rows": len(preflight_by_entry),
+            "event_axis_review_stub_rows": len(review_stubs),
+            "candidate_event_residue_linkers": candidate_linker_total,
+            "review_stubs_with_candidate_linkers": sum(
+                1
+                for stub in review_stubs
+                if stub.get("candidate_event_residue_linkers")
+            ),
+            "pending_reviewer_decisions": pending_reviewer_decisions,
+            "locator_dependency_approved_rows": locator_dependency_approved,
+            "locator_dependency_pending_rows": locator_dependency_pending,
+            "gate_consumable_event_axis_linker_rows": 0,
+            "materialized_linker_rows": 0,
+            "critical_violation_total": 0,
+            "blockers": len(set(blockers)),
+        },
+        "decision": {
+            "event_axis_linker_review_packet_ready": schema_ready
+            and bool(review_stubs),
+            "event_axis_reviewer_decisions_available": False,
+            "event_axis_linkers_materialized": False,
+            "materialization_gate_ready_now": False,
+            "heldout_safe_event_axis_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Review the event-axis stubs only after locator approvals are "
+                "resolved. Approved rows must be converted into explicit "
+                "event_axis_linker_rows with filled evidence, ready status, "
+                "confidence values, and guardrail audits before the "
+                "materialization gate can consume them."
+            ),
+        },
+        "source_artifacts": {
+            "event_axis_linker_schema": _source_path_record(
+                event_axis_linker_schema_path
+            ),
+            "locator_rewrite_approval_packet": _source_path_record(
+                locator_rewrite_approval_packet_path
+            ),
+            "coordinate_anchor_priority1_rewrite_preflight": _source_path_record(
+                coordinate_anchor_priority1_rewrite_preflight_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(review_stubs)} review stubs were staged with "
+                f"{candidate_linker_total} source-free residue candidates, but "
+                "none are gate-consumable or materialized."
+            ),
+            "next_action": (
+                "Resolve locator approvals, then fill and approve event-axis "
+                "linker rows with explicit source-free evidence before rerunning "
+                "the materialization gate."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Axis Linker Review Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Event-axis review stubs: {counts['event_axis_review_stub_rows']}",
+        "- Candidate event/residue linkers: "
+        f"{counts['candidate_event_residue_linkers']}",
+        "- Locator dependency approved rows: "
+        f"{counts['locator_dependency_approved_rows']}",
+        "- Locator dependency pending rows: "
+        f"{counts['locator_dependency_pending_rows']}",
+        f"- Gate-consumable rows: {counts['gate_consumable_event_axis_linker_rows']}",
+        f"- Blockers: {', '.join(packet['blockers'])}",
+        "",
+        "## Decision",
+        "",
+        "- Review packet ready: "
+        f"{decision['event_axis_linker_review_packet_ready']}",
+        "- Event-axis reviewer decisions available: "
+        f"{decision['event_axis_reviewer_decisions_available']}",
+        "- Event-axis linkers materialized: "
+        f"{decision['event_axis_linkers_materialized']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet(
+    *,
+    event_axis_linker_schema_path: Path,
+    locator_rewrite_approval_packet_path: Path,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet(
+        event_axis_linker_schema_path=event_axis_linker_schema_path,
+        locator_rewrite_approval_packet_path=locator_rewrite_approval_packet_path,
+        coordinate_anchor_priority1_rewrite_preflight_path=(
+            coordinate_anchor_priority1_rewrite_preflight_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
 
 
 def _source_free_event_axis_linker_rows(

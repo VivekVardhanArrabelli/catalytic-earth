@@ -102,6 +102,10 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_gap_targets,
     write_fold_augmented_confounded_proxy_threshold_stress,
     write_fold_augmented_confounded_proxy_evidence_extension_plan,
+    write_fold_augmented_confounded_proxy_acquisition_queue,
+    write_fold_augmented_confounded_proxy_train_cal_candidate_pool,
+    write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan,
+    write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_non_residue_interaction_sidecar_policy_preflight,
     write_fold_augmented_p23007_alternate_accession_scout,
@@ -140,6 +144,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
@@ -12354,6 +12359,123 @@ def cmd_build_fold_augmented_confounded_proxy_evidence_extension_plan(
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_acquisition_queue(
+    args: argparse.Namespace,
+) -> int:
+    queue = write_fold_augmented_confounded_proxy_acquisition_queue(
+        confounded_proxy_evidence_extension_plan_path=Path(
+            args.confounded_proxy_evidence_extension_plan
+        ),
+        family_panel_acceptance_scenario_plan_path=Path(
+            args.family_panel_acceptance_scenario_plan
+        )
+        if args.family_panel_acceptance_scenario_plan
+        else None,
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest)
+        if args.train_cal_input_manifest
+        else None,
+        train_cal_oos_surface_path=Path(args.train_cal_oos_surface)
+        if args.train_cal_oos_surface
+        else None,
+        predicted_structure_fold_channel_path=Path(
+            args.predicted_structure_fold_channel
+        )
+        if args.predicted_structure_fold_channel
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy acquisition queue to "
+        f"{args.out} (scenario train/cal OOS eligible now: "
+        f"{counts.get('family_panel_scenario_train_cal_oos_eligible_now')}, "
+        f"high-cofactor shortfall: "
+        f"{counts.get('high_cofactor_shortfall_after_current_scenario')}, "
+        f"structural shortfall: "
+        f"{counts.get('same_family_structural_shortfall_after_current_scenario')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
+    args: argparse.Namespace,
+) -> int:
+    pool = write_fold_augmented_confounded_proxy_train_cal_candidate_pool(
+        confounded_proxy_acquisition_queue_path=Path(
+            args.confounded_proxy_acquisition_queue
+        ),
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        train_cal_oos_surface_path=Path(args.train_cal_oos_surface),
+        selected_organic_cofactor_sidecar_path=Path(
+            args.selected_organic_cofactor_sidecar
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        max_priority_rows=args.max_priority_rows,
+    )
+    counts = pool.get("counts", {})
+    decision = pool.get("decision", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal candidate pool to "
+        f"{args.out} (unscored ready train/cal OOS: "
+        f"{counts.get('unscored_ready_train_cal_oos_candidate_rows')}, "
+        f"high pool ok: "
+        f"{decision.get('candidate_pool_meets_high_shortfall_by_count')}, "
+        f"structural pool ok: "
+        f"{decision.get('candidate_pool_meets_structural_shortfall_by_count')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
+    args: argparse.Namespace,
+) -> int:
+    plan = write_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
+        train_cal_candidate_pool_path=Path(args.train_cal_candidate_pool),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = plan.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal scoring tranche plan "
+        f"to {args.out} (tranche rows: {counts.get('tranche_rows')}, "
+        f"high rows: {counts.get('selected_high_cofactor_axis_rows')}, "
+        f"structural rows: {counts.get('selected_structural_axis_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
+    args: argparse.Namespace,
+) -> int:
+    manifest = write_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest(
+        scoring_tranche_plan_path=Path(args.scoring_tranche_plan),
+        sequence_manifest_path=Path(args.sequence_manifest),
+        predicted_structure_fold_channel_path=Path(
+            args.predicted_structure_fold_channel
+        ),
+        threshold_contract_path=Path(args.threshold_contract),
+        coordinate_root=Path(args.coordinate_root) if args.coordinate_root else None,
+        foldseek_result_tsv=Path(args.foldseek_result_tsv)
+        if args.foldseek_result_tsv
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        foldseek_binary=args.foldseek_binary,
+        threads=args.threads,
+    )
+    counts = manifest.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy train/cal scoring input "
+        f"manifest to {args.out} (tranche rows: "
+        f"{counts.get('scoring_tranche_rows')}, query coordinates missing: "
+        f"{counts.get('query_coordinate_files_missing')}, train targets "
+        f"missing: {counts.get('train_atlas_target_coordinate_files_missing')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet(
     args: argparse.Namespace,
 ) -> int:
@@ -12777,6 +12899,21 @@ def cmd_build_active_lever_mechanical_actionability_audit(
             args.lever3_confounded_proxy_evidence_extension_plan
         )
         if args.lever3_confounded_proxy_evidence_extension_plan
+        else None,
+        lever3_confounded_proxy_acquisition_queue_path=Path(
+            args.lever3_confounded_proxy_acquisition_queue
+        )
+        if args.lever3_confounded_proxy_acquisition_queue
+        else None,
+        lever3_confounded_proxy_train_cal_candidate_pool_path=Path(
+            args.lever3_confounded_proxy_train_cal_candidate_pool
+        )
+        if args.lever3_confounded_proxy_train_cal_candidate_pool
+        else None,
+        lever3_confounded_proxy_train_cal_scoring_tranche_plan_path=Path(
+            args.lever3_confounded_proxy_train_cal_scoring_tranche_plan
+        )
+        if args.lever3_confounded_proxy_train_cal_scoring_tranche_plan
         else None,
         lever4_acceptance_scenario_plan_path=Path(
             args.lever4_acceptance_scenario_plan
@@ -14307,6 +14444,33 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"(status: {schema.get('status')}, schema ready: "
         f"{decision.get('event_axis_linker_schema_ready')}, blockers to clear: "
         f"{counts.get('blockers_to_clear')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet(
+    args: argparse.Namespace,
+) -> int:
+    packet = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet(
+        event_axis_linker_schema_path=Path(args.event_axis_linker_schema),
+        locator_rewrite_approval_packet_path=Path(
+            args.locator_rewrite_approval_packet
+        ),
+        coordinate_anchor_priority1_rewrite_preflight_path=Path(
+            args.coordinate_anchor_priority1_rewrite_preflight
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = packet.get("counts", {})
+    decision = packet.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free event-axis linker review packet to "
+        f"{args.out} (status: {packet.get('status')}, stubs: "
+        f"{counts.get('event_axis_review_stub_rows')}, candidate linkers: "
+        f"{counts.get('candidate_event_residue_linkers')}, ready: "
+        f"{decision.get('event_axis_linker_review_packet_ready')})"
     )
     return 0
 
@@ -28302,6 +28466,223 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_confounded_proxy_evidence_extension_plan
     )
 
+    confounded_proxy_acquisition_queue = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-acquisition-queue",
+        help=(
+            "rank train/cal evidence acquisition tracks for the Lever 3 "
+            "confounded-proxy calibration gap without changing thresholds"
+        ),
+    )
+    confounded_proxy_acquisition_queue.add_argument(
+        "--confounded-proxy-evidence-extension-plan",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_"
+            "plan_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_acquisition_queue.add_argument(
+        "--family-panel-acceptance-scenario-plan",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_acceptance_scenario_"
+            "plan_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_acquisition_queue.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    confounded_proxy_acquisition_queue.add_argument(
+        "--train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_"
+            "surface_scores_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_acquisition_queue.add_argument(
+        "--predicted-structure-fold-channel",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601.json"
+        ),
+    )
+    confounded_proxy_acquisition_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_acquisition_queue.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_acquisition_queue_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_acquisition_queue.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_acquisition_queue
+    )
+
+    confounded_proxy_train_cal_candidate_pool = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-candidate-pool",
+        help=(
+            "build a train/cal-only unscored OOS candidate pool for the "
+            "Lever 3 confounded-proxy acquisition gap"
+        ),
+    )
+    confounded_proxy_train_cal_candidate_pool.add_argument(
+        "--confounded-proxy-acquisition-queue",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_"
+            "current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_candidate_pool.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    confounded_proxy_train_cal_candidate_pool.add_argument(
+        "--train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_expanded_train_cal_oos_negative_"
+            "surface_scores_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_candidate_pool.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default=(
+            "artifacts/v3_selected_organic_cofactor_score_sidecars_"
+            "current702_20260530.json"
+        ),
+    )
+    confounded_proxy_train_cal_candidate_pool.add_argument(
+        "--max-priority-rows",
+        type=int,
+        default=80,
+    )
+    confounded_proxy_train_cal_candidate_pool.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "candidate_pool_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_candidate_pool.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_candidate_pool_"
+            "current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_candidate_pool.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_train_cal_candidate_pool
+    )
+
+    confounded_proxy_train_cal_scoring_tranche = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan",
+        help=(
+            "select a bounded train/cal OOS tranche for future "
+            "predicted-structure-vs-atlas scoring"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_tranche.add_argument(
+        "--train-cal-candidate-pool",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "candidate_pool_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_tranche.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scoring_tranche_plan_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_tranche.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_scoring_"
+            "tranche_plan_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_tranche.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan
+    )
+
+    confounded_proxy_train_cal_scoring_input = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-train-cal-scoring-input-manifest",
+        help=(
+            "build the coordinate/accession input manifest for the selected "
+            "train/cal OOS confounded-proxy scoring tranche"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--scoring-tranche-plan",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scoring_tranche_plan_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--predicted-structure-fold-channel",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601.json"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--coordinate-root",
+        default=None,
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--foldseek-result-tsv",
+        default=None,
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--threads",
+        type=int,
+        default=4,
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scoring_input_manifest_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_input.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_train_cal_scoring_"
+            "input_manifest_current702_20260603.md"
+        ),
+    )
+    confounded_proxy_train_cal_scoring_input.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest
+    )
+
     p10746_caveat_decision_packet = subparsers.add_parser(
         "build-fold-augmented-p10746-deployment-caveat-decision-packet",
         help=(
@@ -29058,6 +29439,27 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_"
             "plan_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-acquisition-queue",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_"
+            "current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-train-cal-candidate-pool",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "candidate_pool_current702_20260603.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever3-confounded-proxy-train-cal-scoring-tranche-plan",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "scoring_tranche_plan_current702_20260603.json"
         ),
     )
     active_lever_actionability.add_argument(
@@ -32564,6 +32966,63 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_schema.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "event-axis-linker-review-packet"
+        ),
+        help=(
+            "stage source-free event-axis linker review stubs for the "
+            "best-token follow-up pair without materializing linker rows"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet.add_argument(
+        "--event-axis-linker-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_schema_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet.add_argument(
+        "--locator-rewrite-approval-packet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
+            "rewrite_approval_packet_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet.add_argument(
+        "--coordinate-anchor-priority1-rewrite-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_rewrite_preflight_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_review_packet_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_review_packet_current702_20260603.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet
         )
     )
 

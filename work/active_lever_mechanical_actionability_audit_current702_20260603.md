@@ -1,6 +1,6 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T13:23:12Z
+Run: 2026-06-03T14:36:10Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
@@ -23,11 +23,22 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 - Lever 3 high-cofactor min new abstained rows for 80%: 4
 - Lever 3 structural min new abstained rows for 80%: 48
 - Lever 3 proxy evidence-extension blockers: 6
+- Lever 3 proxy acquisition family-panel eligible rows: 0
+- Lever 3 proxy acquisition high-cofactor shortfall: 4
+- Lever 3 proxy acquisition structural shortfall: 48
+- Lever 3 proxy acquisition heldout-guardrail rows: 4
+- Lever 3 proxy acquisition blockers: 6
+- Lever 3 proxy candidate-pool unscored rows: 286
+- Lever 3 proxy candidate-pool high-axis rows: 13
+- Lever 3 proxy candidate-pool structural-axis rows: 114
+- Lever 3 proxy scoring-tranche rows: 50
+- Lever 3 proxy scoring-tranche high/structural rows: 13/48
+- Lever 3 proxy scoring-tranche ready for plan: True
 - Lever 4 acceptance scenario rows: 6
 - Lever 4 acceptance scenario panels: 5
 - Lever 4 label-factory candidates if scenario accepted: 6
 - Lever 4 label-factory gate input rows: 0
-- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
+- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'lever3_confounded_proxy_acquisition_shortfall', 'lever3_confounded_proxy_train_cal_scoring_tranche_not_run', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
 
 ## Decision
 
@@ -45,6 +56,9 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 | Lever 3 | p10746_post_decision_deployment_closure | False | p10746_policy_decision_missing | apply-fold-augmented-p10746-deployment-caveat-decision |
 | Lever 3 | confounded_proxy_train_calibration | False | confounded_proxy_train_calibration_gap | build-fold-augmented-confounded-proxy-threshold-stress |
 | Lever 3 | confounded_proxy_evidence_extension | False | confounded_proxy_evidence_extension_scale_gap | build-fold-augmented-confounded-proxy-evidence-extension-plan |
+| Lever 3 | confounded_proxy_acquisition_queue | False | confounded_proxy_acquisition_shortfall | build-fold-augmented-confounded-proxy-acquisition-queue |
+| Lever 3 | confounded_proxy_train_cal_candidate_pool | False | confounded_proxy_candidate_pool_not_scored | build-fold-augmented-confounded-proxy-train-cal-candidate-pool |
+| Lever 3 | confounded_proxy_train_cal_scoring_tranche | False | confounded_proxy_scoring_tranche_not_run | build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan |
 | Lever 4 | family_panel_label_factory_gate_readiness | False | family_panel_expert_import_decisions_missing | apply-fold-augmented-family-panel-expert-import-decision |
 | Lever 2 | source_free_locator_materialization_and_pre_threshold_readiness | False | source_free_locator_rewrite_approvals_missing | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | Lever 2 | source_free_event_axis_linkers | False | source_free_event_axis_linker_gate_blocked | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-materialization-gate |

@@ -706,6 +706,17 @@ class CliTests(unittest.TestCase):
                 (
                     "build-mechanism-feature-row-specific-bond-change-"
                     "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "event-axis-linker-review-packet"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
                     "event-axis-linker-materialization-gate"
                 ),
                 (
@@ -1089,6 +1100,46 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_fold_augmented_confounded_proxy_evidence_"
                     "extension_plan"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-acquisition-"
+                    "queue"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_acquisition_"
+                    "queue"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "candidate-pool"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "candidate_pool"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "scoring-tranche-plan"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "scoring_tranche_plan"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-train-cal-"
+                    "scoring-input-manifest"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_train_cal_"
+                    "scoring_input_manifest"
                 ),
             ),
             (

@@ -50,6 +50,106 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 14
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T14:03:24Z`
+- STARTED_LOCAL: `2026-06-03T09:03:24-0500 CDT`
+- ENDED_AT: `2026-06-03T14:50:28Z`
+- ENDED_LOCAL: `2026-06-03T09:50:28-0500 CDT`
+- ELAPSED_MINUTES: `47.1`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired at `2026-06-03T14:03:24Z`
+  local `2026-06-03T09:03:24-0500 CDT`. A secondary
+  `work/.automation.lock` was also acquired before reading this handoff.
+
+#### Current intent
+
+Continue from Run 13 inside active Levers 2/3/4. Follow the source-decision
+intake gate first; if reviewed source decisions remain unavailable, pivot to
+the highest-value mechanical move within the active lever framework without
+editing source-of-truth decisions.
+
+#### What changed
+
+- Source-decision intake remained closed; no reviewed source decisions arrived
+  during the block, so the run pivoted mechanically inside Lever 3.
+- Added
+  `v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603`
+  and report. It screens the Lever 4 acceptance scenario against the Lever 3
+  train/cal proxy calibration requirements and confirms the scenario contributes
+  0 train/cal OOS-eligible rows. Current shortfalls remain 4 high-cofactor and
+  48 same-family structural rows, with heldout confounded scenario rows kept out
+  of calibration.
+- Added
+  `v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603`
+  and report. It finds 286 ready train/cal OOS rows outside the current scored
+  surface, including 13 high-cofactor-axis candidates and 114 structural-locus
+  candidates. The pool meets the acquisition shortfalls by count only; no row is
+  counted as abstained evidence.
+- Added
+  `v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603`
+  and report. It selects a bounded 50-row train/cal OOS tranche covering 13
+  high-cofactor-axis rows and 48 structural-axis rows, ready for the next
+  predicted-structure-vs-train-atlas scoring step.
+- Added
+  `v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603`
+  and report. It maps the 50 tranche rows to 50 sequence-manifest accessions,
+  expected AFDB-v6 query CIF paths, the threshold-contract train-atlas target
+  bundle, and exact materialization/staging/Foldseek commands. Current state:
+  50/50 tranche query coordinate files are missing, 0 train-atlas target files
+  are missing, and the Foldseek result TSV has not been run.
+- Integrated the acquisition queue, candidate pool, and scoring tranche plan
+  into
+  `v3_active_lever_mechanical_actionability_audit_current702_20260603`.
+  The audit still has no mechanical gate ready now and now records the specific
+  blocker `lever3_confounded_proxy_train_cal_scoring_tranche_not_run`.
+- Added CLI commands plus unit, CLI-registration, and current-artifact
+  regression coverage for the new Lever 3 artifacts. Appended a measured
+  progress-log entry and regenerated `work/status.md`.
+- Early complete after producing the bounded Lever 3 scoring input manifest and
+  running full validation; no risky new work was started after wrap began.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, source decision packets, sidecars, reviewer decisions, or source
+  evidence rows were edited.
+- No heldout rows were used for training, threshold selection, or proxy
+  calibration. Heldout confounded rows remained guarded as final-eval canaries.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were
+  introduced as predictive features.
+- The scoring input manifest is read-only: it did not download coordinates, run
+  Foldseek/TM, parse/fabricate scores, or count any new row as abstained
+  evidence.
+
+#### Verification
+
+- Focused coverage:
+  `PYTHONPATH=src python -m pytest -q tests/test_northstar_next_levers.py -k 'confounded_proxy_train_cal_scoring_input_manifest or confounded_proxy_train_cal_scoring_tranche_plan or confounded_proxy_train_cal_candidate_pool or confounded_proxy_acquisition_queue' tests/test_geometry_artifact_regression.py -k 'confounded_proxy_train_cal_scoring_input_manifest or confounded_proxy_train_cal_scoring_tranche_plan or confounded_proxy_train_cal_candidate_pool or confounded_proxy_acquisition_queue' tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered`
+  passed: 8 passed, 331 deselected.
+- `PYTHONPATH=src python -m compileall -q src`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
+  and JSON parse checks for the changed/new current artifacts passed.
+- `PYTHONPATH=src python -m pytest -q`: 1327 passed, 143 subtests passed, one
+  existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1282 tests passed, same
+  existing sklearn/SciPy deprecation warning.
+
+#### Exact next action
+
+- Materialize the 50 missing AFDB-v6 CIFs listed in
+  `artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603.json`,
+  stage the tranche query and threshold-contract train-atlas target Foldseek
+  directories with the recorded command, run the recorded
+  `confounded_proxy_train_cal_tranche_vs_train_atlas.tsv` Foldseek pass, then
+  add a train/cal-only parser that joins those scores back before rerunning the
+  fixed-threshold proxy operating-point audit. Keep threshold `0.44155` fixed
+  and keep heldout rows final-eval only.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 13
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

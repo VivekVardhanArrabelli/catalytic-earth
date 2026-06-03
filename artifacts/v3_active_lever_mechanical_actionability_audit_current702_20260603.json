@@ -7,6 +7,8 @@
     "lever3_confounded_structural_proxy_calibration_gap",
     "lever3_confounded_proxy_threshold_stress_retention_cost",
     "lever3_confounded_proxy_evidence_extension_scale_gap",
+    "lever3_confounded_proxy_acquisition_shortfall",
+    "lever3_confounded_proxy_train_cal_scoring_tranche_not_run",
     "family_panel_expert_import_decisions_missing",
     "source_free_locator_rewrite_approvals_missing",
     "source_free_event_axis_linker_gate_blocked",
@@ -16,7 +18,7 @@
   ],
   "counts": {
     "automation_action_allowed_now_items": 0,
-    "blockers": 12,
+    "blockers": 14,
     "decision_items": 78,
     "external_decision_required_items": 78,
     "lever2_clean_locator_rewrite_items": 49,
@@ -25,9 +27,23 @@
     "lever2_pending_locator_approvals": 55,
     "lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct": 4,
     "lever3_confounded_high_cofactor_proxy_rows": 1,
+    "lever3_confounded_proxy_acquisition_blockers": 6,
+    "lever3_confounded_proxy_acquisition_family_panel_eligible_rows": 0,
+    "lever3_confounded_proxy_acquisition_heldout_guardrail_rows": 4,
+    "lever3_confounded_proxy_acquisition_high_shortfall": 4,
+    "lever3_confounded_proxy_acquisition_structural_shortfall": 48,
+    "lever3_confounded_proxy_candidate_pool_blockers": 1,
+    "lever3_confounded_proxy_candidate_pool_high_axis_rows": 13,
+    "lever3_confounded_proxy_candidate_pool_structural_axis_rows": 114,
+    "lever3_confounded_proxy_candidate_pool_unscored_rows": 286,
     "lever3_confounded_proxy_evidence_extension_blockers": 6,
     "lever3_confounded_proxy_evidence_request_rows": 14,
     "lever3_confounded_proxy_retained_gap_rows": 14,
+    "lever3_confounded_proxy_scoring_tranche_blockers": 1,
+    "lever3_confounded_proxy_scoring_tranche_high_rows": 13,
+    "lever3_confounded_proxy_scoring_tranche_ready_for_plan": true,
+    "lever3_confounded_proxy_scoring_tranche_rows": 50,
+    "lever3_confounded_proxy_scoring_tranche_structural_rows": 48,
     "lever3_confounded_proxy_threshold_stress_blockers": 2,
     "lever3_confounded_structural_min_new_abstained_rows_for_80pct": 48,
     "lever3_confounded_structural_proxy_abstained": 4,
@@ -44,7 +60,7 @@
     "source_decision_intake_invalid_rows": 0,
     "source_decision_intake_pending_rows": 78
   },
-  "created_utc": "2026-06-03T13:23:12Z",
+  "created_utc": "2026-06-03T14:36:10Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
@@ -85,6 +101,27 @@
       "gate": "confounded_proxy_evidence_extension",
       "lever": "Lever 3",
       "next_command_after_decision": "build-fold-augmented-confounded-proxy-evidence-extension-plan",
+      "ready_now": false
+    },
+    {
+      "blocking_reason": "confounded_proxy_acquisition_shortfall",
+      "gate": "confounded_proxy_acquisition_queue",
+      "lever": "Lever 3",
+      "next_command_after_decision": "build-fold-augmented-confounded-proxy-acquisition-queue",
+      "ready_now": false
+    },
+    {
+      "blocking_reason": "confounded_proxy_candidate_pool_not_scored",
+      "gate": "confounded_proxy_train_cal_candidate_pool",
+      "lever": "Lever 3",
+      "next_command_after_decision": "build-fold-augmented-confounded-proxy-train-cal-candidate-pool",
+      "ready_now": false
+    },
+    {
+      "blocking_reason": "confounded_proxy_scoring_tranche_not_run",
+      "gate": "confounded_proxy_train_cal_scoring_tranche",
+      "lever": "Lever 3",
+      "next_command_after_decision": "build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan",
       "ready_now": false
     },
     {
@@ -373,6 +410,11 @@
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json",
       "sha256": "85628054c8b0e425f021ccd236db1378d957ae2c5962822e46c53de4b70e683f"
     },
+    "lever3_confounded_proxy_acquisition_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json",
+      "sha256": "3d4042d28c265ffcc3db3ab2cd463cefbf38352568b35f31afc33d17b99ac41f"
+    },
     "lever3_confounded_proxy_evidence_extension_plan": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json",
@@ -392,6 +434,16 @@
       "exists": true,
       "path": "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603.json",
       "sha256": "a2ca3f719cbebff0dfabcd97748a374250135f26a0318c6ad7139281a32b36c5"
+    },
+    "lever3_confounded_proxy_train_cal_candidate_pool": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json",
+      "sha256": "4e2f399cdf1d1b92dfc5be961e393183e4b06756bbd6021e719153337a525fdc"
+    },
+    "lever3_confounded_proxy_train_cal_scoring_tranche_plan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan_current702_20260603.json",
+      "sha256": "2818e12a41e81858aebf2caed6a556ec01e4746ce1e27a2a84cf65eb9d319569"
     },
     "lever3_post_decision_deployment_closure_status": {
       "exists": true,
