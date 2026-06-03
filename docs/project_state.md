@@ -658,6 +658,23 @@ artifacts first.
   one-shot heldout read on any Lever 2 token. The 53 approved locators are banked
   as a split-protected asset; the source-free discriminative value lives in the
   geometry/fold channel (AUC 0.81-0.91).
+- 2026-06-03 ESMFold2 robustness experiment staged (see `docs/decision_log.md`):
+  ESMFold2 was verified real (Biohub / A. Rives, 2026-05-27, MIT/open weights).
+  Problem 2 (robustness to predicted vs experimental active-site geometry) is now
+  staged as a no-fit, leakage-safe contract plus a runnable `esmfold2`
+  coordinate-supplier backend in `predicted_geometry_robustness.py`. The contract
+  enumerates the exact prediction work list (184 in-distribution+fingerprint
+  atlas rows, 140 heldout rows, 323 unique accessions), fixes the
+  train/cal-selects-thresholds / heldout-final-only discipline, records the
+  AlphaFoldDB-v6 baseline to beat (hand router 23/45 primary, 12.3% OOS FP;
+  fold/TM AUC 0.814; geometry+fold mean AUC 0.908), and plans six comparison
+  metrics including pLDDT-gated abstention vs the fixed 0.44155 fold-augmented
+  gate. No ESMFold2 inference was run, no weights downloaded, no threshold
+  changed, no heldout row read. The apo caveat is kept front and center: ESMFold2
+  improves the protein side-chain part and supplies pLDDT, but cannot supply
+  cofactor geometry, so expect only partial help. Run via
+  `build-esmfold2-robustness-experiment-contract` and the three predicted-geometry
+  commands with `--backend esmfold2 --esmfold2-staged-dir <DIR>`.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
@@ -679,6 +696,11 @@ artifacts first.
   degradation: AlphaFoldDB has no proximal ligands and perturbs the hand
   geometry evidence enough to introduce primary wrong calls and OOS false
   positives. ESMFold is not locally available without staging runtime/weights.
+  The ESMFold2 experiment (Problem 2) is now staged as a no-fit contract with a
+  runnable `esmfold2` coordinate-supplier backend, but stays blocked here on
+  staged coordinates: `torch`/`esm`/`foldseek` are absent and every
+  predicted-structure host (Hugging Face, ESM Atlas, AlphaFold EBI) returns
+  network 403. Run it where ESMFold2 coordinates can be staged.
 - FMO primary promotion is blocked by missing or unsuitable exact coordinate
   materialization for key external subtype rows, subtype/child-stratum
   definition work, PHBH-leaning gate behavior, hard-negative separation, and
@@ -693,6 +715,19 @@ artifacts first.
 
 ## Next Gates
 
+0. Problem 2 / ESMFold2 (recommended, but compute/network-gated): the experiment
+   is staged as a no-fit contract
+   (`artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`)
+   with a runnable `esmfold2` coordinate-supplier backend. In an environment with
+   ESMFold2 access (open `esm` + weights, the Biohub platform, or the ESM Atlas)
+   and `foldseek`: predict the 323 accessions, stage them as mmCIF keyed by
+   accession, then run `build-predicted-geometry-robustness-audit`,
+   `build-predicted-geometry-in-distribution-atlas-retrieval`, and
+   `build-predicted-geometry-distillation-audit` with `--backend esmfold2
+   --esmfold2-staged-dir <DIR>`. Select all thresholds/models on in-distribution
+   train/cal; read heldout once. Compare to the AlphaFoldDB-v6 baseline (recover
+   23/45, cut 12.3% OOS FP, test pLDDT-gated abstention vs the 0.44155 gate).
+   Expect only partial help (apo / no cofactor geometry).
 1. Use the fold-augmented research gate with the disclosed 71/76 train/cal
    OOS-negative surface when running downstream diagnostics; clear the remaining
    five source-geometry/coordinate/sidecar blockers before any stronger
@@ -800,6 +835,7 @@ artifacts first.
 - `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.json`
 - `artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.json`
 - `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json`
+- `artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,6 +39,32 @@ ALPHAFOLD_VERSION_ORDER = (6, 5, 4, 3, 2, 1)
 USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 HAND_ROUTER_THRESHOLD = 0.4115
 
+# ESMFold2 (Biohub / A. Rives, released 2026-05-27, MIT, open weights) is an
+# all-atom + pLDDT sequence-structure predictor. Like every sequence folder it
+# predicts apo structures (no cofactor/metal/substrate), so it can only address
+# the protein side-chain part of the predicted-geometry degradation, not the
+# cofactor geometry the active-site router leans on. This backend never runs
+# inference or downloads weights; it consumes ESMFold2 coordinates that have been
+# pre-staged as mmCIF, keyed by current702 accession, and then reuses the frozen
+# geometry+fold scoring stack unchanged.
+ESMFOLD2_STAGED_DIR_ENV = "CE_ESMFOLD2_STAGED_DIR"
+ESMFOLD2_CIF_SUFFIXES = (".cif", ".mmcif")
+ESMFOLD2_BLOCKER = "esmfold2_runtime_or_staged_coordinates_unavailable"
+ESMFOLD2_BLOCKER_DETAIL = (
+    "ESMFold2 inference is not run by this audit and no model weights are "
+    "downloaded. Stage ESMFold2 all-atom mmCIF files keyed by current702 "
+    "accession (file name 'ESMFOLD2-{accession}.cif' or '{accession}.cif'), then "
+    "pass the directory via esmfold2_staged_dir= or the "
+    f"{ESMFOLD2_STAGED_DIR_ENV} environment variable. Coordinates can be produced "
+    "with the open `esm` package plus ESMFold2 weights, the hosted Biohub "
+    "platform, or the ESM Atlas lookup. Once staged, this backend reuses the "
+    "frozen geometry router and Foldseek/TM fold channel without edits."
+)
+ESMFOLD2_SOURCE_LABEL = (
+    "Biohub ESMFold2 all-atom predicted mmCIF read from a locally staged "
+    "directory keyed by current702 accession"
+)
+
 
 def build_predicted_geometry_robustness_audit(
     *,
@@ -55,6 +82,7 @@ def build_predicted_geometry_robustness_audit(
     hidden_layer_size: int = 32,
     max_rows: int = 0,
     fetcher: Any | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Score the frozen geometry stack on predicted structures.
 
@@ -76,7 +104,18 @@ def build_predicted_geometry_robustness_audit(
             split_assignment=split_assignment,
             backend=backend,
         )
-    if backend != "alphafold_db":
+    if backend == "esmfold2":
+        staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+        if staged_dir is None:
+            return _blocked_audit(
+                blocker=ESMFOLD2_BLOCKER,
+                detail=ESMFOLD2_BLOCKER_DETAIL,
+                label_manifest=label_manifest,
+                split_assignment=split_assignment,
+                backend=backend,
+            )
+        fetcher = fetcher or make_esmfold2_staged_supplier(staged_dir)
+    elif backend != "alphafold_db":
         return _blocked_audit(
             blocker="unsupported_predicted_structure_backend",
             detail=(
@@ -102,6 +141,7 @@ def build_predicted_geometry_robustness_audit(
         alphafold_version=alphafold_version,
         fetcher=fetcher,
     )
+    _tag_predicted_geometry_backend(predicted_geometry, backend)
     predicted_retrieval = run_geometry_retrieval(predicted_geometry)
     hand_rows = _hand_router_rows(
         target_rows=target_rows,
@@ -149,10 +189,7 @@ def build_predicted_geometry_robustness_audit(
             "global_threshold_changed": False,
             "heldout_labels_used_for_fit_or_threshold": False,
             "large_model_downloads_performed": False,
-            "coordinate_download_scope": (
-                "AlphaFoldDB mmCIF coordinate files fetched transiently by "
-                "UniProt accession; raw coordinates are not committed"
-            ),
+            "coordinate_download_scope": _coordinate_download_scope(backend),
         },
         "scope": {
             "split_assignment": split_assignment,
@@ -219,6 +256,7 @@ def build_predicted_geometry_distillation_audit(
     hidden_layer_size: int = 32,
     max_rows: int = 0,
     fetcher: Any | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Train/calibrate heads on predicted geometry and evaluate heldout once."""
     if backend == "esmfold":
@@ -235,7 +273,20 @@ def build_predicted_geometry_distillation_audit(
             artifact_id="v3_predicted_geometry_distillation_audit_current702_20260529",
             schema_version="predicted_geometry_distillation_audit.v1",
         )
-    if backend != "alphafold_db":
+    if backend == "esmfold2":
+        staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+        if staged_dir is None:
+            return _blocked_audit(
+                blocker=ESMFOLD2_BLOCKER,
+                detail=ESMFOLD2_BLOCKER_DETAIL,
+                label_manifest=label_manifest,
+                split_assignment="all",
+                backend=backend,
+                artifact_id="v3_predicted_geometry_distillation_audit_current702_20260529",
+                schema_version="predicted_geometry_distillation_audit.v1",
+            )
+        fetcher = fetcher or make_esmfold2_staged_supplier(staged_dir)
+    elif backend != "alphafold_db":
         return _blocked_audit(
             blocker="unsupported_predicted_structure_backend",
             detail=f"backend={backend!r}; only alphafold_db is implemented",
@@ -260,6 +311,7 @@ def build_predicted_geometry_distillation_audit(
         alphafold_version=alphafold_version,
         fetcher=fetcher,
     )
+    _tag_predicted_geometry_backend(predicted_geometry, backend)
     predicted_retrieval = run_geometry_retrieval(predicted_geometry)
     heldout_target_rows = [
         row for row in target_rows if row.get("split_assignment") == "heldout"
@@ -295,10 +347,7 @@ def build_predicted_geometry_distillation_audit(
             "global_threshold_changed": False,
             "heldout_labels_used_for_fit_or_threshold": False,
             "large_model_downloads_performed": False,
-            "coordinate_download_scope": (
-                "AlphaFoldDB mmCIF coordinate files fetched transiently by "
-                "UniProt accession; raw coordinates are not committed"
-            ),
+            "coordinate_download_scope": _coordinate_download_scope(backend),
         },
         "scope": {
             "backend": backend,
@@ -516,6 +565,86 @@ def fetch_alphafold_cif(
     )
 
 
+def resolve_esmfold2_staged_dir(esmfold2_staged_dir: str | Path | None) -> Path | None:
+    """Return a staged ESMFold2 mmCIF directory that holds at least one .cif file.
+
+    Resolution order is the explicit argument, then the
+    ``CE_ESMFOLD2_STAGED_DIR`` environment variable. The directory must exist and
+    contain at least one mmCIF coordinate file; otherwise this returns ``None`` so
+    callers emit a precise ``blocked`` audit instead of a misleading empty result.
+    """
+    raw = esmfold2_staged_dir or os.environ.get(ESMFOLD2_STAGED_DIR_ENV)
+    if not raw:
+        return None
+    path = Path(raw)
+    if not path.is_dir():
+        return None
+    has_cif = any(
+        candidate.is_file() and candidate.suffix.lower() in ESMFOLD2_CIF_SUFFIXES
+        for candidate in path.iterdir()
+    )
+    return path if has_cif else None
+
+
+def make_esmfold2_staged_supplier(staged_dir: str | Path) -> Any:
+    """Build a ``fetcher(accession, version=...)`` over staged ESMFold2 mmCIFs.
+
+    The returned supplier matches the AlphaFoldDB fetcher contract so the frozen
+    geometry+fold scoring stack consumes it unchanged. It performs no network I/O
+    and downloads no weights; a missing coordinate raises so the per-row failure
+    becomes artifact evidence exactly like an AlphaFoldDB miss.
+    """
+    base = Path(staged_dir)
+
+    def _supplier(accession: str, *, version: str = "auto") -> tuple[str, dict[str, Any]]:
+        cleaned = accession.strip()
+        if not cleaned:
+            raise ValueError("accession is required")
+        candidates = [
+            base / f"ESMFOLD2-{cleaned}{suffix}" for suffix in ESMFOLD2_CIF_SUFFIXES
+        ] + [base / f"{cleaned}{suffix}" for suffix in ESMFOLD2_CIF_SUFFIXES]
+        for path in candidates:
+            if path.is_file():
+                text = path.read_text(encoding="utf-8", errors="replace")
+                return text, {
+                    "backend": "esmfold2",
+                    "model": "esmfold2",
+                    "accession": cleaned,
+                    "source": ESMFOLD2_SOURCE_LABEL,
+                    "path": str(path),
+                }
+        raise RuntimeError(
+            f"ESMFold2 staged mmCIF not found for {cleaned}; tried "
+            + ", ".join(path.name for path in candidates)
+        )
+
+    return _supplier
+
+
+def _coordinate_download_scope(backend: str) -> str:
+    if backend == "esmfold2":
+        return (
+            "Biohub ESMFold2 all-atom mmCIF coordinates read from a locally staged "
+            "directory keyed by accession; no ESMFold2 weights or inference are run "
+            "here and raw coordinates are not committed"
+        )
+    return (
+        "AlphaFoldDB mmCIF coordinate files fetched transiently by UniProt "
+        "accession; raw coordinates are not committed"
+    )
+
+
+def _tag_predicted_geometry_backend(
+    predicted_geometry: dict[str, Any], backend: str
+) -> None:
+    """Stamp predicted-geometry provenance for non-AlphaFoldDB coordinate sources."""
+    if backend == "esmfold2":
+        metadata = predicted_geometry.get("metadata")
+        if isinstance(metadata, dict):
+            metadata["backend"] = "esmfold2"
+            metadata["source"] = ESMFOLD2_SOURCE_LABEL
+
+
 def write_predicted_geometry_robustness_audit(
     *,
     label_manifest_path: Path,
@@ -533,6 +662,7 @@ def write_predicted_geometry_robustness_audit(
     cal_fraction: float = 0.2,
     hidden_layer_size: int = 32,
     max_rows: int = 0,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     with label_manifest_path.open("r", encoding="utf-8") as handle:
         label_manifest = json.load(handle)
@@ -558,6 +688,7 @@ def write_predicted_geometry_robustness_audit(
         cal_fraction=cal_fraction,
         hidden_layer_size=hidden_layer_size,
         max_rows=max_rows,
+        esmfold2_staged_dir=esmfold2_staged_dir,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -581,6 +712,7 @@ def write_predicted_geometry_distillation_audit(
     cal_fraction: float = 0.2,
     hidden_layer_size: int = 32,
     max_rows: int = 0,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     with label_manifest_path.open("r", encoding="utf-8") as handle:
         label_manifest = json.load(handle)
@@ -601,6 +733,7 @@ def write_predicted_geometry_distillation_audit(
         cal_fraction=cal_fraction,
         hidden_layer_size=hidden_layer_size,
         max_rows=max_rows,
+        esmfold2_staged_dir=esmfold2_staged_dir,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -620,6 +753,7 @@ def build_predicted_geometry_in_distribution_atlas_retrieval(
     alphafold_version: str = "auto",
     max_rows: int = 0,
     fetcher: Any | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Build predicted-geometry retrieval for current702 in-distribution atlas rows.
 
@@ -628,7 +762,22 @@ def build_predicted_geometry_in_distribution_atlas_retrieval(
     atlas-percentile novelty methods; heldout labels are not used for fitting or
     threshold selection.
     """
-    if backend != "alphafold_db":
+    if backend == "esmfold2":
+        staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+        if staged_dir is None:
+            return _blocked_audit(
+                blocker=ESMFOLD2_BLOCKER,
+                detail=ESMFOLD2_BLOCKER_DETAIL,
+                label_manifest=label_manifest,
+                split_assignment="in_distribution",
+                backend=backend,
+                artifact_id=(
+                    "v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601"
+                ),
+                schema_version="predicted_geometry_atlas_retrieval.v1",
+            )
+        fetcher = fetcher or make_esmfold2_staged_supplier(staged_dir)
+    elif backend != "alphafold_db":
         return _blocked_audit(
             blocker="unsupported_predicted_structure_backend",
             detail=f"backend={backend!r}; only alphafold_db is implemented",
@@ -687,6 +836,7 @@ def build_predicted_geometry_in_distribution_atlas_retrieval(
         alphafold_version=alphafold_version,
         fetcher=fetcher,
     )
+    _tag_predicted_geometry_backend(predicted_geometry, backend)
     atlas_retrieval = run_geometry_retrieval(predicted_geometry)
     atlas_results = _enriched_predicted_retrieval_results(
         retrieval_results=atlas_retrieval.get("results", []),
@@ -813,6 +963,7 @@ def write_predicted_geometry_in_distribution_atlas_retrieval(
     backend: str = "alphafold_db",
     alphafold_version: str = "auto",
     max_rows: int = 0,
+    esmfold2_staged_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     with label_manifest_path.open("r", encoding="utf-8") as handle:
         label_manifest = json.load(handle)
@@ -832,6 +983,7 @@ def write_predicted_geometry_in_distribution_atlas_retrieval(
         backend=backend,
         alphafold_version=alphafold_version,
         max_rows=max_rows,
+        esmfold2_staged_dir=esmfold2_staged_dir,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -842,6 +994,416 @@ def write_predicted_geometry_in_distribution_atlas_retrieval(
             encoding="utf-8",
         )
     return audit
+
+
+ESMFOLD2_EXPERIMENT_CONTRACT_ARTIFACT_ID = (
+    "v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603"
+)
+ESMFOLD2_EXPERIMENT_CONTRACT_SCHEMA = "esmfold2_robustness_experiment_contract.v1"
+
+
+def _experiment_inventory_row(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "accession": str(row.get("accession") or row.get("sequence_id") or ""),
+        "sequence_id": str(row.get("sequence_id") or ""),
+        "benchmark_role": row.get("benchmark_role"),
+        "fingerprint_id": row.get("fingerprint_id") or row.get("mechanism_fingerprint_id"),
+        "split_assignment": row.get("split_assignment"),
+    }
+
+
+def build_esmfold2_robustness_experiment_contract(
+    *,
+    label_manifest: dict[str, Any],
+    afdb_robustness_audit: dict[str, Any] | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """Stage the no-fit, leakage-safe ESMFold2 predicted-geometry experiment.
+
+    This materializes the experiment design only. It runs no ESMFold2 inference,
+    downloads no weights, selects no threshold, and reads no heldout label. It
+    enumerates the exact atlas (in-distribution + fingerprint) and 140 heldout
+    accessions to re-predict, records the AlphaFoldDB-v6 baseline to beat, fixes
+    the train/cal-selects-thresholds / heldout-final-only discipline, and reports
+    whether ESMFold2 coordinates are staged yet.
+    """
+    rows = [row for row in label_manifest.get("rows", []) if isinstance(row, dict)]
+
+    def _fp(row: dict[str, Any]) -> Any:
+        return row.get("fingerprint_id") or row.get("mechanism_fingerprint_id")
+
+    atlas_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "in_distribution" and _fp(row)
+    ]
+    heldout_rows = [row for row in rows if row.get("split_assignment") == "heldout"]
+
+    atlas_inventory = [_experiment_inventory_row(row) for row in atlas_rows]
+    heldout_inventory = [_experiment_inventory_row(row) for row in heldout_rows]
+    needed_accessions = sorted(
+        {entry["accession"] for entry in atlas_inventory + heldout_inventory if entry["accession"]}
+    )
+
+    staged_dir = resolve_esmfold2_staged_dir(esmfold2_staged_dir)
+    staged_count = 0
+    if staged_dir is not None:
+        for accession in needed_accessions:
+            candidates = [
+                staged_dir / f"ESMFOLD2-{accession}{suffix}"
+                for suffix in ESMFOLD2_CIF_SUFFIXES
+            ] + [staged_dir / f"{accession}{suffix}" for suffix in ESMFOLD2_CIF_SUFFIXES]
+            if any(path.is_file() for path in candidates):
+                staged_count += 1
+
+    headline = (afdb_robustness_audit or {}).get("headline", {}) or {}
+    afdb_baseline = {
+        "predicted_hand_router_primary_correct": headline.get(
+            "predicted_hand_router_primary_correct_count"
+        ),
+        "predicted_hand_router_primary_support": headline.get(
+            "predicted_hand_router_primary_support_count"
+        ),
+        "predicted_hand_router_primary_abstention_count": headline.get(
+            "predicted_hand_router_primary_abstention_count"
+        ),
+        "predicted_hand_router_primary_wrong_nonabstained_count": headline.get(
+            "predicted_hand_router_primary_wrong_nonabstained_count"
+        ),
+        "predicted_hand_router_oos_or_secondary_false_positive_rate": headline.get(
+            "predicted_hand_router_oos_or_secondary_false_positive_rate_available"
+        ),
+        "experimental_hand_router_primary_accuracy": headline.get(
+            "experimental_hand_router_primary_accuracy_available"
+        ),
+        "source_artifact": (
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    }
+
+    metric_plan = [
+        {
+            "metric": "hand_router_primary_correct_over_support",
+            "split": "heldout (final-only)",
+            "clean_experimental_reference": "45/45",
+            "afdb_v6_predicted_baseline": "23/45",
+            "success_criterion": (
+                "recover lost primary rows toward 45/45 without spending more than "
+                "one heldout read"
+            ),
+        },
+        {
+            "metric": "hand_router_oos_or_secondary_false_positive_rate",
+            "split": "heldout (final-only)",
+            "clean_experimental_reference": 0.0,
+            "afdb_v6_predicted_baseline": 0.123457,
+            "success_criterion": "reduce below the 12.3% AlphaFoldDB-v6 predicted rate",
+        },
+        {
+            "metric": "geometry_feature_logistic_probe_primary_accuracy",
+            "split": "in_distribution train/cal selects, heldout final-only",
+            "afdb_v6_predicted_baseline": 0.667,
+            "success_criterion": "match or beat the AlphaFoldDB-v6 logistic probe",
+        },
+        {
+            "metric": "nearest_atlas_fold_tm_auc_in_vs_all_oos",
+            "split": "in_distribution atlas vs heldout (final-only readout)",
+            "afdb_v6_predicted_baseline": 0.814301,
+            "success_criterion": "match or beat AlphaFoldDB-v6 fold/TM separation",
+            "source_artifact": (
+                "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json"
+            ),
+        },
+        {
+            "metric": "combined_geometry_plus_fold_mean_auc",
+            "split": "in_distribution atlas vs heldout (final-only readout)",
+            "afdb_v6_predicted_baseline": 0.907622,
+            "afdb_v6_confounded_oos_baseline": 0.911348,
+            "success_criterion": (
+                "match or beat the AlphaFoldDB-v6 no-fit geometry+fold mean overall "
+                "and on the 6 cofactor-confounded OOS rows"
+            ),
+        },
+        {
+            "metric": "plddt_gated_abstention_vs_fixed_fold_augmented_gate",
+            "split": "in_distribution train/cal selects gate, heldout final-only",
+            "afdb_v6_fixed_gate_threshold": 0.44155,
+            "afdb_v6_fixed_gate_heldout_readout": (
+                "retains 45/47 in-scope, abstains 44/79 OOS, abstains 5/6 "
+                "cofactor-confounded OOS"
+            ),
+            "new_signal": (
+                "ESMFold2 per-residue pLDDT confidence (apo) as a principled "
+                "abstention input, selected on train/cal only"
+            ),
+            "success_criterion": (
+                "a pLDDT-gated abstention rule selected on train/cal beats the fixed "
+                "0.44155 fold-augmented gate on heldout OOS abstention at matched "
+                "in-scope retention"
+            ),
+            "source_artifact": (
+                "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+                "expanded_oos_calibrated_current702_20260603.json"
+            ),
+        },
+    ]
+
+    protocol = [
+        {
+            "step": 1,
+            "action": (
+                "Re-predict the in-distribution atlas and the 140 heldout "
+                "accessions with ESMFold2 (all-atom + pLDDT). Stage outputs as "
+                "mmCIF keyed by accession in the staged-coordinate directory."
+            ),
+            "touches_heldout_labels": False,
+            "coordinate_source": "ESMFold2 (esm package + weights, Biohub platform, or ESM Atlas)",
+        },
+        {
+            "step": 2,
+            "action": (
+                "Re-run the frozen active-site geometry router and the Foldseek/TM "
+                "fold channel on the ESMFold2 structures via backend=esmfold2."
+            ),
+            "touches_heldout_labels": False,
+            "command_key": "robustness_audit",
+        },
+        {
+            "step": 3,
+            "action": (
+                "Compare to the AlphaFoldDB-v6 baseline: does 23/45 recover, does "
+                "the 12.3% OOS false-positive rate drop, does a pLDDT-gated "
+                "abstention rule (selected on train/cal) beat the fixed 0.44155 "
+                "fold-augmented gate."
+            ),
+            "touches_heldout_labels": "final-only readout after train/cal selection",
+            "command_key": "atlas_retrieval + fold channel rerun",
+        },
+        {
+            "step": 4,
+            "action": (
+                "Decide whether ESMFold2 replaces or augments AlphaFoldDB-v6 as the "
+                "predicted-structure coordinate source for the deployment regime."
+            ),
+            "touches_heldout_labels": False,
+        },
+    ]
+
+    staged_ready = staged_dir is not None and staged_count == len(needed_accessions)
+    return {
+        "artifact_id": ESMFOLD2_EXPERIMENT_CONTRACT_ARTIFACT_ID,
+        "schema_version": ESMFOLD2_EXPERIMENT_CONTRACT_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "ready_to_run" if staged_ready else "blocked_on_staged_coordinates",
+        "experiment": {
+            "title": "ESMFold2 predicted active-site geometry robustness",
+            "open_problem": (
+                "Make the mechanism router robust to predicted (vs experimental) "
+                "active-site geometry degradation: recover the clean 45/45 -> "
+                "AlphaFoldDB-v6 23/45 primary drop and cut the 12.3% OOS false "
+                "positive rate, as a learned-model job rather than a clean-M-CSA "
+                "accuracy contest."
+            ),
+            "hypothesis": (
+                "ESMFold2 all-atom side-chain placement plus pLDDT confidence "
+                "recovers part of the predicted-geometry degradation and improves "
+                "principled abstention versus AlphaFoldDB-v6."
+            ),
+            "apo_caveat": (
+                "ESMFold2, like every sequence folder, predicts apo structures. It "
+                "will not place FAD/PLP/heme/Zn or substrate. The active-site signal "
+                "leans heavily on cofactor/metal coordination, so ESMFold2 can only "
+                "improve the protein side-chain part, not supply cofactor geometry. "
+                "Expect partial help; measure it, do not assume it."
+            ),
+        },
+        "model_under_test": {
+            "name": "ESMFold2",
+            "provider": "Biohub (A. Rives)",
+            "release_date": "2026-05-27",
+            "license": "MIT (open weights)",
+            "all_atom": True,
+            "per_residue_confidence": "pLDDT",
+            "predicts_cofactor_or_substrate_geometry": False,
+        },
+        "afdb_v6_baseline_to_beat": afdb_baseline,
+        "protocol": protocol,
+        "split_discipline": {
+            "threshold_and_model_selection_split": "in_distribution train/cal",
+            "heldout_policy": "read once, after thresholds/models are fixed",
+            "clean_experimental_reference": "45/45 primary, 0/92 pure-OOS FP at 0.4115",
+            "leakage_rules": [
+                "no labels, fingerprints, M-CSA mechanism text/roles, source IDs, "
+                "target names, or EC/Rhea IDs as predictive inputs",
+                "no threshold tuning on heldout rows",
+                "ESMFold2 coordinates swap only the coordinate source; the geometry "
+                "router and fold channel are otherwise frozen",
+            ],
+        },
+        "metric_plan": metric_plan,
+        "accession_inventory": {
+            "atlas_definition": "in_distribution rows with a mechanism fingerprint",
+            "atlas_row_count": len(atlas_inventory),
+            "heldout_row_count": len(heldout_inventory),
+            "unique_accessions_to_predict": len(needed_accessions),
+            "atlas_rows": atlas_inventory,
+            "heldout_rows": heldout_inventory,
+        },
+        "staging_status": {
+            "esmfold2_staged_dir": str(staged_dir) if staged_dir is not None else None,
+            "staged_dir_env_var": ESMFOLD2_STAGED_DIR_ENV,
+            "accessions_with_staged_cif": staged_count,
+            "accessions_needed": len(needed_accessions),
+            "blocker": None if staged_ready else ESMFOLD2_BLOCKER,
+            "detail": None if staged_ready else ESMFOLD2_BLOCKER_DETAIL,
+        },
+        "rerun_commands": {
+            "robustness_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-predicted-geometry-robustness-audit --backend esmfold2 "
+                "--esmfold2-staged-dir <DIR> "
+                "--out artifacts/v3_predicted_geometry_robustness_audit_current702_esmfold2_<DATE>.json "
+                "--report work/predicted_geometry_robustness_audit_current702_esmfold2_<DATE>.md"
+            ),
+            "atlas_retrieval": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-predicted-geometry-in-distribution-atlas-retrieval "
+                "--backend esmfold2 --esmfold2-staged-dir <DIR> "
+                "--out artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_esmfold2_<DATE>.json"
+            ),
+            "distillation_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-predicted-geometry-distillation-audit --backend esmfold2 "
+                "--esmfold2-staged-dir <DIR> "
+                "--out artifacts/v3_predicted_geometry_distillation_audit_current702_esmfold2_<DATE>.json"
+            ),
+        },
+        "decision_gate": {
+            "replace_afdb_v6_if": (
+                "ESMFold2 beats AlphaFoldDB-v6 on heldout primary recovery and OOS "
+                "false-positive rate at matched in-scope retention, selected on "
+                "train/cal only"
+            ),
+            "augment_afdb_v6_if": (
+                "ESMFold2 helps only a subset (e.g. side-chain-limited rows) while "
+                "AlphaFoldDB-v6 remains better elsewhere"
+            ),
+            "reject_if": (
+                "no train/cal improvement over AlphaFoldDB-v6; do not spend a "
+                "heldout read"
+            ),
+        },
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "large_model_downloads_performed": False,
+            "esmfold2_inference_run": False,
+            "coordinate_download_scope": _coordinate_download_scope("esmfold2"),
+        },
+        "source_artifacts": {
+            "label_manifest": (
+                "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+            ),
+            "afdb_v6_robustness_audit": afdb_baseline["source_artifact"],
+            "fold_channel": (
+                "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json"
+            ),
+            "fold_augmented_gate": (
+                "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+                "expanded_oos_calibrated_current702_20260603.json"
+            ),
+        },
+    }
+
+
+def write_esmfold2_robustness_experiment_contract(
+    *,
+    label_manifest_path: Path,
+    afdb_robustness_audit_path: Path | None,
+    out_path: Path,
+    report_path: Path | None = None,
+    esmfold2_staged_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    with label_manifest_path.open("r", encoding="utf-8") as handle:
+        label_manifest = json.load(handle)
+    afdb_audit = None
+    if afdb_robustness_audit_path is not None and Path(afdb_robustness_audit_path).is_file():
+        with Path(afdb_robustness_audit_path).open("r", encoding="utf-8") as handle:
+            afdb_audit = json.load(handle)
+    contract = build_esmfold2_robustness_experiment_contract(
+        label_manifest=label_manifest,
+        afdb_robustness_audit=afdb_audit,
+        esmfold2_staged_dir=esmfold2_staged_dir,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _esmfold2_experiment_contract_markdown_report(contract), encoding="utf-8"
+        )
+    return contract
+
+
+def _esmfold2_experiment_contract_markdown_report(contract: dict[str, Any]) -> str:
+    experiment = contract.get("experiment", {})
+    inventory = contract.get("accession_inventory", {})
+    staging = contract.get("staging_status", {})
+    baseline = contract.get("afdb_v6_baseline_to_beat", {})
+    lines = [
+        "# ESMFold2 Predicted Active-Site Geometry Robustness — Experiment Contract",
+        "",
+        f"Status: `{contract.get('status')}`",
+        "",
+        "## Open problem",
+        "",
+        experiment.get("open_problem", ""),
+        "",
+        "## Apo caveat (front and center)",
+        "",
+        experiment.get("apo_caveat", ""),
+        "",
+        "## AlphaFoldDB-v6 baseline to beat",
+        "",
+        f"- Predicted hand-router primary correct: "
+        f"{baseline.get('predicted_hand_router_primary_correct')}/"
+        f"{baseline.get('predicted_hand_router_primary_support')} "
+        "(clean experimental reference is 45/45)",
+        f"- Predicted OOS/secondary false-positive rate: "
+        f"{baseline.get('predicted_hand_router_oos_or_secondary_false_positive_rate')}",
+        "",
+        "## Prediction work list",
+        "",
+        f"- Atlas (in-distribution + fingerprint) rows: {inventory.get('atlas_row_count')}",
+        f"- Heldout rows (final-only): {inventory.get('heldout_row_count')}",
+        f"- Unique accessions to predict: {inventory.get('unique_accessions_to_predict')}",
+        "",
+        "## Staging status",
+        "",
+        f"- Staged dir: `{staging.get('esmfold2_staged_dir')}`",
+        f"- Accessions with staged mmCIF: {staging.get('accessions_with_staged_cif')}/"
+        f"{staging.get('accessions_needed')}",
+        f"- Blocker: `{staging.get('blocker')}`",
+        "",
+        "## Discipline",
+        "",
+        "- Thresholds/models selected on in-distribution train/cal; heldout read once.",
+        "- ESMFold2 swaps only the coordinate source; geometry router and fold "
+        "channel stay frozen.",
+        "- No labels/fingerprints/EC/Rhea/source text as predictive inputs.",
+        "",
+        "This contract runs no ESMFold2 inference, downloads no weights, selects no "
+        "threshold, and reads no heldout label.",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 def _enriched_predicted_retrieval_results(

@@ -1,13 +1,19 @@
 from __future__ import annotations
 
+import tempfile
 import unittest
+from pathlib import Path
 
 from catalytic_earth.predicted_geometry_robustness import (
+    ESMFOLD2_BLOCKER,
     _target_manifest_row_selection,
     build_alphafold_predicted_geometry_features,
+    build_esmfold2_robustness_experiment_contract,
     build_predicted_geometry_in_distribution_atlas_retrieval,
     build_predicted_geometry_distillation_audit,
     build_predicted_geometry_robustness_audit,
+    make_esmfold2_staged_supplier,
+    resolve_esmfold2_staged_dir,
 )
 
 
@@ -350,6 +356,159 @@ class PredictedGeometryRobustnessTests(unittest.TestCase):
         self.assertIn("top1_score", atlas_row)
         self.assertIn("top1_role_match_fraction", atlas_row)
         self.assertNotIn("m_csa:2", audit["result_sets"]["atlas_entry_ids"])
+
+
+class ESMFold2BackendTests(unittest.TestCase):
+    GRAPH = {
+        "nodes": [
+            {
+                "id": "m_csa:1:residue:1",
+                "type": "catalytic_residue",
+                "roles": ["proton acceptor"],
+                "sequence_positions": [
+                    {"code": "Asp", "is_reference": True, "resid": 10, "uniprot_id": "TEST"}
+                ],
+            },
+            {
+                "id": "m_csa:1:residue:2",
+                "type": "catalytic_residue",
+                "roles": ["proton donor"],
+                "sequence_positions": [
+                    {"code": "His", "is_reference": True, "resid": 30, "uniprot_id": "TEST"}
+                ],
+            },
+        ]
+    }
+    MANIFEST_ROWS = [
+        {
+            "entry_id": "m_csa:1",
+            "accession": "TEST",
+            "sequence_id": "TEST",
+            "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+            "split_assignment": "heldout",
+        }
+    ]
+    EXPERIMENTAL = {"entries": [{"entry_id": "m_csa:1", "status": "ok", "pdb_id": "1ABC"}]}
+
+    def test_staged_supplier_feeds_frozen_geometry_features(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, "ESMFOLD2-TEST.cif").write_text(MINI_CIF, encoding="utf-8")
+            supplier = make_esmfold2_staged_supplier(tmp)
+            text, meta = supplier("TEST")
+            self.assertEqual(meta["backend"], "esmfold2")
+            self.assertIn("data_AF-TEST", text)
+            features = build_alphafold_predicted_geometry_features(
+                label_manifest_rows=self.MANIFEST_ROWS,
+                graph=self.GRAPH,
+                experimental_geometry_features=self.EXPERIMENTAL,
+                fetcher=supplier,
+            )
+            entry = features["entries"][0]
+            self.assertEqual(entry["status"], "ok")
+            self.assertEqual(entry["resolved_residue_count"], 2)
+
+    def test_staged_supplier_raises_on_missing_accession(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, "ESMFOLD2-TEST.cif").write_text(MINI_CIF, encoding="utf-8")
+            supplier = make_esmfold2_staged_supplier(tmp)
+            with self.assertRaises(RuntimeError):
+                supplier("NOPE")
+
+    def test_resolve_staged_dir_requires_cif(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertIsNone(resolve_esmfold2_staged_dir(tmp))
+            Path(tmp, "ESMFOLD2-TEST.cif").write_text(MINI_CIF, encoding="utf-8")
+            self.assertEqual(resolve_esmfold2_staged_dir(tmp), Path(tmp))
+        self.assertIsNone(resolve_esmfold2_staged_dir(None))
+
+    def test_robustness_backend_blocked_without_staged_coordinates(self) -> None:
+        audit = build_predicted_geometry_robustness_audit(
+            label_manifest={"rows": []},
+            graph={"nodes": []},
+            experimental_geometry_features={"entries": []},
+            experimental_geometry_retrieval={"results": []},
+            labels=[],
+            wave1_audit={},
+            backend="esmfold2",
+        )
+        self.assertEqual(audit["status"], "blocked")
+        self.assertEqual(audit["blocker"], ESMFOLD2_BLOCKER)
+        self.assertFalse(audit["guardrails"]["large_model_downloads_performed"])
+
+    def test_distillation_backend_blocked_without_staged_coordinates(self) -> None:
+        audit = build_predicted_geometry_distillation_audit(
+            label_manifest={"rows": []},
+            graph={"nodes": []},
+            experimental_geometry_features={"entries": []},
+            wave1_audit={},
+            backend="esmfold2",
+        )
+        self.assertEqual(audit["status"], "blocked")
+        self.assertEqual(audit["blocker"], ESMFOLD2_BLOCKER)
+
+
+class ESMFold2ExperimentContractTests(unittest.TestCase):
+    MANIFEST = {
+        "rows": [
+            {
+                "entry_id": "m_csa:1",
+                "accession": "A1",
+                "sequence_id": "A1",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+                "split_assignment": "in_distribution",
+            },
+            {
+                "entry_id": "m_csa:2",
+                "accession": "A2",
+                "sequence_id": "A2",
+                "fingerprint_id": None,
+                "benchmark_role": "oos_tier::unknown_oos",
+                "split_assignment": "heldout",
+            },
+            {
+                "entry_id": "m_csa:3",
+                "accession": "A3",
+                "sequence_id": "A3",
+                "fingerprint_id": None,
+                "benchmark_role": "oos_tier::unknown_oos",
+                "split_assignment": "in_distribution",
+            },
+        ]
+    }
+
+    def test_contract_blocked_and_counts_without_staged_coordinates(self) -> None:
+        contract = build_esmfold2_robustness_experiment_contract(
+            label_manifest=self.MANIFEST,
+        )
+        self.assertEqual(contract["status"], "blocked_on_staged_coordinates")
+        inventory = contract["accession_inventory"]
+        self.assertEqual(inventory["atlas_row_count"], 1)
+        self.assertEqual(inventory["heldout_row_count"], 1)
+        self.assertEqual(inventory["unique_accessions_to_predict"], 2)
+        guardrails = contract["guardrails"]
+        self.assertFalse(guardrails["heldout_labels_used_for_fit_or_threshold"])
+        self.assertFalse(guardrails["esmfold2_inference_run"])
+        self.assertFalse(guardrails["large_model_downloads_performed"])
+        self.assertFalse(
+            contract["model_under_test"]["predicts_cofactor_or_substrate_geometry"]
+        )
+
+    def test_contract_ready_when_all_accessions_staged(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            for accession in ("A1", "A2"):
+                Path(tmp, f"ESMFOLD2-{accession}.cif").write_text(
+                    MINI_CIF, encoding="utf-8"
+                )
+            contract = build_esmfold2_robustness_experiment_contract(
+                label_manifest=self.MANIFEST,
+                esmfold2_staged_dir=tmp,
+            )
+            self.assertEqual(contract["status"], "ready_to_run")
+            self.assertEqual(
+                contract["staging_status"]["accessions_with_staged_cif"], 2
+            )
+            self.assertIsNone(contract["staging_status"]["blocker"])
 
 
 if __name__ == "__main__":

@@ -3,6 +3,60 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-03: ESMFold2 Robustness Experiment Staged (No-Fit), Backend Added
+
+Decision: address Problem 2 (robustness to predicted vs experimental active-site
+geometry degradation) by **staging the ESMFold2 experiment as a no-fit,
+leakage-safe contract** plus a runnable `esmfold2` coordinate-supplier backend.
+No ESMFold2 inference was run, no weights were downloaded, no threshold was
+changed, and no heldout row was read. ESMFold2 was verified real before building
+(Biohub / A. Rives, released 2026-05-27, MIT/open weights; corroborated by
+Nature, Scientific American, Axios, PR Newswire, GenEngNews).
+
+Why staged, not run: this environment cannot run the experiment. `torch`/`esm`
+are not installed, `foldseek` is absent, and every predicted-structure host is
+network-blocked (HTTP 403 for Hugging Face, ESM Atlas, and even
+`alphafold.ebi.ac.uk` — the source the existing `alphafold_db` backend uses).
+Only GitHub and the web-search proxy are reachable. This mirrors the prior
+`esmfold` backend, which has been a deliberate blocked stub since 2026-05-29.
+
+What was built (additive, AlphaFoldDB path byte-unchanged):
+- `predicted_geometry_robustness.py` now supports `backend="esmfold2"` in the
+  robustness, distillation, and in-distribution atlas builders. With no staged
+  coordinates it returns a precise `blocked` audit
+  (`esmfold2_runtime_or_staged_coordinates_unavailable`). Given a directory of
+  pre-staged ESMFold2 mmCIFs keyed by accession (`esmfold2_staged_dir=` or the
+  `CE_ESMFOLD2_STAGED_DIR` env var), the `make_esmfold2_staged_supplier` fetcher
+  feeds the frozen geometry router and Foldseek/TM fold channel unchanged.
+- A no-fit experiment contract that enumerates the exact prediction work list
+  (184 in-distribution+fingerprint atlas rows, 140 heldout rows, 323 unique
+  accessions), fixes the train/cal-selects-thresholds / heldout-final-only
+  discipline, records the AlphaFoldDB-v6 baseline to beat (hand router 23/45
+  primary, 12.3% OOS FP; fold/TM AUC 0.814; geometry+fold mean AUC 0.908), plans
+  six comparison metrics including pLDDT-gated abstention vs the fixed 0.44155
+  fold-augmented gate, and lists exact rerun commands.
+- New CLI: `build-esmfold2-robustness-experiment-contract`, plus `--backend
+  esmfold2` and `--esmfold2-staged-dir` on the three predicted-geometry commands.
+- Seven new unit tests (staged supplier, blocked-when-unstaged, contract
+  shape/counts/leakage flags, ready-when-staged).
+
+Apo caveat (kept front and center): ESMFold2, like every sequence folder,
+predicts apo structures. It will not place FAD/PLP/heme/Zn or substrate, and the
+active-site signal leans heavily on cofactor/metal coordination. ESMFold2 can
+improve the protein side-chain part and supply pLDDT confidence, but cannot
+supply cofactor geometry. Expect partial help; measure it on train/cal, do not
+assume it, and keep the heldout read one-shot.
+
+To run when coordinates can be staged: predict the 323 accessions with ESMFold2
+(open `esm` + weights, the Biohub platform, or the ESM Atlas), write them as
+mmCIF keyed by accession into a directory, then run the three commands with
+`--backend esmfold2 --esmfold2-staged-dir <DIR>`. Select all thresholds/models
+on the in-distribution train/cal split; read heldout once.
+
+Artifacts:
+`artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`,
+`work/esmfold2_predicted_geometry_robustness_experiment_contract_20260603.md`.
+
 ## 2026-06-03: Lever 2 Source-Free Token Re-Selection — No Token Clears The Bar
 
 Decision: defer the Lever 2 source-free row-specific feature. A train/cal-only

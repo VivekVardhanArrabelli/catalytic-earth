@@ -229,6 +229,7 @@ from .northstar_next_levers import (
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
+    write_esmfold2_robustness_experiment_contract,
     write_predicted_geometry_in_distribution_atlas_retrieval,
     write_predicted_geometry_distillation_audit,
     write_predicted_geometry_robustness_audit,
@@ -2288,6 +2289,7 @@ def cmd_build_predicted_geometry_robustness_audit(args: argparse.Namespace) -> i
         cal_fraction=args.cal_fraction,
         hidden_layer_size=args.hidden_layer_size,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     headline = audit.get("headline", {})
     print(
@@ -2313,6 +2315,7 @@ def cmd_build_predicted_geometry_distillation_audit(args: argparse.Namespace) ->
         cal_fraction=args.cal_fraction,
         hidden_layer_size=args.hidden_layer_size,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     answer = audit.get("distillation_answer", {})
     print(
@@ -2340,6 +2343,7 @@ def cmd_build_predicted_geometry_in_distribution_atlas_retrieval(
         backend=args.backend,
         alphafold_version=args.alphafold_version,
         max_rows=args.max_rows,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
     )
     counts = audit.get("counts", {})
     print(
@@ -2347,6 +2351,29 @@ def cmd_build_predicted_geometry_in_distribution_atlas_retrieval(
         f"{args.out} ({audit.get('status')}; "
         f"atlas_ok={counts.get('atlas_rows_scored_ok')}/"
         f"{counts.get('atlas_rows_expected')})"
+    )
+    return 0
+
+
+def cmd_build_esmfold2_robustness_experiment_contract(args: argparse.Namespace) -> int:
+    contract = write_esmfold2_robustness_experiment_contract(
+        label_manifest_path=Path(args.label_manifest),
+        afdb_robustness_audit_path=(
+            Path(args.afdb_robustness_audit) if args.afdb_robustness_audit else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        esmfold2_staged_dir=args.esmfold2_staged_dir,
+    )
+    inventory = contract.get("accession_inventory", {})
+    staging = contract.get("staging_status", {})
+    print(
+        "Wrote ESMFold2 robustness experiment contract to "
+        f"{args.out} ({contract.get('status')}; "
+        f"atlas={inventory.get('atlas_row_count')}, "
+        f"heldout={inventory.get('heldout_row_count')}, "
+        f"staged={staging.get('accessions_with_staged_cif')}/"
+        f"{staging.get('accessions_needed')})"
     )
     return 0
 
@@ -16855,7 +16882,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_robustness.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db", "esmfold"),
+        choices=("alphafold_db", "esmfold", "esmfold2"),
+    )
+    predicted_geometry_robustness.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_robustness.add_argument("--alphafold-version", default="auto")
     predicted_geometry_robustness.add_argument("--split-assignment", default="heldout")
@@ -16901,7 +16936,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_distillation.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db", "esmfold"),
+        choices=("alphafold_db", "esmfold", "esmfold2"),
+    )
+    predicted_geometry_distillation.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_distillation.add_argument("--alphafold-version", default="auto")
     predicted_geometry_distillation.add_argument("--random-state", type=int, default=702)
@@ -16949,7 +16992,15 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_atlas.add_argument(
         "--backend",
         default="alphafold_db",
-        choices=("alphafold_db",),
+        choices=("alphafold_db", "esmfold2"),
+    )
+    predicted_geometry_atlas.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help=(
+            "directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession "
+            "(used only with --backend esmfold2)"
+        ),
     )
     predicted_geometry_atlas.add_argument("--alphafold-version", default="auto")
     predicted_geometry_atlas.add_argument("--max-rows", type=int, default=0)
@@ -16969,6 +17020,44 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_geometry_atlas.set_defaults(
         func=cmd_build_predicted_geometry_in_distribution_atlas_retrieval
+    )
+
+    esmfold2_experiment_contract = subparsers.add_parser(
+        "build-esmfold2-robustness-experiment-contract",
+        help=(
+            "stage the no-fit, leakage-safe ESMFold2 predicted-geometry robustness "
+            "experiment (accession lists, baseline, discipline, rerun commands)"
+        ),
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--afdb-robustness-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--esmfold2-staged-dir",
+        default=None,
+        help="directory of pre-staged ESMFold2 mmCIF coordinates keyed by accession",
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract"
+            "_current702_20260603.json"
+        ),
+    )
+    esmfold2_experiment_contract.add_argument(
+        "--report",
+        default=(
+            "work/esmfold2_predicted_geometry_robustness_experiment_contract"
+            "_20260603.md"
+        ),
+    )
+    esmfold2_experiment_contract.set_defaults(
+        func=cmd_build_esmfold2_robustness_experiment_contract
     )
 
     mechanism_relationship_eval = subparsers.add_parser(
