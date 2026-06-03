@@ -1,19 +1,18 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603",
   "blockers": [
-    "approved_source_free_locator_surface_still_required",
     "source_free_event_axis_linker_rows_missing",
     "source_free_event_axis_linkers_not_materialized"
   ],
   "counts": {
-    "blockers": 3,
+    "blockers": 2,
     "critical_violation_total": 0,
     "invalid_linker_rows": 0,
     "materialized_linker_rows": 0,
     "minimum_linkers_per_ready_row": 1,
     "submitted_linker_rows": 0
   },
-  "created_utc": "2026-06-03T09:52:41Z",
+  "created_utc": "2026-06-03T20:31:01Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "event_axis_linker_schema_ready": true,
@@ -48,7 +47,7 @@
     "event_axis_linker_schema": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json",
-      "sha256": "fbb324230e6485ca8277efb52cc5c050061c5b6b7692e1590c2e4594a88b76b4"
+      "sha256": "0b6dfcbb0513553882fb61704dea361dff843c2ec9533fad874ac6dd15cf5380"
     },
     "linker_rows": {
       "exists": false,

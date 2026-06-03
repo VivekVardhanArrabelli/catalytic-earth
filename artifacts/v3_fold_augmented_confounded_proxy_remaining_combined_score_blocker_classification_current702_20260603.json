@@ -1,0 +1,109 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603",
+  "blocker_rows": [
+    {
+      "accession": "P10746",
+      "blocker_class": "policy_decision_required",
+      "blocker_detail": "p10746_fold_only_policy_caveat_pending_explicit_decision",
+      "entry_id": "m_csa:204",
+      "mechanical_clearance_available_now": false,
+      "next_gate": "record explicit P10746 accept/reject decision or provide an approved non-residue interaction sidecar",
+      "predictive_feature_guardrail": "fold-only caveat cannot be converted into a combined-channel score automatically"
+    },
+    {
+      "accession": "P07071",
+      "blocker_class": "predicted_structure_unavailable",
+      "blocker_detail": "AlphaFoldDB mmCIF unavailable across v6-v1; predicted geometry and Foldseek channel unavailable",
+      "entry_id": "m_csa:416",
+      "mechanical_clearance_available_now": false,
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P07658",
+      "blocker_class": "predicted_structure_unavailable",
+      "blocker_detail": "AlphaFoldDB mmCIF unavailable across v6-v1; predicted geometry and Foldseek channel unavailable",
+      "entry_id": "m_csa:562",
+      "mechanical_clearance_available_now": false,
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "P00806",
+      "blocker_class": "predicted_structure_unavailable",
+      "blocker_detail": "AlphaFoldDB mmCIF unavailable across v6-v1; predicted geometry and Foldseek channel unavailable",
+      "entry_id": "m_csa:586",
+      "mechanical_clearance_available_now": false,
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    },
+    {
+      "accession": "Q43088",
+      "blocker_class": "approved_geometry_feature_missing",
+      "blocker_detail": "experimental_geometry_not_ok:insufficient_resolved_residues; fold channel exists but combined channel lacks approved geometry features",
+      "entry_id": "m_csa:604",
+      "mechanical_clearance_available_now": false,
+      "nearest_train_atlas_tm_score": 0.4713,
+      "next_gate": "provide approved source-free geometry/locator evidence for the row or keep it out of combined-channel audit closure",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P04531",
+      "blocker_class": "predicted_structure_unavailable",
+      "blocker_detail": "AlphaFoldDB mmCIF unavailable across v6-v1; predicted geometry and Foldseek channel unavailable",
+      "entry_id": "m_csa:637",
+      "mechanical_clearance_available_now": false,
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "predicted_geometry_status": "predicted_structure_fetch_failed"
+    }
+  ],
+  "blockers": [
+    "no_remaining_combined_score_blocker_clearable_mechanically_now",
+    "p10746_policy_decision_missing",
+    "four_rows_predicted_structure_unavailable",
+    "one_row_missing_approved_geometry_feature_surface",
+    "fixed_threshold_confounded_proxy_audit_still_blocked"
+  ],
+  "counts": {
+    "approved_geometry_feature_missing_rows": 1,
+    "clearable_mechanically_now_rows": 0,
+    "fixed_threshold_audit_allowed_now": 0,
+    "policy_decision_required_rows": 1,
+    "predicted_structure_unavailable_rows": 4,
+    "remaining_combined_score_blocker_rows": 6
+  },
+  "created_utc": "2026-06-03T20:16:45Z",
+  "decision": {
+    "clear_remaining_combined_score_blockers_now": false,
+    "fixed_threshold_confounded_proxy_audit_allowed_now": false,
+    "next_gate": "Do not rerun the fixed-threshold confounded proxy audit from the partial 204/210 surface. Continue Lever 2 event-axis linker materialization or obtain explicit P10746/coordinate decisions; only rescore these rows after the named blocker class is cleared.",
+    "pivot_to_lever2_event_axis_or_external_decisions": true
+  },
+  "guardrails": {
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification",
+  "scope": "Review-only classification of the six remaining combined-score blockers on the current Lever 3 protein-only-extended train/cal OOS surface. It records why each row is not mechanically scoreable now and prevents an eval-relative fixed-threshold audit rerun on a partial surface.",
+  "source_artifacts": {
+    "p10746_decision_application": {
+      "path": "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603.json"
+    },
+    "protein_only_extended_surface": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json"
+    },
+    "tranche1_scored_extension": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_scored_extension_current702_20260603.json"
+    },
+    "tranche2_scored_extension": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_scored_extension_tranche2_current702_20260603.json"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_remaining_combined_score_blockers_classified_blocked"
+}

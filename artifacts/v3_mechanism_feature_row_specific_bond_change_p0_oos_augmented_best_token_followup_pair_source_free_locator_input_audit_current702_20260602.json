@@ -5927,7 +5927,7 @@
     "source_free_locator_schema_available": 1,
     "source_free_locator_schema_required_residue_locator_minimum": 2
   },
-  "created_utc": "2026-06-02T15:33:18Z",
+  "created_utc": "2026-06-03T20:06:48Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "approved_source_free_locator_surface_ready": false,

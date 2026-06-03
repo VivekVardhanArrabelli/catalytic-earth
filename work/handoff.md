@@ -50,6 +50,98 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-03 Lever 3/2/4 Forward Push Active Run 20
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-03T20:01:24Z`
+- STARTED_LOCAL: `2026-06-03T15:01:24-0500 CDT`
+- ENDED_AT: `2026-06-03T20:56:59Z`
+- ENDED_LOCAL: `2026-06-03T15:56:59-0500 CDT`
+- ELAPSED_MINUTES: `55.6`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "5973", "started_at": "2026-06-03T20:01:24Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from Run 19. First clear the six inherited combined-score blockers
+(`m_csa:204`, `m_csa:416`, `m_csa:562`, `m_csa:586`, `m_csa:604`,
+`m_csa:637`) before any fixed-threshold confounded proxy audit rerun.
+
+#### What changed
+
+- Confirmed the six inherited Lever 3 combined-score blockers are not
+  mechanically clearable now and wrote
+  `artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.json`.
+  Classification: one P10746 explicit policy decision required, four AFDB
+  predicted-structure-unavailable rows, one Q43088 row missing an approved
+  geometry-feature surface, zero mechanically clearable rows, and no fixed
+  threshold confounded proxy audit allowed on the partial surface.
+- Materialized 53 hash-valid approved Lever 2 source-free locator rewrites into
+  `artifacts/family_panel_source_free_active_site_locators_current702_20260601/`.
+  The two rejected locator rows (`m_csa:599`, `m_csa:723`) were left out.
+- Refreshed the source-free application surface, fallback contract, event-linker
+  audit, event-axis schema/review packet/materialization gate, pre-threshold
+  readiness, source-decision intake preflight, heldout-safe surface plan, and
+  active mechanical audit. Current Lever 2 state: 53/140 current702 heldout
+  locator sidecars, 53 residue-count rows, 0 event/residue-role rows, 53 pending
+  event-axis signoff decisions, 0 pending locator approvals, 0 materialized
+  event-axis linkers, and no heldout threshold read.
+- Updated code/tests so consumed locator approvals do not remain as pending
+  source-decision blockers, partial locator/residue surfaces are reported as
+  coverage incomplete instead of missing, and rejected locator dependencies are
+  counted separately in the event-axis review packet.
+- Logged measured work and regenerated `work/status.md`.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, splits, or heldout threshold decisions were changed.
+- M-CSA heldout rows were not used for training, threshold selection, or
+  evaluation. No frozen residual threshold was applied and no heldout read was
+  performed.
+- Approved locator sidecars were copied only from explicit reviewed approval
+  rows; rejected locator rows were excluded until rewritten.
+- Mechanism text, EC/Rhea IDs, source IDs, target names, labels, and family
+  names remain excluded from predictive features.
+- The fixed-threshold confounded proxy audit remains blocked until the named
+  Lever 3 blockers are cleared.
+
+#### Tests run
+
+- Startup `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1296 tests.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change_p0_oos_augmented_expanded_surface' -q`
+  passed: 1 test, 192 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change_p0_oos_augmented_expanded_surface or source_free_locator or active_lever_mechanical_actionability' -q`
+  passed: 21 tests, 172 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'event_axis_linker or pre_threshold_readiness or active_lever_mechanical_actionability' -q`
+  passed: 7 tests, 151 deselected.
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  passed twice after the event-axis and fallback updates: 469 tests and 134
+  subtests.
+- Final `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1296 tests.
+- Final `PYTHONPATH=src python -m compileall -q src tests`, `git diff --check`,
+  and `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+
+#### Exact next action
+
+- Lever 2: review the 53 approved-locator event-axis stubs in
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603.json`.
+  Convert only explicitly approved rows into gate-consumable
+  `event_axis_linker_rows`, rerun the event-axis materialization gate and
+  source-free application surface, and do not apply the frozen threshold until
+  the source-free surface is complete.
+- Lever 3: do not rerun the fixed-threshold confounded proxy audit yet. The six
+  remaining combined-score blockers require an explicit P10746 decision,
+  approved alternative predicted-structure evidence for four AFDB-unavailable
+  rows, or approved geometry/source repair for Q43088.
+- Lever 4: external expert import decisions remain pending; only apply the
+  matching family-panel gate after hash-valid reviewed decisions land.
+
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 19
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

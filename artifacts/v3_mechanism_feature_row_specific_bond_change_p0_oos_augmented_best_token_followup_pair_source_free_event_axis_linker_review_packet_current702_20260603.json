@@ -1,30 +1,30 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603",
   "blocker_counts": {
-    "approved_source_free_locator_dependency_missing": 2,
-    "explicit_event_axis_linker_review_required": 55
+    "explicit_event_axis_linker_review_required": 53,
+    "source_free_locator_dependency_rejected": 2
   },
   "blockers": [
-    "approved_source_free_locator_surface_missing",
     "source_free_event_axis_linker_reviewer_decisions_not_recorded",
     "source_free_event_axis_linkers_not_materialized"
   ],
   "counts": {
-    "blockers": 3,
+    "blockers": 2,
     "candidate_event_residue_linkers": 226,
     "critical_violation_total": 0,
     "event_axis_linker_schema_ready": 1,
     "event_axis_review_stub_rows": 55,
     "gate_consumable_event_axis_linker_rows": 0,
     "locator_dependency_approved_rows": 53,
-    "locator_dependency_pending_rows": 2,
+    "locator_dependency_pending_rows": 0,
+    "locator_dependency_rejected_rows": 2,
     "locator_rewrite_decision_stubs": 55,
     "materialized_linker_rows": 0,
-    "pending_reviewer_decisions": 55,
+    "pending_reviewer_decisions": 53,
     "preflight_rows": 55,
     "review_stubs_with_candidate_linkers": 55
   },
-  "created_utc": "2026-06-03T17:22:16Z",
+  "created_utc": "2026-06-03T20:30:56Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "event_axis_linker_review_packet_ready": true,
@@ -33,7 +33,7 @@
     "heldout_read_once_performed": false,
     "heldout_safe_event_axis_surface_ready": false,
     "materialization_gate_ready_now": false,
-    "next_gate": "Review the event-axis stubs only after locator approvals are resolved. Approved rows must be converted into explicit event_axis_linker_rows with filled evidence, ready status, confidence values, and guardrail audits before the materialization gate can consume them."
+    "next_gate": "Review event-axis stubs for approved locator rows. Approved event-axis decisions must be converted into explicit event_axis_linker_rows with filled evidence, ready status, confidence values, and guardrail audits before the materialization gate can consume them; rejected locator rows stay out until rewritten."
   },
   "event_axis_linker_review_stubs": [
     {
@@ -9853,8 +9853,7 @@
       "approved": false,
       "approved_boolean_field_to_update": "approved",
       "blockers": [
-        "approved_source_free_locator_dependency_missing",
-        "explicit_event_axis_linker_review_required"
+        "source_free_locator_dependency_rejected"
       ],
       "candidate_event_residue_linkers": [
         {
@@ -9996,7 +9995,7 @@
         "source_free_event_axis_status": "pending_source_free_event_axis_review"
       },
       "entry_id": "m_csa:723",
-      "event_axis_review_class": "candidate_ready_for_event_axis_review_pending_locator_approval",
+      "event_axis_review_class": "event_axis_review_blocked_locator_rejected",
       "event_type": "proton_transfer",
       "materialization_gate_input_ready_if_approved": false,
       "materialization_gate_input_ready_now": false,
@@ -12228,8 +12227,7 @@
       "approved": false,
       "approved_boolean_field_to_update": "approved",
       "blockers": [
-        "approved_source_free_locator_dependency_missing",
-        "explicit_event_axis_linker_review_required"
+        "source_free_locator_dependency_rejected"
       ],
       "candidate_event_residue_linkers": [
         {
@@ -12333,7 +12331,7 @@
         "source_free_event_axis_status": "pending_source_free_event_axis_review"
       },
       "entry_id": "m_csa:599",
-      "event_axis_review_class": "candidate_ready_for_event_axis_review_pending_locator_approval",
+      "event_axis_review_class": "event_axis_review_blocked_locator_rejected",
       "event_type": "proton_transfer",
       "materialization_gate_input_ready_if_approved": false,
       "materialization_gate_input_ready_now": false,
@@ -12384,12 +12382,12 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Resolve locator approvals, then fill and approve event-axis linker rows with explicit source-free evidence before rerunning the materialization gate.",
+    "next_action": "Fill and approve event-axis linker rows for approved locators with explicit source-free evidence before rerunning the materialization gate.",
     "result": "55 review stubs were staged with 226 source-free residue candidates, but none are gate-consumable or materialized."
   },
   "review_class_counts": {
     "candidate_ready_for_event_axis_review_locator_approved": 53,
-    "candidate_ready_for_event_axis_review_pending_locator_approval": 2
+    "event_axis_review_blocked_locator_rejected": 2
   },
   "review_decision_schema": {
     "accepted_approval_decision_value": "explicit_approve_event_axis_linker",
@@ -12422,7 +12420,7 @@
     "event_axis_linker_schema": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json",
-      "sha256": "fbb324230e6485ca8277efb52cc5c050061c5b6b7692e1590c2e4594a88b76b4"
+      "sha256": "0b6dfcbb0513553882fb61704dea361dff843c2ec9533fad874ac6dd15cf5380"
     },
     "locator_rewrite_approval_packet": {
       "exists": true,

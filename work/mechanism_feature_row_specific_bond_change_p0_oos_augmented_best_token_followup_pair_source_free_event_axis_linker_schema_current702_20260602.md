@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Axis Linker Schema - current702
 
-Run: 2026-06-02T20:20:12Z
+Run: 2026-06-03T20:30:51Z
 
 Schema and acceptance contract for materializing the missing source-free event-axis linker for the calibrated row-specific feature pair. This stages the contract only; it creates no linker rows, copies no locators, and applies no heldout threshold.
 
@@ -11,7 +11,7 @@ Schema and acceptance contract for materializing the missing source-free event-a
 - Event type: proton_transfer
 - Residue role: electrostatic_stabiliser
 - Materialized linker rows: 0
-- Blockers to clear: source_free_current702_heldout_locator_surface_missing, source_free_proton_transfer_event_axis_missing, source_free_event_residue_role_linker_missing
+- Blockers to clear: source_free_current702_heldout_locator_coverage_incomplete, source_free_proton_transfer_event_axis_missing, source_free_event_residue_role_linker_missing
 
 ## Acceptance Criteria
 
@@ -33,4 +33,4 @@ Schema and acceptance contract for materializing the missing source-free event-a
 ## Interpretation
 
 - The missing event-axis linker now has an explicit source-free schema and acceptance contract. No linker rows are materialized yet because current702 heldout locators and source-free event axis evidence remain blocked.
-- Approve/copy current702 heldout locator sidecars or provide another source-free locator path, then fill this schema for the proton-transfer/electrostatic-stabiliser token.
+- Complete current702 heldout locator coverage where needed, but fill this schema now for approved locator rows on the proton-transfer/electrostatic-stabiliser token.

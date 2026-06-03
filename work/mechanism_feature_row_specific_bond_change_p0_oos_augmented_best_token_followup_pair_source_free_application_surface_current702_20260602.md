@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Application Surface - current702
 
-Run: 2026-06-02T20:04:49Z
+Run: 2026-06-03T20:06:48Z
 
 Source-free heldout application-surface materialization audit for the calibrated best-token follow-up pair. It computes the residue-code count token only from approved source-free locator sidecars, keeps the event/residue-role token blocked until a source-free event axis exists, and does not apply the frozen residual threshold.
 
@@ -8,10 +8,10 @@ Source-free heldout application-surface materialization audit for the calibrated
 
 - p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked
 - Heldout rows: 140
-- Current702 heldout source-free locator sidecars: 0
-- Source-free residue-count feature rows: 0
+- Current702 heldout source-free locator sidecars: 53
+- Source-free residue-count feature rows: 53
 - Source-free event/residue-role feature rows: 0
-- Blockers: source_free_current702_heldout_locator_rows_missing, source_free_current702_heldout_locator_coverage_incomplete, source_free_event_residue_role_extractor_missing, source_free_proton_transfer_event_axis_missing
+- Blockers: source_free_current702_heldout_locator_coverage_incomplete, source_free_event_residue_role_extractor_missing, source_free_proton_transfer_event_axis_missing
 
 ## Decision
 

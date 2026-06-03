@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 335
-- Measured elapsed time: 10071.8 minutes (167.86 hours)
+- Entries: 336
+- Measured elapsed time: 10127.4 minutes (168.79 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,6 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
+- northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
 - northstar-lever3: 178.2 measured minutes (2.97 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
@@ -30,21 +31,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3527
-- Evidence references logged: 2916
+- Artifact references logged: 3530
+- Evidence references logged: 2917
 
 ## Recent Entries
-
-### 2026-06-03T12:32:20.787493+00:00 - post-v2
-
-- Task: Lever 3 confounded proxy calibration stress
-- Time mode: measured
-- Measured minutes: 29.767
-- Started: 2026-06-03T12:02:22Z
-- Ended: 2026-06-03T12:32:08Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_gap_targets_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, work/handoff.md, work/status.md
-- Evidence: 1315 pytest passed, 1270 unittest passed, 702 labels validated, 4 changed/new JSON artifacts parsed, Lever 3 fixed threshold kept unchanged, 1/1 high-cofactor proxy retained, 4/17 same-family structural proxy abstained, 14 train/cal retained proxy gap rows, 80pct structural proxy abstain would retain only 15/34 calibration in-scope rows
-- Notes: No labels registries ontologies imports production thresholds source decisions locator sidecars event linkers model weights or heldout threshold tuning changed.
 
 ### 2026-06-03T13:26:31.723906+00:00 - post-v2
 
@@ -122,6 +112,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_locus_scan_current702_20260603.json
 - Evidence: full pytest 1341 passed; unittest 1296 passed; combined relevant pytest 469 passed
 - Notes: Fetched 8 AFDB-v6 query CIFs, confirmed protein-only/no locus evidence, ran 8x133 Foldseek, parsed 8 scored rows, composed surface to 204/210 full-channel rows.
+
+### 2026-06-03T20:57:20.337307+00:00 - northstar-lever-2-3
+
+- Task: Materialize approved source-free locators and rebase event-axis readiness
+- Time mode: measured
+- Measured minutes: 55.583
+- Started: 2026-06-03T20:01:24Z
+- Ended: 2026-06-03T20:56:59Z
+- Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.json
+- Evidence: 1296 unittest pass; 469 pytest pass; validate pass
+- Notes: 53 approved locator rewrites materialized; 2 rejected rows excluded; event-axis packet now shows 53 pending signoffs and 0 pending locator dependencies; six Lever 3 combined-score blockers classified as not mechanically clearable.
 
 ## Expectation Updates
 

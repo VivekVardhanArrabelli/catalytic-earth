@@ -1,6 +1,6 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_m_csa_188_P09147_current702_20260602",
-  "created_utc": "2026-06-03T17:09:34Z",
+  "created_utc": "2026-06-03T20:12:39Z",
   "entry_id": "m_csa:188",
   "forbidden_feature_audit": {
     "benchmark_role": false,
@@ -27,7 +27,7 @@
     "approval_scope": "source_free_active_site_locator_only",
     "approval_source": "explicit_locator_rewrite_decision_artifact",
     "approved_by": "VivekVardhanArrabelli",
-    "approved_utc": "2026-06-03T17:09:34Z",
+    "approved_utc": "2026-06-03T20:12:39Z",
     "candidate_path": "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidates_current702_20260602/m_csa_188_P09147.json",
     "candidate_sha256": "d8d98f7b3d45d63187798e8db9857ac3ed38f48f2db34f75e31b1d34a130ffe7",
     "heldout_rows_evaluated": false,

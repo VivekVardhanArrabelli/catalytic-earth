@@ -33950,7 +33950,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
             "p0_oos_augmented_best_token_followup_pair_source_free_locator_"
-            "rewrite_approval_packet_current702_20260603.json"
+            "rewrite_approval_decisions_current702_20260603.json"
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_review_packet.add_argument(

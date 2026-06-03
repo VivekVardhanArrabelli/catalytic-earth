@@ -33244,8 +33244,8 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(source_intake, dict)
         else {}
     )
-    source_intake_ready = bool(
-        source_intake_decision.get("run_any_matching_gate_now")
+    raw_source_intake_follow_on_ready = int(
+        source_intake_counts.get("follow_on_gate_ready_rows") or 0
     )
     decision_class_counts = Counter(
         str(item.get("decision_class")) for item in queue_items
@@ -33275,6 +33275,27 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(lever2_readiness, dict)
         else {}
     )
+    lever2_locator_sidecars_written = int(
+        lever2_counts.get("locator_sidecars_written") or 0
+    )
+    source_intake_locator_follow_on_ready = int(
+        source_intake_counts.get("locator_materialization_ready_approval_rows")
+        or 0
+    )
+    source_intake_locator_follow_on_consumed = (
+        source_intake_locator_follow_on_ready > 0
+        and lever2_locator_sidecars_written >= source_intake_locator_follow_on_ready
+    )
+    source_intake_follow_on_ready = raw_source_intake_follow_on_ready
+    if source_intake_locator_follow_on_consumed:
+        source_intake_follow_on_ready = max(
+            0,
+            raw_source_intake_follow_on_ready
+            - source_intake_locator_follow_on_ready,
+        )
+    source_intake_ready = bool(
+        source_intake_decision.get("run_any_matching_gate_now")
+    ) and source_intake_follow_on_ready > 0
     event_source = event_gate if event_gate else event_schema
     event_counts = (
         event_source.get("counts", {}) if isinstance(event_source, dict) else {}
@@ -33461,8 +33482,11 @@ def build_active_lever_mechanical_actionability_audit(
         if item.get("decision_class") == "source_free_locator_rewrite_approval"
         and str(item.get("review_status", "")).startswith("pending")
     ]
+    effective_lever2_pending = (
+        [] if source_intake_locator_follow_on_consumed else lever2_pending
+    )
     external_decision_required_items = len(
-        p10746_pending + lever4_pending + lever2_pending
+        p10746_pending + lever4_pending + effective_lever2_pending
     )
 
     gate_checks = [
@@ -33694,7 +33718,7 @@ def build_active_lever_mechanical_actionability_audit(
             ),
             "blocking_reason": (
                 "source_free_locator_rewrite_approvals_missing"
-                if lever2_pending
+                if effective_lever2_pending
                 else "source_free_pre_threshold_readiness_blocked"
             ),
             "next_command_after_decision": (
@@ -33818,7 +33842,7 @@ def build_active_lever_mechanical_actionability_audit(
             )
     if lever4_pending:
         blockers.append("family_panel_expert_import_decisions_missing")
-    if lever2_pending:
+    if effective_lever2_pending:
         blockers.append("source_free_locator_rewrite_approvals_missing")
     if event_blockers:
         blockers.append("source_free_event_axis_linker_gate_blocked")
@@ -34006,7 +34030,7 @@ def build_active_lever_mechanical_actionability_audit(
                 source_intake_counts.get("invalid_decision_rows") or 0
             ),
             "source_decision_follow_on_gate_ready_rows": int(
-                source_intake_counts.get("follow_on_gate_ready_rows") or 0
+                source_intake_follow_on_ready
             ),
             "p10746_pending_policy_decisions": len(p10746_pending),
             "lever3_confounded_high_cofactor_proxy_rows": int(
@@ -34233,13 +34257,11 @@ def build_active_lever_mechanical_actionability_audit(
             "lever4_label_factory_gate_input_rows": int(
                 lever4_counts.get("label_factory_gate_input_rows") or 0
             ),
-            "lever2_pending_locator_approvals": len(lever2_pending),
+            "lever2_pending_locator_approvals": len(effective_lever2_pending),
             "lever2_clean_locator_rewrite_items": int(
                 queue_counts.get("lever2_clean_locator_rewrite_items") or 0
             ),
-            "lever2_locator_sidecars_written": int(
-                lever2_counts.get("locator_sidecars_written") or 0
-            ),
+            "lever2_locator_sidecars_written": lever2_locator_sidecars_written,
             "lever2_event_axis_materialized_linker_rows": int(
                 event_counts.get("materialized_linker_rows") or 0
             ),
@@ -51797,6 +51819,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     source_free_surface_counts = (
         source_free_surface.get("counts", {}) if isinstance(source_free_surface, dict) else {}
     )
+    source_free_surface_locator_rows = int(
+        source_free_surface_counts.get("current702_heldout_locator_sidecars") or 0
+    )
+    source_free_surface_residue_count_rows = int(
+        source_free_surface_counts.get("source_free_residue_count_feature_rows") or 0
+    )
     locator_queue_counts = (
         locator_queue.get("counts", {}) if isinstance(locator_queue, dict) else {}
     )
@@ -51867,7 +51895,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         else {}
     )
     residue_count_extractor_status = (
-        "blocked_source_free_coordinate_anchor_explicit_approval_pending"
+        "ready_source_free_residue_count_surface_complete"
+        if source_free_surface_residue_count_rows == len(heldout_rows)
+        and bool(heldout_rows)
+        else "partial_source_free_residue_count_surface_materialized"
+        if source_free_surface_residue_count_rows > 0
+        else "blocked_source_free_coordinate_anchor_explicit_approval_pending"
         if locator_input_coordinate_anchor_explicit_approval_pending
         else
         "blocked_source_free_coordinate_anchor_review_pending"
@@ -51919,10 +51952,13 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         },
     ]
     blockers = [
-        "source_free_current702_heldout_locator_surface_missing",
         "source_free_event_residue_role_extractor_missing",
         "m_csa_curated_heldout_active_site_roles_not_deployment_input",
     ]
+    if source_free_surface_locator_rows <= 0:
+        blockers.insert(0, "source_free_current702_heldout_locator_surface_missing")
+    elif source_free_surface_locator_rows < len(heldout_rows):
+        blockers.insert(0, "source_free_current702_heldout_locator_coverage_incomplete")
     if source_free_ready_rows < len(heldout_rows):
         blockers.append("source_free_predicted_geometry_heldout_coverage_incomplete")
     contract_ready = (
@@ -51983,10 +52019,10 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "active_site_role_graph_heldout_ok_rows": len(active_heldout_ok_rows),
             "source_free_predicted_geometry_ready_rows": source_free_ready_rows,
             "source_free_application_surface_residue_count_rows": (
-                source_free_surface_counts.get("source_free_residue_count_feature_rows")
+                source_free_surface_residue_count_rows
             ),
             "source_free_application_surface_current702_heldout_locator_sidecars": (
-                source_free_surface_counts.get("current702_heldout_locator_sidecars")
+                source_free_surface_locator_rows
             ),
             "source_free_locator_priority1_candidates": locator_queue_counts.get(
                 "priority_1_coordinate_ready_locator_candidates"
@@ -52046,10 +52082,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "apply_frozen_pair_threshold_now": False,
             "heldout_read_once_performed": False,
             "next_gate": (
-                "Build a source-free current702 heldout active-site locator and "
-                "event/residue-role extraction sidecar for the selected pair; "
-                "rerun this plan and the preflight, then apply the frozen "
-                "residual threshold exactly once without retuning."
+                "Complete source-free current702 heldout active-site locator "
+                "coverage and build the event/residue-role extraction sidecar "
+                "for the selected pair; rerun this plan and the preflight, "
+                "then apply the frozen residual threshold exactly once without "
+                "retuning."
             ),
         },
         "source_artifacts": {
@@ -52752,9 +52789,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     locator_surface_ready = source_free_locator_rows == len(heldout_rows) and bool(
         heldout_rows
     )
+    locator_surface_partial = source_free_locator_rows > 0
     blockers: list[str] = []
     if not locator_surface_ready:
-        blockers.append("source_free_current702_heldout_locator_surface_missing")
+        blockers.append(
+            "source_free_current702_heldout_locator_coverage_incomplete"
+            if locator_surface_partial
+            else "source_free_current702_heldout_locator_surface_missing"
+        )
     if not event_axis_ready:
         blockers.append("source_free_proton_transfer_event_axis_missing")
         blockers.append("source_free_event_residue_role_linker_missing")
@@ -52899,8 +52941,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             ),
             "next_action": (
                 "Build the source-free event-axis linker contract for "
-                "proton_transfer to electrostatic_stabiliser, then rerun the "
-                "source-free application surface and heldout-safe surface plan."
+                "proton_transfer to electrostatic_stabiliser on approved "
+                "locator rows, then rerun the source-free application surface "
+                "and heldout-safe surface plan."
             ),
         },
     }
@@ -53091,22 +53134,32 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     locator_surface_ready = current702_locator_rows == len(heldout_rows) and bool(
         heldout_rows
     )
-    residue_count_surface_ready = residue_count_surface_rows == len(heldout_rows) and bool(
-        heldout_rows
+    locator_surface_partial = current702_locator_rows > 0
+    residue_count_surface_ready = (
+        residue_count_surface_rows == len(heldout_rows) and bool(heldout_rows)
     )
+    residue_count_surface_partial = residue_count_surface_rows > 0
     blockers: list[str] = []
     if fallback_record is None:
         blockers.append("source_free_residue_count_fallback_token_not_scored")
     if not locator_surface_ready:
-        blockers.append("source_free_current702_heldout_locator_surface_missing")
+        blockers.append(
+            "source_free_current702_heldout_locator_coverage_incomplete"
+            if locator_surface_partial
+            else "source_free_current702_heldout_locator_surface_missing"
+        )
     if not residue_count_surface_ready:
-        blockers.append("source_free_residue_count_surface_missing")
+        blockers.append(
+            "source_free_residue_count_surface_incomplete"
+            if residue_count_surface_partial
+            else "source_free_residue_count_surface_missing"
+        )
     if int(
         locator_input_counts.get(
             "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
         )
         or 0
-    ) > 0:
+    ) > 0 and not locator_surface_partial:
         blockers.append("source_free_locator_rewrite_explicit_approval_pending")
     if recall_delta_vs_pair is not None and recall_delta_vs_pair > 0:
         blockers.append(
@@ -53215,8 +53268,8 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "next_gate": (
                 "Use this fallback only if the lower calibration OOS abstention "
                 "is explicitly accepted. Otherwise build the source-free event "
-                "linker for the stronger pair. In either case, materialize "
-                "approved current702 heldout locator sidecars before any "
+                "linker for the stronger pair. In either case, complete "
+                "approved current702 heldout locator coverage before any "
                 "heldout threshold application."
             ),
         },
@@ -53246,8 +53299,8 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "The His-count-only fallback is calibration-scored and avoids "
                 "the missing event axis, but it is a lower-recall alternative "
                 "to the calibrated pair and still needs approved current702 "
-                "heldout locators before a heldout-safe application surface "
-                "exists."
+                "heldout locator coverage before a heldout-safe application "
+                "surface exists."
             ),
             "next_action": (
                 "Either explicitly accept this lower-recall fallback contract "
@@ -53439,6 +53492,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             if blocker
             in {
                 "source_free_current702_heldout_locator_surface_missing",
+                "source_free_current702_heldout_locator_coverage_incomplete",
                 "source_free_proton_transfer_event_axis_missing",
                 "source_free_event_residue_role_linker_missing",
             }
@@ -53470,6 +53524,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                     if blocker
                     in {
                         "source_free_current702_heldout_locator_surface_missing",
+                        "source_free_current702_heldout_locator_coverage_incomplete",
                         "source_free_proton_transfer_event_axis_missing",
                         "source_free_event_residue_role_linker_missing",
                     }
@@ -53513,9 +53568,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "axis evidence remain blocked."
             ),
             "next_action": (
-                "Approve/copy current702 heldout locator sidecars or provide "
-                "another source-free locator path, then fill this schema for "
-                "the proton-transfer/electrostatic-stabiliser token."
+                "Complete current702 heldout locator coverage where needed, "
+                "but fill this schema now for approved locator rows on the "
+                "proton-transfer/electrostatic-stabiliser token."
             ),
         },
     }
@@ -53722,6 +53777,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     pending_reviewer_decisions = 0
     locator_dependency_pending = 0
     locator_dependency_approved = 0
+    locator_dependency_rejected = 0
 
     for order, input_row in enumerate(
         sorted(
@@ -53750,14 +53806,21 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         locator_approved = _source_free_locator_rewrite_decision_is_approved(
             input_row
         )
+        locator_rejected = _source_free_locator_rewrite_decision_is_rejected(
+            input_row
+        )
         if locator_approved:
             locator_dependency_approved += 1
+        elif locator_rejected:
+            locator_dependency_rejected += 1
         else:
             locator_dependency_pending += 1
         blockers: list[str] = []
         if not schema_ready:
             blockers.append("source_free_event_axis_linker_schema_not_ready")
-        if not locator_approved:
+        if locator_rejected:
+            blockers.append("source_free_locator_dependency_rejected")
+        elif not locator_approved:
             blockers.append("approved_source_free_locator_dependency_missing")
         if not candidate_linkers:
             blockers.append("source_free_event_axis_candidate_linkers_missing")
@@ -53766,19 +53829,23 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             != "preflight_passed_pending_explicit_approval"
         ):
             blockers.append("source_free_locator_preflight_not_passed")
-        blockers.append("explicit_event_axis_linker_review_required")
+        if locator_approved and candidate_linkers:
+            blockers.append("explicit_event_axis_linker_review_required")
         for blocker in blockers:
             blocker_counts[blocker] += 1
         if not candidate_linkers:
             review_class = "event_axis_candidate_linkers_missing"
         elif locator_approved:
             review_class = "candidate_ready_for_event_axis_review_locator_approved"
+        elif locator_rejected:
+            review_class = "event_axis_review_blocked_locator_rejected"
         else:
             review_class = (
                 "candidate_ready_for_event_axis_review_pending_locator_approval"
             )
         review_class_counts[review_class] += 1
-        pending_reviewer_decisions += 1
+        if locator_approved and candidate_linkers:
+            pending_reviewer_decisions += 1
         draft_linkers = [
             {
                 "residue_locator_id": linker["residue_locator_id"],
@@ -53943,6 +54010,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "pending_reviewer_decisions": pending_reviewer_decisions,
             "locator_dependency_approved_rows": locator_dependency_approved,
             "locator_dependency_pending_rows": locator_dependency_pending,
+            "locator_dependency_rejected_rows": locator_dependency_rejected,
             "gate_consumable_event_axis_linker_rows": 0,
             "materialized_linker_rows": 0,
             "critical_violation_total": 0,
@@ -53958,11 +54026,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "apply_frozen_pair_threshold_now": False,
             "heldout_read_once_performed": False,
             "next_gate": (
-                "Review the event-axis stubs only after locator approvals are "
-                "resolved. Approved rows must be converted into explicit "
+                "Review event-axis stubs for approved locator rows. Approved "
+                "event-axis decisions must be converted into explicit "
                 "event_axis_linker_rows with filled evidence, ready status, "
                 "confidence values, and guardrail audits before the "
-                "materialization gate can consume them."
+                "materialization gate can consume them; rejected locator rows "
+                "stay out until rewritten."
             ),
         },
         "source_artifacts": {
@@ -53983,9 +54052,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "none are gate-consumable or materialized."
             ),
             "next_action": (
-                "Resolve locator approvals, then fill and approve event-axis "
-                "linker rows with explicit source-free evidence before rerunning "
-                "the materialization gate."
+                "Fill and approve event-axis linker rows for approved locators "
+                "with explicit source-free evidence before rerunning the "
+                "materialization gate."
             ),
         },
     }
@@ -54013,6 +54082,8 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{counts['locator_dependency_approved_rows']}",
         "- Locator dependency pending rows: "
         f"{counts['locator_dependency_pending_rows']}",
+        "- Locator dependency rejected rows: "
+        f"{counts.get('locator_dependency_rejected_rows', 0)}",
         f"- Gate-consumable rows: {counts['gate_consumable_event_axis_linker_rows']}",
         f"- Blockers: {', '.join(packet['blockers'])}",
         "",
@@ -56984,6 +57055,23 @@ def _source_free_locator_rewrite_decision_is_approved(
     }
 
 
+def _source_free_locator_rewrite_decision_is_rejected(
+    decision: dict[str, Any],
+) -> bool:
+    value = str(
+        decision.get("decision")
+        or decision.get("reviewer_decision")
+        or decision.get("approval_decision")
+        or ""
+    )
+    return decision.get("approved") is False and value in {
+        "reject",
+        "rejected",
+        "reject_locator_rewrite",
+        "explicit_reject_locator_rewrite",
+    }
+
+
 def _source_free_locator_rewrite_approval_record_violations(
     decision: dict[str, Any],
 ) -> list[str]:
@@ -57370,7 +57458,7 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{counts['approved_locator_sidecars_written']}",
         f"- Invalid approval/preflight rows: {counts['invalid_approval_or_preflight_rows']}",
         f"- Rows without explicit approval: {counts['rows_without_explicit_approval']}",
-        f"- Blockers: {', '.join(gate['blockers'])}",
+        f"- Blockers: {', '.join(gate['blockers']) or 'none'}",
         "",
         "## Decision",
         "",
@@ -57512,6 +57600,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             blockers.append(str(blocker))
     if event_gate is not None:
         for blocker in event_gate.get("blockers", []):
+            if (
+                locator_surface_ready
+                and blocker == "approved_source_free_locator_surface_still_required"
+            ):
+                continue
             if blocker not in blockers:
                 blockers.append(str(blocker))
 
@@ -57521,6 +57614,27 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     event_counts = event_artifact.get("counts", {})
     locator_input_counts = (locator_input or {}).get("counts", {})
     approval_packet_counts = (approval_packet or {}).get("counts", {})
+    locator_preflight_rows = int(locator_counts.get("preflight_rows") or 0)
+    locator_approval_records = int(locator_counts.get("approval_records_total") or 0)
+    locator_pending_reviewer_decisions = int(
+        approval_packet_counts.get("pending_reviewer_decisions") or 0
+    )
+    if locator_preflight_rows and locator_approval_records >= locator_preflight_rows:
+        locator_pending_reviewer_decisions = 0
+    next_gate = (
+        "Supply explicit locator rewrite approvals, materialize the approved "
+        "heldout locator sidecars, validate source-free event-axis linker rows "
+        "through the materialization gate, rerun the source-free application "
+        "surface, then rerun this readiness gate before applying the frozen "
+        "residual threshold exactly once."
+    )
+    if locator_surface_ready:
+        next_gate = (
+            "Keep the approved locator surface fixed, validate source-free "
+            "event-axis linker rows or an accepted fallback, rerun the "
+            "source-free application surface, then rerun this readiness gate "
+            "before applying the frozen residual threshold exactly once."
+        )
     return {
         "artifact_id": (
             MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PRE_THRESHOLD_READINESS_ID
@@ -57588,8 +57702,8 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "source_free_event_residue_role_feature_rows": surface_counts.get(
                 "source_free_event_residue_role_feature_rows"
             ),
-            "locator_preflight_rows": locator_counts.get("preflight_rows"),
-            "locator_approval_records": locator_counts.get("approval_records_total"),
+            "locator_preflight_rows": locator_preflight_rows,
+            "locator_approval_records": locator_approval_records,
             "locator_approved_decision_records": locator_counts.get(
                 "approved_decision_records"
             ),
@@ -57599,9 +57713,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "locator_input_priority1_preflight_pending": locator_input_counts.get(
                 "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
             ),
-            "locator_pending_reviewer_decisions": approval_packet_counts.get(
-                "pending_reviewer_decisions"
-            ),
+            "locator_pending_reviewer_decisions": locator_pending_reviewer_decisions,
             "locator_review_warning_rows": approval_packet_counts.get(
                 "warning_review_rows"
             ),
@@ -57613,14 +57725,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "ready_to_apply_frozen_residual_threshold_once": ready,
             "apply_frozen_pair_threshold_now": False,
             "heldout_read_once_performed": False,
-            "next_gate": (
-                "Supply explicit locator rewrite approvals, materialize the "
-                "approved heldout locator sidecars, validate source-free event "
-                "axis linker rows through the materialization gate, rerun the "
-                "source-free application surface, then rerun this readiness "
-                "gate before applying the frozen residual threshold exactly "
-                "once."
-            ),
+            "next_gate": next_gate,
         },
         "source_artifacts": {
             "pair_operating_point_contract": _source_path_record(
@@ -57654,14 +57759,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         "interpretation": {
             "result": (
                 "The frozen residual contract is calibrated, but the heldout "
-                "application surface is not ready because approved source-free "
-                "locator sidecars and validated source-free event-axis linkers "
+                "application surface is not ready because source-free "
+                "event-axis linkers and complete heldout-safe feature coverage "
                 "are still absent."
             ),
             "next_action": (
-                "Consume explicit locator approvals first; preflight rows alone "
-                "must not become heldout features, and the residual threshold "
-                "must remain unapplied until this readiness gate passes."
+                "Keep the materialized approved locators, supply source-free "
+                "event-axis linker rows or an accepted fallback, and leave the "
+                "residual threshold unapplied until this readiness gate passes."
             ),
         },
     }

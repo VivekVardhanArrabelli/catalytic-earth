@@ -2,7 +2,6 @@
   "artifact_id": "v3_active_lever_mechanical_actionability_audit_current702_20260603",
   "blockers": [
     "no_active_lever_mechanical_gate_ready",
-    "source_decision_intake_preflight_not_ready",
     "p10746_policy_decision_missing",
     "lever3_confounded_structural_proxy_calibration_gap",
     "lever3_confounded_proxy_threshold_stress_retention_cost",
@@ -12,7 +11,6 @@
     "lever3_confounded_proxy_background_axis_exhausted",
     "lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis",
     "family_panel_expert_import_decisions_missing",
-    "source_free_locator_rewrite_approvals_missing",
     "source_free_event_axis_linker_gate_blocked",
     "source_free_event_axis_linkers_missing",
     "family_panel_label_factory_gate_inputs_missing",
@@ -20,13 +18,13 @@
   ],
   "counts": {
     "automation_action_allowed_now_items": 0,
-    "blockers": 16,
+    "blockers": 14,
     "decision_items": 78,
-    "external_decision_required_items": 78,
+    "external_decision_required_items": 23,
     "lever2_clean_locator_rewrite_items": 49,
     "lever2_event_axis_materialized_linker_rows": 0,
-    "lever2_locator_sidecars_written": 0,
-    "lever2_pending_locator_approvals": 55,
+    "lever2_locator_sidecars_written": 53,
+    "lever2_pending_locator_approvals": 0,
     "lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct": 16,
     "lever3_confounded_high_cofactor_proxy_rows": 4,
     "lever3_confounded_proxy_acquisition_blockers": 6,
@@ -79,9 +77,9 @@
     "p10746_pending_policy_decisions": 1,
     "source_decision_follow_on_gate_ready_rows": 0,
     "source_decision_intake_invalid_rows": 0,
-    "source_decision_intake_pending_rows": 78
+    "source_decision_intake_pending_rows": 23
   },
-  "created_utc": "2026-06-03T19:21:13Z",
+  "created_utc": "2026-06-03T20:31:11Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
@@ -181,7 +179,7 @@
       "ready_now": false
     },
     {
-      "blocking_reason": "source_free_locator_rewrite_approvals_missing",
+      "blocking_reason": "source_free_pre_threshold_readiness_blocked",
       "gate": "source_free_locator_materialization_and_pre_threshold_readiness",
       "lever": "Lever 2",
       "next_command_after_decision": "build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate",
@@ -437,7 +435,7 @@
     "active_lever_source_decision_intake_preflight": {
       "exists": true,
       "path": "artifacts/v3_active_lever_source_decision_intake_preflight_current702_20260603.json",
-      "sha256": "bbebcaa785fe7545fd2cda7d7b85b7512bb15505081e22d024c1aaac495a8bc9"
+      "sha256": "858e153741ffe6ed907b246467f20442b8e7b57aa67c4286926d7dbc23724b54"
     },
     "family_panel_label_factory_gate_readiness": {
       "exists": true,
@@ -447,17 +445,17 @@
     "lever2_event_axis_linker_materialization_gate": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json",
-      "sha256": "668b8e7a1527f2f0926a26ba345be2a4837ef6295176001713e03a9872c0f025"
+      "sha256": "12930b44236e11dc1d92e7b0249c9fad7fcdaa781197ac9491de86d71e2e7062"
     },
     "lever2_event_axis_linker_schema": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json",
-      "sha256": "fbb324230e6485ca8277efb52cc5c050061c5b6b7692e1590c2e4594a88b76b4"
+      "sha256": "0b6dfcbb0513553882fb61704dea361dff843c2ec9533fad874ac6dd15cf5380"
     },
     "lever2_pre_threshold_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json",
-      "sha256": "85628054c8b0e425f021ccd236db1378d957ae2c5962822e46c53de4b70e683f"
+      "sha256": "68a53573f37e4fb157c8b7190308a6443beb03d54fad544169bf54e8bcd92d4e"
     },
     "lever3_confounded_proxy_acquisition_queue": {
       "exists": true,

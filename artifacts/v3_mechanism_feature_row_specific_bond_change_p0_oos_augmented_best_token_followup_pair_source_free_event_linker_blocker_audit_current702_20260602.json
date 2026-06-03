@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602",
   "blockers": [
-    "source_free_current702_heldout_locator_surface_missing",
+    "source_free_current702_heldout_locator_coverage_incomplete",
     "source_free_proton_transfer_event_axis_missing",
     "source_free_event_residue_role_linker_missing",
     "m_csa_curated_active_site_role_graph_forbidden_as_deployment_input",
@@ -25,14 +25,14 @@
   "counts": {
     "blockers": 5,
     "critical_violation_total": 0,
-    "current702_heldout_locator_sidecars": 0,
+    "current702_heldout_locator_sidecars": 53,
     "heldout_rows_in_manifest": 140,
     "m_csa_curated_heldout_role_graph_ok_rows": 132,
     "source_free_event_residue_role_feature_rows": 0,
-    "source_free_locator_sidecars_total": 5,
-    "source_free_residue_count_feature_rows": 0
+    "source_free_locator_sidecars_total": 58,
+    "source_free_residue_count_feature_rows": 53
   },
-  "created_utc": "2026-06-02T20:09:34Z",
+  "created_utc": "2026-06-03T20:22:27Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "curated_active_site_role_graph_allowed_for_deployment": false,
@@ -58,7 +58,7 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Build the source-free event-axis linker contract for proton_transfer to electrostatic_stabiliser, then rerun the source-free application surface and heldout-safe surface plan.",
+    "next_action": "Build the source-free event-axis linker contract for proton_transfer to electrostatic_stabiliser on approved locator rows, then rerun the source-free application surface and heldout-safe surface plan.",
     "result": "The calibrated pair remains deployment-blocked because the event/residue-role token requires a source-free proton-transfer event axis. The source-free His-count fallback is measurable on train/cal but loses calibration OOS abstention relative to the pair, and the curated heldout active-site role graph is an explicitly forbidden deployment shortcut."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit",
@@ -103,7 +103,7 @@
     "source_free_application_surface": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
-      "sha256": "bc94fa4c311d4d57b8b09148f9e973766f7c26e198281e283e9e4803eecb58c7"
+      "sha256": "646141f097c4e6c21382c21b0895c8d06c776b498795025d7e7ef5db158bb430"
     }
   },
   "source_free_linker_contract": {

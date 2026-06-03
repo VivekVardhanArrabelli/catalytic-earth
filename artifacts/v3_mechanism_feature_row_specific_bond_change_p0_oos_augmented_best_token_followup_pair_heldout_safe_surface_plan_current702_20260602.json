@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602",
   "blockers": [
-    "source_free_current702_heldout_locator_surface_missing",
+    "source_free_current702_heldout_locator_coverage_incomplete",
     "source_free_event_residue_role_extractor_missing",
     "m_csa_curated_heldout_active_site_roles_not_deployment_input",
     "source_free_predicted_geometry_heldout_coverage_incomplete"
@@ -21,8 +21,8 @@
     "pair_calibration_retained_oos_rows": 4,
     "pair_feature_dimensions": 19,
     "required_extractors": 2,
-    "source_free_application_surface_current702_heldout_locator_sidecars": 0,
-    "source_free_application_surface_residue_count_rows": 0,
+    "source_free_application_surface_current702_heldout_locator_sidecars": 53,
+    "source_free_application_surface_residue_count_rows": 53,
     "source_free_locator_input_auto_create_allowed_rows": 0,
     "source_free_locator_input_priority1_preflight_approved_rewrites": 0,
     "source_free_locator_input_priority1_preflight_passed_pending_explicit_approval": 55,
@@ -33,14 +33,14 @@
     "source_free_locator_position_blockers": 8,
     "source_free_locator_priority1_candidates": 126,
     "source_free_locator_schema_required_residue_locator_minimum": 2,
-    "source_free_predicted_geometry_ready_rows": 3
+    "source_free_predicted_geometry_ready_rows": 5
   },
-  "created_utc": "2026-06-02T15:33:18Z",
+  "created_utc": "2026-06-03T20:15:55Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
     "heldout_safe_pair_application_surface_ready": false,
-    "next_gate": "Build a source-free current702 heldout active-site locator and event/residue-role extraction sidecar for the selected pair; rerun this plan and the preflight, then apply the frozen residual threshold exactly once without retuning."
+    "next_gate": "Complete source-free current702 heldout active-site locator coverage and build the event/residue-role extraction sidecar for the selected pair; rerun this plan and the preflight, then apply the frozen residual threshold exactly once without retuning."
   },
   "guardrails": {
     "heldout_rows_evaluated": false,
@@ -90,7 +90,7 @@
         "source_free_active_site_residue_locator",
         "accession_compatible_residue_identity_mapping"
       ],
-      "status": "blocked_source_free_coordinate_anchor_explicit_approval_pending"
+      "status": "partial_source_free_residue_count_surface_materialized"
     }
   ],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan",
@@ -133,7 +133,7 @@
     "source_free_application_surface": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
-      "sha256": "2b9585850cc47f20ba104a47cd12cc3d61db46ce0001b435d40d262d8629994e"
+      "sha256": "646141f097c4e6c21382c21b0895c8d06c776b498795025d7e7ef5db158bb430"
     },
     "source_free_locator_action_queue": {
       "exists": true,
@@ -143,12 +143,12 @@
     "source_free_locator_input_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.json",
-      "sha256": "db61bdf91ee10f2ead7edca6655d9e0738162bc6a0eba26d499e3c040d9a6e8c"
+      "sha256": "b8f861b8529d4a51aeff4c3e6a606d3c2e5e8e2f636a8ea1300023f57d444b18"
     },
     "source_free_predicted_geometry_manifest": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
-      "sha256": "058bb6e5d2e274490491fd498b30b1f44cd8e5f01fc105f744905bd8b73e7369"
+      "sha256": "9f88b277b0f7e509bd2cd84d50543d555103e1f86d26f5069fdd865c9c71fba0"
     }
   },
   "status": "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_ready_surface_blocked"

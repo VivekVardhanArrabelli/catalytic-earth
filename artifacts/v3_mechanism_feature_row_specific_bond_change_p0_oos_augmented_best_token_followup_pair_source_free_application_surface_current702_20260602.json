@@ -1,26 +1,25 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602",
   "blockers": [
-    "source_free_current702_heldout_locator_rows_missing",
     "source_free_current702_heldout_locator_coverage_incomplete",
     "source_free_event_residue_role_extractor_missing",
     "source_free_proton_transfer_event_axis_missing"
   ],
   "counts": {
-    "blockers": 4,
+    "blockers": 3,
     "critical_violation_total": 0,
-    "current702_heldout_locator_sidecars": 0,
+    "current702_heldout_locator_sidecars": 53,
     "heldout_rows_in_manifest": 140,
     "source_free_event_residue_role_feature_rows": 0,
     "source_free_locator_guardrail_violation_rows": 0,
-    "source_free_locator_sidecars_total": 5,
+    "source_free_locator_sidecars_total": 58,
     "source_free_predicted_geometry_ready_rows": 5,
-    "source_free_residue_count_feature_rows": 0,
-    "source_free_residue_count_his3_hit_rows": 0,
+    "source_free_residue_count_feature_rows": 53,
+    "source_free_residue_count_his3_hit_rows": 4,
     "surface_feature_tokens_ready": 0,
     "surface_feature_tokens_required": 2
   },
-  "created_utc": "2026-06-02T20:04:49Z",
+  "created_utc": "2026-06-03T20:06:48Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
@@ -79,7 +78,7 @@
     },
     "source_free_locator_dir": {
       "exists": true,
-      "json_file_count": 5,
+      "json_file_count": 58,
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601"
     },
     "source_free_predicted_geometry_manifest": {
@@ -89,5 +88,1172 @@
     }
   },
   "status": "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked",
-  "surface_rows": []
+  "surface_rows": [
+    {
+      "entry_id": "m_csa:3",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_3_P15559.json",
+      "locator_sha256": "734957542552ec33b933073373d7206006657383a8bc6bfe3dcccf68f7ce865c",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:9",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_9_P31153.json",
+      "locator_sha256": "03b011c465fb133c65fc08a40f45534b543a7cd6e8b15217ba69002b122793e6",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:32",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_32_Q04760.json",
+      "locator_sha256": "5e344c68a201584237b6bd8ac27d2af88db66ad5ec5d1499dc33eabc67e043fd",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:43",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_43_P80366.json",
+      "locator_sha256": "7cd5c6287d0c5614115c46a06397060a217db7e0a19e508c8ea2ab0cf88f14e2",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:44",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_44_P00634.json",
+      "locator_sha256": "59762c7aa65f118f2996f889b97ea67f842e67bdbc5fe75ebc44f9560286d617",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:45",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_45_P43379.json",
+      "locator_sha256": "ecf4a64d03248e07120d8f59b7128720b0d2e485e7a06ec19756bba98542cfff",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:46",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_46_P14385.json",
+      "locator_sha256": "8621d3c5172ad48d5baf7835b22ba2867e79aed23bb743213561a1f573c2b02f",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:56",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_56_Q9WZW0.json",
+      "locator_sha256": "eda3655f66bf725596ce0231991aef163d77cce7d4c4d2cf6fe468cf6e908145",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:97",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_97_P0ABF6.json",
+      "locator_sha256": "f5d5651c01b50e8484c21e03581c0ea23fea533b0c412def3e8d05af12bef045",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:109",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_109_Q02127.json",
+      "locator_sha256": "67f1487d300694e5b129aa0f287bb2661e6ffb72e29f1f898de2a930cf503ee3",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:115",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_115_Q9T0N8.json",
+      "locator_sha256": "f654a2775eaf54105f2aaa9d22b6d183c99fd144d168c5d7bb24e3ac4e3719cc",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:121",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_121_P07850.json",
+      "locator_sha256": "c06439fb200515f7c862f49552467d6e4eb74ced365b5ac5d3b079a9547dd0ad",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:131",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_131_P20586.json",
+      "locator_sha256": "9b36f642ba7fb652cea776f33edc7b516a78f77eb59cdd75916333a8947b0490",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:159",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_159_P0A434.json",
+      "locator_sha256": "2576ef1e17b02a0fd18a2dcdd0179fc5590b5292e47beb493e1e50ac25231100",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:163",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_163_P0A7Y4.json",
+      "locator_sha256": "c017a7845c94d19fd2249915c39d4e5c91bddc4322286823d527580cb92fd904",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:171",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_171_P00730.json",
+      "locator_sha256": "6f5b148064a9be7b15ca320049a6eae6dcce0daaa659f98ae6f38b7971e8da74",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:180",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_180_P35505.json",
+      "locator_sha256": "0a4c5c5c8c6963ccd17b5bed430047c60b87294815d2a95e14551e71c9a13895",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:188",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_188_P09147.json",
+      "locator_sha256": "75bd78482ce1d156720fc6209792ea339420c47fa4764396506a8564b655b594",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:199",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_199_P04425.json",
+      "locator_sha256": "2427d765c5bbf894057a450eedafaf28f3d9461a2b2e7c5fb76ebf6437718d0e",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:211",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_211_P38489.json",
+      "locator_sha256": "38545d38134db8522cec277a3689ad04fabb240b7478c995995c510806e32594",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:220",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_220_P20906.json",
+      "locator_sha256": "3917d8f1fa9c92418e8f30f097a4a5f1bd8c2ccd1d57474e14dfcbef033c4684",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:239",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_239_P00433.json",
+      "locator_sha256": "740155128eb0903b7dd8d63725a6e229aac65ee8410e2ac79ac8bd10128757c7",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:242",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_242_Q8I914.json",
+      "locator_sha256": "9bd7170cb09c593dcdf8785944390f2082849796423025960630a59850ca7147",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:250",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_250_P04963.json",
+      "locator_sha256": "bd04bd6ae763a43aef02f30a2d43b8f707bfc5e86946e82d32346f648ca04316",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:311",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_311_P00924.json",
+      "locator_sha256": "3862351f1bbd0196f383862bc3d3321bce6759418a6ffea6f11b9a835bb60b5d",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:321",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_321_P09155.json",
+      "locator_sha256": "b76dd7cea3ddb41fc4980bd3b5f3e0044b8d0ae1f3b134546c7e49f6506a9951",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:323",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_323_P05314.json",
+      "locator_sha256": "eaa9c66a3c1aaaf4b571eb918a748692bc9cc5c34af5a04b46651460b1ee1430",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:333",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_333_Q9RUB5.json",
+      "locator_sha256": "182ce7731615c95017b51074edc1bad7187f5b7e82010f597d316ac81397c7ed",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:352",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_352_P00949.json",
+      "locator_sha256": "26f07cc2f6a6c6f603ca3ea9cacf82dfc6eab47acb7648c6d506b010995f3fe6",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:356",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_356_P14769.json",
+      "locator_sha256": "8c6a4ab336176455138a349d469c7b509e56ea3aa8c432d6bd1295929a45e496",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:370",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_370_O75164.json",
+      "locator_sha256": "f0acd52ec6de00b780f5a4fc47954639a6e69d5bcd991248fc8e0e8a2cc9fee9",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:384",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_384_P23395.json",
+      "locator_sha256": "a1ea9da74d40f17ae206bfa0ea3f5ab6cabcf60400632233fc67012eec4dc198",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:392",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_392_P07801.json",
+      "locator_sha256": "4cdfc18f9a453970f3684c1eaeff1320bc52b0b0a1ffc55baf3cbaba98011c4f",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:397",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_397_P04063.json",
+      "locator_sha256": "c67cfada3668351ee265842b5b7fd2b829370cdda53c337e9ceed63e92ab5440",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:403",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_403_P07584.json",
+      "locator_sha256": "ff5e0b19028cf02be46fdce2d51cf1130640617c6c8c45e55892f8f1d28c8740",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:418",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_418_P37821.json",
+      "locator_sha256": "6f8e3ea326d8b323787a7f53a8a1e57b101e10d265dd13fd392a0b471df9fa15",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:419",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_419_O52552.json",
+      "locator_sha256": "dfe9f2fa2f7aedd6d05211b306420bad5ba831084ed53337fdec41484898b5eb",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:480",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_480_P26214.json",
+      "locator_sha256": "560206d5279c69038d9508ebf1ccf0e77aea0e200bac12d854ec6c1bd5a5260f",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:497",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_497_Q9FDN7.json",
+      "locator_sha256": "14e4604e139da94b62e86294b40ab490314d8f24af3b8d56bdc1fb27b56b8cd1",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:517",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_517_P61517.json",
+      "locator_sha256": "7e5d350848ca61190a5cb5274083d6d8d3fa539becc5e831e21bc3f050470d8b",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:526",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_526_P11708.json",
+      "locator_sha256": "c60eda0c40524ad000b0a1b9bae7124b4bf9a52553ee324e3113f531f19d046f",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:541",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_541_P75430.json",
+      "locator_sha256": "c6e94ebe87d73ef28fb0991a19d9cc873cc6a68b430cc790860cbe0522c0c834",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:545",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_545_Q7M523.json",
+      "locator_sha256": "efdc7115b2ac1bf07bf12f97846a5723c06e2ad36379eeb8ef0d9d716b29c8f6",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:551",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_551_P15245.json",
+      "locator_sha256": "6b2f0c8ad2b3babbc48eed11084d652ba73cc40d5fab6b143bbcc388942c486b",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:709",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_709_P00431.json",
+      "locator_sha256": "8406b63964cc9642aaebf6abc226e925843eb892adcdb4495a17286c06bf1b8b",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:710",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_710_P25524.json",
+      "locator_sha256": "258685acfd05175f8915ae4efb8df82015d257bb0cf135b41ff25f319c4ad2c5",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:714",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_714_P0ABI8.json",
+      "locator_sha256": "2a34bade27f7edae6d31d939c0f483113576656cad43941f3a4f976d9f614ad8",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 3,
+        "residue_code_count:his=3": true
+      }
+    },
+    {
+      "entry_id": "m_csa:750",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_750_P55792.json",
+      "locator_sha256": "630cd35d8db5fab15c49efecf5acb78fe1bfb60a071e80eee6c5898fee6448e0",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:853",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_853_P31570.json",
+      "locator_sha256": "9461b649cf81492aff5df384766babd8fa2dea11e3d4759987b77a35406ea3f0",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:854",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_854_P80147.json",
+      "locator_sha256": "3c2a29d62cb104b5c86c9db9440ebd1ae3369d4e1225f21f7eb3f831954d2b5c",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 1,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:916",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_916_P9WI55.json",
+      "locator_sha256": "4c712b58475be4ff44ced2b1d7cb9c8380744ec7785383b3ce6af693e703c0d0",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:990",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_990_Q8GS60.json",
+      "locator_sha256": "6a60370892c027185bd5220de5b555715ad989d6a51e4c0e39de8d2d8d7a60f1",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 0,
+        "residue_code_count:his=3": false
+      }
+    },
+    {
+      "entry_id": "m_csa:994",
+      "feature_guardrails": {
+        "accession_excluded_from_features": true,
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "feature_status": {
+        "event_residue_role_surface": "blocked_source_free_event_axis_missing",
+        "residue_code_count_surface": "ready_from_source_free_locator"
+      },
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_994_Q9Y3Z3.json",
+      "locator_sha256": "d36c7137efedb108fc938940d27c0a45e778c8c637c6aeb027414bb4a1186b5a",
+      "source_free_pair_features": {
+        "event_residue_role:proton_transfer|electrostatic_stabiliser": null,
+        "residue_code_count:his": 2,
+        "residue_code_count:his=3": false
+      }
+    }
+  ]
 }

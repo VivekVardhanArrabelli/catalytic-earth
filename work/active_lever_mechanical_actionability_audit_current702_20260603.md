@@ -1,6 +1,6 @@
 # Active Lever Mechanical Actionability Audit - current702
 
-Run: 2026-06-03T19:21:13Z
+Run: 2026-06-03T20:31:11Z
 
 Review-only actionability audit across active Lever 2/3/4 gates. It distinguishes mechanical gates that can run now from explicit review or policy decisions that must remain fail-closed.
 
@@ -8,13 +8,13 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 
 - active_lever_mechanical_actionability_blocked_external_decisions
 - Decision items: 78
-- External decisions required: 78
+- External decisions required: 23
 - Automation-action-allowed-now items: 0
 - Mechanical gates ready now: 0
 - Source-decision follow-on gate-ready rows: 0
-- Source-decision pending rows: 78
+- Source-decision pending rows: 23
 - Source-decision invalid rows: 0
-- Lever 2 pending locator approvals: 55
+- Lever 2 pending locator approvals: 0
 - Lever 2 event-axis linker rows: 0
 - Lever 3 structural proxy abstained: 10/55
 - Lever 3 retained proxy gap rows: 48
@@ -48,7 +48,7 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 - Lever 4 acceptance scenario panels: 5
 - Lever 4 label-factory candidates if scenario accepted: 6
 - Lever 4 label-factory gate input rows: 0
-- Blockers: ['no_active_lever_mechanical_gate_ready', 'source_decision_intake_preflight_not_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'lever3_confounded_proxy_acquisition_shortfall', 'lever3_confounded_proxy_train_cal_scoring_tranche_not_run', 'lever3_confounded_proxy_background_axis_exhausted', 'lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis', 'family_panel_expert_import_decisions_missing', 'source_free_locator_rewrite_approvals_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
+- Blockers: ['no_active_lever_mechanical_gate_ready', 'p10746_policy_decision_missing', 'lever3_confounded_structural_proxy_calibration_gap', 'lever3_confounded_proxy_threshold_stress_retention_cost', 'lever3_confounded_proxy_evidence_extension_scale_gap', 'lever3_confounded_proxy_acquisition_shortfall', 'lever3_confounded_proxy_train_cal_scoring_tranche_not_run', 'lever3_confounded_proxy_background_axis_exhausted', 'lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis', 'family_panel_expert_import_decisions_missing', 'source_free_event_axis_linker_gate_blocked', 'source_free_event_axis_linkers_missing', 'family_panel_label_factory_gate_inputs_missing', 'lever2_pre_threshold_readiness_not_ready']
 
 ## Decision
 
@@ -74,7 +74,7 @@ Review-only actionability audit across active Lever 2/3/4 gates. It distinguishe
 | Lever 3 | confounded_proxy_train_cal_unsupported_geometry_locus_scan | False | unsupported_geometry_afdb_coordinates_protein_only_no_locus_evidence | scan-fold-augmented-confounded-proxy-train-cal-unsupported-geometry-coordinate-loci |
 | Lever 3 | confounded_proxy_train_cal_new_proxy_axis_contract | False | contracted_proxy_axis_fully_scored_surface_still_blocked | build-fold-augmented-confounded-proxy-train-cal-background-axis-scout |
 | Lever 4 | family_panel_label_factory_gate_readiness | False | family_panel_expert_import_decisions_missing | apply-fold-augmented-family-panel-expert-import-decision |
-| Lever 2 | source_free_locator_materialization_and_pre_threshold_readiness | False | source_free_locator_rewrite_approvals_missing | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
+| Lever 2 | source_free_locator_materialization_and_pre_threshold_readiness | False | source_free_pre_threshold_readiness_blocked | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate |
 | Lever 2 | source_free_event_axis_linkers | False | source_free_event_axis_linker_gate_blocked | build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-event-axis-linker-materialization-gate |
 
 ## Next Review Items

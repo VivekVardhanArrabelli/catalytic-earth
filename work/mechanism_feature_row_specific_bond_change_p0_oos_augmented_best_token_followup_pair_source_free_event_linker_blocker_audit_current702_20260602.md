@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Linker Blocker Audit - current702
 
-Run: 2026-06-02T20:09:34Z
+Run: 2026-06-03T20:22:27Z
 
 Leakage-safe blocker audit for the source-free event/residue-role linker needed by the calibrated row-specific feature pair. It compares the frozen pair contract with the source-free-computable residue-code fallback, rejects curated heldout role graphs as deployment inputs, and does not apply the heldout threshold.
 
@@ -8,10 +8,10 @@ Leakage-safe blocker audit for the source-free event/residue-role linker needed 
 
 - p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_ready_blocked
 - Heldout rows: 140
-- Current702 heldout source-free locator sidecars: 0
+- Current702 heldout source-free locator sidecars: 53
 - Source-free event/residue-role feature rows: 0
 - M-CSA curated heldout role-graph ok rows: 132
-- Blockers: source_free_current702_heldout_locator_surface_missing, source_free_proton_transfer_event_axis_missing, source_free_event_residue_role_linker_missing, m_csa_curated_active_site_role_graph_forbidden_as_deployment_input, source_free_residue_code_only_fallback_underperforms_pair_contract
+- Blockers: source_free_current702_heldout_locator_coverage_incomplete, source_free_proton_transfer_event_axis_missing, source_free_event_residue_role_linker_missing, m_csa_curated_active_site_role_graph_forbidden_as_deployment_input, source_free_residue_code_only_fallback_underperforms_pair_contract
 
 ## Contract Comparison
 
@@ -34,4 +34,4 @@ Leakage-safe blocker audit for the source-free event/residue-role linker needed 
 ## Interpretation
 
 - The calibrated pair remains deployment-blocked because the event/residue-role token requires a source-free proton-transfer event axis. The source-free His-count fallback is measurable on train/cal but loses calibration OOS abstention relative to the pair, and the curated heldout active-site role graph is an explicitly forbidden deployment shortcut.
-- Build the source-free event-axis linker contract for proton_transfer to electrostatic_stabiliser, then rerun the source-free application surface and heldout-safe surface plan.
+- Build the source-free event-axis linker contract for proton_transfer to electrostatic_stabiliser on approved locator rows, then rerun the source-free application surface and heldout-safe surface plan.

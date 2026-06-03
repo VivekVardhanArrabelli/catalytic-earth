@@ -7259,6 +7259,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "linker_schema_current702_20260602.json"
             )
         )
+        pair_event_axis_review_packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+                "linker_review_packet_current702_20260603.json"
+            )
+        )
         pair_event_axis_gate = _load_json(
             ROOT
             / "artifacts"
@@ -7699,7 +7708,13 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_surface_plan["counts"][
                 "source_free_application_surface_current702_heldout_locator_sidecars"
             ],
-            0,
+            53,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_application_surface_residue_count_rows"
+            ],
+            53,
         )
         self.assertEqual(
             [
@@ -7707,7 +7722,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 for row in pair_surface_plan["required_extractors"]
                 if row["extractor"] == "source_free_active_site_residue_identity_counter"
             ],
-            ["blocked_source_free_coordinate_anchor_explicit_approval_pending"],
+            ["partial_source_free_residue_count_surface_materialized"],
+        )
+        self.assertIn(
+            "source_free_current702_heldout_locator_coverage_incomplete",
+            pair_surface_plan["blockers"],
+        )
+        self.assertNotIn(
+            "source_free_current702_heldout_locator_surface_missing",
+            pair_surface_plan["blockers"],
         )
         self.assertFalse(pair_surface_plan["guardrails"]["heldout_rows_evaluated"])
         self.assertEqual(
@@ -7719,19 +7742,19 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             pair_source_free_surface["counts"]["source_free_locator_sidecars_total"],
-            5,
+            58,
         )
         self.assertEqual(
             pair_source_free_surface["counts"][
                 "current702_heldout_locator_sidecars"
             ],
-            0,
+            53,
         )
         self.assertEqual(
             pair_source_free_surface["counts"][
                 "source_free_residue_count_feature_rows"
             ],
-            0,
+            53,
         )
         self.assertFalse(
             pair_source_free_surface["decision"][
@@ -7750,7 +7773,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             pair_event_linker["counts"]["current702_heldout_locator_sidecars"],
-            0,
+            53,
         )
         self.assertEqual(
             pair_event_linker["counts"]["m_csa_curated_heldout_role_graph_ok_rows"],
@@ -7770,6 +7793,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertIn(
             "m_csa_curated_active_site_role_graph_forbidden_as_deployment_input",
+            pair_event_linker["blockers"],
+        )
+        self.assertIn(
+            "source_free_current702_heldout_locator_coverage_incomplete",
+            pair_event_linker["blockers"],
+        )
+        self.assertNotIn(
+            "source_free_current702_heldout_locator_surface_missing",
             pair_event_linker["blockers"],
         )
         self.assertIn(
@@ -7830,6 +7861,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             0,
         )
+        self.assertEqual(
+            pair_residue_fallback["counts"]["current702_heldout_locator_sidecars"],
+            53,
+        )
+        self.assertEqual(
+            pair_residue_fallback["counts"][
+                "source_free_residue_count_feature_rows"
+            ],
+            53,
+        )
         self.assertTrue(
             pair_residue_fallback["decision"][
                 "fallback_contract_calibrated_train_cal_only"
@@ -7850,6 +7891,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_residue_fallback["blockers"],
         )
         self.assertIn(
+            "source_free_current702_heldout_locator_coverage_incomplete",
+            pair_residue_fallback["blockers"],
+        )
+        self.assertIn(
+            "source_free_residue_count_surface_incomplete",
+            pair_residue_fallback["blockers"],
+        )
+        self.assertNotIn(
+            "source_free_current702_heldout_locator_surface_missing",
+            pair_residue_fallback["blockers"],
+        )
+        self.assertNotIn(
             "source_free_locator_rewrite_explicit_approval_pending",
             pair_residue_fallback["blockers"],
         )
@@ -7890,6 +7943,55 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_event_axis_schema["guardrails"]["heldout_rows_evaluated"]
         )
         self.assertEqual(
+            pair_event_axis_review_packet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_ready_review_only",
+        )
+        self.assertEqual(
+            pair_event_axis_review_packet["counts"]["event_axis_review_stub_rows"],
+            55,
+        )
+        self.assertEqual(
+            pair_event_axis_review_packet["counts"]["pending_reviewer_decisions"],
+            53,
+        )
+        self.assertEqual(
+            pair_event_axis_review_packet["counts"][
+                "locator_dependency_approved_rows"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_event_axis_review_packet["counts"][
+                "locator_dependency_pending_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_event_axis_review_packet["counts"][
+                "locator_dependency_rejected_rows"
+            ],
+            2,
+        )
+        self.assertEqual(
+            pair_event_axis_review_packet["blocker_counts"][
+                "explicit_event_axis_linker_review_required"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_event_axis_review_packet["blocker_counts"][
+                "source_free_locator_dependency_rejected"
+            ],
+            2,
+        )
+        self.assertNotIn(
+            "approved_source_free_locator_surface_missing",
+            pair_event_axis_review_packet["blockers"],
+        )
+        self.assertFalse(
+            pair_event_axis_review_packet["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
             pair_event_axis_gate["status"],
             "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_blocked",
         )
@@ -7901,6 +8003,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertIn(
             "source_free_event_axis_linker_rows_missing",
+            pair_event_axis_gate["blockers"],
+        )
+        self.assertNotIn(
+            "approved_source_free_locator_surface_still_required",
             pair_event_axis_gate["blockers"],
         )
         self.assertFalse(
@@ -8072,39 +8178,38 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             pair_locator_rewrite_gate["status"],
-            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_ready_blocked",
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized",
         )
         self.assertEqual(pair_locator_rewrite_gate["counts"]["preflight_rows"], 55)
         self.assertEqual(
-            pair_locator_rewrite_gate["counts"]["approval_records_total"], 0
+            pair_locator_rewrite_gate["counts"]["approval_records_total"], 55
         )
         self.assertEqual(
-            pair_locator_rewrite_gate["counts"]["approved_decision_records"], 0
+            pair_locator_rewrite_gate["counts"]["approved_decision_records"], 53
         )
         self.assertEqual(
             pair_locator_rewrite_gate["counts"]["invalid_approval_records"], 0
         )
         self.assertEqual(
             pair_locator_rewrite_gate["counts"]["approved_locator_sidecars_written"],
-            0,
+            53,
         )
         self.assertEqual(
             pair_locator_rewrite_gate["counts"]["rows_without_explicit_approval"],
-            55,
+            2,
         )
-        self.assertIn(
-            "explicit_locator_rewrite_approval_decisions_missing",
-            pair_locator_rewrite_gate["blockers"],
-        )
+        self.assertEqual(pair_locator_rewrite_gate["blockers"], [])
         self.assertFalse(
+            pair_locator_rewrite_gate["decision"][
+                "apply_frozen_pair_threshold_now"
+            ]
+        )
+        self.assertTrue(
             pair_locator_rewrite_gate["decision"][
                 "approved_source_free_locator_surface_ready"
             ]
         )
-        self.assertFalse(
-            pair_locator_rewrite_gate["decision"]["apply_frozen_pair_threshold_now"]
-        )
-        self.assertFalse(
+        self.assertTrue(
             pair_locator_rewrite_gate["guardrails"]["locator_sidecars_created_or_copied"]
         )
         self.assertFalse(
@@ -8121,12 +8226,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(
             pair_pre_threshold_readiness["readiness_inputs"][
-                "approved_source_free_locator_surface_ready"
+                "source_free_event_axis_linkers_materialized"
             ]
         )
-        self.assertFalse(
+        self.assertTrue(
             pair_pre_threshold_readiness["readiness_inputs"][
-                "source_free_event_axis_linkers_materialized"
+                "approved_source_free_locator_surface_ready"
             ]
         )
         self.assertFalse(
@@ -8144,20 +8249,20 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_pre_threshold_readiness["counts"]["locator_preflight_rows"], 55
         )
         self.assertEqual(
-            pair_pre_threshold_readiness["counts"]["locator_approval_records"], 0
+            pair_pre_threshold_readiness["counts"]["locator_approval_records"], 55
         )
         self.assertEqual(
             pair_pre_threshold_readiness["counts"][
                 "locator_pending_reviewer_decisions"
             ],
-            55,
+            0,
         )
         self.assertEqual(
             pair_pre_threshold_readiness["counts"]["locator_review_warning_rows"],
             6,
         )
         self.assertEqual(
-            pair_pre_threshold_readiness["counts"]["locator_sidecars_written"], 0
+            pair_pre_threshold_readiness["counts"]["locator_sidecars_written"], 53
         )
         self.assertEqual(
             pair_pre_threshold_readiness["counts"][
@@ -8165,7 +8270,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             0,
         )
-        self.assertIn(
+        self.assertNotIn(
             "approved_source_free_locator_surface_missing",
             pair_pre_threshold_readiness["blockers"],
         )
@@ -10077,15 +10182,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(audit["counts"]["decision_items"], 78)
         self.assertEqual(
-            audit["counts"]["external_decision_required_items"], 78
+            audit["counts"]["external_decision_required_items"], 23
         )
         self.assertEqual(
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 0)
-        self.assertEqual(audit["counts"]["blockers"], 16)
+        self.assertEqual(audit["counts"]["blockers"], 14)
         self.assertEqual(
-            audit["counts"]["source_decision_intake_pending_rows"], 78
+            audit["counts"]["source_decision_intake_pending_rows"], 23
         )
         self.assertEqual(
             audit["counts"]["source_decision_intake_invalid_rows"], 0
@@ -10295,7 +10400,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             6,
         )
         self.assertEqual(
-            audit["counts"]["lever2_pending_locator_approvals"], 55
+            audit["counts"]["lever2_pending_locator_approvals"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_locator_sidecars_written"], 53
         )
         self.assertEqual(
             audit["counts"]["lever2_event_axis_materialized_linker_rows"], 0
@@ -10367,14 +10475,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             "contracted_proxy_axis_fully_scored_surface_still_blocked",
         )
-        self.assertIn(
+        self.assertNotIn(
             "source_decision_intake_preflight_not_ready", audit["blockers"]
         )
         self.assertIn("p10746_policy_decision_missing", audit["blockers"])
         self.assertIn(
             "family_panel_expert_import_decisions_missing", audit["blockers"]
         )
-        self.assertIn(
+        self.assertNotIn(
             "source_free_locator_rewrite_approvals_missing", audit["blockers"]
         )
         self.assertIn(
@@ -10507,7 +10615,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(
             preflight["status"],
-            "active_lever_source_decision_intake_preflight_blocked",
+            "active_lever_source_decision_intake_preflight_ready",
         )
         self.assertEqual(preflight["counts"]["template_rows"], 78)
         self.assertEqual(
@@ -10520,15 +10628,19 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             preflight["counts"]["intake_status_counts"],
-            {"pending_external_decision": 78},
+            {
+                "pending_external_decision": 23,
+                "ready_for_locator_materialization_gate": 53,
+                "reviewed_locator_rejection_no_materialization": 2,
+            },
         )
-        self.assertEqual(preflight["counts"]["explicit_decision_rows"], 0)
-        self.assertEqual(preflight["counts"]["pending_decision_rows"], 78)
+        self.assertEqual(preflight["counts"]["explicit_decision_rows"], 55)
+        self.assertEqual(preflight["counts"]["pending_decision_rows"], 23)
         self.assertEqual(preflight["counts"]["invalid_decision_rows"], 0)
         self.assertEqual(
             preflight["counts"]["source_edit_contract_violation_rows"], 0
         )
-        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 0)
+        self.assertEqual(preflight["counts"]["follow_on_gate_ready_rows"], 53)
         self.assertEqual(
             preflight["counts"]["p10746_application_ready_rows"], 0
         )
@@ -10543,16 +10655,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             preflight["counts"]["locator_materialization_ready_approval_rows"],
-            0,
+            53,
         )
+        self.assertEqual(preflight["counts"]["locator_rejection_rows"], 2)
         self.assertIn(
             "explicit_source_decisions_missing", preflight["blockers"]
         )
-        self.assertIn(
+        self.assertNotIn(
             "no_hash_valid_decision_rows_ready_for_gate",
             preflight["blockers"],
         )
-        self.assertFalse(preflight["decision"]["run_any_matching_gate_now"])
+        self.assertTrue(preflight["decision"]["run_any_matching_gate_now"])
+        self.assertTrue(preflight["decision"]["locator_materialization_gate_ready"])
         self.assertFalse(preflight["decision"]["copy_locator_sidecars_now"])
         self.assertFalse(preflight["decision"]["run_label_factory_gate_now"])
         self.assertFalse(
@@ -10601,7 +10715,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             locator_rows[0]["approved_boolean_field_to_update"], "approved"
         )
-        self.assertFalse(locator_rows[0]["approved"])
+        self.assertTrue(locator_rows[0]["approved"])
+        self.assertEqual(
+            locator_rows[0]["intake_status"],
+            "ready_for_locator_materialization_gate",
+        )
         self.assertTrue(preflight["guardrails"]["review_only"])
         self.assertFalse(preflight["guardrails"]["decisions_applied"])
         self.assertFalse(
