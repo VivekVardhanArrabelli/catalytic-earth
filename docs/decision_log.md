@@ -3,6 +3,47 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Cofactor Channel Recovers ~70% of the Apo Drop (in-distribution, out-of-sample)
+
+Decision: the sequence cofactor-presence channel is the right lever for the
+predicted-apo primary drop, validated leakage-safe on in-distribution rows
+before any heldout read is spent.
+
+Rationale: the headline 45/45 -> predicted 23/45 drop is a heldout number and
+the heldout read is one-shot. The new in-distribution recovery harness
+reproduces the same question on in-distribution rows, which are never the
+benchmark. The router classifies active-site geometry against the eight
+mechanism fingerprint templates (no per-row self-match), so the
+experimental-minus-apo and fused-minus-apo deltas are meaningful. The cofactor
+channel was fit on the train split, so the headline is reported on the
+calibration rows (out-of-sample for the channel); train is an in-sample
+reference only.
+
+Result (calibration, out-of-sample, 35 rows, threshold 0.4115): experimental
+holo geometry 34/35 correct, predicted-apo 17/35 (a ~50% drop mirroring the
+heldout 45->23), and predicted-apo + injected sequence cofactor presence
+30/35 -- recovering 12 of the 17 apo-lost primaries (70.6%) with **0**
+regressions. Train (in-sample reference) recovers 56/59 (94.9%); the
+in-sample/out-of-sample gap is why the calibration number is the one to trust.
+The router consumes the injected `ligand_context.cofactor_families` through the
+0.18-weight `cofactor_context_score` term, which is enough to un-abstain a
+cofactor-dependent primary at 0.4115. Sequence-supported suppression lowers
+recall on this all-in-scope surface (it protects the OOS-FP side, which is not
+measured here).
+
+Consequence / next gate: this projects to roughly 23 -> ~38/45 on heldout if the
+out-of-sample recovery rate holds, but that is a PROJECTION; the heldout read
+stays one-shot and authorization-gated. Next levers to push recovery further and
+cut the residual FP: cofactor localization (which residues), pLDDT active-site
+abstention, and a real Kabsch cofactor transplant (numpy is now available).
+
+References:
+
+- `artifacts/v3_in_distribution_predicted_geometry_recovery_current702_20260604.json`
+- `work/in_distribution_predicted_geometry_recovery_current702_20260604.md`
+- `src/catalytic_earth/predicted_geometry_recovery.py`
+- `tests/test_predicted_geometry_recovery.py`
+
 ## 2026-06-04: Leakage-Safe Cofactor-Presence Channel (train/cal only)
 
 Decision: the sequence -> cofactor-presence channel must select its per-class
