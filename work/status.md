@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 344
-- Measured elapsed time: 10496.5 minutes (174.94 hours)
+- Entries: 345
+- Measured elapsed time: 10519.1 minutes (175.32 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 379.8 measured minutes (6.33 hours)
+- northstar-lever3: 402.4 measured minutes (6.71 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3617
-- Evidence references logged: 2980
+- Artifact references logged: 3626
+- Evidence references logged: 2991
 
 ## Recent Entries
-
-### 2026-06-03T21:57:28.555409+00:00 - northstar-lever-2
-
-- Task: Event-axis signoff finalization bridge and active decision queue
-- Time mode: measured
-- Measured minutes: 55.2
-- Started: 2026-06-03T21:02:02Z
-- Ended: 2026-06-03T21:57:14Z
-- Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, artifacts/v3_active_lever_reviewer_decision_queue_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json
-- Evidence: signoff finalization: 53 draft rows, 14 both-role priority rows, 0 explicit approvals, 0 gate-consumable linkers; active queue: 76 pending decisions and 55 reviewed locator decisions; full pytest 1344 passed/154 subtests with one existing sklearn warning; unittest 1299 passed; validate passed with 702 labels
-- Notes: No labels registries ontologies imports production thresholds model weights heldout reads or threshold tuning changed; event-axis rows remain review-only until explicit approval.
 
 ### 2026-06-03T23:39:07+00:00 - northstar-lever-2
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json, artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.json, artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json, work/handoff.md, work/status.md
 - Evidence: P07658 dispatch blocked no coordinate, 16 high-cofactor intake slots unfilled, 170 same-family structural intake slots unfilled, 0 guardrail violations, 18 source hashes checked no stale, full pytest 1406 passed, unittest discovery 1361 passed, validate passed with 702 labels
 - Notes: Lever 3 only. No labels registries ontologies imports thresholds heldout splits heldout tuning scoring coordinate staging or experimental PDB deployment shortcuts changed.
+
+### 2026-06-04T14:25:57.944431+00:00 - northstar-lever3
+
+- Task: Lever 3 current measured readout and P07658 runtime feasibility
+- Time mode: measured
+- Measured minutes: 22.583
+- Started: 2026-06-04T14:03:05Z
+- Ended: 2026-06-04T14:25:40Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json, work/fold_augmented_lever3_current_measured_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: measured readout 204 scored train/cal OOS rows with 72 abstained at unchanged threshold 0.44155, train/cal in-scope retention 31 of 34, high-cofactor proxy 0 of 4 abstained, same-family structural proxy 11 of 59 abstained, current evidence insufficient for deployment closure, P07658 AFDB v6 and v4 direct checks 404, facebook esmfold_v1 weights 7.862 GiB and tokenizer lacks U support, full pytest 1409 passed 189 subtests one existing sklearn warning, unittest discovery 1364 passed, validate passed 702 labels, compileall diff check JSON parse 3530 files docs reference check missing 0
+- Notes: Lever 3 only. No labels registries ontologies imports production thresholds heldout splits heldout tuning model weights row scoring coordinate staging or experimental PDB deployment shortcuts changed.
 
 ## Expectation Updates
 
@@ -391,6 +391,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T01:43:55.363807+00:00: Next Lever 2 work should not rerun heldout; start with train/cal-safe feature repair for feature-complete primary abstentions, then recover primary source-free locator coverage.
 - 2026-06-04T12:50:52.667257+00:00: Next Lever 3 action is to run/provision the exact P07658 full-length predicted coordinate using the FASTA/template, rerun acceptance preflight, then acquire 16 source-free high-cofactor train/cal OOS rows before the 170-row same-family structural surface.
 - 2026-06-04T13:53:10.947379+00:00: Next Lever 3 action is to fill the P07658 coordinate and provenance dispatch first then high-cofactor slots then same-family structural slots before any fixed-threshold rerun.
+- 2026-06-04T14:25:57.944431+00:00: Lever 3 now has a measured current operating-point readout but deployment closure still needs P07658 accepted full-length predicted-coordinate provenance plus 16 high-cofactor and 170 same-family structural train/cal OOS acquisition rows.
 
 ## Scope Adjustments
 

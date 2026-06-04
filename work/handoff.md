@@ -3,13 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T13:02:32Z`
-- STARTED_AT_LOCAL: `2026-06-04T08:02:32-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T13:52:40Z`
-- ENDED_AT_LOCAL: `2026-06-04T08:52:40-0500 CDT`
-- ELAPSED_MINUTES: `50.1`
+- STARTED_AT_UTC: `2026-06-04T14:03:05Z`
+- STARTED_AT_LOCAL: `2026-06-04T09:03:05-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T14:26:14Z`
+- ENDED_AT_LOCAL: `2026-06-04T09:26:14-0500 CDT`
+- ELAPSED_MINUTES: `23.2`
 - Status: wrap ledger complete; commit/push pending. Canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T13:03:01Z` with PID `51345`.
+  acquired before substantive work at `2026-06-04T14:03:05Z` with PID `20645`.
   Current user instruction: work only on Lever 3.
 
 ## Mission
@@ -61,6 +61,121 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 33
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T14:03:05Z`
+- STARTED_LOCAL: `2026-06-04T09:03:05-0500 CDT`
+- ENDED_AT: `2026-06-04T14:26:14Z`
+- ENDED_LOCAL: `2026-06-04T09:26:14-0500 CDT`
+- ELAPSED_MINUTES: `23.2`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T14:03:05Z` with PID `20645`.
+
+#### Current intent
+
+Work only on Lever 3. Produce a measured deployment-valid fold/geometry
+novelty readout first, before any blocker packet, and only use source-free
+predicted-structure/fold/geometry evidence with the already selected
+train/cal threshold.
+
+#### What changed
+
+- Added a reproducible Lever 3 current measured readout builder and CLI:
+  `build-fold-augmented-lever3-current-measured-readout`.
+- Added the measured readout artifact and report:
+  `artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_current_measured_readout_current702_20260604.md`.
+  It reports the unchanged `combined_mean_geometry_fold` threshold `0.44155`
+  on the latest non-heldout train/cal OOS surface: 204/210 rows have
+  full-channel scores, 72/204 abstain, and 132/204 retain.
+- The same artifact carries the true in-scope operating point selected on
+  train/cal only: 31/34 calibration in-scope rows retained. Heldout values are
+  carried as context only, not tuning: 5/6 heldout confounded OOS rows abstain
+  and 45/47 heldout in-scope rows retain at the frozen threshold.
+- The hard proxy readout is not deployment-closed: high-cofactor proxy rows
+  abstain 0/4, and same-family structural proxy rows abstain 11/59. The
+  artifact names the exact remaining evidence: accepted P07658 full-length
+  predicted-coordinate provenance, 16 high-cofactor train/cal OOS acquisition
+  rows, and the 170-row same-family structural acquisition surface.
+- Added the high-cofactor proxy row table and latest scored-surface missing
+  full-channel row table to the human report, with an explicit note that the
+  current-evidence packet narrows the live surface-completeness blocker before
+  rerun to P07658.
+- Added unit, CLI parser, and current-artifact regression coverage in
+  `tests/test_northstar_next_levers.py`, `tests/test_cli.py`, and
+  `tests/test_geometry_artifact_regression.py`.
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md` from the progress CLI.
+
+#### P07658 feasibility attempt
+
+- Rechecked narrow public coordinate endpoints during the run:
+  AFDB direct `AF-P07658-F1-model_v6.cif` and `AF-P07658-F1-model_v4.cif`
+  returned 404; the probed PDBe 3D-Beacons route returned 404; the
+  ModelArchive query route did not return parseable JSON.
+- Checked local/Transformers feasibility without downloading large weights:
+  `facebook/esmfold_v1` is not cached, its `pytorch_model.bin` is 7.862 GiB,
+  and its tokenizer does not include `U`; exact P07658 tokenization leaves the
+  selenocysteine position unresolved rather than safely preserving it. No
+  P07658 coordinate was staged or scored.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, row scores, coordinate staging, or threshold values
+  changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental PDB metadata were used as predictive features.
+- The new readout is not a blocker packet; it is a measured source-free
+  operating-point readout with unresolved evidence gaps.
+
+#### Verification
+
+- Focused tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_cli.py tests/test_geometry_artifact_regression.py -q`
+  passed: 537 tests and 170 subtests.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1409 passed, 189 subtests, with the
+  existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1364 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Repo-wide JSON parse: 3530 JSON files checked.
+- Final docs artifact-reference check to `/tmp`: missing 0.
+- Disk guardrail remained above 10 GiB: 19 GiB available.
+
+#### Commit/push status
+
+- Handoff/status/memory were updated after validation. Commit, push,
+  `HEAD == origin/main` verification, and lock release are the remaining
+  mechanical wrap steps after this handoff edit.
+
+#### Exact next action
+
+Do not change or retune threshold `0.44155`. The next Lever 3 action is:
+
+1. Provision or run an approved full-length predictor/provider for exact
+   P07658 that explicitly supports or documents selenocysteine position 140
+   handling without experimental-PDB shortcuts.
+2. Fill the provenance contract and rerun
+   `build-fold-augmented-p07658-prediction-acceptance-preflight`.
+3. If and only if the P07658 acceptance checks pass, rerun row scoring at the
+   unchanged threshold and refresh the measured readout.
+4. Then fill and score the frozen 16-row high-cofactor train/cal OOS probe
+   before attempting the larger 170-row same-family structural acquisition.
 
 ### 2026-06-04 Lever 3 Forward Push Run 31
 

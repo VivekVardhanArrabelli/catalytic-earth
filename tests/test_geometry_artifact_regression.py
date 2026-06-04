@@ -7266,6 +7266,77 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(summary["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(summary["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_lever3_current_measured_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_current_measured_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_current_measured_readout_ready_"
+                "evidence_insufficient"
+            ),
+        )
+        self.assertEqual(readout["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["candidate_train_cal_oos_rows"], 210)
+        self.assertEqual(readout["counts"]["scored_train_cal_oos_rows"], 204)
+        self.assertEqual(readout["counts"]["missing_full_channel_rows"], 6)
+        self.assertEqual(
+            readout["counts"]["all_train_cal_oos_abstained_at_fixed_threshold"],
+            72,
+        )
+        self.assertEqual(
+            readout["counts"]["all_train_cal_oos_retained_at_fixed_threshold"],
+            132,
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["calibration_in_scope_total"], 34)
+        self.assertEqual(readout["counts"]["high_cofactor_proxy_rows"], 4)
+        self.assertEqual(
+            readout["counts"]["high_cofactor_proxy_abstained_at_fixed_threshold"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["same_family_structural_proxy_rows"], 59
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_structural_proxy_abstained_at_fixed_threshold"
+            ],
+            11,
+        )
+        self.assertEqual(
+            readout["counts"]["p07658_surface_completeness_blocker_rows"], 1
+        )
+        self.assertEqual(readout["counts"]["high_cofactor_intake_slots_required"], 16)
+        self.assertEqual(
+            readout["counts"]["same_family_structural_intake_slots_required"],
+            170,
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertTrue(readout["decision"]["measured_readout_available"])
+        self.assertTrue(readout["decision"]["deployment_valid_readout_available"])
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["train_cal_high_cofactor_proxy_target_met"]
+        )
+        self.assertFalse(
+            readout["decision"]["train_cal_same_family_structural_proxy_target_met"]
+        )
+        self.assertTrue(readout["guardrails"]["measured_readout_first"])
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current(
         self,
     ) -> None:
@@ -7280,6 +7351,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "acquisition_dispatch_packet_current702_20260604.json"
             ),
             "v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json",
+            "v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
         ]:
             with self.subTest(artifact_name=artifact_name):
                 artifact = _load_json(ROOT / "artifacts" / artifact_name)

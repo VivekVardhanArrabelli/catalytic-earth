@@ -297,6 +297,9 @@ FOLD_AUGMENTED_LEVER3_MINIMUM_NEXT_EXPERIMENT_QUEUE_ID = (
 FOLD_AUGMENTED_LEVER3_DISPATCH_READINESS_SUMMARY_ID = (
     "v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_CURRENT_MEASURED_READOUT_ID = (
+    "v3_fold_augmented_lever3_current_measured_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -34600,6 +34603,494 @@ def write_fold_augmented_lever3_dispatch_readiness_summary(
             encoding="utf-8",
         )
     return summary
+
+
+def build_fold_augmented_lever3_current_measured_readout(
+    *,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_evidence_after_q43088_locator_approval_path: Path,
+    lever3_dispatch_readiness_summary_path: Path,
+    cofactor_proxy_threshold: float = COFACTOR_SIGNATURE_THRESHOLD,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_CURRENT_MEASURED_READOUT_ID,
+) -> dict[str, Any]:
+    threshold_contract = _read_json(expanded_oos_calibrated_threshold_contract_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    current_evidence = _read_json(current_evidence_after_q43088_locator_approval_path)
+    dispatch = _read_json(lever3_dispatch_readiness_summary_path)
+
+    primary = threshold_contract.get("primary_channel_readout") or {}
+    selected = (
+        primary.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    heldout_context = (
+        primary.get("heldout_final_eval_at_90pct_oos_calibrated_threshold") or {}
+    )
+    channel_name = str(primary.get("channel") or "combined_mean_geometry_fold")
+    threshold = _parse_optional_float(selected.get("threshold"))
+    if threshold is None:
+        threshold = _fixed_combined_mean_geometry_fold_threshold(threshold_contract)
+    threshold_value = float(threshold or 0.0)
+
+    candidate_rows = [
+        row
+        for row in surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    scored_rows = [
+        row
+        for row in candidate_rows
+        if (row.get("channel_scores") or {}).get(channel_name) is not None
+    ]
+    missing_full_channel_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "accession": row.get("accession")
+            or row.get("predicted_geometry_accession")
+            or row.get("predicted_geometry_manifest_accession"),
+            "predicted_geometry_status": row.get("predicted_geometry_status"),
+            "has_channel_scores": bool(row.get("channel_scores")),
+        }
+        for row in candidate_rows
+        if (row.get("channel_scores") or {}).get(channel_name) is None
+    ]
+    high_cofactor_rows = [
+        row
+        for row in scored_rows
+        if (_cofactor_proxy_score(row) or 0.0) >= cofactor_proxy_threshold
+    ]
+    fold_proxy_threshold = _selected_90pct_threshold_for_channel(
+        threshold_contract, "fold_nearest_atlas_tm_score"
+    )
+    geometry_proxy_threshold = _selected_90pct_threshold_for_channel(
+        threshold_contract, "geometry_top1_score"
+    )
+    same_family_structural_rows: list[dict[str, Any]] = []
+    if fold_proxy_threshold is not None and geometry_proxy_threshold is not None:
+        for row in scored_rows:
+            channel_scores = row.get("channel_scores") or {}
+            fold = channel_scores.get("fold_nearest_atlas_tm_score")
+            geometry = channel_scores.get("geometry_top1_score")
+            fold_channel = row.get("predicted_structure_fold_channel") or {}
+            geometry_top1 = row.get("predicted_geometry_top1") or {}
+            nearest_fp = fold_channel.get("nearest_train_atlas_true_fingerprint_id")
+            top1_fp = geometry_top1.get("fingerprint_id")
+            same_family = bool(nearest_fp and top1_fp and nearest_fp == top1_fp)
+            if (
+                same_family
+                and fold is not None
+                and geometry is not None
+                and float(fold) >= float(fold_proxy_threshold)
+                and float(geometry) >= float(geometry_proxy_threshold)
+            ):
+                same_family_structural_rows.append(row)
+
+    all_readout = _fixed_threshold_row_readout(
+        scored_rows,
+        channel_name=channel_name,
+        threshold=threshold_value,
+    )
+    high_readout = _fixed_threshold_row_readout(
+        high_cofactor_rows,
+        channel_name=channel_name,
+        threshold=threshold_value,
+    )
+    same_family_readout = _fixed_threshold_row_readout(
+        same_family_structural_rows,
+        channel_name=channel_name,
+        threshold=threshold_value,
+    )
+    current_counts = current_evidence.get("counts") or {}
+    current_decision = current_evidence.get("decision") or {}
+    dispatch_counts = dispatch.get("counts") or {}
+    dispatch_decision = dispatch.get("decision") or {}
+    dispatch_critical = int(dispatch_counts.get("critical_violation_total") or 0)
+    current_critical = int(current_counts.get("critical_violation_total") or 0)
+    high_target_met = bool(
+        high_readout["abstain_recall"] is not None
+        and float(high_readout["abstain_recall"]) >= 0.80
+    )
+    same_family_target_met = bool(
+        same_family_readout["abstain_recall"] is not None
+        and float(same_family_readout["abstain_recall"]) >= 0.80
+    )
+    in_scope_retention_ok = bool(
+        selected.get("calibration_in_scope_retain_recall") is not None
+        and float(selected["calibration_in_scope_retain_recall"]) >= 0.90
+    )
+    heldout_confounded_context_met = bool(
+        heldout_context.get("heldout_confounded_oos_abstain_recall") is not None
+        and float(heldout_context["heldout_confounded_oos_abstain_recall"]) >= 0.80
+    )
+    measured_readout_available = bool(scored_rows and threshold is not None)
+    deployment_valid_readout_available = bool(
+        measured_readout_available and dispatch_critical == 0 and current_critical == 0
+    )
+    fixed_threshold_audit_ready = bool(
+        current_decision.get("fixed_threshold_audit_ready_to_rerun_now")
+    ) and bool(dispatch_decision.get("fixed_threshold_audit_ready_to_rerun_now"))
+    deployment_closed_now = bool(
+        deployment_valid_readout_available
+        and high_target_met
+        and same_family_target_met
+        and in_scope_retention_ok
+        and fixed_threshold_audit_ready
+    )
+    status = (
+        "fold_augmented_lever3_current_measured_readout_deployment_closed"
+        if deployment_closed_now
+        else "fold_augmented_lever3_current_measured_readout_ready_evidence_insufficient"
+    )
+    unresolved_evidence_gaps = [
+        {
+            "gap_id": "p07658_surface_completeness",
+            "measured_now": False,
+            "current_count": int(current_counts.get("surface_completeness_blocker_rows") or 0),
+            "smallest_next_experiment": current_decision.get(
+                "smallest_surface_completeness_experiment"
+            ),
+        },
+        {
+            "gap_id": "high_cofactor_train_cal_oos_acquisition",
+            "measured_now": False,
+            "current_count": int(
+                dispatch_counts.get("high_cofactor_intake_slots_required") or 0
+            ),
+            "smallest_next_experiment": (
+                "Fill and score 16 new non-heldout train/cal high-cofactor "
+                "OOS rows at unchanged threshold 0.44155."
+            ),
+        },
+        {
+            "gap_id": "same_family_structural_train_cal_oos_acquisition",
+            "measured_now": False,
+            "current_count": int(
+                dispatch_counts.get("same_family_structural_intake_slots_required")
+                or 0
+            ),
+            "smallest_next_experiment": (
+                "Fill and score enough new non-heldout train/cal same-family "
+                "structural OOS rows to close the 170-row lower-bound gap."
+            ),
+        },
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": f"{SCHEMA_VERSION}.fold_augmented_lever3_current_measured_readout",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured readout for the current predicted-structure fold/"
+            "geometry novelty gate. It reports the unchanged train/cal-selected "
+            "operating point on the latest non-heldout OOS surface first, then "
+            "names the remaining evidence gaps needed before deployment closure."
+        ),
+        "guardrails": {
+            "measured_readout_first": True,
+            "blocker_packet": False,
+            "train_cal_oos_surface_only_for_proxy_measurement": True,
+            "heldout_context_only_not_tuned": True,
+            "source_free_score_channels_only": True,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "fixed_threshold_preserved": True,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "candidate_rows_registered_now": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "fixed_operating_point": {
+            "channel": channel_name,
+            "threshold": round(threshold_value, 6) if threshold is not None else None,
+            "threshold_source": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "calibration_selection": selected,
+            "heldout_final_context_only": heldout_context,
+            "fold_proxy_component_threshold": fold_proxy_threshold,
+            "geometry_proxy_component_threshold": geometry_proxy_threshold,
+        },
+        "measured_readout": {
+            "train_cal_oos_current_scored_surface": {
+                key: value for key, value in all_readout.items() if key != "rows"
+            },
+            "high_cofactor_proxy_train_cal_oos": {
+                key: value for key, value in high_readout.items() if key != "rows"
+            },
+            "same_family_structural_proxy_train_cal_oos": {
+                key: value
+                for key, value in same_family_readout.items()
+                if key != "rows"
+            },
+            "train_cal_in_scope_threshold_selection": selected,
+            "heldout_final_context_only": heldout_context,
+        },
+        "row_readouts": {
+            "high_cofactor_proxy_rows": high_readout["rows"],
+            "same_family_structural_proxy_rows": same_family_readout["rows"],
+            "missing_full_channel_rows": sorted(
+                missing_full_channel_rows,
+                key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+            ),
+        },
+        "counts": {
+            "candidate_train_cal_oos_rows": len(candidate_rows),
+            "scored_train_cal_oos_rows": len(scored_rows),
+            "missing_full_channel_rows": len(missing_full_channel_rows),
+            "all_train_cal_oos_abstained_at_fixed_threshold": all_readout["abstained"],
+            "all_train_cal_oos_retained_at_fixed_threshold": all_readout["retained"],
+            "high_cofactor_proxy_rows": high_readout["row_count"],
+            "high_cofactor_proxy_abstained_at_fixed_threshold": high_readout[
+                "abstained"
+            ],
+            "same_family_structural_proxy_rows": same_family_readout["row_count"],
+            "same_family_structural_proxy_abstained_at_fixed_threshold": (
+                same_family_readout["abstained"]
+            ),
+            "calibration_in_scope_retained": int(
+                selected.get("calibration_in_scope_retained") or 0
+            ),
+            "calibration_in_scope_total": int(
+                selected.get("calibration_in_scope_total") or 0
+            ),
+            "heldout_confounded_oos_abstained_context_only": int(
+                heldout_context.get("heldout_confounded_oos_abstained") or 0
+            ),
+            "heldout_confounded_oos_total_context_only": int(
+                heldout_context.get("heldout_confounded_oos_total") or 0
+            ),
+            "p07658_surface_completeness_blocker_rows": int(
+                current_counts.get("surface_completeness_blocker_rows") or 0
+            ),
+            "high_cofactor_intake_slots_required": int(
+                dispatch_counts.get("high_cofactor_intake_slots_required") or 0
+            ),
+            "same_family_structural_intake_slots_required": int(
+                dispatch_counts.get("same_family_structural_intake_slots_required")
+                or 0
+            ),
+            "critical_violation_total": current_critical + dispatch_critical,
+            "unresolved_evidence_gaps": len(unresolved_evidence_gaps),
+        },
+        "unresolved_evidence_gaps": unresolved_evidence_gaps,
+        "decision": {
+            "measured_readout_available": measured_readout_available,
+            "deployment_valid_readout_available": deployment_valid_readout_available,
+            "true_in_scope_retention_ok_at_train_cal_selected_threshold": (
+                in_scope_retention_ok
+            ),
+            "heldout_confounded_oos_context_met_without_tuning": (
+                heldout_confounded_context_met
+            ),
+            "train_cal_high_cofactor_proxy_target_met": high_target_met,
+            "train_cal_same_family_structural_proxy_target_met": same_family_target_met,
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed_now,
+            "fixed_threshold_audit_ready_to_rerun_now": bool(
+                fixed_threshold_audit_ready
+            ),
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Do not change threshold 0.44155. The current readout is measured "
+                "and source-free, but it is not confounded-safe enough for "
+                "deployment closure: P07658 still needs accepted full-length "
+                "predicted-coordinate provenance, the high-cofactor axis needs "
+                "16 accepted train/cal OOS rows, and the same-family structural "
+                "axis needs the larger 170-row acquisition."
+            ),
+        },
+        "source_artifacts": {
+            "expanded_oos_calibrated_threshold_contract": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "current_evidence_after_q43088_locator_approval": _source_path_record(
+                current_evidence_after_q43088_locator_approval_path
+            ),
+            "lever3_dispatch_readiness_summary": _source_path_record(
+                lever3_dispatch_readiness_summary_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"At the unchanged fixed threshold, {all_readout['abstained']}/"
+                f"{all_readout['row_count']} scored train/cal OOS rows abstain "
+                "while train/cal in-scope retention remains "
+                f"{selected.get('calibration_in_scope_retained')}/"
+                f"{selected.get('calibration_in_scope_total')}."
+            ),
+            "result": (
+                "The current source-free evidence is enough to measure the "
+                "operating point, but not enough to close Lever 3: high-cofactor "
+                f"proxy abstention is {high_readout['abstained']}/"
+                f"{high_readout['row_count']} and same-family structural proxy "
+                f"abstention is {same_family_readout['abstained']}/"
+                f"{same_family_readout['row_count']}."
+            ),
+            "next_action": (
+                "Run the P07658 prediction/provenance acceptance path first; "
+                "then acquire and score the frozen high-cofactor train/cal OOS "
+                "probe before the larger same-family structural acquisition."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_current_measured_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    measured = readout["measured_readout"]
+    decision = readout["decision"]
+    fixed = readout["fixed_operating_point"]
+    lines = [
+        "# Fold-Augmented Lever 3 Current Measured Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Fixed channel: {fixed['channel']}",
+        f"- Fixed threshold: {fixed['threshold']}",
+        "- Scored train/cal OOS rows: "
+        f"{counts['scored_train_cal_oos_rows']}/"
+        f"{counts['candidate_train_cal_oos_rows']}",
+        "- All train/cal OOS abstained/retained: "
+        f"{counts['all_train_cal_oos_abstained_at_fixed_threshold']}/"
+        f"{counts['all_train_cal_oos_retained_at_fixed_threshold']}",
+        "- Train/cal in-scope retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_total']}",
+        "- Missing full-channel rows: "
+        f"{counts['missing_full_channel_rows']}",
+        "",
+        "## Measured Readout",
+        "",
+        "| subset | rows | abstained | retained | recall |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for name, row in [
+        ("all train/cal OOS", measured["train_cal_oos_current_scored_surface"]),
+        ("high-cofactor proxy", measured["high_cofactor_proxy_train_cal_oos"]),
+        (
+            "same-family structural proxy",
+            measured["same_family_structural_proxy_train_cal_oos"],
+        ),
+    ]:
+        lines.append(
+            f"| {name} | {row['row_count']} | {row['abstained']} | "
+            f"{row['retained']} | {row['abstain_recall']} |"
+        )
+    lines += [
+        "",
+        "## High-Cofactor Proxy Rows",
+        "",
+        "| row | combined | margin | abstains | nearest train | top1 |",
+        "| --- | ---: | ---: | --- | --- | --- |",
+    ]
+    for row in readout.get("row_readouts", {}).get("high_cofactor_proxy_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row.get('combined_mean_geometry_fold')} | "
+            f"{row.get('threshold_margin')} | "
+            f"{row.get('abstains_at_fixed_threshold')} | "
+            f"{row.get('nearest_train_atlas_entry_id')} | "
+            f"{row.get('predicted_geometry_top1_fingerprint_id')} |"
+        )
+    lines += [
+        "",
+        "## Missing Full-Channel Rows In Scored Surface",
+        "",
+        "These rows are missing from the latest scored surface artifact. The "
+        "current-evidence packet narrows the live surface-completeness blocker "
+        "before rerun to P07658.",
+        "",
+        "| row | accession | predicted geometry status |",
+        "| --- | --- | --- |",
+    ]
+    for row in readout.get("row_readouts", {}).get("missing_full_channel_rows", []):
+        lines.append(
+            f"| {row.get('entry_id')} | {row.get('accession')} | "
+            f"{row.get('predicted_geometry_status')} |"
+        )
+    lines += [
+        "",
+        "## Remaining Evidence",
+        "",
+        "| gap | current count | smallest next experiment |",
+        "| --- | ---: | --- |",
+    ]
+    for gap in readout.get("unresolved_evidence_gaps", []):
+        lines.append(
+            f"| {gap['gap_id']} | {gap['current_count']} | "
+            f"{gap['smallest_next_experiment']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Measured readout available: {decision['measured_readout_available']}",
+        "- Deployment-valid readout available: "
+        f"{decision['deployment_valid_readout_available']}",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        "- High-cofactor proxy target met: "
+        f"{decision['train_cal_high_cofactor_proxy_target_met']}",
+        "- Same-family structural proxy target met: "
+        f"{decision['train_cal_same_family_structural_proxy_target_met']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_current_measured_readout(
+    *,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_evidence_after_q43088_locator_approval_path: Path,
+    lever3_dispatch_readiness_summary_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_CURRENT_MEASURED_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_current_measured_readout(
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        current_evidence_after_q43088_locator_approval_path=(
+            current_evidence_after_q43088_locator_approval_path
+        ),
+        lever3_dispatch_readiness_summary_path=lever3_dispatch_readiness_summary_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_current_measured_readout_report(readout),
+            encoding="utf-8",
+        )
+    return readout
 
 
 def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(

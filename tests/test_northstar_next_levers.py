@@ -65,6 +65,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
     build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
     build_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    build_fold_augmented_lever3_current_measured_readout,
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
@@ -3323,6 +3324,168 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(summary["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(summary["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_current_measured_readout_reports_partial_operating_point(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            threshold_path = root / "threshold.json"
+            surface_path = root / "surface.json"
+            evidence_path = root / "current_evidence.json"
+            dispatch_path = root / "dispatch.json"
+
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "calibration_in_scope_retain_recall": 0.91,
+                                "calibration_in_scope_retained": 91,
+                                "calibration_in_scope_total": 100,
+                                "threshold": 0.44155,
+                            },
+                            "heldout_final_eval_at_90pct_oos_calibrated_threshold": {
+                                "heldout_confounded_oos_abstain_recall": 0.83,
+                                "heldout_confounded_oos_abstained": 5,
+                                "heldout_confounded_oos_total": 6,
+                                "threshold": 0.44155,
+                            },
+                        },
+                        "threshold_contract": {
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.4
+                                }
+                            },
+                            "geometry_top1_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.3
+                                }
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "out_of_scope",
+                                "oos_tier": "unknown_oos",
+                                "split_assignment": "in_distribution",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.5,
+                                    "cofactor_max_score": 0.9,
+                                    "fold_nearest_atlas_tm_score": 0.5,
+                                    "geometry_top1_score": 0.35,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:10",
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_a",
+                                },
+                                "predicted_geometry_top1": {"fingerprint_id": "fp_a"},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "out_of_scope",
+                                "oos_tier": "unknown_oos",
+                                "split_assignment": "in_distribution",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.3,
+                                    "cofactor_max_score": 0.1,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                    "geometry_top1_score": 0.4,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:11",
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_b",
+                                },
+                                "predicted_geometry_top1": {"fingerprint_id": "fp_b"},
+                            },
+                            {"entry_id": "m_csa:3", "accession": "P00003"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            evidence_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "surface_completeness_blocker_rows": 1,
+                        },
+                        "decision": {
+                            "fixed_threshold_audit_ready_to_rerun_now": False,
+                            "smallest_surface_completeness_experiment": "clear P07658",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "high_cofactor_intake_slots_required": 16,
+                            "same_family_structural_intake_slots_required": 170,
+                        },
+                        "decision": {
+                            "fixed_threshold_audit_ready_to_rerun_now": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_current_measured_readout(
+                expanded_oos_calibrated_threshold_contract_path=threshold_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                current_evidence_after_q43088_locator_approval_path=evidence_path,
+                lever3_dispatch_readiness_summary_path=dispatch_path,
+                artifact_id="lever3_measured_readout_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_measured_readout_test")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_current_measured_readout_ready_evidence_insufficient",
+        )
+        self.assertEqual(readout["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["scored_train_cal_oos_rows"], 2)
+        self.assertEqual(readout["counts"]["missing_full_channel_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["all_train_cal_oos_abstained_at_fixed_threshold"],
+            1,
+        )
+        self.assertEqual(readout["counts"]["high_cofactor_proxy_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["high_cofactor_proxy_abstained_at_fixed_threshold"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["same_family_structural_proxy_rows"], 2)
+        self.assertEqual(
+            readout["counts"][
+                "same_family_structural_proxy_abstained_at_fixed_threshold"
+            ],
+            1,
+        )
+        self.assertTrue(readout["decision"]["measured_readout_available"])
+        self.assertTrue(readout["decision"]["deployment_valid_readout_available"])
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["train_cal_high_cofactor_proxy_target_met"]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

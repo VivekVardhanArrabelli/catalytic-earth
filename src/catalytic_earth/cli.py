@@ -150,6 +150,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
     write_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
     write_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    write_fold_augmented_lever3_current_measured_readout,
     write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
     write_fold_augmented_post_decision_deployment_closure_status,
@@ -13146,6 +13147,39 @@ def cmd_build_fold_augmented_lever3_dispatch_readiness_summary(
         f"{counts.get('dispatch_packets_ready_for_external_action')}/"
         f"{counts.get('dispatch_packets_checked')}, train/cal slots: "
         f"{counts.get('total_train_cal_oos_intake_slots_required')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_current_measured_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_current_measured_readout(
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        latest_train_cal_oos_surface_path=Path(args.latest_train_cal_oos_surface),
+        current_evidence_after_q43088_locator_approval_path=Path(
+            args.current_evidence_after_q43088_locator_approval
+        ),
+        lever3_dispatch_readiness_summary_path=Path(
+            args.lever3_dispatch_readiness_summary
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 current measured readout to "
+        f"{args.out} (scored OOS rows: "
+        f"{counts.get('scored_train_cal_oos_rows')}, abstained: "
+        f"{counts.get('all_train_cal_oos_abstained_at_fixed_threshold')}, "
+        f"deployment closed: "
+        f"{readout.get('decision', {}).get('current_evidence_sufficient_for_deployment_closure')})"
     )
     return 0
 
@@ -31336,6 +31370,61 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_dispatch_readiness_summary.set_defaults(
         func=cmd_build_fold_augmented_lever3_dispatch_readiness_summary
+    )
+
+    lever3_current_measured_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-current-measured-readout",
+        help=(
+            "write the current Lever 3 measured operating-point readout before "
+            "any blocker packet or acquisition fallback"
+        ),
+    )
+    lever3_current_measured_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    lever3_current_measured_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_current_measured_readout.add_argument(
+        "--current-evidence-after-q43088-locator-approval",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_"
+            "after_q43088_locator_approval_current702_20260604.json"
+        ),
+    )
+    lever3_current_measured_readout.add_argument(
+        "--lever3-dispatch-readiness-summary",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_current_measured_readout.add_argument("--artifact-id", default=None)
+    lever3_current_measured_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_current_measured_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_current_measured_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_current_measured_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(
