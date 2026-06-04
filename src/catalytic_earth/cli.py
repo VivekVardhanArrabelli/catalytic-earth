@@ -44,6 +44,7 @@ from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
 from .mechanism_feature_residual_robustness import write_residual_robustness_audit
 from .lever2_mechanism_incremental_readout import (
     write_lever2_mechanism_feature_incremental_readout,
+    write_lever2_source_free_electron_flow_split_alignment_readout,
 )
 from .mechanism_residual_gate_integration import write_residual_gate_integration_eval
 from .mechanism_abstention_gate_eval import (
@@ -13664,6 +13665,41 @@ def cmd_build_lever2_mechanism_feature_incremental_readout(
         "Wrote Lever 2 mechanism feature incremental readout to "
         f"{args.out} (OOS overlap: {counts.get('oos_overlap_rows')}, "
         f"valid primary overlap: {counts.get('valid_primary_overlap_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_split_alignment_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_split_alignment_readout(
+        projection_readout_path=Path(args.projection_readout),
+        incremental_readout_path=Path(args.incremental_readout),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow split-alignment readout to "
+        f"{args.out} (retained OOS missing: "
+        f"{counts.get('missing_current_retained_oos_electron_flow_rows')}, "
+        f"best-axis current OOS catches: "
+        f"{counts.get('best_single_axis_new_oos_catches_on_current_geometry_fold_oos')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -32182,6 +32218,79 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_mechanism_incremental_readout.set_defaults(
         func=cmd_build_lever2_mechanism_feature_incremental_readout
+    )
+
+    lever2_electron_flow_split_alignment_readout = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-split-alignment-readout",
+        help=(
+            "write a train/cal Lever 2 readout for the source-free "
+            "electron-flow repair axis against the current geometry/fold split"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--incremental-readout",
+        default=(
+            "artifacts/v3_lever2_mechanism_feature_incremental_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_split_alignment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_split_alignment_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_split_alignment_readout
     )
 
     lever3_current_measured_readout = subparsers.add_parser(

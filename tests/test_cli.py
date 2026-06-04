@@ -53,6 +53,7 @@ class CliTests(unittest.TestCase):
             "source_free_projection_repair_candidate_surface",
             args.source_free_projection_repair_candidate_surface,
         )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
         self.assertIn(
             "abstention_threshold_contract_current702",
             args.current_in_scope_threshold_contract,
@@ -60,6 +61,34 @@ class CliTests(unittest.TestCase):
         self.assertIn(
             "expanded_oos_calibrated",
             args.expanded_oos_calibrated_threshold_contract,
+        )
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.current_in_scope_threshold_contract,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+
+    def test_lever2_electron_flow_split_alignment_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-source-free-electron-flow-split-alignment-readout"]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_split_alignment_readout",
+            args.out,
+        )
+        self.assertIn(
+            "source_free_train_cal_projection_readout", args.projection_readout
+        )
+        self.assertIn(
+            "lever2_mechanism_feature_incremental_readout", args.incremental_readout
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
         )
 
     def test_lever3_current_measured_readout_parser_defaults(self) -> None:

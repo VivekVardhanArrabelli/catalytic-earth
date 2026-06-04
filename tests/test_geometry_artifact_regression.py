@@ -18332,6 +18332,60 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(packet["guardrails"]["review_only"])
         self.assertFalse(packet["guardrails"]["imports_or_promotions_performed"])
 
+    def test_lever2_electron_flow_split_alignment_readout_current_counts(self) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_lever2_source_free_electron_flow_split_alignment_readout_current702_20260604.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_source_free_electron_flow_split_alignment_readout_research_only",
+        )
+        self.assertEqual(readout["result_class"], "research_only")
+        self.assertEqual(
+            readout["counts"]["missing_current_retained_oos_electron_flow_rows"],
+            40,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_primary_electron_flow_rows"],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_single_axis_new_oos_catches_on_current_geometry_fold_oos"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_surface_overlap_missing_retained_oos_rows"],
+            0,
+        )
+        raw = readout["measured_readout"][
+            "raw_full_sidecar_current_surface_overlap_diagnostic"
+        ]
+        self.assertTrue(raw["available"])
+        self.assertEqual(
+            raw["counts"]["current_oos_calibration_feature_overlap_rows"],
+            8,
+        )
+        self.assertEqual(raw["counts"]["current_retained_oos_overlap_rows"], 5)
+        self.assertEqual(
+            raw["counts"]["electron_positive_current_retained_oos_overlap_rows"],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"]["source_free_electron_flow_axis_has_train_cal_signal"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "split_aligned_current_surface_incremental_readout_measurable"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

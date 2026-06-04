@@ -7,6 +7,7 @@ from pathlib import Path
 
 from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_mechanism_feature_incremental_readout,
+    build_lever2_source_free_electron_flow_split_alignment_readout,
 )
 from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout as build_projection_readout,
@@ -368,6 +369,309 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             readout["decision"]["result_classification"].endswith(
                 "current_projection_incomplete"
             )
+        )
+
+    def test_electron_flow_split_alignment_prioritizes_missing_current_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            projection_path = root / "projection.json"
+            incremental_path = root / "incremental.json"
+            candidate_path = root / "candidate.json"
+            sidecar_path = root / "sidecar.json"
+            current_primary_path = root / "current_primary.json"
+            expanded_oos_path = root / "expanded_oos.json"
+
+            projection_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "axis_repair_ceiling_rows": [
+                                {
+                                    "variant": "current_source_free_projected_subset",
+                                    "feature_field_count": 4,
+                                    "primary_retain_recall": 1.0,
+                                    "oos_abstain_recall": 0.5,
+                                    "auc_oos_gt_primary": 0.7,
+                                    "threshold": 0.1,
+                                },
+                                {
+                                    "variant": "current_plus_missing_electron_flow",
+                                    "feature_field_count": 6,
+                                    "primary_retain_recall": 1.0,
+                                    "oos_abstain_recall": 0.75,
+                                    "auc_oos_gt_primary": 0.8,
+                                    "threshold": 0.2,
+                                },
+                                {
+                                    "variant": "full_frozen_row_specific_surface",
+                                    "feature_field_count": 19,
+                                    "primary_retain_recall": 1.0,
+                                    "oos_abstain_recall": 0.8,
+                                    "auc_oos_gt_primary": 0.82,
+                                    "threshold": 0.3,
+                                },
+                            ],
+                            "best_single_axis_repair_ceiling": {
+                                "variant": "current_plus_missing_electron_flow"
+                            },
+                            "best_single_axis_new_oos_rows": [
+                                {
+                                    "entry_id": "m_csa:10",
+                                    "in_current_geometry_fold_calibration_oos": False,
+                                },
+                                {
+                                    "entry_id": "m_csa:11",
+                                    "in_current_geometry_fold_calibration_oos": True,
+                                },
+                            ],
+                            "split_alignment_context": {
+                                "current_geometry_fold_calibration_primary_rows": 2,
+                                "current_geometry_fold_calibration_oos_rows": 3,
+                                "source_free_candidate_projection_overlap_primary_rows": 0,
+                                "source_free_candidate_projection_overlap_oos_rows": 0,
+                            },
+                        },
+                        "decision": {
+                            (
+                                "split_aligned_current_surface_incremental_readout_"
+                                "measurable"
+                            ): False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            incremental_path.write_text(
+                json.dumps(
+                    {
+                        "missing_evidence_rows": {
+                            (
+                                "current_calibration_primary_rows_requiring_"
+                                "source_free_mechanism_features"
+                            ): [
+                                {
+                                    "entry_id": "m_csa:20",
+                                    "accession": "P00020",
+                                    "current_surface_score": 0.4,
+                                },
+                                {
+                                    "entry_id": "m_csa:21",
+                                    "accession": "P00021",
+                                    "current_surface_score": 0.8,
+                                },
+                            ],
+                            (
+                                "current_calibration_oos_rows_requiring_"
+                                "source_free_mechanism_features"
+                            ): [
+                                {
+                                    "entry_id": "m_csa:10",
+                                    "accession": "P00010",
+                                    "current_surface_score": 0.9,
+                                    "current_surface_abstains": False,
+                                },
+                                {
+                                    "entry_id": "m_csa:11",
+                                    "accession": "P00011",
+                                    "current_surface_score": 0.2,
+                                    "current_surface_abstains": True,
+                                },
+                                {
+                                    "entry_id": "m_csa:12",
+                                    "accession": "P00012",
+                                    "current_surface_score": 0.7,
+                                    "current_surface_abstains": False,
+                                },
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_projection_rows": [
+                            {"entry_id": "m_csa:10"},
+                            {"entry_id": "m_csa:21"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": False,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:12",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": False,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:20",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:21",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": False,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_primary_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "m_csa:20",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.4
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:21",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.8
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            expanded_oos_path.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.5
+                            },
+                        },
+                        "calibration_oos_negative_row_scores": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.9
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.2
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:12",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.7
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_split_alignment_readout(
+                projection_readout_path=projection_path,
+                incremental_readout_path=incremental_path,
+                source_free_projection_repair_candidate_surface_path=candidate_path,
+                train_cal_feature_sidecar_path=sidecar_path,
+                current_in_scope_threshold_contract_path=current_primary_path,
+                expanded_oos_calibrated_threshold_contract_path=expanded_oos_path,
+                artifact_id="test_electron_flow_split",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_electron_flow_split")
+        self.assertEqual(readout["result_class"], "research_only")
+        self.assertEqual(
+            readout["status"],
+            "lever2_source_free_electron_flow_split_alignment_readout_research_only",
+        )
+        self.assertEqual(
+            readout["measured_readout"]["train_cal_axis_ceiling"][
+                "electron_flow_oos_abstain_recall_delta_vs_current_projected"
+            ],
+            0.25,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "source_free_electron_flow_axis_has_train_cal_signal"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "split_aligned_current_surface_incremental_readout_measurable"
+            ]
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_retained_oos_electron_flow_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_surface_overlap_missing_retained_oos_rows"],
+            1,
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in readout["acquisition_priority_rows"]],
+            ["m_csa:10", "m_csa:12", "m_csa:20", "m_csa:21", "m_csa:11"],
+        )
+        self.assertEqual(
+            readout["acquisition_priority_rows"][0]["priority_class"],
+            "current_retained_oos_missing_electron_flow_axis",
+        )
+        raw = readout["measured_readout"][
+            "raw_full_sidecar_current_surface_overlap_diagnostic"
+        ]
+        self.assertTrue(raw["available"])
+        self.assertEqual(
+            raw["counts"]["valid_current_primary_calibration_feature_overlap_rows"],
+            1,
+        )
+        self.assertEqual(
+            raw["counts"][
+                "current_primary_rows_excluded_as_mechanism_train_targets"
+            ],
+            1,
+        )
+        self.assertEqual(
+            raw["counts"]["current_oos_calibration_feature_overlap_rows"],
+            3,
+        )
+        self.assertEqual(
+            raw["counts"]["electron_positive_current_retained_oos_overlap_rows"],
+            1,
         )
 
 

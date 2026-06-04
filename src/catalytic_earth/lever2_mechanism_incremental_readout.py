@@ -21,6 +21,9 @@ SCHEMA_VERSION = "lever2_mechanism_feature_incremental_readout.v0"
 DEFAULT_ARTIFACT_ID = (
     "v3_lever2_mechanism_feature_incremental_readout_current702_20260604"
 )
+DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_split_alignment_readout_current702_20260604"
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -149,6 +152,561 @@ def _current_abstains(row: dict[str, Any], channel: str, threshold: float) -> bo
     if score is None:
         return False
     return score < threshold
+
+
+def _variant_by_name(
+    readout: dict[str, Any], variant_name: str
+) -> dict[str, Any] | None:
+    rows = (
+        (readout.get("measured_readout") or {}).get("axis_repair_ceiling_rows") or []
+    )
+    for row in rows:
+        if isinstance(row, dict) and row.get("variant") == variant_name:
+            return row
+    return None
+
+
+def _entry_ids_from_candidate_surface(candidate_surface: dict[str, Any]) -> set[str]:
+    rows = candidate_surface.get("candidate_projection_rows") or []
+    return {
+        str(row.get("entry_id"))
+        for row in rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _score_value(row: dict[str, Any]) -> float:
+    value = row.get("current_surface_score")
+    return float(value) if value is not None else -1.0
+
+
+def _missing_current_rows(
+    incremental: dict[str, Any],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    missing = incremental.get("missing_evidence_rows") or {}
+    primary = [
+        row
+        for row in (
+            missing.get(
+                "current_calibration_primary_rows_requiring_source_free_mechanism_features"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    oos = [
+        row
+        for row in (
+            missing.get(
+                "current_calibration_oos_rows_requiring_source_free_mechanism_features"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    return primary, oos
+
+
+def _raw_electron_flow_current_overlap_diagnostic(
+    *,
+    train_cal_feature_sidecar: dict[str, Any],
+    current_in_scope_threshold_contract: dict[str, Any],
+    expanded_oos_calibrated_threshold_contract: dict[str, Any],
+) -> dict[str, Any]:
+    channel, current_threshold = _channel_threshold(
+        expanded_oos_calibrated_threshold_contract
+    )
+    feature_rows = {
+        str(row.get("entry_id")): row
+        for row in train_cal_feature_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    calibration_feature_ids = {
+        entry_id
+        for entry_id, row in feature_rows.items()
+        if row.get("assigned_embedding_split") == "calibration"
+    }
+    train_feature_ids = {
+        entry_id
+        for entry_id, row in feature_rows.items()
+        if row.get("assigned_embedding_split") == "train"
+    }
+    current_primary_rows = _fold_rows_by_id(
+        current_in_scope_threshold_contract.get("calibration_row_scores") or []
+    )
+    current_oos_rows = _fold_rows_by_id(
+        expanded_oos_calibrated_threshold_contract.get(
+            "calibration_oos_negative_row_scores"
+        )
+        or []
+    )
+    valid_primary_overlap = sorted(
+        set(current_primary_rows) & calibration_feature_ids, key=_entry_sort_key
+    )
+    primary_train_target_overlap = sorted(
+        set(current_primary_rows) & train_feature_ids, key=_entry_sort_key
+    )
+    oos_overlap = sorted(
+        set(current_oos_rows) & calibration_feature_ids, key=_entry_sort_key
+    )
+    oos_rows: list[dict[str, Any]] = []
+    for entry_id in oos_overlap:
+        feature_row = feature_rows[entry_id]
+        current_row = current_oos_rows[entry_id]
+        features = feature_row.get("row_specific_event_features") or {}
+        current_abstain = _current_abstains(
+            current_row, channel, current_threshold
+        )
+        electron_count = int(features.get("electron_transfer_count") or 0)
+        has_electron = bool(features.get("has_electron_transfer_event"))
+        oos_rows.append(
+            {
+                "entry_id": entry_id,
+                "current_surface_score": _rounded_current_score(
+                    current_row, channel
+                ),
+                "current_surface_abstains": current_abstain,
+                "has_electron_transfer_event": has_electron,
+                "electron_transfer_count": electron_count,
+                "current_retained_oos_with_electron_flow": bool(
+                    not current_abstain and has_electron
+                ),
+            }
+        )
+    current_retained_oos_rows = [
+        row for row in oos_rows if not row["current_surface_abstains"]
+    ]
+    current_abstained_oos_rows = [
+        row for row in oos_rows if row["current_surface_abstains"]
+    ]
+    return {
+        "available": True,
+        "channel": channel,
+        "current_threshold": round(current_threshold, 8),
+        "note": (
+            "Train/cal-only raw full-sidecar diagnostic. It does not select a "
+            "new threshold, does not score heldout, and cannot support a "
+            "deployable claim without split-aligned source-free primary "
+            "retention evidence."
+        ),
+        "counts": {
+            "valid_current_primary_calibration_feature_overlap_rows": len(
+                valid_primary_overlap
+            ),
+            "current_primary_rows_excluded_as_mechanism_train_targets": len(
+                primary_train_target_overlap
+            ),
+            "current_oos_calibration_feature_overlap_rows": len(oos_rows),
+            "current_retained_oos_overlap_rows": len(current_retained_oos_rows),
+            "current_abstained_oos_overlap_rows": len(current_abstained_oos_rows),
+            "electron_positive_oos_overlap_rows": sum(
+                1 for row in oos_rows if row["has_electron_transfer_event"]
+            ),
+            "electron_positive_current_retained_oos_overlap_rows": sum(
+                1
+                for row in current_retained_oos_rows
+                if row["has_electron_transfer_event"]
+            ),
+            "electron_positive_current_abstained_oos_overlap_rows": sum(
+                1
+                for row in current_abstained_oos_rows
+                if row["has_electron_transfer_event"]
+            ),
+        },
+        "valid_current_primary_calibration_feature_overlap_entry_ids": (
+            valid_primary_overlap
+        ),
+        "current_primary_rows_excluded_as_mechanism_train_targets": [
+            {
+                "entry_id": entry_id,
+                "reason": "row_is_mechanism_feature_train_target",
+            }
+            for entry_id in primary_train_target_overlap
+        ],
+        "current_oos_overlap_rows": oos_rows,
+    }
+
+
+def build_lever2_source_free_electron_flow_split_alignment_readout(
+    *,
+    projection_readout_path: Path,
+    incremental_readout_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    train_cal_feature_sidecar_path: Path | None = None,
+    current_in_scope_threshold_contract_path: Path | None = None,
+    expanded_oos_calibrated_threshold_contract_path: Path | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID,
+) -> dict[str, Any]:
+    projection = _read_json(projection_readout_path)
+    incremental = _read_json(incremental_readout_path)
+    candidate_surface = _read_json(source_free_projection_repair_candidate_surface_path)
+    raw_overlap_diagnostic: dict[str, Any] = {"available": False}
+    if (
+        train_cal_feature_sidecar_path is not None
+        and current_in_scope_threshold_contract_path is not None
+        and expanded_oos_calibrated_threshold_contract_path is not None
+        and Path(train_cal_feature_sidecar_path).exists()
+        and Path(current_in_scope_threshold_contract_path).exists()
+        and Path(expanded_oos_calibrated_threshold_contract_path).exists()
+    ):
+        raw_overlap_diagnostic = _raw_electron_flow_current_overlap_diagnostic(
+            train_cal_feature_sidecar=_read_json(train_cal_feature_sidecar_path),
+            current_in_scope_threshold_contract=_read_json(
+                current_in_scope_threshold_contract_path
+            ),
+            expanded_oos_calibrated_threshold_contract=_read_json(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+        )
+
+    current_subset = _variant_by_name(projection, "current_source_free_projected_subset")
+    electron_flow = _variant_by_name(
+        projection, "current_plus_missing_electron_flow"
+    )
+    full_surface = _variant_by_name(projection, "full_frozen_row_specific_surface")
+    blockers: list[str] = []
+    if current_subset is None:
+        blockers.append("current_source_free_projected_subset_variant_missing")
+    if electron_flow is None:
+        blockers.append("electron_flow_axis_variant_missing")
+    if full_surface is None:
+        blockers.append("full_frozen_row_specific_surface_variant_missing")
+
+    measured = projection.get("measured_readout") or {}
+    best_axis = measured.get("best_single_axis_repair_ceiling") or {}
+    best_axis_name = str(best_axis.get("variant") or "").replace(
+        "current_plus_missing_", ""
+    )
+    if best_axis_name and best_axis_name != "electron_flow":
+        blockers.append("best_single_axis_is_not_electron_flow")
+
+    best_new_oos_rows = [
+        row
+        for row in measured.get("best_single_axis_new_oos_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    best_new_oos_current_overlap = [
+        row for row in best_new_oos_rows if row.get("in_current_geometry_fold_calibration_oos")
+    ]
+    split_context = measured.get("split_alignment_context") or {}
+    primary_missing_rows, oos_missing_rows = _missing_current_rows(incremental)
+    retained_oos_missing = [
+        row for row in oos_missing_rows if not bool(row.get("current_surface_abstains"))
+    ]
+    abstained_oos_missing = [
+        row for row in oos_missing_rows if bool(row.get("current_surface_abstains"))
+    ]
+    candidate_ids = _entry_ids_from_candidate_surface(candidate_surface)
+
+    def _with_evidence_status(
+        row: dict[str, Any],
+        *,
+        priority_tier: int,
+        priority_class: str,
+    ) -> dict[str, Any]:
+        entry_id = str(row.get("entry_id"))
+        candidate_available = entry_id in candidate_ids
+        return {
+            "entry_id": entry_id,
+            "accession": row.get("accession"),
+            "priority_tier": priority_tier,
+            "priority_class": priority_class,
+            "current_surface_score": row.get("current_surface_score"),
+            "current_surface_abstains": row.get("current_surface_abstains"),
+            "source_free_candidate_projection_row_available": candidate_available,
+            "electron_flow_fields_required": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "required_evidence": (
+                "source-free electron-flow axis sidecar row using approved "
+                "local structure, cofactor geometry, or active-site evidence "
+                "only; no mechanism text, labels, EC/Rhea IDs, source IDs, "
+                "target names, or heldout tuning"
+            ),
+        }
+
+    acquisition_rows: list[dict[str, Any]] = []
+    for row in sorted(retained_oos_missing, key=_score_value, reverse=True):
+        acquisition_rows.append(
+            _with_evidence_status(
+                row,
+                priority_tier=1,
+                priority_class="current_retained_oos_missing_electron_flow_axis",
+            )
+        )
+    for row in sorted(primary_missing_rows, key=_score_value):
+        acquisition_rows.append(
+            _with_evidence_status(
+                row,
+                priority_tier=2,
+                priority_class="current_primary_retention_gate_missing_electron_flow_axis",
+            )
+        )
+    for row in sorted(abstained_oos_missing, key=_score_value, reverse=True):
+        acquisition_rows.append(
+            _with_evidence_status(
+                row,
+                priority_tier=3,
+                priority_class="already_abstained_oos_missing_electron_flow_axis",
+            )
+        )
+
+    electron_delta = None
+    if current_subset is not None and electron_flow is not None:
+        electron_delta = round(
+            float(electron_flow.get("oos_abstain_recall") or 0.0)
+            - float(current_subset.get("oos_abstain_recall") or 0.0),
+            6,
+        )
+    electron_primary_retain = (
+        electron_flow.get("primary_retain_recall")
+        if electron_flow is not None
+        else None
+    )
+    electron_flow_signal = bool(
+        not blockers
+        and electron_delta is not None
+        and electron_delta > 0
+        and electron_primary_retain is not None
+        and float(electron_primary_retain) >= 0.9
+    )
+    split_aligned_measurable = bool(
+        (projection.get("decision") or {}).get(
+            "split_aligned_current_surface_incremental_readout_measurable"
+        )
+    )
+    deployable = bool(electron_flow_signal and split_aligned_measurable)
+    result_class = "deployable" if deployable else (
+        "blocker" if blockers else "research_only"
+    )
+    status = (
+        "lever2_source_free_electron_flow_split_alignment_readout_deployable"
+        if deployable
+        else (
+            "lever2_source_free_electron_flow_split_alignment_readout_blocked"
+            if blockers
+            else "lever2_source_free_electron_flow_split_alignment_readout_research_only"
+        )
+    )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_split_alignment_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 2 measured train/cal readout for the source-free "
+            "electron-flow repair axis, tied to the current geometry/fold "
+            "calibration split. It consumes existing train/cal projection "
+            "metrics and current-surface missing-row evidence, does not "
+            "materialize features, and does not read or tune heldout."
+        ),
+        "result_class": result_class,
+        "blockers": blockers,
+        "measured_readout": {
+            "train_cal_axis_ceiling": {
+                "current_source_free_projected_subset": current_subset,
+                "current_plus_missing_electron_flow": electron_flow,
+                "full_frozen_row_specific_surface": full_surface,
+                "electron_flow_oos_abstain_recall_delta_vs_current_projected": (
+                    electron_delta
+                ),
+                "best_single_axis_name": best_axis_name or None,
+                "best_single_axis_new_oos_rows": best_new_oos_rows,
+                "best_single_axis_new_oos_rows_on_current_geometry_fold_oos": (
+                    best_new_oos_current_overlap
+                ),
+            },
+            "split_alignment_context": split_context,
+            "raw_full_sidecar_current_surface_overlap_diagnostic": (
+                raw_overlap_diagnostic
+            ),
+            "current_surface_missing_row_context": {
+                "current_retained_oos_missing_electron_flow_rows": len(
+                    retained_oos_missing
+                ),
+                "already_abstained_oos_missing_electron_flow_rows": len(
+                    abstained_oos_missing
+                ),
+                "primary_retention_gate_missing_electron_flow_rows": len(
+                    primary_missing_rows
+                ),
+            },
+        },
+        "acquisition_priority_rows": acquisition_rows,
+        "counts": {
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+            "best_single_axis_new_oos_catches": len(best_new_oos_rows),
+            "best_single_axis_new_oos_catches_on_current_geometry_fold_oos": len(
+                best_new_oos_current_overlap
+            ),
+            "current_geometry_fold_calibration_primary_rows": int(
+                split_context.get("current_geometry_fold_calibration_primary_rows") or 0
+            ),
+            "current_geometry_fold_calibration_oos_rows": int(
+                split_context.get("current_geometry_fold_calibration_oos_rows") or 0
+            ),
+            "source_free_candidate_projection_overlap_primary_rows": int(
+                split_context.get(
+                    "source_free_candidate_projection_overlap_primary_rows"
+                )
+                or 0
+            ),
+            "source_free_candidate_projection_overlap_oos_rows": int(
+                split_context.get("source_free_candidate_projection_overlap_oos_rows")
+                or 0
+            ),
+            "missing_current_primary_electron_flow_rows": len(primary_missing_rows),
+            "missing_current_oos_electron_flow_rows": len(oos_missing_rows),
+            "missing_current_retained_oos_electron_flow_rows": len(
+                retained_oos_missing
+            ),
+            "missing_current_abstained_oos_electron_flow_rows": len(
+                abstained_oos_missing
+            ),
+            "candidate_surface_rows": len(candidate_ids),
+            "candidate_surface_overlap_missing_primary_rows": sum(
+                1 for row in primary_missing_rows if str(row.get("entry_id")) in candidate_ids
+            ),
+            "candidate_surface_overlap_missing_retained_oos_rows": sum(
+                1 for row in retained_oos_missing if str(row.get("entry_id")) in candidate_ids
+            ),
+            "candidate_surface_overlap_missing_abstained_oos_rows": sum(
+                1 for row in abstained_oos_missing if str(row.get("entry_id")) in candidate_ids
+            ),
+            "acquisition_priority_rows": len(acquisition_rows),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "labels_used_only_for_train_cal_metric_accounting": True,
+            "source_free_electron_flow_axis_materialized_by_this_artifact": False,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "current_retained_oos_source_free_electron_flow_axis",
+                "required_rows": len(retained_oos_missing),
+                "valid_candidate_projection_rows_now": sum(
+                    1
+                    for row in retained_oos_missing
+                    if str(row.get("entry_id")) in candidate_ids
+                ),
+                "why_it_matters": (
+                    "These are the current geometry/fold false-negative OOS "
+                    "candidates most likely to show incremental abstention "
+                    "value if electron-flow evidence transfers."
+                ),
+            },
+            {
+                "gap_id": "current_primary_source_free_electron_flow_axis",
+                "required_rows": len(primary_missing_rows),
+                "valid_candidate_projection_rows_now": sum(
+                    1
+                    for row in primary_missing_rows
+                    if str(row.get("entry_id")) in candidate_ids
+                ),
+                "why_it_matters": (
+                    "A valid operating-point claim needs calibration-primary "
+                    "retention cost on the current geometry/fold split."
+                ),
+            },
+            {
+                "gap_id": "current_abstained_oos_source_free_electron_flow_axis",
+                "required_rows": len(abstained_oos_missing),
+                "valid_candidate_projection_rows_now": sum(
+                    1
+                    for row in abstained_oos_missing
+                    if str(row.get("entry_id")) in candidate_ids
+                ),
+                "why_it_matters": (
+                    "These rows are lower priority for incremental value "
+                    "because geometry/fold already abstains, but they complete "
+                    "the split-aligned OOS surface."
+                ),
+            },
+        ],
+        "decision": {
+            "measured_readout_available": not blockers,
+            "source_free_electron_flow_axis_has_train_cal_signal": (
+                electron_flow_signal
+            ),
+            "split_aligned_current_surface_incremental_readout_measurable": (
+                split_aligned_measurable
+            ),
+            "best_axis_new_oos_rows_overlap_current_geometry_fold_oos": bool(
+                best_new_oos_current_overlap
+            ),
+            "adds_operating_point_value_beyond_current_surface": deployable,
+            "deployable_now": deployable,
+            "research_only": bool(not deployable and not blockers),
+            "negative": False,
+            "apply_or_promote_now": False,
+            "next_gate": (
+                "Materialize source-free electron-flow fields for the "
+                f"{len(retained_oos_missing)} current-retained OOS rows and "
+                f"{len(primary_missing_rows)} current calibration-primary rows "
+                "first, then rerun the train/cal projection and fixed-threshold "
+                "incremental readouts before any heldout or deployment claim."
+            ),
+        },
+        "source_artifacts": {
+            "projection_readout": _source_path_record(projection_readout_path),
+            "incremental_readout": _source_path_record(incremental_readout_path),
+            "source_free_projection_repair_candidate_surface": _source_path_record(
+                source_free_projection_repair_candidate_surface_path
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "current_in_scope_threshold_contract": (
+                _source_path_record(current_in_scope_threshold_contract_path)
+                if current_in_scope_threshold_contract_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "expanded_oos_calibrated_threshold_contract": (
+                _source_path_record(expanded_oos_calibrated_threshold_contract_path)
+                if expanded_oos_calibrated_threshold_contract_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Research-only: electron-flow is the best single missing "
+                "source-free axis on the existing train/cal mechanism sidecar, "
+                f"adding {electron_delta} OOS abstain recall versus the current "
+                "projected subset, but its newly caught OOS rows overlap "
+                f"{len(best_new_oos_current_overlap)} current geometry/fold "
+                "calibration-OOS rows."
+                if not blockers
+                else (
+                    "The electron-flow split-alignment readout is blocked by "
+                    "missing input variants."
+                )
+            ),
+            "next_action": (
+                "Acquire split-aligned source-free electron-flow evidence for "
+                "the priority rows in this artifact; start with current-retained "
+                "OOS rows, then primary retention-gate rows."
+            ),
+        },
+    }
 
 
 def build_lever2_mechanism_feature_incremental_readout(
@@ -765,6 +1323,194 @@ def write_lever2_mechanism_feature_incremental_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             render_lever2_mechanism_feature_incremental_readout_report(readout),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def render_lever2_source_free_electron_flow_split_alignment_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    ceiling = measured["train_cal_axis_ceiling"]
+    raw_overlap = measured.get("raw_full_sidecar_current_surface_overlap_diagnostic")
+    raw_counts = (
+        raw_overlap.get("counts", {})
+        if isinstance(raw_overlap, dict) and raw_overlap.get("available")
+        else {}
+    )
+    current = ceiling.get("current_source_free_projected_subset") or {}
+    electron = ceiling.get("current_plus_missing_electron_flow") or {}
+    full = ceiling.get("full_frozen_row_specific_surface") or {}
+    acquisition_rows = readout.get("acquisition_priority_rows") or []
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Split-Alignment Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Electron-flow train/cal OOS recall delta: "
+        f"{ceiling['electron_flow_oos_abstain_recall_delta_vs_current_projected']}",
+        "- Best-axis new OOS catches on current geometry/fold OOS rows: "
+        f"{counts['best_single_axis_new_oos_catches_on_current_geometry_fold_oos']}/"
+        f"{counts['best_single_axis_new_oos_catches']}",
+        "- Source-free candidate overlap with current calibration primary rows: "
+        f"{counts['source_free_candidate_projection_overlap_primary_rows']}/"
+        f"{counts['current_geometry_fold_calibration_primary_rows']}",
+        "- Source-free candidate overlap with current calibration OOS rows: "
+        f"{counts['source_free_candidate_projection_overlap_oos_rows']}/"
+        f"{counts['current_geometry_fold_calibration_oos_rows']}",
+        "",
+        "## Measured Train/Cal Axis Readout",
+        "",
+        "| variant | fields | primary retain | OOS abstain | AUC | threshold |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+        (
+            "| current projected subset | "
+            f"{current.get('feature_field_count')} | "
+            f"{current.get('primary_retain_recall')} | "
+            f"{current.get('oos_abstain_recall')} | "
+            f"{current.get('auc_oos_gt_primary')} | "
+            f"{current.get('threshold')} |"
+        ),
+        (
+            "| current + electron flow | "
+            f"{electron.get('feature_field_count')} | "
+            f"{electron.get('primary_retain_recall')} | "
+            f"{electron.get('oos_abstain_recall')} | "
+            f"{electron.get('auc_oos_gt_primary')} | "
+            f"{electron.get('threshold')} |"
+        ),
+        (
+            "| full row-specific surface | "
+            f"{full.get('feature_field_count')} | "
+            f"{full.get('primary_retain_recall')} | "
+            f"{full.get('oos_abstain_recall')} | "
+            f"{full.get('auc_oos_gt_primary')} | "
+            f"{full.get('threshold')} |"
+        ),
+        "",
+        "## Raw Full-Sidecar Current-Surface Overlap",
+        "",
+        (
+            "- Available: "
+            f"{bool(isinstance(raw_overlap, dict) and raw_overlap.get('available'))}"
+        ),
+        "- Valid current-primary calibration-feature overlap rows: "
+        f"{raw_counts.get('valid_current_primary_calibration_feature_overlap_rows')}",
+        "- Current-primary rows excluded as mechanism train targets: "
+        f"{raw_counts.get('current_primary_rows_excluded_as_mechanism_train_targets')}",
+        "- Current-OOS calibration-feature overlap rows: "
+        f"{raw_counts.get('current_oos_calibration_feature_overlap_rows')}",
+        "- Current-retained OOS overlap rows with electron transfer: "
+        f"{raw_counts.get('electron_positive_current_retained_oos_overlap_rows')}/"
+        f"{raw_counts.get('current_retained_oos_overlap_rows')}",
+        "",
+        "## Missing Split-Aligned Evidence",
+        "",
+        "- Current-retained OOS rows missing electron-flow evidence: "
+        f"{counts['missing_current_retained_oos_electron_flow_rows']}",
+        "- Current primary retention-gate rows missing electron-flow evidence: "
+        f"{counts['missing_current_primary_electron_flow_rows']}",
+        "- Already-abstained OOS rows missing electron-flow evidence: "
+        f"{counts['missing_current_abstained_oos_electron_flow_rows']}",
+        "- Candidate-surface overlap with retained OOS priority rows: "
+        f"{counts['candidate_surface_overlap_missing_retained_oos_rows']}",
+        "",
+        "## Acquisition Priority Rows",
+        "",
+        "| priority | row | class | accession | current score | candidate row exists |",
+        "| ---: | --- | --- | --- | ---: | --- |",
+    ]
+    for row in acquisition_rows[:80]:
+        lines.append(
+            f"| {row['priority_tier']} | {row['entry_id']} | "
+            f"{row['priority_class']} | {row.get('accession')} | "
+            f"{row.get('current_surface_score')} | "
+            f"{row['source_free_candidate_projection_row_available']} |"
+        )
+    if len(acquisition_rows) > 80:
+        lines.append(f"| ... | {len(acquisition_rows) - 80} additional rows |  |  |  |  |")
+    if isinstance(raw_overlap, dict) and raw_overlap.get("available"):
+        lines += [
+            "",
+            "## Raw Overlap OOS Rows",
+            "",
+            "| row | current score | current abstains | has electron transfer | electron count |",
+            "| --- | ---: | --- | --- | ---: |",
+        ]
+        for row in raw_overlap.get("current_oos_overlap_rows", []):
+            lines.append(
+                f"| {row['entry_id']} | {row.get('current_surface_score')} | "
+                f"{row.get('current_surface_abstains')} | "
+                f"{row.get('has_electron_transfer_event')} | "
+                f"{row.get('electron_transfer_count')} |"
+            )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Electron-flow train/cal signal measured: "
+        f"{decision['source_free_electron_flow_axis_has_train_cal_signal']}",
+        "- Split-aligned current-surface incremental readout measurable: "
+        f"{decision['split_aligned_current_surface_incremental_readout_measurable']}",
+        "- Adds operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_split_alignment_readout(
+    *,
+    projection_readout_path: Path,
+    incremental_readout_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    current_in_scope_threshold_contract_path: Path | None = None,
+    expanded_oos_calibrated_threshold_contract_path: Path | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_split_alignment_readout(
+        projection_readout_path=projection_readout_path,
+        incremental_readout_path=incremental_readout_path,
+        source_free_projection_repair_candidate_surface_path=(
+            source_free_projection_repair_candidate_surface_path
+        ),
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        current_in_scope_threshold_contract_path=current_in_scope_threshold_contract_path,
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_source_free_electron_flow_split_alignment_readout_report(
+                readout
+            ),
             encoding="utf-8",
         )
     return readout

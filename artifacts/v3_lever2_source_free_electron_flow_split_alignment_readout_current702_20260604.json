@@ -1,0 +1,1762 @@
+{
+  "acquisition_priority_rows": [
+    {
+      "accession": "P13650",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.6498,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:104",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "A9CEQ8",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.6341,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:483",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P0AB71",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.6154,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:52",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P11766",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.60295,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:464",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P22643",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.58595,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:415",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q9GPQ4",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.5853,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:471",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q27546",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.58215,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:39",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P56839",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.5757,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:271",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P31677",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.5615,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:622",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P24670",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.55665,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:54",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "B9JNP7",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.55265,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:503",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P0A7D4",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.5474,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:65",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P31939",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.54185,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:646",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P38677",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.5365,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:542",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P0A794",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.53445,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:243",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q60099",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.51785,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:36",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P22337",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.51505,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:136",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P12944",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.5127,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:126",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P21332",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.50825,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:285",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P21873",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.50535,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:106",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P00518",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4967,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:35",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q5EBY5",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.48795,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:390",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P38051",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4878,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:325",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P9WN39",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4835,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:537",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q01468",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4799,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:61",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P11064",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4766,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:462",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P31572",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4756,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:531",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P17169",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.47405,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:82",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P00722",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.47265,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:422",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q13126",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4724,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:244",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P0A6I6",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4712,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:299",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q58819",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.46835,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:565",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q93099",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.46725,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:547",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P00374",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4638,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:490",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P37747",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4537,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:368",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "O66186",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.45095,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:284",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q05871",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.44955,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:499",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q3LXA3",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4483,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "uniprot:Q3LXA3",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P94692",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.4463,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:119",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P06134",
+      "current_surface_abstains": false,
+      "current_surface_score": 0.44365,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:295",
+      "priority_class": "current_retained_oos_missing_electron_flow_axis",
+      "priority_tier": 1,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.41,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:973",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.42755,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:165",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.4405,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:399",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.44155,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:233",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.4682,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:216",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.46975,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:837",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.4806,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:338",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.51735,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:754",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.5219,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:38",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.54915,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:320",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.5508,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:41",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.5702,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:160",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.5715,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:410",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.57285,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:800",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.57485,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:277",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.57705,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:865",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.5803,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:933",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.5846,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:879",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.6095,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:988",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.62295,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:319",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.624,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:482",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.63105,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:102",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.6399,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:630",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.64755,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:305",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.6621,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:694",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.66345,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:87",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.6649,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:27",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.69605,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:912",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.7287,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:473",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.7384,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:556",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.86325,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:387",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.8844,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:900",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.89215,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:922",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": null,
+      "current_surface_abstains": null,
+      "current_surface_score": 0.8963,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:173",
+      "priority_class": "current_primary_retention_gate_missing_electron_flow_axis",
+      "priority_tier": 2,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q62651",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.43935,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:342",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q6NVY1",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4383,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:345",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "O69762",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4354,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:347",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q59490",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4294,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:140",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P0DJQ7",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4257,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:303",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P78549",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.42485,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "uniprot:P78549",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q29495",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.42405,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:22",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P27142",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4212,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:290",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P13513",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.42085,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:262",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P00829",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4182,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:178",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q13423",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.415,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:496",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P17707",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4118,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:575",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P62937",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.4103,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:189",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P00651",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.40705,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:414",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P05326",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.40385,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:145",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P25043",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.3993,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:177",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P08056",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.3951,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:426",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P24058",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.39475,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:408",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q54873",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.3933,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:439",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P13448",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.39125,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:57",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q06128",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.38025,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:314",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "Q08649",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.37455,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:525",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P25006",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.3729,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:4",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P37268",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.3713,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:264",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "O31465",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.3655,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:301",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P04035",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.35285,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:93",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    },
+    {
+      "accession": "P0C1A7",
+      "current_surface_abstains": true,
+      "current_surface_score": 0.3489,
+      "electron_flow_fields_required": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "entry_id": "m_csa:184",
+      "priority_class": "already_abstained_oos_missing_electron_flow_axis",
+      "priority_tier": 3,
+      "required_evidence": "source-free electron-flow axis sidecar row using approved local structure, cofactor geometry, or active-site evidence only; no mechanism text, labels, EC/Rhea IDs, source IDs, target names, or heldout tuning",
+      "source_free_candidate_projection_row_available": false
+    }
+  ],
+  "artifact_id": "v3_lever2_source_free_electron_flow_split_alignment_readout_current702_20260604",
+  "blockers": [],
+  "counts": {
+    "acquisition_priority_rows": 101,
+    "best_single_axis_new_oos_catches": 4,
+    "best_single_axis_new_oos_catches_on_current_geometry_fold_oos": 0,
+    "blockers": 0,
+    "candidate_surface_overlap_missing_abstained_oos_rows": 0,
+    "candidate_surface_overlap_missing_primary_rows": 0,
+    "candidate_surface_overlap_missing_retained_oos_rows": 0,
+    "candidate_surface_rows": 53,
+    "critical_violation_total": 0,
+    "current_geometry_fold_calibration_oos_rows": 75,
+    "current_geometry_fold_calibration_primary_rows": 34,
+    "missing_current_abstained_oos_electron_flow_rows": 27,
+    "missing_current_oos_electron_flow_rows": 67,
+    "missing_current_primary_electron_flow_rows": 34,
+    "missing_current_retained_oos_electron_flow_rows": 40,
+    "source_free_candidate_projection_overlap_oos_rows": 0,
+    "source_free_candidate_projection_overlap_primary_rows": 0
+  },
+  "created_utc": "2026-06-04T15:47:44Z",
+  "decision": {
+    "adds_operating_point_value_beyond_current_surface": false,
+    "apply_or_promote_now": false,
+    "best_axis_new_oos_rows_overlap_current_geometry_fold_oos": false,
+    "deployable_now": false,
+    "measured_readout_available": true,
+    "negative": false,
+    "next_gate": "Materialize source-free electron-flow fields for the 40 current-retained OOS rows and 34 current calibration-primary rows first, then rerun the train/cal projection and fixed-threshold incremental readouts before any heldout or deployment claim.",
+    "research_only": true,
+    "source_free_electron_flow_axis_has_train_cal_signal": true,
+    "split_aligned_current_surface_incremental_readout_measurable": false
+  },
+  "guardrails": {
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "labels_used_only_for_train_cal_metric_accounting": true,
+    "m_csa_row_specific_features_train_cal_only": true,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "source_free_electron_flow_axis_materialized_by_this_artifact": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Acquire split-aligned source-free electron-flow evidence for the priority rows in this artifact; start with current-retained OOS rows, then primary retention-gate rows.",
+    "result": "Research-only: electron-flow is the best single missing source-free axis on the existing train/cal mechanism sidecar, adding 0.142857 OOS abstain recall versus the current projected subset, but its newly caught OOS rows overlap 0 current geometry/fold calibration-OOS rows."
+  },
+  "measured_readout": {
+    "current_surface_missing_row_context": {
+      "already_abstained_oos_missing_electron_flow_rows": 27,
+      "current_retained_oos_missing_electron_flow_rows": 40,
+      "primary_retention_gate_missing_electron_flow_rows": 34
+    },
+    "raw_full_sidecar_current_surface_overlap_diagnostic": {
+      "available": true,
+      "channel": "combined_mean_geometry_fold",
+      "counts": {
+        "current_abstained_oos_overlap_rows": 3,
+        "current_oos_calibration_feature_overlap_rows": 8,
+        "current_primary_rows_excluded_as_mechanism_train_targets": 1,
+        "current_retained_oos_overlap_rows": 5,
+        "electron_positive_current_abstained_oos_overlap_rows": 0,
+        "electron_positive_current_retained_oos_overlap_rows": 1,
+        "electron_positive_oos_overlap_rows": 1,
+        "valid_current_primary_calibration_feature_overlap_rows": 0
+      },
+      "current_oos_overlap_rows": [
+        {
+          "current_retained_oos_with_electron_flow": false,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.45885,
+          "electron_transfer_count": 0,
+          "entry_id": "m_csa:17",
+          "has_electron_transfer_event": false
+        },
+        {
+          "current_retained_oos_with_electron_flow": false,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.6241,
+          "electron_transfer_count": 0,
+          "entry_id": "m_csa:25",
+          "has_electron_transfer_event": false
+        },
+        {
+          "current_retained_oos_with_electron_flow": false,
+          "current_surface_abstains": true,
+          "current_surface_score": 0.41725,
+          "electron_transfer_count": 0,
+          "entry_id": "m_csa:40",
+          "has_electron_transfer_event": false
+        },
+        {
+          "current_retained_oos_with_electron_flow": false,
+          "current_surface_abstains": true,
+          "current_surface_score": 0.4054,
+          "electron_transfer_count": 0,
+          "entry_id": "m_csa:78",
+          "has_electron_transfer_event": false
+        },
+        {
+          "current_retained_oos_with_electron_flow": false,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.49955,
+          "electron_transfer_count": 0,
+          "entry_id": "m_csa:85",
+          "has_electron_transfer_event": false
+        },
+        {
+          "current_retained_oos_with_electron_flow": false,
+          "current_surface_abstains": true,
+          "current_surface_score": 0.37655,
+          "electron_transfer_count": 0,
+          "entry_id": "m_csa:149",
+          "has_electron_transfer_event": false
+        },
+        {
+          "current_retained_oos_with_electron_flow": false,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.52675,
+          "electron_transfer_count": 0,
+          "entry_id": "m_csa:222",
+          "has_electron_transfer_event": false
+        },
+        {
+          "current_retained_oos_with_electron_flow": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.5171,
+          "electron_transfer_count": 1,
+          "entry_id": "m_csa:246",
+          "has_electron_transfer_event": true
+        }
+      ],
+      "current_primary_rows_excluded_as_mechanism_train_targets": [
+        {
+          "entry_id": "m_csa:102",
+          "reason": "row_is_mechanism_feature_train_target"
+        }
+      ],
+      "current_threshold": 0.44155,
+      "note": "Train/cal-only raw full-sidecar diagnostic. It does not select a new threshold, does not score heldout, and cannot support a deployable claim without split-aligned source-free primary retention evidence.",
+      "valid_current_primary_calibration_feature_overlap_entry_ids": []
+    },
+    "split_alignment_context": {
+      "available": true,
+      "current_geometry_fold_calibration_oos_rows": 75,
+      "current_geometry_fold_calibration_primary_rows": 34,
+      "full_row_specific_feature_overlap_oos_entry_ids": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:78",
+        "m_csa:85",
+        "m_csa:149",
+        "m_csa:222",
+        "m_csa:246"
+      ],
+      "full_row_specific_feature_overlap_oos_rows": 8,
+      "full_row_specific_feature_overlap_primary_entry_ids": [
+        "m_csa:102"
+      ],
+      "full_row_specific_feature_overlap_primary_rows": 1,
+      "measurability_note": "The current source-free candidate projection cannot support a split-aligned incremental operating-point readout until it covers the current geometry/fold calibration-primary and train/cal OOS rows.",
+      "source_free_candidate_projection_overlap_oos_entry_ids": [],
+      "source_free_candidate_projection_overlap_oos_rows": 0,
+      "source_free_candidate_projection_overlap_primary_entry_ids": [],
+      "source_free_candidate_projection_overlap_primary_rows": 0
+    },
+    "train_cal_axis_ceiling": {
+      "best_single_axis_name": "electron_flow",
+      "best_single_axis_new_oos_rows": [
+        {
+          "best_single_axis_abstains": true,
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_abstains": false,
+          "current_projected_subset_residual": 0.40327957,
+          "current_projected_subset_threshold": 0.40327957,
+          "entry_id": "m_csa:154",
+          "in_current_geometry_fold_calibration_oos": false
+        },
+        {
+          "best_single_axis_abstains": true,
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_abstains": false,
+          "current_projected_subset_residual": 0.40327957,
+          "current_projected_subset_threshold": 0.40327957,
+          "entry_id": "m_csa:221",
+          "in_current_geometry_fold_calibration_oos": false
+        },
+        {
+          "best_single_axis_abstains": true,
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_abstains": false,
+          "current_projected_subset_residual": 0.40327957,
+          "current_projected_subset_threshold": 0.40327957,
+          "entry_id": "m_csa:224",
+          "in_current_geometry_fold_calibration_oos": false
+        },
+        {
+          "best_single_axis_abstains": true,
+          "best_single_axis_residual": 2.71877433,
+          "best_single_axis_threshold": 1.72848324,
+          "current_projected_subset_abstains": false,
+          "current_projected_subset_residual": 0.0,
+          "current_projected_subset_threshold": 0.40327957,
+          "entry_id": "m_csa:256",
+          "in_current_geometry_fold_calibration_oos": false
+        }
+      ],
+      "best_single_axis_new_oos_rows_on_current_geometry_fold_oos": [],
+      "current_plus_missing_electron_flow": {
+        "auc_oos_gt_primary": 0.870536,
+        "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+        "feature_field_count": 6,
+        "feature_fields": [
+          "electron_transfer_count",
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_electron_transfer_event",
+          "has_proton_transfer_event",
+          "proton_transfer_count"
+        ],
+        "oos_abstain_recall": 0.785714,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+        "threshold": 1.72848324,
+        "variant": "current_plus_missing_electron_flow"
+      },
+      "current_source_free_projected_subset": {
+        "auc_oos_gt_primary": 0.794643,
+        "delta_vs_current_projected_oos_abstain_recall": 0.0,
+        "feature_field_count": 4,
+        "feature_fields": [
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_proton_transfer_event",
+          "proton_transfer_count"
+        ],
+        "oos_abstain_recall": 0.642857,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.214286,
+        "threshold": 0.40327957,
+        "variant": "current_source_free_projected_subset"
+      },
+      "electron_flow_oos_abstain_recall_delta_vs_current_projected": 0.142857,
+      "full_frozen_row_specific_surface": {
+        "auc_oos_gt_primary": 0.875,
+        "delta_vs_current_projected_oos_abstain_recall": 0.214286,
+        "feature_field_count": 19,
+        "feature_fields": [
+          "bond_broken_count",
+          "bond_change_event_count",
+          "bond_formed_count",
+          "bond_order_changed_count",
+          "electron_transfer_count",
+          "event_count",
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_bond_change_event",
+          "has_electron_transfer_event",
+          "has_proton_transfer_event",
+          "high_confidence_event_count",
+          "low_confidence_event_count",
+          "mapped_active_site_residue_count",
+          "medium_confidence_event_count",
+          "multi_event_mechanism_flag",
+          "proton_transfer_count",
+          "unique_mapped_active_site_residue_count",
+          "unknown_confidence_event_count"
+        ],
+        "oos_abstain_recall": 0.857143,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.0,
+        "threshold": 3.21469422,
+        "variant": "full_frozen_row_specific_surface"
+      }
+    }
+  },
+  "missing_evidence": [
+    {
+      "gap_id": "current_retained_oos_source_free_electron_flow_axis",
+      "required_rows": 40,
+      "valid_candidate_projection_rows_now": 0,
+      "why_it_matters": "These are the current geometry/fold false-negative OOS candidates most likely to show incremental abstention value if electron-flow evidence transfers."
+    },
+    {
+      "gap_id": "current_primary_source_free_electron_flow_axis",
+      "required_rows": 34,
+      "valid_candidate_projection_rows_now": 0,
+      "why_it_matters": "A valid operating-point claim needs calibration-primary retention cost on the current geometry/fold split."
+    },
+    {
+      "gap_id": "current_abstained_oos_source_free_electron_flow_axis",
+      "required_rows": 27,
+      "valid_candidate_projection_rows_now": 0,
+      "why_it_matters": "These rows are lower priority for incremental value because geometry/fold already abstains, but they complete the split-aligned OOS surface."
+    }
+  ],
+  "result_class": "research_only",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_split_alignment_readout.v0",
+  "scope": "Lever 2 measured train/cal readout for the source-free electron-flow repair axis, tied to the current geometry/fold calibration split. It consumes existing train/cal projection metrics and current-surface missing-row evidence, does not materialize features, and does not read or tune heldout.",
+  "source_artifacts": {
+    "current_in_scope_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    },
+    "expanded_oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de"
+    },
+    "incremental_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_mechanism_feature_incremental_readout_current702_20260604.json",
+      "sha256": "17b154f8d11bbafc27ec76ed23b545793012c80e790312911952c261b4f07fab"
+    },
+    "projection_readout": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_current702_20260604.json",
+      "sha256": "deb59488cfb6efa79e8f9d5b4a13cb67d836cd81fa498bff47169ba0b4bb913d"
+    },
+    "source_free_projection_repair_candidate_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604.json",
+      "sha256": "ecf532516d30980a16001071091795cdc009a3e7c808c67b37ed647fcc572313"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_split_alignment_readout_research_only"
+}
