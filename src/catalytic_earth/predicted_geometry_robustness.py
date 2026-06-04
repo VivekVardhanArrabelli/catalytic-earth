@@ -1716,6 +1716,333 @@ def _predicted_geometry_failure_decomposition_markdown_report(
     return "\n".join(lines)
 
 
+COFACTOR_RESTORATION_PROBE_ARTIFACT_ID = (
+    "v3_cofactor_restoration_recovery_probe_current702_20260604"
+)
+COFACTOR_RESTORATION_PROBE_SCHEMA = "cofactor_restoration_recovery_probe.v1"
+
+
+def build_cofactor_restoration_recovery_probe(
+    *,
+    robustness_audit: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+    label_manifest: dict[str, Any],
+    wave1_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Counterfactual: restore the cofactor onto the predicted apo backbone.
+
+    For each cofactor_apo_loss lost primary row, inject the experimental proximal
+    cofactor/metal context into the predicted (apo) geometry entry while keeping
+    the predicted residue geometry, then re-score with the frozen geometry
+    retrieval and hand router at the existing 0.4115 threshold. This measures the
+    UPPER BOUND on how many lost rows perfect cofactor restoration could recover
+    on the predicted backbone. It trains nothing, selects no threshold (reuses the
+    frozen one), and reads no new heldout label; correctness is an evaluation
+    target only. An apo control rescore (no injection) confirms the audit is
+    reproduced.
+    """
+    if robustness_audit.get("status") != "complete":
+        return {
+            "artifact_id": COFACTOR_RESTORATION_PROBE_ARTIFACT_ID,
+            "schema_version": COFACTOR_RESTORATION_PROBE_SCHEMA,
+            "created_utc": _utc_now_iso(),
+            "status": "blocked",
+            "blocker": "robustness_audit_not_complete",
+        }
+
+    scope = robustness_audit.get("scope", {}) or {}
+    backend = scope.get("backend", "unknown")
+    hand = robustness_audit.get("hand_router_on_predicted_geometry", {}) or {}
+    threshold = float(hand.get("threshold") or HAND_ROUTER_THRESHOLD)
+    hand_rows = {
+        str(row.get("entry_id")): row
+        for row in hand.get("rows", [])
+        if isinstance(row, dict)
+    }
+    predicted_entries = {
+        str(entry.get("entry_id")): entry
+        for entry in (robustness_audit.get("predicted_geometry_features", {}) or {}).get(
+            "entries", []
+        )
+        if isinstance(entry, dict)
+    }
+    exp_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in experimental_geometry_features.get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+    manifest_by_entry = {
+        str(row.get("entry_id")): row
+        for row in label_manifest.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    def _cof(ctx: dict[str, Any] | None) -> list[str]:
+        return list((ctx or {}).get("cofactor_families") or [])
+
+    # Identify cofactor_apo_loss lost primary rows.
+    targets: list[str] = []
+    for entry_id, row in hand_rows.items():
+        if not row.get("canonical_primary_support_mask"):
+            continue
+        abstained = bool(row.get("abstained"))
+        correct = (not abstained) and bool(row.get("primary_top1_correct_if_applicable"))
+        if correct:
+            continue
+        exp_ctx = (exp_by_entry.get(entry_id, {}) or {}).get("ligand_context", {})
+        pred_ctx = (predicted_entries.get(entry_id, {}) or {}).get("ligand_context", {})
+        miss = int(row.get("predicted_missing_positions") or 0)
+        if _row_failure_mode(
+            predicted_missing_positions=miss,
+            experimental_cofactor_families=_cof(exp_ctx),
+            predicted_cofactor_families=_cof(pred_ctx),
+        ) == "cofactor_apo_loss":
+            targets.append(entry_id)
+    targets.sort(key=_entry_sort_key)
+
+    target_manifest_rows = [
+        manifest_by_entry[entry_id]
+        for entry_id in targets
+        if entry_id in manifest_by_entry
+    ]
+
+    # Apo control rescore (no injection) must reproduce the audit.
+    apo_entries = [dict(predicted_entries[entry_id]) for entry_id in targets]
+    apo_retrieval = run_geometry_retrieval({"entries": apo_entries})
+    apo_router = {
+        r["entry_id"]: r
+        for r in _hand_router_rows(
+            target_rows=target_manifest_rows,
+            predicted_geometry={"entries": apo_entries},
+            predicted_retrieval=apo_retrieval,
+            wave1_audit=wave1_audit,
+            threshold=threshold,
+        )
+    }
+
+    # Counterfactual: inject experimental cofactor context onto predicted backbone.
+    restored_entries = []
+    for entry_id in targets:
+        entry = dict(predicted_entries[entry_id])
+        entry["ligand_context"] = (exp_by_entry.get(entry_id, {}) or {}).get(
+            "ligand_context", {}
+        )
+        restored_entries.append(entry)
+    restored_retrieval = run_geometry_retrieval({"entries": restored_entries})
+    restored_router = {
+        r["entry_id"]: r
+        for r in _hand_router_rows(
+            target_rows=target_manifest_rows,
+            predicted_geometry={"entries": restored_entries},
+            predicted_retrieval=restored_retrieval,
+            wave1_audit=wave1_audit,
+            threshold=threshold,
+        )
+    }
+
+    rows: list[dict[str, Any]] = []
+    recovered = 0
+    apo_rescore_matches_audit = True
+    for entry_id in targets:
+        audit_row = hand_rows[entry_id]
+        apo = apo_router.get(entry_id, {})
+        restored = restored_router.get(entry_id, {})
+        audit_apo_score = round(float(audit_row.get("top1_score") or 0.0), 4)
+        rescored_apo_score = round(float(apo.get("top1_score") or 0.0), 4)
+        if abs(audit_apo_score - rescored_apo_score) > 1e-4:
+            apo_rescore_matches_audit = False
+        is_recovered = (not restored.get("abstained", True)) and bool(
+            restored.get("primary_top1_correct_if_applicable")
+        )
+        recovered += int(is_recovered)
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "true_fingerprint_id": audit_row.get("true_fingerprint_id"),
+                "experimental_cofactor_families": _cof(
+                    (exp_by_entry.get(entry_id, {}) or {}).get("ligand_context", {})
+                ),
+                "wave1_readthrough_excluded": entry_id in {"m_csa:497", "m_csa:750"},
+                "apo_top1_fingerprint_id": apo.get("top1_fingerprint_id"),
+                "apo_top1_score": rescored_apo_score,
+                "apo_abstained": bool(apo.get("abstained", True)),
+                "restored_top1_fingerprint_id": restored.get("top1_fingerprint_id"),
+                "restored_top1_score": round(float(restored.get("top1_score") or 0.0), 4),
+                "restored_abstained": bool(restored.get("abstained", True)),
+                "score_lift": round(
+                    float(restored.get("top1_score") or 0.0)
+                    - float(apo.get("top1_score") or 0.0),
+                    4,
+                ),
+                "recovered": is_recovered,
+            }
+        )
+
+    total = len(targets)
+    readthrough_rows = [r for r in rows if not r["wave1_readthrough_excluded"]]
+    readthrough_recovered = sum(1 for r in readthrough_rows if r["recovered"])
+
+    return {
+        "artifact_id": COFACTOR_RESTORATION_PROBE_ARTIFACT_ID,
+        "schema_version": COFACTOR_RESTORATION_PROBE_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "scope": {
+            "backend": backend,
+            "source_robustness_audit": robustness_audit.get("artifact_id"),
+            "hand_router_threshold": threshold,
+            "target_definition": (
+                "cofactor_apo_loss lost primary rows under the canonical mask"
+            ),
+        },
+        "method": (
+            "inject experimental proximal cofactor/metal ligand_context onto the "
+            "predicted apo geometry entry, keep predicted residue geometry, re-score "
+            "with frozen run_geometry_retrieval + hand router at the existing "
+            "threshold; recovered = restored call is non-abstained and matches the "
+            "true fingerprint"
+        ),
+        "upper_bound_caveat": (
+            "this assumes perfect cofactor placement relative to the predicted "
+            "active site, so the recovery count is an upper bound; real docking is "
+            "imperfect"
+        ),
+        "headline": {
+            "cofactor_apo_loss_targets": total,
+            "recovered_under_perfect_restoration": recovered,
+            "recovery_fraction": round(recovered / total, 4) if total else None,
+            "wave1_readthrough_targets": len(readthrough_rows),
+            "wave1_readthrough_recovered": readthrough_recovered,
+            "apo_control_rescore_matches_audit": apo_rescore_matches_audit,
+        },
+        "interpretation": (
+            f"Restoring the cofactor onto the predicted backbone recovers "
+            f"{recovered}/{total} cofactor_apo_loss lost primary rows (upper bound). "
+            + (
+                "A high fraction confirms the predicted backbone is faithful and the "
+                "missing cofactor is the load-bearing loss, so a cofactor-restoration "
+                "step (dock/graft the cofactor, or a cofactor-presence channel) is "
+                "the right Problem-2 lever. "
+                if total and recovered / total >= 0.6
+                else "A low fraction means the predicted apo backbone is also off, so "
+                "cofactor restoration alone is insufficient and the predicted "
+                "structure quality (or a learned predicted-geometry model) must also "
+                "improve. "
+            )
+            + "ESMFold2's better apo side-chains would help this residual backbone "
+            "term, but cannot supply the cofactor."
+        ),
+        "rows": rows,
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "trained_a_model": False,
+            "note": (
+                "counterfactual diagnostic on already-evaluated heldout rows; reuses "
+                "the frozen 0.4115 threshold and frozen fingerprints; correctness is "
+                "an evaluation target, not a predictive input"
+            ),
+        },
+        "source_artifacts": {
+            "robustness_audit": robustness_audit.get("artifact_id"),
+            "experimental_geometry_features": (
+                "artifacts/v3_geometry_features_1025.json"
+            ),
+            "label_manifest": (
+                "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+            ),
+            "wave1_2_audit": (
+                "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+            ),
+        },
+    }
+
+
+def write_cofactor_restoration_recovery_probe(
+    *,
+    robustness_audit_path: Path,
+    experimental_geometry_features_path: Path,
+    label_manifest_path: Path,
+    wave1_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    with robustness_audit_path.open("r", encoding="utf-8") as handle:
+        robustness_audit = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    with label_manifest_path.open("r", encoding="utf-8") as handle:
+        label_manifest = json.load(handle)
+    with wave1_audit_path.open("r", encoding="utf-8") as handle:
+        wave1_audit = json.load(handle)
+    probe = build_cofactor_restoration_recovery_probe(
+        robustness_audit=robustness_audit,
+        experimental_geometry_features=experimental_geometry_features,
+        label_manifest=label_manifest,
+        wave1_audit=wave1_audit,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(probe, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _cofactor_restoration_probe_markdown_report(probe), encoding="utf-8"
+        )
+    return probe
+
+
+def _cofactor_restoration_probe_markdown_report(probe: dict[str, Any]) -> str:
+    if probe.get("status") != "complete":
+        return (
+            "# Cofactor Restoration Recovery Probe\n\n"
+            f"Status: `{probe.get('status')}`\n\n"
+            f"Blocker: `{probe.get('blocker')}`\n"
+        )
+    head = probe.get("headline", {})
+    scope = probe.get("scope", {})
+    lines = [
+        "# Cofactor Restoration Recovery Probe",
+        "",
+        f"Backend: `{scope.get('backend')}` | source audit: "
+        f"`{scope.get('source_robustness_audit')}` | threshold: "
+        f"`{scope.get('hand_router_threshold')}`",
+        "",
+        "## Question",
+        "",
+        "Of the cofactor_apo_loss lost primary rows, how many recover if we restore "
+        "the cofactor onto the predicted apo backbone (upper bound)?",
+        "",
+        "## Result",
+        "",
+        f"- cofactor_apo_loss targets: {head.get('cofactor_apo_loss_targets')}",
+        f"- recovered under perfect restoration: "
+        f"{head.get('recovered_under_perfect_restoration')} "
+        f"(fraction {head.get('recovery_fraction')})",
+        f"- Wave 1 readthrough (excl. m_csa:497/750): "
+        f"{head.get('wave1_readthrough_recovered')}/"
+        f"{head.get('wave1_readthrough_targets')}",
+        f"- apo control rescore matches audit: "
+        f"{head.get('apo_control_rescore_matches_audit')}",
+        "",
+        "## Interpretation",
+        "",
+        probe.get("interpretation", ""),
+        "",
+        probe.get("upper_bound_caveat", ""),
+        "",
+        "This is a counterfactual diagnostic: it reuses the frozen threshold and "
+        "fingerprints, selects nothing, and trains nothing.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def _enriched_predicted_retrieval_results(
     *,
     retrieval_results: list[dict[str, Any]],

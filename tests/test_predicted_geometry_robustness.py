@@ -8,6 +8,7 @@ from catalytic_earth.predicted_geometry_robustness import (
     ESMFOLD2_BLOCKER,
     _target_manifest_row_selection,
     build_alphafold_predicted_geometry_features,
+    build_cofactor_restoration_recovery_probe,
     build_esmfold2_robustness_experiment_contract,
     build_predicted_geometry_failure_decomposition,
     build_predicted_geometry_in_distribution_atlas_retrieval,
@@ -598,6 +599,85 @@ class FailureDecompositionTests(unittest.TestCase):
         )
         self.assertEqual(d["status"], "blocked")
         self.assertEqual(d["blocker"], "robustness_audit_not_complete")
+
+
+class CofactorRestorationProbeTests(unittest.TestCase):
+    def _audit(self):
+        def hand_row(eid):
+            return {
+                "entry_id": eid,
+                "canonical_primary_support_mask": True,
+                "abstained": True,
+                "primary_top1_correct_if_applicable": None,
+                "predicted_missing_positions": 0,
+                "top1_score": 0.0,
+                "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+            }
+
+        def feat(eid):
+            return {
+                "entry_id": eid,
+                "status": "ok",
+                "ligand_context": {"cofactor_families": []},
+                "residues": [],
+                "pairwise_distances_angstrom": [],
+                "pocket_context": {},
+                "missing_positions": 0,
+            }
+
+        return {
+            "status": "complete",
+            "artifact_id": "audit",
+            "scope": {"backend": "alphafold_db"},
+            "hand_router_on_predicted_geometry": {
+                "threshold": 0.4115,
+                "rows": [hand_row("cof"), hand_row("fold")],
+            },
+            "predicted_geometry_features": {"entries": [feat("cof"), feat("fold")]},
+        }
+
+    def test_targets_only_cofactor_apo_loss_rows(self) -> None:
+        experimental = {
+            "entries": [
+                {"entry_id": "cof", "ligand_context": {"cofactor_families": ["flavin"], "ligand_codes": ["FAD"]}},
+                {"entry_id": "fold", "ligand_context": {"cofactor_families": []}},
+            ]
+        }
+        manifest = {
+            "rows": [
+                {"entry_id": "cof", "fingerprint_id": "flavin_dehydrogenase_reductase",
+                 "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+                 "split_assignment": "heldout"},
+                {"entry_id": "fold", "fingerprint_id": "flavin_dehydrogenase_reductase",
+                 "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+                 "split_assignment": "heldout"},
+            ]
+        }
+        probe = build_cofactor_restoration_recovery_probe(
+            robustness_audit=self._audit(),
+            experimental_geometry_features=experimental,
+            label_manifest=manifest,
+            wave1_audit={},
+        )
+        self.assertEqual(probe["status"], "complete")
+        head = probe["headline"]
+        # only the cofactor-bearing row is a cofactor_apo_loss target
+        self.assertEqual(head["cofactor_apo_loss_targets"], 1)
+        self.assertEqual([r["entry_id"] for r in probe["rows"]], ["cof"])
+        self.assertIsInstance(head["apo_control_rescore_matches_audit"], bool)
+        self.assertLessEqual(head["recovered_under_perfect_restoration"], 1)
+        self.assertFalse(probe["guardrails"]["heldout_labels_used_for_fit_or_threshold"])
+        self.assertFalse(probe["guardrails"]["trained_a_model"])
+
+    def test_blocked_when_audit_incomplete(self) -> None:
+        probe = build_cofactor_restoration_recovery_probe(
+            robustness_audit={"status": "blocked"},
+            experimental_geometry_features={"entries": []},
+            label_manifest={"rows": []},
+            wave1_audit={},
+        )
+        self.assertEqual(probe["status"], "blocked")
+        self.assertEqual(probe["blocker"], "robustness_audit_not_complete")
 
 
 if __name__ == "__main__":

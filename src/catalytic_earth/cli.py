@@ -229,6 +229,7 @@ from .northstar_next_levers import (
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
+    write_cofactor_restoration_recovery_probe,
     write_esmfold2_robustness_experiment_contract,
     write_predicted_geometry_failure_decomposition,
     write_predicted_geometry_in_distribution_atlas_retrieval,
@@ -2396,6 +2397,26 @@ def cmd_build_predicted_geometry_failure_decomposition(
         f"lost_primary={lost.get('total')} by_mode={lost.get('by_mode')}; "
         "fold_recoverable_upper_bound="
         f"{ceiling.get('primary_recoverable_upper_bound_fold_or_sidechain')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_restoration_recovery_probe(args: argparse.Namespace) -> int:
+    probe = write_cofactor_restoration_recovery_probe(
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        label_manifest_path=Path(args.label_manifest),
+        wave1_audit_path=Path(args.wave1_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    head = probe.get("headline", {})
+    print(
+        "Wrote cofactor restoration recovery probe to "
+        f"{args.out} ({probe.get('status')}; "
+        f"recovered={head.get('recovered_under_perfect_restoration')}/"
+        f"{head.get('cofactor_apo_loss_targets')}; "
+        f"apo_control_matches_audit={head.get('apo_control_rescore_matches_audit')})"
     )
     return 0
 
@@ -17115,6 +17136,48 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_geometry_failure_decomposition.set_defaults(
         func=cmd_build_predicted_geometry_failure_decomposition
+    )
+
+    cofactor_restoration_probe = subparsers.add_parser(
+        "build-cofactor-restoration-recovery-probe",
+        help=(
+            "counterfactual: restore the experimental cofactor onto the predicted "
+            "apo backbone and re-score to measure how many cofactor_apo_loss lost "
+            "primary rows recover (upper bound)"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--wave1-audit",
+        default="artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+    )
+    cofactor_restoration_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_restoration_probe.add_argument(
+        "--report",
+        default=(
+            "work/cofactor_restoration_recovery_probe_current702_20260604.md"
+        ),
+    )
+    cofactor_restoration_probe.set_defaults(
+        func=cmd_build_cofactor_restoration_recovery_probe
     )
 
     mechanism_relationship_eval = subparsers.add_parser(

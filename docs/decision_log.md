@@ -3,6 +3,39 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Cofactor Restoration Recovers 22/22 Lost Primaries (Backbone Is Faithful)
+
+Decision: cofactor-restoration is confirmed as the Problem-2 lever with a perfect
+ceiling. A no-fit counterfactual that restores the experimental cofactor onto the
+predicted apo backbone recovers **22/22 cofactor_apo_loss lost primary rows**
+(100%; Wave 1 readthrough 20/20). The predicted backbone is therefore faithful
+enough that the missing cofactor is the entire loss; a better apo folder
+(ESMFold2) is not needed for primary recovery and cannot supply the cofactor.
+
+Method (counterfactual, no fit, frozen threshold/fingerprints): for each
+cofactor_apo_loss lost primary row, inject the experimental proximal cofactor/metal
+`ligand_context` onto the predicted (apo) geometry entry, keep the predicted
+residue geometry, and re-score with the frozen `run_geometry_retrieval` and hand
+router at 0.4115. Recovered = restored call is non-abstained and matches the true
+fingerprint. An apo control rescore (no injection) **reproduces the audit exactly**
+(`apo_control_rescore_matches_audit: true`), validating the harness.
+
+Result: all 22 lost primaries recover; per-row score lifts are 0.08–0.41 and every
+row flips from abstain/`metal_dependent_hydrolase`-misroute to the correct
+fingerprint (flavin/PLP/heme/metal/Fe-S). This is an UPPER BOUND (perfect cofactor
+placement); real docking is imperfect.
+
+Implication: the next build is a real cofactor-restoration feature — graft/dock the
+cofactor into the predicted active site, or a sequence cofactor-presence channel
+(`sequence_cofactor_channel.py` / `cofactor_channel_probe.py`) — selected on
+train/cal, heldout one-shot. ESMFold2 stays scoped to its secondary value (OOS
+false-positive reduction + pLDDT abstention). The probe is backend-agnostic; re-run
+it on a future ESMFold2 audit to confirm the same pattern.
+
+Artifacts:
+`artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json`,
+`work/cofactor_restoration_recovery_probe_current702_20260604.md`.
+
 ## 2026-06-03: Predicted-Geometry Degradation Is Cofactor-Loss-Dominated
 
 Decision: Problem 2's primary lever is **cofactor-awareness, not a better apo

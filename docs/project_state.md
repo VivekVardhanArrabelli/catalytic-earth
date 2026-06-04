@@ -687,6 +687,16 @@ artifacts first.
   cofactor-presence channel). Control: 13/23 correct primaries also had an
   experimental cofactor, so apo geometry can suffice for some rows. Re-run the
   decomposition on a future ESMFold2 audit to confirm the pattern.
+- 2026-06-04 cofactor restoration recovery probe (see `docs/decision_log.md`,
+  counterfactual, no fit, frozen threshold/fingerprints): restoring the
+  experimental cofactor onto the predicted apo backbone recovers **22/22
+  cofactor_apo_loss lost primary rows** (100%; readthrough 20/20), with per-row
+  score lifts 0.08–0.41 and every row flipping to the correct fingerprint. The apo
+  control rescore reproduces the audit exactly
+  (`apo_control_rescore_matches_audit: true`). This confirms the predicted backbone
+  is faithful and the missing cofactor is the entire loss, so cofactor-restoration
+  is the Problem-2 lever with a perfect-information ceiling of all 22. It is an
+  upper bound (perfect placement); real docking is imperfect.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
@@ -727,14 +737,18 @@ artifacts first.
 
 ## Next Gates
 
-0. Problem 2 (recommended): the failure decomposition reframed the lever. The
-   45/45 -> 23/45 drop is cofactor-loss-dominated (22/22 lost primaries are
-   `cofactor_apo_loss`), so the **primary lever is cofactor-awareness**, not a
-   better apo folder. Next step: a cofactor-aware experiment — place/dock the
-   M-CSA cofactor into the predicted structure (restore the proximal cofactor
-   geometry) or build/strengthen a sequence cofactor-presence channel
-   (`sequence_cofactor_channel.py` / `cofactor_channel_probe.py`), selected on
-   train/cal with heldout one-shot. The ESMFold2 coordinate-swap experiment stays
+0. Problem 2 (recommended): the failure decomposition + cofactor-restoration probe
+   settled the lever. The 45/45 -> 23/45 drop is cofactor-loss-dominated (22/22
+   lost primaries are `cofactor_apo_loss`), and restoring the cofactor onto the
+   predicted apo backbone recovers **22/22** (the backbone is faithful), so the
+   **primary lever is cofactor-awareness**, not a better apo folder, with a ceiling
+   of all 22. Next build: a real cofactor-restoration feature — graft/dock the
+   M-CSA cofactor into the predicted active site (replacing the idealized
+   ligand_context injection with placed cofactor atoms) or strengthen the sequence
+   cofactor-presence channel (`sequence_cofactor_channel.py` /
+   `cofactor_channel_probe.py`), selected on train/cal with heldout one-shot; then
+   measure the realistic (imperfect-placement) recovery against the 22/22 upper
+   bound. The ESMFold2 coordinate-swap experiment stays
    staged as a no-fit contract
    (`artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`)
    with a runnable `esmfold2` backend, but is now scoped to its secondary value
@@ -855,6 +869,7 @@ artifacts first.
 - `artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json`
 - `artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`
 - `artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json`
+- `artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
