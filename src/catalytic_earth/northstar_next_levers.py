@@ -231,6 +231,9 @@ FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_APPROVAL_CONTRACT_ID = (
 FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_CANDIDATE_SCOUT_ID = (
     "v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604"
 )
+FOLD_AUGMENTED_Q43088_LOCATOR_REVIEW_PRIORITY_PACKET_ID = (
+    "v3_fold_augmented_q43088_locator_review_priority_packet_current702_20260604"
+)
 FOLD_AUGMENTED_CONFOUNDED_PROXY_RESIDUAL_QUEUE_AFTER_P10746_Q43088_ID = (
     "v3_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604"
 )
@@ -242,6 +245,9 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_INPUT_PREFLIGHT_ID = (
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_REPO_WIDE_COORDINATE_SANITY_SCAN_ID = (
     "v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_SWISSMODEL_COORDINATE_STAGING_MANIFEST_ID = (
+    "v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604"
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_CURRENT_EVIDENCE_BLOCKER_AFTER_INPUT_PREFLIGHT_ID = (
     "v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604"
@@ -24372,6 +24378,301 @@ def write_fold_augmented_q43088_source_free_locator_candidate_scout(
     return scout
 
 
+def _q43088_locator_review_features(row: dict[str, Any]) -> dict[str, Any]:
+    residue_code = str(row.get("residue_code") or "").upper()
+    distance = float(row.get("distance_to_anchor_ca_angstrom") or 0.0)
+    mean_plddt = float(row.get("mean_plddt") or 0.0)
+    charged_codes = {"ASP", "GLU", "HIS", "LYS", "ARG"}
+    polar_or_charged_codes = {
+        "ARG",
+        "ASN",
+        "ASP",
+        "CYS",
+        "GLN",
+        "GLU",
+        "HIS",
+        "LYS",
+        "SER",
+        "THR",
+        "TYR",
+    }
+    charged = residue_code in charged_codes
+    polar_or_charged = residue_code in polar_or_charged_codes
+    within_6a = distance <= 6.0
+    within_8a = distance <= 8.0
+    score = (
+        max(0.0, 10.0 - distance)
+        + (mean_plddt / 100.0)
+        + (2.0 if polar_or_charged else 0.0)
+        + (1.0 if charged else 0.0)
+        + (1.0 if within_6a else 0.0)
+        + (1.0 if within_8a else 0.0)
+    )
+    return {
+        "charged_residue_code": charged,
+        "mean_plddt_at_least_80": mean_plddt >= 80.0,
+        "polar_or_charged_residue_code": polar_or_charged,
+        "review_priority_score": round(score, 3),
+        "within_6a_of_anchor_ca": within_6a,
+        "within_8a_of_anchor_ca": within_8a,
+    }
+
+
+def build_fold_augmented_q43088_locator_review_priority_packet(
+    *,
+    q43088_source_free_locator_candidate_scout_path: Path,
+    q43088_source_free_locator_approval_contract_path: Path,
+    priority_candidate_count: int = 4,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_LOCATOR_REVIEW_PRIORITY_PACKET_ID,
+) -> dict[str, Any]:
+    scout = _read_json(q43088_source_free_locator_candidate_scout_path)
+    contract = _read_json(q43088_source_free_locator_approval_contract_path)
+    contract_counts = contract.get("counts") or {}
+    additional_needed = int(
+        contract_counts.get("additional_approved_locator_positions_needed") or 0
+    )
+    ranked_rows: list[dict[str, Any]] = []
+    for row in scout.get("candidate_locator_rows", []):
+        if not isinstance(row, dict):
+            continue
+        features = _q43088_locator_review_features(row)
+        ranked_rows.append({**row, "source_free_review_features": features})
+    ranked_rows = sorted(
+        ranked_rows,
+        key=lambda row: (
+            -float(
+                (row.get("source_free_review_features") or {}).get(
+                    "review_priority_score"
+                )
+                or 0.0
+            ),
+            float(row.get("distance_to_anchor_ca_angstrom") or 999.0),
+            int(row.get("sequence_position") or 0),
+        ),
+    )
+    priority_rows = ranked_rows[:priority_candidate_count]
+    affected = {
+        "entry_id": "m_csa:604",
+        "accession": "Q43088",
+        "remaining_blocker_class": "approved_geometry_feature_missing",
+    }
+    blockers = [
+        "q43088_priority_candidates_pending_human_or_policy_review",
+        "q43088_two_additional_source_free_locator_positions_not_approved",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_q43088_locator_review_priority_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "fold_augmented_q43088_locator_review_priority_packet_ready_no_approvals",
+        "scope": (
+            "Review-priority packet for the remaining Q43088 Lever 3 "
+            "locator/geometry blocker. It uses only source-free predicted-"
+            "structure proximity, residue code, and pLDDT from the prior "
+            "candidate scout to narrow manual adjudication. It approves no "
+            "locator, writes no sidecar, scores no row, and does not change "
+            "threshold 0.44155."
+        ),
+        "affected_row": affected,
+        "all_candidate_rows_ranked": ranked_rows,
+        "anchor_locators": scout.get("anchor_locators") or [],
+        "priority_candidate_rows": priority_rows,
+        "review_rule": {
+            "minimum_review_positions_needed": additional_needed,
+            "recommended_review_order": [
+                row.get("sequence_position") for row in priority_rows
+            ],
+            "pass_condition": (
+                "A reviewer explicitly approves at least two additional "
+                "source-free locator positions, or approves an equivalent "
+                "source-free geometry sidecar. This packet alone cannot "
+                "approve any position."
+            ),
+            "fail_condition": (
+                "No two candidates can be source-free approved or mapped to "
+                "the local predicted coordinate frame."
+            ),
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "locator_positions_approved_now": False,
+            "geometry_sidecar_approved_now": False,
+            "row_rescored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "anchor_locator_rows": len(scout.get("anchor_locators") or []),
+            "candidate_locator_rows": len(ranked_rows),
+            "priority_candidate_rows": len(priority_rows),
+            "recommended_positions_to_review": len(priority_rows),
+            "minimum_additional_locator_positions_needed": additional_needed,
+            "locator_positions_approved_now": 0,
+            "q43088_ready_for_rescore_now": 0,
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "q43088_ready_for_rescore_now": False,
+            "priority_packet_clears_locator_contract": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "smallest_next_experiment": (
+                "Review the priority positions in order and explicitly "
+                "approve or reject at least two source-free locators; if none "
+                "pass, approve an equivalent source-free geometry sidecar or "
+                "leave Q43088 blocked."
+            ),
+            "next_gate": (
+                "Do not rescore Q43088 until two additional positions or an "
+                "equivalent geometry sidecar are approved."
+            ),
+        },
+        "source_artifacts": {
+            "q43088_source_free_locator_candidate_scout": _source_path_record(
+                q43088_source_free_locator_candidate_scout_path
+            ),
+            "q43088_source_free_locator_approval_contract": _source_path_record(
+                q43088_source_free_locator_approval_contract_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Q43088 now has a smaller source-free review queue: four "
+                "high-priority positions should be adjudicated before the "
+                "other eight candidates, but none are approved by this packet."
+            ),
+            "next_action": (
+                "Reviewer or policy step: approve/reject at least two of the "
+                "priority positions, then materialize the locator/geometry "
+                "sidecar and rerun fixed-threshold scoring only after P07658 "
+                "also clears."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_q43088_locator_review_priority_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Fold-Augmented Q43088 Locator Review Priority Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Anchor locator rows: {counts['anchor_locator_rows']}",
+        f"- Candidate locator rows: {counts['candidate_locator_rows']}",
+        f"- Priority candidate rows: {counts['priority_candidate_rows']}",
+        "- Minimum additional locator positions needed: "
+        f"{counts['minimum_additional_locator_positions_needed']}",
+        "- Locator positions approved now: "
+        f"{counts['locator_positions_approved_now']}",
+        f"- Blockers: {packet['blockers']}",
+        "",
+        "## Priority Candidate Rows",
+        "",
+        "| rank | position | residue | distance to anchor CA (A) | mean pLDDT | priority score | review flags |",
+        "| ---: | ---: | --- | ---: | ---: | ---: | --- |",
+    ]
+    for index, row in enumerate(packet["priority_candidate_rows"], start=1):
+        features = row.get("source_free_review_features") or {}
+        flags = [
+            name
+            for name in (
+                "within_6a_of_anchor_ca",
+                "within_8a_of_anchor_ca",
+                "polar_or_charged_residue_code",
+                "charged_residue_code",
+                "mean_plddt_at_least_80",
+            )
+            if features.get(name)
+        ]
+        lines.append(
+            f"| {index} | {row['sequence_position']} | {row['residue_code']} | "
+            f"{row['distance_to_anchor_ca_angstrom']} | {row.get('mean_plddt')} | "
+            f"{features.get('review_priority_score')} | {', '.join(flags)} |"
+        )
+    lines += [
+        "",
+        "## Review Rule",
+        "",
+        "- Recommended review order: "
+        + ", ".join(
+            str(position)
+            for position in packet["review_rule"]["recommended_review_order"]
+        ),
+        f"- Pass condition: {packet['review_rule']['pass_condition']}",
+        f"- Fail condition: {packet['review_rule']['fail_condition']}",
+        "",
+        "## Decision",
+        "",
+        f"- Q43088 ready for rescore now: {decision['q43088_ready_for_rescore_now']}",
+        "- Priority packet clears locator contract: "
+        f"{decision['priority_packet_clears_locator_contract']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_q43088_locator_review_priority_packet(
+    *,
+    q43088_source_free_locator_candidate_scout_path: Path,
+    q43088_source_free_locator_approval_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    priority_candidate_count: int = 4,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_LOCATOR_REVIEW_PRIORITY_PACKET_ID,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_q43088_locator_review_priority_packet(
+        q43088_source_free_locator_candidate_scout_path=(
+            q43088_source_free_locator_candidate_scout_path
+        ),
+        q43088_source_free_locator_approval_contract_path=(
+            q43088_source_free_locator_approval_contract_path
+        ),
+        priority_candidate_count=priority_candidate_count,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_q43088_locator_review_priority_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
 def build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
     *,
     p10746_decision_impact_path: Path,
@@ -25677,6 +25978,364 @@ def write_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan(
             encoding="utf-8",
         )
     return scan
+
+
+def _swissmodel_probe_rows_by_entry(
+    probe: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    return {
+        str(row.get("entry_id")): row
+        for row in probe.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _is_swissmodel_predicted_entry(row: dict[str, Any] | None) -> bool:
+    if not isinstance(row, dict):
+        return False
+    return (
+        str(row.get("provider") or "").upper() == "SWISSMODEL"
+        and str(row.get("method") or "").upper() == "HOMOLOGY MODELLING"
+    )
+
+
+def build_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest(
+    *,
+    alternate_structure_source_contract_path: Path,
+    swissmodel_repository_probe_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_SWISSMODEL_COORDINATE_STAGING_MANIFEST_ID
+    ),
+) -> dict[str, Any]:
+    contract = _read_json(alternate_structure_source_contract_path)
+    probe = _read_json(swissmodel_repository_probe_path)
+    probe_by_entry = _swissmodel_probe_rows_by_entry(probe)
+    affected_rows = [
+        row
+        for row in contract.get("affected_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+
+    rows: list[dict[str, Any]] = []
+    for contract_row in sorted(
+        affected_rows,
+        key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+    ):
+        entry_id = str(contract_row["entry_id"])
+        accession = str(contract_row.get("accession") or "")
+        probe_row = probe_by_entry.get(entry_id) or {}
+        selected = probe_row.get("selected_swissmodel_model")
+        selected_is_predicted = _is_swissmodel_predicted_entry(selected)
+        coordinate_path = (
+            Path(str(selected.get("staged_coordinate_path")))
+            if isinstance(selected, dict) and selected.get("staged_coordinate_path")
+            else None
+        )
+        coordinate_exists = bool(coordinate_path and coordinate_path.exists())
+        coordinate_sha256 = (
+            _sha256(coordinate_path) if coordinate_path is not None and coordinate_exists else None
+        )
+        pdb_only_count = int(probe_row.get("pdb_provider_structure_rows") or 0)
+        swissmodel_count = int(probe_row.get("swissmodel_structure_rows") or 0)
+        if selected_is_predicted and coordinate_exists:
+            local_status = "swissmodel_predicted_coordinate_staged_review_only"
+            row_blockers: list[str] = []
+            coordinate_rescore_input_ready = True
+        elif selected_is_predicted:
+            local_status = "swissmodel_predicted_coordinate_selected_but_file_missing"
+            row_blockers = [
+                "selected_swissmodel_coordinate_file_missing",
+                "row_not_rescore_ready_until_coordinate_file_exists",
+            ]
+            coordinate_rescore_input_ready = False
+        elif pdb_only_count:
+            local_status = "swissmodel_repository_pdb_only_disallowed"
+            row_blockers = [
+                "swissmodel_repository_only_experimental_pdb_mappings",
+                "approved_predicted_structure_coordinate_missing",
+            ]
+            coordinate_rescore_input_ready = False
+        else:
+            local_status = "no_swissmodel_repository_model_hit"
+            row_blockers = ["approved_predicted_structure_coordinate_missing"]
+            coordinate_rescore_input_ready = False
+
+        selected_record = None
+        if isinstance(selected, dict):
+            selected_record = {
+                "provider": selected.get("provider"),
+                "method": selected.get("method"),
+                "template": selected.get("template"),
+                "range": {
+                    "from": selected.get("from"),
+                    "to": selected.get("to"),
+                },
+                "coverage": selected.get("coverage"),
+                "identity": selected.get("identity"),
+                "gmqe": selected.get("gmqe"),
+                "qmean6_norm_score": selected.get("qmean6_norm_score"),
+                "oligo_state": selected.get("oligo_state"),
+                "coordinates_url": selected.get("coordinates_url"),
+                "modelcif_url": selected.get("modelcif_url"),
+                "created_date": selected.get("created_date"),
+                "staged_coordinate_path": (
+                    str(coordinate_path) if coordinate_path is not None else None
+                ),
+                "staged_coordinate_exists": coordinate_exists,
+                "staged_coordinate_sha256": coordinate_sha256,
+                "staged_coordinate_size_bytes": (
+                    coordinate_path.stat().st_size
+                    if coordinate_path is not None and coordinate_exists
+                    else 0
+                ),
+            }
+
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": accession,
+                "residual_blocker_class": contract_row.get("residual_blocker_class"),
+                "local_status": local_status,
+                "swissmodel_structure_rows": swissmodel_count,
+                "pdb_provider_structure_rows": pdb_only_count,
+                "selected_swissmodel_model": selected_record,
+                "provider_model_version_path_checksum_provenance": {
+                    "provider": (
+                        selected_record.get("provider") if selected_record else None
+                    ),
+                    "model_name_or_id": (
+                        f"{accession}:{selected_record.get('template')}"
+                        if selected_record
+                        else None
+                    ),
+                    "model_version": (
+                        selected_record.get("created_date") if selected_record else None
+                    ),
+                    "coordinate_path": (
+                        selected_record.get("staged_coordinate_path")
+                        if selected_record
+                        else None
+                    ),
+                    "checksum_sha256": (
+                        selected_record.get("staged_coordinate_sha256")
+                        if selected_record
+                        else None
+                    ),
+                    "accession_or_isoform_mapping_review": (
+                        "query_accession_matches_contract_row"
+                        if selected_record
+                        else "not_available"
+                    ),
+                    "source_free_evidence_contract": (
+                        "Use only the staged predicted coordinates and their "
+                        "source-free geometry/cofactor evidence as channel "
+                        "inputs; SWISS-MODEL templates, descriptions, source "
+                        "IDs, EC/Rhea IDs, labels, and target names are "
+                        "provenance only and are not predictive features."
+                        if selected_record
+                        else None
+                    ),
+                },
+                "row_blockers": row_blockers,
+                "coordinate_rescore_input_ready": coordinate_rescore_input_ready,
+                "rescore_ready_now": False,
+                "why_not_rescored_now": (
+                    "Coordinate input is staged, but the full fixed-threshold "
+                    "audit remains blocked until all four coordinate rows and "
+                    "Q43088 locator evidence clear."
+                    if coordinate_rescore_input_ready
+                    else "No approved predicted coordinate input is staged for this row."
+                ),
+            }
+        )
+
+    staged_rows = sum(1 for row in rows if row["coordinate_rescore_input_ready"])
+    pdb_only_rows = sum(
+        1 for row in rows if row["local_status"] == "swissmodel_repository_pdb_only_disallowed"
+    )
+    missing_predicted_rows = sum(
+        1 for row in rows if not row["coordinate_rescore_input_ready"]
+    )
+    blockers = [
+        "p07658_has_only_experimental_pdb_repository_mappings",
+        "q43088_locator_or_geometry_sidecar_still_missing",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_swissmodel_coordinate_staging_"
+            "manifest_partial_3_of_4"
+        ),
+        "scope": (
+            "Review-only Lever 3 staging manifest for non-AFDB predicted "
+            "coordinates from the SWISS-MODEL Repository. It accepts only "
+            "provider=SWISSMODEL, method=HOMOLOGY MODELLING coordinate records "
+            "as predicted-structure inputs, rejects provider=PDB experimental "
+            "mappings, records provider/model/version/path/checksum provenance, "
+            "scores no rows, and does not change threshold 0.44155."
+        ),
+        "rows": rows,
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "coordinates_staged_review_only": True,
+            "experimental_pdb_repository_mappings_used_as_inputs": False,
+            "provider_pdb_rows_rejected": True,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "affected_coordinate_source_blocker_rows": len(rows),
+            "swissmodel_predicted_model_rows": staged_rows,
+            "staged_predicted_coordinate_rows": staged_rows,
+            "pdb_provider_only_rows": pdb_only_rows,
+            "remaining_coordinate_source_blocker_rows": missing_predicted_rows,
+            "coordinate_rows_rescore_input_ready_now": staged_rows,
+            "fixed_threshold": 0.44155,
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "coordinate_source_surface_fully_clear_now": False,
+            "partial_coordinate_source_clearance_rows": staged_rows,
+            "remaining_coordinate_source_blocker_rows": missing_predicted_rows,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Keep P07071, P00806, and P04531 staged as review-only "
+                "SWISS-MODEL predicted-coordinate inputs. Do not use P07658 "
+                "provider=PDB repository mappings; obtain a true predicted "
+                "coordinate for P07658, and clear Q43088 locator evidence "
+                "before any fixed-threshold audit rerun."
+            ),
+        },
+        "source_artifacts": {
+            "alternate_structure_source_contract": _source_path_record(
+                alternate_structure_source_contract_path
+            ),
+            "swissmodel_repository_probe": _source_path_record(
+                swissmodel_repository_probe_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The non-AFDB coordinate blocker is partially clearable with "
+                "current source-free predicted-structure evidence: three rows "
+                "have staged SWISS-MODEL homology models, while P07658 remains "
+                "blocked because the repository exposes only experimental PDB "
+                "mappings for that accession."
+            ),
+            "next_action": (
+                "Run the smallest next coordinate experiment for P07658: obtain "
+                "or generate a deployment-valid predicted structure with "
+                "provider/model/version/path/checksum provenance. In parallel, "
+                "continue the Q43088 source-free locator review."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_report(
+    manifest: dict[str, Any],
+) -> str:
+    counts = manifest["counts"]
+    decision = manifest["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy SWISS-MODEL Coordinate Staging Manifest - current702",
+        "",
+        f"Run: {manifest['created_utc']}",
+        "",
+        manifest["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {manifest['status']}",
+        "- Staged predicted coordinate rows: "
+        f"{counts['staged_predicted_coordinate_rows']}",
+        f"- PDB-provider-only rows rejected: {counts['pdb_provider_only_rows']}",
+        "- Remaining coordinate-source blockers: "
+        f"{counts['remaining_coordinate_source_blocker_rows']}",
+        f"- Blockers: {manifest['blockers']}",
+        "",
+        "## Rows",
+        "",
+        "| row | accession | status | provider | template | coverage | path |",
+        "| --- | --- | --- | --- | --- | ---: | --- |",
+    ]
+    for row in manifest["rows"]:
+        selected = row.get("selected_swissmodel_model") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | {row['local_status']} | "
+            f"{selected.get('provider') or 'none'} | "
+            f"{selected.get('template') or 'none'} | "
+            f"{selected.get('coverage') if selected else 'none'} | "
+            f"{selected.get('staged_coordinate_path') or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Coordinate-source surface fully clear now: "
+        f"{decision['coordinate_source_surface_fully_clear_now']}",
+        "- Partial coordinate-source clearance rows: "
+        f"{decision['partial_coordinate_source_clearance_rows']}",
+        "- Remaining coordinate-source blockers: "
+        f"{decision['remaining_coordinate_source_blocker_rows']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {manifest['interpretation']['result']}",
+        f"- {manifest['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest(
+    *,
+    alternate_structure_source_contract_path: Path,
+    swissmodel_repository_probe_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_SWISSMODEL_COORDINATE_STAGING_MANIFEST_ID
+    ),
+) -> dict[str, Any]:
+    manifest = build_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest(
+        alternate_structure_source_contract_path=(
+            alternate_structure_source_contract_path
+        ),
+        swissmodel_repository_probe_path=swissmodel_repository_probe_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_report(
+                manifest
+            ),
+            encoding="utf-8",
+        )
+    return manifest
 
 
 def build_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight(

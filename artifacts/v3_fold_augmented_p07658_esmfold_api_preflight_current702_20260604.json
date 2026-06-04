@@ -1,0 +1,80 @@
+{
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "remaining_blocker_class": "predicted_structure_unavailable"
+  },
+  "artifact_id": "v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604",
+  "blockers": [
+    "p07658_exact_sequence_exceeds_public_esmfold_endpoint_limit",
+    "p07658_contains_selenocysteine_requires_model_generator_support",
+    "p07658_predicted_coordinate_not_staged",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "blockers": 4,
+    "coordinates_returned": 0,
+    "critical_violation_total": 0,
+    "noncanonical_residue_count": 1,
+    "public_esmfold_endpoint_limit": 400,
+    "remaining_coordinate_source_blocker_rows": 1,
+    "sequence_length": 715
+  },
+  "created_utc": "2026-06-04T10:17:10Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not truncate P07658 or substitute U before approval. Keep P07071/P00806/P04531 staged; clear P07658 with a full-length deployment-valid predicted model and Q43088 with approved locator evidence before fixed-threshold scoring.",
+    "public_esmfold_can_clear_p07658_now": false,
+    "smallest_next_experiment": "Use a model-generation route that supports at least 715 residues and selenocysteine without modifying the sequence, or run an approved local/remote predictor with recorded model/version/path/checksum provenance."
+  },
+  "endpoint_probe": {
+    "coordinate_returned": false,
+    "endpoint": "https://api.esmatlas.com/foldSequence/v1/pdb/",
+    "http_status": 413,
+    "provider": "ESMFold API",
+    "request": "POST exact UniProt sequence as plain text",
+    "response_body": "Sequence is longer than 400."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_downloaded_or_staged": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "sequence_modified_or_truncated": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "The smallest remaining P07658 experiment is a full-length predictor/runtime that supports 715 residues and selenocysteine, with provider/model/version/path/checksum provenance.",
+    "result": "Public ESMFold API cannot produce a deployment-valid P07658 coordinate for the exact current sequence because the 715-residue sequence exceeds the 400-residue endpoint limit; the row remains blocked."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_esmfold_api_preflight",
+  "scope": "Smallest fresh-predicted-structure preflight for the remaining P07658 Lever 3 coordinate blocker. It probes whether the public ESMFold sequence-to-PDB endpoint can fold the exact current UniProt sequence. It stages no coordinates, scores no rows, and does not change threshold 0.44155.",
+  "sequence_contract": {
+    "noncanonical_residues": [
+      {
+        "position": 140,
+        "residue": "U"
+      }
+    ],
+    "sequence_length": 715,
+    "sequence_modified_for_probe": false,
+    "sequence_version": 2,
+    "source": "UniProtKB current primary accession P07658"
+  },
+  "source_artifacts": {
+    "p07658_secondary_accession_reprobe": {
+      "path": "artifacts/v3_fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe_current702_20260604.json"
+    },
+    "swissmodel_coordinate_staging_manifest": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.json"
+    }
+  },
+  "status": "fold_augmented_p07658_esmfold_api_preflight_blocked_sequence_too_long"
+}

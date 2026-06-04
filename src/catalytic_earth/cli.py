@@ -132,10 +132,12 @@ from .northstar_next_levers import (
     write_fold_augmented_q43088_geometry_locator_blocker_packet,
     write_fold_augmented_q43088_source_free_locator_approval_contract,
     write_fold_augmented_q43088_source_free_locator_candidate_scout,
+    write_fold_augmented_q43088_locator_review_priority_packet,
     write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088,
     write_fold_augmented_confounded_proxy_alternate_structure_source_contract,
     write_fold_augmented_confounded_proxy_deployment_input_preflight,
     write_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan,
+    write_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest,
     write_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
@@ -13107,6 +13109,34 @@ def cmd_build_fold_augmented_q43088_source_free_locator_candidate_scout(
     return 0
 
 
+def cmd_build_fold_augmented_q43088_locator_review_priority_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_q43088_locator_review_priority_packet(
+        q43088_source_free_locator_candidate_scout_path=Path(
+            args.q43088_source_free_locator_candidate_scout
+        ),
+        q43088_source_free_locator_approval_contract_path=Path(
+            args.q43088_source_free_locator_approval_contract
+        ),
+        priority_candidate_count=args.priority_candidate_count,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented Q43088 locator review priority packet to "
+        f"{args.out} (priority candidates: "
+        f"{counts.get('priority_candidate_rows')}, approved now: "
+        f"{counts.get('locator_positions_approved_now')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
     args: argparse.Namespace,
 ) -> int:
@@ -13218,6 +13248,34 @@ def cmd_build_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan(
         f"{counts.get('repo_wide_cif_files_scanned')}, hits: "
         f"{counts.get('repo_wide_cif_accession_hits')}, ready rows: "
         f"{counts.get('deployment_valid_coordinate_rows_ready_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    manifest = (
+        write_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest(
+            alternate_structure_source_contract_path=Path(
+                args.alternate_structure_source_contract
+            ),
+            swissmodel_repository_probe_path=Path(args.swissmodel_repository_probe),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = manifest.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy SWISS-MODEL coordinate staging "
+        f"manifest to {args.out} (staged rows: "
+        f"{counts.get('staged_predicted_coordinate_rows')}, remaining "
+        f"coordinate blockers: "
+        f"{counts.get('remaining_coordinate_source_blocker_rows')})"
     )
     return 0
 
@@ -30805,6 +30863,54 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_q43088_source_free_locator_candidate_scout
     )
 
+    q43088_locator_review_priority_packet = subparsers.add_parser(
+        "build-fold-augmented-q43088-locator-review-priority-packet",
+        help=(
+            "rank the Q43088 locator candidate scout into a source-free "
+            "review-priority packet"
+        ),
+    )
+    q43088_locator_review_priority_packet.add_argument(
+        "--q43088-source-free-locator-candidate-scout",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_"
+            "candidate_scout_current702_20260604.json"
+        ),
+    )
+    q43088_locator_review_priority_packet.add_argument(
+        "--q43088-source-free-locator-approval-contract",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_"
+            "approval_contract_current702_20260604.json"
+        ),
+    )
+    q43088_locator_review_priority_packet.add_argument(
+        "--priority-candidate-count",
+        type=int,
+        default=4,
+    )
+    q43088_locator_review_priority_packet.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    q43088_locator_review_priority_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_locator_review_priority_"
+            "packet_current702_20260604.json"
+        ),
+    )
+    q43088_locator_review_priority_packet.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_q43088_locator_review_priority_packet_"
+            "current702_20260604.md"
+        ),
+    )
+    q43088_locator_review_priority_packet.set_defaults(
+        func=cmd_build_fold_augmented_q43088_locator_review_priority_packet
+    )
+
     confounded_proxy_residual_queue_after_p10746_q43088 = subparsers.add_parser(
         "build-fold-augmented-confounded-proxy-residual-queue-after-p10746-q43088",
         help=(
@@ -31009,6 +31115,54 @@ def build_parser() -> argparse.ArgumentParser:
     confounded_proxy_repo_wide_coordinate_sanity_scan.set_defaults(
         func=(
             cmd_build_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan
+        )
+    )
+
+    confounded_proxy_swissmodel_coordinate_staging_manifest = subparsers.add_parser(
+        (
+            "build-fold-augmented-confounded-proxy-swissmodel-coordinate-"
+            "staging-manifest"
+        ),
+        help=(
+            "compose the review-only SWISS-MODEL predicted-coordinate staging "
+            "manifest for the AFDB-unavailable Lever 3 residual rows"
+        ),
+    )
+    confounded_proxy_swissmodel_coordinate_staging_manifest.add_argument(
+        "--alternate-structure-source-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_alternate_structure_"
+            "source_contract_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_swissmodel_coordinate_staging_manifest.add_argument(
+        "--swissmodel-repository-probe",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_swissmodel_"
+            "repository_probe_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_swissmodel_coordinate_staging_manifest.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_swissmodel_coordinate_staging_manifest.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_swissmodel_coordinate_"
+            "staging_manifest_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_swissmodel_coordinate_staging_manifest.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_swissmodel_coordinate_"
+            "staging_manifest_current702_20260604.md"
+        ),
+    )
+    confounded_proxy_swissmodel_coordinate_staging_manifest.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest
         )
     )
 

@@ -53,6 +53,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_p23007_alternate_accession_scout,
     build_fold_augmented_p23007_alternate_accession_policy_gate,
     build_fold_augmented_confounded_proxy_p10746_decision_impact,
+    build_fold_augmented_q43088_locator_review_priority_packet,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
     build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
@@ -5294,6 +5295,108 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         )
         self.assertFalse(accepted["decision"]["deployment_closed_now"])
         self.assertFalse(accepted["guardrails"]["deployment_closed_now"])
+
+    def test_q43088_locator_review_priority_packet_ranks_source_free_candidates(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            scout_path = root / "q43088_scout.json"
+            contract_path = root / "q43088_contract.json"
+            scout_path.write_text(
+                json.dumps(
+                    {
+                        "anchor_locators": [
+                            {
+                                "sequence_position": 287,
+                                "residue_code": "TYR",
+                            }
+                        ],
+                        "candidate_locator_rows": [
+                            {
+                                "sequence_position": 288,
+                                "residue_code": "ASP",
+                                "distance_to_anchor_ca_angstrom": 3.824,
+                                "mean_plddt": 93.69,
+                                "approval_status": "pending_review",
+                                "approved_now": False,
+                            },
+                            {
+                                "sequence_position": 286,
+                                "residue_code": "GLN",
+                                "distance_to_anchor_ca_angstrom": 3.84,
+                                "mean_plddt": 96.0,
+                                "approval_status": "pending_review",
+                                "approved_now": False,
+                            },
+                            {
+                                "sequence_position": 243,
+                                "residue_code": "HIS",
+                                "distance_to_anchor_ca_angstrom": 5.918,
+                                "mean_plddt": 97.12,
+                                "approval_status": "pending_review",
+                                "approved_now": False,
+                            },
+                            {
+                                "sequence_position": 250,
+                                "residue_code": "GLU",
+                                "distance_to_anchor_ca_angstrom": 7.177,
+                                "mean_plddt": 80.44,
+                                "approval_status": "pending_review",
+                                "approved_now": False,
+                            },
+                            {
+                                "sequence_position": 285,
+                                "residue_code": "ILE",
+                                "distance_to_anchor_ca_angstrom": 6.267,
+                                "mean_plddt": 96.94,
+                                "approval_status": "pending_review",
+                                "approved_now": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "additional_approved_locator_positions_needed": 2
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_q43088_locator_review_priority_packet(
+                q43088_source_free_locator_candidate_scout_path=scout_path,
+                q43088_source_free_locator_approval_contract_path=contract_path,
+                artifact_id="q43088_priority_packet_test",
+            )
+
+        self.assertEqual(packet["artifact_id"], "q43088_priority_packet_test")
+        self.assertEqual(
+            packet["status"],
+            "fold_augmented_q43088_locator_review_priority_packet_ready_no_approvals",
+        )
+        self.assertEqual(packet["counts"]["candidate_locator_rows"], 5)
+        self.assertEqual(packet["counts"]["priority_candidate_rows"], 4)
+        self.assertEqual(
+            packet["review_rule"]["recommended_review_order"],
+            [288, 286, 243, 250],
+        )
+        self.assertEqual(
+            [
+                row["source_free_review_features"]["polar_or_charged_residue_code"]
+                for row in packet["priority_candidate_rows"]
+            ],
+            [True, True, True, True],
+        )
+        self.assertFalse(packet["decision"]["q43088_ready_for_rescore_now"])
+        self.assertFalse(packet["decision"]["priority_packet_clears_locator_contract"])
+        self.assertFalse(packet["guardrails"]["locator_positions_approved_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
     def test_p10746_prior_human_decision_reconciles_to_current_impact(
         self,

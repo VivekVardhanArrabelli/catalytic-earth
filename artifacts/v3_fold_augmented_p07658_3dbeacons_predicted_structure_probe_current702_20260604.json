@@ -1,0 +1,136 @@
+{
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "remaining_blocker_class": "predicted_structure_unavailable",
+    "sequence_length": 715
+  },
+  "artifact_id": "v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604",
+  "blockers": [
+    "3dbeacons_surface_experimental_only_for_p07658",
+    "p07658_predicted_coordinate_not_staged",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "coordinates_staged": 0,
+    "critical_violation_total": 0,
+    "deployment_valid_predicted_coordinate_rows_ready_now": 0,
+    "experimental_model_rows": 5,
+    "http_status_200_rows": 1,
+    "predicted_model_rows": 0,
+    "provider_counts": {
+      "PDBe": 5
+    },
+    "remaining_coordinate_source_blocker_rows": 1,
+    "structures_returned": 5
+  },
+  "created_utc": "2026-06-04T10:42:32Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "smallest_next_experiment": "Provision an approved full-length predictor/provider for P07658; the current 3D-Beacons surface exposes only experimental PDBe coordinates and cannot clear the deployment input gate.",
+    "three_d_beacons_clears_p07658_now": false
+  },
+  "endpoint_probe": {
+    "http_status": 200,
+    "url": "https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P07658.json"
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_downloaded_or_staged": false,
+    "experimental_coordinates_used_as_deployment_inputs": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Do not use the 3D-Beacons/PDBe experimental rows as shortcuts; keep P07658 blocked until an approved predicted coordinate is staged.",
+    "result": "3D-Beacons does not provide a deployment-valid predicted P07658 coordinate in the current public summary: all returned structures are experimental PDBe entries."
+  },
+  "rows": [
+    {
+      "coverage": 1.0,
+      "deployment_valid_predicted_input": false,
+      "experimental_method": "X-RAY DIFFRACTION",
+      "model_category": "EXPERIMENTALLY DETERMINED",
+      "model_format": "MMCIF",
+      "model_identifier": "2iv2",
+      "model_page_url": "https://www.ebi.ac.uk/pdbe/entry/pdb/2iv2",
+      "model_url": "https://www.ebi.ac.uk/pdbe/static/entry/2iv2_updated.cif",
+      "provider": "PDBe",
+      "sequence_identity": 100.0,
+      "uniprot_end": 715,
+      "uniprot_start": 1,
+      "why_not_deployment_valid": "3D-Beacons row is experimentally determined, not a predicted-structure model."
+    },
+    {
+      "coverage": 1.0,
+      "deployment_valid_predicted_input": false,
+      "experimental_method": "X-RAY DIFFRACTION",
+      "model_category": "EXPERIMENTALLY DETERMINED",
+      "model_format": "MMCIF",
+      "model_identifier": "1aa6",
+      "model_page_url": "https://www.ebi.ac.uk/pdbe/entry/pdb/1aa6",
+      "model_url": "https://www.ebi.ac.uk/pdbe/static/entry/1aa6_updated.cif",
+      "provider": "PDBe",
+      "sequence_identity": 100.0,
+      "uniprot_end": 715,
+      "uniprot_start": 1,
+      "why_not_deployment_valid": "3D-Beacons row is experimentally determined, not a predicted-structure model."
+    },
+    {
+      "coverage": 1.0,
+      "deployment_valid_predicted_input": false,
+      "experimental_method": "X-RAY DIFFRACTION",
+      "model_category": "EXPERIMENTALLY DETERMINED",
+      "model_format": "MMCIF",
+      "model_identifier": "1fdo",
+      "model_page_url": "https://www.ebi.ac.uk/pdbe/entry/pdb/1fdo",
+      "model_url": "https://www.ebi.ac.uk/pdbe/static/entry/1fdo_updated.cif",
+      "provider": "PDBe",
+      "sequence_identity": 100.0,
+      "uniprot_end": 715,
+      "uniprot_start": 1,
+      "why_not_deployment_valid": "3D-Beacons row is experimentally determined, not a predicted-structure model."
+    },
+    {
+      "coverage": 1.0,
+      "deployment_valid_predicted_input": false,
+      "experimental_method": "X-RAY DIFFRACTION",
+      "model_category": "EXPERIMENTALLY DETERMINED",
+      "model_format": "MMCIF",
+      "model_identifier": "1fdi",
+      "model_page_url": "https://www.ebi.ac.uk/pdbe/entry/pdb/1fdi",
+      "model_url": "https://www.ebi.ac.uk/pdbe/static/entry/1fdi_updated.cif",
+      "provider": "PDBe",
+      "sequence_identity": 100.0,
+      "uniprot_end": 715,
+      "uniprot_start": 1,
+      "why_not_deployment_valid": "3D-Beacons row is experimentally determined, not a predicted-structure model."
+    },
+    {
+      "coverage": 1.0,
+      "deployment_valid_predicted_input": false,
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "model_category": "EXPERIMENTALLY DETERMINED",
+      "model_format": "MMCIF",
+      "model_identifier": "7z0t",
+      "model_page_url": "https://www.ebi.ac.uk/pdbe/entry/pdb/7z0t",
+      "model_url": "https://www.ebi.ac.uk/pdbe/static/entry/7z0t_updated.cif",
+      "provider": "PDBe",
+      "sequence_identity": 100.0,
+      "uniprot_end": 715,
+      "uniprot_start": 1,
+      "why_not_deployment_valid": "3D-Beacons row is experimentally determined, not a predicted-structure model."
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_3dbeacons_predicted_structure_probe",
+  "scope": "Review-only 3D-Beacons Hub probe for the remaining P07658 Lever 3 coordinate blocker. It checks whether the aggregated public 3D-Beacons surface exposes any predicted-structure model for the exact accession; experimental PDBe rows are recorded as disallowed deployment shortcuts. It stages no coordinates, scores no rows, and does not change threshold 0.44155.",
+  "status": "fold_augmented_p07658_3dbeacons_probe_blocked_experimental_only"
+}

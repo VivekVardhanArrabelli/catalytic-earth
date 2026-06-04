@@ -1398,6 +1398,16 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-q43088-locator-review-priority-"
+                    "packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_q43088_locator_review_"
+                    "priority_packet"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-confounded-proxy-residual-queue-"
                     "after-p10746-q43088"
                 ),
@@ -1434,6 +1444,16 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_fold_augmented_confounded_proxy_repo_wide_"
                     "coordinate_sanity_scan"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-swissmodel-"
+                    "coordinate-staging-manifest"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_swissmodel_"
+                    "coordinate_staging_manifest"
                 ),
             ),
             (

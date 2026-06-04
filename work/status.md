@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 341
-- Measured elapsed time: 10345.2 minutes (172.42 hours)
+- Entries: 342
+- Measured elapsed time: 10395.8 minutes (173.26 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 228.6 measured minutes (3.81 hours)
+- northstar-lever3: 279.1 measured minutes (4.65 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3582
-- Evidence references logged: 2953
+- Artifact references logged: 3595
+- Evidence references logged: 2963
 
 ## Recent Entries
-
-### 2026-06-03T18:25:33.116790+00:00 - automation-lever-3
-
-- Task: Scored organic follow-up proxy axis and unsupported-geometry repair queue
-- Time mode: measured
-- Measured minutes: 23.483
-- Started: 2026-06-03T18:02:03Z
-- Ended: 2026-06-03T18:25:32Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_followup_proxy_axis_fixed_threshold_readout_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_repair_queue_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json
-- Evidence: PYTHONPATH=src python -m pytest -q, PYTHONPATH=src python -m unittest discover -s tests, PYTHONPATH=src python -m catalytic_earth.cli validate
-- Notes: Follow-up organic-score axis scored 4/4 rows; 1/4 abstains at fixed threshold 0.44155; post-follow-up scout leaves 160 background-only rows and repair queue has 8 unsupported-geometry rows with 0/8 local AFDB-v6 coordinates.
 
 ### 2026-06-03T19:56:36.530027+00:00 - v3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.json, work/fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.json, work/fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.md, artifacts/v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.json, work/fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.json, work/fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.md, docs/artifact_index.md, docs/decision_log.md, docs/project_state.md, work/handoff.md
 - Evidence: full pytest 1365 passed 169 subtests one existing sklearn SciPy warning, unittest discovery 1320 passed, focused Lever 3 artifact tests 4 passed, CLI registration 1 passed 143 subtests, compileall, validate 702 labels, git diff --check, docs artifact-reference check missing 0, JSON syntax checks
 - Notes: Lever 3 only. Current local evidence cannot close deployment or confounded-safe calibration: four coordinate-source rows lack approved predicted coordinates, Q43088 needs two approved locators or a sidecar, high-cofactor needs 16 new abstained train/cal rows, and same-family structural needs 170. No labels registries ontologies imports thresholds heldout tuning downloads scoring or source approvals changed.
+
+### 2026-06-04T10:54:54.865818+00:00 - northstar-lever3
+
+- Task: Lever 3 SWISS-MODEL staging and P07658 blocker probes
+- Time mode: measured
+- Measured minutes: 50.583
+- Started: 2026-06-04T10:03:30Z
+- Ended: 2026-06-04T10:54:05Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.json, work/fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.json, work/fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.md, artifacts/v3_fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe_current702_20260604.json, artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604.json, artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json, artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json, artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json, artifacts/v3_fold_augmented_q43088_locator_review_priority_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_current702_20260604.json, work/handoff.md, work/status.md
+- Evidence: full pytest 1374 passed 171 subtests one existing sklearn SciPy warning, unittest discovery 1329 passed, focused Lever 3 artifact tests 8 passed, unit Q43088 builder test 1 passed, CLI registration 1 passed 145 subtests, compileall, validate 702 labels, git diff --check, docs artifact-reference check missing 0, JSON syntax checks for 9 new artifacts
+- Notes: Lever 3 only. Three SWISS-MODEL predicted coordinates staged for review; P07658 remains blocked after secondary-accession, ESMFold length, provider auth, local-runtime, and 3D-Beacons experimental-only probes; Q43088 has priority positions but 0 approvals; no labels registries ontologies imports thresholds heldout tuning scoring or source approvals changed.
 
 ## Expectation Updates
 

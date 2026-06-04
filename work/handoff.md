@@ -3,13 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T09:03:05Z`
-- STARTED_AT_LOCAL: `2026-06-04T04:03:05-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T09:53:27Z`
-- ENDED_AT_LOCAL: `2026-06-04T04:53:27-0500 CDT`
-- ELAPSED_MINUTES: `50.4`
+- STARTED_AT_UTC: `2026-06-04T10:03:30Z`
+- STARTED_AT_LOCAL: `2026-06-04T05:03:30-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T10:54:05Z`
+- ENDED_AT_LOCAL: `2026-06-04T05:54:05-0500 CDT`
+- ELAPSED_MINUTES: `50.6`
 - Status: wrap validation passed; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T09:03:05Z` with PID `41464`.
+  acquired before substantive work at `2026-06-04T10:03:30Z` with PID `6896`.
   Current user instruction: work only on Lever 3.
 
 ## Mission
@@ -61,6 +61,147 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 29
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T10:03:30Z`
+- STARTED_LOCAL: `2026-06-04T05:03:30-0500 CDT`
+- ENDED_AT: `2026-06-04T10:54:05Z`
+- ENDED_LOCAL: `2026-06-04T05:54:05-0500 CDT`
+- ELAPSED_MINUTES: `50.6`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T10:03:30Z` with PID `6896`.
+
+#### Current intent
+
+Work only on Lever 3. Continue from Run 28's exact next action: clear the
+five-row residual surface without changing thresholds/splits, or produce the
+smallest concrete blocker artifact for the missing deployment-valid evidence.
+
+#### What changed
+
+- Added a reproducible SWISS-MODEL coordinate staging manifest builder and CLI:
+  `build-fold-augmented-confounded-proxy-swissmodel-coordinate-staging-manifest`.
+  It consumes the alternate-structure source contract plus the live
+  SWISS-MODEL repository probe, accepts only `provider=SWISSMODEL` and
+  `method=HOMOLOGY MODELLING`, rejects provider=`PDB` experimental rows, and
+  records provider/model/version/path/checksum provenance without scoring rows
+  or changing threshold `0.44155`.
+- Added the live SWISS-MODEL repository probe and staged review-only predicted
+  coordinates for three of four residual coordinate-source rows:
+  `artifacts/v3_fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.json`,
+  `work/fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.md`,
+  `artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P07071_9d3x_1_A_range_6_605.pdb`,
+  `artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P00806_1lba_1_A_range_7_151.pdb`,
+  and
+  `artifacts/v3_fold_augmented_swissmodel_coordinates_current702_20260604/SWISSMODEL_P04531_1del_1_A_range_1_241.pdb`.
+  The staging manifest
+  `artifacts/v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.json`
+  plus report records 3 staged rows and 1 remaining coordinate-source blocker.
+- Added P07658 rescue/blocker probes:
+  `artifacts/v3_fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe_current702_20260604.json`,
+  `artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604.json`,
+  `artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json`,
+  `artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json`,
+  and
+  `artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json`
+  with matching reports under `work/`. These show secondary accessions remain
+  SWISS-MODEL PDB-only and AFDB-v6 404, the public ESMFold endpoint rejects the
+  715-residue exact sequence, credential-free provider probes require
+  credentials/access, no local full-length predictor runtime is installed, and
+  3D-Beacons returns 5 experimental PDBe rows with 0 predicted rows.
+- Added a reproducible Q43088 locator review-priority packet builder and CLI:
+  `build-fold-augmented-q43088-locator-review-priority-packet`. The packet
+  `artifacts/v3_fold_augmented_q43088_locator_review_priority_packet_current702_20260604.json`
+  plus report ranks the candidate review order as positions `288`, `286`,
+  `243`, and `250`, but approves 0 locators and does not clear Q43088.
+- Added
+  `artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_current702_20260604.json`
+  and report. Current evidence is partially advanced: P07071, P00806, and
+  P04531 have staged SWISS-MODEL predicted coordinates; P07658 remains blocked
+  on an exact full-length predicted coordinate; Q43088 remains blocked on two
+  additional approved source-free locators or an equivalent geometry sidecar;
+  calibration shortfalls remain 16 high-cofactor rows and 170 same-family
+  structural rows.
+- Added regression coverage for the SWISS-MODEL staging manifest, P07658
+  rescue probes, Q43088 priority packet, current-evidence packet, and the new
+  CLI registrations, plus a unit-level fixture test for the Q43088 priority
+  builder.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, source
+  approvals, sidecar approvals, heldout splits, model weights, or threshold
+  values changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental PDB metadata shortcuts were used as predictive features.
+- SWISS-MODEL and 3D-Beacons experimental/PDB rows were recorded only as
+  disallowed provenance/blocker evidence.
+- No row scoring, full fixed-threshold audit rerun, deployment promotion, or
+  threshold retuning was performed.
+
+#### Verification
+
+- Baseline before edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1320 tests passed.
+- CLI smoke:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-confounded-proxy-swissmodel-coordinate-staging-manifest`
+  wrote 3 staged predicted rows and 1 remaining coordinate blocker;
+  `PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-q43088-locator-review-priority-packet`
+  wrote 4 priority candidates and 0 approvals.
+- Focused Lever 3 artifact regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'swissmodel_coordinate_staging_manifest_counts or p07658_secondary_accession_predicted_coordinate_reprobe_counts or p07658_esmfold_api_preflight_counts or p07658_full_length_predictor_provider_probe_counts or p07658_local_predictor_runtime_scan_counts or p07658_3dbeacons_predicted_structure_probe_counts or current_evidence_after_swissmodel_staging_counts or q43088_locator_review_priority_packet_counts' -q`:
+  8 passed, 207 deselected.
+- Unit builder regression:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_q43088_locator_review_priority_packet_ranks_source_free_candidates -q`:
+  1 passed.
+- CLI registration:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`:
+  1 passed, 145 subtests passed.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1329 tests passed,
+  with the existing sklearn/SciPy deprecation warning.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1374 passed, 171 subtests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Final docs artifact-reference check to `/tmp`: missing 0.
+- JSON syntax checks passed for the 9 new Lever 3 JSON artifacts.
+- Disk guardrail remained above 10 GiB: 25 GiB available.
+
+#### Commit/push status
+
+- `git fetch origin` completed during wrap prep; local `HEAD` and `origin/main`
+  were both `34aa51f474ac74db5f44c4136d3c343a7dc7bb00` before the wrap commit.
+- Wrap commit, push, sync verification, and lock release are the remaining
+  mechanical steps after this handoff/status update.
+
+#### Exact next action
+
+Do not rerun or retune threshold `0.44155` yet. The immediate Lever 3 gate is:
+
+1. For `m_csa:562`/`P07658`, provision or run an approved full-length
+   predictor/provider for the exact 715-residue sequence including
+   selenocysteine, then stage provider/model/version/path/checksum provenance.
+   Do not use experimental PDBe/PDB/3D-Beacons rows as deployment shortcuts.
+2. For `m_csa:604`/`Q43088`, review positions `288`, `286`, `243`, and `250`
+   first, then explicitly approve at least two source-free locators or approve
+   an equivalent source-free geometry sidecar.
+3. Only after P07658 and Q43088 clear, rerun the fixed-threshold
+   fold/geometry/cofactor channel at unchanged threshold `0.44155`.
+4. For confounded-safe calibration closure, run the frozen 16-row high-cofactor
+   train/cal OOS acquisition first; the 170-row same-family structural
+   acquisition remains the larger follow-on blocker.
 
 ### 2026-06-04 Lever 3 Forward Push Run 28
 

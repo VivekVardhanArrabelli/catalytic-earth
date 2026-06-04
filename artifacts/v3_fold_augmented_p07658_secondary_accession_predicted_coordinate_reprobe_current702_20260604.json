@@ -1,0 +1,104 @@
+{
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "remaining_blocker_class": "predicted_structure_unavailable"
+  },
+  "artifact_id": "v3_fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe_current702_20260604",
+  "blockers": [
+    "p07658_secondary_accessions_no_swissmodel_predicted_model",
+    "p07658_secondary_accessions_afdb_v6_404",
+    "p07658_only_experimental_pdb_repository_mappings_observed",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "afdb_v6_http_404_rows": 2,
+    "blockers": 4,
+    "critical_violation_total": 0,
+    "deployment_valid_predicted_coordinate_rows_ready_now": 0,
+    "remaining_coordinate_source_blocker_rows": 1,
+    "secondary_accessions_checked": 2,
+    "secondary_accessions_resolving_to_primary": 2,
+    "swissmodel_pdb_provider_rows": 10,
+    "swissmodel_predicted_model_rows": 0
+  },
+  "created_utc": "2026-06-04T10:15:20Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not use P07658 provider=PDB mappings. Keep the three staged SWISS-MODEL rows as partial clearance, then clear P07658 with a true predicted coordinate and Q43088 with approved source-free locator evidence before rerunning fixed-threshold scoring.",
+    "p07658_secondary_accessions_clear_coordinate_blocker_now": false,
+    "smallest_next_experiment": "Generate or obtain a fresh deployment-valid predicted structure for P07658 itself, with provider/model/version/path/checksum provenance; repository secondary-accession lookup cannot clear this row."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_downloaded_or_staged": false,
+    "experimental_pdb_mappings_used_as_deployment_inputs": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "The smallest remaining coordinate experiment is a fresh predicted-structure generation/acquisition for P07658, not another accession alias lookup.",
+    "result": "Secondary-accession lookup does not clear the remaining P07658 coordinate blocker; both secondary accessions resolve back to the same PDB-provider-only SWISS-MODEL repository surface and AFDB-v6 is unavailable."
+  },
+  "rows": [
+    {
+      "afdb_v6_http_status": 404,
+      "blocker": "secondary_accession_resolves_to_same_pdb_only_repository_surface",
+      "deployment_valid_predicted_coordinate_available": false,
+      "query_accession": "P78137",
+      "resolved_primary_accession": "P07658",
+      "swissmodel_pdb_provider_rows": 5,
+      "swissmodel_predicted_model_rows": 0,
+      "swissmodel_repository_http_status": 200,
+      "swissmodel_repository_uniprot_entries": [
+        {
+          "ac": "P07658"
+        }
+      ],
+      "swissmodel_structure_rows": 5,
+      "uniprot_sequence_length": 715,
+      "uniprot_sequence_version": 2
+    },
+    {
+      "afdb_v6_http_status": 404,
+      "blocker": "secondary_accession_resolves_to_same_pdb_only_repository_surface",
+      "deployment_valid_predicted_coordinate_available": false,
+      "query_accession": "Q2M6M5",
+      "resolved_primary_accession": "P07658",
+      "swissmodel_pdb_provider_rows": 5,
+      "swissmodel_predicted_model_rows": 0,
+      "swissmodel_repository_http_status": 200,
+      "swissmodel_repository_uniprot_entries": [
+        {
+          "ac": "P07658"
+        }
+      ],
+      "swissmodel_structure_rows": 5,
+      "uniprot_sequence_length": 715,
+      "uniprot_sequence_version": 2
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe",
+  "scope": "Smallest follow-up probe for the remaining Lever 3 coordinate-source blocker after SWISS-MODEL staging. It checks whether P07658 secondary UniProt accessions expose deployment-valid predicted structures. It stages no coordinates, scores no rows, and does not change threshold 0.44155.",
+  "secondary_accessions_checked": [
+    "P78137",
+    "Q2M6M5"
+  ],
+  "source_artifacts": {
+    "swissmodel_coordinate_staging_manifest": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.json"
+    },
+    "swissmodel_repository_probe": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.json"
+    }
+  },
+  "status": "fold_augmented_p07658_secondary_accession_reprobe_blocked_no_predicted_model"
+}

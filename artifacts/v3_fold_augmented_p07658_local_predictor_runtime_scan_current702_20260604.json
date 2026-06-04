@@ -1,0 +1,240 @@
+{
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "noncanonical_residue_count": 1,
+    "noncanonical_residues": [
+      {
+        "code": "U",
+        "position": 140
+      }
+    ],
+    "remaining_blocker_class": "predicted_structure_unavailable",
+    "sequence_length": 715
+  },
+  "artifact_id": "v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604",
+  "blockers": [
+    "local_full_length_predictor_runtime_not_installed",
+    "p07658_exact_sequence_requires_715_residue_and_selenocysteine_support",
+    "p07658_predicted_coordinate_not_staged",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "conda_envs_checked": [
+    {
+      "env_name": "base",
+      "env_path": "/opt/homebrew/Caskroom/miniconda/base"
+    },
+    {
+      "env_name": "alzheimers",
+      "env_path": "/opt/homebrew/Caskroom/miniconda/base/envs/alzheimers"
+    },
+    {
+      "env_name": "neo4j_env",
+      "env_path": "/opt/homebrew/Caskroom/miniconda/base/envs/neo4j_env"
+    }
+  ],
+  "counts": {
+    "conda_env_tree_hits": 0,
+    "conda_envs_checked": 3,
+    "coordinates_returned": 0,
+    "coordinates_staged": 0,
+    "critical_violation_total": 0,
+    "path_commands_available": 0,
+    "path_commands_checked": 5,
+    "private_tmp_runtime_or_coordinate_hits": 0,
+    "python_module_hits": 0,
+    "python_modules_checked_per_env": 6,
+    "remaining_coordinate_source_blocker_rows": 1
+  },
+  "created_utc": "2026-06-04T10:32:44Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "local_runtime_clears_p07658_now": false,
+    "missing_evidence_type": "approved full-length predicted-structure runtime or provider output for the exact 715-residue P07658 sequence including selenocysteine, with provider/model/version/path/checksum provenance",
+    "smallest_next_experiment": "Install or provision an approved full-length predictor/runtime that supports the exact P07658 sequence, or use a credentialed provider, then stage one coordinate with provider/model/version/path/checksum provenance."
+  },
+  "filesystem_probe": {
+    "conda_env_tree_hits": [],
+    "conda_env_tree_patterns_checked": [
+      "*esmfold*",
+      "*colabfold*"
+    ],
+    "private_tmp_non_runtime_hits_ignored": [
+      "/private/tmp/p07658_esmfold.valid"
+    ],
+    "private_tmp_patterns_checked": [
+      "*esmfold*",
+      "*colabfold*"
+    ],
+    "private_tmp_permission_denied_roots": [
+      "/private/tmp/catalytic-earth-foldseek-tm-1000_current702_wave1-928d50262750"
+    ],
+    "private_tmp_runtime_or_coordinate_hits": []
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_downloaded_or_staged": false,
+    "credentials_or_tokens_used": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "sequence_modified_or_truncated": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Provision a full-length predictor or credentialed provider for P07658; do not retry partial sequence truncation or experimental-PDB shortcuts.",
+    "result": "No local command, Python module, or shallow filesystem evidence exposes a usable full-length predictor/runtime for P07658. The row remains a coordinate-source blocker."
+  },
+  "path_command_probe": [
+    {
+      "available_on_path": false,
+      "command": "colabfold_batch"
+    },
+    {
+      "available_on_path": false,
+      "command": "foldSequence"
+    },
+    {
+      "available_on_path": false,
+      "command": "esm-fold"
+    },
+    {
+      "available_on_path": false,
+      "command": "esmfold"
+    },
+    {
+      "available_on_path": false,
+      "command": "omegafold"
+    }
+  ],
+  "python_module_probe_by_env": [
+    {
+      "env_name": "base",
+      "env_path": "/opt/homebrew/Caskroom/miniconda/base",
+      "modules": [
+        {
+          "available": false,
+          "module": "esm",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "esmfold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "colabfold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "alphafold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "omegafold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "openfold",
+          "origin": null
+        }
+      ]
+    },
+    {
+      "env_name": "alzheimers",
+      "env_path": "/opt/homebrew/Caskroom/miniconda/base/envs/alzheimers",
+      "modules": [
+        {
+          "available": false,
+          "module": "esm",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "esmfold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "colabfold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "alphafold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "omegafold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "openfold",
+          "origin": null
+        }
+      ]
+    },
+    {
+      "env_name": "neo4j_env",
+      "env_path": "/opt/homebrew/Caskroom/miniconda/base/envs/neo4j_env",
+      "modules": [
+        {
+          "available": false,
+          "module": "esm",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "esmfold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "colabfold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "alphafold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "omegafold",
+          "origin": null
+        },
+        {
+          "available": false,
+          "module": "openfold",
+          "origin": null
+        }
+      ]
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_local_predictor_runtime_scan",
+  "scope": "Review-only local-runtime scan for the remaining P07658 Lever 3 coordinate blocker. It checks only local command, Python-module, and shallow filesystem availability for full-length predicted-structure generators; it stages no coordinates, scores no rows, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "current_evidence_after_swissmodel_staging": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_current702_20260604.json"
+    },
+    "p07658_esmfold_api_preflight": {
+      "path": "artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604.json"
+    },
+    "p07658_full_length_predictor_provider_probe": {
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json"
+    }
+  },
+  "status": "fold_augmented_p07658_local_predictor_runtime_scan_blocked_no_runtime"
+}
