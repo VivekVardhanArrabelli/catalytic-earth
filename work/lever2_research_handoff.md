@@ -134,8 +134,14 @@ conclusion.
 
 #### Commit/push status
 
-- Pending at the time this handoff section was written; commit/push and final
-  sync verification are recorded in automation memory and the final response.
+- Implementation/readout commit
+  `8c721d80a9942811b8ba9a5f5ec67610d6a728cf` was pushed to
+  `origin/lever-2-research-track`. Local `HEAD` matched
+  `origin/lever-2-research-track` after fetch verification before this handoff
+  status update.
+- This handoff status update is committed and pushed as the final follow-up;
+  the exact final branch hash is recorded in automation memory and the final
+  response.
 
 #### Exact next action
 
