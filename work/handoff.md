@@ -12,8 +12,10 @@
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
   `2026-06-04T18:01:40Z` with PID `64058`. Current user instruction: work
   only on Lever 3. Produced a deployment-valid measured retention-frontier
-  readout and a fresh exact-sequence P07658 provider-attempt artifact; commit,
-  push, sync verification, and lock release are the remaining mechanical steps.
+  readout and a fresh exact-sequence P07658 provider-attempt artifact. Commit
+  `90bca3d80969c6c8a2b05fac217fe0e272f6718b` was pushed to `main`; `HEAD`
+  was verified equal to `origin/main`; the original lock was released, then
+  reacquired only to correct this handoff status.
 
 ## Mission
 
@@ -160,9 +162,13 @@ accepted during the run, continue to a measured source-free Lever 3 readout.
 
 #### Commit/push status
 
-- Pending after this handoff edit: commit, push, verify `HEAD == origin/main`,
-  and release `.git/catalytic-earth-automation.lock`. If any of those fail,
-  update this section before returning.
+- Implementation/readout commit
+  `90bca3d80969c6c8a2b05fac217fe0e272f6718b` pushed to `main`.
+- Verified `HEAD == origin/main` at
+  `90bca3d80969c6c8a2b05fac217fe0e272f6718b`.
+- Original canonical lock released after sync verification. It was reacquired
+  at `2026-06-04T18:25:12Z` only to correct this commit/push status in the
+  handoff; release it again after this bookkeeping commit is pushed.
 
 #### Exact next action
 
