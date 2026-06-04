@@ -325,6 +325,9 @@ FOLD_AUGMENTED_LEVER3_SAME_FAMILY_BANDPASS_COUNTERAXIS_CONTRACT_ID = (
 FOLD_AUGMENTED_LEVER3_POST_BANDPASS_DEPLOYMENT_READOUT_ID = (
     "v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_P07658_EXACT_ROUTE_ATTEMPT_READOUT_ID = (
+    "v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -40834,6 +40837,339 @@ def write_fold_augmented_lever3_post_bandpass_deployment_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_post_bandpass_deployment_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_p07658_exact_route_attempt_readout(
+    *,
+    post_bandpass_deployment_readout_path: Path,
+    exact_route_attempts_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_EXACT_ROUTE_ATTEMPT_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    post_bandpass = _read_json(post_bandpass_deployment_readout_path)
+    route_attempts = _read_json(exact_route_attempts_path)
+    post_counts = post_bandpass.get("counts") or {}
+    post_decision = post_bandpass.get("decision") or {}
+    route_counts = route_attempts.get("counts") or {}
+    route_decision = route_attempts.get("decision") or {}
+    rows = list(route_attempts.get("route_attempts") or [])
+    coordinate_rows = [
+        row
+        for row in rows
+        if bool(
+            row.get("coordinate_returned")
+            or row.get("coordinate_available_now")
+            or row.get("deployment_valid_predicted_coordinate_returned")
+        )
+    ]
+    deployment_valid_rows = [
+        row
+        for row in coordinate_rows
+        if bool(row.get("deployment_valid_for_p07658"))
+    ]
+    exact_sequence_submitted = [
+        row for row in rows if bool(row.get("exact_sequence_submitted"))
+    ]
+    sequence_modified_or_truncated = [
+        row for row in rows if bool(row.get("sequence_modified_or_truncated"))
+    ]
+    pdb_provider_rows = sum(int(row.get("pdb_provider_rows") or 0) for row in rows)
+    swissmodel_predicted_rows = sum(
+        int(row.get("swissmodel_predicted_model_rows") or 0) for row in rows
+    )
+    exact_hash_matches = bool(
+        route_counts.get("full_length_sequence_sha256_matches_manifest")
+        or route_attempts.get("sequence_contract", {}).get(
+            "sequence_sha256_matches_manifest"
+        )
+    )
+    counteraxis_ready = bool(
+        post_decision.get("deployment_valid_counteraxis_contracts_ready")
+    )
+    accepted_route_ready = bool(
+        route_decision.get("accepted_coordinate_provenance_ready_now")
+        or route_decision.get("p07658_exact_route_attempt_clears_coordinate_gap_now")
+    )
+    route_clears_now = bool(accepted_route_ready and deployment_valid_rows)
+    deployment_closed = bool(counteraxis_ready and route_clears_now)
+    remaining_missing_evidence = []
+    if not route_clears_now:
+        remaining_missing_evidence.append(
+            "credentialed or local exact full-length P07658 predicted coordinate "
+            "with provider/model/version/path/checksum and U140 provenance"
+        )
+    status = (
+        "fold_augmented_lever3_p07658_exact_route_attempt_readout_ready_for_preflight"
+        if route_clears_now
+        else "fold_augmented_lever3_p07658_exact_route_attempt_readout_no_coordinate"
+    )
+    route_attempt_count = int(route_counts.get("routes_attempted") or len(rows))
+    coordinate_count = int(
+        route_counts.get("coordinates_returned") or len(coordinate_rows)
+    )
+    deployment_valid_coordinate_count = int(
+        route_counts.get("deployment_valid_predicted_coordinate_rows")
+        or len(deployment_valid_rows)
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_p07658_exact_route_attempt_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured exact-route attempt readout for the remaining "
+            "P07658 coordinate/provenance gate after the accepted bandpass "
+            "counteraxis contract. It summarizes no-credential public/provider "
+            "attempts on the frozen full-length sequence, stages no coordinate, "
+            "scores no rows, and does not change threshold 0.44155."
+        ),
+        "sequence_contract": route_attempts.get("sequence_contract") or {},
+        "route_attempts": rows,
+        "operating_point_context": {
+            "counteraxis_contracts_ready": counteraxis_ready,
+            "baseline_threshold": (
+                (post_bandpass.get("operating_point") or {}).get(
+                    "baseline_threshold"
+                )
+            ),
+            "calibration_in_scope_retained": int(
+                post_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "calibration_in_scope_rows": int(
+                post_counts.get("calibration_in_scope_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                post_counts.get("all_train_cal_oos_abstained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                post_counts.get("all_train_cal_oos_rows") or 0
+            ),
+        },
+        "counts": {
+            "routes_attempted": route_attempt_count,
+            "exact_sequence_submitted_routes": int(
+                route_counts.get("exact_sequence_submitted_routes")
+                or len(exact_sequence_submitted)
+            ),
+            "sequence_modified_or_truncated_routes": int(
+                route_counts.get("sequence_modified_or_truncated_routes")
+                or len(sequence_modified_or_truncated)
+            ),
+            "coordinates_returned": coordinate_count,
+            "deployment_valid_predicted_coordinate_rows": (
+                deployment_valid_coordinate_count
+            ),
+            "full_length_sequence_sha256_matches_manifest": int(exact_hash_matches),
+            "pdb_provider_rows_rejected": int(
+                route_counts.get("pdb_provider_rows_rejected")
+                or pdb_provider_rows
+            ),
+            "swissmodel_predicted_model_rows": int(
+                route_counts.get("swissmodel_predicted_model_rows")
+                or swissmodel_predicted_rows
+            ),
+            "esm_atlas_length_rejection_rows": int(
+                route_counts.get("esm_atlas_length_rejection_rows") or 0
+            ),
+            "huggingface_router_auth_denial_rows": int(
+                route_counts.get("huggingface_router_auth_denial_rows") or 0
+            ),
+            "huggingface_legacy_dns_failure_rows": int(
+                route_counts.get("huggingface_legacy_dns_failure_rows") or 0
+            ),
+            "nvidia_nim_auth_denial_rows": int(
+                route_counts.get("nvidia_nim_auth_denial_rows") or 0
+            ),
+            "biolm_auth_denial_rows": int(
+                route_counts.get("biolm_auth_denial_rows") or 0
+            ),
+            "counteraxis_contracts_ready": int(counteraxis_ready),
+            "remaining_missing_evidence_items": len(remaining_missing_evidence),
+            "coordinates_staged_now": 0,
+            "rows_scored_now": 0,
+            "critical_violation_total": int(
+                route_counts.get("critical_violation_total") or 0
+            ),
+        },
+        "decision": {
+            "deployment_valid_counteraxis_contracts_ready": counteraxis_ready,
+            "p07658_exact_route_attempt_clears_coordinate_gap_now": route_clears_now,
+            "current_no_credential_public_routes_clear_p07658_now": bool(
+                coordinate_count and deployment_valid_coordinate_count
+            ),
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed,
+            "fixed_threshold_audit_ready_to_rerun_now": deployment_closed,
+            "apply_or_change_threshold_now": False,
+            "remaining_missing_evidence": remaining_missing_evidence,
+            "smallest_next_experiment": (
+                "Provision a credentialed or local full-length predictor route "
+                "that accepts the frozen 715-residue P07658 sequence with U140 "
+                "preserved or explicitly documented, then rerun acceptance "
+                "preflight before any fixed-threshold scoring."
+            ),
+            "next_gate": (
+                "Rerun P07658 acceptance preflight from the accepted route "
+                "coordinate/provenance packet."
+                if route_clears_now
+                else "Stop retrying equivalent no-credential public routes; "
+                "use a credentialed/provider or local full-length predictor "
+                "that can emit a coordinate with U140 provenance."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "coordinate_downloaded_or_staged_now": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "sequence_modified_or_truncated": bool(sequence_modified_or_truncated),
+        },
+        "source_artifacts": {
+            "post_bandpass_deployment_readout": _source_path_record(
+                post_bandpass_deployment_readout_path
+            ),
+            "exact_route_attempts": _source_path_record(exact_route_attempts_path),
+        },
+        "interpretation": {
+            "headline": (
+                "Exact no-credential P07658 routes still do not return a "
+                "deployment-valid coordinate."
+                if not route_clears_now
+                else "An exact P07658 route returned a deployment-valid candidate."
+            ),
+            "result": (
+                f"{route_attempt_count} exact/public route surfaces were checked; "
+                f"{coordinate_count} returned coordinates and "
+                f"{deployment_valid_coordinate_count} were deployment-valid "
+                "predicted-coordinate rows for P07658."
+            ),
+            "next_action": (
+                "Use a credentialed or local full-length predictor route; do not "
+                "truncate, mutate U140, use PDB-provider coordinates, or rerun "
+                "fixed-threshold scoring until acceptance preflight passes."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_p07658_exact_route_attempt_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    context = readout["operating_point_context"]
+    lines = [
+        "# Fold-Augmented Lever 3 P07658 Exact Route Attempt Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Counteraxis contracts ready: "
+        f"{decision['deployment_valid_counteraxis_contracts_ready']}",
+        "- Exact route clears coordinate gap now: "
+        f"{decision['p07658_exact_route_attempt_clears_coordinate_gap_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        "",
+        "## Operating Context",
+        "",
+        f"- Baseline threshold: {context['baseline_threshold']}",
+        "- Calibration retained: "
+        f"{context['calibration_in_scope_retained']}/"
+        f"{context['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{context['all_train_cal_oos_abstained']}/"
+        f"{context['all_train_cal_oos_rows']}",
+        "",
+        "## Route Attempts",
+        "",
+        "| route | status | coordinate | reason |",
+        "| --- | ---: | --- | --- |",
+    ]
+    for row in readout.get("route_attempts", []):
+        lines.append(
+            f"| {row.get('route_id')} | {row.get('http_status')} | "
+            f"{bool(row.get('coordinate_returned'))} | "
+            f"{row.get('rejection_reason') or row.get('response_summary')} |"
+        )
+    lines += [
+        "",
+        "## Counts",
+        "",
+        f"- Routes attempted: {counts['routes_attempted']}",
+        "- Exact sequence submitted routes: "
+        f"{counts['exact_sequence_submitted_routes']}",
+        f"- Coordinates returned: {counts['coordinates_returned']}",
+        "- Deployment-valid predicted coordinate rows: "
+        f"{counts['deployment_valid_predicted_coordinate_rows']}",
+        "- PDB-provider rows rejected: "
+        f"{counts['pdb_provider_rows_rejected']}",
+        "- SWISS-MODEL predicted model rows: "
+        f"{counts['swissmodel_predicted_model_rows']}",
+        "",
+        "## Decision",
+        "",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        f"- Remaining missing evidence: {decision['remaining_missing_evidence']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_p07658_exact_route_attempt_readout(
+    *,
+    post_bandpass_deployment_readout_path: Path,
+    exact_route_attempts_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_EXACT_ROUTE_ATTEMPT_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_p07658_exact_route_attempt_readout(
+        post_bandpass_deployment_readout_path=post_bandpass_deployment_readout_path,
+        exact_route_attempts_path=exact_route_attempts_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_p07658_exact_route_attempt_readout_report(
                 readout
             ),
             encoding="utf-8",

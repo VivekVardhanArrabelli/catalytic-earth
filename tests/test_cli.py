@@ -265,6 +265,38 @@ class CliTests(unittest.TestCase):
             args.p07658_prediction_dispatch_packet,
         )
 
+    def test_lever3_p07658_exact_route_attempt_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-fold-augmented-lever3-p07658-exact-route-"
+                    "attempt-readout"
+                )
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_p07658_exact_route_"
+                "attempt_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "post_bandpass_deployment_readout",
+            args.post_bandpass_deployment_readout,
+        )
+        self.assertIn(
+            "p07658_exact_route_attempts",
+            args.exact_route_attempts,
+        )
+        self.assertIn(
+            "p07658_exact_route_attempt_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

@@ -3,19 +3,18 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T21:03:53Z`
-- STARTED_AT_LOCAL: `2026-06-04T16:03:53-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T21:36:50Z`
-- ENDED_AT_LOCAL: `2026-06-04T16:36:50-0500 CDT`
-- ELAPSED_MINUTES: `32.95`
-- Status: Run 40 complete. Canonical
+- STARTED_AT_UTC: `2026-06-04T22:03:19Z`
+- STARTED_AT_LOCAL: `2026-06-04T17:03:19-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T22:26:55Z`
+- ENDED_AT_LOCAL: `2026-06-04T17:26:55-0500 CDT`
+- ELAPSED_MINUTES: `23.60`
+- Status: Run 41 complete. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T21:03:53Z` with PID `68897`. Work is restricted to Lever 3 and
-  produced an accepted same-family bandpass counteraxis contract, a
-  post-bandpass deployment readout, and no-staging P07658 public/local route
-  refresh readouts. The run commit was created; push/sync verification is
-  pending immediately after this handoff update. Use `git log -1 --oneline`
-  after sync for the final immutable hash.
+  `2026-06-04T22:03:19Z`. Work was restricted to Lever 3 and produced a
+  measured exact-route P07658 readout after the accepted bandpass contract. No
+  coordinate was staged, no row was scored, no threshold changed, and no blocker
+  packet was produced. Commit/push/sync verification is pending immediately
+  after this handoff update.
 
 ## Mission
 
@@ -66,6 +65,112 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 41
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T22:03:19Z`
+- STARTED_LOCAL: `2026-06-04T17:03:19-0500 CDT`
+- ENDED_AT: `2026-06-04T22:26:55Z`
+- ENDED_LOCAL: `2026-06-04T17:26:55-0500 CDT`
+- ELAPSED_MINUTES: `23.60`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T22:03:19Z`.
+
+#### What changed
+
+- Added `build-fold-augmented-lever3-p07658-exact-route-attempt-readout` and
+  the corresponding builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempts_current702_20260604.json`
+  and
+  `artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.json`.
+- Wrote
+  `work/fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.md`.
+- Added parser, synthetic builder, artifact-count, and source-hash regression
+  coverage for the new Lever 3 route-attempt artifacts.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; no production threshold,
+  labels, registries, ontologies, imports, heldout splits, scoring, coordinate
+  staging, model fitting, or source decisions changed.
+- Post-bandpass operating context remains unchanged:
+  31/34 calibration in-scope retained and 105/204 train/cal OOS abstained.
+- Six current exact/no-credential or provider route surfaces were checked for
+  P07658 with the frozen 715-residue sequence and U140 preserved where a body
+  was submitted.
+- Returned coordinates: 0/6. Deployment-valid predicted-coordinate rows: 0/6.
+- ESM Atlas exact POST returned HTTP 413 with the 400-residue length limit.
+- Hugging Face legacy inference host did not resolve from the runtime; Hugging
+  Face router returned HTTP 401 without credentials.
+- BioLM ESMFold documented `items` payload returned HTTP 401 without
+  credentials.
+- NVIDIA NIM ESMFold exact POST returned HTTP 401 because the authorization
+  header was missing.
+- SWISS-MODEL repository JSON returned five provider=`PDB` rows and zero
+  provider=`SWISSMODEL` predicted rows, so it remains an experimental shortcut
+  and not deployment-valid P07658 evidence.
+- The new readout remains deployment-open: counteraxis contracts are ready, but
+  P07658 still lacks accepted full-length predicted-coordinate provenance.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, or model fitting changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- Provider checks were no-staging route checks only; no coordinate was
+  downloaded into the repo, staged, or scored.
+
+#### Validation
+
+- Focused parser/builder/artifact/source-hash tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever3_p07658_exact_route_attempt_readout_parser_defaults tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_p07658_exact_route_attempt_readout_keeps_no_credential_gap tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_p07658_exact_route_attempt_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  4 passed, 16 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  569 passed, 181 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1441 passed, 200 subtests passed, with
+  the existing sklearn/SciPy warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1396 passed.
+- `python -m compileall src tests`: passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3548 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Disk check remained above the guardrail: about 10 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended a measured progress-log entry and regenerated `work/status.md`.
+- Commit/push/sync verification is pending immediately after this handoff
+  update; release the repo lock only after `HEAD == origin/main` and the
+  worktree is clean.
+
+#### Exact next Lever 3 action
+
+Provision a credentialed BioLM ESMFold token route or NVIDIA NIM ESMFold API
+key route, or a local predictor runtime, that accepts the frozen 715-residue
+P07658 sequence with U140 preserved or explicitly documented. Write
+provider/model/version/path/checksum/sequence-hash/U140 provenance, rerun
+`build-fold-augmented-p07658-prediction-acceptance-preflight`, and only if it
+passes rerun the fixed-threshold surface with the accepted cofactor-context and
+same-family bandpass counteraxis contracts.
 
 ### 2026-06-04 Lever 3 Forward Push Run 40
 

@@ -157,6 +157,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_evidence_sufficiency_readout,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
+    write_fold_augmented_lever3_p07658_exact_route_attempt_readout,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13460,6 +13461,33 @@ def cmd_build_fold_augmented_lever3_post_bandpass_deployment_readout(
         f"{decision.get('deployment_valid_counteraxis_contracts_ready')}, "
         f"P07658 failed checks: "
         f"{counts.get('p07658_acceptance_checks_failed')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_p07658_exact_route_attempt_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_p07658_exact_route_attempt_readout(
+        post_bandpass_deployment_readout_path=Path(
+            args.post_bandpass_deployment_readout
+        ),
+        exact_route_attempts_path=Path(args.exact_route_attempts),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 P07658 exact route attempt readout to "
+        f"{args.out} (routes: {counts.get('routes_attempted')}, "
+        f"coordinates: {counts.get('coordinates_returned')}, "
+        "clears gap: "
+        f"{decision.get('p07658_exact_route_attempt_clears_coordinate_gap_now')})"
     )
     return 0
 
@@ -32192,6 +32220,49 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_post_bandpass_deployment_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_post_bandpass_deployment_readout
+    )
+
+    lever3_p07658_exact_route_attempt_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-p07658-exact-route-attempt-readout",
+        help=(
+            "write a Lever 3 measured readout for exact P07658 no-credential "
+            "route attempts after the accepted bandpass contract"
+        ),
+    )
+    lever3_p07658_exact_route_attempt_readout.add_argument(
+        "--post-bandpass-deployment-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_exact_route_attempt_readout.add_argument(
+        "--exact-route-attempts",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_exact_route_"
+            "attempts_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_exact_route_attempt_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_p07658_exact_route_attempt_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_exact_route_attempt_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_p07658_exact_route_attempt_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_p07658_exact_route_attempt_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_p07658_exact_route_attempt_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

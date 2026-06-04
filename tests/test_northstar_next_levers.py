@@ -72,6 +72,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_evidence_sufficiency_readout,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
+    build_fold_augmented_lever3_p07658_exact_route_attempt_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -5051,6 +5052,117 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 (
                     "accepted full-length P07658 predicted coordinate provenance "
                     "before fixed-threshold surface rerun"
+                )
+            ],
+        )
+
+    def test_lever3_p07658_exact_route_attempt_readout_keeps_no_credential_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            post_path = root / "post.json"
+            attempts_path = root / "attempts.json"
+            post_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {"baseline_threshold": 0.44155},
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "decision": {
+                            "deployment_valid_counteraxis_contracts_ready": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            attempts_path.write_text(
+                json.dumps(
+                    {
+                        "sequence_contract": {
+                            "sequence_sha256_matches_manifest": True
+                        },
+                        "route_attempts": [
+                            {
+                                "route_id": "esm_atlas",
+                                "http_status": 413,
+                                "exact_sequence_submitted": True,
+                                "sequence_modified_or_truncated": False,
+                                "coordinate_returned": False,
+                                "deployment_valid_for_p07658": False,
+                                "rejection_reason": "sequence_too_long",
+                            },
+                            {
+                                "route_id": "swissmodel",
+                                "http_status": 200,
+                                "exact_sequence_submitted": False,
+                                "sequence_modified_or_truncated": False,
+                                "coordinate_returned": False,
+                                "deployment_valid_for_p07658": False,
+                                "pdb_provider_rows": 5,
+                                "swissmodel_predicted_model_rows": 0,
+                                "rejection_reason": "pdb_provider_only",
+                            },
+                        ],
+                        "counts": {
+                            "routes_attempted": 2,
+                            "exact_sequence_submitted_routes": 1,
+                            "sequence_modified_or_truncated_routes": 0,
+                            "coordinates_returned": 0,
+                            "deployment_valid_predicted_coordinate_rows": 0,
+                            "full_length_sequence_sha256_matches_manifest": 1,
+                            "pdb_provider_rows_rejected": 5,
+                            "swissmodel_predicted_model_rows": 0,
+                            "esm_atlas_length_rejection_rows": 1,
+                        },
+                        "decision": {
+                            "accepted_coordinate_provenance_ready_now": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_p07658_exact_route_attempt_readout(
+                post_bandpass_deployment_readout_path=post_path,
+                exact_route_attempts_path=attempts_path,
+                artifact_id="custom_p07658_exact_route_readout",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_p07658_exact_route_readout")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_p07658_exact_route_attempt_readout_no_coordinate",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_counteraxis_contracts_ready"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "p07658_exact_route_attempt_clears_coordinate_gap_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["routes_attempted"], 2)
+        self.assertEqual(readout["counts"]["coordinates_returned"], 0)
+        self.assertEqual(readout["counts"]["pdb_provider_rows_rejected"], 5)
+        self.assertEqual(
+            readout["operating_point_context"]["calibration_in_scope_retained"],
+            31,
+        )
+        self.assertEqual(
+            readout["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "credentialed or local exact full-length P07658 predicted "
+                    "coordinate with provider/model/version/path/checksum and "
+                    "U140 provenance"
                 )
             ],
         )

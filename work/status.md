@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 352
-- Measured elapsed time: 10816.8 minutes (180.28 hours)
+- Entries: 353
+- Measured elapsed time: 10839.7 minutes (180.66 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 649.4 measured minutes (10.82 hours)
+- northstar-lever3: 672.3 measured minutes (11.20 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3692
-- Evidence references logged: 3041
+- Artifact references logged: 3702
+- Evidence references logged: 3055
 
 ## Recent Entries
-
-### 2026-06-04T14:25:57.944431+00:00 - northstar-lever3
-
-- Task: Lever 3 current measured readout and P07658 runtime feasibility
-- Time mode: measured
-- Measured minutes: 22.583
-- Started: 2026-06-04T14:03:05Z
-- Ended: 2026-06-04T14:25:40Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json, work/fold_augmented_lever3_current_measured_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: measured readout 204 scored train/cal OOS rows with 72 abstained at unchanged threshold 0.44155, train/cal in-scope retention 31 of 34, high-cofactor proxy 0 of 4 abstained, same-family structural proxy 11 of 59 abstained, current evidence insufficient for deployment closure, P07658 AFDB v6 and v4 direct checks 404, facebook esmfold_v1 weights 7.862 GiB and tokenizer lacks U support, full pytest 1409 passed 189 subtests one existing sklearn warning, unittest discovery 1364 passed, validate passed 702 labels, compileall diff check JSON parse 3530 files docs reference check missing 0
-- Notes: Lever 3 only. No labels registries ontologies imports production thresholds heldout splits heldout tuning model weights row scoring coordinate staging or experimental PDB deployment shortcuts changed.
 
 ### 2026-06-04T15:52:38.463795+00:00 - v3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json, work/fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.md, artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.json, work/fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_current702_20260604.json, work/fold_augmented_lever3_post_bandpass_p07658_live_probe_current702_20260604.md, artifacts/v3_fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.json, work/fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: same-family bandpass counteraxis contract accepted with 31 of 34 calibration retained and 9 of 9 required same-family residual rows fired, post-bandpass operating point abstained 105 of 204 train/cal OOS rows with counteraxis contracts ready, P07658 remains deployment closure gap with acceptance preflight 7 failed checks and 0 coordinate/provenance, public refresh found AlphaFold API P07658 404 and 3D-Beacons 5 experimental rows and RCSB computed-model search HTTP 204, local runtime refresh found 0 of 8 predictor commands and 0 module hits across 3 conda interpreters, affected suite 566 passed and 179 subtests, full pytest 1438 passed and 198 subtests with existing sklearn warning, unittest discovery 1393 passed, validate 702 labels compileall diff-check JSON parse and docs-reference passed, disk remained above 10 GiB
 - Notes: Measured readout artifacts first; no blocker packet produced. Public and local P07658 refreshes were no-staging evidence checks.
+
+### 2026-06-04T22:26:32.470910+00:00 - northstar-lever3
+
+- Task: Lever 3 P07658 exact route attempt readout
+- Time mode: measured
+- Measured minutes: 22.9
+- Started: 2026-06-04T22:03:19Z
+- Ended: 2026-06-04T22:26:13Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempts_current702_20260604.json, artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.json, work/fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: six exact or provider route surfaces checked for P07658, zero coordinates returned and zero deployment-valid predicted coordinate rows, exact sequence hash 3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa preserved, ESM Atlas exact POST returned HTTP 413 length limit 400, BioLM documented items payload returned HTTP 401 without credentials, NVIDIA NIM ESMFold exact POST returned HTTP 401 missing authorization, Hugging Face router returned HTTP 401 and legacy host DNS failed, SWISS-MODEL returned five PDB-provider rows and zero SWISSMODEL predicted rows, post-bandpass operating context remains 31 of 34 calibration retained and 105 of 204 train-cal OOS abstained, affected suite 569 passed and 181 subtests, full pytest 1441 passed 200 subtests with existing sklearn warning, unittest discovery 1396 passed, validate 702 labels compileall diff-check JSON parse and docs-reference passed, disk remained above 10 GiB
+- Notes: Measured readout artifact first; no blocker packet produced. Public/provider route attempts were no-staging evidence checks and kept the fixed 0.44155 threshold unchanged.
 
 ## Expectation Updates
 
@@ -398,6 +398,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T18:22:07.166395+00:00: Current fixed source-free channels cannot close Lever 3 at 90pct retention or at any retention; next progress needs accepted P07658 coordinate provenance plus strict high-cofactor acquisition.
 - 2026-06-04T20:51:00.471108+00:00: Current source-free numeric evidence now supports a measured operating-point closure scout for high-cofactor plus same-family shortfall at 31/34 calibration retention, but deployment closure still needs an accepted bandpass counteraxis contract and full-length P07658 predicted-coordinate provenance.
 - 2026-06-04T21:37:20.235148+00:00: Lever 3 counteraxis evidence is now contract-ready at the train/cal operating point; remaining deployment closure requires only accepted exact full-length P07658 predicted-coordinate provenance before any fixed-threshold rerun.
+- 2026-06-04T22:26:32.470910+00:00: Counteraxis contracts remain ready but no no-credential exact route clears P07658; next progress requires credentialed BioLM or NVIDIA NIM-style route or local predictor that emits full-length coordinate provenance with U140 documented.
 
 ## Scope Adjustments
 
@@ -608,3 +609,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T18:22:07.166395+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging or source decisions changed
 - 2026-06-04T20:51:00.471108+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or source decisions changed
 - 2026-06-04T21:37:20.235148+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or source decisions changed.
+- 2026-06-04T22:26:32.470910+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or experimental PDB deployment shortcuts changed.

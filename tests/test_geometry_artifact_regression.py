@@ -8341,6 +8341,86 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             readout["python_module_probe_by_env"][0]["modules"],
         )
 
+    def test_fold_augmented_lever3_p07658_exact_route_attempt_readout_counts(
+        self,
+    ) -> None:
+        attempts = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_p07658_exact_route_attempts_"
+                "current702_20260604.json"
+            )
+        )
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_p07658_exact_route_attempt_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            attempts["status"],
+            (
+                "fold_augmented_lever3_p07658_exact_route_attempts_"
+                "no_credential_coordinate_absent"
+            ),
+        )
+        self.assertEqual(attempts["counts"]["routes_attempted"], 6)
+        self.assertEqual(
+            attempts["counts"]["exact_sequence_submitted_routes"], 5
+        )
+        self.assertEqual(attempts["counts"]["coordinates_returned"], 0)
+        self.assertEqual(
+            attempts["counts"]["deployment_valid_predicted_coordinate_rows"],
+            0,
+        )
+        self.assertEqual(attempts["counts"]["pdb_provider_rows_rejected"], 5)
+        self.assertEqual(
+            attempts["counts"]["swissmodel_predicted_model_rows"], 0
+        )
+        self.assertEqual(
+            attempts["counts"]["esm_atlas_length_rejection_rows"], 1
+        )
+        self.assertEqual(
+            attempts["counts"]["huggingface_router_auth_denial_rows"], 1
+        )
+        self.assertEqual(
+            attempts["counts"]["huggingface_legacy_dns_failure_rows"], 1
+        )
+        self.assertEqual(attempts["counts"]["nvidia_nim_auth_denial_rows"], 1)
+        self.assertEqual(attempts["counts"]["biolm_auth_denial_rows"], 1)
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_p07658_exact_route_attempt_readout_no_coordinate",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_counteraxis_contracts_ready"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "p07658_exact_route_attempt_clears_coordinate_gap_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["routes_attempted"], 6)
+        self.assertEqual(readout["counts"]["coordinates_returned"], 0)
+        self.assertEqual(
+            readout["counts"]["full_length_sequence_sha256_matches_manifest"],
+            1,
+        )
+        self.assertEqual(readout["counts"]["pdb_provider_rows_rejected"], 5)
+        self.assertEqual(readout["counts"]["nvidia_nim_auth_denial_rows"], 1)
+        self.assertEqual(readout["counts"]["biolm_auth_denial_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["remaining_missing_evidence_items"], 1
+        )
+        self.assertFalse(readout["guardrails"]["sequence_modified_or_truncated"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -8409,6 +8489,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_p07658_local_runtime_refresh_"
                 "after_bandpass_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_p07658_exact_route_attempts_"
+                "current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_p07658_exact_route_attempt_"
+                "readout_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):
