@@ -18965,6 +18965,183 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
 
+    def test_lever2_event_axis_primary_controlled_rescue_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_axis_primary_controlled_rescue_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_event_axis_primary_controlled_rescue_readout_"
+            "research_only_primary_controlled_marginal_axis_signal_source_free_gap",
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_primary_controlled_marginal_axis_signal_source_free_gap",
+        )
+        self.assertEqual(
+            readout["counts"]["projection_plus_axis_surfaces_evaluated"], 7
+        )
+        self.assertEqual(readout["counts"]["calibration_rows"], 32)
+        self.assertEqual(readout["counts"]["calibration_primary_rows"], 4)
+        self.assertEqual(readout["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(readout["counts"]["current_extended_oos_overlap_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["current_extended_current_retained_overlap_rows"],
+            13,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "baseline_projected_subset_current_retained_oos_catches"
+            ],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_primary_controlled_axis_current_retained_oos_catches"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_primary_controlled_axis_marginal_current_retained_oos_catches"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_primary_controlled_axis_target_rows_passing_primary_control"
+            ],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_primary_controlled_axis_mechanism_primary_control_rows"
+            ],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smallest_primary_controlled_rescue_smoke_tranche_rows"
+            ],
+            40,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smallest_smoke_tranche_existing_source_free_covered_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smallest_smoke_tranche_existing_source_free_missing_rows"
+            ],
+            39,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smallest_smoke_tranche_existing_event_axis_linker_covered_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_primary_source_free_event_axis_rows"],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_retained_oos_source_free_event_axis_rows"
+            ],
+            132,
+        )
+        self.assertEqual(
+            readout["decision"]["best_primary_controlled_axis_id"],
+            "source_free_projected_proton_role_subset+bond_change",
+        )
+        self.assertEqual(readout["decision"]["best_new_axis_id"], "bond_change")
+        best = readout["measured_readout"]["best_primary_controlled_axis"]
+        self.assertEqual(
+            best["current_extended_overlap"]["marginal_caught_entry_ids"],
+            ["m_csa:256", "m_csa:312"],
+        )
+        self.assertEqual(
+            best["primary_controlled_selection"][
+                "target_rows_passing_primary_control"
+            ],
+            21,
+        )
+        marginal_rows = readout["missing_evidence_rows"][
+            "best_primary_controlled_axis_marginal_rows"
+        ]
+        self.assertEqual(
+            [row["entry_id"] for row in marginal_rows],
+            ["m_csa:256", "m_csa:312"],
+        )
+        self.assertEqual(
+            [row["added_axis_selected_rule"]["threshold"] for row in marginal_rows],
+            [0.0, 0.0],
+        )
+        self.assertEqual(
+            [row["primary_control"]["retained_rows"] for row in marginal_rows],
+            [4, 4],
+        )
+        control_rows = readout["missing_evidence_rows"][
+            "best_primary_controlled_axis_mechanism_primary_control_rows_requiring_source_free_materialization"
+        ]
+        self.assertEqual(
+            [row["entry_id"] for row in control_rows],
+            ["m_csa:6", "m_csa:133", "m_csa:147", "m_csa:186"],
+        )
+        smoke_rows = readout["missing_evidence_rows"][
+            "smallest_primary_controlled_rescue_smoke_tranche_rows"
+        ]
+        self.assertEqual(len(smoke_rows), 40)
+        coverage = readout["measured_readout"][
+            "smallest_smoke_tranche_existing_source_free_coverage"
+        ]
+        self.assertEqual(coverage["covered_entry_ids"], ["m_csa:216"])
+        self.assertEqual(
+            coverage["coverage_by_surface"]["source_free_event_axis_linkers"][
+                "covered_entry_ids"
+            ],
+            [],
+        )
+        self.assertIn(
+            "mechanism_primary_control",
+            next(
+                row for row in smoke_rows if row["entry_id"] == "m_csa:133"
+            )["priority_classes"],
+        )
+        self.assertIn(
+            "primary_controlled_marginal_current_retained_oos",
+            next(
+                row for row in smoke_rows if row["entry_id"] == "m_csa:256"
+            )["priority_classes"],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "genuinely_new_axis_adds_beyond_projected_subset_under_primary_control"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["research_only"])
+        self.assertFalse(readout["decision"]["negative"])
+        self.assertTrue(
+            readout["guardrails"][
+                "target_oos_rows_excluded_from_their_own_axis_rule_selection"
+            ]
+        )
+
     def test_lever2_partial_surface_current_split_portability_readout_counts(
         self,
     ) -> None:

@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-04T20:32:00Z`
-- STARTED_AT_LOCAL: `2026-06-04T15:32:00-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T21:27:51Z`
-- ENDED_AT_LOCAL: `2026-06-04T16:27:51-0500 CDT`
-- ELAPSED_MINUTES: `55.85`
+- STARTED_AT_UTC: `2026-06-04T21:32:02Z`
+- STARTED_AT_LOCAL: `2026-06-04T16:32:02-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T22:03:49Z`
+- ENDED_AT_LOCAL: `2026-06-04T17:03:49-0500 CDT`
+- ELAPSED_MINUTES: `31.78`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,141 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 8
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T21:32:02Z`
+- STARTED_LOCAL: `2026-06-04T16:32:02-0500 CDT`
+- ENDED_AT: `2026-06-04T22:03:49Z`
+- ENDED_LOCAL: `2026-06-04T17:03:49-0500 CDT`
+- ELAPSED_MINUTES: `31.78`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only on the dedicated
+`lever-2-research-track` branch. Rebase onto current `origin/main`, then
+produce another measured train/cal readout before any blocker conclusion.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/d8db/catalytic-earth`; found
+  the existing dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued there for all branch work.
+- Initial filesystem free space was below the 10 GiB guardrail at 7.1 GiB.
+  Removed the clean, detached, stale automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/53b8/catalytic-earth`,
+  restoring free space to 11 GiB before running tests or writing new artifacts.
+- Fetched `origin main` and `origin/lever-2-research-track`; rebased
+  `lever-2-research-track` onto current `origin/main`
+  (`7a0c90041d55d795fe33e2973c76b7ed806672c1`). Resolved the expected
+  `src/catalytic_earth/cli.py` command-dispatch conflict by keeping both the
+  newer Lever 3 cofactor-context command and the prior Lever 2 mechanism
+  command. `python -m py_compile src/catalytic_earth/cli.py` passed after the
+  conflict fix, and the rebase completed.
+- Added a measured Lever 2 primary-controlled event-axis rescue builder/CLI:
+  `build-lever2-event-axis-primary-controlled-rescue-readout`.
+- Wrote the measured readout artifact and report:
+  `artifacts/v3_lever2_event_axis_primary_controlled_rescue_readout_current702_20260604.json`
+  and
+  `work/lever2_event_axis_primary_controlled_rescue_readout_current702_20260604.md`.
+- The readout keeps the current geometry/fold operating point fixed, excludes
+  each measured OOS target row from its own mechanism-axis rule selection, and
+  filters event-axis rules against all mechanism calibration primary controls.
+  It reads no heldout rows, changes no production threshold, and uses entry IDs
+  only for split/overlap/missing-evidence accounting.
+- Continued after the measured signal by embedding a source-free coverage
+  diagnostic for the exact 40-row primary-controlled smoke tranche. Existing
+  partial source-free surfaces cover only 1/40 tranche rows, and existing
+  event-axis linkers cover 0/40.
+
+#### Measured results
+
+- Primary-controlled rescue result:
+  `research_only_primary_controlled_marginal_axis_signal_source_free_gap`.
+- Best primary-controlled axis:
+  `source_free_projected_proton_role_subset+bond_change`.
+- Baseline projected subset catches 5/13 current-retained overlap rows.
+  The primary-controlled bond-change pair catches 7/13, adding 2 marginal
+  current-retained OOS catches: `m_csa:256` and `m_csa:312`.
+- The rescued bond-change rule uses a stricter added-axis rule
+  `bond_change low 0.0` for the marginal rows and retains all 4 mechanism
+  primary controls: `m_csa:6`, `m_csa:133`, `m_csa:147`, and `m_csa:186`.
+  This directly resolves the prior permissive `low 3.0` control failure for
+  `m_csa:133` at the train/cal research readout level.
+- Target selections passing primary control: 21/21 current-overlap rows.
+- The result is still research-only, not deployable: current-split
+  source-free event-axis rows are still missing for 34 current primary rows and
+  132 current-retained OOS rows, and the M-CSA row-specific mechanism features
+  remain train/cal-only research evidence.
+- Exact smallest next smoke tranche from this rescue readout is 40 unique rows:
+  34 current primary rows, 4 mechanism primary-control rows, and the 2
+  primary-controlled marginal OOS rows. Existing partial source-free coverage
+  covers only `m_csa:216`; 39/40 tranche rows remain missing, with 0 event-axis
+  linker coverage.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, deployment gates, or heldout rows changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accession
+  fields, or source provenance were used as predictive features.
+- Entry IDs were used only for split/overlap accounting, row-level diagnostics,
+  and missing-row queue accounting.
+- M-CSA row-specific mechanism features remain train/cal-only research
+  evidence; no source-free rows were materialized or promoted.
+- Disk guardrail was restored before substantive work and ended above 10 GiB
+  available (`10.281` GiB exact check before handoff write).
+
+#### Validation
+
+- Rebase conflict sanity:
+  `python -m py_compile src/catalytic_earth/cli.py` passed.
+- Generated artifact:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-axis-primary-controlled-rescue-readout`.
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_event_axis_primary_controlled_rescue_recovers_bond_signal tests/test_cli.py::CliTests::test_lever2_event_axis_primary_controlled_rescue_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_primary_controlled_rescue_readout_counts -q`
+  passed: `3 passed`.
+- Broader touched Lever 2/CLI/regression cluster:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py tests/test_cli.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_current_extended_oos_mechanism_overlap_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_current_extended_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_loo_current_extended_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_primary_safe_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_primary_controlled_rescue_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_partial_surface_current_split_portability_readout_counts -q`
+  passed: `150 passed, 159 subtests passed`.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q` passed:
+  `1457 passed, 1 warning, 195 subtests passed in 80.02s`. The warning is the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  `Ran 1412 tests in 42.492s OK`, with the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `git diff --check` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  12 source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated mechanism labels.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`
+  passed: `2 passed`.
+- Repo JSON/JSONL parse sweep passed: 3551 JSON files and 27 JSONL files
+  parsed with 0 errors.
+- New artifact `source_artifacts` hashes checked: 5 checked, 0 stale.
+
+#### Commit/push status
+
+- Implementation/readout commit and push pending immediately after this handoff
+  update. Record final pushed hash in a follow-up bookkeeping commit.
+
+#### Exact next action
+
+- Do not promote Lever 2 yet. Materialize source-free current-split event-axis
+  rows for the 40-row primary-controlled rescue smoke tranche: 34 current
+  primary rows, mechanism primary controls `m_csa:6`, `m_csa:133`,
+  `m_csa:147`, `m_csa:186`, and marginal OOS rows `m_csa:256` and
+  `m_csa:312`. Rerun the primary-controlled rescue readout and require the
+  `bond_change low 0.0` rescue to preserve all primary controls with nonzero
+  marginal current-retained OOS value before any heldout or deployment claim.
 
 ### 2026-06-04 Lever 2 Research Run 7
 
