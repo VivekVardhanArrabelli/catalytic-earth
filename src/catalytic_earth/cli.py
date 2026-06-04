@@ -157,8 +157,10 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_evidence_sufficiency_readout,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
+    write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
+    write_fold_augmented_lever3_same_family_bandpass_counteraxis_contract,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
     write_fold_augmented_post_rerun_confounded_deployment_closure_audit,
@@ -13395,6 +13397,69 @@ def cmd_build_fold_augmented_lever3_cofactor_context_counteraxis_readout(
         f"same residual fired/remaining: "
         f"{counts.get('residual_same_family_counteraxis_fired')}/"
         f"{counts.get('residual_same_family_remaining_after_counteraxis')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    contract = write_fold_augmented_lever3_same_family_bandpass_counteraxis_contract(
+        cofactor_context_counteraxis_readout_path=Path(
+            args.cofactor_context_counteraxis_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = contract.get("counts", {})
+    decision = contract.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 same-family bandpass counteraxis "
+        f"contract to {args.out} (accepted: "
+        f"{decision.get('same_family_bandpass_counteraxis_contract_accepted')}, "
+        f"cal retained: {counts.get('calibration_in_scope_retained')}/"
+        f"{counts.get('calibration_in_scope_rows')}, "
+        f"same shortfall after: "
+        f"{counts.get('same_family_shortfall_after_contract')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_post_bandpass_deployment_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_post_bandpass_deployment_readout(
+        cofactor_context_counteraxis_readout_path=Path(
+            args.cofactor_context_counteraxis_readout
+        ),
+        same_family_bandpass_counteraxis_contract_path=Path(
+            args.same_family_bandpass_counteraxis_contract
+        ),
+        p07658_prediction_acceptance_preflight_path=Path(
+            args.p07658_prediction_acceptance_preflight
+        ),
+        p07658_prediction_dispatch_packet_path=Path(
+            args.p07658_prediction_dispatch_packet
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 post-bandpass deployment readout to "
+        f"{args.out} (counteraxis ready: "
+        f"{decision.get('deployment_valid_counteraxis_contracts_ready')}, "
+        f"P07658 failed checks: "
+        f"{counts.get('p07658_acceptance_checks_failed')})"
     )
     return 0
 
@@ -32032,6 +32097,101 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_cofactor_context_counteraxis_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_cofactor_context_counteraxis_readout
+    )
+
+    lever3_same_family_bandpass_counteraxis_contract = subparsers.add_parser(
+        "build-fold-augmented-lever3-same-family-bandpass-counteraxis-contract",
+        help=(
+            "write an accepted Lever 3 same-family numeric bandpass "
+            "counteraxis contract from the measured cofactor-context readout"
+        ),
+    )
+    lever3_same_family_bandpass_counteraxis_contract.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_same_family_bandpass_counteraxis_contract.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_same_family_bandpass_counteraxis_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_same_family_bandpass_"
+            "counteraxis_contract_current702_20260604.json"
+        ),
+    )
+    lever3_same_family_bandpass_counteraxis_contract.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_same_family_bandpass_"
+            "counteraxis_contract_current702_20260604.md"
+        ),
+    )
+    lever3_same_family_bandpass_counteraxis_contract.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract
+        )
+    )
+
+    lever3_post_bandpass_deployment_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-post-bandpass-deployment-readout",
+        help=(
+            "write a Lever 3 post-bandpass deployment readout that composes "
+            "accepted counteraxis contracts with P07658 acceptance evidence"
+        ),
+    )
+    lever3_post_bandpass_deployment_readout.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_post_bandpass_deployment_readout.add_argument(
+        "--same-family-bandpass-counteraxis-contract",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_same_family_bandpass_"
+            "counteraxis_contract_current702_20260604.json"
+        ),
+    )
+    lever3_post_bandpass_deployment_readout.add_argument(
+        "--p07658-prediction-acceptance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_acceptance_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    lever3_post_bandpass_deployment_readout.add_argument(
+        "--p07658-prediction-dispatch-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_post_bandpass_deployment_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_post_bandpass_deployment_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_post_bandpass_deployment_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_post_bandpass_deployment_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_post_bandpass_deployment_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_post_bandpass_deployment_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

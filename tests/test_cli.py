@@ -206,6 +206,65 @@ class CliTests(unittest.TestCase):
             args.predicted_geometry_atlas_retrieval,
         )
 
+    def test_lever3_same_family_bandpass_counteraxis_contract_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-fold-augmented-lever3-same-family-bandpass-"
+                    "counteraxis-contract"
+                )
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_same_family_bandpass_"
+                "counteraxis_contract_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_cofactor_context_counteraxis_readout",
+            args.cofactor_context_counteraxis_readout,
+        )
+        self.assertIn(
+            "same_family_bandpass_counteraxis_contract",
+            args.report,
+        )
+
+    def test_lever3_post_bandpass_deployment_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-post-bandpass-deployment-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_"
+                "readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_cofactor_context_counteraxis_readout",
+            args.cofactor_context_counteraxis_readout,
+        )
+        self.assertIn(
+            "same_family_bandpass_counteraxis_contract",
+            args.same_family_bandpass_counteraxis_contract,
+        )
+        self.assertIn(
+            "p07658_prediction_acceptance_preflight",
+            args.p07658_prediction_acceptance_preflight,
+        )
+        self.assertIn(
+            "p07658_prediction_dispatch_packet",
+            args.p07658_prediction_dispatch_packet,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

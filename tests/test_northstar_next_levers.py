@@ -72,8 +72,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_evidence_sufficiency_readout,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
+    build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
+    build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
     build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
@@ -4793,6 +4795,264 @@ class NorthstarNextLeversTests(unittest.TestCase):
             readout["guardrails"][
                 "labels_source_ids_target_names_or_mechanism_text_used_as_features"
             ]
+        )
+
+    def test_lever3_same_family_bandpass_counteraxis_contract_accepts_rule(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            readout_path = root / "cofactor_context_readout.json"
+            readout_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "additional_same_family_abstentions_needed_after_counteraxis": 2,
+                            "additional_same_family_abstentions_needed_after_bandpass_scout": 0,
+                            "residual_high_cofactor_rows": 1,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "exact_missing_evidence": [
+                                (
+                                    "accepted deployment counteraxis contract for "
+                                    "the measured same-family numeric bandpass "
+                                    "scout before production use"
+                                ),
+                                (
+                                    "accepted full-length P07658 predicted "
+                                    "coordinate provenance before fixed-threshold "
+                                    "surface rerun"
+                                ),
+                            ]
+                        },
+                        "fixed_operating_point": {
+                            "baseline_channel": "combined_mean_geometry_fold",
+                            "baseline_threshold": 0.44155,
+                            "geometry_top1_threshold": 0.338,
+                            "retention_floor_rows": 4,
+                        },
+                        "guardrails": {
+                            "measured_readout": True,
+                            "source_free_numeric_features_only": True,
+                            "threshold_selected_on_train_cal_only": True,
+                            "heldout_rows_read_for_training_or_threshold_tuning": False,
+                            "heldout_rows_used_for_training_or_threshold_tuning": False,
+                            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                            "production_thresholds_changed": False,
+                            "threshold_values_changed": False,
+                            "candidate_rows_scored_now": False,
+                            "coordinates_staged_now": False,
+                            "labels_registries_ontologies_changed": False,
+                            "imports_or_promotions_performed": False,
+                        },
+                        "same_family_numeric_bandpass_scout": {
+                            "feature_source": "source-free numeric channel scores only",
+                            "selection_method": "train/cal quantile-grid selection",
+                            "required_additional_same_family_abstentions": 2,
+                            "shortfall_after_selected_rule": 0,
+                            "eligible_rules": 3,
+                            "closing_rules": 1,
+                            "selected_remaining_same_family_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                    "bandpass_fires": True,
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "fold_nearest_atlas_tm_score": 0.71,
+                                    "geometry_top1_score": 0.5,
+                                    "bandpass_fires": True,
+                                },
+                            ],
+                            "selected_rule": {
+                                "feature_rule": (
+                                    "fold_nearest_atlas_tm_score between selected "
+                                    "bounds AND geometry_top1_score <= selected "
+                                    "max"
+                                ),
+                                "bounds": {
+                                    "fold_nearest_atlas_tm_score": {
+                                        "min": 0.6257,
+                                        "max": 0.7357,
+                                    },
+                                    "geometry_top1_score": {"max": 0.5757},
+                                },
+                                "calibration_in_scope_fired": 0,
+                                "remaining_same_family_residual_rows_fired": 2,
+                                "all_train_cal_oos_fired": 5,
+                                "closes_required_same_family_shortfall": True,
+                            },
+                        },
+                        "bandpass_scout_operating_point": {
+                            "route_id": "fixed_plus_counteraxes",
+                            "production_threshold_change": False,
+                            "calibration_in_scope_rows": 4,
+                            "calibration_in_scope_retained": 4,
+                            "calibration_in_scope_abstained": 0,
+                            "calibration_in_scope_retention_floor_met": True,
+                            "all_train_cal_oos_rows": 10,
+                            "all_train_cal_oos_abstained": 5,
+                            "all_train_cal_oos_retained": 5,
+                            "strict_high_cofactor_proxy_abstained": 1,
+                            "strict_same_family_structural_proxy_abstained": 3,
+                            "residual_high_cofactor_abstained": 1,
+                            "residual_same_family_abstained": 2,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            contract = (
+                build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract(
+                    cofactor_context_counteraxis_readout_path=readout_path,
+                    artifact_id="custom_same_family_bandpass_contract",
+                )
+            )
+
+        self.assertEqual(
+            contract["artifact_id"], "custom_same_family_bandpass_contract"
+        )
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_lever3_same_family_bandpass_"
+                "counteraxis_contract_accepted"
+            ),
+        )
+        self.assertTrue(
+            contract["decision"][
+                "same_family_bandpass_counteraxis_contract_accepted"
+            ]
+        )
+        self.assertFalse(
+            contract["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertEqual(contract["counts"]["validation_checks_failed"], 0)
+        self.assertEqual(
+            contract["counts"]["same_family_shortfall_before_contract"], 2
+        )
+        self.assertEqual(contract["counts"]["same_family_shortfall_after_contract"], 0)
+        self.assertEqual(
+            contract["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "accepted full-length P07658 predicted coordinate provenance "
+                    "before fixed-threshold surface rerun"
+                )
+            ],
+        )
+
+    def test_lever3_post_bandpass_deployment_readout_keeps_p07658_gate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cofactor_path = root / "cofactor.json"
+            contract_path = root / "contract.json"
+            preflight_path = root / "preflight.json"
+            dispatch_path = root / "dispatch.json"
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "strict_high_cofactor_proxy_rows": 4,
+                            "strict_same_family_proxy_rows": 59,
+                        },
+                        "decision": {
+                            "cofactor_context_counteraxis_resolves_high_cofactor_residual": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {"baseline_threshold": 0.44155},
+                        "counts": {
+                            "validation_checks_failed": 0,
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "combined_operating_point_all_train_cal_oos_rows": 204,
+                            "combined_operating_point_all_train_cal_oos_abstained": 105,
+                            "combined_operating_point_strict_high_cofactor_abstained": 1,
+                            "combined_operating_point_strict_same_family_abstained": 26,
+                        },
+                        "decision": {
+                            "same_family_bandpass_counteraxis_contract_accepted": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "status": "preflight_blocked",
+                        "counts": {
+                            "acceptance_checks_total": 8,
+                            "acceptance_checks_passed": 1,
+                            "acceptance_checks_failed": 7,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                        },
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False,
+                            "p07658_coordinate_blocker_cleared_now": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "provider_routes_checked": 6,
+                            "provider_routes_returning_coordinate_now": 0,
+                        },
+                        "decision": {
+                            "dispatch_packet_ready_for_provider_run": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_post_bandpass_deployment_readout(
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                same_family_bandpass_counteraxis_contract_path=contract_path,
+                p07658_prediction_acceptance_preflight_path=preflight_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                artifact_id="custom_post_bandpass",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_post_bandpass")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_post_bandpass_deployment_readout_blocked_p07658",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_counteraxis_contracts_ready"]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertEqual(readout["counts"]["p07658_acceptance_checks_failed"], 7)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(
+            readout["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "accepted full-length P07658 predicted coordinate provenance "
+                    "before fixed-threshold surface rerun"
+                )
+            ],
         )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(

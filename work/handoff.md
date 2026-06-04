@@ -3,17 +3,19 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T20:03:40Z`
-- STARTED_AT_LOCAL: `2026-06-04T15:03:40-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T20:51:13Z`
-- ENDED_AT_LOCAL: `2026-06-04T15:51:13-0500 CDT`
-- ELAPSED_MINUTES: `47.55`
-- Status: Run 39 complete. Canonical
+- STARTED_AT_UTC: `2026-06-04T21:03:53Z`
+- STARTED_AT_LOCAL: `2026-06-04T16:03:53-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T21:36:50Z`
+- ENDED_AT_LOCAL: `2026-06-04T16:36:50-0500 CDT`
+- ELAPSED_MINUTES: `32.95`
+- Status: Run 40 complete. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T20:03:40Z` with PID `93039`. Work is restricted to Lever 3 and
-  produced a measured cofactor-context counteraxis readout plus a
-  same-family numeric bandpass scout. Commit/push verification is the
-  immediate post-handoff wrap step in this automation run.
+  `2026-06-04T21:03:53Z` with PID `68897`. Work is restricted to Lever 3 and
+  produced an accepted same-family bandpass counteraxis contract, a
+  post-bandpass deployment readout, and no-staging P07658 public/local route
+  refresh readouts. The run commit was created; push/sync verification is
+  pending immediately after this handoff update. Use `git log -1 --oneline`
+  after sync for the final immutable hash.
 
 ## Mission
 
@@ -64,6 +66,132 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 40
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T21:03:53Z`
+- STARTED_LOCAL: `2026-06-04T16:03:53-0500 CDT`
+- ENDED_AT: `2026-06-04T21:36:50Z`
+- ENDED_LOCAL: `2026-06-04T16:36:50-0500 CDT`
+- ELAPSED_MINUTES: `32.95`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T21:03:53Z` with PID `68897`.
+
+#### What changed
+
+- Added `build-fold-augmented-lever3-same-family-bandpass-counteraxis-contract`
+  and `build-fold-augmented-lever3-post-bandpass-deployment-readout`, with
+  corresponding builders/writers/report renderers in
+  `src/catalytic_earth/northstar_next_levers.py` and
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.md`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.md`.
+- Added no-staging P07658 refresh readouts:
+  `artifacts/v3_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_current702_20260604.json`,
+  `artifacts/v3_fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.json`,
+  `work/fold_augmented_lever3_post_bandpass_p07658_live_probe_current702_20260604.md`,
+  and
+  `work/fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.md`.
+- Added parser, synthetic builder, artifact-count, and source-hash regression
+  coverage for the new Lever 3 artifacts.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; no production threshold,
+  labels, registries, ontologies, imports, heldout splits, scoring, coordinate
+  staging, model fitting, or source decisions changed.
+- Same-family bandpass counteraxis contract is accepted:
+  `0.6257 <= fold_nearest_atlas_tm_score <= 0.7357` and
+  `geometry_top1_score <= 0.5757`.
+- Contract validation failed 0 checks, fired on 0 calibration in-scope rows,
+  retained 31/34 calibration in-scope rows, and fired on 9/9 required retained
+  same-family residual rows.
+- Combined post-bandpass operating point:
+  31/34 calibration in-scope retained, 105/204 train/cal OOS abstained,
+  1/4 strict high-cofactor proxy rows abstained, and 26/59 strict same-family
+  proxy rows abstained.
+- Post-bandpass deployment readout marks the counteraxis contracts ready, but
+  deployment closure remains false because P07658 acceptance still has 7 failed
+  checks, 0 candidate coordinate, 0 candidate provenance, and 0/6 provider
+  routes returning coordinates.
+- Fresh public P07658 refresh after the accepted bandpass contract:
+  AlphaFold API returned HTTP 404 for P07658 and one contrast model for P68698;
+  direct P07658 AFDB v6/v4 CIF HEAD checks returned HTTP 404; 3D-Beacons
+  returned 5/5 experimental P07658 rows and 0 predicted rows; RCSB computed
+  model search returned HTTP 204/no rows.
+- Fresh local runtime refresh after the accepted bandpass contract:
+  0/8 predictor commands available and 0 module hits across the checked
+  `base`, `alzheimers`, and `neo4j_env` conda interpreters, including newer
+  `chai_lab` and `boltz` package names.
+- No blocker packet was produced.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, or model fitting changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- P07658 public/local checks were provenance/surface checks only; no coordinate
+  was downloaded into the repo, staged, or scored.
+
+#### Validation
+
+- Focused parser/unit tests for the new builders:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever3_same_family_bandpass_counteraxis_contract_parser_defaults tests/test_cli.py::CliTests::test_lever3_post_bandpass_deployment_readout_parser_defaults tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_same_family_bandpass_counteraxis_contract_accepts_rule tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_post_bandpass_deployment_readout_keeps_p07658_gate -q`:
+  4 passed.
+- Focused artifact/source-hash tests after final P07658 refresh updates:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  2 passed, 14 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  566 passed, 179 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1438 passed, 198 subtests passed, with
+  the existing sklearn/SciPy warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1393 passed.
+- `python -m compileall src tests`: passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3546 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Disk check remained above the guardrail: about 11 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended a measured progress-log entry and regenerated `work/status.md`.
+- `git fetch origin` confirmed local `HEAD` and `origin/main` matched before
+  wrap-up edits.
+- Commit `Add Lever 3 bandpass counteraxis contract` was created for this run.
+- Push/sync verification is pending immediately after this handoff update;
+  release the repo lock only after `HEAD == origin/main` and the worktree is
+  clean.
+
+#### Exact next Lever 3 action
+
+Run or provision one approved exact full-length P07658 predictor/provider route
+for the frozen 715-residue sequence with selenocysteine U140 preserved or
+explicitly documented. Fill provider/model/version/path/checksum/U140
+provenance, rerun `build-fold-augmented-p07658-prediction-acceptance-preflight`,
+and only if it passes rerun the fixed-threshold surface with the accepted
+cofactor-context and same-family bandpass counteraxis contracts.
 
 ### 2026-06-04 Lever 3 Forward Push Run 39
 

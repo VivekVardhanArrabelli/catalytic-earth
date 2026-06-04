@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 351
-- Measured elapsed time: 10783.9 minutes (179.73 hours)
+- Entries: 352
+- Measured elapsed time: 10816.8 minutes (180.28 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 616.4 measured minutes (10.27 hours)
+- northstar-lever3: 649.4 measured minutes (10.82 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3677
-- Evidence references logged: 3031
+- Artifact references logged: 3692
+- Evidence references logged: 3041
 
 ## Recent Entries
-
-### 2026-06-04T13:53:10.947379+00:00 - northstar-lever3
-
-- Task: Lever 3 dispatch readiness packets and source-hash guardrail
-- Time mode: measured
-- Measured minutes: 50.133
-- Started: 2026-06-04T13:02:32Z
-- Ended: 2026-06-04T13:52:40Z
-- Artifacts: artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json, artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.json, artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json, work/handoff.md, work/status.md
-- Evidence: P07658 dispatch blocked no coordinate, 16 high-cofactor intake slots unfilled, 170 same-family structural intake slots unfilled, 0 guardrail violations, 18 source hashes checked no stale, full pytest 1406 passed, unittest discovery 1361 passed, validate passed with 702 labels
-- Notes: Lever 3 only. No labels registries ontologies imports thresholds heldout splits heldout tuning scoring coordinate staging or experimental PDB deployment shortcuts changed.
 
 ### 2026-06-04T14:25:57.944431+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json, work/fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: cofactor-context counteraxis resolved high-cofactor residual 1/1 with 31/34 calibration retention, same-family numeric bandpass scout fired 9 retained residual rows and reduced same-family shortfall from 9 to 0, combined scout operating point abstained 105/204 train/cal OOS and retained 31/34 calibration rows, current evidence remains deployment-closure false pending accepted bandpass counteraxis contract and P07658 predicted-coordinate provenance, focused Lever 3 tests 4 passed 10 subtests, affected CLI/northstar/geometry regression tests 558 passed 175 subtests, full pytest 1430 passed 194 subtests with one existing sklearn/SciPy warning, unittest discovery 1385 passed, validate 702 labels compileall diff-check JSON parse and docs-reference check passed
 - Notes: Measured readout artifact first; no blocker packet produced. The fixed 0.44155 threshold remains unchanged.
+
+### 2026-06-04T21:37:20.235148+00:00 - northstar-lever3
+
+- Task: Lever 3 same-family bandpass contract and post-bandpass P07658 gate
+- Time mode: measured
+- Measured minutes: 32.95
+- Started: 2026-06-04T21:03:53Z
+- Ended: 2026-06-04T21:36:50Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json, work/fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.md, artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.json, work/fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_current702_20260604.json, work/fold_augmented_lever3_post_bandpass_p07658_live_probe_current702_20260604.md, artifacts/v3_fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.json, work/fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: same-family bandpass counteraxis contract accepted with 31 of 34 calibration retained and 9 of 9 required same-family residual rows fired, post-bandpass operating point abstained 105 of 204 train/cal OOS rows with counteraxis contracts ready, P07658 remains deployment closure gap with acceptance preflight 7 failed checks and 0 coordinate/provenance, public refresh found AlphaFold API P07658 404 and 3D-Beacons 5 experimental rows and RCSB computed-model search HTTP 204, local runtime refresh found 0 of 8 predictor commands and 0 module hits across 3 conda interpreters, affected suite 566 passed and 179 subtests, full pytest 1438 passed and 198 subtests with existing sklearn warning, unittest discovery 1393 passed, validate 702 labels compileall diff-check JSON parse and docs-reference passed, disk remained above 10 GiB
+- Notes: Measured readout artifacts first; no blocker packet produced. Public and local P07658 refreshes were no-staging evidence checks.
 
 ## Expectation Updates
 
@@ -397,6 +397,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T17:54:27.719250+00:00: Current train/cal-selected source-free channels are measured but insufficient for Lever 3 closure; next progress needs accepted P07658 full-length predicted-coordinate provenance plus strict high-cofactor acquisition.
 - 2026-06-04T18:22:07.166395+00:00: Current fixed source-free channels cannot close Lever 3 at 90pct retention or at any retention; next progress needs accepted P07658 coordinate provenance plus strict high-cofactor acquisition.
 - 2026-06-04T20:51:00.471108+00:00: Current source-free numeric evidence now supports a measured operating-point closure scout for high-cofactor plus same-family shortfall at 31/34 calibration retention, but deployment closure still needs an accepted bandpass counteraxis contract and full-length P07658 predicted-coordinate provenance.
+- 2026-06-04T21:37:20.235148+00:00: Lever 3 counteraxis evidence is now contract-ready at the train/cal operating point; remaining deployment closure requires only accepted exact full-length P07658 predicted-coordinate provenance before any fixed-threshold rerun.
 
 ## Scope Adjustments
 
@@ -606,3 +607,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T17:54:27.719250+00:00: Lever 3 only; no threshold changes, heldout tuning, row scoring, coordinate staging, labels, registries, ontologies, imports, or source decisions changed.
 - 2026-06-04T18:22:07.166395+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging or source decisions changed
 - 2026-06-04T20:51:00.471108+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or source decisions changed
+- 2026-06-04T21:37:20.235148+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or source decisions changed.

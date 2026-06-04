@@ -319,6 +319,12 @@ FOLD_AUGMENTED_LEVER3_RESIDUAL_SAFETY_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_COFACTOR_CONTEXT_COUNTERAXIS_READOUT_ID = (
     "v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_SAME_FAMILY_BANDPASS_COUNTERAXIS_CONTRACT_ID = (
+    "v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_POST_BANDPASS_DEPLOYMENT_READOUT_ID = (
+    "v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -40053,6 +40059,781 @@ def write_fold_augmented_lever3_cofactor_context_counteraxis_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_cofactor_context_counteraxis_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract(
+    *,
+    cofactor_context_counteraxis_readout_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_SAME_FAMILY_BANDPASS_COUNTERAXIS_CONTRACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = _read_json(cofactor_context_counteraxis_readout_path)
+    counts = readout.get("counts") or {}
+    decision = readout.get("decision") or {}
+    guardrails = readout.get("guardrails") or {}
+    fixed = readout.get("fixed_operating_point") or {}
+    scout = readout.get("same_family_numeric_bandpass_scout") or {}
+    selected_rule = scout.get("selected_rule") or {}
+    operating_point = readout.get("bandpass_scout_operating_point") or {}
+    fold_bounds = (
+        (selected_rule.get("bounds") or {}).get("fold_nearest_atlas_tm_score")
+        or {}
+    )
+    geometry_bounds = (
+        (selected_rule.get("bounds") or {}).get("geometry_top1_score") or {}
+    )
+    baseline_threshold = _parse_optional_float(fixed.get("baseline_threshold"))
+    retention_floor_rows = int(fixed.get("retention_floor_rows") or 0)
+    calibration_retained = int(
+        operating_point.get("calibration_in_scope_retained") or 0
+    )
+    required_same_family_abstentions = int(
+        scout.get("required_additional_same_family_abstentions")
+        or counts.get("additional_same_family_abstentions_needed_after_counteraxis")
+        or 0
+    )
+    same_family_rows_fired = int(
+        selected_rule.get("remaining_same_family_residual_rows_fired") or 0
+    )
+    remaining_missing_evidence = [
+        item
+        for item in (decision.get("exact_missing_evidence") or [])
+        if "same-family numeric bandpass scout" not in str(item)
+    ]
+    checks = {
+        "source_readout_is_measured": bool(guardrails.get("measured_readout")),
+        "source_free_numeric_features_only": bool(
+            guardrails.get("source_free_numeric_features_only")
+        ),
+        "baseline_threshold_fixed_044155": bool(
+            baseline_threshold is not None
+            and math.isclose(float(baseline_threshold), 0.44155, abs_tol=1e-6)
+        ),
+        "production_threshold_unchanged": bool(
+            not operating_point.get("production_threshold_change")
+            and not guardrails.get("production_thresholds_changed")
+            and not guardrails.get("threshold_values_changed")
+        ),
+        "selected_on_train_cal_only": bool(
+            guardrails.get("threshold_selected_on_train_cal_only")
+            and not guardrails.get("heldout_rows_read_for_training_or_threshold_tuning")
+            and not guardrails.get("heldout_rows_used_for_training_or_threshold_tuning")
+        ),
+        "no_forbidden_predictive_features": bool(
+            not guardrails.get(
+                "labels_source_ids_target_names_or_mechanism_text_used_as_features"
+            )
+            and not guardrails.get("experimental_pdb_metadata_used_as_deployment_input")
+        ),
+        "selection_rule_present": bool(
+            selected_rule
+            and fold_bounds.get("min") is not None
+            and fold_bounds.get("max") is not None
+            and geometry_bounds.get("max") is not None
+        ),
+        "retention_floor_preserved": bool(
+            operating_point.get("calibration_in_scope_retention_floor_met")
+            and calibration_retained >= retention_floor_rows
+        ),
+        "zero_additional_calibration_in_scope_fires": bool(
+            int(selected_rule.get("calibration_in_scope_fired") or 0) == 0
+        ),
+        "same_family_shortfall_closed": bool(
+            selected_rule.get("closes_required_same_family_shortfall")
+            and same_family_rows_fired >= required_same_family_abstentions
+            and int(
+                counts.get(
+                    "additional_same_family_abstentions_needed_after_bandpass_scout"
+                )
+                or 0
+            )
+            == 0
+        ),
+        "high_cofactor_residual_already_closed": bool(
+            int(operating_point.get("residual_high_cofactor_abstained") or 0)
+            >= int(counts.get("residual_high_cofactor_rows") or 0)
+            and int(counts.get("residual_high_cofactor_rows") or 0) > 0
+        ),
+        "source_guardrails_clean": bool(
+            int(counts.get("critical_violation_total") or 0) == 0
+            and not guardrails.get("candidate_rows_scored_now")
+            and not guardrails.get("coordinates_staged_now")
+            and not guardrails.get("labels_registries_ontologies_changed")
+            and not guardrails.get("imports_or_promotions_performed")
+        ),
+    }
+    blockers = [
+        name
+        for name, passes in checks.items()
+        if not passes
+    ]
+    contract_accepted = not blockers
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_same_family_bandpass_counteraxis_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_same_family_bandpass_counteraxis_contract_accepted"
+            if contract_accepted
+            else "fold_augmented_lever3_same_family_bandpass_counteraxis_contract_blocked"
+        ),
+        "scope": (
+            "Deployment-valid Lever 3 same-family numeric bandpass counteraxis "
+            "contract. It accepts the train/cal-selected scout rule from the "
+            "cofactor-context readout only when the fixed 0.44155 baseline is "
+            "unchanged, the 31/34 calibration in-scope floor is preserved, "
+            "zero calibration in-scope rows newly fire, and the retained "
+            "same-family residual shortfall is closed without heldout tuning."
+        ),
+        "contract": {
+            "counteraxis_id": "same_family_numeric_bandpass_counteraxis",
+            "feature_source": scout.get("feature_source"),
+            "feature_rule": selected_rule.get("feature_rule"),
+            "fold_nearest_atlas_tm_score_min": _parse_optional_float(
+                fold_bounds.get("min")
+            ),
+            "fold_nearest_atlas_tm_score_max": _parse_optional_float(
+                fold_bounds.get("max")
+            ),
+            "geometry_top1_score_max": _parse_optional_float(
+                geometry_bounds.get("max")
+            ),
+            "selection_method": scout.get("selection_method"),
+            "selected_on_train_cal_only": checks["selected_on_train_cal_only"],
+            "production_threshold_change": False,
+            "accepted_for_deployment_counteraxis_use": contract_accepted,
+        },
+        "fixed_operating_point": {
+            "baseline_channel": fixed.get("baseline_channel"),
+            "baseline_threshold": round(float(baseline_threshold or 0.0), 6),
+            "retention_floor_rows": retention_floor_rows,
+            "geometry_top1_threshold": fixed.get("geometry_top1_threshold"),
+            "combined_route_id": operating_point.get("route_id"),
+        },
+        "validation_checks": checks,
+        "blockers": blockers,
+        "guardrails": {
+            "lever3_only": True,
+            "measured_readout": True,
+            "blocker_packet": False,
+            "source_free_numeric_features_only": checks[
+                "source_free_numeric_features_only"
+            ],
+            "threshold_selected_on_train_cal_only": checks[
+                "selected_on_train_cal_only"
+            ],
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "selected_same_family_residual_rows": (
+            scout.get("selected_remaining_same_family_rows") or []
+        ),
+        "counts": {
+            "validation_checks": len(checks),
+            "validation_checks_failed": len(blockers),
+            "calibration_in_scope_rows": int(
+                operating_point.get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": calibration_retained,
+            "calibration_in_scope_abstained": int(
+                operating_point.get("calibration_in_scope_abstained") or 0
+            ),
+            "calibration_retention_floor_rows": retention_floor_rows,
+            "same_family_bandpass_calibration_in_scope_fired": int(
+                selected_rule.get("calibration_in_scope_fired") or 0
+            ),
+            "same_family_shortfall_before_contract": (
+                required_same_family_abstentions
+            ),
+            "same_family_residual_rows_fired_by_contract": same_family_rows_fired,
+            "same_family_shortfall_after_contract": int(
+                scout.get("shortfall_after_selected_rule") or 0
+            ),
+            "same_family_bandpass_all_train_cal_oos_fired": int(
+                selected_rule.get("all_train_cal_oos_fired") or 0
+            ),
+            "combined_operating_point_all_train_cal_oos_rows": int(
+                operating_point.get("all_train_cal_oos_rows") or 0
+            ),
+            "combined_operating_point_all_train_cal_oos_abstained": int(
+                operating_point.get("all_train_cal_oos_abstained") or 0
+            ),
+            "combined_operating_point_all_train_cal_oos_retained": int(
+                operating_point.get("all_train_cal_oos_retained") or 0
+            ),
+            "combined_operating_point_strict_high_cofactor_abstained": int(
+                operating_point.get("strict_high_cofactor_proxy_abstained") or 0
+            ),
+            "combined_operating_point_strict_same_family_abstained": int(
+                operating_point.get("strict_same_family_structural_proxy_abstained")
+                or 0
+            ),
+            "combined_operating_point_residual_high_cofactor_abstained": int(
+                operating_point.get("residual_high_cofactor_abstained") or 0
+            ),
+            "combined_operating_point_residual_same_family_abstained": int(
+                operating_point.get("residual_same_family_abstained") or 0
+            ),
+            "source_scout_eligible_rules": int(scout.get("eligible_rules") or 0),
+            "source_scout_closing_rules": int(scout.get("closing_rules") or 0),
+            "remaining_missing_evidence_items": len(remaining_missing_evidence),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "same_family_bandpass_counteraxis_contract_accepted": contract_accepted,
+            "deployment_valid_same_family_counteraxis_ready": contract_accepted,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "current_evidence_sufficient_for_deployment_closure": bool(
+                contract_accepted and not remaining_missing_evidence
+            ),
+            "remaining_missing_evidence": remaining_missing_evidence,
+            "next_gate": (
+                "Accepted same-family bandpass counteraxis contract; continue "
+                "the P07658 full-length predicted-coordinate provenance path "
+                "before any fixed-threshold surface rerun."
+                if contract_accepted and remaining_missing_evidence
+                else (
+                    "Accepted same-family bandpass counteraxis contract; no "
+                    "counteraxis evidence blocker remains."
+                    if contract_accepted
+                    else "Resolve failed contract validation checks before use."
+                )
+            ),
+        },
+        "source_artifacts": {
+            "cofactor_context_counteraxis_readout": _source_path_record(
+                cofactor_context_counteraxis_readout_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "The same-family numeric bandpass is accepted as a deployment "
+                "counteraxis contract for train/cal operation."
+                if contract_accepted
+                else "The same-family numeric bandpass contract is not accepted."
+            ),
+            "result": (
+                f"The contract retains {calibration_retained}/"
+                f"{int(operating_point.get('calibration_in_scope_rows') or 0)} "
+                "calibration in-scope rows, fires on "
+                f"{same_family_rows_fired}/"
+                f"{required_same_family_abstentions} required retained "
+                "same-family residual rows, and yields "
+                f"{int(operating_point.get('all_train_cal_oos_abstained') or 0)}/"
+                f"{int(operating_point.get('all_train_cal_oos_rows') or 0)} "
+                "train/cal OOS abstentions in the combined route."
+            ),
+            "next_action": (
+                "Use this as the accepted same-family counteraxis contract; "
+                "the remaining deployment closure dependency is the P07658 "
+                "full-length predicted-coordinate provenance gate."
+                if contract_accepted
+                else "Do not use this bandpass as a contract until the failed "
+                "validation checks are resolved."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    decision = contract["decision"]
+    selected = contract["contract"]
+    fixed = contract["fixed_operating_point"]
+    lines = [
+        "# Fold-Augmented Lever 3 Same-Family Bandpass Counteraxis Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Accepted: {decision['same_family_bandpass_counteraxis_contract_accepted']}",
+        f"- Baseline threshold: {fixed['baseline_threshold']}",
+        f"- Combined route: {fixed['combined_route_id']}",
+        "- Fold band: "
+        f"{selected['fold_nearest_atlas_tm_score_min']} to "
+        f"{selected['fold_nearest_atlas_tm_score_max']}",
+        f"- Geometry max: {selected['geometry_top1_score_max']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Same-family shortfall before/after: "
+        f"{counts['same_family_shortfall_before_contract']}/"
+        f"{counts['same_family_shortfall_after_contract']}",
+        "- Combined train/cal OOS abstained: "
+        f"{counts['combined_operating_point_all_train_cal_oos_abstained']}/"
+        f"{counts['combined_operating_point_all_train_cal_oos_rows']}",
+        "- Combined strict proxy abstained: high="
+        f"{counts['combined_operating_point_strict_high_cofactor_abstained']}, "
+        "same-family="
+        f"{counts['combined_operating_point_strict_same_family_abstained']}",
+        "",
+        "## Validation Checks",
+        "",
+        "| check | pass |",
+        "| --- | --- |",
+    ]
+    for name, passes in sorted(contract.get("validation_checks", {}).items()):
+        lines.append(f"| {name} | {passes} |")
+    lines += [
+        "",
+        "## Selected Same-Family Residual Rows",
+        "",
+        "| entry | fold tm | geometry | fired |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for row in contract.get("selected_same_family_residual_rows", []):
+        lines.append(
+            f"| {row.get('entry_id')} | "
+            f"{row.get('fold_nearest_atlas_tm_score')} | "
+            f"{row.get('geometry_top1_score')} | "
+            f"{row.get('bandpass_fires')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Deployment-valid same-family counteraxis ready: "
+        f"{decision['deployment_valid_same_family_counteraxis_ready']}",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Remaining missing evidence: {decision['remaining_missing_evidence']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {contract['interpretation']['headline']}",
+        f"- {contract['interpretation']['result']}",
+        f"- {contract['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_same_family_bandpass_counteraxis_contract(
+    *,
+    cofactor_context_counteraxis_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_SAME_FAMILY_BANDPASS_COUNTERAXIS_CONTRACT_ID
+    ),
+) -> dict[str, Any]:
+    contract = build_fold_augmented_lever3_same_family_bandpass_counteraxis_contract(
+        cofactor_context_counteraxis_readout_path=(
+            cofactor_context_counteraxis_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
+
+
+def build_fold_augmented_lever3_post_bandpass_deployment_readout(
+    *,
+    cofactor_context_counteraxis_readout_path: Path,
+    same_family_bandpass_counteraxis_contract_path: Path,
+    p07658_prediction_acceptance_preflight_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_POST_BANDPASS_DEPLOYMENT_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    cofactor = _read_json(cofactor_context_counteraxis_readout_path)
+    contract = _read_json(same_family_bandpass_counteraxis_contract_path)
+    preflight = _read_json(p07658_prediction_acceptance_preflight_path)
+    dispatch = _read_json(p07658_prediction_dispatch_packet_path)
+    cofactor_counts = cofactor.get("counts") or {}
+    cofactor_decision = cofactor.get("decision") or {}
+    contract_counts = contract.get("counts") or {}
+    contract_decision = contract.get("decision") or {}
+    preflight_counts = preflight.get("counts") or {}
+    preflight_decision = preflight.get("decision") or {}
+    dispatch_counts = dispatch.get("counts") or {}
+    dispatch_decision = dispatch.get("decision") or {}
+    high_cofactor_ready = bool(
+        cofactor_decision.get("cofactor_context_counteraxis_resolves_high_cofactor_residual")
+    )
+    same_family_ready = bool(
+        contract_decision.get("same_family_bandpass_counteraxis_contract_accepted")
+    )
+    p07658_ready = bool(
+        preflight_decision.get("p07658_acceptance_preflight_passes_now")
+        and preflight_decision.get("p07658_coordinate_blocker_cleared_now")
+    )
+    counteraxis_contracts_ready = bool(high_cofactor_ready and same_family_ready)
+    remaining_missing_evidence: list[str] = []
+    if not p07658_ready:
+        remaining_missing_evidence.append(
+            "accepted full-length P07658 predicted coordinate provenance before "
+            "fixed-threshold surface rerun"
+        )
+    if not high_cofactor_ready:
+        remaining_missing_evidence.append(
+            "accepted high-cofactor cofactor-context counteraxis route"
+        )
+    if not same_family_ready:
+        remaining_missing_evidence.append(
+            "accepted same-family numeric bandpass counteraxis contract"
+        )
+    deployment_closed = bool(
+        counteraxis_contracts_ready
+        and p07658_ready
+        and int(contract_counts.get("validation_checks_failed") or 0) == 0
+    )
+    status = (
+        "fold_augmented_lever3_post_bandpass_deployment_readout_ready_for_rerun"
+        if deployment_closed
+        else "fold_augmented_lever3_post_bandpass_deployment_readout_blocked_p07658"
+        if counteraxis_contracts_ready
+        else "fold_augmented_lever3_post_bandpass_deployment_readout_blocked_counteraxis"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_post_bandpass_deployment_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 post-bandpass deployment readout. It composes the accepted "
+            "cofactor-context high-cofactor counteraxis, the accepted "
+            "same-family numeric bandpass counteraxis contract, and the P07658 "
+            "prediction acceptance/dispatch evidence to state whether the "
+            "fixed-threshold surface can be rerun. It scores no rows, stages no "
+            "coordinates, and changes no thresholds."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "operating_point": {
+            "route_id": (
+                "fixed_baseline_plus_cofactor_context_counteraxis_plus_"
+                "same_family_numeric_bandpass_counteraxis_contract"
+            ),
+            "baseline_threshold": (
+                (contract.get("fixed_operating_point") or {}).get(
+                    "baseline_threshold"
+                )
+            ),
+            "calibration_in_scope_rows": int(
+                contract_counts.get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                contract_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                contract_counts.get(
+                    "combined_operating_point_all_train_cal_oos_rows"
+                )
+                or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_all_train_cal_oos_abstained"
+                )
+                or 0
+            ),
+            "strict_high_cofactor_proxy_rows": int(
+                cofactor_counts.get("strict_high_cofactor_proxy_rows") or 0
+            ),
+            "strict_high_cofactor_proxy_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_strict_high_cofactor_abstained"
+                )
+                or 0
+            ),
+            "strict_same_family_proxy_rows": int(
+                cofactor_counts.get("strict_same_family_proxy_rows") or 0
+            ),
+            "strict_same_family_proxy_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_strict_same_family_abstained"
+                )
+                or 0
+            ),
+        },
+        "p07658_acceptance_readout": {
+            "status": preflight.get("status"),
+            "acceptance_checks_total": int(
+                preflight_counts.get("acceptance_checks_total") or 0
+            ),
+            "acceptance_checks_passed": int(
+                preflight_counts.get("acceptance_checks_passed") or 0
+            ),
+            "acceptance_checks_failed": int(
+                preflight_counts.get("acceptance_checks_failed") or 0
+            ),
+            "candidate_coordinate_exists": int(
+                preflight_counts.get("candidate_coordinate_exists") or 0
+            ),
+            "candidate_provenance_exists": int(
+                preflight_counts.get("candidate_provenance_exists") or 0
+            ),
+            "provider_routes_checked": int(
+                dispatch_counts.get("provider_routes_checked") or 0
+            ),
+            "provider_routes_returning_coordinate_now": int(
+                dispatch_counts.get("provider_routes_returning_coordinate_now") or 0
+            ),
+            "dispatch_ready_for_provider_run": bool(
+                dispatch_decision.get("dispatch_packet_ready_for_provider_run")
+            ),
+        },
+        "counts": {
+            "counteraxis_contracts_ready": int(counteraxis_contracts_ready),
+            "high_cofactor_counteraxis_ready": int(high_cofactor_ready),
+            "same_family_bandpass_contract_ready": int(same_family_ready),
+            "same_family_bandpass_contract_validation_failures": int(
+                contract_counts.get("validation_checks_failed") or 0
+            ),
+            "calibration_in_scope_rows": int(
+                contract_counts.get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                contract_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                contract_counts.get(
+                    "combined_operating_point_all_train_cal_oos_rows"
+                )
+                or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_all_train_cal_oos_abstained"
+                )
+                or 0
+            ),
+            "p07658_acceptance_checks_failed": int(
+                preflight_counts.get("acceptance_checks_failed") or 0
+            ),
+            "p07658_candidate_coordinate_exists": int(
+                preflight_counts.get("candidate_coordinate_exists") or 0
+            ),
+            "p07658_candidate_provenance_exists": int(
+                preflight_counts.get("candidate_provenance_exists") or 0
+            ),
+            "p07658_provider_routes_returning_coordinate_now": int(
+                dispatch_counts.get("provider_routes_returning_coordinate_now") or 0
+            ),
+            "remaining_missing_evidence_items": len(remaining_missing_evidence),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "deployment_valid_counteraxis_contracts_ready": (
+                counteraxis_contracts_ready
+            ),
+            "p07658_prediction_acceptance_passes_now": p07658_ready,
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed,
+            "fixed_threshold_audit_ready_to_rerun_now": deployment_closed,
+            "apply_or_change_threshold_now": False,
+            "remaining_missing_evidence": remaining_missing_evidence,
+            "next_gate": (
+                "Run the fixed-threshold surface rerun with unchanged 0.44155 "
+                "only after this readout is ready."
+                if deployment_closed
+                else "Counteraxis contracts are ready; obtain accepted P07658 "
+                "full-length predicted-coordinate provenance before rerun."
+                if counteraxis_contracts_ready
+                else "Finish counteraxis contract acceptance before rerun."
+            ),
+        },
+        "source_artifacts": {
+            "cofactor_context_counteraxis_readout": _source_path_record(
+                cofactor_context_counteraxis_readout_path
+            ),
+            "same_family_bandpass_counteraxis_contract": _source_path_record(
+                same_family_bandpass_counteraxis_contract_path
+            ),
+            "p07658_prediction_acceptance_preflight": _source_path_record(
+                p07658_prediction_acceptance_preflight_path
+            ),
+            "p07658_prediction_dispatch_packet": _source_path_record(
+                p07658_prediction_dispatch_packet_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 counteraxis contracts are ready; deployment closure "
+                "still waits on P07658."
+                if counteraxis_contracts_ready and not deployment_closed
+                else "Lever 3 deployment evidence is ready for fixed-threshold rerun."
+                if deployment_closed
+                else "Lever 3 counteraxis contract evidence is incomplete."
+            ),
+            "result": (
+                "The accepted operating point retains "
+                f"{int(contract_counts.get('calibration_in_scope_retained') or 0)}/"
+                f"{int(contract_counts.get('calibration_in_scope_rows') or 0)} "
+                "calibration in-scope rows and abstains "
+                f"{int(contract_counts.get('combined_operating_point_all_train_cal_oos_abstained') or 0)}/"
+                f"{int(contract_counts.get('combined_operating_point_all_train_cal_oos_rows') or 0)} "
+                "train/cal OOS rows; P07658 acceptance still has "
+                f"{int(preflight_counts.get('acceptance_checks_failed') or 0)} "
+                "failed checks."
+            ),
+            "next_action": (
+                "Provision or run one approved exact full-length P07658 "
+                "prediction route and fill coordinate/provenance before rerun."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_post_bandpass_deployment_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    operating = readout["operating_point"]
+    p07658 = readout["p07658_acceptance_readout"]
+    lines = [
+        "# Fold-Augmented Lever 3 Post-Bandpass Deployment Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Counteraxis contracts ready: "
+        f"{decision['deployment_valid_counteraxis_contracts_ready']}",
+        "- P07658 acceptance passes now: "
+        f"{decision['p07658_prediction_acceptance_passes_now']}",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{operating['all_train_cal_oos_abstained']}/"
+        f"{operating['all_train_cal_oos_rows']}",
+        "- Strict high-cofactor abstained: "
+        f"{operating['strict_high_cofactor_proxy_abstained']}/"
+        f"{operating['strict_high_cofactor_proxy_rows']}",
+        "- Strict same-family abstained: "
+        f"{operating['strict_same_family_proxy_abstained']}/"
+        f"{operating['strict_same_family_proxy_rows']}",
+        "",
+        "## P07658 Acceptance",
+        "",
+        f"- Status: {p07658['status']}",
+        "- Acceptance checks passed/failed: "
+        f"{p07658['acceptance_checks_passed']}/"
+        f"{p07658['acceptance_checks_failed']}",
+        "- Candidate coordinate/provenance exists: "
+        f"{p07658['candidate_coordinate_exists']}/"
+        f"{p07658['candidate_provenance_exists']}",
+        "- Provider routes returning coordinate now: "
+        f"{p07658['provider_routes_returning_coordinate_now']}/"
+        f"{p07658['provider_routes_checked']}",
+        "",
+        "## Decision",
+        "",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Remaining missing evidence: {decision['remaining_missing_evidence']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_post_bandpass_deployment_readout(
+    *,
+    cofactor_context_counteraxis_readout_path: Path,
+    same_family_bandpass_counteraxis_contract_path: Path,
+    p07658_prediction_acceptance_preflight_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_POST_BANDPASS_DEPLOYMENT_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_post_bandpass_deployment_readout(
+        cofactor_context_counteraxis_readout_path=(
+            cofactor_context_counteraxis_readout_path
+        ),
+        same_family_bandpass_counteraxis_contract_path=(
+            same_family_bandpass_counteraxis_contract_path
+        ),
+        p07658_prediction_acceptance_preflight_path=(
+            p07658_prediction_acceptance_preflight_path
+        ),
+        p07658_prediction_dispatch_packet_path=(
+            p07658_prediction_dispatch_packet_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_post_bandpass_deployment_readout_report(
                 readout
             ),
             encoding="utf-8",

@@ -8118,6 +8118,229 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
 
+    def test_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_same_family_bandpass_"
+                "counteraxis_contract_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_lever3_same_family_bandpass_"
+                "counteraxis_contract_accepted"
+            ),
+        )
+        self.assertEqual(contract["counts"]["validation_checks_failed"], 0)
+        self.assertEqual(contract["fixed_operating_point"]["baseline_threshold"], 0.44155)
+        self.assertEqual(contract["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(contract["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(
+            contract["counts"]["same_family_bandpass_calibration_in_scope_fired"],
+            0,
+        )
+        self.assertEqual(
+            contract["counts"]["same_family_shortfall_before_contract"], 9
+        )
+        self.assertEqual(
+            contract["counts"]["same_family_residual_rows_fired_by_contract"], 9
+        )
+        self.assertEqual(contract["counts"]["same_family_shortfall_after_contract"], 0)
+        self.assertEqual(
+            contract["counts"]["same_family_bandpass_all_train_cal_oos_fired"],
+            32,
+        )
+        self.assertEqual(
+            contract["counts"][
+                "combined_operating_point_all_train_cal_oos_abstained"
+            ],
+            105,
+        )
+        self.assertEqual(
+            contract["counts"][
+                "combined_operating_point_residual_high_cofactor_abstained"
+            ],
+            1,
+        )
+        self.assertEqual(
+            contract["counts"][
+                "combined_operating_point_residual_same_family_abstained"
+            ],
+            10,
+        )
+        self.assertEqual(
+            contract["contract"]["fold_nearest_atlas_tm_score_min"], 0.6257
+        )
+        self.assertEqual(
+            contract["contract"]["fold_nearest_atlas_tm_score_max"], 0.7357
+        )
+        self.assertEqual(contract["contract"]["geometry_top1_score_max"], 0.5757)
+        self.assertTrue(
+            contract["decision"][
+                "same_family_bandpass_counteraxis_contract_accepted"
+            ]
+        )
+        self.assertTrue(
+            contract["decision"]["deployment_valid_same_family_counteraxis_ready"]
+        )
+        self.assertFalse(
+            contract["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertEqual(
+            contract["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "accepted full-length P07658 predicted coordinate provenance "
+                    "before fixed-threshold surface rerun"
+                )
+            ],
+        )
+
+    def test_fold_augmented_lever3_post_bandpass_deployment_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_post_bandpass_deployment_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_post_bandpass_deployment_readout_blocked_p07658",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_counteraxis_contracts_ready"]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["p07658_acceptance_checks_failed"], 7)
+        self.assertEqual(
+            readout["counts"]["p07658_provider_routes_returning_coordinate_now"],
+            0,
+        )
+        self.assertEqual(
+            readout["decision"]["remaining_missing_evidence"],
+            [
+                (
+                    "accepted full-length P07658 predicted coordinate provenance "
+                    "before fixed-threshold surface rerun"
+                )
+            ],
+        )
+
+    def test_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_p07658_public_route_refresh_"
+                "after_bandpass_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_p07658_public_route_refresh_after_"
+                "bandpass_no_public_predicted_coordinate"
+            ),
+        )
+        self.assertEqual(readout["counts"]["alphafold_api_p07658_models_returned"], 0)
+        self.assertEqual(
+            readout["counts"]["alphafold_api_p68698_control_models_returned"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["alphafold_direct_p07658_cif_head_404_rows"], 2
+        )
+        self.assertEqual(readout["counts"]["p07658_3dbeacons_summary_rows"], 5)
+        self.assertEqual(
+            readout["counts"]["p07658_3dbeacons_summary_predicted_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["p07658_3dbeacons_experimental_rows"], 5
+        )
+        self.assertEqual(readout["counts"]["p07658_3dbeacons_detail_rows"], 5)
+        self.assertEqual(
+            readout["counts"]["p07658_3dbeacons_detail_predicted_rows"], 0
+        )
+        self.assertEqual(readout["counts"]["p68698_3dbeacons_summary_rows"], 5)
+        self.assertEqual(
+            readout["counts"]["p68698_3dbeacons_summary_ab_initio_rows"], 2
+        )
+        self.assertEqual(readout["counts"]["rcsb_computed_model_p07658_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["rcsb_computed_model_search_http_204_rows"], 1
+        )
+        self.assertFalse(
+            readout["decision"][
+                "p07658_public_route_refresh_clears_coordinate_gap_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["coordinates_staged_now"], 0)
+        self.assertEqual(readout["counts"]["rows_scored_now"], 0)
+
+    def test_fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_p07658_local_runtime_refresh_"
+                "after_bandpass_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_p07658_local_runtime_refresh_after_"
+                "bandpass_no_runtime"
+            ),
+        )
+        self.assertEqual(readout["counts"]["total_path_commands_checked"], 8)
+        self.assertEqual(readout["counts"]["available_path_commands"], 0)
+        self.assertEqual(readout["counts"]["checked_conda_interpreters"], 3)
+        self.assertEqual(
+            readout["counts"]["python_modules_checked_per_interpreter"], 9
+        )
+        self.assertEqual(readout["counts"]["module_hits"], 0)
+        self.assertEqual(readout["counts"]["coordinates_staged_now"], 0)
+        self.assertEqual(readout["counts"]["rows_scored_now"], 0)
+        self.assertFalse(
+            readout["decision"]["local_runtime_refresh_clears_p07658_now"]
+        )
+        self.assertIn(
+            "chai_lab",
+            readout["python_module_probe_by_env"][0]["modules"],
+        )
+        self.assertIn(
+            "boltz",
+            readout["python_module_probe_by_env"][0]["modules"],
+        )
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -8170,6 +8393,22 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_cofactor_context_counteraxis_"
                 "readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_same_family_bandpass_"
+                "counteraxis_contract_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_post_bandpass_deployment_"
+                "readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_p07658_public_route_refresh_"
+                "after_bandpass_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_p07658_local_runtime_refresh_"
+                "after_bandpass_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):
