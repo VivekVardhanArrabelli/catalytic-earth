@@ -145,6 +145,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar,
@@ -19198,6 +19199,368 @@ ATOM 5 C CA . GLU A 1 250 ? 7.2 0.0 0.0 1.00 80.0 ? 250 GLU A CA 1
             queue["decision"]["rerun_or_retune_heldout_authorized"]
         )
         self.assertFalse(queue["guardrails"]["heldout_rows_rescored"])
+
+    def test_followup_pair_source_free_train_cal_projection_readout_scores_projectable_fields_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar_path = root / "sidecar.json"
+            guardrail_path = root / "guardrail.json"
+            labels_path = root / "labels.json"
+            candidate_path = root / "candidate.json"
+            rerun_path = root / "rerun.json"
+            fold_path = root / "fold.json"
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": True,
+                                    "proton_transfer_count": 1,
+                                    "bond_change_event_count": 1,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": False,
+                                    "proton_transfer_count": 0,
+                                    "bond_change_event_count": 2,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": True,
+                                    "proton_transfer_count": 1,
+                                    "bond_change_event_count": 1,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": False,
+                                    "proton_transfer_count": 3,
+                                    "bond_change_event_count": 0,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            guardrail_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "safe_to_run_no_template_methods_now": True
+                        },
+                        "counts": {"critical_violation_total": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "primary_a",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "primary_b",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "primary_a",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "label_type": "out_of_scope",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_partial_not_scoreable"
+                        ),
+                        "counts": {
+                            "full_frozen_projection_ready_rows": 0,
+                        },
+                        "decision": {
+                            "candidate_surface_ready_for_threshold_scoring": False
+                        },
+                        "candidate_projection_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "candidate_projected_event_features": {
+                                    "has_proton_transfer_event": True,
+                                    "proton_transfer_count": 1,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rerun_path.write_text(
+                json.dumps(
+                    {
+                        "feature_fields": [
+                            "has_proton_transfer_event",
+                            "proton_transfer_count",
+                            "bond_change_event_count",
+                        ],
+                        "centroid_variant": {},
+                        "residual_variant": {
+                            "calibration_summary": {
+                                "auc_oos_gt_primary": 1.0,
+                            },
+                            "calibration_selected_residual_threshold": {
+                                "primary_retain_recall": 1.0,
+                                "oos_abstain_recall": 1.0,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.4,
+                        },
+                        "measured_readout": {
+                            "train_cal_in_scope_threshold_selection": {
+                                "calibration_oos_abstain_recall": 0.4,
+                                "calibration_in_scope_retain_recall": 0.91,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+                train_cal_feature_sidecar_path=sidecar_path,
+                train_cal_feature_guardrail_path=guardrail_path,
+                label_manifest_path=labels_path,
+                source_free_projection_repair_candidate_surface_path=candidate_path,
+                full_no_template_rerun_path=rerun_path,
+                fold_augmented_current_measured_readout_path=fold_path,
+            )
+
+        self.assertEqual(
+            readout["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_measured_research_only",
+        )
+        self.assertEqual(
+            readout["source_free_projection"]["projected_feature_fields"],
+            ["has_proton_transfer_event", "proton_transfer_count"],
+        )
+        self.assertEqual(
+            readout["source_free_projection"]["missing_frozen_feature_fields"],
+            ["bond_change_event_count"],
+        )
+        projected_threshold = readout["measured_readout"][
+            "projected_source_free_subset"
+        ]["residual_variant"]["calibration_selected_residual_threshold"]
+        self.assertEqual(projected_threshold["primary_retain_recall"], 1.0)
+        self.assertEqual(projected_threshold["oos_abstain_recall"], 1.0)
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["research_only"])
+        self.assertFalse(
+            readout["decision"][
+                "split_aligned_current_surface_incremental_readout_measurable"
+            ]
+        )
+        self.assertFalse(readout["decision"]["heldout_read_once_performed"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_train_cal_projection_readout_records_best_axis_oos_delta(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar_path = root / "sidecar.json"
+            guardrail_path = root / "guardrail.json"
+            labels_path = root / "labels.json"
+            candidate_path = root / "candidate.json"
+            rerun_path = root / "rerun.json"
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": False,
+                                    "proton_transfer_count": 0,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": True,
+                                    "proton_transfer_count": 1,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": False,
+                                    "proton_transfer_count": 0,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_proton_transfer_event": False,
+                                    "proton_transfer_count": 0,
+                                    "electron_transfer_count": 10,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            guardrail_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"safe_to_run_no_template_methods_now": True},
+                        "counts": {"critical_violation_total": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "primary_a",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "primary_b",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "primary_a",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "label_type": "out_of_scope",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "status": "partial_not_scoreable",
+                        "counts": {"full_frozen_projection_ready_rows": 0},
+                        "decision": {
+                            "candidate_surface_ready_for_threshold_scoring": False
+                        },
+                        "candidate_projection_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "candidate_projected_event_features": {
+                                    "has_proton_transfer_event": False,
+                                    "proton_transfer_count": 0,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rerun_path.write_text(
+                json.dumps(
+                    {
+                        "feature_fields": [
+                            "has_proton_transfer_event",
+                            "proton_transfer_count",
+                            "electron_transfer_count",
+                        ],
+                        "centroid_variant": {},
+                        "residual_variant": {
+                            "calibration_summary": {
+                                "auc_oos_gt_primary": 1.0,
+                            },
+                            "calibration_selected_residual_threshold": {
+                                "primary_retain_recall": 1.0,
+                                "oos_abstain_recall": 1.0,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+                train_cal_feature_sidecar_path=sidecar_path,
+                train_cal_feature_guardrail_path=guardrail_path,
+                label_manifest_path=labels_path,
+                source_free_projection_repair_candidate_surface_path=candidate_path,
+                full_no_template_rerun_path=rerun_path,
+            )
+
+        self.assertEqual(
+            readout["decision"][
+                "best_next_source_free_axis_category_by_train_cal_ceiling"
+            ],
+            "electron_flow",
+        )
+        self.assertEqual(readout["counts"]["best_single_axis_new_oos_catches"], 1)
+        self.assertEqual(
+            readout["counts"][
+                "best_single_axis_new_oos_catches_on_current_geometry_fold_oos_rows"
+            ],
+            0,
+        )
+        delta_rows = readout["measured_readout"]["best_single_axis_new_oos_rows"]
+        self.assertEqual([row["entry_id"] for row in delta_rows], ["m_csa:4"])
+        self.assertFalse(delta_rows[0]["current_projected_subset_abstains"])
+        self.assertTrue(delta_rows[0]["best_single_axis_abstains"])
+        self.assertFalse(delta_rows[0]["in_current_geometry_fold_calibration_oos"])
+        self.assertFalse(
+            readout["decision"]["best_axis_new_oos_rows_overlap_current_geometry_fold_oos"]
+        )
 
     def test_followup_pair_source_free_locator_input_audit_blocks_without_anchors(
         self,

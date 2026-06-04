@@ -42,6 +42,9 @@ from .mechanism_novelty_abstention_eval import (
 )
 from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
 from .mechanism_feature_residual_robustness import write_residual_robustness_audit
+from .lever2_mechanism_incremental_readout import (
+    write_lever2_mechanism_feature_incremental_readout,
+)
 from .mechanism_residual_gate_integration import write_residual_gate_integration_eval
 from .mechanism_abstention_gate_eval import (
     write_mechanism_abstention_gate_eval,
@@ -225,6 +228,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
@@ -13634,6 +13638,37 @@ def cmd_build_fold_augmented_lever3_p07658_local_input_inventory_audit(
     return 0
 
 
+def cmd_build_lever2_mechanism_feature_incremental_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_mechanism_feature_incremental_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        mechanism_operating_point_contract_path=Path(
+            args.mechanism_operating_point_contract
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 mechanism feature incremental readout to "
+        f"{args.out} (OOS overlap: {counts.get('oos_overlap_rows')}, "
+        f"valid primary overlap: {counts.get('valid_primary_overlap_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
     args: argparse.Namespace,
 ) -> int:
@@ -16887,6 +16922,55 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"direct proton rows: "
         f"{counts.get('rows_with_direct_proton_transfer_projection')}, "
         f"scoring-ready rows: {counts.get('threshold_scoring_ready_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+    args: argparse.Namespace,
+) -> int:
+    readout = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_feature_guardrail_path=Path(args.train_cal_feature_guardrail),
+        label_manifest_path=Path(args.label_manifest),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        full_no_template_rerun_path=Path(args.full_no_template_rerun),
+        fold_augmented_current_measured_readout_path=(
+            Path(args.fold_augmented_current_measured_readout)
+            if args.fold_augmented_current_measured_readout
+            else None
+        ),
+        current_in_scope_threshold_contract_path=(
+            Path(args.current_in_scope_threshold_contract)
+            if args.current_in_scope_threshold_contract
+            else None
+        ),
+        expanded_oos_calibrated_threshold_contract_path=(
+            Path(args.expanded_oos_calibrated_threshold_contract)
+            if args.expanded_oos_calibrated_threshold_contract
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    projected = (
+        readout.get("measured_readout", {})
+        .get("projected_source_free_subset", {})
+        .get("residual_variant", {})
+        .get("calibration_selected_residual_threshold", {})
+    )
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free train/cal projection readout to "
+        f"{args.out} (status: {readout.get('status')}, "
+        f"projected fields: "
+        f"{counts.get('source_free_projected_train_cal_feature_fields')}, "
+        f"OOS abstain recall: {projected.get('oos_abstain_recall')}, "
+        f"classification: {decision.get('result_classification')})"
     )
     return 0
 
@@ -32044,6 +32128,62 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_lever3_dispatch_readiness_summary
     )
 
+    lever2_mechanism_incremental_readout = subparsers.add_parser(
+        "build-lever2-mechanism-feature-incremental-readout",
+        help=(
+            "write a train/cal Lever 2 readout comparing row-specific "
+            "mechanism features against the current geometry/fold surface"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--mechanism-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument("--artifact-id", default=None)
+    lever2_mechanism_incremental_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_mechanism_feature_incremental_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_mechanism_incremental_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_mechanism_feature_incremental_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_mechanism_incremental_readout.set_defaults(
+        func=cmd_build_lever2_mechanism_feature_incremental_readout
+    )
+
     lever3_current_measured_readout = subparsers.add_parser(
         "build-fold-augmented-lever3-current-measured-readout",
         help=(
@@ -39649,6 +39789,97 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "train-cal-projection-readout"
+        ),
+        help=(
+            "measure the train/cal operating point of the currently "
+            "source-free-projectable mechanism feature subset without "
+            "reading or retuning heldout"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--train-cal-feature-guardrail",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_"
+            "guardrail_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--full-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--fold-augmented-current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_projection_readout.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout
         )
     )
 

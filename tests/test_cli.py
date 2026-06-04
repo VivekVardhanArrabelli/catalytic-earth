@@ -13,6 +13,55 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CliTests(unittest.TestCase):
+    def test_lever2_mechanism_incremental_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-mechanism-feature-incremental-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_lever2_mechanism_feature_incremental_readout_"
+                "current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+
+    def test_source_free_train_cal_projection_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-mechanism-feature-row-specific-bond-change-p0-oos-"
+                    "augmented-best-token-followup-pair-source-free-train-cal-"
+                    "projection-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "source_free_train_cal_projection_readout_current702_20260604.json",
+            args.out,
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.current_in_scope_threshold_contract,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+
     def test_lever3_current_measured_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-fold-augmented-lever3-current-measured-readout"]
@@ -1557,6 +1606,17 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_mechanism_feature_row_specific_bond_change_"
                     "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "train-cal-projection-readout"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout"
                 ),
             ),
             (

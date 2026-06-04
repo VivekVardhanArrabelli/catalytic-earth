@@ -1,0 +1,1019 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_current702_20260604",
+  "blockers": [],
+  "counts": {
+    "best_single_axis_new_oos_catches": 4,
+    "best_single_axis_new_oos_catches_on_current_geometry_fold_oos_rows": 0,
+    "blockers": 0,
+    "calibration_rows": 32,
+    "candidate_projection_rows": 53,
+    "candidate_rows_full_frozen_projection_ready": 0,
+    "critical_violation_total": 0,
+    "current_geometry_fold_calibration_oos_rows": 75,
+    "current_geometry_fold_calibration_primary_rows": 34,
+    "feature_rows": 43,
+    "frozen_full_surface_feature_fields": 19,
+    "missing_frozen_feature_fields": 15,
+    "source_free_candidate_projection_overlap_oos_rows": 0,
+    "source_free_candidate_projection_overlap_primary_rows": 0,
+    "source_free_projected_train_cal_feature_fields": 4,
+    "train_rows": 11
+  },
+  "created_utc": "2026-06-04T14:57:25Z",
+  "decision": {
+    "best_axis_new_oos_rows_overlap_current_geometry_fold_oos": false,
+    "best_next_source_free_axis_category_by_train_cal_ceiling": "electron_flow",
+    "deployable_now": false,
+    "heldout_read_once_performed": false,
+    "measured_readout_available": true,
+    "negative": false,
+    "next_gate": "Prioritize source-free electron-flow projection first by the train/cal ceiling, then materialize the remaining bond-change and event-topology axes; rerun this projection readout before any heldout or deployment claim.",
+    "operating_point_value_beyond_fold_geometry_context": true,
+    "operating_point_value_beyond_full_row_specific_surface": false,
+    "rerun_or_retune_heldout_authorized": false,
+    "research_only": true,
+    "result_classification": "research_only_signal_current_projection_incomplete",
+    "source_free_projection_complete_for_frozen_contract": false,
+    "split_aligned_current_surface_incremental_readout_measurable": false
+  },
+  "guardrails": {
+    "ec_or_rhea_ids_used_as_predictive_features": false,
+    "feature_projection_uses_current_source_free_candidate_fields_only": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_rescored": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "labels_used_only_for_train_cal_supervision_and_metric_accounting": true,
+    "m_csa_heldout_mechanism_text_used_as_predictive_features": false,
+    "model_fit_rows": "train_only",
+    "model_weights_fit_or_refit": true,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_ids_used_as_predictive_features": false,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "target_names_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": true,
+    "threshold_selection_rows": "calibration_only"
+  },
+  "interpretation": {
+    "next_action": "Prioritize source-free electron-flow projection first by the train/cal ceiling, then materialize the remaining bond-change and event-topology axes; rerun this projection readout before any heldout or deployment claim.",
+    "result": "The current source-free projection is measured on train/cal using 4/19 frozen feature fields. Residual OOS abstain recall is 0.642857 at primary retain recall 1.0; full row-specific context is 0.857143."
+  },
+  "measured_readout": {
+    "axis_repair_ceiling_rows": [
+      {
+        "auc_oos_gt_primary": 0.794643,
+        "delta_vs_current_projected_oos_abstain_recall": 0.0,
+        "feature_field_count": 4,
+        "feature_fields": [
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_proton_transfer_event",
+          "proton_transfer_count"
+        ],
+        "oos_abstain_recall": 0.642857,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.214286,
+        "threshold": 0.40327957,
+        "variant": "current_source_free_projected_subset"
+      },
+      {
+        "auc_oos_gt_primary": 0.830357,
+        "delta_vs_current_projected_oos_abstain_recall": 0.035714,
+        "feature_field_count": 6,
+        "feature_fields": [
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_proton_transfer_event",
+          "mapped_active_site_residue_count",
+          "proton_transfer_count",
+          "unique_mapped_active_site_residue_count"
+        ],
+        "oos_abstain_recall": 0.678571,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.178572,
+        "threshold": 1.39046944,
+        "variant": "current_plus_missing_active_site_locator_count"
+      },
+      {
+        "auc_oos_gt_primary": 0.790179,
+        "delta_vs_current_projected_oos_abstain_recall": 0.107143,
+        "feature_field_count": 9,
+        "feature_fields": [
+          "bond_broken_count",
+          "bond_change_event_count",
+          "bond_formed_count",
+          "bond_order_changed_count",
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_bond_change_event",
+          "has_proton_transfer_event",
+          "proton_transfer_count"
+        ],
+        "oos_abstain_recall": 0.75,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.107143,
+        "threshold": 2.5014505,
+        "variant": "current_plus_missing_bond_change"
+      },
+      {
+        "auc_oos_gt_primary": 0.8125,
+        "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+        "feature_field_count": 8,
+        "feature_fields": [
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_proton_transfer_event",
+          "high_confidence_event_count",
+          "low_confidence_event_count",
+          "medium_confidence_event_count",
+          "proton_transfer_count",
+          "unknown_confidence_event_count"
+        ],
+        "oos_abstain_recall": 0.785714,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+        "threshold": 0.90176052,
+        "variant": "current_plus_missing_confidence_metadata"
+      },
+      {
+        "auc_oos_gt_primary": 0.870536,
+        "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+        "feature_field_count": 6,
+        "feature_fields": [
+          "electron_transfer_count",
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_electron_transfer_event",
+          "has_proton_transfer_event",
+          "proton_transfer_count"
+        ],
+        "oos_abstain_recall": 0.785714,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+        "threshold": 1.72848324,
+        "variant": "current_plus_missing_electron_flow"
+      },
+      {
+        "auc_oos_gt_primary": 0.803571,
+        "delta_vs_current_projected_oos_abstain_recall": 0.071429,
+        "feature_field_count": 6,
+        "feature_fields": [
+          "event_count",
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_proton_transfer_event",
+          "multi_event_mechanism_flag",
+          "proton_transfer_count"
+        ],
+        "oos_abstain_recall": 0.714286,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.142857,
+        "threshold": 0.91782879,
+        "variant": "current_plus_missing_event_topology"
+      },
+      {
+        "auc_oos_gt_primary": 0.875,
+        "delta_vs_current_projected_oos_abstain_recall": 0.214286,
+        "feature_field_count": 19,
+        "feature_fields": [
+          "bond_broken_count",
+          "bond_change_event_count",
+          "bond_formed_count",
+          "bond_order_changed_count",
+          "electron_transfer_count",
+          "event_count",
+          "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+          "expanded_residue_code_count__residue_code_count_his_3",
+          "has_bond_change_event",
+          "has_electron_transfer_event",
+          "has_proton_transfer_event",
+          "high_confidence_event_count",
+          "low_confidence_event_count",
+          "mapped_active_site_residue_count",
+          "medium_confidence_event_count",
+          "multi_event_mechanism_flag",
+          "proton_transfer_count",
+          "unique_mapped_active_site_residue_count",
+          "unknown_confidence_event_count"
+        ],
+        "oos_abstain_recall": 0.857143,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.0,
+        "threshold": 3.21469422,
+        "variant": "full_frozen_row_specific_surface"
+      }
+    ],
+    "best_single_axis_new_oos_rows": [
+      {
+        "best_single_axis_abstains": true,
+        "best_single_axis_residual": 1.90740451,
+        "best_single_axis_threshold": 1.72848324,
+        "current_projected_subset_abstains": false,
+        "current_projected_subset_residual": 0.40327957,
+        "current_projected_subset_threshold": 0.40327957,
+        "entry_id": "m_csa:154",
+        "in_current_geometry_fold_calibration_oos": false
+      },
+      {
+        "best_single_axis_abstains": true,
+        "best_single_axis_residual": 1.90740451,
+        "best_single_axis_threshold": 1.72848324,
+        "current_projected_subset_abstains": false,
+        "current_projected_subset_residual": 0.40327957,
+        "current_projected_subset_threshold": 0.40327957,
+        "entry_id": "m_csa:221",
+        "in_current_geometry_fold_calibration_oos": false
+      },
+      {
+        "best_single_axis_abstains": true,
+        "best_single_axis_residual": 1.90740451,
+        "best_single_axis_threshold": 1.72848324,
+        "current_projected_subset_abstains": false,
+        "current_projected_subset_residual": 0.40327957,
+        "current_projected_subset_threshold": 0.40327957,
+        "entry_id": "m_csa:224",
+        "in_current_geometry_fold_calibration_oos": false
+      },
+      {
+        "best_single_axis_abstains": true,
+        "best_single_axis_residual": 2.71877433,
+        "best_single_axis_threshold": 1.72848324,
+        "current_projected_subset_abstains": false,
+        "current_projected_subset_residual": 0.0,
+        "current_projected_subset_threshold": 0.40327957,
+        "entry_id": "m_csa:256",
+        "in_current_geometry_fold_calibration_oos": false
+      }
+    ],
+    "best_single_axis_repair_ceiling": {
+      "auc_oos_gt_primary": 0.870536,
+      "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+      "feature_field_count": 6,
+      "feature_fields": [
+        "electron_transfer_count",
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+        "expanded_residue_code_count__residue_code_count_his_3",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "oos_abstain_recall": 0.785714,
+      "primary_retain_recall": 1.0,
+      "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+      "threshold": 1.72848324,
+      "variant": "current_plus_missing_electron_flow"
+    },
+    "deltas": {
+      "residual_auc_delta_vs_full_row_specific": -0.080357,
+      "residual_oos_abstain_recall_delta_vs_fold_geometry_context": 0.242857,
+      "residual_oos_abstain_recall_delta_vs_full_row_specific": -0.214286
+    },
+    "fold_geometry_context": {
+      "available": true,
+      "baseline_surface_note": "Context only: the geometry/fold readout uses the current fold-augmented train/cal OOS surface, not the 43-row row-specific mechanism-feature calibration surface.",
+      "calibration_selection": {
+        "calibration_in_scope_retain_recall": 0.9118,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_total": 34,
+        "calibration_oos_abstain_recall": 0.4,
+        "calibration_oos_abstained": 30,
+        "calibration_oos_total": 75,
+        "min_retain_target": 0.9,
+        "objective": "maximize_calibration_oos_abstain_recall_subject_to_in_scope_retention",
+        "threshold": 0.44155
+      },
+      "channel": "combined_mean_geometry_fold",
+      "threshold": 0.44155,
+      "train_cal_oos_current_scored_surface": {
+        "abstain_recall": 0.3529,
+        "abstained": 72,
+        "retained": 132,
+        "retained_recall": 0.6471,
+        "row_count": 204,
+        "threshold": 0.44155
+      }
+    },
+    "full_row_specific_train_cal_context": {
+      "centroid_variant": {
+        "calibration_selected_similarity_threshold": {
+          "oos_abstain_recall": 0.857143,
+          "oos_rows": 28,
+          "primary_retain_recall": 1.0,
+          "primary_rows": 4,
+          "retention_target": 0.9,
+          "threshold": 0.23726514
+        },
+        "calibration_summary": {
+          "auc_primary_vs_oos": 0.875,
+          "mean_oos_similarity": 0.211749,
+          "mean_primary_similarity": 0.268057,
+          "oos_rows": 28,
+          "primary_nearest_label_accuracy": 0.25,
+          "primary_rows": 4,
+          "rows": 32
+        },
+        "model_type": "standardized_nearest_primary_centroid",
+        "train_summary": {
+          "auc_primary_vs_oos": null,
+          "mean_oos_similarity": null,
+          "mean_primary_similarity": 0.329867,
+          "oos_rows": 0,
+          "primary_nearest_label_accuracy": 1.0,
+          "primary_rows": 11,
+          "rows": 11
+        }
+      },
+      "feature_fields": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "electron_transfer_count",
+        "event_count",
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+        "expanded_residue_code_count__residue_code_count_his_3",
+        "has_bond_change_event",
+        "has_electron_transfer_event",
+        "has_proton_transfer_event",
+        "high_confidence_event_count",
+        "low_confidence_event_count",
+        "mapped_active_site_residue_count",
+        "medium_confidence_event_count",
+        "multi_event_mechanism_flag",
+        "proton_transfer_count",
+        "unique_mapped_active_site_residue_count",
+        "unknown_confidence_event_count"
+      ],
+      "residual_variant": {
+        "calibration_selected_residual_threshold": {
+          "oos_abstain_recall": 0.857143,
+          "oos_rows": 28,
+          "primary_retain_recall": 1.0,
+          "primary_rows": 4,
+          "retention_target": 0.9,
+          "threshold": 3.21469422
+        },
+        "calibration_summary": {
+          "auc_oos_gt_primary": 0.875,
+          "mean_oos_residual": 3.952038,
+          "mean_primary_residual": 2.75291,
+          "oos_rows": 28,
+          "primary_rows": 4,
+          "rows": 32
+        },
+        "model_type": "standardized_out_of_atlas_span_residual",
+        "train_summary": {
+          "auc_oos_gt_primary": null,
+          "mean_oos_residual": null,
+          "mean_primary_residual": 2.716033,
+          "oos_rows": 0,
+          "primary_rows": 11,
+          "rows": 11
+        }
+      }
+    },
+    "projected_source_free_subset": {
+      "centroid_variant": {
+        "calibration_selected_similarity_threshold": {
+          "oos_abstain_recall": 0.642857,
+          "oos_rows": 28,
+          "primary_retain_recall": 1.0,
+          "primary_rows": 4,
+          "retention_target": 0.9,
+          "threshold": 0.71261637
+        },
+        "calibration_summary": {
+          "auc_primary_vs_oos": 0.794643,
+          "mean_oos_similarity": 0.472691,
+          "mean_primary_similarity": 0.784462,
+          "oos_rows": 28,
+          "primary_nearest_label_accuracy": 0.5,
+          "primary_rows": 4,
+          "rows": 32
+        },
+        "model_type": "standardized_nearest_primary_centroid",
+        "train_summary": {
+          "auc_primary_vs_oos": null,
+          "mean_oos_similarity": null,
+          "mean_primary_similarity": 0.729283,
+          "oos_rows": 0,
+          "primary_nearest_label_accuracy": 0.545455,
+          "primary_rows": 11,
+          "rows": 11
+        }
+      },
+      "feature_fields": [
+        "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+        "expanded_residue_code_count__residue_code_count_his_3",
+        "has_proton_transfer_event",
+        "proton_transfer_count"
+      ],
+      "residual_variant": {
+        "calibration_selected_residual_threshold": {
+          "oos_abstain_recall": 0.642857,
+          "oos_rows": 28,
+          "primary_retain_recall": 1.0,
+          "primary_rows": 4,
+          "retention_target": 0.9,
+          "threshold": 0.40327957
+        },
+        "calibration_summary": {
+          "auc_oos_gt_primary": 0.794643,
+          "mean_oos_residual": 1.841015,
+          "mean_primary_residual": 0.30246,
+          "oos_rows": 28,
+          "primary_rows": 4,
+          "rows": 32
+        },
+        "model_type": "standardized_out_of_atlas_span_residual",
+        "train_summary": {
+          "auc_oos_gt_primary": null,
+          "mean_oos_residual": null,
+          "mean_primary_residual": 0.776408,
+          "oos_rows": 0,
+          "primary_rows": 11,
+          "rows": 11
+        }
+      }
+    },
+    "split_alignment_context": {
+      "available": true,
+      "current_geometry_fold_calibration_oos_rows": 75,
+      "current_geometry_fold_calibration_primary_rows": 34,
+      "full_row_specific_feature_overlap_oos_entry_ids": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:78",
+        "m_csa:85",
+        "m_csa:149",
+        "m_csa:222",
+        "m_csa:246"
+      ],
+      "full_row_specific_feature_overlap_oos_rows": 8,
+      "full_row_specific_feature_overlap_primary_entry_ids": [
+        "m_csa:102"
+      ],
+      "full_row_specific_feature_overlap_primary_rows": 1,
+      "measurability_note": "The current source-free candidate projection cannot support a split-aligned incremental operating-point readout until it covers the current geometry/fold calibration-primary and train/cal OOS rows.",
+      "source_free_candidate_projection_overlap_oos_entry_ids": [],
+      "source_free_candidate_projection_overlap_oos_rows": 0,
+      "source_free_candidate_projection_overlap_primary_entry_ids": [],
+      "source_free_candidate_projection_overlap_primary_rows": 0
+    }
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout",
+  "scope": "Lever 2 measured train/cal readout for the currently source-free projectable subset of the row-specific bond-change/event-pair feature surface. It fits only train rows, selects only on calibration rows, compares against the full row-specific train/cal contract plus current fold/geometry context, and does not read or rescore heldout.",
+  "scored_rows": {
+    "calibration": [
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:2",
+        "is_primary": false,
+        "nearest_primary_distance": 2.69121763,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.27091331,
+        "out_of_atlas_span_residual": 2.69121763,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:6",
+        "is_primary": true,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": true,
+        "true_label": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:17",
+        "is_primary": false,
+        "nearest_primary_distance": 4.23390198,
+        "nearest_primary_label": "metal_dependent_hydrolase",
+        "nearest_primary_similarity": 0.19106204,
+        "out_of_atlas_span_residual": 4.23390198,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:23",
+        "is_primary": false,
+        "nearest_primary_distance": 2.69121763,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.27091331,
+        "out_of_atlas_span_residual": 2.69121763,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:25",
+        "is_primary": false,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:40",
+        "is_primary": false,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:49",
+        "is_primary": false,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:59",
+        "is_primary": false,
+        "nearest_primary_distance": 2.90311496,
+        "nearest_primary_label": "metal_dependent_hydrolase",
+        "nearest_primary_similarity": 0.25620562,
+        "out_of_atlas_span_residual": 2.90311496,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:70",
+        "is_primary": false,
+        "nearest_primary_distance": 2.69121763,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.27091331,
+        "out_of_atlas_span_residual": 2.69121763,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:78",
+        "is_primary": false,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:85",
+        "is_primary": false,
+        "nearest_primary_distance": 2.88563368,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.25735828,
+        "out_of_atlas_span_residual": 2.88563368,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:101",
+        "is_primary": false,
+        "nearest_primary_distance": 2.79658864,
+        "nearest_primary_label": "metal_dependent_hydrolase",
+        "nearest_primary_similarity": 0.26339435,
+        "out_of_atlas_span_residual": 2.79658864,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:133",
+        "is_primary": true,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "heme_peroxidase_oxidase"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:147",
+        "is_primary": true,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "plp_dependent_enzyme"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:149",
+        "is_primary": false,
+        "nearest_primary_distance": 2.88563368,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.25735828,
+        "out_of_atlas_span_residual": 2.88563368,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:154",
+        "is_primary": false,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:186",
+        "is_primary": true,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": true,
+        "true_label": "plp_dependent_enzyme"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:194",
+        "is_primary": false,
+        "nearest_primary_distance": 2.88563368,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.25735828,
+        "out_of_atlas_span_residual": 2.88563368,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:221",
+        "is_primary": false,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:222",
+        "is_primary": false,
+        "nearest_primary_distance": 3.27294766,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.23403048,
+        "out_of_atlas_span_residual": 3.27294766,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:224",
+        "is_primary": false,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:241",
+        "is_primary": false,
+        "nearest_primary_distance": 1.90012733,
+        "nearest_primary_label": "heme_peroxidase_oxidase",
+        "nearest_primary_similarity": 0.34481245,
+        "out_of_atlas_span_residual": 1.90012733,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:246",
+        "is_primary": false,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:253",
+        "is_primary": false,
+        "nearest_primary_distance": 2.69121763,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.27091331,
+        "out_of_atlas_span_residual": 2.69121763,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:256",
+        "is_primary": false,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:263",
+        "is_primary": false,
+        "nearest_primary_distance": 2.69121763,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.27091331,
+        "out_of_atlas_span_residual": 2.69121763,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:273",
+        "is_primary": false,
+        "nearest_primary_distance": 2.90311496,
+        "nearest_primary_label": "metal_dependent_hydrolase",
+        "nearest_primary_similarity": 0.25620562,
+        "out_of_atlas_span_residual": 2.90311496,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:287",
+        "is_primary": false,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:292",
+        "is_primary": false,
+        "nearest_primary_distance": 2.69121763,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.27091331,
+        "out_of_atlas_span_residual": 2.69121763,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:312",
+        "is_primary": false,
+        "nearest_primary_distance": 2.41369549,
+        "nearest_primary_label": "metal_dependent_hydrolase",
+        "nearest_primary_similarity": 0.29293767,
+        "out_of_atlas_span_residual": 2.41369549,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:317",
+        "is_primary": false,
+        "nearest_primary_distance": 1.2098387,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.45252172,
+        "out_of_atlas_span_residual": 1.2098387,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "entry_id": "m_csa:318",
+        "is_primary": false,
+        "nearest_primary_distance": 2.69121763,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.27091331,
+        "out_of_atlas_span_residual": 2.69121763,
+        "primary_prediction_correct": false,
+        "true_label": "none_of_above"
+      }
+    ],
+    "train": [
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:5",
+        "is_primary": true,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "ser_his_acid_hydrolase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:11",
+        "is_primary": true,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "metal_dependent_hydrolase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:15",
+        "is_primary": true,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": false,
+        "true_label": "metal_dependent_hydrolase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:16",
+        "is_primary": true,
+        "nearest_primary_distance": 2.5448897,
+        "nearest_primary_label": "metal_dependent_hydrolase",
+        "nearest_primary_similarity": 0.28209622,
+        "out_of_atlas_span_residual": 2.5448897,
+        "primary_prediction_correct": true,
+        "true_label": "metal_dependent_hydrolase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:37",
+        "is_primary": true,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "heme_peroxidase_oxidase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:66",
+        "is_primary": true,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": true,
+        "true_label": "plp_dependent_enzyme"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:68",
+        "is_primary": true,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": true,
+        "true_label": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:94",
+        "is_primary": true,
+        "nearest_primary_distance": 0.0,
+        "nearest_primary_label": "plp_dependent_enzyme",
+        "nearest_primary_similarity": 1.0,
+        "out_of_atlas_span_residual": 0.0,
+        "primary_prediction_correct": false,
+        "true_label": "ser_his_acid_hydrolase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:102",
+        "is_primary": true,
+        "nearest_primary_distance": 0.40327957,
+        "nearest_primary_label": "flavin_dehydrogenase_reductase",
+        "nearest_primary_similarity": 0.71261637,
+        "out_of_atlas_span_residual": 0.40327957,
+        "primary_prediction_correct": true,
+        "true_label": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:124",
+        "is_primary": true,
+        "nearest_primary_distance": 1.90012733,
+        "nearest_primary_label": "heme_peroxidase_oxidase",
+        "nearest_primary_similarity": 0.34481245,
+        "out_of_atlas_span_residual": 1.90012733,
+        "primary_prediction_correct": true,
+        "true_label": "heme_peroxidase_oxidase"
+      },
+      {
+        "assigned_embedding_split": "train",
+        "entry_id": "m_csa:169",
+        "is_primary": true,
+        "nearest_primary_distance": 2.88563368,
+        "nearest_primary_label": "ser_his_acid_hydrolase",
+        "nearest_primary_similarity": 0.25735828,
+        "out_of_atlas_span_residual": 2.88563368,
+        "primary_prediction_correct": true,
+        "true_label": "ser_his_acid_hydrolase"
+      }
+    ]
+  },
+  "source_artifacts": {
+    "current_in_scope_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    },
+    "expanded_oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de"
+    },
+    "fold_augmented_current_measured_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+      "sha256": "b93095f34f29584d1bdb39bf705ab3fa72fc95b1aa7f3c4931003181dadb75f2"
+    },
+    "full_no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602.json",
+      "sha256": "959c3da8f18bfb02d5fac18768cb3c270441054ab2d545d85f350a6295840178"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "source_free_projection_repair_candidate_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604.json",
+      "sha256": "ecf532516d30980a16001071091795cdc009a3e7c808c67b37ed647fcc572313"
+    },
+    "train_cal_feature_guardrail": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit_current702_20260602.json",
+      "sha256": "27eba4e53c6e74e50818e623fd5c9f0f0342553ebaead20b2eca582abc91cfa8"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    }
+  },
+  "source_free_projection": {
+    "candidate_surface_ready_for_threshold_scoring": false,
+    "candidate_surface_status": "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_partial_not_scoreable",
+    "missing_frozen_feature_fields": [
+      "bond_broken_count",
+      "bond_change_event_count",
+      "bond_formed_count",
+      "bond_order_changed_count",
+      "electron_transfer_count",
+      "event_count",
+      "has_bond_change_event",
+      "has_electron_transfer_event",
+      "high_confidence_event_count",
+      "low_confidence_event_count",
+      "mapped_active_site_residue_count",
+      "medium_confidence_event_count",
+      "multi_event_mechanism_flag",
+      "unique_mapped_active_site_residue_count",
+      "unknown_confidence_event_count"
+    ],
+    "projected_feature_fields": [
+      "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser",
+      "expanded_residue_code_count__residue_code_count_his_3",
+      "has_proton_transfer_event",
+      "proton_transfer_count"
+    ]
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_measured_research_only"
+}
