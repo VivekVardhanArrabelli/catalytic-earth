@@ -2446,6 +2446,11 @@ def cmd_build_cofactor_presence_calibration(args: argparse.Namespace) -> int:
         split_manifest_path=Path(args.split_manifest),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        sequence_manifest_path=(
+            Path(args.sequence_manifest) if args.sequence_manifest else None
+        ),
+        fasta_path=Path(args.fasta) if args.fasta else None,
+        use_motif_features=args.use_motif_features,
         min_calibration_positive=args.min_calibration_positive,
         random_state=args.random_state,
     )
@@ -18268,6 +18273,27 @@ def build_parser() -> argparse.ArgumentParser:
         "--min-calibration-positive", type=int, default=5
     )
     cofactor_presence_calibration.add_argument("--random-state", type=int, default=702)
+    cofactor_presence_calibration.add_argument(
+        "--use-motif-features",
+        action="store_true",
+        help=(
+            "append leakage-safe cofactor-binding sequence motifs (Rossmann, "
+            "c-type heme, zinc-hydrolase) to the embedding before fitting"
+        ),
+    )
+    cofactor_presence_calibration.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+        help="sequence manifest (only used with --use-motif-features)",
+    )
+    cofactor_presence_calibration.add_argument(
+        "--fasta",
+        default=(
+            "artifacts/"
+            "v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta"
+        ),
+        help="FASTA for motif extraction (only used with --use-motif-features)",
+    )
     cofactor_presence_calibration.add_argument(
         "--out",
         default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",

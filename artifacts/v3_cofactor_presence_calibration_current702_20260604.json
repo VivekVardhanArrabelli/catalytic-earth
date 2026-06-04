@@ -11240,7 +11240,7 @@
       "split_assignment": "in_distribution"
     }
   ],
-  "created_utc": "2026-06-04T13:44:02Z",
+  "created_utc": "2026-06-04T14:47:38Z",
   "guardrails": {
     "benchmark_mechanism_labels_used": false,
     "ec_rhea_or_mechanism_text_used_for_labels": false,
@@ -11253,6 +11253,8 @@
     "label_registry_edited": false,
     "mechanism_fingerprint_used_for_labels": false,
     "production_scoring_changed": false,
+    "sequence_motif_features_are_sequence_regexes_only": true,
+    "sequence_motif_features_used": false,
     "supervision_is_structural_ligand_context_only": true,
     "thresholds_selected_on_calibration_split_only": true
   },
@@ -11293,6 +11295,16 @@
       "low_calibration_support": true,
       "selected_threshold": 0.531353
     }
+  },
+  "sequence_motif_features": {
+    "enabled": false,
+    "feature_names": [
+      "rossmann_gxgxxg",
+      "heme_cxxch",
+      "metal_hexxh",
+      "metal_his_pair"
+    ],
+    "note": "binary cofactor-binding sequence motifs appended to the embedding before fitting; pure sequence regexes, no labels/EC/Rhea/mechanism"
   },
   "source_artifacts": {
     "embedding_sidecars": [

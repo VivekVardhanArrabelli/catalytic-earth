@@ -4,6 +4,9 @@ import json
 import unittest
 
 from catalytic_earth.cofactor_presence_calibration import (
+    MOTIF_FEATURE_SPECS,
+    _augment_with_motifs,
+    _motif_feature_vector,
     build_cofactor_presence_calibration,
 )
 
@@ -143,6 +146,31 @@ class CofactorPresenceCalibrationTests(unittest.TestCase):
         )
         head = audit["trained_calibrated_heads"]["esm2_test"]["class_results"]["metal_ion"]
         self.assertTrue(head["low_calibration_support"])
+
+
+class MotifFeatureTests(unittest.TestCase):
+    def test_motif_vector_fires_on_known_motifs(self) -> None:
+        names = [name for name, _ in MOTIF_FEATURE_SPECS]
+        rossmann_idx = names.index("rossmann_gxgxxg")
+        heme_idx = names.index("heme_cxxch")
+        # GAGVVG matches G.G..G; CAACH matches C..CH.
+        with_rossmann = _motif_feature_vector("MKGAGVVGAAA")
+        self.assertEqual(with_rossmann[rossmann_idx], 1)
+        with_heme = _motif_feature_vector("AAACAACHAAA")
+        self.assertEqual(with_heme[heme_idx], 1)
+        none = _motif_feature_vector("AAAAAAAAAA")
+        self.assertEqual(none[rossmann_idx], 0)
+        self.assertEqual(none[heme_idx], 0)
+
+    def test_augment_appends_motif_dimensions(self) -> None:
+        embeddings = {"m_csa:1": [0.1, 0.2]}
+        sequences = {"m_csa:1": "MKGAGVVGAAA"}
+        augmented = _augment_with_motifs(embeddings, sequences)
+        self.assertEqual(len(augmented["m_csa:1"]), 2 + len(MOTIF_FEATURE_SPECS))
+        # missing sequence -> zero motif block, still appended
+        augmented_missing = _augment_with_motifs(embeddings, {})
+        self.assertEqual(len(augmented_missing["m_csa:1"]), 2 + len(MOTIF_FEATURE_SPECS))
+        self.assertEqual(augmented_missing["m_csa:1"][2:], [0.0] * len(MOTIF_FEATURE_SPECS))
 
 
 if __name__ == "__main__":

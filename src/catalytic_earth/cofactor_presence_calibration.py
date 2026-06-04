@@ -60,6 +60,35 @@ MIN_CALIBRATION_POSITIVE = 5
 PRECISION_FLOOR = 0.9
 RECALL_FLOOR = 0.9
 
+# Well-established cofactor-binding sequence motifs, appended as binary features
+# to the embedding so the head can pick up folds the pooled embedding misses
+# (e.g. flavin-binding Rossmann rows the ESM-2 head scores near zero). Pure
+# sequence regexes -- no labels, EC, Rhea, or mechanism text. Leakage-safe.
+MOTIF_FEATURE_SPECS = (
+    ("rossmann_gxgxxg", r"G.G..G"),       # FAD/NAD dinucleotide-binding beta-alpha-beta
+    ("heme_cxxch", r"C..CH"),             # c-type heme attachment site
+    ("metal_hexxh", r"HE..H"),            # zinc metallohydrolase active-site motif
+    ("metal_his_pair", r"H.{1,3}H"),      # close histidine pair (metal coordination)
+)
+
+
+def _motif_feature_vector(sequence: str) -> list[int]:
+    import re
+
+    seq = (sequence or "").upper()
+    return [1 if seq and re.search(pattern, seq) else 0 for _name, pattern in MOTIF_FEATURE_SPECS]
+
+
+def _augment_with_motifs(
+    embeddings: dict[str, list[float]], sequences: dict[str, str]
+) -> dict[str, list[float]]:
+    zero = [0] * len(MOTIF_FEATURE_SPECS)
+    augmented: dict[str, list[float]] = {}
+    for entry_id, vector in embeddings.items():
+        motif = _motif_feature_vector(sequences.get(entry_id, "")) if sequences else zero
+        augmented[entry_id] = list(vector) + [float(value) for value in motif]
+    return augmented
+
 
 def write_cofactor_presence_calibration(
     *,
@@ -69,6 +98,9 @@ def write_cofactor_presence_calibration(
     out_path: Path,
     report_path: Path | None = None,
     embedding_specs: tuple[dict[str, str], ...] = DEFAULT_EMBEDDING_SPECS,
+    sequence_manifest_path: Path | None = None,
+    fasta_path: Path | None = None,
+    use_motif_features: bool = False,
     min_calibration_positive: int = MIN_CALIBRATION_POSITIVE,
     random_state: int = 702,
 ) -> dict[str, Any]:
@@ -80,11 +112,21 @@ def write_cofactor_presence_calibration(
         path = Path(spec["sidecar_path"])
         if path.exists():
             embedding_sidecars[str(spec["key"])] = _read_jsonl(path)
+    sequences: dict[str, str] | None = None
+    if use_motif_features and sequence_manifest_path is not None and fasta_path is not None:
+        from .sequence_cofactor_channel import _parse_fasta, _sequence_by_entry
+
+        sequences = _sequence_by_entry(
+            _load_json(sequence_manifest_path),
+            _parse_fasta(Path(fasta_path).read_text(encoding="utf-8")),
+        )
     audit = build_cofactor_presence_calibration(
         label_manifest=label_manifest,
         geometry_features=geometry_features,
         split_manifest=split_manifest,
         embedding_sidecars=embedding_sidecars,
+        sequences=sequences,
+        use_motif_features=use_motif_features,
         min_calibration_positive=min_calibration_positive,
         random_state=random_state,
     )
@@ -103,6 +145,8 @@ def build_cofactor_presence_calibration(
     split_manifest: dict[str, Any],
     embedding_sidecars: dict[str, list[dict[str, Any]]],
     cofactor_classes: tuple[str, ...] = DEFAULT_COFACTOR_CLASSES,
+    sequences: dict[str, str] | None = None,
+    use_motif_features: bool = False,
     min_calibration_positive: int = MIN_CALIBRATION_POSITIVE,
     random_state: int = 702,
 ) -> dict[str, Any]:
@@ -116,6 +160,11 @@ def build_cofactor_presence_calibration(
     embeddings_by_backend = {
         key: _dense_embeddings(records) for key, records in sorted(embedding_sidecars.items())
     }
+    if use_motif_features:
+        embeddings_by_backend = {
+            backend: _augment_with_motifs(embeddings, sequences or {})
+            for backend, embeddings in embeddings_by_backend.items()
+        }
 
     per_backend: dict[str, dict[str, Any]] = {}
     for backend, embeddings in embeddings_by_backend.items():
@@ -165,6 +214,16 @@ def build_cofactor_presence_calibration(
             "global_threshold_changed": False,
             "production_scoring_changed": False,
             "label_registry_edited": False,
+            "sequence_motif_features_used": bool(use_motif_features),
+            "sequence_motif_features_are_sequence_regexes_only": True,
+        },
+        "sequence_motif_features": {
+            "enabled": bool(use_motif_features),
+            "feature_names": [name for name, _pattern in MOTIF_FEATURE_SPECS],
+            "note": (
+                "binary cofactor-binding sequence motifs appended to the embedding "
+                "before fitting; pure sequence regexes, no labels/EC/Rhea/mechanism"
+            ),
         },
         "policy": {
             "label_source": (

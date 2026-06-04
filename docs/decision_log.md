@@ -3,6 +3,53 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Cofactor Recovery Is Channel-Recall-Limited; Hard Misses Are Not Sequence-Recoverable
+
+Decision: the in-distribution cofactor recovery (12/17 apo-lost primaries, 70.6%
+out-of-sample) is at a presence-channel ceiling. The remaining 5 misses are not
+recoverable by channel tuning; the next lever for them is cofactor localization
+or transplant, not more presence-channel work.
+
+Rationale (diagnosis of the 5 unrecovered calibration rows): all 5 are
+channel-misses, not geometry-floor. The geometry put each near the 0.4115
+threshold, but the channel failed to supply the right cofactor:
+- m_csa:120 (flavin): flavin head 0.12 / 0.01 across backends; no Rossmann motif.
+- m_csa:181 (metal): metal head 0.57 (< 0.86 threshold); apo score 0.3974, a hair
+  under threshold -- the only threshold-fixable row, but lowering the metal
+  threshold amplifies the spurious metal calls below.
+- m_csa:274 / m_csa:275 (flavin): flavin head ~0.05-0.10, metal head 0.99 (wrong);
+  pure single-cofactor rows, so the metal prediction is a false positive.
+- m_csa:935 (heme): heme head 0.04, metal head 0.99 (wrong) -> harmful, boosted a
+  wrong metal_dependent_hydrolase call. b-type peroxidase, so no c-type CxxCH motif.
+The flavin/heme heads score true-flavin/heme rows near zero, and the larger ESM-2
+model does not fix it. These enzymes' sequences do not look like cofactor binders
+to ESM-2 or to motifs.
+
+Result: added leakage-safe cofactor-binding sequence-motif features (Rossmann
+G.G..G, c-type heme C..CH, zinc-hydrolase HE..H / close His pair) appended to the
+embedding before fitting (opt-in `--use-motif-features`, baseline artifact
+unchanged). Motifs improved channel calibration AUC -- heme 0.88 -> 0.93, flavin
+0.9263 -> 0.9355 -- with zero regressions, but in-distribution recovery is
+unchanged at 12/17: the motif-augmented flavin/heme scores for the hard rows
+stayed ~0.10 (e.g. m_csa:274 flavin 0.054 -> 0.101), far below any non-degenerate
+threshold. The motif channel is therefore a better-ranked channel to carry to the
+eventual heldout one-shot, but it does not move this surface's recovery count.
+
+Consequence / next gate: do not chase the 5 hard misses with more presence-channel
+tuning. The genuinely different levers are (a) cofactor **localization** (predict
+the binding residues so geometry is evaluated with the cofactor's position) and
+(b) cofactor **transplant** (graft a sequence/fold-found holo template's cofactor
+onto the predicted backbone; numpy is available). The metal head (cal AUC ~0.77,
+spurious 0.99 on flavin/heme rows) is the systemic weak point and the main driver
+of OOS over-opening risk, so improving it is the highest-leverage channel work.
+
+References:
+
+- `artifacts/v3_cofactor_presence_calibration_motif_current702_20260604.json`
+- `artifacts/v3_in_distribution_predicted_geometry_recovery_motif_current702_20260604.json`
+- `work/cofactor_presence_calibration_motif_current702_20260604.md`
+- `work/in_distribution_predicted_geometry_recovery_motif_current702_20260604.md`
+
 ## 2026-06-04: Cofactor Channel Recovers ~70% of the Apo Drop (in-distribution, out-of-sample)
 
 Decision: the sequence cofactor-presence channel is the right lever for the
