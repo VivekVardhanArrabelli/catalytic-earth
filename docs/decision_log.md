@@ -3,6 +3,42 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: HELDOUT ONE-SHOT SPENT — Cofactor Fusion 23 -> 37/45 Primary (OOS FP 12.3% -> 25.9%)
+
+Event: the one-shot heldout read was authorized as a single blind pass and is now
+spent. The FROZEN leakage-safe cofactor-presence channel (heads fit on train,
+thresholds/backend on calibration) was applied to heldout via raw cofactor fusion
+at the frozen router threshold 0.4115. Per the authorization, **nothing was
+refit, retuned, or changed in response to the result.**
+
+Result (canonical 45-primary mask):
+- Baseline predicted-apo (no channel): 23/45 primary, 17 abstained, 5 wrong,
+  OOS/sec FP 0.1235 -- reproduces the known baseline exactly.
+- Raw cofactor fusion (frozen channel): 37/45 primary, 2 abstained, 6 wrong,
+  OOS/sec FP 0.2593.
+- Net: +14 primaries recovered (14 of the 22 apo-lost = 63.6%), abstentions
+  17 -> 2, at a precision cost of roughly doubled OOS/secondary false positives
+  and +1 wrong primary.
+
+Interpretation: the leakage-safe development methodology held -- the out-of-sample
+calibration recovery (70.6%) accurately predicted heldout (63.6%); the projected
+~38/45 landed at 37/45. The in-distribution out-of-sample surface was a faithful
+proxy. Raw fusion buys large primary recovery at a genuine precision cost (OOS
+over-opening) that the in-distribution surface could not measure (no OOS rows
+there).
+
+Discipline / consequence: this is a RECORDED result only. The one-shot is spent;
+do not re-run it or tune any threshold/policy against it. Any operating point that
+trades recovery for precision (the pre-built sequence-supported suppression dial,
+or a recalibrated abstention threshold) is a SEPARATE decision requiring its own
+separately authorized evaluation -- it must not be selected by peeking at this
+result.
+
+References:
+
+- `artifacts/v3_heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.json`
+- `work/heldout_oneshot_cofactor_fusion_blind_pass_current702_20260604.md`
+
 ## 2026-06-04: Cofactor Recovery Is Channel-Recall-Limited; Hard Misses Are Not Sequence-Recoverable
 
 Decision: the in-distribution cofactor recovery (12/17 apo-lost primaries, 70.6%
