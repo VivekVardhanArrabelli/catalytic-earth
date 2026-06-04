@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.lever2_mechanism_incremental_readout import (
+    build_lever2_current_extended_oos_mechanism_overlap_readout,
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
 )
@@ -15,6 +16,229 @@ from catalytic_earth.northstar_next_levers import (
 
 
 class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
+    def test_current_extended_oos_overlap_measures_signal_without_primary_gate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            current_measured_path = root / "current_measured.json"
+            current_surface_path = root / "current_surface.json"
+            mechanism_path = root / "mechanism.json"
+            mechanism_contract_path = root / "mechanism_contract.json"
+            current_primary_path = root / "current_primary.json"
+            sidecar_path = root / "sidecar.json"
+
+            current_measured_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.5,
+                        },
+                        "measured_readout": {
+                            "train_cal_oos_current_scored_surface": {
+                                "row_count": 4,
+                                "abstained": 1,
+                                "retained": 3,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "accession": "P00010",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.4
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "accession": "P00011",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.7
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:12",
+                                "accession": "P00012",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.8
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:99",
+                                "accession": "P00099",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.9
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:100",
+                                "accession": "P00100",
+                                "channel_scores": {},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mechanism_path.write_text(
+                json.dumps(
+                    {
+                        "residual_variant": {
+                            "calibration_selected_residual_threshold": {
+                                "threshold": 3.0
+                            }
+                        },
+                        "scored_rows": {
+                            "calibration": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "is_primary": True,
+                                    "out_of_atlas_span_residual": 1.0,
+                                },
+                                {
+                                    "entry_id": "m_csa:10",
+                                    "is_primary": False,
+                                    "out_of_atlas_span_residual": 4.0,
+                                },
+                                {
+                                    "entry_id": "m_csa:11",
+                                    "is_primary": False,
+                                    "out_of_atlas_span_residual": 4.5,
+                                },
+                                {
+                                    "entry_id": "m_csa:12",
+                                    "is_primary": False,
+                                    "out_of_atlas_span_residual": 2.0,
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mechanism_contract_path.write_text(
+                json.dumps(
+                    {"calibration_contract": {"residual_distance": {"threshold": 3.0}}}
+                ),
+                encoding="utf-8",
+            )
+            current_primary_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "m_csa:20",
+                                "accession": "P00020",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.8
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "row_specific_event_features": {
+                                    "has_bond_change_event": True,
+                                    "has_proton_transfer_event": False,
+                                    "has_electron_transfer_event": False,
+                                    "bond_change_event_count": 1,
+                                    "proton_transfer_count": 0,
+                                    "electron_transfer_count": 0,
+                                    "event_count": 1,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "row_specific_event_features": {
+                                    "has_bond_change_event": True,
+                                    "has_proton_transfer_event": True,
+                                    "has_electron_transfer_event": True,
+                                    "bond_change_event_count": 2,
+                                    "proton_transfer_count": 1,
+                                    "electron_transfer_count": 1,
+                                    "event_count": 3,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:12",
+                                "row_specific_event_features": {
+                                    "has_bond_change_event": False,
+                                    "has_proton_transfer_event": True,
+                                    "has_electron_transfer_event": False,
+                                    "bond_change_event_count": 0,
+                                    "proton_transfer_count": 1,
+                                    "electron_transfer_count": 0,
+                                    "event_count": 1,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_current_extended_oos_mechanism_overlap_readout(
+                current_measured_readout_path=current_measured_path,
+                current_extended_oos_surface_path=current_surface_path,
+                mechanism_no_template_rerun_path=mechanism_path,
+                mechanism_operating_point_contract_path=mechanism_contract_path,
+                current_in_scope_threshold_contract_path=current_primary_path,
+                train_cal_feature_sidecar_path=sidecar_path,
+                artifact_id="test_current_extended_oos_overlap",
+            )
+
+        self.assertEqual(readout["result_class"], "research_only")
+        self.assertEqual(
+            readout["status"],
+            "lever2_current_extended_oos_mechanism_overlap_readout_research_only",
+        )
+        self.assertEqual(readout["counts"]["current_extended_scored_oos_rows"], 4)
+        self.assertEqual(readout["counts"]["current_extended_unscored_oos_rows"], 1)
+        self.assertEqual(readout["counts"]["current_extended_oos_overlap_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_caught_by_mechanism"], 1
+        )
+        self.assertEqual(readout["counts"]["valid_primary_overlap_rows"], 0)
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_extended_retained_oos_mechanism_feature_rows"
+            ],
+            1,
+        )
+        overlap = readout["measured_readout"]["current_extended_oos_overlap_rows"]
+        self.assertEqual(overlap["current_surface_abstained"], 1)
+        self.assertEqual(overlap["mechanism_surface_abstained"], 2)
+        self.assertEqual(overlap["union_or_gate_abstained"], 2)
+        self.assertEqual(overlap["current_retained_oos_caught_by_mechanism"], 1)
+        event_summary = readout["measured_readout"]["event_feature_overlap_summary"]
+        self.assertEqual(
+            event_summary["current_retained_overlap_rows"][
+                "with_electron_transfer_event"
+            ],
+            1,
+        )
+        self.assertFalse(
+            readout["decision"]["valid_integrated_operating_point_measurable"]
+        )
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+
     def test_measures_oos_lift_but_blocks_without_valid_primary_overlap(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

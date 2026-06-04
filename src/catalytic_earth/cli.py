@@ -43,6 +43,7 @@ from .mechanism_novelty_abstention_eval import (
 from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
 from .mechanism_feature_residual_robustness import write_residual_robustness_audit
 from .lever2_mechanism_incremental_readout import (
+    write_lever2_current_extended_oos_mechanism_overlap_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
 )
@@ -13689,6 +13690,7 @@ def cmd_build_lever2_source_free_electron_flow_split_alignment_readout(
         expanded_oos_calibrated_threshold_contract_path=Path(
             args.expanded_oos_calibrated_threshold_contract
         ),
+        current_extended_oos_surface_path=Path(args.current_extended_oos_surface),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
         **writer_kwargs,
@@ -13701,6 +13703,42 @@ def cmd_build_lever2_source_free_electron_flow_split_alignment_readout(
         f"best-axis current OOS catches: "
         f"{counts.get('best_single_axis_new_oos_catches_on_current_geometry_fold_oos')}, "
         f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_current_extended_oos_mechanism_overlap_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_current_extended_oos_mechanism_overlap_readout(
+        current_measured_readout_path=Path(args.current_measured_readout),
+        current_extended_oos_surface_path=Path(args.current_extended_oos_surface),
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        mechanism_operating_point_contract_path=Path(
+            args.mechanism_operating_point_contract
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        projection_readout_path=Path(args.projection_readout),
+        source_free_coordinate_anchor_candidate_dir_path=Path(
+            args.source_free_coordinate_anchor_candidate_dir
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 current extended OOS mechanism overlap readout to "
+        f"{args.out} (OOS overlap: "
+        f"{counts.get('current_extended_oos_overlap_rows')}, retained caught: "
+        f"{counts.get('current_retained_oos_caught_by_mechanism')}, "
+        f"primary overlap: {counts.get('valid_primary_overlap_rows')})"
     )
     return 0
 
@@ -32273,6 +32311,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     lever2_electron_flow_split_alignment_readout.add_argument(
+        "--current-extended-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_split_alignment_readout.add_argument(
         "--artifact-id", default=None
     )
     lever2_electron_flow_split_alignment_readout.add_argument(
@@ -32291,6 +32337,96 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_electron_flow_split_alignment_readout.set_defaults(
         func=cmd_build_lever2_source_free_electron_flow_split_alignment_readout
+    )
+
+    lever2_current_extended_oos_mechanism_overlap_readout = subparsers.add_parser(
+        "build-lever2-current-extended-oos-mechanism-overlap-readout",
+        help=(
+            "write a train/cal Lever 2 readout comparing frozen mechanism "
+            "residuals against the current extended geometry/fold OOS surface"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--current-extended-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--mechanism-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--source-free-coordinate-anchor-candidate-dir",
+        default=(
+            "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_coordinate_anchor_"
+            "candidates_current702_20260602"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_current_extended_oos_mechanism_overlap_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_current_extended_oos_mechanism_overlap_readout.set_defaults(
+        func=cmd_build_lever2_current_extended_oos_mechanism_overlap_readout
     )
 
     lever3_current_measured_readout = subparsers.add_parser(

@@ -90,6 +90,35 @@ class CliTests(unittest.TestCase):
             "source_free_projection_repair_candidate_surface",
             args.source_free_projection_repair_candidate_surface,
         )
+        self.assertIn(
+            "extended_train_cal_oos_surface", args.current_extended_oos_surface
+        )
+
+    def test_lever2_current_extended_oos_mechanism_overlap_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-current-extended-oos-mechanism-overlap-readout"]
+        )
+
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.out,
+        )
+        self.assertIn("lever3_current_measured_readout", args.current_measured_readout)
+        self.assertIn(
+            "extended_train_cal_oos_surface", args.current_extended_oos_surface
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn("source_free_train_cal_projection_readout", args.projection_readout)
+        self.assertIn(
+            "source_free_coordinate_anchor_candidates",
+            args.source_free_coordinate_anchor_candidate_dir,
+        )
 
     def test_lever3_current_measured_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(

@@ -1,6 +1,6 @@
 # Lever 2 Source-Free Electron-Flow Split-Alignment Readout - current702
 
-Run: 2026-06-04T15:47:44Z
+Run: 2026-06-04T17:03:31Z
 
 Lever 2 measured train/cal readout for the source-free electron-flow repair axis, tied to the current geometry/fold calibration split. It consumes existing train/cal projection metrics and current-surface missing-row evidence, does not materialize features, and does not read or tune heldout.
 
@@ -10,6 +10,8 @@ Lever 2 measured train/cal readout for the source-free electron-flow repair axis
 - Result class: research_only
 - Electron-flow train/cal OOS recall delta: 0.142857
 - Best-axis new OOS catches on current geometry/fold OOS rows: 0/4
+- Best-axis new OOS catches on current extended OOS rows: 3/4
+- Best-axis new current-retained OOS catches: 2
 - Source-free candidate overlap with current calibration primary rows: 0/34
 - Source-free candidate overlap with current calibration OOS rows: 0/75
 
@@ -121,6 +123,15 @@ Lever 2 measured train/cal readout for the source-free electron-flow repair axis
 | 3 | m_csa:303 | already_abstained_oos_missing_electron_flow_axis | P0DJQ7 | 0.4257 | False |
 | 3 | uniprot:P78549 | already_abstained_oos_missing_electron_flow_axis | P78549 | 0.42485 | False |
 | ... | 21 additional rows |  |  |  |  |
+
+## Best-Axis Current Extended OOS Rows
+
+| row | in current extended OOS | current score | current abstains | retained catch |
+| --- | --- | ---: | --- | --- |
+| m_csa:154 | False | None | None | False |
+| m_csa:221 | True | 0.6042 | False | True |
+| m_csa:224 | True | 0.4011 | True | False |
+| m_csa:256 | True | 0.61925 | False | True |
 
 ## Raw Overlap OOS Rows
 

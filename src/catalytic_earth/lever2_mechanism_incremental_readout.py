@@ -24,6 +24,9 @@ DEFAULT_ARTIFACT_ID = (
 DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_split_alignment_readout_current702_20260604"
 )
+DEFAULT_CURRENT_EXTENDED_OOS_MECHANISM_OVERLAP_ARTIFACT_ID = (
+    "v3_lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604"
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -152,6 +155,87 @@ def _current_abstains(row: dict[str, Any], channel: str, threshold: float) -> bo
     if score is None:
         return False
     return score < threshold
+
+
+def _current_readout_threshold(
+    current_measured_readout: dict[str, Any],
+) -> tuple[str, float]:
+    fixed = current_measured_readout.get("fixed_operating_point") or {}
+    channel = str(fixed.get("channel") or "combined_mean_geometry_fold")
+    threshold = fixed.get("threshold")
+    if threshold is None:
+        selection = fixed.get("calibration_selection") or {}
+        threshold = selection.get("threshold")
+    if threshold is None:
+        raise ValueError("current measured readout threshold is missing")
+    return channel, float(threshold)
+
+
+def _current_surface_rows_with_score(
+    current_extended_oos_surface: dict[str, Any], channel: str
+) -> dict[str, dict[str, Any]]:
+    rows = _fold_rows_by_id(
+        current_extended_oos_surface.get("candidate_row_scores") or []
+    )
+    return {
+        entry_id: row
+        for entry_id, row in rows.items()
+        if _current_score(row, channel) is not None
+    }
+
+
+def _feature_rows_by_id(
+    train_cal_feature_sidecar: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    return {
+        str(row.get("entry_id")): row
+        for row in train_cal_feature_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _event_feature_summary(
+    overlap_rows: list[dict[str, Any]],
+    *,
+    current_retained_only: bool = False,
+) -> dict[str, int]:
+    rows = [
+        row
+        for row in overlap_rows
+        if (not current_retained_only or not row["current_surface_abstains"])
+    ]
+    return {
+        "rows": len(rows),
+        "with_bond_change_event": sum(
+            1 for row in rows if row.get("has_bond_change_event")
+        ),
+        "with_proton_transfer_event": sum(
+            1 for row in rows if row.get("has_proton_transfer_event")
+        ),
+        "with_electron_transfer_event": sum(
+            1 for row in rows if row.get("has_electron_transfer_event")
+        ),
+        "mechanism_abstained_rows": sum(
+            1 for row in rows if row["mechanism_surface_abstains"]
+        ),
+        "current_retained_caught_by_mechanism": sum(
+            1
+            for row in rows
+            if not row["current_surface_abstains"]
+            and row["mechanism_surface_abstains"]
+        ),
+    }
+
+
+def _m_csa_ids_from_candidate_dir(candidate_dir: Path | None) -> set[str]:
+    if candidate_dir is None or not Path(candidate_dir).exists():
+        return set()
+    entry_ids: set[str] = set()
+    for path in Path(candidate_dir).glob("*.json"):
+        parts = path.stem.split("_")
+        if len(parts) >= 3 and parts[0] == "m" and parts[1] == "csa":
+            entry_ids.add(f"m_csa:{parts[2]}")
+    return entry_ids
 
 
 def _variant_by_name(
@@ -327,6 +411,608 @@ def _raw_electron_flow_current_overlap_diagnostic(
     }
 
 
+def build_lever2_current_extended_oos_mechanism_overlap_readout(
+    *,
+    current_measured_readout_path: Path,
+    current_extended_oos_surface_path: Path,
+    mechanism_no_template_rerun_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    mechanism_operating_point_contract_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    projection_readout_path: Path | None = None,
+    source_free_coordinate_anchor_candidate_dir_path: Path | None = None,
+    artifact_id: str = DEFAULT_CURRENT_EXTENDED_OOS_MECHANISM_OVERLAP_ARTIFACT_ID,
+) -> dict[str, Any]:
+    current_measured = _read_json(current_measured_readout_path)
+    current_surface = _read_json(current_extended_oos_surface_path)
+    mechanism = _read_json(mechanism_no_template_rerun_path)
+    current_primary_contract = _read_json(current_in_scope_threshold_contract_path)
+    mechanism_contract = (
+        _read_json(mechanism_operating_point_contract_path)
+        if mechanism_operating_point_contract_path is not None
+        and Path(mechanism_operating_point_contract_path).exists()
+        else None
+    )
+    feature_rows = (
+        _feature_rows_by_id(_read_json(train_cal_feature_sidecar_path))
+        if train_cal_feature_sidecar_path is not None
+        and Path(train_cal_feature_sidecar_path).exists()
+        else {}
+    )
+    projection_readout = (
+        _read_json(projection_readout_path)
+        if projection_readout_path is not None
+        and Path(projection_readout_path).exists()
+        else None
+    )
+    source_free_candidate_ids = _m_csa_ids_from_candidate_dir(
+        source_free_coordinate_anchor_candidate_dir_path
+    )
+
+    channel, current_threshold = _current_readout_threshold(current_measured)
+    mechanism_threshold = _mechanism_threshold(mechanism, mechanism_contract)
+    current_rows = _current_surface_rows_with_score(current_surface, channel)
+    all_current_rows = _fold_rows_by_id(current_surface.get("candidate_row_scores") or [])
+    current_abstained_ids = {
+        entry_id
+        for entry_id, row in current_rows.items()
+        if _current_abstains(row, channel, current_threshold)
+    }
+    current_retained_ids = set(current_rows) - current_abstained_ids
+
+    mechanism_rows = _mechanism_calibration_rows(mechanism)
+    mechanism_oos_ids = {
+        entry_id
+        for entry_id, row in mechanism_rows.items()
+        if not bool(row.get("is_primary"))
+    }
+    mechanism_primary_ids = {
+        entry_id
+        for entry_id, row in mechanism_rows.items()
+        if bool(row.get("is_primary"))
+    }
+    current_primary_rows = _fold_rows_by_id(
+        current_primary_contract.get("calibration_row_scores") or []
+    )
+    valid_primary_overlap = sorted(
+        mechanism_primary_ids & set(current_primary_rows), key=_entry_sort_key
+    )
+    current_extended_oos_overlap = sorted(
+        mechanism_oos_ids & set(current_rows), key=_entry_sort_key
+    )
+
+    oos_rows: list[dict[str, Any]] = []
+    for entry_id in current_extended_oos_overlap:
+        current_row = current_rows[entry_id]
+        mechanism_row = mechanism_rows[entry_id]
+        features = (
+            feature_rows.get(entry_id, {}).get("row_specific_event_features") or {}
+        )
+        current_score = _current_score(current_row, channel)
+        current_abstain = _current_abstains(
+            current_row, channel, current_threshold
+        )
+        mechanism_residual = float(
+            mechanism_row.get("out_of_atlas_span_residual") or 0.0
+        )
+        mechanism_abstain = mechanism_residual > mechanism_threshold
+        oos_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": current_row.get("accession"),
+                "current_surface_score": round(current_score, 8)
+                if current_score is not None
+                else None,
+                "current_surface_abstains": current_abstain,
+                "mechanism_residual": round(mechanism_residual, 8),
+                "mechanism_surface_abstains": mechanism_abstain,
+                "union_or_gate_abstains": bool(current_abstain or mechanism_abstain),
+                "current_false_negative_caught_by_mechanism": bool(
+                    not current_abstain and mechanism_abstain
+                ),
+                "has_bond_change_event": bool(features.get("has_bond_change_event")),
+                "has_proton_transfer_event": bool(
+                    features.get("has_proton_transfer_event")
+                ),
+                "has_electron_transfer_event": bool(
+                    features.get("has_electron_transfer_event")
+                ),
+                "bond_change_event_count": int(
+                    features.get("bond_change_event_count") or 0
+                ),
+                "proton_transfer_count": int(
+                    features.get("proton_transfer_count") or 0
+                ),
+                "electron_transfer_count": int(
+                    features.get("electron_transfer_count") or 0
+                ),
+                "event_count": int(features.get("event_count") or 0),
+            }
+        )
+
+    current_oos_abstained = sum(
+        1 for row in oos_rows if row["current_surface_abstains"]
+    )
+    mechanism_oos_abstained = sum(
+        1 for row in oos_rows if row["mechanism_surface_abstains"]
+    )
+    union_oos_abstained = sum(1 for row in oos_rows if row["union_or_gate_abstains"])
+    current_retained_overlap_rows = [
+        row for row in oos_rows if not row["current_surface_abstains"]
+    ]
+    current_retained_caught = [
+        row
+        for row in current_retained_overlap_rows
+        if row["mechanism_surface_abstains"]
+    ]
+    oos_overlap_lift = (
+        round(
+            (_recall(union_oos_abstained, len(oos_rows)) or 0.0)
+            - (_recall(current_oos_abstained, len(oos_rows)) or 0.0),
+            6,
+        )
+        if oos_rows
+        else None
+    )
+
+    missing_primary_rows = sorted(
+        set(current_primary_rows) - set(valid_primary_overlap), key=_entry_sort_key
+    )
+    missing_scored_oos_rows = sorted(
+        set(current_rows) - set(current_extended_oos_overlap), key=_entry_sort_key
+    )
+    missing_retained_oos_rows = sorted(
+        current_retained_ids - set(current_extended_oos_overlap), key=_entry_sort_key
+    )
+    missing_abstained_oos_rows = sorted(
+        current_abstained_ids - set(current_extended_oos_overlap), key=_entry_sort_key
+    )
+    candidate_reuse = {
+        "candidate_files": len(source_free_candidate_ids),
+        "missing_primary_overlap_rows": sorted(
+            set(missing_primary_rows) & source_free_candidate_ids,
+            key=_entry_sort_key,
+        ),
+        "missing_retained_oos_overlap_rows": sorted(
+            set(missing_retained_oos_rows) & source_free_candidate_ids,
+            key=_entry_sort_key,
+        ),
+        "missing_abstained_oos_overlap_rows": sorted(
+            set(missing_abstained_oos_rows) & source_free_candidate_ids,
+            key=_entry_sort_key,
+        ),
+    }
+
+    valid_integrated_operating_point_measurable = bool(
+        valid_primary_overlap and oos_rows
+    )
+    local_oos_signal = bool(
+        oos_rows and union_oos_abstained > current_oos_abstained
+    )
+    deployable = False
+    source_free_axis_overlap = {
+        "available": False,
+        "best_single_axis_name": None,
+        "best_single_axis_new_oos_rows": [],
+    }
+    if isinstance(projection_readout, dict):
+        projected_measured = projection_readout.get("measured_readout") or {}
+        best_axis = projected_measured.get("best_single_axis_repair_ceiling") or {}
+        best_axis_name = str(best_axis.get("variant") or "").replace(
+            "current_plus_missing_", ""
+        )
+        best_axis_rows: list[dict[str, Any]] = []
+        for row in projected_measured.get("best_single_axis_new_oos_rows") or []:
+            if not isinstance(row, dict) or not row.get("entry_id"):
+                continue
+            entry_id = str(row.get("entry_id"))
+            current_row = current_rows.get(entry_id)
+            current_score = (
+                _current_score(current_row, channel)
+                if current_row is not None
+                else None
+            )
+            current_abstain = (
+                _current_abstains(current_row, channel, current_threshold)
+                if current_row is not None
+                else None
+            )
+            best_axis_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "best_single_axis_residual": row.get(
+                        "best_single_axis_residual"
+                    ),
+                    "best_single_axis_threshold": row.get(
+                        "best_single_axis_threshold"
+                    ),
+                    "current_projected_subset_residual": row.get(
+                        "current_projected_subset_residual"
+                    ),
+                    "in_current_extended_scored_oos": current_row is not None,
+                    "current_surface_score": round(current_score, 8)
+                    if current_score is not None
+                    else None,
+                    "current_surface_abstains": current_abstain,
+                    "current_retained_oos_caught_by_best_axis": bool(
+                        current_row is not None and current_abstain is False
+                    ),
+                }
+            )
+        source_free_axis_overlap = {
+            "available": True,
+            "best_single_axis_name": best_axis_name or None,
+            "best_single_axis_train_cal_ceiling": best_axis,
+            "best_single_axis_new_oos_rows": best_axis_rows,
+            "best_single_axis_new_oos_rows_on_current_extended_oos": [
+                row for row in best_axis_rows if row["in_current_extended_scored_oos"]
+            ],
+            "best_single_axis_new_current_retained_oos_rows": [
+                row
+                for row in best_axis_rows
+                if row["current_retained_oos_caught_by_best_axis"]
+            ],
+        }
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.current_extended_oos_mechanism_overlap_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "lever2_current_extended_oos_mechanism_overlap_readout_research_only"
+        ),
+        "result_class": "research_only",
+        "scope": (
+            "Lever 2 train/cal readout comparing the frozen row-specific "
+            "mechanism residual surface against the current Lever 3 extended "
+            "train/cal OOS surface. It uses fixed thresholds only, evaluates "
+            "non-heldout current OOS rows with existing train/cal mechanism "
+            "features, and does not read or tune heldout."
+        ),
+        "fixed_operating_points": {
+            "current_surface": {
+                "channel": channel,
+                "threshold": round(current_threshold, 8),
+                "decision_rule": "abstain_when_current_surface_score_below_threshold",
+                "current_measured_context": (
+                    (current_measured.get("measured_readout") or {}).get(
+                        "train_cal_oos_current_scored_surface"
+                    )
+                ),
+            },
+            "mechanism_surface": {
+                "channel": "row_specific_mechanism_out_of_atlas_span_residual",
+                "threshold": round(mechanism_threshold, 8),
+                "decision_rule": "abstain_when_mechanism_residual_above_threshold",
+                "train_cal_selection_summary": (
+                    (mechanism.get("residual_variant") or {}).get(
+                        "calibration_selected_residual_threshold"
+                    )
+                ),
+            },
+        },
+        "measured_readout": {
+            "current_extended_oos_overlap_rows": {
+                "row_count": len(oos_rows),
+                "current_surface_abstained": current_oos_abstained,
+                "current_surface_abstain_recall": _recall(
+                    current_oos_abstained, len(oos_rows)
+                ),
+                "mechanism_surface_abstained": mechanism_oos_abstained,
+                "mechanism_surface_abstain_recall": _recall(
+                    mechanism_oos_abstained, len(oos_rows)
+                ),
+                "union_or_gate_abstained": union_oos_abstained,
+                "union_or_gate_abstain_recall": _recall(
+                    union_oos_abstained, len(oos_rows)
+                ),
+                "union_minus_current_abstain_recall": oos_overlap_lift,
+                "current_retained_oos_rows": len(current_retained_overlap_rows),
+                "current_retained_oos_caught_by_mechanism": len(
+                    current_retained_caught
+                ),
+                "current_retained_oos_catch_fraction": _recall(
+                    len(current_retained_caught), len(current_retained_overlap_rows)
+                ),
+            },
+            "event_feature_overlap_summary": {
+                "all_overlap_rows": _event_feature_summary(oos_rows),
+                "current_retained_overlap_rows": _event_feature_summary(
+                    oos_rows, current_retained_only=True
+                ),
+                "feature_sidecar_available": bool(feature_rows),
+            },
+            "source_free_best_axis_current_extended_overlap": (
+                source_free_axis_overlap
+            ),
+            "existing_source_free_coordinate_anchor_candidate_reuse": {
+                **candidate_reuse,
+                "candidate_dir_available": bool(source_free_candidate_ids),
+                "reuse_reduces_current_primary_gap": bool(
+                    candidate_reuse["missing_primary_overlap_rows"]
+                ),
+                "reuse_reduces_current_retained_oos_gap": bool(
+                    candidate_reuse["missing_retained_oos_overlap_rows"]
+                ),
+            },
+            "valid_primary_overlap_rows": {
+                "row_count": len(valid_primary_overlap),
+                "entry_ids": valid_primary_overlap,
+            },
+        },
+        "row_readouts": {
+            "current_extended_oos_overlap_rows": oos_rows,
+            "valid_primary_overlap_rows": [
+                {
+                    "entry_id": entry_id,
+                    "current_surface_score": _rounded_current_score(
+                        current_primary_rows[entry_id], channel
+                    ),
+                    "mechanism_residual": round(
+                        float(
+                            mechanism_rows[entry_id].get(
+                                "out_of_atlas_span_residual"
+                            )
+                            or 0.0
+                        ),
+                        8,
+                    ),
+                }
+                for entry_id in valid_primary_overlap
+            ],
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "current_primary_mechanism_retention_gate",
+                "required_rows": len(current_primary_rows),
+                "valid_overlap_rows_now": len(valid_primary_overlap),
+                "why_it_matters": (
+                    "A deployable or promotable Lever 2 operating-point claim "
+                    "requires primary retention cost on the same current "
+                    "geometry/fold calibration-primary split."
+                ),
+            },
+            {
+                "gap_id": "current_extended_retained_oos_mechanism_features",
+                "required_rows": len(current_retained_ids),
+                "valid_overlap_rows_now": len(current_retained_overlap_rows),
+                "missing_rows_now": len(missing_retained_oos_rows),
+                "why_it_matters": (
+                    "These are current-surface retained OOS rows where "
+                    "mechanism evidence would be most valuable if it transfers."
+                ),
+            },
+            {
+                "gap_id": "current_extended_abstained_oos_mechanism_features",
+                "required_rows": len(current_abstained_ids),
+                "valid_overlap_rows_now": current_oos_abstained,
+                "missing_rows_now": len(missing_abstained_oos_rows),
+                "why_it_matters": (
+                    "These complete the current extended OOS surface but are "
+                    "lower priority because geometry/fold already abstains."
+                ),
+            },
+        ],
+        "missing_evidence_rows": {
+            "current_primary_rows_requiring_mechanism_features": [
+                {
+                    "entry_id": entry_id,
+                    "accession": current_primary_rows[entry_id].get("accession"),
+                    "current_surface_score": _rounded_current_score(
+                        current_primary_rows[entry_id], channel
+                    ),
+                    "required_evidence": (
+                        "source-free row-specific mechanism feature sidecar "
+                        "compatible with the frozen residual contract"
+                    ),
+                }
+                for entry_id in missing_primary_rows
+            ],
+            "current_extended_retained_oos_rows_requiring_mechanism_features": [
+                {
+                    "entry_id": entry_id,
+                    "accession": current_rows[entry_id].get("accession"),
+                    "current_surface_score": _rounded_current_score(
+                        current_rows[entry_id], channel
+                    ),
+                    "required_evidence": (
+                        "source-free row-specific mechanism feature sidecar "
+                        "compatible with the frozen residual contract"
+                    ),
+                }
+                for entry_id in missing_retained_oos_rows
+            ],
+            "current_extended_abstained_oos_rows_requiring_mechanism_features": [
+                {
+                    "entry_id": entry_id,
+                    "accession": current_rows[entry_id].get("accession"),
+                    "current_surface_score": _rounded_current_score(
+                        current_rows[entry_id], channel
+                    ),
+                    "required_evidence": (
+                        "source-free row-specific mechanism feature sidecar "
+                        "compatible with the frozen residual contract"
+                    ),
+                }
+                for entry_id in missing_abstained_oos_rows
+            ],
+            "current_extended_unscored_oos_rows": [
+                {
+                    "entry_id": entry_id,
+                    "accession": all_current_rows[entry_id].get("accession"),
+                    "reason": "current_surface_missing_full_channel_score",
+                }
+                for entry_id in sorted(
+                    set(all_current_rows) - set(current_rows), key=_entry_sort_key
+                )
+            ],
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "current_extended_candidate_oos_rows": len(all_current_rows),
+            "current_extended_scored_oos_rows": len(current_rows),
+            "current_extended_unscored_oos_rows": len(all_current_rows)
+            - len(current_rows),
+            "current_extended_oos_overlap_rows": len(oos_rows),
+            "current_extended_current_abstained_overlap_rows": current_oos_abstained,
+            "current_extended_current_retained_overlap_rows": len(
+                current_retained_overlap_rows
+            ),
+            "mechanism_surface_abstained_overlap_rows": mechanism_oos_abstained,
+            "union_or_gate_abstained_overlap_rows": union_oos_abstained,
+            "current_retained_oos_caught_by_mechanism": len(
+                current_retained_caught
+            ),
+            "best_single_axis_new_oos_catches": len(
+                source_free_axis_overlap.get("best_single_axis_new_oos_rows") or []
+            ),
+            "best_single_axis_new_oos_catches_on_current_extended_oos": len(
+                source_free_axis_overlap.get(
+                    "best_single_axis_new_oos_rows_on_current_extended_oos"
+                )
+                or []
+            ),
+            "best_single_axis_new_current_retained_oos_catches": len(
+                source_free_axis_overlap.get(
+                    "best_single_axis_new_current_retained_oos_rows"
+                )
+                or []
+            ),
+            "current_primary_rows": len(current_primary_rows),
+            "valid_primary_overlap_rows": len(valid_primary_overlap),
+            "missing_current_primary_mechanism_feature_rows": len(
+                missing_primary_rows
+            ),
+            "missing_current_extended_scored_oos_mechanism_feature_rows": len(
+                missing_scored_oos_rows
+            ),
+            "missing_current_extended_retained_oos_mechanism_feature_rows": len(
+                missing_retained_oos_rows
+            ),
+            "missing_current_extended_abstained_oos_mechanism_feature_rows": len(
+                missing_abstained_oos_rows
+            ),
+            "source_free_coordinate_anchor_candidate_files": len(
+                source_free_candidate_ids
+            ),
+            "source_free_candidate_overlap_missing_primary_rows": len(
+                candidate_reuse["missing_primary_overlap_rows"]
+            ),
+            "source_free_candidate_overlap_missing_retained_oos_rows": len(
+                candidate_reuse["missing_retained_oos_overlap_rows"]
+            ),
+            "source_free_candidate_overlap_missing_abstained_oos_rows": len(
+                candidate_reuse["missing_abstained_oos_overlap_rows"]
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "local_oos_signal_measured": local_oos_signal,
+            "mechanism_adds_oos_abstentions_on_current_extended_overlap": (
+                local_oos_signal
+            ),
+            "best_axis_new_oos_rows_overlap_current_extended_surface": bool(
+                source_free_axis_overlap.get(
+                    "best_single_axis_new_oos_rows_on_current_extended_oos"
+                )
+            ),
+            "valid_integrated_operating_point_measurable": (
+                valid_integrated_operating_point_measurable
+            ),
+            "adds_operating_point_value_beyond_current_surface": deployable,
+            "deployable_now": deployable,
+            "research_only": True,
+            "negative": False,
+            "apply_or_promote_now": False,
+            "next_gate": (
+                "Materialize split-aligned source-free mechanism fields for "
+                f"the {len(missing_retained_oos_rows)} current-retained OOS "
+                f"rows and {len(missing_primary_rows)} current calibration-"
+                "primary rows, then rerun this fixed-threshold readout before "
+                "any heldout or deployment claim."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "labels_used_only_for_train_cal_metric_accounting": True,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "current_measured_readout": _source_path_record(
+                current_measured_readout_path
+            ),
+            "current_extended_oos_surface": _source_path_record(
+                current_extended_oos_surface_path
+            ),
+            "mechanism_no_template_rerun": _source_path_record(
+                mechanism_no_template_rerun_path
+            ),
+            "mechanism_operating_point_contract": (
+                _source_path_record(mechanism_operating_point_contract_path)
+                if mechanism_operating_point_contract_path is not None
+                else None
+            ),
+            "current_in_scope_threshold_contract": _source_path_record(
+                current_in_scope_threshold_contract_path
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "projection_readout": (
+                _source_path_record(projection_readout_path)
+                if projection_readout_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "source_free_coordinate_anchor_candidate_dir": {
+                "exists": bool(
+                    source_free_coordinate_anchor_candidate_dir_path is not None
+                    and Path(source_free_coordinate_anchor_candidate_dir_path).exists()
+                ),
+                "path": (
+                    str(source_free_coordinate_anchor_candidate_dir_path)
+                    if source_free_coordinate_anchor_candidate_dir_path is not None
+                    else None
+                ),
+                "file_count": len(source_free_candidate_ids),
+            },
+        },
+        "interpretation": {
+            "headline": (
+                "On the current extended OOS overlap, the mechanism residual "
+                f"catches {len(current_retained_caught)}/"
+                f"{len(current_retained_overlap_rows)} rows retained by the "
+                "current geometry/fold surface."
+            ),
+            "result": (
+                "Research-only: the newer current OOS surface increases the "
+                f"train/cal mechanism overlap to {len(oos_rows)} rows and "
+                f"raises overlap abstentions from {current_oos_abstained} to "
+                f"{union_oos_abstained} under a fixed OR gate, but valid "
+                f"primary overlap remains {len(valid_primary_overlap)} rows."
+            ),
+            "next_action": (
+                "Build split-aligned source-free mechanism features for the "
+                "current primary retention gate and current-retained OOS rows."
+            ),
+        },
+    }
+
+
 def build_lever2_source_free_electron_flow_split_alignment_readout(
     *,
     projection_readout_path: Path,
@@ -335,6 +1021,7 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
     train_cal_feature_sidecar_path: Path | None = None,
     current_in_scope_threshold_contract_path: Path | None = None,
     expanded_oos_calibrated_threshold_contract_path: Path | None = None,
+    current_extended_oos_surface_path: Path | None = None,
     artifact_id: str = DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID,
 ) -> dict[str, Any]:
     projection = _read_json(projection_readout_path)
@@ -388,6 +1075,71 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
     best_new_oos_current_overlap = [
         row for row in best_new_oos_rows if row.get("in_current_geometry_fold_calibration_oos")
     ]
+    best_new_oos_current_extended_overlap: list[dict[str, Any]] = []
+    best_new_oos_current_extended_retained: list[dict[str, Any]] = []
+    current_extended_axis_overlap: dict[str, Any] = {"available": False}
+    if (
+        current_extended_oos_surface_path is not None
+        and expanded_oos_calibrated_threshold_contract_path is not None
+        and Path(current_extended_oos_surface_path).exists()
+        and Path(expanded_oos_calibrated_threshold_contract_path).exists()
+    ):
+        channel, current_threshold = _channel_threshold(
+            _read_json(expanded_oos_calibrated_threshold_contract_path)
+        )
+        current_extended_rows = _current_surface_rows_with_score(
+            _read_json(current_extended_oos_surface_path), channel
+        )
+        current_extended_row_readouts: list[dict[str, Any]] = []
+        for row in best_new_oos_rows:
+            entry_id = str(row.get("entry_id"))
+            current_row = current_extended_rows.get(entry_id)
+            current_score = (
+                _current_score(current_row, channel)
+                if current_row is not None
+                else None
+            )
+            current_abstain = (
+                _current_abstains(current_row, channel, current_threshold)
+                if current_row is not None
+                else None
+            )
+            current_extended_row = {
+                "entry_id": entry_id,
+                "in_current_extended_scored_oos": current_row is not None,
+                "current_surface_score": round(current_score, 8)
+                if current_score is not None
+                else None,
+                "current_surface_abstains": current_abstain,
+                "current_retained_oos_caught_by_best_axis": bool(
+                    current_row is not None and current_abstain is False
+                ),
+                "best_single_axis_residual": row.get("best_single_axis_residual"),
+                "best_single_axis_threshold": row.get("best_single_axis_threshold"),
+            }
+            current_extended_row_readouts.append(current_extended_row)
+        best_new_oos_current_extended_overlap = [
+            row
+            for row in current_extended_row_readouts
+            if row["in_current_extended_scored_oos"]
+        ]
+        best_new_oos_current_extended_retained = [
+            row
+            for row in current_extended_row_readouts
+            if row["current_retained_oos_caught_by_best_axis"]
+        ]
+        current_extended_axis_overlap = {
+            "available": True,
+            "channel": channel,
+            "threshold": round(current_threshold, 8),
+            "best_single_axis_new_oos_rows": current_extended_row_readouts,
+            "best_single_axis_new_oos_rows_on_current_extended_oos": (
+                best_new_oos_current_extended_overlap
+            ),
+            "best_single_axis_new_current_retained_oos_rows": (
+                best_new_oos_current_extended_retained
+            ),
+        }
     split_context = measured.get("split_alignment_context") or {}
     primary_missing_rows, oos_missing_rows = _missing_current_rows(incremental)
     retained_oos_missing = [
@@ -524,6 +1276,9 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
             "raw_full_sidecar_current_surface_overlap_diagnostic": (
                 raw_overlap_diagnostic
             ),
+            "best_axis_current_extended_oos_overlap_diagnostic": (
+                current_extended_axis_overlap
+            ),
             "current_surface_missing_row_context": {
                 "current_retained_oos_missing_electron_flow_rows": len(
                     retained_oos_missing
@@ -543,6 +1298,12 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
             "best_single_axis_new_oos_catches": len(best_new_oos_rows),
             "best_single_axis_new_oos_catches_on_current_geometry_fold_oos": len(
                 best_new_oos_current_overlap
+            ),
+            "best_single_axis_new_oos_catches_on_current_extended_oos": len(
+                best_new_oos_current_extended_overlap
+            ),
+            "best_single_axis_new_current_retained_oos_catches": len(
+                best_new_oos_current_extended_retained
             ),
             "current_geometry_fold_calibration_primary_rows": int(
                 split_context.get("current_geometry_fold_calibration_primary_rows") or 0
@@ -651,6 +1412,9 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
             "best_axis_new_oos_rows_overlap_current_geometry_fold_oos": bool(
                 best_new_oos_current_overlap
             ),
+            "best_axis_new_oos_rows_overlap_current_extended_oos": bool(
+                best_new_oos_current_extended_overlap
+            ),
             "adds_operating_point_value_beyond_current_surface": deployable,
             "deployable_now": deployable,
             "research_only": bool(not deployable and not blockers),
@@ -683,6 +1447,11 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
             "expanded_oos_calibrated_threshold_contract": (
                 _source_path_record(expanded_oos_calibrated_threshold_contract_path)
                 if expanded_oos_calibrated_threshold_contract_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "current_extended_oos_surface": (
+                _source_path_record(current_extended_oos_surface_path)
+                if current_extended_oos_surface_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
         },
@@ -1221,7 +1990,8 @@ def render_lever2_mechanism_feature_incremental_readout_report(
         "",
         "## OOS Overlap Rows",
         "",
-        "| row | current score | current abstains | mechanism residual | mechanism abstains | union abstains | caught retained OOS |",
+        "| row | current score | current abstains | mechanism residual | "
+        "mechanism abstains | union abstains | caught retained OOS |",
         "| --- | ---: | --- | ---: | --- | --- | --- |",
     ]
     for row in readout["row_readouts"]["oos_overlap_rows"]:
@@ -1328,6 +2098,290 @@ def write_lever2_mechanism_feature_incremental_readout(
     return readout
 
 
+def render_lever2_current_extended_oos_mechanism_overlap_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    measured = readout["measured_readout"]
+    decision = readout["decision"]
+    fixed = readout["fixed_operating_points"]
+    overlap = measured["current_extended_oos_overlap_rows"]
+    events = measured["event_feature_overlap_summary"]
+    axis_overlap = measured.get("source_free_best_axis_current_extended_overlap") or {}
+    candidate_reuse = (
+        measured.get("existing_source_free_coordinate_anchor_candidate_reuse") or {}
+    )
+    missing_rows = readout.get("missing_evidence_rows") or {}
+    missing_primary_rows = (
+        missing_rows.get("current_primary_rows_requiring_mechanism_features") or []
+    )
+    missing_retained_oos_rows = (
+        missing_rows.get(
+            "current_extended_retained_oos_rows_requiring_mechanism_features"
+        )
+        or []
+    )
+    missing_abstained_oos_rows = (
+        missing_rows.get(
+            "current_extended_abstained_oos_rows_requiring_mechanism_features"
+        )
+        or []
+    )
+
+    def _score_sort(row: dict[str, Any]) -> float:
+        score = row.get("current_surface_score")
+        return float(score) if score is not None else -1.0
+
+    def _entry_ids(rows: list[dict[str, Any]]) -> str:
+        ids = [str(row.get("entry_id")) for row in rows if row.get("entry_id")]
+        return ", ".join(ids) if ids else "none"
+
+    lines = [
+        "# Lever 2 Current Extended OOS Mechanism Overlap Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        f"- Current surface: {fixed['current_surface']['channel']} "
+        f"< {fixed['current_surface']['threshold']} abstains",
+        f"- Mechanism residual > {fixed['mechanism_surface']['threshold']} abstains",
+        "- Current extended OOS overlap: "
+        f"{counts['current_extended_oos_overlap_rows']}/"
+        f"{counts['current_extended_scored_oos_rows']} scored rows",
+        "- Best source-free axis current-extended OOS catches: "
+        f"{counts['best_single_axis_new_oos_catches_on_current_extended_oos']}/"
+        f"{counts['best_single_axis_new_oos_catches']}",
+        "- Best source-free axis current-retained OOS catches: "
+        f"{counts['best_single_axis_new_current_retained_oos_catches']}",
+        "- Valid primary overlap: "
+        f"{counts['valid_primary_overlap_rows']}/"
+        f"{counts['current_primary_rows']}",
+        "- Existing source-free coordinate-anchor candidate overlap with "
+        "missing rows: "
+        f"{counts['source_free_candidate_overlap_missing_primary_rows']} primary, "
+        f"{counts['source_free_candidate_overlap_missing_retained_oos_rows']} "
+        "current-retained OOS",
+        "",
+        "## Measured Readout",
+        "",
+        "| surface | overlap rows | abstained | recall |",
+        "| --- | ---: | ---: | ---: |",
+        (
+            "| current geometry/fold | "
+            f"{overlap['row_count']} | {overlap['current_surface_abstained']} | "
+            f"{overlap['current_surface_abstain_recall']} |"
+        ),
+        (
+            "| full mechanism residual | "
+            f"{overlap['row_count']} | {overlap['mechanism_surface_abstained']} | "
+            f"{overlap['mechanism_surface_abstain_recall']} |"
+        ),
+        (
+            "| OR union | "
+            f"{overlap['row_count']} | {overlap['union_or_gate_abstained']} | "
+            f"{overlap['union_or_gate_abstain_recall']} |"
+        ),
+        "",
+        "## Current-Retained OOS Catches",
+        "",
+        "- Current-retained overlap rows: "
+        f"{overlap['current_retained_oos_rows']}",
+        "- Current-retained rows caught by mechanism: "
+        f"{overlap['current_retained_oos_caught_by_mechanism']}",
+        "- Catch fraction: "
+        f"{overlap['current_retained_oos_catch_fraction']}",
+        "- Union minus current abstain recall on overlap: "
+        f"{overlap['union_minus_current_abstain_recall']}",
+        "",
+        "## Event-Feature Context",
+        "",
+        "| subset | rows | bond-change | proton-transfer | electron-transfer | "
+        "mechanism abstained | retained caught |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for label, summary in [
+        ("all overlap", events["all_overlap_rows"]),
+        ("current-retained overlap", events["current_retained_overlap_rows"]),
+    ]:
+        lines.append(
+            f"| {label} | {summary['rows']} | "
+            f"{summary['with_bond_change_event']} | "
+            f"{summary['with_proton_transfer_event']} | "
+            f"{summary['with_electron_transfer_event']} | "
+            f"{summary['mechanism_abstained_rows']} | "
+            f"{summary['current_retained_caught_by_mechanism']} |"
+        )
+    lines += [
+        "",
+        "## Source-Free Best-Axis Current Surface Overlap",
+        "",
+        f"- Best single axis: {axis_overlap.get('best_single_axis_name')}",
+        "- New OOS catches on current extended OOS: "
+        f"{counts['best_single_axis_new_oos_catches_on_current_extended_oos']}/"
+        f"{counts['best_single_axis_new_oos_catches']}",
+        "- New current-retained OOS catches: "
+        f"{counts['best_single_axis_new_current_retained_oos_catches']}",
+        "",
+        "| row | in current extended OOS | current score | current abstains | "
+        "best-axis residual | current retained catch |",
+        "| --- | --- | ---: | --- | ---: | --- |",
+    ]
+    for row in axis_overlap.get("best_single_axis_new_oos_rows") or []:
+        lines.append(
+            f"| {row['entry_id']} | {row['in_current_extended_scored_oos']} | "
+            f"{row.get('current_surface_score')} | "
+            f"{row.get('current_surface_abstains')} | "
+            f"{row.get('best_single_axis_residual')} | "
+            f"{row.get('current_retained_oos_caught_by_best_axis')} |"
+        )
+    lines += [
+        "",
+        "## Existing Source-Free Candidate Reuse",
+        "",
+        "- Coordinate-anchor candidate files checked: "
+        f"{candidate_reuse.get('candidate_files')}",
+        "- Missing current primary rows covered by existing candidates: "
+        f"{len(candidate_reuse.get('missing_primary_overlap_rows') or [])}",
+        "- Missing current-retained OOS rows covered by existing candidates: "
+        f"{len(candidate_reuse.get('missing_retained_oos_overlap_rows') or [])}",
+        "- Missing already-abstained OOS rows covered by existing candidates: "
+        f"{len(candidate_reuse.get('missing_abstained_oos_overlap_rows') or [])}",
+        "",
+        "## OOS Overlap Rows",
+        "",
+        "| row | current score | current abstains | mechanism residual | "
+        "mechanism abstains | caught retained OOS | electron | proton | bond |",
+        "| --- | ---: | --- | ---: | --- | --- | --- | --- | --- |",
+    ]
+    for row in readout["row_readouts"]["current_extended_oos_overlap_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['current_surface_score']} | "
+            f"{row['current_surface_abstains']} | {row['mechanism_residual']} | "
+            f"{row['mechanism_surface_abstains']} | "
+            f"{row['current_false_negative_caught_by_mechanism']} | "
+            f"{row['has_electron_transfer_event']} | "
+            f"{row['has_proton_transfer_event']} | "
+            f"{row['has_bond_change_event']} |"
+        )
+    lines += [
+        "",
+        "## Missing Evidence",
+        "",
+        "| gap | required | valid now | missing now | why it matters |",
+        "| --- | ---: | ---: | ---: | --- |",
+    ]
+    for gap in readout["missing_evidence"]:
+        missing_now = gap.get(
+            "missing_rows_now",
+            gap["required_rows"] - gap["valid_overlap_rows_now"],
+        )
+        lines.append(
+            f"| {gap['gap_id']} | {gap['required_rows']} | "
+            f"{gap['valid_overlap_rows_now']} | "
+            f"{missing_now} | "
+            f"{gap['why_it_matters']} |"
+        )
+    lines += [
+        "",
+        "## Exact Missing Row Sets",
+        "",
+        (
+            "- Current primary rows still requiring mechanism features "
+            f"({len(missing_primary_rows)}): {_entry_ids(missing_primary_rows)}"
+        ),
+        (
+            "- Current-retained extended OOS rows still requiring mechanism "
+            f"features ({len(missing_retained_oos_rows)}): "
+            f"{_entry_ids(missing_retained_oos_rows[:40])}"
+            + (" ..." if len(missing_retained_oos_rows) > 40 else "")
+        ),
+        (
+            "- Already-abstained extended OOS rows still requiring mechanism "
+            f"features ({len(missing_abstained_oos_rows)}): "
+            f"{_entry_ids(missing_abstained_oos_rows[:40])}"
+            + (" ..." if len(missing_abstained_oos_rows) > 40 else "")
+        ),
+        "",
+        "## Top Missing Current-Retained OOS Rows",
+        "",
+        "| row | accession | current score |",
+        "| --- | --- | ---: |",
+    ]
+    for row in sorted(missing_retained_oos_rows, key=_score_sort, reverse=True)[:20]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row.get('current_surface_score')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Local OOS signal measured: {decision['local_oos_signal_measured']}",
+        "- Valid integrated operating point measurable: "
+        f"{decision['valid_integrated_operating_point_measurable']}",
+        "- Adds operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_current_extended_oos_mechanism_overlap_readout(
+    *,
+    current_measured_readout_path: Path,
+    current_extended_oos_surface_path: Path,
+    mechanism_no_template_rerun_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    mechanism_operating_point_contract_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    projection_readout_path: Path | None = None,
+    source_free_coordinate_anchor_candidate_dir_path: Path | None = None,
+    artifact_id: str = DEFAULT_CURRENT_EXTENDED_OOS_MECHANISM_OVERLAP_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_current_extended_oos_mechanism_overlap_readout(
+        current_measured_readout_path=current_measured_readout_path,
+        current_extended_oos_surface_path=current_extended_oos_surface_path,
+        mechanism_no_template_rerun_path=mechanism_no_template_rerun_path,
+        mechanism_operating_point_contract_path=mechanism_operating_point_contract_path,
+        current_in_scope_threshold_contract_path=current_in_scope_threshold_contract_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        projection_readout_path=projection_readout_path,
+        source_free_coordinate_anchor_candidate_dir_path=(
+            source_free_coordinate_anchor_candidate_dir_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_current_extended_oos_mechanism_overlap_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
 def render_lever2_source_free_electron_flow_split_alignment_readout_report(
     readout: dict[str, Any],
 ) -> str:
@@ -1340,6 +2394,9 @@ def render_lever2_source_free_electron_flow_split_alignment_readout_report(
         raw_overlap.get("counts", {})
         if isinstance(raw_overlap, dict) and raw_overlap.get("available")
         else {}
+    )
+    extended_overlap = (
+        measured.get("best_axis_current_extended_oos_overlap_diagnostic") or {}
     )
     current = ceiling.get("current_source_free_projected_subset") or {}
     electron = ceiling.get("current_plus_missing_electron_flow") or {}
@@ -1361,6 +2418,11 @@ def render_lever2_source_free_electron_flow_split_alignment_readout_report(
         "- Best-axis new OOS catches on current geometry/fold OOS rows: "
         f"{counts['best_single_axis_new_oos_catches_on_current_geometry_fold_oos']}/"
         f"{counts['best_single_axis_new_oos_catches']}",
+        "- Best-axis new OOS catches on current extended OOS rows: "
+        f"{counts['best_single_axis_new_oos_catches_on_current_extended_oos']}/"
+        f"{counts['best_single_axis_new_oos_catches']}",
+        "- Best-axis new current-retained OOS catches: "
+        f"{counts['best_single_axis_new_current_retained_oos_catches']}",
         "- Source-free candidate overlap with current calibration primary rows: "
         f"{counts['source_free_candidate_projection_overlap_primary_rows']}/"
         f"{counts['current_geometry_fold_calibration_primary_rows']}",
@@ -1438,6 +2500,21 @@ def render_lever2_source_free_electron_flow_split_alignment_readout_report(
         )
     if len(acquisition_rows) > 80:
         lines.append(f"| ... | {len(acquisition_rows) - 80} additional rows |  |  |  |  |")
+    if extended_overlap.get("available"):
+        lines += [
+            "",
+            "## Best-Axis Current Extended OOS Rows",
+            "",
+            "| row | in current extended OOS | current score | current abstains | retained catch |",
+            "| --- | --- | ---: | --- | --- |",
+        ]
+        for row in extended_overlap.get("best_single_axis_new_oos_rows") or []:
+            lines.append(
+                f"| {row['entry_id']} | {row['in_current_extended_scored_oos']} | "
+                f"{row.get('current_surface_score')} | "
+                f"{row.get('current_surface_abstains')} | "
+                f"{row.get('current_retained_oos_caught_by_best_axis')} |"
+            )
     if isinstance(raw_overlap, dict) and raw_overlap.get("available"):
         lines += [
             "",
@@ -1485,6 +2562,7 @@ def write_lever2_source_free_electron_flow_split_alignment_readout(
     train_cal_feature_sidecar_path: Path | None = None,
     current_in_scope_threshold_contract_path: Path | None = None,
     expanded_oos_calibrated_threshold_contract_path: Path | None = None,
+    current_extended_oos_surface_path: Path | None = None,
     artifact_id: str = DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID,
 ) -> dict[str, Any]:
     readout = build_lever2_source_free_electron_flow_split_alignment_readout(
@@ -1498,6 +2576,7 @@ def write_lever2_source_free_electron_flow_split_alignment_readout(
         expanded_oos_calibrated_threshold_contract_path=(
             expanded_oos_calibrated_threshold_contract_path
         ),
+        current_extended_oos_surface_path=current_extended_oos_surface_path,
         artifact_id=artifact_id,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)

@@ -4,8 +4,8 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-04T15:32:01Z`
-- STARTED_AT_LOCAL: `2026-06-04T10:32:01-0500 CDT`
+- STARTED_AT_UTC: `2026-06-04T16:31:37Z`
+- STARTED_AT_LOCAL: `2026-06-04T11:31:37-0500 CDT`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -13,6 +13,131 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 3
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T16:31:37Z`
+- STARTED_LOCAL: `2026-06-04T11:31:37-0500 CDT`
+- ENDED_AT: `2026-06-04T17:26:51Z`
+- ENDED_LOCAL: `2026-06-04T12:26:51-0500 CDT`
+- ELAPSED_MINUTES: `55.2`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only. First rebase the
+dedicated branch onto current `origin/main`, then produce another measured
+train/cal readout if available before any blocker conclusion. Current focus:
+test whether the frozen row-specific mechanism residual adds signal on the
+newer Lever 3 current train/cal OOS surface beyond the geometry/fold operating
+point, without using heldout rows or new predictive labels.
+
+#### Work log
+
+- Started from detached `origin/main` in the automation worktree, found the
+  existing `lever-2-research-track` checked out at
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth`, and
+  continued in that isolated branch worktree.
+- Rebasing `lever-2-research-track` onto current `origin/main` hit a single
+  CLI wiring conflict between Lever 2 and Lever 3 commands; resolved by keeping
+  both command families. Rebase completed successfully.
+- Disk was initially below the 10 GiB guardrail at 9.0 GiB available. Cleared
+  cache-only directories, not worktrees or project artifacts, and restored
+  available disk to 12 GiB before heavier validation.
+- Added a reproducible Lever 2 current-extended OOS overlap readout and CLI:
+  `build-lever2-current-extended-oos-mechanism-overlap-readout`.
+- Wrote the measured readout artifact and report:
+  `artifacts/v3_lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604.json`
+  and
+  `work/lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604.md`.
+- Checked whether the older heldout-oriented source-free locator/coordinate
+  candidate artifacts could reduce the new current-split evidence gap. The
+  126 candidate coordinate-anchor files have 0 overlap with the 34 current
+  primary rows, 0 overlap with the 119 missing current-retained OOS rows, and
+  0 overlap with the 64 missing already-abstained OOS rows.
+- Refreshed the existing electron-flow split-alignment artifact/report so it
+  still reports the old 75-row current-contract overlap, but now also reports
+  best-axis overlap against the newer current extended OOS surface:
+  `artifacts/v3_lever2_source_free_electron_flow_split_alignment_readout_current702_20260604.json`
+  and
+  `work/lever2_source_free_electron_flow_split_alignment_readout_current702_20260604.md`.
+
+#### Measured results
+
+- Current extended train/cal OOS surface: 210 candidate rows, 204 scored at
+  the fixed `combined_mean_geometry_fold` threshold `0.44155`.
+- Frozen full row-specific mechanism residual overlap on that current surface:
+  21 scored OOS rows. Current geometry/fold abstains 8/21; the mechanism
+  residual at fixed threshold `3.21469422` abstains 18/21; an OR gate abstains
+  19/21.
+- Incremental overlap signal: 13/21 overlap rows are current-retained OOS, and
+  the mechanism residual catches 11/13 of those current-retained rows. The
+  overlap union-minus-current abstain-recall delta is `+0.52381`.
+- Source-free best-axis carry-forward from the train/cal projection readout:
+  electron-flow remains the best single missing axis. Its 4 train/cal new OOS
+  catches now overlap 3 current-extended OOS rows, including 2 rows retained
+  by the current geometry/fold threshold (`m_csa:221`, `m_csa:256`).
+- The older electron-flow split-alignment view still has 0/4 best-axis catches
+  on the 75-row current geometry/fold calibration-OOS contract, but the new
+  current-extended diagnostic adds the 3/4 and 2 retained-row counts above.
+- Primary retention gate remains unmeasurable: valid current calibration-primary
+  mechanism overlap is 0/34. Classification remains research-only, not
+  deployable and not a negative.
+- Exact missing evidence for the current-extended route: source-free
+  mechanism fields for 34 current calibration-primary rows and 119
+  current-retained OOS rows first; 64 already-abstained OOS rows remain lower
+  priority completion rows.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, or model weights changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated by the new
+  artifact.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  source-feature sidecars were used as predictive signal. Accessions are
+  carried only as row metadata in missing-evidence tables.
+- The new artifact uses fixed train/cal-selected thresholds only and does not
+  promote or apply a deployment gate.
+
+#### Validation
+
+- Focused tests:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py tests/test_cli.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_current_extended_oos_mechanism_overlap_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_split_alignment_readout_current_counts -q`
+  passed: `131 passed, 159 subtests passed`.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q` passed:
+  `1426 passed, 1 warning, 191 subtests passed in 83.34s`.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  `Ran 1381 tests in 42.918s OK`.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  12 source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated mechanism labels.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `python -m json.tool` passed for the new JSON artifact.
+- Docs artifact-reference check to `/tmp` passed with `missing: 0`; tracked
+  timestamp churn was restored.
+- Repo-wide JSON parse passed: 3540 JSON files parsed.
+- `git diff --check` passed.
+- Disk guardrail after cache cleanup: 11 GiB available.
+
+#### Commit/push status
+
+Committed and pushed to `origin/lever-2-research-track`; final fetch/sync
+verification matched local `HEAD` and `origin/lever-2-research-track`.
+
+#### Exact next action
+
+Materialize split-aligned source-free mechanism/electron-flow fields for the
+34 current calibration-primary rows and the 119 current-retained OOS rows
+identified in the new artifact, then rerun
+`build-lever2-current-extended-oos-mechanism-overlap-readout` and
+`build-lever2-source-free-electron-flow-split-alignment-readout` before any
+heldout or deployment claim. Existing heldout-oriented locator candidate
+sidecars do not cover these rows.
 
 ### 2026-06-04 Lever 2 Research Run 2
 

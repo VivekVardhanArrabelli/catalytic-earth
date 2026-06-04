@@ -1419,7 +1419,9 @@
   "blockers": [],
   "counts": {
     "acquisition_priority_rows": 101,
+    "best_single_axis_new_current_retained_oos_catches": 2,
     "best_single_axis_new_oos_catches": 4,
+    "best_single_axis_new_oos_catches_on_current_extended_oos": 3,
     "best_single_axis_new_oos_catches_on_current_geometry_fold_oos": 0,
     "blockers": 0,
     "candidate_surface_overlap_missing_abstained_oos_rows": 0,
@@ -1436,10 +1438,11 @@
     "source_free_candidate_projection_overlap_oos_rows": 0,
     "source_free_candidate_projection_overlap_primary_rows": 0
   },
-  "created_utc": "2026-06-04T15:47:44Z",
+  "created_utc": "2026-06-04T17:03:31Z",
   "decision": {
     "adds_operating_point_value_beyond_current_surface": false,
     "apply_or_promote_now": false,
+    "best_axis_new_oos_rows_overlap_current_extended_oos": true,
     "best_axis_new_oos_rows_overlap_current_geometry_fold_oos": false,
     "deployable_now": false,
     "measured_readout_available": true,
@@ -1471,6 +1474,98 @@
     "result": "Research-only: electron-flow is the best single missing source-free axis on the existing train/cal mechanism sidecar, adding 0.142857 OOS abstain recall versus the current projected subset, but its newly caught OOS rows overlap 0 current geometry/fold calibration-OOS rows."
   },
   "measured_readout": {
+    "best_axis_current_extended_oos_overlap_diagnostic": {
+      "available": true,
+      "best_single_axis_new_current_retained_oos_rows": [
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.6042,
+          "entry_id": "m_csa:221",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 2.71877433,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.61925,
+          "entry_id": "m_csa:256",
+          "in_current_extended_scored_oos": true
+        }
+      ],
+      "best_single_axis_new_oos_rows": [
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": false,
+          "current_surface_abstains": null,
+          "current_surface_score": null,
+          "entry_id": "m_csa:154",
+          "in_current_extended_scored_oos": false
+        },
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.6042,
+          "entry_id": "m_csa:221",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": false,
+          "current_surface_abstains": true,
+          "current_surface_score": 0.4011,
+          "entry_id": "m_csa:224",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 2.71877433,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.61925,
+          "entry_id": "m_csa:256",
+          "in_current_extended_scored_oos": true
+        }
+      ],
+      "best_single_axis_new_oos_rows_on_current_extended_oos": [
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.6042,
+          "entry_id": "m_csa:221",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 1.90740451,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": false,
+          "current_surface_abstains": true,
+          "current_surface_score": 0.4011,
+          "entry_id": "m_csa:224",
+          "in_current_extended_scored_oos": true
+        },
+        {
+          "best_single_axis_residual": 2.71877433,
+          "best_single_axis_threshold": 1.72848324,
+          "current_retained_oos_caught_by_best_axis": true,
+          "current_surface_abstains": false,
+          "current_surface_score": 0.61925,
+          "entry_id": "m_csa:256",
+          "in_current_extended_scored_oos": true
+        }
+      ],
+      "channel": "combined_mean_geometry_fold",
+      "threshold": 0.44155
+    },
     "current_surface_missing_row_context": {
       "already_abstained_oos_missing_electron_flow_rows": 27,
       "current_retained_oos_missing_electron_flow_rows": 40,
@@ -1727,6 +1822,11 @@
   "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_split_alignment_readout.v0",
   "scope": "Lever 2 measured train/cal readout for the source-free electron-flow repair axis, tied to the current geometry/fold calibration split. It consumes existing train/cal projection metrics and current-surface missing-row evidence, does not materialize features, and does not read or tune heldout.",
   "source_artifacts": {
+    "current_extended_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
     "current_in_scope_threshold_contract": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",

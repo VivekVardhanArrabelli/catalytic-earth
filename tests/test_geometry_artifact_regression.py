@@ -18359,6 +18359,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             0,
         )
         self.assertEqual(
+            readout["counts"]["best_single_axis_new_oos_catches_on_current_extended_oos"],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"]["best_single_axis_new_current_retained_oos_catches"],
+            2,
+        )
+        self.assertEqual(
             readout["counts"]["candidate_surface_overlap_missing_retained_oos_rows"],
             0,
         )
@@ -18378,10 +18386,97 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             readout["decision"]["source_free_electron_flow_axis_has_train_cal_signal"]
         )
+        self.assertTrue(
+            readout["decision"]["best_axis_new_oos_rows_overlap_current_extended_oos"]
+        )
         self.assertFalse(
             readout["decision"][
                 "split_aligned_current_surface_incremental_readout_measurable"
             ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_current_extended_oos_mechanism_overlap_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_current_extended_oos_mechanism_overlap_readout_research_only",
+        )
+        self.assertEqual(readout["result_class"], "research_only")
+        self.assertEqual(readout["counts"]["current_extended_scored_oos_rows"], 204)
+        self.assertEqual(readout["counts"]["current_extended_oos_overlap_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["current_extended_current_retained_overlap_rows"],
+            13,
+        )
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_caught_by_mechanism"],
+            11,
+        )
+        self.assertEqual(readout["counts"]["best_single_axis_new_oos_catches"], 4)
+        self.assertEqual(
+            readout["counts"][
+                "best_single_axis_new_oos_catches_on_current_extended_oos"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"]["best_single_axis_new_current_retained_oos_catches"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["mechanism_surface_abstained_overlap_rows"],
+            18,
+        )
+        self.assertEqual(
+            readout["counts"]["union_or_gate_abstained_overlap_rows"],
+            19,
+        )
+        self.assertEqual(readout["counts"]["valid_primary_overlap_rows"], 0)
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_extended_retained_oos_mechanism_feature_rows"
+            ],
+            119,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_primary_mechanism_feature_rows"],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_coordinate_anchor_candidate_files"],
+            126,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_candidate_overlap_missing_primary_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "source_free_candidate_overlap_missing_retained_oos_rows"
+            ],
+            0,
+        )
+        overlap = readout["measured_readout"]["current_extended_oos_overlap_rows"]
+        self.assertEqual(overlap["current_surface_abstain_recall"], 0.380952)
+        self.assertEqual(overlap["mechanism_surface_abstain_recall"], 0.857143)
+        self.assertEqual(overlap["union_or_gate_abstain_recall"], 0.904762)
+        self.assertTrue(readout["decision"]["local_oos_signal_measured"])
+        self.assertTrue(
+            readout["decision"][
+                "best_axis_new_oos_rows_overlap_current_extended_surface"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["valid_integrated_operating_point_measurable"]
         )
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
