@@ -4794,6 +4794,369 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
 
+    def test_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current_counts(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_deployment_validity_"
+                "blocker_packet_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_deployment_validity_"
+                "blocker_packet_current702_20260604"
+            ),
+        )
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_deployment_validity_"
+                "blocker_packet_blocked"
+            ),
+        )
+        self.assertEqual(packet["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(packet["counts"]["retained_proxy_gap_rows"], 48)
+        self.assertEqual(packet["counts"]["high_cofactor_proxy_rows"], 4)
+        self.assertEqual(
+            packet["counts"]["high_cofactor_proxy_abstained_at_fixed_threshold"],
+            0,
+        )
+        self.assertEqual(
+            packet["counts"]["high_cofactor_min_new_abstained_rows_for_80pct"],
+            16,
+        )
+        self.assertEqual(packet["counts"]["same_family_structural_proxy_rows"], 55)
+        self.assertEqual(
+            packet["counts"][
+                "same_family_structural_proxy_abstained_at_fixed_threshold"
+            ],
+            10,
+        )
+        self.assertEqual(
+            packet["counts"][
+                "same_family_structural_min_new_abstained_rows_for_80pct"
+            ],
+            170,
+        )
+        self.assertEqual(packet["counts"]["family_panel_train_cal_oos_eligible_now"], 0)
+        self.assertEqual(
+            packet["counts"]["heldout_confounded_scenario_rows_guarded"], 4
+        )
+        self.assertEqual(packet["counts"]["protein_only_rows_scored"], 8)
+        self.assertEqual(
+            packet["counts"]["protein_only_rows_abstained_at_fixed_threshold"], 7
+        )
+        self.assertEqual(
+            packet["counts"]["protein_only_rows_retained_at_fixed_threshold"], 1
+        )
+        self.assertEqual(
+            packet["counts"]["protein_only_extended_full_channel_rows"], 204
+        )
+        self.assertEqual(
+            packet["counts"]["protein_only_extended_candidate_rows"], 210
+        )
+        self.assertEqual(packet["counts"]["remaining_combined_score_blocker_rows"], 6)
+        self.assertEqual(
+            packet["counts"]["remaining_combined_score_mechanically_clearable_now_rows"],
+            0,
+        )
+        self.assertEqual(packet["counts"]["policy_decision_required_rows"], 1)
+        self.assertEqual(packet["counts"]["predicted_structure_unavailable_rows"], 4)
+        self.assertEqual(packet["counts"]["approved_geometry_feature_missing_rows"], 1)
+        self.assertFalse(packet["decision"]["deployment_closure_valid_now"])
+        self.assertFalse(
+            packet["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(packet["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(
+            packet["decision"][
+                "current_evidence_can_solve_confounded_safe_calibration"
+            ]
+        )
+        self.assertTrue(packet["guardrails"]["source_free_evidence_only"])
+        self.assertFalse(packet["guardrails"]["threshold_values_changed"])
+        self.assertFalse(packet["guardrails"]["fixed_threshold_audit_rerun"])
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertEqual(
+            sorted(
+                row["entry_id"]
+                for row in packet["affected_rows"][
+                    "remaining_combined_score_blocker_rows"
+                ]
+            ),
+            [
+                "m_csa:204",
+                "m_csa:416",
+                "m_csa:562",
+                "m_csa:586",
+                "m_csa:604",
+                "m_csa:637",
+            ],
+        )
+        blocker_by_id = {
+            row["entry_id"]: row
+            for row in packet["affected_rows"][
+                "remaining_combined_score_blocker_rows"
+            ]
+        }
+        self.assertEqual(
+            blocker_by_id["m_csa:204"]["missing_evidence_type"],
+            "explicit deployment caveat decision or approved non-residue sidecar",
+        )
+        self.assertEqual(
+            blocker_by_id["m_csa:416"]["missing_evidence_type"],
+            "approved deployment-valid predicted-structure coordinate source",
+        )
+        experiments = {
+            row["experiment_id"]: row for row in packet["smallest_next_experiments"]
+        }
+        self.assertIn(
+            "sixteen_row_high_cofactor_train_cal_oos_probe", experiments
+        )
+        self.assertFalse(
+            experiments["sixteen_row_high_cofactor_train_cal_oos_probe"][
+                "sufficient_for_deployment_closure"
+            ]
+        )
+        self.assertFalse(
+            experiments[
+                "one_hundred_seventy_row_same_family_structural_acquisition"
+            ]["sufficient_for_deployment_closure"]
+        )
+        self.assertIn(
+            "threshold_stress_retention_cost_blocks_threshold_raise",
+            packet["blockers"],
+        )
+        self.assertIn(
+            "protein_only_extended_surface_still_partial", packet["blockers"]
+        )
+
+    def test_fold_augmented_confounded_proxy_current_unavailable_coordinate_reprobe_counts(
+        self,
+    ) -> None:
+        reprobe = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_current_unavailable_"
+                "coordinate_reprobe_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            reprobe["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_current_unavailable_"
+                "coordinate_reprobe_current702_20260604"
+            ),
+        )
+        self.assertEqual(
+            reprobe["status"],
+            (
+                "fold_augmented_confounded_proxy_current_unavailable_"
+                "coordinate_reprobe_no_rows_cleared"
+            ),
+        )
+        self.assertEqual(reprobe["counts"]["probe_rows"], 4)
+        self.assertEqual(reprobe["counts"]["afdb_v6_coordinate_available_rows"], 0)
+        self.assertEqual(reprobe["counts"]["afdb_v6_coordinate_unavailable_rows"], 4)
+        self.assertEqual(reprobe["counts"]["fixed_threshold_audit_cleared_rows"], 0)
+        self.assertEqual(reprobe["counts"]["uniprot_records_with_alphafolddb_xref"], 0)
+        self.assertEqual(
+            reprobe["counts"]["uniprot_records_with_secondary_accessions"], 3
+        )
+        self.assertEqual(reprobe["counts"]["secondary_accession_probe_count"], 6)
+        self.assertEqual(
+            reprobe["counts"]["secondary_accession_afdb_v6_available_rows"], 0
+        )
+        self.assertFalse(reprobe["decision"]["coordinate_import_authorized_now"])
+        self.assertFalse(
+            reprobe["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(reprobe["guardrails"]["coordinate_downloads_performed"])
+        self.assertFalse(reprobe["guardrails"]["coordinates_imported_or_cached"])
+        self.assertFalse(reprobe["guardrails"]["threshold_values_changed"])
+        self.assertEqual(
+            sorted(row["entry_id"] for row in reprobe["rows"]),
+            ["m_csa:416", "m_csa:562", "m_csa:586", "m_csa:637"],
+        )
+        self.assertEqual(
+            {row["http_status"] for row in reprobe["rows"]},
+            {404},
+        )
+        self.assertEqual(
+            {
+                tuple(row["uniprot_current_record_probe"]["alphafold_db_cross_references"])
+                for row in reprobe["rows"]
+            },
+            {()},
+        )
+        secondary_statuses = {
+            status
+            for row in reprobe["rows"]
+            for status in row["uniprot_current_record_probe"][
+                "secondary_accession_afdb_v6_statuses"
+            ].values()
+        }
+        self.assertEqual(secondary_statuses, {404})
+        self.assertIn(
+            "four_current_remaining_rows_still_afdb_v6_unavailable",
+            reprobe["blockers"],
+        )
+
+    def test_fold_augmented_confounded_proxy_high_cofactor_probe_contract_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_high_cofactor_probe_"
+                "contract_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_high_cofactor_probe_"
+                "contract_current702_20260604"
+            ),
+        )
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_confounded_proxy_high_cofactor_probe_"
+                "contract_ready_for_candidate_acquisition"
+            ),
+        )
+        self.assertEqual(contract["counts"]["fixed_threshold"], 0.44155)
+        self.assertEqual(contract["counts"]["probe_target_new_rows"], 16)
+        self.assertEqual(contract["counts"]["candidate_rows_registered_now"], 0)
+        self.assertEqual(contract["counts"]["current_high_cofactor_proxy_rows"], 4)
+        self.assertEqual(
+            contract["counts"][
+                "current_high_cofactor_proxy_abstained_at_fixed_threshold"
+            ],
+            0,
+        )
+        self.assertEqual(
+            contract["counts"]["minimum_new_abstained_rows_for_80pct"], 16
+        )
+        self.assertEqual(
+            contract["counts"][
+                "structural_proxy_minimum_new_abstained_rows_for_80pct"
+            ],
+            170,
+        )
+        self.assertFalse(contract["decision"]["candidate_rows_ready_to_score_now"])
+        self.assertFalse(
+            contract["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(contract["decision"]["deployable_closure_after_probe_alone"])
+        self.assertFalse(contract["decision"]["apply_or_change_threshold_now"])
+        self.assertTrue(contract["guardrails"]["train_cal_only"])
+        self.assertFalse(contract["guardrails"]["heldout_rows_allowed"])
+        self.assertFalse(contract["guardrails"]["threshold_values_changed"])
+        self.assertFalse(contract["guardrails"]["candidate_rows_scored_now"])
+        self.assertEqual(
+            contract["excluded_rows"]["current_high_cofactor_retained_gap_rows"],
+            ["m_csa:289", "m_csa:298", "m_csa:361", "m_csa:368"],
+        )
+        self.assertEqual(
+            contract["excluded_rows"][
+                "heldout_confounded_or_not_train_cal_rows_not_allowed_for_probe"
+            ],
+            ["m_csa:30", "m_csa:31", "m_csa:191", "m_csa:448", "m_csa:973"],
+        )
+        self.assertIn(
+            "All 16 newly acquired train/cal high-cofactor proxy rows abstain",
+            contract["membership_contract"]["pass_fail_rule"]["pass_condition"],
+        )
+        self.assertIn(
+            "structural_proxy_shortfall_remains_after_this_probe",
+            contract["blockers"],
+        )
+
+    def test_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_contract_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["artifact_id"],
+            (
+                "v3_fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_contract_current702_20260604"
+            ),
+        )
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_contract_ready_for_candidate_acquisition"
+            ),
+        )
+        self.assertEqual(contract["counts"]["fixed_threshold"], 0.44155)
+        self.assertEqual(
+            contract["counts"]["current_same_family_structural_proxy_rows"], 55
+        )
+        self.assertEqual(
+            contract["counts"][
+                "current_same_family_structural_proxy_abstained_at_fixed_threshold"
+            ],
+            10,
+        )
+        self.assertEqual(
+            contract["counts"]["minimum_new_abstained_rows_for_80pct"], 170
+        )
+        self.assertEqual(contract["counts"]["probe_target_new_rows"], 170)
+        self.assertEqual(
+            contract["counts"]["loose_same_family_current_surface_rows"], 21
+        )
+        self.assertEqual(
+            contract["counts"]["loose_same_family_if_included_rows"], 76
+        )
+        self.assertEqual(
+            contract["counts"]["loose_same_family_if_included_abstained_rows"], 25
+        )
+        self.assertEqual(
+            contract["counts"]["high_cofactor_minimum_new_abstained_rows_for_80pct"],
+            16,
+        )
+        self.assertFalse(contract["decision"]["candidate_rows_ready_to_score_now"])
+        self.assertFalse(
+            contract["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(
+            contract["decision"]["deployable_closure_after_contract_alone"]
+        )
+        self.assertTrue(contract["guardrails"]["train_cal_only"])
+        self.assertFalse(contract["guardrails"]["heldout_rows_allowed"])
+        self.assertFalse(contract["guardrails"]["threshold_values_changed"])
+        self.assertFalse(contract["guardrails"]["candidate_rows_scored_now"])
+        self.assertIn(
+            "scale_experiment_large_170_row_lower_bound",
+            contract["blockers"],
+        )
+        self.assertIn(
+            "high_cofactor_probe_still_separate",
+            contract["blockers"],
+        )
+
     def test_fold_augmented_confounded_proxy_scored_extension_surfaces_current_counts(
         self,
     ) -> None:

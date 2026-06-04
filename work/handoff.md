@@ -3,13 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T02:02:31Z`
-- STARTED_AT_LOCAL: `2026-06-03T21:02:32-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T02:21:53Z`
-- ENDED_AT_LOCAL: `2026-06-03T21:21:53-0500 CDT`
-- ELAPSED_MINUTES: `19.4`
+- STARTED_AT_UTC: `2026-06-04T06:34:11Z`
+- STARTED_AT_LOCAL: `2026-06-04T01:34:11-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T07:06:59Z`
+- ENDED_AT_LOCAL: `2026-06-04T02:06:59-0500 CDT`
+- ELAPSED_MINUTES: `32.8`
 - Status: complete; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work and ready to release after push verification
+  acquired before substantive work at `2026-06-04T06:34:11Z`; during wrap the
+  lock owner showed stale PID `44727` replaced by PID `67966` at
+  `2026-06-04T07:03:39Z` for the same automation ID, and PID `67966` was no
+  longer live when checked. Current user instruction overrode the prior Lever 2
+  handoff next action: worked only on Lever 3 for this run.
 
 ## Mission
 
@@ -60,6 +64,134 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Active Run 26
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T06:34:11Z`
+- STARTED_LOCAL: `2026-06-04T01:34:11-0500 CDT`
+- ENDED_AT: `2026-06-04T07:06:59Z`
+- ENDED_LOCAL: `2026-06-04T02:06:59-0500 CDT`
+- ELAPSED_MINUTES: `32.8`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T06:34:11Z`; during wrap the lock owner showed stale PID `44727`
+  replaced by PID `67966` at `2026-06-04T07:03:39Z` for the same automation ID,
+  and PID `67966` was no longer live when checked.
+
+#### Current intent
+
+Work only on Lever 3, overriding the prior Lever 2 next action. Close or
+precisely isolate the deployment-valid, confounded-safe fold/geometry novelty
+gap without changing labels, registries, thresholds, splits, imports, or heldout
+calibration discipline.
+
+Ended before the nominal 55-minute block because the remaining Lever 3 path is
+a concrete new-evidence/external-decision blocker rather than a safe local
+scoring action: the run produced the row-level blocker packet, refreshed the
+current unavailable-coordinate reprobe, and froze the two smallest acquisition
+contracts needed next.
+
+#### What changed
+
+- Added a CLI-generated deployment-validity blocker packet:
+  `artifacts/v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604.json`
+  plus Markdown report. It composes the train/cal proxy audit, threshold stress,
+  evidence-extension plan, acquisition queue, protein-only fold-topology scored
+  readout, protein-only extended surface, and six-row blocker classification.
+- The blocker packet records that current Lever 3 evidence cannot close the
+  confounded-safe calibration gap: high-cofactor proxy is `0/4` abstained and
+  needs `16` additional fixed-threshold abstained train/cal rows for the 80%
+  lower-bound target; same-family structural proxy is `10/55` abstained and
+  needs `170` additional fixed-threshold abstained train/cal rows.
+- Added a current unavailable-coordinate reprobe:
+  `artifacts/v3_fold_augmented_confounded_proxy_current_unavailable_coordinate_reprobe_current702_20260604.json`
+  plus Markdown report. Direct AFDB-v6 probes returned HTTP `404` for
+  `P07071`, `P07658`, `P00806`, and `P04531`; current UniProt records have no
+  AlphaFoldDB cross-references, and all six secondary-accession AFDB-v6 probes
+  also returned `404`. No coordinates were downloaded or imported.
+- Added a CLI-generated high-cofactor probe contract:
+  `artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604.json`
+  plus Markdown report. It freezes the smallest new-evidence experiment:
+  exactly 16 new non-heldout train/cal OOS rows with source-free high-cofactor
+  signatures and deployment-valid predicted structures, all scored at unchanged
+  threshold `0.44155`; all 16 must abstain to close only the high-cofactor
+  lower-bound target.
+- Added a same-family structural acquisition contract:
+  `artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_current702_20260604.json`
+  plus Markdown report. It freezes the larger structural-scale blocker:
+  current strict same-family structural proxy is `10/55`, loose current-surface
+  inclusion would only be `25/76`, and the all-new-rows-abstain lower bound
+  requires `170` new abstained train/cal rows.
+- Added CLI builders for the deployment-validity blocker packet and the
+  high-cofactor probe contract, plus regression coverage in
+  `tests/test_geometry_artifact_regression.py` and CLI registration coverage in
+  `tests/test_cli.py`.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, splits,
+  model weights, source decisions, reviewer decisions, locator sidecars, or
+  heldout threshold tuning changed.
+- Heldout rows appear only as frozen carry-through/context or as explicit
+  excluded rows; no heldout row was used to choose or tune thresholds.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were used
+  as predictive features.
+- The AFDB/UniProt probes were availability checks only: no coordinates were
+  downloaded, cached, imported, or scored.
+
+#### Verification
+
+- Generated the deployment-validity blocker packet and high-cofactor probe
+  contract through their new CLI commands.
+- Live direct AFDB-v6 HEAD probes for `P07071`, `P07658`, `P00806`, and
+  `P04531`: all `404`.
+- Live UniProt current-record probes for `P07071`, `P07658`, `P00806`, and
+  `P04531`: 0 AlphaFoldDB cross-references; secondary accession AFDB-v6 probes
+  for `P07073`, `Q38428`, `Q9T0V5`, `P78137`, `Q2M6M5`, and `Q38567`: all
+  `404`.
+- Focused artifact regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'deployment_validity_blocker_packet or current_unavailable_coordinate_reprobe or high_cofactor_probe_contract or same_family_structural_acquisition_contract' -q`:
+  4 passed.
+- CLI registration:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`:
+  1 passed, 132 subtests passed.
+- Broader affected regression:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`:
+  482 passed, 139 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1354 passed, 158 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1309 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- JSON syntax checks passed for all four new Lever 3 JSON artifacts.
+- Disk check remained above the 10 GiB guardrail: 26 GiB available.
+
+#### Exact next action
+
+Do not rerun the fixed-threshold confounded proxy audit and do not change
+threshold `0.44155`. The immediate Lever 3 choice is:
+
+1. If surface completeness is the goal, clear the six remaining full-channel
+   blockers: `m_csa:204` needs an explicit P10746 caveat decision or approved
+   non-residue sidecar; `m_csa:604` needs approved source-free geometry/locator
+   evidence; `m_csa:416`, `m_csa:562`, `m_csa:586`, and `m_csa:637` need an
+   approved alternate deployment-valid predicted-structure source because
+   direct and secondary AFDB-v6 probes are unavailable.
+2. If confounded-safe calibration closure is the goal, acquire new non-heldout
+   train/cal OOS proxy evidence under the frozen contracts: start with the
+   16-row high-cofactor probe; structural closure still requires a much larger
+   same-family structural acquisition because the current surface cannot meet
+   the 80% proxy target.
 
 ### 2026-06-03/04 Lever 3/2/4 Forward Push Active Run 25
 

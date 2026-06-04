@@ -1,0 +1,927 @@
+{
+  "affected_rows": {
+    "remaining_combined_score_blocker_rows": [
+      {
+        "accession": "P10746",
+        "blocker_class": "policy_decision_required",
+        "entry_id": "m_csa:204",
+        "mechanically_clearable_now": false,
+        "missing_evidence_type": "explicit deployment caveat decision or approved non-residue sidecar",
+        "next_gate": "record explicit P10746 accept/reject decision or provide an approved non-residue interaction sidecar",
+        "smallest_row_experiment": "record an explicit P10746 accept/reject decision with hash-valid review"
+      },
+      {
+        "accession": "P07071",
+        "blocker_class": "predicted_structure_unavailable",
+        "entry_id": "m_csa:416",
+        "mechanically_clearable_now": false,
+        "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+        "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+        "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+      },
+      {
+        "accession": "P07658",
+        "blocker_class": "predicted_structure_unavailable",
+        "entry_id": "m_csa:562",
+        "mechanically_clearable_now": false,
+        "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+        "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+        "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+      },
+      {
+        "accession": "P00806",
+        "blocker_class": "predicted_structure_unavailable",
+        "entry_id": "m_csa:586",
+        "mechanically_clearable_now": false,
+        "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+        "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+        "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+      },
+      {
+        "accession": "Q43088",
+        "blocker_class": "approved_geometry_feature_missing",
+        "entry_id": "m_csa:604",
+        "mechanically_clearable_now": false,
+        "missing_evidence_type": "approved source-free geometry/locator evidence",
+        "next_gate": "provide approved source-free geometry/locator evidence for the row or keep it out of combined-channel audit closure",
+        "smallest_row_experiment": "materialize the approved source-free geometry feature or locator sidecar, then rescore only that row"
+      },
+      {
+        "accession": "P04531",
+        "blocker_class": "predicted_structure_unavailable",
+        "entry_id": "m_csa:637",
+        "mechanically_clearable_now": false,
+        "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+        "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+        "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+      }
+    ],
+    "retained_proxy_gap_rows": [
+      {
+        "axis": "high_cofactor_confounded_proxy_extension",
+        "entry_id": "m_csa:289",
+        "missing_evidence_type": "fixed-threshold abstained train/cal high-cofactor proxy evidence",
+        "nearest_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "priority": "priority_1_high_cofactor_retained_proxy_gap",
+        "threshold_margin": 0.19825,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "axis": "high_cofactor_confounded_proxy_extension",
+        "entry_id": "m_csa:298",
+        "missing_evidence_type": "fixed-threshold abstained train/cal high-cofactor proxy evidence",
+        "nearest_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "priority": "priority_1_high_cofactor_retained_proxy_gap",
+        "threshold_margin": 0.09285,
+        "top1_fingerprint_id": "flavin_monooxygenase"
+      },
+      {
+        "axis": "high_cofactor_confounded_proxy_extension",
+        "entry_id": "m_csa:361",
+        "missing_evidence_type": "fixed-threshold abstained train/cal high-cofactor proxy evidence",
+        "nearest_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "priority": "priority_1_high_cofactor_retained_proxy_gap",
+        "threshold_margin": 0.0154,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "high_cofactor_confounded_proxy_extension",
+        "entry_id": "m_csa:368",
+        "missing_evidence_type": "fixed-threshold abstained train/cal high-cofactor proxy evidence",
+        "nearest_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "priority": "priority_1_high_cofactor_retained_proxy_gap",
+        "threshold_margin": 0.01215,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:25",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.18255,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:36",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.0763,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:52",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.17385,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:59",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1662,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:74",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1715,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:84",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.126,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:104",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.20825,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:135",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.09015,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:187",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.2102,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:190",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.19495,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:206",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1969,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:223",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.06625,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:229",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.10225,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:256",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1777,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:269",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.2091,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:308",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.2396,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:322",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.0922,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:348",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.20745,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:451",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.14645,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:463",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1061,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:464",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1614,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:468",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.2007,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:483",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.19255,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:488",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1989,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:500",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1778,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:502",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.15415,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:503",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1111,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:533",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.10075,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:638",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.14465,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:645",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.0646,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "hard_same_family_structural_counteraxis",
+        "entry_id": "m_csa:646",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_2_hard_retained_structural_proxy_gap",
+        "threshold_margin": 0.1003,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:91",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "ser_his_acid_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.0174,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:119",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.00475,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:234",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.0134,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:240",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.03005,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:244",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.03085,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:280",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "ser_his_acid_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.0055,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:299",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.02965,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:405",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.04215,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:422",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.0311,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:498",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.00505,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:565",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.0268,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:585",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.04515,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "axis": "near_threshold_same_family_structural_counteraxis",
+        "entry_id": "m_csa:621",
+        "missing_evidence_type": "fixed-threshold abstained train/cal same-family structural proxy evidence",
+        "nearest_fingerprint_id": "metal_dependent_hydrolase",
+        "priority": "priority_3_near_threshold_retained_structural_proxy_gap",
+        "threshold_margin": 0.01865,
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      }
+    ]
+  },
+  "artifact_id": "v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604",
+  "blockers": [
+    "current_train_cal_proxy_surface_cannot_close_confounded_safe_calibration",
+    "high_cofactor_proxy_needs_new_abstained_train_cal_rows",
+    "same_family_structural_proxy_needs_new_abstained_train_cal_rows",
+    "threshold_stress_retention_cost_blocks_threshold_raise",
+    "protein_only_extended_surface_still_partial",
+    "remaining_combined_score_blockers_not_mechanically_clearable_now"
+  ],
+  "counts": {
+    "approved_geometry_feature_missing_rows": 1,
+    "blockers": 6,
+    "family_panel_train_cal_oos_eligible_now": 0,
+    "heldout_confounded_scenario_rows_guarded": 4,
+    "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+    "high_cofactor_proxy_abstained_at_fixed_threshold": 0,
+    "high_cofactor_proxy_rows": 4,
+    "missing_evidence_types": 4,
+    "policy_decision_required_rows": 1,
+    "predicted_structure_unavailable_rows": 4,
+    "protein_only_extended_candidate_rows": 210,
+    "protein_only_extended_full_channel_rows": 204,
+    "protein_only_rows_abstained_at_fixed_threshold": 7,
+    "protein_only_rows_retained_at_fixed_threshold": 1,
+    "protein_only_rows_scored": 8,
+    "remaining_combined_score_blocker_rows": 6,
+    "remaining_combined_score_mechanically_clearable_now_rows": 0,
+    "retained_proxy_gap_rows": 48,
+    "same_family_structural_min_new_abstained_rows_for_80pct": 170,
+    "same_family_structural_proxy_abstained_at_fixed_threshold": 10,
+    "same_family_structural_proxy_rows": 55,
+    "smallest_next_experiments": 3
+  },
+  "created_utc": "2026-06-04T07:08:19Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_can_solve_confounded_safe_calibration": false,
+    "deployment_closure_valid_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not rerun the fixed-threshold audit or change threshold 0.44155. First clear the six full-channel blockers if the goal is surface completeness; the smallest new-evidence experiment is a 16-row train/cal high-cofactor OOS probe, while true structural-proxy closure requires a much larger train/cal same-family structural acquisition."
+  },
+  "fixed_operating_point": {
+    "channel": "combined_mean_geometry_fold",
+    "threshold": 0.44155,
+    "threshold_source": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json"
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "deployment_valid_inputs_required_for_next_experiments": true,
+    "fixed_threshold_audit_rerun": false,
+    "fixed_threshold_preserved": true,
+    "heldout_readout_context_only_not_tuned": true,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "source_free_evidence_only": true,
+    "threshold_values_changed": false,
+    "train_cal_proxy_decisions_only": true
+  },
+  "interpretation": {
+    "headline": "Current Lever 3 evidence is deployment-valid but not confounded-safe enough for closure.",
+    "next_action": "Treat the six-row full-channel repair as an audit-unblocker, not calibration closure; then acquire new non-heldout train/cal proxy evidence, starting with the 16-row high-cofactor probe.",
+    "result": "The channel retains the frozen heldout carry-through, but train/cal high-cofactor and same-family structural proxies remain far below the 80% abstention target and threshold stress shows a retention cost for forcing the target by threshold alone."
+  },
+  "missing_evidence_types": [
+    {
+      "affected_rows": [
+        "m_csa:289",
+        "m_csa:298",
+        "m_csa:361",
+        "m_csa:368"
+      ],
+      "current_abstain_recall": 0.0,
+      "current_abstained": 0,
+      "current_rows": 4,
+      "evidence_type": "train_cal_high_cofactor_proxy_scale",
+      "minimum_new_abstained_rows_for_80pct": 16,
+      "why_current_evidence_fails": "The current train/cal high-cofactor proxy has 4 rows and 0 abstentions at the fixed threshold."
+    },
+    {
+      "affected_rows": [
+        "m_csa:25",
+        "m_csa:36",
+        "m_csa:52",
+        "m_csa:59",
+        "m_csa:74",
+        "m_csa:84",
+        "m_csa:104",
+        "m_csa:135",
+        "m_csa:187",
+        "m_csa:190",
+        "m_csa:206",
+        "m_csa:223",
+        "m_csa:229",
+        "m_csa:256",
+        "m_csa:269",
+        "m_csa:308",
+        "m_csa:322",
+        "m_csa:348",
+        "m_csa:451",
+        "m_csa:463",
+        "m_csa:464",
+        "m_csa:468",
+        "m_csa:483",
+        "m_csa:488",
+        "m_csa:500",
+        "m_csa:502",
+        "m_csa:503",
+        "m_csa:533",
+        "m_csa:638",
+        "m_csa:645",
+        "m_csa:646",
+        "m_csa:91",
+        "m_csa:119",
+        "m_csa:234",
+        "m_csa:240",
+        "m_csa:244",
+        "m_csa:280",
+        "m_csa:299",
+        "m_csa:405",
+        "m_csa:422",
+        "m_csa:498",
+        "m_csa:565",
+        "m_csa:585",
+        "m_csa:621"
+      ],
+      "current_abstain_recall": 0.1818,
+      "current_abstained": 10,
+      "current_rows": 55,
+      "evidence_type": "train_cal_same_family_structural_proxy_scale",
+      "minimum_new_abstained_rows_for_80pct": 170,
+      "why_current_evidence_fails": "The current same-family structural proxy is 10/55 abstained; loosened current-surface membership still cannot reach 80%."
+    },
+    {
+      "affected_rows": [
+        "m_csa:204",
+        "m_csa:416",
+        "m_csa:562",
+        "m_csa:586",
+        "m_csa:604",
+        "m_csa:637"
+      ],
+      "evidence_type": "full_channel_completion_for_partial_surface",
+      "remaining_rows": 6,
+      "why_current_evidence_fails": "The current protein-only-extended surface is still partial and cannot support a fixed-threshold operating-point rerun."
+    },
+    {
+      "affected_rows": [
+        "m_csa:289",
+        "m_csa:298",
+        "m_csa:361",
+        "m_csa:368",
+        "m_csa:25",
+        "m_csa:36",
+        "m_csa:52",
+        "m_csa:59",
+        "m_csa:74",
+        "m_csa:84",
+        "m_csa:104",
+        "m_csa:135",
+        "m_csa:187",
+        "m_csa:190",
+        "m_csa:206",
+        "m_csa:223",
+        "m_csa:229",
+        "m_csa:256",
+        "m_csa:269",
+        "m_csa:308",
+        "m_csa:322",
+        "m_csa:348",
+        "m_csa:451",
+        "m_csa:463",
+        "m_csa:464",
+        "m_csa:468",
+        "m_csa:483",
+        "m_csa:488",
+        "m_csa:500",
+        "m_csa:502",
+        "m_csa:503",
+        "m_csa:533",
+        "m_csa:638",
+        "m_csa:645",
+        "m_csa:646",
+        "m_csa:91",
+        "m_csa:119",
+        "m_csa:234",
+        "m_csa:240",
+        "m_csa:244",
+        "m_csa:280",
+        "m_csa:299",
+        "m_csa:405",
+        "m_csa:422",
+        "m_csa:498",
+        "m_csa:565",
+        "m_csa:585",
+        "m_csa:621"
+      ],
+      "evidence_type": "deployment_valid_local_discriminant_beyond_fold_or_cofactor",
+      "why_current_evidence_fails": "Counterfactual threshold increases can force proxy abstention only by breaking calibration in-scope retention, so the missing signal must be new source-free evidence rather than a threshold change."
+    }
+  ],
+  "operating_point_behavior": {
+    "heldout_carry_through_context_only": {
+      "heldout_confounded_oos_abstain_recall": 0.8333,
+      "heldout_confounded_oos_abstained": 5,
+      "heldout_confounded_oos_total": 6,
+      "heldout_in_scope_retain_recall": 0.9574,
+      "heldout_in_scope_retained": 45,
+      "heldout_in_scope_total": 47,
+      "heldout_oos_abstain_recall": 0.557,
+      "heldout_oos_abstained": 44,
+      "heldout_oos_total": 79,
+      "threshold": 0.44155
+    },
+    "protein_only_fold_topology_tranche": {
+      "abstained_at_fixed_threshold": 7,
+      "retained_at_fixed_threshold": 1,
+      "rows": [
+        {
+          "abstains_at_fixed_threshold": true,
+          "combined_mean_geometry_fold": 0.40305,
+          "entry_id": "m_csa:105",
+          "nearest_train_atlas_entry_id": "m_csa:42",
+          "nearest_train_atlas_tm_score": 0.4583,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 1.0,
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "role_match_fraction": 0.3333,
+            "score": 0.3478
+          },
+          "threshold_margin": -0.0385
+        },
+        {
+          "abstains_at_fixed_threshold": true,
+          "combined_mean_geometry_fold": 0.2836,
+          "entry_id": "m_csa:137",
+          "nearest_train_atlas_entry_id": "m_csa:856",
+          "nearest_train_atlas_tm_score": 0.3822,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 0.0,
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "role_match_fraction": 0.0,
+            "score": 0.185
+          },
+          "threshold_margin": -0.15795
+        },
+        {
+          "abstains_at_fixed_threshold": true,
+          "combined_mean_geometry_fold": 0.34875,
+          "entry_id": "m_csa:318",
+          "nearest_train_atlas_entry_id": "m_csa:862",
+          "nearest_train_atlas_tm_score": 0.4853,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 0.0,
+            "fingerprint_id": "flavin_monooxygenase",
+            "role_match_fraction": 0.3333,
+            "score": 0.2122
+          },
+          "threshold_margin": -0.0928
+        },
+        {
+          "abstains_at_fixed_threshold": true,
+          "combined_mean_geometry_fold": 0.36295,
+          "entry_id": "m_csa:327",
+          "nearest_train_atlas_entry_id": "m_csa:706",
+          "nearest_train_atlas_tm_score": 0.3715,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 1.0,
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "role_match_fraction": 0.3333,
+            "score": 0.3544
+          },
+          "threshold_margin": -0.0786
+        },
+        {
+          "abstains_at_fixed_threshold": false,
+          "combined_mean_geometry_fold": 0.5407,
+          "entry_id": "m_csa:360",
+          "nearest_train_atlas_entry_id": "m_csa:740",
+          "nearest_train_atlas_tm_score": 0.7752,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 0.2,
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "role_match_fraction": 0.0,
+            "score": 0.3062
+          },
+          "threshold_margin": 0.09915
+        },
+        {
+          "abstains_at_fixed_threshold": true,
+          "combined_mean_geometry_fold": 0.43915,
+          "entry_id": "m_csa:610",
+          "nearest_train_atlas_entry_id": "m_csa:205",
+          "nearest_train_atlas_tm_score": 0.572,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 0.2,
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "role_match_fraction": 0.0,
+            "score": 0.3063
+          },
+          "threshold_margin": -0.0024
+        },
+        {
+          "abstains_at_fixed_threshold": true,
+          "combined_mean_geometry_fold": 0.43035,
+          "entry_id": "m_csa:618",
+          "nearest_train_atlas_entry_id": "m_csa:94",
+          "nearest_train_atlas_tm_score": 0.5606,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 0.2,
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "role_match_fraction": 0.0,
+            "score": 0.3001
+          },
+          "threshold_margin": -0.0112
+        },
+        {
+          "abstains_at_fixed_threshold": true,
+          "combined_mean_geometry_fold": 0.37305,
+          "entry_id": "m_csa:649",
+          "nearest_train_atlas_entry_id": "m_csa:166",
+          "nearest_train_atlas_tm_score": 0.442,
+          "predicted_geometry_top1_fingerprint_id": {
+            "cofactor_context_score": 0.2,
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "role_match_fraction": 0.0,
+            "score": 0.3041
+          },
+          "threshold_margin": -0.0685
+        }
+      ]
+    },
+    "train_cal_proxy_readout": {
+      "high_cofactor_signature_proxy": {
+        "abstain_recall": 0.0,
+        "abstained": 0,
+        "minimum_new_abstained_rows_for_80pct": 16,
+        "rows": 4,
+        "threshold_stress_80pct": {
+          "calibration_in_scope_retain_recall": 0.3529,
+          "calibration_in_scope_retained": 12,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 1.0,
+          "proxy_abstained": 4,
+          "proxy_total": 4,
+          "target_abstain_recall": 0.8,
+          "threshold": 0.6399
+        }
+      },
+      "same_family_structural_proxy": {
+        "abstain_recall": 0.1818,
+        "abstained": 10,
+        "minimum_new_abstained_rows_for_80pct": 170,
+        "rows": 55,
+        "threshold_stress_80pct": {
+          "calibration_in_scope_retain_recall": 0.3824,
+          "calibration_in_scope_retained": 13,
+          "calibration_in_scope_total": 34,
+          "proxy_abstain_recall": 0.8,
+          "proxy_abstained": 44,
+          "proxy_total": 55,
+          "target_abstain_recall": 0.8,
+          "threshold": 0.63105
+        }
+      }
+    }
+  },
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_deployment_validity_blocker_packet",
+  "scope": "Lever 3 blocker packet for the predicted-structure-vs-atlas novelty/abstention channel after the current train/cal proxy axes and protein-only fold-topology tranche failed to close the confounded-safe calibration gap.",
+  "smallest_next_experiments": [
+    {
+      "experiment_id": "complete_six_partial_surface_blockers_no_threshold_rerun",
+      "scope": "m_csa:204, m_csa:416, m_csa:562, m_csa:586, m_csa:604, m_csa:637",
+      "success_criterion": "All six rows receive deployment-valid full-channel scores; fixed-threshold proxy audit rerun remains separate and threshold 0.44155 stays unchanged.",
+      "sufficient_for_deployment_closure": false,
+      "why_smallest": "This is the smallest mechanical full-channel completion gate, but it cannot close the proxy-scale calibration gap by itself."
+    },
+    {
+      "experiment_id": "sixteen_row_high_cofactor_train_cal_oos_probe",
+      "scope": "new non-heldout train/cal OOS rows with source-free high-cofactor signatures and predicted structures",
+      "success_criterion": "Score 16 new train/cal high-cofactor proxy rows at unchanged threshold 0.44155; all 16 must abstain to close only the high-cofactor 80% lower-bound target.",
+      "sufficient_for_deployment_closure": false,
+      "why_smallest": "The high-cofactor proxy has the smallest exact 80% shortfall: 16 additional rows if every new row abstains at the fixed threshold."
+    },
+    {
+      "closes_named_proxy_if_prior_gates_clear": "same_family_structural_proxy",
+      "experiment_id": "one_hundred_seventy_row_same_family_structural_acquisition",
+      "scope": "new non-heldout train/cal OOS same-family structural counterexamples with predicted structures",
+      "success_criterion": "Score enough new train/cal same-family structural proxy rows at fixed threshold 0.44155 to reach 80% abstain recall while preserving the train/cal in-scope retention floor.",
+      "sufficient_for_deployment_closure": false,
+      "why_smallest": "The existing same-family structural proxy needs 170 additional abstained rows under the all-new-rows-abstain lower bound; no smaller current-surface extension can meet 80%."
+    }
+  ],
+  "source_artifacts": {
+    "confounded_proxy_acquisition_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json",
+      "sha256": "05fd9dc0d1c94abf07b3eb5ef61204947a638572a9693a3dc31c0e7ed39159aa"
+    },
+    "confounded_proxy_evidence_extension_plan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json",
+      "sha256": "69f63677067d8f2dcf276ba30544900255dc9ec252f439b301d65ec0962c1017"
+    },
+    "confounded_proxy_operating_point_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json",
+      "sha256": "d8a4f0e281a6e3bd5ba4015e17d0cc6ccd632c0f07e280f39f8f1981930fd865"
+    },
+    "confounded_proxy_threshold_stress": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_threshold_stress_current702_20260603.json",
+      "sha256": "73c6758ff7b4c36a609e60679a9e7081e68e9894be6e0faba7900b1db427f4ff"
+    },
+    "protein_only_extended_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "protein_only_scored_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_scored_readout_current702_20260603.json",
+      "sha256": "95b5e5b3bde9ead7d3ba1567c25db9069515595d0bed41c0143c42d705f60b03"
+    },
+    "remaining_combined_score_blocker_classification": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.json",
+      "sha256": "0e46e84b8f9ac2c5e7d68241ade9fc4e34deccfd471fa0888c22c3160ec2f52c"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_deployment_validity_blocker_packet_blocked"
+}

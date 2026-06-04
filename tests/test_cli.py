@@ -1299,6 +1299,36 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-confounded-proxy-deployment-"
+                    "validity-blocker-packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_deployment_"
+                    "validity_blocker_packet"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-high-cofactor-"
+                    "probe-contract"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_high_"
+                    "cofactor_probe_contract"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-same-family-"
+                    "structural-acquisition-contract"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_same_family_"
+                    "structural_acquisition_contract"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-p10746-deployment-caveat-decision-"
                     "packet"
                 ),

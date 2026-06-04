@@ -1,0 +1,99 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604",
+  "blockers": [
+    "candidate_rows_not_acquired_or_reviewed",
+    "candidate_rows_not_scored_at_fixed_threshold",
+    "structural_proxy_shortfall_remains_after_this_probe"
+  ],
+  "counts": {
+    "blockers": 3,
+    "candidate_rows_registered_now": 0,
+    "current_high_cofactor_proxy_abstained_at_fixed_threshold": 0,
+    "current_high_cofactor_proxy_rows": 4,
+    "excluded_current_high_cofactor_gap_rows": 4,
+    "excluded_heldout_confounded_rows": 5,
+    "excluded_high_cofactor_family_panel_noneligible_rows": 5,
+    "fixed_threshold": 0.44155,
+    "minimum_new_abstained_rows_for_80pct": 16,
+    "probe_target_new_rows": 16,
+    "structural_proxy_minimum_new_abstained_rows_for_80pct": 170
+  },
+  "created_utc": "2026-06-04T07:08:27Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "candidate_rows_ready_to_score_now": false,
+    "deployable_closure_after_probe_alone": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Acquire exactly 16 new non-heldout train/cal OOS rows with source-free high-cofactor signatures and deployment-valid predicted structures, then score them at unchanged threshold 0.44155. All 16 must abstain to close only the high-cofactor 80% lower-bound target."
+  },
+  "excluded_rows": {
+    "current_high_cofactor_retained_gap_rows": [
+      "m_csa:289",
+      "m_csa:298",
+      "m_csa:361",
+      "m_csa:368"
+    ],
+    "heldout_confounded_or_not_train_cal_rows_not_allowed_for_probe": [
+      "m_csa:30",
+      "m_csa:31",
+      "m_csa:191",
+      "m_csa:448",
+      "m_csa:973"
+    ]
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "deployment_valid_predicted_structure_required": true,
+    "fixed_threshold_preserved": true,
+    "heldout_rows_allowed": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "new_threshold_selected": false,
+    "production_thresholds_changed": false,
+    "source_free_evidence_only": true,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "membership_contract": {
+    "acceptance_criteria": [
+      "Row must be non-heldout train/cal OOS calibration evidence, not heldout final-eval or family-panel breadth evidence.",
+      "Row must have a deployment-valid predicted structure or an explicitly approved deployment-valid predicted-structure substitute.",
+      "High-cofactor membership must be derived from source-free cofactor/locus evidence, not mechanism text, EC/Rhea IDs, labels, source IDs, or target names.",
+      "Row must not already be part of the current high-cofactor retained-gap set or current scored train/cal OOS surface.",
+      "Row must be scored through the predicted-structure-vs-train-atlas fold/geometry/cofactor channel before any abstention claim.",
+      "Threshold 0.44155 must remain unchanged; this probe is pass/fail evidence, not threshold tuning."
+    ],
+    "pass_fail_rule": {
+      "fail_conditions": [
+        "Any candidate row is heldout or lacks a deployment-valid predicted structure.",
+        "Any candidate uses mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive membership evidence.",
+        "Fewer than 16 of 16 new rows abstain at fixed threshold 0.44155."
+      ],
+      "pass_condition": "All 16 newly acquired train/cal high-cofactor proxy rows abstain at fixed threshold 0.44155, raising the high-cofactor proxy lower-bound readout from 0/4 to 16/20."
+    },
+    "probe_size_reason": "The current high-cofactor proxy has 4 rows and 0 abstentions; 16 additional abstained rows are the exact lower-bound count needed to reach 80% if every new row abstains."
+  },
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_high_cofactor_probe_contract",
+  "scope": "Train/cal-only high-cofactor mini-probe contract for the smallest Lever 3 new-evidence experiment identified by the deployment-validity blocker packet. It registers no rows and performs no scoring; it freezes the source-free membership and pass/fail rules for a future 16-row acquisition.",
+  "source_artifacts": {
+    "acquisition_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json",
+      "sha256": "05fd9dc0d1c94abf07b3eb5ef61204947a638572a9693a3dc31c0e7ed39159aa"
+    },
+    "deployment_validity_blocker_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604.json",
+      "sha256": "b903ef4105af3141b0319f2b259018364d54646592b53254ef918f428df83db6"
+    },
+    "evidence_extension_plan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json",
+      "sha256": "69f63677067d8f2dcf276ba30544900255dc9ec252f439b301d65ec0962c1017"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_high_cofactor_probe_contract_ready_for_candidate_acquisition"
+}

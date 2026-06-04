@@ -213,6 +213,15 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_TRAIN_CAL_SCORED_EXTENSION_ID = (
 FOLD_AUGMENTED_CONFOUNDED_PROXY_EXTENDED_TRAIN_CAL_OOS_SURFACE_ID = (
     "v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_VALIDITY_BLOCKER_PACKET_ID = (
+    "v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_PROBE_CONTRACT_ID = (
+    "v3_fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_CONTRACT_ID = (
+    "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -30841,6 +30850,1204 @@ def write_fold_augmented_confounded_proxy_extended_train_cal_oos_surface(
             encoding="utf-8",
         )
     return audit
+
+
+def _confounded_proxy_threshold_stress_by_proxy(
+    threshold_stress: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    by_proxy: dict[str, dict[str, Any]] = {}
+    stress_payload = threshold_stress.get("threshold_stress", {})
+    if isinstance(stress_payload, dict):
+        for proxy, row in stress_payload.items():
+            if not isinstance(row, dict):
+                continue
+            target_row = (row.get("counterfactual_targets") or {}).get("0.8")
+            if isinstance(target_row, dict):
+                by_proxy[str(proxy)] = target_row
+    elif isinstance(stress_payload, list):
+        for row in stress_payload:
+            if not isinstance(row, dict):
+                continue
+            proxy = str(row.get("subset") or row.get("proxy") or "")
+            target = _parse_optional_float(
+                row.get("target_abstain_recall") or row.get("target")
+            )
+            if not proxy or target is None or abs(target - 0.8) > 1e-9:
+                continue
+            by_proxy[proxy] = row
+    return by_proxy
+
+
+def build_fold_augmented_confounded_proxy_deployment_validity_blocker_packet(
+    *,
+    confounded_proxy_operating_point_audit_path: Path,
+    confounded_proxy_threshold_stress_path: Path,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    confounded_proxy_acquisition_queue_path: Path,
+    protein_only_scored_readout_path: Path,
+    protein_only_extended_surface_path: Path,
+    remaining_combined_score_blocker_classification_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_VALIDITY_BLOCKER_PACKET_ID,
+) -> dict[str, Any]:
+    operating = _read_json(confounded_proxy_operating_point_audit_path)
+    threshold_stress = _read_json(confounded_proxy_threshold_stress_path)
+    extension_plan = _read_json(confounded_proxy_evidence_extension_plan_path)
+    acquisition_queue = _read_json(confounded_proxy_acquisition_queue_path)
+    protein_only_readout = _read_json(protein_only_scored_readout_path)
+    protein_only_surface = _read_json(protein_only_extended_surface_path)
+    blocker_classification = _read_json(
+        remaining_combined_score_blocker_classification_path
+    )
+
+    fixed = operating.get("fixed_operating_point", {})
+    threshold = _parse_optional_float(fixed.get("threshold"))
+    if threshold is None:
+        threshold = _parse_optional_float(
+            acquisition_queue.get("fixed_operating_point", {}).get("threshold")
+        )
+    threshold = float(threshold or 0.0)
+    operating_counts = operating.get("counts", {})
+    extension_counts = extension_plan.get("counts", {})
+    acquisition_counts = acquisition_queue.get("counts", {})
+    surface_counts = protein_only_surface.get("counts", {})
+    blocker_counts = blocker_classification.get("counts", {})
+    stress_by_proxy = _confounded_proxy_threshold_stress_by_proxy(threshold_stress)
+
+    extension_requirements = extension_plan.get("extension_requirements", {})
+    high_req = extension_requirements.get("high_cofactor_signature_proxy", {})
+    structural_req = extension_requirements.get("same_family_structural_proxy", {})
+    high_min_new = int(
+        extension_counts.get("high_cofactor_min_new_abstained_rows_for_80pct")
+        or high_req.get("minimum_new_abstained_rows_if_all_new_rows_abstain", {}).get(
+            "0.8"
+        )
+        or 0
+    )
+    structural_min_new = int(
+        extension_counts.get("same_family_structural_min_new_abstained_rows_for_80pct")
+        or structural_req.get(
+            "minimum_new_abstained_rows_if_all_new_rows_abstain", {}
+        ).get("0.8")
+        or 0
+    )
+
+    protein_rows: list[dict[str, Any]] = []
+    protein_abstained = 0
+    protein_retained = 0
+    for row in protein_only_readout.get("candidate_row_scores", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        channel = row.get("channel_scores") or {}
+        combined = _parse_optional_float(channel.get("combined_mean_geometry_fold"))
+        abstains = combined is not None and combined < threshold
+        if abstains:
+            protein_abstained += 1
+        elif combined is not None:
+            protein_retained += 1
+        protein_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "combined_mean_geometry_fold": (
+                    round(float(combined), 6) if combined is not None else None
+                ),
+                "threshold_margin": (
+                    round(float(combined) - threshold, 6)
+                    if combined is not None
+                    else None
+                ),
+                "abstains_at_fixed_threshold": bool(abstains),
+                "nearest_train_atlas_entry_id": (
+                    row.get("predicted_structure_fold_channel", {}).get(
+                        "nearest_train_atlas_entry_id"
+                    )
+                ),
+                "nearest_train_atlas_tm_score": (
+                    row.get("predicted_structure_fold_channel", {}).get(
+                        "nearest_train_atlas_tm_score"
+                    )
+                ),
+                "predicted_geometry_top1_fingerprint_id": (
+                    row.get("predicted_geometry_top1_fingerprint_id")
+                    or row.get("predicted_geometry_top1")
+                ),
+            }
+        )
+    protein_rows = sorted(
+        protein_rows,
+        key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+    )
+
+    retained_gap_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "priority": row.get("priority"),
+            "axis": row.get("axis"),
+            "threshold_margin": row.get("threshold_margin"),
+            "nearest_fingerprint_id": row.get(
+                "nearest_train_atlas_true_fingerprint_id"
+            ),
+            "top1_fingerprint_id": row.get(
+                "predicted_geometry_top1_fingerprint_id"
+            ),
+            "missing_evidence_type": (
+                "fixed-threshold abstained train/cal high-cofactor proxy evidence"
+                if row.get("axis") == "high_cofactor_confounded_proxy_extension"
+                else "fixed-threshold abstained train/cal same-family structural proxy evidence"
+            ),
+        }
+        for row in extension_plan.get("evidence_request_rows", [])
+        if isinstance(row, dict)
+    ]
+    retained_gap_rows = sorted(
+        retained_gap_rows,
+        key=lambda row: (
+            str(row.get("priority") or ""),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+    )
+
+    blocker_rows: list[dict[str, Any]] = []
+    for row in blocker_classification.get("blocker_rows", []):
+        if not isinstance(row, dict):
+            continue
+        blocker_class = str(row.get("blocker_class") or "")
+        if blocker_class == "policy_decision_required":
+            missing = "explicit deployment caveat decision or approved non-residue sidecar"
+            experiment = "record an explicit P10746 accept/reject decision with hash-valid review"
+        elif blocker_class == "predicted_structure_unavailable":
+            missing = "approved deployment-valid predicted-structure coordinate source"
+            experiment = "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+        elif blocker_class == "approved_geometry_feature_missing":
+            missing = "approved source-free geometry/locator evidence"
+            experiment = "materialize the approved source-free geometry feature or locator sidecar, then rescore only that row"
+        else:
+            missing = "classified full-channel score repair evidence"
+            experiment = "clear the named blocker class before rerunning any fixed-threshold audit"
+        blocker_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession"),
+                "blocker_class": blocker_class,
+                "missing_evidence_type": missing,
+                "smallest_row_experiment": experiment,
+                "mechanically_clearable_now": bool(
+                    row.get("mechanically_clearable_now")
+                    or row.get("mechanical_clearance_available_now")
+                ),
+                "next_gate": row.get("next_gate"),
+            }
+        )
+    blocker_rows = sorted(
+        blocker_rows,
+        key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+    )
+
+    missing_evidence_types = [
+        {
+            "evidence_type": "train_cal_high_cofactor_proxy_scale",
+            "affected_rows": [
+                row["entry_id"]
+                for row in retained_gap_rows
+                if row.get("axis") == "high_cofactor_confounded_proxy_extension"
+            ],
+            "current_rows": int(high_req.get("row_count") or 0),
+            "current_abstained": int(high_req.get("abstained_at_fixed_threshold") or 0),
+            "current_abstain_recall": high_req.get("current_abstain_recall"),
+            "minimum_new_abstained_rows_for_80pct": high_min_new,
+            "why_current_evidence_fails": (
+                "The current train/cal high-cofactor proxy has 4 rows and 0 "
+                "abstentions at the fixed threshold."
+            ),
+        },
+        {
+            "evidence_type": "train_cal_same_family_structural_proxy_scale",
+            "affected_rows": [
+                row["entry_id"]
+                for row in retained_gap_rows
+                if row.get("axis") != "high_cofactor_confounded_proxy_extension"
+            ],
+            "current_rows": int(structural_req.get("row_count") or 0),
+            "current_abstained": int(
+                structural_req.get("abstained_at_fixed_threshold") or 0
+            ),
+            "current_abstain_recall": structural_req.get("current_abstain_recall"),
+            "minimum_new_abstained_rows_for_80pct": structural_min_new,
+            "why_current_evidence_fails": (
+                "The current same-family structural proxy is 10/55 abstained; "
+                "loosened current-surface membership still cannot reach 80%."
+            ),
+        },
+        {
+            "evidence_type": "full_channel_completion_for_partial_surface",
+            "affected_rows": [row.get("entry_id") for row in blocker_rows],
+            "remaining_rows": int(
+                blocker_counts.get("remaining_combined_score_blocker_rows") or 0
+            ),
+            "why_current_evidence_fails": (
+                "The current protein-only-extended surface is still partial and "
+                "cannot support a fixed-threshold operating-point rerun."
+            ),
+        },
+        {
+            "evidence_type": "deployment_valid_local_discriminant_beyond_fold_or_cofactor",
+            "affected_rows": [row.get("entry_id") for row in retained_gap_rows],
+            "why_current_evidence_fails": (
+                "Counterfactual threshold increases can force proxy abstention "
+                "only by breaking calibration in-scope retention, so the missing "
+                "signal must be new source-free evidence rather than a threshold "
+                "change."
+            ),
+        },
+    ]
+
+    smallest_next_experiments = [
+        {
+            "experiment_id": "complete_six_partial_surface_blockers_no_threshold_rerun",
+            "scope": "m_csa:204, m_csa:416, m_csa:562, m_csa:586, m_csa:604, m_csa:637",
+            "why_smallest": (
+                "This is the smallest mechanical full-channel completion gate, "
+                "but it cannot close the proxy-scale calibration gap by itself."
+            ),
+            "success_criterion": (
+                "All six rows receive deployment-valid full-channel scores; "
+                "fixed-threshold proxy audit rerun remains separate and threshold "
+                "0.44155 stays unchanged."
+            ),
+            "sufficient_for_deployment_closure": False,
+        },
+        {
+            "experiment_id": "sixteen_row_high_cofactor_train_cal_oos_probe",
+            "scope": "new non-heldout train/cal OOS rows with source-free high-cofactor signatures and predicted structures",
+            "why_smallest": (
+                "The high-cofactor proxy has the smallest exact 80% shortfall: "
+                "16 additional rows if every new row abstains at the fixed threshold."
+            ),
+            "success_criterion": (
+                "Score 16 new train/cal high-cofactor proxy rows at unchanged "
+                "threshold 0.44155; all 16 must abstain to close only the "
+                "high-cofactor 80% lower-bound target."
+            ),
+            "sufficient_for_deployment_closure": False,
+        },
+        {
+            "experiment_id": "one_hundred_seventy_row_same_family_structural_acquisition",
+            "scope": "new non-heldout train/cal OOS same-family structural counterexamples with predicted structures",
+            "why_smallest": (
+                "The existing same-family structural proxy needs 170 additional "
+                "abstained rows under the all-new-rows-abstain lower bound; no "
+                "smaller current-surface extension can meet 80%."
+            ),
+            "closes_named_proxy_if_prior_gates_clear": (
+                "same_family_structural_proxy"
+            ),
+            "success_criterion": (
+                "Score enough new train/cal same-family structural proxy rows at "
+                "fixed threshold 0.44155 to reach 80% abstain recall while "
+                "preserving the train/cal in-scope retention floor."
+            ),
+            "sufficient_for_deployment_closure": False,
+        },
+    ]
+
+    blockers = [
+        "current_train_cal_proxy_surface_cannot_close_confounded_safe_calibration",
+        "high_cofactor_proxy_needs_new_abstained_train_cal_rows",
+        "same_family_structural_proxy_needs_new_abstained_train_cal_rows",
+        "threshold_stress_retention_cost_blocks_threshold_raise",
+        "protein_only_extended_surface_still_partial",
+        "remaining_combined_score_blockers_not_mechanically_clearable_now",
+    ]
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_deployment_validity_blocker_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "fold_augmented_confounded_proxy_deployment_validity_blocker_packet_blocked",
+        "scope": (
+            "Lever 3 blocker packet for the predicted-structure-vs-atlas "
+            "novelty/abstention channel after the current train/cal proxy axes "
+            "and protein-only fold-topology tranche failed to close the "
+            "confounded-safe calibration gap."
+        ),
+        "guardrails": {
+            "train_cal_proxy_decisions_only": True,
+            "heldout_readout_context_only_not_tuned": True,
+            "deployment_valid_inputs_required_for_next_experiments": True,
+            "source_free_evidence_only": True,
+            "fixed_threshold_preserved": True,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "fixed_threshold_audit_rerun": False,
+            "candidate_rows_scored_now": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "counts": {
+            "retained_proxy_gap_rows": len(retained_gap_rows),
+            "high_cofactor_proxy_rows": int(
+                operating_counts.get("high_cofactor_proxy_calibration_oos_rows") or 0
+            ),
+            "high_cofactor_proxy_abstained_at_fixed_threshold": int(
+                operating_counts.get("high_cofactor_proxy_abstained_at_fixed_threshold")
+                or 0
+            ),
+            "high_cofactor_min_new_abstained_rows_for_80pct": high_min_new,
+            "same_family_structural_proxy_rows": int(
+                operating_counts.get("same_family_structural_proxy_calibration_oos_rows")
+                or 0
+            ),
+            "same_family_structural_proxy_abstained_at_fixed_threshold": int(
+                operating_counts.get(
+                    "same_family_structural_proxy_abstained_at_fixed_threshold"
+                )
+                or 0
+            ),
+            "same_family_structural_min_new_abstained_rows_for_80pct": structural_min_new,
+            "family_panel_train_cal_oos_eligible_now": int(
+                acquisition_counts.get("family_panel_scenario_train_cal_oos_eligible_now")
+                or 0
+            ),
+            "heldout_confounded_scenario_rows_guarded": int(
+                acquisition_counts.get("family_panel_scenario_heldout_confounded_rows")
+                or 0
+            ),
+            "protein_only_rows_scored": int(
+                protein_only_readout.get("counts", {}).get("scoring_tranche_rows")
+                or len(protein_rows)
+            ),
+            "protein_only_rows_abstained_at_fixed_threshold": protein_abstained,
+            "protein_only_rows_retained_at_fixed_threshold": protein_retained,
+            "protein_only_extended_full_channel_rows": int(
+                surface_counts.get("candidate_rows_with_full_channel_scores") or 0
+            ),
+            "protein_only_extended_candidate_rows": int(
+                surface_counts.get("extended_candidate_rows") or 0
+            ),
+            "remaining_combined_score_blocker_rows": int(
+                blocker_counts.get("remaining_combined_score_blocker_rows") or 0
+            ),
+            "remaining_combined_score_mechanically_clearable_now_rows": int(
+                blocker_counts.get("clearable_mechanically_now_rows") or 0
+            ),
+            "policy_decision_required_rows": int(
+                blocker_counts.get("policy_decision_required_rows") or 0
+            ),
+            "predicted_structure_unavailable_rows": int(
+                blocker_counts.get("predicted_structure_unavailable_rows") or 0
+            ),
+            "approved_geometry_feature_missing_rows": int(
+                blocker_counts.get("approved_geometry_feature_missing_rows") or 0
+            ),
+            "missing_evidence_types": len(missing_evidence_types),
+            "smallest_next_experiments": len(smallest_next_experiments),
+            "blockers": len(blockers),
+        },
+        "fixed_operating_point": {
+            "channel": fixed.get("channel") or "combined_mean_geometry_fold",
+            "threshold": round(threshold, 6),
+            "threshold_source": fixed.get("threshold_source"),
+        },
+        "operating_point_behavior": {
+            "heldout_carry_through_context_only": fixed.get("heldout_final_readout"),
+            "train_cal_proxy_readout": {
+                "high_cofactor_signature_proxy": {
+                    "rows": int(high_req.get("row_count") or 0),
+                    "abstained": int(high_req.get("abstained_at_fixed_threshold") or 0),
+                    "abstain_recall": high_req.get("current_abstain_recall"),
+                    "minimum_new_abstained_rows_for_80pct": high_min_new,
+                    "threshold_stress_80pct": stress_by_proxy.get(
+                        "high_cofactor_signature_proxy"
+                    ),
+                },
+                "same_family_structural_proxy": {
+                    "rows": int(structural_req.get("row_count") or 0),
+                    "abstained": int(
+                        structural_req.get("abstained_at_fixed_threshold") or 0
+                    ),
+                    "abstain_recall": structural_req.get("current_abstain_recall"),
+                    "minimum_new_abstained_rows_for_80pct": structural_min_new,
+                    "threshold_stress_80pct": stress_by_proxy.get(
+                        "same_family_structural_proxy"
+                    ),
+                },
+            },
+            "protein_only_fold_topology_tranche": {
+                "rows": protein_rows,
+                "abstained_at_fixed_threshold": protein_abstained,
+                "retained_at_fixed_threshold": protein_retained,
+            },
+        },
+        "affected_rows": {
+            "retained_proxy_gap_rows": retained_gap_rows,
+            "remaining_combined_score_blocker_rows": blocker_rows,
+        },
+        "missing_evidence_types": missing_evidence_types,
+        "smallest_next_experiments": smallest_next_experiments,
+        "blockers": blockers,
+        "decision": {
+            "deployment_closure_valid_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "current_evidence_can_solve_confounded_safe_calibration": False,
+            "next_gate": (
+                "Do not rerun the fixed-threshold audit or change threshold "
+                "0.44155. First clear the six full-channel blockers if the goal "
+                "is surface completeness; the smallest new-evidence experiment "
+                "is a 16-row train/cal high-cofactor OOS probe, while true "
+                "structural-proxy closure requires a much larger train/cal "
+                "same-family structural acquisition."
+            ),
+        },
+        "source_artifacts": {
+            "confounded_proxy_operating_point_audit": _source_path_record(
+                confounded_proxy_operating_point_audit_path
+            ),
+            "confounded_proxy_threshold_stress": _source_path_record(
+                confounded_proxy_threshold_stress_path
+            ),
+            "confounded_proxy_evidence_extension_plan": _source_path_record(
+                confounded_proxy_evidence_extension_plan_path
+            ),
+            "confounded_proxy_acquisition_queue": _source_path_record(
+                confounded_proxy_acquisition_queue_path
+            ),
+            "protein_only_scored_readout": _source_path_record(
+                protein_only_scored_readout_path
+            ),
+            "protein_only_extended_surface": _source_path_record(
+                protein_only_extended_surface_path
+            ),
+            "remaining_combined_score_blocker_classification": _source_path_record(
+                remaining_combined_score_blocker_classification_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Current Lever 3 evidence is deployment-valid but not "
+                "confounded-safe enough for closure."
+            ),
+            "result": (
+                "The channel retains the frozen heldout carry-through, but "
+                "train/cal high-cofactor and same-family structural proxies "
+                "remain far below the 80% abstention target and threshold stress "
+                "shows a retention cost for forcing the target by threshold alone."
+            ),
+            "next_action": (
+                "Treat the six-row full-channel repair as an audit-unblocker, "
+                "not calibration closure; then acquire new non-heldout "
+                "train/cal proxy evidence, starting with the 16-row "
+                "high-cofactor probe."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    behavior = packet["operating_point_behavior"]
+    train_cal = behavior["train_cal_proxy_readout"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Deployment-Validity Blocker Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Fixed threshold: {packet['fixed_operating_point']['threshold']}",
+        f"- Retained proxy-gap rows: {counts['retained_proxy_gap_rows']}",
+        "- Protein-only tranche abstained/retained at fixed threshold: "
+        f"{counts['protein_only_rows_abstained_at_fixed_threshold']}/"
+        f"{counts['protein_only_rows_retained_at_fixed_threshold']}",
+        "- Protein-only extended full-channel rows: "
+        f"{counts['protein_only_extended_full_channel_rows']}/"
+        f"{counts['protein_only_extended_candidate_rows']}",
+        "- Remaining combined-score blockers: "
+        f"{counts['remaining_combined_score_blocker_rows']}",
+        f"- Blockers: {packet['blockers']}",
+        "",
+        "## Train/Cal Proxy Behavior",
+        "",
+        "| proxy | rows | abstained | recall | min new abstained for 80% |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for proxy, row in train_cal.items():
+        lines.append(
+            f"| {proxy} | {row['rows']} | {row['abstained']} | "
+            f"{row['abstain_recall']} | "
+            f"{row['minimum_new_abstained_rows_for_80pct']} |"
+        )
+    lines += [
+        "",
+        "## Remaining Full-Channel Blockers",
+        "",
+        "| row | accession | blocker class | missing evidence | smallest row experiment |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in packet["affected_rows"]["remaining_combined_score_blocker_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row['blocker_class']} | {row['missing_evidence_type']} | "
+            f"{row['smallest_row_experiment']} |"
+        )
+    lines += [
+        "",
+        "## Smallest Next Experiments",
+        "",
+        "| experiment | sufficient for closure | success criterion |",
+        "| --- | --- | --- |",
+    ]
+    for experiment in packet["smallest_next_experiments"]:
+        lines.append(
+            f"| {experiment['experiment_id']} | "
+            f"{experiment['sufficient_for_deployment_closure']} | "
+            f"{experiment['success_criterion']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Deployment closure valid now: {decision['deployment_closure_valid_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        "- Current evidence can solve confounded-safe calibration: "
+        f"{decision['current_evidence_can_solve_confounded_safe_calibration']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['headline']}",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_deployment_validity_blocker_packet(
+    *,
+    confounded_proxy_operating_point_audit_path: Path,
+    confounded_proxy_threshold_stress_path: Path,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    confounded_proxy_acquisition_queue_path: Path,
+    protein_only_scored_readout_path: Path,
+    protein_only_extended_surface_path: Path,
+    remaining_combined_score_blocker_classification_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_VALIDITY_BLOCKER_PACKET_ID,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_confounded_proxy_deployment_validity_blocker_packet(
+        confounded_proxy_operating_point_audit_path=(
+            confounded_proxy_operating_point_audit_path
+        ),
+        confounded_proxy_threshold_stress_path=confounded_proxy_threshold_stress_path,
+        confounded_proxy_evidence_extension_plan_path=(
+            confounded_proxy_evidence_extension_plan_path
+        ),
+        confounded_proxy_acquisition_queue_path=(
+            confounded_proxy_acquisition_queue_path
+        ),
+        protein_only_scored_readout_path=protein_only_scored_readout_path,
+        protein_only_extended_surface_path=protein_only_extended_surface_path,
+        remaining_combined_score_blocker_classification_path=(
+            remaining_combined_score_blocker_classification_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def build_fold_augmented_confounded_proxy_high_cofactor_probe_contract(
+    *,
+    deployment_validity_blocker_packet_path: Path,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    confounded_proxy_acquisition_queue_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_PROBE_CONTRACT_ID,
+) -> dict[str, Any]:
+    packet = _read_json(deployment_validity_blocker_packet_path)
+    extension_plan = _read_json(confounded_proxy_evidence_extension_plan_path)
+    acquisition_queue = _read_json(confounded_proxy_acquisition_queue_path)
+    fixed_threshold = _parse_optional_float(
+        packet.get("fixed_operating_point", {}).get("threshold")
+    )
+    fixed_threshold = float(fixed_threshold or 0.0)
+    high_req = (
+        extension_plan.get("extension_requirements", {})
+        .get("high_cofactor_signature_proxy", {})
+    )
+    structural_req = (
+        extension_plan.get("extension_requirements", {})
+        .get("same_family_structural_proxy", {})
+    )
+    min_new_high = int(
+        high_req.get("minimum_new_abstained_rows_if_all_new_rows_abstain", {}).get(
+            "0.8"
+        )
+        or extension_plan.get("counts", {}).get(
+            "high_cofactor_min_new_abstained_rows_for_80pct"
+        )
+        or 0
+    )
+    min_new_structural = int(
+        structural_req.get(
+            "minimum_new_abstained_rows_if_all_new_rows_abstain", {}
+        ).get("0.8")
+        or extension_plan.get("counts", {}).get(
+            "same_family_structural_min_new_abstained_rows_for_80pct"
+        )
+        or 0
+    )
+    retained_gap_rows = (
+        packet.get("affected_rows", {}).get("retained_proxy_gap_rows") or []
+    )
+    excluded_current_high = sorted(
+        {
+            str(row.get("entry_id"))
+            for row in retained_gap_rows
+            if isinstance(row, dict)
+            and row.get("axis") == "high_cofactor_confounded_proxy_extension"
+            and row.get("entry_id")
+        },
+        key=_entry_id_sort_key,
+    )
+    heldout_or_not_train_cal = sorted(
+        {
+            str(row.get("row") or row.get("entry_id"))
+            for row in acquisition_queue.get(
+                "family_panel_scenario_calibration_screen", []
+            )
+            if isinstance(row, dict)
+            and (row.get("row") or row.get("entry_id"))
+            and "high_cofactor_signature_proxy"
+            in (row.get("candidate_proxy_axes") or [])
+            and not row.get("train_cal_oos_calibration_eligible_now")
+        },
+        key=_entry_id_sort_key,
+    )
+    blockers = [
+        "candidate_rows_not_acquired_or_reviewed",
+        "candidate_rows_not_scored_at_fixed_threshold",
+        "structural_proxy_shortfall_remains_after_this_probe",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_high_cofactor_probe_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_high_cofactor_probe_contract_"
+            "ready_for_candidate_acquisition"
+        ),
+        "scope": (
+            "Train/cal-only high-cofactor mini-probe contract for the smallest "
+            "Lever 3 new-evidence experiment identified by the "
+            "deployment-validity blocker packet. It registers no rows and "
+            "performs no scoring; it freezes the source-free membership and "
+            "pass/fail rules for a future 16-row acquisition."
+        ),
+        "counts": {
+            "fixed_threshold": round(fixed_threshold, 6),
+            "probe_target_new_rows": min_new_high,
+            "minimum_new_abstained_rows_for_80pct": min_new_high,
+            "current_high_cofactor_proxy_rows": int(high_req.get("row_count") or 0),
+            "current_high_cofactor_proxy_abstained_at_fixed_threshold": int(
+                high_req.get("abstained_at_fixed_threshold") or 0
+            ),
+            "candidate_rows_registered_now": 0,
+            "excluded_current_high_cofactor_gap_rows": len(excluded_current_high),
+            "excluded_heldout_confounded_rows": len(heldout_or_not_train_cal),
+            "excluded_high_cofactor_family_panel_noneligible_rows": len(
+                heldout_or_not_train_cal
+            ),
+            "structural_proxy_minimum_new_abstained_rows_for_80pct": (
+                min_new_structural
+            ),
+            "blockers": len(blockers),
+        },
+        "membership_contract": {
+            "acceptance_criteria": [
+                "Row must be non-heldout train/cal OOS calibration evidence, not heldout final-eval or family-panel breadth evidence.",
+                "Row must have a deployment-valid predicted structure or an explicitly approved deployment-valid predicted-structure substitute.",
+                "High-cofactor membership must be derived from source-free cofactor/locus evidence, not mechanism text, EC/Rhea IDs, labels, source IDs, or target names.",
+                "Row must not already be part of the current high-cofactor retained-gap set or current scored train/cal OOS surface.",
+                "Row must be scored through the predicted-structure-vs-train-atlas fold/geometry/cofactor channel before any abstention claim.",
+                f"Threshold {fixed_threshold:.5f} must remain unchanged; this probe is pass/fail evidence, not threshold tuning.",
+            ],
+            "pass_fail_rule": {
+                "pass_condition": (
+                    "All 16 newly acquired train/cal high-cofactor proxy rows "
+                    "abstain at fixed threshold 0.44155, raising the "
+                    "high-cofactor proxy lower-bound readout from 0/4 to 16/20."
+                ),
+                "fail_conditions": [
+                    "Any candidate row is heldout or lacks a deployment-valid predicted structure.",
+                    "Any candidate uses mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive membership evidence.",
+                    "Fewer than 16 of 16 new rows abstain at fixed threshold 0.44155.",
+                ],
+            },
+            "probe_size_reason": (
+                "The current high-cofactor proxy has 4 rows and 0 abstentions; "
+                "16 additional abstained rows are the exact lower-bound count "
+                "needed to reach 80% if every new row abstains."
+            ),
+        },
+        "excluded_rows": {
+            "current_high_cofactor_retained_gap_rows": excluded_current_high,
+            "heldout_confounded_or_not_train_cal_rows_not_allowed_for_probe": (
+                heldout_or_not_train_cal
+            ),
+        },
+        "guardrails": {
+            "train_cal_only": True,
+            "heldout_rows_allowed": False,
+            "source_free_evidence_only": True,
+            "deployment_valid_predicted_structure_required": True,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_preserved": True,
+            "new_threshold_selected": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "blockers": blockers,
+        "decision": {
+            "candidate_rows_ready_to_score_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "deployable_closure_after_probe_alone": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Acquire exactly 16 new non-heldout train/cal OOS rows with "
+                "source-free high-cofactor signatures and deployment-valid "
+                "predicted structures, then score them at unchanged threshold "
+                "0.44155. All 16 must abstain to close only the high-cofactor "
+                "80% lower-bound target."
+            ),
+        },
+        "source_artifacts": {
+            "deployment_validity_blocker_packet": _source_path_record(
+                deployment_validity_blocker_packet_path
+            ),
+            "evidence_extension_plan": _source_path_record(
+                confounded_proxy_evidence_extension_plan_path
+            ),
+            "acquisition_queue": _source_path_record(
+                confounded_proxy_acquisition_queue_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_high_cofactor_probe_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    decision = contract["decision"]
+    excluded = contract["excluded_rows"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy High-Cofactor Probe Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Fixed threshold: {counts['fixed_threshold']}",
+        f"- Probe target new rows: {counts['probe_target_new_rows']}",
+        "- Current high-cofactor proxy: "
+        f"{counts['current_high_cofactor_proxy_abstained_at_fixed_threshold']}/"
+        f"{counts['current_high_cofactor_proxy_rows']} abstained",
+        "- Minimum new abstained rows for 80%: "
+        f"{counts['minimum_new_abstained_rows_for_80pct']}",
+        f"- Candidate rows registered now: {counts['candidate_rows_registered_now']}",
+        "- Structural proxy shortfall still separate: "
+        f"{counts['structural_proxy_minimum_new_abstained_rows_for_80pct']}",
+        f"- Blockers: {contract['blockers']}",
+        "",
+        "## Membership Contract",
+        "",
+    ]
+    lines += [f"- {item}" for item in contract["membership_contract"]["acceptance_criteria"]]
+    lines += [
+        "",
+        "## Excluded Rows",
+        "",
+        "| class | rows |",
+        "| --- | --- |",
+        "| current high-cofactor retained gaps | "
+        f"{', '.join(excluded['current_high_cofactor_retained_gap_rows'])} |",
+        "| heldout/not-train-cal rows not allowed | "
+        f"{', '.join(excluded['heldout_confounded_or_not_train_cal_rows_not_allowed_for_probe'])} |",
+        "",
+        "## Pass/Fail",
+        "",
+        "- Pass condition: "
+        f"{contract['membership_contract']['pass_fail_rule']['pass_condition']}",
+        "- Fail conditions: "
+        + "; ".join(contract["membership_contract"]["pass_fail_rule"]["fail_conditions"]),
+        "",
+        "## Decision",
+        "",
+        f"- Candidate rows ready to score now: {decision['candidate_rows_ready_to_score_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Deployable closure after probe alone: {decision['deployable_closure_after_probe_alone']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_high_cofactor_probe_contract(
+    *,
+    deployment_validity_blocker_packet_path: Path,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    confounded_proxy_acquisition_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_PROBE_CONTRACT_ID,
+) -> dict[str, Any]:
+    contract = build_fold_augmented_confounded_proxy_high_cofactor_probe_contract(
+        deployment_validity_blocker_packet_path=deployment_validity_blocker_packet_path,
+        confounded_proxy_evidence_extension_plan_path=(
+            confounded_proxy_evidence_extension_plan_path
+        ),
+        confounded_proxy_acquisition_queue_path=confounded_proxy_acquisition_queue_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_high_cofactor_probe_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
+
+
+def build_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract(
+    *,
+    deployment_validity_blocker_packet_path: Path,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    confounded_proxy_acquisition_queue_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_CONTRACT_ID
+    ),
+) -> dict[str, Any]:
+    packet = _read_json(deployment_validity_blocker_packet_path)
+    extension_plan = _read_json(confounded_proxy_evidence_extension_plan_path)
+    acquisition_queue = _read_json(confounded_proxy_acquisition_queue_path)
+    fixed_threshold = _parse_optional_float(
+        packet.get("fixed_operating_point", {}).get("threshold")
+    )
+    fixed_threshold = float(fixed_threshold or 0.0)
+    extension_counts = extension_plan.get("counts", {})
+    acquisition_counts = acquisition_queue.get("counts", {})
+    same_req = (
+        extension_plan.get("extension_requirements", {})
+        .get("same_family_structural_proxy", {})
+    )
+    high_req = (
+        extension_plan.get("extension_requirements", {})
+        .get("high_cofactor_signature_proxy", {})
+    )
+    min_new_structural = int(
+        same_req.get("minimum_new_abstained_rows_if_all_new_rows_abstain", {}).get(
+            "0.8"
+        )
+        or extension_counts.get("same_family_structural_min_new_abstained_rows_for_80pct")
+        or 0
+    )
+    min_new_high = int(
+        high_req.get("minimum_new_abstained_rows_if_all_new_rows_abstain", {}).get(
+            "0.8"
+        )
+        or extension_counts.get("high_cofactor_min_new_abstained_rows_for_80pct")
+        or 0
+    )
+    retained_gap_rows = (
+        packet.get("affected_rows", {}).get("retained_proxy_gap_rows") or []
+    )
+    retained_same_family_gap_rows = sorted(
+        {
+            str(row.get("entry_id"))
+            for row in retained_gap_rows
+            if isinstance(row, dict)
+            and row.get("axis") != "high_cofactor_confounded_proxy_extension"
+            and row.get("entry_id")
+        },
+        key=_entry_id_sort_key,
+    )
+    loose_rows = [
+        row
+        for row in acquisition_queue.get("loose_same_family_current_surface_rows", [])
+        if isinstance(row, dict)
+    ]
+    loose_count = int(
+        acquisition_counts.get("loose_same_family_current_surface_rows")
+        or extension_counts.get("current_surface_additional_same_family_rows_if_loosened")
+        or len(loose_rows)
+    )
+    loose_abstained = sum(
+        1
+        for row in loose_rows
+        if bool(row.get("abstained") or row.get("abstains_at_fixed_threshold"))
+    )
+    current_rows = int(same_req.get("row_count") or 0)
+    current_abstained = int(same_req.get("abstained_at_fixed_threshold") or 0)
+    loose_if_included_rows = current_rows + loose_count
+    loose_if_included_abstained = current_abstained + loose_abstained
+    blockers = [
+        "candidate_rows_not_acquired_or_reviewed",
+        "candidate_rows_not_scored_at_fixed_threshold",
+        "scale_experiment_large_170_row_lower_bound",
+        "high_cofactor_probe_still_separate",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.confounded_proxy_same_family_structural_acquisition_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_same_family_structural_"
+            "acquisition_contract_ready_for_candidate_acquisition"
+        ),
+        "scope": (
+            "Train/cal-only same-family structural acquisition contract for "
+            "the large Lever 3 confounded-proxy scale blocker. It registers "
+            "no rows, scores nothing, and freezes the source-free membership "
+            "and pass/fail rules for a future acquisition surface."
+        ),
+        "counts": {
+            "fixed_threshold": round(fixed_threshold, 6),
+            "current_same_family_structural_proxy_rows": current_rows,
+            "current_same_family_structural_proxy_abstained_at_fixed_threshold": (
+                current_abstained
+            ),
+            "minimum_new_abstained_rows_for_80pct": min_new_structural,
+            "probe_target_new_rows": min_new_structural,
+            "candidate_rows_registered_now": 0,
+            "retained_same_family_gap_rows": len(retained_same_family_gap_rows),
+            "loose_same_family_current_surface_rows": loose_count,
+            "loose_same_family_if_included_rows": loose_if_included_rows,
+            "loose_same_family_if_included_abstained_rows": (
+                loose_if_included_abstained
+            ),
+            "high_cofactor_minimum_new_abstained_rows_for_80pct": min_new_high,
+            "blockers": len(blockers),
+        },
+        "membership_contract": {
+            "acceptance_criteria": [
+                "Row must be non-heldout train/cal OOS calibration evidence.",
+                "Row must have a deployment-valid predicted structure or explicitly approved deployment-valid predicted-structure substitute.",
+                "Same-family structural membership must be derived from source-free fold/geometry or cofactor-locus evidence, not mechanism text, EC/Rhea IDs, labels, source IDs, or target names.",
+                "Row must not already be part of the current strict same-family structural proxy, loose same-family current-surface diagnostics, or retained-gap evidence request set.",
+                "Row must be scored through the predicted-structure-vs-train-atlas fold/geometry/cofactor channel before any abstention claim.",
+                f"Threshold {fixed_threshold:.5f} must remain unchanged; this is scale evidence, not threshold tuning.",
+            ],
+            "pass_fail_rule": {
+                "pass_condition": (
+                    "Enough newly acquired train/cal same-family structural "
+                    f"proxy rows abstain at fixed threshold {fixed_threshold:.5f} "
+                    f"to raise the structural proxy from {current_abstained}/"
+                    f"{current_rows} to at least 80% abstain recall; under the "
+                    "current all-new-rows-abstain lower bound this requires "
+                    f"{min_new_structural} new abstained rows."
+                ),
+                "fail_conditions": [
+                    "Any candidate row is heldout or lacks deployment-valid predicted structure evidence.",
+                    "Any candidate uses mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive membership evidence.",
+                    "The scored surface cannot reach 80% same-family structural abstain recall while preserving the train/cal in-scope retention floor.",
+                ],
+            },
+            "probe_size_reason": (
+                "The current strict same-family structural proxy is "
+                f"{current_abstained}/{current_rows} abstained. Even adding "
+                f"the {loose_count} loose same-family current-surface rows "
+                f"would only reach {loose_if_included_abstained}/"
+                f"{loose_if_included_rows}, so a new external train/cal "
+                "acquisition surface is required."
+            ),
+        },
+        "excluded_rows": {
+            "current_same_family_retained_gap_rows": retained_same_family_gap_rows,
+            "loose_same_family_current_surface_rows": [
+                str(row.get("entry_id"))
+                for row in sorted(
+                    loose_rows,
+                    key=lambda item: _entry_id_sort_key(str(item.get("entry_id") or "")),
+                )
+                if row.get("entry_id")
+            ],
+        },
+        "guardrails": {
+            "train_cal_only": True,
+            "heldout_rows_allowed": False,
+            "source_free_evidence_only": True,
+            "deployment_valid_predicted_structure_required": True,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_preserved": True,
+            "new_threshold_selected": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+        },
+        "blockers": blockers,
+        "decision": {
+            "candidate_rows_ready_to_score_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "deployable_closure_after_contract_alone": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Acquire a large new non-heldout train/cal same-family "
+                "structural OOS surface with deployment-valid predicted "
+                "structures and source-free membership evidence. Under the "
+                "current lower bound, 170 additional rows must abstain at "
+                "unchanged threshold 0.44155 to reach 80% structural-proxy "
+                "abstain recall."
+            ),
+        },
+        "source_artifacts": {
+            "deployment_validity_blocker_packet": _source_path_record(
+                deployment_validity_blocker_packet_path
+            ),
+            "evidence_extension_plan": _source_path_record(
+                confounded_proxy_evidence_extension_plan_path
+            ),
+            "acquisition_queue": _source_path_record(
+                confounded_proxy_acquisition_queue_path
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    decision = contract["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Same-Family Structural Acquisition Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Fixed threshold: {counts['fixed_threshold']}",
+        "- Current same-family structural proxy: "
+        f"{counts['current_same_family_structural_proxy_abstained_at_fixed_threshold']}/"
+        f"{counts['current_same_family_structural_proxy_rows']} abstained",
+        "- Loose same-family current surface if included: "
+        f"{counts['loose_same_family_if_included_abstained_rows']}/"
+        f"{counts['loose_same_family_if_included_rows']} abstained",
+        "- Minimum new abstained rows for 80%: "
+        f"{counts['minimum_new_abstained_rows_for_80pct']}",
+        f"- Candidate rows registered now: {counts['candidate_rows_registered_now']}",
+        "- High-cofactor probe still separate: "
+        f"{counts['high_cofactor_minimum_new_abstained_rows_for_80pct']}",
+        f"- Blockers: {contract['blockers']}",
+        "",
+        "## Membership Contract",
+        "",
+    ]
+    lines += [f"- {item}" for item in contract["membership_contract"]["acceptance_criteria"]]
+    lines += [
+        "",
+        "## Pass/Fail",
+        "",
+        "- Pass condition: "
+        f"{contract['membership_contract']['pass_fail_rule']['pass_condition']}",
+        "- Fail conditions: "
+        + "; ".join(contract["membership_contract"]["pass_fail_rule"]["fail_conditions"]),
+        "",
+        "## Decision",
+        "",
+        f"- Candidate rows ready to score now: {decision['candidate_rows_ready_to_score_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        "- Deployable closure after contract alone: "
+        f"{decision['deployable_closure_after_contract_alone']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract(
+    *,
+    deployment_validity_blocker_packet_path: Path,
+    confounded_proxy_evidence_extension_plan_path: Path,
+    confounded_proxy_acquisition_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_CONTRACT_ID
+    ),
+) -> dict[str, Any]:
+    contract = (
+        build_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract(
+            deployment_validity_blocker_packet_path=deployment_validity_blocker_packet_path,
+            confounded_proxy_evidence_extension_plan_path=(
+                confounded_proxy_evidence_extension_plan_path
+            ),
+            confounded_proxy_acquisition_queue_path=confounded_proxy_acquisition_queue_path,
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
 
 
 def _family_panel_import_preview_primary_blocker(

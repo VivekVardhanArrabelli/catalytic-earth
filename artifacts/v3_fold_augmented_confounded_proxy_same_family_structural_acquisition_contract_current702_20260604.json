@@ -1,0 +1,157 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_current702_20260604",
+  "blockers": [
+    "candidate_rows_not_acquired_or_reviewed",
+    "candidate_rows_not_scored_at_fixed_threshold",
+    "scale_experiment_large_170_row_lower_bound",
+    "high_cofactor_probe_still_separate"
+  ],
+  "counts": {
+    "blockers": 4,
+    "candidate_rows_registered_now": 0,
+    "current_same_family_structural_proxy_abstained_at_fixed_threshold": 10,
+    "current_same_family_structural_proxy_rows": 55,
+    "fixed_threshold": 0.44155,
+    "high_cofactor_minimum_new_abstained_rows_for_80pct": 16,
+    "loose_same_family_current_surface_rows": 21,
+    "loose_same_family_if_included_abstained_rows": 25,
+    "loose_same_family_if_included_rows": 76,
+    "minimum_new_abstained_rows_for_80pct": 170,
+    "probe_target_new_rows": 170,
+    "retained_same_family_gap_rows": 44
+  },
+  "created_utc": "2026-06-04T07:08:27Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "candidate_rows_ready_to_score_now": false,
+    "deployable_closure_after_contract_alone": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Acquire a large new non-heldout train/cal same-family structural OOS surface with deployment-valid predicted structures and source-free membership evidence. Under the current lower bound, 170 additional rows must abstain at unchanged threshold 0.44155 to reach 80% structural-proxy abstain recall."
+  },
+  "excluded_rows": {
+    "current_same_family_retained_gap_rows": [
+      "m_csa:25",
+      "m_csa:36",
+      "m_csa:52",
+      "m_csa:59",
+      "m_csa:74",
+      "m_csa:84",
+      "m_csa:91",
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:135",
+      "m_csa:187",
+      "m_csa:190",
+      "m_csa:206",
+      "m_csa:223",
+      "m_csa:229",
+      "m_csa:234",
+      "m_csa:240",
+      "m_csa:244",
+      "m_csa:256",
+      "m_csa:269",
+      "m_csa:280",
+      "m_csa:299",
+      "m_csa:308",
+      "m_csa:322",
+      "m_csa:348",
+      "m_csa:405",
+      "m_csa:422",
+      "m_csa:451",
+      "m_csa:463",
+      "m_csa:464",
+      "m_csa:468",
+      "m_csa:483",
+      "m_csa:488",
+      "m_csa:498",
+      "m_csa:500",
+      "m_csa:502",
+      "m_csa:503",
+      "m_csa:533",
+      "m_csa:565",
+      "m_csa:585",
+      "m_csa:621",
+      "m_csa:638",
+      "m_csa:645",
+      "m_csa:646"
+    ],
+    "loose_same_family_current_surface_rows": [
+      "m_csa:4",
+      "m_csa:88",
+      "m_csa:126",
+      "m_csa:130",
+      "m_csa:134",
+      "m_csa:145",
+      "m_csa:177",
+      "m_csa:209",
+      "m_csa:282",
+      "m_csa:284",
+      "m_csa:325",
+      "m_csa:350",
+      "m_csa:390",
+      "m_csa:439",
+      "m_csa:450",
+      "m_csa:525",
+      "m_csa:537",
+      "m_csa:539",
+      "m_csa:540",
+      "m_csa:547",
+      "m_csa:648"
+    ]
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "deployment_valid_predicted_structure_required": true,
+    "fixed_threshold_preserved": true,
+    "heldout_rows_allowed": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "new_threshold_selected": false,
+    "production_thresholds_changed": false,
+    "source_free_evidence_only": true,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "membership_contract": {
+    "acceptance_criteria": [
+      "Row must be non-heldout train/cal OOS calibration evidence.",
+      "Row must have a deployment-valid predicted structure or explicitly approved deployment-valid predicted-structure substitute.",
+      "Same-family structural membership must be derived from source-free fold/geometry or cofactor-locus evidence, not mechanism text, EC/Rhea IDs, labels, source IDs, or target names.",
+      "Row must not already be part of the current strict same-family structural proxy, loose same-family current-surface diagnostics, or retained-gap evidence request set.",
+      "Row must be scored through the predicted-structure-vs-train-atlas fold/geometry/cofactor channel before any abstention claim.",
+      "Threshold 0.44155 must remain unchanged; this is scale evidence, not threshold tuning."
+    ],
+    "pass_fail_rule": {
+      "fail_conditions": [
+        "Any candidate row is heldout or lacks deployment-valid predicted structure evidence.",
+        "Any candidate uses mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive membership evidence.",
+        "The scored surface cannot reach 80% same-family structural abstain recall while preserving the train/cal in-scope retention floor."
+      ],
+      "pass_condition": "Enough newly acquired train/cal same-family structural proxy rows abstain at fixed threshold 0.44155 to raise the structural proxy from 10/55 to at least 80% abstain recall; under the current all-new-rows-abstain lower bound this requires 170 new abstained rows."
+    },
+    "probe_size_reason": "The current strict same-family structural proxy is 10/55 abstained. Even adding the 21 loose same-family current-surface rows would only reach 25/76, so a new external train/cal acquisition surface is required."
+  },
+  "schema_version": "northstar_next_levers.v0.confounded_proxy_same_family_structural_acquisition_contract",
+  "scope": "Train/cal-only same-family structural acquisition contract for the large Lever 3 confounded-proxy scale blocker. It registers no rows, scores nothing, and freezes the source-free membership and pass/fail rules for a future acquisition surface.",
+  "source_artifacts": {
+    "acquisition_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_current702_20260603.json",
+      "sha256": "05fd9dc0d1c94abf07b3eb5ef61204947a638572a9693a3dc31c0e7ed39159aa"
+    },
+    "deployment_validity_blocker_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604.json",
+      "sha256": "b903ef4105af3141b0319f2b259018364d54646592b53254ef918f428df83db6"
+    },
+    "evidence_extension_plan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_evidence_extension_plan_current702_20260603.json",
+      "sha256": "69f63677067d8f2dcf276ba30544900255dc9ec252f439b301d65ec0962c1017"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_ready_for_candidate_acquisition"
+}
