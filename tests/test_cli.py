@@ -1388,6 +1388,16 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-q43088-source-free-locator-"
+                    "candidate-scout"
+                ),
+                (
+                    "cmd_build_fold_augmented_q43088_source_free_locator_"
+                    "candidate_scout"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-confounded-proxy-residual-queue-"
                     "after-p10746-q43088"
                 ),
@@ -1404,6 +1414,36 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_fold_augmented_confounded_proxy_alternate_"
                     "structure_source_contract"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-deployment-input-"
+                    "preflight"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_deployment_"
+                    "input_preflight"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-repo-wide-"
+                    "coordinate-sanity-scan"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_repo_wide_"
+                    "coordinate_sanity_scan"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-current-evidence-"
+                    "blocker-after-input-preflight"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_current_"
+                    "evidence_blocker_after_input_preflight"
                 ),
             ),
             (

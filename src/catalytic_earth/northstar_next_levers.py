@@ -228,11 +228,23 @@ FOLD_AUGMENTED_Q43088_GEOMETRY_LOCATOR_BLOCKER_PACKET_ID = (
 FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_APPROVAL_CONTRACT_ID = (
     "v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604"
 )
+FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_CANDIDATE_SCOUT_ID = (
+    "v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604"
+)
 FOLD_AUGMENTED_CONFOUNDED_PROXY_RESIDUAL_QUEUE_AFTER_P10746_Q43088_ID = (
     "v3_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604"
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_ALTERNATE_STRUCTURE_SOURCE_CONTRACT_ID = (
     "v3_fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_INPUT_PREFLIGHT_ID = (
+    "v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_REPO_WIDE_COORDINATE_SANITY_SCAN_ID = (
+    "v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_CURRENT_EVIDENCE_BLOCKER_AFTER_INPUT_PREFLIGHT_ID = (
+    "v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604"
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_PROBE_CONTRACT_ID = (
     "v3_fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604"
@@ -23989,6 +24001,377 @@ def write_fold_augmented_q43088_source_free_locator_approval_contract(
     return contract
 
 
+def _point_distance_angstrom(
+    left: dict[str, float],
+    right: dict[str, float],
+) -> float:
+    return math.sqrt(
+        (float(left["x"]) - float(right["x"])) ** 2
+        + (float(left["y"]) - float(right["y"])) ** 2
+        + (float(left["z"]) - float(right["z"])) ** 2
+    )
+
+
+def _mean_atom_plddt(atoms: list[dict[str, Any]]) -> float | None:
+    values = [
+        float(value)
+        for atom in atoms
+        for value in [_parse_optional_float(atom.get("B_iso_or_equiv"))]
+        if value is not None
+    ]
+    if not values:
+        return None
+    return round(sum(values) / len(values), 3)
+
+
+def _residue_id_sort_value(resid: str) -> tuple[int, int | str]:
+    try:
+        return (0, int(resid))
+    except ValueError:
+        return (1, resid)
+
+
+def _group_atom_residues(atoms: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        chain = atom.get("auth_asym_id") or atom.get("label_asym_id")
+        resid = atom.get("auth_seq_id") or atom.get("label_seq_id")
+        code = atom.get("auth_comp_id") or atom.get("label_comp_id")
+        if chain is None or resid is None or code is None:
+            continue
+        grouped[(str(chain), str(resid), str(code).upper())].append(atom)
+    residues: list[dict[str, Any]] = []
+    for (chain, resid, code), residue_atoms in sorted(
+        grouped.items(),
+        key=lambda item: (
+            item[0][0],
+            _residue_id_sort_value(item[0][1]),
+            item[0][2],
+        ),
+    ):
+        ca = atom_position(residue_atoms, "CA")
+        if ca is None:
+            continue
+        try:
+            sequence_position = int(resid)
+        except ValueError:
+            continue
+        residues.append(
+            {
+                "chain_name": chain,
+                "sequence_position": sequence_position,
+                "residue_code": code,
+                "atom_count": len(residue_atoms),
+                "centroid": residue_centroid(residue_atoms),
+                "ca": ca,
+                "mean_plddt": _mean_atom_plddt(residue_atoms),
+            }
+        )
+    return residues
+
+
+def build_fold_augmented_q43088_source_free_locator_candidate_scout(
+    *,
+    q43088_geometry_locator_blocker_packet_path: Path,
+    q43088_source_free_locator_approval_contract_path: Path,
+    q43088_coordinate_path: Path,
+    candidate_count: int = 12,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_CANDIDATE_SCOUT_ID,
+) -> dict[str, Any]:
+    packet = _read_json(q43088_geometry_locator_blocker_packet_path)
+    contract = _read_json(q43088_source_free_locator_approval_contract_path)
+    affected = packet.get("affected_row") or {}
+    role_context = affected.get("local_role_graph_context_not_clearance") or {}
+    residues = [
+        row
+        for row in role_context.get("residues", [])
+        if isinstance(row, dict)
+    ]
+    anchor_positions = []
+    for residue in residues:
+        for position in residue.get("sequence_positions", []) or []:
+            if isinstance(position, dict) and position.get("resid") is not None:
+                anchor_positions.append(
+                    {
+                        "sequence_position": int(position["resid"]),
+                        "residue_code": str(position.get("code") or "").upper(),
+                        "roles": residue.get("roles") or [],
+                        "residue_node_id": residue.get("residue_node_id"),
+                    }
+                )
+    coord_path = Path(q43088_coordinate_path)
+    atoms = (
+        parse_atom_site_loop(coord_path.read_text(encoding="utf-8", errors="replace"))
+        if coord_path.exists()
+        else []
+    )
+    grouped_residues = _group_atom_residues(atoms)
+    residue_by_position = {
+        int(row["sequence_position"]): row for row in grouped_residues
+    }
+    anchor_resolved: list[dict[str, Any]] = []
+    for anchor in anchor_positions:
+        row = residue_by_position.get(int(anchor["sequence_position"]))
+        if row is None:
+            continue
+        anchor_resolved.append(
+            {
+                **anchor,
+                "chain_name": row["chain_name"],
+                "ca": row["ca"],
+                "centroid": row["centroid"],
+                "mean_plddt": row["mean_plddt"],
+            }
+        )
+    primary_anchor = anchor_resolved[0] if anchor_resolved else None
+    candidates: list[dict[str, Any]] = []
+    if primary_anchor is not None:
+        anchor_position = int(primary_anchor["sequence_position"])
+        anchor_point = primary_anchor["ca"] or primary_anchor["centroid"]
+        for row in grouped_residues:
+            sequence_position = int(row["sequence_position"])
+            if sequence_position == anchor_position:
+                continue
+            distance = round(
+                _point_distance_angstrom(anchor_point, row["ca"] or row["centroid"]),
+                3,
+            )
+            candidates.append(
+                {
+                    "sequence_position": sequence_position,
+                    "residue_code": row["residue_code"],
+                    "chain_name": row["chain_name"],
+                    "distance_to_anchor_ca_angstrom": distance,
+                    "mean_plddt": row["mean_plddt"],
+                    "candidate_generation_method": (
+                        "nearest_residues_to_single_known_q43088_locator_in_"
+                        "local_predicted_structure"
+                    ),
+                    "approval_status": "pending_review",
+                    "approved_now": False,
+                    "why_not_clearance": (
+                        "Nearest-neighbor geometry around one anchor is a "
+                        "review candidate only; it is not an approved "
+                        "source-free locator or geometry sidecar."
+                    ),
+                }
+            )
+    candidates = sorted(
+        candidates,
+        key=lambda row: (
+            float(row["distance_to_anchor_ca_angstrom"]),
+            int(row["sequence_position"]),
+        ),
+    )[:candidate_count]
+    blockers = [
+        "q43088_candidate_locators_pending_review",
+        "q43088_two_additional_source_free_locator_positions_not_approved",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    contract_counts = contract.get("counts") or {}
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_q43088_source_free_locator_candidate_scout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_q43088_source_free_locator_candidate_scout_"
+            "pending_review_no_approval"
+        ),
+        "scope": (
+            "Review-only Q43088 locator candidate scout. It uses the local "
+            "AFDB-v6 predicted structure and the single known train/cal "
+            "source-free locator anchor to list nearby residue positions for "
+            "future review. It approves no locators, writes no sidecar, scores "
+            "no row, and does not change threshold 0.44155."
+        ),
+        "anchor_locators": anchor_resolved,
+        "candidate_locator_rows": candidates,
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "candidate_locators_generated_now": True,
+            "locator_positions_approved_now": False,
+            "geometry_sidecar_approved_now": False,
+            "row_rescored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "affected_rows": 1,
+            "local_predicted_coordinate_available_rows": int(coord_path.exists()),
+            "anchor_locator_rows": len(anchor_resolved),
+            "candidate_locator_rows": len(candidates),
+            "candidate_locators_approved_now": 0,
+            "active_site_residue_count_before_review": int(
+                contract_counts.get("active_site_residue_count") or 0
+            ),
+            "minimum_locator_positions_required_for_geometry_channel": int(
+                contract_counts.get(
+                    "minimum_locator_positions_required_for_geometry_channel"
+                )
+                or 0
+            ),
+            "additional_approved_locator_positions_needed": int(
+                contract_counts.get("additional_approved_locator_positions_needed")
+                or 0
+            ),
+            "q43088_ready_for_rescore_now": 0,
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "q43088_ready_for_rescore_now": False,
+            "candidate_scout_clears_locator_contract": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Review at least two Q43088 candidate locator positions and "
+                "explicitly approve or reject them under the source-free "
+                "locator contract. Do not rescore Q43088 until two additional "
+                "positions or an equivalent geometry sidecar are approved."
+            ),
+        },
+        "source_artifacts": {
+            "q43088_geometry_locator_blocker_packet": _source_path_record(
+                q43088_geometry_locator_blocker_packet_path
+            ),
+            "q43088_source_free_locator_approval_contract": _source_path_record(
+                q43088_source_free_locator_approval_contract_path
+            ),
+            "q43088_coordinate": {
+                "exists": coord_path.exists(),
+                "path": str(coord_path),
+                "sha256": _sha256(coord_path) if coord_path.exists() else None,
+            },
+        },
+        "interpretation": {
+            "result": (
+                "Q43088 now has concrete source-free locator candidates for "
+                "review, but zero additional locators are approved. The row "
+                "therefore remains blocked for combined-channel rescore."
+            ),
+            "next_action": (
+                "Have a reviewer accept or reject at least two candidate "
+                "positions, or supply an equivalent approved geometry sidecar; "
+                "then regenerate the Q43088 contract and rescore only after "
+                "the four coordinate-source blockers are also cleared."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_q43088_source_free_locator_candidate_scout_report(
+    scout: dict[str, Any],
+) -> str:
+    counts = scout["counts"]
+    decision = scout["decision"]
+    lines = [
+        "# Fold-Augmented Q43088 Source-Free Locator Candidate Scout - current702",
+        "",
+        f"Run: {scout['created_utc']}",
+        "",
+        scout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {scout['status']}",
+        f"- Anchor locators: {counts['anchor_locator_rows']}",
+        f"- Candidate locator rows: {counts['candidate_locator_rows']}",
+        "- Candidate locators approved now: "
+        f"{counts['candidate_locators_approved_now']}",
+        "- Additional approved locator positions needed: "
+        f"{counts['additional_approved_locator_positions_needed']}",
+        f"- Blockers: {scout['blockers']}",
+        "",
+        "## Anchor Locators",
+        "",
+        "| position | residue | mean pLDDT | roles |",
+        "| ---: | --- | ---: | --- |",
+    ]
+    for row in scout["anchor_locators"]:
+        lines.append(
+            f"| {row['sequence_position']} | {row['residue_code']} | "
+            f"{row.get('mean_plddt')} | {', '.join(row.get('roles') or [])} |"
+        )
+    lines += [
+        "",
+        "## Candidate Locators",
+        "",
+        "| rank | position | residue | distance to anchor CA (A) | mean pLDDT | status |",
+        "| ---: | ---: | --- | ---: | ---: | --- |",
+    ]
+    for index, row in enumerate(scout["candidate_locator_rows"], start=1):
+        lines.append(
+            f"| {index} | {row['sequence_position']} | {row['residue_code']} | "
+            f"{row['distance_to_anchor_ca_angstrom']} | {row.get('mean_plddt')} | "
+            f"{row['approval_status']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Q43088 ready for rescore now: {decision['q43088_ready_for_rescore_now']}",
+        "- Candidate scout clears locator contract: "
+        f"{decision['candidate_scout_clears_locator_contract']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {scout['interpretation']['result']}",
+        f"- {scout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_q43088_source_free_locator_candidate_scout(
+    *,
+    q43088_geometry_locator_blocker_packet_path: Path,
+    q43088_source_free_locator_approval_contract_path: Path,
+    q43088_coordinate_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    candidate_count: int = 12,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_CANDIDATE_SCOUT_ID,
+) -> dict[str, Any]:
+    scout = build_fold_augmented_q43088_source_free_locator_candidate_scout(
+        q43088_geometry_locator_blocker_packet_path=(
+            q43088_geometry_locator_blocker_packet_path
+        ),
+        q43088_source_free_locator_approval_contract_path=(
+            q43088_source_free_locator_approval_contract_path
+        ),
+        q43088_coordinate_path=q43088_coordinate_path,
+        candidate_count=candidate_count,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(scout, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_q43088_source_free_locator_candidate_scout_report(
+                scout
+            ),
+            encoding="utf-8",
+        )
+    return scout
+
+
 def build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
     *,
     p10746_decision_impact_path: Path,
@@ -24619,6 +25002,1030 @@ def write_fold_augmented_confounded_proxy_alternate_structure_source_contract(
             encoding="utf-8",
         )
     return contract
+
+
+def _scan_local_cif_accession_hits(
+    *,
+    roots: list[Path],
+    accessions: list[str],
+) -> dict[str, Any]:
+    hits_by_accession: dict[str, list[dict[str, Any]]] = {
+        accession: [] for accession in accessions
+    }
+    roots_scanned: list[str] = []
+    missing_roots: list[str] = []
+    files_scanned = 0
+    for root in roots:
+        root = Path(root)
+        if not root.exists():
+            missing_roots.append(str(root))
+            continue
+        roots_scanned.append(str(root))
+        if root.is_file():
+            candidate_paths = [root] if root.suffix == ".cif" else []
+        else:
+            candidate_paths = sorted(root.rglob("*.cif"))
+        for path in candidate_paths:
+            files_scanned += 1
+            matched_accessions: set[str] = set()
+            try:
+                with path.open("r", encoding="utf-8", errors="ignore") as handle:
+                    for line in handle:
+                        for accession in accessions:
+                            if accession in line:
+                                matched_accessions.add(accession)
+                        if len(matched_accessions) == len(accessions):
+                            break
+            except OSError:
+                continue
+            for accession in sorted(matched_accessions):
+                stat = path.stat()
+                hits_by_accession[accession].append(
+                    {
+                        "path": str(path),
+                        "sha256": _sha256(path),
+                        "size_bytes": stat.st_size,
+                    }
+                )
+    return {
+        "hits_by_accession": hits_by_accession,
+        "roots_scanned": roots_scanned,
+        "missing_roots": missing_roots,
+        "files_scanned": files_scanned,
+    }
+
+
+def build_fold_augmented_confounded_proxy_deployment_input_preflight(
+    *,
+    alternate_structure_source_contract_path: Path,
+    approved_predicted_coordinate_roots: list[Path],
+    disallowed_experimental_coordinate_roots: list[Path],
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_INPUT_PREFLIGHT_ID,
+) -> dict[str, Any]:
+    contract = _read_json(alternate_structure_source_contract_path)
+    affected_rows = [
+        row
+        for row in contract.get("affected_rows", [])
+        if isinstance(row, dict) and row.get("accession")
+    ]
+    accessions = [str(row["accession"]) for row in affected_rows]
+    predicted_scan = _scan_local_cif_accession_hits(
+        roots=approved_predicted_coordinate_roots,
+        accessions=accessions,
+    )
+    experimental_scan = _scan_local_cif_accession_hits(
+        roots=disallowed_experimental_coordinate_roots,
+        accessions=accessions,
+    )
+    predicted_hits = predicted_scan["hits_by_accession"]
+    experimental_hits = experimental_scan["hits_by_accession"]
+
+    preflight_rows: list[dict[str, Any]] = []
+    for row in affected_rows:
+        accession = str(row["accession"])
+        row_predicted_hits = predicted_hits.get(accession, [])
+        row_experimental_hits = experimental_hits.get(accession, [])
+        if row_predicted_hits:
+            local_status = "approved_predicted_hit_observed_needs_source_review"
+            row_blockers = [
+                "provider_model_version_path_checksum_approval_missing",
+                "row_not_rescore_ready_until_source_packet_approved",
+            ]
+        elif row_experimental_hits:
+            local_status = "experimental_only_disallowed_for_deployment"
+            row_blockers = [
+                "experimental_pdb_coordinate_shortcut_disallowed",
+                "approved_predicted_structure_coordinate_missing",
+            ]
+        else:
+            local_status = "no_local_coordinate_hit_observed"
+            row_blockers = [
+                "approved_predicted_structure_coordinate_missing",
+            ]
+        preflight_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": accession,
+                "residual_blocker_class": row.get("residual_blocker_class"),
+                "local_status": local_status,
+                "approved_predicted_coordinate_hits": row_predicted_hits,
+                "disallowed_experimental_coordinate_hits": row_experimental_hits,
+                "missing_evidence_type": (
+                    "approved deployment-valid predicted-structure coordinate "
+                    "with provider/model/version/path/checksum provenance"
+                ),
+                "blocked_shortcut": (
+                    "Experimental PDB-derived coordinates may not satisfy this "
+                    "deployment input gate, even when they map to the accession."
+                ),
+                "smallest_row_experiment": row.get("smallest_next_experiment"),
+                "row_blockers": row_blockers,
+                "rescore_ready_now": False,
+            }
+        )
+
+    rows_with_predicted = sum(
+        1 for row in preflight_rows if row["approved_predicted_coordinate_hits"]
+    )
+    rows_with_experimental = sum(
+        1 for row in preflight_rows if row["disallowed_experimental_coordinate_hits"]
+    )
+    rows_with_no_local_hit = sum(
+        1
+        for row in preflight_rows
+        if not row["approved_predicted_coordinate_hits"]
+        and not row["disallowed_experimental_coordinate_hits"]
+    )
+    blockers = [
+        "no_approved_predicted_coordinate_hits_for_residual_rows",
+        "experimental_pdb_coordinate_shortcuts_disallowed_for_deployment",
+        "provider_model_version_path_checksum_provenance_missing",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_deployment_input_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_deployment_input_preflight_"
+            "blocked_no_approved_predicted_coordinates"
+        ),
+        "scope": (
+            "Deployment-input preflight for the four residual Lever 3 "
+            "AFDB-unavailable coordinate-source blockers. It checks whether "
+            "repo-local CIFs can satisfy the alternate predicted-structure "
+            "source contract, explicitly rejects experimental-coordinate "
+            "shortcuts, downloads no files, stages no coordinates, scores no "
+            "rows, and does not change threshold 0.44155."
+        ),
+        "rows": preflight_rows,
+        "source_requirements": {
+            "required_fields_before_rescore": [
+                "provider",
+                "model_name_or_id",
+                "model_version",
+                "coordinate_path",
+                "checksum_sha256",
+                "accession_or_isoform_mapping_review",
+                "source_free_evidence_contract",
+            ],
+            "disallowed_inputs": [
+                "experimental PDB coordinate metadata as a deployment shortcut",
+                "mechanism text",
+                "EC/Rhea identifiers",
+                "labels or registry state",
+                "source IDs or target names as predictive features",
+            ],
+            "smallest_complete_experiment": (
+                "Approve a provider-neutral predicted-structure source and "
+                "stage predicted coordinates with checksums for all four "
+                "residual accessions before the fixed-threshold audit can rerun."
+            ),
+            "smallest_incremental_experiment": (
+                "Stage one approved predicted coordinate, preferably the "
+                "P07071 row because no local CIF shortcut was observed at all, "
+                "then repeat the same provenance check for the other three "
+                "rows."
+            ),
+        },
+        "local_scans": {
+            "approved_predicted_coordinate_roots": {
+                "roots_requested": [
+                    str(root) for root in approved_predicted_coordinate_roots
+                ],
+                "roots_scanned": predicted_scan["roots_scanned"],
+                "missing_roots": predicted_scan["missing_roots"],
+                "cif_files_scanned": predicted_scan["files_scanned"],
+            },
+            "disallowed_experimental_coordinate_roots": {
+                "roots_requested": [
+                    str(root) for root in disallowed_experimental_coordinate_roots
+                ],
+                "roots_scanned": experimental_scan["roots_scanned"],
+                "missing_roots": experimental_scan["missing_roots"],
+                "cif_files_scanned": experimental_scan["files_scanned"],
+            },
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "downloads_performed": False,
+            "coordinates_staged_or_imported": False,
+            "candidate_rows_scored_now": False,
+            "experimental_coordinates_used_as_deployment_inputs": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "affected_rows": len(preflight_rows),
+            "approved_predicted_coordinate_roots_scanned": len(
+                predicted_scan["roots_scanned"]
+            ),
+            "approved_predicted_cif_files_scanned": predicted_scan["files_scanned"],
+            "approved_predicted_coordinate_hits": sum(
+                len(row["approved_predicted_coordinate_hits"])
+                for row in preflight_rows
+            ),
+            "rows_with_approved_predicted_hits": rows_with_predicted,
+            "disallowed_experimental_coordinate_roots_scanned": len(
+                experimental_scan["roots_scanned"]
+            ),
+            "disallowed_experimental_cif_files_scanned": experimental_scan[
+                "files_scanned"
+            ],
+            "disallowed_experimental_coordinate_hits": sum(
+                len(row["disallowed_experimental_coordinate_hits"])
+                for row in preflight_rows
+            ),
+            "rows_with_disallowed_experimental_hits": rows_with_experimental,
+            "rows_with_no_local_coordinate_hit": rows_with_no_local_hit,
+            "deployment_valid_coordinate_rows_ready_now": 0,
+            "remaining_coordinate_source_blocker_rows": len(preflight_rows),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "local_repo_can_clear_coordinate_source_blockers_now": False,
+            "experimental_coordinate_shortcuts_blocked": True,
+            "approved_predicted_structure_rows_ready_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Approve and stage deployment-valid predicted coordinates with "
+                "provider/model/version/path/checksum provenance for P07071, "
+                "P07658, P00806, and P04531. Do not use the local experimental "
+                "PDB CIFs as deployment shortcuts, and do not retune threshold "
+                "0.44155."
+            ),
+        },
+        "source_artifacts": {
+            "alternate_structure_source_contract": _source_path_record(
+                alternate_structure_source_contract_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "No approved predicted coordinates are locally staged for the "
+                "four residual coordinate-source blockers. Three accessions "
+                "have local experimental CIF shortcuts, but those shortcuts are "
+                "deployment-invalid for Lever 3."
+            ),
+            "next_action": (
+                "Create a provider-neutral predicted-coordinate approval and "
+                "staging manifest with checksums; P07071 is the smallest first "
+                "row because it has no local CIF hit at all."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_deployment_input_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    decision = preflight["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Deployment Input Preflight - current702",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        f"- Affected rows: {counts['affected_rows']}",
+        "- Approved predicted coordinate hits: "
+        f"{counts['approved_predicted_coordinate_hits']}",
+        "- Disallowed experimental coordinate hits: "
+        f"{counts['disallowed_experimental_coordinate_hits']}",
+        "- Rows with no local coordinate hit: "
+        f"{counts['rows_with_no_local_coordinate_hit']}",
+        "- Deployment-valid rows ready now: "
+        f"{counts['deployment_valid_coordinate_rows_ready_now']}",
+        f"- Blockers: {preflight['blockers']}",
+        "",
+        "## Rows",
+        "",
+        "| row | accession | local status | predicted hits | disallowed hits |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in preflight["rows"]:
+        predicted_paths = ", ".join(
+            hit["path"] for hit in row["approved_predicted_coordinate_hits"]
+        )
+        experimental_paths = ", ".join(
+            hit["path"] for hit in row["disallowed_experimental_coordinate_hits"]
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['local_status']} | {predicted_paths or 'none'} | "
+            f"{experimental_paths or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Source Requirements",
+        "",
+    ]
+    lines += [
+        f"- {item}"
+        for item in preflight["source_requirements"][
+            "required_fields_before_rescore"
+        ]
+    ]
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Local repo can clear coordinate-source blockers now: "
+        f"{decision['local_repo_can_clear_coordinate_source_blockers_now']}",
+        "- Experimental coordinate shortcuts blocked: "
+        f"{decision['experimental_coordinate_shortcuts_blocked']}",
+        "- Approved predicted-structure rows ready now: "
+        f"{decision['approved_predicted_structure_rows_ready_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_deployment_input_preflight(
+    *,
+    alternate_structure_source_contract_path: Path,
+    approved_predicted_coordinate_roots: list[Path],
+    disallowed_experimental_coordinate_roots: list[Path],
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_INPUT_PREFLIGHT_ID,
+) -> dict[str, Any]:
+    preflight = build_fold_augmented_confounded_proxy_deployment_input_preflight(
+        alternate_structure_source_contract_path=(
+            alternate_structure_source_contract_path
+        ),
+        approved_predicted_coordinate_roots=approved_predicted_coordinate_roots,
+        disallowed_experimental_coordinate_roots=(
+            disallowed_experimental_coordinate_roots
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_deployment_input_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
+
+
+def build_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan(
+    *,
+    deployment_input_preflight_path: Path,
+    scan_roots: list[Path],
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_REPO_WIDE_COORDINATE_SANITY_SCAN_ID
+    ),
+) -> dict[str, Any]:
+    preflight = _read_json(deployment_input_preflight_path)
+    preflight_rows = [
+        row
+        for row in preflight.get("rows", [])
+        if isinstance(row, dict) and row.get("accession")
+    ]
+    accessions = [str(row["accession"]) for row in preflight_rows]
+    scan = _scan_local_cif_accession_hits(
+        roots=scan_roots,
+        accessions=accessions,
+    )
+    all_hits_by_accession = scan["hits_by_accession"]
+
+    sanity_rows: list[dict[str, Any]] = []
+    total_hits = 0
+    unclassified_hits = 0
+    rows_with_any_hit = 0
+    rows_with_only_disallowed_hits = 0
+    rows_with_no_hit = 0
+    rows_with_approved_predicted_hits = 0
+    for row in preflight_rows:
+        accession = str(row["accession"])
+        approved_paths = {
+            str(hit.get("path"))
+            for hit in row.get("approved_predicted_coordinate_hits", []) or []
+            if isinstance(hit, dict) and hit.get("path")
+        }
+        disallowed_paths = {
+            str(hit.get("path"))
+            for hit in row.get("disallowed_experimental_coordinate_hits", []) or []
+            if isinstance(hit, dict) and hit.get("path")
+        }
+        classified_hits = []
+        has_approved_hit = False
+        has_disallowed_hit = False
+        has_unclassified_hit = False
+        for hit in all_hits_by_accession.get(accession, []):
+            total_hits += 1
+            path = str(hit.get("path"))
+            if path in approved_paths:
+                hit_class = "approved_predicted_coordinate_hit_recorded_in_preflight"
+                has_approved_hit = True
+            elif path in disallowed_paths:
+                hit_class = (
+                    "disallowed_experimental_coordinate_shortcut_recorded_in_preflight"
+                )
+                has_disallowed_hit = True
+            else:
+                hit_class = "unclassified_local_cif_hit_requires_source_review"
+                has_unclassified_hit = True
+                unclassified_hits += 1
+            classified_hits.append({**hit, "hit_class": hit_class})
+        if classified_hits:
+            rows_with_any_hit += 1
+        else:
+            rows_with_no_hit += 1
+        if has_approved_hit:
+            rows_with_approved_predicted_hits += 1
+        if has_disallowed_hit and not has_approved_hit and not has_unclassified_hit:
+            rows_with_only_disallowed_hits += 1
+        if has_unclassified_hit:
+            local_status = "unclassified_local_cif_hit_requires_source_review"
+        elif has_approved_hit:
+            local_status = (
+                "approved_predicted_coordinate_hit_already_recorded_in_preflight"
+            )
+        elif has_disallowed_hit:
+            local_status = "only_disallowed_experimental_shortcut_hits_observed"
+        else:
+            local_status = "no_local_cif_accession_hit_observed"
+        sanity_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": accession,
+                "preflight_local_status": row.get("local_status"),
+                "repo_wide_local_status": local_status,
+                "repo_wide_cif_hits": classified_hits,
+                "approved_predicted_coordinate_hits_ready_now": [],
+                "rescore_ready_now": False,
+            }
+        )
+
+    blockers = [
+        "repo_wide_scan_finds_no_additional_approved_predicted_coordinates",
+        "experimental_pdb_coordinate_shortcuts_remain_disallowed",
+        "provider_model_version_path_checksum_provenance_missing",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_"
+            "no_additional_approved_predicted_coordinates"
+        ),
+        "scope": (
+            "Review-only repo-wide sanity scan for the four residual Lever 3 "
+            "coordinate-source blockers. It scans local CIF accession hits "
+            "under requested roots, classifies them against the deployment "
+            "preflight, downloads no files, stages no coordinates, scores no "
+            "rows, approves no source, and does not change threshold 0.44155."
+        ),
+        "rows": sanity_rows,
+        "local_scan": {
+            "roots_requested": [str(root) for root in scan_roots],
+            "roots_scanned": scan["roots_scanned"],
+            "missing_roots": scan["missing_roots"],
+            "cif_files_scanned": scan["files_scanned"],
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "downloads_performed": False,
+            "coordinates_staged_or_imported": False,
+            "candidate_rows_scored_now": False,
+            "sources_approved_now": False,
+            "experimental_coordinates_used_as_deployment_inputs": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "affected_rows": len(sanity_rows),
+            "repo_wide_cif_files_scanned": scan["files_scanned"],
+            "repo_wide_cif_accession_hits": total_hits,
+            "repo_wide_unclassified_cif_hits": unclassified_hits,
+            "rows_with_any_repo_wide_cif_hit": rows_with_any_hit,
+            "rows_with_no_repo_wide_cif_hit": rows_with_no_hit,
+            "rows_with_only_disallowed_experimental_hits": (
+                rows_with_only_disallowed_hits
+            ),
+            "rows_with_approved_predicted_hits_ready_now": (
+                rows_with_approved_predicted_hits
+            ),
+            "deployment_valid_coordinate_rows_ready_now": 0,
+            "remaining_coordinate_source_blocker_rows": len(sanity_rows),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "repo_wide_scan_changes_deployment_input_preflight_blocker": False,
+            "approved_predicted_structure_rows_ready_now": False,
+            "experimental_coordinate_shortcuts_blocked": True,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Approve and stage deployment-valid predicted coordinates for "
+                "P07071, P07658, P00806, and P04531 with provider/model/"
+                "version/path/checksum provenance. The repo-wide local CIF "
+                "scan found no additional approved predicted-coordinate inputs."
+            ),
+        },
+        "source_artifacts": {
+            "deployment_input_preflight": _source_path_record(
+                deployment_input_preflight_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The repo-wide CIF sanity scan agrees with the deployment-input "
+                "preflight: no approved deployment-valid predicted coordinates "
+                "are locally discoverable for the four coordinate-source "
+                "blockers."
+            ),
+            "next_action": (
+                "Stage a provider-neutral predicted-coordinate approval "
+                "manifest with checksums; do not use the local experimental "
+                "PDB CIF hits as deployment shortcuts."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_report(
+    scan: dict[str, Any],
+) -> str:
+    counts = scan["counts"]
+    decision = scan["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Repo-Wide Coordinate Sanity Scan - current702",
+        "",
+        f"Run: {scan['created_utc']}",
+        "",
+        scan["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {scan['status']}",
+        f"- Local CIF files scanned: {counts['repo_wide_cif_files_scanned']}",
+        f"- Local CIF accession hits: {counts['repo_wide_cif_accession_hits']}",
+        f"- Unclassified local CIF hits: {counts['repo_wide_unclassified_cif_hits']}",
+        f"- Rows with no local CIF hit: {counts['rows_with_no_repo_wide_cif_hit']}",
+        "- Rows with only disallowed experimental hits: "
+        f"{counts['rows_with_only_disallowed_experimental_hits']}",
+        "- Deployment-valid rows ready now: "
+        f"{counts['deployment_valid_coordinate_rows_ready_now']}",
+        f"- Blockers: {scan['blockers']}",
+        "",
+        "## Rows",
+        "",
+        "| row | accession | repo-wide status | local CIF hits |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in scan["rows"]:
+        hit_summary = ", ".join(
+            f"{hit['path']} ({hit['hit_class']})"
+            for hit in row["repo_wide_cif_hits"]
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['repo_wide_local_status']} | {hit_summary or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Repo-wide scan changes deployment-input blocker: "
+        f"{decision['repo_wide_scan_changes_deployment_input_preflight_blocker']}",
+        "- Approved predicted-structure rows ready now: "
+        f"{decision['approved_predicted_structure_rows_ready_now']}",
+        "- Experimental coordinate shortcuts blocked: "
+        f"{decision['experimental_coordinate_shortcuts_blocked']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {scan['interpretation']['result']}",
+        f"- {scan['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan(
+    *,
+    deployment_input_preflight_path: Path,
+    scan_roots: list[Path],
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_REPO_WIDE_COORDINATE_SANITY_SCAN_ID
+    ),
+) -> dict[str, Any]:
+    scan = build_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan(
+        deployment_input_preflight_path=deployment_input_preflight_path,
+        scan_roots=scan_roots,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(scan, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_report(
+                scan
+            ),
+            encoding="utf-8",
+        )
+    return scan
+
+
+def build_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight(
+    *,
+    residual_queue_after_p10746_q43088_path: Path,
+    deployment_input_preflight_path: Path,
+    q43088_source_free_locator_approval_contract_path: Path,
+    high_cofactor_probe_contract_path: Path,
+    same_family_structural_acquisition_contract_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_CURRENT_EVIDENCE_BLOCKER_AFTER_INPUT_PREFLIGHT_ID
+    ),
+) -> dict[str, Any]:
+    queue = _read_json(residual_queue_after_p10746_q43088_path)
+    preflight = _read_json(deployment_input_preflight_path)
+    q43088 = _read_json(q43088_source_free_locator_approval_contract_path)
+    high = _read_json(high_cofactor_probe_contract_path)
+    structural = _read_json(same_family_structural_acquisition_contract_path)
+    coordinate_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "accession": row.get("accession"),
+            "blocker_class": "predicted_structure_unavailable",
+            "local_status": row.get("local_status"),
+            "missing_evidence_type": row.get("missing_evidence_type"),
+            "smallest_next_experiment": row.get("smallest_row_experiment"),
+            "disallowed_experimental_coordinate_hits": row.get(
+                "disallowed_experimental_coordinate_hits"
+            )
+            or [],
+            "rescore_ready_now": False,
+        }
+        for row in preflight.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    q_row = q43088.get("affected_row") or {}
+    locator_row = {
+        "entry_id": q_row.get("entry_id"),
+        "accession": q_row.get("accession"),
+        "blocker_class": q_row.get("residual_blocker_class"),
+        "local_status": "local_predicted_coordinate_available_locator_missing",
+        "missing_evidence_type": q_row.get("missing_evidence_type"),
+        "smallest_next_experiment": q_row.get("smallest_next_experiment"),
+        "active_site_residue_count": q_row.get("active_site_residue_count"),
+        "additional_approved_locator_positions_needed": q_row.get(
+            "additional_approved_locator_positions_needed"
+        ),
+        "rescore_ready_now": False,
+    }
+    high_counts = high.get("counts") or {}
+    structural_counts = structural.get("counts") or {}
+    high_shortfall = int(
+        high_counts.get("minimum_new_abstained_rows_for_80pct") or 0
+    )
+    structural_shortfall = int(
+        structural_counts.get("minimum_new_abstained_rows_for_80pct") or 0
+    )
+    blockers = [
+        "current_local_evidence_cannot_clear_surface_completeness",
+        "four_rows_need_approved_predicted_structure_coordinates",
+        "q43088_two_source_free_locator_positions_missing",
+        "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+        "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_current_evidence_blocker_"
+            "blocked_after_input_preflight"
+        ),
+        "scope": (
+            "Consolidated Lever 3 current-evidence blocker after local "
+            "deployment-input preflight. It records the exact row-level "
+            "evidence missing for surface completeness and the remaining "
+            "train/cal calibration shortfalls. It does not approve sources, "
+            "stage coordinates, rescore rows, rerun thresholds, or use heldout "
+            "rows for calibration."
+        ),
+        "surface_completeness_blocker_rows": {
+            "coordinate_source_rows": coordinate_rows,
+            "locator_or_geometry_sidecar_rows": [locator_row],
+        },
+        "calibration_blockers": [
+            {
+                "axis": "high_cofactor_signature_proxy",
+                "current_abstained_at_fixed_threshold": high_counts.get(
+                    "current_high_cofactor_proxy_abstained_at_fixed_threshold"
+                ),
+                "current_rows": high_counts.get("current_high_cofactor_proxy_rows"),
+                "minimum_new_abstained_rows_for_80pct": high_shortfall,
+                "smallest_next_experiment": (
+                    "Acquire exactly 16 new non-heldout train/cal OOS rows "
+                    "with source-free high-cofactor signatures and "
+                    "deployment-valid predicted structures, then score them at "
+                    "unchanged threshold 0.44155."
+                ),
+            },
+            {
+                "axis": "same_family_structural_proxy",
+                "minimum_new_abstained_rows_for_80pct": structural_shortfall,
+                "smallest_next_experiment": (
+                    "Acquire the frozen same-family structural train/cal OOS "
+                    "row set under the existing contract; this remains the "
+                    "larger calibration blocker after the high-cofactor probe."
+                ),
+            },
+        ],
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "downloads_performed": False,
+            "coordinates_staged_or_imported": False,
+            "locator_positions_approved_now": False,
+            "geometry_sidecar_approved_now": False,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "surface_completeness_blocker_rows": len(coordinate_rows) + 1,
+            "coordinate_source_blocker_rows": len(coordinate_rows),
+            "coordinate_rows_ready_now": int(
+                (preflight.get("counts") or {}).get(
+                    "deployment_valid_coordinate_rows_ready_now"
+                )
+                or 0
+            ),
+            "disallowed_experimental_shortcut_rows": int(
+                (preflight.get("counts") or {}).get(
+                    "rows_with_disallowed_experimental_hits"
+                )
+                or 0
+            ),
+            "rows_with_no_local_coordinate_hit": int(
+                (preflight.get("counts") or {}).get(
+                    "rows_with_no_local_coordinate_hit"
+                )
+                or 0
+            ),
+            "locator_or_geometry_sidecar_blocker_rows": 1,
+            "q43088_additional_approved_locator_positions_needed": int(
+                q_row.get("additional_approved_locator_positions_needed") or 0
+            ),
+            "high_cofactor_min_new_abstained_rows_for_80pct": high_shortfall,
+            "same_family_structural_min_new_abstained_rows_for_80pct": (
+                structural_shortfall
+            ),
+            "fixed_threshold": high_counts.get("fixed_threshold"),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "current_evidence_can_solve_surface_completeness": False,
+            "current_evidence_can_solve_confounded_safe_calibration": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "smallest_surface_completeness_experiment": (
+                "Approve and stage predicted coordinates for P07071, P07658, "
+                "P00806, and P04531 with provider/model/version/path/checksum "
+                "provenance, and approve two Q43088 source-free locator "
+                "positions or an equivalent geometry sidecar."
+            ),
+            "smallest_calibration_experiment": (
+                "Run the frozen 16-row high-cofactor train/cal OOS acquisition "
+                "first; it is the smaller calibration blocker, but the "
+                "same-family structural 170-row blocker remains after it."
+            ),
+            "next_gate": (
+                "Do not rerun or retune threshold 0.44155. Clear the five "
+                "surface-completeness rows through deployment-valid evidence, "
+                "then score at the fixed operating point; separately acquire "
+                "the frozen train/cal OOS proxy rows for calibration closure."
+            ),
+        },
+        "source_artifacts": {
+            "residual_queue_after_p10746_q43088": _source_path_record(
+                residual_queue_after_p10746_q43088_path
+            ),
+            "deployment_input_preflight": _source_path_record(
+                deployment_input_preflight_path
+            ),
+            "q43088_source_free_locator_approval_contract": _source_path_record(
+                q43088_source_free_locator_approval_contract_path
+            ),
+            "high_cofactor_probe_contract": _source_path_record(
+                high_cofactor_probe_contract_path
+            ),
+            "same_family_structural_acquisition_contract": _source_path_record(
+                same_family_structural_acquisition_contract_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Current local evidence cannot make Lever 3 deployment-valid "
+                "or confounded-safe: all four coordinate-source rows still "
+                "lack approved predicted coordinates, Q43088 still lacks two "
+                "approved source-free locator positions, and the train/cal "
+                "proxy calibration shortfalls remain 16 and 170 rows."
+            ),
+            "next_action": (
+                "The smallest concrete next experiment is an approval/staging "
+                "manifest for the four predicted-coordinate rows plus a Q43088 "
+                "locator review packet; the smallest calibration experiment is "
+                "the frozen 16-row high-cofactor probe."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_report(
+    blocker: dict[str, Any],
+) -> str:
+    counts = blocker["counts"]
+    decision = blocker["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Current-Evidence Blocker After Input Preflight - current702",
+        "",
+        f"Run: {blocker['created_utc']}",
+        "",
+        blocker["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {blocker['status']}",
+        "- Surface-completeness blocker rows: "
+        f"{counts['surface_completeness_blocker_rows']}",
+        f"- Coordinate-source blocker rows: {counts['coordinate_source_blocker_rows']}",
+        f"- Coordinate rows ready now: {counts['coordinate_rows_ready_now']}",
+        "- Disallowed experimental shortcut rows: "
+        f"{counts['disallowed_experimental_shortcut_rows']}",
+        "- Q43088 additional locator positions needed: "
+        f"{counts['q43088_additional_approved_locator_positions_needed']}",
+        "- High-cofactor new abstained rows needed: "
+        f"{counts['high_cofactor_min_new_abstained_rows_for_80pct']}",
+        "- Same-family structural new abstained rows needed: "
+        f"{counts['same_family_structural_min_new_abstained_rows_for_80pct']}",
+        f"- Blockers: {blocker['blockers']}",
+        "",
+        "## Surface Rows",
+        "",
+        "| row | accession | blocker | missing evidence | smallest next experiment |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in blocker["surface_completeness_blocker_rows"][
+        "coordinate_source_rows"
+    ]:
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['blocker_class']} | {row['missing_evidence_type']} | "
+            f"{row['smallest_next_experiment']} |"
+        )
+    for row in blocker["surface_completeness_blocker_rows"][
+        "locator_or_geometry_sidecar_rows"
+    ]:
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['blocker_class']} | {row['missing_evidence_type']} | "
+            f"{row['smallest_next_experiment']} |"
+        )
+    lines += [
+        "",
+        "## Calibration Rows",
+        "",
+        "| axis | minimum new abstained rows | smallest next experiment |",
+        "| --- | ---: | --- |",
+    ]
+    for row in blocker["calibration_blockers"]:
+        lines.append(
+            f"| {row['axis']} | {row['minimum_new_abstained_rows_for_80pct']} | "
+            f"{row['smallest_next_experiment']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Current evidence can solve surface completeness: "
+        f"{decision['current_evidence_can_solve_surface_completeness']}",
+        "- Current evidence can solve confounded-safe calibration: "
+        f"{decision['current_evidence_can_solve_confounded_safe_calibration']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        "- Smallest surface-completeness experiment: "
+        f"{decision['smallest_surface_completeness_experiment']}",
+        "- Smallest calibration experiment: "
+        f"{decision['smallest_calibration_experiment']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {blocker['interpretation']['result']}",
+        f"- {blocker['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight(
+    *,
+    residual_queue_after_p10746_q43088_path: Path,
+    deployment_input_preflight_path: Path,
+    q43088_source_free_locator_approval_contract_path: Path,
+    high_cofactor_probe_contract_path: Path,
+    same_family_structural_acquisition_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_CURRENT_EVIDENCE_BLOCKER_AFTER_INPUT_PREFLIGHT_ID
+    ),
+) -> dict[str, Any]:
+    blocker = (
+        build_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight(
+            residual_queue_after_p10746_q43088_path=(
+                residual_queue_after_p10746_q43088_path
+            ),
+            deployment_input_preflight_path=deployment_input_preflight_path,
+            q43088_source_free_locator_approval_contract_path=(
+                q43088_source_free_locator_approval_contract_path
+            ),
+            high_cofactor_probe_contract_path=high_cofactor_probe_contract_path,
+            same_family_structural_acquisition_contract_path=(
+                same_family_structural_acquisition_contract_path
+            ),
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(blocker, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_report(
+                blocker
+            ),
+            encoding="utf-8",
+        )
+    return blocker
 
 
 def build_fold_augmented_post_decision_deployment_closure_status(

@@ -3,15 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T08:01:35Z`
-- STARTED_AT_LOCAL: `2026-06-04T03:01:35-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T08:50:44Z`
-- ENDED_AT_LOCAL: `2026-06-04T03:50:44-0500 CDT`
-- ELAPSED_MINUTES: `49.2`
+- STARTED_AT_UTC: `2026-06-04T09:03:05Z`
+- STARTED_AT_LOCAL: `2026-06-04T04:03:05-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T09:53:27Z`
+- ENDED_AT_LOCAL: `2026-06-04T04:53:27-0500 CDT`
+- ELAPSED_MINUTES: `50.4`
 - Status: wrap validation passed; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T08:01:35Z` with PID `89761`.
-  During the run the lock record became stale and was refreshed with the same
-  start timestamp at `2026-06-04T08:33:39Z` via the tested lock helper.
+  acquired before substantive work at `2026-06-04T09:03:05Z` with PID `41464`.
   Current user instruction: work only on Lever 3.
 
 ## Mission
@@ -63,6 +61,131 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 28
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T09:03:05Z`
+- STARTED_LOCAL: `2026-06-04T04:03:05-0500 CDT`
+- ENDED_AT: `2026-06-04T09:53:27Z`
+- ENDED_LOCAL: `2026-06-04T04:53:27-0500 CDT`
+- ELAPSED_MINUTES: `50.4`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T09:03:05Z` with PID `41464`.
+
+#### What changed
+
+- Added a deployment-input preflight for the four residual AFDB-unavailable
+  Lever 3 coordinate-source blockers:
+  `artifacts/v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.json`
+  and
+  `work/fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.md`.
+  It scans the approved predicted-coordinate root and the disallowed
+  experimental-coordinate root, finds 0 approved predicted-coordinate hits, and
+  records 3 experimental PDB-derived shortcuts as deployment-invalid:
+  `pdb_1AA6.cif` for P07658, `pdb_1LBA.cif` for P00806, and `pdb_1DEK.cif`
+  for P04531. P07071 has no local CIF hit.
+- Added a repo-wide local CIF sanity scan:
+  `artifacts/v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.json`
+  and
+  `work/fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.md`.
+  It scans 1,636 local CIFs under `artifacts/`, finds only the same three
+  experimental shortcuts, finds no P07071 hit, and leaves 0 deployment-valid
+  coordinate rows ready.
+- Added a current-evidence blocker packet:
+  `artifacts/v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.json`
+  and
+  `work/fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.md`.
+  It records five surface-completeness blockers: four coordinate-source rows
+  plus Q43088, which still needs two approved source-free locator positions or
+  an equivalent geometry sidecar. The calibration shortfalls remain 16
+  high-cofactor rows and 170 same-family structural rows.
+- Added a Q43088 review-only locator candidate scout:
+  `artifacts/v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.json`
+  and
+  `work/fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.md`.
+  It uses the local AFDB-v6 predicted structure plus the single Tyr287 anchor
+  to list 12 nearest-neighbor candidate residue positions, all pending review,
+  with 0 locator approvals and 0 rescore readiness.
+- Added deterministic CLI builders and regression coverage for the new
+  preflight, repo-wide scan, Q43088 scout, and current-evidence blocker. The
+  durable docs now point at the current fail-closed Lever 3 decision.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, source decisions, sidecar approvals, heldout splits, or threshold
+  values changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were used
+  as predictive features.
+- Local CIF scans were provenance/blocker checks only: no downloads, coordinate
+  staging, source approvals, row scores, rescoring, or threshold reruns.
+- Experimental PDB-derived CIF hits remain explicitly disallowed as deployment
+  shortcuts.
+
+#### Verification
+
+- Baseline before edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1316 tests passed.
+- Public CLI builder smoke:
+  `build-fold-augmented-confounded-proxy-deployment-input-preflight` wrote 0
+  ready rows and 3 disallowed experimental hits;
+  `build-fold-augmented-q43088-source-free-locator-candidate-scout` wrote 12
+  candidates and 0 approvals;
+  `build-fold-augmented-confounded-proxy-current-evidence-blocker-after-input-preflight`
+  wrote 5 surface blockers and 16/170 calibration shortfalls;
+  `build-fold-augmented-confounded-proxy-repo-wide-coordinate-sanity-scan` wrote
+  1,636 scanned CIFs, 3 hits, and 0 ready rows.
+- Focused artifact regressions:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'q43088_source_free_locator_candidate_scout or deployment_input_preflight or repo_wide_coordinate_sanity_scan or current_evidence_blocker_after_input_preflight' -q`:
+  4 passed.
+- CLI registration:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`:
+  1 passed, 143 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1365 passed, 169 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1320 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Final docs artifact-reference check to `/tmp`: missing 0.
+- JSON syntax checks passed for the four new Lever 3 JSON artifacts.
+- Disk guardrail remained above 10 GiB: 26 GiB available.
+
+#### Commit/push status
+
+- `git fetch origin` completed during wrap prep; local `HEAD` and `origin/main`
+  were both `b73a46da4a2de6dc06507bf14f3ce8146c8ee0d5` before the wrap commit.
+- Wrap commit, push, sync verification, and lock release are the remaining
+  mechanical steps after this handoff/status update.
+
+#### Exact next action
+
+Do not rerun or retune threshold `0.44155` yet. The immediate Lever 3 gate is:
+
+1. For `m_csa:416`/`P07071`, `m_csa:562`/`P07658`,
+   `m_csa:586`/`P00806`, and `m_csa:637`/`P04531`, approve and stage
+   deployment-valid predicted coordinates with provider/model/version/path/
+   checksum provenance. Do not use local experimental PDB CIF shortcuts.
+2. For `m_csa:604`/`Q43088`, review the 12 candidate locator positions and
+   explicitly approve at least two source-free locators, or approve an
+   equivalent source-free geometry sidecar.
+3. Only after both surface-completeness gates clear, rescore the five rows
+   through the existing predicted-structure-vs-train-atlas fold/geometry/
+   cofactor channel at the unchanged fixed threshold.
+4. For confounded-safe calibration closure, run the frozen 16-row high-cofactor
+   train/cal OOS acquisition first; the 170-row same-family structural
+   acquisition remains the larger follow-on blocker.
 
 ### 2026-06-04 Lever 3 Forward Push Active Run 27
 

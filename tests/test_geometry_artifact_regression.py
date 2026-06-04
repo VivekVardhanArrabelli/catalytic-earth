@@ -5574,6 +5574,63 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(contract["guardrails"]["row_rescored_now"])
         self.assertFalse(contract["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_q43088_source_free_locator_candidate_scout_counts(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_q43088_source_free_locator_candidate_"
+                "scout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            scout["status"],
+            (
+                "fold_augmented_q43088_source_free_locator_candidate_scout_"
+                "pending_review_no_approval"
+            ),
+        )
+        self.assertEqual(scout["counts"]["affected_rows"], 1)
+        self.assertEqual(
+            scout["counts"]["local_predicted_coordinate_available_rows"], 1
+        )
+        self.assertEqual(scout["counts"]["anchor_locator_rows"], 1)
+        self.assertEqual(scout["counts"]["candidate_locator_rows"], 12)
+        self.assertEqual(scout["counts"]["candidate_locators_approved_now"], 0)
+        self.assertEqual(
+            scout["counts"]["additional_approved_locator_positions_needed"], 2
+        )
+        self.assertEqual(scout["counts"]["q43088_ready_for_rescore_now"], 0)
+        self.assertEqual(scout["counts"]["blockers"], 3)
+        anchor = scout["anchor_locators"][0]
+        self.assertEqual(anchor["sequence_position"], 287)
+        self.assertEqual(anchor["residue_code"], "TYR")
+        self.assertEqual(
+            anchor["roles"], ["activator", "proton_acceptor", "proton_donor"]
+        )
+        candidates = scout["candidate_locator_rows"]
+        self.assertEqual(candidates[0]["sequence_position"], 288)
+        self.assertEqual(candidates[0]["residue_code"], "ASP")
+        self.assertEqual(candidates[0]["approval_status"], "pending_review")
+        self.assertFalse(candidates[0]["approved_now"])
+        self.assertIn(
+            "q43088_candidate_locators_pending_review", scout["blockers"]
+        )
+        self.assertFalse(scout["decision"]["q43088_ready_for_rescore_now"])
+        self.assertFalse(
+            scout["decision"]["candidate_scout_clears_locator_contract"]
+        )
+        self.assertFalse(
+            scout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertTrue(scout["guardrails"]["candidate_locators_generated_now"])
+        self.assertFalse(scout["guardrails"]["locator_positions_approved_now"])
+        self.assertFalse(scout["guardrails"]["row_rescored_now"])
+        self.assertFalse(scout["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_counts(
         self,
     ) -> None:
@@ -5753,6 +5810,252 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(contract["guardrails"]["provider_approved_now"])
         self.assertFalse(contract["guardrails"]["coordinates_downloaded_or_imported"])
         self.assertFalse(contract["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_confounded_proxy_deployment_input_preflight_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_deployment_input_"
+                "preflight_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            (
+                "fold_augmented_confounded_proxy_deployment_input_preflight_"
+                "blocked_no_approved_predicted_coordinates"
+            ),
+        )
+        self.assertEqual(preflight["counts"]["affected_rows"], 4)
+        self.assertEqual(
+            preflight["counts"]["approved_predicted_coordinate_hits"], 0
+        )
+        self.assertEqual(
+            preflight["counts"]["rows_with_approved_predicted_hits"], 0
+        )
+        self.assertEqual(
+            preflight["counts"]["disallowed_experimental_coordinate_hits"], 3
+        )
+        self.assertEqual(
+            preflight["counts"]["rows_with_disallowed_experimental_hits"], 3
+        )
+        self.assertEqual(
+            preflight["counts"]["rows_with_no_local_coordinate_hit"], 1
+        )
+        self.assertEqual(
+            preflight["counts"]["deployment_valid_coordinate_rows_ready_now"], 0
+        )
+        self.assertEqual(
+            preflight["counts"]["remaining_coordinate_source_blocker_rows"], 4
+        )
+        self.assertEqual(preflight["counts"]["blockers"], 4)
+        rows = {row["entry_id"]: row for row in preflight["rows"]}
+        self.assertEqual(
+            sorted(rows),
+            ["m_csa:416", "m_csa:562", "m_csa:586", "m_csa:637"],
+        )
+        self.assertEqual(
+            rows["m_csa:416"]["local_status"], "no_local_coordinate_hit_observed"
+        )
+        self.assertEqual(
+            rows["m_csa:562"]["local_status"],
+            "experimental_only_disallowed_for_deployment",
+        )
+        self.assertEqual(
+            rows["m_csa:586"]["local_status"],
+            "experimental_only_disallowed_for_deployment",
+        )
+        self.assertEqual(
+            rows["m_csa:637"]["local_status"],
+            "experimental_only_disallowed_for_deployment",
+        )
+        self.assertEqual(
+            rows["m_csa:562"]["disallowed_experimental_coordinate_hits"][0][
+                "path"
+            ],
+            "artifacts/v3_foldseek_coordinates_1000/pdb_1AA6.cif",
+        )
+        self.assertEqual(
+            rows["m_csa:586"]["disallowed_experimental_coordinate_hits"][0][
+                "path"
+            ],
+            "artifacts/v3_foldseek_coordinates_1000/pdb_1LBA.cif",
+        )
+        self.assertEqual(
+            rows["m_csa:637"]["disallowed_experimental_coordinate_hits"][0][
+                "path"
+            ],
+            "artifacts/v3_foldseek_coordinates_1000/pdb_1DEK.cif",
+        )
+        self.assertIn(
+            "experimental_pdb_coordinate_shortcuts_disallowed_for_deployment",
+            preflight["blockers"],
+        )
+        self.assertFalse(
+            preflight["decision"][
+                "local_repo_can_clear_coordinate_source_blockers_now"
+            ]
+        )
+        self.assertTrue(
+            preflight["decision"]["experimental_coordinate_shortcuts_blocked"]
+        )
+        self.assertFalse(
+            preflight["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(preflight["guardrails"]["downloads_performed"])
+        self.assertFalse(
+            preflight["guardrails"][
+                "experimental_coordinates_used_as_deployment_inputs"
+            ]
+        )
+        self.assertFalse(preflight["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_counts(
+        self,
+    ) -> None:
+        scan = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_repo_wide_coordinate_"
+                "sanity_scan_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            scan["status"],
+            (
+                "fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_"
+                "no_additional_approved_predicted_coordinates"
+            ),
+        )
+        self.assertEqual(scan["counts"]["affected_rows"], 4)
+        self.assertEqual(scan["counts"]["repo_wide_cif_files_scanned"], 1636)
+        self.assertEqual(scan["counts"]["repo_wide_cif_accession_hits"], 3)
+        self.assertEqual(scan["counts"]["repo_wide_unclassified_cif_hits"], 0)
+        self.assertEqual(scan["counts"]["rows_with_any_repo_wide_cif_hit"], 3)
+        self.assertEqual(scan["counts"]["rows_with_no_repo_wide_cif_hit"], 1)
+        self.assertEqual(
+            scan["counts"]["rows_with_only_disallowed_experimental_hits"], 3
+        )
+        self.assertEqual(
+            scan["counts"]["rows_with_approved_predicted_hits_ready_now"], 0
+        )
+        self.assertEqual(
+            scan["counts"]["deployment_valid_coordinate_rows_ready_now"], 0
+        )
+        self.assertEqual(
+            scan["counts"]["remaining_coordinate_source_blocker_rows"], 4
+        )
+        rows = {row["entry_id"]: row for row in scan["rows"]}
+        self.assertEqual(
+            rows["m_csa:416"]["repo_wide_local_status"],
+            "no_local_cif_accession_hit_observed",
+        )
+        self.assertEqual(
+            rows["m_csa:562"]["repo_wide_cif_hits"][0]["hit_class"],
+            "disallowed_experimental_coordinate_shortcut_recorded_in_preflight",
+        )
+        self.assertFalse(
+            scan["decision"][
+                "repo_wide_scan_changes_deployment_input_preflight_blocker"
+            ]
+        )
+        self.assertFalse(
+            scan["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(scan["guardrails"]["downloads_performed"])
+        self.assertFalse(scan["guardrails"]["coordinates_staged_or_imported"])
+        self.assertFalse(scan["guardrails"]["sources_approved_now"])
+        self.assertFalse(scan["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_counts(
+        self,
+    ) -> None:
+        blocker = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_current_evidence_"
+                "blocker_after_input_preflight_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            blocker["status"],
+            (
+                "fold_augmented_confounded_proxy_current_evidence_blocker_"
+                "blocked_after_input_preflight"
+            ),
+        )
+        self.assertEqual(
+            blocker["counts"]["surface_completeness_blocker_rows"], 5
+        )
+        self.assertEqual(blocker["counts"]["coordinate_source_blocker_rows"], 4)
+        self.assertEqual(blocker["counts"]["coordinate_rows_ready_now"], 0)
+        self.assertEqual(
+            blocker["counts"]["disallowed_experimental_shortcut_rows"], 3
+        )
+        self.assertEqual(blocker["counts"]["rows_with_no_local_coordinate_hit"], 1)
+        self.assertEqual(
+            blocker["counts"]["locator_or_geometry_sidecar_blocker_rows"], 1
+        )
+        self.assertEqual(
+            blocker["counts"][
+                "q43088_additional_approved_locator_positions_needed"
+            ],
+            2,
+        )
+        self.assertEqual(
+            blocker["counts"]["high_cofactor_min_new_abstained_rows_for_80pct"],
+            16,
+        )
+        self.assertEqual(
+            blocker["counts"][
+                "same_family_structural_min_new_abstained_rows_for_80pct"
+            ],
+            170,
+        )
+        self.assertEqual(blocker["counts"]["blockers"], 6)
+        coordinate_rows = {
+            row["entry_id"]: row
+            for row in blocker["surface_completeness_blocker_rows"][
+                "coordinate_source_rows"
+            ]
+        }
+        self.assertEqual(
+            sorted(coordinate_rows),
+            ["m_csa:416", "m_csa:562", "m_csa:586", "m_csa:637"],
+        )
+        locator_rows = blocker["surface_completeness_blocker_rows"][
+            "locator_or_geometry_sidecar_rows"
+        ]
+        self.assertEqual(locator_rows[0]["entry_id"], "m_csa:604")
+        self.assertEqual(
+            locator_rows[0]["additional_approved_locator_positions_needed"], 2
+        )
+        self.assertIn(
+            "current_local_evidence_cannot_clear_surface_completeness",
+            blocker["blockers"],
+        )
+        self.assertFalse(
+            blocker["decision"]["current_evidence_can_solve_surface_completeness"]
+        )
+        self.assertFalse(
+            blocker["decision"][
+                "current_evidence_can_solve_confounded_safe_calibration"
+            ]
+        )
+        self.assertFalse(
+            blocker["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(blocker["guardrails"]["downloads_performed"])
+        self.assertFalse(blocker["guardrails"]["coordinates_staged_or_imported"])
+        self.assertFalse(blocker["guardrails"]["threshold_selected_or_tuned"])
 
     def test_fold_augmented_post_decision_deployment_closure_status_current_counts(
         self,

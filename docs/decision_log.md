@@ -3,6 +3,38 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Lever 3 Current Evidence Still Blocks Deployment Closure
+
+Decision: keep Lever 3 fail-closed. Do not rerun or retune threshold `0.44155`
+from the current residual surface. The local repository does not contain
+approved deployment-valid predicted coordinates for the four AFDB-unavailable
+coordinate-source blockers, and Q43088 still lacks two approved source-free
+locator positions or an equivalent geometry sidecar.
+
+Result: local deployment-input preflight found 0 approved predicted-coordinate
+hits for `m_csa:416`/P07071, `m_csa:562`/P07658, `m_csa:586`/P00806, and
+`m_csa:637`/P04531. Experimental CIF shortcuts exist for P07658, P00806, and
+P04531, but they are explicitly disallowed as deployment inputs. P07071 has no
+local CIF hit. Q43088 has a local predicted structure and one Tyr287 anchor; a
+review-only neighbor scout generated 12 candidate positions, all pending
+review, with 0 locator approvals and 0 rescore readiness. An additional
+repo-wide CIF sanity scan over 1,636 local CIFs found only those same three
+experimental shortcuts and no P07071 local CIF hit.
+
+Consequence / next gate: the smallest surface-completeness experiment is an
+approval/staging manifest for predicted coordinates for P07071, P07658, P00806,
+and P04531 with provider/model/version/path/checksum provenance, plus explicit
+approval of two Q43088 locator positions or an equivalent geometry sidecar. The
+smallest calibration experiment remains the frozen 16-row high-cofactor
+train/cal OOS probe; the 170-row same-family structural acquisition remains the
+larger calibration blocker.
+
+Artifacts:
+`artifacts/v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.json`,
+`artifacts/v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.json`,
+`artifacts/v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.json`,
+`artifacts/v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.json`.
+
 ## 2026-06-04: Lever 2 Partial Surface Read Once, Not Deployable
 
 Decision: accept the deterministic missing-locator abstention operating contract

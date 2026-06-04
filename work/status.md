@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 340
-- Measured elapsed time: 10294.9 minutes (171.58 hours)
+- Entries: 341
+- Measured elapsed time: 10345.2 minutes (172.42 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 178.2 measured minutes (2.97 hours)
+- northstar-lever3: 228.6 measured minutes (3.81 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3570
-- Evidence references logged: 2944
+- Artifact references logged: 3582
+- Evidence references logged: 2953
 
 ## Recent Entries
-
-### 2026-06-03T17:56:13.579427+00:00 - northstar-lever3
-
-- Task: Lever 3 active-site-count proxy-axis scoring
-- Time mode: measured
-- Measured minutes: 54.15
-- Started: 2026-06-03T17:01:45Z
-- Ended: 2026-06-03T17:55:54Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_contract_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scoring_input_manifest_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_scored_extension_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_extended_train_cal_oos_surface_current702_20260603.md, artifacts/v3_fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.json, work/fold_augmented_confounded_proxy_train_cal_new_proxy_axis_fixed_threshold_readout_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md, docs/project_state.md, docs/decision_log.md, docs/artifact_index.md, work/handoff.md, work/status.md
-- Evidence: active-site-count proxy contract selected 6 train/cal-only rows, 6/6 AFDB-v6 query CIFs staged and Foldseek scored against 133 train-atlas targets, 6/6 rows reached full geometry fold cofactor combined-channel scores, new partial extended surface is 192/198 full-channel rows, fixed threshold 0.44155 abstains 1/6 new-axis rows and retains 5/6, active audit reports 0 mechanical gates ready and 15 blockers, 1340 pytest passed with 148 subtests and one existing sklearn SciPy deprecation warning, 1295 unittest discovery passed, validate passed with 702 labels
-- Notes: No labels registries ontologies imports production thresholds model weights source decisions reviewer decisions locator sidecars event linkers or heldout threshold tuning changed.
 
 ### 2026-06-03T18:25:33.116790+00:00 - automation-lever-3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, docs/decision_log.md, docs/artifact_index.md, work/handoff.md, work/status.md
 - Evidence: full pytest 1350 passed with 156 subtests and one existing sklearn/SciPy warning, unittest discovery 1305 tests passed, validate passed with 702 labels, compileall and git diff --check passed, readout OOS abstain recall 1.0 primary retain recall 0.0, recovery queue 119 rows: 32 feature-complete primary residual abstentions 16 primary missing-locator abstentions 71 OOS missing-locator rows
 - Notes: No labels registries ontologies imports production thresholds model refits threshold tuning or production calibration changed. The heldout read was applied once under the accepted deterministic missing-locator abstention contract.
+
+### 2026-06-04T09:54:33.175466+00:00 - northstar-lever3
+
+- Task: Lever 3 deployment-input preflight and repo-wide blocker scan
+- Time mode: measured
+- Measured minutes: 50.367
+- Started: 2026-06-04T09:03:05Z
+- Ended: 2026-06-04T09:53:27Z
+- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.json, work/fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.json, work/fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.md, artifacts/v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.json, work/fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.json, work/fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.md, docs/artifact_index.md, docs/decision_log.md, docs/project_state.md, work/handoff.md
+- Evidence: full pytest 1365 passed 169 subtests one existing sklearn SciPy warning, unittest discovery 1320 passed, focused Lever 3 artifact tests 4 passed, CLI registration 1 passed 143 subtests, compileall, validate 702 labels, git diff --check, docs artifact-reference check missing 0, JSON syntax checks
+- Notes: Lever 3 only. Current local evidence cannot close deployment or confounded-safe calibration: four coordinate-source rows lack approved predicted coordinates, Q43088 needs two approved locators or a sidecar, high-cofactor needs 16 new abstained train/cal rows, and same-family structural needs 170. No labels registries ontologies imports thresholds heldout tuning downloads scoring or source approvals changed.
 
 ## Expectation Updates
 

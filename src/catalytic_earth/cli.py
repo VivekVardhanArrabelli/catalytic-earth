@@ -131,8 +131,12 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_p10746_decision_impact,
     write_fold_augmented_q43088_geometry_locator_blocker_packet,
     write_fold_augmented_q43088_source_free_locator_approval_contract,
+    write_fold_augmented_q43088_source_free_locator_candidate_scout,
     write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088,
     write_fold_augmented_confounded_proxy_alternate_structure_source_contract,
+    write_fold_augmented_confounded_proxy_deployment_input_preflight,
+    write_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan,
+    write_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
     write_fold_augmented_post_rerun_confounded_deployment_closure_audit,
@@ -13075,6 +13079,34 @@ def cmd_build_fold_augmented_q43088_source_free_locator_approval_contract(
     return 0
 
 
+def cmd_build_fold_augmented_q43088_source_free_locator_candidate_scout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    scout = write_fold_augmented_q43088_source_free_locator_candidate_scout(
+        q43088_geometry_locator_blocker_packet_path=Path(
+            args.q43088_geometry_locator_blocker_packet
+        ),
+        q43088_source_free_locator_approval_contract_path=Path(
+            args.q43088_source_free_locator_approval_contract
+        ),
+        q43088_coordinate_path=Path(args.q43088_coordinate),
+        candidate_count=args.candidate_count,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = scout.get("counts", {})
+    print(
+        "Wrote fold-augmented Q43088 source-free locator candidate scout to "
+        f"{args.out} (candidates: {counts.get('candidate_locator_rows')}, "
+        f"approved now: {counts.get('candidate_locators_approved_now')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
     args: argparse.Namespace,
 ) -> int:
@@ -13131,6 +13163,97 @@ def cmd_build_fold_augmented_confounded_proxy_alternate_structure_source_contrac
         f"{counts.get('affected_coordinate_source_blocker_rows')}, "
         f"AFDB all-version 404 rows: "
         f"{counts.get('afdb_all_versions_404_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_deployment_input_preflight(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    preflight = write_fold_augmented_confounded_proxy_deployment_input_preflight(
+        alternate_structure_source_contract_path=Path(
+            args.alternate_structure_source_contract
+        ),
+        approved_predicted_coordinate_roots=[
+            Path(root) for root in args.approved_predicted_coordinate_roots
+        ],
+        disallowed_experimental_coordinate_roots=[
+            Path(root) for root in args.disallowed_experimental_coordinate_roots
+        ],
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = preflight.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy deployment-input preflight to "
+        f"{args.out} (deployment-valid rows ready: "
+        f"{counts.get('deployment_valid_coordinate_rows_ready_now')}, "
+        f"disallowed experimental hits: "
+        f"{counts.get('disallowed_experimental_coordinate_hits')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    scan = write_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan(
+        deployment_input_preflight_path=Path(args.deployment_input_preflight),
+        scan_roots=[Path(root) for root in args.scan_roots],
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = scan.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy repo-wide coordinate sanity "
+        f"scan to {args.out} (CIFs scanned: "
+        f"{counts.get('repo_wide_cif_files_scanned')}, hits: "
+        f"{counts.get('repo_wide_cif_accession_hits')}, ready rows: "
+        f"{counts.get('deployment_valid_coordinate_rows_ready_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    blocker = (
+        write_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight(
+            residual_queue_after_p10746_q43088_path=Path(
+                args.residual_queue_after_p10746_q43088
+            ),
+            deployment_input_preflight_path=Path(args.deployment_input_preflight),
+            q43088_source_free_locator_approval_contract_path=Path(
+                args.q43088_source_free_locator_approval_contract
+            ),
+            high_cofactor_probe_contract_path=Path(args.high_cofactor_probe_contract),
+            same_family_structural_acquisition_contract_path=Path(
+                args.same_family_structural_acquisition_contract
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = blocker.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy current-evidence blocker to "
+        f"{args.out} (surface blockers: "
+        f"{counts.get('surface_completeness_blocker_rows')}, "
+        f"high/structural shortfalls: "
+        f"{counts.get('high_cofactor_min_new_abstained_rows_for_80pct')}/"
+        f"{counts.get('same_family_structural_min_new_abstained_rows_for_80pct')})"
     )
     return 0
 
@@ -30626,6 +30749,62 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_q43088_source_free_locator_approval_contract
     )
 
+    q43088_source_free_locator_candidate_scout = subparsers.add_parser(
+        "build-fold-augmented-q43088-source-free-locator-candidate-scout",
+        help=(
+            "generate review-only Q43088 locator candidate positions from the "
+            "local predicted structure"
+        ),
+    )
+    q43088_source_free_locator_candidate_scout.add_argument(
+        "--q43088-geometry-locator-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_geometry_locator_blocker_"
+            "packet_current702_20260604.json"
+        ),
+    )
+    q43088_source_free_locator_candidate_scout.add_argument(
+        "--q43088-source-free-locator-approval-contract",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_"
+            "approval_contract_current702_20260604.json"
+        ),
+    )
+    q43088_source_free_locator_candidate_scout.add_argument(
+        "--q43088-coordinate",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601_coordinates/confounded_proxy_train_cal_tranche_queries/"
+            "afdb_Q43088_v6.cif"
+        ),
+    )
+    q43088_source_free_locator_candidate_scout.add_argument(
+        "--candidate-count",
+        type=int,
+        default=12,
+    )
+    q43088_source_free_locator_candidate_scout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    q43088_source_free_locator_candidate_scout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_"
+            "candidate_scout_current702_20260604.json"
+        ),
+    )
+    q43088_source_free_locator_candidate_scout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_q43088_source_free_locator_candidate_scout_"
+            "current702_20260604.md"
+        ),
+    )
+    q43088_source_free_locator_candidate_scout.set_defaults(
+        func=cmd_build_fold_augmented_q43088_source_free_locator_candidate_scout
+    )
+
     confounded_proxy_residual_queue_after_p10746_q43088 = subparsers.add_parser(
         "build-fold-augmented-confounded-proxy-residual-queue-after-p10746-q43088",
         help=(
@@ -30734,6 +30913,171 @@ def build_parser() -> argparse.ArgumentParser:
     confounded_proxy_alternate_structure_source_contract.set_defaults(
         func=(
             cmd_build_fold_augmented_confounded_proxy_alternate_structure_source_contract
+        )
+    )
+
+    confounded_proxy_deployment_input_preflight = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-deployment-input-preflight",
+        help=(
+            "preflight local deployment-valid coordinate inputs for the "
+            "AFDB-unavailable Lever 3 residual rows"
+        ),
+    )
+    confounded_proxy_deployment_input_preflight.add_argument(
+        "--alternate-structure-source-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_alternate_structure_"
+            "source_contract_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_deployment_input_preflight.add_argument(
+        "--approved-predicted-coordinate-roots",
+        nargs="+",
+        default=[
+            (
+                "artifacts/v3_predicted_structure_fold_channel_current702_"
+                "20260601_coordinates"
+            )
+        ],
+    )
+    confounded_proxy_deployment_input_preflight.add_argument(
+        "--disallowed-experimental-coordinate-roots",
+        nargs="+",
+        default=["artifacts/v3_foldseek_coordinates_1000"],
+    )
+    confounded_proxy_deployment_input_preflight.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_deployment_input_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_deployment_input_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_deployment_input_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_deployment_input_preflight_"
+            "current702_20260604.md"
+        ),
+    )
+    confounded_proxy_deployment_input_preflight.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_deployment_input_preflight
+        )
+    )
+
+    confounded_proxy_repo_wide_coordinate_sanity_scan = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-repo-wide-coordinate-sanity-scan",
+        help=(
+            "scan repo-local CIF accession hits for the residual Lever 3 "
+            "coordinate-source blocker rows"
+        ),
+    )
+    confounded_proxy_repo_wide_coordinate_sanity_scan.add_argument(
+        "--deployment-input-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_deployment_input_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_repo_wide_coordinate_sanity_scan.add_argument(
+        "--scan-roots",
+        nargs="+",
+        default=["artifacts"],
+    )
+    confounded_proxy_repo_wide_coordinate_sanity_scan.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_repo_wide_coordinate_sanity_scan.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_repo_wide_coordinate_"
+            "sanity_scan_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_repo_wide_coordinate_sanity_scan.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_repo_wide_coordinate_"
+            "sanity_scan_current702_20260604.md"
+        ),
+    )
+    confounded_proxy_repo_wide_coordinate_sanity_scan.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan
+        )
+    )
+
+    current_evidence_blocker_after_input_preflight = subparsers.add_parser(
+        (
+            "build-fold-augmented-confounded-proxy-current-evidence-blocker-"
+            "after-input-preflight"
+        ),
+        help=(
+            "compose the current Lever 3 evidence blocker after local "
+            "deployment-input preflight"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--residual-queue-after-p10746-q43088",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_residual_queue_after_"
+            "p10746_q43088_current702_20260604.json"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--deployment-input-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_deployment_input_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--q43088-source-free-locator-approval-contract",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_"
+            "approval_contract_current702_20260604.json"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--high-cofactor-probe-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "probe_contract_current702_20260604.json"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--same-family-structural-acquisition-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_contract_current702_20260604.json"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_"
+            "blocker_after_input_preflight_current702_20260604.json"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_current_evidence_blocker_"
+            "after_input_preflight_current702_20260604.md"
+        ),
+    )
+    current_evidence_blocker_after_input_preflight.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight
         )
     )
 

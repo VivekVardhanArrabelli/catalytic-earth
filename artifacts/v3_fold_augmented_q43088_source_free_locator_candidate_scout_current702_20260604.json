@@ -1,0 +1,226 @@
+{
+  "anchor_locators": [
+    {
+      "ca": {
+        "x": -16.063,
+        "y": 2.876,
+        "z": -2.772
+      },
+      "centroid": {
+        "x": -16.356,
+        "y": 1.235,
+        "z": -1.171
+      },
+      "chain_name": "A",
+      "mean_plddt": 95.19,
+      "residue_code": "TYR",
+      "residue_node_id": "m_csa:604:residue:1",
+      "roles": [
+        "activator",
+        "proton_acceptor",
+        "proton_donor"
+      ],
+      "sequence_position": 287
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604",
+  "blockers": [
+    "q43088_candidate_locators_pending_review",
+    "q43088_two_additional_source_free_locator_positions_not_approved",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "candidate_locator_rows": [
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.824,
+      "mean_plddt": 93.69,
+      "residue_code": "ASP",
+      "sequence_position": 288,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 3.84,
+      "mean_plddt": 96.0,
+      "residue_code": "GLN",
+      "sequence_position": 286,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 5.918,
+      "mean_plddt": 97.12,
+      "residue_code": "HIS",
+      "sequence_position": 243,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 6.267,
+      "mean_plddt": 96.94,
+      "residue_code": "ILE",
+      "sequence_position": 285,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 7.069,
+      "mean_plddt": 94.56,
+      "residue_code": "LEU",
+      "sequence_position": 289,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 7.177,
+      "mean_plddt": 80.44,
+      "residue_code": "GLU",
+      "sequence_position": 250,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 8.154,
+      "mean_plddt": 96.44,
+      "residue_code": "SER",
+      "sequence_position": 244,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 8.316,
+      "mean_plddt": 97.94,
+      "residue_code": "ASN",
+      "sequence_position": 242,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 8.699,
+      "mean_plddt": 96.88,
+      "residue_code": "LYS",
+      "sequence_position": 291,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 9.0,
+      "mean_plddt": 93.44,
+      "residue_code": "PHE",
+      "sequence_position": 224,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 9.004,
+      "mean_plddt": 98.44,
+      "residue_code": "LEU",
+      "sequence_position": 296,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    },
+    {
+      "approval_status": "pending_review",
+      "approved_now": false,
+      "candidate_generation_method": "nearest_residues_to_single_known_q43088_locator_in_local_predicted_structure",
+      "chain_name": "A",
+      "distance_to_anchor_ca_angstrom": 9.143,
+      "mean_plddt": 94.12,
+      "residue_code": "VAL",
+      "sequence_position": 247,
+      "why_not_clearance": "Nearest-neighbor geometry around one anchor is a review candidate only; it is not an approved source-free locator or geometry sidecar."
+    }
+  ],
+  "counts": {
+    "active_site_residue_count_before_review": 1,
+    "additional_approved_locator_positions_needed": 2,
+    "affected_rows": 1,
+    "anchor_locator_rows": 1,
+    "blockers": 3,
+    "candidate_locator_rows": 12,
+    "candidate_locators_approved_now": 0,
+    "critical_violation_total": 0,
+    "local_predicted_coordinate_available_rows": 1,
+    "minimum_locator_positions_required_for_geometry_channel": 3,
+    "q43088_ready_for_rescore_now": 0
+  },
+  "created_utc": "2026-06-04T09:22:59Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "candidate_scout_clears_locator_contract": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Review at least two Q43088 candidate locator positions and explicitly approve or reject them under the source-free locator contract. Do not rescore Q43088 until two additional positions or an equivalent geometry sidecar are approved.",
+    "q43088_ready_for_rescore_now": false
+  },
+  "guardrails": {
+    "candidate_locators_generated_now": true,
+    "fixed_threshold_audit_rerun": false,
+    "geometry_sidecar_approved_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_positions_approved_now": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_rescored_now": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Have a reviewer accept or reject at least two candidate positions, or supply an equivalent approved geometry sidecar; then regenerate the Q43088 contract and rescore only after the four coordinate-source blockers are also cleared.",
+    "result": "Q43088 now has concrete source-free locator candidates for review, but zero additional locators are approved. The row therefore remains blocked for combined-channel rescore."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_q43088_source_free_locator_candidate_scout",
+  "scope": "Review-only Q43088 locator candidate scout. It uses the local AFDB-v6 predicted structure and the single known train/cal source-free locator anchor to list nearby residue positions for future review. It approves no locators, writes no sidecar, scores no row, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "q43088_coordinate": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q43088_v6.cif",
+      "sha256": "e2cf9b4137bbd80ed6bc710b9de3a7666b5f828870be2e6a0c7ae2701e256bd9"
+    },
+    "q43088_geometry_locator_blocker_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_geometry_locator_blocker_packet_current702_20260604.json",
+      "sha256": "36b35c1344342d74382ba5cca6e2c52164c5d97bac16b117957ce4d05261014a"
+    },
+    "q43088_source_free_locator_approval_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604.json",
+      "sha256": "a070b2f394cf29676bdce5cbcaed974102d6cc93a04d1a8d9e6b66d44c23f2d3"
+    }
+  },
+  "status": "fold_augmented_q43088_source_free_locator_candidate_scout_pending_review_no_approval"
+}
