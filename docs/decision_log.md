@@ -3,6 +3,44 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Leakage-Safe Cofactor-Presence Channel (train/cal only)
+
+Decision: the sequence -> cofactor-presence channel must select its per-class
+operating thresholds and per-class embedding backend on a held-in calibration
+split, never on heldout. The original `sequence_cofactor_channel` fits the
+presence heads on `in_distribution` but reads the heldout cofactor labels both
+to report ROC-AUC/AP and to pick the best backend per class; even though the
+cofactor-presence label is structural (ligand context, not the mechanism
+target), reading heldout to score and to choose sources entangles the one-shot
+heldout surface with channel design. Per the active instruction to abstain on
+the heldout, the channel is rebuilt train/cal-only.
+
+Result: new `cofactor_presence_calibration` module fits one-vs-rest presence
+heads (metal_ion/flavin/plp/heme) on the 410 train rows of the frozen
+mechanism-feature embedding split, selects max-F1 thresholds and the per-class
+backend on the 103 calibration rows, and emits per-entry predictions for all
+702 rows (heldout included) without ever reading heldout labels. Calibration
+ROC-AUC: metal_ion 0.7707, flavin 0.9263, plp 0.9924, heme 0.88; plp (4
+calibration positives) and heme (3) are flagged `low_calibration_support` and
+are report-only operating points. A unit test flips every heldout label and
+asserts the fitted heads, selected sources, and predictions are byte-identical,
+proving heldout is never read. These calibration-honest numbers are
+deliberately more conservative than the prior heldout-evaluated channel.
+
+Consequence / next gate: the per-entry predictions are drop-in compatible with
+the router `ligand_context` injection (`_fused_geometry_features`). Applying them
+to the heldout mechanism router (the cofactor-restoration recovery ceiling) reads
+the one-shot heldout mechanism labels and is NOT run here; it stays explicitly
+authorization-gated. Built on isolated worktree branch
+`claude/cofactor-presence-channel`.
+
+References:
+
+- `artifacts/v3_cofactor_presence_calibration_current702_20260604.json`
+- `work/cofactor_presence_calibration_current702_20260604.md`
+- `src/catalytic_earth/cofactor_presence_calibration.py`
+- `tests/test_cofactor_presence_calibration.py`
+
 ## 2026-06-04: Lever 3 Current Evidence Still Blocks Deployment Closure
 
 Decision: keep Lever 3 fail-closed. Do not rerun or retune threshold `0.44155`
