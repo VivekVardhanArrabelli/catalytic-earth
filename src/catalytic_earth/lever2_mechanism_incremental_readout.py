@@ -34,6 +34,9 @@ DEFAULT_PARTIAL_SURFACE_CURRENT_SPLIT_PORTABILITY_ARTIFACT_ID = (
 DEFAULT_EVENT_AXIS_CURRENT_EXTENDED_FRONTIER_ARTIFACT_ID = (
     "v3_lever2_event_axis_current_extended_frontier_readout_current702_20260604"
 )
+DEFAULT_EVENT_AXIS_LOO_CURRENT_EXTENDED_FRONTIER_ARTIFACT_ID = (
+    "v3_lever2_event_axis_loo_current_extended_frontier_readout_current702_20260604"
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -2464,6 +2467,1004 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
     }
 
 
+def build_lever2_event_axis_loo_current_extended_frontier_readout(
+    *,
+    mechanism_no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    current_extended_oos_mechanism_overlap_readout_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    min_primary_retain: float = 0.9,
+    baseline_axis_id: str = "source_free_projected_proton_role_subset",
+    artifact_id: str = DEFAULT_EVENT_AXIS_LOO_CURRENT_EXTENDED_FRONTIER_ARTIFACT_ID,
+) -> dict[str, Any]:
+    mechanism = _read_json(mechanism_no_template_rerun_path)
+    feature_sidecar = _read_json(train_cal_feature_sidecar_path)
+    current_overlap = _read_json(current_extended_oos_mechanism_overlap_readout_path)
+    current_primary_contract = _read_json(current_in_scope_threshold_contract_path)
+    partial_surface = (
+        _read_json(partial_surface_current_split_portability_readout_path)
+        if partial_surface_current_split_portability_readout_path is not None
+        and Path(partial_surface_current_split_portability_readout_path).exists()
+        else None
+    )
+
+    feature_rows = _feature_rows_by_id(feature_sidecar)
+    calibration_rows: list[dict[str, Any]] = []
+    for row in (mechanism.get("scored_rows") or {}).get("calibration") or []:
+        entry_id = str(row.get("entry_id") or "")
+        feature_row = feature_rows.get(entry_id)
+        if not entry_id or feature_row is None:
+            continue
+        calibration_rows.append(
+            {
+                "entry_id": entry_id,
+                "is_primary": bool(row.get("is_primary")),
+                "features": feature_row.get("row_specific_event_features") or {},
+            }
+        )
+    train_rows = [
+        row
+        for row in (mechanism.get("scored_rows") or {}).get("train") or []
+        if isinstance(row, dict) and str(row.get("entry_id") or "") in feature_rows
+    ]
+    calibration_entry_ids = {row["entry_id"] for row in calibration_rows}
+
+    current_rows = [
+        row
+        for row in (current_overlap.get("row_readouts") or {}).get(
+            "current_extended_oos_overlap_rows"
+        )
+        or []
+        if isinstance(row, dict) and row.get("entry_id") in feature_rows
+    ]
+    current_retained_rows = [
+        row for row in current_rows if not row.get("current_surface_abstains")
+    ]
+    current_abstained_rows = [
+        row for row in current_rows if row.get("current_surface_abstains")
+    ]
+
+    current_primary_rows = _fold_rows_by_id(
+        current_primary_contract.get("calibration_row_scores") or []
+    )
+    calibration_feature_ids = {
+        entry_id
+        for entry_id, row in feature_rows.items()
+        if row.get("assigned_embedding_split") == "calibration"
+    }
+    train_feature_ids = {
+        entry_id
+        for entry_id, row in feature_rows.items()
+        if row.get("assigned_embedding_split") == "train"
+    }
+    valid_current_primary_overlap = sorted(
+        set(current_primary_rows) & calibration_feature_ids, key=_entry_sort_key
+    )
+    current_primary_train_target_overlap = sorted(
+        set(current_primary_rows) & train_feature_ids, key=_entry_sort_key
+    )
+
+    axis_definitions = _event_axis_frontier_definitions()
+    axes_by_id = {str(axis["axis_id"]): axis for axis in axis_definitions}
+    if baseline_axis_id not in axes_by_id:
+        raise ValueError(f"unknown baseline event axis: {baseline_axis_id}")
+
+    def _selection_rows_for(entry_id: str) -> list[dict[str, Any]]:
+        return [row for row in calibration_rows if row["entry_id"] != entry_id]
+
+    axis_row_readouts: dict[str, list[dict[str, Any]]] = {}
+    axis_frontier_rows: list[dict[str, Any]] = []
+    for axis in axis_definitions:
+        axis_id = str(axis["axis_id"])
+        fields = list(axis["feature_fields"])
+        row_readouts: list[dict[str, Any]] = []
+        for row in current_rows:
+            entry_id = str(row["entry_id"])
+            features = (
+                feature_rows.get(entry_id, {}).get("row_specific_event_features") or {}
+            )
+            training_rows = _selection_rows_for(entry_id)
+            rule: dict[str, Any] | None
+            axis_abstains = False
+            selection_error = None
+            try:
+                rule = _select_axis_rule(
+                    training_rows,
+                    fields,
+                    min_primary_retain=min_primary_retain,
+                )
+                axis_score = round(_axis_score(features, fields), 8)
+                axis_abstains = _axis_rule_abstains(
+                    axis_score,
+                    direction=str(rule["direction"]),
+                    threshold=float(rule["threshold"]),
+                )
+            except ValueError as exc:
+                rule = None
+                axis_score = round(_axis_score(features, fields), 8)
+                selection_error = str(exc)
+            current_surface_abstains = bool(row.get("current_surface_abstains"))
+            row_readouts.append(
+                {
+                    "entry_id": entry_id,
+                    "current_surface_score": row.get("current_surface_score"),
+                    "current_surface_abstains": current_surface_abstains,
+                    "target_excluded_from_axis_selection": (
+                        entry_id in calibration_entry_ids
+                    ),
+                    "axis_score": axis_score,
+                    "axis_rule_evaluable": rule is not None,
+                    "selection_error": selection_error,
+                    "selected_rule": rule,
+                    "axis_loo_abstains": axis_abstains,
+                    "current_retained_caught_by_axis_loo": bool(
+                        rule is not None
+                        and axis_abstains
+                        and not current_surface_abstains
+                    ),
+                    "union_or_gate_abstains": bool(
+                        current_surface_abstains
+                        or (rule is not None and axis_abstains)
+                    ),
+                }
+            )
+        evaluable_rows = [row for row in row_readouts if row["axis_rule_evaluable"]]
+        retained_caught = [
+            row
+            for row in evaluable_rows
+            if row["current_retained_caught_by_axis_loo"]
+        ]
+        union_abstained = sum(
+            1 for row in evaluable_rows if row["union_or_gate_abstains"]
+        )
+        axis_row_readouts[axis_id] = row_readouts
+        axis_frontier_rows.append(
+            {
+                "axis_id": axis_id,
+                "description": axis["description"],
+                "source_free_status": axis["source_free_status"],
+                "feature_fields": fields,
+                "feature_field_count": len(fields),
+                "leave_one_out_selection": {
+                    "target_rows": len(row_readouts),
+                    "evaluable_rows": len(evaluable_rows),
+                    "unevaluable_rows": len(row_readouts) - len(evaluable_rows),
+                    "target_excluded_from_selection_rows": sum(
+                        1
+                        for row in row_readouts
+                        if row["target_excluded_from_axis_selection"]
+                    ),
+                },
+                "current_extended_overlap": {
+                    "row_count": len(evaluable_rows),
+                    "current_surface_abstained_rows": sum(
+                        1 for row in evaluable_rows if row["current_surface_abstains"]
+                    ),
+                    "current_surface_retained_rows": sum(
+                        1
+                        for row in evaluable_rows
+                        if not row["current_surface_abstains"]
+                    ),
+                    "axis_loo_abstained_rows": sum(
+                        1 for row in evaluable_rows if row["axis_loo_abstains"]
+                    ),
+                    "current_retained_oos_caught_by_axis_loo": len(
+                        retained_caught
+                    ),
+                    "current_retained_oos_catch_recall": _recall(
+                        len(retained_caught),
+                        sum(
+                            1
+                            for row in evaluable_rows
+                            if not row["current_surface_abstains"]
+                        ),
+                    ),
+                    "union_or_gate_abstained_rows": union_abstained,
+                    "union_or_gate_abstain_recall": _recall(
+                        union_abstained, len(evaluable_rows)
+                    ),
+                    "union_minus_current_abstained_rows": (
+                        union_abstained
+                        - sum(
+                            1
+                            for row in evaluable_rows
+                            if row["current_surface_abstains"]
+                        )
+                    ),
+                    "current_retained_caught_entry_ids": [
+                        row["entry_id"] for row in retained_caught
+                    ],
+                },
+            }
+        )
+
+    baseline_axis = next(
+        row for row in axis_frontier_rows if row["axis_id"] == baseline_axis_id
+    )
+    baseline_by_entry = {
+        row["entry_id"]: row for row in axis_row_readouts[baseline_axis_id]
+    }
+    projection_plus_axis_rows: list[dict[str, Any]] = []
+    projection_plus_axis_row_readouts: dict[str, list[dict[str, Any]]] = {}
+    for axis in axis_definitions:
+        axis_id = str(axis["axis_id"])
+        if axis_id == baseline_axis_id:
+            continue
+        added_by_entry = {row["entry_id"]: row for row in axis_row_readouts[axis_id]}
+        pair_id = f"{baseline_axis_id}+{axis_id}"
+        pair_row_readouts: list[dict[str, Any]] = []
+        for row in current_rows:
+            entry_id = str(row["entry_id"])
+            baseline_row = baseline_by_entry.get(entry_id)
+            added_row = added_by_entry.get(entry_id)
+            if baseline_row is None or added_row is None:
+                continue
+            pair_evaluable = bool(
+                baseline_row["axis_rule_evaluable"]
+                and added_row["axis_rule_evaluable"]
+            )
+            pair_primary_retained = None
+            pair_primary_rows = None
+            pair_primary_retain_recall = None
+            pair_oos_abstained = None
+            pair_oos_rows = None
+            pair_error = None
+            if pair_evaluable:
+                training_rows = _selection_rows_for(entry_id)
+                baseline_rule = baseline_row["selected_rule"] or {}
+                added_rule = added_row["selected_rule"] or {}
+
+                def _row_axis_abstains(
+                    cal_row: dict[str, Any],
+                    axis_id_for_rule: str,
+                    rule: dict[str, Any],
+                ) -> bool:
+                    axis_fields = list(axes_by_id[axis_id_for_rule]["feature_fields"])
+                    score = _axis_score(cal_row["features"], axis_fields)
+                    return _axis_rule_abstains(
+                        score,
+                        direction=str(rule["direction"]),
+                        threshold=float(rule["threshold"]),
+                    )
+
+                primary_rows = [row for row in training_rows if row["is_primary"]]
+                oos_rows = [row for row in training_rows if not row["is_primary"]]
+                pair_primary_abstained = sum(
+                    1
+                    for cal_row in primary_rows
+                    if _row_axis_abstains(cal_row, baseline_axis_id, baseline_rule)
+                    or _row_axis_abstains(cal_row, axis_id, added_rule)
+                )
+                pair_oos_abstained = sum(
+                    1
+                    for cal_row in oos_rows
+                    if _row_axis_abstains(cal_row, baseline_axis_id, baseline_rule)
+                    or _row_axis_abstains(cal_row, axis_id, added_rule)
+                )
+                pair_primary_rows = len(primary_rows)
+                pair_oos_rows = len(oos_rows)
+                pair_primary_retained = pair_primary_rows - pair_primary_abstained
+                pair_primary_retain_recall = _recall(
+                    pair_primary_retained, pair_primary_rows
+                )
+                if (
+                    pair_primary_retain_recall is not None
+                    and pair_primary_retain_recall + 1e-12 < min_primary_retain
+                ):
+                    pair_evaluable = False
+                    pair_error = "pair_rule_fails_min_primary_retain_on_loo_selection"
+            else:
+                pair_error = "single_axis_rule_not_evaluable"
+
+            current_surface_abstains = bool(row.get("current_surface_abstains"))
+            baseline_abstains = bool(
+                baseline_row.get("axis_loo_abstains")
+                and baseline_row.get("axis_rule_evaluable")
+            )
+            added_abstains = bool(
+                added_row.get("axis_loo_abstains")
+                and added_row.get("axis_rule_evaluable")
+            )
+            pair_abstains = bool(pair_evaluable and (baseline_abstains or added_abstains))
+            baseline_current_retained_catch = bool(
+                baseline_abstains and not current_surface_abstains
+            )
+            pair_current_retained_catch = bool(
+                pair_abstains and not current_surface_abstains
+            )
+            pair_row_readouts.append(
+                {
+                    "entry_id": entry_id,
+                    "current_surface_score": row.get("current_surface_score"),
+                    "current_surface_abstains": current_surface_abstains,
+                    "pair_rule_evaluable": pair_evaluable,
+                    "selection_error": pair_error,
+                    "baseline_axis_score": baseline_row.get("axis_score"),
+                    "added_axis_score": added_row.get("axis_score"),
+                    "baseline_selected_rule": baseline_row.get("selected_rule"),
+                    "added_axis_selected_rule": added_row.get("selected_rule"),
+                    "projected_subset_abstains": baseline_abstains,
+                    "added_axis_abstains": added_abstains,
+                    "projection_plus_axis_abstains": pair_abstains,
+                    "current_retained_caught_by_projected_subset": (
+                        baseline_current_retained_catch
+                    ),
+                    "current_retained_caught_by_projection_plus_axis": (
+                        pair_current_retained_catch
+                    ),
+                    "current_retained_caught_beyond_projected_subset": bool(
+                        pair_current_retained_catch
+                        and not baseline_current_retained_catch
+                    ),
+                    "union_or_gate_abstains": bool(
+                        current_surface_abstains or pair_abstains
+                    ),
+                    "loo_selection_primary_rows": pair_primary_rows,
+                    "loo_selection_primary_retained": pair_primary_retained,
+                    "loo_selection_primary_retain_recall": pair_primary_retain_recall,
+                    "loo_selection_oos_rows": pair_oos_rows,
+                    "loo_selection_oos_abstained": pair_oos_abstained,
+                }
+            )
+        evaluable_pair_rows = [
+            row for row in pair_row_readouts if row["pair_rule_evaluable"]
+        ]
+        baseline_caught = [
+            row
+            for row in evaluable_pair_rows
+            if row["current_retained_caught_by_projected_subset"]
+        ]
+        pair_caught = [
+            row
+            for row in evaluable_pair_rows
+            if row["current_retained_caught_by_projection_plus_axis"]
+        ]
+        marginal_caught = [
+            row
+            for row in evaluable_pair_rows
+            if row["current_retained_caught_beyond_projected_subset"]
+        ]
+        union_abstained = sum(
+            1 for row in evaluable_pair_rows if row["union_or_gate_abstains"]
+        )
+        current_abstained = sum(
+            1 for row in evaluable_pair_rows if row["current_surface_abstains"]
+        )
+        current_retained = sum(
+            1 for row in evaluable_pair_rows if not row["current_surface_abstains"]
+        )
+        pair_fields = sorted(
+            set(axes_by_id[baseline_axis_id]["feature_fields"])
+            | set(axis["feature_fields"])
+        )
+        primary_loo_control_rows: list[dict[str, Any]] = []
+        for primary_row in [row for row in calibration_rows if row["is_primary"]]:
+            entry_id = str(primary_row["entry_id"])
+            training_rows = _selection_rows_for(entry_id)
+            try:
+                baseline_rule = _select_axis_rule(
+                    training_rows,
+                    list(axes_by_id[baseline_axis_id]["feature_fields"]),
+                    min_primary_retain=min_primary_retain,
+                )
+                added_rule = _select_axis_rule(
+                    training_rows,
+                    list(axis["feature_fields"]),
+                    min_primary_retain=min_primary_retain,
+                )
+                baseline_score = _axis_score(
+                    primary_row["features"],
+                    list(axes_by_id[baseline_axis_id]["feature_fields"]),
+                )
+                added_score = _axis_score(
+                    primary_row["features"], list(axis["feature_fields"])
+                )
+                baseline_abstains = _axis_rule_abstains(
+                    baseline_score,
+                    direction=str(baseline_rule["direction"]),
+                    threshold=float(baseline_rule["threshold"]),
+                )
+                added_abstains = _axis_rule_abstains(
+                    added_score,
+                    direction=str(added_rule["direction"]),
+                    threshold=float(added_rule["threshold"]),
+                )
+                pair_abstains = bool(baseline_abstains or added_abstains)
+                primary_loo_control_rows.append(
+                    {
+                        "entry_id": entry_id,
+                        "primary_rule_evaluable": True,
+                        "baseline_axis_score": round(baseline_score, 8),
+                        "added_axis_score": round(added_score, 8),
+                        "baseline_selected_rule": baseline_rule,
+                        "added_axis_selected_rule": added_rule,
+                        "projection_plus_axis_abstains": pair_abstains,
+                        "projection_plus_axis_retains": not pair_abstains,
+                    }
+                )
+            except ValueError as exc:
+                primary_loo_control_rows.append(
+                    {
+                        "entry_id": entry_id,
+                        "primary_rule_evaluable": False,
+                        "selection_error": str(exc),
+                        "projection_plus_axis_abstains": None,
+                        "projection_plus_axis_retains": None,
+                    }
+                )
+        primary_loo_evaluable_rows = [
+            row
+            for row in primary_loo_control_rows
+            if row["primary_rule_evaluable"]
+        ]
+        primary_loo_retained_rows = [
+            row
+            for row in primary_loo_evaluable_rows
+            if row["projection_plus_axis_retains"]
+        ]
+        projection_plus_axis_row_readouts[pair_id] = pair_row_readouts
+        projection_plus_axis_rows.append(
+            {
+                "projection_plus_axis_id": pair_id,
+                "baseline_axis_id": baseline_axis_id,
+                "added_axis_id": axis_id,
+                "source_free_status": (
+                    "source_free_compatible_proxy"
+                    if axis["source_free_status"] == "source_free_compatible_proxy"
+                    else "requires_source_free_materialization"
+                ),
+                "feature_fields": pair_fields,
+                "feature_field_count": len(pair_fields),
+                "leave_one_out_selection": {
+                    "target_rows": len(pair_row_readouts),
+                    "evaluable_rows": len(evaluable_pair_rows),
+                    "unevaluable_rows": (
+                        len(pair_row_readouts) - len(evaluable_pair_rows)
+                    ),
+                    "min_primary_retain": min_primary_retain,
+                },
+                "primary_leave_one_out_control": {
+                    "target_rows": len(primary_loo_control_rows),
+                    "evaluable_rows": len(primary_loo_evaluable_rows),
+                    "retained_rows": len(primary_loo_retained_rows),
+                    "retention_recall": _recall(
+                        len(primary_loo_retained_rows),
+                        len(primary_loo_evaluable_rows),
+                    ),
+                    "abstained_entry_ids": [
+                        row["entry_id"]
+                        for row in primary_loo_evaluable_rows
+                        if row["projection_plus_axis_abstains"]
+                    ],
+                },
+                "current_extended_overlap": {
+                    "row_count": len(evaluable_pair_rows),
+                    "current_surface_abstained_rows": current_abstained,
+                    "current_surface_retained_rows": current_retained,
+                    "projected_subset_current_retained_oos_catches": len(
+                        baseline_caught
+                    ),
+                    "projection_plus_axis_current_retained_oos_catches": len(
+                        pair_caught
+                    ),
+                    "marginal_current_retained_oos_catches_beyond_projected_subset": len(
+                        marginal_caught
+                    ),
+                    "current_retained_oos_catch_recall": _recall(
+                        len(pair_caught), current_retained
+                    ),
+                    "union_or_gate_abstained_rows": union_abstained,
+                    "union_or_gate_abstain_recall": _recall(
+                        union_abstained, len(evaluable_pair_rows)
+                    ),
+                    "union_minus_current_abstained_rows": (
+                        union_abstained - current_abstained
+                    ),
+                    "projected_subset_caught_entry_ids": [
+                        row["entry_id"] for row in baseline_caught
+                    ],
+                    "projection_plus_axis_caught_entry_ids": [
+                        row["entry_id"] for row in pair_caught
+                    ],
+                    "marginal_caught_entry_ids": [
+                        row["entry_id"] for row in marginal_caught
+                    ],
+                },
+            }
+        )
+
+    def _single_axis_sort_key(row: dict[str, Any]) -> tuple[int, int, str]:
+        overlap = row["current_extended_overlap"]
+        return (
+            int(overlap["current_retained_oos_caught_by_axis_loo"]),
+            int(overlap["union_minus_current_abstained_rows"]),
+            str(row["axis_id"]),
+        )
+
+    def _projection_plus_axis_sort_key(row: dict[str, Any]) -> tuple[int, int, int, str]:
+        overlap = row["current_extended_overlap"]
+        return (
+            int(
+                overlap[
+                    "marginal_current_retained_oos_catches_beyond_projected_subset"
+                ]
+            ),
+            int(overlap["projection_plus_axis_current_retained_oos_catches"]),
+            int(overlap["union_minus_current_abstained_rows"]),
+            str(row["projection_plus_axis_id"]),
+        )
+
+    best_single_axis = sorted(
+        axis_frontier_rows, key=_single_axis_sort_key, reverse=True
+    )[0]
+    best_projection_plus_axis = sorted(
+        projection_plus_axis_rows,
+        key=_projection_plus_axis_sort_key,
+        reverse=True,
+    )[0]
+    baseline_overlap = baseline_axis["current_extended_overlap"]
+    best_projection_overlap = best_projection_plus_axis["current_extended_overlap"]
+    best_primary_loo_control = best_projection_plus_axis[
+        "primary_leave_one_out_control"
+    ]
+
+    partial_counts = (partial_surface or {}).get("counts") or {}
+    partial_missing_rows = (partial_surface or {}).get("missing_evidence_rows") or {}
+    missing_primary_source_free_rows = [
+        row
+        for row in (
+            partial_missing_rows.get(
+                "current_primary_rows_requiring_source_free_partial_surface"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    missing_retained_source_free_rows = [
+        row
+        for row in (
+            partial_missing_rows.get(
+                "current_retained_oos_rows_requiring_source_free_partial_surface"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    missing_retained_source_free_ids = {
+        str(row["entry_id"]) for row in missing_retained_source_free_rows
+    }
+    missing_current_primary_source_free = int(
+        partial_counts.get(
+            "missing_current_primary_source_free_partial_surface_rows",
+            len(current_primary_rows) - len(valid_current_primary_overlap),
+        )
+        or 0
+    )
+    missing_current_retained_source_free = int(
+        partial_counts.get(
+            "missing_current_retained_oos_source_free_partial_surface_rows",
+            len(current_retained_rows),
+        )
+        or 0
+    )
+
+    best_pair_rows_by_id = {
+        row["entry_id"]: row
+        for row in projection_plus_axis_row_readouts[
+            best_projection_plus_axis["projection_plus_axis_id"]
+        ]
+        if row["current_retained_caught_by_projection_plus_axis"]
+    }
+    best_pair_materialization_rows = [
+        {
+            "entry_id": entry_id,
+            "current_surface_score": row.get("current_surface_score"),
+            "baseline_axis_score": row.get("baseline_axis_score"),
+            "added_axis_score": row.get("added_axis_score"),
+            "baseline_selected_rule": row.get("baseline_selected_rule"),
+            "added_axis_selected_rule": row.get("added_axis_selected_rule"),
+            "existing_source_free_partial_surface_row_available": bool(
+                partial_surface is not None
+                and entry_id not in missing_retained_source_free_ids
+            ),
+            "marginal_beyond_projected_subset": row[
+                "current_retained_caught_beyond_projected_subset"
+            ],
+            "required_evidence": (
+                "source-free current-split event-axis rows for "
+                f"{best_projection_plus_axis['projection_plus_axis_id']}"
+            ),
+        }
+        for entry_id, row in sorted(
+            best_pair_rows_by_id.items(), key=lambda item: _entry_sort_key(item[0])
+        )
+    ]
+    best_pair_reusable_source_free_rows = [
+        row
+        for row in best_pair_materialization_rows
+        if row["existing_source_free_partial_surface_row_available"]
+    ]
+
+    loo_projected_signal = (
+        int(baseline_overlap["current_retained_oos_caught_by_axis_loo"]) > 0
+    )
+    marginal_signal = (
+        int(
+            best_projection_overlap[
+                "marginal_current_retained_oos_catches_beyond_projected_subset"
+            ]
+        )
+        > 0
+    )
+    def _primary_control_passes(row: dict[str, Any]) -> bool:
+        control = row["primary_leave_one_out_control"]
+        recall = control.get("retention_recall")
+        return bool(recall is not None and float(recall) + 1e-12 >= min_primary_retain)
+
+    primary_control_passing_surfaces = [
+        row for row in projection_plus_axis_rows if _primary_control_passes(row)
+    ]
+    best_primary_control_passes = _primary_control_passes(best_projection_plus_axis)
+    baseline_source_free_field_count = (
+        len(axes_by_id[baseline_axis_id]["feature_fields"])
+        if axes_by_id[baseline_axis_id]["source_free_status"]
+        == "source_free_compatible_proxy"
+        else 0
+    )
+    best_projection_missing_field_count = max(
+        0,
+        len(best_projection_plus_axis["feature_fields"])
+        - baseline_source_free_field_count,
+    )
+    source_free_current_split_measurable = (
+        missing_current_primary_source_free == 0
+        and missing_current_retained_source_free == 0
+    )
+    result_class = (
+        "research_only_loo_marginal_axis_signal"
+        if marginal_signal and best_primary_control_passes
+        else "research_only_loo_marginal_axis_signal_primary_control_caveat"
+        if marginal_signal
+        else (
+            "research_only_loo_projected_subset_signal"
+            if loo_projected_signal
+            else "research_only_loo_axis_negative"
+        )
+    )
+    status = f"lever2_event_axis_loo_current_extended_frontier_readout_{result_class}"
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.event_axis_loo_current_extended_frontier_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "scope": (
+            "Lever 2 train/cal readout selecting simple row-specific mechanism "
+            "event-axis abstention rules on calibration rows while excluding "
+            "each measured OOS target row from its own rule selection. It then "
+            "measures single-axis and projected-subset-plus-axis catches on the "
+            "current extended train/cal OOS overlap with the fixed geometry/fold "
+            "surface. It does not score heldout rows or promote a deployment gate."
+        ),
+        "status": status,
+        "result_class": result_class,
+        "fixed_operating_points": {
+            "current_surface": (
+                current_overlap.get("fixed_operating_points") or {}
+            ).get("current_surface")
+            or {},
+            "axis_selection": {
+                "baseline_axis_id": baseline_axis_id,
+                "min_primary_retain": min_primary_retain,
+                "selection_rows": (
+                    "mechanism calibration split only, excluding each target "
+                    "OOS row from its own rule selection"
+                ),
+                "objective": (
+                    "maximize calibration OOS abstention subject to primary "
+                    "retention before applying to the excluded current-overlap "
+                    "OOS row"
+                ),
+            },
+        },
+        "measured_readout": {
+            "axis_loo_frontier_rows": axis_frontier_rows,
+            "baseline_projected_subset_axis": baseline_axis,
+            "best_single_axis": best_single_axis,
+            "projection_plus_axis_loo_rows": projection_plus_axis_rows,
+            "best_projection_plus_axis": best_projection_plus_axis,
+            "current_primary_overlap": {
+                "valid_current_primary_calibration_feature_overlap_rows": len(
+                    valid_current_primary_overlap
+                ),
+                "valid_current_primary_calibration_feature_overlap_entry_ids": (
+                    valid_current_primary_overlap
+                ),
+                "current_primary_rows_excluded_as_mechanism_train_targets": [
+                    {
+                        "entry_id": entry_id,
+                        "reason": "row_is_mechanism_feature_train_target",
+                    }
+                    for entry_id in current_primary_train_target_overlap
+                ],
+            },
+        },
+        "row_readouts": {
+            "current_extended_overlap_by_axis_loo": axis_row_readouts,
+            "current_extended_overlap_by_projection_plus_axis_loo": (
+                projection_plus_axis_row_readouts
+            ),
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "current_primary_source_free_event_axis_rows",
+                "required_rows": len(current_primary_rows),
+                "valid_overlap_rows_now": len(valid_current_primary_overlap),
+                "missing_rows_now": missing_current_primary_source_free,
+                "why_it_matters": (
+                    "The current primary retention gate must be measured on "
+                    "source-free row-specific mechanism/event-axis features "
+                    "before any deployable Lever 2 claim."
+                ),
+            },
+            {
+                "gap_id": "current_retained_oos_source_free_event_axis_rows",
+                "required_rows": int(
+                    partial_counts.get("current_retained_oos_rows")
+                    or len(current_retained_rows)
+                ),
+                "valid_overlap_rows_now": (
+                    int(
+                        partial_counts.get(
+                            "union_current_retained_oos_overlap_rows", 0
+                        )
+                        or 0
+                    )
+                    if partial_surface is not None
+                    else len(current_retained_rows)
+                ),
+                "missing_rows_now": missing_current_retained_source_free,
+                "why_it_matters": (
+                    "These are rows retained by geometry/fold where event-axis "
+                    "mechanism evidence can add abstention value."
+                ),
+            },
+            {
+                "gap_id": "best_loo_projection_plus_axis_source_free_fields",
+                "required_rows": len(best_projection_plus_axis["feature_fields"]),
+                "valid_overlap_rows_now": baseline_source_free_field_count,
+                "missing_rows_now": best_projection_missing_field_count,
+                "why_it_matters": (
+                    "The best leave-one-out marginal axis must exist as "
+                    "source-free deployment-valid row features on the current "
+                    "split, not only as M-CSA train/cal research fields."
+                ),
+            },
+        ],
+        "missing_evidence_rows": {
+            "current_primary_rows_requiring_source_free_event_axis": (
+                missing_primary_source_free_rows
+            ),
+            "current_retained_oos_rows_requiring_source_free_event_axis": (
+                missing_retained_source_free_rows
+            ),
+            "best_projection_plus_axis_current_retained_overlap_rows_requiring_source_free_materialization": (
+                best_pair_materialization_rows
+            ),
+            "best_projection_plus_axis_marginal_rows": [
+                row
+                for row in best_pair_materialization_rows
+                if row["marginal_beyond_projected_subset"]
+            ],
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "axis_surfaces_evaluated": len(axis_frontier_rows),
+            "projection_plus_axis_surfaces_evaluated": len(
+                projection_plus_axis_rows
+            ),
+            "projection_plus_axis_primary_loo_control_passing_surfaces": len(
+                primary_control_passing_surfaces
+            ),
+            "calibration_rows": len(calibration_rows),
+            "calibration_primary_rows": sum(
+                1 for row in calibration_rows if row["is_primary"]
+            ),
+            "calibration_oos_rows": sum(
+                1 for row in calibration_rows if not row["is_primary"]
+            ),
+            "train_rows": len(train_rows),
+            "current_extended_oos_overlap_rows": len(current_rows),
+            "current_extended_current_retained_overlap_rows": len(
+                current_retained_rows
+            ),
+            "current_extended_current_abstained_overlap_rows": len(
+                current_abstained_rows
+            ),
+            "baseline_projected_subset_current_retained_oos_catches": int(
+                baseline_overlap["current_retained_oos_caught_by_axis_loo"]
+            ),
+            "baseline_projected_subset_union_or_gate_abstained_overlap_rows": int(
+                baseline_overlap["union_or_gate_abstained_rows"]
+            ),
+            "best_single_axis_current_retained_oos_catches": int(
+                best_single_axis["current_extended_overlap"][
+                    "current_retained_oos_caught_by_axis_loo"
+                ]
+            ),
+            "best_projection_plus_axis_current_retained_oos_catches": int(
+                best_projection_overlap[
+                    "projection_plus_axis_current_retained_oos_catches"
+                ]
+            ),
+            "best_projection_plus_axis_marginal_current_retained_oos_catches": int(
+                best_projection_overlap[
+                    "marginal_current_retained_oos_catches_beyond_projected_subset"
+                ]
+            ),
+            "best_projection_plus_axis_union_or_gate_abstained_overlap_rows": int(
+                best_projection_overlap["union_or_gate_abstained_rows"]
+            ),
+            "best_projection_plus_axis_source_free_compatible_fields": (
+                baseline_source_free_field_count
+            ),
+            "best_projection_plus_axis_missing_new_feature_fields": (
+                best_projection_missing_field_count
+            ),
+            "best_projection_plus_axis_caught_rows_with_existing_source_free_partial_surface": len(
+                best_pair_reusable_source_free_rows
+            ),
+            "best_projection_plus_axis_primary_loo_control_rows": int(
+                best_primary_loo_control["target_rows"]
+            ),
+            "best_projection_plus_axis_primary_loo_retained_rows": int(
+                best_primary_loo_control["retained_rows"]
+            ),
+            "current_primary_rows": len(current_primary_rows),
+            "valid_current_primary_calibration_feature_overlap_rows": len(
+                valid_current_primary_overlap
+            ),
+            "current_primary_rows_excluded_as_mechanism_train_targets": len(
+                current_primary_train_target_overlap
+            ),
+            "missing_current_primary_source_free_event_axis_rows": (
+                missing_current_primary_source_free
+            ),
+            "missing_current_retained_oos_source_free_event_axis_rows": (
+                missing_current_retained_source_free
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "leave_one_out_projected_subset_signal_beyond_current_surface": (
+                loo_projected_signal
+            ),
+            "genuinely_new_axis_adds_beyond_projected_subset": marginal_signal,
+            "best_projection_plus_axis_caught_rows_reusable_from_existing_source_free_partial_surface": bool(
+                best_pair_reusable_source_free_rows
+            ),
+            "best_projection_plus_axis_primary_loo_control_passes": bool(
+                best_primary_control_passes
+            ),
+            "any_projection_plus_axis_primary_loo_control_passes": bool(
+                primary_control_passing_surfaces
+            ),
+            "adds_local_overlap_value_beyond_current_surface": bool(
+                loo_projected_signal or marginal_signal
+            ),
+            "adds_operating_point_value_beyond_current_surface": False,
+            "source_free_current_split_operating_point_measurable": (
+                source_free_current_split_measurable
+            ),
+            "valid_integrated_operating_point_measurable": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not bool(loo_projected_signal or marginal_signal),
+            "apply_or_promote_now": False,
+            "baseline_axis_id": baseline_axis_id,
+            "best_single_axis_id": best_single_axis["axis_id"],
+            "best_projection_plus_axis_id": best_projection_plus_axis[
+                "projection_plus_axis_id"
+            ],
+            "best_new_axis_id": best_projection_plus_axis["added_axis_id"],
+            "next_gate": (
+                "Materialize source-free current-split event-axis rows for "
+                f"{best_projection_plus_axis['projection_plus_axis_id']}, "
+                f"starting with {missing_current_primary_source_free} primary "
+                "retention-gate rows and "
+                f"{missing_current_retained_source_free} current-retained OOS "
+                "rows; then rerun this leave-one-out frontier before any "
+                "deployment or heldout claim."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "labels_used_only_for_train_cal_metric_accounting": True,
+            "entry_ids_used_only_for_split_overlap_accounting": True,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "target_oos_rows_excluded_from_their_own_axis_rule_selection": True,
+            "threshold_selected_or_tuned": True,
+            "threshold_selection_rows": (
+                "calibration_only_leave_one_oos_row_out_for_each_target"
+            ),
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "mechanism_no_template_rerun": _source_path_record(
+                mechanism_no_template_rerun_path
+            ),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+            "current_extended_oos_mechanism_overlap_readout": _source_path_record(
+                current_extended_oos_mechanism_overlap_readout_path
+            ),
+            "current_in_scope_threshold_contract": _source_path_record(
+                current_in_scope_threshold_contract_path
+            ),
+            "partial_surface_current_split_portability_readout": (
+                _source_path_record(partial_surface_current_split_portability_readout_path)
+                if partial_surface_current_split_portability_readout_path is not None
+                else {"exists": False, "path": None, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Leave-one-out projected-subset plus "
+                f"{best_projection_plus_axis['added_axis_id']} catches "
+                f"{best_projection_overlap['projection_plus_axis_current_retained_oos_catches']}/"
+                f"{len(current_retained_rows)} current-retained overlap rows, "
+                f"with {best_projection_overlap['marginal_current_retained_oos_catches_beyond_projected_subset']} "
+                "marginal catches beyond the projected subset."
+            ),
+            "result": (
+                "Research-only leave-one-out marginal signal: a genuinely new "
+                "event axis still adds local current-overlap catches beyond the "
+                "source-free-compatible projected subset after excluding each "
+                "target OOS row from its own calibration rule selection."
+                if marginal_signal and best_primary_control_passes
+                else (
+                    "Research-only leave-one-out marginal signal with a primary "
+                    "control caveat: the best new axis adds local "
+                    "current-overlap catches beyond the projected subset, but "
+                    "the same projected-subset-plus-axis rule retains only "
+                    f"{best_primary_loo_control['retained_rows']}/"
+                    f"{best_primary_loo_control['target_rows']} mechanism "
+                    "primaries under leave-one-primary-out control."
+                )
+                if marginal_signal
+                else (
+                    "Research-only leave-one-out result: the projected subset "
+                    "has local signal, but no added event axis contributes "
+                    "marginal current-retained OOS catches beyond it."
+                    if loo_projected_signal
+                    else (
+                        "Research-only leave-one-out negative: no tested simple "
+                        "event axis catches current-retained overlap rows beyond "
+                        "the fixed geometry/fold surface."
+                    )
+                )
+            ),
+            "next_action": (
+                "Build split-aligned source-free event-axis evidence for the "
+                "best leave-one-out marginal axis on the current primary and "
+                "current-retained OOS rows before any deployment or heldout claim."
+            ),
+        },
+    }
+
+
 def build_lever2_source_free_partial_surface_current_split_portability_readout(
     *,
     current_measured_readout_path: Path,
@@ -3765,6 +4766,178 @@ def render_lever2_event_axis_current_extended_frontier_readout_report(
     return "\n".join(lines) + "\n"
 
 
+def render_lever2_event_axis_loo_current_extended_frontier_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    baseline = measured["baseline_projected_subset_axis"]
+    baseline_overlap = baseline["current_extended_overlap"]
+    best = measured["best_projection_plus_axis"]
+    best_overlap = best["current_extended_overlap"]
+    lines = [
+        "# Lever 2 Event-Axis Leave-One-Out Current-Extended Frontier Readout",
+        "",
+        f"- Artifact: `{readout['artifact_id']}`",
+        f"- Status: `{readout['status']}`",
+        f"- Created UTC: `{readout['created_utc']}`",
+        "",
+        "## Measured Result",
+        "",
+        (
+            "- Baseline projected subset: "
+            f"`{baseline['axis_id']}` catches "
+            f"{baseline_overlap['current_retained_oos_caught_by_axis_loo']}/"
+            f"{counts['current_extended_current_retained_overlap_rows']} "
+            "current-retained overlap rows under leave-one-out selection."
+        ),
+        (
+            "- Best projected-subset-plus-axis frontier: "
+            f"`{best['projection_plus_axis_id']}` catches "
+            f"{best_overlap['projection_plus_axis_current_retained_oos_catches']}/"
+            f"{counts['current_extended_current_retained_overlap_rows']} "
+            "current-retained overlap rows."
+        ),
+        (
+            "- Marginal catches beyond projected subset: "
+            f"{best_overlap['marginal_current_retained_oos_catches_beyond_projected_subset']} "
+            f"({', '.join(best_overlap['marginal_caught_entry_ids']) or 'none'})."
+        ),
+        (
+            "- Current primary retention on the active split remains unmeasurable: "
+            f"{counts['valid_current_primary_calibration_feature_overlap_rows']}/"
+            f"{counts['current_primary_rows']} valid current-primary rows have "
+            "calibration-split mechanism features."
+        ),
+        "",
+        "## Leave-One-Out Single-Axis Frontier",
+        "",
+        (
+            "| axis | source-free status | LOO rows | retained OOS caught | "
+            "OR abstained | caught rows |"
+        ),
+        "| --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for row in measured["axis_loo_frontier_rows"]:
+        overlap = row["current_extended_overlap"]
+        lines.append(
+            f"| {row['axis_id']} | {row['source_free_status']} | "
+            f"{overlap['row_count']} | "
+            f"{overlap['current_retained_oos_caught_by_axis_loo']}/"
+            f"{overlap['current_surface_retained_rows']} | "
+            f"{overlap['union_or_gate_abstained_rows']}/"
+            f"{overlap['row_count']} | "
+            f"{', '.join(overlap['current_retained_caught_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Projected Subset Plus Added Axis",
+        "",
+        (
+            "| added axis | source-free status | retained OOS caught | "
+            "marginal caught | primary LOO retained | OR abstained | marginal rows |"
+        ),
+        "| --- | --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    top_pairs = sorted(
+        measured["projection_plus_axis_loo_rows"],
+        key=lambda row: (
+            row["current_extended_overlap"][
+                "marginal_current_retained_oos_catches_beyond_projected_subset"
+            ],
+            row["current_extended_overlap"][
+                "projection_plus_axis_current_retained_oos_catches"
+            ],
+            row["current_extended_overlap"]["union_minus_current_abstained_rows"],
+        ),
+        reverse=True,
+    )
+    for row in top_pairs:
+        overlap = row["current_extended_overlap"]
+        primary_control = row["primary_leave_one_out_control"]
+        lines.append(
+            f"| {row['added_axis_id']} | {row['source_free_status']} | "
+            f"{overlap['projection_plus_axis_current_retained_oos_catches']}/"
+            f"{overlap['current_surface_retained_rows']} | "
+            f"{overlap['marginal_current_retained_oos_catches_beyond_projected_subset']} | "
+            f"{primary_control['retained_rows']}/"
+            f"{primary_control['evaluable_rows']} | "
+            f"{overlap['union_or_gate_abstained_rows']}/"
+            f"{overlap['row_count']} | "
+            f"{', '.join(overlap['marginal_caught_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Missing Evidence",
+        "",
+        "| gap | required | valid now | missing now | why it matters |",
+        "| --- | ---: | ---: | ---: | --- |",
+    ]
+    for gap in readout["missing_evidence"]:
+        lines.append(
+            f"| {gap['gap_id']} | {gap['required_rows']} | "
+            f"{gap['valid_overlap_rows_now']} | {gap['missing_rows_now']} | "
+            f"{gap['why_it_matters']} |"
+        )
+    priority_rows = readout["missing_evidence_rows"][
+        "best_projection_plus_axis_current_retained_overlap_rows_requiring_source_free_materialization"
+    ]
+    lines += [
+        "",
+        "## Priority Current-Retained Overlap Rows",
+        "",
+        (
+            "| row | current score | baseline score | added-axis score | "
+            "added rule | source-free row exists | marginal |"
+        ),
+        "| --- | ---: | ---: | ---: | --- | --- | --- |",
+    ]
+    for row in priority_rows:
+        added_rule = row.get("added_axis_selected_rule") or {}
+        rule_label = (
+            f"{added_rule.get('direction')} {added_rule.get('threshold')}"
+            if added_rule
+            else "n/a"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row.get('current_surface_score')} | "
+            f"{row.get('baseline_axis_score')} | {row.get('added_axis_score')} | "
+            f"{rule_label} | "
+            f"{row.get('existing_source_free_partial_surface_row_available')} | "
+            f"{row['marginal_beyond_projected_subset']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Leave-one-out projected subset signal beyond current surface: "
+        f"{decision['leave_one_out_projected_subset_signal_beyond_current_surface']}",
+        "- Genuinely new axis adds beyond projected subset: "
+        f"{decision['genuinely_new_axis_adds_beyond_projected_subset']}",
+        "- Best new axis: "
+        f"`{decision['best_new_axis_id']}`",
+        "- Best projected-subset-plus-axis primary LOO control passes: "
+        f"{decision['best_projection_plus_axis_primary_loo_control_passes']}",
+        "- Any projected-subset-plus-axis primary LOO control passes: "
+        f"{decision['any_projection_plus_axis_primary_loo_control_passes']}",
+        "- Adds integrated operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        "- Source-free current split operating point measurable: "
+        f"{decision['source_free_current_split_operating_point_measurable']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def write_lever2_mechanism_feature_incremental_readout(
     *,
     mechanism_no_template_rerun_path: Path,
@@ -3834,6 +5007,51 @@ def write_lever2_event_axis_current_extended_frontier_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             render_lever2_event_axis_current_extended_frontier_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def write_lever2_event_axis_loo_current_extended_frontier_readout(
+    *,
+    mechanism_no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    current_extended_oos_mechanism_overlap_readout_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    min_primary_retain: float = 0.9,
+    baseline_axis_id: str = "source_free_projected_proton_role_subset",
+    artifact_id: str = DEFAULT_EVENT_AXIS_LOO_CURRENT_EXTENDED_FRONTIER_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_event_axis_loo_current_extended_frontier_readout(
+        mechanism_no_template_rerun_path=mechanism_no_template_rerun_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        current_extended_oos_mechanism_overlap_readout_path=(
+            current_extended_oos_mechanism_overlap_readout_path
+        ),
+        current_in_scope_threshold_contract_path=(
+            current_in_scope_threshold_contract_path
+        ),
+        partial_surface_current_split_portability_readout_path=(
+            partial_surface_current_split_portability_readout_path
+        ),
+        min_primary_retain=min_primary_retain,
+        baseline_axis_id=baseline_axis_id,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_event_axis_loo_current_extended_frontier_readout_report(
                 readout
             ),
             encoding="utf-8",

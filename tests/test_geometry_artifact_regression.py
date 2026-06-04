@@ -18630,6 +18630,167 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_event_axis_loo_current_extended_frontier_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_axis_loo_current_extended_frontier_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_event_axis_loo_current_extended_frontier_readout_"
+            "research_only_loo_marginal_axis_signal_primary_control_caveat",
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_loo_marginal_axis_signal_primary_control_caveat",
+        )
+        self.assertEqual(readout["counts"]["axis_surfaces_evaluated"], 8)
+        self.assertEqual(
+            readout["counts"]["projection_plus_axis_surfaces_evaluated"], 7
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_plus_axis_primary_loo_control_passing_surfaces"
+            ],
+            0,
+        )
+        self.assertEqual(readout["counts"]["calibration_rows"], 32)
+        self.assertEqual(readout["counts"]["calibration_primary_rows"], 4)
+        self.assertEqual(readout["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(readout["counts"]["current_extended_oos_overlap_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["current_extended_current_retained_overlap_rows"],
+            13,
+        )
+        self.assertEqual(
+            readout["counts"]["current_extended_current_abstained_overlap_rows"],
+            8,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "baseline_projected_subset_current_retained_oos_catches"
+            ],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_projection_plus_axis_current_retained_oos_catches"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_projection_plus_axis_marginal_current_retained_oos_catches"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_projection_plus_axis_union_or_gate_abstained_overlap_rows"
+            ],
+            15,
+        )
+        self.assertEqual(
+            readout["counts"]["best_projection_plus_axis_source_free_compatible_fields"],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"]["best_projection_plus_axis_missing_new_feature_fields"],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_projection_plus_axis_caught_rows_with_existing_source_free_partial_surface"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["best_projection_plus_axis_primary_loo_control_rows"],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"]["best_projection_plus_axis_primary_loo_retained_rows"],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "valid_current_primary_calibration_feature_overlap_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_primary_source_free_event_axis_rows"],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_retained_oos_source_free_event_axis_rows"
+            ],
+            132,
+        )
+        best = readout["measured_readout"]["best_projection_plus_axis"]
+        self.assertEqual(
+            best["projection_plus_axis_id"],
+            "source_free_projected_proton_role_subset+bond_change",
+        )
+        self.assertEqual(
+            best["current_extended_overlap"]["marginal_caught_entry_ids"],
+            ["m_csa:256", "m_csa:312"],
+        )
+        missing_rows = readout["missing_evidence_rows"]
+        self.assertEqual(
+            [
+                row["entry_id"]
+                for row in missing_rows[
+                    "best_projection_plus_axis_marginal_rows"
+                ]
+            ],
+            ["m_csa:256", "m_csa:312"],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "leave_one_out_projected_subset_signal_beyond_current_surface"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["genuinely_new_axis_adds_beyond_projected_subset"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "best_projection_plus_axis_caught_rows_reusable_from_existing_source_free_partial_surface"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "best_projection_plus_axis_primary_loo_control_passes"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "any_projection_plus_axis_primary_loo_control_passes"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        self.assertFalse(
+            readout["decision"]["source_free_current_split_operating_point_measurable"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+        self.assertTrue(
+            readout["guardrails"][
+                "target_oos_rows_excluded_from_their_own_axis_rule_selection"
+            ]
+        )
+
     def test_lever2_partial_surface_current_split_portability_readout_counts(
         self,
     ) -> None:

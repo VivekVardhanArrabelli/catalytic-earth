@@ -8,6 +8,7 @@ from pathlib import Path
 from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_current_extended_oos_mechanism_overlap_readout,
     build_lever2_event_axis_current_extended_frontier_readout,
+    build_lever2_event_axis_loo_current_extended_frontier_readout,
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_partial_surface_current_split_portability_readout,
@@ -186,6 +187,219 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertTrue(
             readout["decision"]["local_event_axis_signal_beyond_current_surface"]
+        )
+
+    def test_event_axis_loo_frontier_finds_marginal_axis_signal(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            mechanism_path = root / "mechanism.json"
+            sidecar_path = root / "sidecar.json"
+            current_overlap_path = root / "current_overlap.json"
+            current_primary_path = root / "current_primary.json"
+            partial_path = root / "partial.json"
+
+            mechanism_path.write_text(
+                json.dumps(
+                    {
+                        "scored_rows": {
+                            "calibration": [
+                                {"entry_id": "p1", "is_primary": True},
+                                {"entry_id": "p2", "is_primary": True},
+                                {"entry_id": "o1", "is_primary": False},
+                                {"entry_id": "o2", "is_primary": False},
+                                {"entry_id": "o3", "is_primary": False},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def features(
+                *,
+                projected: int = 0,
+                bond: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "expanded_event_residue_role__event_residue_role_proton_transfer_electrostatic_stabiliser": projected,
+                    "expanded_residue_code_count__residue_code_count_his_3": 0,
+                    "has_proton_transfer_event": projected > 0,
+                    "proton_transfer_count": projected,
+                    "has_bond_change_event": bond > 0,
+                    "bond_change_event_count": bond,
+                    "bond_broken_count": 0,
+                    "bond_formed_count": 0,
+                    "bond_order_changed_count": 0,
+                    "has_electron_transfer_event": False,
+                    "electron_transfer_count": 0,
+                    "event_count": 0,
+                    "multi_event_mechanism_flag": False,
+                    "mapped_active_site_residue_count": 0,
+                    "unique_mapped_active_site_residue_count": 0,
+                    "high_confidence_event_count": 0,
+                    "medium_confidence_event_count": 0,
+                    "low_confidence_event_count": 0,
+                    "unknown_confidence_event_count": 0,
+                }
+
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "p1",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(),
+                            },
+                            {
+                                "entry_id": "p2",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(),
+                            },
+                            {
+                                "entry_id": "o1",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(projected=1),
+                            },
+                            {
+                                "entry_id": "o2",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(bond=1),
+                            },
+                            {
+                                "entry_id": "o3",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(bond=1),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_overlap_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_points": {
+                            "current_surface": {
+                                "channel": "combined_mean_geometry_fold",
+                                "threshold": 0.5,
+                            }
+                        },
+                        "row_readouts": {
+                            "current_extended_oos_overlap_rows": [
+                                {
+                                    "entry_id": "o1",
+                                    "current_surface_score": 0.8,
+                                    "current_surface_abstains": False,
+                                },
+                                {
+                                    "entry_id": "o2",
+                                    "current_surface_score": 0.7,
+                                    "current_surface_abstains": False,
+                                },
+                                {
+                                    "entry_id": "o3",
+                                    "current_surface_score": 0.4,
+                                    "current_surface_abstains": True,
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_primary_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {"entry_id": "p1"},
+                            {"entry_id": "p2"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            partial_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "current_retained_oos_rows": 2,
+                            "missing_current_primary_source_free_partial_surface_rows": 2,
+                            "missing_current_retained_oos_source_free_partial_surface_rows": 2,
+                            "union_current_retained_oos_overlap_rows": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_event_axis_loo_current_extended_frontier_readout(
+                mechanism_no_template_rerun_path=mechanism_path,
+                train_cal_feature_sidecar_path=sidecar_path,
+                current_extended_oos_mechanism_overlap_readout_path=(
+                    current_overlap_path
+                ),
+                current_in_scope_threshold_contract_path=current_primary_path,
+                partial_surface_current_split_portability_readout_path=partial_path,
+                artifact_id="test_event_axis_loo_frontier",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_event_axis_loo_frontier")
+        self.assertEqual(
+            readout["result_class"], "research_only_loo_marginal_axis_signal"
+        )
+        self.assertEqual(
+            readout["counts"][
+                "baseline_projected_subset_current_retained_oos_catches"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["decision"]["best_new_axis_id"],
+            "bond_change",
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_projection_plus_axis_current_retained_oos_catches"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_projection_plus_axis_marginal_current_retained_oos_catches"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["best_projection_plus_axis_primary_loo_control_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["best_projection_plus_axis_primary_loo_retained_rows"],
+            2,
+        )
+        best = readout["measured_readout"]["best_projection_plus_axis"]
+        self.assertEqual(
+            best["current_extended_overlap"]["marginal_caught_entry_ids"], ["o2"]
+        )
+        pair_rows = readout["row_readouts"][
+            "current_extended_overlap_by_projection_plus_axis_loo"
+        ][best["projection_plus_axis_id"]]
+        o2 = [row for row in pair_rows if row["entry_id"] == "o2"][0]
+        self.assertEqual(o2["loo_selection_oos_rows"], 2)
+        self.assertTrue(o2["current_retained_caught_beyond_projected_subset"])
+        self.assertTrue(
+            readout["decision"]["genuinely_new_axis_adds_beyond_projected_subset"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "best_projection_plus_axis_primary_loo_control_passes"
+            ]
+        )
+        self.assertTrue(
+            readout["guardrails"][
+                "target_oos_rows_excluded_from_their_own_axis_rule_selection"
+            ]
         )
 
     def test_partial_surface_current_split_portability_measures_union_overlap(
