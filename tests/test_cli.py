@@ -34,6 +34,27 @@ class CliTests(unittest.TestCase):
             args.current_evidence_after_q43088_locator_approval,
         )
 
+    def test_loose_same_family_pressure_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-confounded-proxy-loose-same-family-pressure-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_"
+                "pressure_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn("current_measured_readout", args.current_measured_readout)
+        self.assertIn("acquisition_queue", args.acquisition_queue)
+        self.assertIn(
+            "same_family_structural_acquisition_contract",
+            args.same_family_structural_acquisition_contract,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

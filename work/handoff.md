@@ -3,13 +3,14 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T14:03:05Z`
-- STARTED_AT_LOCAL: `2026-06-04T09:03:05-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T14:26:14Z`
-- ENDED_AT_LOCAL: `2026-06-04T09:26:14-0500 CDT`
-- ELAPSED_MINUTES: `23.2`
-- Status: wrap ledger complete; commit/push pending. Canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T14:03:05Z` with PID `20645`.
+- STARTED_AT_UTC: `2026-06-04T15:01:20Z`
+- STARTED_AT_LOCAL: `2026-06-04T10:01:20-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T15:52:08Z`
+- ENDED_AT_LOCAL: `2026-06-04T10:52:08-0500 CDT`
+- ELAPSED_MINUTES: `50.8`
+- Status: measured block complete; commit/push/sync verification follows this
+  handoff edit. Canonical `.git/catalytic-earth-automation.lock`
+  acquired before substantive work at `2026-06-04T15:01:20Z` with PID `36318`.
   Current user instruction: work only on Lever 3.
 
 ## Mission
@@ -61,6 +62,135 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 34
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T15:01:20Z`
+- STARTED_LOCAL: `2026-06-04T10:01:20-0500 CDT`
+- ENDED_AT: `2026-06-04T15:52:08Z`
+- ENDED_LOCAL: `2026-06-04T10:52:08-0500 CDT`
+- ELAPSED_MINUTES: `50.8`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T15:01:20Z` with PID `36318`.
+
+#### Current intent
+
+Work only on Lever 3. Continue from the measured readout by trying to close
+the P07658 predicted-coordinate evidence gap first, then refresh the
+deployment-valid readout without changing threshold `0.44155`.
+
+#### What changed
+
+- Refreshed the required Lever 3 current measured readout first:
+  `artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_current_measured_readout_current702_20260604.md`.
+  The operating point is unchanged: threshold `0.44155`, 204/210 train/cal OOS
+  rows scored, 72/204 abstained, 132/204 retained, train/cal in-scope retention
+  31/34, high-cofactor strict proxy 0/4 abstained, and same-family structural
+  strict proxy 11/59 abstained. Deployment closure remains false.
+- Filled and scored the frozen 16-row high-cofactor near-miss pressure tranche
+  without relaxing the strict high-cofactor contract. The new measured
+  diagnostic artifacts are
+  `artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_plan_current702_20260604.json`,
+  `artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scoring_input_manifest_current702_20260604.json`,
+  `artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scored_extension_current702_20260604.json`,
+  `artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout_current702_20260604.json`,
+  and
+  `work/fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout_current702_20260604.md`.
+  All 16 rows now have coordinates and full-channel scores; 8/16 abstain and
+  8/16 retain. The readout is complete but diagnostic-only because the rows
+  are near-cofactor pressure rows below the strict source-free high-cofactor
+  membership axis, so `strict_high_cofactor_contract_rows_added` remains 0.
+- Staged 9 predicted-coordinate files needed for that diagnostic tranche,
+  including 8 AFDB v6 CIFs and one AFDB prediction-API/Viro3D/ColabFold model
+  for P68698. Foldseek results were written to
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/near_cofactor_pressure_vs_train_atlas.tsv`
+  with 1208 rows.
+- Probed the AlphaFold prediction API route that cleared P68698 against the
+  remaining P07658 gap and wrote
+  `artifacts/v3_fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.json`
+  plus
+  `work/fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.md`.
+  P07658 returned 0 API models/HTTP 404; P68698 returned 1 model and remains
+  the confirmed noncanonical route. P07658 is still not cleared.
+- Added a reproducible loose same-family pressure readout builder and CLI:
+  `build-fold-augmented-confounded-proxy-loose-same-family-pressure-readout`.
+  It writes
+  `artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604.md`.
+  The diagnostic de-duplicates the refreshed 59 strict same-family rows and
+  the 21 loose current-surface rows: strict-plus-loose would abstain only
+  26/80 at threshold `0.44155`, so relaxing same-family membership cannot
+  close the structural axis.
+- Added focused unit, CLI-parser, artifact-regression, source-hash, and
+  current-artifact coverage in `tests/test_northstar_next_levers.py`,
+  `tests/test_cli.py`, and `tests/test_geometry_artifact_regression.py`.
+- Appended a measured progress-log entry and regenerated `work/status.md`.
+  The current docs artifact-reference check was refreshed with 784 references,
+  0 missing.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, row labels, or threshold values changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new pressure readouts are measured diagnostics, not blocker packets and
+  not contract-closure claims.
+
+#### Verification
+
+- Focused new coverage:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_loose_same_family_pressure_readout_is_diagnostic_only tests/test_cli.py::CliTests::test_loose_same_family_pressure_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_confounded_proxy_near_cofactor_pressure_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_p07658_alphafold_prediction_api_probe_counts -q`:
+  5 passed.
+- Source-hash regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  1 test and 6 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1414 passed, 190 subtests, with the
+  existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1369 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Touched JSON parse check: 7 artifacts parsed.
+- Final docs artifact-reference check to `/tmp`: missing 0.
+- Disk guardrail remained above 10 GiB: 12 GiB available.
+
+#### Commit/push status
+
+- Handoff/status/memory are being updated during wrap. Commit, push,
+  `HEAD == origin/main` verification, and lock release are the remaining
+  mechanical steps after this handoff edit.
+
+#### Exact next action
+
+Do not change or retune threshold `0.44155`. The next Lever 3 action is:
+
+1. Provision or run an approved full-length predictor/provider for exact
+   P07658 that explicitly supports or documents selenocysteine position 140
+   handling without experimental-PDB shortcuts.
+2. Fill the P07658 provenance contract and rerun
+   `build-fold-augmented-p07658-prediction-acceptance-preflight`.
+3. If and only if the P07658 acceptance checks pass, rerun row scoring at the
+   unchanged threshold and refresh the measured readout.
+4. Acquire 16 true non-heldout train/cal OOS high-cofactor rows with strict
+   source-free/locus membership; near-cofactor pressure rows are insufficient.
+5. Acquire a new same-family structural surface under the strict contract;
+   the current strict-plus-loose diagnostic reaches only 26/80 abstained and
+   is not a deployable closure path.
 
 ### 2026-06-04 Lever 3 Forward Push Run 33
 

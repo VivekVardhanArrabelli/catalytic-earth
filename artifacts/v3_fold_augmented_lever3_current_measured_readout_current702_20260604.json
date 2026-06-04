@@ -20,7 +20,7 @@
     "scored_train_cal_oos_rows": 204,
     "unresolved_evidence_gaps": 3
   },
-  "created_utc": "2026-06-04T14:20:55Z",
+  "created_utc": "2026-06-04T15:03:18Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "current_evidence_sufficient_for_deployment_closure": false,

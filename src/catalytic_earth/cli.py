@@ -149,6 +149,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet,
     write_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
     write_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
+    write_fold_augmented_confounded_proxy_loose_same_family_pressure_readout,
     write_fold_augmented_lever3_blocker_packet_guardrail_audit,
     write_fold_augmented_lever3_current_measured_readout,
     write_fold_augmented_lever3_dispatch_readiness_summary,
@@ -13180,6 +13181,35 @@ def cmd_build_fold_augmented_lever3_current_measured_readout(
         f"{counts.get('all_train_cal_oos_abstained_at_fixed_threshold')}, "
         f"deployment closed: "
         f"{readout.get('decision', {}).get('current_evidence_sufficient_for_deployment_closure')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
+        current_measured_readout_path=Path(args.current_measured_readout),
+        acquisition_queue_path=Path(args.acquisition_queue),
+        same_family_structural_acquisition_contract_path=Path(
+            args.same_family_structural_acquisition_contract
+        ),
+        lever3_dispatch_readiness_summary_path=Path(
+            args.lever3_dispatch_readiness_summary
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote fold-augmented loose same-family pressure readout to "
+        f"{args.out} (strict+loose abstained: "
+        f"{counts.get('strict_plus_loose_diagnostic_abstained_at_fixed_threshold')}/"
+        f"{counts.get('strict_plus_loose_diagnostic_rows')})"
     )
     return 0
 
@@ -31425,6 +31455,60 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_current_measured_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_current_measured_readout
+    )
+
+    loose_same_family_pressure_readout = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-loose-same-family-pressure-readout",
+        help=(
+            "write a train/cal-only diagnostic readout for loose same-family "
+            "current-surface rows without closing the strict contract"
+        ),
+    )
+    loose_same_family_pressure_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    loose_same_family_pressure_readout.add_argument(
+        "--acquisition-queue",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_acquisition_queue_"
+            "current702_20260603.json"
+        ),
+    )
+    loose_same_family_pressure_readout.add_argument(
+        "--same-family-structural-acquisition-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_contract_current702_20260604.json"
+        ),
+    )
+    loose_same_family_pressure_readout.add_argument(
+        "--lever3-dispatch-readiness-summary",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_"
+            "current702_20260604.json"
+        ),
+    )
+    loose_same_family_pressure_readout.add_argument("--artifact-id", default=None)
+    loose_same_family_pressure_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_"
+            "pressure_readout_current702_20260604.json"
+        ),
+    )
+    loose_same_family_pressure_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_loose_same_family_"
+            "pressure_readout_current702_20260604.md"
+        ),
+    )
+    loose_same_family_pressure_readout.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

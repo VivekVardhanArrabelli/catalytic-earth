@@ -1,0 +1,78 @@
+{
+  "artifact_id": "v3_fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604",
+  "counts": {
+    "accessions_probed": 2,
+    "critical_violation_total": 0,
+    "p07658_api_models_returned": 0,
+    "p07658_http_status": 404,
+    "p68698_api_models_returned": 1,
+    "p68698_coordinate_file_staged": 1
+  },
+  "created_utc": "2026-06-04T15:22:13Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not repeat legacy AFDB direct URL or prediction API checks for P07658 without new provider evidence. P07658 still needs an approved full-length predictor/provider that supports the exact 715-aa selenoprotein sequence and records selenocysteine handling.",
+    "p07658_coordinate_blocker_cleared_now": false,
+    "p68698_near_cofactor_coordinate_route_confirmed": true
+  },
+  "guardrails": {
+    "critical_violation_total": 0,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "lever3_only": true,
+    "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": false,
+    "p07658_coordinates_staged_now": false,
+    "p07658_rows_scored_now": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "result": "The AFDB prediction API returns no P07658 model (404, empty object), so the API route cannot clear the P07658 surface-completeness blocker. The same route confirms why P68698 could be completed via a Viro3D ColabFold model.",
+    "smallest_next_experiment": "Run or provision a full-length P07658 predictor/provider with explicit selenocysteine position-140 handling and coordinate/provenance checksums."
+  },
+  "probes": [
+    {
+      "accession": "P07658",
+      "api_url": "https://alphafold.ebi.ac.uk/api/prediction/P07658",
+      "deployment_valid_coordinate_available_now": false,
+      "http_status": 404,
+      "models_returned": 0,
+      "response_bytes": 2,
+      "response_object_keys": [],
+      "response_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "accession": "P68698",
+      "api_url": "https://alphafold.ebi.ac.uk/api/prediction/P68698",
+      "deployment_valid_coordinate_available_now": true,
+      "first_model_summary": {
+        "cifUrl": "https://alphafold.ebi.ac.uk/files/AF-0000000365772455-model_v1.cif",
+        "globalMetricValue": 91.23,
+        "latestVersion": 1,
+        "modelEntityId": "AF-0000000365772455",
+        "providerId": "VR3D",
+        "sequenceChecksum": "60d95e56e18bf4d4b32120d23d7380c5",
+        "sequenceEnd": 314,
+        "toolUsed": "ColabFold v1.5.2",
+        "uniprotAccession": "P68698"
+      },
+      "http_status": 200,
+      "models_returned": 1,
+      "response_bytes": 2039,
+      "response_sha256": "8fd731a0170ac21789c3f68ba38c8d3d6362926dde5ad68c45a9c0b2fdab74e7"
+    }
+  ],
+  "schema_version": "v3.fold_augmented_p07658_alphafold_prediction_api_probe",
+  "scope": "Narrow Lever 3 AFDB prediction API route probe after the near-cofactor P68698 rescue showed that noncanonical AFDB model IDs may exist even when legacy direct URLs 404. It stages no P07658 coordinate, scores no P07658 row, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "p68698_staged_coordinate": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/AF-0000000365772455-model_v1.cif",
+      "sha256": "69ddfeb30f9a65003636151190227bb4fd068efcd662f8e3ec3b5f0572f84716"
+    }
+  },
+  "status": "fold_augmented_p07658_alphafold_prediction_api_probe_no_p07658_model_p68698_route_confirmed"
+}

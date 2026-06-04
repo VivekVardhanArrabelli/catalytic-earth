@@ -64,6 +64,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet,
     build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
     build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
+    build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout,
     build_fold_augmented_lever3_blocker_packet_guardrail_audit,
     build_fold_augmented_lever3_current_measured_readout,
     build_fold_augmented_lever3_dispatch_readiness_summary,
@@ -3485,6 +3486,131 @@ class NorthstarNextLeversTests(unittest.TestCase):
             readout["decision"]["train_cal_high_cofactor_proxy_target_met"]
         )
         self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_loose_same_family_pressure_readout_is_diagnostic_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            current_path = root / "current.json"
+            queue_path = root / "queue.json"
+            contract_path = root / "contract.json"
+            dispatch_path = root / "dispatch.json"
+
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {"threshold": 0.44155},
+                        "row_readouts": {
+                            "same_family_structural_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "combined_mean_geometry_fold": 0.3,
+                                    "threshold_margin": -0.14155,
+                                    "abstains_at_fixed_threshold": True,
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_a",
+                                    "predicted_geometry_top1_fingerprint_id": "fp_a",
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "combined_mean_geometry_fold": 0.5,
+                                    "threshold_margin": 0.05845,
+                                    "abstains_at_fixed_threshold": False,
+                                    "nearest_train_atlas_true_fingerprint_id": "fp_b",
+                                    "predicted_geometry_top1_fingerprint_id": "fp_b",
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "loose_same_family_current_surface_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "combined_score": 0.2,
+                                "threshold_margin": -0.24155,
+                                "abstained": True,
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "combined_score": 0.2,
+                                "threshold_margin": -0.24155,
+                                "abstained": True,
+                                "nearest_train_atlas_true_fingerprint_id": "fp_c",
+                                "predicted_geometry_top1_fingerprint_id": "fp_c",
+                                "queue_role": "diagnostic",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {"counts": {"minimum_new_abstained_rows_for_80pct": 170}}
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "same_family_structural_intake_slots_required": 170,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
+                    current_measured_readout_path=current_path,
+                    acquisition_queue_path=queue_path,
+                    same_family_structural_acquisition_contract_path=contract_path,
+                    lever3_dispatch_readiness_summary_path=dispatch_path,
+                    artifact_id="loose_same_family_pressure_test",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "loose_same_family_pressure_test")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_confounded_proxy_loose_same_family_pressure_readout_"
+                "ready_diagnostic_not_contract"
+            ),
+        )
+        self.assertEqual(
+            readout["counts"]["strict_same_family_rows_from_refreshed_readout"],
+            2,
+        )
+        self.assertEqual(readout["counts"]["loose_same_family_diagnostic_rows"], 1)
+        self.assertEqual(readout["counts"]["overlap_rows_removed"], 1)
+        self.assertEqual(
+            readout["counts"][
+                "strict_plus_loose_diagnostic_abstained_at_fixed_threshold"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "strict_plus_loose_theoretical_new_all_abstained_rows_for_80pct"
+            ],
+            2,
+        )
+        self.assertFalse(
+            readout["decision"][
+                "loose_same_family_evidence_sufficient_for_contract_closure"
+            ]
+        )
+        self.assertFalse(readout["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(readout["guardrails"]["strict_membership_relaxed_now"])
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(

@@ -7337,6 +7337,135 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["blocker_packet"])
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_loose_same_family_"
+                "pressure_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_confounded_proxy_loose_same_family_pressure_"
+                "readout_ready_diagnostic_not_contract"
+            ),
+        )
+        self.assertEqual(readout["fixed_threshold"], 0.44155)
+        self.assertEqual(
+            readout["counts"]["strict_same_family_rows_from_refreshed_readout"],
+            59,
+        )
+        self.assertEqual(
+            readout["counts"]["strict_same_family_abstained_at_fixed_threshold"],
+            11,
+        )
+        self.assertEqual(readout["counts"]["loose_same_family_diagnostic_rows"], 21)
+        self.assertEqual(
+            readout["counts"][
+                "loose_same_family_diagnostic_abstained_at_fixed_threshold"
+            ],
+            15,
+        )
+        self.assertEqual(
+            readout["counts"]["strict_plus_loose_diagnostic_rows"], 80
+        )
+        self.assertEqual(
+            readout["counts"][
+                "strict_plus_loose_diagnostic_abstained_at_fixed_threshold"
+            ],
+            26,
+        )
+        self.assertEqual(readout["counts"]["overlap_rows_removed"], 0)
+        self.assertEqual(
+            readout["counts"][
+                "strict_plus_loose_theoretical_new_all_abstained_rows_for_80pct"
+            ],
+            190,
+        )
+        self.assertEqual(
+            readout["counts"]["frozen_dispatch_same_family_slots_required"],
+            170,
+        )
+        self.assertTrue(readout["decision"]["measured_readout_available"])
+        self.assertFalse(
+            readout["decision"][
+                "loose_same_family_evidence_sufficient_for_contract_closure"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["strict_membership_relaxed_now"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_confounded_proxy_near_cofactor_pressure_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_near_cofactor_pressure_"
+                "scored_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_confounded_proxy_near_cofactor_pressure_"
+                "readout_ready_complete_diagnostic_not_contract"
+            ),
+        )
+        self.assertEqual(readout["fixed_operating_point"]["threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["near_cofactor_pressure_rows"], 16)
+        self.assertEqual(readout["counts"]["coordinate_rows_available"], 16)
+        self.assertEqual(readout["counts"]["coordinates_staged_this_run"], 9)
+        self.assertEqual(readout["counts"]["rows_with_full_channel_scores"], 16)
+        self.assertEqual(readout["counts"]["rows_missing_full_channel_scores"], 0)
+        self.assertEqual(readout["counts"]["rows_abstained_at_fixed_threshold"], 8)
+        self.assertEqual(readout["counts"]["rows_retained_at_fixed_threshold"], 8)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_contract_rows_added"], 0)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_gap_remaining_rows"], 16)
+        self.assertEqual(readout["counts"]["same_family_structural_gap_remaining_rows"], 170)
+        self.assertFalse(
+            readout["decision"][
+                "current_near_cofactor_evidence_sufficient_for_high_cofactor_contract"
+            ]
+        )
+        self.assertFalse(readout["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p07658_alphafold_prediction_api_probe_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            probe["status"],
+            (
+                "fold_augmented_p07658_alphafold_prediction_api_probe_"
+                "no_p07658_model_p68698_route_confirmed"
+            ),
+        )
+        self.assertEqual(probe["counts"]["p07658_api_models_returned"], 0)
+        self.assertEqual(probe["counts"]["p68698_api_models_returned"], 1)
+        self.assertEqual(probe["counts"]["p68698_coordinate_file_staged"], 1)
+        self.assertEqual(probe["counts"]["critical_violation_total"], 0)
+        self.assertFalse(probe["decision"]["p07658_coordinate_blocker_cleared_now"])
+        self.assertFalse(probe["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(probe["guardrails"]["p07658_rows_scored_now"])
+
     def test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current(
         self,
     ) -> None:
@@ -7352,6 +7481,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ),
             "v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json",
             "v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+            (
+                "v3_fold_augmented_confounded_proxy_loose_same_family_"
+                "pressure_readout_current702_20260604.json"
+            ),
         ]:
             with self.subTest(artifact_name=artifact_name):
                 artifact = _load_json(ROOT / "artifacts" / artifact_name)

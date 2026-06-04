@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 345
-- Measured elapsed time: 10519.1 minutes (175.32 hours)
+- Entries: 346
+- Measured elapsed time: 10569.9 minutes (176.16 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -23,7 +23,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 3125.4 measured minutes (52.09 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- v3: 2633.3 measured minutes (43.89 hours)
+- v3: 2684.1 measured minutes (44.74 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3626
-- Evidence references logged: 2991
+- Artifact references logged: 3630
+- Evidence references logged: 2992
 
 ## Recent Entries
-
-### 2026-06-03T23:39:07+00:00 - northstar-lever-2
-
-- Task: Event-axis signoff decisions and source-free application surface materialization
-- Time mode: measured
-- Measured minutes: 35.833
-- Started: 2026-06-03T23:03:17Z
-- Ended: 2026-06-03T23:39:07Z
-- Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_coverage_gap_after_event_axis_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_coverage_gap_after_event_axis_current702_20260603.md, artifacts/v3_active_lever_reviewer_decision_queue_current702_20260603.json, work/active_lever_reviewer_decision_queue_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md, work/handoff.md, work/status.md
-- Evidence: 53 event-axis signoff rows reviewed: 14 approved, 39 rejected until rewritten, 0 pending, event-axis materialization gate now has 14 materialized review-only linker rows and 0 blockers, source-free application surface now has 53 residue-count rows and 14 event/residue-role rows, pre-threshold readiness blockers reduced to heldout-safe application surface missing plus current702 locator coverage incomplete; no heldout threshold read performed, source-free application surface stores sanitized event-axis materialization references with 14 hashes and no accession-bearing gate rows, coverage gap artifact records 87/140 heldout rows still missing approved source-free locator sidecars, full pytest passed: 1345 passed, 154 subtests, one existing sklearn/SciPy deprecation warning, unittest discovery passed: 1300 tests, validate, compileall, git diff --check, and JSON syntax checks passed
-- Notes: No labels, registries, ontologies, imports, production thresholds, model weights, heldout threshold reads, or heldout tuning changed. Event-axis approvals/rejections are review-only gate decisions from source-free evidence.
 
 ### 2026-06-04T00:37:12.914214+00:00 - northstar-lever-2
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json, work/fold_augmented_lever3_current_measured_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: measured readout 204 scored train/cal OOS rows with 72 abstained at unchanged threshold 0.44155, train/cal in-scope retention 31 of 34, high-cofactor proxy 0 of 4 abstained, same-family structural proxy 11 of 59 abstained, current evidence insufficient for deployment closure, P07658 AFDB v6 and v4 direct checks 404, facebook esmfold_v1 weights 7.862 GiB and tokenizer lacks U support, full pytest 1409 passed 189 subtests one existing sklearn warning, unittest discovery 1364 passed, validate passed 702 labels, compileall diff check JSON parse 3530 files docs reference check missing 0
 - Notes: Lever 3 only. No labels registries ontologies imports production thresholds heldout splits heldout tuning model weights row scoring coordinate staging or experimental PDB deployment shortcuts changed.
+
+### 2026-06-04T15:52:38.463795+00:00 - v3
+
+- Task: Lever 3 fold/geometry novelty gate measured pressure readouts
+- Time mode: measured
+- Measured minutes: 50.8
+- Started: 2026-06-04T15:01:20Z
+- Ended: 2026-06-04T15:52:08Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604.json, artifacts/v3_fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.json
+- Evidence: near-cofactor pressure 8/16 abstained; loose same-family pressure 26/80 abstained; P07658 AlphaFold API returned 0 models while P68698 route returned 1
+- Notes: Added reproducible loose same-family pressure builder/CLI and regression coverage; full pytest/unittest passed
 
 ## Expectation Updates
 
@@ -392,6 +392,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T12:50:52.667257+00:00: Next Lever 3 action is to run/provision the exact P07658 full-length predicted coordinate using the FASTA/template, rerun acceptance preflight, then acquire 16 source-free high-cofactor train/cal OOS rows before the 170-row same-family structural surface.
 - 2026-06-04T13:53:10.947379+00:00: Next Lever 3 action is to fill the P07658 coordinate and provenance dispatch first then high-cofactor slots then same-family structural slots before any fixed-threshold rerun.
 - 2026-06-04T14:25:57.944431+00:00: Lever 3 now has a measured current operating-point readout but deployment closure still needs P07658 accepted full-length predicted-coordinate provenance plus 16 high-cofactor and 170 same-family structural train/cal OOS acquisition rows.
+- 2026-06-04T15:52:38.463795+00:00: Current source-free evidence supports measured diagnostics but not deployment closure; strict high-cofactor and same-family acquisitions remain required
 
 ## Scope Adjustments
 
@@ -596,3 +597,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T23:39:07+00:00: Event-axis signoff is no longer the Lever 2 blocker; locator coverage and heldout-safe application-surface policy are now the remaining Lever 2 blockers.
 - 2026-06-04T00:37:12.914214+00:00: Lever 2 partial source-free surface is review-ready but fail-closed until explicit operating-contract decision.
 - 2026-06-04T01:43:55.363807+00:00: Lever 2 partial source-free surface is no longer a pending read; it is a read-once nondeployable result.
+- 2026-06-04T15:52:38.463795+00:00: Lever 3 only; no labels, registries, ontologies, heldout splits, imports, or threshold changes

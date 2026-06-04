@@ -300,6 +300,9 @@ FOLD_AUGMENTED_LEVER3_DISPATCH_READINESS_SUMMARY_ID = (
 FOLD_AUGMENTED_LEVER3_CURRENT_MEASURED_READOUT_ID = (
     "v3_fold_augmented_lever3_current_measured_readout_current702_20260604"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_LOOSE_SAME_FAMILY_PRESSURE_READOUT_ID = (
+    "v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -35088,6 +35091,389 @@ def write_fold_augmented_lever3_current_measured_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_current_measured_readout_report(readout),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _all_new_rows_abstained_needed_for_target(
+    *,
+    current_abstained: int,
+    current_rows: int,
+    target: float = 0.80,
+) -> int:
+    if current_rows <= 0:
+        return 0
+    if current_abstained / current_rows >= target:
+        return 0
+    additions = 0
+    while (current_abstained + additions) / (current_rows + additions) < target:
+        additions += 1
+    return additions
+
+
+def _loose_same_family_pressure_row(
+    row: dict[str, Any],
+    *,
+    membership: str,
+    threshold: float,
+) -> dict[str, Any]:
+    if membership == "strict_same_family_structural_proxy_current_readout":
+        combined = _parse_optional_float(row.get("combined_mean_geometry_fold"))
+        margin = _parse_optional_float(row.get("threshold_margin"))
+        abstains = bool(row.get("abstains_at_fixed_threshold"))
+        return {
+            "entry_id": row.get("entry_id"),
+            "membership": membership,
+            "combined_mean_geometry_fold": (
+                round(combined, 6) if combined is not None else None
+            ),
+            "threshold_margin": round(margin, 6) if margin is not None else None,
+            "abstains_at_fixed_threshold": abstains,
+            "nearest_train_atlas_true_fingerprint_id": row.get(
+                "nearest_train_atlas_true_fingerprint_id"
+            ),
+            "predicted_geometry_top1_fingerprint_id": row.get(
+                "predicted_geometry_top1_fingerprint_id"
+            ),
+        }
+    combined = _parse_optional_float(row.get("combined_score"))
+    margin = _parse_optional_float(row.get("threshold_margin"))
+    if margin is None and combined is not None:
+        margin = combined - threshold
+    abstains = bool(row.get("abstained"))
+    return {
+        "entry_id": row.get("entry_id"),
+        "membership": membership,
+        "combined_mean_geometry_fold": (
+            round(combined, 6) if combined is not None else None
+        ),
+        "threshold_margin": round(margin, 6) if margin is not None else None,
+        "abstains_at_fixed_threshold": abstains,
+        "nearest_train_atlas_true_fingerprint_id": row.get(
+            "nearest_train_atlas_true_fingerprint_id"
+        ),
+        "predicted_geometry_top1_fingerprint_id": row.get(
+            "predicted_geometry_top1_fingerprint_id"
+        ),
+        "queue_role": row.get("queue_role"),
+    }
+
+
+def build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
+    *,
+    current_measured_readout_path: Path,
+    acquisition_queue_path: Path,
+    same_family_structural_acquisition_contract_path: Path,
+    lever3_dispatch_readiness_summary_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_LOOSE_SAME_FAMILY_PRESSURE_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    current = _read_json(current_measured_readout_path)
+    queue = _read_json(acquisition_queue_path)
+    contract = _read_json(same_family_structural_acquisition_contract_path)
+    dispatch = _read_json(lever3_dispatch_readiness_summary_path)
+    threshold = _parse_optional_float(
+        (current.get("fixed_operating_point") or {}).get("threshold")
+    )
+    if threshold is None:
+        threshold = 0.44155
+    threshold_value = float(threshold)
+    current_rows_raw = [
+        row
+        for row in (current.get("row_readouts") or {}).get(
+            "same_family_structural_proxy_rows", []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    strict_rows = [
+        _loose_same_family_pressure_row(
+            row,
+            membership="strict_same_family_structural_proxy_current_readout",
+            threshold=threshold_value,
+        )
+        for row in current_rows_raw
+    ]
+    strict_entry_ids = {str(row["entry_id"]) for row in strict_rows}
+    loose_rows_raw = [
+        row
+        for row in queue.get("loose_same_family_current_surface_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    loose_rows = [
+        _loose_same_family_pressure_row(
+            row,
+            membership="loose_same_family_current_surface_diagnostic_not_contract",
+            threshold=threshold_value,
+        )
+        for row in loose_rows_raw
+        if str(row.get("entry_id")) not in strict_entry_ids
+    ]
+    combined_rows = sorted(
+        strict_rows + loose_rows,
+        key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+    )
+    strict_abstained = sum(
+        1 for row in strict_rows if row.get("abstains_at_fixed_threshold")
+    )
+    loose_abstained = sum(
+        1 for row in loose_rows if row.get("abstains_at_fixed_threshold")
+    )
+    combined_abstained = sum(
+        1 for row in combined_rows if row.get("abstains_at_fixed_threshold")
+    )
+    contract_counts = contract.get("counts") or {}
+    dispatch_counts = dispatch.get("counts") or {}
+    critical_total = int(dispatch_counts.get("critical_violation_total") or 0)
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_loose_same_family_pressure_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_loose_same_family_pressure_readout_"
+            "ready_diagnostic_not_contract"
+        ),
+        "scope": (
+            "Train/cal-only diagnostic fixed-threshold readout for the loose "
+            "same-family current-surface rows named by the acquisition queue. "
+            "It de-duplicates against the refreshed strict same-family rows "
+            "and does not relax membership, close the contract, tune "
+            "thresholds, read heldout rows, or change labels."
+        ),
+        "guardrails": {
+            "train_cal_only": True,
+            "diagnostic_not_contract_closure": True,
+            "strict_membership_relaxed_now": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "source_free_score_channels_only": True,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "fixed_threshold": round(threshold_value, 6),
+        "readout": {
+            "strict_same_family_structural_current": {
+                "rows": len(strict_rows),
+                "abstained": strict_abstained,
+                "retained": len(strict_rows) - strict_abstained,
+                "abstain_recall": (
+                    round(strict_abstained / len(strict_rows), 6)
+                    if strict_rows
+                    else None
+                ),
+            },
+            "loose_same_family_current_surface_diagnostic": {
+                "rows": len(loose_rows),
+                "abstained": loose_abstained,
+                "retained": len(loose_rows) - loose_abstained,
+                "abstain_recall": (
+                    round(loose_abstained / len(loose_rows), 6)
+                    if loose_rows
+                    else None
+                ),
+            },
+            "strict_plus_loose_diagnostic_if_relaxed": {
+                "rows": len(combined_rows),
+                "abstained": combined_abstained,
+                "retained": len(combined_rows) - combined_abstained,
+                "abstain_recall": (
+                    round(combined_abstained / len(combined_rows), 6)
+                    if combined_rows
+                    else None
+                ),
+            },
+        },
+        "counts": {
+            "strict_same_family_rows_from_refreshed_readout": len(strict_rows),
+            "strict_same_family_abstained_at_fixed_threshold": strict_abstained,
+            "loose_same_family_diagnostic_rows": len(loose_rows),
+            "loose_same_family_diagnostic_abstained_at_fixed_threshold": (
+                loose_abstained
+            ),
+            "strict_plus_loose_diagnostic_rows": len(combined_rows),
+            "strict_plus_loose_diagnostic_abstained_at_fixed_threshold": (
+                combined_abstained
+            ),
+            "strict_plus_loose_diagnostic_retained_at_fixed_threshold": (
+                len(combined_rows) - combined_abstained
+            ),
+            "overlap_rows_removed": len(current_rows_raw)
+            + len(loose_rows_raw)
+            - len(combined_rows),
+            "current_strict_theoretical_new_all_abstained_rows_for_80pct": (
+                _all_new_rows_abstained_needed_for_target(
+                    current_abstained=strict_abstained,
+                    current_rows=len(strict_rows),
+                )
+            ),
+            "strict_plus_loose_theoretical_new_all_abstained_rows_for_80pct": (
+                _all_new_rows_abstained_needed_for_target(
+                    current_abstained=combined_abstained,
+                    current_rows=len(combined_rows),
+                )
+            ),
+            "frozen_dispatch_same_family_slots_required": int(
+                dispatch_counts.get("same_family_structural_intake_slots_required")
+                or 0
+            ),
+            "contract_same_family_minimum_new_abstained_rows_for_80pct": int(
+                contract_counts.get("minimum_new_abstained_rows_for_80pct") or 0
+            ),
+            "critical_violation_total": critical_total,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "deployment_valid_readout_available": critical_total == 0,
+            "loose_same_family_evidence_sufficient_for_contract_closure": False,
+            "deployable_closure_after_this_readout": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Do not relax same-family structural membership from this "
+                "diagnostic. Even strict plus loose current-surface rows "
+                f"abstain only {combined_abstained}/{len(combined_rows)} at "
+                "fixed threshold 0.44155, so the same-family structural axis "
+                "still needs new non-heldout train/cal OOS acquisition "
+                "evidence."
+            ),
+        },
+        "row_readouts": combined_rows,
+        "source_artifacts": {
+            "current_measured_readout": _source_path_record(
+                current_measured_readout_path
+            ),
+            "acquisition_queue": _source_path_record(acquisition_queue_path),
+            "same_family_structural_acquisition_contract": _source_path_record(
+                same_family_structural_acquisition_contract_path
+            ),
+            "lever3_dispatch_readiness_summary": _source_path_record(
+                lever3_dispatch_readiness_summary_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"The relaxed diagnostic pressure set abstains "
+                f"{combined_abstained}/{len(combined_rows)} at the unchanged "
+                "fixed threshold, far below the 80% target."
+            ),
+            "why_not_contract_closure": (
+                "The loose rows were already marked diagnostic-only because "
+                "their membership relaxes the strict fold plus geometry "
+                "component gate; counting them would change the proxy "
+                "definition after seeing the gap."
+            ),
+            "smallest_next_experiment": (
+                "Acquire new non-heldout train/cal same-family structural OOS "
+                "rows with deployment-valid predicted structures and "
+                "source-free membership evidence, then score them at threshold "
+                "0.44155 under the frozen contract."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Loose Same-Family Pressure Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Fixed threshold: {readout['fixed_threshold']}",
+        "- Strict current same-family: "
+        f"{counts['strict_same_family_abstained_at_fixed_threshold']}/"
+        f"{counts['strict_same_family_rows_from_refreshed_readout']} abstained",
+        "- Loose diagnostic same-family: "
+        f"{counts['loose_same_family_diagnostic_abstained_at_fixed_threshold']}/"
+        f"{counts['loose_same_family_diagnostic_rows']} abstained",
+        "- Strict plus loose diagnostic: "
+        f"{counts['strict_plus_loose_diagnostic_abstained_at_fixed_threshold']}/"
+        f"{counts['strict_plus_loose_diagnostic_rows']} abstained",
+        "- Frozen dispatch same-family slots required: "
+        f"{counts['frozen_dispatch_same_family_slots_required']}",
+        "",
+        "## Decision",
+        "",
+        "- Loose same-family evidence sufficient for contract closure: "
+        f"{decision['loose_same_family_evidence_sufficient_for_contract_closure']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Row Readout",
+        "",
+        "| row | membership | combined | margin | abstains | nearest train family | top1 family |",
+        "| --- | --- | ---: | ---: | --- | --- | --- |",
+    ]
+    for row in readout.get("row_readouts", []):
+        lines.append(
+            f"| {row.get('entry_id')} | {row.get('membership')} | "
+            f"{row.get('combined_mean_geometry_fold')} | "
+            f"{row.get('threshold_margin')} | "
+            f"{row.get('abstains_at_fixed_threshold')} | "
+            f"{row.get('nearest_train_atlas_true_fingerprint_id')} | "
+            f"{row.get('predicted_geometry_top1_fingerprint_id')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['why_not_contract_closure']}",
+        f"- {readout['interpretation']['smallest_next_experiment']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
+    *,
+    current_measured_readout_path: Path,
+    acquisition_queue_path: Path,
+    same_family_structural_acquisition_contract_path: Path,
+    lever3_dispatch_readiness_summary_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_CONFOUNDED_PROXY_LOOSE_SAME_FAMILY_PRESSURE_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
+        current_measured_readout_path=current_measured_readout_path,
+        acquisition_queue_path=acquisition_queue_path,
+        same_family_structural_acquisition_contract_path=(
+            same_family_structural_acquisition_contract_path
+        ),
+        lever3_dispatch_readiness_summary_path=lever3_dispatch_readiness_summary_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_report(
+                readout
+            ),
             encoding="utf-8",
         )
     return readout
