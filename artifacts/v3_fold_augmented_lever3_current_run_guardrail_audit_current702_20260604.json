@@ -1,0 +1,205 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_current_run_guardrail_audit_current702_20260604",
+  "artifact_rows": [
+    {
+      "artifact_id": "v3_fold_augmented_q43088_locator_approval_packet_current702_20260604",
+      "blockers": [
+        "p07658_full_length_predicted_coordinate_missing",
+        "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+        "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+        "fixed_threshold_audit_not_ready_to_rerun"
+      ],
+      "fixed_threshold_audit_ready_to_rerun_now": false,
+      "guardrail_flags": {
+        "candidate_rows_scored_now": false,
+        "coordinates_staged_now": false,
+        "experimental_pdb_metadata_used": false,
+        "heldout_used_for_training_or_tuning": false,
+        "labels_or_imports_changed": false,
+        "mechanism_text_or_source_ids_used": false,
+        "production_thresholds_changed": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "path": "artifacts/v3_fold_augmented_q43088_locator_approval_packet_current702_20260604.json",
+      "review_only": true,
+      "status": "fold_augmented_q43088_locator_approval_packet_cleared_review_only"
+    },
+    {
+      "artifact_id": "v3_fold_augmented_q43088_source_free_locator_sidecar_current702_20260604",
+      "blockers": [],
+      "fixed_threshold_audit_ready_to_rerun_now": false,
+      "guardrail_flags": {
+        "candidate_rows_scored_now": false,
+        "coordinates_staged_now": false,
+        "experimental_pdb_metadata_used": false,
+        "heldout_used_for_training_or_tuning": false,
+        "labels_or_imports_changed": false,
+        "mechanism_text_or_source_ids_used": false,
+        "production_thresholds_changed": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "path": "artifacts/v3_fold_augmented_q43088_source_free_locator_sidecar_current702_20260604.json",
+      "review_only": true,
+      "status": "q43088_source_free_locator_sidecar_ready_review_only"
+    },
+    {
+      "artifact_id": "v3_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_current702_20260604",
+      "blockers": [
+        "p07658_full_length_predicted_coordinate_missing",
+        "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+        "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+        "fixed_threshold_audit_not_ready_to_rerun"
+      ],
+      "fixed_threshold_audit_ready_to_rerun_now": false,
+      "guardrail_flags": {
+        "candidate_rows_scored_now": false,
+        "coordinates_staged_now": false,
+        "experimental_pdb_metadata_used": false,
+        "heldout_used_for_training_or_tuning": false,
+        "labels_or_imports_changed": false,
+        "mechanism_text_or_source_ids_used": false,
+        "production_thresholds_changed": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_current702_20260604.json",
+      "review_only": true,
+      "status": "fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_blocked_p07658"
+    },
+    {
+      "artifact_id": "v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604",
+      "blockers": [
+        "public_computed_model_repository_no_p07658_hit",
+        "p07658_full_length_predicted_coordinate_missing",
+        "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+        "fixed_threshold_audit_not_ready_to_rerun"
+      ],
+      "fixed_threshold_audit_ready_to_rerun_now": false,
+      "guardrail_flags": {
+        "candidate_rows_scored_now": false,
+        "coordinates_staged_now": false,
+        "experimental_pdb_metadata_used": false,
+        "heldout_used_for_training_or_tuning": false,
+        "labels_or_imports_changed": false,
+        "mechanism_text_or_source_ids_used": false,
+        "production_thresholds_changed": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "path": "artifacts/v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604.json",
+      "review_only": true,
+      "status": "fold_augmented_p07658_computed_model_repository_broad_probe_blocked_no_public_computed_model"
+    },
+    {
+      "artifact_id": "v3_fold_augmented_confounded_proxy_surface_and_calibration_state_after_q43088_p07658_current702_20260604",
+      "blockers": [
+        "p07658_full_length_predicted_coordinate_missing",
+        "public_computed_model_repository_no_p07658_hit",
+        "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+        "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+        "fixed_threshold_audit_not_ready_to_rerun"
+      ],
+      "fixed_threshold_audit_ready_to_rerun_now": false,
+      "guardrail_flags": {
+        "candidate_rows_scored_now": false,
+        "coordinates_staged_now": false,
+        "experimental_pdb_metadata_used": false,
+        "heldout_used_for_training_or_tuning": false,
+        "labels_or_imports_changed": false,
+        "mechanism_text_or_source_ids_used": false,
+        "production_thresholds_changed": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_surface_and_calibration_state_after_q43088_p07658_current702_20260604.json",
+      "review_only": true,
+      "status": "fold_augmented_confounded_proxy_surface_and_calibration_state_blocked_p07658_and_train_cal_acquisition"
+    },
+    {
+      "artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_current702_20260604",
+      "blockers": [
+        "current_train_cal_candidate_pool_has_zero_high_cofactor_axis_rows",
+        "candidate_rows_not_acquired_or_reviewed",
+        "candidate_rows_not_scored_at_fixed_threshold",
+        "fixed_threshold_audit_not_ready_to_rerun"
+      ],
+      "fixed_threshold_audit_ready_to_rerun_now": false,
+      "guardrail_flags": {
+        "candidate_rows_scored_now": false,
+        "coordinates_staged_now": false,
+        "experimental_pdb_metadata_used": false,
+        "heldout_used_for_training_or_tuning": false,
+        "labels_or_imports_changed": false,
+        "mechanism_text_or_source_ids_used": false,
+        "production_thresholds_changed": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_current702_20260604.json",
+      "review_only": true,
+      "status": "fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_blocked_zero_eligible_rows"
+    },
+    {
+      "artifact_id": "v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604",
+      "blockers": [
+        "p07658_full_length_predicted_coordinate_not_returned_or_staged",
+        "provider_model_version_path_checksum_provenance_missing_until_coordinate_exists",
+        "fixed_threshold_audit_not_ready_to_rerun"
+      ],
+      "fixed_threshold_audit_ready_to_rerun_now": false,
+      "guardrail_flags": {
+        "candidate_rows_scored_now": false,
+        "coordinates_staged_now": false,
+        "experimental_pdb_metadata_used": false,
+        "heldout_used_for_training_or_tuning": false,
+        "labels_or_imports_changed": false,
+        "mechanism_text_or_source_ids_used": false,
+        "production_thresholds_changed": false,
+        "threshold_selected_or_tuned": false,
+        "threshold_values_changed": false
+      },
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json",
+      "review_only": true,
+      "status": "fold_augmented_p07658_full_length_prediction_request_manifest_ready_blocker_not_cleared"
+    }
+  ],
+  "counts": {
+    "artifacts_checked": 7,
+    "coordinate_stage_artifacts": 0,
+    "experimental_pdb_metadata_shortcut_artifacts": 0,
+    "guardrail_violation_artifacts": 0,
+    "heldout_training_or_tuning_artifacts": 0,
+    "label_registry_import_change_artifacts": 0,
+    "mechanism_text_or_source_feature_artifacts": 0,
+    "scoring_artifacts": 0,
+    "threshold_change_artifacts": 0
+  },
+  "created_utc": "2026-06-04T11:40:45Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_run_artifacts_guardrail_clean": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Keep Q43088 staged review-only, clear P07658 with an approved full-length predicted coordinate, and acquire eligible high-cofactor train/cal OOS rows before any fixed-threshold operating-point rerun."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Run/provision the P07658 full-length predictor request manifest, then score only after coordinate provenance passes acceptance checks; separately acquire source-free high-cofactor train/cal OOS rows.",
+    "result": "The current run artifacts remain deployment-valid review artifacts: Q43088 is staged, P07658 is still blocked, and high-cofactor acquisition has zero eligible rows in the current pool."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_current_run_guardrail_audit",
+  "scope": "Review-only guardrail audit over the new Lever 3 artifacts from the current run. It verifies that the packets preserve threshold 0.44155, do not score rows, do not stage P07658 coordinates, do not use heldout rows for tuning, and do not change labels/registries/ontologies/imports.",
+  "status": "fold_augmented_lever3_current_run_guardrail_audit_passed",
+  "violations": []
+}

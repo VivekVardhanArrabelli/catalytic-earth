@@ -3,13 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T10:03:30Z`
-- STARTED_AT_LOCAL: `2026-06-04T05:03:30-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T10:54:05Z`
-- ENDED_AT_LOCAL: `2026-06-04T05:54:05-0500 CDT`
-- ELAPSED_MINUTES: `50.6`
-- Status: wrap validation passed; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T10:03:30Z` with PID `6896`.
+- STARTED_AT_UTC: `2026-06-04T11:02:19Z`
+- STARTED_AT_LOCAL: `2026-06-04T06:02:20-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T11:49:36Z`
+- ENDED_AT_LOCAL: `2026-06-04T06:49:36-0500 CDT`
+- ELAPSED_MINUTES: `47.3`
+- Status: wrap complete; canonical `.git/catalytic-earth-automation.lock`
+  acquired before substantive work at `2026-06-04T11:02:19Z` with PID `56267`.
   Current user instruction: work only on Lever 3.
 
 ## Mission
@@ -61,6 +61,155 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 30
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T11:02:19Z`
+- STARTED_LOCAL: `2026-06-04T06:02:20-0500 CDT`
+- ENDED_AT: `2026-06-04T11:49:36Z`
+- ENDED_LOCAL: `2026-06-04T06:49:36-0500 CDT`
+- ELAPSED_MINUTES: `47.3`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T11:02:19Z` with PID `56267`.
+
+#### Current intent
+
+Work only on Lever 3. Continue from Run 29's exact next action: clear Q43088
+source-free locators if deployment-valid, keep P07658 blocked unless an exact
+full-length predicted coordinate exists, and do not rerun/retune threshold
+`0.44155`.
+
+#### What changed
+
+- Added reproducible Q43088 source-free locator approval builders and CLI:
+  `build-fold-augmented-q43088-locator-approval-packet` and the paired
+  source-free sidecar writer. The packet
+  `artifacts/v3_fold_augmented_q43088_locator_approval_packet_current702_20260604.json`
+  plus report explicitly approves positions `288` and `286` from the local
+  AFDB-v6 predicted coordinate, records positions `243` and `250` as reviewed
+  but not selected, and writes
+  `artifacts/v3_fold_augmented_q43088_source_free_locator_sidecar_current702_20260604.json`.
+  Q43088 now has 3 source-free locator positions and is ready only as row
+  input; no row was scored.
+- Added
+  `artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_current702_20260604.json`
+  plus report. It composes the Q43088 approval with the existing SWISS-MODEL
+  staging state: P07071/P00806/P04531 remain staged, Q43088's locator blocker
+  is cleared, and P07658 is now the only surface-completeness blocker. The
+  fixed-threshold audit is still not ready.
+- Added a P07658 broad public computed-model repository probe:
+  `artifacts/v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604.json`
+  plus report. RCSB computed-model search returned 0 rows, RCSB experimental
+  control returned 5 rows, ModelArchive had no machine-readable coordinate row,
+  and direct AFDB/RCSB computed-model endpoints returned 4 404s. No coordinate
+  was downloaded or staged.
+- Added a reproducible P07658 exact full-length prediction request manifest
+  builder and CLI:
+  `build-fold-augmented-p07658-full-length-prediction-request-manifest`. The
+  manifest
+  `artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json`
+  plus report freezes the local `ref__P07658` FASTA input: 715 residues, one
+  selenocysteine at position 138, sequence SHA-256
+  `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa`,
+  accepted coordinate formats, staging path expectations, and acceptance
+  checks before any scoring.
+- Added a reproducible high-cofactor train/cal candidate near-miss triage
+  builder and CLI:
+  `build-fold-augmented-confounded-proxy-high-cofactor-candidate-near-miss-triage`.
+  The artifact
+  `artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_current702_20260604.json`
+  plus report shows the current ready train/cal OOS pool has 353 rows and 80
+  priority candidates, but 0 rows satisfy the frozen high-cofactor axis. The
+  top 16 source-free organic-cofactor near misses are listed as non-countable;
+  no rows were registered or scored.
+- Added
+  `artifacts/v3_fold_augmented_confounded_proxy_surface_and_calibration_state_after_q43088_p07658_current702_20260604.json`
+  plus report. It consolidates the post-Q43088 surface state with the P07658
+  public repository probe and the high-cofactor candidate pool: 1 remaining
+  surface blocker (`m_csa:562`/P07658), 0 high-cofactor candidates available
+  now, 16 high-cofactor abstained rows still needed for the 80% lower bound,
+  and 170 same-family structural rows still needed.
+- Added
+  `artifacts/v3_fold_augmented_lever3_current_run_guardrail_audit_current702_20260604.json`
+  plus report. It checks the current run's new Lever 3 artifacts and records 0
+  threshold-change, scoring, coordinate-stage, heldout-training/tuning,
+  label/registry/import, mechanism-text/source-feature, or experimental-PDB
+  shortcut violations.
+- Added unit and regression coverage for the new builders/artifacts and CLI
+  registrations in `tests/test_northstar_next_levers.py`, `tests/test_cli.py`,
+  and `tests/test_geometry_artifact_regression.py`.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, or threshold values changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental PDB metadata were used as predictive features.
+- Q43088 locator approval used only the local predicted coordinate, residue
+  positions/codes, pLDDT, and geometry to the existing Tyr287 anchor.
+- P07658 experimental PDBe/PDB/3D-Beacons rows were recorded only as
+  disallowed/blocker evidence; no experimental shortcut was used.
+- No row scoring, fixed-threshold audit rerun, deployment promotion, or
+  threshold retuning was performed.
+
+#### Verification
+
+- Baseline before edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1329 tests passed.
+- CLI reproducibility:
+  `build-fold-augmented-q43088-locator-approval-packet`,
+  `build-fold-augmented-confounded-proxy-current-evidence-after-q43088-locator-approval`,
+  `build-fold-augmented-confounded-proxy-high-cofactor-candidate-near-miss-triage`,
+  and
+  `build-fold-augmented-p07658-full-length-prediction-request-manifest`
+  regenerated their builder-backed artifacts successfully.
+- Focused builder/CLI/artifact tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_q43088_locator_approval_packet_clears_two_source_free_positions tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_current_evidence_after_q43088_locator_approval_keeps_p07658_blocker tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_high_cofactor_candidate_near_miss_triage_keeps_near_misses_uncounted tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_p07658_prediction_request_manifest_freezes_exact_sequence tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_current_run_guardrail_audit_counts -q`:
+  6 passed, 149 subtests passed.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1386 passed, 175 subtests passed,
+  with the existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1341 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Repo-wide JSON parse: 3517 JSON files checked.
+- Final docs artifact-reference check to `/tmp`: missing 0.
+- Disk guardrail remained above 10 GiB: 25 GiB available.
+
+#### Commit/push status
+
+- Wrap commit, push, sync verification, and lock release are the remaining
+  mechanical steps after this handoff update.
+
+#### Exact next action
+
+Do not rerun or retune threshold `0.44155` yet. The immediate Lever 3 gate is:
+
+1. Run/provision an approved full-length predictor/provider using
+   `artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json`
+   for `m_csa:562`/P07658; then stage coordinate path/checksum/provider/model/
+   version provenance and run the manifest acceptance checks.
+2. After P07658 coordinate provenance passes, score only the staged surface
+   rows at unchanged threshold `0.44155`: P07071/P00806/P04531 from
+   SWISS-MODEL, Q43088 from the source-free locator sidecar, and P07658 from
+   the new full-length predicted coordinate.
+3. For confounded-safe calibration closure, acquire genuinely new non-heldout
+   train/cal OOS rows whose high-cofactor membership is source-free and
+   deployment-valid; the current candidate pool has 0 eligible high-cofactor
+   rows and cannot close the 16-row lower-bound shortfall.
+4. Keep the 170-row same-family structural acquisition as the larger follow-on
+   blocker after the high-cofactor blocker is addressed.
 
 ### 2026-06-04 Lever 3 Forward Push Run 29
 

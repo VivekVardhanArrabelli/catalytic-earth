@@ -1,0 +1,338 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_current702_20260604",
+  "blockers": [
+    "current_train_cal_candidate_pool_has_zero_high_cofactor_axis_rows",
+    "candidate_rows_not_acquired_or_reviewed",
+    "candidate_rows_not_scored_at_fixed_threshold",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "blockers": 4,
+    "candidate_rows_registered_now": 0,
+    "candidate_rows_scored_now": 0,
+    "critical_violation_total": 0,
+    "high_cofactor_axis_candidate_rows": 0,
+    "high_inorganic_cofactor_locus_candidate_rows": 0,
+    "high_organic_cofactor_candidate_rows": 0,
+    "minimum_new_abstained_rows_for_80pct": 16,
+    "near_miss_rows_reported": 16,
+    "priority_candidate_rows_available": 80,
+    "ready_train_cal_oos_rows": 353
+  },
+  "created_utc": "2026-06-04T11:42:38Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "candidate_rows_ready_to_score_now": false,
+    "current_candidate_pool_can_supply_16_high_cofactor_rows": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not relax proxy membership or threshold 0.44155 based on near misses. Source new eligible high-cofactor rows or define and pre-register a new source-free proxy axis before scoring.",
+    "smallest_next_experiment": "Acquire new non-heldout train/cal OOS rows whose high-cofactor membership is supported by source-free cofactor/locus evidence and deployment-valid predicted structures; the existing ready pool cannot supply the 16 rows under the frozen axes."
+  },
+  "guardrails": {
+    "candidate_rows_registered_now": false,
+    "candidate_rows_scored_now": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "next_action": "Acquire genuinely new high-cofactor train/cal OOS rows or pre-register a new source-free proxy axis; do not score or tune near misses as if they closed the high-cofactor blocker.",
+    "result": "The existing ready train/cal OOS candidate pool cannot supply the required 16 high-cofactor rows: 0 rows satisfy the frozen high-cofactor axis, even though the packet lists the top source-free organic-cofactor near misses."
+  },
+  "near_miss_rows": [
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:288",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.407563,
+      "rank": 1,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:89",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.398339,
+      "rank": 2,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:214",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.353171,
+      "rank": 3,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:75",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.34378,
+      "rank": 4,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:60",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.337092,
+      "rank": 5,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:583",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.296056,
+      "rank": 6,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:64",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.246623,
+      "rank": 7,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:607",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.236789,
+      "rank": 8,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:610",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.222226,
+      "rank": 9,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": true,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:618",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.215006,
+      "rank": 10,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": true,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:555",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "flavin",
+      "organic_cofactor_max_score": 0.213904,
+      "rank": 11,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:404",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "heme",
+      "organic_cofactor_max_score": 0.193581,
+      "rank": 12,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:26",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.177608,
+      "rank": 13,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:515",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.150245,
+      "rank": 14,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:232",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.147019,
+      "rank": 15,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "entry_id": "m_csa:351",
+      "high_inorganic_cofactor_locus": false,
+      "high_organic_cofactor_signature": false,
+      "label_type": "out_of_scope",
+      "minimal_train_cal_feature_bundle_ready": true,
+      "organic_cofactor_max_class": "plp",
+      "organic_cofactor_max_score": 0.144021,
+      "rank": 16,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false,
+      "why_not_registered_for_16_row_probe": "current source-free cofactor/locus axes do not mark this row as high-cofactor candidate"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage",
+  "scope": "Train/cal-only review packet for the high-cofactor 16-row acquisition blocker. It sorts the existing ready train/cal OOS candidate pool by source-free organic cofactor score and records that no row satisfies the frozen high-cofactor proxy membership. It registers no rows, scores no candidates, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "high_cofactor_probe_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604.json",
+      "sha256": "fb6b3f28e448d0f572d7edee9fcc6c4553fc73302cd30d5877543404da77b123"
+    },
+    "train_cal_candidate_pool": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json",
+      "sha256": "d65d32fce6a49611fb9140685721b31023b00ee14b1ca6c2705f297db4c9edf3"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage_blocked_zero_eligible_rows"
+}

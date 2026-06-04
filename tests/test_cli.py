@@ -1189,6 +1189,16 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-confounded-proxy-high-cofactor-"
+                    "candidate-near-miss-triage"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_high_cofactor_"
+                    "candidate_near_miss_triage"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-confounded-proxy-train-cal-"
                     "scoring-tranche-plan"
                 ),
@@ -1404,6 +1414,35 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_fold_augmented_q43088_locator_review_"
                     "priority_packet"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-q43088-locator-approval-packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_q43088_locator_approval_"
+                    "packet"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-current-evidence-"
+                    "after-q43088-locator-approval"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_current_"
+                    "evidence_after_q43088_locator_approval"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-p07658-full-length-prediction-"
+                    "request-manifest"
+                ),
+                (
+                    "cmd_build_fold_augmented_p07658_full_length_prediction_"
+                    "request_manifest"
                 ),
             ),
             (

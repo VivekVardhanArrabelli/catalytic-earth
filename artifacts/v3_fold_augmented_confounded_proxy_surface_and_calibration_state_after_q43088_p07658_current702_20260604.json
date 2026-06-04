@@ -1,0 +1,123 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_surface_and_calibration_state_after_q43088_p07658_current702_20260604",
+  "blockers": [
+    "p07658_full_length_predicted_coordinate_missing",
+    "public_computed_model_repository_no_p07658_hit",
+    "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+    "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "calibration_state": {
+    "current_candidate_pool_high_cofactor_axis_rows": 0,
+    "current_candidate_pool_ready_train_cal_oos_rows": 353,
+    "current_candidate_pool_structural_locus_candidate_rows": 0,
+    "fixed_threshold": 0.44155,
+    "high_cofactor_current_abstained_at_fixed_threshold": 0,
+    "high_cofactor_current_rows": 4,
+    "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+    "same_family_structural_min_new_abstained_rows_for_80pct": 170
+  },
+  "counts": {
+    "blockers": 5,
+    "coordinate_source_blocker_rows": 1,
+    "critical_violation_total": 0,
+    "fixed_threshold_score_rows_ready_to_rerun_now": 0,
+    "high_cofactor_candidate_pool_rows_available_now": 0,
+    "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+    "locator_or_geometry_sidecar_blocker_rows": 0,
+    "p07658_public_computed_model_rows": 0,
+    "partial_surface_rescore_input_ready_rows": 4,
+    "q43088_locator_contract_cleared_now": 1,
+    "same_family_structural_min_new_abstained_rows_for_80pct": 170,
+    "surface_completeness_blocker_rows": 1
+  },
+  "created_utc": "2026-06-04T11:15:48Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_can_solve_confounded_safe_calibration": false,
+    "current_evidence_can_solve_surface_completeness": false,
+    "deployment_closure_valid_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "high_cofactor_current_candidate_pool_can_close_16_row_shortfall": false,
+    "next_gate": "Do not rerun or retune threshold 0.44155. The next mechanical surface action is P07658 full-length prediction; the next calibration action is new train/cal acquisition because the current candidate pool has zero high-cofactor-axis rows.",
+    "p07658_requires_credentialed_or_local_predictor_now": true,
+    "q43088_requires_more_locator_work_now": false,
+    "smallest_calibration_experiment": "Acquire exactly 16 new non-heldout train/cal OOS rows with source-free high-cofactor signatures and deployment-valid predicted structures, then score them at unchanged threshold 0.44155; all 16 must abstain to close only the high-cofactor 80% lower-bound target.",
+    "smallest_surface_experiment": "Run or provision one approved full-length P07658 predictor/provider for the exact 715-residue sequence including selenocysteine, then stage provider/model/version/path/checksum provenance."
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Run the P07658 full-length predictor/provider experiment first for surface completeness, and separately acquire the frozen 16-row high-cofactor train/cal OOS probe for calibration behavior.",
+    "result": "Q43088 is no longer a surface-completeness blocker, but P07658 and train/cal calibration still block Lever 3 deployment validity. The current ready train/cal pool has zero high-cofactor-axis candidates, so current evidence cannot close the 16-row calibration shortfall."
+  },
+  "p07658_repository_probe_state": {
+    "deployment_valid_predicted_coordinate_rows_ready_now": 0,
+    "missing_evidence_type": "full-length deployment-valid predicted structure for exact 715-residue sequence including selenocysteine",
+    "rcsb_computed_model_rows": 0,
+    "rcsb_experimental_control_rows": 5,
+    "smallest_next_experiment": "Provision or run an approved full-length predictor/provider that supports the exact 715-residue P07658 sequence including selenocysteine; stage provider/model/version/path/checksum provenance after a coordinate is actually returned."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_surface_and_calibration_state_after_q43088_p07658",
+  "scope": "Consolidated Lever 3 state after Q43088 locator approval and the broad P07658 public computed-model repository probe. It records the exact remaining surface blocker, unchanged train/cal calibration blockers, and the smallest next experiments. It does not score rows, rerun or retune threshold 0.44155, edit labels, or use heldout rows for calibration.",
+  "source_artifacts": {
+    "current_evidence_after_q43088_locator_approval": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval_current702_20260604.json"
+    },
+    "high_cofactor_probe_contract": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604.json"
+    },
+    "p07658_computed_model_repository_broad_probe": {
+      "path": "artifacts/v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604.json"
+    },
+    "train_cal_candidate_pool": {
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_surface_and_calibration_state_blocked_p07658_and_train_cal_acquisition",
+  "surface_state": {
+    "partial_surface_rescore_input_ready_rows": 4,
+    "q43088_approved_locator_positions": [
+      288,
+      286
+    ],
+    "q43088_locator_blocker_cleared_now": true,
+    "remaining_surface_completeness_blocker_rows": {
+      "coordinate_source_rows": [
+        {
+          "accession": "P07658",
+          "blocker_class": "predicted_structure_unavailable",
+          "entry_id": "m_csa:562",
+          "failed_rescue_paths": [
+            "SWISS-MODEL primary accession has only provider=PDB rows",
+            "SWISS-MODEL secondary accessions P78137/Q2M6M5 resolve to same PDB-only surface",
+            "AlphaFoldDB v6 direct and secondary accessions are 404",
+            "public ESMFold API rejects sequence length >400",
+            "credential-free BioLM/OpenProtein provider probes require credentials/access",
+            "local PATH, conda env, and shallow filesystem runtime scan found no full-length predictor",
+            "3D-Beacons summary returns only experimentally determined PDBe rows"
+          ],
+          "missing_evidence_type": "full-length deployment-valid predicted structure for exact 715-residue sequence including selenocysteine",
+          "rescore_ready_now": false,
+          "smallest_next_experiment": "Install or provision an approved full-length predictor/runtime that supports the exact 715-residue P07658 sequence including selenocysteine, or use a credentialed provider; then stage provider/model/version/path/checksum provenance."
+        }
+      ],
+      "locator_or_geometry_sidecar_rows": []
+    },
+    "staged_swissmodel_coordinate_rows": [
+      "m_csa:416",
+      "m_csa:586",
+      "m_csa:637"
+    ]
+  }
+}

@@ -54,6 +54,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_p23007_alternate_accession_policy_gate,
     build_fold_augmented_confounded_proxy_p10746_decision_impact,
     build_fold_augmented_q43088_locator_review_priority_packet,
+    build_fold_augmented_q43088_locator_approval_packet,
+    build_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval,
+    build_fold_augmented_p07658_full_length_prediction_request_manifest,
+    build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
     build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
@@ -2555,6 +2559,106 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(pool["decision"]["apply_or_change_threshold_now"])
         self.assertFalse(pool["decision"]["proxy_calibration_rerun_ready_now"])
         self.assertFalse(pool["guardrails"]["candidate_rows_scored_now"])
+
+    def test_high_cofactor_candidate_near_miss_triage_keeps_near_misses_uncounted(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pool_path = root / "pool.json"
+            contract_path = root / "contract.json"
+            pool_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "ready_train_cal_oos_rows": 5,
+                            "high_cofactor_shortfall_from_acquisition_queue": 2,
+                        },
+                        "priority_candidate_rows": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "split_assignment": "in_distribution",
+                                "label_type": "out_of_scope",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "organic_cofactor_max_class": "heme",
+                                "organic_cofactor_max_score": 0.4,
+                                "high_organic_cofactor_signature": False,
+                                "high_inorganic_cofactor_locus": False,
+                                "any_inorganic_locus_context": False,
+                                "unsupported_or_missing_geometry_locus": False,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "background_train_cal_oos_structural_pool"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "split_assignment": "in_distribution",
+                                "label_type": "out_of_scope",
+                                "minimal_train_cal_feature_bundle_ready": True,
+                                "organic_cofactor_max_class": "plp",
+                                "organic_cofactor_max_score": 0.3,
+                                "high_organic_cofactor_signature": False,
+                                "high_inorganic_cofactor_locus": False,
+                                "any_inorganic_locus_context": False,
+                                "unsupported_or_missing_geometry_locus": False,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "background_train_cal_oos_structural_pool"
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "minimum_new_abstained_rows_for_80pct": 2,
+                            "fixed_threshold": 0.44155,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage(
+                train_cal_candidate_pool_path=pool_path,
+                high_cofactor_probe_contract_path=contract_path,
+                artifact_id="custom_high_cofactor_near_miss_triage",
+            )
+
+        self.assertEqual(
+            packet["artifact_id"], "custom_high_cofactor_near_miss_triage"
+        )
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_high_cofactor_candidate_"
+                "near_miss_triage_blocked_zero_eligible_rows"
+            ),
+        )
+        self.assertEqual(packet["counts"]["ready_train_cal_oos_rows"], 5)
+        self.assertEqual(packet["counts"]["priority_candidate_rows_available"], 2)
+        self.assertEqual(packet["counts"]["near_miss_rows_reported"], 2)
+        self.assertEqual(packet["counts"]["high_cofactor_axis_candidate_rows"], 0)
+        self.assertEqual(
+            packet["counts"]["minimum_new_abstained_rows_for_80pct"], 2
+        )
+        self.assertEqual(packet["counts"]["candidate_rows_registered_now"], 0)
+        self.assertEqual(packet["counts"]["candidate_rows_scored_now"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in packet["near_miss_rows"]],
+            ["m_csa:10", "m_csa:11"],
+        )
+        self.assertFalse(
+            packet["decision"][
+                "current_candidate_pool_can_supply_16_high_cofactor_rows"
+            ]
+        )
+        self.assertFalse(packet["decision"]["candidate_rows_ready_to_score_now"])
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,
@@ -5397,6 +5501,323 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertFalse(packet["decision"]["priority_packet_clears_locator_contract"])
         self.assertFalse(packet["guardrails"]["locator_positions_approved_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_q43088_locator_approval_packet_clears_two_source_free_positions(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            priority_path = root / "priority.json"
+            contract_path = root / "contract.json"
+            coordinate_path = root / "q43088.cif"
+            sidecar_path = root / "sidecar.json"
+            coordinate_path.write_text(
+                """data_Q43088
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_alt_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_entity_id
+_atom_site.label_seq_id
+_atom_site.pdbx_PDB_ins_code
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.occupancy
+_atom_site.B_iso_or_equiv
+_atom_site.pdbx_formal_charge
+_atom_site.auth_seq_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_atom_id
+_atom_site.pdbx_PDB_model_num
+ATOM 1 C CA . TYR A 1 287 ? 0.0 0.0 0.0 1.00 95.0 ? 287 TYR A CA 1
+ATOM 2 C CA . ASP A 1 288 ? 3.8 0.0 0.0 1.00 93.0 ? 288 ASP A CA 1
+ATOM 3 C CA . GLN A 1 286 ? 0.0 3.8 0.0 1.00 96.0 ? 286 GLN A CA 1
+ATOM 4 C CA . HIS A 1 243 ? 5.9 0.0 0.0 1.00 97.0 ? 243 HIS A CA 1
+ATOM 5 C CA . GLU A 1 250 ? 7.2 0.0 0.0 1.00 80.0 ? 250 GLU A CA 1
+#
+""",
+                encoding="utf-8",
+            )
+            priority_path.write_text(
+                json.dumps(
+                    {
+                        "anchor_locators": [
+                            {
+                                "sequence_position": 287,
+                                "residue_code": "TYR",
+                                "chain_name": "A",
+                                "mean_plddt": 95.0,
+                                "ca": {"x": 0.0, "y": 0.0, "z": 0.0},
+                                "centroid": {"x": 0.0, "y": 0.0, "z": 0.0},
+                                "roles": ["proton_donor"],
+                            }
+                        ],
+                        "priority_candidate_rows": [
+                            {
+                                "sequence_position": 288,
+                                "residue_code": "ASP",
+                                "chain_name": "A",
+                                "distance_to_anchor_ca_angstrom": 3.824,
+                                "mean_plddt": 93.69,
+                                "source_free_review_features": {
+                                    "mean_plddt_at_least_80": True,
+                                    "polar_or_charged_residue_code": True,
+                                    "within_6a_of_anchor_ca": True,
+                                },
+                            },
+                            {
+                                "sequence_position": 286,
+                                "residue_code": "GLN",
+                                "chain_name": "A",
+                                "distance_to_anchor_ca_angstrom": 3.84,
+                                "mean_plddt": 96.0,
+                                "source_free_review_features": {
+                                    "mean_plddt_at_least_80": True,
+                                    "polar_or_charged_residue_code": True,
+                                    "within_6a_of_anchor_ca": True,
+                                },
+                            },
+                            {
+                                "sequence_position": 243,
+                                "residue_code": "HIS",
+                                "chain_name": "A",
+                                "distance_to_anchor_ca_angstrom": 5.918,
+                                "mean_plddt": 97.12,
+                                "source_free_review_features": {
+                                    "mean_plddt_at_least_80": True,
+                                    "polar_or_charged_residue_code": True,
+                                    "within_6a_of_anchor_ca": True,
+                                },
+                            },
+                            {
+                                "sequence_position": 250,
+                                "residue_code": "GLU",
+                                "chain_name": "A",
+                                "distance_to_anchor_ca_angstrom": 7.177,
+                                "mean_plddt": 80.44,
+                                "source_free_review_features": {
+                                    "mean_plddt_at_least_80": True,
+                                    "polar_or_charged_residue_code": True,
+                                    "within_6a_of_anchor_ca": False,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "active_site_residue_count": 1,
+                            "additional_approved_locator_positions_needed": 2,
+                            "minimum_locator_positions_required_for_geometry_channel": 3,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_q43088_locator_approval_packet(
+                q43088_locator_review_priority_packet_path=priority_path,
+                q43088_source_free_locator_approval_contract_path=contract_path,
+                q43088_coordinate_path=coordinate_path,
+                sidecar_path=sidecar_path,
+                artifact_id="q43088_approval_test",
+            )
+
+        self.assertEqual(packet["artifact_id"], "q43088_approval_test")
+        self.assertEqual(
+            packet["status"],
+            "fold_augmented_q43088_locator_approval_packet_cleared_review_only",
+        )
+        self.assertEqual(packet["counts"]["approved_locator_positions"], 2)
+        self.assertEqual(
+            packet["counts"]["active_site_residue_count_after_approval"], 3
+        )
+        self.assertEqual(
+            [
+                row["sequence_position"]
+                for row in packet["approval_records"]
+                if row["approved_now"]
+            ],
+            [288, 286],
+        )
+        self.assertTrue(packet["decision"]["q43088_locator_contract_cleared_now"])
+        self.assertTrue(packet["decision"]["q43088_ready_for_row_rescore_now"])
+        self.assertFalse(packet["decision"]["fixed_threshold_audit_ready_to_rerun_now"])
+        self.assertFalse(packet["guardrails"]["row_rescored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_current_evidence_after_q43088_locator_approval_keeps_p07658_blocker(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            current_path = root / "current.json"
+            approval_path = root / "approval.json"
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "fixed_threshold": 0.44155,
+                            "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+                            "same_family_structural_min_new_abstained_rows_for_80pct": 170,
+                        },
+                        "staged_coordinate_rows": [
+                            {"entry_id": "m_csa:416"},
+                            {"entry_id": "m_csa:586"},
+                            {"entry_id": "m_csa:637"},
+                        ],
+                        "surface_completeness_blocker_rows": {
+                            "coordinate_source_rows": [
+                                {
+                                    "entry_id": "m_csa:562",
+                                    "accession": "P07658",
+                                    "blocker_class": "predicted_structure_unavailable",
+                                    "missing_evidence_type": (
+                                        "full-length predicted coordinate"
+                                    ),
+                                    "smallest_next_experiment": (
+                                        "run approved full-length predictor"
+                                    ),
+                                }
+                            ],
+                            "locator_or_geometry_sidecar_rows": [
+                                {
+                                    "entry_id": "m_csa:604",
+                                    "accession": "Q43088",
+                                    "blocker_class": "approved_geometry_feature_missing",
+                                }
+                            ],
+                        },
+                        "calibration_blockers": [
+                            {"axis": "high_cofactor_signature_proxy"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            approval_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "q43088_locator_contract_cleared_now": True
+                        },
+                        "counts": {
+                            "approved_locator_positions": 2,
+                            "critical_violation_total": 0,
+                        },
+                        "approval_records": [
+                            {"sequence_position": 288, "approved_now": True},
+                            {"sequence_position": 286, "approved_now": True},
+                        ],
+                        "approved_locator_sidecar": {
+                            "path": "artifacts/q43088_sidecar.json",
+                            "payload_sha256": "abc",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval(
+                current_evidence_after_swissmodel_staging_path=current_path,
+                q43088_locator_approval_packet_path=approval_path,
+                artifact_id="current_after_q43088_test",
+            )
+
+        self.assertEqual(packet["artifact_id"], "current_after_q43088_test")
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_current_evidence_after_"
+                "q43088_locator_approval_blocked_p07658"
+            ),
+        )
+        self.assertEqual(packet["counts"]["surface_completeness_blocker_rows"], 1)
+        self.assertEqual(packet["counts"]["coordinate_source_blocker_rows"], 1)
+        self.assertEqual(
+            packet["counts"]["locator_or_geometry_sidecar_blocker_rows"], 0
+        )
+        self.assertEqual(packet["counts"]["partial_surface_rescore_input_ready_rows"], 4)
+        self.assertTrue(packet["decision"]["q43088_locator_gate_cleared_now"])
+        self.assertFalse(packet["decision"]["fixed_threshold_audit_ready_to_rerun_now"])
+        self.assertIn("p07658_full_length_predicted_coordinate_missing", packet["blockers"])
+        self.assertNotIn(
+            "q43088_two_source_free_locator_positions_missing",
+            packet["blockers"],
+        )
+
+    def test_p07658_prediction_request_manifest_freezes_exact_sequence(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fasta_path = root / "reference.fasta"
+            fasta_path.write_text(
+                ">other\nAAAA\n>ref__P07658\nMKKUAA\n",
+                encoding="utf-8",
+            )
+            probe_paths = []
+            for name in (
+                "esmfold.json",
+                "runtime.json",
+                "provider.json",
+                "beacons.json",
+                "broad.json",
+            ):
+                path = root / name
+                path.write_text("{}", encoding="utf-8")
+                probe_paths.append(path)
+
+            manifest = build_fold_augmented_p07658_full_length_prediction_request_manifest(
+                reference_fasta_path=fasta_path,
+                esmfold_api_preflight_path=probe_paths[0],
+                local_predictor_runtime_scan_path=probe_paths[1],
+                full_length_predictor_provider_probe_path=probe_paths[2],
+                three_d_beacons_predicted_structure_probe_path=probe_paths[3],
+                computed_model_repository_broad_probe_path=probe_paths[4],
+                artifact_id="custom_p07658_prediction_request",
+                preferred_staging_path=root / "p07658.cif",
+            )
+
+        self.assertEqual(
+            manifest["artifact_id"], "custom_p07658_prediction_request"
+        )
+        self.assertEqual(
+            manifest["status"],
+            (
+                "fold_augmented_p07658_full_length_prediction_request_"
+                "manifest_ready_blocker_not_cleared"
+            ),
+        )
+        self.assertEqual(manifest["counts"]["sequence_length"], 6)
+        self.assertEqual(manifest["counts"]["selenocysteine_count"], 1)
+        self.assertEqual(
+            manifest["affected_row"]["selenocysteine_positions"], [4]
+        )
+        self.assertEqual(
+            manifest["prediction_request"]["sequence"], "MKKUAA"
+        )
+        self.assertTrue(
+            manifest["decision"]["p07658_prediction_request_ready_now"]
+        )
+        self.assertFalse(
+            manifest["decision"]["p07658_coordinate_blocker_cleared_now"]
+        )
+        self.assertEqual(manifest["counts"]["coordinates_staged_now"], 0)
+        self.assertEqual(manifest["counts"]["rows_scored_now"], 0)
+        self.assertFalse(manifest["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(manifest["guardrails"]["threshold_selected_or_tuned"])
 
     def test_p10746_prior_human_decision_reconciles_to_current_impact(
         self,

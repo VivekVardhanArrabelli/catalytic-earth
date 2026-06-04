@@ -104,6 +104,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_evidence_extension_plan,
     write_fold_augmented_confounded_proxy_acquisition_queue,
     write_fold_augmented_confounded_proxy_train_cal_candidate_pool,
+    write_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage,
     write_fold_augmented_confounded_proxy_extended_train_cal_oos_surface,
     write_fold_augmented_confounded_proxy_train_cal_scored_extension,
     write_fold_augmented_confounded_proxy_train_cal_background_axis_blocker,
@@ -133,6 +134,9 @@ from .northstar_next_levers import (
     write_fold_augmented_q43088_source_free_locator_approval_contract,
     write_fold_augmented_q43088_source_free_locator_candidate_scout,
     write_fold_augmented_q43088_locator_review_priority_packet,
+    write_fold_augmented_q43088_locator_approval_packet,
+    write_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval,
+    write_fold_augmented_p07658_full_length_prediction_request_manifest,
     write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088,
     write_fold_augmented_confounded_proxy_alternate_structure_source_contract,
     write_fold_augmented_confounded_proxy_deployment_input_preflight,
@@ -12462,6 +12466,32 @@ def cmd_build_fold_augmented_confounded_proxy_train_cal_candidate_pool(
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage(
+        train_cal_candidate_pool_path=Path(args.train_cal_candidate_pool),
+        high_cofactor_probe_contract_path=Path(
+            args.high_cofactor_probe_contract
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        max_near_miss_rows=args.max_near_miss_rows,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented high-cofactor near-miss triage to "
+        f"{args.out} (eligible high-cofactor rows: "
+        f"{counts.get('high_cofactor_axis_candidate_rows')}, near misses: "
+        f"{counts.get('near_miss_rows_reported')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -13133,6 +13163,106 @@ def cmd_build_fold_augmented_q43088_locator_review_priority_packet(
         f"{args.out} (priority candidates: "
         f"{counts.get('priority_candidate_rows')}, approved now: "
         f"{counts.get('locator_positions_approved_now')})"
+    )
+    return 0
+
+
+def _parse_int_csv(value: str) -> list[int]:
+    return [int(part.strip()) for part in value.split(",") if part.strip()]
+
+
+def cmd_build_fold_augmented_q43088_locator_approval_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_q43088_locator_approval_packet(
+        q43088_locator_review_priority_packet_path=Path(
+            args.q43088_locator_review_priority_packet
+        ),
+        q43088_source_free_locator_approval_contract_path=Path(
+            args.q43088_source_free_locator_approval_contract
+        ),
+        q43088_coordinate_path=Path(args.q43088_coordinate),
+        sidecar_path=Path(args.sidecar),
+        approve_positions=_parse_int_csv(args.approve_positions),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented Q43088 locator approval packet to "
+        f"{args.out} (approved locators: "
+        f"{counts.get('approved_locator_positions')}, "
+        f"contract cleared: "
+        f"{counts.get('q43088_locator_contract_cleared_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval(
+        current_evidence_after_swissmodel_staging_path=Path(
+            args.current_evidence_after_swissmodel_staging
+        ),
+        q43088_locator_approval_packet_path=Path(
+            args.q43088_locator_approval_packet
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented current evidence after Q43088 locator approval to "
+        f"{args.out} (surface blockers: "
+        f"{counts.get('surface_completeness_blocker_rows')}, "
+        f"Q43088 cleared: "
+        f"{counts.get('q43088_locator_contract_cleared_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_p07658_full_length_prediction_request_manifest(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    manifest = write_fold_augmented_p07658_full_length_prediction_request_manifest(
+        reference_fasta_path=Path(args.reference_fasta),
+        fasta_record_id=args.fasta_record_id,
+        esmfold_api_preflight_path=Path(args.esmfold_api_preflight),
+        local_predictor_runtime_scan_path=Path(args.local_predictor_runtime_scan),
+        full_length_predictor_provider_probe_path=Path(
+            args.full_length_predictor_provider_probe
+        ),
+        three_d_beacons_predicted_structure_probe_path=Path(
+            args.three_d_beacons_predicted_structure_probe
+        ),
+        computed_model_repository_broad_probe_path=Path(
+            args.computed_model_repository_broad_probe
+        ),
+        preferred_staging_path=Path(args.preferred_staging_path)
+        if args.preferred_staging_path
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = manifest.get("counts", {})
+    print(
+        "Wrote fold-augmented P07658 full-length prediction request manifest "
+        f"to {args.out} (sequence length: {counts.get('sequence_length')}, "
+        f"selenocysteines: {counts.get('selenocysteine_count')}, "
+        f"coordinates staged: {counts.get('coordinates_staged_now')})"
     )
     return 0
 
@@ -29645,6 +29775,54 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_confounded_proxy_train_cal_candidate_pool
     )
 
+    high_cofactor_candidate_near_miss_triage = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-high-cofactor-candidate-near-miss-triage",
+        help=(
+            "triage train/cal candidate-pool near misses for the frozen "
+            "high-cofactor 16-row acquisition blocker"
+        ),
+    )
+    high_cofactor_candidate_near_miss_triage.add_argument(
+        "--train-cal-candidate-pool",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "candidate_pool_current702_20260603.json"
+        ),
+    )
+    high_cofactor_candidate_near_miss_triage.add_argument(
+        "--high-cofactor-probe-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "probe_contract_current702_20260604.json"
+        ),
+    )
+    high_cofactor_candidate_near_miss_triage.add_argument(
+        "--max-near-miss-rows",
+        type=int,
+        default=16,
+    )
+    high_cofactor_candidate_near_miss_triage.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    high_cofactor_candidate_near_miss_triage.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "candidate_near_miss_triage_current702_20260604.json"
+        ),
+    )
+    high_cofactor_candidate_near_miss_triage.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_high_cofactor_candidate_"
+            "near_miss_triage_current702_20260604.md"
+        ),
+    )
+    high_cofactor_candidate_near_miss_triage.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage
+    )
+
     confounded_proxy_train_cal_scoring_tranche = subparsers.add_parser(
         "build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan",
         help=(
@@ -30909,6 +31087,188 @@ def build_parser() -> argparse.ArgumentParser:
     )
     q43088_locator_review_priority_packet.set_defaults(
         func=cmd_build_fold_augmented_q43088_locator_review_priority_packet
+    )
+
+    q43088_locator_approval_packet = subparsers.add_parser(
+        "build-fold-augmented-q43088-locator-approval-packet",
+        help=(
+            "explicitly approve source-free Q43088 locator positions from the "
+            "review-priority packet"
+        ),
+    )
+    q43088_locator_approval_packet.add_argument(
+        "--q43088-locator-review-priority-packet",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_locator_review_priority_"
+            "packet_current702_20260604.json"
+        ),
+    )
+    q43088_locator_approval_packet.add_argument(
+        "--q43088-source-free-locator-approval-contract",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_"
+            "approval_contract_current702_20260604.json"
+        ),
+    )
+    q43088_locator_approval_packet.add_argument(
+        "--q43088-coordinate",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601_coordinates/confounded_proxy_train_cal_tranche_queries/"
+            "afdb_Q43088_v6.cif"
+        ),
+    )
+    q43088_locator_approval_packet.add_argument(
+        "--approve-positions",
+        default="288,286",
+    )
+    q43088_locator_approval_packet.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_sidecar_"
+            "current702_20260604.json"
+        ),
+    )
+    q43088_locator_approval_packet.add_argument("--artifact-id", default=None)
+    q43088_locator_approval_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_locator_approval_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    q43088_locator_approval_packet.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_q43088_locator_approval_packet_"
+            "current702_20260604.md"
+        ),
+    )
+    q43088_locator_approval_packet.set_defaults(
+        func=cmd_build_fold_augmented_q43088_locator_approval_packet
+    )
+
+    current_evidence_after_q43088_locator_approval = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-current-evidence-after-q43088-locator-approval",
+        help=(
+            "compose current Lever 3 evidence after the Q43088 locator "
+            "approval packet"
+        ),
+    )
+    current_evidence_after_q43088_locator_approval.add_argument(
+        "--current-evidence-after-swissmodel-staging",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_"
+            "after_swissmodel_staging_current702_20260604.json"
+        ),
+    )
+    current_evidence_after_q43088_locator_approval.add_argument(
+        "--q43088-locator-approval-packet",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_locator_approval_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    current_evidence_after_q43088_locator_approval.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    current_evidence_after_q43088_locator_approval.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_current_evidence_"
+            "after_q43088_locator_approval_current702_20260604.json"
+        ),
+    )
+    current_evidence_after_q43088_locator_approval.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_current_evidence_after_"
+            "q43088_locator_approval_current702_20260604.md"
+        ),
+    )
+    current_evidence_after_q43088_locator_approval.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval
+    )
+
+    p07658_prediction_request_manifest = subparsers.add_parser(
+        "build-fold-augmented-p07658-full-length-prediction-request-manifest",
+        help=(
+            "freeze the exact P07658 full-length predictor input and "
+            "acceptance checks for the remaining Lever 3 coordinate blocker"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--reference-fasta",
+        default=(
+            "artifacts/v3_external_hard_negative_broader_structural_backend_"
+            "sequence_search_reference_1025.fasta"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--fasta-record-id",
+        default="ref__P07658",
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--esmfold-api-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_"
+            "current702_20260604.json"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--local-predictor-runtime-scan",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_"
+            "current702_20260604.json"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--full-length-predictor-provider-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_"
+            "probe_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--three-d-beacons-predicted-structure-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_"
+            "probe_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--computed-model-repository-broad-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_computed_model_repository_"
+            "broad_probe_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--preferred-staging-path",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601_coordinates/confounded_proxy_train_cal_tranche_queries/"
+            "p07658_full_length_predictor_current702_20260604.cif"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument("--artifact-id", default=None)
+    p07658_prediction_request_manifest.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_full_length_prediction_"
+            "request_manifest_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_request_manifest.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p07658_full_length_prediction_request_"
+            "manifest_current702_20260604.md"
+        ),
+    )
+    p07658_prediction_request_manifest.set_defaults(
+        func=cmd_build_fold_augmented_p07658_full_length_prediction_request_manifest
     )
 
     confounded_proxy_residual_queue_after_p10746_q43088 = subparsers.add_parser(

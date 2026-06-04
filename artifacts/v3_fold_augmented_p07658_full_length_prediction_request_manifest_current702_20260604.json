@@ -1,0 +1,155 @@
+{
+  "acceptance_checks_before_scoring": [
+    {
+      "check_id": "coordinate_file_exists",
+      "required": true
+    },
+    {
+      "check_id": "coordinate_sha256_recorded",
+      "required": true
+    },
+    {
+      "check_id": "provider_model_version_recorded",
+      "required": true
+    },
+    {
+      "check_id": "input_sequence_sha256_matches_manifest",
+      "expected_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+      "required": true
+    },
+    {
+      "check_id": "sequence_length_is_715",
+      "expected_length": 715,
+      "required": true
+    },
+    {
+      "check_id": "selenocysteine_handling_documented",
+      "expected_selenocysteine_count": 1,
+      "required": true
+    },
+    {
+      "check_id": "experimental_pdb_metadata_not_used_as_deployment_input",
+      "required": true
+    },
+    {
+      "check_id": "row_not_scored_until_coordinate_staged",
+      "required": true
+    }
+  ],
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "missing_evidence_type": "deployment-valid full-length predicted coordinate for the exact 715-residue P07658 sequence including selenocysteine",
+    "remaining_blocker_class": "full_length_predicted_coordinate_missing",
+    "selenocysteine_count": 1,
+    "selenocysteine_positions": [
+      140
+    ],
+    "sequence_length": 715,
+    "sequence_md5": "dae7698bc1ca57518d5743f81222b6e7",
+    "sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+    "sequence_source": "artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_reference_1025.fasta",
+    "sequence_source_record_id": "ref__P07658"
+  },
+  "artifact_id": "v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604",
+  "blockers": [
+    "p07658_full_length_predicted_coordinate_not_returned_or_staged",
+    "provider_model_version_path_checksum_provenance_missing_until_coordinate_exists",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "blockers": 3,
+    "coordinates_staged_now": 0,
+    "critical_violation_total": 0,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "prediction_request_rows": 1,
+    "rows_scored_now": 0,
+    "selenocysteine_count": 1,
+    "sequence_length": 715
+  },
+  "created_utc": "2026-06-04T11:42:38Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "After a coordinate exists, run acceptance checks against this manifest; only then score P07658 at unchanged threshold 0.44155 with the already staged Q43088 sidecar.",
+    "p07658_coordinate_blocker_cleared_now": false,
+    "p07658_prediction_request_ready_now": true,
+    "smallest_next_experiment": "Run an approved full-length predictor/provider on the exact FASTA in this manifest, then stage coordinate path/checksum/provider/model/version provenance before row scoring."
+  },
+  "failed_rescue_summary": {
+    "3dbeacons_probe": "experimental_only_not_deployment_valid",
+    "broad_public_repository_probe": "no_public_computed_model_coordinate_hit",
+    "credential_free_provider_probe": "no_coordinate_returned",
+    "local_runtime_scan": "no_local_full_length_predictor_or_coordinate_hit",
+    "public_esmfold_endpoint": "blocked_sequence_too_long_715_gt_400"
+  },
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Run a full-length predictor/provider using this sequence, then stage the returned coordinate with provenance and rerun only the fixed-threshold row-scoring readiness checks.",
+    "result": "P07658 remains blocked, but the exact full-length predictor input and acceptance checks are now frozen for the smallest next experiment."
+  },
+  "prediction_request": {
+    "accepted_coordinate_formats": [
+      "mmCIF",
+      "PDB"
+    ],
+    "fasta_header": ">m_csa:562|P07658|full_length_715aa|selenocysteine_U_preserved|lever3_prediction_request",
+    "preferred_staging_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
+    "provider_requirements": [
+      "supports at least 715 residues in one full-length protein chain",
+      "preserves or explicitly documents handling of selenocysteine U at sequence position 138",
+      "returns a coordinate file with one residue mapping per input sequence position or a documented missing-position list",
+      "provides provider, model name, model version, run timestamp, coordinate path, and checksum provenance",
+      "does not use experimental PDB metadata, target names, EC/Rhea IDs, mechanism text, source IDs, labels, or heldout rows as predictive features"
+    ],
+    "sequence": "MKKVVTVCPYCASGCKINLVVDNGKIVRAEAAQGKTNQGTLCLKGYYGWDFINDTQILTPRLKTPMIRRQRGGKLEPVSWDEALNYVAERLSAIKEKYGPDAIQTTGSSRGTGNETNYVMQKFARAVIGTNNVDCCARVUHGPSVAGLHQSVGNGAMSNAINEIDNTDLVFVFGYNPADSHPIVANHVINAKRNGAKIIVCDPRKIETARIADMHIALKNGSNIALLNAMGHVIIEENLYDKAFVASRTEGFEEYRKIVEGYTPESVEDITGVSASEIRQAARMYAQAKSAAILWGMGVTQFYQGVETVRSLTSLAMLTGNLGKPHAGVNPVRGQNNVQGACDMGALPDTYPGYQYVKDPANREKFAKAWGVESLPAHTGYRISELPHRAAHGEVRAAYIMGEDPLQTDAELSAVRKAFEDLELVIVQDIFMTKTASAADVILPSTSWGEHEGVFTAADRGFQRFFKAVEPKWDLKTDWQIISEIATRMGYPMHYNNTQEIWDELRHLCPDFYGATYEKMGELGFIQWPCRDTSDADQGTSYLFKEKFDTPNGLAQFFTCDWVAPIDKLTDEYPMVLSTVREVGHYSCRSMTGNCAALAALADEPGYAQINTEDAKRLGIEDEALVWVHSRKGKIITRAQVSDRPNKGAIYMTYQWWIGACNELVTENLSPITKTPEYKYCAVRVEPIADQRAAEQYVIDEYNKLKTRLREAALA",
+    "sequence_wrapped_60": "MKKVVTVCPYCASGCKINLVVDNGKIVRAEAAQGKTNQGTLCLKGYYGWDFINDTQILTP\nRLKTPMIRRQRGGKLEPVSWDEALNYVAERLSAIKEKYGPDAIQTTGSSRGTGNETNYVM\nQKFARAVIGTNNVDCCARVUHGPSVAGLHQSVGNGAMSNAINEIDNTDLVFVFGYNPADS\nHPIVANHVINAKRNGAKIIVCDPRKIETARIADMHIALKNGSNIALLNAMGHVIIEENLY\nDKAFVASRTEGFEEYRKIVEGYTPESVEDITGVSASEIRQAARMYAQAKSAAILWGMGVT\nQFYQGVETVRSLTSLAMLTGNLGKPHAGVNPVRGQNNVQGACDMGALPDTYPGYQYVKDP\nANREKFAKAWGVESLPAHTGYRISELPHRAAHGEVRAAYIMGEDPLQTDAELSAVRKAFE\nDLELVIVQDIFMTKTASAADVILPSTSWGEHEGVFTAADRGFQRFFKAVEPKWDLKTDWQ\nIISEIATRMGYPMHYNNTQEIWDELRHLCPDFYGATYEKMGELGFIQWPCRDTSDADQGT\nSYLFKEKFDTPNGLAQFFTCDWVAPIDKLTDEYPMVLSTVREVGHYSCRSMTGNCAALAA\nLADEPGYAQINTEDAKRLGIEDEALVWVHSRKGKIITRAQVSDRPNKGAIYMTYQWWIGA\nCNELVTENLSPITKTPEYKYCAVRVEPIADQRAAEQYVIDEYNKLKTRLREAALA"
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_full_length_prediction_request_manifest",
+  "scope": "Exact input/acceptance manifest for the remaining P07658 Lever 3 full-length predicted-coordinate blocker. It stages no coordinate, scores no row, and does not change threshold 0.44155.",
+  "source_artifacts": {
+    "3dbeacons_predicted_structure_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json",
+      "sha256": "aac05da8b1c6e4b5af07aed4cf18182eb88f1709c55f27944341ffa8ffadc404"
+    },
+    "computed_model_repository_broad_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604.json",
+      "sha256": "c6471984d813987da8038d1bf5ec3c7aae83e93f202aa207b86152abed879261"
+    },
+    "esmfold_api_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604.json",
+      "sha256": "96db1503eb87578baf468bf1357bb1d716bc9adaa6d2b8e32b526c1036270f7a"
+    },
+    "full_length_predictor_provider_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json",
+      "sha256": "74ff0f96853f85d62f6e4f68a35ce3cf0943b76984444bace21977ebfec04c44"
+    },
+    "local_predictor_runtime_scan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json",
+      "sha256": "15d2ada88c9fc3b57a3d60278cc3dfa467a689d94b6d355392ddc51be010e749"
+    },
+    "reference_fasta": {
+      "exists": true,
+      "path": "artifacts/v3_external_hard_negative_broader_structural_backend_sequence_search_reference_1025.fasta",
+      "sha256": "8eaca1d4cc482d1b9e37f2d3a6def7f73824d85ba869b7702591aee3e2a4aff2"
+    }
+  },
+  "status": "fold_augmented_p07658_full_length_prediction_request_manifest_ready_blocker_not_cleared"
+}
