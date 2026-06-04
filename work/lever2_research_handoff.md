@@ -132,9 +132,10 @@ calibration rows.
 
 #### Current status
 
-Main readout commit `d885bba` is pushed to
-`origin/lever-2-research-track`. A final priority/report refinement commit is
-pending for this updated handoff and the missing-OOS priority report section.
+Pushed to `origin/lever-2-research-track` through `2d3b849`. Local `HEAD` and
+`origin/lever-2-research-track` both resolved to
+`2d3b849756041a8cec285447ab896ee69e28298e` after the push, and `git status`
+reported a clean branch.
 
 #### Exact next action
 
