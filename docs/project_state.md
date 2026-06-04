@@ -755,17 +755,23 @@ artifacts first.
    lost primaries are `cofactor_apo_loss`), and restoring the cofactor onto the
    predicted apo backbone recovers **22/22** (the backbone is faithful), so the
    **primary lever is cofactor-awareness**, not a better apo folder, with a ceiling
-   of all 22. Next build: a real cofactor-restoration feature — graft/dock the
-   M-CSA cofactor into the predicted active site (replacing the idealized
-   ligand_context injection with placed cofactor atoms) or strengthen the sequence
-   cofactor-presence channel (`sequence_cofactor_channel.py` /
-   `cofactor_channel_probe.py`), selected on train/cal with heldout one-shot. The
-   coordinate-free fidelity probe already estimates a realistic 19/22 (3 rows have
-   distorted predicted backbones); the next escalation is the true atom-level graft
-   (superpose catalytic residues, transplant cofactor atoms from local experimental
-   coords, recompute proximity, re-score) — it needs numpy (absent here) or a pure
-   superposition, and the predicted heldout CIFs are already staged locally. The
-   ESMFold2 coordinate-swap experiment stays
+   of all 22 (realistic 19/22 by the coordinate-free graft fidelity probe; the 3
+   distorted-backbone rows are abstention cases and the ESMFold2 boundary).
+   The solution architecture is generalized (see the 2026-06-04 "Problem 2 Solution
+   Architecture" decision-log entry): diagnose the deploy-missing context ->
+   bound the ceiling -> reconstruct the context from sequence -> fuse + abstain.
+   Steps 1-2 are built and class/backend-agnostic. **The next build is step 3:**
+   a leakage-safe train/cal **sequence -> cofactor-presence channel**
+   (`sequence_cofactor_channel.py` / `cofactor_channel_probe.py` + the materialized
+   cofactor-locus sidecars), supervised by STRUCTURAL ligand context only (never the
+   fingerprint/EC/Rhea/mechanism text), fed into the router where the experimental
+   `ligand_context` used to plug in, selected on train/cal with heldout one-shot, and
+   measured against the 19-22/22 ceiling. Default deploy path is the feature-channel
+   (A); structure-restoration with a CANONICAL/template cofactor (B) is held in
+   reserve. The experimental-cofactor atom-level graft is demoted to an optional
+   oracle (sharpen the ceiling integer / one-time-validate the cheap proxy); it is
+   NOT on the critical path and needs numpy (absent here) or a pure superposition.
+   The ESMFold2 coordinate-swap experiment stays
    staged as a no-fit contract
    (`artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`)
    with a runnable `esmfold2` backend, but is now scoped to its secondary value

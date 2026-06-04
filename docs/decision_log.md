@@ -3,6 +3,56 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Problem 2 Solution Architecture — Reconstruct Deploy-Missing Context From Sequence
+
+Decision (planning, not a result): adopt a generalized solution architecture for
+the predicted-geometry robustness problem, and make the next build the sequence
+cofactor-presence channel. The experimental-cofactor atom-level graft is demoted
+to an optional oracle and is NOT on the critical path.
+
+First-principles framing: the router was validated on experimental active-site
+geometry but deploys on sequence (-> predicted apo structure). The degradation is a
+train/deploy feature-shift — the router leans on active-site context that
+experimental structures contain and predicted apo ones lack. For the v1 families
+that context is the cofactor/metal; for future classes it will be substrate,
+metal, PTM, oligomeric interface, or ordered water. The general problem is therefore
+"reconstruct the deploy-missing active-site context from the only deploy-available
+signal (sequence), and abstain when you cannot."
+
+Generalized method (reusable for any future class):
+1. Diagnose which missing context drives the drop — `failure_decomposition`
+   (built, class/backend-agnostic).
+2. Bound the ceiling if that context were restored — `cofactor_restoration_probe`
+   plus the coordinate-free `cofactor_graft_fidelity_probe` (built, generic).
+3. Reconstruct the channel from sequence — train a sequence -> missing-context head
+   on train/cal only, supervised by STRUCTURAL observations (ligand context /
+   cofactor-locus sidecars), never by the mechanism fingerprint, EC, Rhea, or
+   mechanism text (else it is circular/leaky). This is the next build.
+4. Fuse + abstain — feed the reconstructed context into the router where the
+   experimental ligand_context used to plug in, and domain-adapt: calibrate the
+   threshold on the predicted-apo-plus-reconstruction regime (not the experimental
+   regime), using reconstruction confidence + pLDDT for principled abstention. The
+   3 distorted-backbone rows (`m_csa:213`, `m_csa:854`, `m_csa:714`) are abstention
+   cases and the ESMFold2 secondary-lever boundary.
+
+Two deploy paths for step 3/4: (A) feature-channel — predicted cofactor presence
+fed as a feature; lighter, most general, needs no atom placement. (B)
+structure-restoration — graft a CANONICAL/template cofactor (not the experimental
+one) into the predicted apo pocket and recompute real geometry; heavier, reuses the
+graft machinery with a de-circularized template. Default to (A); keep (B) and the
+graft machinery in reserve.
+
+Why the experimental-cofactor atom graft is not needed: it transplants the
+experimental cofactor, which is unavailable at deploy time (circular), so it can
+only be an oracle that (i) sharpens the 19-22/22 ceiling to one integer and (ii)
+one-time-validates the cheap coordinate-free proxy for future classes. Both are
+optional; neither blocks the channel. Revisit only if scaling the diagnostic to
+many classes (validate the proxy once) or if choosing deploy-path (B).
+
+Next step: build step 3 — the leakage-safe train/cal sequence -> cofactor-presence
+channel — starting from an audit of `sequence_cofactor_channel.py` and the
+materialized cofactor-locus sidecars, measured against the 19-22/22 ceiling.
+
 ## 2026-06-04: Cofactor Graft Is Realistic For 19/22 (3 Need Better Predicted Geometry)
 
 Decision: the idealized 22/22 cofactor-restoration recovery holds up under a
