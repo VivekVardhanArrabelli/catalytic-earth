@@ -72,6 +72,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_evidence_sufficiency_readout,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
     build_fold_augmented_lever3_retention_frontier_readout,
+    build_fold_augmented_lever3_residual_safety_readout,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
     build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
@@ -4319,6 +4320,210 @@ class NorthstarNextLeversTests(unittest.TestCase):
             readout["p07658_provider_attempt"]["provider"], "BioLM ESMFold"
         )
         self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_residual_safety_readout_reports_shift_overblock(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            retention_path = root / "retention.json"
+            channel_veto_path = root / "channel_veto.json"
+            in_scope_path = root / "in_scope.json"
+
+            retention_path.write_text(
+                json.dumps(
+                    {
+                        "best_routes": {
+                            "best_route_any_retention_by_proxy_shortfall": {
+                                "route_id": "channel_union::channel_a",
+                                "channels": ["channel_a"],
+                                "calibration_in_scope_retained": 2,
+                                "calibration_in_scope_retention_loss": 1,
+                            }
+                        },
+                        "shortfall_diagnostics": {
+                            "additional_high_cofactor_abstentions_needed": 1,
+                            "additional_same_family_abstentions_needed": 1,
+                            "best_route_unabstained_high_cofactor_rows": [
+                                {"entry_id": "m_csa:1"}
+                            ],
+                            "best_route_unabstained_same_family_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                            ],
+                        },
+                        "fixed_operating_point": {"baseline_threshold": 0.5},
+                        "decision": {
+                            "current_source_free_channels_close_both_proxy_axes_at_90pct_floor": False,
+                            "current_source_free_channels_close_both_proxy_axes_at_any_retention": False,
+                            "exact_missing_evidence": [
+                                "accepted full-length P07658 predicted coordinate provenance"
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_veto_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "high_cofactor_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "P11111",
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "abstaining_channels": [],
+                                    "channel_results": [
+                                        {
+                                            "channel": "channel_a",
+                                            "score": 0.55,
+                                            "threshold": 0.5,
+                                            "margin": 0.05,
+                                            "abstains": False,
+                                        }
+                                    ],
+                                }
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "P11111",
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "abstaining_channels": [],
+                                    "channel_results": [
+                                        {
+                                            "channel": "channel_a",
+                                            "score": 0.55,
+                                            "threshold": 0.5,
+                                            "margin": 0.05,
+                                            "abstains": False,
+                                        }
+                                    ],
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "P22222",
+                                    "label_type": "out_of_scope",
+                                    "oos_tier": "unknown_oos",
+                                    "abstaining_channels": [],
+                                    "channel_results": [
+                                        {
+                                            "channel": "channel_a",
+                                            "score": 0.65,
+                                            "threshold": 0.5,
+                                            "margin": 0.15,
+                                            "abstains": False,
+                                        }
+                                    ],
+                                },
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            in_scope_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "cal:1",
+                                "channel_scores": {"channel_a": 0.7},
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "channel_scores": {"channel_a": 0.6},
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "channel_scores": {"channel_a": 0.5},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_residual_safety_readout(
+                retention_frontier_readout_path=retention_path,
+                channel_veto_readout_path=channel_veto_path,
+                in_scope_threshold_contract_path=in_scope_path,
+                artifact_id="lever3_residual_safety_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_residual_safety_test")
+        self.assertEqual(readout["counts"]["unique_residual_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["residual_rows_retained_by_all_current_channels"], 2
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_closest_channel_threshold_shift_diagnostic"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_closest_channel_shift_preserving_in_scope_floor"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "minimum_in_scope_loss_to_catch_any_residual_by_closest_channel_shift"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_any_channel_threshold_shift_diagnostic"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_any_channel_shift_preserving_in_scope_floor"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "minimum_in_scope_loss_to_catch_any_residual_by_any_channel_shift"
+            ],
+            1,
+        )
+        row_1 = readout["residual_readout"]["rows"][0]
+        self.assertEqual(
+            row_1["axis_memberships"], ["high_cofactor", "same_family"]
+        )
+        self.assertEqual(
+            row_1["evidence_need"],
+            "new_source_free_cofactor_role_and_same_family_counteraxis_required",
+        )
+        shift_rows = readout["residual_readout"][
+            "closest_channel_threshold_shift_diagnostics"
+        ]
+        self.assertFalse(
+            any(row["retention_floor_met_if_shifted"] for row in shift_rows)
+        )
+        any_channel_shift_rows = readout["residual_readout"][
+            "all_channel_threshold_shift_diagnostics"
+        ]
+        self.assertFalse(
+            any(
+                row["any_channel_shift_preserves_in_scope_floor"]
+                for row in any_channel_shift_rows
+            )
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_source_free_channels_can_resolve_residual_rows"
+            ]
+        )
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(

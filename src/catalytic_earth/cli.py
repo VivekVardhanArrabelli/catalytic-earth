@@ -157,6 +157,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_evidence_sufficiency_readout,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
     write_fold_augmented_lever3_retention_frontier_readout,
+    write_fold_augmented_lever3_residual_safety_readout,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
     write_fold_augmented_post_rerun_confounded_deployment_closure_audit,
@@ -13333,6 +13334,34 @@ def cmd_build_fold_augmented_lever3_retention_frontier_readout(
         f"{counts.get('best_any_retention_proxy_shortfall_rows')}, "
         f"P07658 coordinate: "
         f"{decision.get('fresh_p07658_provider_attempt_returned_coordinate')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_residual_safety_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_residual_safety_readout(
+        retention_frontier_readout_path=Path(args.retention_frontier_readout),
+        channel_veto_readout_path=Path(args.channel_veto_readout),
+        in_scope_threshold_contract_path=Path(args.in_scope_threshold_contract),
+        near_margin_epsilon=args.near_margin_epsilon,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 residual-safety readout to "
+        f"{args.out} (residual unique/all-channel-retained: "
+        f"{counts.get('unique_residual_rows')}/"
+        f"{counts.get('residual_rows_retained_by_all_current_channels')}, "
+        f"high/same residual: "
+        f"{counts.get('strict_high_cofactor_residual_rows')}/"
+        f"{counts.get('strict_same_family_residual_rows')})"
     )
     return 0
 
@@ -31847,6 +31876,58 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_retention_frontier_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_retention_frontier_readout
+    )
+
+    lever3_residual_safety_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-residual-safety-readout",
+        help=(
+            "write a measured Lever 3 readout for residual hard-confounded "
+            "rows retained by the best current source-free route"
+        ),
+    )
+    lever3_residual_safety_readout.add_argument(
+        "--retention-frontier-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retention_frontier_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_residual_safety_readout.add_argument(
+        "--channel-veto-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_residual_safety_readout.add_argument(
+        "--in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_residual_safety_readout.add_argument(
+        "--near-margin-epsilon",
+        type=float,
+        default=0.05,
+    )
+    lever3_residual_safety_readout.add_argument("--artifact-id", default=None)
+    lever3_residual_safety_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_residual_safety_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_residual_safety_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_residual_safety_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_residual_safety_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_residual_safety_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

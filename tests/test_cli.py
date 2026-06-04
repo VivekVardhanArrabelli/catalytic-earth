@@ -153,6 +153,29 @@ class CliTests(unittest.TestCase):
             args.p07658_provider_attempt,
         )
 
+    def test_lever3_residual_safety_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-residual-safety-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_residual_safety_readout_"
+                "current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_retention_frontier_readout",
+            args.retention_frontier_readout,
+        )
+        self.assertIn("lever3_channel_veto_readout", args.channel_veto_readout)
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.in_scope_threshold_contract,
+        )
+        self.assertEqual(args.near_margin_epsilon, 0.05)
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

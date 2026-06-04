@@ -313,6 +313,9 @@ FOLD_AUGMENTED_LEVER3_CHANNEL_VETO_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_RETENTION_FRONTIER_READOUT_ID = (
     "v3_fold_augmented_lever3_retention_frontier_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_RESIDUAL_SAFETY_READOUT_ID = (
+    "v3_fold_augmented_lever3_residual_safety_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -37866,6 +37869,736 @@ def write_fold_augmented_lever3_retention_frontier_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_retention_frontier_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_diagnostic_rows_by_entry(
+    channel_veto_readout: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    diagnostics = channel_veto_readout.get("proxy_axis_row_diagnostics") or {}
+    rows_by_entry: dict[str, dict[str, Any]] = {}
+    for axis_rows in diagnostics.values():
+        for row in axis_rows or []:
+            if not isinstance(row, dict) or not row.get("entry_id"):
+                continue
+            rows_by_entry[str(row["entry_id"])] = row
+    return rows_by_entry
+
+
+def _lever3_residual_axis_membership(
+    *,
+    high_rows: list[dict[str, Any]],
+    same_rows: list[dict[str, Any]],
+) -> dict[str, set[str]]:
+    memberships: dict[str, set[str]] = defaultdict(set)
+    for row in high_rows:
+        if row.get("entry_id"):
+            memberships[str(row["entry_id"])].add("high_cofactor")
+    for row in same_rows:
+        if row.get("entry_id"):
+            memberships[str(row["entry_id"])].add("same_family")
+    return memberships
+
+
+def _lever3_residual_safety_row(
+    *,
+    entry_id: str,
+    axis_memberships: set[str],
+    diagnostics_by_entry: dict[str, dict[str, Any]],
+    best_route_channels: set[str],
+    near_margin_epsilon: float,
+) -> dict[str, Any]:
+    diagnostic = diagnostics_by_entry.get(entry_id, {})
+    channel_results = [
+        row
+        for row in diagnostic.get("channel_results", [])
+        if isinstance(row, dict) and row.get("channel")
+    ]
+    route_channel_results = [
+        row
+        for row in channel_results
+        if str(row.get("channel")) in best_route_channels
+    ]
+    retained_results = [
+        row for row in channel_results if row.get("abstains") is False
+    ]
+    route_retained_results = [
+        row for row in route_channel_results if row.get("abstains") is False
+    ]
+    closest_result = min(
+        retained_results,
+        key=lambda row: (
+            float(row.get("margin") or 0.0),
+            str(row.get("channel") or ""),
+        ),
+        default={},
+    )
+    closest_route_result = min(
+        route_retained_results,
+        key=lambda row: (
+            float(row.get("margin") or 0.0),
+            str(row.get("channel") or ""),
+        ),
+        default={},
+    )
+    abstaining_channels = sorted(
+        str(channel) for channel in diagnostic.get("abstaining_channels", [])
+    )
+    route_abstaining_channels = sorted(
+        channel for channel in abstaining_channels if channel in best_route_channels
+    )
+    unused_abstaining_channels = sorted(
+        channel for channel in abstaining_channels if channel not in best_route_channels
+    )
+    retained_by_all_channels = bool(channel_results and not abstaining_channels)
+    closest_margin = _parse_optional_float(closest_result.get("margin"))
+    closest_route_margin = _parse_optional_float(closest_route_result.get("margin"))
+    near_threshold = bool(
+        closest_margin is not None
+        and float(closest_margin) <= near_margin_epsilon
+    )
+    if retained_by_all_channels:
+        if {"high_cofactor", "same_family"}.issubset(axis_memberships):
+            evidence_need = (
+                "new_source_free_cofactor_role_and_same_family_counteraxis_required"
+            )
+        elif "high_cofactor" in axis_memberships:
+            evidence_need = (
+                "new_source_free_high_cofactor_or_cofactor_role_counteraxis_required"
+            )
+        else:
+            evidence_need = (
+                "new_source_free_same_family_chemistry_or_pocket_counteraxis_required"
+            )
+    elif unused_abstaining_channels:
+        evidence_need = (
+            "current_unused_channel_can_abstain_row_but_route_level_retention_"
+            "cost_remains_nonclosing"
+        )
+    else:
+        evidence_need = "row_retained_by_best_route_channel_set"
+    return {
+        "entry_id": entry_id,
+        "accession": diagnostic.get("accession"),
+        "axis_memberships": sorted(axis_memberships),
+        "label_type": diagnostic.get("label_type"),
+        "oos_tier": diagnostic.get("oos_tier"),
+        "retained_by_all_current_channels": retained_by_all_channels,
+        "catchable_by_current_unused_channel": bool(unused_abstaining_channels),
+        "abstaining_channels": abstaining_channels,
+        "route_abstaining_channels": route_abstaining_channels,
+        "unused_abstaining_channels": unused_abstaining_channels,
+        "closest_current_channel": closest_result.get("channel"),
+        "closest_current_channel_score": closest_result.get("score"),
+        "closest_current_channel_threshold": closest_result.get("threshold"),
+        "closest_current_channel_margin": closest_margin,
+        "closest_best_route_channel": closest_route_result.get("channel"),
+        "closest_best_route_channel_margin": closest_route_margin,
+        "near_selected_threshold_margin": near_threshold,
+        "margin_bucket": (
+            "near_selected_threshold"
+            if near_threshold
+            else "wide_current_margin"
+        ),
+        "evidence_need": evidence_need,
+        "channel_results": channel_results,
+    }
+
+
+def _lever3_residual_threshold_shift_diagnostics(
+    *,
+    residual_rows: list[dict[str, Any]],
+    in_scope_threshold_contract: dict[str, Any],
+    retention_floor_fraction: float = 0.9,
+) -> list[dict[str, Any]]:
+    calibration_rows = [
+        row
+        for row in in_scope_threshold_contract.get("calibration_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    retention_floor_rows = math.ceil(retention_floor_fraction * len(calibration_rows))
+    diagnostics = []
+    for row in residual_rows:
+        channel_name = str(row.get("closest_current_channel") or "")
+        score = _parse_optional_float(row.get("closest_current_channel_score"))
+        scored_calibration_rows = [
+            cal_row
+            for cal_row in calibration_rows
+            if (cal_row.get("channel_scores") or {}).get(channel_name) is not None
+        ]
+        if not channel_name or score is None or not scored_calibration_rows:
+            diagnostics.append(
+                {
+                    "entry_id": row.get("entry_id"),
+                    "closest_current_channel": channel_name or None,
+                    "diagnostic_available": False,
+                    "reason": "closest_channel_or_calibration_scores_missing",
+                }
+            )
+            continue
+        threshold_to_abstain_residual = float(score) + 1e-9
+        retained = sum(
+            1
+            for cal_row in scored_calibration_rows
+            if float((cal_row.get("channel_scores") or {})[channel_name])
+            >= threshold_to_abstain_residual
+        )
+        diagnostics.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "axis_memberships": row.get("axis_memberships", []),
+                "closest_current_channel": channel_name,
+                "residual_score": score,
+                "diagnostic_threshold_to_abstain_residual": round(
+                    threshold_to_abstain_residual, 9
+                ),
+                "calibration_in_scope_rows_scored": len(scored_calibration_rows),
+                "calibration_in_scope_retained_if_shifted": retained,
+                "calibration_in_scope_loss_if_shifted": (
+                    len(scored_calibration_rows) - retained
+                ),
+                "retention_floor_rows": retention_floor_rows,
+                "retention_floor_met_if_shifted": retained >= retention_floor_rows,
+                "diagnostic_available": True,
+                "diagnostic_not_threshold_selection": True,
+            }
+        )
+    return diagnostics
+
+
+def _lever3_residual_all_channel_threshold_shift_diagnostics(
+    *,
+    residual_rows: list[dict[str, Any]],
+    in_scope_threshold_contract: dict[str, Any],
+    retention_floor_fraction: float = 0.9,
+) -> list[dict[str, Any]]:
+    calibration_rows = [
+        row
+        for row in in_scope_threshold_contract.get("calibration_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    retention_floor_rows = math.ceil(retention_floor_fraction * len(calibration_rows))
+    diagnostics = []
+    for row in residual_rows:
+        channel_shift_rows = []
+        for channel_result in row.get("channel_results", []):
+            channel_name = str(channel_result.get("channel") or "")
+            score = _parse_optional_float(channel_result.get("score"))
+            if not channel_name or score is None:
+                continue
+            scored_calibration_rows = [
+                cal_row
+                for cal_row in calibration_rows
+                if (cal_row.get("channel_scores") or {}).get(channel_name) is not None
+            ]
+            if not scored_calibration_rows:
+                continue
+            threshold_to_abstain_residual = float(score) + 1e-9
+            retained = sum(
+                1
+                for cal_row in scored_calibration_rows
+                if float((cal_row.get("channel_scores") or {})[channel_name])
+                >= threshold_to_abstain_residual
+            )
+            channel_shift_rows.append(
+                {
+                    "channel": channel_name,
+                    "residual_score": score,
+                    "diagnostic_threshold_to_abstain_residual": round(
+                        threshold_to_abstain_residual, 9
+                    ),
+                    "calibration_in_scope_rows_scored": len(scored_calibration_rows),
+                    "calibration_in_scope_retained_if_shifted": retained,
+                    "calibration_in_scope_loss_if_shifted": (
+                        len(scored_calibration_rows) - retained
+                    ),
+                    "retention_floor_rows": retention_floor_rows,
+                    "retention_floor_met_if_shifted": retained
+                    >= retention_floor_rows,
+                    "diagnostic_not_threshold_selection": True,
+                }
+            )
+        if not channel_shift_rows:
+            diagnostics.append(
+                {
+                    "entry_id": row.get("entry_id"),
+                    "axis_memberships": row.get("axis_memberships", []),
+                    "diagnostic_available": False,
+                    "reason": "channel_or_calibration_scores_missing",
+                }
+            )
+            continue
+        best_preservation_row = min(
+            channel_shift_rows,
+            key=lambda item: (
+                int(item["calibration_in_scope_loss_if_shifted"]),
+                str(item["channel"]),
+            ),
+        )
+        diagnostics.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "axis_memberships": row.get("axis_memberships", []),
+                "diagnostic_available": True,
+                "retention_floor_rows": retention_floor_rows,
+                "best_channel_by_in_scope_preservation": best_preservation_row,
+                "any_channel_shift_preserves_in_scope_floor": any(
+                    item["retention_floor_met_if_shifted"]
+                    for item in channel_shift_rows
+                ),
+                "channel_shift_rows": sorted(
+                    channel_shift_rows,
+                    key=lambda item: (
+                        int(item["calibration_in_scope_loss_if_shifted"]),
+                        str(item["channel"]),
+                    ),
+                ),
+                "diagnostic_not_threshold_selection": True,
+            }
+        )
+    return diagnostics
+
+
+def build_fold_augmented_lever3_residual_safety_readout(
+    *,
+    retention_frontier_readout_path: Path,
+    channel_veto_readout_path: Path,
+    in_scope_threshold_contract_path: Path,
+    near_margin_epsilon: float = 0.05,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_RESIDUAL_SAFETY_READOUT_ID,
+) -> dict[str, Any]:
+    retention = _read_json(retention_frontier_readout_path)
+    channel_veto = _read_json(channel_veto_readout_path)
+    in_scope_contract = _read_json(in_scope_threshold_contract_path)
+    best_any = (
+        retention.get("best_routes", {}).get(
+            "best_route_any_retention_by_proxy_shortfall"
+        )
+        or {}
+    )
+    shortfall = retention.get("shortfall_diagnostics") or {}
+    high_rows = [
+        row
+        for row in shortfall.get("best_route_unabstained_high_cofactor_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    same_rows = [
+        row
+        for row in shortfall.get("best_route_unabstained_same_family_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    memberships = _lever3_residual_axis_membership(
+        high_rows=high_rows,
+        same_rows=same_rows,
+    )
+    diagnostics_by_entry = _lever3_diagnostic_rows_by_entry(channel_veto)
+    best_route_channels = set(str(channel) for channel in best_any.get("channels", []))
+    residual_rows = [
+        _lever3_residual_safety_row(
+            entry_id=entry_id,
+            axis_memberships=axis_memberships,
+            diagnostics_by_entry=diagnostics_by_entry,
+            best_route_channels=best_route_channels,
+            near_margin_epsilon=near_margin_epsilon,
+        )
+        for entry_id, axis_memberships in sorted(
+            memberships.items(), key=lambda item: _entry_id_sort_key(item[0])
+        )
+    ]
+    retained_by_all = [
+        row for row in residual_rows if row["retained_by_all_current_channels"]
+    ]
+    catchable_by_unused = [
+        row for row in residual_rows if row["catchable_by_current_unused_channel"]
+    ]
+    near_rows = [row for row in residual_rows if row["near_selected_threshold_margin"]]
+    wide_rows = [
+        row for row in residual_rows if row["margin_bucket"] == "wide_current_margin"
+    ]
+    both_axis_rows = [
+        row
+        for row in residual_rows
+        if {"high_cofactor", "same_family"}.issubset(row["axis_memberships"])
+    ]
+    threshold_shift_diagnostics = _lever3_residual_threshold_shift_diagnostics(
+        residual_rows=residual_rows,
+        in_scope_threshold_contract=in_scope_contract,
+    )
+    all_channel_shift_diagnostics = (
+        _lever3_residual_all_channel_threshold_shift_diagnostics(
+            residual_rows=residual_rows,
+            in_scope_threshold_contract=in_scope_contract,
+        )
+    )
+    threshold_shift_available = [
+        row for row in threshold_shift_diagnostics if row.get("diagnostic_available")
+    ]
+    threshold_shift_retention_ok = [
+        row
+        for row in threshold_shift_available
+        if row.get("retention_floor_met_if_shifted")
+    ]
+    threshold_shift_overblocks = [
+        row
+        for row in threshold_shift_available
+        if not row.get("retention_floor_met_if_shifted")
+    ]
+    minimum_shift_loss = (
+        min(
+            int(row["calibration_in_scope_loss_if_shifted"])
+            for row in threshold_shift_available
+        )
+        if threshold_shift_available
+        else None
+    )
+    all_channel_shift_available = [
+        row
+        for row in all_channel_shift_diagnostics
+        if row.get("diagnostic_available")
+    ]
+    all_channel_shift_retention_ok = [
+        row
+        for row in all_channel_shift_available
+        if row.get("any_channel_shift_preserves_in_scope_floor")
+    ]
+    all_channel_shift_overblocks = [
+        row
+        for row in all_channel_shift_available
+        if not row.get("any_channel_shift_preserves_in_scope_floor")
+    ]
+    minimum_any_channel_shift_loss = (
+        min(
+            int(
+                row["best_channel_by_in_scope_preservation"][
+                    "calibration_in_scope_loss_if_shifted"
+                ]
+            )
+            for row in all_channel_shift_available
+        )
+        if all_channel_shift_available
+        else None
+    )
+    high_residual_ids = {str(row["entry_id"]) for row in high_rows}
+    same_residual_ids = {str(row["entry_id"]) for row in same_rows}
+    high_target_shortfall = int(
+        shortfall.get("additional_high_cofactor_abstentions_needed") or 0
+    )
+    same_target_shortfall = int(
+        shortfall.get("additional_same_family_abstentions_needed") or 0
+    )
+    closes_at_90 = bool(
+        retention.get("decision", {}).get(
+            "current_source_free_channels_close_both_proxy_axes_at_90pct_floor"
+        )
+    )
+    closes_any = bool(
+        retention.get("decision", {}).get(
+            "current_source_free_channels_close_both_proxy_axes_at_any_retention"
+        )
+    )
+    current_channels_resolve_residual = bool(
+        residual_rows and not retained_by_all and catchable_by_unused
+    )
+    deployment_closed = bool(closes_at_90 and not residual_rows)
+    status = (
+        "fold_augmented_lever3_residual_safety_readout_deployment_closed"
+        if deployment_closed
+        else "fold_augmented_lever3_residual_safety_readout_ready_residual_unsafe_transfer"
+    )
+    exact_missing_evidence = []
+    if high_target_shortfall:
+        exact_missing_evidence.append(
+            "one source-free high-cofactor/cofactor-role counteraxis that "
+            "abstains m_csa:289 while preserving the train/cal in-scope "
+            "retention floor; all current source-free channels retain this row"
+        )
+    if same_target_shortfall:
+        exact_missing_evidence.append(
+            "a source-free same-family chemistry or pocket-architecture "
+            f"counteraxis that abstains at least {same_target_shortfall} of "
+            f"{len(same_residual_ids)} retained same-family residual rows; all "
+            "current source-free channels retain the residual set"
+        )
+    if retention.get("decision", {}).get("exact_missing_evidence"):
+        for item in retention["decision"]["exact_missing_evidence"]:
+            if "P07658" in str(item):
+                exact_missing_evidence.append(str(item))
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": f"{SCHEMA_VERSION}.fold_augmented_lever3_residual_safety_readout",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured residual-safety readout for the hard-confounded "
+            "train/cal OOS rows left retained by the best current source-free "
+            "route. It uses only prior train/cal-selected channel diagnostics; "
+            "it reads no heldout rows, scores no new rows, stages no coordinates, "
+            "and does not select or change thresholds."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "readout_only": True,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "train_cal_selected_thresholds_only": True,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "fixed_operating_point": {
+            "best_current_route_id": best_any.get("route_id"),
+            "best_current_route_channels": sorted(best_route_channels),
+            "baseline_threshold": (
+                retention.get("fixed_operating_point", {}).get("baseline_threshold")
+            ),
+            "near_margin_epsilon": near_margin_epsilon,
+            "calibration_in_scope_retained_by_best_route": best_any.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_retention_loss_by_best_route": best_any.get(
+                "calibration_in_scope_retention_loss"
+            ),
+        },
+        "residual_readout": {
+            "rows": residual_rows,
+            "retained_by_all_current_channels": retained_by_all,
+            "catchable_by_current_unused_channel": catchable_by_unused,
+            "near_selected_threshold_margin_rows": near_rows,
+            "wide_current_margin_rows": wide_rows,
+            "closest_channel_threshold_shift_diagnostics": (
+                threshold_shift_diagnostics
+            ),
+            "all_channel_threshold_shift_diagnostics": (
+                all_channel_shift_diagnostics
+            ),
+        },
+        "counts": {
+            "strict_high_cofactor_residual_rows": len(high_residual_ids),
+            "strict_same_family_residual_rows": len(same_residual_ids),
+            "unique_residual_rows": len(residual_rows),
+            "residual_rows_in_both_proxy_axes": len(both_axis_rows),
+            "residual_rows_retained_by_all_current_channels": len(retained_by_all),
+            "residual_rows_catchable_by_current_unused_channel": len(catchable_by_unused),
+            "residual_rows_near_selected_threshold_margin": len(near_rows),
+            "residual_rows_wide_current_margin": len(wide_rows),
+            "residual_rows_with_closest_channel_threshold_shift_diagnostic": (
+                len(threshold_shift_available)
+            ),
+            "residual_rows_with_closest_channel_shift_preserving_in_scope_floor": (
+                len(threshold_shift_retention_ok)
+            ),
+            "residual_rows_that_would_overblock_in_scope_by_closest_channel_shift": (
+                len(threshold_shift_overblocks)
+            ),
+            "minimum_in_scope_loss_to_catch_any_residual_by_closest_channel_shift": (
+                minimum_shift_loss
+            ),
+            "residual_rows_with_any_channel_threshold_shift_diagnostic": (
+                len(all_channel_shift_available)
+            ),
+            "residual_rows_with_any_channel_shift_preserving_in_scope_floor": (
+                len(all_channel_shift_retention_ok)
+            ),
+            "residual_rows_that_would_overblock_in_scope_by_any_channel_shift": (
+                len(all_channel_shift_overblocks)
+            ),
+            "minimum_in_scope_loss_to_catch_any_residual_by_any_channel_shift": (
+                minimum_any_channel_shift_loss
+            ),
+            "high_cofactor_residual_rows_retained_by_all_current_channels": sum(
+                1
+                for row in residual_rows
+                if "high_cofactor" in row["axis_memberships"]
+                and row["retained_by_all_current_channels"]
+            ),
+            "same_family_residual_rows_retained_by_all_current_channels": sum(
+                1
+                for row in residual_rows
+                if "same_family" in row["axis_memberships"]
+                and row["retained_by_all_current_channels"]
+            ),
+            "additional_high_cofactor_abstentions_needed": high_target_shortfall,
+            "additional_same_family_abstentions_needed": same_target_shortfall,
+            "routes_closing_both_proxy_axes_at_90pct_floor": int(closes_at_90),
+            "routes_closing_both_proxy_axes_at_any_retention": int(closes_any),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "apply_or_change_threshold_now": False,
+            "current_source_free_channels_can_resolve_residual_rows": (
+                current_channels_resolve_residual
+            ),
+            "unsafe_transfer_residual_present": bool(residual_rows),
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed,
+            "exact_missing_evidence": exact_missing_evidence,
+            "next_gate": (
+                "Do not change threshold 0.44155. The remaining hard-confounded "
+                "residual rows are retained by every current source-free channel, "
+                "so continue with new deployment-valid evidence: accepted P07658 "
+                "prediction provenance, then a strict high-cofactor/cofactor-role "
+                "counteraxis measured on train/cal rows."
+            ),
+        },
+        "source_artifacts": {
+            "retention_frontier_readout": _source_path_record(
+                retention_frontier_readout_path
+            ),
+            "channel_veto_readout": _source_path_record(channel_veto_readout_path),
+            "in_scope_threshold_contract": _source_path_record(
+                in_scope_threshold_contract_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "The residual unsafe-transfer set is not catchable by another "
+                "union of current source-free channel thresholds."
+            ),
+            "result": (
+                f"{len(residual_rows)} unique hard-confounded residual rows "
+                f"remain under the best current route; {len(retained_by_all)} "
+                "are retained by every current channel. The high-cofactor "
+                f"shortfall is {high_target_shortfall} row and the same-family "
+                f"shortfall is {same_target_shortfall} rows."
+            ),
+            "next_action": (
+                "Treat near-threshold residuals as diagnostics only, not tuning "
+                "permission: any-channel threshold shifts would preserve the "
+                f"in-scope floor for {len(all_channel_shift_retention_ok)}/"
+                f"{len(all_channel_shift_available)} residual rows. Add a new "
+                "source-free chemistry/cofactor-role counteraxis or acquire "
+                "accepted strict high-cofactor train/cal OOS rows before any "
+                "fixed-threshold rerun."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_residual_safety_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    fixed = readout["fixed_operating_point"]
+    lines = [
+        "# Fold-Augmented Lever 3 Residual Safety Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Best current route: {fixed['best_current_route_id']}",
+        "- Best route in-scope retained/lost: "
+        f"{fixed['calibration_in_scope_retained_by_best_route']}/"
+        f"{fixed['calibration_in_scope_retention_loss_by_best_route']}",
+        "- Residual high-cofactor/same-family rows: "
+        f"{counts['strict_high_cofactor_residual_rows']}/"
+        f"{counts['strict_same_family_residual_rows']}",
+        f"- Unique residual rows: {counts['unique_residual_rows']}",
+        "- Retained by all current channels: "
+        f"{counts['residual_rows_retained_by_all_current_channels']}",
+        "- Near/wide selected-threshold margins: "
+        f"{counts['residual_rows_near_selected_threshold_margin']}/"
+        f"{counts['residual_rows_wide_current_margin']}",
+        "- Closest-channel shifts preserving in-scope floor: "
+        f"{counts['residual_rows_with_closest_channel_shift_preserving_in_scope_floor']}/"
+        f"{counts['residual_rows_with_closest_channel_threshold_shift_diagnostic']}",
+        "- Any-channel shifts preserving in-scope floor: "
+        f"{counts['residual_rows_with_any_channel_shift_preserving_in_scope_floor']}/"
+        f"{counts['residual_rows_with_any_channel_threshold_shift_diagnostic']}",
+        "",
+        "## Residual Rows",
+        "",
+        "| row | axes | closest channel | margin | retained by all channels | evidence need |",
+        "| --- | --- | --- | ---: | --- | --- |",
+    ]
+    for row in readout.get("residual_readout", {}).get("rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {', '.join(row['axis_memberships'])} | "
+            f"{row['closest_current_channel']} | "
+            f"{row['closest_current_channel_margin']} | "
+            f"{row['retained_by_all_current_channels']} | "
+            f"{row['evidence_need']} |"
+        )
+    lines += [
+        "",
+        "## Any-Channel Shift Diagnostics",
+        "",
+        "| row | best current channel by in-scope preservation | in-scope retained if shifted | in-scope loss | floor met |",
+        "| --- | --- | ---: | ---: | --- |",
+    ]
+    for row in readout.get("residual_readout", {}).get(
+        "all_channel_threshold_shift_diagnostics", []
+    ):
+        best = row.get("best_channel_by_in_scope_preservation") or {}
+        lines.append(
+            f"| {row['entry_id']} | {best.get('channel')} | "
+            f"{best.get('calibration_in_scope_retained_if_shifted')} | "
+            f"{best.get('calibration_in_scope_loss_if_shifted')} | "
+            f"{row.get('any_channel_shift_preserves_in_scope_floor')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Current source-free channels can resolve residual rows: "
+        f"{decision['current_source_free_channels_can_resolve_residual_rows']}",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        f"- Exact missing evidence: {decision['exact_missing_evidence']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_residual_safety_readout(
+    *,
+    retention_frontier_readout_path: Path,
+    channel_veto_readout_path: Path,
+    in_scope_threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    near_margin_epsilon: float = 0.05,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_RESIDUAL_SAFETY_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_residual_safety_readout(
+        retention_frontier_readout_path=retention_frontier_readout_path,
+        channel_veto_readout_path=channel_veto_readout_path,
+        in_scope_threshold_contract_path=in_scope_threshold_contract_path,
+        near_margin_epsilon=near_margin_epsilon,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_residual_safety_readout_report(
                 readout
             ),
             encoding="utf-8",

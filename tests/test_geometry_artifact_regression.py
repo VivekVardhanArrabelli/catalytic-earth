@@ -7775,6 +7775,149 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["blocker_packet"])
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_lever3_residual_safety_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_residual_safety_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_residual_safety_readout_ready_"
+                "residual_unsafe_transfer"
+            ),
+        )
+        self.assertEqual(readout["counts"]["strict_high_cofactor_residual_rows"], 1)
+        self.assertEqual(readout["counts"]["strict_same_family_residual_rows"], 21)
+        self.assertEqual(readout["counts"]["unique_residual_rows"], 21)
+        self.assertEqual(readout["counts"]["residual_rows_in_both_proxy_axes"], 1)
+        self.assertEqual(
+            readout["counts"]["residual_rows_retained_by_all_current_channels"],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_catchable_by_current_unused_channel"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_near_selected_threshold_margin"], 16
+        )
+        self.assertEqual(readout["counts"]["residual_rows_wide_current_margin"], 5)
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_closest_channel_threshold_shift_diagnostic"
+            ],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_closest_channel_shift_preserving_in_scope_floor"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_that_would_overblock_in_scope_by_closest_channel_shift"
+            ],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "minimum_in_scope_loss_to_catch_any_residual_by_closest_channel_shift"
+            ],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_any_channel_threshold_shift_diagnostic"
+            ],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_with_any_channel_shift_preserving_in_scope_floor"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_that_would_overblock_in_scope_by_any_channel_shift"
+            ],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "minimum_in_scope_loss_to_catch_any_residual_by_any_channel_shift"
+            ],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "high_cofactor_residual_rows_retained_by_all_current_channels"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_residual_rows_retained_by_all_current_channels"
+            ],
+            21,
+        )
+        self.assertEqual(
+            readout["counts"]["additional_high_cofactor_abstentions_needed"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["additional_same_family_abstentions_needed"], 10
+        )
+        residual_rows = readout["residual_readout"]["rows"]
+        self.assertEqual(residual_rows[0]["entry_id"], "m_csa:25")
+        row_289 = next(
+            row for row in residual_rows if row["entry_id"] == "m_csa:289"
+        )
+        self.assertEqual(
+            row_289["axis_memberships"], ["high_cofactor", "same_family"]
+        )
+        self.assertTrue(row_289["retained_by_all_current_channels"])
+        self.assertEqual(
+            row_289["evidence_need"],
+            "new_source_free_cofactor_role_and_same_family_counteraxis_required",
+        )
+        shift_rows = readout["residual_readout"][
+            "closest_channel_threshold_shift_diagnostics"
+        ]
+        self.assertEqual(len(shift_rows), 21)
+        self.assertFalse(
+            any(row["retention_floor_met_if_shifted"] for row in shift_rows)
+        )
+        any_channel_shift_rows = readout["residual_readout"][
+            "all_channel_threshold_shift_diagnostics"
+        ]
+        self.assertEqual(len(any_channel_shift_rows), 21)
+        self.assertFalse(
+            any(
+                row["any_channel_shift_preserves_in_scope_floor"]
+                for row in any_channel_shift_rows
+            )
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_source_free_channels_can_resolve_residual_rows"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(readout["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -7823,6 +7966,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ),
             "v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.json",
             "v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+            "v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json",
         ]:
             with self.subTest(artifact_name=artifact_name):
                 artifact = _load_json(ROOT / "artifacts" / artifact_name)
