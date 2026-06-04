@@ -157,7 +157,9 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_evidence_sufficiency_readout,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
+    write_fold_augmented_lever3_operating_point_deployment_readout,
     write_fold_augmented_lever3_p07658_exact_route_attempt_readout,
+    write_fold_augmented_lever3_p07658_credential_route_preflight,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13488,6 +13490,71 @@ def cmd_build_fold_augmented_lever3_p07658_exact_route_attempt_readout(
         f"coordinates: {counts.get('coordinates_returned')}, "
         "clears gap: "
         f"{decision.get('p07658_exact_route_attempt_clears_coordinate_gap_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_operating_point_deployment_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_operating_point_deployment_readout(
+        cofactor_context_counteraxis_readout_path=Path(
+            args.cofactor_context_counteraxis_readout
+        ),
+        same_family_bandpass_counteraxis_contract_path=Path(
+            args.same_family_bandpass_counteraxis_contract
+        ),
+        post_bandpass_deployment_readout_path=Path(
+            args.post_bandpass_deployment_readout
+        ),
+        p07658_exact_route_attempt_readout_path=Path(
+            args.p07658_exact_route_attempt_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 operating-point deployment readout to "
+        f"{args.out} (cal retained: "
+        f"{counts.get('calibration_in_scope_retained')}/"
+        f"{counts.get('calibration_in_scope_rows')}, OOS abstained: "
+        f"{counts.get('all_train_cal_oos_abstained')}/"
+        f"{counts.get('all_train_cal_oos_rows')}, P07658 gap cleared: "
+        f"{decision.get('p07658_coordinate_gap_cleared_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_p07658_credential_route_preflight(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_p07658_credential_route_preflight(
+        operating_point_deployment_readout_path=Path(
+            args.operating_point_deployment_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 P07658 credential-route preflight to "
+        f"{args.out} (credential routes: "
+        f"{counts.get('provider_routes_with_credentials')}/"
+        f"{counts.get('credential_provider_routes_checked')}, local modules: "
+        f"{counts.get('local_predictor_modules_present')}/"
+        f"{counts.get('local_predictor_modules_checked')}, ready: "
+        f"{decision.get('ready_to_run_exact_p07658_prediction_now')})"
     )
     return 0
 
@@ -32263,6 +32330,99 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_p07658_exact_route_attempt_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_p07658_exact_route_attempt_readout
+    )
+
+    lever3_operating_point_deployment_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-operating-point-deployment-readout",
+        help=(
+            "compose accepted Lever 3 counteraxis contracts and P07658 route "
+            "attempts into a measured operating-point deployment readout"
+        ),
+    )
+    lever3_operating_point_deployment_readout.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_deployment_readout.add_argument(
+        "--same-family-bandpass-counteraxis-contract",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_same_family_bandpass_"
+            "counteraxis_contract_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_deployment_readout.add_argument(
+        "--post-bandpass-deployment-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_deployment_readout.add_argument(
+        "--p07658-exact-route-attempt-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_deployment_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_operating_point_deployment_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_deployment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_deployment_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_operating_point_deployment_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_operating_point_deployment_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_operating_point_deployment_readout
+    )
+
+    lever3_p07658_credential_route_preflight = subparsers.add_parser(
+        "build-fold-augmented-lever3-p07658-credential-route-preflight",
+        help=(
+            "check whether the runtime has a credentialed provider or local "
+            "predictor route for exact full-length P07658"
+        ),
+    )
+    lever3_p07658_credential_route_preflight.add_argument(
+        "--operating-point-deployment-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_deployment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_credential_route_preflight.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_p07658_credential_route_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_credential_route_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_credential_route_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_p07658_credential_route_preflight_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_p07658_credential_route_preflight.set_defaults(
+        func=cmd_build_fold_augmented_lever3_p07658_credential_route_preflight
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

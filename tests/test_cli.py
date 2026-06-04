@@ -297,6 +297,64 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_operating_point_deployment_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-operating-point-deployment-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_operating_point_"
+                "deployment_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_cofactor_context_counteraxis_readout",
+            args.cofactor_context_counteraxis_readout,
+        )
+        self.assertIn(
+            "same_family_bandpass_counteraxis_contract",
+            args.same_family_bandpass_counteraxis_contract,
+        )
+        self.assertIn(
+            "post_bandpass_deployment_readout",
+            args.post_bandpass_deployment_readout,
+        )
+        self.assertIn(
+            "p07658_exact_route_attempt_readout",
+            args.p07658_exact_route_attempt_readout,
+        )
+        self.assertIn(
+            "lever3_operating_point_deployment_readout",
+            args.report,
+        )
+
+    def test_lever3_p07658_credential_route_preflight_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-p07658-credential-route-preflight"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_p07658_credential_"
+                "route_preflight_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_deployment_readout",
+            args.operating_point_deployment_readout,
+        )
+        self.assertIn(
+            "p07658_credential_route_preflight",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

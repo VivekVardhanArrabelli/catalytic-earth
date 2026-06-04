@@ -10,9 +10,11 @@ from __future__ import annotations
 import csv
 import copy
 import hashlib
+import importlib.util
 import itertools
 import json
 import math
+import os
 import re
 import shlex
 import shutil
@@ -327,6 +329,12 @@ FOLD_AUGMENTED_LEVER3_POST_BANDPASS_DEPLOYMENT_READOUT_ID = (
 )
 FOLD_AUGMENTED_LEVER3_P07658_EXACT_ROUTE_ATTEMPT_READOUT_ID = (
     "v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_OPERATING_POINT_DEPLOYMENT_READOUT_ID = (
+    "v3_fold_augmented_lever3_operating_point_deployment_readout_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_P07658_CREDENTIAL_ROUTE_PREFLIGHT_ID = (
+    "v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604"
 )
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
@@ -41170,6 +41178,857 @@ def write_fold_augmented_lever3_p07658_exact_route_attempt_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_p07658_exact_route_attempt_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_operating_point_deployment_readout(
+    *,
+    cofactor_context_counteraxis_readout_path: Path,
+    same_family_bandpass_counteraxis_contract_path: Path,
+    post_bandpass_deployment_readout_path: Path,
+    p07658_exact_route_attempt_readout_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_OPERATING_POINT_DEPLOYMENT_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    cofactor = _read_json(cofactor_context_counteraxis_readout_path)
+    contract = _read_json(same_family_bandpass_counteraxis_contract_path)
+    post_bandpass = _read_json(post_bandpass_deployment_readout_path)
+    p07658 = _read_json(p07658_exact_route_attempt_readout_path)
+
+    cofactor_counts = cofactor.get("counts") or {}
+    cofactor_decision = cofactor.get("decision") or {}
+    contract_counts = contract.get("counts") or {}
+    contract_decision = contract.get("decision") or {}
+    post_counts = post_bandpass.get("counts") or {}
+    post_decision = post_bandpass.get("decision") or {}
+    p07658_counts = p07658.get("counts") or {}
+    p07658_decision = p07658.get("decision") or {}
+
+    calibration_rows = int(contract_counts.get("calibration_in_scope_rows") or 0)
+    calibration_retained = int(
+        contract_counts.get("calibration_in_scope_retained") or 0
+    )
+    retention_floor = int(
+        contract_counts.get("calibration_retention_floor_rows")
+        or (math.ceil(0.90 * calibration_rows) if calibration_rows else 0)
+    )
+    train_cal_oos_rows = int(
+        contract_counts.get("combined_operating_point_all_train_cal_oos_rows")
+        or post_counts.get("all_train_cal_oos_rows")
+        or 0
+    )
+    train_cal_oos_abstained = int(
+        contract_counts.get(
+            "combined_operating_point_all_train_cal_oos_abstained"
+        )
+        or post_counts.get("all_train_cal_oos_abstained")
+        or 0
+    )
+    high_residual_rows = int(cofactor_counts.get("residual_high_cofactor_rows") or 0)
+    high_residual_resolved = int(
+        cofactor_counts.get("residual_high_cofactor_counteraxis_fired") or 0
+    )
+    same_shortfall_before = int(
+        contract_counts.get("same_family_shortfall_before_contract") or 0
+    )
+    same_residual_resolved = int(
+        contract_counts.get("same_family_residual_rows_fired_by_contract") or 0
+    )
+    same_shortfall_after = int(
+        contract_counts.get("same_family_shortfall_after_contract") or 0
+    )
+    validation_failures = int(contract_counts.get("validation_checks_failed") or 0)
+    critical_violation_total = sum(
+        int((artifact.get("counts") or {}).get("critical_violation_total") or 0)
+        for artifact in (cofactor, contract, post_bandpass, p07658)
+    )
+    counteraxis_contracts_ready = bool(
+        post_decision.get("deployment_valid_counteraxis_contracts_ready")
+        and contract_decision.get("same_family_bandpass_counteraxis_contract_accepted")
+        and cofactor_decision.get(
+            "cofactor_context_counteraxis_resolves_high_cofactor_residual"
+        )
+        and validation_failures == 0
+    )
+    retention_floor_met = bool(
+        calibration_rows and calibration_retained >= retention_floor
+    )
+    hard_confounded_residuals_closed = bool(
+        counteraxis_contracts_ready
+        and retention_floor_met
+        and (high_residual_rows == 0 or high_residual_resolved >= high_residual_rows)
+        and same_shortfall_after == 0
+        and same_residual_resolved >= same_shortfall_before
+    )
+    p07658_clears_gap = bool(
+        p07658_decision.get("p07658_exact_route_attempt_clears_coordinate_gap_now")
+    )
+    deployment_valid_readout_available = bool(
+        hard_confounded_residuals_closed
+        and train_cal_oos_rows
+        and critical_violation_total == 0
+    )
+    deployment_closed = bool(deployment_valid_readout_available and p07658_clears_gap)
+
+    remaining_missing_evidence: list[str] = []
+    for source in (post_decision, p07658_decision):
+        for item in source.get("remaining_missing_evidence") or []:
+            text = str(item)
+            if text and text not in remaining_missing_evidence:
+                remaining_missing_evidence.append(text)
+    if not remaining_missing_evidence and not deployment_closed:
+        remaining_missing_evidence.append(
+            "accepted full-length P07658 predicted coordinate provenance before "
+            "fixed-threshold surface rerun"
+        )
+
+    status = (
+        "fold_augmented_lever3_operating_point_deployment_readout_ready_for_rerun"
+        if deployment_closed
+        else "fold_augmented_lever3_operating_point_deployment_readout_ready_p07658_gap"
+        if deployment_valid_readout_available
+        else "fold_augmented_lever3_operating_point_deployment_readout_blocked"
+    )
+    baseline_threshold = (
+        (contract.get("fixed_operating_point") or {}).get("baseline_threshold")
+        or (post_bandpass.get("operating_point") or {}).get("baseline_threshold")
+    )
+    train_cal_oos_abstain_rate = (
+        round(train_cal_oos_abstained / train_cal_oos_rows, 4)
+        if train_cal_oos_rows
+        else None
+    )
+    calibration_retention_rate = (
+        round(calibration_retained / calibration_rows, 4)
+        if calibration_rows
+        else None
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_operating_point_deployment_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured operating-point deployment readout. It composes "
+            "the accepted cofactor-context counteraxis, accepted same-family "
+            "bandpass counteraxis contract, post-bandpass deployment readout, "
+            "and exact P07658 route attempts. It confirms the train/cal "
+            "hard-confounded residual separation at fixed threshold 0.44155 "
+            "and separately reports whether the remaining P07658 "
+            "predicted-coordinate provenance gate is closed."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "train_cal_thresholds_only": True,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "coordinate_downloaded_or_staged_now": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "operating_point": {
+            "route_id": (
+                "fixed_baseline_plus_cofactor_context_counteraxis_plus_"
+                "same_family_numeric_bandpass_counteraxis_contract"
+            ),
+            "baseline_threshold": baseline_threshold,
+            "threshold_selection_source": "train_calibration_only",
+            "threshold_or_value_changed_now": False,
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_in_scope_retained": calibration_retained,
+            "calibration_retention_floor_rows": retention_floor,
+            "calibration_retention_floor_met": retention_floor_met,
+            "calibration_retention_rate": calibration_retention_rate,
+            "all_train_cal_oos_rows": train_cal_oos_rows,
+            "all_train_cal_oos_abstained": train_cal_oos_abstained,
+            "all_train_cal_oos_abstain_rate": train_cal_oos_abstain_rate,
+        },
+        "confounded_axis_readout": {
+            "strict_high_cofactor_proxy_rows": int(
+                cofactor_counts.get("strict_high_cofactor_proxy_rows") or 0
+            ),
+            "strict_high_cofactor_proxy_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_strict_high_cofactor_abstained"
+                )
+                or 0
+            ),
+            "strict_same_family_proxy_rows": int(
+                cofactor_counts.get("strict_same_family_proxy_rows") or 0
+            ),
+            "strict_same_family_proxy_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_strict_same_family_abstained"
+                )
+                or 0
+            ),
+            "residual_high_cofactor_rows": high_residual_rows,
+            "residual_high_cofactor_rows_resolved": high_residual_resolved,
+            "same_family_shortfall_before_contract": same_shortfall_before,
+            "same_family_residual_rows_resolved_by_contract": same_residual_resolved,
+            "same_family_shortfall_after_contract": same_shortfall_after,
+            "same_family_bandpass_validation_failures": validation_failures,
+            "hard_confounded_residuals_closed_at_operating_point": (
+                hard_confounded_residuals_closed
+            ),
+        },
+        "p07658_coordinate_readout": {
+            "routes_attempted": int(p07658_counts.get("routes_attempted") or 0),
+            "coordinates_returned": int(
+                p07658_counts.get("coordinates_returned") or 0
+            ),
+            "deployment_valid_predicted_coordinate_rows": int(
+                p07658_counts.get("deployment_valid_predicted_coordinate_rows") or 0
+            ),
+            "exact_sequence_submitted_routes": int(
+                p07658_counts.get("exact_sequence_submitted_routes") or 0
+            ),
+            "sequence_modified_or_truncated_routes": int(
+                p07658_counts.get("sequence_modified_or_truncated_routes") or 0
+            ),
+            "full_length_sequence_sha256_matches_manifest": int(
+                p07658_counts.get("full_length_sequence_sha256_matches_manifest")
+                or 0
+            ),
+            "coordinate_gap_cleared_now": p07658_clears_gap,
+        },
+        "counts": {
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_in_scope_retained": calibration_retained,
+            "calibration_retention_floor_rows": retention_floor,
+            "all_train_cal_oos_rows": train_cal_oos_rows,
+            "all_train_cal_oos_abstained": train_cal_oos_abstained,
+            "strict_high_cofactor_proxy_rows": int(
+                cofactor_counts.get("strict_high_cofactor_proxy_rows") or 0
+            ),
+            "strict_high_cofactor_proxy_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_strict_high_cofactor_abstained"
+                )
+                or 0
+            ),
+            "strict_same_family_proxy_rows": int(
+                cofactor_counts.get("strict_same_family_proxy_rows") or 0
+            ),
+            "strict_same_family_proxy_abstained": int(
+                contract_counts.get(
+                    "combined_operating_point_strict_same_family_abstained"
+                )
+                or 0
+            ),
+            "residual_high_cofactor_rows": high_residual_rows,
+            "residual_high_cofactor_rows_resolved": high_residual_resolved,
+            "same_family_shortfall_before_contract": same_shortfall_before,
+            "same_family_residual_rows_resolved_by_contract": same_residual_resolved,
+            "same_family_shortfall_after_contract": same_shortfall_after,
+            "counteraxis_contracts_ready": int(counteraxis_contracts_ready),
+            "hard_confounded_residuals_closed_at_operating_point": int(
+                hard_confounded_residuals_closed
+            ),
+            "p07658_routes_attempted": int(
+                p07658_counts.get("routes_attempted") or 0
+            ),
+            "p07658_coordinates_returned": int(
+                p07658_counts.get("coordinates_returned") or 0
+            ),
+            "p07658_deployment_valid_predicted_coordinate_rows": int(
+                p07658_counts.get("deployment_valid_predicted_coordinate_rows") or 0
+            ),
+            "remaining_missing_evidence_items": len(remaining_missing_evidence),
+            "critical_violation_total": critical_violation_total,
+        },
+        "decision": {
+            "deployment_valid_operating_point_readout_available": (
+                deployment_valid_readout_available
+            ),
+            "operating_point_usable_for_hard_confounded_train_cal_routing": (
+                hard_confounded_residuals_closed
+            ),
+            "hard_confounded_residuals_closed_at_operating_point": (
+                hard_confounded_residuals_closed
+            ),
+            "true_in_scope_retention_floor_met": retention_floor_met,
+            "p07658_coordinate_gap_cleared_now": p07658_clears_gap,
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed,
+            "fixed_threshold_audit_ready_to_rerun_now": deployment_closed,
+            "apply_or_change_threshold_now": False,
+            "remaining_missing_evidence": remaining_missing_evidence,
+            "smallest_next_experiment": p07658_decision.get(
+                "smallest_next_experiment"
+            )
+            or (
+                "Provision a credentialed or local full-length predictor route "
+                "for the frozen 715-residue P07658 sequence with U140 provenance."
+            ),
+            "next_gate": (
+                "Rerun fixed-threshold surface only after P07658 acceptance "
+                "preflight passes with accepted coordinate/provenance."
+                if not deployment_closed
+                else "Run fixed-threshold surface rerun with threshold 0.44155 unchanged."
+            ),
+        },
+        "source_artifacts": {
+            "cofactor_context_counteraxis_readout": _source_path_record(
+                cofactor_context_counteraxis_readout_path
+            ),
+            "same_family_bandpass_counteraxis_contract": _source_path_record(
+                same_family_bandpass_counteraxis_contract_path
+            ),
+            "post_bandpass_deployment_readout": _source_path_record(
+                post_bandpass_deployment_readout_path
+            ),
+            "p07658_exact_route_attempt_readout": _source_path_record(
+                p07658_exact_route_attempt_readout_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 has a measured fixed-threshold operating point for "
+                "hard-confounded train/cal routing, but deployment closure still "
+                "needs P07658 provenance."
+                if deployment_valid_readout_available and not deployment_closed
+                else "Lever 3 operating-point evidence is ready for rerun."
+                if deployment_closed
+                else "Lever 3 operating-point evidence is incomplete."
+            ),
+            "result": (
+                f"Retains {calibration_retained}/{calibration_rows} calibration "
+                f"in-scope rows and abstains {train_cal_oos_abstained}/"
+                f"{train_cal_oos_rows} train/cal OOS rows; residual hard "
+                f"confounded closure is {hard_confounded_residuals_closed}."
+            ),
+            "p07658_result": (
+                f"P07658 exact route attempts returned "
+                f"{int(p07658_counts.get('coordinates_returned') or 0)} "
+                "coordinates and "
+                f"{int(p07658_counts.get('deployment_valid_predicted_coordinate_rows') or 0)} "
+                "deployment-valid predicted-coordinate rows."
+            ),
+            "next_action": (
+                "Stop route-equivalent no-credential retries; use a credentialed "
+                "or local exact full-length predictor route, then rerun P07658 "
+                "acceptance preflight before any scoring rerun."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_operating_point_deployment_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    operating = readout["operating_point"]
+    axes = readout["confounded_axis_readout"]
+    p07658 = readout["p07658_coordinate_readout"]
+    lines = [
+        "# Fold-Augmented Lever 3 Operating-Point Deployment Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Deployment-valid operating-point readout available: "
+        f"{decision['deployment_valid_operating_point_readout_available']}",
+        "- Hard-confounded residuals closed at operating point: "
+        f"{decision['hard_confounded_residuals_closed_at_operating_point']}",
+        "- P07658 coordinate gap cleared now: "
+        f"{decision['p07658_coordinate_gap_cleared_now']}",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{operating['all_train_cal_oos_abstained']}/"
+        f"{operating['all_train_cal_oos_rows']}",
+        "- Retention floor met: "
+        f"{operating['calibration_retention_floor_met']}",
+        "",
+        "## Confounded Axes",
+        "",
+        "- Strict high-cofactor proxy abstained: "
+        f"{axes['strict_high_cofactor_proxy_abstained']}/"
+        f"{axes['strict_high_cofactor_proxy_rows']}",
+        "- Strict same-family proxy abstained: "
+        f"{axes['strict_same_family_proxy_abstained']}/"
+        f"{axes['strict_same_family_proxy_rows']}",
+        "- Residual high-cofactor rows resolved: "
+        f"{axes['residual_high_cofactor_rows_resolved']}/"
+        f"{axes['residual_high_cofactor_rows']}",
+        "- Same-family shortfall before/after contract: "
+        f"{axes['same_family_shortfall_before_contract']}/"
+        f"{axes['same_family_shortfall_after_contract']}",
+        "",
+        "## P07658",
+        "",
+        f"- Exact routes attempted: {p07658['routes_attempted']}",
+        f"- Coordinates returned: {p07658['coordinates_returned']}",
+        "- Deployment-valid predicted-coordinate rows: "
+        f"{p07658['deployment_valid_predicted_coordinate_rows']}",
+        "- Exact sequence submitted routes: "
+        f"{p07658['exact_sequence_submitted_routes']}",
+        "",
+        "## Decision",
+        "",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Remaining missing evidence: {decision['remaining_missing_evidence']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No labels, registries, ontologies, imports, thresholds, heldout tuning, scoring, or coordinate staging changed.",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['p07658_result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_operating_point_deployment_readout(
+    *,
+    cofactor_context_counteraxis_readout_path: Path,
+    same_family_bandpass_counteraxis_contract_path: Path,
+    post_bandpass_deployment_readout_path: Path,
+    p07658_exact_route_attempt_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_OPERATING_POINT_DEPLOYMENT_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_operating_point_deployment_readout(
+        cofactor_context_counteraxis_readout_path=(
+            cofactor_context_counteraxis_readout_path
+        ),
+        same_family_bandpass_counteraxis_contract_path=(
+            same_family_bandpass_counteraxis_contract_path
+        ),
+        post_bandpass_deployment_readout_path=post_bandpass_deployment_readout_path,
+        p07658_exact_route_attempt_readout_path=(
+            p07658_exact_route_attempt_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_operating_point_deployment_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_p07658_credential_route_preflight(
+    *,
+    operating_point_deployment_readout_path: Path,
+    env_presence: dict[str, bool] | None = None,
+    module_presence: dict[str, bool] | None = None,
+    disk_free_gib: float | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_CREDENTIAL_ROUTE_PREFLIGHT_ID
+    ),
+) -> dict[str, Any]:
+    operating = _read_json(operating_point_deployment_readout_path)
+    operating_decision = operating.get("decision") or {}
+    operating_counts = operating.get("counts") or {}
+    credential_routes = {
+        "huggingface_router_esmfold": [
+            "HF_TOKEN",
+            "HUGGINGFACEHUB_API_TOKEN",
+            "HUGGING_FACE_HUB_TOKEN",
+        ],
+        "nvidia_nim_esmfold": ["NVIDIA_API_KEY", "NVIDIA_NIM_API_KEY"],
+        "biolm_esmfold": ["BIOLM_API_KEY", "BIOLM_TOKEN"],
+    }
+    local_predictor_modules = [
+        "esm",
+        "openfold",
+        "chai_lab",
+        "boltz",
+        "alphafold",
+        "colabfold",
+    ]
+    informational_modules = ["torch"]
+    env_names = sorted({name for names in credential_routes.values() for name in names})
+    if env_presence is None:
+        env_presence = {name: bool(os.environ.get(name)) for name in env_names}
+    else:
+        env_presence = {name: bool(env_presence.get(name)) for name in env_names}
+    module_names = local_predictor_modules + informational_modules
+    if module_presence is None:
+        module_presence = {
+            name: importlib.util.find_spec(name) is not None for name in module_names
+        }
+    else:
+        module_presence = {
+            name: bool(module_presence.get(name)) for name in module_names
+        }
+    if disk_free_gib is None:
+        usage = shutil.disk_usage(Path.cwd())
+        disk_free_gib = round(usage.free / (1024**3), 2)
+    else:
+        disk_free_gib = round(float(disk_free_gib), 2)
+
+    provider_rows = []
+    for route_id, envs in credential_routes.items():
+        present_envs = [name for name in envs if env_presence.get(name)]
+        provider_rows.append(
+            {
+                "route_id": route_id,
+                "credential_env_vars_checked": envs,
+                "credential_env_vars_present": present_envs,
+                "credential_available_now": bool(present_envs),
+                "secret_values_recorded": False,
+                "coordinate_generated_now": False,
+                "recommended_next_action": (
+                    "Run exact full-length P07658 prediction through this route "
+                    "and write provider/model/version/checksum/U140 provenance."
+                    if present_envs
+                    else "Provision one listed credential env var, then rerun this preflight."
+                ),
+            }
+        )
+    module_rows = []
+    for name in local_predictor_modules:
+        module_rows.append(
+            {
+                "module": name,
+                "available_now": bool(module_presence.get(name)),
+                "local_predictor_candidate": True,
+                "coordinate_generated_now": False,
+            }
+        )
+    for name in informational_modules:
+        module_rows.append(
+            {
+                "module": name,
+                "available_now": bool(module_presence.get(name)),
+                "local_predictor_candidate": False,
+                "coordinate_generated_now": False,
+            }
+        )
+
+    provider_routes_with_credentials = sum(
+        1 for row in provider_rows if row["credential_available_now"]
+    )
+    local_predictor_modules_present = sum(
+        1
+        for row in module_rows
+        if row["local_predictor_candidate"] and row["available_now"]
+    )
+    operating_point_ready = bool(
+        operating_decision.get("deployment_valid_operating_point_readout_available")
+    )
+    p07658_gap_already_cleared = bool(
+        operating_decision.get("p07658_coordinate_gap_cleared_now")
+    )
+    route_available_now = bool(
+        provider_routes_with_credentials or local_predictor_modules_present
+    )
+    preflight_ready_for_exact_prediction = bool(
+        operating_point_ready and not p07658_gap_already_cleared and route_available_now
+    )
+    deployment_closed = bool(
+        operating_decision.get("current_evidence_sufficient_for_deployment_closure")
+    )
+    if deployment_closed:
+        status = "fold_augmented_lever3_p07658_credential_route_preflight_already_closed"
+    elif preflight_ready_for_exact_prediction:
+        status = "fold_augmented_lever3_p07658_credential_route_preflight_ready_to_attempt"
+    elif operating_point_ready:
+        status = "fold_augmented_lever3_p07658_credential_route_preflight_no_route"
+    else:
+        status = "fold_augmented_lever3_p07658_credential_route_preflight_blocked_operating_point"
+
+    missing_evidence = []
+    if not route_available_now and not deployment_closed:
+        missing_evidence.append(
+            "one credentialed provider route or one local full-length predictor runtime"
+        )
+    if not p07658_gap_already_cleared and not deployment_closed:
+        missing_evidence.extend(
+            item
+            for item in operating_decision.get("remaining_missing_evidence") or []
+            if item not in missing_evidence
+        )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_p07658_credential_route_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured preflight for the next exact P07658 prediction "
+            "experiment. It checks whether this runtime has a credentialed "
+            "provider route or local full-length predictor module available, "
+            "records only env-var presence, and generates no coordinates."
+        ),
+        "operating_point_context": {
+            "deployment_valid_operating_point_readout_available": (
+                operating_point_ready
+            ),
+            "calibration_in_scope_retained": int(
+                operating_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "calibration_in_scope_rows": int(
+                operating_counts.get("calibration_in_scope_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                operating_counts.get("all_train_cal_oos_abstained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                operating_counts.get("all_train_cal_oos_rows") or 0
+            ),
+            "p07658_coordinate_gap_cleared_now": p07658_gap_already_cleared,
+        },
+        "credential_provider_routes": provider_rows,
+        "local_runtime_modules": module_rows,
+        "counts": {
+            "credential_env_vars_checked": len(env_names),
+            "credential_env_vars_present": sum(
+                1 for present in env_presence.values() if present
+            ),
+            "credential_provider_routes_checked": len(provider_rows),
+            "provider_routes_with_credentials": provider_routes_with_credentials,
+            "local_predictor_modules_checked": len(local_predictor_modules),
+            "local_predictor_modules_present": local_predictor_modules_present,
+            "torch_available": int(bool(module_presence.get("torch"))),
+            "disk_free_gib": disk_free_gib,
+            "disk_guardrail_above_10_gib": bool(disk_free_gib > 10.0),
+            "coordinates_generated_now": 0,
+            "coordinates_staged_now": 0,
+            "rows_scored_now": 0,
+            "remaining_missing_evidence_items": len(missing_evidence),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "credentialed_or_local_exact_route_available_now": route_available_now,
+            "ready_to_run_exact_p07658_prediction_now": (
+                preflight_ready_for_exact_prediction
+            ),
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed,
+            "fixed_threshold_audit_ready_to_rerun_now": deployment_closed,
+            "apply_or_change_threshold_now": False,
+            "secret_values_recorded": False,
+            "remaining_missing_evidence": missing_evidence,
+            "smallest_next_experiment": (
+                "Run one exact full-length P07658 prediction with the available "
+                "credentialed/local route and write coordinate/provenance."
+                if preflight_ready_for_exact_prediction
+                else (
+                    "Provision exactly one credentialed provider route "
+                    "(HF_TOKEN, NVIDIA_API_KEY, or BIOLM_API_KEY) or install one "
+                    "local predictor runtime that can handle the frozen 715-aa "
+                    "P07658 sequence with U140 provenance."
+                )
+            ),
+            "next_gate": (
+                "Rerun P07658 prediction acceptance preflight after a coordinate "
+                "and provenance packet exists."
+                if preflight_ready_for_exact_prediction
+                else "Provision a credentialed/local route before more no-credential retries."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "secret_values_recorded": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "operating_point_deployment_readout": _source_path_record(
+                operating_point_deployment_readout_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "This runtime has no credentialed/local exact P07658 prediction route."
+                if not route_available_now and not deployment_closed
+                else "This runtime has an exact P07658 prediction route to attempt."
+                if preflight_ready_for_exact_prediction
+                else "P07658 credential-route preflight is not needed because closure is already available."
+                if deployment_closed
+                else "Lever 3 operating-point evidence is incomplete before route preflight."
+            ),
+            "result": (
+                f"{provider_routes_with_credentials}/{len(provider_rows)} "
+                "credentialed provider routes and "
+                f"{local_predictor_modules_present}/{len(local_predictor_modules)} "
+                "local predictor modules are available now."
+            ),
+            "next_action": (
+                "Provision a single credentialed/provider or local predictor route "
+                "before attempting P07658 again; do not truncate or mutate U140."
+                if not route_available_now
+                else "Run the exact route and write acceptance provenance before scoring."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_p07658_credential_route_preflight_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    context = readout["operating_point_context"]
+    lines = [
+        "# Fold-Augmented Lever 3 P07658 Credential-Route Preflight - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Operating-point readout available: "
+        f"{context['deployment_valid_operating_point_readout_available']}",
+        "- Credentialed/local exact route available now: "
+        f"{decision['credentialed_or_local_exact_route_available_now']}",
+        "- Ready to run exact P07658 prediction now: "
+        f"{decision['ready_to_run_exact_p07658_prediction_now']}",
+        "",
+        "## Operating Context",
+        "",
+        "- Calibration retained: "
+        f"{context['calibration_in_scope_retained']}/"
+        f"{context['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{context['all_train_cal_oos_abstained']}/"
+        f"{context['all_train_cal_oos_rows']}",
+        "- P07658 coordinate gap cleared now: "
+        f"{context['p07658_coordinate_gap_cleared_now']}",
+        "",
+        "## Provider Routes",
+        "",
+        "| route | credential present | env vars checked |",
+        "| --- | ---: | --- |",
+    ]
+    for row in readout["credential_provider_routes"]:
+        lines.append(
+            f"| {row['route_id']} | {row['credential_available_now']} | "
+            f"{', '.join(row['credential_env_vars_checked'])} |"
+        )
+    lines += [
+        "",
+        "## Local Runtime",
+        "",
+        "| module | predictor candidate | available |",
+        "| --- | ---: | ---: |",
+    ]
+    for row in readout["local_runtime_modules"]:
+        lines.append(
+            f"| {row['module']} | {row['local_predictor_candidate']} | "
+            f"{row['available_now']} |"
+        )
+    lines += [
+        "",
+        "## Counts",
+        "",
+        f"- Credential env vars present: {counts['credential_env_vars_present']}/{counts['credential_env_vars_checked']}",
+        f"- Provider routes with credentials: {counts['provider_routes_with_credentials']}/{counts['credential_provider_routes_checked']}",
+        f"- Local predictor modules present: {counts['local_predictor_modules_present']}/{counts['local_predictor_modules_checked']}",
+        f"- Torch available: {counts['torch_available']}",
+        f"- Disk free GiB: {counts['disk_free_gib']}",
+        f"- Disk guardrail above 10 GiB: {counts['disk_guardrail_above_10_gib']}",
+        "",
+        "## Decision",
+        "",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Remaining missing evidence: {decision['remaining_missing_evidence']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Env-var presence only; no secret values, coordinates, row scores, labels, thresholds, imports, heldout tuning, or experimental-PDB shortcuts changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_p07658_credential_route_preflight(
+    *,
+    operating_point_deployment_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_CREDENTIAL_ROUTE_PREFLIGHT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_p07658_credential_route_preflight(
+        operating_point_deployment_readout_path=operating_point_deployment_readout_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_p07658_credential_route_preflight_report(
                 readout
             ),
             encoding="utf-8",

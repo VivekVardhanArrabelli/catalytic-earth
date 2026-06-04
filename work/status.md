@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 353
-- Measured elapsed time: 10839.7 minutes (180.66 hours)
+- Entries: 354
+- Measured elapsed time: 10859.5 minutes (180.99 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 672.3 measured minutes (11.20 hours)
+- northstar-lever3: 692.0 measured minutes (11.53 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3702
-- Evidence references logged: 3055
+- Artifact references logged: 3713
+- Evidence references logged: 3065
 
 ## Recent Entries
-
-### 2026-06-04T15:52:38.463795+00:00 - v3
-
-- Task: Lever 3 fold/geometry novelty gate measured pressure readouts
-- Time mode: measured
-- Measured minutes: 50.8
-- Started: 2026-06-04T15:01:20Z
-- Ended: 2026-06-04T15:52:08Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604.json, artifacts/v3_fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.json
-- Evidence: near-cofactor pressure 8/16 abstained; loose same-family pressure 26/80 abstained; P07658 AlphaFold API returned 0 models while P68698 route returned 1
-- Notes: Added reproducible loose same-family pressure builder/CLI and regression coverage; full pytest/unittest passed
 
 ### 2026-06-04T16:54:35.141959+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempts_current702_20260604.json, artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.json, work/fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: six exact or provider route surfaces checked for P07658, zero coordinates returned and zero deployment-valid predicted coordinate rows, exact sequence hash 3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa preserved, ESM Atlas exact POST returned HTTP 413 length limit 400, BioLM documented items payload returned HTTP 401 without credentials, NVIDIA NIM ESMFold exact POST returned HTTP 401 missing authorization, Hugging Face router returned HTTP 401 and legacy host DNS failed, SWISS-MODEL returned five PDB-provider rows and zero SWISSMODEL predicted rows, post-bandpass operating context remains 31 of 34 calibration retained and 105 of 204 train-cal OOS abstained, affected suite 569 passed and 181 subtests, full pytest 1441 passed 200 subtests with existing sklearn warning, unittest discovery 1396 passed, validate 702 labels compileall diff-check JSON parse and docs-reference passed, disk remained above 10 GiB
 - Notes: Measured readout artifact first; no blocker packet produced. Public/provider route attempts were no-staging evidence checks and kept the fixed 0.44155 threshold unchanged.
+
+### 2026-06-04T23:22:40.005804+00:00 - northstar-lever3
+
+- Task: Lever 3 operating-point deployment readout and P07658 credential preflight
+- Time mode: measured
+- Measured minutes: 19.783
+- Started: 2026-06-04T23:02:37Z
+- Ended: 2026-06-04T23:22:24Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_operating_point_deployment_readout_current702_20260604.json, work/fold_augmented_lever3_operating_point_deployment_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.json, work/fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: operating-point readout retains 31 of 34 calibration in-scope and abstains 105 of 204 train-cal OOS, hard-confounded residual closure true with high-cofactor 1 of 1 and same-family shortfall 9 to 0, P07658 exact route gap remains 0 coordinates and 0 deployment-valid predicted coordinate rows, credential preflight found 0 of 3 provider credential routes and 0 of 6 local predictor modules ready, conda refresh found no ESM OpenFold Chai Boltz AlphaFold or ColabFold runtime in base alzheimers or neo4j_env, affected suite 575 passed and 183 subtests, full pytest 1447 passed 202 subtests with existing sklearn warning, unittest discovery 1402 passed, validate 702 labels compileall diff-check JSON parse and docs-reference passed, disk remained above 10 GiB
+- Notes: Measured readout artifacts first; no blocker packet produced. Fixed threshold 0.44155 remains unchanged and P07658 no-credential retries should stop until a credentialed or local exact route exists.
 
 ## Expectation Updates
 
@@ -399,6 +399,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T20:51:00.471108+00:00: Current source-free numeric evidence now supports a measured operating-point closure scout for high-cofactor plus same-family shortfall at 31/34 calibration retention, but deployment closure still needs an accepted bandpass counteraxis contract and full-length P07658 predicted-coordinate provenance.
 - 2026-06-04T21:37:20.235148+00:00: Lever 3 counteraxis evidence is now contract-ready at the train/cal operating point; remaining deployment closure requires only accepted exact full-length P07658 predicted-coordinate provenance before any fixed-threshold rerun.
 - 2026-06-04T22:26:32.470910+00:00: Counteraxis contracts remain ready but no no-credential exact route clears P07658; next progress requires credentialed BioLM or NVIDIA NIM-style route or local predictor that emits full-length coordinate provenance with U140 documented.
+- 2026-06-04T23:22:40.005804+00:00: Lever 3 now has a deployment-valid train-cal operating-point readout for hard-confounded residual routing but production closure remains blocked until exactly one credentialed or local full-length P07658 predictor route emits coordinate and U140 provenance.
 
 ## Scope Adjustments
 
@@ -610,3 +611,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T20:51:00.471108+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or source decisions changed
 - 2026-06-04T21:37:20.235148+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or source decisions changed.
 - 2026-06-04T22:26:32.470910+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or experimental PDB deployment shortcuts changed.
+- 2026-06-04T23:22:40.005804+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.

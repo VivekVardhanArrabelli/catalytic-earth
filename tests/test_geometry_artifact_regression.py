@@ -8421,6 +8421,118 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(readout["guardrails"]["sequence_modified_or_truncated"])
 
+    def test_fold_augmented_lever3_operating_point_deployment_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_operating_point_deployment_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_operating_point_deployment_readout_"
+                "ready_p07658_gap"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_operating_point_readout_available"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "hard_confounded_residuals_closed_at_operating_point"
+            ]
+        )
+        self.assertTrue(readout["decision"]["true_in_scope_retention_floor_met"])
+        self.assertFalse(readout["decision"]["p07658_coordinate_gap_cleared_now"])
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["operating_point"]["baseline_threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_rows"], 204)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_proxy_rows"], 4)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_proxy_abstained"], 1)
+        self.assertEqual(readout["counts"]["strict_same_family_proxy_rows"], 59)
+        self.assertEqual(readout["counts"]["strict_same_family_proxy_abstained"], 26)
+        self.assertEqual(readout["counts"]["residual_high_cofactor_rows"], 1)
+        self.assertEqual(readout["counts"]["residual_high_cofactor_rows_resolved"], 1)
+        self.assertEqual(readout["counts"]["same_family_shortfall_before_contract"], 9)
+        self.assertEqual(
+            readout["counts"]["same_family_residual_rows_resolved_by_contract"],
+            9,
+        )
+        self.assertEqual(readout["counts"]["same_family_shortfall_after_contract"], 0)
+        self.assertEqual(readout["counts"]["p07658_routes_attempted"], 6)
+        self.assertEqual(readout["counts"]["p07658_coordinates_returned"], 0)
+        self.assertEqual(
+            readout["counts"]["p07658_deployment_valid_predicted_coordinate_rows"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+
+    def test_fold_augmented_lever3_p07658_credential_route_preflight_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_p07658_credential_route_"
+                "preflight_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            "fold_augmented_lever3_p07658_credential_route_preflight_no_route",
+        )
+        self.assertTrue(
+            preflight["operating_point_context"][
+                "deployment_valid_operating_point_readout_available"
+            ]
+        )
+        self.assertFalse(
+            preflight["decision"][
+                "credentialed_or_local_exact_route_available_now"
+            ]
+        )
+        self.assertFalse(
+            preflight["decision"]["ready_to_run_exact_p07658_prediction_now"]
+        )
+        self.assertFalse(
+            preflight["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            preflight["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(preflight["decision"]["secret_values_recorded"])
+        self.assertEqual(preflight["counts"]["credential_env_vars_checked"], 7)
+        self.assertEqual(preflight["counts"]["credential_env_vars_present"], 0)
+        self.assertEqual(
+            preflight["counts"]["credential_provider_routes_checked"], 3
+        )
+        self.assertEqual(preflight["counts"]["provider_routes_with_credentials"], 0)
+        self.assertEqual(preflight["counts"]["local_predictor_modules_checked"], 6)
+        self.assertEqual(preflight["counts"]["local_predictor_modules_present"], 0)
+        self.assertEqual(preflight["counts"]["torch_available"], 1)
+        self.assertTrue(preflight["counts"]["disk_guardrail_above_10_gib"])
+        self.assertEqual(preflight["counts"]["coordinates_generated_now"], 0)
+        self.assertEqual(preflight["counts"]["coordinates_staged_now"], 0)
+        self.assertEqual(preflight["counts"]["rows_scored_now"], 0)
+        self.assertEqual(preflight["counts"]["critical_violation_total"], 0)
+        self.assertFalse(preflight["guardrails"]["secret_values_recorded"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -8497,6 +8609,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_p07658_exact_route_attempt_"
                 "readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_operating_point_deployment_"
+                "readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_p07658_credential_route_"
+                "preflight_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

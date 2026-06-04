@@ -72,7 +72,9 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_evidence_sufficiency_readout,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
+    build_fold_augmented_lever3_operating_point_deployment_readout,
     build_fold_augmented_lever3_p07658_exact_route_attempt_readout,
+    build_fold_augmented_lever3_p07658_credential_route_preflight,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -5166,6 +5168,220 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 )
             ],
         )
+
+    def test_lever3_operating_point_deployment_readout_separates_p07658_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cofactor_path = root / "cofactor.json"
+            contract_path = root / "contract.json"
+            post_path = root / "post.json"
+            p07658_path = root / "p07658.json"
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "strict_high_cofactor_proxy_rows": 4,
+                            "strict_same_family_proxy_rows": 59,
+                            "residual_high_cofactor_rows": 1,
+                            "residual_high_cofactor_counteraxis_fired": 1,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "cofactor_context_counteraxis_resolves_high_cofactor_residual": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "baseline_threshold": 0.44155
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "calibration_retention_floor_rows": 31,
+                            "combined_operating_point_all_train_cal_oos_rows": 204,
+                            "combined_operating_point_all_train_cal_oos_abstained": 105,
+                            "combined_operating_point_strict_high_cofactor_abstained": 1,
+                            "combined_operating_point_strict_same_family_abstained": 26,
+                            "same_family_shortfall_before_contract": 9,
+                            "same_family_residual_rows_fired_by_contract": 9,
+                            "same_family_shortfall_after_contract": 0,
+                            "validation_checks_failed": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "same_family_bandpass_counteraxis_contract_accepted": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            post_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {"baseline_threshold": 0.44155},
+                        "counts": {
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_counteraxis_contracts_ready": True,
+                            "remaining_missing_evidence": [
+                                (
+                                    "accepted full-length P07658 predicted "
+                                    "coordinate provenance before fixed-threshold "
+                                    "surface rerun"
+                                )
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            p07658_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "routes_attempted": 6,
+                            "coordinates_returned": 0,
+                            "deployment_valid_predicted_coordinate_rows": 0,
+                            "exact_sequence_submitted_routes": 5,
+                            "sequence_modified_or_truncated_routes": 0,
+                            "full_length_sequence_sha256_matches_manifest": 1,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_exact_route_attempt_clears_coordinate_gap_now": False,
+                            "remaining_missing_evidence": [
+                                (
+                                    "credentialed or local exact full-length "
+                                    "P07658 predicted coordinate with "
+                                    "provider/model/version/path/checksum and "
+                                    "U140 provenance"
+                                )
+                            ],
+                            "smallest_next_experiment": (
+                                "Provision a credentialed or local full-length "
+                                "predictor route that accepts P07658."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_lever3_operating_point_deployment_readout(
+                    cofactor_context_counteraxis_readout_path=cofactor_path,
+                    same_family_bandpass_counteraxis_contract_path=contract_path,
+                    post_bandpass_deployment_readout_path=post_path,
+                    p07658_exact_route_attempt_readout_path=p07658_path,
+                    artifact_id="custom_operating_point_readout",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_operating_point_readout")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_operating_point_deployment_readout_"
+                "ready_p07658_gap"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_operating_point_readout_available"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "hard_confounded_residuals_closed_at_operating_point"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["same_family_shortfall_after_contract"], 0)
+        self.assertEqual(readout["counts"]["p07658_routes_attempted"], 6)
+        self.assertEqual(
+            readout["counts"]["p07658_deployment_valid_predicted_coordinate_rows"],
+            0,
+        )
+
+    def test_lever3_p07658_credential_route_preflight_keeps_route_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "p07658_coordinate_gap_cleared_now": False,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                            "remaining_missing_evidence": [
+                                (
+                                    "credentialed or local exact full-length "
+                                    "P07658 predicted coordinate"
+                                )
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_fold_augmented_lever3_p07658_credential_route_preflight(
+                operating_point_deployment_readout_path=operating_path,
+                env_presence={},
+                module_presence={"torch": True},
+                disk_free_gib=12.5,
+                artifact_id="custom_p07658_credential_preflight",
+            )
+
+        self.assertEqual(
+            preflight["artifact_id"], "custom_p07658_credential_preflight"
+        )
+        self.assertEqual(
+            preflight["status"],
+            "fold_augmented_lever3_p07658_credential_route_preflight_no_route",
+        )
+        self.assertFalse(
+            preflight["decision"][
+                "credentialed_or_local_exact_route_available_now"
+            ]
+        )
+        self.assertFalse(
+            preflight["decision"]["ready_to_run_exact_p07658_prediction_now"]
+        )
+        self.assertFalse(preflight["decision"]["secret_values_recorded"])
+        self.assertEqual(preflight["counts"]["credential_env_vars_checked"], 7)
+        self.assertEqual(preflight["counts"]["credential_env_vars_present"], 0)
+        self.assertEqual(preflight["counts"]["provider_routes_with_credentials"], 0)
+        self.assertEqual(preflight["counts"]["local_predictor_modules_present"], 0)
+        self.assertEqual(preflight["counts"]["torch_available"], 1)
+        self.assertTrue(preflight["counts"]["disk_guardrail_above_10_gib"])
+        self.assertEqual(preflight["counts"]["coordinates_generated_now"], 0)
+        self.assertEqual(preflight["counts"]["coordinates_staged_now"], 0)
+        self.assertEqual(preflight["counts"]["rows_scored_now"], 0)
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

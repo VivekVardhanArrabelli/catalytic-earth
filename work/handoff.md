@@ -3,18 +3,18 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T22:03:19Z`
-- STARTED_AT_LOCAL: `2026-06-04T17:03:19-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T22:26:55Z`
-- ENDED_AT_LOCAL: `2026-06-04T17:26:55-0500 CDT`
-- ELAPSED_MINUTES: `23.60`
-- Status: Run 41 complete. Canonical
+- STARTED_AT_UTC: `2026-06-04T23:02:37Z`
+- STARTED_AT_LOCAL: `2026-06-04T18:02:37-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T23:22:24Z`
+- ENDED_AT_LOCAL: `2026-06-04T18:22:24-0500 CDT`
+- ELAPSED_MINUTES: `19.78`
+- Status: Run 42 complete. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T22:03:19Z`. Work was restricted to Lever 3 and produced a
-  measured exact-route P07658 readout after the accepted bandpass contract. No
-  coordinate was staged, no row was scored, no threshold changed, and no blocker
-  packet was produced. Commit/push/sync verification is pending immediately
-  after this handoff update.
+  `2026-06-04T23:02:37Z`. Work was restricted to Lever 3 and produced
+  measured operating-point and credential-route preflight readouts. No blocker
+  packet was produced. No coordinate was staged, no row was scored, no
+  threshold changed, and no secret values were recorded. Commit/push/sync
+  verification is pending immediately after this handoff update.
 
 ## Mission
 
@@ -65,6 +65,123 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 42
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T23:02:37Z`
+- STARTED_LOCAL: `2026-06-04T18:02:37-0500 CDT`
+- ENDED_AT: `2026-06-04T23:22:24Z`
+- ENDED_LOCAL: `2026-06-04T18:22:24-0500 CDT`
+- ELAPSED_MINUTES: `19.78`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T23:02:37Z`.
+
+#### What changed
+
+- Added `build-fold-augmented-lever3-operating-point-deployment-readout` and
+  `build-fold-augmented-lever3-p07658-credential-route-preflight`, with
+  builders/writers/report renderers in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_operating_point_deployment_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_operating_point_deployment_readout_current702_20260604.md`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.md`.
+- Added parser, synthetic builder, artifact-count, and source-hash regression
+  coverage for both new Lever 3 readouts.
+- Appended the measured progress-log entry and regenerated `work/status.md`.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; no production threshold,
+  labels, registries, ontologies, imports, heldout splits, scoring, coordinate
+  staging, model fitting, source decisions, or secret values changed.
+- Operating-point readout is available and deployment-valid for train/cal
+  hard-confounded residual routing: 31/34 calibration in-scope rows retained
+  and 105/204 train/cal OOS rows abstained.
+- Hard-confounded residual closure at the accepted operating point is true:
+  high-cofactor residual rows resolved 1/1 and same-family shortfall reduced
+  from 9 to 0 by the accepted bandpass contract.
+- Strict proxy coverage remains partial and is not overstated:
+  1/4 strict high-cofactor proxy rows and 26/59 strict same-family proxy rows
+  abstained at the combined operating point.
+- P07658 remains the deployment-closure gap: exact route attempts still have
+  0 returned coordinates and 0 deployment-valid predicted-coordinate rows.
+- Credential-route preflight checked seven env vars across three provider
+  routes and found 0/3 credentialed provider routes available.
+- Local runtime preflight found 0/6 local predictor modules available in the
+  active Python (`esm`, `openfold`, `chai_lab`, `boltz`, `alphafold`,
+  `colabfold`); `torch` alone is present but is not a predictor runtime.
+- Conda refresh confirmed no ESM/OpenFold/Chai/Boltz/AlphaFold/ColabFold
+  predictor runtime in `base`, `alzheimers`, or `neo4j_env`.
+- Current evidence is sufficient for the measured operating-point readout but
+  not sufficient for deployment closure or fixed-threshold rerun.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, or experimental-PDB
+  deployment shortcuts changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The credential preflight records env-var presence only, not token values.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1396 passed.
+- Focused parser/builder/artifact/source-hash tests for both new readouts:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever3_operating_point_deployment_readout_parser_defaults tests/test_cli.py::CliTests::test_lever3_p07658_credential_route_preflight_parser_defaults tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_operating_point_deployment_readout_separates_p07658_gap tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_p07658_credential_route_preflight_keeps_route_gap tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_operating_point_deployment_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_p07658_credential_route_preflight_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  7 passed, 18 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  575 passed, 183 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1447 passed, 202 subtests passed, with
+  the existing sklearn/SciPy warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1402 passed.
+- `python -m compileall src tests`: passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3550 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Disk check remained above the guardrail: about 15 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended a measured progress-log entry and regenerated `work/status.md`.
+- Commit/push/sync verification is pending immediately after this handoff
+  update; release the repo lock only after `HEAD == origin/main` and the
+  worktree is clean.
+
+#### Exact next Lever 3 action
+
+Provision exactly one credentialed provider route (`HF_TOKEN`,
+`NVIDIA_API_KEY`, or `BIOLM_API_KEY`) or install one local predictor runtime
+that accepts the frozen 715-residue P07658 sequence with U140 preserved or
+explicitly documented. Write provider/model/version/path/checksum/
+sequence-hash/U140 provenance, rerun
+`build-fold-augmented-p07658-prediction-acceptance-preflight`, and only if it
+passes rerun the fixed-threshold surface with threshold `0.44155` unchanged
+and the accepted cofactor-context plus same-family bandpass counteraxis
+contracts.
 
 ### 2026-06-04 Lever 3 Forward Push Run 41
 
