@@ -66,6 +66,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
     build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout,
     build_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    build_fold_augmented_lever3_channel_veto_readout,
     build_fold_augmented_lever3_current_measured_readout,
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_evidence_sufficiency_readout,
@@ -3869,6 +3870,263 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["p07658_prediction_path_cleared_now"])
         self.assertFalse(readout["guardrails"]["blocker_packet"])
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_channel_veto_readout_keeps_unions_non_closing(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            in_scope_path = root / "in_scope.json"
+            expanded_path = root / "expanded.json"
+            surface_path = root / "surface.json"
+            current_path = root / "current.json"
+
+            expanded_path.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "cofactor_max_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "combined_mean_geometry_fold": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            in_scope_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "cal:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:5",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:6",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:7",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:8",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:9",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:10",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.4,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.4,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "scored_train_cal_oos_rows": 4,
+                            "all_train_cal_oos_abstained_at_fixed_threshold": 2,
+                            "calibration_in_scope_retained": 3,
+                            "calibration_in_scope_total": 4,
+                            "high_cofactor_proxy_rows": 2,
+                            "high_cofactor_proxy_abstained_at_fixed_threshold": 1,
+                            "same_family_structural_proxy_rows": 2,
+                            "same_family_structural_proxy_abstained_at_fixed_threshold": 1,
+                        },
+                        "row_readouts": {
+                            "high_cofactor_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_channel_veto_readout(
+                in_scope_threshold_contract_path=in_scope_path,
+                expanded_oos_calibrated_threshold_contract_path=expanded_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                current_measured_readout_path=current_path,
+                artifact_id="lever3_channel_veto_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_channel_veto_test")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_channel_veto_readout_ready_no_closure",
+        )
+        self.assertEqual(readout["counts"]["channels_evaluated"], 3)
+        self.assertEqual(readout["counts"]["channel_unions_evaluated"], 4)
+        self.assertEqual(readout["counts"]["calibration_retention_floor_rows"], 9)
+        self.assertEqual(readout["counts"]["missing_full_channel_rows"], 0)
+        self.assertEqual(readout["counts"]["high_cofactor_proxy_row_diagnostics"], 2)
+        self.assertEqual(readout["counts"]["same_family_proxy_row_diagnostics"], 2)
+        self.assertEqual(readout["counts"]["baseline_high_cofactor_abstained"], 1)
+        self.assertEqual(readout["counts"]["baseline_same_family_abstained"], 1)
+        self.assertEqual(
+            readout["counts"]["best_single_channel_high_cofactor_abstained"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["best_single_channel_same_family_abstained"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["best_retention_preserving_union_high_cofactor_abstained"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["best_retention_preserving_union_same_family_abstained"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["best_overblock_union_high_cofactor_abstained"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["best_overblock_union_same_family_abstained"], 2
+        )
+        self.assertFalse(
+            readout["decision"]["best_retention_preserving_union_closes_both_axes"]
+        )
+        self.assertFalse(
+            readout["decision"]["missing_full_channel_tail_hides_proxy_closure"]
+        )
+        self.assertTrue(
+            readout["decision"]["stronger_abstention_requires_overblocking_in_scope"]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+        self.assertEqual(
+            len(readout["proxy_axis_row_diagnostics"]["high_cofactor_proxy_rows"]),
+            2,
+        )
+        self.assertEqual(
+            len(
+                readout["proxy_axis_row_diagnostics"][
+                    "same_family_structural_proxy_rows"
+                ]
+            ),
+            2,
+        )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

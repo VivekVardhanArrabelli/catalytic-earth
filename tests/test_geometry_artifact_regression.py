@@ -7525,6 +7525,123 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["blocker_packet"])
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_lever3_channel_veto_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_channel_veto_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_channel_veto_readout_ready_no_closure",
+        )
+        self.assertEqual(
+            readout["fixed_operating_point"]["baseline_threshold"], 0.44155
+        )
+        self.assertEqual(readout["counts"]["channels_evaluated"], 6)
+        self.assertEqual(readout["counts"]["channel_unions_evaluated"], 57)
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["calibration_retention_floor_rows"], 31
+        )
+        self.assertEqual(
+            readout["counts"]["latest_train_cal_oos_full_channel_rows"], 204
+        )
+        self.assertEqual(readout["counts"]["candidate_train_cal_oos_rows"], 210)
+        self.assertEqual(readout["counts"]["missing_full_channel_rows"], 6)
+        self.assertEqual(
+            readout["counts"]["missing_full_channel_high_cofactor_overlap_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_full_channel_same_family_overlap_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["missing_full_channel_tail_sensitivity"][
+                "missing_full_channel_entry_ids"
+            ],
+            [
+                "m_csa:204",
+                "m_csa:416",
+                "m_csa:562",
+                "m_csa:586",
+                "m_csa:604",
+                "m_csa:637",
+            ],
+        )
+        self.assertEqual(readout["counts"]["high_cofactor_proxy_rows_found"], 4)
+        self.assertEqual(readout["counts"]["same_family_proxy_rows_found"], 59)
+        self.assertEqual(readout["counts"]["high_cofactor_proxy_row_diagnostics"], 4)
+        self.assertEqual(
+            readout["counts"]["same_family_proxy_row_diagnostics"], 59
+        )
+        self.assertEqual(
+            len(readout["proxy_axis_row_diagnostics"]["high_cofactor_proxy_rows"]),
+            4,
+        )
+        self.assertEqual(
+            len(
+                readout["proxy_axis_row_diagnostics"][
+                    "same_family_structural_proxy_rows"
+                ]
+            ),
+            59,
+        )
+        self.assertEqual(readout["counts"]["baseline_high_cofactor_abstained"], 0)
+        self.assertEqual(readout["counts"]["baseline_same_family_abstained"], 11)
+        self.assertEqual(
+            readout["counts"]["best_single_channel_high_cofactor_abstained"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["best_single_channel_same_family_abstained"], 27
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_retention_preserving_union_high_cofactor_abstained"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_retention_preserving_union_same_family_abstained"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["best_overblock_union_high_cofactor_abstained"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["best_overblock_union_same_family_abstained"], 38
+        )
+        self.assertEqual(
+            readout["counts"]["best_overblock_union_calibration_in_scope_retained"],
+            22,
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertTrue(readout["decision"]["measured_readout_available"])
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["best_retention_preserving_union_closes_both_axes"]
+        )
+        self.assertFalse(
+            readout["decision"]["missing_full_channel_tail_hides_proxy_closure"]
+        )
+        self.assertTrue(
+            readout["decision"]["stronger_abstention_requires_overblocking_in_scope"]
+        )
+        self.assertFalse(readout["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -7572,6 +7689,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "pressure_readout_current702_20260604.json"
             ),
             "v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.json",
+            "v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
         ]:
             with self.subTest(artifact_name=artifact_name):
                 artifact = _load_json(ROOT / "artifacts" / artifact_name)

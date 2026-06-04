@@ -3,16 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T16:03:39Z`
-- STARTED_AT_LOCAL: `2026-06-04T11:03:39-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T16:54:18Z`
-- ENDED_AT_LOCAL: `2026-06-04T11:54:18-0500 CDT`
-- ELAPSED_MINUTES: `50.65`
-- Status: Run 35 measured block complete. Canonical
+- STARTED_AT_UTC: `2026-06-04T17:03:20Z`
+- STARTED_AT_LOCAL: `2026-06-04T12:03:20-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T17:53:23Z`
+- ENDED_AT_LOCAL: `2026-06-04T12:53:23-0500 CDT`
+- ELAPSED_MINUTES: `50.06`
+- Status: Run 36 wrap complete. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T16:03:39Z` with PID `11285`. Current user instruction: work
-  only on Lever 3. Commit, push, sync verification, and lock release are the
-  remaining wrap mechanics after this handoff/status update.
+  `2026-06-04T17:03:20Z` with PID `82974`. Current user instruction: work
+  only on Lever 3. Produced a deployment-valid measured channel-veto readout;
+  commit/push and lock release are the remaining mechanical steps after this
+  handoff edit.
 
 ## Mission
 
@@ -63,6 +64,137 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 36
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T17:03:20Z`
+- STARTED_LOCAL: `2026-06-04T12:03:20-0500 CDT`
+- ENDED_AT: `2026-06-04T17:53:23Z`
+- ENDED_LOCAL: `2026-06-04T12:53:23-0500 CDT`
+- ELAPSED_MINUTES: `50.06`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T17:03:20Z` with PID `82974`.
+
+#### Current intent
+
+Work only on Lever 3. Continue from the measured readout by first trying to
+close a deployment-valid evidence gap, then produce another measured readout if
+that cannot be closed during the run.
+
+#### What changed
+
+- Added a measured, non-blocker Lever 3 channel-veto builder/CLI:
+  `build-fold-augmented-lever3-channel-veto-readout`. It writes
+  `artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_channel_veto_readout_current702_20260604.md`.
+- The readout evaluates all six train/cal-selected source-free channel
+  thresholds and all 57 channel unions without selecting, tuning, or changing
+  thresholds. The fixed baseline threshold remains `0.44155`.
+- Measured result: 34 calibration in-scope rows have a 31-row retention floor.
+  The baseline channel keeps 31/34 in-scope, abstains 72/204 scored train/cal
+  OOS rows, 0/4 strict high-cofactor rows, and 11/59 strict same-family rows.
+- Best single-channel same-family movement is
+  `combined_mean_geometry_cofactor_fold`: 27/59 same-family rows abstained
+  while retaining 31/34 in-scope, but it still abstains 0/4 high-cofactor
+  rows. Best high-cofactor movement is `combined_min_geometry_fold` or
+  `geometry_top1_score`: 2/4 high-cofactor rows abstained while retaining
+  31/34 in-scope, but 0/59 same-family rows abstained.
+- Best retention-preserving union is
+  `combined_min_geometry_fold+geometry_top1_score`: 2/4 high-cofactor and
+  0/59 same-family rows abstained. It does not close both hard proxy axes.
+- Best stronger union reaches 3/4 high-cofactor and 38/59 same-family rows
+  but retains only 22/34 calibration in-scope rows, below the 31-row floor.
+  Stronger confounded abstention therefore requires in-scope overblocking.
+- Added missing-tail sensitivity to the readout. The source surface has 210
+  train/cal OOS candidates, 204 scored/full-channel rows, and six missing
+  full-channel rows:
+  `m_csa:204`, `m_csa:416`, `m_csa:562`, `m_csa:586`, `m_csa:604`,
+  `m_csa:637`. None overlaps the strict high-cofactor or same-family proxy
+  row sets, so the missing tail cannot hide the hard-proxy no-closure result.
+- Added row-level channel diagnostics inside the JSON readout for all 4
+  strict high-cofactor rows and all 59 strict same-family rows.
+- Tried the P07658 route again in a bounded way. The exact local sequence is
+  715 aa and contains `U`; AlphaFold API and v6 direct CIF still return 404,
+  and the public ESMFold endpoint returns HTTP 413 because the sequence is
+  longer than 400 residues. A broader local runtime check found no installed
+  full-length predictor command/module (`colabfold`, `alphafold`, `chai`,
+  `boltz`, `openfold`, `omegafold`, `esmfold` absent; only `torch` importable).
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, threshold values, threshold tuning, model fitting, row labels, row
+  imports, reviewer decisions, or source decisions changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, source IDs, target names, labels, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- No candidate rows were newly scored and no coordinates were staged.
+- The new channel-veto artifact is a measured readout, not a blocker packet
+  and not a deployment-closure claim.
+
+#### Verification
+
+- Focused channel-veto tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_channel_veto_readout_keeps_unions_non_closing tests/test_cli.py::CliTests::test_lever3_channel_veto_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_channel_veto_readout_counts -q`:
+  3 passed.
+- Source-hash/readout focused tests after the tail-sensitivity and row
+  diagnostics additions: 3 passed, 8 subtests passed.
+- Full pytest after final code changes:
+  `PYTHONPATH=src python -m pytest -q`: 1420 passed, 192 subtests, with the
+  existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1375 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Additional focused files:
+  `tests/test_cli.py` passed 123 tests and 158 subtests;
+  `tests/test_northstar_next_levers.py` passed 185 tests;
+  `tests/test_geometry_artifact_regression.py` passed 240 tests and 15
+  subtests.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- New channel-veto JSON parsed with `python -m json.tool`.
+- New artifact `source_artifacts` hashes checked: 0 stale.
+- New artifact guardrail flags checked: no forbidden true flags.
+- Disk guardrail remained above 10 GiB: exact free space 10.543 GiB.
+
+#### Commit/push status
+
+- Progress log entry and regenerated `work/status.md` are still pending after
+  this handoff edit.
+- Commit, push, `HEAD == origin/main` verification, and lock release are the
+  remaining mechanical wrap steps after this handoff edit. If any of those
+  fail, update this section before returning.
+
+#### Exact next action
+
+Do not change or retune threshold `0.44155`. The next Lever 3 action is:
+
+1. Run exactly one approved full-length predictor/provider on
+   `work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta`
+   for the exact 715-residue P07658 sequence, explicitly documenting
+   selenocysteine U140 handling and provider/model/version/path/checksum
+   provenance.
+2. Fill the P07658 provenance template and write the returned coordinate to
+   the dispatch packet's preferred coordinate path.
+3. Rerun
+   `build-fold-augmented-p07658-prediction-acceptance-preflight`. Only if all
+   acceptance checks pass, stage the coordinate and rerun unchanged-threshold
+   row scoring/readouts.
+4. Acquire 16 true non-heldout train/cal OOS rows satisfying the strict
+   source-free high-cofactor/locus contract. Near-cofactor pressure rows do
+   not count.
+5. Acquire the strict same-family structural train/cal OOS surface after the
+   high-cofactor gap; current strict-plus-loose evidence reaches only 26/80
+   and does not close the contract.
 
 ### 2026-06-04 Lever 3 Forward Push Run 35
 

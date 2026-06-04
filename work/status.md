@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 347
-- Measured elapsed time: 10620.5 minutes (177.01 hours)
+- Entries: 348
+- Measured elapsed time: 10670.6 minutes (177.84 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 453.0 measured minutes (7.55 hours)
+- northstar-lever3: 503.1 measured minutes (8.38 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3639
-- Evidence references logged: 3001
+- Artifact references logged: 3648
+- Evidence references logged: 3010
 
 ## Recent Entries
-
-### 2026-06-04T01:43:55.363807+00:00 - northstar-lever-2
-
-- Task: Partial source-free heldout readout and recovery queue
-- Time mode: measured
-- Measured minutes: 41.867
-- Started: 2026-06-04T01:01:46Z
-- Ended: 2026-06-04T01:43:38Z
-- Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, docs/decision_log.md, docs/artifact_index.md, work/handoff.md, work/status.md
-- Evidence: full pytest 1350 passed with 156 subtests and one existing sklearn/SciPy warning, unittest discovery 1305 tests passed, validate passed with 702 labels, compileall and git diff --check passed, readout OOS abstain recall 1.0 primary retain recall 0.0, recovery queue 119 rows: 32 feature-complete primary residual abstentions 16 primary missing-locator abstentions 71 OOS missing-locator rows
-- Notes: No labels registries ontologies imports production thresholds model refits threshold tuning or production calibration changed. The heldout read was applied once under the accepted deterministic missing-locator abstention contract.
 
 ### 2026-06-04T09:54:33.175466+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.json, work/fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604.json, artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json, artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.json
 - Evidence: evidence-sufficiency readout measured 5 routes and remains deployment false, canonical strict proxy 72/204 abstained with 31/34 in-scope retention, strict high-cofactor 0/4 and same-family 11/59, near-cofactor diagnostic 8/16 and loose same-family 26/80, protein-only combined 7/8 but fold-only 2/8 with 1/8 predicted-geometry-ok, P07658 acceptance preflight still 7 failed checks no coordinate local runtime 0/5 commands provider coordinates 0 public predicted rows 0, final pytest 1417 passed 191 subtests existing sklearn warning, final unittest 1372 passed, validate 702 labels compileall diff-check docs-ref missing 0 source hashes current guardrail flags clean
 - Notes: No blocker packet produced by default; the new artifact is a measured readout and source-traceable evidence-sufficiency decision.
+
+### 2026-06-04T17:54:27.719250+00:00 - northstar-lever3
+
+- Task: Lever 3 channel-veto measured readout
+- Time mode: measured
+- Measured minutes: 50.05
+- Started: 2026-06-04T17:03:20Z
+- Ended: 2026-06-04T17:53:23Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json, work/fold_augmented_lever3_channel_veto_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: six channels and 57 channel unions evaluated, 31/34 in-scope retention floor preserved only for non-closing routes, best retention-preserving union 2/4 high-cofactor and 0/59 same-family, best stronger union 3/4 high-cofactor and 38/59 same-family but only 22/34 in-scope retained, missing full-channel tail 6 rows with 0 strict proxy overlap, P07658 live re-probe AlphaFold 404 and ESMFold HTTP 413, full pytest 1420 passed 192 subtests, unittest discovery 1375 passed, validate passed with 702 labels
+- Notes: Readout is deployment-valid and non-blocker; it preserves threshold 0.44155 and shows stronger confounded abstention requires in-scope overblocking.
 
 ## Expectation Updates
 
@@ -394,6 +394,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T14:25:57.944431+00:00: Lever 3 now has a measured current operating-point readout but deployment closure still needs P07658 accepted full-length predicted-coordinate provenance plus 16 high-cofactor and 170 same-family structural train/cal OOS acquisition rows.
 - 2026-06-04T15:52:38.463795+00:00: Current source-free evidence supports measured diagnostics but not deployment closure; strict high-cofactor and same-family acquisitions remain required
 - 2026-06-04T16:54:35.141959+00:00: Current evidence is measured but insufficient; next action is exact P07658 full-length prediction/provenance, then 16 strict high-cofactor rows, then 170 strict same-family structural rows
+- 2026-06-04T17:54:27.719250+00:00: Current train/cal-selected source-free channels are measured but insufficient for Lever 3 closure; next progress needs accepted P07658 full-length predicted-coordinate provenance plus strict high-cofactor acquisition.
 
 ## Scope Adjustments
 
@@ -600,3 +601,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T01:43:55.363807+00:00: Lever 2 partial source-free surface is no longer a pending read; it is a read-once nondeployable result.
 - 2026-06-04T15:52:38.463795+00:00: Lever 3 only; no labels, registries, ontologies, heldout splits, imports, or threshold changes
 - 2026-06-04T16:54:35.141959+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds or threshold tuning changed
+- 2026-06-04T17:54:27.719250+00:00: Lever 3 only; no threshold changes, heldout tuning, row scoring, coordinate staging, labels, registries, ontologies, imports, or source decisions changed.

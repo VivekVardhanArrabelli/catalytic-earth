@@ -101,6 +101,32 @@ class CliTests(unittest.TestCase):
             args.p07658_computed_model_repository_broad_probe,
         )
 
+    def test_lever3_channel_veto_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-channel-veto-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+                "current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.in_scope_threshold_contract,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertIn("current_measured_readout", args.current_measured_readout)
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

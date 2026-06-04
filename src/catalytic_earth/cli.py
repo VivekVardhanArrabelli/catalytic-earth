@@ -151,6 +151,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
     write_fold_augmented_confounded_proxy_loose_same_family_pressure_readout,
     write_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    write_fold_augmented_lever3_channel_veto_readout,
     write_fold_augmented_lever3_current_measured_readout,
     write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_evidence_sufficiency_readout,
@@ -13263,6 +13264,39 @@ def cmd_build_fold_augmented_lever3_evidence_sufficiency_readout(
         f"{counts.get('strict_same_family_abstained')}/"
         f"{counts.get('strict_same_family_rows')}, deployment closed: "
         f"{readout.get('decision', {}).get('current_evidence_sufficient_for_deployment_closure')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_channel_veto_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_channel_veto_readout(
+        in_scope_threshold_contract_path=Path(args.in_scope_threshold_contract),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        latest_train_cal_oos_surface_path=Path(args.latest_train_cal_oos_surface),
+        current_measured_readout_path=Path(args.current_measured_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 channel-veto readout to "
+        f"{args.out} (best retention-preserving high/same: "
+        f"{counts.get('best_retention_preserving_union_high_cofactor_abstained')}/"
+        f"{counts.get('high_cofactor_proxy_rows_found')} and "
+        f"{counts.get('best_retention_preserving_union_same_family_abstained')}/"
+        f"{counts.get('same_family_proxy_rows_found')}; overblock high/same: "
+        f"{counts.get('best_overblock_union_high_cofactor_abstained')}/"
+        f"{counts.get('high_cofactor_proxy_rows_found')} and "
+        f"{counts.get('best_overblock_union_same_family_abstained')}/"
+        f"{counts.get('same_family_proxy_rows_found')})"
     )
     return 0
 
@@ -31660,6 +31694,61 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_evidence_sufficiency_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_evidence_sufficiency_readout
+    )
+
+    lever3_channel_veto_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-channel-veto-readout",
+        help=(
+            "write a measured Lever 3 channel-veto readout over train/cal "
+            "selected source-free channel thresholds without changing thresholds"
+        ),
+    )
+    lever3_channel_veto_readout.add_argument(
+        "--in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_channel_veto_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    lever3_channel_veto_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_channel_veto_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_channel_veto_readout.add_argument("--artifact-id", default=None)
+    lever3_channel_veto_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_channel_veto_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_channel_veto_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_channel_veto_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

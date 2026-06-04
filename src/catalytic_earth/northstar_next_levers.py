@@ -10,6 +10,7 @@ from __future__ import annotations
 import csv
 import copy
 import hashlib
+import itertools
 import json
 import math
 import re
@@ -305,6 +306,9 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_LOOSE_SAME_FAMILY_PRESSURE_READOUT_ID = (
 )
 FOLD_AUGMENTED_LEVER3_EVIDENCE_SUFFICIENCY_READOUT_ID = (
     "v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_CHANNEL_VETO_READOUT_ID = (
+    "v3_fold_augmented_lever3_channel_veto_readout_current702_20260604"
 )
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
@@ -36349,6 +36353,839 @@ def write_fold_augmented_lever3_evidence_sufficiency_readout(
             _render_fold_augmented_lever3_evidence_sufficiency_readout_report(
                 readout
             ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _channel_score_value(row: dict[str, Any], channel_name: str) -> float | None:
+    channel_scores = row.get("channel_scores") or {}
+    value = channel_scores.get(channel_name)
+    if value is None and channel_name == "cofactor_max_score":
+        value = row.get("selected_organic_cofactor_max_score")
+    try:
+        return None if value is None else float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _channel_thresholds_90pct(
+    threshold_contract: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    thresholds: dict[str, dict[str, Any]] = {}
+    for channel_name, channel_contract in sorted(
+        (threshold_contract.get("threshold_contract") or {}).items()
+    ):
+        if not isinstance(channel_contract, dict):
+            continue
+        selected = (
+            channel_contract.get(
+                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+            )
+            or {}
+        )
+        threshold = selected.get("threshold")
+        if threshold is None:
+            continue
+        try:
+            threshold_float = float(threshold)
+        except (TypeError, ValueError):
+            continue
+        thresholds[channel_name] = {
+            "threshold": threshold_float,
+            "selection_summary": {
+                "calibration_in_scope_retained": selected.get(
+                    "calibration_in_scope_retained"
+                ),
+                "calibration_in_scope_total": selected.get(
+                    "calibration_in_scope_total"
+                ),
+                "calibration_in_scope_retain_recall": selected.get(
+                    "calibration_in_scope_retain_recall"
+                ),
+                "calibration_oos_abstained": selected.get(
+                    "calibration_oos_abstained"
+                ),
+                "calibration_oos_total": selected.get("calibration_oos_total"),
+                "calibration_oos_abstain_recall": selected.get(
+                    "calibration_oos_abstain_recall"
+                ),
+                "min_retain_target": selected.get("min_retain_target"),
+                "objective": selected.get("objective"),
+            },
+        }
+    return thresholds
+
+
+def _channel_veto_readout_for_rows(
+    rows: list[dict[str, Any]],
+    *,
+    channel_names: tuple[str, ...],
+    thresholds: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    scored_rows: list[dict[str, Any]] = []
+    abstained = 0
+    missing_channel_values = 0
+    for row in rows:
+        channel_results = []
+        row_abstains = False
+        for channel_name in channel_names:
+            threshold = float(thresholds[channel_name]["threshold"])
+            score = _channel_score_value(row, channel_name)
+            if score is None:
+                missing_channel_values += 1
+                continue
+            channel_abstains = score < threshold
+            row_abstains = row_abstains or channel_abstains
+            channel_results.append(
+                {
+                    "channel": channel_name,
+                    "score": round(score, 6),
+                    "threshold": round(threshold, 6),
+                    "margin": round(score - threshold, 6),
+                    "abstains": channel_abstains,
+                }
+            )
+        if not channel_results:
+            continue
+        if row_abstains:
+            abstained += 1
+        scored_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "label_type": row.get("label_type"),
+                "oos_tier": row.get("oos_tier"),
+                "split_assignment": row.get("split_assignment"),
+                "abstains": row_abstains,
+                "channel_results": channel_results,
+            }
+        )
+    total = len(scored_rows)
+    return {
+        "row_count": total,
+        "abstained": abstained,
+        "retained": total - abstained,
+        "abstain_recall": round(abstained / total, 4) if total else None,
+        "retained_recall": round((total - abstained) / total, 4) if total else None,
+        "missing_channel_values": missing_channel_values,
+        "rows": sorted(
+            scored_rows,
+            key=lambda row: (
+                row["abstains"],
+                str(row.get("entry_id") or ""),
+            ),
+        ),
+    }
+
+
+def _entry_ids_from_readout_rows(rows: list[dict[str, Any]]) -> set[str]:
+    return {
+        str(row.get("entry_id") or "")
+        for row in rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _rows_by_requested_ids(
+    rows_by_entry: dict[str, dict[str, Any]],
+    requested_ids: set[str],
+) -> list[dict[str, Any]]:
+    return [
+        rows_by_entry[entry_id]
+        for entry_id in sorted(requested_ids, key=_entry_id_sort_key)
+        if entry_id in rows_by_entry
+    ]
+
+
+def _channel_veto_summary(
+    *,
+    route_id: str,
+    channel_names: tuple[str, ...],
+    thresholds: dict[str, dict[str, Any]],
+    calibration_in_scope_rows: list[dict[str, Any]],
+    train_cal_oos_rows: list[dict[str, Any]],
+    high_cofactor_rows: list[dict[str, Any]],
+    same_family_rows: list[dict[str, Any]],
+    retention_floor_rows: int,
+) -> dict[str, Any]:
+    in_scope = _channel_veto_readout_for_rows(
+        calibration_in_scope_rows,
+        channel_names=channel_names,
+        thresholds=thresholds,
+    )
+    oos = _channel_veto_readout_for_rows(
+        train_cal_oos_rows,
+        channel_names=channel_names,
+        thresholds=thresholds,
+    )
+    high = _channel_veto_readout_for_rows(
+        high_cofactor_rows,
+        channel_names=channel_names,
+        thresholds=thresholds,
+    )
+    same = _channel_veto_readout_for_rows(
+        same_family_rows,
+        channel_names=channel_names,
+        thresholds=thresholds,
+    )
+    high_target_rows = math.ceil(0.8 * high["row_count"]) if high["row_count"] else 0
+    same_target_rows = math.ceil(0.8 * same["row_count"]) if same["row_count"] else 0
+    return {
+        "route_id": route_id,
+        "channels": list(channel_names),
+        "thresholds": {
+            channel_name: round(float(thresholds[channel_name]["threshold"]), 6)
+            for channel_name in channel_names
+        },
+        "calibration_in_scope_retained": in_scope["retained"],
+        "calibration_in_scope_total": in_scope["row_count"],
+        "calibration_in_scope_retain_recall": in_scope["retained_recall"],
+        "retention_floor_rows": retention_floor_rows,
+        "retention_floor_met": in_scope["retained"] >= retention_floor_rows,
+        "train_cal_oos_abstained": oos["abstained"],
+        "train_cal_oos_total": oos["row_count"],
+        "train_cal_oos_abstain_recall": oos["abstain_recall"],
+        "high_cofactor_abstained": high["abstained"],
+        "high_cofactor_total": high["row_count"],
+        "high_cofactor_target_rows": high_target_rows,
+        "high_cofactor_target_met": bool(
+            high["row_count"] and high["abstained"] >= high_target_rows
+        ),
+        "same_family_abstained": same["abstained"],
+        "same_family_total": same["row_count"],
+        "same_family_target_rows": same_target_rows,
+        "same_family_target_met": bool(
+            same["row_count"] and same["abstained"] >= same_target_rows
+        ),
+        "deployment_closure_support": bool(
+            in_scope["retained"] >= retention_floor_rows
+            and high["row_count"]
+            and same["row_count"]
+            and high["abstained"] >= high_target_rows
+            and same["abstained"] >= same_target_rows
+        ),
+    }
+
+
+def _channel_veto_row_diagnostics(
+    rows: list[dict[str, Any]],
+    thresholds: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    diagnostics: list[dict[str, Any]] = []
+    for row in sorted(
+        rows, key=lambda item: _entry_id_sort_key(str(item.get("entry_id") or ""))
+    ):
+        channel_results: list[dict[str, Any]] = []
+        abstaining_channels: list[str] = []
+        missing_channels: list[str] = []
+        for channel_name in sorted(thresholds):
+            threshold = float(thresholds[channel_name]["threshold"])
+            score = _channel_score_value(row, channel_name)
+            if score is None:
+                missing_channels.append(channel_name)
+                continue
+            abstains = score < threshold
+            if abstains:
+                abstaining_channels.append(channel_name)
+            channel_results.append(
+                {
+                    "channel": channel_name,
+                    "score": round(score, 6),
+                    "threshold": round(threshold, 6),
+                    "margin": round(score - threshold, 6),
+                    "abstains": abstains,
+                }
+            )
+        diagnostics.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession"),
+                "label_type": row.get("label_type"),
+                "oos_tier": row.get("oos_tier"),
+                "abstaining_channels": abstaining_channels,
+                "missing_channels": missing_channels,
+                "any_channel_abstains": bool(abstaining_channels),
+                "all_channels_retained": bool(
+                    channel_results and not abstaining_channels
+                ),
+                "channel_results": channel_results,
+            }
+        )
+    return diagnostics
+
+
+def build_fold_augmented_lever3_channel_veto_readout(
+    *,
+    in_scope_threshold_contract_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_measured_readout_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_CHANNEL_VETO_READOUT_ID,
+) -> dict[str, Any]:
+    in_scope_contract = _read_json(in_scope_threshold_contract_path)
+    expanded_contract = _read_json(expanded_oos_calibrated_threshold_contract_path)
+    latest_surface = _read_json(latest_train_cal_oos_surface_path)
+    current = _read_json(current_measured_readout_path)
+
+    thresholds = _channel_thresholds_90pct(expanded_contract)
+    calibration_in_scope_rows = [
+        row
+        for row in in_scope_contract.get("calibration_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    candidate_oos_rows = [
+        row
+        for row in latest_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    train_cal_oos_rows = [
+        row for row in candidate_oos_rows if row.get("channel_scores")
+    ]
+    rows_by_entry = {str(row["entry_id"]): row for row in train_cal_oos_rows}
+    row_readouts = current.get("row_readouts") or {}
+    high_ids = _entry_ids_from_readout_rows(
+        row_readouts.get("high_cofactor_proxy_rows") or []
+    )
+    same_ids = _entry_ids_from_readout_rows(
+        row_readouts.get("same_family_structural_proxy_rows") or []
+    )
+    high_rows = _rows_by_requested_ids(rows_by_entry, high_ids)
+    same_rows = _rows_by_requested_ids(rows_by_entry, same_ids)
+    reported_missing_ids = {
+        str(entry_id)
+        for entry_id in (latest_surface.get("remaining_combined_score_blocker_entry_ids") or [])
+    }
+    candidate_missing_ids = {
+        str(row["entry_id"])
+        for row in candidate_oos_rows
+        if not row.get("channel_scores")
+    }
+    missing_full_channel_ids = reported_missing_ids or candidate_missing_ids
+    missing_full_channel_rows = [
+        row
+        for row in candidate_oos_rows
+        if str(row["entry_id"]) in missing_full_channel_ids
+    ]
+    missing_high_overlap_ids = missing_full_channel_ids & high_ids
+    missing_same_overlap_ids = missing_full_channel_ids & same_ids
+
+    retention_floor_rows = math.ceil(0.9 * len(calibration_in_scope_rows))
+    channel_readouts = [
+        _channel_veto_summary(
+            route_id=f"single_channel::{channel_name}",
+            channel_names=(channel_name,),
+            thresholds=thresholds,
+            calibration_in_scope_rows=calibration_in_scope_rows,
+            train_cal_oos_rows=train_cal_oos_rows,
+            high_cofactor_rows=high_rows,
+            same_family_rows=same_rows,
+            retention_floor_rows=retention_floor_rows,
+        )
+        for channel_name in sorted(thresholds)
+    ]
+    retention_preserving_channels = [
+        row for row in channel_readouts if row["retention_floor_met"]
+    ]
+    best_single_same = max(
+        retention_preserving_channels,
+        key=lambda row: (
+            row["same_family_abstained"],
+            row["high_cofactor_abstained"],
+            row["train_cal_oos_abstained"],
+        ),
+    )
+    best_single_high = max(
+        retention_preserving_channels,
+        key=lambda row: (
+            row["high_cofactor_abstained"],
+            row["same_family_abstained"],
+            row["train_cal_oos_abstained"],
+        ),
+    )
+
+    union_readouts: list[dict[str, Any]] = []
+    channel_names = tuple(sorted(thresholds))
+    for size in range(2, len(channel_names) + 1):
+        for combo in itertools.combinations(channel_names, size):
+            union_readouts.append(
+                _channel_veto_summary(
+                    route_id="channel_union::" + "+".join(combo),
+                    channel_names=combo,
+                    thresholds=thresholds,
+                    calibration_in_scope_rows=calibration_in_scope_rows,
+                    train_cal_oos_rows=train_cal_oos_rows,
+                    high_cofactor_rows=high_rows,
+                    same_family_rows=same_rows,
+                    retention_floor_rows=retention_floor_rows,
+                )
+            )
+    retention_preserving_unions = [
+        row for row in union_readouts if row["retention_floor_met"]
+    ]
+    retention_preserving_unions.sort(
+        key=lambda row: (
+            row["high_cofactor_abstained"],
+            row["same_family_abstained"],
+            row["train_cal_oos_abstained"],
+            row["calibration_in_scope_retained"],
+        ),
+        reverse=True,
+    )
+    overblock_unions = [
+        row for row in union_readouts if not row["retention_floor_met"]
+    ]
+    overblock_unions.sort(
+        key=lambda row: (
+            row["high_cofactor_abstained"],
+            row["same_family_abstained"],
+            row["calibration_in_scope_retained"],
+            row["train_cal_oos_abstained"],
+        ),
+        reverse=True,
+    )
+    best_retention_preserving_union = (
+        retention_preserving_unions[0] if retention_preserving_unions else None
+    )
+    best_overblock_union = overblock_unions[0] if overblock_unions else None
+    baseline = next(
+        row
+        for row in channel_readouts
+        if row["channels"] == ["combined_mean_geometry_fold"]
+    )
+
+    blockers: list[str] = []
+    if not best_single_high["high_cofactor_target_met"]:
+        blockers.append("no_retention_preserving_single_channel_closes_high_cofactor")
+    if not best_single_same["same_family_target_met"]:
+        blockers.append("no_retention_preserving_single_channel_closes_same_family")
+    if not (
+        best_retention_preserving_union
+        and best_retention_preserving_union["deployment_closure_support"]
+    ):
+        blockers.append("no_retention_preserving_channel_union_closes_both_axes")
+    if best_overblock_union and (
+        best_overblock_union["high_cofactor_abstained"]
+        > best_single_high["high_cofactor_abstained"]
+        or best_overblock_union["same_family_abstained"]
+        > best_single_same["same_family_abstained"]
+    ):
+        blockers.append("stronger_confounded_abstention_requires_overblocking_in_scope")
+
+    current_counts = current.get("counts") or {}
+    missing_tail_sensitivity = {
+        "candidate_train_cal_oos_rows": len(candidate_oos_rows),
+        "scored_full_channel_rows": len(train_cal_oos_rows),
+        "missing_full_channel_rows": len(missing_full_channel_ids),
+        "missing_full_channel_entry_ids": sorted(
+            missing_full_channel_ids, key=_entry_id_sort_key
+        ),
+        "missing_full_channel_high_cofactor_overlap_rows": len(
+            missing_high_overlap_ids
+        ),
+        "missing_full_channel_high_cofactor_overlap_entry_ids": sorted(
+            missing_high_overlap_ids, key=_entry_id_sort_key
+        ),
+        "missing_full_channel_same_family_overlap_rows": len(
+            missing_same_overlap_ids
+        ),
+        "missing_full_channel_same_family_overlap_entry_ids": sorted(
+            missing_same_overlap_ids, key=_entry_id_sort_key
+        ),
+        "maximum_train_cal_oos_abstained_if_all_missing_rows_abstain": (
+            best_overblock_union["train_cal_oos_abstained"]
+            + len(missing_full_channel_ids)
+            if best_overblock_union
+            else len(missing_full_channel_ids)
+        ),
+        "strict_proxy_axis_counts_can_change_from_missing_tail": bool(
+            missing_high_overlap_ids or missing_same_overlap_ids
+        ),
+        "strict_proxy_closure_conclusion_can_change_from_missing_tail": False,
+        "reason": (
+            "The current six missing full-channel rows do not overlap the strict "
+            "high-cofactor or same-family proxy row sets used by this readout; "
+            "they can affect all-OOS coverage, but not the hard proxy-axis "
+            "no-closure result."
+            if missing_full_channel_ids
+            and not (missing_high_overlap_ids or missing_same_overlap_ids)
+            else (
+                "No missing full-channel tail rows were reported by the source "
+                "surface."
+                if not missing_full_channel_ids
+                else "At least one missing full-channel row overlaps a strict proxy axis."
+            )
+        ),
+    }
+    status = (
+        "fold_augmented_lever3_channel_veto_readout_deployment_closed"
+        if best_retention_preserving_union
+        and best_retention_preserving_union["deployment_closure_support"]
+        else "fold_augmented_lever3_channel_veto_readout_ready_no_closure"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": f"{SCHEMA_VERSION}.fold_augmented_lever3_channel_veto_readout",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured channel-veto readout over already selected "
+            "train/cal source-free channel thresholds. It compares single "
+            "channels and channel-union stress tests against calibration "
+            "in-scope retention plus hard-confounded train/cal OOS proxy rows. "
+            "It reads no heldout rows, stages no coordinates, scores no new "
+            "rows, and does not change threshold 0.44155."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "readout_only": True,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "train_cal_selected_thresholds_only": True,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "fixed_operating_point": {
+            "baseline_channel": "combined_mean_geometry_fold",
+            "baseline_threshold": round(float(baseline["thresholds"]["combined_mean_geometry_fold"]), 6),
+            "threshold_source": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "calibration_retention_floor_rows": retention_floor_rows,
+            "calibration_retention_floor_fraction": 0.9,
+        },
+        "baseline_current_readout": {
+            "canonical_scored_train_cal_oos_rows": int(
+                current_counts.get("scored_train_cal_oos_rows") or 0
+            ),
+            "canonical_train_cal_oos_abstained": int(
+                current_counts.get("all_train_cal_oos_abstained_at_fixed_threshold")
+                or 0
+            ),
+            "calibration_in_scope_retained": int(
+                current_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "calibration_in_scope_total": int(
+                current_counts.get("calibration_in_scope_total") or 0
+            ),
+            "strict_high_cofactor_rows": int(
+                current_counts.get("high_cofactor_proxy_rows") or 0
+            ),
+            "strict_high_cofactor_abstained": int(
+                current_counts.get("high_cofactor_proxy_abstained_at_fixed_threshold")
+                or 0
+            ),
+            "strict_same_family_rows": int(
+                current_counts.get("same_family_structural_proxy_rows") or 0
+            ),
+            "strict_same_family_abstained": int(
+                current_counts.get(
+                    "same_family_structural_proxy_abstained_at_fixed_threshold"
+                )
+                or 0
+            ),
+        },
+        "channel_readouts": channel_readouts,
+        "retention_preserving_channel_unions_top": retention_preserving_unions[:10],
+        "overblock_channel_unions_top": overblock_unions[:10],
+        "missing_full_channel_tail_sensitivity": missing_tail_sensitivity,
+        "proxy_axis_row_diagnostics": {
+            "high_cofactor_proxy_rows": _channel_veto_row_diagnostics(
+                high_rows, thresholds
+            ),
+            "same_family_structural_proxy_rows": _channel_veto_row_diagnostics(
+                same_rows, thresholds
+            ),
+        },
+        "best_routes": {
+            "best_retention_preserving_single_channel_for_same_family": best_single_same,
+            "best_retention_preserving_single_channel_for_high_cofactor": best_single_high,
+            "best_retention_preserving_channel_union": best_retention_preserving_union,
+            "best_overblock_channel_union": best_overblock_union,
+        },
+        "blockers": blockers,
+        "counts": {
+            "channels_evaluated": len(channel_readouts),
+            "channel_unions_evaluated": len(union_readouts),
+            "retention_preserving_channel_unions": len(
+                retention_preserving_unions
+            ),
+            "overblock_channel_unions": len(overblock_unions),
+            "calibration_in_scope_rows": len(calibration_in_scope_rows),
+            "calibration_retention_floor_rows": retention_floor_rows,
+            "candidate_train_cal_oos_rows": len(candidate_oos_rows),
+            "latest_train_cal_oos_full_channel_rows": len(train_cal_oos_rows),
+            "missing_full_channel_rows": len(missing_full_channel_ids),
+            "missing_full_channel_high_cofactor_overlap_rows": len(
+                missing_high_overlap_ids
+            ),
+            "missing_full_channel_same_family_overlap_rows": len(
+                missing_same_overlap_ids
+            ),
+            "high_cofactor_proxy_rows_found": len(high_rows),
+            "same_family_proxy_rows_found": len(same_rows),
+            "high_cofactor_proxy_row_diagnostics": len(high_rows),
+            "same_family_proxy_row_diagnostics": len(same_rows),
+            "baseline_high_cofactor_abstained": baseline["high_cofactor_abstained"],
+            "baseline_same_family_abstained": baseline["same_family_abstained"],
+            "best_single_channel_high_cofactor_abstained": best_single_high[
+                "high_cofactor_abstained"
+            ],
+            "best_single_channel_same_family_abstained": best_single_same[
+                "same_family_abstained"
+            ],
+            "best_retention_preserving_union_high_cofactor_abstained": (
+                best_retention_preserving_union["high_cofactor_abstained"]
+                if best_retention_preserving_union
+                else 0
+            ),
+            "best_retention_preserving_union_same_family_abstained": (
+                best_retention_preserving_union["same_family_abstained"]
+                if best_retention_preserving_union
+                else 0
+            ),
+            "best_overblock_union_high_cofactor_abstained": (
+                best_overblock_union["high_cofactor_abstained"]
+                if best_overblock_union
+                else 0
+            ),
+            "best_overblock_union_same_family_abstained": (
+                best_overblock_union["same_family_abstained"]
+                if best_overblock_union
+                else 0
+            ),
+            "best_overblock_union_calibration_in_scope_retained": (
+                best_overblock_union["calibration_in_scope_retained"]
+                if best_overblock_union
+                else 0
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "apply_or_change_threshold_now": False,
+            "current_evidence_sufficient_for_deployment_closure": bool(
+                best_retention_preserving_union
+                and best_retention_preserving_union["deployment_closure_support"]
+            ),
+            "best_single_channel_improves_same_family_without_retention_loss": bool(
+                best_single_same["same_family_abstained"]
+                > baseline["same_family_abstained"]
+                and best_single_same["retention_floor_met"]
+            ),
+            "best_single_channel_closes_high_cofactor": bool(
+                best_single_high["high_cofactor_target_met"]
+            ),
+            "best_retention_preserving_union_closes_both_axes": bool(
+                best_retention_preserving_union
+                and best_retention_preserving_union["deployment_closure_support"]
+            ),
+            "missing_full_channel_tail_hides_proxy_closure": bool(
+                missing_tail_sensitivity[
+                    "strict_proxy_closure_conclusion_can_change_from_missing_tail"
+                ]
+            ),
+            "stronger_abstention_requires_overblocking_in_scope": bool(
+                "stronger_confounded_abstention_requires_overblocking_in_scope"
+                in blockers
+            ),
+            "next_gate": (
+                "Existing source-free channel thresholds cannot close Lever 3: "
+                "the same-family channel improvement still misses high-cofactor, "
+                "and unions that catch more high-cofactor rows overblock "
+                "calibration in-scope rows. Keep threshold 0.44155 fixed; obtain "
+                "P07658 accepted predicted-coordinate provenance and acquire "
+                "new strict high-cofactor train/cal OOS rows."
+            ),
+        },
+        "source_artifacts": {
+            "in_scope_threshold_contract": _source_path_record(
+                in_scope_threshold_contract_path
+            ),
+            "expanded_oos_calibrated_threshold_contract": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "current_measured_readout": _source_path_record(
+                current_measured_readout_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Existing train/cal-selected channel thresholds expose a "
+                "measured same-family improvement but not a deployment-closing "
+                "confounder veto."
+            ),
+            "result": (
+                "The best retention-preserving single channel for same-family "
+                f"abstains {best_single_same['same_family_abstained']}/"
+                f"{best_single_same['same_family_total']} rows, versus "
+                f"{baseline['same_family_abstained']}/"
+                f"{baseline['same_family_total']} at the baseline channel, but "
+                f"the best high-cofactor retention-preserving channel reaches only "
+                f"{best_single_high['high_cofactor_abstained']}/"
+                f"{best_single_high['high_cofactor_total']}."
+            ),
+            "next_action": (
+                "Do not promote a channel-union veto from current evidence. The "
+                "smallest productive path remains P07658 accepted prediction "
+                "provenance plus strict high-cofactor row acquisition."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_channel_veto_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    best = readout["best_routes"]
+    lines = [
+        "# Fold-Augmented Lever 3 Channel-Veto Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Calibration retention floor: "
+        f"{counts['calibration_retention_floor_rows']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Candidate/scored/missing train-cal OOS rows: "
+        f"{counts['candidate_train_cal_oos_rows']}/"
+        f"{counts['latest_train_cal_oos_full_channel_rows']}/"
+        f"{counts['missing_full_channel_rows']}",
+        "- Missing full-channel high/same-family overlap: "
+        f"{counts['missing_full_channel_high_cofactor_overlap_rows']}/"
+        f"{counts['missing_full_channel_same_family_overlap_rows']}",
+        "- Proxy row diagnostics: "
+        f"{counts['high_cofactor_proxy_row_diagnostics']} high-cofactor, "
+        f"{counts['same_family_proxy_row_diagnostics']} same-family",
+        "- Baseline high-cofactor/same-family: "
+        f"{counts['baseline_high_cofactor_abstained']}/"
+        f"{counts['high_cofactor_proxy_rows_found']} and "
+        f"{counts['baseline_same_family_abstained']}/"
+        f"{counts['same_family_proxy_rows_found']}",
+        "- Best single-channel high/same-family: "
+        f"{counts['best_single_channel_high_cofactor_abstained']}/"
+        f"{counts['high_cofactor_proxy_rows_found']} and "
+        f"{counts['best_single_channel_same_family_abstained']}/"
+        f"{counts['same_family_proxy_rows_found']}",
+        "- Best overblock union high/same-family/in-scope retained: "
+        f"{counts['best_overblock_union_high_cofactor_abstained']}/"
+        f"{counts['high_cofactor_proxy_rows_found']}, "
+        f"{counts['best_overblock_union_same_family_abstained']}/"
+        f"{counts['same_family_proxy_rows_found']}, "
+        f"{counts['best_overblock_union_calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        f"- Blockers: {readout['blockers']}",
+        "",
+        "## Channel Readouts",
+        "",
+        "| route | retained in-scope | train/cal OOS abstained | high-cofactor | same-family | closure |",
+        "| --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in readout.get("channel_readouts", []):
+        lines.append(
+            f"| {row['route_id']} | "
+            f"{row['calibration_in_scope_retained']}/"
+            f"{row['calibration_in_scope_total']} | "
+            f"{row['train_cal_oos_abstained']}/"
+            f"{row['train_cal_oos_total']} | "
+            f"{row['high_cofactor_abstained']}/"
+            f"{row['high_cofactor_total']} | "
+            f"{row['same_family_abstained']}/"
+            f"{row['same_family_total']} | "
+            f"{row['deployment_closure_support']} |"
+        )
+    lines += [
+        "",
+        "## Best Routes",
+        "",
+        "- Same-family single-channel route: "
+        f"{best['best_retention_preserving_single_channel_for_same_family']['route_id']}",
+        "- High-cofactor single-channel route: "
+        f"{best['best_retention_preserving_single_channel_for_high_cofactor']['route_id']}",
+        "- Best retention-preserving union: "
+        f"{(best['best_retention_preserving_channel_union'] or {}).get('route_id')}",
+        "- Best overblock union: "
+        f"{(best['best_overblock_channel_union'] or {}).get('route_id')}",
+        "",
+        "## Missing Tail Sensitivity",
+        "",
+        f"- {readout['missing_full_channel_tail_sensitivity']['reason']}",
+        "- Missing full-channel rows: "
+        + ", ".join(
+            readout["missing_full_channel_tail_sensitivity"][
+                "missing_full_channel_entry_ids"
+            ]
+        ),
+        "",
+        "## Decision",
+        "",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        "- Best single channel improves same-family without retention loss: "
+        f"{decision['best_single_channel_improves_same_family_without_retention_loss']}",
+        "- Best retention-preserving union closes both axes: "
+        f"{decision['best_retention_preserving_union_closes_both_axes']}",
+        "- Missing full-channel tail hides proxy closure: "
+        f"{decision['missing_full_channel_tail_hides_proxy_closure']}",
+        "- Stronger abstention requires overblocking in-scope: "
+        f"{decision['stronger_abstention_requires_overblocking_in_scope']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_channel_veto_readout(
+    *,
+    in_scope_threshold_contract_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_measured_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_CHANNEL_VETO_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_channel_veto_readout(
+        in_scope_threshold_contract_path=in_scope_threshold_contract_path,
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        current_measured_readout_path=current_measured_readout_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_channel_veto_readout_report(readout),
             encoding="utf-8",
         )
     return readout
