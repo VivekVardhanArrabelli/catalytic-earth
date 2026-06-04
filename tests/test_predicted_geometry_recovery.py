@@ -5,6 +5,8 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.predicted_geometry_recovery import (
+    _default_context_fusion,
+    _default_unsupported_suppression,
     _per_entry_transitions,
     _readouts_by_split,
     staged_cif_fetcher,
@@ -96,6 +98,45 @@ class RecoveryReadoutTests(unittest.TestCase):
         train = readouts["train"]
         self.assertFalse(train["is_out_of_sample_for_cofactor_channel"])
         self.assertEqual(train["fused_regressed_rows"], 1)
+
+
+class ContextAdapterTests(unittest.TestCase):
+    def test_default_cofactor_adapters_are_the_pluggable_seam(self) -> None:
+        predicted_geometry = {
+            "entries": [{"entry_id": "m_csa:1", "status": "ok", "ligand_context": {}}],
+            "metadata": {},
+        }
+        channel = {
+            "channel_predictions": [
+                {
+                    "entry_id": "m_csa:1",
+                    "predicted_cofactor_families": ["metal_ion"],
+                    "prediction_sources": {},
+                    "scores": {},
+                }
+            ]
+        }
+        fused = _default_context_fusion(predicted_geometry, channel)
+        injected = fused["entries"][0]["ligand_context"]["cofactor_families"]
+        self.assertIn("metal_ion", injected)
+
+        # The suppression adapter abstains a metal-requiring call when the channel
+        # supports no cofactor family for that row.
+        rows = [
+            {
+                "entry_id": "m_csa:9",
+                "called_fingerprint_id": "metal_dependent_hydrolase",
+                "true_fingerprint_id": "metal_dependent_hydrolase",
+                "abstained": False,
+            }
+        ]
+        empty_channel = {
+            "channel_predictions": [
+                {"entry_id": "m_csa:9", "predicted_cofactor_families": []}
+            ]
+        }
+        suppressed = _default_unsupported_suppression(rows, empty_channel)
+        self.assertTrue(suppressed[0]["abstained"])
 
 
 if __name__ == "__main__":

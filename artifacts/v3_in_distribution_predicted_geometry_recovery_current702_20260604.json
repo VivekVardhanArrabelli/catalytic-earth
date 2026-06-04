@@ -1,18 +1,19 @@
 {
   "artifact_id": "v3_in_distribution_predicted_geometry_recovery_current702_20260604",
-  "created_utc": "2026-06-04T14:09:13Z",
+  "created_utc": "2026-06-04T14:35:51Z",
   "guardrails": {
-    "cofactor_channel_input": "sequence-derived cofactor presence only",
+    "context_label": "cofactor",
     "experimental_ligands_used_for_fused_surface": false,
     "global_threshold_changed": false,
     "headline_recovery_is_out_of_sample_calibration_only": true,
     "heldout_labels_read": false,
     "heldout_rows_scored": false,
     "production_scoring_changed": false,
+    "reconstruction_channel_input": "sequence-derived active-site context presence only",
     "router_against_fingerprint_templates_no_per_row_self_match": true,
     "split_assignment_scored": "in_distribution"
   },
-  "interpretation": "Calibration is the honest out-of-sample readout. Read experimental_correct -> apo_correct as the in-distribution analog of the heldout 45->23 drop, and apo_correct -> fused_correct as the sequence cofactor-channel recovery.",
+  "interpretation": "Calibration is the honest out-of-sample readout. Read experimental_correct -> apo_correct as the in-distribution analog of the heldout 45->23 drop, and apo_correct -> fused_correct as the sequence cofactor reconstruction-channel recovery.",
   "per_entry": [
     {
       "apo": {
@@ -6889,8 +6890,9 @@
   "scope": {
     "alphafold_version": "6",
     "atlas_target_row_count": 171,
-    "cofactor_channel_artifact_id": "v3_cofactor_presence_calibration_current702_20260604",
+    "context_label": "cofactor",
     "predicted_geometry_ok_count": 168,
+    "reconstruction_channel_artifact_id": "v3_cofactor_presence_calibration_current702_20260604",
     "staged_atlas_dir": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution",
     "threshold": 0.4115
   },

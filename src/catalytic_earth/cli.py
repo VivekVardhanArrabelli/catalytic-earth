@@ -2471,10 +2471,11 @@ def cmd_build_in_distribution_predicted_geometry_recovery(
         graph_path=Path(args.graph),
         experimental_geometry_features_path=Path(args.experimental_geometry_features),
         split_manifest_path=Path(args.split_manifest),
-        cofactor_channel_path=Path(args.cofactor_channel),
+        reconstruction_channel_path=Path(args.reconstruction_channel),
         staged_atlas_dir=Path(args.staged_atlas_dir),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        context_label=args.context_label,
         threshold=args.threshold,
         alphafold_version=args.alphafold_version,
     )
@@ -18306,8 +18307,17 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     in_distribution_recovery.add_argument(
-        "--cofactor-channel",
+        "--reconstruction-channel",
         default="artifacts/v3_cofactor_presence_calibration_current702_20260604.json",
+        help=(
+            "sequence -> active-site-context channel artifact (channel_predictions "
+            "schema); defaults to the cofactor-presence calibration"
+        ),
+    )
+    in_distribution_recovery.add_argument(
+        "--context-label",
+        default="cofactor",
+        help="name of the reconstructed active-site context (e.g. cofactor, substrate)",
     )
     in_distribution_recovery.add_argument(
         "--staged-atlas-dir",

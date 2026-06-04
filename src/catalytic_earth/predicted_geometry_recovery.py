@@ -82,16 +82,44 @@ def staged_cif_fetcher(staged_dir: Path, *, version_tag: str = "v6"):
     return fetch
 
 
+# --- Context-reconstruction adapters -------------------------------------
+# The harness is parameterized by the reconstruction context type. An adapter
+# pair plugs a sequence -> active-site-context channel into the router: a fusion
+# adapter injects the channel's predictions into the predicted geometry, and a
+# suppression adapter abstains calls whose required context the channel does not
+# support. The defaults below are the cofactor instantiation (the demonstrated
+# case). A new context type (substrate, PTM, interface, an ion outside the
+# current cofactor classes, ...) supplies its own adapter pair of the same shape
+# and reuses everything else in this module unchanged.
+
+
+def _default_context_fusion(
+    predicted_geometry: dict[str, Any], channel: dict[str, Any]
+) -> dict[str, Any]:
+    """Cofactor fusion adapter: inject predicted cofactor families into ligand_context."""
+    return _fused_geometry_features(
+        predicted_geometry=predicted_geometry, cofactor_channel=channel
+    )
+
+
+def _default_unsupported_suppression(
+    rows: list[dict[str, Any]], channel: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Cofactor suppression adapter: abstain calls needing an unsupported cofactor family."""
+    return _sequence_supported_suppression_rows(rows=rows, cofactor_channel=channel)
+
+
 def write_in_distribution_predicted_geometry_recovery(
     *,
     label_manifest_path: Path,
     graph_path: Path,
     experimental_geometry_features_path: Path,
     split_manifest_path: Path,
-    cofactor_channel_path: Path,
+    reconstruction_channel_path: Path,
     staged_atlas_dir: Path,
     out_path: Path,
     report_path: Path | None = None,
+    context_label: str = "cofactor",
     threshold: float = HAND_ROUTER_THRESHOLD,
     alphafold_version: str = DEFAULT_ALPHAFOLD_VERSION,
 ) -> dict[str, Any]:
@@ -100,8 +128,9 @@ def write_in_distribution_predicted_geometry_recovery(
         graph=_load_json(graph_path),
         experimental_geometry_features=_load_json(experimental_geometry_features_path),
         split_manifest=_load_json(split_manifest_path),
-        cofactor_channel=_load_json(cofactor_channel_path),
+        reconstruction_channel=_load_json(reconstruction_channel_path),
         staged_atlas_dir=Path(staged_atlas_dir),
+        context_label=context_label,
         threshold=threshold,
         alphafold_version=alphafold_version,
     )
@@ -119,8 +148,11 @@ def build_in_distribution_predicted_geometry_recovery(
     graph: dict[str, Any],
     experimental_geometry_features: dict[str, Any],
     split_manifest: dict[str, Any],
-    cofactor_channel: dict[str, Any],
+    reconstruction_channel: dict[str, Any],
     staged_atlas_dir: Path,
+    context_label: str = "cofactor",
+    fuse_context=_default_context_fusion,
+    suppress_unsupported=_default_unsupported_suppression,
     threshold: float = HAND_ROUTER_THRESHOLD,
     alphafold_version: str = DEFAULT_ALPHAFOLD_VERSION,
 ) -> dict[str, Any]:
@@ -145,9 +177,7 @@ def build_in_distribution_predicted_geometry_recovery(
         fetcher=staged_cif_fetcher(Path(staged_atlas_dir)),
     )
     predicted_retrieval = run_geometry_retrieval(predicted_geometry)
-    fused_geometry = _fused_geometry_features(
-        predicted_geometry=predicted_geometry, cofactor_channel=cofactor_channel
-    )
+    fused_geometry = fuse_context(predicted_geometry, reconstruction_channel)
     fused_retrieval = run_geometry_retrieval(fused_geometry)
     experimental_retrieval = run_geometry_retrieval(experimental_geometry_features)
 
@@ -175,9 +205,7 @@ def build_in_distribution_predicted_geometry_recovery(
         wave1_audit=empty_wave_audit,
         threshold=threshold,
     )
-    suppressed_rows = _sequence_supported_suppression_rows(
-        rows=fused_rows, cofactor_channel=cofactor_channel
-    )
+    suppressed_rows = suppress_unsupported(fused_rows, reconstruction_channel)
 
     split_by_entry = _split_assignment(split_manifest)
     per_entry = _per_entry_transitions(
@@ -198,7 +226,10 @@ def build_in_distribution_predicted_geometry_recovery(
             "split_assignment_scored": "in_distribution",
             "heldout_rows_scored": False,
             "heldout_labels_read": False,
-            "cofactor_channel_input": "sequence-derived cofactor presence only",
+            "context_label": context_label,
+            "reconstruction_channel_input": (
+                "sequence-derived active-site context presence only"
+            ),
             "experimental_ligands_used_for_fused_surface": False,
             "router_against_fingerprint_templates_no_per_row_self_match": True,
             "headline_recovery_is_out_of_sample_calibration_only": True,
@@ -208,6 +239,7 @@ def build_in_distribution_predicted_geometry_recovery(
         "scope": {
             "threshold": threshold,
             "alphafold_version": alphafold_version,
+            "context_label": context_label,
             "atlas_target_row_count": len(atlas_rows),
             "predicted_geometry_ok_count": sum(
                 1
@@ -215,13 +247,13 @@ def build_in_distribution_predicted_geometry_recovery(
                 if entry.get("status") == "ok"
             ),
             "staged_atlas_dir": str(staged_atlas_dir),
-            "cofactor_channel_artifact_id": cofactor_channel.get("artifact_id"),
+            "reconstruction_channel_artifact_id": reconstruction_channel.get("artifact_id"),
         },
         "interpretation": (
             "Calibration is the honest out-of-sample readout. Read "
             "experimental_correct -> apo_correct as the in-distribution analog of "
             "the heldout 45->23 drop, and apo_correct -> fused_correct as the "
-            "sequence cofactor-channel recovery."
+            f"sequence {context_label} reconstruction-channel recovery."
         ),
         "readouts_by_split": readouts,
         "per_entry": per_entry,
@@ -338,7 +370,8 @@ def _recovery_report(audit: dict[str, Any]) -> str:
         "",
         f"- Atlas target rows: {scope['atlas_target_row_count']}; predicted-geometry ok:",
         f"  {scope['predicted_geometry_ok_count']}; threshold {scope['threshold']}.",
-        f"- Cofactor channel: {scope['cofactor_channel_artifact_id']}.",
+        f"- Reconstruction context: {scope['context_label']}; channel:",
+        f"  {scope['reconstruction_channel_artifact_id']}.",
         "",
         "## Recovery by split",
         "",
