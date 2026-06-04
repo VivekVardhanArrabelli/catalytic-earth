@@ -127,6 +127,12 @@ from .northstar_next_levers import (
     write_fold_augmented_p00889_ortholog_coordinate_fetch_manifest,
     write_fold_augmented_p10746_deployment_caveat_decision_application,
     write_fold_augmented_p10746_deployment_caveat_decision_packet,
+    write_fold_augmented_p10746_prior_human_decision_reviewed_stub,
+    write_fold_augmented_confounded_proxy_p10746_decision_impact,
+    write_fold_augmented_q43088_geometry_locator_blocker_packet,
+    write_fold_augmented_q43088_source_free_locator_approval_contract,
+    write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088,
+    write_fold_augmented_confounded_proxy_alternate_structure_source_contract,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
     write_fold_augmented_post_rerun_confounded_deployment_closure_audit,
@@ -12925,9 +12931,37 @@ def cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet(
     return 0
 
 
+def cmd_build_fold_augmented_p10746_prior_human_decision_reviewed_stub(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_p10746_prior_human_decision_reviewed_stub(
+        decision_packet_path=Path(args.decision_packet),
+        prior_human_decision_application_path=Path(
+            args.prior_human_decision_application
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented P10746 prior-human-decision reviewed stub to "
+        f"{args.out} (reviewed stubs: "
+        f"{counts.get('reviewed_decision_stub_rows')}, blockers: "
+        f"{counts.get('blockers')})"
+    )
+    return 0
+
+
 def cmd_apply_fold_augmented_p10746_deployment_caveat_decision(
     args: argparse.Namespace,
 ) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
     application = write_fold_augmented_p10746_deployment_caveat_decision_application(
         decision_packet_path=Path(args.decision_packet),
         reviewed_decision_packet_path=(
@@ -12937,6 +12971,7 @@ def cmd_apply_fold_augmented_p10746_deployment_caveat_decision(
         ),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
     )
     counts = application.get("counts", {})
     print(
@@ -12944,6 +12979,158 @@ def cmd_apply_fold_augmented_p10746_deployment_caveat_decision(
         f"{args.out} (accepted: "
         f"{counts.get('accepted_p10746_caveat_rows')}, "
         f"pending: {counts.get('pending_decision_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_p10746_decision_impact(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    impact = write_fold_augmented_confounded_proxy_p10746_decision_impact(
+        deployment_validity_blocker_packet_path=Path(
+            args.deployment_validity_blocker_packet
+        ),
+        p10746_decision_application_path=Path(
+            args.p10746_decision_application
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = impact.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy P10746 decision impact to "
+        f"{args.out} (remaining full-channel blockers: "
+        f"{counts.get('remaining_full_channel_blocker_rows_after_p10746')}, "
+        f"P10746 resolved: "
+        f"{counts.get('p10746_policy_blocker_resolved_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_q43088_geometry_locator_blocker_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_q43088_geometry_locator_blocker_packet(
+        remaining_combined_score_blocker_classification_path=Path(
+            args.remaining_combined_score_blocker_classification
+        ),
+        protein_only_extended_surface_path=Path(args.protein_only_extended_surface),
+        active_site_role_graph_sidecar_path=Path(
+            args.active_site_role_graph_sidecar
+        ),
+        mechanism_feature_embedding_train_cal_input_manifest_path=Path(
+            args.mechanism_feature_embedding_train_cal_input_manifest
+        ),
+        selected_organic_cofactor_score_sidecars_path=Path(
+            args.selected_organic_cofactor_score_sidecars
+        ),
+        sequence_cofactor_channel_path=Path(args.sequence_cofactor_channel),
+        q43088_coordinate_path=Path(args.q43088_coordinate),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented Q43088 geometry/locator blocker packet to "
+        f"{args.out} (active-site residues: "
+        f"{counts.get('active_site_residue_count')}, additional needed: "
+        f"{counts.get('additional_approved_locator_positions_needed')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_q43088_source_free_locator_approval_contract(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    contract = write_fold_augmented_q43088_source_free_locator_approval_contract(
+        q43088_geometry_locator_blocker_packet_path=Path(
+            args.q43088_geometry_locator_blocker_packet
+        ),
+        residual_queue_after_p10746_q43088_path=Path(
+            args.residual_queue_after_p10746_q43088
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = contract.get("counts", {})
+    print(
+        "Wrote fold-augmented Q43088 source-free locator approval contract to "
+        f"{args.out} (additional locators needed: "
+        f"{counts.get('additional_approved_locator_positions_needed')}, "
+        f"remaining coordinate-source blockers: "
+        f"{counts.get('remaining_coordinate_source_blocker_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    queue = write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
+        p10746_decision_impact_path=Path(args.p10746_decision_impact),
+        q43088_geometry_locator_blocker_packet_path=Path(
+            args.q43088_geometry_locator_blocker_packet
+        ),
+        current_unavailable_coordinate_reprobe_path=Path(
+            args.current_unavailable_coordinate_reprobe
+        ),
+        high_cofactor_probe_contract_path=Path(args.high_cofactor_probe_contract),
+        same_family_structural_acquisition_contract_path=Path(
+            args.same_family_structural_acquisition_contract
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote fold-augmented confounded proxy residual queue after P10746/Q43088 "
+        f"to {args.out} (residual rows: "
+        f"{counts.get('residual_full_channel_rows')}, high shortfall: "
+        f"{counts.get('high_cofactor_min_new_abstained_rows_for_80pct')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_confounded_proxy_alternate_structure_source_contract(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    contract = (
+        write_fold_augmented_confounded_proxy_alternate_structure_source_contract(
+            residual_queue_after_p10746_q43088_path=Path(
+                args.residual_queue_after_p10746_q43088
+            ),
+            afdb_version_sweep_path=Path(args.afdb_version_sweep),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = contract.get("counts", {})
+    print(
+        "Wrote fold-augmented alternate structure-source contract to "
+        f"{args.out} (coordinate-source rows: "
+        f"{counts.get('affected_coordinate_source_blocker_rows')}, "
+        f"AFDB all-version 404 rows: "
+        f"{counts.get('afdb_all_versions_404_rows')})"
     )
     return 0
 
@@ -30191,6 +30378,49 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet
     )
 
+    p10746_prior_human_decision_reviewed_stub = subparsers.add_parser(
+        "build-fold-augmented-p10746-prior-human-decision-reviewed-stub",
+        help=(
+            "map the prior reviewed P10746 keep-fold-only human decision into "
+            "the stricter deployment-caveat decision stub"
+        ),
+    )
+    p10746_prior_human_decision_reviewed_stub.add_argument(
+        "--decision-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
+            "packet_current702_20260603.json"
+        ),
+    )
+    p10746_prior_human_decision_reviewed_stub.add_argument(
+        "--prior-human-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_blocker_human_decision_application_"
+            "current702_20260603.json"
+        ),
+    )
+    p10746_prior_human_decision_reviewed_stub.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    p10746_prior_human_decision_reviewed_stub.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_prior_human_decision_"
+            "reviewed_stub_current702_20260604.json"
+        ),
+    )
+    p10746_prior_human_decision_reviewed_stub.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p10746_prior_human_decision_reviewed_stub_"
+            "current702_20260604.md"
+        ),
+    )
+    p10746_prior_human_decision_reviewed_stub.set_defaults(
+        func=cmd_build_fold_augmented_p10746_prior_human_decision_reviewed_stub
+    )
+
     p10746_caveat_decision_application = subparsers.add_parser(
         "apply-fold-augmented-p10746-deployment-caveat-decision",
         help=(
@@ -30210,6 +30440,10 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     p10746_caveat_decision_application.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    p10746_caveat_decision_application.add_argument(
         "--out",
         default=(
             "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
@@ -30225,6 +30459,282 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p10746_caveat_decision_application.set_defaults(
         func=cmd_apply_fold_augmented_p10746_deployment_caveat_decision
+    )
+
+    confounded_proxy_p10746_decision_impact = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-p10746-decision-impact",
+        help=(
+            "compose the current Lever 3 confounded-proxy blocker impact after "
+            "a reviewed P10746 caveat decision application"
+        ),
+    )
+    confounded_proxy_p10746_decision_impact.add_argument(
+        "--deployment-validity-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_deployment_validity_"
+            "blocker_packet_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_p10746_decision_impact.add_argument(
+        "--p10746-decision-application",
+        default=(
+            "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_"
+            "application_prior_human_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_p10746_decision_impact.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_p10746_decision_impact.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_p10746_decision_"
+            "impact_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_p10746_decision_impact.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_p10746_decision_impact_"
+            "current702_20260604.md"
+        ),
+    )
+    confounded_proxy_p10746_decision_impact.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_p10746_decision_impact
+    )
+
+    q43088_geometry_locator_blocker_packet = subparsers.add_parser(
+        "build-fold-augmented-q43088-geometry-locator-blocker-packet",
+        help=(
+            "write the single-row Q43088 geometry/locator blocker packet after "
+            "P10746 policy reconciliation"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--remaining-combined-score-blocker-classification",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_"
+            "score_blocker_classification_current702_20260603.json"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--protein-only-extended-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--mechanism-feature-embedding-train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--selected-organic-cofactor-score-sidecars",
+        default=(
+            "artifacts/v3_selected_organic_cofactor_score_sidecars_"
+            "current702_20260530.json"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--sequence-cofactor-channel",
+        default=(
+            "artifacts/v3_sequence_cofactor_channel_current702_20260529.json"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--q43088-coordinate",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601_coordinates/confounded_proxy_train_cal_tranche_queries/"
+            "afdb_Q43088_v6.cif"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_geometry_locator_blocker_"
+            "packet_current702_20260604.json"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_q43088_geometry_locator_blocker_packet_"
+            "current702_20260604.md"
+        ),
+    )
+    q43088_geometry_locator_blocker_packet.set_defaults(
+        func=cmd_build_fold_augmented_q43088_geometry_locator_blocker_packet
+    )
+
+    q43088_source_free_locator_approval_contract = subparsers.add_parser(
+        "build-fold-augmented-q43088-source-free-locator-approval-contract",
+        help=(
+            "compose the review-only Q43088 locator approval contract after "
+            "the geometry blocker packet"
+        ),
+    )
+    q43088_source_free_locator_approval_contract.add_argument(
+        "--q43088-geometry-locator-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_geometry_locator_blocker_"
+            "packet_current702_20260604.json"
+        ),
+    )
+    q43088_source_free_locator_approval_contract.add_argument(
+        "--residual-queue-after-p10746-q43088",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_residual_queue_after_"
+            "p10746_q43088_current702_20260604.json"
+        ),
+    )
+    q43088_source_free_locator_approval_contract.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    q43088_source_free_locator_approval_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_source_free_locator_"
+            "approval_contract_current702_20260604.json"
+        ),
+    )
+    q43088_source_free_locator_approval_contract.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_q43088_source_free_locator_approval_"
+            "contract_current702_20260604.md"
+        ),
+    )
+    q43088_source_free_locator_approval_contract.set_defaults(
+        func=cmd_build_fold_augmented_q43088_source_free_locator_approval_contract
+    )
+
+    confounded_proxy_residual_queue_after_p10746_q43088 = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-residual-queue-after-p10746-q43088",
+        help=(
+            "compose the residual Lever 3 blocker queue after P10746 caveat "
+            "reconciliation and Q43088 locator narrowing"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--p10746-decision-impact",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_p10746_decision_"
+            "impact_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--q43088-geometry-locator-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_q43088_geometry_locator_blocker_"
+            "packet_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--current-unavailable-coordinate-reprobe",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_current_unavailable_"
+            "coordinate_reprobe_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--high-cofactor-probe-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "probe_contract_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--same-family-structural-acquisition-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_contract_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_residual_queue_after_"
+            "p10746_q43088_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_residual_queue_after_"
+            "p10746_q43088_current702_20260604.md"
+        ),
+    )
+    confounded_proxy_residual_queue_after_p10746_q43088.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088
+        )
+    )
+
+    confounded_proxy_alternate_structure_source_contract = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-alternate-structure-source-contract",
+        help=(
+            "compose the review-only alternate predicted-structure source "
+            "contract after AFDB v1-v6 exhaustion"
+        ),
+    )
+    confounded_proxy_alternate_structure_source_contract.add_argument(
+        "--residual-queue-after-p10746-q43088",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_residual_queue_after_"
+            "p10746_q43088_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_alternate_structure_source_contract.add_argument(
+        "--afdb-version-sweep",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_afdb_version_sweep_"
+            "current702_20260604.json"
+        ),
+    )
+    confounded_proxy_alternate_structure_source_contract.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_alternate_structure_source_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_alternate_structure_"
+            "source_contract_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_alternate_structure_source_contract.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_alternate_structure_"
+            "source_contract_current702_20260604.md"
+        ),
+    )
+    confounded_proxy_alternate_structure_source_contract.set_defaults(
+        func=(
+            cmd_build_fold_augmented_confounded_proxy_alternate_structure_source_contract
+        )
     )
 
     post_decision_deployment_closure_status = subparsers.add_parser(

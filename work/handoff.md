@@ -3,17 +3,16 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T06:34:11Z`
-- STARTED_AT_LOCAL: `2026-06-04T01:34:11-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T07:06:59Z`
-- ENDED_AT_LOCAL: `2026-06-04T02:06:59-0500 CDT`
-- ELAPSED_MINUTES: `32.8`
-- Status: complete; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T06:34:11Z`; during wrap the
-  lock owner showed stale PID `44727` replaced by PID `67966` at
-  `2026-06-04T07:03:39Z` for the same automation ID, and PID `67966` was no
-  longer live when checked. Current user instruction overrode the prior Lever 2
-  handoff next action: worked only on Lever 3 for this run.
+- STARTED_AT_UTC: `2026-06-04T08:01:35Z`
+- STARTED_AT_LOCAL: `2026-06-04T03:01:35-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T08:50:44Z`
+- ENDED_AT_LOCAL: `2026-06-04T03:50:44-0500 CDT`
+- ELAPSED_MINUTES: `49.2`
+- Status: wrap validation passed; canonical `.git/catalytic-earth-automation.lock`
+  acquired before substantive work at `2026-06-04T08:01:35Z` with PID `89761`.
+  During the run the lock record became stale and was refreshed with the same
+  start timestamp at `2026-06-04T08:33:39Z` via the tested lock helper.
+  Current user instruction: work only on Lever 3.
 
 ## Mission
 
@@ -64,6 +63,154 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Active Run 27
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T08:01:35Z`
+- STARTED_LOCAL: `2026-06-04T03:01:35-0500 CDT`
+- ENDED_AT: `2026-06-04T08:50:44Z`
+- ENDED_LOCAL: `2026-06-04T03:50:44-0500 CDT`
+- ELAPSED_MINUTES: `49.2`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T08:01:35Z` with PID `89761`. During wrap the lock helper reported
+  that record stale and replaced it with the same start timestamp:
+  `{"acquired": true, "age_seconds": 1924.339, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "17940", "started_at": "2026-06-04T08:01:35Z", "status": "stale_lock_replaced"}`.
+
+#### Current intent
+
+Work only on Lever 3. Continue from Run 26's exact next action: either clear
+the six remaining full-channel blockers without changing thresholds/splits, or
+advance the frozen train/cal OOS proxy acquisition contracts for confounded-safe
+calibration closure.
+
+#### What changed
+
+- Reconciled the prior reviewed P10746 human gate into the stricter current
+  P10746 caveat application path. New artifacts:
+  `artifacts/v3_fold_augmented_p10746_prior_human_decision_reviewed_stub_current702_20260604.json`,
+  `work/fold_augmented_p10746_prior_human_decision_reviewed_stub_current702_20260604.md`,
+  `artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_prior_human_current702_20260604.json`,
+  and
+  `work/fold_augmented_p10746_deployment_caveat_decision_application_prior_human_current702_20260604.md`.
+  The prior `keep_fold_only_no_non_residue_sidecar` decision now maps to the
+  explicit accepted P10746 fold-only caveat, with no sidecar, score, threshold,
+  or deployment-closure change.
+- Added the P10746 current-impact packet:
+  `artifacts/v3_fold_augmented_confounded_proxy_p10746_decision_impact_current702_20260604.json`
+  plus Markdown report. It reduces the six source full-channel blockers by one:
+  remaining full-channel blockers after P10746 are `5`; policy blockers are now
+  `0`; the high-cofactor and same-family calibration shortfalls remain `16`
+  and `170`.
+- Added the Q43088 geometry/locator blocker packet:
+  `artifacts/v3_fold_augmented_q43088_geometry_locator_blocker_packet_current702_20260604.json`
+  plus Markdown report. It shows Q43088 is not coordinate-missing: a local
+  AFDB-v6 CIF and fold channel exist, but only one active-site residue is
+  locally available. The exact missing evidence is two additional approved
+  source-free locator positions or an approved geometry sidecar.
+- Added the Q43088 source-free locator approval contract:
+  `artifacts/v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604.json`
+  plus Markdown report. It freezes the pass/fail rule for Q43088: approve two
+  additional source-free locator positions or an equivalent source-free geometry
+  sidecar before any Q43088 rescore.
+- Added the post-P10746/Q43088 residual queue:
+  `artifacts/v3_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604.json`
+  plus Markdown report. Residual full-channel rows are
+  `m_csa:416`, `m_csa:562`, `m_csa:586`, `m_csa:604`, and `m_csa:637`: four
+  coordinate-source blockers and one Q43088 locator/geometry blocker.
+- Ran live AFDB v1-v6 HEAD availability probes for `P07071`, `P07658`,
+  `P00806`, and `P04531`; every version returned HTTP `404`. New artifacts:
+  `artifacts/v3_fold_augmented_confounded_proxy_afdb_version_sweep_current702_20260604.json`
+  and
+  `work/fold_augmented_confounded_proxy_afdb_version_sweep_current702_20260604.md`.
+  No coordinates were downloaded, cached, imported, or scored.
+- Added the alternate predicted-structure source contract:
+  `artifacts/v3_fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604.json`
+  plus Markdown report. It freezes the next evidence type for the four
+  AFDB-unavailable rows: an approved non-AFDB deployment-valid predicted
+  structure source with provider/model/version/path/checksum provenance.
+- Added deterministic CLI builders and regression coverage for the new P10746,
+  Q43088, residual-queue, and source-contract artifacts. The AFDB version sweep
+  remains a recorded live probe artifact with regression coverage, not a
+  networked CLI default.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, heldout splits, source decisions, sidecar approvals, or production
+  threshold values changed.
+- No heldout M-CSA rows were used for training or threshold tuning; heldout
+  state appears only as frozen context in existing source artifacts.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, or target names were used
+  as predictive features.
+- The AFDB probes were availability checks only: no coordinates were
+  downloaded, cached, imported, staged, or scored.
+- P10746 was accepted only as a review-only caveat application; it does not
+  close deployment, create a non-residue sidecar, or trigger a threshold rerun.
+
+#### Verification
+
+- Generated all new JSON/Markdown artifacts listed above through CLI builders
+  except the live AFDB version-sweep probe artifact, which is pinned by
+  regression coverage.
+- Focused P10746 unit:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'p10746_prior_human_decision_reconciles' -q`:
+  passed.
+- Focused artifact/CLI regressions after the full artifact set:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'p10746_prior_human_decision_and_impact_counts or q43088_geometry_locator_blocker_packet_counts or q43088_source_free_locator_approval_contract_counts or residual_queue_after_p10746_q43088_counts or afdb_version_sweep_counts or alternate_structure_source_contract_counts' -q`:
+  6 passed, 197 deselected.
+- CLI registration:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`:
+  1 passed, 139 subtests passed.
+- Broader affected regression:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`:
+  489 passed, 146 subtests passed.
+- Full pytest after final renderer/report polish:
+  `PYTHONPATH=src python -m pytest -q`: 1361 passed, 165 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1316 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- JSON syntax checks passed for the eight new Lever 3 JSON artifacts from this
+  run.
+- Disk check remained above the 10 GiB guardrail: 26 GiB available.
+
+#### Commit/push status
+
+- `git fetch origin` completed; local `HEAD` and `origin/main` were both
+  `5ccc15ca30ccfc92a30930508bf1705861f03220` before the wrap commit.
+- Wrap commit, push, sync verification, and lock release are the remaining
+  mechanical steps after this handoff update.
+
+#### Exact next action
+
+Do not rerun or retune threshold `0.44155` yet. The immediate Lever 3
+surface-completeness gates are:
+
+1. For `m_csa:416`/`P07071`, `m_csa:562`/`P07658`, `m_csa:586`/`P00806`, and
+   `m_csa:637`/`P04531`, approve a non-AFDB deployment-valid predicted
+   structure source or stage local approved predicted coordinates under
+   `v3_fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604`.
+2. For `m_csa:604`/`Q43088`, approve two additional source-free locator
+   positions or an equivalent source-free geometry sidecar under
+   `v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604`.
+3. Only after both gates clear, rescore those five rows through the fixed
+   predicted-structure-vs-train-atlas fold/geometry/cofactor channel. Do not
+   select a new threshold and do not use heldout rows for calibration.
+
+For confounded-safe calibration closure, the current evidence is still
+insufficient: the frozen high-cofactor probe still needs 16 new non-heldout
+train/cal OOS rows abstained at the fixed threshold, and the same-family
+structural proxy still needs 170 additional abstained train/cal rows.
 
 ### 2026-06-04 Lever 3 Forward Push Active Run 26
 

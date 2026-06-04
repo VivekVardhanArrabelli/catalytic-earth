@@ -1,0 +1,106 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_afdb_version_sweep_current702_20260604",
+  "blockers": [
+    "four_remaining_rows_unavailable_from_afdb_v1_through_v6",
+    "approved_non_afdb_predicted_structure_source_missing"
+  ],
+  "counts": {
+    "afdb_all_versions_404_rows": 4,
+    "afdb_http_200_rows": 0,
+    "afdb_versions_checked_per_row": 6,
+    "blockers": 2,
+    "coordinate_downloads_performed": 0,
+    "critical_violation_total": 0,
+    "probe_rows": 4
+  },
+  "created_utc": "2026-06-04T08:31:25Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "built_in_afdb_auto_version_fallback_can_clear_rows_now": false,
+    "coordinate_import_authorized_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Use an approved alternate non-AFDB deployment-valid predicted-structure provider, or stage local approved predicted coordinates; AFDB v1-v6 cannot clear P07071/P07658/P00806/P04531."
+  },
+  "guardrails": {
+    "coordinate_downloads_performed": false,
+    "coordinates_imported_or_cached": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_read_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Do not rerun Foldseek or thresholds. Choose/approve a non-AFDB predicted-structure source, or keep these rows as disclosed deployment-validity blockers.",
+    "result": "The repo-supported AlphaFoldDB auto-version fallback is exhausted for all four remaining coordinate-missing rows; every checked v1-v6 CIF URL returned 404."
+  },
+  "rows": [
+    {
+      "accession": "P07071",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:416",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "smallest_next_experiment": "approve an alternate non-AFDB predicted-structure source or stage a local approved predicted coordinate for this accession"
+    },
+    {
+      "accession": "P07658",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:562",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "smallest_next_experiment": "approve an alternate non-AFDB predicted-structure source or stage a local approved predicted coordinate for this accession"
+    },
+    {
+      "accession": "P00806",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:586",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "smallest_next_experiment": "approve an alternate non-AFDB predicted-structure source or stage a local approved predicted coordinate for this accession"
+    },
+    {
+      "accession": "P04531",
+      "afdb_model_version_statuses": {
+        "1": 404,
+        "2": 404,
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "any_afdb_model_available": false,
+      "entry_id": "m_csa:637",
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "smallest_next_experiment": "approve an alternate non-AFDB predicted-structure source or stage a local approved predicted coordinate for this accession"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_afdb_version_sweep",
+  "scope": "Live AlphaFoldDB v1-v6 HEAD availability sweep for the four remaining Lever 3 predicted-structure-unavailable rows. It performs no downloads, imports, scoring, threshold changes, or heldout calibration use.",
+  "status": "fold_augmented_confounded_proxy_afdb_version_sweep_no_models_available"
+}

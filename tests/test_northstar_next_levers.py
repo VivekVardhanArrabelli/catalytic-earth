@@ -52,8 +52,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_p00889_ortholog_coordinate_fetch_manifest,
     build_fold_augmented_p23007_alternate_accession_scout,
     build_fold_augmented_p23007_alternate_accession_policy_gate,
+    build_fold_augmented_confounded_proxy_p10746_decision_impact,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
+    build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
     build_fold_augmented_post_decision_deployment_closure_status,
     build_fold_augmented_post_rerun_deployment_closure_status,
     build_fold_augmented_post_rerun_confounded_deployment_closure_audit,
@@ -5292,6 +5294,159 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         )
         self.assertFalse(accepted["decision"]["deployment_closed_now"])
         self.assertFalse(accepted["guardrails"]["deployment_closed_now"])
+
+    def test_p10746_prior_human_decision_reconciles_to_current_impact(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            packet_path = root / "packet.json"
+            prior_path = root / "prior.json"
+            reviewed_path = root / "reviewed.json"
+            application_path = root / "application.json"
+            deployment_packet_path = root / "deployment_packet.json"
+
+            source_stub = {
+                "entry_id": "m_csa:204",
+                "accession": "P10746",
+                "review_status": "pending_explicit_decision",
+                "allowed_decisions": [
+                    "explicit_accept_p10746_fold_only_deployment_caveat",
+                    "reject_p10746_caveat_require_approved_non_residue_sidecar",
+                ],
+                "decision_context_sha256": "context-hash",
+            }
+            packet_path.write_text(
+                json.dumps({"decision_stubs": [source_stub], "blockers": []}),
+                encoding="utf-8",
+            )
+            prior_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"deployment_closed_now": False},
+                        "p10746_decision": {
+                            "entry_id": "m_csa:204",
+                            "accession": "P10746",
+                            "decision": "keep_fold_only_no_non_residue_sidecar",
+                            "non_residue_sidecar_authorized_now": False,
+                            "approval_provenance": (
+                                "user_human_gate_decision_20260602"
+                            ),
+                            "reviewer": "Vivek",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            reviewed = (
+                build_fold_augmented_p10746_prior_human_decision_reviewed_stub(
+                    decision_packet_path=packet_path,
+                    prior_human_decision_application_path=prior_path,
+                )
+            )
+            reviewed_path.write_text(json.dumps(reviewed), encoding="utf-8")
+            application = (
+                build_fold_augmented_p10746_deployment_caveat_decision_application(
+                    decision_packet_path=packet_path,
+                    reviewed_decision_packet_path=reviewed_path,
+                    artifact_id="p10746_application_prior_human_test",
+                )
+            )
+            application_path.write_text(json.dumps(application), encoding="utf-8")
+            deployment_packet_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {"threshold": 0.44155},
+                        "counts": {
+                            "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+                            "same_family_structural_min_new_abstained_rows_for_80pct": 170,
+                        },
+                        "affected_rows": {
+                            "remaining_combined_score_blocker_rows": [
+                                {
+                                    "entry_id": "m_csa:204",
+                                    "accession": "P10746",
+                                    "blocker_class": "policy_decision_required",
+                                    "missing_evidence_type": (
+                                        "explicit deployment caveat decision"
+                                    ),
+                                    "smallest_row_experiment": (
+                                        "record an explicit P10746 decision"
+                                    ),
+                                },
+                                {
+                                    "entry_id": "m_csa:416",
+                                    "accession": "P07071",
+                                    "blocker_class": (
+                                        "predicted_structure_unavailable"
+                                    ),
+                                    "missing_evidence_type": (
+                                        "approved deployment-valid predicted-"
+                                        "structure coordinate source"
+                                    ),
+                                    "smallest_row_experiment": (
+                                        "approve one source-free predicted "
+                                        "coordinate"
+                                    ),
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            impact = build_fold_augmented_confounded_proxy_p10746_decision_impact(
+                deployment_validity_blocker_packet_path=deployment_packet_path,
+                p10746_decision_application_path=application_path,
+            )
+
+        self.assertEqual(
+            reviewed["status"], "p10746_prior_human_decision_reviewed_stub_ready"
+        )
+        self.assertEqual(reviewed["counts"]["reviewed_decision_stub_rows"], 1)
+        self.assertEqual(
+            reviewed["reviewed_decision_stubs"][0]["decision"],
+            "explicit_accept_p10746_fold_only_deployment_caveat",
+        )
+        self.assertEqual(
+            application["artifact_id"], "p10746_application_prior_human_test"
+        )
+        self.assertEqual(
+            application["status"],
+            "p10746_deployment_caveat_decision_application_accepted_review_only",
+        )
+        self.assertTrue(
+            application["decision"]["p10746_fold_only_caveat_accepted_now"]
+        )
+        self.assertEqual(
+            impact["status"],
+            (
+                "fold_augmented_confounded_proxy_p10746_decision_impact_"
+                "blocked_remaining_evidence"
+            ),
+        )
+        self.assertEqual(
+            impact["counts"]["p10746_policy_blocker_resolved_rows"], 1
+        )
+        self.assertEqual(
+            impact["counts"]["remaining_full_channel_blocker_rows_after_p10746"],
+            1,
+        )
+        self.assertEqual(
+            impact["counts"]["remaining_predicted_structure_unavailable_rows"], 1
+        )
+        self.assertEqual(
+            impact["counts"]["high_cofactor_min_new_abstained_rows_for_80pct"], 16
+        )
+        self.assertEqual(
+            impact["counts"][
+                "same_family_structural_min_new_abstained_rows_for_80pct"
+            ],
+            170,
+        )
+        self.assertFalse(impact["decision"]["fixed_threshold_audit_ready_to_rerun_now"])
+        self.assertFalse(impact["guardrails"]["threshold_selected_or_tuned"])
 
     def test_post_decision_deployment_closure_status_requires_p10746_acceptance(
         self,

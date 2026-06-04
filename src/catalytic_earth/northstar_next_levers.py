@@ -150,6 +150,9 @@ FOLD_AUGMENTED_POST_RERUN_CONFOUNDED_DEPLOYMENT_CLOSURE_AUDIT_ID = (
 FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_PACKET_ID = (
     "v3_fold_augmented_p10746_deployment_caveat_decision_packet_current702_20260603"
 )
+FOLD_AUGMENTED_P10746_PRIOR_HUMAN_DECISION_REVIEWED_STUB_ID = (
+    "v3_fold_augmented_p10746_prior_human_decision_reviewed_stub_current702_20260604"
+)
 FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_APPLICATION_ID = (
     "v3_fold_augmented_p10746_deployment_caveat_decision_application_current702_20260603"
 )
@@ -215,6 +218,21 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_EXTENDED_TRAIN_CAL_OOS_SURFACE_ID = (
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_DEPLOYMENT_VALIDITY_BLOCKER_PACKET_ID = (
     "v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_P10746_DECISION_IMPACT_ID = (
+    "v3_fold_augmented_confounded_proxy_p10746_decision_impact_current702_20260604"
+)
+FOLD_AUGMENTED_Q43088_GEOMETRY_LOCATOR_BLOCKER_PACKET_ID = (
+    "v3_fold_augmented_q43088_geometry_locator_blocker_packet_current702_20260604"
+)
+FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_APPROVAL_CONTRACT_ID = (
+    "v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_RESIDUAL_QUEUE_AFTER_P10746_Q43088_ID = (
+    "v3_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604"
+)
+FOLD_AUGMENTED_CONFOUNDED_PROXY_ALTERNATE_STRUCTURE_SOURCE_CONTRACT_ID = (
+    "v3_fold_augmented_confounded_proxy_alternate_structure_source_contract_current702_20260604"
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_PROBE_CONTRACT_ID = (
     "v3_fold_augmented_confounded_proxy_high_cofactor_probe_contract_current702_20260604"
@@ -22562,6 +22580,236 @@ def write_fold_augmented_p10746_deployment_caveat_decision_packet(
     return packet
 
 
+def build_fold_augmented_p10746_prior_human_decision_reviewed_stub(
+    *,
+    decision_packet_path: Path,
+    prior_human_decision_application_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_P10746_PRIOR_HUMAN_DECISION_REVIEWED_STUB_ID,
+) -> dict[str, Any]:
+    packet = _read_json(decision_packet_path)
+    prior = _read_json(prior_human_decision_application_path)
+    stubs = [
+        row
+        for row in packet.get("decision_stubs", [])
+        if isinstance(row, dict) and str(row.get("entry_id")) == "m_csa:204"
+    ]
+    prior_decision = prior.get("p10746_decision") or {}
+    source_stub = stubs[0] if stubs else {}
+    allowed = set(source_stub.get("allowed_decisions") or [])
+    accepted_value = "explicit_accept_p10746_fold_only_deployment_caveat"
+    prior_keep_fold_only = (
+        prior_decision.get("decision") == "keep_fold_only_no_non_residue_sidecar"
+    )
+    context_hash = source_stub.get("decision_context_sha256")
+    blockers: list[str] = []
+    if not stubs:
+        blockers.append("p10746_decision_stub_missing")
+    if packet.get("blockers"):
+        blockers.append("source_decision_packet_has_blockers")
+    if accepted_value not in allowed:
+        blockers.append("accepted_decision_not_allowed_by_source_packet")
+    if not context_hash:
+        blockers.append("source_decision_context_sha256_missing")
+    if str(prior_decision.get("entry_id") or "") != "m_csa:204":
+        blockers.append("prior_human_decision_entry_mismatch")
+    if str(prior_decision.get("accession") or "") != "P10746":
+        blockers.append("prior_human_decision_accession_mismatch")
+    if not prior_keep_fold_only:
+        blockers.append("prior_human_decision_does_not_accept_fold_only_caveat")
+    if prior_decision.get("non_residue_sidecar_authorized_now") is True:
+        blockers.append("prior_human_decision_authorizes_non_residue_sidecar")
+    if not prior_decision.get("approval_provenance"):
+        blockers.append("prior_human_decision_provenance_missing")
+    if not prior_decision.get("reviewer"):
+        blockers.append("prior_human_decision_reviewer_missing")
+    if prior.get("decision", {}).get("deployment_closed_now") is True:
+        blockers.append("prior_artifact_already_claims_deployment_closure")
+
+    reviewed_stub: dict[str, Any] | None = None
+    if not blockers:
+        reviewed_stub = copy.deepcopy(source_stub)
+        reviewed_stub.update(
+            {
+                "review_status": "reviewed_explicit_decision",
+                "decision": accepted_value,
+                "prior_human_decision": prior_decision.get("decision"),
+                "prior_human_decision_artifact": str(
+                    prior_human_decision_application_path
+                ),
+                "approval_provenance": prior_decision.get("approval_provenance"),
+                "reviewer": prior_decision.get("reviewer"),
+                "decision_mapping": {
+                    "from": "keep_fold_only_no_non_residue_sidecar",
+                    "to": accepted_value,
+                    "rationale": (
+                        "The prior human gate explicitly chose to keep P10746 "
+                        "fold-only with the caveat disclosed and did not approve "
+                        "a non-residue sidecar."
+                    ),
+                },
+            }
+        )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_p10746_prior_human_decision_reviewed_stub"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p10746_prior_human_decision_reviewed_stub_ready"
+            if reviewed_stub is not None
+            else "p10746_prior_human_decision_reviewed_stub_blocked"
+        ),
+        "scope": (
+            "Review-only reconciliation packet that maps the prior reviewed "
+            "P10746 keep-fold-only human decision into the stricter P10746 "
+            "deployment-caveat decision stub. It preserves the source packet "
+            "decision_context_sha256 and does not close deployment, create "
+            "sidecars, score rows, or change thresholds."
+        ),
+        "reviewed_decision_stubs": [reviewed_stub] if reviewed_stub else [],
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "non_residue_sidecar_created_or_copied": False,
+            "deployment_closed_now": False,
+        },
+        "counts": {
+            "source_decision_stub_rows": len(stubs),
+            "prior_human_decision_rows": int(bool(prior_decision)),
+            "reviewed_decision_stub_rows": int(reviewed_stub is not None),
+            "accepted_p10746_caveat_rows": int(reviewed_stub is not None),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "prior_human_decision_reconciled": reviewed_stub is not None,
+            "p10746_fold_only_caveat_accepted_for_application_gate": (
+                reviewed_stub is not None
+            ),
+            "deployment_closed_now": False,
+            "next_gate": (
+                "Use this reviewed-stub packet as the reviewed decision input "
+                "to apply-fold-augmented-p10746-deployment-caveat-decision. "
+                "Keep the larger confounded proxy calibration blockers separate."
+                if reviewed_stub is not None
+                else "Resolve the listed reconciliation blockers before applying "
+                "the P10746 caveat decision gate."
+            ),
+        },
+        "source_artifacts": {
+            "decision_packet": _source_path_record(decision_packet_path),
+            "prior_human_decision_application": _source_path_record(
+                prior_human_decision_application_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The prior reviewed human gate is sufficient to create an "
+                "accepted reviewed P10746 caveat stub for the stricter application "
+                "gate."
+                if reviewed_stub is not None
+                else "The prior human gate cannot be safely mapped into the "
+                "stricter P10746 caveat stub until the blockers are cleared."
+            ),
+            "next_action": (
+                "Apply the P10746 caveat decision with this reviewed-stub packet, "
+                "then recompute the current Lever 3 blocker impact without "
+                "rerunning thresholds."
+                if reviewed_stub is not None
+                else "Do not apply a P10746 accept decision from this packet."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_p10746_prior_human_decision_reviewed_stub_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Fold-Augmented P10746 Prior Human Decision Reviewed Stub - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Source decision stubs: {counts['source_decision_stub_rows']}",
+        f"- Reviewed decision stubs: {counts['reviewed_decision_stub_rows']}",
+        f"- Accepted P10746 caveat rows: {counts['accepted_p10746_caveat_rows']}",
+        f"- Blockers: {packet['blockers'] if packet['blockers'] else 'none'}",
+        "",
+        "## Decision",
+        "",
+        "- Prior human decision reconciled: "
+        f"{decision['prior_human_decision_reconciled']}",
+        "- P10746 caveat accepted for application gate: "
+        f"{decision['p10746_fold_only_caveat_accepted_for_application_gate']}",
+        f"- Next gate: {decision['next_gate']}",
+    ]
+    if packet.get("reviewed_decision_stubs"):
+        stub = packet["reviewed_decision_stubs"][0]
+        lines += [
+            "",
+            "## Reviewed Stub",
+            "",
+            f"- Entry: {stub.get('entry_id')} / {stub.get('accession')}",
+            f"- Decision: {stub.get('decision')}",
+            f"- Review status: {stub.get('review_status')}",
+            f"- Decision context SHA-256: `{stub.get('decision_context_sha256')}`",
+            f"- Prior provenance: {stub.get('approval_provenance')}",
+        ]
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_p10746_prior_human_decision_reviewed_stub(
+    *,
+    decision_packet_path: Path,
+    prior_human_decision_application_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_P10746_PRIOR_HUMAN_DECISION_REVIEWED_STUB_ID,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_p10746_prior_human_decision_reviewed_stub(
+        decision_packet_path=decision_packet_path,
+        prior_human_decision_application_path=prior_human_decision_application_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_p10746_prior_human_decision_reviewed_stub_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
 def _reviewed_p10746_decision_rows(packet: dict[str, Any]) -> list[dict[str, Any]]:
     rows = packet.get("reviewed_decision_stubs")
     if isinstance(rows, list):
@@ -22576,6 +22824,7 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
     *,
     decision_packet_path: Path,
     reviewed_decision_packet_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_APPLICATION_ID,
 ) -> dict[str, Any]:
     source_packet = _read_json(decision_packet_path)
     reviewed_packet = (
@@ -22693,9 +22942,7 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
         else "p10746_deployment_caveat_decision_application_blocked_pending_explicit_decision"
     )
     return {
-        "artifact_id": (
-            FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_APPLICATION_ID
-        ),
+        "artifact_id": artifact_id,
         "schema_version": (
             f"{SCHEMA_VERSION}.fold_augmented_p10746_deployment_caveat_decision_application"
         ),
@@ -22755,12 +23002,27 @@ def build_fold_augmented_p10746_deployment_caveat_decision_application(
         },
         "interpretation": {
             "result": (
-                "No P10746 caveat acceptance is applied unless exactly one reviewed "
-                "decision selects the accepted value with an unchanged context hash."
+                "Exactly one reviewed decision accepts the P10746 fold-only "
+                "caveat with an unchanged context hash."
+                if accepted_now
+                else "The P10746 caveat was explicitly rejected; deployment "
+                "closure requires an approved non-residue sidecar or another "
+                "source-backed P10746 path."
+                if rejected_now and not accepted_rows
+                else "No P10746 caveat acceptance is applied unless exactly one "
+                "reviewed decision selects the accepted value with an unchanged "
+                "context hash."
             ),
             "next_action": (
-                "Review the P10746 decision stub. Keep this gate blocked until an "
-                "explicit accept/reject choice is supplied."
+                "Compose this accepted application into the current Lever 3 "
+                "blocker-impact artifact; do not treat it as a threshold rerun "
+                "or combined-channel score."
+                if accepted_now
+                else "Provide an approved non-residue sidecar before any "
+                "deployment closure claim."
+                if rejected_now and not accepted_rows
+                else "Review the P10746 decision stub. Keep this gate blocked "
+                "until an explicit accept/reject choice is supplied."
             ),
         },
     }
@@ -22826,10 +23088,12 @@ def write_fold_augmented_p10746_deployment_caveat_decision_application(
     out_path: Path,
     reviewed_decision_packet_path: Path | None = None,
     report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_P10746_DEPLOYMENT_CAVEAT_DECISION_APPLICATION_ID,
 ) -> dict[str, Any]:
     application = build_fold_augmented_p10746_deployment_caveat_decision_application(
         decision_packet_path=decision_packet_path,
         reviewed_decision_packet_path=reviewed_decision_packet_path,
+        artifact_id=artifact_id,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(
@@ -22844,6 +23108,1517 @@ def write_fold_augmented_p10746_deployment_caveat_decision_application(
             encoding="utf-8",
         )
     return application
+
+
+def build_fold_augmented_confounded_proxy_p10746_decision_impact(
+    *,
+    deployment_validity_blocker_packet_path: Path,
+    p10746_decision_application_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_P10746_DECISION_IMPACT_ID,
+) -> dict[str, Any]:
+    packet = _read_json(deployment_validity_blocker_packet_path)
+    application = _read_json(p10746_decision_application_path)
+    packet_counts = packet.get("counts") or {}
+    rows = [
+        row
+        for row in (packet.get("affected_rows") or {}).get(
+            "remaining_combined_score_blocker_rows", []
+        )
+        if isinstance(row, dict)
+    ]
+    p10746_rows = [row for row in rows if str(row.get("entry_id")) == "m_csa:204"]
+    application_counts = application.get("counts") or {}
+    application_decision = application.get("decision") or {}
+    p10746_accepted = bool(
+        application_decision.get("p10746_fold_only_caveat_accepted_now")
+    ) and int(application_counts.get("accepted_p10746_caveat_rows") or 0) == 1
+    p10746_resolved_rows = p10746_rows if p10746_accepted else []
+    remaining_rows = [
+        row
+        for row in rows
+        if not (p10746_accepted and str(row.get("entry_id")) == "m_csa:204")
+    ]
+    remaining_by_class = Counter(str(row.get("blocker_class")) for row in remaining_rows)
+    blockers = [
+        "current_train_cal_proxy_surface_cannot_close_confounded_safe_calibration",
+        "high_cofactor_proxy_needs_new_abstained_train_cal_rows",
+        "same_family_structural_proxy_needs_new_abstained_train_cal_rows",
+        "protein_only_extended_surface_still_partial",
+    ]
+    if remaining_rows:
+        blockers.append("remaining_non_p10746_full_channel_blockers")
+    if not p10746_accepted:
+        blockers.append("p10746_fold_only_caveat_not_accepted")
+
+    resolved_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "accession": row.get("accession"),
+            "prior_blocker_class": row.get("blocker_class"),
+            "resolution": "accepted_fold_only_deployment_caveat",
+            "creates_combined_channel_score": False,
+            "deployment_closure_effect": (
+                "removes policy-decision blocker only; does not close proxy-scale "
+                "calibration or missing-coordinate blockers"
+            ),
+        }
+        for row in p10746_resolved_rows
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_p10746_decision_impact"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_p10746_decision_impact_blocked_remaining_evidence"
+            if p10746_accepted
+            else "fold_augmented_confounded_proxy_p10746_decision_impact_blocked_pending_p10746"
+        ),
+        "scope": (
+            "Review-only Lever 3 impact packet after applying the P10746 "
+            "fold-only caveat decision. It removes only the explicit P10746 "
+            "policy blocker from the current deployment-validity blocker list "
+            "when accepted; it does not rerun the fixed-threshold audit, change "
+            "threshold 0.44155, score rows, close deployment, or use heldout rows "
+            "for calibration."
+        ),
+        "resolved_rows": resolved_rows,
+        "remaining_full_channel_blocker_rows": remaining_rows,
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "fixed_threshold_audit_rerun": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "non_residue_sidecar_created_or_copied": False,
+            "deployment_closed_now": False,
+        },
+        "counts": {
+            "source_remaining_combined_score_blocker_rows": len(rows),
+            "p10746_policy_blocker_rows": len(p10746_rows),
+            "p10746_policy_blocker_resolved_rows": len(resolved_rows),
+            "remaining_full_channel_blocker_rows_after_p10746": len(remaining_rows),
+            "remaining_predicted_structure_unavailable_rows": int(
+                remaining_by_class.get("predicted_structure_unavailable", 0)
+            ),
+            "remaining_approved_geometry_feature_missing_rows": int(
+                remaining_by_class.get("approved_geometry_feature_missing", 0)
+            ),
+            "remaining_policy_decision_required_rows": int(
+                remaining_by_class.get("policy_decision_required", 0)
+            ),
+            "high_cofactor_min_new_abstained_rows_for_80pct": packet_counts.get(
+                "high_cofactor_min_new_abstained_rows_for_80pct"
+            ),
+            "same_family_structural_min_new_abstained_rows_for_80pct": (
+                packet_counts.get(
+                    "same_family_structural_min_new_abstained_rows_for_80pct"
+                )
+            ),
+            "fixed_threshold": (packet.get("fixed_operating_point") or {}).get(
+                "threshold"
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "p10746_fold_only_caveat_accepted": p10746_accepted,
+            "apply_or_change_threshold_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "deployment_closure_valid_now": False,
+            "current_evidence_can_solve_confounded_safe_calibration": False,
+            "next_gate": (
+                "P10746 no longer needs a fresh policy decision, but the current "
+                "Lever 3 deployment-validity gate remains blocked by five "
+                "non-P10746 full-channel rows plus the 16-row high-cofactor and "
+                "170-row same-family structural train/cal proxy acquisition "
+                "shortfalls."
+                if p10746_accepted
+                else "Apply an explicit reviewed P10746 fold-only caveat decision "
+                "or provide an approved non-residue sidecar before treating the "
+                "policy row as resolved."
+            ),
+        },
+        "source_artifacts": {
+            "deployment_validity_blocker_packet": _source_path_record(
+                deployment_validity_blocker_packet_path
+            ),
+            "p10746_decision_application": _source_path_record(
+                p10746_decision_application_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The existing reviewed P10746 fold-only decision can clear the "
+                "policy-decision blocker, but it does not create a combined "
+                "channel score and does not improve confounded-proxy abstain "
+                "recall."
+                if p10746_accepted
+                else "The current packet still treats P10746 as unresolved."
+            ),
+            "next_action": (
+                "Focus next on the five remaining full-channel blocker rows or "
+                "the frozen 16-row high-cofactor train/cal acquisition contract; "
+                "do not rerun thresholds from this P10746 impact alone."
+                if p10746_accepted
+                else "Produce a reviewed P10746 decision packet before this "
+                "impact can remove the policy blocker."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_p10746_decision_impact_report(
+    impact: dict[str, Any],
+) -> str:
+    counts = impact["counts"]
+    decision = impact["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy P10746 Decision Impact - current702",
+        "",
+        f"Run: {impact['created_utc']}",
+        "",
+        impact["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {impact['status']}",
+        "- P10746 policy blockers resolved: "
+        f"{counts['p10746_policy_blocker_resolved_rows']}/"
+        f"{counts['p10746_policy_blocker_rows']}",
+        "- Remaining full-channel blockers after P10746: "
+        f"{counts['remaining_full_channel_blocker_rows_after_p10746']}",
+        "- Remaining predicted-structure-unavailable rows: "
+        f"{counts['remaining_predicted_structure_unavailable_rows']}",
+        "- Remaining approved-geometry-feature-missing rows: "
+        f"{counts['remaining_approved_geometry_feature_missing_rows']}",
+        "- High-cofactor new abstained rows needed: "
+        f"{counts['high_cofactor_min_new_abstained_rows_for_80pct']}",
+        "- Same-family structural new abstained rows needed: "
+        f"{counts['same_family_structural_min_new_abstained_rows_for_80pct']}",
+        f"- Blockers: {impact['blockers']}",
+        "",
+        "## Decision",
+        "",
+        "- P10746 fold-only caveat accepted: "
+        f"{decision['p10746_fold_only_caveat_accepted']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        "- Deployment closure valid now: "
+        f"{decision['deployment_closure_valid_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Remaining Full-Channel Blockers",
+        "",
+        "| row | accession | blocker class | missing evidence | smallest next experiment |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in impact.get("remaining_full_channel_blocker_rows", []):
+        lines.append(
+            f"| {row.get('entry_id')} | {row.get('accession')} | "
+            f"{row.get('blocker_class')} | {row.get('missing_evidence_type')} | "
+            f"{row.get('smallest_row_experiment')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {impact['interpretation']['result']}",
+        f"- {impact['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_p10746_decision_impact(
+    *,
+    deployment_validity_blocker_packet_path: Path,
+    p10746_decision_application_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_P10746_DECISION_IMPACT_ID,
+) -> dict[str, Any]:
+    impact = build_fold_augmented_confounded_proxy_p10746_decision_impact(
+        deployment_validity_blocker_packet_path=(
+            deployment_validity_blocker_packet_path
+        ),
+        p10746_decision_application_path=p10746_decision_application_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(impact, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_p10746_decision_impact_report(
+                impact
+            ),
+            encoding="utf-8",
+        )
+    return impact
+
+
+def _nested_rows_matching(
+    obj: Any, predicate: Callable[[dict[str, Any]], bool]
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+
+    def walk(value: Any) -> None:
+        if isinstance(value, dict):
+            if predicate(value):
+                rows.append(value)
+            for child in value.values():
+                walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                walk(child)
+
+    walk(obj)
+    return rows
+
+
+def _single_nested_row(
+    obj: Any, *, entry_id: str, accession: str | None = None
+) -> dict[str, Any]:
+    rows = _nested_rows_matching(
+        obj,
+        lambda row: row.get("entry_id") == entry_id
+        or (accession is not None and row.get("accession") == accession),
+    )
+    return rows[0] if rows else {}
+
+
+def build_fold_augmented_q43088_geometry_locator_blocker_packet(
+    *,
+    remaining_combined_score_blocker_classification_path: Path,
+    protein_only_extended_surface_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    mechanism_feature_embedding_train_cal_input_manifest_path: Path,
+    selected_organic_cofactor_score_sidecars_path: Path,
+    sequence_cofactor_channel_path: Path,
+    q43088_coordinate_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_GEOMETRY_LOCATOR_BLOCKER_PACKET_ID,
+) -> dict[str, Any]:
+    entry_id = "m_csa:604"
+    accession = "Q43088"
+    classification = _read_json(remaining_combined_score_blocker_classification_path)
+    extended = _read_json(protein_only_extended_surface_path)
+    role_graph = _read_json(active_site_role_graph_sidecar_path)
+    embedding_manifest = _read_json(
+        mechanism_feature_embedding_train_cal_input_manifest_path
+    )
+    cofactor_scores = _read_json(selected_organic_cofactor_score_sidecars_path)
+    cofactor_channel = _read_json(sequence_cofactor_channel_path)
+    class_row = _single_nested_row(classification, entry_id=entry_id, accession=accession)
+    ext_row = _single_nested_row(extended, entry_id=entry_id, accession=accession)
+    role_row = _single_nested_row(role_graph, entry_id=entry_id, accession=accession)
+    manifest_row = _single_nested_row(
+        embedding_manifest, entry_id=entry_id, accession=accession
+    )
+    cofactor_rows = _nested_rows_matching(
+        cofactor_scores, lambda row: row.get("entry_id") == entry_id
+    )
+    channel_row = _single_nested_row(
+        cofactor_channel, entry_id=entry_id, accession=accession
+    )
+    cofactor_max = max(
+        (
+            float(row.get("selected_score") or row.get("score") or 0.0)
+            for row in cofactor_rows
+        ),
+        default=0.0,
+    )
+    cofactor_max_rows = [
+        row
+        for row in cofactor_rows
+        if float(row.get("selected_score") or row.get("score") or 0.0)
+        == cofactor_max
+    ]
+    coordinate_exists = Path(q43088_coordinate_path).exists()
+    coordinate_sha = (
+        hashlib.sha256(Path(q43088_coordinate_path).read_bytes()).hexdigest()
+        if coordinate_exists
+        else None
+    )
+    active_site_residue_count = int(role_row.get("active_site_residue_count") or 0)
+    minimum_positions_required = 3
+    additional_positions_needed = max(
+        0, minimum_positions_required - active_site_residue_count
+    )
+    blockers = [
+        "q43088_fewer_than_three_approved_locator_positions",
+        "q43088_missing_approved_source_free_geometry_sidecar",
+        "fixed_threshold_audit_still_not_ready",
+    ]
+    if not coordinate_exists:
+        blockers.append("q43088_predicted_coordinate_missing")
+    if not class_row:
+        blockers.append("q43088_blocker_classification_row_missing")
+    if not ext_row:
+        blockers.append("q43088_extended_surface_row_missing")
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_q43088_geometry_locator_blocker_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_q43088_geometry_locator_blocker_packet_blocked_missing_source_free_locator"
+        ),
+        "scope": (
+            "Single-row Lever 3 blocker packet for m_csa:604/Q43088 after the "
+            "P10746 policy blocker was reconciled. It records only local "
+            "deployment-valid/fail-closed evidence and does not approve a sidecar, "
+            "rescore rows, rerun thresholds, or use heldout rows for calibration."
+        ),
+        "affected_row": {
+            "entry_id": entry_id,
+            "accession": accession,
+            "blocker_class": class_row.get("blocker_class"),
+            "blocker_detail": class_row.get("blocker_detail"),
+            "split_assignment": ext_row.get("split_assignment"),
+            "label_type": ext_row.get("label_type"),
+            "proxy_membership": ext_row.get("proxy_membership"),
+            "predicted_structure_coordinate": {
+                "exists": coordinate_exists,
+                "path": str(q43088_coordinate_path),
+                "sha256": coordinate_sha,
+            },
+            "fold_channel": ext_row.get("predicted_structure_fold_channel"),
+            "cofactor_channel": {
+                "selected_organic_cofactor_max_score": cofactor_max,
+                "selected_organic_cofactor_max_class": (
+                    cofactor_max_rows[0].get("cofactor_class")
+                    if cofactor_max_rows
+                    else None
+                ),
+                "sequence_predicted_cofactor_families": channel_row.get(
+                    "predicted_cofactor_families"
+                ),
+                "sequence_prediction_sources": channel_row.get(
+                    "prediction_sources"
+                ),
+            },
+            "local_role_graph_context_not_clearance": {
+                "status": role_row.get("status"),
+                "active_site_residue_count": active_site_residue_count,
+                "residues": role_row.get("residues"),
+                "why_not_deployment_clearance": (
+                    "Only one row-specific active-site residue is available; "
+                    "this is train/cal context and does not satisfy the approved "
+                    "source-free geometry/locator evidence required by the "
+                    "combined channel."
+                ),
+            },
+            "manifest_context": {
+                "minimal_train_cal_feature_bundle_ready": manifest_row.get(
+                    "minimal_train_cal_feature_bundle_ready"
+                ),
+                "role_graph_status": manifest_row.get("role_graph_status"),
+                "reaction_template_status": manifest_row.get(
+                    "reaction_template_status"
+                ),
+                "inorganic_locus_statuses": manifest_row.get(
+                    "inorganic_locus_statuses"
+                ),
+            },
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "fixed_threshold_audit_rerun": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "sidecars_approved_or_copied": False,
+            "row_rescored_now": False,
+        },
+        "counts": {
+            "affected_rows": 1,
+            "local_predicted_coordinate_available_rows": int(coordinate_exists),
+            "fold_channel_available_rows": int(
+                bool(ext_row.get("predicted_structure_fold_channel"))
+            ),
+            "approved_source_free_geometry_locator_rows": 0,
+            "active_site_residue_count": active_site_residue_count,
+            "minimum_locator_positions_required_for_geometry_channel": (
+                minimum_positions_required
+            ),
+            "additional_approved_locator_positions_needed": (
+                additional_positions_needed
+            ),
+            "high_cofactor_proxy_membership_rows": int(
+                "high_cofactor_signature_proxy" in (ext_row.get("proxy_membership") or [])
+            ),
+            "selected_organic_cofactor_max_score": cofactor_max,
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "q43088_ready_for_combined_channel_rescore_now": False,
+            "apply_or_change_threshold_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "deployment_closure_valid_now": False,
+            "smallest_next_experiment": (
+                "Supply or approve at least two additional source-free locator "
+                "positions, or an explicitly approved alternate source-free "
+                "geometry sidecar, for Q43088; then rescore only m_csa:604 at "
+                "unchanged threshold 0.44155."
+            ),
+        },
+        "source_artifacts": {
+            "remaining_combined_score_blocker_classification": _source_path_record(
+                remaining_combined_score_blocker_classification_path
+            ),
+            "protein_only_extended_surface": _source_path_record(
+                protein_only_extended_surface_path
+            ),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+            "selected_organic_cofactor_score_sidecars": _source_path_record(
+                selected_organic_cofactor_score_sidecars_path
+            ),
+            "sequence_cofactor_channel": _source_path_record(
+                sequence_cofactor_channel_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Q43088 is not coordinate-missing: the local AFDB-v6 CIF and "
+                "fold hit exist, and the row is a high-cofactor proxy member. "
+                "The blocker is specifically the absence of approved source-free "
+                "geometry/locator evidence for the combined channel."
+            ),
+            "next_action": (
+                "Do not rerun the fixed-threshold audit from Q43088 alone. "
+                "Either approve/source at least two additional locator positions "
+                "for this row or keep it outside combined-channel closure, then "
+                "continue the 16-row high-cofactor acquisition contract."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_q43088_geometry_locator_blocker_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    row = packet["affected_row"]
+    lines = [
+        "# Fold-Augmented Q43088 Geometry/Locator Blocker Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        "- Local predicted coordinate available: "
+        f"{bool(counts['local_predicted_coordinate_available_rows'])}",
+        f"- Fold channel available: {bool(counts['fold_channel_available_rows'])}",
+        "- Approved source-free geometry/locator rows: "
+        f"{counts['approved_source_free_geometry_locator_rows']}",
+        "- Active-site residue count: "
+        f"{counts['active_site_residue_count']}/"
+        f"{counts['minimum_locator_positions_required_for_geometry_channel']}",
+        "- Additional approved locator positions needed: "
+        f"{counts['additional_approved_locator_positions_needed']}",
+        "- Selected organic cofactor max score: "
+        f"{counts['selected_organic_cofactor_max_score']}",
+        f"- Blockers: {packet['blockers']}",
+        "",
+        "## Row Evidence",
+        "",
+        f"- Entry/accession: {row['entry_id']} / {row['accession']}",
+        f"- Blocker detail: {row.get('blocker_detail')}",
+        f"- Fold nearest train atlas: {row.get('fold_channel')}",
+        "- Cofactor families: "
+        f"{row.get('cofactor_channel', {}).get('sequence_predicted_cofactor_families')}",
+        "- Local role graph residues: "
+        f"{row.get('local_role_graph_context_not_clearance', {}).get('residues')}",
+        "",
+        "## Decision",
+        "",
+        "- Ready for combined-channel rescore now: "
+        f"{decision['q43088_ready_for_combined_channel_rescore_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_q43088_geometry_locator_blocker_packet(
+    *,
+    remaining_combined_score_blocker_classification_path: Path,
+    protein_only_extended_surface_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    mechanism_feature_embedding_train_cal_input_manifest_path: Path,
+    selected_organic_cofactor_score_sidecars_path: Path,
+    sequence_cofactor_channel_path: Path,
+    q43088_coordinate_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_GEOMETRY_LOCATOR_BLOCKER_PACKET_ID,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_q43088_geometry_locator_blocker_packet(
+        remaining_combined_score_blocker_classification_path=(
+            remaining_combined_score_blocker_classification_path
+        ),
+        protein_only_extended_surface_path=protein_only_extended_surface_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        mechanism_feature_embedding_train_cal_input_manifest_path=(
+            mechanism_feature_embedding_train_cal_input_manifest_path
+        ),
+        selected_organic_cofactor_score_sidecars_path=(
+            selected_organic_cofactor_score_sidecars_path
+        ),
+        sequence_cofactor_channel_path=sequence_cofactor_channel_path,
+        q43088_coordinate_path=q43088_coordinate_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_q43088_geometry_locator_blocker_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def build_fold_augmented_q43088_source_free_locator_approval_contract(
+    *,
+    q43088_geometry_locator_blocker_packet_path: Path,
+    residual_queue_after_p10746_q43088_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_APPROVAL_CONTRACT_ID,
+) -> dict[str, Any]:
+    packet = _read_json(q43088_geometry_locator_blocker_packet_path)
+    queue = _read_json(residual_queue_after_p10746_q43088_path)
+    counts = packet.get("counts") or {}
+    residual_rows = [
+        row
+        for row in queue.get("residual_full_channel_rows", [])
+        if isinstance(row, dict) and row.get("entry_id") == "m_csa:604"
+    ]
+    active_site_residue_count = int(counts.get("active_site_residue_count") or 0)
+    minimum_positions = int(
+        counts.get("minimum_locator_positions_required_for_geometry_channel") or 0
+    )
+    additional_needed = int(
+        counts.get("additional_approved_locator_positions_needed") or 0
+    )
+    affected_row = {
+        "entry_id": "m_csa:604",
+        "accession": "Q43088",
+        "residual_blocker_class": (
+            residual_rows[0].get("blocker_class")
+            if residual_rows
+            else "approved_geometry_feature_missing"
+        ),
+        "local_predicted_coordinate_available": bool(
+            counts.get("local_predicted_coordinate_available_rows")
+        ),
+        "active_site_residue_count": active_site_residue_count,
+        "minimum_locator_positions_required_for_geometry_channel": minimum_positions,
+        "additional_approved_locator_positions_needed": additional_needed,
+        "selected_organic_cofactor_max_score": counts.get(
+            "selected_organic_cofactor_max_score"
+        ),
+        "missing_evidence_type": (
+            "two additional approved source-free locator positions or approved "
+            "source-free geometry sidecar"
+        ),
+        "smallest_next_experiment": (
+            "approve two additional Q43088 locator positions from source-free "
+            "evidence, or approve an equivalent geometry sidecar"
+        ),
+        "rescore_ready_now": False,
+    }
+    blockers = [
+        "q43088_two_additional_source_free_locator_positions_not_approved",
+        "q43088_geometry_sidecar_not_approved",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_q43088_source_free_locator_approval_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_q43088_source_free_locator_approval_contract_"
+            "ready_for_review"
+        ),
+        "scope": (
+            "Review-only Lever 3 contract for clearing m_csa:604/Q43088's "
+            "source-free geometry locator blocker. Q43088 already has a local "
+            "predicted coordinate and fold channel, but only one active-site "
+            "residue; this contract approves no locator, sidecar, score, import, "
+            "or threshold change."
+        ),
+        "affected_row": affected_row,
+        "locator_contract": {
+            "minimum_new_approved_locator_positions": additional_needed,
+            "acceptance_criteria": [
+                "Each new locator position must come from source-free predicted-structure or residue-level evidence, not mechanism text, EC/Rhea IDs, labels, source IDs, or target names.",
+                "Approved positions must map unambiguously onto the local Q43088 predicted coordinate frame before any geometry rescore.",
+                "An approved geometry sidecar may satisfy the contract only if it records source-free provenance and the exact residue/coordinate locus used by the fold/geometry channel.",
+                "The contract cannot change labels, registries, ontologies, imports, production thresholds, heldout splits, or threshold 0.44155.",
+                "Q43088 cannot trigger a full fixed-threshold audit rerun alone; the four alternate predicted-structure source rows must also clear.",
+            ],
+            "expected_next_artifacts": [
+                "Q43088 source-free locator approval packet",
+                "Q43088 geometry sidecar or locator staging manifest",
+                "single-row Q43088 fold/geometry rescore manifest",
+            ],
+            "pass_fail_rule": {
+                "pass_condition": (
+                    "Q43088 has at least "
+                    f"{minimum_positions} approved source-free locator positions "
+                    "or an equivalent approved geometry sidecar, and is ready for "
+                    "row-level fold/geometry rescore at unchanged threshold "
+                    "0.44155."
+                ),
+                "fail_conditions": [
+                    "Fewer than two additional source-free locator positions are approved and no equivalent geometry sidecar is approved.",
+                    "Any locator uses mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive evidence.",
+                    "Any locator cannot be mapped onto the local Q43088 predicted coordinate frame.",
+                    "Any threshold, split, label, registry, ontology, import, or production artifact is changed under this contract.",
+                ],
+            },
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "locator_positions_approved_now": False,
+            "geometry_sidecar_approved_now": False,
+            "row_rescored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "affected_rows": 1,
+            "local_predicted_coordinate_available_rows": int(
+                counts.get("local_predicted_coordinate_available_rows") or 0
+            ),
+            "fold_channel_available_rows": int(
+                counts.get("fold_channel_available_rows") or 0
+            ),
+            "active_site_residue_count": active_site_residue_count,
+            "minimum_locator_positions_required_for_geometry_channel": (
+                minimum_positions
+            ),
+            "additional_approved_locator_positions_needed": additional_needed,
+            "locator_positions_approved_now": 0,
+            "geometry_sidecars_approved_now": 0,
+            "high_cofactor_proxy_membership_rows": int(
+                counts.get("high_cofactor_proxy_membership_rows") or 0
+            ),
+            "selected_organic_cofactor_max_score": counts.get(
+                "selected_organic_cofactor_max_score"
+            ),
+            "remaining_coordinate_source_blocker_rows": int(
+                (queue.get("counts") or {}).get(
+                    "residual_predicted_structure_unavailable_rows"
+                )
+                or 0
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "q43088_ready_for_rescore_now": False,
+            "surface_completeness_ready_after_contract_alone": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Approve two additional source-free Q43088 locator positions "
+                "or an equivalent geometry sidecar. Then rescore only Q43088 "
+                "after the four coordinate-source blockers have approved "
+                "predicted structures; do not retune threshold 0.44155."
+            ),
+        },
+        "source_artifacts": {
+            "q43088_geometry_locator_blocker_packet": _source_path_record(
+                q43088_geometry_locator_blocker_packet_path
+            ),
+            "residual_queue_after_p10746_q43088": _source_path_record(
+                residual_queue_after_p10746_q43088_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Q43088 is not blocked on coordinates; it is blocked on the "
+                "minimum source-free geometry locus needed for the combined "
+                "fold/geometry channel."
+            ),
+            "next_action": (
+                "Review or create a Q43088 locator approval packet for two "
+                "additional source-free positions, or an equivalent approved "
+                "geometry sidecar, before any rescore."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_q43088_source_free_locator_approval_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    row = contract["affected_row"]
+    decision = contract["decision"]
+    lines = [
+        "# Fold-Augmented Q43088 Source-Free Locator Approval Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Affected row: {row['entry_id']} / {row['accession']}",
+        "- Local predicted coordinate available: "
+        f"{row['local_predicted_coordinate_available']}",
+        f"- Active-site residues: {counts['active_site_residue_count']}",
+        "- Additional locator positions needed: "
+        f"{counts['additional_approved_locator_positions_needed']}",
+        "- Remaining coordinate-source blockers: "
+        f"{counts['remaining_coordinate_source_blocker_rows']}",
+        f"- Blockers: {contract['blockers']}",
+        "",
+        "## Locator Contract",
+        "",
+    ]
+    lines += [f"- {item}" for item in contract["locator_contract"]["acceptance_criteria"]]
+    lines += [
+        "",
+        "## Pass/Fail",
+        "",
+        "- Pass condition: "
+        f"{contract['locator_contract']['pass_fail_rule']['pass_condition']}",
+        "- Fail conditions: "
+        + "; ".join(
+            item.rstrip(".")
+            for item in contract["locator_contract"]["pass_fail_rule"][
+                "fail_conditions"
+            ]
+        )
+        + ".",
+        "",
+        "## Decision",
+        "",
+        f"- Q43088 ready for rescore now: {decision['q43088_ready_for_rescore_now']}",
+        "- Surface completeness ready after contract alone: "
+        f"{decision['surface_completeness_ready_after_contract_alone']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {contract['interpretation']['result']}",
+        f"- {contract['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_q43088_source_free_locator_approval_contract(
+    *,
+    q43088_geometry_locator_blocker_packet_path: Path,
+    residual_queue_after_p10746_q43088_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_Q43088_SOURCE_FREE_LOCATOR_APPROVAL_CONTRACT_ID,
+) -> dict[str, Any]:
+    contract = build_fold_augmented_q43088_source_free_locator_approval_contract(
+        q43088_geometry_locator_blocker_packet_path=(
+            q43088_geometry_locator_blocker_packet_path
+        ),
+        residual_queue_after_p10746_q43088_path=(
+            residual_queue_after_p10746_q43088_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_q43088_source_free_locator_approval_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
+
+
+def build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
+    *,
+    p10746_decision_impact_path: Path,
+    q43088_geometry_locator_blocker_packet_path: Path,
+    current_unavailable_coordinate_reprobe_path: Path,
+    high_cofactor_probe_contract_path: Path,
+    same_family_structural_acquisition_contract_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_RESIDUAL_QUEUE_AFTER_P10746_Q43088_ID,
+) -> dict[str, Any]:
+    impact = _read_json(p10746_decision_impact_path)
+    q43088 = _read_json(q43088_geometry_locator_blocker_packet_path)
+    reprobe = _read_json(current_unavailable_coordinate_reprobe_path)
+    high = _read_json(high_cofactor_probe_contract_path)
+    structural = _read_json(same_family_structural_acquisition_contract_path)
+    reprobe_by_entry = {
+        str(row.get("entry_id")): row
+        for row in reprobe.get("rows", [])
+        if isinstance(row, dict)
+    }
+    residual_rows = []
+    for row in impact.get("remaining_full_channel_blocker_rows", []):
+        if not isinstance(row, dict):
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        residual = {
+            "entry_id": entry_id,
+            "accession": row.get("accession"),
+            "blocker_class": row.get("blocker_class"),
+            "missing_evidence_type": row.get("missing_evidence_type"),
+            "smallest_next_experiment": row.get("smallest_row_experiment"),
+            "fixed_threshold_rerun_ready_after_row_alone": False,
+        }
+        if entry_id in reprobe_by_entry:
+            probe = reprobe_by_entry[entry_id]
+            current_record = probe.get("uniprot_current_record_probe") or {}
+            residual["current_availability_probe"] = {
+                "direct_afdb_v6_http_status": probe.get("http_status"),
+                "uniprot_alphafolddb_xrefs": current_record.get(
+                    "alphafold_db_cross_references"
+                ),
+                "secondary_accession_afdb_v6_statuses": current_record.get(
+                    "secondary_accession_afdb_v6_statuses"
+                ),
+            }
+            residual["next_gate_detail"] = (
+                "approve alternate deployment-valid predicted-structure source; "
+                "AFDB-v6 direct and secondary probes remain unavailable"
+            )
+        elif entry_id == "m_csa:604":
+            q_counts = q43088.get("counts") or {}
+            residual["q43088_locator_detail"] = {
+                "local_predicted_coordinate_available": bool(
+                    q_counts.get("local_predicted_coordinate_available_rows")
+                ),
+                "active_site_residue_count": q_counts.get(
+                    "active_site_residue_count"
+                ),
+                "minimum_required_positions": q_counts.get(
+                    "minimum_locator_positions_required_for_geometry_channel"
+                ),
+                "additional_approved_locator_positions_needed": q_counts.get(
+                    "additional_approved_locator_positions_needed"
+                ),
+                "selected_organic_cofactor_max_score": q_counts.get(
+                    "selected_organic_cofactor_max_score"
+                ),
+            }
+            residual["next_gate_detail"] = (
+                "approve/source two additional source-free locator positions or "
+                "an approved geometry sidecar for Q43088"
+            )
+        residual_rows.append(residual)
+
+    residual_counter = Counter(
+        str(row.get("blocker_class") or "") for row in residual_rows
+    )
+    q_counts = q43088.get("counts") or {}
+    high_counts = high.get("counts") or {}
+    structural_counts = structural.get("counts") or {}
+    blockers = [
+        "four_rows_need_approved_alternate_predicted_structure_source",
+        "q43088_needs_two_additional_approved_locator_positions_or_geometry_sidecar",
+        "sixteen_row_high_cofactor_train_cal_probe_not_acquired",
+        "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_residual_queue_blocked_after_p10746_q43088"
+        ),
+        "scope": (
+            "Consolidated Lever 3 residual blocker queue after accepting the "
+            "P10746 fold-only caveat and isolating Q43088 to an approved "
+            "locator-sidecar gap. It does not approve sources, download "
+            "coordinates, rescore rows, rerun thresholds, or use heldout rows "
+            "for calibration."
+        ),
+        "resolved_today": [
+            {
+                "entry_id": "m_csa:204",
+                "accession": "P10746",
+                "resolution": (
+                    "prior human keep-fold-only decision mapped to explicit "
+                    "accepted caveat"
+                ),
+                "creates_combined_channel_score": False,
+            },
+            {
+                "entry_id": "m_csa:604",
+                "accession": "Q43088",
+                "resolution": (
+                    "blocker narrowed from generic approved-geometry missing to "
+                    "two additional source-free locator positions or approved "
+                    "geometry sidecar"
+                ),
+                "creates_combined_channel_score": False,
+            },
+        ],
+        "residual_full_channel_rows": residual_rows,
+        "calibration_shortfalls": {
+            "high_cofactor_min_new_abstained_rows_for_80pct": high_counts.get(
+                "minimum_new_abstained_rows_for_80pct"
+            ),
+            "same_family_structural_min_new_abstained_rows_for_80pct": (
+                structural_counts.get("minimum_new_abstained_rows_for_80pct")
+            ),
+            "fixed_threshold": high_counts.get("fixed_threshold"),
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "fixed_threshold_audit_rerun": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_read_now": False,
+            "coordinates_downloaded_or_imported": False,
+            "sidecars_approved_or_copied": False,
+        },
+        "counts": {
+            "p10746_policy_blocker_resolved_rows": (impact.get("counts") or {}).get(
+                "p10746_policy_blocker_resolved_rows"
+            ),
+            "residual_full_channel_rows": len(residual_rows),
+            "residual_predicted_structure_unavailable_rows": int(
+                residual_counter.get("predicted_structure_unavailable", 0)
+            ),
+            "residual_locator_or_geometry_sidecar_rows": int(
+                residual_counter.get("approved_geometry_feature_missing", 0)
+            ),
+            "residual_policy_decision_required_rows": int(
+                residual_counter.get("policy_decision_required", 0)
+            ),
+            "q43088_additional_approved_locator_positions_needed": q_counts.get(
+                "additional_approved_locator_positions_needed"
+            ),
+            "afdb_unavailable_rows_reprobed_current_run": (
+                (reprobe.get("counts") or {}).get("afdb_v6_coordinate_unavailable_rows")
+            ),
+            "high_cofactor_min_new_abstained_rows_for_80pct": high_counts.get(
+                "minimum_new_abstained_rows_for_80pct"
+            ),
+            "same_family_structural_min_new_abstained_rows_for_80pct": (
+                structural_counts.get("minimum_new_abstained_rows_for_80pct")
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "deployment_closure_valid_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "current_evidence_can_solve_confounded_safe_calibration": False,
+            "next_surface_completeness_action": (
+                "For surface completeness, either approve alternate "
+                "deployment-valid predicted structures for P07071/P07658/"
+                "P00806/P04531 or source them from an approved non-AFDB "
+                "predicted-structure provider; in parallel, source/approve two "
+                "Q43088 locator positions."
+            ),
+            "next_calibration_closure_action": (
+                "For confounded-safe calibration closure, start the frozen "
+                "16-row non-heldout train/cal high-cofactor acquisition contract; "
+                "structural closure still needs the 170-row acquisition surface."
+            ),
+        },
+        "source_artifacts": {
+            "p10746_decision_impact": _source_path_record(p10746_decision_impact_path),
+            "q43088_geometry_locator_blocker_packet": _source_path_record(
+                q43088_geometry_locator_blocker_packet_path
+            ),
+            "current_unavailable_coordinate_reprobe": _source_path_record(
+                current_unavailable_coordinate_reprobe_path
+            ),
+            "high_cofactor_probe_contract": _source_path_record(
+                high_cofactor_probe_contract_path
+            ),
+            "same_family_structural_acquisition_contract": _source_path_record(
+                same_family_structural_acquisition_contract_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "After today's reconciliation, Lever 3 no longer has a fresh "
+                "P10746 policy-decision blocker. The remaining local full-channel "
+                "blockers are four approved predicted-structure-source gaps plus "
+                "Q43088's approved locator/geometry sidecar gap; the "
+                "confounded-safe calibration shortfalls remain 16 high-cofactor "
+                "rows and 170 same-family structural rows."
+            ),
+            "next_action": (
+                "Do not rerun or retune threshold 0.44155. The smallest "
+                "calibration experiment remains the frozen 16-row high-cofactor "
+                "train/cal OOS acquisition; the smallest surface-completeness "
+                "experiment is Q43088 locator approval plus one approved alternate "
+                "predicted structure for any of the four AFDB-unavailable rows."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_report(
+    queue: dict[str, Any],
+) -> str:
+    counts = queue["counts"]
+    decision = queue["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Residual Queue After P10746/Q43088 - current702",
+        "",
+        f"Run: {queue['created_utc']}",
+        "",
+        queue["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {queue['status']}",
+        "- P10746 policy blockers resolved: "
+        f"{counts['p10746_policy_blocker_resolved_rows']}",
+        f"- Residual full-channel rows: {counts['residual_full_channel_rows']}",
+        "- Coordinate-source rows: "
+        f"{counts['residual_predicted_structure_unavailable_rows']}",
+        "- Locator/geometry sidecar rows: "
+        f"{counts['residual_locator_or_geometry_sidecar_rows']}",
+        "- Q43088 additional locator positions needed: "
+        f"{counts['q43088_additional_approved_locator_positions_needed']}",
+        "- High-cofactor new abstained rows needed: "
+        f"{counts['high_cofactor_min_new_abstained_rows_for_80pct']}",
+        "- Same-family structural new abstained rows needed: "
+        f"{counts['same_family_structural_min_new_abstained_rows_for_80pct']}",
+        f"- Blockers: {queue['blockers']}",
+        "",
+        "## Residual Full-Channel Rows",
+        "",
+        "| row | accession | blocker | next gate detail |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in queue.get("residual_full_channel_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['blocker_class']} | {row.get('next_gate_detail')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Surface completeness action: {decision['next_surface_completeness_action']}",
+        f"- Calibration closure action: {decision['next_calibration_closure_action']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {queue['interpretation']['result']}",
+        f"- {queue['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
+    *,
+    p10746_decision_impact_path: Path,
+    q43088_geometry_locator_blocker_packet_path: Path,
+    current_unavailable_coordinate_reprobe_path: Path,
+    high_cofactor_probe_contract_path: Path,
+    same_family_structural_acquisition_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_RESIDUAL_QUEUE_AFTER_P10746_Q43088_ID,
+) -> dict[str, Any]:
+    queue = build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
+        p10746_decision_impact_path=p10746_decision_impact_path,
+        q43088_geometry_locator_blocker_packet_path=(
+            q43088_geometry_locator_blocker_packet_path
+        ),
+        current_unavailable_coordinate_reprobe_path=(
+            current_unavailable_coordinate_reprobe_path
+        ),
+        high_cofactor_probe_contract_path=high_cofactor_probe_contract_path,
+        same_family_structural_acquisition_contract_path=(
+            same_family_structural_acquisition_contract_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(queue, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_report(
+                queue
+            ),
+            encoding="utf-8",
+        )
+    return queue
+
+
+def build_fold_augmented_confounded_proxy_alternate_structure_source_contract(
+    *,
+    residual_queue_after_p10746_q43088_path: Path,
+    afdb_version_sweep_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_ALTERNATE_STRUCTURE_SOURCE_CONTRACT_ID,
+) -> dict[str, Any]:
+    queue = _read_json(residual_queue_after_p10746_q43088_path)
+    sweep = _read_json(afdb_version_sweep_path)
+    residual_by_entry = {
+        str(row.get("entry_id")): row
+        for row in queue.get("residual_full_channel_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    affected_rows: list[dict[str, Any]] = []
+    for row in sorted(
+        [item for item in sweep.get("rows", []) if isinstance(item, dict)],
+        key=lambda item: _entry_id_sort_key(str(item.get("entry_id") or "")),
+    ):
+        entry_id = str(row.get("entry_id") or "")
+        residual = residual_by_entry.get(entry_id) or {}
+        if residual.get("blocker_class") != "predicted_structure_unavailable":
+            continue
+        statuses = {
+            str(version): int(status)
+            for version, status in sorted(
+                (row.get("afdb_model_version_statuses") or {}).items(),
+                key=lambda item: int(item[0]),
+            )
+        }
+        affected_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession") or residual.get("accession"),
+                "residual_blocker_class": residual.get("blocker_class"),
+                "afdb_model_version_statuses": statuses,
+                "any_afdb_model_available": bool(
+                    row.get("any_afdb_model_available")
+                ),
+                "missing_evidence_type": (
+                    "approved non-AFDB deployment-valid predicted-structure "
+                    "coordinate source"
+                ),
+                "smallest_next_experiment": (
+                    "approve a provider-neutral predicted-structure coordinate "
+                    "source and stage one local predicted coordinate for this "
+                    "accession"
+                ),
+                "rescore_ready_now": False,
+            }
+        )
+
+    residual_coordinate_rows = [
+        row
+        for row in residual_by_entry.values()
+        if row.get("blocker_class") == "predicted_structure_unavailable"
+    ]
+    all_versions_404_rows = sum(
+        1
+        for row in affected_rows
+        if row["afdb_model_version_statuses"]
+        and set(row["afdb_model_version_statuses"].values()) == {404}
+    )
+    remaining_non_coordinate_rows = int(
+        (queue.get("counts") or {}).get("residual_locator_or_geometry_sidecar_rows")
+        or 0
+    )
+    blockers = [
+        "alternate_predicted_structure_provider_not_approved",
+        "row_level_predicted_coordinates_not_staged",
+        "fold_geometry_rescore_inputs_missing",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_alternate_structure_source_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_alternate_structure_source_"
+            "contract_ready_for_source_approval"
+        ),
+        "scope": (
+            "Review-only Lever 3 contract for clearing the four residual "
+            "predicted-structure-unavailable rows after AFDB v1-v6 exhausted. "
+            "It approves no provider, downloads no coordinates, imports no "
+            "files, scores no rows, and does not rerun or tune the fixed "
+            "threshold."
+        ),
+        "affected_rows": affected_rows,
+        "source_contract": {
+            "minimum_row_set": [
+                row["entry_id"] for row in affected_rows
+            ],
+            "required_accessions": [
+                row["accession"] for row in affected_rows
+            ],
+            "acceptance_criteria": [
+                "Coordinate source must be predicted-structure evidence, not experimental PDB metadata, source labels, target names, mechanism text, EC/Rhea IDs, or curated label state.",
+                "Provider/model/version/path/checksum provenance must be recorded without using atlas-family or mechanism assignment metadata as predictive features.",
+                "Each staged coordinate must map to the row accession or an explicitly reviewed accession/isoform equivalence decision before scoring.",
+                "Coordinates must be staged as review-only query inputs first; no registry, ontology, import, sidecar, or production threshold change is allowed by this contract.",
+                "Rows must be rescored only through the existing predicted-structure-vs-train-atlas fold/geometry/cofactor channel at unchanged fixed threshold 0.44155.",
+                "The final fixed-threshold audit cannot rerun until these four rows have approved coordinates and Q43088 has approved locator/geometry evidence.",
+            ],
+            "expected_next_artifacts": [
+                "alternate predicted-structure source approval packet",
+                "four-row coordinate staging manifest with checksums",
+                "query-vs-train-atlas fold/geometry rescore manifest",
+            ],
+            "pass_fail_rule": {
+                "pass_condition": (
+                    "All four coordinate-source blocker rows receive approved "
+                    "deployment-valid predicted coordinates with source-free "
+                    "provenance and are ready for fold/geometry rescore at "
+                    "unchanged threshold 0.44155."
+                ),
+                "fail_conditions": [
+                    "Any row still lacks an approved predicted coordinate source.",
+                    "Any row uses experimental-PDB metadata, mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive evidence.",
+                    "Any coordinate is staged without provider/model/version/path/checksum provenance.",
+                    "Any threshold, split, label, registry, ontology, or import is changed under this contract.",
+                ],
+            },
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "provider_approved_now": False,
+            "coordinates_downloaded_or_imported": False,
+            "coordinate_downloads_performed": False,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "counts": {
+            "residual_coordinate_source_blocker_rows": len(residual_coordinate_rows),
+            "affected_coordinate_source_blocker_rows": len(affected_rows),
+            "afdb_versions_checked_per_row": int(
+                (sweep.get("counts") or {}).get("afdb_versions_checked_per_row") or 0
+            ),
+            "afdb_all_versions_404_rows": all_versions_404_rows,
+            "afdb_http_200_rows": int(
+                (sweep.get("counts") or {}).get("afdb_http_200_rows") or 0
+            ),
+            "required_alternate_structure_rows": len(affected_rows),
+            "approved_alternate_structure_rows_now": 0,
+            "coordinate_downloads_performed": 0,
+            "remaining_non_coordinate_full_channel_blocker_rows": (
+                remaining_non_coordinate_rows
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "approved_alternate_structure_rows_ready_now": False,
+            "surface_completeness_ready_after_contract_alone": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Approve or stage provider-neutral predicted structures for "
+                "P07071, P07658, P00806, and P04531. After those four rows "
+                "and Q43088 locator evidence are source-free and approved, "
+                "rerun only the fixed-threshold fold/geometry channel; do not "
+                "retune threshold 0.44155."
+            ),
+        },
+        "source_artifacts": {
+            "residual_queue_after_p10746_q43088": _source_path_record(
+                residual_queue_after_p10746_q43088_path
+            ),
+            "afdb_version_sweep": _source_path_record(afdb_version_sweep_path),
+        },
+        "interpretation": {
+            "result": (
+                "AFDB auto-version fallback cannot clear any of the four "
+                "remaining coordinate-source blockers. The next evidence type "
+                "is not another AFDB retry; it is an approved non-AFDB "
+                "deployment-valid predicted-structure source with source-free "
+                "provenance."
+            ),
+            "next_action": (
+                "Create an approval packet for a provider-neutral predicted "
+                "structure source, stage four local query coordinates with "
+                "checksums, then rescore those rows only after Q43088's locator "
+                "gate is also cleared."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_alternate_structure_source_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    decision = contract["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Alternate Structure Source Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        "- Coordinate-source blockers: "
+        f"{counts['affected_coordinate_source_blocker_rows']}",
+        "- AFDB all-version 404 rows: "
+        f"{counts['afdb_all_versions_404_rows']}",
+        "- Approved alternate structures now: "
+        f"{counts['approved_alternate_structure_rows_now']}",
+        "- Remaining non-coordinate full-channel blockers: "
+        f"{counts['remaining_non_coordinate_full_channel_blocker_rows']}",
+        f"- Blockers: {contract['blockers']}",
+        "",
+        "## Affected Rows",
+        "",
+        "| row | accession | AFDB statuses | missing evidence |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in contract["affected_rows"]:
+        status_summary = ", ".join(
+            f"v{version}:{status}"
+            for version, status in row["afdb_model_version_statuses"].items()
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | {status_summary} | "
+            f"{row['missing_evidence_type']} |"
+        )
+    lines += [
+        "",
+        "## Source Contract",
+        "",
+    ]
+    lines += [f"- {item}" for item in contract["source_contract"]["acceptance_criteria"]]
+    lines += [
+        "",
+        "## Pass/Fail",
+        "",
+        "- Pass condition: "
+        f"{contract['source_contract']['pass_fail_rule']['pass_condition']}",
+        "- Fail conditions: "
+        + "; ".join(
+            item.rstrip(".")
+            for item in contract["source_contract"]["pass_fail_rule"][
+                "fail_conditions"
+            ]
+        )
+        + ".",
+        "",
+        "## Decision",
+        "",
+        "- Alternate structure rows ready now: "
+        f"{decision['approved_alternate_structure_rows_ready_now']}",
+        "- Surface completeness ready after contract alone: "
+        f"{decision['surface_completeness_ready_after_contract_alone']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Apply or change threshold now: {decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {contract['interpretation']['result']}",
+        f"- {contract['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_alternate_structure_source_contract(
+    *,
+    residual_queue_after_p10746_q43088_path: Path,
+    afdb_version_sweep_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_ALTERNATE_STRUCTURE_SOURCE_CONTRACT_ID,
+) -> dict[str, Any]:
+    contract = build_fold_augmented_confounded_proxy_alternate_structure_source_contract(
+        residual_queue_after_p10746_q43088_path=(
+            residual_queue_after_p10746_q43088_path
+        ),
+        afdb_version_sweep_path=afdb_version_sweep_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_alternate_structure_source_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
 
 
 def build_fold_augmented_post_decision_deployment_closure_status(

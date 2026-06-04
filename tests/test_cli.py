@@ -1339,11 +1339,71 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-p10746-prior-human-decision-"
+                    "reviewed-stub"
+                ),
+                (
+                    "cmd_build_fold_augmented_p10746_prior_human_decision_"
+                    "reviewed_stub"
+                ),
+            ),
+            (
+                (
                     "apply-fold-augmented-p10746-deployment-caveat-decision"
                 ),
                 (
                     "cmd_apply_fold_augmented_p10746_deployment_caveat_"
                     "decision"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-p10746-decision-"
+                    "impact"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_p10746_"
+                    "decision_impact"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-q43088-geometry-locator-blocker-"
+                    "packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_q43088_geometry_locator_"
+                    "blocker_packet"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-q43088-source-free-locator-"
+                    "approval-contract"
+                ),
+                (
+                    "cmd_build_fold_augmented_q43088_source_free_locator_"
+                    "approval_contract"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-residual-queue-"
+                    "after-p10746-q43088"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_residual_queue_"
+                    "after_p10746_q43088"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-confounded-proxy-alternate-"
+                    "structure-source-contract"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_alternate_"
+                    "structure_source_contract"
                 ),
             ),
             (

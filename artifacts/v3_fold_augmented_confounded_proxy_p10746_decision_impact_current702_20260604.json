@@ -1,0 +1,123 @@
+{
+  "artifact_id": "v3_fold_augmented_confounded_proxy_p10746_decision_impact_current702_20260604",
+  "blockers": [
+    "current_train_cal_proxy_surface_cannot_close_confounded_safe_calibration",
+    "high_cofactor_proxy_needs_new_abstained_train_cal_rows",
+    "same_family_structural_proxy_needs_new_abstained_train_cal_rows",
+    "protein_only_extended_surface_still_partial",
+    "remaining_non_p10746_full_channel_blockers"
+  ],
+  "counts": {
+    "blockers": 5,
+    "critical_violation_total": 0,
+    "fixed_threshold": 0.44155,
+    "high_cofactor_min_new_abstained_rows_for_80pct": 16,
+    "p10746_policy_blocker_resolved_rows": 1,
+    "p10746_policy_blocker_rows": 1,
+    "remaining_approved_geometry_feature_missing_rows": 1,
+    "remaining_full_channel_blocker_rows_after_p10746": 5,
+    "remaining_policy_decision_required_rows": 0,
+    "remaining_predicted_structure_unavailable_rows": 4,
+    "same_family_structural_min_new_abstained_rows_for_80pct": 170,
+    "source_remaining_combined_score_blocker_rows": 6
+  },
+  "created_utc": "2026-06-04T08:10:50Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_can_solve_confounded_safe_calibration": false,
+    "deployment_closure_valid_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "P10746 no longer needs a fresh policy decision, but the current Lever 3 deployment-validity gate remains blocked by five non-P10746 full-channel rows plus the 16-row high-cofactor and 170-row same-family structural train/cal proxy acquisition shortfalls.",
+    "p10746_fold_only_caveat_accepted": true
+  },
+  "guardrails": {
+    "deployment_closed_now": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_read_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "non_residue_sidecar_created_or_copied": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Focus next on the five remaining full-channel blocker rows or the frozen 16-row high-cofactor train/cal acquisition contract; do not rerun thresholds from this P10746 impact alone.",
+    "result": "The existing reviewed P10746 fold-only decision can clear the policy-decision blocker, but it does not create a combined channel score and does not improve confounded-proxy abstain recall."
+  },
+  "remaining_full_channel_blocker_rows": [
+    {
+      "accession": "P07071",
+      "blocker_class": "predicted_structure_unavailable",
+      "entry_id": "m_csa:416",
+      "mechanically_clearable_now": false,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+    },
+    {
+      "accession": "P07658",
+      "blocker_class": "predicted_structure_unavailable",
+      "entry_id": "m_csa:562",
+      "mechanically_clearable_now": false,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+    },
+    {
+      "accession": "P00806",
+      "blocker_class": "predicted_structure_unavailable",
+      "entry_id": "m_csa:586",
+      "mechanically_clearable_now": false,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+    },
+    {
+      "accession": "Q43088",
+      "blocker_class": "approved_geometry_feature_missing",
+      "entry_id": "m_csa:604",
+      "mechanically_clearable_now": false,
+      "missing_evidence_type": "approved source-free geometry/locator evidence",
+      "next_gate": "provide approved source-free geometry/locator evidence for the row or keep it out of combined-channel audit closure",
+      "smallest_row_experiment": "materialize the approved source-free geometry feature or locator sidecar, then rescore only that row"
+    },
+    {
+      "accession": "P04531",
+      "blocker_class": "predicted_structure_unavailable",
+      "entry_id": "m_csa:637",
+      "mechanically_clearable_now": false,
+      "missing_evidence_type": "approved deployment-valid predicted-structure coordinate source",
+      "next_gate": "supply an approved deployment-valid predicted-structure coordinate source before rescoring",
+      "smallest_row_experiment": "fetch or approve one source-free predicted coordinate for this accession, then score only that row"
+    }
+  ],
+  "resolved_rows": [
+    {
+      "accession": "P10746",
+      "creates_combined_channel_score": false,
+      "deployment_closure_effect": "removes policy-decision blocker only; does not close proxy-scale calibration or missing-coordinate blockers",
+      "entry_id": "m_csa:204",
+      "prior_blocker_class": "policy_decision_required",
+      "resolution": "accepted_fold_only_deployment_caveat"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_p10746_decision_impact",
+  "scope": "Review-only Lever 3 impact packet after applying the P10746 fold-only caveat decision. It removes only the explicit P10746 policy blocker from the current deployment-validity blocker list when accepted; it does not rerun the fixed-threshold audit, change threshold 0.44155, score rows, close deployment, or use heldout rows for calibration.",
+  "source_artifacts": {
+    "deployment_validity_blocker_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_deployment_validity_blocker_packet_current702_20260604.json",
+      "sha256": "b903ef4105af3141b0319f2b259018364d54646592b53254ef918f428df83db6"
+    },
+    "p10746_decision_application": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p10746_deployment_caveat_decision_application_prior_human_current702_20260604.json",
+      "sha256": "f5355243abf1f4ade227022922180444ec5ce4eb1d5bd9a887f983f1e053a974"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_p10746_decision_impact_blocked_remaining_evidence"
+}

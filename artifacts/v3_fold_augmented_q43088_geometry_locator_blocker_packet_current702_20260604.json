@@ -1,0 +1,159 @@
+{
+  "affected_row": {
+    "accession": "Q43088",
+    "blocker_class": "approved_geometry_feature_missing",
+    "blocker_detail": "experimental_geometry_not_ok:insufficient_resolved_residues; fold channel exists but combined channel lacks approved geometry features",
+    "cofactor_channel": {
+      "selected_organic_cofactor_max_class": "flavin",
+      "selected_organic_cofactor_max_score": 0.605709,
+      "sequence_predicted_cofactor_families": [
+        "flavin"
+      ],
+      "sequence_prediction_sources": {
+        "flavin": [
+          "gxxgxxg_dinucleotide_motif"
+        ]
+      }
+    },
+    "entry_id": "m_csa:604",
+    "fold_channel": {
+      "nearest_train_atlas_entry_id": "m_csa:528",
+      "nearest_train_atlas_tm_score": 0.4713,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "raw_query_name": "afdb_Q43088_v6",
+      "raw_target_name": "afdb_Q6UV28_v6"
+    },
+    "label_type": "out_of_scope",
+    "local_role_graph_context_not_clearance": {
+      "active_site_residue_count": 1,
+      "residues": [
+        {
+          "residue_node_id": "m_csa:604:residue:1",
+          "roles": [
+            "activator",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "roles_raw": [
+            "activator",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 287,
+              "uniprot_id": "Q43088"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1mlv",
+              "resid": 243
+            }
+          ]
+        }
+      ],
+      "status": "ok",
+      "why_not_deployment_clearance": "Only one row-specific active-site residue is available; this is train/cal context and does not satisfy the approved source-free geometry/locator evidence required by the combined channel."
+    },
+    "manifest_context": {
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "minimal_train_cal_feature_bundle_ready": true,
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "role_graph_status": "ok"
+    },
+    "predicted_structure_coordinate": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/afdb_Q43088_v6.cif",
+      "sha256": "e2cf9b4137bbd80ed6bc710b9de3a7666b5f828870be2e6a0c7ae2701e256bd9"
+    },
+    "proxy_membership": [
+      "high_cofactor_signature_proxy"
+    ],
+    "split_assignment": "in_distribution"
+  },
+  "artifact_id": "v3_fold_augmented_q43088_geometry_locator_blocker_packet_current702_20260604",
+  "blockers": [
+    "q43088_fewer_than_three_approved_locator_positions",
+    "q43088_missing_approved_source_free_geometry_sidecar",
+    "fixed_threshold_audit_still_not_ready"
+  ],
+  "counts": {
+    "active_site_residue_count": 1,
+    "additional_approved_locator_positions_needed": 2,
+    "affected_rows": 1,
+    "approved_source_free_geometry_locator_rows": 0,
+    "blockers": 3,
+    "critical_violation_total": 0,
+    "fold_channel_available_rows": 1,
+    "high_cofactor_proxy_membership_rows": 1,
+    "local_predicted_coordinate_available_rows": 1,
+    "minimum_locator_positions_required_for_geometry_channel": 3,
+    "selected_organic_cofactor_max_score": 0.605709
+  },
+  "created_utc": "2026-06-04T08:16:37Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_closure_valid_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "q43088_ready_for_combined_channel_rescore_now": false,
+    "smallest_next_experiment": "Supply or approve at least two additional source-free locator positions, or an explicitly approved alternate source-free geometry sidecar, for Q43088; then rescore only m_csa:604 at unchanged threshold 0.44155."
+  },
+  "guardrails": {
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_read_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_rescored_now": false,
+    "sidecars_approved_or_copied": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Do not rerun the fixed-threshold audit from Q43088 alone. Either approve/source at least two additional locator positions for this row or keep it outside combined-channel closure, then continue the 16-row high-cofactor acquisition contract.",
+    "result": "Q43088 is not coordinate-missing: the local AFDB-v6 CIF and fold hit exist, and the row is a high-cofactor proxy member. The blocker is specifically the absence of approved source-free geometry/locator evidence for the combined channel."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_q43088_geometry_locator_blocker_packet",
+  "scope": "Single-row Lever 3 blocker packet for m_csa:604/Q43088 after the P10746 policy blocker was reconciled. It records only local deployment-valid/fail-closed evidence and does not approve a sidecar, rescore rows, rerun thresholds, or use heldout rows for calibration.",
+  "source_artifacts": {
+    "active_site_role_graph_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "sha256": "8c58a6de59dde646dc3d3c4995fcda23ac3fe7f5190d1c4d19481859e7451e2b"
+    },
+    "protein_only_extended_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "remaining_combined_score_blocker_classification": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.json",
+      "sha256": "0e46e84b8f9ac2c5e7d68241ade9fc4e34deccfd471fa0888c22c3160ec2f52c"
+    },
+    "selected_organic_cofactor_score_sidecars": {
+      "exists": true,
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "sequence_cofactor_channel": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_cofactor_channel_current702_20260529.json",
+      "sha256": "b552fbba9b13d84695bcc6d0fb5f6c44236dc1e15a0fd09cd7717a02195462ca"
+    }
+  },
+  "status": "fold_augmented_q43088_geometry_locator_blocker_packet_blocked_missing_source_free_locator"
+}

@@ -1,0 +1,101 @@
+{
+  "affected_row": {
+    "accession": "Q43088",
+    "active_site_residue_count": 1,
+    "additional_approved_locator_positions_needed": 2,
+    "entry_id": "m_csa:604",
+    "local_predicted_coordinate_available": true,
+    "minimum_locator_positions_required_for_geometry_channel": 3,
+    "missing_evidence_type": "two additional approved source-free locator positions or approved source-free geometry sidecar",
+    "rescore_ready_now": false,
+    "residual_blocker_class": "approved_geometry_feature_missing",
+    "selected_organic_cofactor_max_score": 0.605709,
+    "smallest_next_experiment": "approve two additional Q43088 locator positions from source-free evidence, or approve an equivalent geometry sidecar"
+  },
+  "artifact_id": "v3_fold_augmented_q43088_source_free_locator_approval_contract_current702_20260604",
+  "blockers": [
+    "q43088_two_additional_source_free_locator_positions_not_approved",
+    "q43088_geometry_sidecar_not_approved",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "active_site_residue_count": 1,
+    "additional_approved_locator_positions_needed": 2,
+    "affected_rows": 1,
+    "blockers": 3,
+    "critical_violation_total": 0,
+    "fold_channel_available_rows": 1,
+    "geometry_sidecars_approved_now": 0,
+    "high_cofactor_proxy_membership_rows": 1,
+    "local_predicted_coordinate_available_rows": 1,
+    "locator_positions_approved_now": 0,
+    "minimum_locator_positions_required_for_geometry_channel": 3,
+    "remaining_coordinate_source_blocker_rows": 4,
+    "selected_organic_cofactor_max_score": 0.605709
+  },
+  "created_utc": "2026-06-04T08:48:47Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Approve two additional source-free Q43088 locator positions or an equivalent geometry sidecar. Then rescore only Q43088 after the four coordinate-source blockers have approved predicted structures; do not retune threshold 0.44155.",
+    "q43088_ready_for_rescore_now": false,
+    "surface_completeness_ready_after_contract_alone": false
+  },
+  "guardrails": {
+    "fixed_threshold_audit_rerun": false,
+    "geometry_sidecar_approved_now": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_positions_approved_now": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_rescored_now": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Review or create a Q43088 locator approval packet for two additional source-free positions, or an equivalent approved geometry sidecar, before any rescore.",
+    "result": "Q43088 is not blocked on coordinates; it is blocked on the minimum source-free geometry locus needed for the combined fold/geometry channel."
+  },
+  "locator_contract": {
+    "acceptance_criteria": [
+      "Each new locator position must come from source-free predicted-structure or residue-level evidence, not mechanism text, EC/Rhea IDs, labels, source IDs, or target names.",
+      "Approved positions must map unambiguously onto the local Q43088 predicted coordinate frame before any geometry rescore.",
+      "An approved geometry sidecar may satisfy the contract only if it records source-free provenance and the exact residue/coordinate locus used by the fold/geometry channel.",
+      "The contract cannot change labels, registries, ontologies, imports, production thresholds, heldout splits, or threshold 0.44155.",
+      "Q43088 cannot trigger a full fixed-threshold audit rerun alone; the four alternate predicted-structure source rows must also clear."
+    ],
+    "expected_next_artifacts": [
+      "Q43088 source-free locator approval packet",
+      "Q43088 geometry sidecar or locator staging manifest",
+      "single-row Q43088 fold/geometry rescore manifest"
+    ],
+    "minimum_new_approved_locator_positions": 2,
+    "pass_fail_rule": {
+      "fail_conditions": [
+        "Fewer than two additional source-free locator positions are approved and no equivalent geometry sidecar is approved.",
+        "Any locator uses mechanism text, EC/Rhea IDs, labels, source IDs, or target names as predictive evidence.",
+        "Any locator cannot be mapped onto the local Q43088 predicted coordinate frame.",
+        "Any threshold, split, label, registry, ontology, import, or production artifact is changed under this contract."
+      ],
+      "pass_condition": "Q43088 has at least 3 approved source-free locator positions or an equivalent approved geometry sidecar, and is ready for row-level fold/geometry rescore at unchanged threshold 0.44155."
+    }
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_q43088_source_free_locator_approval_contract",
+  "scope": "Review-only Lever 3 contract for clearing m_csa:604/Q43088's source-free geometry locator blocker. Q43088 already has a local predicted coordinate and fold channel, but only one active-site residue; this contract approves no locator, sidecar, score, import, or threshold change.",
+  "source_artifacts": {
+    "q43088_geometry_locator_blocker_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_q43088_geometry_locator_blocker_packet_current702_20260604.json",
+      "sha256": "36b35c1344342d74382ba5cca6e2c52164c5d97bac16b117957ce4d05261014a"
+    },
+    "residual_queue_after_p10746_q43088": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604.json",
+      "sha256": "fd9fee2e7f42f1543f47797ea59461690991b197deee680917f326028e49db5b"
+    }
+  },
+  "status": "fold_augmented_q43088_source_free_locator_approval_contract_ready_for_review"
+}

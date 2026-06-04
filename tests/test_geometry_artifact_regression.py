@@ -5344,6 +5344,416 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(application["guardrails"]["deployment_closed_now"])
         self.assertFalse(application["guardrails"]["heldout_rows_read_now"])
 
+    def test_fold_augmented_p10746_prior_human_decision_and_impact_counts(
+        self,
+    ) -> None:
+        reviewed = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p10746_prior_human_decision_"
+                "reviewed_stub_current702_20260604.json"
+            )
+        )
+        application = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p10746_deployment_caveat_decision_"
+                "application_prior_human_current702_20260604.json"
+            )
+        )
+        impact = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_p10746_decision_"
+                "impact_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            reviewed["status"], "p10746_prior_human_decision_reviewed_stub_ready"
+        )
+        self.assertEqual(reviewed["counts"]["reviewed_decision_stub_rows"], 1)
+        self.assertEqual(reviewed["counts"]["accepted_p10746_caveat_rows"], 1)
+        self.assertEqual(reviewed["counts"]["blockers"], 0)
+        self.assertEqual(
+            reviewed["reviewed_decision_stubs"][0]["decision"],
+            "explicit_accept_p10746_fold_only_deployment_caveat",
+        )
+        self.assertEqual(
+            reviewed["reviewed_decision_stubs"][0]["review_status"],
+            "reviewed_explicit_decision",
+        )
+        self.assertFalse(reviewed["guardrails"]["deployment_closed_now"])
+        self.assertFalse(reviewed["guardrails"]["threshold_selected_or_tuned"])
+
+        self.assertEqual(
+            application["artifact_id"],
+            (
+                "v3_fold_augmented_p10746_deployment_caveat_decision_"
+                "application_prior_human_current702_20260604"
+            ),
+        )
+        self.assertEqual(
+            application["status"],
+            "p10746_deployment_caveat_decision_application_accepted_review_only",
+        )
+        self.assertEqual(application["counts"]["reviewed_decision_rows"], 1)
+        self.assertEqual(application["counts"]["accepted_p10746_caveat_rows"], 1)
+        self.assertEqual(application["counts"]["pending_decision_rows"], 0)
+        self.assertTrue(
+            application["decision"]["p10746_fold_only_caveat_accepted_now"]
+        )
+        self.assertFalse(application["decision"]["deployment_closed_now"])
+        self.assertFalse(application["guardrails"]["heldout_rows_read_now"])
+
+        self.assertEqual(
+            impact["status"],
+            (
+                "fold_augmented_confounded_proxy_p10746_decision_impact_"
+                "blocked_remaining_evidence"
+            ),
+        )
+        self.assertEqual(
+            impact["counts"]["source_remaining_combined_score_blocker_rows"], 6
+        )
+        self.assertEqual(impact["counts"]["p10746_policy_blocker_rows"], 1)
+        self.assertEqual(
+            impact["counts"]["p10746_policy_blocker_resolved_rows"], 1
+        )
+        self.assertEqual(
+            impact["counts"]["remaining_full_channel_blocker_rows_after_p10746"],
+            5,
+        )
+        self.assertEqual(
+            impact["counts"]["remaining_predicted_structure_unavailable_rows"], 4
+        )
+        self.assertEqual(
+            impact["counts"]["remaining_approved_geometry_feature_missing_rows"], 1
+        )
+        self.assertEqual(impact["counts"]["remaining_policy_decision_required_rows"], 0)
+        self.assertEqual(
+            impact["counts"]["high_cofactor_min_new_abstained_rows_for_80pct"], 16
+        )
+        self.assertEqual(
+            impact["counts"][
+                "same_family_structural_min_new_abstained_rows_for_80pct"
+            ],
+            170,
+        )
+        self.assertFalse(
+            impact["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(
+            impact["decision"]["current_evidence_can_solve_confounded_safe_calibration"]
+        )
+        self.assertFalse(impact["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_q43088_geometry_locator_blocker_packet_counts(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_q43088_geometry_locator_blocker_packet_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_q43088_geometry_locator_blocker_packet_"
+                "blocked_missing_source_free_locator"
+            ),
+        )
+        self.assertEqual(packet["affected_row"]["entry_id"], "m_csa:604")
+        self.assertEqual(packet["affected_row"]["accession"], "Q43088")
+        self.assertEqual(
+            packet["affected_row"]["blocker_class"],
+            "approved_geometry_feature_missing",
+        )
+        self.assertEqual(
+            packet["counts"]["local_predicted_coordinate_available_rows"], 1
+        )
+        self.assertEqual(packet["counts"]["fold_channel_available_rows"], 1)
+        self.assertEqual(
+            packet["counts"]["approved_source_free_geometry_locator_rows"], 0
+        )
+        self.assertEqual(packet["counts"]["active_site_residue_count"], 1)
+        self.assertEqual(
+            packet["counts"]["minimum_locator_positions_required_for_geometry_channel"],
+            3,
+        )
+        self.assertEqual(
+            packet["counts"]["additional_approved_locator_positions_needed"], 2
+        )
+        self.assertEqual(packet["counts"]["high_cofactor_proxy_membership_rows"], 1)
+        self.assertEqual(
+            packet["counts"]["selected_organic_cofactor_max_score"], 0.605709
+        )
+        self.assertIn(
+            "q43088_missing_approved_source_free_geometry_sidecar",
+            packet["blockers"],
+        )
+        self.assertFalse(
+            packet["decision"]["q43088_ready_for_combined_channel_rescore_now"]
+        )
+        self.assertFalse(
+            packet["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(packet["guardrails"]["row_rescored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_q43088_source_free_locator_approval_contract_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_q43088_source_free_locator_approval_"
+                "contract_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_q43088_source_free_locator_approval_contract_"
+                "ready_for_review"
+            ),
+        )
+        self.assertEqual(contract["affected_row"]["entry_id"], "m_csa:604")
+        self.assertEqual(contract["affected_row"]["accession"], "Q43088")
+        self.assertEqual(
+            contract["affected_row"]["residual_blocker_class"],
+            "approved_geometry_feature_missing",
+        )
+        self.assertTrue(
+            contract["affected_row"]["local_predicted_coordinate_available"]
+        )
+        self.assertEqual(contract["counts"]["affected_rows"], 1)
+        self.assertEqual(
+            contract["counts"]["local_predicted_coordinate_available_rows"], 1
+        )
+        self.assertEqual(contract["counts"]["fold_channel_available_rows"], 1)
+        self.assertEqual(contract["counts"]["active_site_residue_count"], 1)
+        self.assertEqual(
+            contract["counts"]["minimum_locator_positions_required_for_geometry_channel"],
+            3,
+        )
+        self.assertEqual(
+            contract["counts"]["additional_approved_locator_positions_needed"], 2
+        )
+        self.assertEqual(contract["counts"]["locator_positions_approved_now"], 0)
+        self.assertEqual(contract["counts"]["geometry_sidecars_approved_now"], 0)
+        self.assertEqual(
+            contract["counts"]["high_cofactor_proxy_membership_rows"], 1
+        )
+        self.assertEqual(
+            contract["counts"]["selected_organic_cofactor_max_score"], 0.605709
+        )
+        self.assertEqual(
+            contract["counts"]["remaining_coordinate_source_blocker_rows"], 4
+        )
+        self.assertEqual(contract["counts"]["blockers"], 3)
+        self.assertIn(
+            "q43088_two_additional_source_free_locator_positions_not_approved",
+            contract["blockers"],
+        )
+        self.assertFalse(contract["decision"]["q43088_ready_for_rescore_now"])
+        self.assertFalse(
+            contract["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(contract["guardrails"]["locator_positions_approved_now"])
+        self.assertFalse(contract["guardrails"]["geometry_sidecar_approved_now"])
+        self.assertFalse(contract["guardrails"]["row_rescored_now"])
+        self.assertFalse(contract["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_counts(
+        self,
+    ) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_residual_queue_after_"
+                "p10746_q43088_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            queue["status"],
+            (
+                "fold_augmented_confounded_proxy_residual_queue_blocked_after_"
+                "p10746_q43088"
+            ),
+        )
+        self.assertEqual(queue["counts"]["p10746_policy_blocker_resolved_rows"], 1)
+        self.assertEqual(queue["counts"]["residual_full_channel_rows"], 5)
+        self.assertEqual(
+            queue["counts"]["residual_predicted_structure_unavailable_rows"], 4
+        )
+        self.assertEqual(
+            queue["counts"]["residual_locator_or_geometry_sidecar_rows"], 1
+        )
+        self.assertEqual(queue["counts"]["residual_policy_decision_required_rows"], 0)
+        self.assertEqual(
+            queue["counts"]["q43088_additional_approved_locator_positions_needed"],
+            2,
+        )
+        self.assertEqual(queue["counts"]["afdb_unavailable_rows_reprobed_current_run"], 4)
+        self.assertEqual(
+            queue["counts"]["high_cofactor_min_new_abstained_rows_for_80pct"], 16
+        )
+        self.assertEqual(
+            queue["counts"][
+                "same_family_structural_min_new_abstained_rows_for_80pct"
+            ],
+            170,
+        )
+        residual = {row["entry_id"]: row for row in queue["residual_full_channel_rows"]}
+        self.assertEqual(
+            sorted(residual),
+            ["m_csa:416", "m_csa:562", "m_csa:586", "m_csa:604", "m_csa:637"],
+        )
+        self.assertIn(
+            "q43088_needs_two_additional_approved_locator_positions_or_geometry_sidecar",
+            queue["blockers"],
+        )
+        self.assertFalse(
+            queue["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(queue["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_confounded_proxy_afdb_version_sweep_counts(
+        self,
+    ) -> None:
+        sweep = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_afdb_version_sweep_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            sweep["status"],
+            "fold_augmented_confounded_proxy_afdb_version_sweep_no_models_available",
+        )
+        self.assertEqual(sweep["counts"]["probe_rows"], 4)
+        self.assertEqual(sweep["counts"]["afdb_versions_checked_per_row"], 6)
+        self.assertEqual(sweep["counts"]["afdb_http_200_rows"], 0)
+        self.assertEqual(sweep["counts"]["afdb_all_versions_404_rows"], 4)
+        self.assertEqual(sweep["counts"]["coordinate_downloads_performed"], 0)
+        self.assertEqual(sweep["counts"]["blockers"], 2)
+        rows = {row["entry_id"]: row for row in sweep["rows"]}
+        self.assertEqual(
+            sorted(rows),
+            ["m_csa:416", "m_csa:562", "m_csa:586", "m_csa:637"],
+        )
+        for row in rows.values():
+            self.assertFalse(row["any_afdb_model_available"])
+            self.assertEqual(
+                row["afdb_model_version_statuses"],
+                {"1": 404, "2": 404, "3": 404, "4": 404, "5": 404, "6": 404},
+            )
+        self.assertFalse(
+            sweep["decision"]["built_in_afdb_auto_version_fallback_can_clear_rows_now"]
+        )
+        self.assertFalse(
+            sweep["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertIn(
+            "approved_non_afdb_predicted_structure_source_missing",
+            sweep["blockers"],
+        )
+        self.assertFalse(sweep["guardrails"]["coordinate_downloads_performed"])
+        self.assertFalse(sweep["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_confounded_proxy_alternate_structure_source_contract_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_alternate_structure_"
+                "source_contract_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["status"],
+            (
+                "fold_augmented_confounded_proxy_alternate_structure_source_"
+                "contract_ready_for_source_approval"
+            ),
+        )
+        self.assertEqual(
+            contract["counts"]["residual_coordinate_source_blocker_rows"], 4
+        )
+        self.assertEqual(
+            contract["counts"]["affected_coordinate_source_blocker_rows"], 4
+        )
+        self.assertEqual(contract["counts"]["afdb_versions_checked_per_row"], 6)
+        self.assertEqual(contract["counts"]["afdb_all_versions_404_rows"], 4)
+        self.assertEqual(contract["counts"]["afdb_http_200_rows"], 0)
+        self.assertEqual(contract["counts"]["required_alternate_structure_rows"], 4)
+        self.assertEqual(
+            contract["counts"]["approved_alternate_structure_rows_now"], 0
+        )
+        self.assertEqual(
+            contract["counts"]["remaining_non_coordinate_full_channel_blocker_rows"],
+            1,
+        )
+        self.assertEqual(contract["counts"]["coordinate_downloads_performed"], 0)
+        self.assertEqual(contract["counts"]["blockers"], 4)
+        rows = {row["entry_id"]: row for row in contract["affected_rows"]}
+        self.assertEqual(
+            sorted(rows),
+            ["m_csa:416", "m_csa:562", "m_csa:586", "m_csa:637"],
+        )
+        self.assertEqual(
+            contract["source_contract"]["required_accessions"],
+            ["P07071", "P07658", "P00806", "P04531"],
+        )
+        for row in rows.values():
+            self.assertFalse(row["any_afdb_model_available"])
+            self.assertFalse(row["rescore_ready_now"])
+            self.assertEqual(
+                row["residual_blocker_class"], "predicted_structure_unavailable"
+            )
+            self.assertEqual(
+                row["missing_evidence_type"],
+                (
+                    "approved non-AFDB deployment-valid predicted-structure "
+                    "coordinate source"
+                ),
+            )
+            self.assertEqual(
+                row["afdb_model_version_statuses"],
+                {"1": 404, "2": 404, "3": 404, "4": 404, "5": 404, "6": 404},
+            )
+        self.assertIn(
+            "alternate_predicted_structure_provider_not_approved",
+            contract["blockers"],
+        )
+        self.assertFalse(
+            contract["decision"]["approved_alternate_structure_rows_ready_now"]
+        )
+        self.assertFalse(
+            contract["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(contract["guardrails"]["provider_approved_now"])
+        self.assertFalse(contract["guardrails"]["coordinates_downloaded_or_imported"])
+        self.assertFalse(contract["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_post_decision_deployment_closure_status_current_counts(
         self,
     ) -> None:
