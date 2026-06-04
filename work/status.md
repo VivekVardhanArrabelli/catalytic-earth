@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 338
-- Measured elapsed time: 10218.4 minutes (170.31 hours)
+- Entries: 339
+- Measured elapsed time: 10253.0 minutes (170.88 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- northstar-lever-2: 91.0 measured minutes (1.52 hours)
+- northstar-lever-2: 125.6 measured minutes (2.09 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
 - northstar-lever3: 178.2 measured minutes (2.97 hours)
 - ops: 130.6 measured minutes (2.18 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3553
-- Evidence references logged: 2930
+- Artifact references logged: 3561
+- Evidence references logged: 2938
 
 ## Recent Entries
-
-### 2026-06-03T15:57:39.461549+00:00 - northstar-lever3
-
-- Task: Confounded proxy train/cal tranche scoring
-- Time mode: measured
-- Measured minutes: 55.283
-- Started: 2026-06-03T15:02:08Z
-- Ended: 2026-06-03T15:57:25Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_scored_extension_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scored_extension_tranche2_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_extended_train_cal_oos_surface_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_operating_point_audit_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_scoring_input_manifest_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/handoff.md, work/status.md
-- Evidence: 50-row tranche scored 47/50 full-channel rows, second 66-row tranche scored 64/66 full-channel rows, extended train/cal OOS surface now 186/192 full-channel rows, fixed threshold abstains 0/4 high-cofactor and 10/55 structural proxy rows, current scoring tranche is empty and fail-closed, 1330 pytest passed, 1285 unittest passed, validate passed with 702 labels
-- Notes: No labels registries ontologies imports production thresholds model weights source decisions reviewer decisions or heldout threshold tuning changed.
 
 ### 2026-06-03T16:23:45.947867+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_draft_rows_for_signoff_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_signoff_finalization_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_coverage_gap_after_event_axis_current702_20260603.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_coverage_gap_after_event_axis_current702_20260603.md, artifacts/v3_active_lever_reviewer_decision_queue_current702_20260603.json, work/active_lever_reviewer_decision_queue_current702_20260603.md, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/active_lever_mechanical_actionability_audit_current702_20260603.md, work/handoff.md, work/status.md
 - Evidence: 53 event-axis signoff rows reviewed: 14 approved, 39 rejected until rewritten, 0 pending, event-axis materialization gate now has 14 materialized review-only linker rows and 0 blockers, source-free application surface now has 53 residue-count rows and 14 event/residue-role rows, pre-threshold readiness blockers reduced to heldout-safe application surface missing plus current702 locator coverage incomplete; no heldout threshold read performed, source-free application surface stores sanitized event-axis materialization references with 14 hashes and no accession-bearing gate rows, coverage gap artifact records 87/140 heldout rows still missing approved source-free locator sidecars, full pytest passed: 1345 passed, 154 subtests, one existing sklearn/SciPy deprecation warning, unittest discovery passed: 1300 tests, validate, compileall, git diff --check, and JSON syntax checks passed
 - Notes: No labels, registries, ontologies, imports, production thresholds, model weights, heldout threshold reads, or heldout tuning changed. Event-axis approvals/rejections are review-only gate decisions from source-free evidence.
+
+### 2026-06-04T00:37:12.914214+00:00 - northstar-lever-2
+
+- Task: Partial source-free surface policy and operating-contract preflight
+- Time mode: measured
+- Measured minutes: 34.6
+- Started: 2026-06-04T00:01:29Z
+- Ended: 2026-06-04T00:36:05Z
+- Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.json, work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.md, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json, artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json, work/handoff.md, work/status.md
+- Evidence: 53 source-free pair-feature rows recorded, 14 event/residue-role positive rows recorded, 87 deterministic missing-locator abstention rows recorded, partial-surface threshold read remains blocked, operating-contract decision packet added, full pytest 1348 passed, unittest discovery 1303 passed, validate passed with 702 labels
+- Notes: No labels registries ontologies imports production thresholds model weights heldout threshold reads heldout tuning or production calibration changed.
 
 ## Expectation Updates
 
@@ -387,6 +387,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T17:56:13.579427+00:00: Next Lever 3 progress should clear prior/base full-channel and policy/calibration blockers, or pre-register a no-duplicate follow-up train/cal-only proxy axis before scoring.
 - 2026-06-03T19:56:36.530027+00:00: clear six remaining combined-score blockers before fixed-threshold confounded proxy audit
 - 2026-06-03T23:39:07+00:00: Next Lever 2 work should clear locator coverage for the 87 missing heldout rows or write an explicit partial-surface policy before any frozen residual threshold read.
+- 2026-06-04T00:37:12.914214+00:00: Next run should decide deterministic missing-locator abstention versus complete source-free locator coverage before any frozen residual threshold read.
 
 ## Scope Adjustments
 
@@ -589,3 +590,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T17:56:13.579427+00:00: Lever 3 active-site-count proxy axis is fully scored but not closure-sufficient; do not rerun the global fixed-threshold proxy audit from the partial/base-blocked surface.
 - 2026-06-03T19:56:36.530027+00:00: train/cal-only Lever 3 protein-only fold topology residual after AFDB locus repair exhausted
 - 2026-06-03T23:39:07+00:00: Event-axis signoff is no longer the Lever 2 blocker; locator coverage and heldout-safe application-surface policy are now the remaining Lever 2 blockers.
+- 2026-06-04T00:37:12.914214+00:00: Lever 2 partial source-free surface is review-ready but fail-closed until explicit operating-contract decision.

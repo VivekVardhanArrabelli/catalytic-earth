@@ -7385,6 +7385,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "readiness_current702_20260603.json"
             )
         )
+        pair_partial_surface_policy = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_partial_"
+                "surface_policy_gate_current702_20260604.json"
+            )
+        )
+        pair_partial_surface_contract_preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_partial_"
+                "surface_operating_contract_preflight_current702_20260604.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -7666,7 +7684,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_surface_plan["counts"]["pair_calibration_retained_oos_rows"], 4
         )
         self.assertEqual(pair_surface_plan["counts"]["required_extractors"], 2)
-        self.assertEqual(pair_surface_plan["counts"]["blockers"], 4)
+        self.assertEqual(pair_surface_plan["counts"]["blockers"], 3)
         self.assertEqual(
             pair_surface_plan["counts"]["source_free_locator_priority1_candidates"],
             126,
@@ -7726,6 +7744,20 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             53,
         )
         self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_application_surface_event_residue_role_rows"
+            ],
+            14,
+        )
+        self.assertEqual(
+            [
+                row["status"]
+                for row in pair_surface_plan["required_extractors"]
+                if row["extractor"] == "source_free_event_residue_role_linker"
+            ],
+            ["ready_from_approved_source_free_event_axis_linkers"],
+        )
+        self.assertEqual(
             [
                 row["status"]
                 for row in pair_surface_plan["required_extractors"]
@@ -7735,6 +7767,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertIn(
             "source_free_current702_heldout_locator_coverage_incomplete",
+            pair_surface_plan["blockers"],
+        )
+        self.assertNotIn(
+            "source_free_event_residue_role_extractor_missing",
             pair_surface_plan["blockers"],
         )
         self.assertNotIn(
@@ -7793,6 +7829,86 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(
             pair_source_free_surface["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_partial_surface_policy["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_ready_no_threshold_read",
+        )
+        self.assertTrue(
+            pair_partial_surface_policy["decision"][
+                "heldout_safe_partial_surface_policy_ready"
+            ]
+        )
+        self.assertFalse(
+            pair_partial_surface_policy["decision"][
+                "partial_surface_policy_accepted_for_frozen_threshold_read"
+            ]
+        )
+        self.assertEqual(
+            pair_partial_surface_policy["counts"]["source_free_pair_feature_rows"],
+            53,
+        )
+        self.assertEqual(
+            pair_partial_surface_policy["counts"][
+                "missing_source_free_locator_policy_abstain_rows"
+            ],
+            87,
+        )
+        self.assertIn(
+            "partial_surface_policy_not_accepted_for_frozen_threshold_read",
+            pair_partial_surface_policy["blockers"],
+        )
+        self.assertFalse(
+            pair_partial_surface_policy["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_partial_surface_contract_preflight["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_blocked_policy_decision_required",
+        )
+        self.assertTrue(
+            pair_partial_surface_contract_preflight["decision"][
+                "explicit_policy_decision_required"
+            ]
+        )
+        self.assertFalse(
+            pair_partial_surface_contract_preflight["decision"][
+                "ready_to_apply_frozen_residual_threshold_once"
+            ]
+        )
+        self.assertEqual(
+            pair_partial_surface_contract_preflight["counts"][
+                "source_free_pair_feature_rows"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_partial_surface_contract_preflight["counts"][
+                "missing_source_free_locator_policy_abstain_rows"
+            ],
+            87,
+        )
+        self.assertIn(
+            "deterministic_missing_locator_abstention_operating_contract_decision_required",
+            pair_partial_surface_contract_preflight["blockers"],
+        )
+        self.assertEqual(
+            pair_partial_surface_contract_preflight["decision_packet"][
+                "decision_class"
+            ],
+            "source_free_partial_surface_operating_contract",
+        )
+        self.assertEqual(
+            len(
+                pair_partial_surface_contract_preflight["decision_packet"][
+                    "decision_context_sha256"
+                ]
+            ),
+            64,
+        )
+        self.assertFalse(
+            pair_partial_surface_contract_preflight["guardrails"][
+                "heldout_rows_evaluated"
+            ]
         )
         self.assertEqual(
             pair_event_linker["status"],
@@ -8360,6 +8476,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "heldout_safe_pair_application_surface_ready"
             ]
         )
+        self.assertTrue(
+            pair_pre_threshold_readiness["readiness_inputs"][
+                "heldout_safe_partial_surface_policy_ready"
+            ]
+        )
+        self.assertFalse(
+            pair_pre_threshold_readiness["readiness_inputs"][
+                "partial_surface_policy_accepted_for_frozen_threshold_read"
+            ]
+        )
         self.assertEqual(
             pair_pre_threshold_readiness["frozen_contract"][
                 "residual_distance_threshold"
@@ -8385,7 +8511,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             pair_pre_threshold_readiness["counts"]["locator_sidecars_written"], 53
         )
-        self.assertEqual(pair_pre_threshold_readiness["counts"]["blockers"], 2)
+        self.assertEqual(pair_pre_threshold_readiness["counts"]["blockers"], 3)
         self.assertEqual(
             pair_pre_threshold_readiness["counts"][
                 "source_free_event_residue_role_feature_rows"
@@ -8397,6 +8523,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "event_axis_materialized_linker_rows"
             ],
             14,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "partial_surface_policy_pair_feature_rows"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_pre_threshold_readiness["counts"][
+                "partial_surface_policy_missing_locator_abstain_rows"
+            ],
+            87,
         )
         self.assertEqual(
             pair_pre_threshold_readiness["counts"]["event_axis_signoff_draft_rows"],
@@ -8459,8 +8597,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             pair_pre_threshold_readiness["blockers"],
             [
-                "heldout_safe_pair_application_surface_missing",
+                "heldout_safe_pair_application_surface_partial_policy_no_threshold_read",
                 "source_free_current702_heldout_locator_coverage_incomplete",
+                "partial_surface_policy_not_accepted_for_frozen_threshold_read",
             ],
         )
         self.assertTrue(
@@ -8471,6 +8610,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             pair_pre_threshold_readiness["source_artifacts"][
                 "event_axis_linker_materialization_gate"
+            ]["exists"]
+        )
+        self.assertTrue(
+            pair_pre_threshold_readiness["source_artifacts"][
+                "partial_surface_policy_gate"
             ]["exists"]
         )
         self.assertFalse(
@@ -10396,7 +10540,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 1)
-        self.assertEqual(audit["counts"]["blockers"], 11)
+        self.assertEqual(audit["counts"]["blockers"], 12)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 23
         )
@@ -10643,6 +10787,30 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             audit["counts"]["lever2_event_axis_insufficient_signoff_rows"], 33
         )
+        self.assertTrue(
+            audit["counts"]["lever2_partial_surface_policy_ready"]
+        )
+        self.assertFalse(
+            audit["counts"]["lever2_partial_surface_policy_threshold_read_accepted"]
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_partial_surface_policy_pair_feature_rows"], 53
+        )
+        self.assertEqual(
+            audit["counts"][
+                "lever2_partial_surface_policy_missing_locator_abstain_rows"
+            ],
+            87,
+        )
+        self.assertTrue(
+            audit["counts"][
+                "lever2_partial_surface_operating_contract_decision_required"
+            ]
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_partial_surface_operating_contract_blockers"],
+            2,
+        )
         self.assertEqual(
             audit["counts"]["lever4_label_factory_gate_input_rows"], 0
         )
@@ -10717,6 +10885,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertIn(
             "family_panel_expert_import_decisions_missing", audit["blockers"]
         )
+        self.assertIn(
+            "lever2_partial_surface_operating_contract_decision_required",
+            audit["blockers"],
+        )
         self.assertNotIn(
             "source_free_locator_rewrite_approvals_missing", audit["blockers"]
         )
@@ -10763,12 +10935,36 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertIn(
             "family_panel_expert_import_decision", next_review_classes
         )
+        self.assertIn(
+            "source_free_partial_surface_operating_contract", next_review_classes
+        )
         self.assertNotIn(
             "source_free_locator_rewrite_approval", next_review_classes
+        )
+        self.assertTrue(
+            any(
+                item["entry_id"] == "current702_partial_surface"
+                and item["decision_field_to_update"] == "decision"
+                and len(item["decision_context_sha256"]) == 64
+                for item in audit["next_review_items"]
+            )
         )
         self.assertNotIn(
             "remaining Lever 2 event-axis signoffs",
             audit["interpretation"]["next_action"],
+        )
+        self.assertIn(
+            "Lever 2 partial-surface operating-contract decision",
+            audit["interpretation"]["next_action"],
+        )
+        self.assertEqual(
+            gates["source_free_partial_surface_operating_contract"][
+                "blocking_reason"
+            ],
+            "deterministic_missing_locator_abstention_operating_contract_decision_required",
+        )
+        self.assertFalse(
+            gates["source_free_partial_surface_operating_contract"]["ready_now"]
         )
         self.assertEqual(
             audit["next_review_items"][7]["entry_id"], "m_csa:116"

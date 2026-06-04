@@ -3,12 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-03T23:03:17Z`
-- STARTED_AT_LOCAL: `2026-06-03T18:03:17-0500 CDT`
-- ENDED_AT_UTC: `2026-06-03T23:39:07Z`
-- ENDED_AT_LOCAL: `2026-06-03T18:39:07-0500 CDT`
-- ELAPSED_MINUTES: `35.8`
-- Status: wrapped and validated; final commit/push follows this record
+- STARTED_AT_UTC: `2026-06-04T00:01:29Z`
+- STARTED_AT_LOCAL: `2026-06-03T19:01:29-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T00:36:05Z`
+- ENDED_AT_LOCAL: `2026-06-03T19:36:05-0500 CDT`
+- ELAPSED_MINUTES: `34.6`
+- Status: complete; canonical `.git/catalytic-earth-automation.lock`
+  acquired before substantive work and released after clean push
 
 ## Mission
 
@@ -59,6 +60,104 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-03/04 Lever 3/2/4 Forward Push Active Run 23
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T00:01:29Z`
+- STARTED_LOCAL: `2026-06-03T19:01:29-0500 CDT`
+- ENDED_AT: `2026-06-04T00:36:05Z`
+- ENDED_LOCAL: `2026-06-03T19:36:05-0500 CDT`
+- ELAPSED_MINUTES: `34.6`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work.
+
+#### Current intent
+
+Continue Run 22's Lever 2 path. The prior exact next action offered either
+complete heldout locator coverage or an explicit partial-surface policy before
+any frozen residual threshold read. This run took the policy route and kept it
+fail-closed: the partial surface is review-ready, but the threshold read remains
+blocked until an explicit operating-contract decision is recorded.
+
+Ended before 55 minutes because the mechanically safe Lever 2 increment is
+complete for this run. The remaining step is an explicit policy/scientific
+decision, not another automatic materialization pass.
+
+#### What changed
+
+- Fixed the heldout-safe surface plan so it recognizes the already materialized
+  14 event/residue-role rows instead of reporting the event axis as absent.
+- Added the source-free partial-surface policy gate:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.json`
+  and its Markdown readout. It records 53 source-free pair-feature rows,
+  14 event/residue-role positive rows, and 87 deterministic missing-locator
+  abstention rows. The artifact is heldout-safe and does not authorize a frozen
+  residual threshold read.
+- Wired pre-threshold readiness to consume the partial policy gate. Readiness
+  now reports the partial surface explicitly and remains blocked by:
+  `heldout_safe_pair_application_surface_partial_policy_no_threshold_read`,
+  `source_free_current702_heldout_locator_coverage_incomplete`, and
+  `partial_surface_policy_not_accepted_for_frozen_threshold_read`.
+- Added the source-free partial-surface operating-contract preflight:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.json`
+  and its Markdown readout. It exposes the review decision packet and hashes the
+  decision context so reviewers can explicitly choose either deterministic
+  missing-locator abstention or complete source-free locator coverage.
+- Wired the active mechanical audit to read the operating-contract preflight.
+  The audit now includes a Lever 2 gate named
+  `source_free_partial_surface_operating_contract`, adds the blocker
+  `deterministic_missing_locator_abstention_operating_contract_decision_required`,
+  reports partial-surface counts, and adds a synthetic next-review item
+  `current702_partial_surface`.
+- Regenerated the dependent application-surface, heldout-safe surface-plan,
+  pre-threshold readiness, and active mechanical-audit JSON/Markdown artifacts.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, frozen thresholds, heldout training, heldout tuning, or heldout
+  threshold reads changed.
+- M-CSA-derived row-specific features remain review-only and heldout-safe at
+  this stage. The new partial-surface artifacts are operating-contract and
+  preflight artifacts, not calibration or production-threshold artifacts.
+- Missing source-free locators are represented as deterministic abstentions only
+  if the operating contract is explicitly accepted; absent that decision, the
+  residual threshold path remains closed.
+
+#### Verification
+
+- Focused Lever 2/active audit regression slices passed during implementation.
+- Artifact regression after final audit/preflight changes passed:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -q`:
+  193 passed and 7 subtests passed.
+- Full pytest: `PYTHONPATH=src python -m pytest -q`: 1348 passed and
+  156 subtests passed, with one existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1303 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- JSON syntax checks passed for the active audit, pre-threshold readiness, and
+  the two new partial-surface JSON artifacts.
+
+#### Exact next action
+
+Do not run the frozen residual threshold yet. Start with the Lever 2
+partial-surface operating-contract decision in
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.json`.
+Choose exactly one of:
+`explicit_accept_deterministic_missing_locator_abstention_operating_contract`
+or `reject_partial_surface_require_complete_source_free_locator_coverage`.
+Then rerun the operating-contract preflight, pre-threshold readiness, and active
+mechanical audit. If the partial contract is rejected, continue materializing
+approved source-free locator sidecars for the 87 missing heldout rows before
+any threshold read.
 
 ### 2026-06-03 Lever 3/2/4 Forward Push Active Run 22
 

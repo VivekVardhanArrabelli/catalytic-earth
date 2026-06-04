@@ -1,11 +1,12 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603",
   "blockers": [
-    "heldout_safe_pair_application_surface_missing",
-    "source_free_current702_heldout_locator_coverage_incomplete"
+    "heldout_safe_pair_application_surface_partial_policy_no_threshold_read",
+    "source_free_current702_heldout_locator_coverage_incomplete",
+    "partial_surface_policy_not_accepted_for_frozen_threshold_read"
   ],
   "counts": {
-    "blockers": 2,
+    "blockers": 3,
     "critical_violation_total": 0,
     "event_axis_explicit_approved_rows": 14,
     "event_axis_gate_consumable_signoff_rows": 14,
@@ -25,14 +26,16 @@
     "locator_preflight_rows": 55,
     "locator_review_warning_rows": 6,
     "locator_sidecars_written": 53,
+    "partial_surface_policy_missing_locator_abstain_rows": 87,
+    "partial_surface_policy_pair_feature_rows": 53,
     "source_free_event_residue_role_feature_rows": 14,
     "source_free_residue_count_feature_rows": 53
   },
-  "created_utc": "2026-06-03T23:34:39Z",
+  "created_utc": "2026-06-04T00:14:13Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
-    "next_gate": "Keep the approved locator surface fixed, validate source-free event-axis linker rows or an accepted fallback, rerun the source-free application surface, then rerun this readiness gate before applying the frozen residual threshold exactly once.",
+    "next_gate": "Do not read the frozen residual threshold on the partial surface. Either materialize approved source-free locators for the remaining heldout rows, or write a separate operating contract accepting deterministic missing-locator abstention as the deployable readout; then rerun this readiness gate.",
     "ready_to_apply_frozen_residual_threshold_once": false
   },
   "frozen_contract": {
@@ -55,13 +58,15 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Keep the materialized approved locators, supply source-free event-axis linker rows or an accepted fallback, and leave the residual threshold unapplied until this readiness gate passes.",
-    "result": "The frozen residual contract is calibrated, but the heldout application surface is not ready because source-free event-axis linkers and complete heldout-safe feature coverage are still absent."
+    "next_action": "Materialize the remaining approved source-free locator sidecars or explicitly accept deterministic missing-locator abstention in a separate operating contract; keep the frozen residual threshold unapplied until this readiness gate passes.",
+    "result": "The frozen residual contract is calibrated and source-free event-axis linkers are materialized. A partial-surface policy is present, but the frozen heldout read remains blocked because locator coverage is incomplete and the partial policy is not accepted as a threshold-read operating contract."
   },
   "readiness_inputs": {
     "approved_source_free_locator_surface_ready": true,
     "heldout_safe_pair_application_surface_ready": false,
+    "heldout_safe_partial_surface_policy_ready": true,
     "pair_operating_point_contract_ready": true,
+    "partial_surface_policy_accepted_for_frozen_threshold_read": false,
     "source_free_event_axis_linker_signoff_finalization_ready": true,
     "source_free_event_axis_linkers_materialized": true
   },
@@ -98,10 +103,15 @@
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
       "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
     },
+    "partial_surface_policy_gate": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.json",
+      "sha256": "b1cf1438a5747730a39aa7fcc400edaa968434eda34589caf4d1b521af8d51cd"
+    },
     "source_free_application_surface": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
-      "sha256": "8bbfae8953600d65b934535fc4c66338bdc87f01602d57a5c85bebc10aacc756"
+      "sha256": "8b283684e1ed793d39b7bc9b2e0f5e01aa937c9fd2dfab39c0f15e9ddfab9e4f"
     },
     "source_free_locator_input_audit": {
       "exists": true,

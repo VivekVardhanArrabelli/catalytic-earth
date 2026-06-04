@@ -507,6 +507,12 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_APPLICATION_SURFACE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PARTIAL_SURFACE_POLICY_GATE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PARTIAL_SURFACE_OPERATING_CONTRACT_PREFLIGHT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604"
+)
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_LINKER_BLOCKER_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602"
 )
@@ -33237,6 +33243,7 @@ def build_active_lever_mechanical_actionability_audit(
     active_lever_reviewer_decision_queue_path: Path,
     active_lever_source_decision_intake_preflight_path: Path | None = None,
     lever2_pre_threshold_readiness_path: Path | None = None,
+    lever2_partial_surface_operating_contract_preflight_path: Path | None = None,
     lever2_event_axis_linker_schema_path: Path | None = None,
     lever2_event_axis_linker_materialization_gate_path: Path | None = None,
     lever3_post_decision_deployment_closure_status_path: Path | None = None,
@@ -33271,6 +33278,12 @@ def build_active_lever_mechanical_actionability_audit(
         _read_json(lever2_pre_threshold_readiness_path)
         if lever2_pre_threshold_readiness_path is not None
         and Path(lever2_pre_threshold_readiness_path).exists()
+        else {}
+    )
+    lever2_partial_contract = (
+        _read_json(lever2_partial_surface_operating_contract_preflight_path)
+        if lever2_partial_surface_operating_contract_preflight_path is not None
+        and Path(lever2_partial_surface_operating_contract_preflight_path).exists()
         else {}
     )
     event_schema = (
@@ -33448,8 +33461,43 @@ def build_active_lever_mechanical_actionability_audit(
         if isinstance(lever2_readiness, dict)
         else {}
     )
+    lever2_inputs = (
+        lever2_readiness.get("readiness_inputs", {})
+        if isinstance(lever2_readiness, dict)
+        else {}
+    )
     lever2_locator_sidecars_written = int(
         lever2_counts.get("locator_sidecars_written") or 0
+    )
+    lever2_partial_policy_ready = bool(
+        lever2_inputs.get("heldout_safe_partial_surface_policy_ready")
+    )
+    lever2_partial_policy_threshold_read_accepted = bool(
+        lever2_inputs.get("partial_surface_policy_accepted_for_frozen_threshold_read")
+    )
+    lever2_partial_policy_pair_feature_rows = int(
+        lever2_counts.get("partial_surface_policy_pair_feature_rows") or 0
+    )
+    lever2_partial_policy_missing_locator_abstain_rows = int(
+        lever2_counts.get("partial_surface_policy_missing_locator_abstain_rows") or 0
+    )
+    lever2_partial_contract_counts = (
+        lever2_partial_contract.get("counts", {})
+        if isinstance(lever2_partial_contract, dict)
+        else {}
+    )
+    lever2_partial_contract_decision = (
+        lever2_partial_contract.get("decision", {})
+        if isinstance(lever2_partial_contract, dict)
+        else {}
+    )
+    lever2_partial_contract_blockers = (
+        lever2_partial_contract.get("blockers", [])
+        if isinstance(lever2_partial_contract, dict)
+        else []
+    )
+    lever2_partial_contract_decision_required = bool(
+        lever2_partial_contract_decision.get("explicit_policy_decision_required")
     )
     source_intake_locator_follow_on_ready = int(
         source_intake_counts.get("locator_materialization_ready_approval_rows")
@@ -33901,6 +33949,25 @@ def build_active_lever_mechanical_actionability_audit(
         },
         {
             "lever": "Lever 2",
+            "gate": "source_free_partial_surface_operating_contract",
+            "ready_now": False,
+            "blocking_reason": (
+                "deterministic_missing_locator_abstention_operating_contract_decision_required"
+                if lever2_partial_contract_decision_required
+                else (
+                    "partial_surface_operating_contract_preflight_missing"
+                    if not lever2_partial_contract
+                    else "partial_surface_operating_contract_preflight_blocked"
+                )
+            ),
+            "next_command_after_decision": (
+                "build-mechanism-feature-row-specific-bond-change-p0-oos-"
+                "augmented-best-token-followup-pair-source-free-partial-"
+                "surface-operating-contract-preflight"
+            ),
+        },
+        {
+            "lever": "Lever 2",
             "gate": "source_free_locator_materialization_and_pre_threshold_readiness",
             "ready_now": bool(
                 lever2_decision.get("ready_to_apply_frozen_residual_threshold_once")
@@ -34044,6 +34111,8 @@ def build_active_lever_mechanical_actionability_audit(
         blockers.append("source_free_event_axis_linkers_missing")
     if not lever4_decision.get("label_factory_gate_inputs_ready"):
         blockers.append("family_panel_label_factory_gate_inputs_missing")
+    if lever2_partial_contract_decision_required:
+        blockers.append("lever2_partial_surface_operating_contract_decision_required")
     if not lever2_decision.get("ready_to_apply_frozen_residual_threshold_once"):
         blockers.append("lever2_pre_threshold_readiness_not_ready")
 
@@ -34075,6 +34144,41 @@ def build_active_lever_mechanical_actionability_audit(
         }
         for item in pending_queue_items[:12]
     ]
+    if lever2_partial_contract_decision_required:
+        partial_contract_packet = lever2_partial_contract.get("decision_packet", {})
+        next_review_items.append(
+            {
+                "priority": partial_contract_packet.get("priority", 2),
+                "lever": partial_contract_packet.get("lever", "Lever 2"),
+                "entry_id": partial_contract_packet.get(
+                    "entry_id", "current702_partial_surface"
+                ),
+                "decision_class": partial_contract_packet.get(
+                    "decision_class",
+                    "source_free_partial_surface_operating_contract",
+                ),
+                "review_status": partial_contract_packet.get(
+                    "review_status", "pending_explicit_policy_decision"
+                ),
+                "allowed_decisions": (
+                    partial_contract_packet.get("allowed_decisions")
+                    or lever2_partial_contract.get("allowed_policy_decisions")
+                    or []
+                ),
+                "decision_field_to_update": partial_contract_packet.get(
+                    "decision_field_to_update", "decision"
+                ),
+                "review_status_field_to_update": partial_contract_packet.get(
+                    "review_status_field_to_update", "review_status"
+                ),
+                "approved_boolean_field_to_update": None,
+                "decision_context_sha256": partial_contract_packet.get(
+                    "decision_context_sha256"
+                ),
+                "candidate_sha256": None,
+                "planned_locator_payload_sha256": None,
+            }
+        )
     lever3_background_exhausted = bool(
         lever3_proxy_background_axis_decision.get(
             "all_remaining_rows_background_only_current_axes"
@@ -34214,6 +34318,16 @@ def build_active_lever_mechanical_actionability_audit(
         )
         if lever2_event_axis_pending
         else (
+            "Lever 2 locator approvals and event-axis signoffs are cleared. "
+            f"The partial policy has {lever2_partial_policy_pair_feature_rows} "
+            "source-free pair-feature rows and "
+            f"{lever2_partial_policy_missing_locator_abstain_rows} "
+            "missing-locator abstention rows, but the frozen threshold read "
+            "remains blocked until complete locator coverage or an accepted "
+            "missing-locator abstention operating contract exists."
+        )
+        if lever2_partial_policy_ready
+        else (
             "Lever 2 locator approvals and event-axis signoffs are cleared, "
             "but pre-threshold readiness remains blocked."
         )
@@ -34233,6 +34347,10 @@ def build_active_lever_mechanical_actionability_audit(
     if lever4_import_preview_pending:
         pending_review_parts.append(
             f"{len(lever4_import_preview_pending)} Lever 4 import-preview candidates"
+        )
+    if lever2_partial_policy_ready and not lever2_partial_policy_threshold_read_accepted:
+        pending_review_parts.append(
+            "Lever 2 partial-surface operating-contract decision"
         )
     pending_event_axis_ids = [
         str(item.get("entry_id"))
@@ -34512,6 +34630,24 @@ def build_active_lever_mechanical_actionability_audit(
                 queue_counts.get("lever2_clean_locator_rewrite_items") or 0
             ),
             "lever2_locator_sidecars_written": lever2_locator_sidecars_written,
+            "lever2_partial_surface_policy_ready": lever2_partial_policy_ready,
+            "lever2_partial_surface_policy_threshold_read_accepted": (
+                lever2_partial_policy_threshold_read_accepted
+            ),
+            "lever2_partial_surface_policy_pair_feature_rows": (
+                lever2_partial_policy_pair_feature_rows
+            ),
+            "lever2_partial_surface_policy_missing_locator_abstain_rows": (
+                lever2_partial_policy_missing_locator_abstain_rows
+            ),
+            "lever2_partial_surface_operating_contract_decision_required": (
+                lever2_partial_contract_decision_required
+            ),
+            "lever2_partial_surface_operating_contract_blockers": int(
+                lever2_partial_contract_counts.get("blockers")
+                if lever2_partial_contract_counts.get("blockers") is not None
+                else len(lever2_partial_contract_blockers)
+            ),
             "lever2_event_axis_materialized_linker_rows": int(
                 event_counts.get("materialized_linker_rows") or 0
             ),
@@ -34596,6 +34732,13 @@ def build_active_lever_mechanical_actionability_audit(
             "lever2_pre_threshold_readiness": (
                 _source_path_record(lever2_pre_threshold_readiness_path)
                 if lever2_pre_threshold_readiness_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "lever2_partial_surface_operating_contract_preflight": (
+                _source_path_record(
+                    lever2_partial_surface_operating_contract_preflight_path
+                )
+                if lever2_partial_surface_operating_contract_preflight_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
             "lever2_event_axis_linker_schema": (
@@ -34793,6 +34936,18 @@ def _render_active_lever_mechanical_actionability_audit_report(
         f"{counts['lever2_event_axis_priority1_signoff_rows']}/"
         f"{counts['lever2_event_axis_priority2_signoff_rows']}/"
         f"{counts['lever2_event_axis_insufficient_signoff_rows']}",
+        "- Lever 2 partial-surface policy ready: "
+        f"{counts.get('lever2_partial_surface_policy_ready')}",
+        "- Lever 2 partial-surface threshold read accepted: "
+        f"{counts.get('lever2_partial_surface_policy_threshold_read_accepted')}",
+        "- Lever 2 partial-surface pair-feature rows: "
+        f"{counts.get('lever2_partial_surface_policy_pair_feature_rows')}",
+        "- Lever 2 partial-surface missing-locator abstain rows: "
+        f"{counts.get('lever2_partial_surface_policy_missing_locator_abstain_rows')}",
+        "- Lever 2 partial-surface operating-contract decision required: "
+        f"{counts.get('lever2_partial_surface_operating_contract_decision_required')}",
+        "- Lever 2 partial-surface operating-contract blockers: "
+        f"{counts.get('lever2_partial_surface_operating_contract_blockers')}",
         "- Lever 3 structural proxy abstained: "
         f"{counts.get('lever3_confounded_structural_proxy_abstained')}/"
         f"{counts.get('lever3_confounded_structural_proxy_rows')}",
@@ -34912,6 +35067,7 @@ def write_active_lever_mechanical_actionability_audit(
     active_lever_reviewer_decision_queue_path: Path,
     active_lever_source_decision_intake_preflight_path: Path | None = None,
     lever2_pre_threshold_readiness_path: Path | None = None,
+    lever2_partial_surface_operating_contract_preflight_path: Path | None = None,
     lever2_event_axis_linker_schema_path: Path | None = None,
     lever2_event_axis_linker_materialization_gate_path: Path | None = None,
     lever3_post_decision_deployment_closure_status_path: Path | None = None,
@@ -34941,6 +35097,9 @@ def write_active_lever_mechanical_actionability_audit(
             active_lever_source_decision_intake_preflight_path
         ),
         lever2_pre_threshold_readiness_path=lever2_pre_threshold_readiness_path,
+        lever2_partial_surface_operating_contract_preflight_path=(
+            lever2_partial_surface_operating_contract_preflight_path
+        ),
         lever2_event_axis_linker_schema_path=lever2_event_axis_linker_schema_path,
         lever2_event_axis_linker_materialization_gate_path=(
             lever2_event_axis_linker_materialization_gate_path
@@ -52126,6 +52285,15 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     source_free_surface_residue_count_rows = int(
         source_free_surface_counts.get("source_free_residue_count_feature_rows") or 0
     )
+    source_free_surface_event_rows = int(
+        source_free_surface_counts.get("source_free_event_residue_role_feature_rows") or 0
+    )
+    source_free_surface_event_ready = bool(
+        source_free_surface
+        and source_free_surface.get("decision", {}).get(
+            "source_free_event_residue_role_surface_ready"
+        )
+    )
     locator_queue_counts = (
         locator_queue.get("counts", {}) if isinstance(locator_queue, dict) else {}
     )
@@ -52231,9 +52399,13 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "ec_or_rhea_ids",
             ],
             "status": (
-                "missing_source_free_event_axis"
-                if source_free_surface is not None
-                else "missing"
+                "ready_from_approved_source_free_event_axis_linkers"
+                if source_free_surface_event_ready
+                else (
+                    "missing_source_free_event_axis"
+                    if source_free_surface is not None
+                    else "missing"
+                )
             ),
         },
         {
@@ -52252,10 +52424,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "status": residue_count_extractor_status,
         },
     ]
-    blockers = [
-        "source_free_event_residue_role_extractor_missing",
-        "m_csa_curated_heldout_active_site_roles_not_deployment_input",
-    ]
+    blockers = ["m_csa_curated_heldout_active_site_roles_not_deployment_input"]
+    if not source_free_surface_event_ready:
+        blockers.insert(0, "source_free_event_residue_role_extractor_missing")
     if source_free_surface_locator_rows <= 0:
         blockers.insert(0, "source_free_current702_heldout_locator_surface_missing")
     elif source_free_surface_locator_rows < len(heldout_rows):
@@ -52322,6 +52493,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "source_free_application_surface_residue_count_rows": (
                 source_free_surface_residue_count_rows
             ),
+            "source_free_application_surface_event_residue_role_rows": (
+                source_free_surface_event_rows
+            ),
             "source_free_application_surface_current702_heldout_locator_sidecars": (
                 source_free_surface_locator_rows
             ),
@@ -52384,10 +52558,17 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "heldout_read_once_performed": False,
             "next_gate": (
                 "Complete source-free current702 heldout active-site locator "
-                "coverage and build the event/residue-role extraction sidecar "
-                "for the selected pair; rerun this plan and the preflight, "
-                "then apply the frozen residual threshold exactly once without "
-                "retuning."
+                "coverage or explicitly accept a deterministic missing-locator "
+                "abstention operating policy; rerun this plan and readiness "
+                "before any frozen residual threshold read."
+                if source_free_surface_event_ready
+                else (
+                    "Complete source-free current702 heldout active-site "
+                    "locator coverage and build the event/residue-role "
+                    "extraction sidecar for the selected pair; rerun this plan "
+                    "and the preflight, then apply the frozen residual "
+                    "threshold exactly once without retuning."
+                )
             ),
         },
         "source_artifacts": {
@@ -52440,16 +52621,31 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         },
         "interpretation": {
             "result": (
-                "The calibrated pair surface is ready on train/cal, but heldout "
-                "application remains blocked until the selected pair can be "
-                "computed from source-free active-site/event evidence."
+                "The calibrated pair surface is ready on train/cal and the "
+                "event/residue-role extractor is materialized for approved "
+                "source-free locator rows, but heldout application remains "
+                "blocked on incomplete source-free locator coverage."
+                if source_free_surface_event_ready
+                else (
+                    "The calibrated pair surface is ready on train/cal, but "
+                    "heldout application remains blocked until the selected "
+                    "pair can be computed from source-free active-site/event "
+                    "evidence."
+                )
             ),
             "next_action": (
                 "Use the source-free locator action queue and input audit to "
-                "materialize approved current702 heldout locator sidecars only "
-                "after source-free anchor evidence is present; then add a "
-                "source-free event/residue-role linker before any heldout "
-                "threshold application."
+                "materialize remaining approved current702 heldout locator "
+                "sidecars, or explicitly accept a deterministic missing-locator "
+                "abstention policy before any heldout threshold application."
+                if source_free_surface_event_ready
+                else (
+                    "Use the source-free locator action queue and input audit "
+                    "to materialize approved current702 heldout locator "
+                    "sidecars only after source-free anchor evidence is "
+                    "present; then add a source-free event/residue-role linker "
+                    "before any heldout threshold application."
+                )
                 if locator_queue_ready
                 else (
                     "Materialize source-free current702 heldout locator and "
@@ -52481,6 +52677,8 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{counts['source_free_predicted_geometry_ready_rows']}",
         "- Source-free application residue-count rows: "
         f"{counts.get('source_free_application_surface_residue_count_rows')}",
+        "- Source-free application event/residue-role rows: "
+        f"{counts.get('source_free_application_surface_event_residue_role_rows')}",
         "- Source-free locator priority-1 candidates: "
         f"{counts.get('source_free_locator_priority1_candidates')}",
         "- Source-free locator priority-1 rows without anchor: "
@@ -53025,6 +53223,558 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return surface
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate(
+    *,
+    source_free_application_surface_path: Path,
+    label_manifest_path: Path,
+    pair_operating_point_contract_path: Path,
+) -> dict[str, Any]:
+    surface = _read_json(source_free_application_surface_path)
+    manifest = _read_json(label_manifest_path)
+    contract = _read_json(pair_operating_point_contract_path)
+    heldout_rows = [
+        row
+        for row in manifest.get("rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("split_assignment") == "heldout"
+    ]
+    heldout_entry_ids = [
+        str(row.get("entry_id"))
+        for row in sorted(
+            heldout_rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id")))
+        )
+    ]
+    surface_rows = [
+        row
+        for row in surface.get("surface_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    surface_by_entry = {str(row.get("entry_id")): row for row in surface_rows}
+    feature_entry_ids = sorted(
+        set(surface_by_entry).intersection(heldout_entry_ids),
+        key=_entry_id_sort_key,
+    )
+    missing_entry_ids = [
+        entry_id for entry_id in heldout_entry_ids if entry_id not in surface_by_entry
+    ]
+    event_positive_entry_ids = [
+        entry_id
+        for entry_id in feature_entry_ids
+        if bool(
+            surface_by_entry[entry_id]
+            .get("source_free_pair_features", {})
+            .get("event_residue_role:proton_transfer|electrostatic_stabiliser")
+        )
+    ]
+    contract_ready = (
+        contract.get("status")
+        == "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+    )
+    event_surface_ready = bool(
+        surface.get("decision", {}).get("source_free_event_residue_role_surface_ready")
+    )
+    guardrail_clean = not surface.get("guardrail_violation_rows")
+    partial_policy_ready = bool(feature_entry_ids) and contract_ready and guardrail_clean
+    policy_rows: list[dict[str, Any]] = []
+    for entry_id in heldout_entry_ids:
+        feature_row = surface_by_entry.get(entry_id)
+        if feature_row is None:
+            policy_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "policy_surface_status": (
+                        "policy_abstain_missing_source_free_locator"
+                    ),
+                    "residual_score_allowed": False,
+                    "frozen_residual_threshold_applicable": False,
+                    "policy_action": "abstain_without_residual_score",
+                    "reason": "approved_source_free_locator_sidecar_missing",
+                }
+            )
+            continue
+        features = feature_row.get("source_free_pair_features", {})
+        policy_rows.append(
+            {
+                "entry_id": entry_id,
+                "policy_surface_status": "source_free_pair_features_ready",
+                "residual_score_allowed": True,
+                "frozen_residual_threshold_applicable": True,
+                "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+                "event_residue_role_feature": bool(
+                    features.get(
+                        "event_residue_role:proton_transfer|electrostatic_stabiliser"
+                    )
+                ),
+                "residue_code_count_his3": bool(
+                    features.get("residue_code_count:his=3")
+                ),
+            }
+        )
+    blockers: list[str] = []
+    if not contract_ready:
+        blockers.append("pair_operating_point_contract_not_ready")
+    if not guardrail_clean:
+        blockers.append("source_free_locator_guardrail_violations_present")
+    if not event_surface_ready:
+        blockers.append("source_free_event_residue_role_surface_not_ready")
+    if missing_entry_ids:
+        blockers.append("source_free_current702_heldout_locator_coverage_incomplete")
+        blockers.append("partial_surface_policy_not_accepted_for_frozen_threshold_read")
+    if not feature_entry_ids:
+        blockers.append("source_free_pair_feature_surface_missing")
+    residual_contract = (
+        contract.get("calibration_contract", {}).get("residual_distance", {})
+        if isinstance(contract.get("calibration_contract"), dict)
+        else {}
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PARTIAL_SURFACE_POLICY_GATE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_ready_no_threshold_read"
+            if partial_policy_ready
+            else "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_blocked"
+        ),
+        "scope": (
+            "Explicit policy gate for the post-event-axis partial source-free "
+            "heldout surface. Rows with approved source-free pair features are "
+            "marked score-eligible only if a later full read is authorized; "
+            "rows without approved source-free locators are deterministic "
+            "deployment abstentions with no residual score. This gate defines "
+            "the policy but does not apply the frozen residual threshold or "
+            "read heldout outcomes."
+        ),
+        "policy": {
+            "feature_complete_row_action": (
+                "eligible_for_residual_score_if_full_read_authorized"
+            ),
+            "missing_source_free_locator_row_action": (
+                "abstain_without_residual_score"
+            ),
+            "missing_rows_count_as_feature_values": False,
+            "missing_rows_count_as_threshold_scores": False,
+            "partial_surface_metric_read_allowed": False,
+            "full_heldout_threshold_read_requires": [
+                "complete approved source-free locator coverage",
+                "or a separate explicit operating contract accepting deterministic missing-locator abstention as the deployable readout",
+            ],
+        },
+        "frozen_contract": {
+            "decision_rule": residual_contract.get("decision_rule"),
+            "threshold": residual_contract.get("threshold"),
+            "calibration_oos_abstain_recall": residual_contract.get(
+                "oos_abstain_recall"
+            ),
+            "calibration_auc_oos_gt_primary": residual_contract.get(
+                "calibration_auc_oos_gt_primary"
+            ),
+        },
+        "policy_rows": policy_rows,
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "missing_locator_rows_imputed_as_feature_values": False,
+            "missing_locator_rows_scored_by_residual_threshold": False,
+            "split_assignment_read_for_coverage_only": True,
+            "policy_only": True,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_rows_in_manifest": len(heldout_entry_ids),
+            "source_free_pair_feature_rows": len(feature_entry_ids),
+            "source_free_event_residue_role_positive_rows": len(
+                event_positive_entry_ids
+            ),
+            "missing_source_free_locator_policy_abstain_rows": len(
+                missing_entry_ids
+            ),
+            "policy_rows": len(policy_rows),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "heldout_safe_partial_surface_policy_ready": partial_policy_ready,
+            "missing_locator_rows_are_deployment_abstentions": bool(
+                missing_entry_ids
+            ),
+            "partial_surface_policy_accepted_for_frozen_threshold_read": False,
+            "ready_to_apply_frozen_residual_threshold_once": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "This partial policy is explicit and heldout-safe, but it is "
+                "not an authorization to read the frozen residual threshold. "
+                "Either materialize approved source-free locators for the "
+                "remaining heldout rows, or write a separate operating contract "
+                "that accepts deterministic missing-locator abstention as the "
+                "deployable readout before any heldout read."
+            ),
+        },
+        "source_artifacts": {
+            "source_free_application_surface": _source_path_record(
+                source_free_application_surface_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "pair_operating_point_contract": _source_path_record(
+                pair_operating_point_contract_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(feature_entry_ids)} current702 heldout rows have "
+                "approved source-free pair features and "
+                f"{len(missing_entry_ids)} rows are policy abstentions because "
+                "approved source-free locator sidecars are still missing. The "
+                "partial policy avoids feature imputation and threshold scoring "
+                "on missing rows."
+            ),
+            "next_action": (
+                "Rerun pre-threshold readiness with this policy gate present. "
+                "The frozen residual threshold should remain blocked until "
+                "complete locator coverage exists or a separate deterministic "
+                "missing-locator abstention operating contract is explicitly "
+                "accepted."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_report(
+    gate: dict[str, Any],
+) -> str:
+    counts = gate["counts"]
+    decision = gate["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Partial-Surface Policy Gate - current702",
+        "",
+        f"Run: {gate['created_utc']}",
+        "",
+        gate["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {gate['status']}",
+        f"- Heldout rows: {counts['heldout_rows_in_manifest']}",
+        "- Source-free pair feature rows: "
+        f"{counts['source_free_pair_feature_rows']}",
+        "- Source-free event/residue-role positive rows: "
+        f"{counts['source_free_event_residue_role_positive_rows']}",
+        "- Missing-locator policy abstention rows: "
+        f"{counts['missing_source_free_locator_policy_abstain_rows']}",
+        f"- Blockers: {', '.join(gate['blockers'])}",
+        "",
+        "## Policy",
+        "",
+        "- Feature-complete row action: "
+        f"{gate['policy']['feature_complete_row_action']}",
+        "- Missing-locator row action: "
+        f"{gate['policy']['missing_source_free_locator_row_action']}",
+        "- Partial-surface metric read allowed: "
+        f"{gate['policy']['partial_surface_metric_read_allowed']}",
+        "",
+        "## Decision",
+        "",
+        "- Heldout-safe partial-surface policy ready: "
+        f"{decision['heldout_safe_partial_surface_policy_ready']}",
+        "- Partial policy accepted for frozen threshold read: "
+        f"{decision['partial_surface_policy_accepted_for_frozen_threshold_read']}",
+        "- Ready to apply frozen residual threshold once: "
+        f"{decision['ready_to_apply_frozen_residual_threshold_once']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {gate['interpretation']['result']}",
+        f"- {gate['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate(
+    *,
+    source_free_application_surface_path: Path,
+    label_manifest_path: Path,
+    pair_operating_point_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate(
+        source_free_application_surface_path=source_free_application_surface_path,
+        label_manifest_path=label_manifest_path,
+        pair_operating_point_contract_path=pair_operating_point_contract_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(gate, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_report(
+                gate
+            ),
+            encoding="utf-8",
+        )
+    return gate
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight(
+    *,
+    partial_surface_policy_gate_path: Path,
+    pre_threshold_readiness_path: Path,
+) -> dict[str, Any]:
+    policy_gate = _read_json(partial_surface_policy_gate_path)
+    readiness = _read_json(pre_threshold_readiness_path)
+    policy_counts = policy_gate.get("counts", {})
+    readiness_counts = readiness.get("counts", {})
+    policy_decision = policy_gate.get("decision", {})
+    readiness_decision = readiness.get("decision", {})
+    policy_ready = bool(
+        policy_decision.get("heldout_safe_partial_surface_policy_ready")
+    )
+    policy_accepted = bool(
+        policy_decision.get(
+            "partial_surface_policy_accepted_for_frozen_threshold_read"
+        )
+    )
+    missing_abstain_rows = int(
+        policy_counts.get("missing_source_free_locator_policy_abstain_rows") or 0
+    )
+    pair_feature_rows = int(policy_counts.get("source_free_pair_feature_rows") or 0)
+    blockers: list[str] = []
+    if not policy_ready:
+        blockers.append("partial_surface_policy_gate_not_ready")
+    if missing_abstain_rows:
+        blockers.append("source_free_current702_heldout_locator_coverage_incomplete")
+    if not policy_accepted:
+        blockers.append(
+            "deterministic_missing_locator_abstention_operating_contract_decision_required"
+        )
+    if readiness_decision.get("ready_to_apply_frozen_residual_threshold_once"):
+        blockers.append("unexpected_readiness_ready_before_operating_contract")
+    candidate_operating_contract = {
+        "feature_complete_rows_scoreable_if_read_authorized": pair_feature_rows,
+        "missing_locator_rows_deterministic_abstention": missing_abstain_rows,
+        "missing_locator_abstention_counts_as_feature_value": False,
+        "missing_locator_abstention_counts_as_residual_score": False,
+        "requires_explicit_acceptance_before_threshold_read": True,
+    }
+    allowed_policy_decisions = [
+        "explicit_accept_deterministic_missing_locator_abstention_operating_contract",
+        "reject_partial_surface_require_complete_source_free_locator_coverage",
+    ]
+    decision_context = {
+        "candidate_operating_contract": candidate_operating_contract,
+        "allowed_policy_decisions": allowed_policy_decisions,
+        "source_free_pair_feature_rows": pair_feature_rows,
+        "missing_source_free_locator_policy_abstain_rows": missing_abstain_rows,
+    }
+    decision_context_sha256 = hashlib.sha256(
+        json.dumps(decision_context, sort_keys=True, separators=(",", ":")).encode(
+            "utf-8"
+        )
+    ).hexdigest()
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PARTIAL_SURFACE_OPERATING_CONTRACT_PREFLIGHT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_blocked_policy_decision_required"
+            if blockers
+            else "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_ready"
+        ),
+        "scope": (
+            "Decision preflight for whether deterministic missing-locator "
+            "abstention can be accepted as a deployable operating contract for "
+            "the partial source-free heldout surface. It records the policy "
+            "choice required and does not apply or tune the frozen residual "
+            "threshold."
+        ),
+        "candidate_operating_contract": candidate_operating_contract,
+        "allowed_policy_decisions": allowed_policy_decisions,
+        "decision_packet": {
+            "priority": 2,
+            "lever": "Lever 2",
+            "entry_id": "current702_partial_surface",
+            "decision_class": "source_free_partial_surface_operating_contract",
+            "review_status": "pending_explicit_policy_decision",
+            "decision": None,
+            "decision_field_to_update": "decision",
+            "review_status_field_to_update": "review_status",
+            "allowed_decisions": allowed_policy_decisions,
+            "decision_context_sha256": decision_context_sha256,
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "policy_only": True,
+            "review_only": True,
+        },
+        "counts": {
+            "source_free_pair_feature_rows": pair_feature_rows,
+            "missing_source_free_locator_policy_abstain_rows": missing_abstain_rows,
+            "readiness_blockers": int(readiness_counts.get("blockers") or 0),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "partial_surface_policy_gate_ready": policy_ready,
+            "deterministic_missing_locator_abstention_operating_contract_accepted": (
+                policy_accepted
+            ),
+            "explicit_policy_decision_required": not policy_accepted,
+            "mechanically_accept_operating_contract_now": False,
+            "ready_to_apply_frozen_residual_threshold_once": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Record an explicit policy decision: either accept deterministic "
+                "missing-locator abstention as the deployable operating contract "
+                "or require complete approved source-free locator coverage. Do "
+                "not read the frozen residual threshold until that decision is "
+                "materialized and pre-threshold readiness is rerun."
+            ),
+        },
+        "source_artifacts": {
+            "partial_surface_policy_gate": _source_path_record(
+                partial_surface_policy_gate_path
+            ),
+            "pre_threshold_readiness": _source_path_record(
+                pre_threshold_readiness_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"The partial surface has {pair_feature_rows} score-eligible "
+                f"rows and {missing_abstain_rows} deterministic missing-locator "
+                "abstention rows. Accepting those abstentions as the operating "
+                "contract is a policy decision, not a mechanical threshold-read "
+                "step."
+            ),
+            "next_action": (
+                "Either write the explicit acceptance/rejection decision for "
+                "the deterministic missing-locator abstention operating "
+                "contract, or continue materializing approved source-free "
+                "locator sidecars. The frozen threshold remains unread."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    decision = preflight["decision"]
+    contract = preflight["candidate_operating_contract"]
+    packet = preflight["decision_packet"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Partial-Surface Operating Contract Preflight - current702",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        "- Source-free pair feature rows: "
+        f"{counts['source_free_pair_feature_rows']}",
+        "- Missing-locator policy abstention rows: "
+        f"{counts['missing_source_free_locator_policy_abstain_rows']}",
+        f"- Blockers: {', '.join(preflight['blockers'])}",
+        "",
+        "## Candidate Contract",
+        "",
+        "- Feature-complete rows scoreable if read authorized: "
+        f"{contract['feature_complete_rows_scoreable_if_read_authorized']}",
+        "- Missing-locator rows deterministic abstention: "
+        f"{contract['missing_locator_rows_deterministic_abstention']}",
+        "- Requires explicit acceptance before threshold read: "
+        f"{contract['requires_explicit_acceptance_before_threshold_read']}",
+        "- Decision context SHA256: "
+        f"{packet['decision_context_sha256']}",
+        "",
+        "## Decision",
+        "",
+        "- Partial-surface policy gate ready: "
+        f"{decision['partial_surface_policy_gate_ready']}",
+        "- Operating contract accepted: "
+        f"{decision['deterministic_missing_locator_abstention_operating_contract_accepted']}",
+        "- Explicit policy decision required: "
+        f"{decision['explicit_policy_decision_required']}",
+        "- Ready to apply frozen residual threshold once: "
+        f"{decision['ready_to_apply_frozen_residual_threshold_once']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight(
+    *,
+    partial_surface_policy_gate_path: Path,
+    pre_threshold_readiness_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight(
+        partial_surface_policy_gate_path=partial_surface_policy_gate_path,
+        pre_threshold_readiness_path=pre_threshold_readiness_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
 
 
 def _token_ablation_decision_record(
@@ -58482,6 +59232,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     event_axis_linker_signoff_finalization_path: Path | None = None,
     locator_rewrite_approval_packet_path: Path | None = None,
     source_free_locator_input_audit_path: Path | None = None,
+    partial_surface_policy_gate_path: Path | None = None,
 ) -> dict[str, Any]:
     contract = _read_json(pair_operating_point_contract_path)
     surface = _read_json(source_free_application_surface_path)
@@ -58511,12 +59262,28 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         and Path(locator_rewrite_approval_packet_path).exists()
         else None
     )
+    partial_policy = (
+        _read_json(partial_surface_policy_gate_path)
+        if partial_surface_policy_gate_path is not None
+        and Path(partial_surface_policy_gate_path).exists()
+        else None
+    )
     contract_ready = (
         contract.get("status")
         == "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
     )
     surface_ready = bool(
         surface.get("decision", {}).get("heldout_safe_pair_application_surface_ready")
+    )
+    partial_policy_ready = bool(
+        (partial_policy or {})
+        .get("decision", {})
+        .get("heldout_safe_partial_surface_policy_ready")
+    )
+    partial_policy_threshold_read_accepted = bool(
+        (partial_policy or {})
+        .get("decision", {})
+        .get("partial_surface_policy_accepted_for_frozen_threshold_read")
     )
     event_artifact = event_gate if event_gate is not None else event_schema
     event_linkers_materialized = bool(
@@ -58533,7 +59300,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     if not event_linkers_materialized:
         blockers.append("source_free_event_axis_linkers_missing")
     if not surface_ready:
-        blockers.append("heldout_safe_pair_application_surface_missing")
+        if partial_policy_ready:
+            blockers.append(
+                "heldout_safe_pair_application_surface_partial_policy_no_threshold_read"
+            )
+        else:
+            blockers.append("heldout_safe_pair_application_surface_missing")
     for blocker in locator_gate.get("blockers", []):
         if blocker not in blockers:
             blockers.append(str(blocker))
@@ -58553,6 +59325,10 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         for blocker in event_signoff.get("blockers", []):
             if blocker not in blockers:
                 blockers.append(str(blocker))
+    if partial_policy is not None:
+        for blocker in partial_policy.get("blockers", []):
+            if blocker not in blockers:
+                blockers.append(str(blocker))
 
     ready = contract_ready and locator_surface_ready and event_linkers_materialized and surface_ready
     locator_counts = locator_gate.get("counts", {})
@@ -58561,6 +59337,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     event_signoff_counts = (event_signoff or {}).get("counts", {})
     locator_input_counts = (locator_input or {}).get("counts", {})
     approval_packet_counts = (approval_packet or {}).get("counts", {})
+    partial_policy_counts = (partial_policy or {}).get("counts", {})
     locator_preflight_rows = int(locator_counts.get("preflight_rows") or 0)
     locator_approval_records = int(locator_counts.get("approval_records_total") or 0)
     locator_pending_reviewer_decisions = int(
@@ -58581,6 +59358,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "event-axis linker rows or an accepted fallback, rerun the "
             "source-free application surface, then rerun this readiness gate "
             "before applying the frozen residual threshold exactly once."
+        )
+    if partial_policy_ready:
+        next_gate = (
+            "Do not read the frozen residual threshold on the partial surface. "
+            "Either materialize approved source-free locators for the remaining "
+            "heldout rows, or write a separate operating contract accepting "
+            "deterministic missing-locator abstention as the deployable readout; "
+            "then rerun this readiness gate."
         )
     return {
         "artifact_id": (
@@ -58613,6 +59398,10 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 .get("event_axis_linker_rows_ready_for_materialization_gate")
             ),
             "heldout_safe_pair_application_surface_ready": surface_ready,
+            "heldout_safe_partial_surface_policy_ready": partial_policy_ready,
+            "partial_surface_policy_accepted_for_frozen_threshold_read": (
+                partial_policy_threshold_read_accepted
+            ),
         },
         "frozen_contract": {
             "preferred_contract": contract.get("decision", {}).get(
@@ -58707,6 +59496,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                     "insufficient_event_axis_evidence_rewrite_or_reject_rows"
                 )
             ),
+            "partial_surface_policy_pair_feature_rows": partial_policy_counts.get(
+                "source_free_pair_feature_rows"
+            ),
+            "partial_surface_policy_missing_locator_abstain_rows": (
+                partial_policy_counts.get(
+                    "missing_source_free_locator_policy_abstain_rows"
+                )
+            ),
         },
         "decision": {
             "ready_to_apply_frozen_residual_threshold_once": ready,
@@ -58747,18 +59544,39 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 if source_free_locator_input_audit_path is not None
                 else {"path": None, "exists": False, "sha256": None}
             ),
+            "partial_surface_policy_gate": (
+                _source_path_record(partial_surface_policy_gate_path)
+                if partial_surface_policy_gate_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
         },
         "interpretation": {
             "result": (
-                "The frozen residual contract is calibrated, but the heldout "
-                "application surface is not ready because source-free "
-                "event-axis linkers and complete heldout-safe feature coverage "
-                "are still absent."
+                "The frozen residual contract is calibrated and source-free "
+                "event-axis linkers are materialized. A partial-surface policy "
+                "is present, but the frozen heldout read remains blocked "
+                "because locator coverage is incomplete and the partial policy "
+                "is not accepted as a threshold-read operating contract."
+                if partial_policy_ready
+                else (
+                    "The frozen residual contract is calibrated, but the "
+                    "heldout application surface is not ready because "
+                    "source-free event-axis linkers and complete heldout-safe "
+                    "feature coverage are still absent."
+                )
             ),
             "next_action": (
-                "Keep the materialized approved locators, supply source-free "
-                "event-axis linker rows or an accepted fallback, and leave the "
+                "Materialize the remaining approved source-free locator "
+                "sidecars or explicitly accept deterministic missing-locator "
+                "abstention in a separate operating contract; keep the frozen "
                 "residual threshold unapplied until this readiness gate passes."
+                if partial_policy_ready
+                else (
+                    "Keep the materialized approved locators, supply "
+                    "source-free event-axis linker rows or an accepted fallback, "
+                    "and leave the residual threshold unapplied until this "
+                    "readiness gate passes."
+                )
             ),
         },
     }
@@ -58791,6 +59609,10 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{inputs['source_free_event_axis_linker_signoff_finalization_ready']}",
         "- Heldout-safe pair application surface ready: "
         f"{inputs['heldout_safe_pair_application_surface_ready']}",
+        "- Heldout-safe partial-surface policy ready: "
+        f"{inputs['heldout_safe_partial_surface_policy_ready']}",
+        "- Partial-surface policy accepted for frozen threshold read: "
+        f"{inputs['partial_surface_policy_accepted_for_frozen_threshold_read']}",
         f"- Locator preflight rows: {counts['locator_preflight_rows']}",
         f"- Locator approval records: {counts['locator_approval_records']}",
         "- Locator pending reviewer decisions: "
@@ -58801,6 +59623,10 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{counts['source_free_residue_count_feature_rows']}",
         "- Source-free event/residue-role feature rows: "
         f"{counts['source_free_event_residue_role_feature_rows']}",
+        "- Partial policy pair feature rows: "
+        f"{counts.get('partial_surface_policy_pair_feature_rows')}",
+        "- Partial policy missing-locator abstain rows: "
+        f"{counts.get('partial_surface_policy_missing_locator_abstain_rows')}",
         f"- Event-axis materialized linker rows: {counts['event_axis_materialized_linker_rows']}",
         "- Event-axis signoff draft rows: "
         f"{counts['event_axis_signoff_draft_rows']}",
@@ -58856,6 +59682,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     event_axis_linker_signoff_finalization_path: Path | None = None,
     locator_rewrite_approval_packet_path: Path | None = None,
     source_free_locator_input_audit_path: Path | None = None,
+    partial_surface_policy_gate_path: Path | None = None,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
     readiness = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
@@ -58871,6 +59698,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         ),
         locator_rewrite_approval_packet_path=locator_rewrite_approval_packet_path,
         source_free_locator_input_audit_path=source_free_locator_input_audit_path,
+        partial_surface_policy_gate_path=partial_surface_policy_gate_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(

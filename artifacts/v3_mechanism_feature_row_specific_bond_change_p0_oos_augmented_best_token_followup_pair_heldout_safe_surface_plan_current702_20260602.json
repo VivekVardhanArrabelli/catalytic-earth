@@ -2,7 +2,6 @@
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602",
   "blockers": [
     "source_free_current702_heldout_locator_coverage_incomplete",
-    "source_free_event_residue_role_extractor_missing",
     "m_csa_curated_heldout_active_site_roles_not_deployment_input",
     "source_free_predicted_geometry_heldout_coverage_incomplete"
   ],
@@ -14,7 +13,7 @@
   },
   "counts": {
     "active_site_role_graph_heldout_ok_rows": 132,
-    "blockers": 4,
+    "blockers": 3,
     "critical_violation_total": 0,
     "heldout_rows_in_manifest": 140,
     "pair_calibration_oos_abstain_recall": 0.857143,
@@ -22,6 +21,7 @@
     "pair_feature_dimensions": 19,
     "required_extractors": 2,
     "source_free_application_surface_current702_heldout_locator_sidecars": 53,
+    "source_free_application_surface_event_residue_role_rows": 14,
     "source_free_application_surface_residue_count_rows": 53,
     "source_free_locator_input_auto_create_allowed_rows": 0,
     "source_free_locator_input_priority1_preflight_approved_rewrites": 0,
@@ -35,12 +35,12 @@
     "source_free_locator_schema_required_residue_locator_minimum": 2,
     "source_free_predicted_geometry_ready_rows": 5
   },
-  "created_utc": "2026-06-03T20:15:55Z",
+  "created_utc": "2026-06-04T00:14:12Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
     "heldout_safe_pair_application_surface_ready": false,
-    "next_gate": "Complete source-free current702 heldout active-site locator coverage and build the event/residue-role extraction sidecar for the selected pair; rerun this plan and the preflight, then apply the frozen residual threshold exactly once without retuning."
+    "next_gate": "Complete source-free current702 heldout active-site locator coverage or explicitly accept a deterministic missing-locator abstention operating policy; rerun this plan and readiness before any frozen residual threshold read."
   },
   "guardrails": {
     "heldout_rows_evaluated": false,
@@ -56,8 +56,8 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Use the source-free locator action queue and input audit to materialize approved current702 heldout locator sidecars only after source-free anchor evidence is present; then add a source-free event/residue-role linker before any heldout threshold application.",
-    "result": "The calibrated pair surface is ready on train/cal, but heldout application remains blocked until the selected pair can be computed from source-free active-site/event evidence."
+    "next_action": "Use the source-free locator action queue and input audit to materialize remaining approved current702 heldout locator sidecars, or explicitly accept a deterministic missing-locator abstention policy before any heldout threshold application.",
+    "result": "The calibrated pair surface is ready on train/cal and the event/residue-role extractor is materialized for approved source-free locator rows, but heldout application remains blocked on incomplete source-free locator coverage."
   },
   "required_extractors": [
     {
@@ -75,7 +75,7 @@
         "source_free_residue_role_assignment",
         "source_free_proton_transfer_event_axis"
       ],
-      "status": "missing_source_free_event_axis"
+      "status": "ready_from_approved_source_free_event_axis_linkers"
     },
     {
       "extractor": "source_free_active_site_residue_identity_counter",
@@ -133,7 +133,7 @@
     "source_free_application_surface": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
-      "sha256": "646141f097c4e6c21382c21b0895c8d06c776b498795025d7e7ef5db158bb430"
+      "sha256": "8b283684e1ed793d39b7bc9b2e0f5e01aa937c9fd2dfab39c0f15e9ddfab9e4f"
     },
     "source_free_locator_action_queue": {
       "exists": true,

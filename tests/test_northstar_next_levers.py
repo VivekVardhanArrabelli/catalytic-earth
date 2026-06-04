@@ -86,6 +86,8 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
@@ -10850,6 +10852,190 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
         self.assertNotIn("accession", event_reference)
         self.assertFalse(surface["guardrails"]["heldout_rows_evaluated"])
 
+    def test_followup_pair_source_free_partial_surface_policy_gate_abstains_missing_locators(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            surface_path = root / "surface.json"
+            manifest_path = root / "manifest.json"
+            contract_path = root / "contract.json"
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "source_free_event_residue_role_surface_ready": True,
+                            "heldout_safe_pair_application_surface_ready": False,
+                        },
+                        "guardrail_violation_rows": [],
+                        "surface_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "source_free_pair_features": {
+                                    "residue_code_count:his=3": True,
+                                    (
+                                        "event_residue_role:proton_transfer|"
+                                        "electrostatic_stabiliser"
+                                    ): True,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "heldout",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "split_assignment": "heldout",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+                        ),
+                        "calibration_contract": {
+                            "residual_distance": {
+                                "threshold": 3.21469422,
+                                "oos_abstain_recall": 0.857143,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            gate = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate(
+                source_free_application_surface_path=surface_path,
+                label_manifest_path=manifest_path,
+                pair_operating_point_contract_path=contract_path,
+            )
+
+        self.assertEqual(
+            gate["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_ready_no_threshold_read",
+        )
+        self.assertTrue(
+            gate["decision"]["heldout_safe_partial_surface_policy_ready"]
+        )
+        self.assertFalse(
+            gate["decision"][
+                "partial_surface_policy_accepted_for_frozen_threshold_read"
+            ]
+        )
+        self.assertFalse(
+            gate["decision"]["ready_to_apply_frozen_residual_threshold_once"]
+        )
+        self.assertEqual(gate["counts"]["source_free_pair_feature_rows"], 1)
+        self.assertEqual(
+            gate["counts"]["missing_source_free_locator_policy_abstain_rows"], 1
+        )
+        self.assertIn(
+            "partial_surface_policy_not_accepted_for_frozen_threshold_read",
+            gate["blockers"],
+        )
+        missing_row = [
+            row
+            for row in gate["policy_rows"]
+            if row["entry_id"] == "m_csa:3"
+        ][0]
+        self.assertEqual(
+            missing_row["policy_surface_status"],
+            "policy_abstain_missing_source_free_locator",
+        )
+        self.assertFalse(missing_row["residual_score_allowed"])
+        self.assertFalse(gate["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_partial_surface_operating_contract_preflight_requires_policy_decision(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            policy_path = root / "policy.json"
+            readiness_path = root / "readiness.json"
+            policy_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "heldout_safe_partial_surface_policy_ready": True,
+                            "partial_surface_policy_accepted_for_frozen_threshold_read": False,
+                        },
+                        "counts": {
+                            "source_free_pair_feature_rows": 1,
+                            "missing_source_free_locator_policy_abstain_rows": 1,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "ready_to_apply_frozen_residual_threshold_once": False
+                        },
+                        "counts": {"blockers": 3},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight(
+                partial_surface_policy_gate_path=policy_path,
+                pre_threshold_readiness_path=readiness_path,
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_blocked_policy_decision_required",
+        )
+        self.assertTrue(
+            preflight["decision"]["partial_surface_policy_gate_ready"]
+        )
+        self.assertTrue(
+            preflight["decision"]["explicit_policy_decision_required"]
+        )
+        self.assertFalse(
+            preflight["decision"][
+                "deterministic_missing_locator_abstention_operating_contract_accepted"
+            ]
+        )
+        self.assertFalse(
+            preflight["decision"]["ready_to_apply_frozen_residual_threshold_once"]
+        )
+        self.assertEqual(
+            preflight["counts"]["source_free_pair_feature_rows"], 1
+        )
+        self.assertEqual(
+            preflight["counts"]["missing_source_free_locator_policy_abstain_rows"],
+            1,
+        )
+        self.assertIn(
+            "deterministic_missing_locator_abstention_operating_contract_decision_required",
+            preflight["blockers"],
+        )
+        self.assertEqual(
+            preflight["decision_packet"]["decision_class"],
+            "source_free_partial_surface_operating_contract",
+        )
+        self.assertEqual(
+            len(preflight["decision_packet"]["decision_context_sha256"]), 64
+        )
+        self.assertFalse(preflight["guardrails"]["heldout_rows_evaluated"])
+
     def test_followup_pair_source_free_event_linker_audit_blocks_leaky_role_graph(
         self,
     ) -> None:
@@ -13476,6 +13662,166 @@ ATOM 2 C CA HIS A 20 A 20 3.0 0.0 0.0
             readiness["decision"]["ready_to_apply_frozen_residual_threshold_once"]
         )
         self.assertFalse(readiness["decision"]["apply_frozen_pair_threshold_now"])
+        self.assertFalse(readiness["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_pre_threshold_readiness_uses_partial_policy_without_threshold_read(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            contract_path = root / "contract.json"
+            surface_path = root / "surface.json"
+            event_schema_path = root / "event_schema.json"
+            event_gate_path = root / "event_gate.json"
+            event_finalization_path = root / "event_finalization.json"
+            locator_gate_path = root / "locator_gate.json"
+            partial_policy_path = root / "partial_policy.json"
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+                        ),
+                        "decision": {
+                            "preferred_contract": "residual_distance_threshold"
+                        },
+                        "calibration_contract": {
+                            "residual_distance": {
+                                "threshold": 3.21469422,
+                                "oos_abstain_recall": 0.857143,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "heldout_safe_pair_application_surface_ready": False
+                        },
+                        "counts": {
+                            "heldout_rows_in_manifest": 2,
+                            "source_free_residue_count_feature_rows": 1,
+                            "source_free_event_residue_role_feature_rows": 1,
+                        },
+                        "blockers": [
+                            "source_free_current702_heldout_locator_coverage_incomplete"
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_schema_path.write_text(
+                json.dumps({"decision": {"event_axis_linkers_materialized": False}}),
+                encoding="utf-8",
+            )
+            event_gate_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {"event_axis_linkers_materialized": True},
+                        "counts": {"materialized_linker_rows": 1},
+                        "blockers": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_finalization_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "event_axis_linker_rows_ready_for_materialization_gate": True
+                        },
+                        "counts": {
+                            "gate_consumable_event_axis_linker_rows": 1,
+                        },
+                        "blockers": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator_gate_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "approved_source_free_locator_surface_ready": True
+                        },
+                        "counts": {
+                            "preflight_rows": 1,
+                            "approval_records_total": 1,
+                            "approved_decision_records": 1,
+                            "approved_locator_sidecars_written": 1,
+                        },
+                        "blockers": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            partial_policy_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "heldout_safe_partial_surface_policy_ready": True,
+                            "partial_surface_policy_accepted_for_frozen_threshold_read": False,
+                        },
+                        "counts": {
+                            "source_free_pair_feature_rows": 1,
+                            "missing_source_free_locator_policy_abstain_rows": 1,
+                        },
+                        "blockers": [
+                            "source_free_current702_heldout_locator_coverage_incomplete",
+                            "partial_surface_policy_not_accepted_for_frozen_threshold_read",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readiness = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness(
+                pair_operating_point_contract_path=contract_path,
+                source_free_application_surface_path=surface_path,
+                event_axis_linker_schema_path=event_schema_path,
+                locator_rewrite_materialization_gate_path=locator_gate_path,
+                event_axis_linker_materialization_gate_path=event_gate_path,
+                event_axis_linker_signoff_finalization_path=event_finalization_path,
+                partial_surface_policy_gate_path=partial_policy_path,
+            )
+
+        self.assertIn(
+            "heldout_safe_pair_application_surface_partial_policy_no_threshold_read",
+            readiness["blockers"],
+        )
+        self.assertIn(
+            "partial_surface_policy_not_accepted_for_frozen_threshold_read",
+            readiness["blockers"],
+        )
+        self.assertNotIn(
+            "heldout_safe_pair_application_surface_missing",
+            readiness["blockers"],
+        )
+        self.assertTrue(
+            readiness["readiness_inputs"][
+                "heldout_safe_partial_surface_policy_ready"
+            ]
+        )
+        self.assertFalse(
+            readiness["readiness_inputs"][
+                "partial_surface_policy_accepted_for_frozen_threshold_read"
+            ]
+        )
+        self.assertEqual(
+            readiness["counts"]["partial_surface_policy_pair_feature_rows"], 1
+        )
+        self.assertEqual(
+            readiness["counts"][
+                "partial_surface_policy_missing_locator_abstain_rows"
+            ],
+            1,
+        )
+        self.assertFalse(
+            readiness["decision"]["ready_to_apply_frozen_residual_threshold_once"]
+        )
         self.assertFalse(readiness["guardrails"]["heldout_rows_evaluated"])
 
     def test_followup_pair_source_free_locator_input_audit_blocks_without_anchors(

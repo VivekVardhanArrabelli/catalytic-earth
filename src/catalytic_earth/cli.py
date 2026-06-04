@@ -154,6 +154,8 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
@@ -13181,6 +13183,11 @@ def cmd_build_active_lever_mechanical_actionability_audit(
         lever2_pre_threshold_readiness_path=Path(args.lever2_pre_threshold_readiness)
         if args.lever2_pre_threshold_readiness
         else None,
+        lever2_partial_surface_operating_contract_preflight_path=Path(
+            args.lever2_partial_surface_operating_contract_preflight
+        )
+        if args.lever2_partial_surface_operating_contract_preflight
+        else None,
         lever2_event_axis_linker_schema_path=Path(
             args.lever2_event_axis_linker_schema
         )
@@ -14720,6 +14727,52 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
     return 0
 
 
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate(
+    args: argparse.Namespace,
+) -> int:
+    gate = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate(
+        source_free_application_surface_path=Path(args.source_free_application_surface),
+        label_manifest_path=Path(args.label_manifest),
+        pair_operating_point_contract_path=Path(args.pair_operating_point_contract),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = gate.get("counts", {})
+    decision = gate.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free partial-surface policy gate to "
+        f"{args.out} (status: {gate.get('status')}, policy ready: "
+        f"{decision.get('heldout_safe_partial_surface_policy_ready')}, "
+        "missing-locator abstain rows: "
+        f"{counts.get('missing_source_free_locator_policy_abstain_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight(
+    args: argparse.Namespace,
+) -> int:
+    preflight = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight(
+        partial_surface_policy_gate_path=Path(args.partial_surface_policy_gate),
+        pre_threshold_readiness_path=Path(args.pre_threshold_readiness),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = preflight.get("counts", {})
+    decision = preflight.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free partial-surface operating contract "
+        f"preflight to {args.out} (status: {preflight.get('status')}, "
+        "explicit decision required: "
+        f"{decision.get('explicit_policy_decision_required')}, "
+        "missing-locator abstain rows: "
+        f"{counts.get('missing_source_free_locator_policy_abstain_rows')})"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker(
     args: argparse.Namespace,
 ) -> int:
@@ -15101,6 +15154,11 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         source_free_locator_input_audit_path=(
             Path(args.source_free_locator_input_audit)
             if args.source_free_locator_input_audit
+            else None
+        ),
+        partial_surface_policy_gate_path=(
+            Path(args.partial_surface_policy_gate)
+            if args.partial_surface_policy_gate
             else None
         ),
         out_path=Path(args.out),
@@ -30354,6 +30412,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     active_lever_actionability.add_argument(
+        "--lever2-partial-surface-operating-contract-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "operating_contract_preflight_current702_20260604.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
         "--lever2-event-axis-linker-schema",
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
@@ -33784,6 +33850,108 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "partial-surface-policy-gate"
+        ),
+        help=(
+            "define the heldout-safe partial-surface policy for rows without "
+            "approved source-free locators before any frozen-threshold read"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.add_argument(
+        "--pair-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "policy_gate_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "policy_gate_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_contract = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "partial-surface-operating-contract-preflight"
+        ),
+        help=(
+            "preflight the explicit policy decision required before accepting "
+            "missing-locator abstention as the partial-surface operating contract"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_contract.add_argument(
+        "--partial-surface-policy-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "policy_gate_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_contract.add_argument(
+        "--pre-threshold-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_"
+            "readiness_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "operating_contract_preflight_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_contract.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "operating_contract_preflight_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_contract.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight
+        )
+    )
+
     row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker = subparsers.add_parser(
         (
             "audit-mechanism-feature-row-specific-bond-change-"
@@ -34673,6 +34841,14 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
             "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_"
             "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(
+        "--partial-surface-policy-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "policy_gate_current702_20260604.json"
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.add_argument(

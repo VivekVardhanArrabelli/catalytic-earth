@@ -1,0 +1,1260 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604",
+  "blockers": [
+    "source_free_current702_heldout_locator_coverage_incomplete",
+    "partial_surface_policy_not_accepted_for_frozen_threshold_read"
+  ],
+  "counts": {
+    "blockers": 2,
+    "critical_violation_total": 0,
+    "heldout_rows_in_manifest": 140,
+    "missing_source_free_locator_policy_abstain_rows": 87,
+    "policy_rows": 140,
+    "source_free_event_residue_role_positive_rows": 14,
+    "source_free_pair_feature_rows": 53
+  },
+  "created_utc": "2026-06-04T00:14:12Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "heldout_read_once_performed": false,
+    "heldout_safe_partial_surface_policy_ready": true,
+    "missing_locator_rows_are_deployment_abstentions": true,
+    "next_gate": "This partial policy is explicit and heldout-safe, but it is not an authorization to read the frozen residual threshold. Either materialize approved source-free locators for the remaining heldout rows, or write a separate operating contract that accepts deterministic missing-locator abstention as the deployable readout before any heldout read.",
+    "partial_surface_policy_accepted_for_frozen_threshold_read": false,
+    "ready_to_apply_frozen_residual_threshold_once": false
+  },
+  "frozen_contract": {
+    "calibration_auc_oos_gt_primary": 0.875,
+    "calibration_oos_abstain_recall": 0.857143,
+    "decision_rule": "abstain_as_novel_when_out_of_atlas_span_residual_above_threshold",
+    "threshold": 3.21469422
+  },
+  "guardrails": {
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "missing_locator_rows_imputed_as_feature_values": false,
+    "missing_locator_rows_scored_by_residual_threshold": false,
+    "model_weights_fit_or_refit": false,
+    "policy_only": true,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "split_assignment_read_for_coverage_only": true,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Rerun pre-threshold readiness with this policy gate present. The frozen residual threshold should remain blocked until complete locator coverage exists or a separate deterministic missing-locator abstention operating contract is explicitly accepted.",
+    "result": "53 current702 heldout rows have approved source-free pair features and 87 rows are policy abstentions because approved source-free locator sidecars are still missing. The partial policy avoids feature imputation and threshold scoring on missing rows."
+  },
+  "policy": {
+    "feature_complete_row_action": "eligible_for_residual_score_if_full_read_authorized",
+    "full_heldout_threshold_read_requires": [
+      "complete approved source-free locator coverage",
+      "or a separate explicit operating contract accepting deterministic missing-locator abstention as the deployable readout"
+    ],
+    "missing_rows_count_as_feature_values": false,
+    "missing_rows_count_as_threshold_scores": false,
+    "missing_source_free_locator_row_action": "abstain_without_residual_score",
+    "partial_surface_metric_read_allowed": false
+  },
+  "policy_rows": [
+    {
+      "entry_id": "m_csa:3",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:9",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:10",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:12",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:14",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:20",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:30",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:31",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:32",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:34",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:43",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:44",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:45",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:46",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:56",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:67",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:71",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:73",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:79",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:80",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:86",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:97",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:109",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:115",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:116",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:118",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:121",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": true
+    },
+    {
+      "entry_id": "m_csa:125",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:129",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:131",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:144",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:155",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:159",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:163",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:171",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:180",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:185",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:188",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:191",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:192",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:193",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:197",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:198",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:199",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:201",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:211",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:213",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:217",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:219",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:220",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:225",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:230",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:239",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:242",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:250",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:254",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:255",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:267",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:297",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:311",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:313",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:321",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:323",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:333",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:334",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:346",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:352",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:355",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:356",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:363",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:369",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:370",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:372",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:375",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:384",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:388",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:392",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:396",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:397",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:402",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:403",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": true
+    },
+    {
+      "entry_id": "m_csa:407",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:409",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:418",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:419",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:423",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:424",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:428",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:431",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:438",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:440",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:444",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:448",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:453",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:474",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:477",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:480",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:484",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:493",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:497",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:509",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:511",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:517",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:526",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:536",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:541",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:545",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:549",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:551",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:563",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:566",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:577",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:590",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:594",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:599",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:606",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:609",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:614",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:617",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:620",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:627",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:628",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:634",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:647",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:651",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:686",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:688",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:709",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:710",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": true
+    },
+    {
+      "entry_id": "m_csa:714",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": true
+    },
+    {
+      "entry_id": "m_csa:723",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:750",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:853",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:854",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:866",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:892",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:897",
+      "frozen_residual_threshold_applicable": false,
+      "policy_action": "abstain_without_residual_score",
+      "policy_surface_status": "policy_abstain_missing_source_free_locator",
+      "reason": "approved_source_free_locator_sidecar_missing",
+      "residual_score_allowed": false
+    },
+    {
+      "entry_id": "m_csa:916",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:990",
+      "event_residue_role_feature": true,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    },
+    {
+      "entry_id": "m_csa:994",
+      "event_residue_role_feature": false,
+      "frozen_residual_threshold_applicable": true,
+      "policy_action": "eligible_for_residual_score_if_full_read_authorized",
+      "policy_surface_status": "source_free_pair_features_ready",
+      "residual_score_allowed": true,
+      "residue_code_count_his3": false
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate",
+  "scope": "Explicit policy gate for the post-event-axis partial source-free heldout surface. Rows with approved source-free pair features are marked score-eligible only if a later full read is authorized; rows without approved source-free locators are deterministic deployment abstentions with no residual score. This gate defines the policy but does not apply the frozen residual threshold or read heldout outcomes.",
+  "source_artifacts": {
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "pair_operating_point_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
+      "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
+    },
+    "source_free_application_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
+      "sha256": "8b283684e1ed793d39b7bc9b2e0f5e01aa937c9fd2dfab39c0f15e9ddfab9e4f"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_ready_no_threshold_read"
+}

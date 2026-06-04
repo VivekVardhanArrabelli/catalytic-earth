@@ -18,7 +18,7 @@
     "surface_feature_tokens_ready": 1,
     "surface_feature_tokens_required": 2
   },
-  "created_utc": "2026-06-03T23:34:34Z",
+  "created_utc": "2026-06-04T00:14:12Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
@@ -78,7 +78,7 @@
     "pair_surface_plan": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json",
-      "sha256": "a705f86290cf156b864e69206c3fbdb32843892bbe7ff0bf2c7fead4560e349b"
+      "sha256": "ab1efa620d400c0f741370817ed0bc5c769032e235031c405258a32076b03d61"
     },
     "source_free_locator_dir": {
       "exists": true,
