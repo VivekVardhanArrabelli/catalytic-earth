@@ -1209,6 +1209,16 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-confounded-proxy-high-cofactor-"
+                    "acquisition-dispatch-packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_high_cofactor_"
+                    "acquisition_dispatch_packet"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-confounded-proxy-train-cal-"
                     "scoring-tranche-plan"
                 ),
@@ -1359,6 +1369,16 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-confounded-proxy-same-family-"
+                    "structural-acquisition-dispatch-packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_same_family_"
+                    "structural_acquisition_dispatch_packet"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-lever3-blocker-packet-"
                     "guardrail-audit"
                 ),
@@ -1486,6 +1506,10 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                "build-fold-augmented-p07658-prediction-dispatch-packet",
+                "cmd_build_fold_augmented_p07658_prediction_dispatch_packet",
+            ),
+            (
                 (
                     "build-fold-augmented-lever3-minimum-next-experiment-"
                     "queue"
@@ -1494,6 +1518,10 @@ class CliTests(unittest.TestCase):
                     "cmd_build_fold_augmented_lever3_minimum_next_"
                     "experiment_queue"
                 ),
+            ),
+            (
+                "build-fold-augmented-lever3-dispatch-readiness-summary",
+                "cmd_build_fold_augmented_lever3_dispatch_readiness_summary",
             ),
             (
                 (

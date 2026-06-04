@@ -138,6 +138,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval,
     write_fold_augmented_p07658_full_length_prediction_request_manifest,
     write_fold_augmented_p07658_prediction_acceptance_preflight,
+    write_fold_augmented_p07658_prediction_dispatch_packet,
     write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088,
     write_fold_augmented_confounded_proxy_alternate_structure_source_contract,
     write_fold_augmented_confounded_proxy_deployment_input_preflight,
@@ -145,8 +146,11 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest,
     write_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight,
     write_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet,
+    write_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet,
     write_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
+    write_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
     write_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
@@ -12526,6 +12530,33 @@ def cmd_build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet(
+        high_cofactor_acquisition_blocker_packet_path=Path(
+            args.high_cofactor_acquisition_blocker_packet
+        ),
+        lever3_minimum_next_experiment_queue_path=Path(
+            args.lever3_minimum_next_experiment_queue
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented high-cofactor acquisition dispatch packet to "
+        f"{args.out} (intake slots: "
+        f"{counts.get('intake_slots_required')}, ready to score: "
+        f"{counts.get('intake_slots_ready_to_score_now')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -13001,6 +13032,33 @@ def cmd_build_fold_augmented_confounded_proxy_same_family_structural_acquisition
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet(
+        same_family_structural_acquisition_blocker_packet_path=Path(
+            args.same_family_structural_acquisition_blocker_packet
+        ),
+        lever3_minimum_next_experiment_queue_path=Path(
+            args.lever3_minimum_next_experiment_queue
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented same-family structural acquisition dispatch "
+        f"packet to {args.out} (intake slots: "
+        f"{counts.get('intake_slots_required')}, ready to score: "
+        f"{counts.get('intake_slots_ready_to_score_now')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_lever3_blocker_packet_guardrail_audit(
     args: argparse.Namespace,
 ) -> int:
@@ -13051,6 +13109,43 @@ def cmd_build_fold_augmented_lever3_minimum_next_experiment_queue(
         f"{args.out} (blocked steps: "
         f"{counts.get('blocked_experiment_steps')}, missing train/cal rows: "
         f"{counts.get('minimum_new_train_cal_oos_rows_needed')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_dispatch_readiness_summary(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    summary = write_fold_augmented_lever3_dispatch_readiness_summary(
+        p07658_prediction_dispatch_packet_path=Path(
+            args.p07658_prediction_dispatch_packet
+        ),
+        high_cofactor_acquisition_dispatch_packet_path=Path(
+            args.high_cofactor_acquisition_dispatch_packet
+        ),
+        same_family_structural_acquisition_dispatch_packet_path=Path(
+            args.same_family_structural_acquisition_dispatch_packet
+        ),
+        lever3_minimum_next_experiment_queue_path=Path(
+            args.lever3_minimum_next_experiment_queue
+        ),
+        queue_and_template_guardrail_audit_path=Path(
+            args.queue_and_template_guardrail_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = summary.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 dispatch readiness summary to "
+        f"{args.out} (ready packets: "
+        f"{counts.get('dispatch_packets_ready_for_external_action')}/"
+        f"{counts.get('dispatch_packets_checked')}, train/cal slots: "
+        f"{counts.get('total_train_cal_oos_intake_slots_required')})"
     )
     return 0
 
@@ -13407,6 +13502,47 @@ def cmd_build_fold_augmented_p07658_prediction_acceptance_preflight(
         f"{args.out} (checks failed: "
         f"{counts.get('acceptance_checks_failed')}, coordinate exists: "
         f"{counts.get('candidate_coordinate_exists')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_p07658_prediction_dispatch_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_p07658_prediction_dispatch_packet(
+        prediction_request_manifest_path=Path(args.prediction_request_manifest),
+        prediction_provenance_template_path=Path(
+            args.prediction_provenance_template
+        ),
+        prediction_acceptance_preflight_path=Path(
+            args.prediction_acceptance_preflight
+        ),
+        provider_ready_fasta_path=Path(args.provider_ready_fasta),
+        esmfold_api_preflight_path=Path(args.esmfold_api_preflight),
+        local_predictor_runtime_scan_path=Path(args.local_predictor_runtime_scan),
+        full_length_predictor_provider_probe_path=Path(
+            args.full_length_predictor_provider_probe
+        ),
+        three_d_beacons_predicted_structure_probe_path=Path(
+            args.three_d_beacons_predicted_structure_probe
+        ),
+        computed_model_repository_broad_probe_path=Path(
+            args.computed_model_repository_broad_probe
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented P07658 prediction dispatch packet to "
+        f"{args.out} (provider routes returning coordinate: "
+        f"{counts.get('provider_routes_returning_coordinate_now')}/"
+        f"{counts.get('provider_routes_checked')}, acceptance failures: "
+        f"{counts.get('acceptance_checks_failed')})"
     )
     return 0
 
@@ -30021,6 +30157,46 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet
     )
 
+    high_cofactor_acquisition_dispatch = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-high-cofactor-acquisition-dispatch-packet",
+        help=(
+            "write unfilled intake slots and acceptance criteria for the "
+            "16-row high-cofactor train/cal acquisition experiment"
+        ),
+    )
+    high_cofactor_acquisition_dispatch.add_argument(
+        "--high-cofactor-acquisition-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "acquisition_blocker_packet_current702_20260604.json"
+        ),
+    )
+    high_cofactor_acquisition_dispatch.add_argument(
+        "--lever3-minimum-next-experiment-queue",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_"
+            "queue_current702_20260604.json"
+        ),
+    )
+    high_cofactor_acquisition_dispatch.add_argument("--artifact-id", default=None)
+    high_cofactor_acquisition_dispatch.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "acquisition_dispatch_packet_current702_20260604.json"
+        ),
+    )
+    high_cofactor_acquisition_dispatch.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_high_cofactor_"
+            "acquisition_dispatch_packet_current702_20260604.md"
+        ),
+    )
+    high_cofactor_acquisition_dispatch.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet
+    )
+
     confounded_proxy_train_cal_scoring_tranche = subparsers.add_parser(
         "build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan",
         help=(
@@ -30935,6 +31111,52 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet
     )
 
+    confounded_proxy_same_family_structural_dispatch = subparsers.add_parser(
+        (
+            "build-fold-augmented-confounded-proxy-same-family-structural-"
+            "acquisition-dispatch-packet"
+        ),
+        help=(
+            "write unfilled intake slots and acceptance criteria for the "
+            "170-row same-family structural train/cal acquisition experiment"
+        ),
+    )
+    confounded_proxy_same_family_structural_dispatch.add_argument(
+        "--same-family-structural-acquisition-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_blocker_packet_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_same_family_structural_dispatch.add_argument(
+        "--lever3-minimum-next-experiment-queue",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_"
+            "queue_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_same_family_structural_dispatch.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_same_family_structural_dispatch.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_dispatch_packet_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_same_family_structural_dispatch.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_same_family_structural_"
+            "acquisition_dispatch_packet_current702_20260604.md"
+        ),
+    )
+    confounded_proxy_same_family_structural_dispatch.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet
+    )
+
     lever3_blocker_packet_guardrail_audit = subparsers.add_parser(
         "build-fold-augmented-lever3-blocker-packet-guardrail-audit",
         help=(
@@ -30955,12 +31177,24 @@ def build_parser() -> argparse.ArgumentParser:
                 "preflight_current702_20260604.json"
             ),
             (
+                "artifacts/v3_fold_augmented_p07658_prediction_dispatch_"
+                "packet_current702_20260604.json"
+            ),
+            (
                 "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
                 "acquisition_blocker_packet_current702_20260604.json"
             ),
             (
+                "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+                "acquisition_dispatch_packet_current702_20260604.json"
+            ),
+            (
                 "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
                 "structural_acquisition_blocker_packet_current702_20260604.json"
+            ),
+            (
+                "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+                "structural_acquisition_dispatch_packet_current702_20260604.json"
             ),
         ],
     )
@@ -31041,6 +31275,67 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_minimum_next_experiment_queue.set_defaults(
         func=cmd_build_fold_augmented_lever3_minimum_next_experiment_queue
+    )
+
+    lever3_dispatch_readiness_summary = subparsers.add_parser(
+        "build-fold-augmented-lever3-dispatch-readiness-summary",
+        help=(
+            "compose P07658, high-cofactor, and same-family structural "
+            "dispatch packets into one current Lever 3 readiness summary"
+        ),
+    )
+    lever3_dispatch_readiness_summary.add_argument(
+        "--p07658-prediction-dispatch-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_dispatch_readiness_summary.add_argument(
+        "--high-cofactor-acquisition-dispatch-packet",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "acquisition_dispatch_packet_current702_20260604.json"
+        ),
+    )
+    lever3_dispatch_readiness_summary.add_argument(
+        "--same-family-structural-acquisition-dispatch-packet",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_dispatch_packet_current702_20260604.json"
+        ),
+    )
+    lever3_dispatch_readiness_summary.add_argument(
+        "--lever3-minimum-next-experiment-queue",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_"
+            "queue_current702_20260604.json"
+        ),
+    )
+    lever3_dispatch_readiness_summary.add_argument(
+        "--queue-and-template-guardrail-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever3_dispatch_readiness_summary.add_argument("--artifact-id", default=None)
+    lever3_dispatch_readiness_summary.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_dispatch_readiness_summary.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_dispatch_readiness_summary_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_dispatch_readiness_summary.set_defaults(
+        func=cmd_build_fold_augmented_lever3_dispatch_readiness_summary
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(
@@ -31669,6 +31964,95 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p07658_prediction_acceptance_preflight.set_defaults(
         func=cmd_build_fold_augmented_p07658_prediction_acceptance_preflight
+    )
+
+    p07658_prediction_dispatch_packet = subparsers.add_parser(
+        "build-fold-augmented-p07658-prediction-dispatch-packet",
+        help=(
+            "compose the P07658 prediction FASTA, provenance template, "
+            "provider probes, and acceptance preflight into one dispatch packet"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--prediction-request-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_full_length_prediction_"
+            "request_manifest_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--prediction-provenance-template",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_provenance_"
+            "template_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--prediction-acceptance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_acceptance_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--provider-ready-fasta",
+        default=(
+            "work/fold_augmented_p07658_full_length_prediction_input_"
+            "current702_20260604.fasta"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--esmfold-api-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_"
+            "current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--local-predictor-runtime-scan",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_"
+            "current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--full-length-predictor-provider-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_"
+            "probe_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--three-d-beacons-predicted-structure-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_"
+            "probe_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--computed-model-repository-broad-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_computed_model_repository_"
+            "broad_probe_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument("--artifact-id", default=None)
+    p07658_prediction_dispatch_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    p07658_prediction_dispatch_packet.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p07658_prediction_dispatch_packet_"
+            "current702_20260604.md"
+        ),
+    )
+    p07658_prediction_dispatch_packet.set_defaults(
+        func=cmd_build_fold_augmented_p07658_prediction_dispatch_packet
     )
 
     confounded_proxy_residual_queue_after_p10746_q43088 = subparsers.add_parser(

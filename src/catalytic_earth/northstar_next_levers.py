@@ -246,6 +246,9 @@ FOLD_AUGMENTED_P07658_FULL_LENGTH_PREDICTION_REQUEST_MANIFEST_ID = (
 FOLD_AUGMENTED_P07658_PREDICTION_ACCEPTANCE_PREFLIGHT_ID = (
     "v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604"
 )
+FOLD_AUGMENTED_P07658_PREDICTION_DISPATCH_PACKET_ID = (
+    "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604"
+)
 FOLD_AUGMENTED_CONFOUNDED_PROXY_RESIDUAL_QUEUE_AFTER_P10746_Q43088_ID = (
     "v3_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088_current702_20260604"
 )
@@ -273,17 +276,26 @@ FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_CANDIDATE_NEAR_MISS_TRIAGE_ID = (
 FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_ACQUISITION_BLOCKER_PACKET_ID = (
     "v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_ACQUISITION_DISPATCH_PACKET_ID = (
+    "v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604"
+)
 FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_CONTRACT_ID = (
     "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_current702_20260604"
 )
 FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_BLOCKER_PACKET_ID = (
     "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604"
 )
+FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_DISPATCH_PACKET_ID = (
+    "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604"
+)
 FOLD_AUGMENTED_LEVER3_BLOCKER_PACKET_GUARDRAIL_AUDIT_ID = (
     "v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604"
 )
 FOLD_AUGMENTED_LEVER3_MINIMUM_NEXT_EXPERIMENT_QUEUE_ID = (
     "v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_DISPATCH_READINESS_SUMMARY_ID = (
+    "v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604"
 )
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
@@ -26143,6 +26155,429 @@ def write_fold_augmented_p07658_prediction_acceptance_preflight(
     return preflight
 
 
+def build_fold_augmented_p07658_prediction_dispatch_packet(
+    *,
+    prediction_request_manifest_path: Path,
+    prediction_provenance_template_path: Path,
+    prediction_acceptance_preflight_path: Path,
+    provider_ready_fasta_path: Path,
+    esmfold_api_preflight_path: Path,
+    local_predictor_runtime_scan_path: Path,
+    full_length_predictor_provider_probe_path: Path,
+    three_d_beacons_predicted_structure_probe_path: Path,
+    computed_model_repository_broad_probe_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_P07658_PREDICTION_DISPATCH_PACKET_ID,
+) -> dict[str, Any]:
+    manifest = _read_json(prediction_request_manifest_path)
+    template = _read_json(prediction_provenance_template_path)
+    preflight = _read_json(prediction_acceptance_preflight_path)
+    esmfold = _read_json(esmfold_api_preflight_path)
+    runtime = _read_json(local_predictor_runtime_scan_path)
+    provider_probe = _read_json(full_length_predictor_provider_probe_path)
+    beacons = _read_json(three_d_beacons_predicted_structure_probe_path)
+    broad_probe = _read_json(computed_model_repository_broad_probe_path)
+
+    affected = preflight.get("affected_row") or manifest.get("affected_row") or {}
+    request = manifest.get("prediction_request") or {}
+    required_fields = template.get("required_provider_fields_to_fill") or {}
+    preflight_counts = preflight.get("counts") or {}
+    preflight_decision = preflight.get("decision") or {}
+    acceptance_failures = [
+        {
+            "check_id": row.get("check_id"),
+            "failure_reason_if_any": row.get("failure_reason_if_any"),
+            "observed": row.get("observed"),
+        }
+        for row in preflight.get("acceptance_check_results", [])
+        if row.get("passed") is not True
+    ]
+    preferred_coordinate_path = (
+        (preflight.get("candidate_coordinate") or {}).get("path")
+        or request.get("preferred_staging_path")
+    )
+    filled_provenance_path = (
+        "artifacts/v3_fold_augmented_p07658_prediction_provenance_filled_"
+        "current702_20260604.json"
+    )
+    rerun_command = (
+        (template.get("acceptance_preflight_contract") or {}).get(
+            "rerun_command_after_filling"
+        )
+        or (
+            "PYTHONPATH=src python -m catalytic_earth.cli "
+            "build-fold-augmented-p07658-prediction-acceptance-preflight "
+            f"--candidate-coordinate {preferred_coordinate_path} "
+            f"--candidate-provenance {filled_provenance_path}"
+        )
+    )
+
+    dispatch_inputs = [
+        {
+            "input_id": "prediction_request_manifest",
+            **_source_path_record(prediction_request_manifest_path),
+        },
+        {
+            "input_id": "provider_ready_fasta",
+            **_source_path_record(provider_ready_fasta_path),
+        },
+        {
+            "input_id": "prediction_provenance_template",
+            **_source_path_record(prediction_provenance_template_path),
+        },
+        {
+            "input_id": "prediction_acceptance_preflight",
+            **_source_path_record(prediction_acceptance_preflight_path),
+        },
+    ]
+    dispatch_inputs_present = sum(1 for row in dispatch_inputs if row["exists"])
+
+    provider_routes: list[dict[str, Any]] = [
+        {
+            "route_id": "public_esmfold_endpoint",
+            "status": esmfold.get("status"),
+            "coordinate_available_now": False,
+            "blocker": "public_esmfold_sequence_length_limit",
+            "evidence": (esmfold.get("interpretation") or {}).get("result"),
+        },
+        {
+            "route_id": "local_full_length_predictor_runtime",
+            "status": runtime.get("status"),
+            "coordinate_available_now": bool(
+                (runtime.get("counts") or {}).get("coordinates_returned")
+            ),
+            "blocker": "local_full_length_predictor_runtime_not_installed",
+            "evidence": (runtime.get("interpretation") or {}).get("result"),
+        },
+    ]
+    for probe in provider_probe.get("provider_probes", []):
+        if not isinstance(probe, dict):
+            continue
+        provider_routes.append(
+            {
+                "route_id": str(probe.get("provider") or "provider_probe"),
+                "status": f"http_{probe.get('http_status')}",
+                "coordinate_available_now": bool(probe.get("coordinate_returned")),
+                "blocker": (
+                    "provider_returned_coordinate"
+                    if probe.get("coordinate_returned")
+                    else "provider_requires_credentials_or_access"
+                ),
+                "evidence": probe.get("response_summary"),
+            }
+        )
+    provider_routes.extend(
+        [
+            {
+                "route_id": "3dbeacons_predicted_structure_probe",
+                "status": beacons.get("status"),
+                "coordinate_available_now": False,
+                "blocker": "three_d_beacons_has_no_deployment_valid_prediction",
+                "evidence": (beacons.get("interpretation") or {}).get("result"),
+            },
+            {
+                "route_id": "broad_public_computed_model_repository_probe",
+                "status": broad_probe.get("status"),
+                "coordinate_available_now": bool(
+                    (broad_probe.get("counts") or {}).get("coordinates_returned")
+                ),
+                "blocker": "public_computed_model_repository_no_p07658_hit",
+                "evidence": (broad_probe.get("interpretation") or {}).get(
+                    "result"
+                ),
+            },
+        ]
+    )
+    routes_returning_coordinate = [
+        row for row in provider_routes if row["coordinate_available_now"]
+    ]
+    preflight_passes = bool(
+        preflight_decision.get("p07658_acceptance_preflight_passes_now")
+    )
+    dispatch_packet_ready = dispatch_inputs_present == len(dispatch_inputs)
+
+    blockers: list[str] = []
+    if not dispatch_packet_ready:
+        blockers.append("p07658_prediction_dispatch_inputs_missing")
+    if not routes_returning_coordinate and not preflight_passes:
+        blockers.append("no_current_provider_or_local_runtime_returns_p07658_coordinate")
+    if int(preflight_counts.get("candidate_coordinate_exists") or 0) == 0:
+        blockers.append("p07658_candidate_coordinate_file_missing")
+    if int(preflight_counts.get("candidate_provenance_exists") or 0) == 0:
+        blockers.append("p07658_candidate_prediction_provenance_missing")
+    if acceptance_failures:
+        blockers.append("p07658_acceptance_checks_not_all_passing")
+    blockers.append("fixed_threshold_audit_not_ready_to_rerun")
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_p07658_prediction_dispatch_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_p07658_prediction_dispatch_packet_acceptance_ready"
+            if preflight_passes
+            else (
+                "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate"
+                if dispatch_packet_ready
+                else "fold_augmented_p07658_prediction_dispatch_packet_blocked_missing_inputs"
+            )
+        ),
+        "scope": (
+            "Dispatch-ready P07658 full-length prediction packet for the "
+            "remaining Lever 3 surface-completeness blocker. It composes the "
+            "frozen FASTA, provenance template, failed provider/runtime probes, "
+            "and acceptance preflight; it stages no coordinates, scores no rows, "
+            "and does not rerun or change threshold 0.44155."
+        ),
+        "affected_row": {
+            "entry_id": affected.get("entry_id"),
+            "accession": affected.get("accession"),
+            "sequence_length": affected.get("sequence_length"),
+            "sequence_sha256": affected.get("sequence_sha256"),
+            "selenocysteine_count": affected.get("selenocysteine_count"),
+            "selenocysteine_positions": affected.get("selenocysteine_positions")
+            or [],
+            "missing_evidence_type": (
+                "accepted full-length predicted coordinate plus filled "
+                "provider/model/version/path/checksum provenance for the exact "
+                "P07658 sequence"
+            ),
+        },
+        "dispatch_inputs": dispatch_inputs,
+        "provider_routes": provider_routes,
+        "operator_fill_targets": {
+            "provider_ready_fasta_path": str(provider_ready_fasta_path),
+            "preferred_coordinate_path": preferred_coordinate_path,
+            "filled_provenance_path": filled_provenance_path,
+            "required_provider_fields_to_fill": required_fields,
+            "rerun_acceptance_preflight_command": rerun_command,
+        },
+        "acceptance_failures_to_clear": acceptance_failures,
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "dispatch_only": True,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+        },
+        "counts": {
+            "dispatch_inputs_total": len(dispatch_inputs),
+            "dispatch_inputs_present": dispatch_inputs_present,
+            "provider_routes_checked": len(provider_routes),
+            "provider_routes_returning_coordinate_now": len(
+                routes_returning_coordinate
+            ),
+            "required_provider_fields": len(required_fields),
+            "acceptance_checks_failed": int(
+                preflight_counts.get("acceptance_checks_failed") or 0
+            ),
+            "candidate_coordinate_exists": int(
+                preflight_counts.get("candidate_coordinate_exists") or 0
+            ),
+            "candidate_provenance_exists": int(
+                preflight_counts.get("candidate_provenance_exists") or 0
+            ),
+            "coordinates_staged_now": 0,
+            "rows_scored_now": 0,
+            "fixed_threshold_audit_ready_to_rerun_now": 0,
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "dispatch_packet_ready_for_provider_run": dispatch_packet_ready,
+            "provider_or_local_runtime_returns_coordinate_now": bool(
+                routes_returning_coordinate
+            ),
+            "p07658_acceptance_preflight_passes_now": preflight_passes,
+            "p07658_coordinate_blocker_cleared_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "smallest_next_experiment": (
+                "Run exactly one approved full-length predictor/provider on "
+                "the dispatch FASTA, write the returned coordinate to the "
+                "preferred coordinate path, fill the provenance template, then "
+                "rerun the acceptance preflight command recorded here."
+            ),
+            "next_gate": (
+                "Do not score or rerun the fixed-threshold operating point until "
+                "the P07658 coordinate/provenance packet passes all acceptance "
+                "checks."
+            ),
+        },
+        "source_artifacts": {
+            "prediction_request_manifest": _source_path_record(
+                prediction_request_manifest_path
+            ),
+            "prediction_provenance_template": _source_path_record(
+                prediction_provenance_template_path
+            ),
+            "prediction_acceptance_preflight": _source_path_record(
+                prediction_acceptance_preflight_path
+            ),
+            "provider_ready_fasta": _source_path_record(provider_ready_fasta_path),
+            "esmfold_api_preflight": _source_path_record(esmfold_api_preflight_path),
+            "local_predictor_runtime_scan": _source_path_record(
+                local_predictor_runtime_scan_path
+            ),
+            "full_length_predictor_provider_probe": _source_path_record(
+                full_length_predictor_provider_probe_path
+            ),
+            "3dbeacons_predicted_structure_probe": _source_path_record(
+                three_d_beacons_predicted_structure_probe_path
+            ),
+            "computed_model_repository_broad_probe": _source_path_record(
+                computed_model_repository_broad_probe_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The P07658 provider dispatch inputs are ready, but no current "
+                "credential-free provider, public repository, or local runtime "
+                "has produced the required full-length coordinate."
+            )
+            if dispatch_packet_ready and not preflight_passes
+            else (
+                "The dispatch packet is missing required input artifacts."
+                if not dispatch_packet_ready
+                else "The current P07658 coordinate/provenance packet passes acceptance."
+            ),
+            "next_action": (
+                "Use the recorded FASTA, fill targets, and rerun command for the "
+                "smallest approved predictor experiment; keep P07658 blocked "
+                "until the acceptance preflight passes."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_p07658_prediction_dispatch_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    affected = packet["affected_row"]
+    lines = [
+        "# Fold-Augmented P07658 Prediction Dispatch Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Entry: {affected['entry_id']} / {affected['accession']}",
+        f"- Sequence length: {affected['sequence_length']}",
+        f"- Sequence SHA-256: {affected['sequence_sha256']}",
+        "- Dispatch inputs present: "
+        f"{counts['dispatch_inputs_present']}/{counts['dispatch_inputs_total']}",
+        "- Provider routes returning coordinates now: "
+        f"{counts['provider_routes_returning_coordinate_now']}/"
+        f"{counts['provider_routes_checked']}",
+        f"- Acceptance checks failed: {counts['acceptance_checks_failed']}",
+        f"- Blockers: {packet['blockers']}",
+        "",
+        "## Provider Routes",
+        "",
+        "| route | status | coordinate now | blocker |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in packet.get("provider_routes", []):
+        lines.append(
+            f"| {row['route_id']} | {row.get('status')} | "
+            f"{row['coordinate_available_now']} | {row.get('blocker')} |"
+        )
+    lines += [
+        "",
+        "## Fill Targets",
+        "",
+        "- FASTA: "
+        f"{packet['operator_fill_targets']['provider_ready_fasta_path']}",
+        "- Coordinate path: "
+        f"{packet['operator_fill_targets']['preferred_coordinate_path']}",
+        "- Filled provenance path: "
+        f"{packet['operator_fill_targets']['filled_provenance_path']}",
+        "- Rerun command:",
+        "",
+        "```bash",
+        packet["operator_fill_targets"]["rerun_acceptance_preflight_command"],
+        "```",
+        "",
+        "## Decision",
+        "",
+        "- Dispatch packet ready for provider run: "
+        f"{decision['dispatch_packet_ready_for_provider_run']}",
+        "- P07658 acceptance preflight passes now: "
+        f"{decision['p07658_acceptance_preflight_passes_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_p07658_prediction_dispatch_packet(
+    *,
+    prediction_request_manifest_path: Path,
+    prediction_provenance_template_path: Path,
+    prediction_acceptance_preflight_path: Path,
+    provider_ready_fasta_path: Path,
+    esmfold_api_preflight_path: Path,
+    local_predictor_runtime_scan_path: Path,
+    full_length_predictor_provider_probe_path: Path,
+    three_d_beacons_predicted_structure_probe_path: Path,
+    computed_model_repository_broad_probe_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_P07658_PREDICTION_DISPATCH_PACKET_ID,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_p07658_prediction_dispatch_packet(
+        prediction_request_manifest_path=prediction_request_manifest_path,
+        prediction_provenance_template_path=prediction_provenance_template_path,
+        prediction_acceptance_preflight_path=prediction_acceptance_preflight_path,
+        provider_ready_fasta_path=provider_ready_fasta_path,
+        esmfold_api_preflight_path=esmfold_api_preflight_path,
+        local_predictor_runtime_scan_path=local_predictor_runtime_scan_path,
+        full_length_predictor_provider_probe_path=(
+            full_length_predictor_provider_probe_path
+        ),
+        three_d_beacons_predicted_structure_probe_path=(
+            three_d_beacons_predicted_structure_probe_path
+        ),
+        computed_model_repository_broad_probe_path=(
+            computed_model_repository_broad_probe_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_p07658_prediction_dispatch_packet_report(packet),
+            encoding="utf-8",
+        )
+    return packet
+
+
 def build_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088(
     *,
     p10746_decision_impact_path: Path,
@@ -32415,6 +32850,273 @@ def write_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_pack
     return packet
 
 
+def build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet(
+    *,
+    high_cofactor_acquisition_blocker_packet_path: Path,
+    lever3_minimum_next_experiment_queue_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_ACQUISITION_DISPATCH_PACKET_ID,
+) -> dict[str, Any]:
+    blocker_packet = _read_json(high_cofactor_acquisition_blocker_packet_path)
+    queue = _read_json(lever3_minimum_next_experiment_queue_path)
+    blocker_counts = blocker_packet.get("counts") or {}
+    gap_target = blocker_packet.get("gap_target") or {}
+    slots_needed = int(
+        blocker_counts.get("eligible_rows_missing_for_minimum")
+        or gap_target.get("required_new_nonheldout_train_cal_oos_rows")
+        or 16
+    )
+    fixed_threshold = gap_target.get("fixed_threshold") or 0.44155
+    queue_step = next(
+        (
+            row
+            for row in queue.get("experiment_queue", [])
+            if row.get("experiment_id") == "high_cofactor_train_cal_oos_acquisition"
+        ),
+        {},
+    )
+    intake_slots = [
+        {
+            "slot_id": f"high_cofactor_train_cal_oos_slot_{index:02d}",
+            "slot_index": index,
+            "status": "unfilled",
+            "required_label_role": "nonheldout_train_cal_oos_negative",
+            "required_membership_evidence": [
+                "source-free high organic-cofactor signature at or above the frozen axis threshold",
+                "or source-free high inorganic cofactor/locus evidence from deployment-valid predicted-structure inputs",
+            ],
+            "required_prediction_inputs": [
+                "predicted coordinate path",
+                "provider/model/version/checksum provenance",
+                "no experimental-PDB metadata shortcut as deployment input",
+            ],
+            "forbidden_predictive_features": [
+                "mechanism text",
+                "EC or Rhea identifiers",
+                "source IDs",
+                "target names",
+                "curated labels or family names",
+                "heldout M-CSA rows",
+            ],
+            "score_now": False,
+            "count_as_abstained_evidence_now": False,
+        }
+        for index in range(1, slots_needed + 1)
+    ]
+    acceptance_checks = [
+        "row is non-heldout train/cal OOS under the frozen split",
+        "row is not already in the scored train/cal OOS surface",
+        "source-free high-cofactor membership is satisfied without relaxing the axis",
+        "deployment-valid predicted coordinate and provenance are present",
+        "experimental PDB metadata is not used as a deployment input",
+        "row is scored only after intake acceptance passes",
+        f"fixed threshold remains {fixed_threshold}",
+    ]
+    blockers = [
+        "high_cofactor_acquisition_slots_unfilled",
+        "candidate_rows_not_registered_or_scored",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_ready_unfilled"
+        ),
+        "scope": (
+            "Dispatch-ready intake packet for the 16-row high-cofactor "
+            "train/cal OOS acquisition experiment. It creates unfilled slots "
+            "and acceptance criteria only; it does not source rows, register "
+            "candidates, score candidates, tune thresholds, or read heldout."
+        ),
+        "gap_target": {
+            "proxy_axis": gap_target.get("proxy_axis")
+            or "high_cofactor_signature_proxy",
+            "required_new_nonheldout_train_cal_oos_rows": slots_needed,
+            "fixed_threshold": fixed_threshold,
+            "required_outcome": gap_target.get("required_outcome")
+            or (
+                "all acquired rows must abstain at the unchanged fixed "
+                "threshold to close only the high-cofactor target"
+            ),
+        },
+        "intake_slots": intake_slots,
+        "intake_acceptance_checks": acceptance_checks,
+        "near_miss_policy": {
+            "affected_near_miss_rows": int(
+                blocker_counts.get("affected_near_miss_rows") or 0
+            ),
+            "near_misses_countable_now": False,
+            "reason": (
+                "Near-miss organic-cofactor scores do not satisfy the frozen "
+                "high-cofactor axis and cannot be used to close the 16-row "
+                "calibration gap."
+            ),
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "train_cal_only": True,
+            "review_only": True,
+            "dispatch_only": True,
+            "candidate_rows_registered_now": False,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+        },
+        "counts": {
+            "intake_slots_required": slots_needed,
+            "intake_slots_filled_now": 0,
+            "intake_slots_ready_to_score_now": 0,
+            "candidate_rows_registered_now": 0,
+            "candidate_rows_scored_now": 0,
+            "near_miss_rows_not_countable": int(
+                blocker_counts.get("affected_near_miss_rows") or 0
+            ),
+            "fixed_threshold_audit_ready_to_rerun_now": 0,
+            "critical_violation_total": 0,
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "acquisition_dispatch_ready_for_row_intake": True,
+            "current_evidence_can_solve_high_cofactor_gap": False,
+            "candidate_rows_ready_to_score_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "smallest_next_experiment": (
+                "Fill these 16 intake slots with new non-heldout train/cal OOS "
+                "rows that satisfy source-free high-cofactor membership and "
+                "deployment-valid predicted-structure provenance, then score "
+                "only accepted rows at the unchanged fixed threshold."
+            ),
+            "next_gate": (
+                "Do not rerun the fixed-threshold audit until all filled slots "
+                "pass intake checks and have real predicted-structure-vs-atlas "
+                "scores."
+            ),
+        },
+        "source_artifacts": {
+            "high_cofactor_acquisition_blocker_packet": _source_path_record(
+                high_cofactor_acquisition_blocker_packet_path
+            ),
+            "lever3_minimum_next_experiment_queue": _source_path_record(
+                lever3_minimum_next_experiment_queue_path
+            ),
+        },
+        "queue_step": queue_step,
+        "interpretation": {
+            "result": (
+                f"The high-cofactor acquisition experiment is dispatch-ready "
+                f"as {slots_needed} unfilled intake slots, but no new rows are "
+                "registered or scoreable now."
+            ),
+            "next_action": (
+                "Fill the intake slots with source-free high-cofactor train/cal "
+                "OOS evidence; keep near misses non-countable."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy High-Cofactor Acquisition Dispatch Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Intake slots required: {counts['intake_slots_required']}",
+        f"- Intake slots filled now: {counts['intake_slots_filled_now']}",
+        "- Intake slots ready to score now: "
+        f"{counts['intake_slots_ready_to_score_now']}",
+        "- Near-miss rows not countable: "
+        f"{counts['near_miss_rows_not_countable']}",
+        f"- Blockers: {packet['blockers']}",
+        "",
+        "## Acceptance Checks",
+        "",
+    ]
+    lines += [f"- {check}" for check in packet["intake_acceptance_checks"]]
+    lines += [
+        "",
+        "## Intake Slots",
+        "",
+        "| slot | status | score now | count now |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in packet.get("intake_slots", []):
+        lines.append(
+            f"| {row['slot_id']} | {row['status']} | "
+            f"{row['score_now']} | {row['count_as_abstained_evidence_now']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Acquisition dispatch ready for row intake: "
+        f"{decision['acquisition_dispatch_ready_for_row_intake']}",
+        "- Candidate rows ready to score now: "
+        f"{decision['candidate_rows_ready_to_score_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet(
+    *,
+    high_cofactor_acquisition_blocker_packet_path: Path,
+    lever3_minimum_next_experiment_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_HIGH_COFACTOR_ACQUISITION_DISPATCH_PACKET_ID,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet(
+        high_cofactor_acquisition_blocker_packet_path=(
+            high_cofactor_acquisition_blocker_packet_path
+        ),
+        lever3_minimum_next_experiment_queue_path=(
+            lever3_minimum_next_experiment_queue_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
 def _same_family_structural_blocker_affected_row(
     row: dict[str, Any],
     *,
@@ -32726,6 +33428,280 @@ def write_fold_augmented_confounded_proxy_same_family_structural_acquisition_blo
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet(
+    *,
+    same_family_structural_acquisition_blocker_packet_path: Path,
+    lever3_minimum_next_experiment_queue_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_DISPATCH_PACKET_ID,
+) -> dict[str, Any]:
+    blocker_packet = _read_json(same_family_structural_acquisition_blocker_packet_path)
+    queue = _read_json(lever3_minimum_next_experiment_queue_path)
+    blocker_counts = blocker_packet.get("counts") or {}
+    gap_target = blocker_packet.get("gap_target") or {}
+    slots_needed = int(
+        blocker_counts.get("eligible_rows_missing_for_minimum")
+        or gap_target.get("required_new_nonheldout_train_cal_oos_rows")
+        or 170
+    )
+    fixed_threshold = gap_target.get("fixed_threshold") or 0.44155
+    queue_step = next(
+        (
+            row
+            for row in queue.get("experiment_queue", [])
+            if row.get("experiment_id")
+            == "same_family_structural_train_cal_oos_acquisition"
+        ),
+        {},
+    )
+    intake_slots = [
+        {
+            "slot_id": f"same_family_structural_train_cal_oos_slot_{index:03d}",
+            "slot_index": index,
+            "status": "unfilled",
+            "required_label_role": "nonheldout_train_cal_oos_negative",
+            "required_membership_evidence": [
+                "source-free same-family structural proxy membership",
+                "approved inorganic/structural locus or pre-registered structural counteraxis",
+            ],
+            "required_prediction_inputs": [
+                "predicted coordinate path",
+                "provider/model/version/checksum provenance",
+                "no experimental-PDB metadata shortcut as deployment input",
+            ],
+            "forbidden_predictive_features": [
+                "mechanism text",
+                "EC or Rhea identifiers",
+                "source IDs",
+                "target names",
+                "curated labels or family names",
+                "heldout M-CSA rows",
+            ],
+            "score_now": False,
+            "count_as_abstained_evidence_now": False,
+        }
+        for index in range(1, slots_needed + 1)
+    ]
+    acceptance_checks = [
+        "row is non-heldout train/cal OOS under the frozen split",
+        "row is not already in the scored train/cal OOS surface",
+        "source-free same-family structural membership is satisfied without relaxing the axis",
+        "deployment-valid predicted coordinate and provenance are present",
+        "experimental PDB metadata is not used as a deployment input",
+        "row is scored only after intake acceptance passes",
+        f"fixed threshold remains {fixed_threshold}",
+    ]
+    blockers = [
+        "same_family_structural_acquisition_slots_unfilled",
+        "candidate_rows_not_registered_or_scored",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_ready_unfilled"
+        ),
+        "scope": (
+            "Dispatch-ready intake packet for the 170-row same-family "
+            "structural train/cal OOS acquisition experiment. It creates "
+            "unfilled slots and acceptance criteria only; it does not source "
+            "rows, register candidates, score candidates, tune thresholds, or "
+            "read heldout."
+        ),
+        "gap_target": {
+            "proxy_axis": gap_target.get("proxy_axis")
+            or "same_family_structural_proxy",
+            "required_new_nonheldout_train_cal_oos_rows": slots_needed,
+            "fixed_threshold": fixed_threshold,
+            "required_outcome": gap_target.get("required_outcome")
+            or (
+                "enough acquired rows must abstain at the unchanged fixed "
+                "threshold to close the same-family structural target"
+            ),
+        },
+        "intake_slots": intake_slots,
+        "intake_acceptance_checks": acceptance_checks,
+        "background_candidate_policy": {
+            "affected_background_candidate_rows": int(
+                blocker_counts.get("affected_background_candidate_rows") or 0
+            ),
+            "background_candidates_countable_now": False,
+            "reason": (
+                "Background rows without approved source-free same-family "
+                "structural membership cannot be counted as confounded-safe "
+                "abstention evidence."
+            ),
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "train_cal_only": True,
+            "review_only": True,
+            "dispatch_only": True,
+            "candidate_rows_registered_now": False,
+            "candidate_rows_scored_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+        },
+        "counts": {
+            "intake_slots_required": slots_needed,
+            "intake_slots_filled_now": 0,
+            "intake_slots_ready_to_score_now": 0,
+            "candidate_rows_registered_now": 0,
+            "candidate_rows_scored_now": 0,
+            "background_rows_not_countable": int(
+                blocker_counts.get("affected_background_candidate_rows") or 0
+            ),
+            "fixed_threshold_audit_ready_to_rerun_now": 0,
+            "critical_violation_total": 0,
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "acquisition_dispatch_ready_for_row_intake": True,
+            "current_evidence_can_solve_same_family_structural_gap": False,
+            "candidate_rows_ready_to_score_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "smallest_next_experiment": (
+                "Fill these 170 intake slots with new non-heldout train/cal OOS "
+                "rows that satisfy source-free same-family structural "
+                "membership and deployment-valid predicted-structure "
+                "provenance, then score only accepted rows at the unchanged "
+                "fixed threshold."
+            ),
+            "next_gate": (
+                "Do not rerun the fixed-threshold audit until filled slots pass "
+                "intake checks and have real predicted-structure-vs-atlas scores."
+            ),
+        },
+        "source_artifacts": {
+            "same_family_structural_acquisition_blocker_packet": (
+                _source_path_record(
+                    same_family_structural_acquisition_blocker_packet_path
+                )
+            ),
+            "lever3_minimum_next_experiment_queue": _source_path_record(
+                lever3_minimum_next_experiment_queue_path
+            ),
+        },
+        "queue_step": queue_step,
+        "interpretation": {
+            "result": (
+                f"The same-family structural acquisition experiment is "
+                f"dispatch-ready as {slots_needed} unfilled intake slots, but "
+                "no new rows are registered or scoreable now."
+            ),
+            "next_action": (
+                "Fill the intake slots with source-free same-family structural "
+                "train/cal OOS evidence; keep background rows non-countable."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Fold-Augmented Confounded Proxy Same-Family Structural Acquisition Dispatch Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Intake slots required: {counts['intake_slots_required']}",
+        f"- Intake slots filled now: {counts['intake_slots_filled_now']}",
+        "- Intake slots ready to score now: "
+        f"{counts['intake_slots_ready_to_score_now']}",
+        "- Background rows not countable: "
+        f"{counts['background_rows_not_countable']}",
+        f"- Blockers: {packet['blockers']}",
+        "",
+        "## Acceptance Checks",
+        "",
+    ]
+    lines += [f"- {check}" for check in packet["intake_acceptance_checks"]]
+    lines += [
+        "",
+        "## Intake Slot Summary",
+        "",
+        "| first slot | last slot | total | filled now | ready to score now |",
+        "| --- | --- | ---: | ---: | ---: |",
+    ]
+    slots = packet.get("intake_slots", [])
+    lines.append(
+        f"| {slots[0]['slot_id'] if slots else 'none'} | "
+        f"{slots[-1]['slot_id'] if slots else 'none'} | "
+        f"{counts['intake_slots_required']} | "
+        f"{counts['intake_slots_filled_now']} | "
+        f"{counts['intake_slots_ready_to_score_now']} |"
+    )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Acquisition dispatch ready for row intake: "
+        f"{decision['acquisition_dispatch_ready_for_row_intake']}",
+        "- Candidate rows ready to score now: "
+        f"{decision['candidate_rows_ready_to_score_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet(
+    *,
+    same_family_structural_acquisition_blocker_packet_path: Path,
+    lever3_minimum_next_experiment_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_CONFOUNDED_PROXY_SAME_FAMILY_STRUCTURAL_ACQUISITION_DISPATCH_PACKET_ID,
+) -> dict[str, Any]:
+    packet = build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet(
+        same_family_structural_acquisition_blocker_packet_path=(
+            same_family_structural_acquisition_blocker_packet_path
+        ),
+        lever3_minimum_next_experiment_queue_path=(
+            lever3_minimum_next_experiment_queue_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_report(
                 packet
             ),
             encoding="utf-8",
@@ -33337,6 +34313,293 @@ def write_fold_augmented_lever3_minimum_next_experiment_queue(
             encoding="utf-8",
         )
     return queue
+
+
+def build_fold_augmented_lever3_dispatch_readiness_summary(
+    *,
+    p07658_prediction_dispatch_packet_path: Path,
+    high_cofactor_acquisition_dispatch_packet_path: Path,
+    same_family_structural_acquisition_dispatch_packet_path: Path,
+    lever3_minimum_next_experiment_queue_path: Path,
+    queue_and_template_guardrail_audit_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_DISPATCH_READINESS_SUMMARY_ID,
+) -> dict[str, Any]:
+    p07658 = _read_json(p07658_prediction_dispatch_packet_path)
+    high = _read_json(high_cofactor_acquisition_dispatch_packet_path)
+    same = _read_json(same_family_structural_acquisition_dispatch_packet_path)
+    queue = _read_json(lever3_minimum_next_experiment_queue_path)
+    audit = _read_json(queue_and_template_guardrail_audit_path)
+
+    p_counts = p07658.get("counts") or {}
+    h_counts = high.get("counts") or {}
+    s_counts = same.get("counts") or {}
+    audit_counts = audit.get("counts") or {}
+    h_slots = int(h_counts.get("intake_slots_required") or 0)
+    s_slots = int(s_counts.get("intake_slots_required") or 0)
+    filled_slots = int(h_counts.get("intake_slots_filled_now") or 0) + int(
+        s_counts.get("intake_slots_filled_now") or 0
+    )
+    ready_slots = int(h_counts.get("intake_slots_ready_to_score_now") or 0) + int(
+        s_counts.get("intake_slots_ready_to_score_now") or 0
+    )
+    guardrail_violations = int(
+        audit_counts.get("guardrail_violation_artifacts") or 0
+    ) + int(audit_counts.get("critical_violation_total") or 0)
+    dispatch_rows = [
+        {
+            "experiment_id": "p07658_full_length_prediction_acceptance",
+            "dispatch_artifact_id": p07658.get("artifact_id"),
+            "status": p07658.get("status"),
+            "ready_for_external_action": bool(
+                (p07658.get("decision") or {}).get(
+                    "dispatch_packet_ready_for_provider_run"
+                )
+            ),
+            "blocked_now": True,
+            "blocking_evidence": (
+                "no provider/local runtime returned a coordinate and the "
+                "acceptance preflight still fails"
+            ),
+        },
+        {
+            "experiment_id": "high_cofactor_train_cal_oos_acquisition",
+            "dispatch_artifact_id": high.get("artifact_id"),
+            "status": high.get("status"),
+            "ready_for_external_action": bool(
+                (high.get("decision") or {}).get(
+                    "acquisition_dispatch_ready_for_row_intake"
+                )
+            ),
+            "blocked_now": True,
+            "blocking_evidence": f"{h_slots} intake slots are unfilled",
+        },
+        {
+            "experiment_id": "same_family_structural_train_cal_oos_acquisition",
+            "dispatch_artifact_id": same.get("artifact_id"),
+            "status": same.get("status"),
+            "ready_for_external_action": bool(
+                (same.get("decision") or {}).get(
+                    "acquisition_dispatch_ready_for_row_intake"
+                )
+            ),
+            "blocked_now": True,
+            "blocking_evidence": f"{s_slots} intake slots are unfilled",
+        },
+    ]
+    blockers = [
+        "p07658_prediction_dispatch_blocked_no_coordinate",
+        "high_cofactor_acquisition_dispatch_slots_unfilled",
+        "same_family_structural_acquisition_dispatch_slots_unfilled",
+        "fixed_threshold_audit_not_ready_to_rerun",
+    ]
+    if guardrail_violations:
+        blockers.append("dispatch_guardrail_violation_detected")
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_dispatch_readiness_summary"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "fold_augmented_lever3_dispatch_readiness_summary_blocked",
+        "scope": (
+            "Combined Lever 3 dispatch readiness summary for the remaining "
+            "deployment-valid/confounded-safe novelty blockers. It composes "
+            "the P07658 provider dispatch and the high-cofactor/same-family "
+            "train-cal intake packets; it does not source rows, stage "
+            "coordinates, score rows, tune thresholds, or read heldout."
+        ),
+        "dispatch_rows": dispatch_rows,
+        "blockers": blockers,
+        "guardrails": {
+            "review_only": True,
+            "dispatch_summary_only": True,
+            "candidate_rows_registered_now": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "fixed_threshold_audit_rerun": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_or_source_ids_used_as_features": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+        },
+        "counts": {
+            "dispatch_packets_checked": len(dispatch_rows),
+            "dispatch_packets_ready_for_external_action": sum(
+                1 for row in dispatch_rows if row["ready_for_external_action"]
+            ),
+            "blocked_dispatch_packets": sum(
+                1 for row in dispatch_rows if row["blocked_now"]
+            ),
+            "p07658_provider_routes_returning_coordinate_now": int(
+                p_counts.get("provider_routes_returning_coordinate_now") or 0
+            ),
+            "p07658_acceptance_checks_failed": int(
+                p_counts.get("acceptance_checks_failed") or 0
+            ),
+            "high_cofactor_intake_slots_required": h_slots,
+            "same_family_structural_intake_slots_required": s_slots,
+            "total_train_cal_oos_intake_slots_required": h_slots + s_slots,
+            "train_cal_oos_intake_slots_filled_now": filled_slots,
+            "train_cal_oos_intake_slots_ready_to_score_now": ready_slots,
+            "guardrail_violation_artifacts": int(
+                audit_counts.get("guardrail_violation_artifacts") or 0
+            ),
+            "critical_violation_total": int(
+                audit_counts.get("critical_violation_total") or 0
+            ),
+            "fixed_threshold_audit_ready_to_rerun_now": 0,
+            "blockers": len(blockers),
+        },
+        "decision": {
+            "all_dispatch_packets_ready_for_external_action": all(
+                row["ready_for_external_action"] for row in dispatch_rows
+            ),
+            "current_evidence_can_clear_lever3_done_bar_now": False,
+            "candidate_rows_ready_to_score_now": False,
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "First run/fill the P07658 coordinate/provenance dispatch; "
+                "then fill the 16 high-cofactor slots; then fill the 170 "
+                "same-family structural slots. Do not rerun the operating "
+                "point until accepted dispatch evidence has real scores."
+            ),
+        },
+        "source_artifacts": {
+            "p07658_prediction_dispatch_packet": _source_path_record(
+                p07658_prediction_dispatch_packet_path
+            ),
+            "high_cofactor_acquisition_dispatch_packet": _source_path_record(
+                high_cofactor_acquisition_dispatch_packet_path
+            ),
+            "same_family_structural_acquisition_dispatch_packet": _source_path_record(
+                same_family_structural_acquisition_dispatch_packet_path
+            ),
+            "lever3_minimum_next_experiment_queue": _source_path_record(
+                lever3_minimum_next_experiment_queue_path
+            ),
+            "queue_and_template_guardrail_audit": _source_path_record(
+                queue_and_template_guardrail_audit_path
+            ),
+        },
+        "queue_status": queue.get("status"),
+        "interpretation": {
+            "result": (
+                "Lever 3 is dispatch-ready but still blocked: P07658 has no "
+                f"coordinate, {h_slots} high-cofactor slots are unfilled, and "
+                f"{s_slots} same-family structural slots are unfilled."
+            ),
+            "next_action": (
+                "Treat this as the current single Lever 3 handoff: fill the "
+                "dispatch evidence, then score only accepted train/cal rows at "
+                "the unchanged fixed threshold."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_dispatch_readiness_summary_report(
+    summary: dict[str, Any],
+) -> str:
+    counts = summary["counts"]
+    decision = summary["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Dispatch Readiness Summary - current702",
+        "",
+        f"Run: {summary['created_utc']}",
+        "",
+        summary["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {summary['status']}",
+        "- Dispatch packets ready for external action: "
+        f"{counts['dispatch_packets_ready_for_external_action']}/"
+        f"{counts['dispatch_packets_checked']}",
+        f"- P07658 coordinate routes now: {counts['p07658_provider_routes_returning_coordinate_now']}",
+        f"- P07658 acceptance failures: {counts['p07658_acceptance_checks_failed']}",
+        "- Train/cal intake slots required: "
+        f"{counts['total_train_cal_oos_intake_slots_required']}",
+        "- Train/cal intake slots ready to score now: "
+        f"{counts['train_cal_oos_intake_slots_ready_to_score_now']}",
+        f"- Guardrail violations: {counts['guardrail_violation_artifacts']}",
+        f"- Blockers: {summary['blockers']}",
+        "",
+        "## Dispatch Rows",
+        "",
+        "| experiment | status | ready | blocker |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in summary.get("dispatch_rows", []):
+        lines.append(
+            f"| {row['experiment_id']} | {row['status']} | "
+            f"{row['ready_for_external_action']} | {row['blocking_evidence']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- All dispatch packets ready for external action: "
+        f"{decision['all_dispatch_packets_ready_for_external_action']}",
+        "- Current evidence can clear Lever 3 done-bar now: "
+        f"{decision['current_evidence_can_clear_lever3_done_bar_now']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {summary['interpretation']['result']}",
+        f"- {summary['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_dispatch_readiness_summary(
+    *,
+    p07658_prediction_dispatch_packet_path: Path,
+    high_cofactor_acquisition_dispatch_packet_path: Path,
+    same_family_structural_acquisition_dispatch_packet_path: Path,
+    lever3_minimum_next_experiment_queue_path: Path,
+    queue_and_template_guardrail_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_DISPATCH_READINESS_SUMMARY_ID,
+) -> dict[str, Any]:
+    summary = build_fold_augmented_lever3_dispatch_readiness_summary(
+        p07658_prediction_dispatch_packet_path=p07658_prediction_dispatch_packet_path,
+        high_cofactor_acquisition_dispatch_packet_path=(
+            high_cofactor_acquisition_dispatch_packet_path
+        ),
+        same_family_structural_acquisition_dispatch_packet_path=(
+            same_family_structural_acquisition_dispatch_packet_path
+        ),
+        lever3_minimum_next_experiment_queue_path=(
+            lever3_minimum_next_experiment_queue_path
+        ),
+        queue_and_template_guardrail_audit_path=(
+            queue_and_template_guardrail_audit_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(summary, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_dispatch_readiness_summary_report(
+                summary
+            ),
+            encoding="utf-8",
+        )
+    return summary
 
 
 def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(

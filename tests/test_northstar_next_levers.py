@@ -58,10 +58,14 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval,
     build_fold_augmented_p07658_full_length_prediction_request_manifest,
     build_fold_augmented_p07658_prediction_acceptance_preflight,
+    build_fold_augmented_p07658_prediction_dispatch_packet,
     build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage,
     build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet,
+    build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet,
     build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
+    build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet,
     build_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
@@ -2763,6 +2767,79 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_high_cofactor_acquisition_dispatch_packet_creates_unfilled_slots(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            blocker_path = root / "high_blocker.json"
+            queue_path = root / "queue.json"
+            blocker_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "eligible_rows_missing_for_minimum": 2,
+                            "affected_near_miss_rows": 1,
+                        },
+                        "gap_target": {
+                            "proxy_axis": "high_cofactor_signature_proxy",
+                            "fixed_threshold": 0.44155,
+                            "required_new_nonheldout_train_cal_oos_rows": 2,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "experiment_queue": [
+                            {
+                                "experiment_id": (
+                                    "high_cofactor_train_cal_oos_acquisition"
+                                ),
+                                "priority": 2,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet(
+                high_cofactor_acquisition_blocker_packet_path=blocker_path,
+                lever3_minimum_next_experiment_queue_path=queue_path,
+                artifact_id="custom_high_cofactor_dispatch",
+            )
+
+        self.assertEqual(packet["artifact_id"], "custom_high_cofactor_dispatch")
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_high_cofactor_acquisition_"
+                "dispatch_packet_ready_unfilled"
+            ),
+        )
+        self.assertEqual(packet["counts"]["intake_slots_required"], 2)
+        self.assertEqual(packet["counts"]["intake_slots_filled_now"], 0)
+        self.assertEqual(packet["counts"]["intake_slots_ready_to_score_now"], 0)
+        self.assertEqual(len(packet["intake_slots"]), 2)
+        self.assertFalse(packet["intake_slots"][0]["score_now"])
+        self.assertFalse(
+            packet["intake_slots"][0]["count_as_abstained_evidence_now"]
+        )
+        self.assertIn(
+            "high_cofactor_acquisition_slots_unfilled", packet["blockers"]
+        )
+        self.assertTrue(
+            packet["decision"]["acquisition_dispatch_ready_for_row_intake"]
+        )
+        self.assertFalse(
+            packet["decision"]["candidate_rows_ready_to_score_now"]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
     def test_same_family_structural_acquisition_blocker_packet_names_background_rows(
         self,
     ) -> None:
@@ -2863,6 +2940,86 @@ class NorthstarNextLeversTests(unittest.TestCase):
             packet["decision"][
                 "current_evidence_can_solve_same_family_structural_gap"
             ]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_same_family_structural_acquisition_dispatch_packet_creates_unfilled_slots(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            blocker_path = root / "same_family_blocker.json"
+            queue_path = root / "queue.json"
+            blocker_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "eligible_rows_missing_for_minimum": 3,
+                            "affected_background_candidate_rows": 2,
+                        },
+                        "gap_target": {
+                            "proxy_axis": "same_family_structural_proxy",
+                            "fixed_threshold": 0.44155,
+                            "required_new_nonheldout_train_cal_oos_rows": 3,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "experiment_queue": [
+                            {
+                                "experiment_id": (
+                                    "same_family_structural_train_cal_oos_acquisition"
+                                ),
+                                "priority": 3,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet(
+                same_family_structural_acquisition_blocker_packet_path=(
+                    blocker_path
+                ),
+                lever3_minimum_next_experiment_queue_path=queue_path,
+                artifact_id="custom_same_family_dispatch",
+            )
+
+        self.assertEqual(packet["artifact_id"], "custom_same_family_dispatch")
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_dispatch_packet_ready_unfilled"
+            ),
+        )
+        self.assertEqual(packet["counts"]["intake_slots_required"], 3)
+        self.assertEqual(packet["counts"]["intake_slots_filled_now"], 0)
+        self.assertEqual(packet["counts"]["intake_slots_ready_to_score_now"], 0)
+        self.assertEqual(len(packet["intake_slots"]), 3)
+        self.assertEqual(
+            packet["intake_slots"][0]["slot_id"],
+            "same_family_structural_train_cal_oos_slot_001",
+        )
+        self.assertFalse(packet["intake_slots"][0]["score_now"])
+        self.assertFalse(
+            packet["intake_slots"][0]["count_as_abstained_evidence_now"]
+        )
+        self.assertIn(
+            "same_family_structural_acquisition_slots_unfilled",
+            packet["blockers"],
+        )
+        self.assertTrue(
+            packet["decision"]["acquisition_dispatch_ready_for_row_intake"]
+        )
+        self.assertFalse(
+            packet["decision"]["candidate_rows_ready_to_score_now"]
         )
         self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
@@ -3054,6 +3211,118 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(queue["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(queue["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_dispatch_readiness_summary_composes_dispatch_packets(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            p07658_path = root / "p07658_dispatch.json"
+            high_path = root / "high_dispatch.json"
+            same_path = root / "same_dispatch.json"
+            queue_path = root / "queue.json"
+            audit_path = root / "audit.json"
+            p07658_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "p07658_dispatch",
+                        "status": "blocked",
+                        "counts": {
+                            "provider_routes_returning_coordinate_now": 0,
+                            "acceptance_checks_failed": 7,
+                        },
+                        "decision": {
+                            "dispatch_packet_ready_for_provider_run": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            high_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "high_dispatch",
+                        "status": "ready_unfilled",
+                        "counts": {
+                            "intake_slots_required": 2,
+                            "intake_slots_filled_now": 0,
+                            "intake_slots_ready_to_score_now": 0,
+                        },
+                        "decision": {
+                            "acquisition_dispatch_ready_for_row_intake": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            same_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "same_dispatch",
+                        "status": "ready_unfilled",
+                        "counts": {
+                            "intake_slots_required": 3,
+                            "intake_slots_filled_now": 0,
+                            "intake_slots_ready_to_score_now": 0,
+                        },
+                        "decision": {
+                            "acquisition_dispatch_ready_for_row_intake": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue_path.write_text(
+                json.dumps({"status": "queue_blocked"}),
+                encoding="utf-8",
+            )
+            audit_path.write_text(
+                json.dumps(
+                    {
+                        "status": "audit_passed",
+                        "counts": {
+                            "guardrail_violation_artifacts": 0,
+                            "critical_violation_total": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            summary = build_fold_augmented_lever3_dispatch_readiness_summary(
+                p07658_prediction_dispatch_packet_path=p07658_path,
+                high_cofactor_acquisition_dispatch_packet_path=high_path,
+                same_family_structural_acquisition_dispatch_packet_path=same_path,
+                lever3_minimum_next_experiment_queue_path=queue_path,
+                queue_and_template_guardrail_audit_path=audit_path,
+                artifact_id="custom_dispatch_summary",
+            )
+
+        self.assertEqual(summary["artifact_id"], "custom_dispatch_summary")
+        self.assertEqual(
+            summary["status"],
+            "fold_augmented_lever3_dispatch_readiness_summary_blocked",
+        )
+        self.assertEqual(summary["counts"]["dispatch_packets_checked"], 3)
+        self.assertEqual(
+            summary["counts"]["dispatch_packets_ready_for_external_action"], 3
+        )
+        self.assertEqual(summary["counts"]["blocked_dispatch_packets"], 3)
+        self.assertEqual(
+            summary["counts"]["total_train_cal_oos_intake_slots_required"], 5
+        )
+        self.assertEqual(
+            summary["counts"]["train_cal_oos_intake_slots_ready_to_score_now"], 0
+        )
+        self.assertIn(
+            "p07658_prediction_dispatch_blocked_no_coordinate",
+            summary["blockers"],
+        )
+        self.assertFalse(
+            summary["decision"]["current_evidence_can_clear_lever3_done_bar_now"]
+        )
+        self.assertFalse(summary["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(summary["guardrails"]["threshold_selected_or_tuned"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,
@@ -6303,6 +6572,181 @@ ATOM 5 C CA . GLU A 1 250 ? 7.2 0.0 0.0 1.00 80.0 ? 250 GLU A CA 1
         )
         self.assertFalse(ready["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(ready["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_p07658_prediction_dispatch_packet_is_provider_ready_but_blocked(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            template_path = root / "template.json"
+            preflight_path = root / "preflight.json"
+            fasta_path = root / "p07658.fasta"
+            esmfold_path = root / "esmfold.json"
+            runtime_path = root / "runtime.json"
+            provider_path = root / "provider.json"
+            beacons_path = root / "beacons.json"
+            broad_path = root / "broad.json"
+
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "sequence_length": 715,
+                            "sequence_sha256": "sha",
+                            "selenocysteine_count": 1,
+                            "selenocysteine_positions": [140],
+                        },
+                        "prediction_request": {
+                            "preferred_staging_path": str(root / "p07658.cif")
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            template_path.write_text(
+                json.dumps(
+                    {
+                        "required_provider_fields_to_fill": {
+                            "provider": "FILL",
+                            "coordinate_sha256": "FILL",
+                        },
+                        "acceptance_preflight_contract": {
+                            "rerun_command_after_filling": "rerun me"
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "sequence_length": 715,
+                            "sequence_sha256": "sha",
+                            "selenocysteine_count": 1,
+                            "selenocysteine_positions": [140],
+                        },
+                        "candidate_coordinate": {"path": str(root / "p07658.cif")},
+                        "counts": {
+                            "acceptance_checks_failed": 2,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                        },
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False
+                        },
+                        "acceptance_check_results": [
+                            {
+                                "check_id": "coordinate_file_exists",
+                                "passed": False,
+                                "failure_reason_if_any": "missing coordinate",
+                                "observed": str(root / "p07658.cif"),
+                            },
+                            {
+                                "check_id": "row_not_scored_until_coordinate_staged",
+                                "passed": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fasta_path.write_text(">P07658\nMU\n", encoding="utf-8")
+            esmfold_path.write_text(
+                json.dumps(
+                    {
+                        "status": "blocked_length",
+                        "interpretation": {"result": "sequence too long"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            runtime_path.write_text(
+                json.dumps(
+                    {
+                        "status": "blocked_no_runtime",
+                        "counts": {"coordinates_returned": 0},
+                        "interpretation": {"result": "no runtime"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            provider_path.write_text(
+                json.dumps(
+                    {
+                        "provider_probes": [
+                            {
+                                "provider": "Provider A",
+                                "http_status": 401,
+                                "coordinate_returned": False,
+                                "response_summary": "auth required",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            beacons_path.write_text(
+                json.dumps(
+                    {
+                        "status": "experimental_only",
+                        "interpretation": {"result": "no prediction"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            broad_path.write_text(
+                json.dumps(
+                    {
+                        "status": "no_hit",
+                        "counts": {"coordinates_returned": 0},
+                        "interpretation": {"result": "no computed model"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_p07658_prediction_dispatch_packet(
+                prediction_request_manifest_path=manifest_path,
+                prediction_provenance_template_path=template_path,
+                prediction_acceptance_preflight_path=preflight_path,
+                provider_ready_fasta_path=fasta_path,
+                esmfold_api_preflight_path=esmfold_path,
+                local_predictor_runtime_scan_path=runtime_path,
+                full_length_predictor_provider_probe_path=provider_path,
+                three_d_beacons_predicted_structure_probe_path=beacons_path,
+                computed_model_repository_broad_probe_path=broad_path,
+                artifact_id="p07658_dispatch_test",
+            )
+
+        self.assertEqual(packet["artifact_id"], "p07658_dispatch_test")
+        self.assertEqual(
+            packet["status"],
+            "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate",
+        )
+        self.assertEqual(packet["counts"]["dispatch_inputs_present"], 4)
+        self.assertEqual(packet["counts"]["provider_routes_checked"], 5)
+        self.assertEqual(
+            packet["counts"]["provider_routes_returning_coordinate_now"], 0
+        )
+        self.assertEqual(packet["counts"]["required_provider_fields"], 2)
+        self.assertIn(
+            "no_current_provider_or_local_runtime_returns_p07658_coordinate",
+            packet["blockers"],
+        )
+        self.assertTrue(
+            packet["decision"]["dispatch_packet_ready_for_provider_run"]
+        )
+        self.assertFalse(
+            packet["decision"]["p07658_acceptance_preflight_passes_now"]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
     def test_p10746_prior_human_decision_reconciles_to_current_impact(
         self,

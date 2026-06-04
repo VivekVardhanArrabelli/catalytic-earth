@@ -6446,6 +6446,59 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(preflight["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(preflight["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_p07658_prediction_dispatch_packet_counts(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p07658_prediction_dispatch_packet_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["status"],
+            "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate",
+        )
+        self.assertEqual(packet["affected_row"]["entry_id"], "m_csa:562")
+        self.assertEqual(packet["affected_row"]["accession"], "P07658")
+        self.assertEqual(packet["affected_row"]["sequence_length"], 715)
+        self.assertEqual(packet["affected_row"]["selenocysteine_positions"], [140])
+        self.assertEqual(packet["counts"]["dispatch_inputs_total"], 4)
+        self.assertEqual(packet["counts"]["dispatch_inputs_present"], 4)
+        self.assertEqual(packet["counts"]["provider_routes_checked"], 6)
+        self.assertEqual(
+            packet["counts"]["provider_routes_returning_coordinate_now"], 0
+        )
+        self.assertEqual(packet["counts"]["required_provider_fields"], 14)
+        self.assertEqual(packet["counts"]["acceptance_checks_failed"], 7)
+        self.assertEqual(packet["counts"]["candidate_coordinate_exists"], 0)
+        self.assertEqual(packet["counts"]["candidate_provenance_exists"], 0)
+        self.assertEqual(packet["counts"]["coordinates_staged_now"], 0)
+        self.assertEqual(packet["counts"]["rows_scored_now"], 0)
+        self.assertIn(
+            "no_current_provider_or_local_runtime_returns_p07658_coordinate",
+            packet["blockers"],
+        )
+        self.assertIn(
+            "p07658_candidate_prediction_provenance_missing",
+            packet["blockers"],
+        )
+        self.assertTrue(
+            packet["decision"]["dispatch_packet_ready_for_provider_run"]
+        )
+        self.assertFalse(
+            packet["decision"]["provider_or_local_runtime_returns_coordinate_now"]
+        )
+        self.assertFalse(
+            packet["decision"]["p07658_acceptance_preflight_passes_now"]
+        )
+        self.assertFalse(packet["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_counts(
         self,
     ) -> None:
@@ -6864,6 +6917,58 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_counts(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_high_cofactor_"
+                "acquisition_dispatch_packet_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_high_cofactor_acquisition_"
+                "dispatch_packet_ready_unfilled"
+            ),
+        )
+        self.assertEqual(packet["counts"]["intake_slots_required"], 16)
+        self.assertEqual(packet["counts"]["intake_slots_filled_now"], 0)
+        self.assertEqual(packet["counts"]["intake_slots_ready_to_score_now"], 0)
+        self.assertEqual(packet["counts"]["candidate_rows_registered_now"], 0)
+        self.assertEqual(packet["counts"]["candidate_rows_scored_now"], 0)
+        self.assertEqual(packet["counts"]["near_miss_rows_not_countable"], 16)
+        self.assertEqual(len(packet["intake_slots"]), 16)
+        self.assertEqual(
+            packet["intake_slots"][0]["slot_id"],
+            "high_cofactor_train_cal_oos_slot_01",
+        )
+        self.assertFalse(packet["intake_slots"][0]["score_now"])
+        self.assertFalse(
+            packet["intake_slots"][0]["count_as_abstained_evidence_now"]
+        )
+        self.assertIn(
+            "high_cofactor_acquisition_slots_unfilled",
+            packet["blockers"],
+        )
+        self.assertTrue(
+            packet["decision"]["acquisition_dispatch_ready_for_row_intake"]
+        )
+        self.assertFalse(
+            packet["decision"]["current_evidence_can_solve_high_cofactor_gap"]
+        )
+        self.assertFalse(packet["decision"]["candidate_rows_ready_to_score_now"])
+        self.assertFalse(
+            packet["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertTrue(packet["guardrails"]["train_cal_only"])
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_counts(
         self,
     ) -> None:
@@ -6924,6 +7029,64 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_counts(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_dispatch_packet_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_dispatch_packet_ready_unfilled"
+            ),
+        )
+        self.assertEqual(packet["counts"]["intake_slots_required"], 170)
+        self.assertEqual(packet["counts"]["intake_slots_filled_now"], 0)
+        self.assertEqual(packet["counts"]["intake_slots_ready_to_score_now"], 0)
+        self.assertEqual(packet["counts"]["candidate_rows_registered_now"], 0)
+        self.assertEqual(packet["counts"]["candidate_rows_scored_now"], 0)
+        self.assertEqual(packet["counts"]["background_rows_not_countable"], 80)
+        self.assertEqual(len(packet["intake_slots"]), 170)
+        self.assertEqual(
+            packet["intake_slots"][0]["slot_id"],
+            "same_family_structural_train_cal_oos_slot_001",
+        )
+        self.assertEqual(
+            packet["intake_slots"][-1]["slot_id"],
+            "same_family_structural_train_cal_oos_slot_170",
+        )
+        self.assertFalse(packet["intake_slots"][0]["score_now"])
+        self.assertFalse(
+            packet["intake_slots"][0]["count_as_abstained_evidence_now"]
+        )
+        self.assertIn(
+            "same_family_structural_acquisition_slots_unfilled",
+            packet["blockers"],
+        )
+        self.assertTrue(
+            packet["decision"]["acquisition_dispatch_ready_for_row_intake"]
+        )
+        self.assertFalse(
+            packet["decision"][
+                "current_evidence_can_solve_same_family_structural_gap"
+            ]
+        )
+        self.assertFalse(packet["decision"]["candidate_rows_ready_to_score_now"])
+        self.assertFalse(
+            packet["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertTrue(packet["guardrails"]["train_cal_only"])
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_lever3_blocker_packet_guardrail_audit_counts(
         self,
     ) -> None:
@@ -6940,7 +7103,25 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["status"],
             "fold_augmented_lever3_blocker_packet_guardrail_audit_passed",
         )
-        self.assertEqual(audit["counts"]["artifacts_checked"], 4)
+        self.assertEqual(audit["counts"]["artifacts_checked"], 7)
+        self.assertIn(
+            "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604",
+            {row["artifact_id"] for row in audit["artifact_rows"]},
+        )
+        self.assertIn(
+            (
+                "v3_fold_augmented_confounded_proxy_high_cofactor_"
+                "acquisition_dispatch_packet_current702_20260604"
+            ),
+            {row["artifact_id"] for row in audit["artifact_rows"]},
+        )
+        self.assertIn(
+            (
+                "v3_fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_dispatch_packet_current702_20260604"
+            ),
+            {row["artifact_id"] for row in audit["artifact_rows"]},
+        )
         self.assertEqual(audit["counts"]["guardrail_violation_artifacts"], 0)
         self.assertEqual(audit["counts"]["threshold_change_artifacts"], 0)
         self.assertEqual(audit["counts"]["scoring_artifacts"], 0)
@@ -7027,6 +7208,97 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(queue["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(queue["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_lever3_dispatch_readiness_summary_counts(
+        self,
+    ) -> None:
+        summary = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_dispatch_readiness_summary_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            summary["status"],
+            "fold_augmented_lever3_dispatch_readiness_summary_blocked",
+        )
+        self.assertEqual(summary["counts"]["dispatch_packets_checked"], 3)
+        self.assertEqual(
+            summary["counts"]["dispatch_packets_ready_for_external_action"], 3
+        )
+        self.assertEqual(summary["counts"]["blocked_dispatch_packets"], 3)
+        self.assertEqual(
+            summary["counts"]["p07658_provider_routes_returning_coordinate_now"],
+            0,
+        )
+        self.assertEqual(summary["counts"]["p07658_acceptance_checks_failed"], 7)
+        self.assertEqual(
+            summary["counts"]["high_cofactor_intake_slots_required"], 16
+        )
+        self.assertEqual(
+            summary["counts"]["same_family_structural_intake_slots_required"],
+            170,
+        )
+        self.assertEqual(
+            summary["counts"]["total_train_cal_oos_intake_slots_required"], 186
+        )
+        self.assertEqual(
+            summary["counts"]["train_cal_oos_intake_slots_ready_to_score_now"],
+            0,
+        )
+        self.assertEqual(summary["counts"]["guardrail_violation_artifacts"], 0)
+        self.assertIn(
+            "p07658_prediction_dispatch_blocked_no_coordinate",
+            summary["blockers"],
+        )
+        self.assertIn(
+            "same_family_structural_acquisition_dispatch_slots_unfilled",
+            summary["blockers"],
+        )
+        self.assertFalse(
+            summary["decision"]["current_evidence_can_clear_lever3_done_bar_now"]
+        )
+        self.assertFalse(
+            summary["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(summary["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(summary["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current(
+        self,
+    ) -> None:
+        for artifact_name in [
+            "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
+            (
+                "v3_fold_augmented_confounded_proxy_high_cofactor_"
+                "acquisition_dispatch_packet_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_dispatch_packet_current702_20260604.json"
+            ),
+            "v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json",
+        ]:
+            with self.subTest(artifact_name=artifact_name):
+                artifact = _load_json(ROOT / "artifacts" / artifact_name)
+                for source_id, metadata in artifact.get(
+                    "source_artifacts", {}
+                ).items():
+                    if not metadata.get("exists"):
+                        continue
+                    source_path = ROOT / metadata["path"]
+                    self.assertTrue(
+                        source_path.exists(),
+                        f"{artifact_name} source {source_id} is missing",
+                    )
+                    self.assertEqual(
+                        metadata["sha256"],
+                        _sha256_file(source_path),
+                        f"{artifact_name} source {source_id} hash is stale",
+                    )
+
     def test_fold_augmented_lever3_queue_and_template_guardrail_audit_counts(
         self,
     ) -> None:
@@ -7043,7 +7315,25 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["status"],
             "fold_augmented_lever3_blocker_packet_guardrail_audit_passed",
         )
-        self.assertEqual(audit["counts"]["artifacts_checked"], 6)
+        self.assertEqual(audit["counts"]["artifacts_checked"], 9)
+        self.assertIn(
+            "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604",
+            {row["artifact_id"] for row in audit["artifact_rows"]},
+        )
+        self.assertIn(
+            (
+                "v3_fold_augmented_confounded_proxy_high_cofactor_"
+                "acquisition_dispatch_packet_current702_20260604"
+            ),
+            {row["artifact_id"] for row in audit["artifact_rows"]},
+        )
+        self.assertIn(
+            (
+                "v3_fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_dispatch_packet_current702_20260604"
+            ),
+            {row["artifact_id"] for row in audit["artifact_rows"]},
+        )
         self.assertEqual(audit["counts"]["guardrail_violation_artifacts"], 0)
         self.assertEqual(audit["counts"]["threshold_change_artifacts"], 0)
         self.assertEqual(audit["counts"]["scoring_artifacts"], 0)
@@ -15964,6 +16254,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 if __name__ == "__main__":

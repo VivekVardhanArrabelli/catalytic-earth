@@ -1,0 +1,111 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604",
+  "blockers": [
+    "p07658_prediction_dispatch_blocked_no_coordinate",
+    "high_cofactor_acquisition_dispatch_slots_unfilled",
+    "same_family_structural_acquisition_dispatch_slots_unfilled",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "blocked_dispatch_packets": 3,
+    "blockers": 4,
+    "critical_violation_total": 0,
+    "dispatch_packets_checked": 3,
+    "dispatch_packets_ready_for_external_action": 3,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "guardrail_violation_artifacts": 0,
+    "high_cofactor_intake_slots_required": 16,
+    "p07658_acceptance_checks_failed": 7,
+    "p07658_provider_routes_returning_coordinate_now": 0,
+    "same_family_structural_intake_slots_required": 170,
+    "total_train_cal_oos_intake_slots_required": 186,
+    "train_cal_oos_intake_slots_filled_now": 0,
+    "train_cal_oos_intake_slots_ready_to_score_now": 0
+  },
+  "created_utc": "2026-06-04T13:40:31Z",
+  "decision": {
+    "all_dispatch_packets_ready_for_external_action": true,
+    "apply_or_change_threshold_now": false,
+    "candidate_rows_ready_to_score_now": false,
+    "current_evidence_can_clear_lever3_done_bar_now": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "First run/fill the P07658 coordinate/provenance dispatch; then fill the 16 high-cofactor slots; then fill the 170 same-family structural slots. Do not rerun the operating point until accepted dispatch evidence has real scores."
+  },
+  "dispatch_rows": [
+    {
+      "blocked_now": true,
+      "blocking_evidence": "no provider/local runtime returned a coordinate and the acceptance preflight still fails",
+      "dispatch_artifact_id": "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604",
+      "experiment_id": "p07658_full_length_prediction_acceptance",
+      "ready_for_external_action": true,
+      "status": "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate"
+    },
+    {
+      "blocked_now": true,
+      "blocking_evidence": "16 intake slots are unfilled",
+      "dispatch_artifact_id": "v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604",
+      "experiment_id": "high_cofactor_train_cal_oos_acquisition",
+      "ready_for_external_action": true,
+      "status": "fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_ready_unfilled"
+    },
+    {
+      "blocked_now": true,
+      "blocking_evidence": "170 intake slots are unfilled",
+      "dispatch_artifact_id": "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604",
+      "experiment_id": "same_family_structural_train_cal_oos_acquisition",
+      "ready_for_external_action": true,
+      "status": "fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_ready_unfilled"
+    }
+  ],
+  "guardrails": {
+    "candidate_rows_registered_now": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "dispatch_summary_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Treat this as the current single Lever 3 handoff: fill the dispatch evidence, then score only accepted train/cal rows at the unchanged fixed threshold.",
+    "result": "Lever 3 is dispatch-ready but still blocked: P07658 has no coordinate, 16 high-cofactor slots are unfilled, and 170 same-family structural slots are unfilled."
+  },
+  "queue_status": "fold_augmented_lever3_minimum_next_experiment_queue_blocked",
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_dispatch_readiness_summary",
+  "scope": "Combined Lever 3 dispatch readiness summary for the remaining deployment-valid/confounded-safe novelty blockers. It composes the P07658 provider dispatch and the high-cofactor/same-family train-cal intake packets; it does not source rows, stage coordinates, score rows, tune thresholds, or read heldout.",
+  "source_artifacts": {
+    "high_cofactor_acquisition_dispatch_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.json",
+      "sha256": "86eb92583b94c462c6d0721a13f5b2ac57a4765d09ef9d7cdd4fd75797623af0"
+    },
+    "lever3_minimum_next_experiment_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json",
+      "sha256": "4aea9589d312b6e7db491a5dd08b9ceba3e0e98285313468979679eaac74468d"
+    },
+    "p07658_prediction_dispatch_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
+      "sha256": "429b371df25daf88abf995c2d9a1693ee519bc8a82357e892dc2dc38f81fe484"
+    },
+    "queue_and_template_guardrail_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json",
+      "sha256": "faf857d06f7303877734c0bfa79562685f98add8e96fe4b278a0b0a398d6be38"
+    },
+    "same_family_structural_acquisition_dispatch_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.json",
+      "sha256": "c34d4e44aab01aa73ed1009ec74ef8f2f8b9e05e53f849976ea9bf2629454605"
+    }
+  },
+  "status": "fold_augmented_lever3_dispatch_readiness_summary_blocked"
+}

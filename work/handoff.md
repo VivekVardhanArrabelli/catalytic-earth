@@ -3,13 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T12:02:33Z`
-- STARTED_AT_LOCAL: `2026-06-04T07:02:33-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T12:53:05Z`
-- ENDED_AT_LOCAL: `2026-06-04T07:53:05-0500 CDT`
-- ELAPSED_MINUTES: `50.5`
-- Status: wrap complete; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T12:02:33Z` with PID `99104`.
+- STARTED_AT_UTC: `2026-06-04T13:02:32Z`
+- STARTED_AT_LOCAL: `2026-06-04T08:02:32-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T13:52:40Z`
+- ENDED_AT_LOCAL: `2026-06-04T08:52:40-0500 CDT`
+- ELAPSED_MINUTES: `50.1`
+- Status: wrap ledger complete; commit/push pending. Canonical `.git/catalytic-earth-automation.lock`
+  acquired before substantive work at `2026-06-04T13:03:01Z` with PID `51345`.
   Current user instruction: work only on Lever 3.
 
 ## Mission
@@ -20052,3 +20052,119 @@ rerun locator schema/scoring only if approved. The other remaining decisions are
 `external_glycoside_panel` substrate-complex or expert-approved non-glycan
 locator, `mh_064` alternate-coordinate fetch approval/rejection, and Q59490
 alternate source or explicit nonlabel locator strategy.
+
+## Automation run: catalytic-earth-lever-3-2-forward-push 2026-06-04
+
+STARTED_AT_UTC: 2026-06-04T13:02:32Z
+STARTED_AT_LOCAL: 2026-06-04T08:02:32-0500
+ENDED_AT_UTC: 2026-06-04T13:52:40Z
+ENDED_AT_LOCAL: 2026-06-04T08:52:40-0500 CDT
+ELAPSED_MINUTES: 50.1
+
+Scope: Lever 3 only. Starting from the current exact next action above: resolve
+or precisely block the remaining confounded-safe locator/novelty gate evidence
+decisions without changing labels, registries, ontologies, imports, production
+thresholds, model weights, or heldout splits.
+
+What changed:
+
+- Added a P07658 prediction dispatch packet:
+  `artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json`
+  and
+  `work/fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.md`.
+  The packet composes the frozen 715-aa FASTA, provenance template, public and
+  local provider probes, and acceptance preflight. It is ready for an external
+  approved provider run but blocked now: 0/6 provider routes return a coordinate,
+  0 candidate coordinate files exist, 0 candidate provenance files exist, and
+  7 acceptance checks still fail. No coordinate was staged or scored.
+- Added high-cofactor train/cal OOS acquisition dispatch:
+  `artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.json`
+  and report. It freezes 16 unfilled intake slots with acceptance checks for
+  non-heldout train/cal OOS role, source-free high-cofactor membership,
+  deployment-valid predicted coordinate/provenance, no experimental-PDB shortcut,
+  and unchanged threshold `0.44155`. The 16 existing near misses remain
+  non-countable and no candidate row is registered or scored.
+- Added same-family structural train/cal OOS acquisition dispatch:
+  `artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.json`
+  and report. It freezes 170 unfilled intake slots with the same deployment and
+  guardrail checks. The 80 background structural rows remain non-countable and
+  no candidate row is registered or scored.
+- Added combined dispatch readiness summary:
+  `artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json`
+  and report. Final counts: 3/3 dispatch packets ready for external action but
+  blocked; 186 train/cal OOS intake slots required; 0 slots filled; 0 slots
+  ready to score; 0 guardrail violations; fixed-threshold audit not ready.
+- Regenerated the Lever 3 blocker-packet guardrail audit, minimum next-experiment
+  queue, and queue/template guardrail audit. The final blocker audit checks 7
+  artifacts with 0 violations; the final queue/template audit checks 9 artifacts
+  with 0 violations.
+- Added builder tests, CLI registrations, current-artifact regressions, and a
+  source-artifact checksum regression so stale source hashes in the new dispatch
+  packets are caught.
+
+Guardrails:
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, or threshold values changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental PDB metadata were used as predictive features.
+- No row was registered, scored, imported, promoted, or used for a fixed-threshold
+  audit rerun.
+- No coordinate was staged, downloaded, or imported. Experimental/public PDB
+  evidence remains blocker evidence only.
+
+Verification:
+
+- Focused builder slice:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'dispatch_readiness_summary or acquisition_dispatch or p07658_prediction_dispatch' -q`:
+  4 passed, 177 deselected.
+- Focused artifact regression after final regeneration:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'dispatch_readiness_summary or queue_and_template_guardrail or acquisition_dispatch or p07658_prediction_dispatch or dispatch_source_artifact_hashes' -q`:
+  6 passed, 228 deselected, 4 subtests passed.
+- Full touched-test slice:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`:
+  534 passed, 169 subtests passed.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1406 passed, 188 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1361 tests passed, with
+  the same existing sklearn/SciPy deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 labels.
+- `PYTHONPATH=src python -m compileall -q src tests`.
+- `PYTHONPATH=src python -m pytest tests/test_progress.py -q`: 3 passed.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`: 2 passed.
+- Source-artifact hash sweep over the new dispatch/audit artifacts:
+  18 source hashes checked, 0 stale.
+- Repo-wide JSON parse: 3529 JSON files checked.
+- `git diff --check`.
+- Disk guardrail: 20 GiB available.
+
+Commit/push status:
+
+- Handoff/status/memory are being updated after validation. Commit, push,
+  `HEAD == origin/main` verification, and lock release are the remaining
+  mechanical wrap steps after this handoff edit.
+
+Exact next action:
+
+Do not rerun or retune threshold `0.44155` yet. The next Lever 3 action is:
+
+1. Run/provision exactly one approved full-length predictor/provider using
+   `work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta`.
+2. Write the returned coordinate to the preferred P07658 coordinate path and
+   fill
+   `artifacts/v3_fold_augmented_p07658_prediction_provenance_filled_current702_20260604.json`
+   with provider/model/version/path/checksum, sequence SHA/length, U-position
+   140 handling, and explicit no-experimental-shortcut evidence.
+3. Rerun
+   `build-fold-augmented-p07658-prediction-acceptance-preflight` with the
+   candidate coordinate and filled provenance. Stage and score P07658 only if
+   every acceptance check passes.
+4. After P07658 passes, fill the 16 source-free high-cofactor train/cal OOS
+   intake slots; then handle the larger 170-row same-family structural intake.
+   Score only accepted rows at unchanged threshold `0.44155` and only after
+   intake checks pass.

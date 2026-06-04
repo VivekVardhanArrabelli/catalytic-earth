@@ -1,6 +1,6 @@
 # Fold-Augmented Lever 3 Minimum Next Experiment Queue - current702
 
-Run: 2026-06-04T12:37:57Z
+Run: 2026-06-04T13:20:42Z
 
 Review-only queue of the smallest remaining Lever 3 experiments needed before any fixed-threshold novelty/abstention readout can be treated as deployment-valid and confounded-safe.
 

@@ -1,0 +1,255 @@
+{
+  "acceptance_failures_to_clear": [
+    {
+      "check_id": "coordinate_file_exists",
+      "failure_reason_if_any": "candidate coordinate file must exist before P07658 can be staged",
+      "observed": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif"
+    },
+    {
+      "check_id": "coordinate_sha256_recorded",
+      "failure_reason_if_any": "coordinate checksum must be recorded in provenance and match the file",
+      "observed": null
+    },
+    {
+      "check_id": "provider_model_version_recorded",
+      "failure_reason_if_any": "provider, model name or id, and model version are required",
+      "observed": {
+        "model_name_or_id": null,
+        "model_version": null,
+        "provider": null
+      }
+    },
+    {
+      "check_id": "input_sequence_sha256_matches_manifest",
+      "failure_reason_if_any": "prediction input sequence hash must match the frozen manifest",
+      "observed": null
+    },
+    {
+      "check_id": "sequence_length_is_715",
+      "failure_reason_if_any": "prediction input length must match the frozen full-length sequence",
+      "observed": null
+    },
+    {
+      "check_id": "selenocysteine_handling_documented",
+      "failure_reason_if_any": "selenocysteine handling must be explicit and position-preserving",
+      "observed": {
+        "selenocysteine_count": null,
+        "selenocysteine_handling": null,
+        "selenocysteine_positions": []
+      }
+    },
+    {
+      "check_id": "experimental_pdb_metadata_not_used_as_deployment_input",
+      "failure_reason_if_any": "experimental PDB metadata cannot be a deployment input shortcut",
+      "observed": null
+    }
+  ],
+  "affected_row": {
+    "accession": "P07658",
+    "entry_id": "m_csa:562",
+    "missing_evidence_type": "accepted full-length predicted coordinate plus filled provider/model/version/path/checksum provenance for the exact P07658 sequence",
+    "selenocysteine_count": 1,
+    "selenocysteine_positions": [
+      140
+    ],
+    "sequence_length": 715,
+    "sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa"
+  },
+  "artifact_id": "v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604",
+  "blockers": [
+    "no_current_provider_or_local_runtime_returns_p07658_coordinate",
+    "p07658_candidate_coordinate_file_missing",
+    "p07658_candidate_prediction_provenance_missing",
+    "p07658_acceptance_checks_not_all_passing",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "acceptance_checks_failed": 7,
+    "blockers": 5,
+    "candidate_coordinate_exists": 0,
+    "candidate_provenance_exists": 0,
+    "coordinates_staged_now": 0,
+    "critical_violation_total": 0,
+    "dispatch_inputs_present": 4,
+    "dispatch_inputs_total": 4,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "provider_routes_checked": 6,
+    "provider_routes_returning_coordinate_now": 0,
+    "required_provider_fields": 14,
+    "rows_scored_now": 0
+  },
+  "created_utc": "2026-06-04T13:09:33Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "dispatch_packet_ready_for_provider_run": true,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not score or rerun the fixed-threshold operating point until the P07658 coordinate/provenance packet passes all acceptance checks.",
+    "p07658_acceptance_preflight_passes_now": false,
+    "p07658_coordinate_blocker_cleared_now": false,
+    "provider_or_local_runtime_returns_coordinate_now": false,
+    "smallest_next_experiment": "Run exactly one approved full-length predictor/provider on the dispatch FASTA, write the returned coordinate to the preferred coordinate path, fill the provenance template, then rerun the acceptance preflight command recorded here."
+  },
+  "dispatch_inputs": [
+    {
+      "exists": true,
+      "input_id": "prediction_request_manifest",
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json",
+      "sha256": "5583e04607b31d4a0a2d42708e8c943ad63045451b0589f1cc5ba1e23df68d73"
+    },
+    {
+      "exists": true,
+      "input_id": "provider_ready_fasta",
+      "path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+      "sha256": "c85b09c0de2c63e644481d8ada0eb242e439b720c70a73f2b5964b4b5875a081"
+    },
+    {
+      "exists": true,
+      "input_id": "prediction_provenance_template",
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604.json",
+      "sha256": "542fe0b918c0d724050dd90905ce68392f09269023b14e9acd85dc6752505799"
+    },
+    {
+      "exists": true,
+      "input_id": "prediction_acceptance_preflight",
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
+      "sha256": "e299f76fe05d019731e26a9a981123ee5e6c079fa9a40cf708a9731afec9426a"
+    }
+  ],
+  "guardrails": {
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "dispatch_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "next_action": "Use the recorded FASTA, fill targets, and rerun command for the smallest approved predictor experiment; keep P07658 blocked until the acceptance preflight passes.",
+    "result": "The P07658 provider dispatch inputs are ready, but no current credential-free provider, public repository, or local runtime has produced the required full-length coordinate."
+  },
+  "operator_fill_targets": {
+    "filled_provenance_path": "artifacts/v3_fold_augmented_p07658_prediction_provenance_filled_current702_20260604.json",
+    "preferred_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
+    "provider_ready_fasta_path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+    "required_provider_fields_to_fill": {
+      "coordinate_format": "mmCIF",
+      "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
+      "coordinate_sha256": "FILL_ME_SHA256_AFTER_COORDINATE_FILE_EXISTS",
+      "experimental_pdb_metadata_used_as_deployment_input": false,
+      "input_sequence_length": 715,
+      "input_sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+      "missing_position_list": [],
+      "model_name_or_id": "FILL_ME_MODEL_NAME_OR_ID",
+      "model_version": "FILL_ME_MODEL_VERSION",
+      "provider": "FILL_ME_PROVIDER_NAME",
+      "run_timestamp_utc": "FILL_ME_UTC_TIMESTAMP",
+      "selenocysteine_count": 1,
+      "selenocysteine_handling": "FILL_ME_POSITION_140_U_PRESERVED_OR_EXPLICITLY_DOCUMENTED",
+      "selenocysteine_positions": [
+        140
+      ]
+    },
+    "rerun_acceptance_preflight_command": "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-p07658-prediction-acceptance-preflight --candidate-coordinate artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif --candidate-provenance artifacts/v3_fold_augmented_p07658_prediction_provenance_filled_current702_20260604.json"
+  },
+  "provider_routes": [
+    {
+      "blocker": "public_esmfold_sequence_length_limit",
+      "coordinate_available_now": false,
+      "evidence": "Public ESMFold API cannot produce a deployment-valid P07658 coordinate for the exact current sequence because the 715-residue sequence exceeds the 400-residue endpoint limit; the row remains blocked.",
+      "route_id": "public_esmfold_endpoint",
+      "status": "fold_augmented_p07658_esmfold_api_preflight_blocked_sequence_too_long"
+    },
+    {
+      "blocker": "local_full_length_predictor_runtime_not_installed",
+      "coordinate_available_now": false,
+      "evidence": "No local command, Python module, or shallow filesystem evidence exposes a usable full-length predictor/runtime for P07658. The row remains a coordinate-source blocker.",
+      "route_id": "local_full_length_predictor_runtime",
+      "status": "fold_augmented_p07658_local_predictor_runtime_scan_blocked_no_runtime"
+    },
+    {
+      "blocker": "provider_requires_credentials_or_access",
+      "coordinate_available_now": false,
+      "evidence": "Authentication credentials were not provided.",
+      "route_id": "BioLM ESMFold",
+      "status": "http_401"
+    },
+    {
+      "blocker": "provider_requires_credentials_or_access",
+      "coordinate_available_now": false,
+      "evidence": "RBAC: access denied",
+      "route_id": "OpenProtein ESMFold",
+      "status": "http_403"
+    },
+    {
+      "blocker": "three_d_beacons_has_no_deployment_valid_prediction",
+      "coordinate_available_now": false,
+      "evidence": "3D-Beacons does not provide a deployment-valid predicted P07658 coordinate in the current public summary: all returned structures are experimental PDBe entries.",
+      "route_id": "3dbeacons_predicted_structure_probe",
+      "status": "fold_augmented_p07658_3dbeacons_probe_blocked_experimental_only"
+    },
+    {
+      "blocker": "public_computed_model_repository_no_p07658_hit",
+      "coordinate_available_now": false,
+      "evidence": "A broader public repository check still cannot clear P07658: RCSB has no computational model hit for the accession, direct RCSB ModelServer/AlphaFold-style coordinate URLs return 404, and the experimental control returns the same five non-deployment-valid PDB entities.",
+      "route_id": "broad_public_computed_model_repository_probe",
+      "status": "fold_augmented_p07658_computed_model_repository_broad_probe_blocked_no_public_computed_model"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p07658_prediction_dispatch_packet",
+  "scope": "Dispatch-ready P07658 full-length prediction packet for the remaining Lever 3 surface-completeness blocker. It composes the frozen FASTA, provenance template, failed provider/runtime probes, and acceptance preflight; it stages no coordinates, scores no rows, and does not rerun or change threshold 0.44155.",
+  "source_artifacts": {
+    "3dbeacons_predicted_structure_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json",
+      "sha256": "aac05da8b1c6e4b5af07aed4cf18182eb88f1709c55f27944341ffa8ffadc404"
+    },
+    "computed_model_repository_broad_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604.json",
+      "sha256": "c6471984d813987da8038d1bf5ec3c7aae83e93f202aa207b86152abed879261"
+    },
+    "esmfold_api_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604.json",
+      "sha256": "96db1503eb87578baf468bf1357bb1d716bc9adaa6d2b8e32b526c1036270f7a"
+    },
+    "full_length_predictor_provider_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json",
+      "sha256": "74ff0f96853f85d62f6e4f68a35ce3cf0943b76984444bace21977ebfec04c44"
+    },
+    "local_predictor_runtime_scan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json",
+      "sha256": "15d2ada88c9fc3b57a3d60278cc3dfa467a689d94b6d355392ddc51be010e749"
+    },
+    "prediction_acceptance_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
+      "sha256": "e299f76fe05d019731e26a9a981123ee5e6c079fa9a40cf708a9731afec9426a"
+    },
+    "prediction_provenance_template": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604.json",
+      "sha256": "542fe0b918c0d724050dd90905ce68392f09269023b14e9acd85dc6752505799"
+    },
+    "prediction_request_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json",
+      "sha256": "5583e04607b31d4a0a2d42708e8c943ad63045451b0589f1cc5ba1e23df68d73"
+    },
+    "provider_ready_fasta": {
+      "exists": true,
+      "path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+      "sha256": "c85b09c0de2c63e644481d8ada0eb242e439b720c70a73f2b5964b4b5875a081"
+    }
+  },
+  "status": "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate"
+}

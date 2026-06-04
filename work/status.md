@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 343
-- Measured elapsed time: 10446.3 minutes (174.11 hours)
+- Entries: 344
+- Measured elapsed time: 10496.5 minutes (174.94 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 329.7 measured minutes (5.49 hours)
+- northstar-lever3: 379.8 measured minutes (6.33 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3609
-- Evidence references logged: 2972
+- Artifact references logged: 3617
+- Evidence references logged: 2980
 
 ## Recent Entries
-
-### 2026-06-03T20:57:20.337307+00:00 - northstar-lever-2-3
-
-- Task: Materialize approved source-free locators and rebase event-axis readiness
-- Time mode: measured
-- Measured minutes: 55.583
-- Started: 2026-06-03T20:01:24Z
-- Ended: 2026-06-03T20:56:59Z
-- Artifacts: artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_current702_20260603.json, artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_review_packet_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_remaining_combined_score_blocker_classification_current702_20260603.json
-- Evidence: 1296 unittest pass; 469 pytest pass; validate pass
-- Notes: 53 approved locator rewrites materialized; 2 rejected rows excluded; event-axis packet now shows 53 pending signoffs and 0 pending locator dependencies; six Lever 3 combined-score blockers classified as not mechanically clearable.
 
 ### 2026-06-03T21:57:28.555409+00:00 - northstar-lever-2
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json, work/fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.json, work/fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.json, work/fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.md, artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.json, artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json, work/fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.md, artifacts/v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604.json, work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta, artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json, work/handoff.md, work/status.md
 - Evidence: P07658 acceptance preflight blocked with 7 failed checks and no coordinate/provenance, high-cofactor blocker records 0 eligible rows and 16 missing train/cal OOS rows, same-family structural blocker records 0 eligible rows and 170 missing train/cal OOS rows, next-experiment queue orders P07658 then high-cofactor then same-family structural acquisition, guardrail audits checked 4 blocker packets and 6 queue/template artifacts with 0 violations, full pytest 1397 passed 180 subtests one existing sklearn SciPy warning, unittest discovery 1352 passed, validate passed with 702 labels, compileall git diff check JSON parse 3525 files docs reference check missing 0
 - Notes: Lever 3 only. No labels registries ontologies imports production thresholds heldout splits heldout tuning scoring coordinate staging or experimental PDB deployment shortcuts changed.
+
+### 2026-06-04T13:53:10.947379+00:00 - northstar-lever3
+
+- Task: Lever 3 dispatch readiness packets and source-hash guardrail
+- Time mode: measured
+- Measured minutes: 50.133
+- Started: 2026-06-04T13:02:32Z
+- Ended: 2026-06-04T13:52:40Z
+- Artifacts: artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_current702_20260604.json, artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json, artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.json, artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json, work/handoff.md, work/status.md
+- Evidence: P07658 dispatch blocked no coordinate, 16 high-cofactor intake slots unfilled, 170 same-family structural intake slots unfilled, 0 guardrail violations, 18 source hashes checked no stale, full pytest 1406 passed, unittest discovery 1361 passed, validate passed with 702 labels
+- Notes: Lever 3 only. No labels registries ontologies imports thresholds heldout splits heldout tuning scoring coordinate staging or experimental PDB deployment shortcuts changed.
 
 ## Expectation Updates
 
@@ -390,6 +390,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T00:37:12.914214+00:00: Next run should decide deterministic missing-locator abstention versus complete source-free locator coverage before any frozen residual threshold read.
 - 2026-06-04T01:43:55.363807+00:00: Next Lever 2 work should not rerun heldout; start with train/cal-safe feature repair for feature-complete primary abstentions, then recover primary source-free locator coverage.
 - 2026-06-04T12:50:52.667257+00:00: Next Lever 3 action is to run/provision the exact P07658 full-length predicted coordinate using the FASTA/template, rerun acceptance preflight, then acquire 16 source-free high-cofactor train/cal OOS rows before the 170-row same-family structural surface.
+- 2026-06-04T13:53:10.947379+00:00: Next Lever 3 action is to fill the P07658 coordinate and provenance dispatch first then high-cofactor slots then same-family structural slots before any fixed-threshold rerun.
 
 ## Scope Adjustments
 
