@@ -15,7 +15,7 @@ Fail-closed materialization gate for priority-1 current702 heldout coordinate-an
 - Approved locator sidecars written: 53
 - Invalid approval/preflight rows: 0
 - Rows without explicit approval: 2
-- Blockers: 
+- Blockers: none
 
 ## Decision
 

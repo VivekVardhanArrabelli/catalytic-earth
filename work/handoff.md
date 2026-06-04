@@ -3,13 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T00:01:29Z`
-- STARTED_AT_LOCAL: `2026-06-03T19:01:29-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T00:36:05Z`
-- ENDED_AT_LOCAL: `2026-06-03T19:36:05-0500 CDT`
-- ELAPSED_MINUTES: `34.6`
+- STARTED_AT_UTC: `2026-06-04T01:01:46Z`
+- STARTED_AT_LOCAL: `2026-06-03T20:01:46-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T01:43:38Z`
+- ENDED_AT_LOCAL: `2026-06-03T20:43:38-0500 CDT`
+- ELAPSED_MINUTES: `41.9`
 - Status: complete; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work and released after clean push
+  acquired before substantive work and ready to release after push verification
 
 ## Mission
 
@@ -60,6 +60,104 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-03/04 Lever 3/2/4 Forward Push Active Run 24
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T01:01:46Z`
+- STARTED_LOCAL: `2026-06-03T20:01:46-0500 CDT`
+- ENDED_AT: `2026-06-04T01:43:38Z`
+- ENDED_LOCAL: `2026-06-03T20:43:38-0500 CDT`
+- ELAPSED_MINUTES: `41.9`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work.
+
+#### Current intent
+
+Continue Run 23's Lever 2 exact next action: evaluate the source-free
+partial-surface operating-contract preflight before any frozen residual
+threshold read, then rerun only the dependent readiness/audit artifacts allowed
+by that decision.
+
+Completed early because the Lever 2 decision/readout/recovery loop is complete
+and verified: the heldout read was spent exactly once and the resulting channel
+is not deployable.
+
+#### What changed
+
+- Recorded an explicit partial-surface operating-contract decision accepting
+  deterministic missing-locator abstention for this one read:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604.json`.
+- Wired the source-free partial-surface policy gate, operating-contract
+  preflight, and pre-threshold readiness to consume that accepted decision.
+  The dependent artifacts now clear blockers for exactly one frozen threshold
+  read over 53 feature-complete rows while carrying 87 missing-locator rows as
+  deterministic abstentions.
+- Added and ran the read-once heldout threshold readout:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json`.
+  Result: OOS abstain recall `1.0`, primary retain recall `0.0`.
+- Added a fail-closed retention decision:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604.json`.
+  It rejects the partial source-free surface as a deployable Lever 2 channel and
+  authorizes no rerun, retuning, threshold change, refit, or production
+  calibration change.
+- Added a reproducible post-readout recovery queue:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json`.
+  It records 119 recovery rows: 32 feature-complete primaries abstained by
+  residual, 16 primaries abstained because source-free locators are missing, and
+  71 OOS rows remain missing-locator coverage rows.
+- Updated the active mechanical audit to consume the recovery queue. Its top
+  Lever 2 next gate now says not to rerun heldout and to continue with
+  train/cal-safe feature repair before source-free locator coverage recovery.
+- Updated `docs/decision_log.md`, `docs/artifact_index.md`, `work/status.md`,
+  and this handoff with the read-once nondeployable result.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  refits, threshold tuning, production calibration, heldout training, or
+  heldout threshold retuning changed.
+- Missing source-free locators were not imputed as feature values and were not
+  residual-scored.
+- Heldout rows were evaluated once under the accepted deterministic
+  missing-locator abstention contract. Treat that readout as final evidence for
+  this partial source-free surface.
+
+#### Verification
+
+- Focused queue/readout/actionability tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'source_free_post_readout_recovery_queue or source_free_heldout_threshold_readout or active_lever_mechanical_actionability' -q`:
+  4 passed.
+- Focused artifact regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change or active_lever_mechanical_actionability' -q`:
+  35 passed.
+- Broader affected files:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  359 passed and 7 subtests passed.
+- Final full pytest after all code changes:
+  `PYTHONPATH=src python -m pytest -q`: 1350 passed, 156 subtests passed, with
+  one existing sklearn/SciPy deprecation warning.
+- Final unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1305 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- JSON syntax checks passed for the new heldout readout, retention decision,
+  post-readout recovery queue, and regenerated active audit.
+
+#### Exact next action
+
+Do not rerun or retune the Lever 2 heldout readout. The partial source-free
+surface is read once and not deployable because it retained 0/48 heldout
+primaries. Continue Lever 2 with train/cal-safe feature repair for the 32
+feature-complete primary residual abstentions, then repair the 16 missing
+primary source-free locator rows. Coverage repair alone is not sufficient for a
+deployable claim.
 
 ### 2026-06-03/04 Lever 3/2/4 Forward Push Active Run 23
 

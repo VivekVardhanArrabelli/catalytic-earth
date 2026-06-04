@@ -4,10 +4,7 @@
     "reject_partial_surface_require_complete_source_free_locator_coverage"
   ],
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604",
-  "blockers": [
-    "source_free_current702_heldout_locator_coverage_incomplete",
-    "deterministic_missing_locator_abstention_operating_contract_decision_required"
-  ],
+  "blockers": [],
   "candidate_operating_contract": {
     "feature_complete_rows_scoreable_if_read_authorized": 53,
     "missing_locator_abstention_counts_as_feature_value": false,
@@ -16,29 +13,32 @@
     "requires_explicit_acceptance_before_threshold_read": true
   },
   "counts": {
-    "blockers": 2,
+    "blockers": 0,
     "critical_violation_total": 0,
     "missing_source_free_locator_policy_abstain_rows": 87,
-    "readiness_blockers": 3,
+    "readiness_blockers": 0,
     "source_free_pair_feature_rows": 53
   },
-  "created_utc": "2026-06-04T00:28:30Z",
+  "created_utc": "2026-06-04T01:10:57Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
-    "deterministic_missing_locator_abstention_operating_contract_accepted": false,
-    "explicit_policy_decision_required": true,
+    "deterministic_missing_locator_abstention_operating_contract_accepted": true,
+    "explicit_policy_decision_required": false,
     "heldout_read_once_performed": false,
     "mechanically_accept_operating_contract_now": false,
-    "next_gate": "Record an explicit policy decision: either accept deterministic missing-locator abstention as the deployable operating contract or require complete approved source-free locator coverage. Do not read the frozen residual threshold until that decision is materialized and pre-threshold readiness is rerun.",
+    "next_gate": "Rerun pre-threshold readiness with the accepted deterministic missing-locator abstention operating contract. Do not read the frozen residual threshold until readiness passes.",
+    "partial_surface_operating_contract_decision": "explicit_accept_deterministic_missing_locator_abstention_operating_contract",
+    "partial_surface_operating_contract_rejected_requires_complete_locator_coverage": false,
     "partial_surface_policy_gate_ready": true,
-    "ready_to_apply_frozen_residual_threshold_once": false
+    "policy_decision_record_ready": true,
+    "ready_to_apply_frozen_residual_threshold_once": true
   },
   "decision_packet": {
     "allowed_decisions": [
       "explicit_accept_deterministic_missing_locator_abstention_operating_contract",
       "reject_partial_surface_require_complete_source_free_locator_coverage"
     ],
-    "decision": null,
+    "decision": "explicit_accept_deterministic_missing_locator_abstention_operating_contract",
     "decision_class": "source_free_partial_surface_operating_contract",
     "decision_context_sha256": "fb29d48d2fde38a186977ccc1975dbfd4505fbfed7bf8165ce146d2aa635fd58",
     "decision_field_to_update": "decision",
@@ -64,8 +64,8 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Either write the explicit acceptance/rejection decision for the deterministic missing-locator abstention operating contract, or continue materializing approved source-free locator sidecars. The frozen threshold remains unread.",
-    "result": "The partial surface has 53 score-eligible rows and 87 deterministic missing-locator abstention rows. Accepting those abstentions as the operating contract is a policy decision, not a mechanical threshold-read step."
+    "next_action": "Rerun pre-threshold readiness, then run the frozen threshold only if that readiness gate passes. The frozen threshold remains unread in this preflight.",
+    "result": "The partial surface has 53 score-eligible rows and 87 deterministic missing-locator abstention rows. The deterministic missing-locator abstention operating contract has been explicitly accepted; this preflight is ready for the downstream pre-threshold readiness rerun."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight",
   "scope": "Decision preflight for whether deterministic missing-locator abstention can be accepted as a deployable operating contract for the partial source-free heldout surface. It records the policy choice required and does not apply or tune the frozen residual threshold.",
@@ -73,13 +73,13 @@
     "partial_surface_policy_gate": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.json",
-      "sha256": "b1cf1438a5747730a39aa7fcc400edaa968434eda34589caf4d1b521af8d51cd"
+      "sha256": "9e1a9ab08c700f88aea508f89f07f1429f4a3dd5e764ecfb1f26c4938a292de5"
     },
     "pre_threshold_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json",
-      "sha256": "47bd4a3e2cddc0327177088d443773436600d3ae780af399d961390f40760215"
+      "sha256": "11e0840bbaa28f36f7382c7d1a2339bd549350a3711e3360f27322e7fbe6d6e3"
     }
   },
-  "status": "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_blocked_policy_decision_required"
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_ready"
 }

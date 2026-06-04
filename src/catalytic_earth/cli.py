@@ -172,6 +172,8 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_approval_packet,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar,
@@ -13188,6 +13190,16 @@ def cmd_build_active_lever_mechanical_actionability_audit(
         )
         if args.lever2_partial_surface_operating_contract_preflight
         else None,
+        lever2_source_free_heldout_threshold_readout_path=Path(
+            args.lever2_source_free_heldout_threshold_readout
+        )
+        if args.lever2_source_free_heldout_threshold_readout
+        else None,
+        lever2_source_free_post_readout_recovery_queue_path=Path(
+            args.lever2_source_free_post_readout_recovery_queue
+        )
+        if args.lever2_source_free_post_readout_recovery_queue
+        else None,
         lever2_event_axis_linker_schema_path=Path(
             args.lever2_event_axis_linker_schema
         )
@@ -14734,6 +14746,11 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         source_free_application_surface_path=Path(args.source_free_application_surface),
         label_manifest_path=Path(args.label_manifest),
         pair_operating_point_contract_path=Path(args.pair_operating_point_contract),
+        operating_contract_decision_path=(
+            Path(args.operating_contract_decision)
+            if args.operating_contract_decision
+            else None
+        ),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
     )
@@ -15172,6 +15189,50 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"{args.out} (status: {readiness.get('status')}, ready: "
         f"{decision.get('ready_to_apply_frozen_residual_threshold_once')}, "
         f"blockers: {counts.get('blockers')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout(
+    args: argparse.Namespace,
+) -> int:
+    readout = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout(
+        no_template_rerun_path=Path(args.no_template_rerun),
+        operating_point_contract_path=Path(args.operating_point_contract),
+        source_free_application_surface_path=Path(args.source_free_application_surface),
+        partial_surface_policy_gate_path=Path(args.partial_surface_policy_gate),
+        pre_threshold_readiness_path=Path(args.pre_threshold_readiness),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free heldout threshold readout to "
+        f"{args.out} (status: {readout.get('status')}, "
+        f"OOS abstain recall: {counts.get('overall_oos_abstain_recall')}, "
+        f"primary retain recall: {counts.get('overall_primary_retain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue(
+    args: argparse.Namespace,
+) -> int:
+    queue = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue(
+        heldout_threshold_readout_path=Path(args.heldout_threshold_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free post-readout recovery queue to "
+        f"{args.out} (status: {queue.get('status')}, "
+        f"queue rows: {counts.get('queue_rows')}, "
+        f"primary retention failures: "
+        f"{counts.get('primary_retention_failure_rows')})"
     )
     return 0
 
@@ -30420,6 +30481,22 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     active_lever_actionability.add_argument(
+        "--lever2-source-free-heldout-threshold-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_heldout_"
+            "threshold_readout_current702_20260604.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
+        "--lever2-source-free-post-readout-recovery-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
+            "oos_augmented_best_token_followup_pair_source_free_post_readout_"
+            "recovery_queue_current702_20260604.json"
+        ),
+    )
+    active_lever_actionability.add_argument(
         "--lever2-event-axis-linker-schema",
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_"
@@ -33882,6 +33959,14 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.add_argument(
+        "--operating-contract-decision",
+        default=None,
+        help=(
+            "optional explicit partial-surface operating-contract decision "
+            "artifact"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_partial_policy.add_argument(
         "--out",
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
@@ -34870,6 +34955,124 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_pre_threshold_readiness.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "heldout-threshold-readout"
+        ),
+        help=(
+            "apply the frozen follow-up pair residual threshold once to the "
+            "accepted source-free heldout surface"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--partial-surface-policy-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_"
+            "policy_gate_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--pre-threshold-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_"
+            "readiness_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_heldout_"
+            "threshold_readout_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_heldout_"
+            "threshold_readout_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_readout.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_post_readout_recovery_queue = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "post-readout-recovery-queue"
+        ),
+        help=(
+            "classify the already-spent source-free heldout readout into "
+            "feature and coverage recovery rows without rescoring or retuning"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_post_readout_recovery_queue.add_argument(
+        "--heldout-threshold-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_heldout_"
+            "threshold_readout_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_post_readout_recovery_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_post_readout_"
+            "recovery_queue_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_post_readout_recovery_queue.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_post_readout_"
+            "recovery_queue_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_post_readout_recovery_queue.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue
         )
     )
 

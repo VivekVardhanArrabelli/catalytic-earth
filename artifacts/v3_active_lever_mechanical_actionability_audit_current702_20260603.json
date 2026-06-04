@@ -10,13 +10,11 @@
     "lever3_confounded_proxy_background_axis_exhausted",
     "lever3_confounded_proxy_unsupported_geometry_locus_scan_no_axis",
     "family_panel_expert_import_decisions_missing",
-    "family_panel_label_factory_gate_inputs_missing",
-    "lever2_partial_surface_operating_contract_decision_required",
-    "lever2_pre_threshold_readiness_not_ready"
+    "family_panel_label_factory_gate_inputs_missing"
   ],
   "counts": {
     "automation_action_allowed_now_items": 0,
-    "blockers": 12,
+    "blockers": 10,
     "decision_items": 131,
     "external_decision_required_items": 23,
     "lever2_clean_locator_rewrite_items": 49,
@@ -29,15 +27,25 @@
     "lever2_event_axis_priority2_signoff_rows": 11,
     "lever2_event_axis_signoff_draft_rows": 53,
     "lever2_event_axis_signoff_rows_with_both_roles": 14,
+    "lever2_heldout_threshold_feature_complete_oos_abstain_recall": 1.0,
+    "lever2_heldout_threshold_feature_complete_primary_retain_recall": 0.0,
+    "lever2_heldout_threshold_overall_oos_abstain_recall": 1.0,
+    "lever2_heldout_threshold_overall_primary_retain_recall": 0.0,
+    "lever2_heldout_threshold_read_once_performed": true,
     "lever2_locator_sidecars_written": 53,
-    "lever2_partial_surface_operating_contract_blockers": 2,
-    "lever2_partial_surface_operating_contract_decision_required": true,
+    "lever2_partial_surface_operating_contract_blockers": 0,
+    "lever2_partial_surface_operating_contract_decision_required": false,
     "lever2_partial_surface_policy_missing_locator_abstain_rows": 87,
     "lever2_partial_surface_policy_pair_feature_rows": 53,
     "lever2_partial_surface_policy_ready": true,
-    "lever2_partial_surface_policy_threshold_read_accepted": false,
+    "lever2_partial_surface_policy_threshold_read_accepted": true,
     "lever2_pending_event_axis_signoffs": 0,
     "lever2_pending_locator_approvals": 0,
+    "lever2_post_readout_coverage_repair_alone_sufficient": false,
+    "lever2_post_readout_feature_complete_primary_abstentions": 32,
+    "lever2_post_readout_oos_missing_locator_abstentions": 71,
+    "lever2_post_readout_primary_missing_locator_abstentions": 16,
+    "lever2_post_readout_recovery_queue_rows": 119,
     "lever3_confounded_high_cofactor_min_new_abstained_rows_for_80pct": 16,
     "lever3_confounded_high_cofactor_proxy_rows": 4,
     "lever3_confounded_proxy_acquisition_blockers": 6,
@@ -92,13 +100,13 @@
     "source_decision_intake_invalid_rows": 0,
     "source_decision_intake_pending_rows": 23
   },
-  "created_utc": "2026-06-04T00:28:30Z",
+  "created_utc": "2026-06-04T01:33:40Z",
   "decision": {
     "apply_any_decision_gate_now": false,
     "apply_frozen_residual_threshold_now": false,
     "copy_locator_sidecars_now": false,
     "deployment_closure_claim_ready_now": false,
-    "next_gate": "Record explicit decisions in the source packets with hashes unchanged. Then rerun only the matching application or materialization gates; do not read heldout or apply the frozen Lever 2 threshold until pre-threshold readiness passes.",
+    "next_gate": "Lever 2 heldout readout is already applied once and the post-readout recovery queue blocks deployment; do not rerun or retune. Continue with train/cal-safe feature repair for feature-complete primary abstentions, then source-free locator coverage recovery.",
     "run_label_factory_gate_now": false
   },
   "decision_class_counts": {
@@ -193,14 +201,14 @@
       "ready_now": false
     },
     {
-      "blocking_reason": "deterministic_missing_locator_abstention_operating_contract_decision_required",
+      "blocking_reason": "partial_surface_operating_contract_accepted",
       "gate": "source_free_partial_surface_operating_contract",
       "lever": "Lever 2",
       "next_command_after_decision": "build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-partial-surface-operating-contract-preflight",
       "ready_now": false
     },
     {
-      "blocking_reason": "source_free_pre_threshold_readiness_blocked",
+      "blocking_reason": "source_free_heldout_threshold_readout_applied_once",
       "gate": "source_free_locator_materialization_and_pre_threshold_readiness",
       "lever": "Lever 2",
       "next_command_after_decision": "build-mechanism-feature-row-specific-bond-change-p0-oos-augmented-best-token-followup-pair-source-free-locator-rewrite-materialization-gate",
@@ -230,8 +238,8 @@
   },
   "interpretation": {
     "headline": "1 active Lever 2/3/4 gate mechanically ready on the current decision state.",
-    "next_action": "Review the next queued pending rows: P10746 policy decision; 6 Lever 4 import-preview candidates; Lever 2 partial-surface operating-contract decision. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first. Do not score or register the unsupported-geometry proxy from those AFDB files; use a different source-free protein-only structural proxy or reviewed P10746/Lever 4 decisions.",
-    "result": "Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. The unsupported-geometry coordinate repair path scanned 8 AFDB-v6 train/cal files and found zero source-free inorganic/cofactor locus evidence. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 locator approvals and event-axis signoffs are cleared. The partial policy has 53 source-free pair-feature rows and 87 missing-locator abstention rows, but the frozen threshold read remains blocked until complete locator coverage or an accepted missing-locator abstention operating contract exists."
+    "next_action": "Review the next queued pending rows: P10746 policy decision; 6 Lever 4 import-preview candidates. For Lever 3, the new proxy-axis tranche is fully scored. Do not rerun the fixed-threshold audit on a partial/base-blocked surface; clear the remaining prior/base full-channel and policy/calibration blockers first. Do not score or register the unsupported-geometry proxy from those AFDB files; use a different source-free protein-only structural proxy or reviewed P10746/Lever 4 decisions.",
+    "result": "Lever 3 has a pre-registered source-free proxy-axis contract with 6 train/cal rows and 6 full-channel scores; the new tranche is complete, but calibration remains blocked by the existing fixed-threshold proxy and prior/base-surface gaps. The unsupported-geometry coordinate repair path scanned 8 AFDB-v6 train/cal files and found zero source-free inorganic/cofactor locus evidence. Lever 4 is blocked before import preview by expert import decisions, and Lever 2 locator approvals and event-axis signoffs are cleared. The heldout readout has been applied once and the post-readout recovery queue blocks a deployable claim: 32 feature-complete primaries abstain by residual, 16 primaries abstain from missing source-free locators, and coverage repair alone is not sufficient."
   },
   "next_review_items": [
     {
@@ -448,23 +456,6 @@
       "priority": 4,
       "review_status": "pending_expert_import_decision",
       "review_status_field_to_update": "review_status"
-    },
-    {
-      "allowed_decisions": [
-        "explicit_accept_deterministic_missing_locator_abstention_operating_contract",
-        "reject_partial_surface_require_complete_source_free_locator_coverage"
-      ],
-      "approved_boolean_field_to_update": null,
-      "candidate_sha256": null,
-      "decision_class": "source_free_partial_surface_operating_contract",
-      "decision_context_sha256": "fb29d48d2fde38a186977ccc1975dbfd4505fbfed7bf8165ce146d2aa635fd58",
-      "decision_field_to_update": "decision",
-      "entry_id": "current702_partial_surface",
-      "lever": "Lever 2",
-      "planned_locator_payload_sha256": null,
-      "priority": 2,
-      "review_status": "pending_explicit_policy_decision",
-      "review_status_field_to_update": "review_status"
     }
   ],
   "schema_version": "northstar_next_levers.v0.active_lever_mechanical_actionability_audit",
@@ -498,12 +489,22 @@
     "lever2_partial_surface_operating_contract_preflight": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.json",
-      "sha256": "0b6f9ae3813d9742f60a46e860dc8077f7802b8513e0482658f97f99c1b61f91"
+      "sha256": "5c62f2e5eea15f3ff8d1e6cd708735a62431c28aea891e1ad6fb9f634c98f9e2"
     },
     "lever2_pre_threshold_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603.json",
-      "sha256": "47bd4a3e2cddc0327177088d443773436600d3ae780af399d961390f40760215"
+      "sha256": "11e0840bbaa28f36f7382c7d1a2339bd549350a3711e3360f27322e7fbe6d6e3"
+    },
+    "lever2_source_free_heldout_threshold_readout": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json",
+      "sha256": "719fb1d1181b427bcbbf007f43c4f5db69c974788a5c2f575aa99c1abb5291e7"
+    },
+    "lever2_source_free_post_readout_recovery_queue": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json",
+      "sha256": "27141f32ae442faf3a92fbd4e72d576f4c646dd3ddb88774768b22dce1ea900c"
     },
     "lever3_confounded_proxy_acquisition_queue": {
       "exists": true,

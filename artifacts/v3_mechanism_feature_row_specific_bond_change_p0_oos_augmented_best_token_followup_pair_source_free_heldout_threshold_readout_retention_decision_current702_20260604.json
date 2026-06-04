@@ -1,0 +1,51 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604",
+  "created_utc": "2026-06-04T01:21:53Z",
+  "decision": {
+    "accept_as_deployable_lever2_channel": false,
+    "apply_frozen_pair_threshold_now": false,
+    "heldout_read_once_performed": true,
+    "heldout_readout_reusable_without_rerun": true,
+    "next_gate": "Do not rerun or retune the heldout threshold. Continue Lever 2 by improving source-free coverage or feature materialization before any deployable claim.",
+    "primary_retention_operating_bar_passed": false,
+    "reject_reason": "overall_primary_retain_recall_is_zero_at_frozen_threshold",
+    "rerun_or_retune_heldout_authorized": false,
+    "threshold_or_model_change_authorized": false
+  },
+  "guardrails": {
+    "frozen_residual_threshold_changed": false,
+    "heldout_rows_evaluated_once": true,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "missing_locator_rows_imputed_as_feature_values": false,
+    "missing_locator_rows_scored_by_residual_threshold": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false
+  },
+  "readout_metrics": {
+    "feature_complete_oos_abstain_recall": 1.0,
+    "feature_complete_primary_retain_recall": 0.0,
+    "heldout_feature_complete_rows": 53,
+    "heldout_missing_locator_deterministic_abstain_rows": 87,
+    "heldout_oos_rows": 92,
+    "heldout_primary_rows": 48,
+    "overall_oos_abstain_recall": 1.0,
+    "overall_primary_retain_recall": 0.0,
+    "primary_retained": 0
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision",
+  "scope": "Post-readout Lever 2 operating-point decision for the accepted deterministic missing-locator abstention contract. It records that the read-once heldout result is not deployable because primary retention is zero, without changing thresholds, refitting models, or authorizing another heldout read.",
+  "source_artifacts": {
+    "active_lever_mechanical_actionability_audit": {
+      "path": "artifacts/v3_active_lever_mechanical_actionability_audit_current702_20260603.json",
+      "sha256": "55fb20b0f36d62b06193ff1688b8e8b29574208a1cd33205abe9fd5761a3288b"
+    },
+    "heldout_threshold_readout": {
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json",
+      "sha256": "719fb1d1181b427bcbbf007f43c4f5db69c974788a5c2f575aa99c1abb5291e7"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_not_deployable"
+}

@@ -7403,6 +7403,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "surface_operating_contract_preflight_current702_20260604.json"
             )
         )
+        pair_source_free_readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_heldout_"
+                "threshold_readout_current702_20260604.json"
+            )
+        )
+        pair_source_free_post_readout_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_post_"
+                "readout_recovery_queue_current702_20260604.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -7839,7 +7857,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "heldout_safe_partial_surface_policy_ready"
             ]
         )
-        self.assertFalse(
+        self.assertTrue(
             pair_partial_surface_policy["decision"][
                 "partial_surface_policy_accepted_for_frozen_threshold_read"
             ]
@@ -7854,23 +7872,20 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             87,
         )
-        self.assertIn(
-            "partial_surface_policy_not_accepted_for_frozen_threshold_read",
-            pair_partial_surface_policy["blockers"],
-        )
+        self.assertEqual(pair_partial_surface_policy["blockers"], [])
         self.assertFalse(
             pair_partial_surface_policy["guardrails"]["heldout_rows_evaluated"]
         )
         self.assertEqual(
             pair_partial_surface_contract_preflight["status"],
-            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_blocked_policy_decision_required",
+            "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_ready",
         )
-        self.assertTrue(
+        self.assertFalse(
             pair_partial_surface_contract_preflight["decision"][
                 "explicit_policy_decision_required"
             ]
         )
-        self.assertFalse(
+        self.assertTrue(
             pair_partial_surface_contract_preflight["decision"][
                 "ready_to_apply_frozen_residual_threshold_once"
             ]
@@ -7887,10 +7902,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             87,
         )
-        self.assertIn(
-            "deterministic_missing_locator_abstention_operating_contract_decision_required",
-            pair_partial_surface_contract_preflight["blockers"],
-        )
+        self.assertEqual(pair_partial_surface_contract_preflight["blockers"], [])
         self.assertEqual(
             pair_partial_surface_contract_preflight["decision_packet"][
                 "decision_class"
@@ -8454,7 +8466,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             pair_pre_threshold_readiness["status"],
-            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_blocked",
+            "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_ready",
         )
         self.assertTrue(
             pair_pre_threshold_readiness["readiness_inputs"][
@@ -8481,9 +8493,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "heldout_safe_partial_surface_policy_ready"
             ]
         )
-        self.assertFalse(
+        self.assertTrue(
             pair_pre_threshold_readiness["readiness_inputs"][
                 "partial_surface_policy_accepted_for_frozen_threshold_read"
+            ]
+        )
+        self.assertTrue(
+            pair_pre_threshold_readiness["readiness_inputs"][
+                "partial_surface_policy_effective_application_surface_ready"
             ]
         )
         self.assertEqual(
@@ -8511,7 +8528,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             pair_pre_threshold_readiness["counts"]["locator_sidecars_written"], 53
         )
-        self.assertEqual(pair_pre_threshold_readiness["counts"]["blockers"], 3)
+        self.assertEqual(pair_pre_threshold_readiness["counts"]["blockers"], 0)
         self.assertEqual(
             pair_pre_threshold_readiness["counts"][
                 "source_free_event_residue_role_feature_rows"
@@ -8594,14 +8611,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "source_free_proton_transfer_event_axis_missing",
             pair_pre_threshold_readiness["blockers"],
         )
-        self.assertEqual(
-            pair_pre_threshold_readiness["blockers"],
-            [
-                "heldout_safe_pair_application_surface_partial_policy_no_threshold_read",
-                "source_free_current702_heldout_locator_coverage_incomplete",
-                "partial_surface_policy_not_accepted_for_frozen_threshold_read",
-            ],
-        )
+        self.assertEqual(pair_pre_threshold_readiness["blockers"], [])
         self.assertTrue(
             pair_pre_threshold_readiness["source_artifacts"][
                 "event_axis_linker_signoff_finalization"
@@ -8617,7 +8627,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "partial_surface_policy_gate"
             ]["exists"]
         )
-        self.assertFalse(
+        self.assertTrue(
             pair_pre_threshold_readiness["decision"][
                 "ready_to_apply_frozen_residual_threshold_once"
             ]
@@ -8629,6 +8639,92 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(
             pair_pre_threshold_readiness["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_source_free_readout["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_applied_once",
+        )
+        self.assertEqual(
+            pair_source_free_readout["counts"]["heldout_rows_total"], 140
+        )
+        self.assertEqual(
+            pair_source_free_readout["counts"]["heldout_feature_complete_rows"], 53
+        )
+        self.assertEqual(
+            pair_source_free_readout["counts"][
+                "heldout_missing_locator_deterministic_abstain_rows"
+            ],
+            87,
+        )
+        self.assertEqual(
+            pair_source_free_readout["counts"]["overall_oos_abstain_recall"], 1.0
+        )
+        self.assertEqual(
+            pair_source_free_readout["counts"]["overall_primary_retain_recall"], 0.0
+        )
+        self.assertTrue(
+            pair_source_free_readout["guardrails"]["heldout_rows_evaluated_once"]
+        )
+        self.assertFalse(
+            pair_source_free_readout["guardrails"][
+                "heldout_rows_used_for_training_or_threshold_tuning"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_readout["guardrails"][
+                "missing_locator_rows_scored_by_residual_threshold"
+            ]
+        )
+        self.assertEqual(
+            pair_source_free_post_readout_queue["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_ready_deployment_blocked",
+        )
+        self.assertEqual(
+            pair_source_free_post_readout_queue["counts"]["queue_rows"], 119
+        )
+        self.assertEqual(
+            pair_source_free_post_readout_queue["counts"][
+                "feature_complete_primary_abstained_by_residual_rows"
+            ],
+            32,
+        )
+        self.assertEqual(
+            pair_source_free_post_readout_queue["counts"][
+                "primary_missing_source_free_locator_rows"
+            ],
+            16,
+        )
+        self.assertEqual(
+            pair_source_free_post_readout_queue["counts"][
+                "oos_missing_source_free_locator_rows"
+            ],
+            71,
+        )
+        self.assertEqual(
+            pair_source_free_post_readout_queue["counts"][
+                "feature_complete_oos_retained_by_residual_rows"
+            ],
+            0,
+        )
+        self.assertTrue(
+            pair_source_free_post_readout_queue["decision"][
+                "deployable_claim_blocked"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_post_readout_queue["decision"][
+                "coverage_repair_alone_sufficient_for_deployment"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_post_readout_queue["decision"][
+                "rerun_or_retune_heldout_authorized"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_post_readout_queue["guardrails"][
+                "heldout_rows_rescored"
+            ]
         )
         self.assertEqual(
             pair_coordinate_anchor["status"],
@@ -10540,7 +10636,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["counts"]["automation_action_allowed_now_items"], 0
         )
         self.assertEqual(audit["counts"]["mechanical_gates_ready_now"], 1)
-        self.assertEqual(audit["counts"]["blockers"], 12)
+        self.assertEqual(audit["counts"]["blockers"], 10)
         self.assertEqual(
             audit["counts"]["source_decision_intake_pending_rows"], 23
         )
@@ -10790,7 +10886,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             audit["counts"]["lever2_partial_surface_policy_ready"]
         )
-        self.assertFalse(
+        self.assertTrue(
             audit["counts"]["lever2_partial_surface_policy_threshold_read_accepted"]
         )
         self.assertEqual(
@@ -10802,14 +10898,57 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             87,
         )
-        self.assertTrue(
+        self.assertFalse(
             audit["counts"][
                 "lever2_partial_surface_operating_contract_decision_required"
             ]
         )
         self.assertEqual(
             audit["counts"]["lever2_partial_surface_operating_contract_blockers"],
-            2,
+            0,
+        )
+        self.assertTrue(
+            audit["counts"]["lever2_heldout_threshold_read_once_performed"]
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_heldout_threshold_overall_oos_abstain_recall"],
+            1.0,
+        )
+        self.assertEqual(
+            audit["counts"][
+                "lever2_heldout_threshold_overall_primary_retain_recall"
+            ],
+            0.0,
+        )
+        self.assertEqual(
+            audit["counts"]["lever2_post_readout_recovery_queue_rows"], 119
+        )
+        self.assertEqual(
+            audit["counts"][
+                "lever2_post_readout_feature_complete_primary_abstentions"
+            ],
+            32,
+        )
+        self.assertEqual(
+            audit["counts"][
+                "lever2_post_readout_primary_missing_locator_abstentions"
+            ],
+            16,
+        )
+        self.assertEqual(
+            audit["counts"][
+                "lever2_post_readout_oos_missing_locator_abstentions"
+            ],
+            71,
+        )
+        self.assertFalse(
+            audit["counts"][
+                "lever2_post_readout_coverage_repair_alone_sufficient"
+            ]
+        )
+        self.assertIn(
+            "post-readout recovery queue blocks deployment",
+            audit["decision"]["next_gate"],
         )
         self.assertEqual(
             audit["counts"]["lever4_label_factory_gate_input_rows"], 0
@@ -10885,7 +11024,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertIn(
             "family_panel_expert_import_decisions_missing", audit["blockers"]
         )
-        self.assertIn(
+        self.assertNotIn(
             "lever2_partial_surface_operating_contract_decision_required",
             audit["blockers"],
         )
@@ -10935,17 +11074,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertIn(
             "family_panel_expert_import_decision", next_review_classes
         )
-        self.assertIn(
+        self.assertNotIn(
             "source_free_partial_surface_operating_contract", next_review_classes
         )
         self.assertNotIn(
             "source_free_locator_rewrite_approval", next_review_classes
         )
-        self.assertTrue(
+        self.assertFalse(
             any(
                 item["entry_id"] == "current702_partial_surface"
-                and item["decision_field_to_update"] == "decision"
-                and len(item["decision_context_sha256"]) == 64
                 for item in audit["next_review_items"]
             )
         )
@@ -10953,7 +11090,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "remaining Lever 2 event-axis signoffs",
             audit["interpretation"]["next_action"],
         )
-        self.assertIn(
+        self.assertNotIn(
             "Lever 2 partial-surface operating-contract decision",
             audit["interpretation"]["next_action"],
         )
@@ -10961,10 +11098,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             gates["source_free_partial_surface_operating_contract"][
                 "blocking_reason"
             ],
-            "deterministic_missing_locator_abstention_operating_contract_decision_required",
+            "partial_surface_operating_contract_accepted",
         )
         self.assertFalse(
             gates["source_free_partial_surface_operating_contract"]["ready_now"]
+        )
+        self.assertEqual(
+            gates["source_free_locator_materialization_and_pre_threshold_readiness"][
+                "blocking_reason"
+            ],
+            "source_free_heldout_threshold_readout_applied_once",
         )
         self.assertEqual(
             audit["next_review_items"][7]["entry_id"], "m_csa:116"

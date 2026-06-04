@@ -1,12 +1,8 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_current702_20260603",
-  "blockers": [
-    "heldout_safe_pair_application_surface_partial_policy_no_threshold_read",
-    "source_free_current702_heldout_locator_coverage_incomplete",
-    "partial_surface_policy_not_accepted_for_frozen_threshold_read"
-  ],
+  "blockers": [],
   "counts": {
-    "blockers": 3,
+    "blockers": 0,
     "critical_violation_total": 0,
     "event_axis_explicit_approved_rows": 14,
     "event_axis_gate_consumable_signoff_rows": 14,
@@ -31,12 +27,12 @@
     "source_free_event_residue_role_feature_rows": 14,
     "source_free_residue_count_feature_rows": 53
   },
-  "created_utc": "2026-06-04T00:14:13Z",
+  "created_utc": "2026-06-04T01:10:57Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
-    "next_gate": "Do not read the frozen residual threshold on the partial surface. Either materialize approved source-free locators for the remaining heldout rows, or write a separate operating contract accepting deterministic missing-locator abstention as the deployable readout; then rerun this readiness gate.",
-    "ready_to_apply_frozen_residual_threshold_once": false
+    "next_gate": "Apply the frozen residual threshold exactly once to the 53 feature-complete heldout rows and carry the 87 accepted missing-locator rows as deterministic abstentions.",
+    "ready_to_apply_frozen_residual_threshold_once": true
   },
   "frozen_contract": {
     "calibration_oos_abstain_recall": 0.857143,
@@ -58,15 +54,16 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Materialize the remaining approved source-free locator sidecars or explicitly accept deterministic missing-locator abstention in a separate operating contract; keep the frozen residual threshold unapplied until this readiness gate passes.",
-    "result": "The frozen residual contract is calibrated and source-free event-axis linkers are materialized. A partial-surface policy is present, but the frozen heldout read remains blocked because locator coverage is incomplete and the partial policy is not accepted as a threshold-read operating contract."
+    "next_action": "Apply the frozen residual threshold exactly once on the feature-complete rows and carry accepted missing-locator rows as deterministic abstentions; do not refit, tune, or score missing rows.",
+    "result": "The frozen residual contract is calibrated, source-free event-axis linkers are materialized, and the accepted partial operating contract covers missing locators as deterministic abstentions without residual scores. The one-time frozen heldout read is now mechanically ready."
   },
   "readiness_inputs": {
     "approved_source_free_locator_surface_ready": true,
     "heldout_safe_pair_application_surface_ready": false,
     "heldout_safe_partial_surface_policy_ready": true,
     "pair_operating_point_contract_ready": true,
-    "partial_surface_policy_accepted_for_frozen_threshold_read": false,
+    "partial_surface_policy_accepted_for_frozen_threshold_read": true,
+    "partial_surface_policy_effective_application_surface_ready": true,
     "source_free_event_axis_linker_signoff_finalization_ready": true,
     "source_free_event_axis_linkers_materialized": true
   },
@@ -106,7 +103,7 @@
     "partial_surface_policy_gate": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604.json",
-      "sha256": "b1cf1438a5747730a39aa7fcc400edaa968434eda34589caf4d1b521af8d51cd"
+      "sha256": "9e1a9ab08c700f88aea508f89f07f1429f4a3dd5e764ecfb1f26c4938a292de5"
     },
     "source_free_application_surface": {
       "exists": true,
@@ -119,5 +116,5 @@
       "sha256": "b8f861b8529d4a51aeff4c3e6a606d3c2e5e8e2f636a8ea1300023f57d444b18"
     }
   },
-  "status": "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_blocked"
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness_ready"
 }

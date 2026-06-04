@@ -3,6 +3,33 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Lever 2 Partial Surface Read Once, Not Deployable
+
+Decision: accept the deterministic missing-locator abstention operating contract
+only as a fail-closed readout contract, spend the frozen heldout read exactly
+once, and reject the resulting partial-surface Lever 2 channel as deployable.
+Do not rerun, retune, lower the threshold, refit the model, or treat the 87
+missing-locator rows as feature values.
+
+Result: the accepted partial source-free surface scored 53 feature-complete
+heldout rows and carried 87 missing-locator rows as deterministic abstentions.
+At the frozen residual threshold, OOS abstain recall is **1.0** but primary
+retain recall is **0.0**. The post-readout recovery queue has 119 rows: 32
+feature-complete primaries abstain by residual, 16 additional primaries abstain
+because their source-free locators are missing, and 71 OOS rows remain
+missing-locator coverage rows.
+
+Consequence / next gate: coverage repair alone is not sufficient. Continue Lever
+2 with train/cal-safe feature or materialization repair for feature-complete
+primary abstentions, then recover primary source-free locator coverage. Treat the
+heldout readout as final evidence for this surface.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_current702_20260604.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout_retention_decision_current702_20260604.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604.json`.
+
 ## 2026-06-03: Lever 2 Source-Free Token Re-Selection — No Token Clears The Bar
 
 Decision: defer the Lever 2 source-free row-specific feature. A train/cal-only

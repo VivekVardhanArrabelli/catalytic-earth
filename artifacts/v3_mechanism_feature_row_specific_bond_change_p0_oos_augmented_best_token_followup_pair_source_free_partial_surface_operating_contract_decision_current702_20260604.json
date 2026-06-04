@@ -1,0 +1,42 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604",
+  "created_utc": "2026-06-04T01:09:27Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "decision": "explicit_accept_deterministic_missing_locator_abstention_operating_contract",
+    "decision_class": "source_free_partial_surface_operating_contract",
+    "decision_context_sha256": "fb29d48d2fde38a186977ccc1975dbfd4505fbfed7bf8165ce146d2aa635fd58",
+    "deterministic_missing_locator_abstention_operating_contract_accepted": true,
+    "entry_id": "current702_partial_surface",
+    "heldout_read_once_performed": false,
+    "next_gate": "Rerun the partial-surface policy gate, operating-contract preflight, pre-threshold readiness, and active mechanical audit. Do not refit, tune, or score missing-locator rows.",
+    "reject_partial_surface_require_complete_source_free_locator_coverage": false,
+    "review_status": "explicit_policy_decision_applied"
+  },
+  "guardrails": {
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "missing_locator_rows_imputed_as_feature_values": false,
+    "missing_locator_rows_scored_by_residual_threshold": false,
+    "model_weights_fit_or_refit": false,
+    "policy_only": true,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision",
+  "scope": "Explicit Lever 2 policy decision accepting deterministic missing-locator abstention as the deployable operating contract for the source-free partial heldout surface. Missing-locator rows remain abstentions without feature imputation or residual scoring; feature-complete rows remain eligible for a one-time frozen threshold read only after pre-threshold readiness is rerun.",
+  "source_artifacts": {
+    "partial_surface_operating_contract_preflight": {
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_preflight_current702_20260604.json",
+      "decision_context_sha256": "fb29d48d2fde38a186977ccc1975dbfd4505fbfed7bf8165ce146d2aa635fd58"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_accepted"
+}

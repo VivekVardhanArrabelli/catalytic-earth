@@ -1,11 +1,8 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_policy_gate_current702_20260604",
-  "blockers": [
-    "source_free_current702_heldout_locator_coverage_incomplete",
-    "partial_surface_policy_not_accepted_for_frozen_threshold_read"
-  ],
+  "blockers": [],
   "counts": {
-    "blockers": 2,
+    "blockers": 0,
     "critical_violation_total": 0,
     "heldout_rows_in_manifest": 140,
     "missing_source_free_locator_policy_abstain_rows": 87,
@@ -13,14 +10,19 @@
     "source_free_event_residue_role_positive_rows": 14,
     "source_free_pair_feature_rows": 53
   },
-  "created_utc": "2026-06-04T00:14:12Z",
+  "created_utc": "2026-06-04T01:10:05Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
     "heldout_safe_partial_surface_policy_ready": true,
     "missing_locator_rows_are_deployment_abstentions": true,
-    "next_gate": "This partial policy is explicit and heldout-safe, but it is not an authorization to read the frozen residual threshold. Either materialize approved source-free locators for the remaining heldout rows, or write a separate operating contract that accepts deterministic missing-locator abstention as the deployable readout before any heldout read.",
-    "partial_surface_policy_accepted_for_frozen_threshold_read": false,
+    "next_gate": "Rerun pre-threshold readiness with this accepted deterministic missing-locator abstention operating contract; do not read heldout outcomes until that readiness gate passes.",
+    "partial_surface_operating_contract_decision": "explicit_accept_deterministic_missing_locator_abstention_operating_contract",
+    "partial_surface_operating_contract_decision_context_sha256": "fb29d48d2fde38a186977ccc1975dbfd4505fbfed7bf8165ce146d2aa635fd58",
+    "partial_surface_operating_contract_decision_record_ready": true,
+    "partial_surface_operating_contract_rejected_requires_complete_locator_coverage": false,
+    "partial_surface_operating_contract_review_status": "explicit_policy_decision_applied",
+    "partial_surface_policy_accepted_for_frozen_threshold_read": true,
     "ready_to_apply_frozen_residual_threshold_once": false
   },
   "frozen_contract": {
@@ -48,19 +50,18 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Rerun pre-threshold readiness with this policy gate present. The frozen residual threshold should remain blocked until complete locator coverage exists or a separate deterministic missing-locator abstention operating contract is explicitly accepted.",
-    "result": "53 current702 heldout rows have approved source-free pair features and 87 rows are policy abstentions because approved source-free locator sidecars are still missing. The partial policy avoids feature imputation and threshold scoring on missing rows."
+    "next_action": "Rerun pre-threshold readiness with the accepted partial operating contract; keep the frozen residual threshold unapplied until readiness passes.",
+    "result": "53 current702 heldout rows have approved source-free pair features and 87 rows are policy abstentions because approved source-free locator sidecars are still missing. The partial policy avoids feature imputation and threshold scoring on missing rows. The deterministic missing-locator abstention operating contract is explicitly accepted for the deployable readout."
   },
   "policy": {
     "feature_complete_row_action": "eligible_for_residual_score_if_full_read_authorized",
     "full_heldout_threshold_read_requires": [
-      "complete approved source-free locator coverage",
-      "or a separate explicit operating contract accepting deterministic missing-locator abstention as the deployable readout"
+      "rerun pre-threshold readiness with the accepted deterministic missing-locator abstention operating contract"
     ],
     "missing_rows_count_as_feature_values": false,
     "missing_rows_count_as_threshold_scores": false,
     "missing_source_free_locator_row_action": "abstain_without_residual_score",
-    "partial_surface_metric_read_allowed": false
+    "partial_surface_metric_read_allowed": true
   },
   "policy_rows": [
     {
@@ -1249,6 +1250,11 @@
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
       "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
+    },
+    "partial_surface_operating_contract_decision": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_partial_surface_operating_contract_decision_current702_20260604.json",
+      "sha256": "dfe2f44cd44640881704ca8cb1124d4205c5e19a8b80fc22de72c81c275139cc"
     },
     "source_free_application_surface": {
       "exists": true,
