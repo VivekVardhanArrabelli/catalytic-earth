@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 349
-- Measured elapsed time: 10690.7 minutes (178.18 hours)
+- Entries: 350
+- Measured elapsed time: 10736.5 minutes (178.94 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 523.2 measured minutes (8.72 hours)
+- northstar-lever3: 569.1 measured minutes (9.48 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3659
-- Evidence references logged: 3020
+- Artifact references logged: 3668
+- Evidence references logged: 3022
 
 ## Recent Entries
-
-### 2026-06-04T10:54:54.865818+00:00 - northstar-lever3
-
-- Task: Lever 3 SWISS-MODEL staging and P07658 blocker probes
-- Time mode: measured
-- Measured minutes: 50.583
-- Started: 2026-06-04T10:03:30Z
-- Ended: 2026-06-04T10:54:05Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.json, work/fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.json, work/fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.md, artifacts/v3_fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe_current702_20260604.json, artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604.json, artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json, artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json, artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json, artifacts/v3_fold_augmented_q43088_locator_review_priority_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_current702_20260604.json, work/handoff.md, work/status.md
-- Evidence: full pytest 1374 passed 171 subtests one existing sklearn SciPy warning, unittest discovery 1329 passed, focused Lever 3 artifact tests 8 passed, unit Q43088 builder test 1 passed, CLI registration 1 passed 145 subtests, compileall, validate 702 labels, git diff --check, docs artifact-reference check missing 0, JSON syntax checks for 9 new artifacts
-- Notes: Lever 3 only. Three SWISS-MODEL predicted coordinates staged for review; P07658 remains blocked after secondary-accession, ESMFold length, provider auth, local-runtime, and 3D-Beacons experimental-only probes; Q43088 has priority positions but 0 approvals; no labels registries ontologies imports thresholds heldout tuning scoring or source approvals changed.
 
 ### 2026-06-04T12:50:52.667257+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.json, work/fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.md, artifacts/v3_fold_augmented_lever3_retention_frontier_readout_current702_20260604.json, work/fold_augmented_lever3_retention_frontier_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: BioLM exact P07658 provider attempt HTTP 401 no coordinate, retention-frontier routes closing both axes at 90pct floor 0 of 63, retention-frontier routes closing both axes at any retention 0 of 63, best no-floor route 3 of 4 high-cofactor and 38 of 59 same-family with 20 of 34 in-scope retained, best route retained m_csa:289 plus 21 same-family rows, full pytest 1424 passed 192 subtests one existing sklearn warning, unittest discovery 1379 passed, focused touched files 552 passed 173 subtests, validate passed 702 labels, compileall diff-check JSON source hashes and docs reference check passed
 - Notes: Measured readout artifact first; no blocker packet produced. P07658 U140 was preserved in the provider attempt payload.
+
+### 2026-06-04T19:49:04.756605+00:00 - northstar-lever3
+
+- Task: Lever 3 residual safety readout
+- Time mode: measured
+- Measured minutes: 45.883
+- Started: 2026-06-04T19:02:47Z
+- Ended: 2026-06-04T19:48:40Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json, work/fold_augmented_lever3_residual_safety_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, tests/test_northstar_next_levers.py, work/handoff.md, work/status.md
+- Evidence: residual safety readout 21 unique residual hard-confounded rows all retained by all current source-free channels; closest-channel and any-channel diagnostic shifts preserve the 31/34 in-scope floor for 0/21 residual rows; m_csa:289/P07342 high-cofactor residual best shift retains only 25/34 in-scope; live P07658 checks still show AFDB 404 and 3D-Beacons experimental-only, UniProt sequence hash matches frozen 715-aa U140 input; full pytest 1427 passed 193 subtests one existing sklearn warning; unittest 1382 passed; affected tests 555 passed 174 subtests; validate 702 labels; compileall diff-check JSON parse docs-ref and active source hashes passed
+- Notes: Lever 3 only. No labels registries ontologies imports thresholds heldout tuning scoring coordinate staging model fitting or experimental PDB deployment shortcuts changed. Implementation commit 91c501581671165b23935d9277bfe6afee6cb078 pushed to main and verified before final handoff bookkeeping.
 
 ## Expectation Updates
 

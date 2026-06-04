@@ -3,19 +3,15 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T18:01:40Z`
-- STARTED_AT_LOCAL: `2026-06-04T13:01:40-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T18:22:20Z`
-- ENDED_AT_LOCAL: `2026-06-04T13:22:20-0500 CDT`
-- ELAPSED_MINUTES: `20.67`
-- Status: Run 37 wrap complete. Canonical
+- STARTED_AT_UTC: `2026-06-04T19:02:47Z`
+- STARTED_AT_LOCAL: `2026-06-04T14:02:47-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T19:48:40Z`
+- ENDED_AT_LOCAL: `2026-06-04T14:48:40-0500 CDT`
+- ELAPSED_MINUTES: `45.90`
+- Status: Run 38 wrap complete. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T18:01:40Z` with PID `64058`. Current user instruction: work
-  only on Lever 3. Produced a deployment-valid measured retention-frontier
-  readout and a fresh exact-sequence P07658 provider-attempt artifact. Commit
-  `90bca3d80969c6c8a2b05fac217fe0e272f6718b` was pushed to `main`; `HEAD`
-  was verified equal to `origin/main`; the original lock was released, then
-  reacquired only to correct this handoff status.
+  `2026-06-04T19:02:47Z` with PID `19099`. Work stayed on Lever 3 and
+  produced a measured residual-safety readout, not a blocker packet.
 
 ## Mission
 
@@ -66,6 +62,125 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 38
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T19:02:47Z`
+- STARTED_LOCAL: `2026-06-04T14:02:47-0500 CDT`
+- ENDED_AT: `2026-06-04T19:48:40Z`
+- ENDED_LOCAL: `2026-06-04T14:48:40-0500 CDT`
+- ELAPSED_MINUTES: `45.90`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T19:02:47Z` with PID `19099`.
+
+#### Current intent
+
+Work only on Lever 3. Start from the retention-frontier no-closure result and
+measure whether the remaining hard-confounded residual rows can be safely
+resolved by the current source-free channel surface, without changing
+thresholds or using heldout tuning.
+
+#### What changed
+
+- Added `build-fold-augmented-lever3-residual-safety-readout` and the
+  `write_fold_augmented_lever3_residual_safety_readout` builder. The new
+  readout writes
+  `artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_residual_safety_readout_current702_20260604.md`.
+- The readout consumes only prior train/cal-selected artifacts:
+  the Lever 3 retention-frontier readout, channel-veto row diagnostics, and
+  in-scope threshold contract. It scores no new rows, stages no coordinates,
+  reads no heldout rows for training/tuning, and selects or changes no
+  threshold.
+- Measured result: under the best current source-free route, 21 unique
+  hard-confounded residual rows remain. All 21 are retained by every current
+  source-free channel. The high-cofactor residual shortfall is 1 row
+  (`m_csa:289` / `P07342`, also in the same-family axis), and the same-family
+  residual shortfall is 10 rows.
+- Added closest-channel and all-channel threshold-shift diagnostics as
+  diagnostics only. Both show 0/21 residual rows can be abstained by a current
+  channel shift while preserving the 31/34 calibration in-scope floor. The
+  minimum in-scope loss to catch any residual by any current channel is 4
+  rows; `m_csa:289` would retain only 25/34 in-scope rows even under its best
+  preserving current channel shift.
+- Live P07658 sanity checks during the run did not clear the coordinate gap:
+  AFDB API/direct model checks still returned no P07658 model, current
+  3D-Beacons detail and summary surfaces returned 5 experimental PDBe rows and
+  0 predicted rows, and UniProt confirmed the frozen exact 715-aa sequence hash
+  `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa` with
+  selenocysteine at position 140.
+- Added parser, synthetic unit, and artifact-regression coverage for the new
+  readout and included it in the active Lever 3 source-hash regression set.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, or model fitting changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- P07658 live checks were provenance/surface checks only; no coordinate was
+  downloaded, staged, or scored.
+- No blocker packet was produced.
+
+#### Verification
+
+- Baseline before code changes:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1379 tests passed,
+  with the existing sklearn/SciPy deprecation warning.
+- Focused residual readout tests after the final artifact/report update:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever3_residual_safety_readout_parser_defaults tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_residual_safety_readout_reports_shift_overblock tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_residual_safety_readout_counts -q`:
+  3 passed.
+- Affected files after all-channel diagnostics:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  555 passed, 174 subtests.
+- Final full pytest after all-channel diagnostics:
+  `PYTHONPATH=src python -m pytest -q`: 1427 passed, 193 subtests, with the
+  existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1382 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Final JSON parse over all artifact JSON files: 3537 checked, 0 parse errors.
+- Current-docs artifact-reference check to `/tmp`: missing 0.
+- Active Lever 3 source-hash check: 36 checked, 0 missing, 0 stale.
+- Disk guardrail remained above 10 GiB: `df -h .` reported 15 GiB free.
+
+#### Commit/push status
+
+- Implementation/readout commit
+  `91c501581671165b23935d9277bfe6afee6cb078` pushed to `main`.
+- Verified `HEAD == origin/main` at
+  `91c501581671165b23935d9277bfe6afee6cb078` before this final bookkeeping
+  update.
+- Final bookkeeping commit/push and lock release remain the only mechanical
+  steps after this handoff edit.
+
+#### Exact next action
+
+- Do not change or retune threshold `0.44155`.
+- First obtain an accepted full-length P07658 predicted coordinate with
+  provider/model/version/path/checksum provenance for the exact 715-residue
+  sequence including documented `U140` handling, then rerun
+  `build-fold-augmented-p07658-prediction-acceptance-preflight`.
+- After P07658 acceptance, build or acquire a new source-free
+  high-cofactor/cofactor-role counteraxis that can abstain `m_csa:289`
+  while preserving the 31/34 train/cal in-scope floor; current channels and
+  any-channel diagnostic threshold shifts cannot do this.
+- If that counteraxis is unavailable, acquire strict non-heldout train/cal OOS
+  high-cofactor rows. The existing minimum-next-experiment queue still has
+  zero eligible high-cofactor rows available and 16 missing.
 
 ### 2026-06-04 Lever 3 Forward Push Run 37
 
