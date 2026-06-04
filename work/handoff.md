@@ -13,8 +13,9 @@
   `2026-06-04T23:02:37Z`. Work was restricted to Lever 3 and produced
   measured operating-point and credential-route preflight readouts. No blocker
   packet was produced. No coordinate was staged, no row was scored, no
-  threshold changed, and no secret values were recorded. Commit/push/sync
-  verification is pending immediately after this handoff update.
+  threshold changed, and no secret values were recorded. Implementation commit
+  `8f667037ea3402138f916d162165c7058789a684` was pushed to `origin/main` and
+  `HEAD == origin/main` was verified before lock release.
 
 ## Mission
 
@@ -167,9 +168,9 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 #### Progress, commit, and sync
 
 - Appended a measured progress-log entry and regenerated `work/status.md`.
-- Commit/push/sync verification is pending immediately after this handoff
-  update; release the repo lock only after `HEAD == origin/main` and the
-  worktree is clean.
+- Implementation commit `8f667037ea3402138f916d162165c7058789a684` was pushed
+  to `origin/main`; `HEAD == origin/main` was verified and the worktree was
+  clean before lock release.
 
 #### Exact next Lever 3 action
 
