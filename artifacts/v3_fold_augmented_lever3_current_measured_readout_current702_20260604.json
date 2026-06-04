@@ -20,7 +20,7 @@
     "scored_train_cal_oos_rows": 204,
     "unresolved_evidence_gaps": 3
   },
-  "created_utc": "2026-06-04T15:03:18Z",
+  "created_utc": "2026-06-04T16:40:13Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "current_evidence_sufficient_for_deployment_closure": false,
@@ -1024,7 +1024,7 @@
     "lever3_dispatch_readiness_summary": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_lever3_dispatch_readiness_summary_current702_20260604.json",
-      "sha256": "6188494cc6a873b128e04c788adef289e21da29b876535a95a86e48ff1f8572e"
+      "sha256": "44c1279cc0966e77a2cb424c92caed1bca54a68d120a6d6c85e386b0d3a5fd8b"
     }
   },
   "status": "fold_augmented_lever3_current_measured_readout_ready_evidence_insufficient",

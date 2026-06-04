@@ -1,6 +1,6 @@
 # Fold-Augmented Lever 3 Dispatch Readiness Summary - current702
 
-Run: 2026-06-04T13:40:31Z
+Run: 2026-06-04T16:40:08Z
 
 Combined Lever 3 dispatch readiness summary for the remaining deployment-valid/confounded-safe novelty blockers. It composes the P07658 provider dispatch and the high-cofactor/same-family train-cal intake packets; it does not source rows, stage coordinates, score rows, tune thresholds, or read heldout.
 

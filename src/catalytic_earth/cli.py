@@ -153,6 +153,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_blocker_packet_guardrail_audit,
     write_fold_augmented_lever3_current_measured_readout,
     write_fold_augmented_lever3_dispatch_readiness_summary,
+    write_fold_augmented_lever3_evidence_sufficiency_readout,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
@@ -13210,6 +13211,58 @@ def cmd_build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout
         f"{args.out} (strict+loose abstained: "
         f"{counts.get('strict_plus_loose_diagnostic_abstained_at_fixed_threshold')}/"
         f"{counts.get('strict_plus_loose_diagnostic_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_evidence_sufficiency_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_evidence_sufficiency_readout(
+        current_measured_readout_path=Path(args.current_measured_readout),
+        near_cofactor_pressure_readout_path=Path(
+            args.near_cofactor_pressure_readout
+        ),
+        loose_same_family_pressure_readout_path=Path(
+            args.loose_same_family_pressure_readout
+        ),
+        protein_only_topology_scored_readout_path=Path(
+            args.protein_only_topology_scored_readout
+        ),
+        p07658_prediction_acceptance_preflight_path=Path(
+            args.p07658_prediction_acceptance_preflight
+        ),
+        p07658_alphafold_prediction_api_probe_path=Path(
+            args.p07658_alphafold_prediction_api_probe
+        ),
+        p07658_local_predictor_runtime_scan_path=Path(
+            args.p07658_local_predictor_runtime_scan
+        ),
+        p07658_full_length_predictor_provider_probe_path=Path(
+            args.p07658_full_length_predictor_provider_probe
+        ),
+        p07658_three_d_beacons_predicted_structure_probe_path=Path(
+            args.p07658_three_d_beacons_predicted_structure_probe
+        ),
+        p07658_computed_model_repository_broad_probe_path=Path(
+            args.p07658_computed_model_repository_broad_probe
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 evidence-sufficiency readout to "
+        f"{args.out} (strict high: "
+        f"{counts.get('strict_high_cofactor_abstained')}/"
+        f"{counts.get('strict_high_cofactor_rows')}, strict same-family: "
+        f"{counts.get('strict_same_family_abstained')}/"
+        f"{counts.get('strict_same_family_rows')}, deployment closed: "
+        f"{readout.get('decision', {}).get('current_evidence_sufficient_for_deployment_closure')})"
     )
     return 0
 
@@ -31509,6 +31562,104 @@ def build_parser() -> argparse.ArgumentParser:
     )
     loose_same_family_pressure_readout.set_defaults(
         func=cmd_build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout
+    )
+
+    lever3_evidence_sufficiency_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-evidence-sufficiency-readout",
+        help=(
+            "write a measured Lever 3 evidence-sufficiency readout across "
+            "strict proxies and diagnostic pressure routes without changing "
+            "thresholds"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--near-cofactor-pressure-readout",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_"
+            "pressure_scored_readout_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--loose-same-family-pressure-readout",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_"
+            "pressure_readout_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--protein-only-topology-scored-readout",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_scored_readout_"
+            "current702_20260603.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--p07658-prediction-acceptance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_acceptance_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--p07658-alphafold-prediction-api-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_alphafold_prediction_api_"
+            "probe_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--p07658-local-predictor-runtime-scan",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--p07658-full-length-predictor-provider-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_"
+            "probe_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--p07658-three-d-beacons-predicted-structure-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_"
+            "probe_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--p07658-computed-model-repository-broad-probe",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_computed_model_repository_"
+            "broad_probe_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument("--artifact-id", default=None)
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_evidence_sufficiency_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_evidence_sufficiency_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_evidence_sufficiency_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_evidence_sufficiency_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

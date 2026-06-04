@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy Loose Same-Family Pressure Readout - current702
 
-Run: 2026-06-04T15:30:47Z
+Run: 2026-06-04T16:40:20Z
 
 Train/cal-only diagnostic fixed-threshold readout for the loose same-family current-surface rows named by the acquisition queue. It de-duplicates against the refreshed strict same-family rows and does not relax membership, close the contract, tune thresholds, read heldout rows, or change labels.
 

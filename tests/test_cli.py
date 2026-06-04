@@ -55,6 +55,52 @@ class CliTests(unittest.TestCase):
             args.same_family_structural_acquisition_contract,
         )
 
+    def test_lever3_evidence_sufficiency_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-evidence-sufficiency-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_evidence_sufficiency_"
+                "readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn("current_measured_readout", args.current_measured_readout)
+        self.assertIn(
+            "near_cofactor_pressure_scored_readout",
+            args.near_cofactor_pressure_readout,
+        )
+        self.assertIn(
+            "loose_same_family_pressure_readout",
+            args.loose_same_family_pressure_readout,
+        )
+        self.assertIn(
+            "protein_only_fold_topology_residual_scored_readout",
+            args.protein_only_topology_scored_readout,
+        )
+        self.assertIn(
+            "p07658_prediction_acceptance_preflight",
+            args.p07658_prediction_acceptance_preflight,
+        )
+        self.assertIn(
+            "p07658_local_predictor_runtime_scan",
+            args.p07658_local_predictor_runtime_scan,
+        )
+        self.assertIn(
+            "p07658_full_length_predictor_provider_probe",
+            args.p07658_full_length_predictor_provider_probe,
+        )
+        self.assertIn(
+            "p07658_3dbeacons_predicted_structure_probe",
+            args.p07658_three_d_beacons_predicted_structure_probe,
+        )
+        self.assertIn(
+            "p07658_computed_model_repository_broad_probe",
+            args.p07658_computed_model_repository_broad_probe,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

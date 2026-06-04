@@ -303,6 +303,9 @@ FOLD_AUGMENTED_LEVER3_CURRENT_MEASURED_READOUT_ID = (
 FOLD_AUGMENTED_CONFOUNDED_PROXY_LOOSE_SAME_FAMILY_PRESSURE_READOUT_ID = (
     "v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_EVIDENCE_SUFFICIENCY_READOUT_ID = (
+    "v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -35472,6 +35475,878 @@ def write_fold_augmented_confounded_proxy_loose_same_family_pressure_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _combined_threshold_readout_for_rows(
+    rows: list[dict[str, Any]],
+    *,
+    threshold: float,
+    channel_name: str = "combined_mean_geometry_fold",
+) -> dict[str, Any]:
+    full_rows = [
+        row
+        for row in rows
+        if (row.get("channel_scores") or {}).get(channel_name) is not None
+    ]
+    return _fixed_threshold_row_readout(
+        full_rows,
+        channel_name=channel_name,
+        threshold=threshold,
+    )
+
+
+def build_fold_augmented_lever3_evidence_sufficiency_readout(
+    *,
+    current_measured_readout_path: Path,
+    near_cofactor_pressure_readout_path: Path,
+    loose_same_family_pressure_readout_path: Path,
+    protein_only_topology_scored_readout_path: Path,
+    p07658_prediction_acceptance_preflight_path: Path,
+    p07658_alphafold_prediction_api_probe_path: Path,
+    p07658_local_predictor_runtime_scan_path: Path,
+    p07658_full_length_predictor_provider_probe_path: Path,
+    p07658_three_d_beacons_predicted_structure_probe_path: Path,
+    p07658_computed_model_repository_broad_probe_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_EVIDENCE_SUFFICIENCY_READOUT_ID,
+) -> dict[str, Any]:
+    current = _read_json(current_measured_readout_path)
+    near = _read_json(near_cofactor_pressure_readout_path)
+    loose = _read_json(loose_same_family_pressure_readout_path)
+    protein = _read_json(protein_only_topology_scored_readout_path)
+    p07658_preflight = _read_json(p07658_prediction_acceptance_preflight_path)
+    p07658_api = _read_json(p07658_alphafold_prediction_api_probe_path)
+    p07658_runtime = _read_json(p07658_local_predictor_runtime_scan_path)
+    p07658_provider = _read_json(
+        p07658_full_length_predictor_provider_probe_path
+    )
+    p07658_beacons = _read_json(
+        p07658_three_d_beacons_predicted_structure_probe_path
+    )
+    p07658_broad = _read_json(p07658_computed_model_repository_broad_probe_path)
+
+    fixed = current.get("fixed_operating_point") or {}
+    threshold = float(_parse_optional_float(fixed.get("threshold")) or 0.0)
+    channel = str(fixed.get("channel") or "combined_mean_geometry_fold")
+    fold_component_threshold = _parse_optional_float(
+        fixed.get("fold_proxy_component_threshold")
+    )
+    current_counts = current.get("counts") or {}
+    current_decision = current.get("decision") or {}
+    near_counts = near.get("counts") or {}
+    near_decision = near.get("decision") or {}
+    loose_counts = loose.get("counts") or {}
+    loose_decision = loose.get("decision") or {}
+    protein_counts = protein.get("counts") or {}
+    protein_rows = [
+        row
+        for row in protein.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    protein_threshold_readout = _combined_threshold_readout_for_rows(
+        protein_rows,
+        threshold=threshold,
+        channel_name=channel,
+    )
+    protein_fold_only_readout = (
+        _combined_threshold_readout_for_rows(
+            protein_rows,
+            threshold=float(fold_component_threshold),
+            channel_name="fold_nearest_atlas_tm_score",
+        )
+        if fold_component_threshold is not None
+        else {
+            "threshold": None,
+            "row_count": 0,
+            "abstained": 0,
+            "retained": 0,
+            "abstain_recall": None,
+            "retained_recall": None,
+            "rows": [],
+        }
+    )
+    protein_blockers = list(protein.get("blockers") or [])
+    p07658_preflight_counts = p07658_preflight.get("counts") or {}
+    p07658_api_counts = p07658_api.get("counts") or {}
+    p07658_runtime_counts = p07658_runtime.get("counts") or {}
+    p07658_provider_counts = p07658_provider.get("counts") or {}
+    p07658_beacons_counts = p07658_beacons.get("counts") or {}
+    p07658_broad_counts = p07658_broad.get("counts") or {}
+    p07658_preflight_decision = p07658_preflight.get("decision") or {}
+    p07658_api_decision = p07658_api.get("decision") or {}
+    p07658_runtime_decision = p07658_runtime.get("decision") or {}
+    p07658_provider_decision = p07658_provider.get("decision") or {}
+    p07658_beacons_decision = p07658_beacons.get("decision") or {}
+    p07658_broad_decision = p07658_broad.get("decision") or {}
+
+    strict_high_rows = int(current_counts.get("high_cofactor_proxy_rows") or 0)
+    strict_high_abstained = int(
+        current_counts.get("high_cofactor_proxy_abstained_at_fixed_threshold")
+        or 0
+    )
+    strict_same_rows = int(
+        current_counts.get("same_family_structural_proxy_rows") or 0
+    )
+    strict_same_abstained = int(
+        current_counts.get("same_family_structural_proxy_abstained_at_fixed_threshold")
+        or 0
+    )
+    high_slots = int(current_counts.get("high_cofactor_intake_slots_required") or 0)
+    same_slots = int(
+        current_counts.get("same_family_structural_intake_slots_required") or 0
+    )
+    p07658_blockers = int(
+        current_counts.get("p07658_surface_completeness_blocker_rows") or 0
+    )
+    protein_abstained = int(protein_threshold_readout.get("abstained") or 0)
+    protein_total = int(protein_threshold_readout.get("row_count") or 0)
+    protein_abstain_recall = protein_threshold_readout.get("abstain_recall")
+    protein_fold_only_abstained = int(
+        protein_fold_only_readout.get("abstained") or 0
+    )
+    protein_fold_only_total = int(protein_fold_only_readout.get("row_count") or 0)
+    protein_geometry_ok = int(
+        protein_counts.get("candidate_predicted_geometry_ok_rows") or 0
+    )
+    protein_missing_geometry = max(protein_total - protein_geometry_ok, 0)
+    protein_diagnostic_promising = bool(
+        protein_total
+        and protein_abstain_recall is not None
+        and float(protein_abstain_recall) >= 0.80
+    )
+    protein_contract_closes = bool(
+        protein_diagnostic_promising
+        and not protein_blockers
+        and high_slots == 0
+        and same_slots == 0
+    )
+
+    p07658_acceptance_passes = bool(
+        p07658_preflight_decision.get("p07658_acceptance_preflight_passes_now")
+    )
+    p07658_api_clears = bool(
+        p07658_api_decision.get("p07658_coordinate_blocker_cleared_now")
+    )
+    p07658_runtime_clears = bool(
+        p07658_runtime_decision.get("local_runtime_clears_p07658_now")
+    )
+    p07658_provider_clears = bool(
+        p07658_provider_decision.get(
+            "credential_free_full_length_provider_clears_p07658_now"
+        )
+    )
+    p07658_beacons_clears = bool(
+        p07658_beacons_decision.get("three_d_beacons_clears_p07658_now")
+    )
+    p07658_broad_clears = bool(
+        p07658_broad_decision.get("broad_public_repository_probe_clears_p07658_now")
+    )
+    p07658_coordinate_path_cleared = bool(
+        p07658_acceptance_passes
+        or p07658_api_clears
+        or p07658_runtime_clears
+        or p07658_provider_clears
+        or p07658_beacons_clears
+        or p07658_broad_clears
+    )
+    strict_high_target_met = bool(
+        current_decision.get("train_cal_high_cofactor_proxy_target_met")
+    )
+    strict_same_target_met = bool(
+        current_decision.get("train_cal_same_family_structural_proxy_target_met")
+    )
+    in_scope_retention_ok = bool(
+        current_decision.get("true_in_scope_retention_ok_at_train_cal_selected_threshold")
+    )
+    current_closure = bool(
+        current_decision.get("current_evidence_sufficient_for_deployment_closure")
+    )
+    measured_readout_available = bool(
+        current_decision.get("measured_readout_available")
+    )
+
+    attempted_routes = [
+        {
+            "route_id": "canonical_strict_proxy_operating_point",
+            "measured": True,
+            "rows": int(current_counts.get("scored_train_cal_oos_rows") or 0),
+            "abstained": int(
+                current_counts.get("all_train_cal_oos_abstained_at_fixed_threshold")
+                or 0
+            ),
+            "result": (
+                f"strict high-cofactor {strict_high_abstained}/{strict_high_rows}; "
+                f"strict same-family structural {strict_same_abstained}/"
+                f"{strict_same_rows}"
+            ),
+            "deployment_closure_support": False,
+            "why_not_closure": (
+                "strict confounded proxy targets are not met at the unchanged "
+                "train/cal-selected threshold"
+            ),
+        },
+        {
+            "route_id": "near_cofactor_pressure_tranche",
+            "measured": True,
+            "rows": int(near_counts.get("near_cofactor_pressure_rows") or 0),
+            "abstained": int(
+                near_counts.get("rows_abstained_at_fixed_threshold") or 0
+            ),
+            "result": (
+                f"{near_counts.get('rows_abstained_at_fixed_threshold')}/"
+                f"{near_counts.get('near_cofactor_pressure_rows')} abstained"
+            ),
+            "deployment_closure_support": False,
+            "why_not_closure": (
+                "diagnostic near-cofactor rows do not satisfy the strict "
+                "source-free high-cofactor membership contract"
+            ),
+        },
+        {
+            "route_id": "loose_same_family_pressure_surface",
+            "measured": True,
+            "rows": int(loose_counts.get("strict_plus_loose_diagnostic_rows") or 0),
+            "abstained": int(
+                loose_counts.get(
+                    "strict_plus_loose_diagnostic_abstained_at_fixed_threshold"
+                )
+                or 0
+            ),
+            "result": (
+                f"{loose_counts.get('strict_plus_loose_diagnostic_abstained_at_fixed_threshold')}/"
+                f"{loose_counts.get('strict_plus_loose_diagnostic_rows')} abstained"
+            ),
+            "deployment_closure_support": False,
+            "why_not_closure": (
+                "relaxing same-family membership still stays far below the "
+                "strict structural acquisition target"
+            ),
+        },
+        {
+            "route_id": "protein_only_fold_topology_residual_tranche",
+            "measured": True,
+            "rows": protein_total,
+            "abstained": protein_abstained,
+            "result": (
+                f"combined {protein_abstained}/{protein_total}; fold-only "
+                f"{protein_fold_only_abstained}/{protein_fold_only_total} abstained"
+            ),
+            "deployment_closure_support": False,
+            "why_not_closure": (
+                "the tranche is small and carries predicted-geometry blockers; "
+                "its pure fold-channel readout is weaker than the combined "
+                "geometry/fold signal"
+            ),
+        },
+        {
+            "route_id": "p07658_full_length_prediction_coordinate",
+            "measured": True,
+            "rows": 1,
+            "abstained": 0,
+            "result": (
+                "acceptance failed "
+                f"{p07658_preflight_counts.get('acceptance_checks_failed')}/"
+                f"{p07658_preflight_counts.get('acceptance_checks_total')} checks; "
+                f"AlphaFold API models {p07658_api_counts.get('p07658_api_models_returned')}; "
+                "local commands "
+                f"{p07658_runtime_counts.get('path_commands_available')}/"
+                f"{p07658_runtime_counts.get('path_commands_checked')}; "
+                "provider coordinates "
+                f"{p07658_provider_counts.get('coordinates_returned')}; "
+                "public predicted coordinates "
+                f"{p07658_beacons_counts.get('deployment_valid_predicted_coordinate_rows_ready_now')}/"
+                f"{p07658_broad_counts.get('deployment_valid_predicted_coordinate_rows_ready_now')}"
+            ),
+            "deployment_closure_support": False,
+            "why_not_closure": (
+                "no accepted full-length predicted coordinate/provenance packet "
+                "exists for exact P07658"
+            ),
+        },
+    ]
+
+    missing_evidence = [
+        {
+            "gap_id": "p07658_surface_completeness",
+            "current_measured_state": {
+                "surface_completeness_blocker_rows": p07658_blockers,
+                "acceptance_preflight_passes": p07658_acceptance_passes,
+                "alphafold_api_models_returned": int(
+                    p07658_api_counts.get("p07658_api_models_returned") or 0
+                ),
+                "acceptance_checks_failed": int(
+                    p07658_preflight_counts.get("acceptance_checks_failed") or 0
+                ),
+                "local_path_commands_available": int(
+                    p07658_runtime_counts.get("path_commands_available") or 0
+                ),
+                "local_path_commands_checked": int(
+                    p07658_runtime_counts.get("path_commands_checked") or 0
+                ),
+                "provider_coordinates_returned": int(
+                    p07658_provider_counts.get("coordinates_returned") or 0
+                ),
+                "credentialed_or_denied_providers": int(
+                    p07658_provider_counts.get("credentialed_or_denied_providers")
+                    or 0
+                ),
+                "three_d_beacons_deployment_valid_predicted_rows": int(
+                    p07658_beacons_counts.get(
+                        "deployment_valid_predicted_coordinate_rows_ready_now"
+                    )
+                    or 0
+                ),
+                "public_repository_deployment_valid_predicted_rows": int(
+                    p07658_broad_counts.get(
+                        "deployment_valid_predicted_coordinate_rows_ready_now"
+                    )
+                    or 0
+                ),
+            },
+            "smallest_next_experiment": (
+                "Run or provision one approved full-length predictor/provider "
+                "for exact P07658, with documented selenocysteine position-140 "
+                "handling and coordinate/provider/model/version/checksum "
+                "provenance; rerun the acceptance preflight before scoring."
+            ),
+        },
+        {
+            "gap_id": "strict_high_cofactor_train_cal_oos_rows",
+            "current_measured_state": {
+                "strict_rows": strict_high_rows,
+                "strict_abstained": strict_high_abstained,
+                "near_cofactor_diagnostic_rows": int(
+                    near_counts.get("near_cofactor_pressure_rows") or 0
+                ),
+                "near_cofactor_diagnostic_abstained": int(
+                    near_counts.get("rows_abstained_at_fixed_threshold") or 0
+                ),
+                "strict_high_cofactor_contract_rows_added": int(
+                    near_counts.get("strict_high_cofactor_contract_rows_added") or 0
+                ),
+                "intake_slots_required": high_slots,
+            },
+            "smallest_next_experiment": (
+                "Acquire and score 16 new non-heldout train/cal OOS rows with "
+                "strict source-free high-cofactor/locus membership; near-cofactor "
+                "pressure rows are insufficient."
+            ),
+        },
+        {
+            "gap_id": "strict_same_family_structural_surface",
+            "current_measured_state": {
+                "strict_rows": strict_same_rows,
+                "strict_abstained": strict_same_abstained,
+                "strict_plus_loose_diagnostic_rows": int(
+                    loose_counts.get("strict_plus_loose_diagnostic_rows") or 0
+                ),
+                "strict_plus_loose_diagnostic_abstained": int(
+                    loose_counts.get(
+                        "strict_plus_loose_diagnostic_abstained_at_fixed_threshold"
+                    )
+                    or 0
+                ),
+                "intake_slots_required": same_slots,
+            },
+            "smallest_next_experiment": (
+                "Acquire a new strict same-family structural train/cal OOS "
+                "surface; the current strict-plus-loose diagnostic reaches only "
+                "26/80 and cannot close the 170-row lower-bound gap."
+            ),
+        },
+        {
+            "gap_id": "protein_only_topology_residual_contract",
+            "current_measured_state": {
+                "diagnostic_rows": protein_total,
+                "diagnostic_abstained": protein_abstained,
+                "fold_only_threshold": fold_component_threshold,
+                "fold_only_abstained": protein_fold_only_abstained,
+                "fold_only_rows": protein_fold_only_total,
+                "predicted_geometry_ok_rows": protein_geometry_ok,
+                "predicted_geometry_blocker_rows": protein_missing_geometry,
+                "artifact_blockers": protein_blockers,
+            },
+            "smallest_next_experiment": (
+                "Convert the protein-only topology signal into a deployment-valid "
+                "axis only if it uses a geometry-independent protein-only rule "
+                "or repairs the row-specific geometry caveats, then scale beyond "
+                "the eight-row diagnostic tranche."
+            ),
+        },
+    ]
+
+    status = (
+        "fold_augmented_lever3_evidence_sufficiency_readout_deployment_closed"
+        if current_closure
+        else "fold_augmented_lever3_evidence_sufficiency_readout_ready_evidence_insufficient"
+    )
+    blockers = []
+    if not p07658_coordinate_path_cleared:
+        blockers.append("p07658_exact_predicted_coordinate_not_accepted")
+    if not strict_high_target_met:
+        blockers.append("strict_high_cofactor_proxy_target_not_met")
+    if not strict_same_target_met:
+        blockers.append("strict_same_family_structural_proxy_target_not_met")
+    if protein_blockers:
+        blockers.append("protein_only_topology_residual_diagnostic_has_blockers")
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_evidence_sufficiency_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured evidence-sufficiency readout after trying the "
+            "current strict operating point, near-cofactor pressure rows, loose "
+            "same-family pressure rows, protein-only topology residual rows, "
+            "and the P07658 full-length prediction path. It is not a blocker "
+            "packet and does not change thresholds."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "train_cal_threshold_preserved": True,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+        },
+        "fixed_operating_point": {
+            "channel": channel,
+            "threshold": round(threshold, 6),
+            "fold_proxy_component_threshold": (
+                round(float(fold_component_threshold), 6)
+                if fold_component_threshold is not None
+                else None
+            ),
+            "source": current.get("fixed_operating_point", {}).get("threshold_source"),
+        },
+        "measured_routes": attempted_routes,
+        "route_readouts": {
+            "canonical_current": {
+                "scored_train_cal_oos_rows": int(
+                    current_counts.get("scored_train_cal_oos_rows") or 0
+                ),
+                "all_train_cal_oos_abstained_at_fixed_threshold": int(
+                    current_counts.get(
+                        "all_train_cal_oos_abstained_at_fixed_threshold"
+                    )
+                    or 0
+                ),
+                "calibration_in_scope_retained": int(
+                    current_counts.get("calibration_in_scope_retained") or 0
+                ),
+                "calibration_in_scope_total": int(
+                    current_counts.get("calibration_in_scope_total") or 0
+                ),
+                "high_cofactor_proxy_rows": strict_high_rows,
+                "high_cofactor_proxy_abstained": strict_high_abstained,
+                "same_family_structural_proxy_rows": strict_same_rows,
+                "same_family_structural_proxy_abstained": strict_same_abstained,
+            },
+            "near_cofactor_pressure": {
+                "rows": int(near_counts.get("near_cofactor_pressure_rows") or 0),
+                "abstained": int(
+                    near_counts.get("rows_abstained_at_fixed_threshold") or 0
+                ),
+                "strict_high_cofactor_contract_rows_added": int(
+                    near_counts.get("strict_high_cofactor_contract_rows_added") or 0
+                ),
+                "contract_closure_sufficient": bool(
+                    near_decision.get(
+                        "current_near_cofactor_evidence_sufficient_for_high_cofactor_contract"
+                    )
+                ),
+            },
+            "loose_same_family_pressure": {
+                "strict_plus_loose_rows": int(
+                    loose_counts.get("strict_plus_loose_diagnostic_rows") or 0
+                ),
+                "strict_plus_loose_abstained": int(
+                    loose_counts.get(
+                        "strict_plus_loose_diagnostic_abstained_at_fixed_threshold"
+                    )
+                    or 0
+                ),
+                "contract_closure_sufficient": bool(
+                    loose_decision.get(
+                        "loose_same_family_evidence_sufficient_for_contract_closure"
+                    )
+                ),
+            },
+            "protein_only_topology_residual": {
+                key: value
+                for key, value in protein_threshold_readout.items()
+                if key != "rows"
+            }
+            | {
+                "fold_only_threshold_readout": {
+                    key: value
+                    for key, value in protein_fold_only_readout.items()
+                    if key != "rows"
+                },
+                "predicted_geometry_ok_rows": protein_geometry_ok,
+                "predicted_geometry_blocker_rows": protein_missing_geometry,
+                "artifact_blockers": protein_blockers,
+                "diagnostic_promising": protein_diagnostic_promising,
+                "contract_closure_sufficient": protein_contract_closes,
+            },
+            "p07658_prediction_path": {
+                "acceptance_preflight_passes": p07658_acceptance_passes,
+                "acceptance_checks_passed": int(
+                    p07658_preflight_counts.get("acceptance_checks_passed") or 0
+                ),
+                "acceptance_checks_failed": int(
+                    p07658_preflight_counts.get("acceptance_checks_failed") or 0
+                ),
+                "alphafold_api_models_returned": int(
+                    p07658_api_counts.get("p07658_api_models_returned") or 0
+                ),
+                "local_path_commands_available": int(
+                    p07658_runtime_counts.get("path_commands_available") or 0
+                ),
+                "local_path_commands_checked": int(
+                    p07658_runtime_counts.get("path_commands_checked") or 0
+                ),
+                "provider_coordinates_returned": int(
+                    p07658_provider_counts.get("coordinates_returned") or 0
+                ),
+                "three_d_beacons_deployment_valid_predicted_rows": int(
+                    p07658_beacons_counts.get(
+                        "deployment_valid_predicted_coordinate_rows_ready_now"
+                    )
+                    or 0
+                ),
+                "public_repository_deployment_valid_predicted_rows": int(
+                    p07658_broad_counts.get(
+                        "deployment_valid_predicted_coordinate_rows_ready_now"
+                    )
+                    or 0
+                ),
+                "coordinate_blocker_cleared": bool(
+                    p07658_coordinate_path_cleared
+                ),
+            },
+        },
+        "missing_evidence": missing_evidence,
+        "blockers": blockers,
+        "counts": {
+            "measured_routes": len(attempted_routes),
+            "canonical_scored_train_cal_oos_rows": int(
+                current_counts.get("scored_train_cal_oos_rows") or 0
+            ),
+            "canonical_train_cal_oos_abstained": int(
+                current_counts.get("all_train_cal_oos_abstained_at_fixed_threshold")
+                or 0
+            ),
+            "calibration_in_scope_retained": int(
+                current_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "calibration_in_scope_total": int(
+                current_counts.get("calibration_in_scope_total") or 0
+            ),
+            "strict_high_cofactor_rows": strict_high_rows,
+            "strict_high_cofactor_abstained": strict_high_abstained,
+            "near_cofactor_diagnostic_rows": int(
+                near_counts.get("near_cofactor_pressure_rows") or 0
+            ),
+            "near_cofactor_diagnostic_abstained": int(
+                near_counts.get("rows_abstained_at_fixed_threshold") or 0
+            ),
+            "strict_high_cofactor_contract_rows_added": int(
+                near_counts.get("strict_high_cofactor_contract_rows_added") or 0
+            ),
+            "strict_same_family_rows": strict_same_rows,
+            "strict_same_family_abstained": strict_same_abstained,
+            "strict_plus_loose_same_family_diagnostic_rows": int(
+                loose_counts.get("strict_plus_loose_diagnostic_rows") or 0
+            ),
+            "strict_plus_loose_same_family_diagnostic_abstained": int(
+                loose_counts.get(
+                    "strict_plus_loose_diagnostic_abstained_at_fixed_threshold"
+                )
+                or 0
+            ),
+            "protein_only_topology_rows": protein_total,
+            "protein_only_topology_abstained": protein_abstained,
+            "protein_only_topology_fold_only_rows": protein_fold_only_total,
+            "protein_only_topology_fold_only_abstained": protein_fold_only_abstained,
+            "protein_only_topology_predicted_geometry_ok_rows": protein_geometry_ok,
+            "p07658_acceptance_checks_failed": int(
+                p07658_preflight_counts.get("acceptance_checks_failed") or 0
+            ),
+            "p07658_api_models_returned": int(
+                p07658_api_counts.get("p07658_api_models_returned") or 0
+            ),
+            "p07658_local_path_commands_available": int(
+                p07658_runtime_counts.get("path_commands_available") or 0
+            ),
+            "p07658_local_path_commands_checked": int(
+                p07658_runtime_counts.get("path_commands_checked") or 0
+            ),
+            "p07658_provider_coordinates_returned": int(
+                p07658_provider_counts.get("coordinates_returned") or 0
+            ),
+            "p07658_3dbeacons_deployment_valid_predicted_rows": int(
+                p07658_beacons_counts.get(
+                    "deployment_valid_predicted_coordinate_rows_ready_now"
+                )
+                or 0
+            ),
+            "p07658_public_repository_deployment_valid_predicted_rows": int(
+                p07658_broad_counts.get(
+                    "deployment_valid_predicted_coordinate_rows_ready_now"
+                )
+                or 0
+            ),
+            "high_cofactor_intake_slots_required": high_slots,
+            "same_family_structural_intake_slots_required": same_slots,
+            "missing_evidence_items": len(missing_evidence),
+            "blockers": len(blockers),
+            "critical_violation_total": int(
+                current_counts.get("critical_violation_total") or 0
+            )
+            + int(near_counts.get("critical_violation_total") or 0)
+            + int(loose_counts.get("critical_violation_total") or 0)
+            + int(p07658_api_counts.get("critical_violation_total") or 0)
+            + int(p07658_runtime_counts.get("critical_violation_total") or 0)
+            + int(p07658_provider_counts.get("critical_violation_total") or 0)
+            + int(p07658_beacons_counts.get("critical_violation_total") or 0)
+            + int(p07658_broad_counts.get("critical_violation_total") or 0),
+        },
+        "decision": {
+            "measured_readout_available": measured_readout_available,
+            "current_evidence_sufficient_for_deployment_closure": current_closure,
+            "true_in_scope_retention_ok_at_train_cal_selected_threshold": (
+                in_scope_retention_ok
+            ),
+            "strict_high_cofactor_target_met": strict_high_target_met,
+            "strict_same_family_structural_target_met": strict_same_target_met,
+            "near_cofactor_pressure_can_count_for_strict_high_cofactor_contract": bool(
+                near_decision.get(
+                    "current_near_cofactor_evidence_sufficient_for_high_cofactor_contract"
+                )
+            ),
+            "loose_same_family_pressure_can_count_for_strict_contract": bool(
+                loose_decision.get(
+                    "loose_same_family_evidence_sufficient_for_contract_closure"
+                )
+            ),
+            "protein_only_topology_residual_promising_but_not_closure": bool(
+                protein_diagnostic_promising and not protein_contract_closes
+            ),
+            "p07658_prediction_path_cleared_now": bool(
+                p07658_coordinate_path_cleared
+            ),
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Current evidence is not enough. Keep threshold 0.44155 fixed; "
+                "clear P07658 with an accepted full-length prediction packet, "
+                "then acquire strict high-cofactor train/cal OOS rows before "
+                "the larger same-family structural surface."
+            ),
+        },
+        "source_artifacts": {
+            "current_measured_readout": _source_path_record(
+                current_measured_readout_path
+            ),
+            "near_cofactor_pressure_readout": _source_path_record(
+                near_cofactor_pressure_readout_path
+            ),
+            "loose_same_family_pressure_readout": _source_path_record(
+                loose_same_family_pressure_readout_path
+            ),
+            "protein_only_topology_scored_readout": _source_path_record(
+                protein_only_topology_scored_readout_path
+            ),
+            "p07658_prediction_acceptance_preflight": _source_path_record(
+                p07658_prediction_acceptance_preflight_path
+            ),
+            "p07658_alphafold_prediction_api_probe": _source_path_record(
+                p07658_alphafold_prediction_api_probe_path
+            ),
+            "p07658_local_predictor_runtime_scan": _source_path_record(
+                p07658_local_predictor_runtime_scan_path
+            ),
+            "p07658_full_length_predictor_provider_probe": _source_path_record(
+                p07658_full_length_predictor_provider_probe_path
+            ),
+            "p07658_3dbeacons_predicted_structure_probe": _source_path_record(
+                p07658_three_d_beacons_predicted_structure_probe_path
+            ),
+            "p07658_computed_model_repository_broad_probe": _source_path_record(
+                p07658_computed_model_repository_broad_probe_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Current Lever 3 evidence is measured but not sufficient for "
+                "deployment closure."
+            ),
+            "result": (
+                f"Canonical strict proxy readout is high-cofactor "
+                f"{strict_high_abstained}/{strict_high_rows} and same-family "
+                f"{strict_same_abstained}/{strict_same_rows}; diagnostics add "
+                f"near-cofactor {near_counts.get('rows_abstained_at_fixed_threshold')}/"
+                f"{near_counts.get('near_cofactor_pressure_rows')}, loose "
+                f"same-family {loose_counts.get('strict_plus_loose_diagnostic_abstained_at_fixed_threshold')}/"
+                f"{loose_counts.get('strict_plus_loose_diagnostic_rows')}, and "
+                f"protein-only combined {protein_abstained}/{protein_total} "
+                f"(fold-only {protein_fold_only_abstained}/"
+                f"{protein_fold_only_total}), none of which can close the "
+                "strict contracts."
+            ),
+            "next_action": (
+                "Do not emit a blocker packet yet; continue with P07658 accepted "
+                "prediction provenance or strict high-cofactor row acquisition."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_evidence_sufficiency_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Evidence-Sufficiency Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Fixed threshold: {readout['fixed_operating_point']['threshold']}",
+        "- Canonical train/cal OOS abstained: "
+        f"{counts['canonical_train_cal_oos_abstained']}/"
+        f"{counts['canonical_scored_train_cal_oos_rows']}",
+        "- Calibration in-scope retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_total']}",
+        "- Strict high-cofactor proxy: "
+        f"{counts['strict_high_cofactor_abstained']}/"
+        f"{counts['strict_high_cofactor_rows']}",
+        "- Strict same-family proxy: "
+        f"{counts['strict_same_family_abstained']}/"
+        f"{counts['strict_same_family_rows']}",
+        "- Protein-only topology combined/fold-only: "
+        f"{counts['protein_only_topology_abstained']}/"
+        f"{counts['protein_only_topology_rows']} and "
+        f"{counts['protein_only_topology_fold_only_abstained']}/"
+        f"{counts['protein_only_topology_fold_only_rows']}",
+        f"- Blockers: {readout['blockers']}",
+        "",
+        "## Measured Routes",
+        "",
+        "| route | rows | abstained | closure support | result |",
+        "| --- | ---: | ---: | --- | --- |",
+    ]
+    for route in readout.get("measured_routes", []):
+        lines.append(
+            f"| {route['route_id']} | {route['rows']} | {route['abstained']} | "
+            f"{route['deployment_closure_support']} | {route['result']} |"
+        )
+    lines += [
+        "",
+        "## Missing Evidence",
+        "",
+        "| gap | current measured state | smallest next experiment |",
+        "| --- | --- | --- |",
+    ]
+    for item in readout.get("missing_evidence", []):
+        state = json.dumps(item["current_measured_state"], sort_keys=True)
+        lines.append(
+            f"| {item['gap_id']} | `{state}` | {item['smallest_next_experiment']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        "- Protein-only topology residual promising but not closure: "
+        f"{decision['protein_only_topology_residual_promising_but_not_closure']}",
+        "- P07658 prediction path cleared now: "
+        f"{decision['p07658_prediction_path_cleared_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_evidence_sufficiency_readout(
+    *,
+    current_measured_readout_path: Path,
+    near_cofactor_pressure_readout_path: Path,
+    loose_same_family_pressure_readout_path: Path,
+    protein_only_topology_scored_readout_path: Path,
+    p07658_prediction_acceptance_preflight_path: Path,
+    p07658_alphafold_prediction_api_probe_path: Path,
+    p07658_local_predictor_runtime_scan_path: Path,
+    p07658_full_length_predictor_provider_probe_path: Path,
+    p07658_three_d_beacons_predicted_structure_probe_path: Path,
+    p07658_computed_model_repository_broad_probe_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_EVIDENCE_SUFFICIENCY_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_evidence_sufficiency_readout(
+        current_measured_readout_path=current_measured_readout_path,
+        near_cofactor_pressure_readout_path=near_cofactor_pressure_readout_path,
+        loose_same_family_pressure_readout_path=loose_same_family_pressure_readout_path,
+        protein_only_topology_scored_readout_path=(
+            protein_only_topology_scored_readout_path
+        ),
+        p07658_prediction_acceptance_preflight_path=(
+            p07658_prediction_acceptance_preflight_path
+        ),
+        p07658_alphafold_prediction_api_probe_path=(
+            p07658_alphafold_prediction_api_probe_path
+        ),
+        p07658_local_predictor_runtime_scan_path=(
+            p07658_local_predictor_runtime_scan_path
+        ),
+        p07658_full_length_predictor_provider_probe_path=(
+            p07658_full_length_predictor_provider_probe_path
+        ),
+        p07658_three_d_beacons_predicted_structure_probe_path=(
+            p07658_three_d_beacons_predicted_structure_probe_path
+        ),
+        p07658_computed_model_repository_broad_probe_path=(
+            p07658_computed_model_repository_broad_probe_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_evidence_sufficiency_readout_report(
                 readout
             ),
             encoding="utf-8",

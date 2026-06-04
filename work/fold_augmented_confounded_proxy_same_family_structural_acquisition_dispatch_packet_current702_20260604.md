@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy Same-Family Structural Acquisition Dispatch Packet - current702
 
-Run: 2026-06-04T13:35:35Z
+Run: 2026-06-04T16:40:04Z
 
 Dispatch-ready intake packet for the 170-row same-family structural train/cal OOS acquisition experiment. It creates unfilled slots and acceptance criteria only; it does not source rows, register candidates, score candidates, tune thresholds, or read heldout.
 

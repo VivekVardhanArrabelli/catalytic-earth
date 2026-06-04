@@ -31,7 +31,7 @@
       "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
       "review_only": true,
       "scoring_violation": false,
-      "sha256": "e299f76fe05d019731e26a9a981123ee5e6c079fa9a40cf708a9731afec9426a",
+      "sha256": "3e0433dbea445404d5005e025afc06f542cddfd952626c7d7491d73d3b9e4abe",
       "status": "fold_augmented_p07658_prediction_acceptance_preflight_blocked",
       "threshold_change_violation": false
     },
@@ -48,7 +48,7 @@
       "path": "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
       "review_only": true,
       "scoring_violation": false,
-      "sha256": "429b371df25daf88abf995c2d9a1693ee519bc8a82357e892dc2dc38f81fe484",
+      "sha256": "53e9fefb136970d09484a34c4e805f9247bb0622b07c550916657145d8d687e2",
       "status": "fold_augmented_p07658_prediction_dispatch_packet_ready_blocked_no_coordinate",
       "threshold_change_violation": false
     },
@@ -136,7 +136,7 @@
     "scoring_artifacts": 0,
     "threshold_change_artifacts": 0
   },
-  "created_utc": "2026-06-04T13:35:52Z",
+  "created_utc": "2026-06-04T16:38:50Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "current_blocker_packets_guardrail_clean": true,

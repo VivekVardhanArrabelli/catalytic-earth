@@ -1,6 +1,6 @@
 # Fold-Augmented Confounded Proxy High-Cofactor Acquisition Dispatch Packet - current702
 
-Run: 2026-06-04T13:35:32Z
+Run: 2026-06-04T16:39:57Z
 
 Dispatch-ready intake packet for the 16-row high-cofactor train/cal OOS acquisition experiment. It creates unfilled slots and acceptance criteria only; it does not source rows, register candidates, score candidates, tune thresholds, or read heldout.
 

@@ -1,6 +1,6 @@
 # Fold-Augmented Lever 3 Current Measured Readout - current702
 
-Run: 2026-06-04T15:03:18Z
+Run: 2026-06-04T16:40:13Z
 
 Lever 3 measured readout for the current predicted-structure fold/geometry novelty gate. It reports the unchanged train/cal-selected operating point on the latest non-heldout OOS surface first, then names the remaining evidence gaps needed before deployment closure.
 

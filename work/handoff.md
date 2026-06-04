@@ -3,15 +3,16 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T15:01:20Z`
-- STARTED_AT_LOCAL: `2026-06-04T10:01:20-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T15:52:08Z`
-- ENDED_AT_LOCAL: `2026-06-04T10:52:08-0500 CDT`
-- ELAPSED_MINUTES: `50.8`
-- Status: measured block complete; commit/push/sync verification follows this
-  handoff edit. Canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T15:01:20Z` with PID `36318`.
-  Current user instruction: work only on Lever 3.
+- STARTED_AT_UTC: `2026-06-04T16:03:39Z`
+- STARTED_AT_LOCAL: `2026-06-04T11:03:39-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T16:54:18Z`
+- ENDED_AT_LOCAL: `2026-06-04T11:54:18-0500 CDT`
+- ELAPSED_MINUTES: `50.65`
+- Status: Run 35 measured block complete. Canonical
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T16:03:39Z` with PID `11285`. Current user instruction: work
+  only on Lever 3. Commit, push, sync verification, and lock release are the
+  remaining wrap mechanics after this handoff/status update.
 
 ## Mission
 
@@ -62,6 +63,138 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 35
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T16:03:39Z`
+- STARTED_LOCAL: `2026-06-04T11:03:39-0500 CDT`
+- ENDED_AT: `2026-06-04T16:54:18Z`
+- ENDED_LOCAL: `2026-06-04T11:54:18-0500 CDT`
+- ELAPSED_MINUTES: `50.65`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T16:03:39Z` with PID `11285`.
+
+#### Current intent
+
+Work only on Lever 3. Continue from the measured readout by trying the exact
+P07658 predicted-coordinate gap and, if that cannot be deployment-validly
+closed during the run, build another measured source-free readout rather than
+defaulting to a blocker packet.
+
+#### What changed
+
+- Refreshed the required Lever 3 current measured readout first:
+  `artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_current_measured_readout_current702_20260604.md`.
+  The unchanged train/cal-selected threshold `0.44155` still scores 204
+  train/cal OOS rows, abstains 72, retains 31/34 calibration in-scope rows,
+  abstains 0/4 strict high-cofactor rows, and abstains 11/59 strict
+  same-family structural rows. Deployment closure remains false.
+- Added a measured, non-blocker Lever 3 evidence-sufficiency builder/CLI:
+  `build-fold-augmented-lever3-evidence-sufficiency-readout`. It writes
+  `artifacts/v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.md`.
+  The readout combines five attempted routes: canonical strict proxy 72/204,
+  near-cofactor diagnostic 8/16, loose same-family diagnostic 26/80,
+  protein-only topology residual combined 7/8 but fold-only only 2/8 with
+  1/8 predicted-geometry-ok rows, and P07658 full-length prediction acceptance
+  still failing 7/8 checks.
+- Expanded the P07658 evidence trace inside the sufficiency readout. It now
+  cites the acceptance preflight, AlphaFold prediction API probe, local runtime
+  scan, full-length provider probe, 3D-Beacons probe, and broad public
+  computed-model repository probe. Current values are: AlphaFold API models 0,
+  local runtime commands 0/5, provider coordinates 0, 3D-Beacons deployment
+  valid predicted rows 0, and broad public repository deployment-valid
+  predicted rows 0.
+- Refreshed the P07658 acceptance preflight and dispatch packet after the
+  current repo-state check. P07658 remains blocked: no candidate coordinate,
+  no filled provenance, 7 failed acceptance checks, and 0/6 provider routes
+  returning a usable coordinate.
+- Refreshed downstream Lever 3 packet/readout artifacts so source hashes stay
+  current: blocker-packet guardrail audit, minimum-next-experiment queue,
+  high-cofactor dispatch packet, same-family structural dispatch packet,
+  dispatch readiness summary, current measured readout, loose same-family
+  pressure readout, and evidence-sufficiency readout.
+- Added focused coverage in `tests/test_northstar_next_levers.py`,
+  `tests/test_cli.py`, and `tests/test_geometry_artifact_regression.py` for
+  the new sufficiency builder, CLI defaults, artifact counts, P07658 expanded
+  source counts, and dispatch source-hash freshness.
+- Ran an expanded live local-runtime sweep outside the formal artifact: 13
+  common predictor commands and 11 Python modules were absent. The formal
+  artifact remains the deployment trace and still records 0/5 local runtime
+  commands.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, threshold values, threshold tuning, model fitting, row labels, or
+  row imports changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, source IDs, target names, labels, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- No candidate rows were newly scored and no coordinates were staged during
+  this run. Existing dispatch/blocker artifacts were refreshed only to keep
+  source hashes current.
+- The new sufficiency artifact is a measured readout, not a blocker packet and
+  not a deployment-closure claim.
+
+#### Verification
+
+- Focused source-hash/readout/dispatch tests:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_evidence_sufficiency_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_confounded_proxy_same_family_structural_acquisition_dispatch_packet_counts -q`:
+  4 passed, 7 subtests passed.
+- Focused builder/CLI/regression tests for the new sufficiency readout:
+  4 passed, 7 subtests passed.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1417 passed, 191 subtests, with the
+  existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1372 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Final touched-artifact JSON parse: 8 artifacts parsed.
+- Final docs artifact-reference check to `/tmp`: missing 0.
+- Additional consistency checks: 10 changed artifacts had current
+  `source_artifacts` hashes, changed-artifact guardrail flags had no forbidden
+  true values, 52 fold-augmented 20260604 artifacts parsed, and 48
+  fold-augmented reports had Markdown titles.
+- Disk guardrail remained above 10 GiB: exact free space 10.486 GiB.
+
+#### Commit/push status
+
+- Progress log entry appended and `work/status.md` regenerated.
+- Commit, push, `HEAD == origin/main` verification, and lock release are the
+  remaining mechanical wrap steps after this handoff edit. If any of those
+  fail, update this section before returning.
+
+#### Exact next action
+
+Do not change or retune threshold `0.44155`. The next Lever 3 action is:
+
+1. Run or provision an approved full-length predictor/provider for the exact
+   P07658 715-residue sequence, explicitly documenting selenocysteine U140
+   handling and provider/model/version/path/checksum provenance.
+2. Fill the P07658 provenance packet and rerun
+   `build-fold-augmented-p07658-prediction-acceptance-preflight`.
+3. Only if all P07658 acceptance checks pass, stage the coordinate and rerun
+   unchanged-threshold row scoring/readouts.
+4. Acquire 16 true non-heldout train/cal OOS rows satisfying the strict
+   source-free high-cofactor/locus contract; near-cofactor pressure rows do
+   not count.
+5. Acquire the strict same-family structural train/cal OOS surface after the
+   high-cofactor gap; current strict-plus-loose evidence reaches only 26/80
+   and does not close the 170-row lower-bound gap.
 
 ### 2026-06-04 Lever 3 Forward Push Run 34
 

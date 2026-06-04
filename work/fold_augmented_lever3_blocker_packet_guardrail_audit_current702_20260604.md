@@ -1,6 +1,6 @@
 # Fold-Augmented Lever 3 Blocker Packet Guardrail Audit - current702
 
-Run: 2026-06-04T13:35:52Z
+Run: 2026-06-04T16:38:50Z
 
 Review-only guardrail audit for the current Lever 3 blocker packets. It verifies that the packets preserve threshold 0.44155, do not score rows, do not stage coordinates, do not tune on heldout rows, and do not use experimental PDB shortcuts.
 

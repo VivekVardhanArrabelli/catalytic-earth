@@ -78,7 +78,7 @@
     "required_provider_fields": 14,
     "rows_scored_now": 0
   },
-  "created_utc": "2026-06-04T13:09:33Z",
+  "created_utc": "2026-06-04T16:36:51Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "dispatch_packet_ready_for_provider_run": true,
@@ -112,7 +112,7 @@
       "exists": true,
       "input_id": "prediction_acceptance_preflight",
       "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
-      "sha256": "e299f76fe05d019731e26a9a981123ee5e6c079fa9a40cf708a9731afec9426a"
+      "sha256": "3e0433dbea445404d5005e025afc06f542cddfd952626c7d7491d73d3b9e4abe"
     }
   ],
   "guardrails": {
@@ -233,7 +233,7 @@
     "prediction_acceptance_preflight": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
-      "sha256": "e299f76fe05d019731e26a9a981123ee5e6c079fa9a40cf708a9731afec9426a"
+      "sha256": "3e0433dbea445404d5005e025afc06f542cddfd952626c7d7491d73d3b9e4abe"
     },
     "prediction_provenance_template": {
       "exists": true,

@@ -16,7 +16,7 @@
     "intake_slots_required": 16,
     "near_miss_rows_not_countable": 16
   },
-  "created_utc": "2026-06-04T13:35:32Z",
+  "created_utc": "2026-06-04T16:39:57Z",
   "decision": {
     "acquisition_dispatch_ready_for_row_intake": true,
     "apply_or_change_threshold_now": false,
@@ -768,7 +768,7 @@
     "lever3_minimum_next_experiment_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json",
-      "sha256": "4aea9589d312b6e7db491a5dd08b9ceba3e0e98285313468979679eaac74468d"
+      "sha256": "6ecbcb7772ceb3ce2a3b8a90a756c750e6136fb64882b99d30b88f8ae8f9e709"
     }
   },
   "status": "fold_augmented_confounded_proxy_high_cofactor_acquisition_dispatch_packet_ready_unfilled"

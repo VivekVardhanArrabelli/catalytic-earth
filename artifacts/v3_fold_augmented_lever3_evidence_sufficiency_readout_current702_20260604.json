@@ -1,0 +1,305 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604",
+  "blockers": [
+    "p07658_exact_predicted_coordinate_not_accepted",
+    "strict_high_cofactor_proxy_target_not_met",
+    "strict_same_family_structural_proxy_target_not_met",
+    "protein_only_topology_residual_diagnostic_has_blockers"
+  ],
+  "counts": {
+    "blockers": 4,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_total": 34,
+    "canonical_scored_train_cal_oos_rows": 204,
+    "canonical_train_cal_oos_abstained": 72,
+    "critical_violation_total": 0,
+    "high_cofactor_intake_slots_required": 16,
+    "measured_routes": 5,
+    "missing_evidence_items": 4,
+    "near_cofactor_diagnostic_abstained": 8,
+    "near_cofactor_diagnostic_rows": 16,
+    "p07658_3dbeacons_deployment_valid_predicted_rows": 0,
+    "p07658_acceptance_checks_failed": 7,
+    "p07658_api_models_returned": 0,
+    "p07658_local_path_commands_available": 0,
+    "p07658_local_path_commands_checked": 5,
+    "p07658_provider_coordinates_returned": 0,
+    "p07658_public_repository_deployment_valid_predicted_rows": 0,
+    "protein_only_topology_abstained": 7,
+    "protein_only_topology_fold_only_abstained": 2,
+    "protein_only_topology_fold_only_rows": 8,
+    "protein_only_topology_predicted_geometry_ok_rows": 1,
+    "protein_only_topology_rows": 8,
+    "same_family_structural_intake_slots_required": 170,
+    "strict_high_cofactor_abstained": 0,
+    "strict_high_cofactor_contract_rows_added": 0,
+    "strict_high_cofactor_rows": 4,
+    "strict_plus_loose_same_family_diagnostic_abstained": 26,
+    "strict_plus_loose_same_family_diagnostic_rows": 80,
+    "strict_same_family_abstained": 11,
+    "strict_same_family_rows": 59
+  },
+  "created_utc": "2026-06-04T16:40:25Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_sufficient_for_deployment_closure": false,
+    "loose_same_family_pressure_can_count_for_strict_contract": false,
+    "measured_readout_available": true,
+    "near_cofactor_pressure_can_count_for_strict_high_cofactor_contract": false,
+    "next_gate": "Current evidence is not enough. Keep threshold 0.44155 fixed; clear P07658 with an accepted full-length prediction packet, then acquire strict high-cofactor train/cal OOS rows before the larger same-family structural surface.",
+    "p07658_prediction_path_cleared_now": false,
+    "protein_only_topology_residual_promising_but_not_closure": true,
+    "strict_high_cofactor_target_met": false,
+    "strict_same_family_structural_target_met": false,
+    "true_in_scope_retention_ok_at_train_cal_selected_threshold": true
+  },
+  "fixed_operating_point": {
+    "channel": "combined_mean_geometry_fold",
+    "fold_proxy_component_threshold": 0.4325,
+    "source": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de"
+    },
+    "threshold": 0.44155
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_threshold_preserved": true
+  },
+  "interpretation": {
+    "headline": "Current Lever 3 evidence is measured but not sufficient for deployment closure.",
+    "next_action": "Do not emit a blocker packet yet; continue with P07658 accepted prediction provenance or strict high-cofactor row acquisition.",
+    "result": "Canonical strict proxy readout is high-cofactor 0/4 and same-family 11/59; diagnostics add near-cofactor 8/16, loose same-family 26/80, and protein-only combined 7/8 (fold-only 2/8), none of which can close the strict contracts."
+  },
+  "measured_routes": [
+    {
+      "abstained": 72,
+      "deployment_closure_support": false,
+      "measured": true,
+      "result": "strict high-cofactor 0/4; strict same-family structural 11/59",
+      "route_id": "canonical_strict_proxy_operating_point",
+      "rows": 204,
+      "why_not_closure": "strict confounded proxy targets are not met at the unchanged train/cal-selected threshold"
+    },
+    {
+      "abstained": 8,
+      "deployment_closure_support": false,
+      "measured": true,
+      "result": "8/16 abstained",
+      "route_id": "near_cofactor_pressure_tranche",
+      "rows": 16,
+      "why_not_closure": "diagnostic near-cofactor rows do not satisfy the strict source-free high-cofactor membership contract"
+    },
+    {
+      "abstained": 26,
+      "deployment_closure_support": false,
+      "measured": true,
+      "result": "26/80 abstained",
+      "route_id": "loose_same_family_pressure_surface",
+      "rows": 80,
+      "why_not_closure": "relaxing same-family membership still stays far below the strict structural acquisition target"
+    },
+    {
+      "abstained": 7,
+      "deployment_closure_support": false,
+      "measured": true,
+      "result": "combined 7/8; fold-only 2/8 abstained",
+      "route_id": "protein_only_fold_topology_residual_tranche",
+      "rows": 8,
+      "why_not_closure": "the tranche is small and carries predicted-geometry blockers; its pure fold-channel readout is weaker than the combined geometry/fold signal"
+    },
+    {
+      "abstained": 0,
+      "deployment_closure_support": false,
+      "measured": true,
+      "result": "acceptance failed 7/8 checks; AlphaFold API models 0; local commands 0/5; provider coordinates 0; public predicted coordinates 0/0",
+      "route_id": "p07658_full_length_prediction_coordinate",
+      "rows": 1,
+      "why_not_closure": "no accepted full-length predicted coordinate/provenance packet exists for exact P07658"
+    }
+  ],
+  "missing_evidence": [
+    {
+      "current_measured_state": {
+        "acceptance_checks_failed": 7,
+        "acceptance_preflight_passes": false,
+        "alphafold_api_models_returned": 0,
+        "credentialed_or_denied_providers": 2,
+        "local_path_commands_available": 0,
+        "local_path_commands_checked": 5,
+        "provider_coordinates_returned": 0,
+        "public_repository_deployment_valid_predicted_rows": 0,
+        "surface_completeness_blocker_rows": 1,
+        "three_d_beacons_deployment_valid_predicted_rows": 0
+      },
+      "gap_id": "p07658_surface_completeness",
+      "smallest_next_experiment": "Run or provision one approved full-length predictor/provider for exact P07658, with documented selenocysteine position-140 handling and coordinate/provider/model/version/checksum provenance; rerun the acceptance preflight before scoring."
+    },
+    {
+      "current_measured_state": {
+        "intake_slots_required": 16,
+        "near_cofactor_diagnostic_abstained": 8,
+        "near_cofactor_diagnostic_rows": 16,
+        "strict_abstained": 0,
+        "strict_high_cofactor_contract_rows_added": 0,
+        "strict_rows": 4
+      },
+      "gap_id": "strict_high_cofactor_train_cal_oos_rows",
+      "smallest_next_experiment": "Acquire and score 16 new non-heldout train/cal OOS rows with strict source-free high-cofactor/locus membership; near-cofactor pressure rows are insufficient."
+    },
+    {
+      "current_measured_state": {
+        "intake_slots_required": 170,
+        "strict_abstained": 11,
+        "strict_plus_loose_diagnostic_abstained": 26,
+        "strict_plus_loose_diagnostic_rows": 80,
+        "strict_rows": 59
+      },
+      "gap_id": "strict_same_family_structural_surface",
+      "smallest_next_experiment": "Acquire a new strict same-family structural train/cal OOS surface; the current strict-plus-loose diagnostic reaches only 26/80 and cannot close the 170-row lower-bound gap."
+    },
+    {
+      "current_measured_state": {
+        "artifact_blockers": [
+          "some_tranche_rows_missing_predicted_geometry"
+        ],
+        "diagnostic_abstained": 7,
+        "diagnostic_rows": 8,
+        "fold_only_abstained": 2,
+        "fold_only_rows": 8,
+        "fold_only_threshold": 0.4325,
+        "predicted_geometry_blocker_rows": 7,
+        "predicted_geometry_ok_rows": 1
+      },
+      "gap_id": "protein_only_topology_residual_contract",
+      "smallest_next_experiment": "Convert the protein-only topology signal into a deployment-valid axis only if it uses a geometry-independent protein-only rule or repairs the row-specific geometry caveats, then scale beyond the eight-row diagnostic tranche."
+    }
+  ],
+  "route_readouts": {
+    "canonical_current": {
+      "all_train_cal_oos_abstained_at_fixed_threshold": 72,
+      "calibration_in_scope_retained": 31,
+      "calibration_in_scope_total": 34,
+      "high_cofactor_proxy_abstained": 0,
+      "high_cofactor_proxy_rows": 4,
+      "same_family_structural_proxy_abstained": 11,
+      "same_family_structural_proxy_rows": 59,
+      "scored_train_cal_oos_rows": 204
+    },
+    "loose_same_family_pressure": {
+      "contract_closure_sufficient": false,
+      "strict_plus_loose_abstained": 26,
+      "strict_plus_loose_rows": 80
+    },
+    "near_cofactor_pressure": {
+      "abstained": 8,
+      "contract_closure_sufficient": false,
+      "rows": 16,
+      "strict_high_cofactor_contract_rows_added": 0
+    },
+    "p07658_prediction_path": {
+      "acceptance_checks_failed": 7,
+      "acceptance_checks_passed": 1,
+      "acceptance_preflight_passes": false,
+      "alphafold_api_models_returned": 0,
+      "coordinate_blocker_cleared": false,
+      "local_path_commands_available": 0,
+      "local_path_commands_checked": 5,
+      "provider_coordinates_returned": 0,
+      "public_repository_deployment_valid_predicted_rows": 0,
+      "three_d_beacons_deployment_valid_predicted_rows": 0
+    },
+    "protein_only_topology_residual": {
+      "abstain_recall": 0.875,
+      "abstained": 7,
+      "artifact_blockers": [
+        "some_tranche_rows_missing_predicted_geometry"
+      ],
+      "contract_closure_sufficient": false,
+      "diagnostic_promising": true,
+      "fold_only_threshold_readout": {
+        "abstain_recall": 0.25,
+        "abstained": 2,
+        "retained": 6,
+        "retained_recall": 0.75,
+        "row_count": 8,
+        "threshold": 0.4325
+      },
+      "predicted_geometry_blocker_rows": 7,
+      "predicted_geometry_ok_rows": 1,
+      "retained": 1,
+      "retained_recall": 0.125,
+      "row_count": 8,
+      "threshold": 0.44155
+    }
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_evidence_sufficiency_readout",
+  "scope": "Lever 3 measured evidence-sufficiency readout after trying the current strict operating point, near-cofactor pressure rows, loose same-family pressure rows, protein-only topology residual rows, and the P07658 full-length prediction path. It is not a blocker packet and does not change thresholds.",
+  "source_artifacts": {
+    "current_measured_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+      "sha256": "4c25cacd420898f5ab8694b378214a50f92004467a7fff12fcb4c2cca9b0a2b4"
+    },
+    "loose_same_family_pressure_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_loose_same_family_pressure_readout_current702_20260604.json",
+      "sha256": "c54206af924097de94cc0fc83833f86edeb1a03ade55c428a7967b57dc2372f5"
+    },
+    "near_cofactor_pressure_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_near_cofactor_pressure_scored_readout_current702_20260604.json",
+      "sha256": "f6475ce4c61143929ec35808814a28f7936656705e3a1693d5a3f6ad166c5e2f"
+    },
+    "p07658_3dbeacons_predicted_structure_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json",
+      "sha256": "aac05da8b1c6e4b5af07aed4cf18182eb88f1709c55f27944341ffa8ffadc404"
+    },
+    "p07658_alphafold_prediction_api_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.json",
+      "sha256": "f4a82200a5905b4b3cb8f5d74cd7ee549f1ce437496efcd02238b06de6ef8f5c"
+    },
+    "p07658_computed_model_repository_broad_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_computed_model_repository_broad_probe_current702_20260604.json",
+      "sha256": "c6471984d813987da8038d1bf5ec3c7aae83e93f202aa207b86152abed879261"
+    },
+    "p07658_full_length_predictor_provider_probe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json",
+      "sha256": "74ff0f96853f85d62f6e4f68a35ce3cf0943b76984444bace21977ebfec04c44"
+    },
+    "p07658_local_predictor_runtime_scan": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json",
+      "sha256": "15d2ada88c9fc3b57a3d60278cc3dfa467a689d94b6d355392ddc51be010e749"
+    },
+    "p07658_prediction_acceptance_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
+      "sha256": "3e0433dbea445404d5005e025afc06f542cddfd952626c7d7491d73d3b9e4abe"
+    },
+    "protein_only_topology_scored_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_scored_readout_current702_20260603.json",
+      "sha256": "95b5e5b3bde9ead7d3ba1567c25db9069515595d0bed41c0143c42d705f60b03"
+    }
+  },
+  "status": "fold_augmented_lever3_evidence_sufficiency_readout_ready_evidence_insufficient"
+}
