@@ -600,6 +600,16 @@ def render_lever2_mechanism_feature_incremental_readout_report(
         )
         or []
     )
+    missing_oos_retained = [
+        row for row in missing_oos_rows if not row.get("current_surface_abstains")
+    ]
+    missing_oos_abstained = [
+        row for row in missing_oos_rows if row.get("current_surface_abstains")
+    ]
+
+    def _score_sort(row: dict[str, Any]) -> float:
+        score = row.get("current_surface_score")
+        return float(score) if score is not None else -1.0
 
     def _entry_ids(rows: list[dict[str, Any]]) -> str:
         ids = [str(row.get("entry_id")) for row in rows if row.get("entry_id")]
@@ -689,6 +699,23 @@ def render_lever2_mechanism_feature_incremental_readout_report(
             "- Current calibration OOS rows still requiring source-free mechanism "
             f"features ({len(missing_oos_rows)}): {_entry_ids(missing_oos_rows)}"
         ),
+        "",
+        "## Missing OOS Priority",
+        "",
+        f"- Current-retained missing OOS rows: {len(missing_oos_retained)}",
+        f"- Already-abstained missing OOS rows: {len(missing_oos_abstained)}",
+        "- Prioritize current-retained rows first because they are the direct "
+        "route to incremental OOS value beyond geometry/fold.",
+        "",
+        "| retained OOS row | accession | current score |",
+        "| --- | --- | ---: |",
+    ]
+    for row in sorted(missing_oos_retained, key=_score_sort, reverse=True)[:20]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row.get('current_surface_score')} |"
+        )
+    lines += [
         "",
         "## Decision",
         "",

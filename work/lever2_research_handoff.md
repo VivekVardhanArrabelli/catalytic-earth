@@ -20,9 +20,9 @@
 
 - STARTED_AT: `2026-06-04T14:30:32Z`
 - STARTED_LOCAL: `2026-06-04T09:30:32-0500 CDT`
-- ENDED_AT: `2026-06-04T15:00:37Z`
-- ENDED_LOCAL: `2026-06-04T10:00:37-0500 CDT`
-- ELAPSED_MINUTES: `30.1`
+- ENDED_AT: `2026-06-04T15:19:16Z`
+- ENDED_LOCAL: `2026-06-04T10:19:16-0500 CDT`
+- ELAPSED_MINUTES: `48.7`
 
 #### Intent
 
@@ -100,26 +100,41 @@ calibration rows.
 - Source-free row-specific mechanism feature sidecar for the 67 current
   geometry/fold calibration-OOS rows not already covered by the mechanism
   sidecar.
+- Of those 67 missing calibration-OOS rows, 40 are retained by the current
+  geometry/fold operating point and 27 are already abstained. Prioritize the 40
+  retained rows first because they are the most direct route to incremental OOS
+  value beyond geometry/fold.
+- Existing materialized source-free active-site locator files cover 0/34
+  missing primary rows and 0/67 missing OOS rows. Existing source-free active
+  site planning artifacts only show partial overlap for `m_csa:216` and
+  `m_csa:35`; they do not remove the need for split-aligned mechanism sidecar
+  materialization.
 - Missing frozen feature axes still required for source-free projection
   completeness: bond-change counts, electron-transfer counts, event-topology
   counts, confidence metadata counts, and active-site locator counts listed in
   the projection readout report.
 
-#### Validation so far
+#### Validation
 
 - `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_lever2_mechanism_incremental_readout.py tests/test_cli.py -q`
   passed: `308 passed, 159 subtests passed`.
 - `PYTHONPATH=src python -m pytest -q` passed:
-  `1415 passed, 1 warning, 190 subtests passed`.
+  `1415 passed, 1 warning, 190 subtests passed in 81.33s`.
+- `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  `Ran 1370 tests in 48.968s OK`.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
 - `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check --out /tmp/lever2_docs_artifact_reference_check.json`
+  passed with `missing: 0`; generated docs timestamp churn was restored.
 - `python -m json.tool` passed for both new JSON artifacts.
 - `git diff --check` passed.
 - Disk guardrail: `df -h .` showed 12 GiB free.
 
 #### Current status
 
-Ready to commit and push on `lever-2-research-track`; final sync verification
-will be recorded in the automation memory and final response after the push.
+Main readout commit `d885bba` is pushed to
+`origin/lever-2-research-track`. A final priority/report refinement commit is
+pending for this updated handoff and the missing-OOS priority report section.
 
 #### Exact next action
 
