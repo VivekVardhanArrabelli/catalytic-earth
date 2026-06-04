@@ -27,6 +27,10 @@ DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID = (
 DEFAULT_CURRENT_EXTENDED_OOS_MECHANISM_OVERLAP_ARTIFACT_ID = (
     "v3_lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604"
 )
+DEFAULT_PARTIAL_SURFACE_CURRENT_SPLIT_PORTABILITY_ARTIFACT_ID = (
+    "v3_lever2_source_free_partial_surface_current_split_portability_readout_"
+    "current702_20260604"
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -235,6 +239,21 @@ def _m_csa_ids_from_candidate_dir(candidate_dir: Path | None) -> set[str]:
         parts = path.stem.split("_")
         if len(parts) >= 3 and parts[0] == "m" and parts[1] == "csa":
             entry_ids.add(f"m_csa:{parts[2]}")
+            continue
+        try:
+            data = _read_json(path)
+        except (json.JSONDecodeError, OSError):
+            continue
+        pending: list[Any] = [data]
+        while pending:
+            value = pending.pop()
+            if isinstance(value, dict):
+                entry_id = value.get("entry_id")
+                if isinstance(entry_id, str) and entry_id.startswith("m_csa:"):
+                    entry_ids.add(entry_id)
+                pending.extend(value.values())
+            elif isinstance(value, list):
+                pending.extend(value)
     return entry_ids
 
 
@@ -256,6 +275,97 @@ def _entry_ids_from_candidate_surface(candidate_surface: dict[str, Any]) -> set[
         str(row.get("entry_id"))
         for row in rows
         if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _entry_ids_from_event_axis_materialization(
+    event_axis_materialization: dict[str, Any],
+) -> set[str]:
+    rows = event_axis_materialization.get("materialization_rows") or []
+    return {
+        str(row.get("entry_id"))
+        for row in rows
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and not row.get("critical_violations")
+        and row.get("source_free_event_axis_status")
+        == "source_free_event_axis_linker_ready"
+    }
+
+
+def _entry_ids_from_locator_materialization(
+    locator_materialization: dict[str, Any],
+) -> set[str]:
+    rows = locator_materialization.get("row_decisions") or []
+    return {
+        str(row.get("entry_id"))
+        for row in rows
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("approved_locator_sidecar_written") is True
+        and row.get("decision") == "materialized_to_audited_locator_dir"
+        and not row.get("critical_violations")
+    }
+
+
+def _surface_overlap_summary(
+    *,
+    surface_ids: set[str],
+    current_primary_rows: dict[str, dict[str, Any]],
+    current_oos_rows: dict[str, dict[str, Any]],
+    current_retained_oos_ids: set[str],
+    current_abstained_oos_ids: set[str],
+    channel: str,
+) -> dict[str, Any]:
+    primary_overlap = sorted(
+        surface_ids & set(current_primary_rows), key=_entry_sort_key
+    )
+    retained_oos_overlap = sorted(
+        surface_ids & current_retained_oos_ids, key=_entry_sort_key
+    )
+    abstained_oos_overlap = sorted(
+        surface_ids & current_abstained_oos_ids, key=_entry_sort_key
+    )
+
+    def _primary_row(entry_id: str) -> dict[str, Any]:
+        row = current_primary_rows[entry_id]
+        return {
+            "entry_id": entry_id,
+            "current_surface_score": _rounded_current_score(row, channel),
+        }
+
+    def _oos_row(entry_id: str, *, abstains: bool) -> dict[str, Any]:
+        row = current_oos_rows[entry_id]
+        return {
+            "entry_id": entry_id,
+            "current_surface_score": _rounded_current_score(row, channel),
+            "current_surface_abstains": abstains,
+        }
+
+    return {
+        "surface_rows": len(surface_ids),
+        "current_primary_overlap_rows": len(primary_overlap),
+        "current_retained_oos_overlap_rows": len(retained_oos_overlap),
+        "current_abstained_oos_overlap_rows": len(abstained_oos_overlap),
+        "current_scored_oos_overlap_rows": (
+            len(retained_oos_overlap) + len(abstained_oos_overlap)
+        ),
+        "current_primary_overlap_entry_ids": primary_overlap,
+        "current_retained_oos_overlap_entry_ids": retained_oos_overlap,
+        "current_abstained_oos_overlap_entry_ids": abstained_oos_overlap,
+        "row_readouts": {
+            "current_primary_overlap_rows": [
+                _primary_row(entry_id) for entry_id in primary_overlap
+            ],
+            "current_retained_oos_overlap_rows": [
+                _oos_row(entry_id, abstains=False)
+                for entry_id in retained_oos_overlap
+            ],
+            "current_abstained_oos_overlap_rows": [
+                _oos_row(entry_id, abstains=True)
+                for entry_id in abstained_oos_overlap
+            ],
+        },
     }
 
 
@@ -1478,6 +1588,387 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
     }
 
 
+def build_lever2_source_free_partial_surface_current_split_portability_readout(
+    *,
+    current_measured_readout_path: Path,
+    current_extended_oos_surface_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    source_free_event_axis_linker_materialization_gate_path: Path,
+    source_free_locator_rewrite_materialization_gate_path: Path,
+    review_only_locator_candidate_dir_path: Path | None = None,
+    artifact_id: str = DEFAULT_PARTIAL_SURFACE_CURRENT_SPLIT_PORTABILITY_ARTIFACT_ID,
+) -> dict[str, Any]:
+    current_measured = _read_json(current_measured_readout_path)
+    current_surface = _read_json(current_extended_oos_surface_path)
+    current_primary_contract = _read_json(current_in_scope_threshold_contract_path)
+    candidate_surface = _read_json(source_free_projection_repair_candidate_surface_path)
+    event_axis_materialization = _read_json(
+        source_free_event_axis_linker_materialization_gate_path
+    )
+    locator_materialization = _read_json(
+        source_free_locator_rewrite_materialization_gate_path
+    )
+
+    channel, current_threshold = _current_readout_threshold(current_measured)
+    current_primary_rows = _fold_rows_by_id(
+        current_primary_contract.get("calibration_row_scores") or []
+    )
+    current_oos_rows = _current_surface_rows_with_score(current_surface, channel)
+    all_current_oos_rows = _fold_rows_by_id(
+        current_surface.get("candidate_row_scores") or []
+    )
+    current_abstained_oos_ids = {
+        entry_id
+        for entry_id, row in current_oos_rows.items()
+        if _current_abstains(row, channel, current_threshold)
+    }
+    current_retained_oos_ids = set(current_oos_rows) - current_abstained_oos_ids
+
+    candidate_ids = _entry_ids_from_candidate_surface(candidate_surface)
+    event_axis_ids = _entry_ids_from_event_axis_materialization(
+        event_axis_materialization
+    )
+    locator_ids = _entry_ids_from_locator_materialization(locator_materialization)
+    review_only_locator_candidate_ids = _m_csa_ids_from_candidate_dir(
+        review_only_locator_candidate_dir_path
+    )
+    union_ids = candidate_ids | event_axis_ids | locator_ids
+
+    surfaces = {
+        "source_free_projection_candidate_surface": candidate_ids,
+        "source_free_event_axis_linkers": event_axis_ids,
+        "source_free_locator_sidecars": locator_ids,
+        "source_free_partial_surface_union": union_ids,
+    }
+    surface_summaries = {
+        name: _surface_overlap_summary(
+            surface_ids=ids,
+            current_primary_rows=current_primary_rows,
+            current_oos_rows=current_oos_rows,
+            current_retained_oos_ids=current_retained_oos_ids,
+            current_abstained_oos_ids=current_abstained_oos_ids,
+            channel=channel,
+        )
+        for name, ids in surfaces.items()
+    }
+    review_only_locator_candidate_summary = _surface_overlap_summary(
+        surface_ids=review_only_locator_candidate_ids,
+        current_primary_rows=current_primary_rows,
+        current_oos_rows=current_oos_rows,
+        current_retained_oos_ids=current_retained_oos_ids,
+        current_abstained_oos_ids=current_abstained_oos_ids,
+        channel=channel,
+    )
+    union_summary = surface_summaries["source_free_partial_surface_union"]
+
+    missing_primary_ids = sorted(
+        set(current_primary_rows) - union_ids, key=_entry_sort_key
+    )
+    missing_retained_oos_ids = sorted(
+        current_retained_oos_ids - union_ids, key=_entry_sort_key
+    )
+    missing_abstained_oos_ids = sorted(
+        current_abstained_oos_ids - union_ids, key=_entry_sort_key
+    )
+
+    def _missing_primary_row(entry_id: str) -> dict[str, Any]:
+        row = current_primary_rows[entry_id]
+        return {
+            "entry_id": entry_id,
+            "current_surface_score": _rounded_current_score(row, channel),
+            "required_evidence": (
+                "source-free row-specific mechanism feature row on the current "
+                "calibration-primary split"
+            ),
+        }
+
+    def _missing_oos_row(entry_id: str, *, abstains: bool) -> dict[str, Any]:
+        row = current_oos_rows[entry_id]
+        return {
+            "entry_id": entry_id,
+            "current_surface_score": _rounded_current_score(row, channel),
+            "current_surface_abstains": abstains,
+            "required_evidence": (
+                "source-free row-specific mechanism feature row on the current "
+                "extended train/cal OOS split"
+            ),
+        }
+
+    route_reduces_primary_gap = bool(union_summary["current_primary_overlap_rows"])
+    route_reduces_retained_oos_gap = bool(
+        union_summary["current_retained_oos_overlap_rows"]
+    )
+    route_reduces_current_gap = bool(
+        route_reduces_primary_gap
+        or route_reduces_retained_oos_gap
+        or union_summary["current_abstained_oos_overlap_rows"]
+    )
+    route_negative = not route_reduces_current_gap
+    status = (
+        "lever2_source_free_partial_surface_current_split_portability_"
+        "readout_research_only_reuse_negative"
+        if route_negative
+        else (
+            "lever2_source_free_partial_surface_current_split_portability_"
+            "readout_research_only_overlap_available"
+        )
+    )
+    result_class = "research_only_reuse_negative" if route_negative else "research_only"
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "source_free_partial_surface_current_split_portability_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal readout testing whether existing approved "
+            "source-free partial-surface rows, locator sidecars, and event-axis "
+            "linkers reduce the current geometry/fold primary or extended-OOS "
+            "mechanism evidence gap. It uses entry IDs only for split accounting, "
+            "does not score heldout rows, and does not apply or tune thresholds."
+        ),
+        "fixed_operating_points": {
+            "current_surface": {
+                "channel": channel,
+                "threshold": round(current_threshold, 8),
+                "decision_rule": "abstain_when_current_surface_score_below_threshold",
+                "current_measured_context": (
+                    (current_measured.get("measured_readout") or {}).get(
+                        "train_cal_oos_current_scored_surface"
+                    )
+                ),
+            },
+        },
+        "measured_readout": {
+            "current_split_surface": {
+                "current_primary_rows": len(current_primary_rows),
+                "current_extended_candidate_oos_rows": len(all_current_oos_rows),
+                "current_extended_scored_oos_rows": len(current_oos_rows),
+                "current_extended_unscored_oos_rows": (
+                    len(all_current_oos_rows) - len(current_oos_rows)
+                ),
+                "current_retained_oos_rows": len(current_retained_oos_ids),
+                "current_abstained_oos_rows": len(current_abstained_oos_ids),
+            },
+            "source_free_partial_surface_overlap": surface_summaries,
+            "review_only_locator_candidate_current_split_overlap": (
+                review_only_locator_candidate_summary
+            ),
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "current_primary_source_free_partial_surface_rows",
+                "required_rows": len(current_primary_rows),
+                "valid_overlap_rows_now": union_summary[
+                    "current_primary_overlap_rows"
+                ],
+                "missing_rows_now": len(missing_primary_ids),
+                "why_it_matters": (
+                    "Primary retention cost must be measurable on the current "
+                    "geometry/fold calibration-primary split before Lever 2 can "
+                    "claim operating-point value."
+                ),
+            },
+            {
+                "gap_id": "current_retained_oos_source_free_partial_surface_rows",
+                "required_rows": len(current_retained_oos_ids),
+                "valid_overlap_rows_now": union_summary[
+                    "current_retained_oos_overlap_rows"
+                ],
+                "missing_rows_now": len(missing_retained_oos_ids),
+                "why_it_matters": (
+                    "These rows are current geometry/fold retained OOS cases; "
+                    "they are the direct path for source-free mechanism features "
+                    "to add OOS abstention value."
+                ),
+            },
+            {
+                "gap_id": "current_abstained_oos_source_free_partial_surface_rows",
+                "required_rows": len(current_abstained_oos_ids),
+                "valid_overlap_rows_now": union_summary[
+                    "current_abstained_oos_overlap_rows"
+                ],
+                "missing_rows_now": len(missing_abstained_oos_ids),
+                "why_it_matters": (
+                    "These complete the current extended OOS surface but are "
+                    "lower priority because geometry/fold already abstains."
+                ),
+            },
+        ],
+        "missing_evidence_rows": {
+            "current_primary_rows_requiring_source_free_partial_surface": [
+                _missing_primary_row(entry_id) for entry_id in missing_primary_ids
+            ],
+            "current_retained_oos_rows_requiring_source_free_partial_surface": [
+                _missing_oos_row(entry_id, abstains=False)
+                for entry_id in missing_retained_oos_ids
+            ],
+            "current_abstained_oos_rows_requiring_source_free_partial_surface": [
+                _missing_oos_row(entry_id, abstains=True)
+                for entry_id in missing_abstained_oos_ids
+            ],
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "current_primary_rows": len(current_primary_rows),
+            "current_extended_candidate_oos_rows": len(all_current_oos_rows),
+            "current_extended_scored_oos_rows": len(current_oos_rows),
+            "current_extended_unscored_oos_rows": len(all_current_oos_rows)
+            - len(current_oos_rows),
+            "current_retained_oos_rows": len(current_retained_oos_ids),
+            "current_abstained_oos_rows": len(current_abstained_oos_ids),
+            "source_free_projection_candidate_rows": len(candidate_ids),
+            "source_free_event_axis_linker_rows": len(event_axis_ids),
+            "source_free_locator_sidecar_rows": len(locator_ids),
+            "source_free_partial_surface_union_rows": len(union_ids),
+            "review_only_locator_candidate_rows": len(
+                review_only_locator_candidate_ids
+            ),
+            "review_only_locator_candidate_current_primary_overlap_rows": (
+                review_only_locator_candidate_summary[
+                    "current_primary_overlap_rows"
+                ]
+            ),
+            "review_only_locator_candidate_current_retained_oos_overlap_rows": (
+                review_only_locator_candidate_summary[
+                    "current_retained_oos_overlap_rows"
+                ]
+            ),
+            "review_only_locator_candidate_current_abstained_oos_overlap_rows": (
+                review_only_locator_candidate_summary[
+                    "current_abstained_oos_overlap_rows"
+                ]
+            ),
+            "union_current_primary_overlap_rows": union_summary[
+                "current_primary_overlap_rows"
+            ],
+            "union_current_retained_oos_overlap_rows": union_summary[
+                "current_retained_oos_overlap_rows"
+            ],
+            "union_current_abstained_oos_overlap_rows": union_summary[
+                "current_abstained_oos_overlap_rows"
+            ],
+            "union_current_scored_oos_overlap_rows": union_summary[
+                "current_scored_oos_overlap_rows"
+            ],
+            "missing_current_primary_source_free_partial_surface_rows": len(
+                missing_primary_ids
+            ),
+            "missing_current_retained_oos_source_free_partial_surface_rows": len(
+                missing_retained_oos_ids
+            ),
+            "missing_current_abstained_oos_source_free_partial_surface_rows": len(
+                missing_abstained_oos_ids
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "existing_partial_surface_reduces_current_primary_gap": (
+                route_reduces_primary_gap
+            ),
+            "existing_partial_surface_reduces_current_retained_oos_gap": (
+                route_reduces_retained_oos_gap
+            ),
+            "existing_partial_surface_reduces_any_current_split_gap": (
+                route_reduces_current_gap
+            ),
+            "route_negative_for_existing_partial_surface_reuse": (
+                route_negative
+            ),
+            "lever2_overall_negative": False,
+            "adds_operating_point_value_beyond_current_surface": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": False,
+            "apply_or_promote_now": False,
+            "next_gate": (
+                "Materialize source-free mechanism rows on the current split: "
+                f"{len(missing_primary_ids)} primary retention-gate rows and "
+                f"{len(missing_retained_oos_ids)} current-retained OOS rows "
+                "before rerunning the fixed train/cal mechanism readouts."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "labels_used_only_for_train_cal_metric_accounting": False,
+            "entry_ids_used_only_for_split_overlap_accounting": True,
+            "source_free_partial_surface_materialized_by_this_artifact": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "current_measured_readout": _source_path_record(
+                current_measured_readout_path
+            ),
+            "current_extended_oos_surface": _source_path_record(
+                current_extended_oos_surface_path
+            ),
+            "current_in_scope_threshold_contract": _source_path_record(
+                current_in_scope_threshold_contract_path
+            ),
+            "source_free_projection_repair_candidate_surface": _source_path_record(
+                source_free_projection_repair_candidate_surface_path
+            ),
+            "source_free_event_axis_linker_materialization_gate": (
+                _source_path_record(
+                    source_free_event_axis_linker_materialization_gate_path
+                )
+            ),
+            "source_free_locator_rewrite_materialization_gate": (
+                _source_path_record(
+                    source_free_locator_rewrite_materialization_gate_path
+                )
+            ),
+            "review_only_locator_candidate_dir": {
+                "exists": bool(
+                    review_only_locator_candidate_dir_path is not None
+                    and Path(review_only_locator_candidate_dir_path).exists()
+                ),
+                "path": (
+                    str(review_only_locator_candidate_dir_path)
+                    if review_only_locator_candidate_dir_path is not None
+                    else None
+                ),
+                "file_count": len(review_only_locator_candidate_ids),
+            },
+        },
+        "interpretation": {
+            "headline": (
+                "Existing approved source-free partial-surface rows overlap "
+                f"{union_summary['current_primary_overlap_rows']} current "
+                "primary rows and "
+                f"{union_summary['current_retained_oos_overlap_rows']} "
+                "current-retained OOS rows."
+            ),
+            "result": (
+                "Research-only route negative: the prior approved partial "
+                "source-free surface does not reduce the current train/cal "
+                "primary or retained-OOS mechanism-evidence gaps, so it cannot "
+                "make the integrated Lever 2 operating point measurable."
+            ),
+            "next_action": (
+                "Build source-free mechanism evidence directly for the current "
+                "primary rows and current-retained OOS rows, rather than "
+                "reusing the heldout-oriented partial surface."
+            ),
+        },
+    }
+
+
 def build_lever2_mechanism_feature_incremental_readout(
     *,
     mechanism_no_template_rerun_path: Path,
@@ -2065,6 +2556,192 @@ def render_lever2_mechanism_feature_incremental_readout_report(
     return "\n".join(lines) + "\n"
 
 
+def render_lever2_source_free_partial_surface_current_split_portability_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    fixed = readout["fixed_operating_points"]["current_surface"]
+    measured = readout["measured_readout"]
+    surface = measured["current_split_surface"]
+    overlap = measured["source_free_partial_surface_overlap"]
+    review_only_locator = (
+        measured.get("review_only_locator_candidate_current_split_overlap") or {}
+    )
+    missing_rows = readout.get("missing_evidence_rows") or {}
+    missing_primary = (
+        missing_rows.get(
+            "current_primary_rows_requiring_source_free_partial_surface"
+        )
+        or []
+    )
+    missing_retained = (
+        missing_rows.get(
+            "current_retained_oos_rows_requiring_source_free_partial_surface"
+        )
+        or []
+    )
+    missing_abstained = (
+        missing_rows.get(
+            "current_abstained_oos_rows_requiring_source_free_partial_surface"
+        )
+        or []
+    )
+
+    def _entry_ids(rows: list[dict[str, Any]], limit: int | None = None) -> str:
+        sliced = rows if limit is None else rows[:limit]
+        ids = [str(row.get("entry_id")) for row in sliced if row.get("entry_id")]
+        if not ids:
+            return "none"
+        suffix = " ..." if limit is not None and len(rows) > limit else ""
+        return ", ".join(ids) + suffix
+
+    def _score_sort(row: dict[str, Any]) -> float:
+        score = row.get("current_surface_score")
+        return float(score) if score is not None else -1.0
+
+    lines = [
+        "# Lever 2 Source-Free Partial Surface Current-Split Portability Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        f"- Current surface: {fixed['channel']} < {fixed['threshold']} abstains",
+        "- Existing partial-surface union rows: "
+        f"{counts['source_free_partial_surface_union_rows']}",
+        "- Union overlap with current primary rows: "
+        f"{counts['union_current_primary_overlap_rows']}/"
+        f"{counts['current_primary_rows']}",
+        "- Union overlap with current-retained OOS rows: "
+        f"{counts['union_current_retained_oos_overlap_rows']}/"
+        f"{counts['current_retained_oos_rows']}",
+        "- Union overlap with already-abstained OOS rows: "
+        f"{counts['union_current_abstained_oos_overlap_rows']}/"
+        f"{counts['current_abstained_oos_rows']}",
+        "- Review-only locator candidate overlap with current primary rows: "
+        f"{counts['review_only_locator_candidate_current_primary_overlap_rows']}/"
+        f"{counts['current_primary_rows']}",
+        "- Review-only locator candidate overlap with current-retained OOS rows: "
+        f"{counts['review_only_locator_candidate_current_retained_oos_overlap_rows']}/"
+        f"{counts['current_retained_oos_rows']}",
+        "",
+        "## Current Split Surface",
+        "",
+        "| subset | rows |",
+        "| --- | ---: |",
+        f"| current primary | {surface['current_primary_rows']} |",
+        f"| current extended OOS candidates | {surface['current_extended_candidate_oos_rows']} |",
+        f"| current extended scored OOS | {surface['current_extended_scored_oos_rows']} |",
+        f"| current-retained OOS | {surface['current_retained_oos_rows']} |",
+        f"| already-abstained OOS | {surface['current_abstained_oos_rows']} |",
+        "",
+        "## Source-Free Partial-Surface Overlap",
+        "",
+        "| surface | rows | primary overlap | retained OOS overlap | abstained OOS overlap |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for name in [
+        "source_free_projection_candidate_surface",
+        "source_free_event_axis_linkers",
+        "source_free_locator_sidecars",
+        "source_free_partial_surface_union",
+    ]:
+        summary = overlap[name]
+        lines.append(
+            f"| {name} | {summary['surface_rows']} | "
+            f"{summary['current_primary_overlap_rows']} | "
+            f"{summary['current_retained_oos_overlap_rows']} | "
+            f"{summary['current_abstained_oos_overlap_rows']} |"
+        )
+    lines += [
+        "",
+        "## Review-Only Locator Candidate Diagnostic",
+        "",
+        "| surface | rows | primary overlap | retained OOS overlap | abstained OOS overlap |",
+        "| --- | ---: | ---: | ---: | ---: |",
+        (
+            "| source_free_review_only_locator_candidates | "
+            f"{review_only_locator.get('surface_rows')} | "
+            f"{review_only_locator.get('current_primary_overlap_rows')} | "
+            f"{review_only_locator.get('current_retained_oos_overlap_rows')} | "
+            f"{review_only_locator.get('current_abstained_oos_overlap_rows')} |"
+        ),
+        "",
+        "- Current primary rows with review-only locator candidates: "
+        f"{', '.join(review_only_locator.get('current_primary_overlap_entry_ids') or []) or 'none'}",
+        "- Current-retained OOS rows with review-only locator candidates: "
+        f"{', '.join(review_only_locator.get('current_retained_oos_overlap_entry_ids') or []) or 'none'}",
+    ]
+    lines += [
+        "",
+        "## Missing Evidence",
+        "",
+        "| gap | required | valid now | missing now | why it matters |",
+        "| --- | ---: | ---: | ---: | --- |",
+    ]
+    for gap in readout["missing_evidence"]:
+        lines.append(
+            f"| {gap['gap_id']} | {gap['required_rows']} | "
+            f"{gap['valid_overlap_rows_now']} | "
+            f"{gap['missing_rows_now']} | {gap['why_it_matters']} |"
+        )
+    lines += [
+        "",
+        "## Exact Missing Row Sets",
+        "",
+        (
+            "- Current primary rows still requiring source-free partial-surface "
+            f"mechanism evidence ({len(missing_primary)}): "
+            f"{_entry_ids(missing_primary, 60)}"
+        ),
+        (
+            "- Current-retained OOS rows still requiring source-free "
+            f"partial-surface mechanism evidence ({len(missing_retained)}): "
+            f"{_entry_ids(missing_retained, 60)}"
+        ),
+        (
+            "- Already-abstained OOS rows still requiring source-free "
+            f"partial-surface mechanism evidence ({len(missing_abstained)}): "
+            f"{_entry_ids(missing_abstained, 60)}"
+        ),
+        "",
+        "## Top Missing Current-Retained OOS Rows",
+        "",
+        "| row | current score |",
+        "| --- | ---: |",
+    ]
+    for row in sorted(missing_retained, key=_score_sort, reverse=True)[:25]:
+        lines.append(f"| {row['entry_id']} | {row.get('current_surface_score')} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Existing partial surface reduces current primary gap: "
+        f"{decision['existing_partial_surface_reduces_current_primary_gap']}",
+        "- Existing partial surface reduces current-retained OOS gap: "
+        f"{decision['existing_partial_surface_reduces_current_retained_oos_gap']}",
+        "- Route negative for existing partial-surface reuse: "
+        f"{decision['route_negative_for_existing_partial_surface_reuse']}",
+        "- Adds operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def write_lever2_mechanism_feature_incremental_readout(
     *,
     mechanism_no_template_rerun_path: Path,
@@ -2093,6 +2770,57 @@ def write_lever2_mechanism_feature_incremental_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             render_lever2_mechanism_feature_incremental_readout_report(readout),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def write_lever2_source_free_partial_surface_current_split_portability_readout(
+    *,
+    current_measured_readout_path: Path,
+    current_extended_oos_surface_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    source_free_event_axis_linker_materialization_gate_path: Path,
+    source_free_locator_rewrite_materialization_gate_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    review_only_locator_candidate_dir_path: Path | None = None,
+    artifact_id: str = DEFAULT_PARTIAL_SURFACE_CURRENT_SPLIT_PORTABILITY_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = (
+        build_lever2_source_free_partial_surface_current_split_portability_readout(
+            current_measured_readout_path=current_measured_readout_path,
+            current_extended_oos_surface_path=current_extended_oos_surface_path,
+            current_in_scope_threshold_contract_path=(
+                current_in_scope_threshold_contract_path
+            ),
+            source_free_projection_repair_candidate_surface_path=(
+                source_free_projection_repair_candidate_surface_path
+            ),
+            source_free_event_axis_linker_materialization_gate_path=(
+                source_free_event_axis_linker_materialization_gate_path
+            ),
+            source_free_locator_rewrite_materialization_gate_path=(
+                source_free_locator_rewrite_materialization_gate_path
+            ),
+            review_only_locator_candidate_dir_path=(
+                review_only_locator_candidate_dir_path
+            ),
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_source_free_partial_surface_current_split_portability_readout_report(
+                readout
+            ),
             encoding="utf-8",
         )
     return readout

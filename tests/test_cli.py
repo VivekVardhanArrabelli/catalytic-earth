@@ -120,6 +120,40 @@ class CliTests(unittest.TestCase):
             args.source_free_coordinate_anchor_candidate_dir,
         )
 
+    def test_lever2_partial_surface_current_split_portability_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-partial-surface-current-split-portability-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability_readout",
+            args.out,
+        )
+        self.assertIn("lever3_current_measured_readout", args.current_measured_readout)
+        self.assertIn(
+            "extended_train_cal_oos_surface", args.current_extended_oos_surface
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_materialization_gate",
+            args.source_free_event_axis_linker_materialization_gate,
+        )
+        self.assertIn(
+            "source_free_locator_rewrite_materialization_gate_materialized",
+            args.source_free_locator_rewrite_materialization_gate,
+        )
+        self.assertIn(
+            "family_panel_source_free_active_site_locator_candidates",
+            args.review_only_locator_candidate_dir,
+        )
+
     def test_lever3_current_measured_readout_parser_defaults(self) -> None:
         args = build_parser().parse_args(
             ["build-fold-augmented-lever3-current-measured-readout"]

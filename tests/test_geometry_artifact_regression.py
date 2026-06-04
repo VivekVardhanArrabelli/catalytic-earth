@@ -18481,6 +18481,75 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_partial_surface_current_split_portability_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_partial_surface_current_split_"
+                "portability_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_source_free_partial_surface_current_split_portability_"
+            "readout_research_only_reuse_negative",
+        )
+        self.assertEqual(readout["result_class"], "research_only_reuse_negative")
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["current_extended_scored_oos_rows"], 204)
+        self.assertEqual(readout["counts"]["current_extended_unscored_oos_rows"], 6)
+        self.assertEqual(readout["counts"]["current_retained_oos_rows"], 132)
+        self.assertEqual(readout["counts"]["current_abstained_oos_rows"], 72)
+        self.assertEqual(readout["counts"]["source_free_projection_candidate_rows"], 53)
+        self.assertEqual(readout["counts"]["source_free_event_axis_linker_rows"], 14)
+        self.assertEqual(readout["counts"]["source_free_locator_sidecar_rows"], 53)
+        self.assertEqual(readout["counts"]["source_free_partial_surface_union_rows"], 53)
+        self.assertEqual(readout["counts"]["review_only_locator_candidate_rows"], 2)
+        self.assertEqual(
+            readout["counts"][
+                "review_only_locator_candidate_current_primary_overlap_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "review_only_locator_candidate_current_retained_oos_overlap_rows"
+            ],
+            0,
+        )
+        self.assertEqual(readout["counts"]["union_current_primary_overlap_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["union_current_retained_oos_overlap_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["union_current_abstained_oos_overlap_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_primary_source_free_partial_surface_rows"
+            ],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_retained_oos_source_free_partial_surface_rows"
+            ],
+            132,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "route_negative_for_existing_partial_surface_reuse"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

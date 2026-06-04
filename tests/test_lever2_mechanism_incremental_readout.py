@@ -9,6 +9,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_current_extended_oos_mechanism_overlap_readout,
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
+    build_lever2_source_free_partial_surface_current_split_portability_readout,
 )
 from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout as build_projection_readout,
@@ -16,6 +17,173 @@ from catalytic_earth.northstar_next_levers import (
 
 
 class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
+    def test_partial_surface_current_split_portability_measures_union_overlap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            current_measured_path = root / "current_measured.json"
+            current_surface_path = root / "current_surface.json"
+            current_primary_path = root / "current_primary.json"
+            candidate_surface_path = root / "candidate_surface.json"
+            event_axis_path = root / "event_axis.json"
+            locator_path = root / "locator.json"
+
+            current_measured_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "channel": "combined_mean_geometry_fold",
+                            "threshold": 0.5,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_primary_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.8
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.7
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.9
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.4
+                                },
+                            },
+                            {"entry_id": "m_csa:12", "channel_scores": {}},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_projection_rows": [
+                            {"entry_id": "m_csa:1"},
+                            {"entry_id": "m_csa:10"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_axis_path.write_text(
+                json.dumps(
+                    {
+                        "materialization_rows": [
+                            {
+                                "entry_id": "m_csa:11",
+                                "critical_violations": [],
+                                "source_free_event_axis_status": (
+                                    "source_free_event_axis_linker_ready"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:12",
+                                "critical_violations": [],
+                                "source_free_event_axis_status": (
+                                    "source_free_event_axis_linker_ready"
+                                ),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator_path.write_text(
+                json.dumps(
+                    {
+                        "row_decisions": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "approved_locator_sidecar_written": True,
+                                "decision": "materialized_to_audited_locator_dir",
+                                "critical_violations": [],
+                            },
+                            {
+                                "entry_id": "m_csa:99",
+                                "approved_locator_sidecar_written": False,
+                                "decision": "held_for_review",
+                                "critical_violations": [],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_lever2_source_free_partial_surface_current_split_portability_readout(
+                    current_measured_readout_path=current_measured_path,
+                    current_extended_oos_surface_path=current_surface_path,
+                    current_in_scope_threshold_contract_path=current_primary_path,
+                    source_free_projection_repair_candidate_surface_path=(
+                        candidate_surface_path
+                    ),
+                    source_free_event_axis_linker_materialization_gate_path=(
+                        event_axis_path
+                    ),
+                    source_free_locator_rewrite_materialization_gate_path=(
+                        locator_path
+                    ),
+                    artifact_id="test_partial_surface_portability",
+                )
+            )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_source_free_partial_surface_current_split_portability_"
+            "readout_research_only_overlap_available",
+        )
+        self.assertEqual(readout["result_class"], "research_only")
+        self.assertEqual(readout["counts"]["current_primary_rows"], 2)
+        self.assertEqual(readout["counts"]["current_extended_scored_oos_rows"], 2)
+        self.assertEqual(readout["counts"]["current_extended_unscored_oos_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["source_free_partial_surface_union_rows"], 5
+        )
+        self.assertEqual(readout["counts"]["union_current_primary_overlap_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["union_current_retained_oos_overlap_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["union_current_abstained_oos_overlap_rows"], 1
+        )
+        self.assertFalse(
+            readout["decision"]["route_negative_for_existing_partial_surface_reuse"]
+        )
+        missing = readout["missing_evidence_rows"]
+        self.assertEqual(
+            missing["current_primary_rows_requiring_source_free_partial_surface"], []
+        )
+
     def test_current_extended_oos_overlap_measures_signal_without_primary_gate(
         self,
     ) -> None:

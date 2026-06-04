@@ -46,6 +46,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_current_extended_oos_mechanism_overlap_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
+    write_lever2_source_free_partial_surface_current_split_portability_readout,
 )
 from .mechanism_residual_gate_integration import write_residual_gate_integration_eval
 from .mechanism_abstention_gate_eval import (
@@ -13739,6 +13740,47 @@ def cmd_build_lever2_current_extended_oos_mechanism_overlap_readout(
         f"{counts.get('current_extended_oos_overlap_rows')}, retained caught: "
         f"{counts.get('current_retained_oos_caught_by_mechanism')}, "
         f"primary overlap: {counts.get('valid_primary_overlap_rows')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_partial_surface_current_split_portability_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_lever2_source_free_partial_surface_current_split_portability_readout(
+            current_measured_readout_path=Path(args.current_measured_readout),
+            current_extended_oos_surface_path=Path(args.current_extended_oos_surface),
+            current_in_scope_threshold_contract_path=Path(
+                args.current_in_scope_threshold_contract
+            ),
+            source_free_projection_repair_candidate_surface_path=Path(
+                args.source_free_projection_repair_candidate_surface
+            ),
+            source_free_event_axis_linker_materialization_gate_path=Path(
+                args.source_free_event_axis_linker_materialization_gate
+            ),
+            source_free_locator_rewrite_materialization_gate_path=Path(
+                args.source_free_locator_rewrite_materialization_gate
+            ),
+            review_only_locator_candidate_dir_path=Path(
+                args.review_only_locator_candidate_dir
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free partial-surface current-split portability "
+        f"readout to {args.out} (union primary overlap: "
+        f"{counts.get('union_current_primary_overlap_rows')}, retained OOS "
+        f"overlap: {counts.get('union_current_retained_oos_overlap_rows')}, "
+        f"result: {readout.get('result_class')})"
     )
     return 0
 
@@ -32427,6 +32469,92 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_current_extended_oos_mechanism_overlap_readout.set_defaults(
         func=cmd_build_lever2_current_extended_oos_mechanism_overlap_readout
+    )
+
+    lever2_partial_surface_current_split_portability_readout = (
+        subparsers.add_parser(
+            "build-lever2-source-free-partial-surface-current-split-portability-readout",
+            help=(
+                "write a train/cal Lever 2 readout testing whether existing "
+                "source-free partial-surface rows overlap the current "
+                "geometry/fold split"
+            ),
+        )
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--current-extended-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--source-free-event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_event_axis_linker_"
+            "materialization_gate_current702_20260603.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--source-free-locator-rewrite-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_locator_rewrite_"
+            "materialization_gate_materialized_current702_20260603.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--review-only-locator-candidate-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locator_candidates_"
+            "current702_20260601"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.md"
+        ),
+    )
+    lever2_partial_surface_current_split_portability_readout.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_partial_surface_current_split_portability_readout
+        )
     )
 
     lever3_current_measured_readout = subparsers.add_parser(
