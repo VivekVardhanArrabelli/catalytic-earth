@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 342
-- Measured elapsed time: 10395.8 minutes (173.26 hours)
+- Entries: 343
+- Measured elapsed time: 10446.3 minutes (174.11 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 279.1 measured minutes (4.65 hours)
+- northstar-lever3: 329.7 measured minutes (5.49 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3595
-- Evidence references logged: 2963
+- Artifact references logged: 3609
+- Evidence references logged: 2972
 
 ## Recent Entries
-
-### 2026-06-03T19:56:36.530027+00:00 - v3
-
-- Task: Lever 3 protein-only fold topology residual tranche
-- Time mode: measured
-- Measured minutes: 55.183
-- Started: 2026-06-03T19:01:07Z
-- Ended: 2026-06-03T19:56:18Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json, artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_unsupported_geometry_coordinate_locus_scan_current702_20260603.json
-- Evidence: full pytest 1341 passed; unittest 1296 passed; combined relevant pytest 469 passed
-- Notes: Fetched 8 AFDB-v6 query CIFs, confirmed protein-only/no locus evidence, ran 8x133 Foldseek, parsed 8 scored rows, composed surface to 204/210 full-channel rows.
 
 ### 2026-06-03T20:57:20.337307+00:00 - northstar-lever-2-3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.json, work/fold_augmented_confounded_proxy_swissmodel_repository_probe_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.json, work/fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest_current702_20260604.md, artifacts/v3_fold_augmented_p07658_secondary_accession_predicted_coordinate_reprobe_current702_20260604.json, artifacts/v3_fold_augmented_p07658_esmfold_api_preflight_current702_20260604.json, artifacts/v3_fold_augmented_p07658_full_length_predictor_provider_probe_current702_20260604.json, artifacts/v3_fold_augmented_p07658_local_predictor_runtime_scan_current702_20260604.json, artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json, artifacts/v3_fold_augmented_q43088_locator_review_priority_packet_current702_20260604.json, artifacts/v3_fold_augmented_confounded_proxy_current_evidence_after_swissmodel_staging_current702_20260604.json, work/handoff.md, work/status.md
 - Evidence: full pytest 1374 passed 171 subtests one existing sklearn SciPy warning, unittest discovery 1329 passed, focused Lever 3 artifact tests 8 passed, unit Q43088 builder test 1 passed, CLI registration 1 passed 145 subtests, compileall, validate 702 labels, git diff --check, docs artifact-reference check missing 0, JSON syntax checks for 9 new artifacts
 - Notes: Lever 3 only. Three SWISS-MODEL predicted coordinates staged for review; P07658 remains blocked after secondary-accession, ESMFold length, provider auth, local-runtime, and 3D-Beacons experimental-only probes; Q43088 has priority positions but 0 approvals; no labels registries ontologies imports thresholds heldout tuning scoring or source approvals changed.
+
+### 2026-06-04T12:50:52.667257+00:00 - northstar-lever3
+
+- Task: Lever 3 deployment-valid blocker packets and next-experiment queue
+- Time mode: measured
+- Measured minutes: 50.533
+- Started: 2026-06-04T12:02:33Z
+- Ended: 2026-06-04T12:53:05Z
+- Artifacts: artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json, work/fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.json, work/fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.json, work/fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.md, artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.json, artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json, work/fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.md, artifacts/v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604.json, work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta, artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json, work/handoff.md, work/status.md
+- Evidence: P07658 acceptance preflight blocked with 7 failed checks and no coordinate/provenance, high-cofactor blocker records 0 eligible rows and 16 missing train/cal OOS rows, same-family structural blocker records 0 eligible rows and 170 missing train/cal OOS rows, next-experiment queue orders P07658 then high-cofactor then same-family structural acquisition, guardrail audits checked 4 blocker packets and 6 queue/template artifacts with 0 violations, full pytest 1397 passed 180 subtests one existing sklearn SciPy warning, unittest discovery 1352 passed, validate passed with 702 labels, compileall git diff check JSON parse 3525 files docs reference check missing 0
+- Notes: Lever 3 only. No labels registries ontologies imports production thresholds heldout splits heldout tuning scoring coordinate staging or experimental PDB deployment shortcuts changed.
 
 ## Expectation Updates
 
@@ -389,6 +389,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-03T23:39:07+00:00: Next Lever 2 work should clear locator coverage for the 87 missing heldout rows or write an explicit partial-surface policy before any frozen residual threshold read.
 - 2026-06-04T00:37:12.914214+00:00: Next run should decide deterministic missing-locator abstention versus complete source-free locator coverage before any frozen residual threshold read.
 - 2026-06-04T01:43:55.363807+00:00: Next Lever 2 work should not rerun heldout; start with train/cal-safe feature repair for feature-complete primary abstentions, then recover primary source-free locator coverage.
+- 2026-06-04T12:50:52.667257+00:00: Next Lever 3 action is to run/provision the exact P07658 full-length predicted coordinate using the FASTA/template, rerun acceptance preflight, then acquire 16 source-free high-cofactor train/cal OOS rows before the 170-row same-family structural surface.
 
 ## Scope Adjustments
 

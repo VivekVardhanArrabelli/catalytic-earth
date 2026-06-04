@@ -1199,6 +1199,16 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-confounded-proxy-high-cofactor-"
+                    "acquisition-blocker-packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_high_cofactor_"
+                    "acquisition_blocker_packet"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-confounded-proxy-train-cal-"
                     "scoring-tranche-plan"
                 ),
@@ -1339,6 +1349,26 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-fold-augmented-confounded-proxy-same-family-"
+                    "structural-acquisition-blocker-packet"
+                ),
+                (
+                    "cmd_build_fold_augmented_confounded_proxy_same_family_"
+                    "structural_acquisition_blocker_packet"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-lever3-blocker-packet-"
+                    "guardrail-audit"
+                ),
+                (
+                    "cmd_build_fold_augmented_lever3_blocker_packet_"
+                    "guardrail_audit"
+                ),
+            ),
+            (
+                (
                     "build-fold-augmented-p10746-deployment-caveat-decision-"
                     "packet"
                 ),
@@ -1443,6 +1473,26 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_fold_augmented_p07658_full_length_prediction_"
                     "request_manifest"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-p07658-prediction-acceptance-"
+                    "preflight"
+                ),
+                (
+                    "cmd_build_fold_augmented_p07658_prediction_acceptance_"
+                    "preflight"
+                ),
+            ),
+            (
+                (
+                    "build-fold-augmented-lever3-minimum-next-experiment-"
+                    "queue"
+                ),
+                (
+                    "cmd_build_fold_augmented_lever3_minimum_next_"
+                    "experiment_queue"
                 ),
             ),
             (

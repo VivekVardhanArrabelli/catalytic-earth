@@ -1,6 +1,6 @@
 # Fold-Augmented P07658 Full-Length Prediction Request Manifest - current702
 
-Run: 2026-06-04T11:42:38Z
+Run: 2026-06-04T12:19:23Z
 
 Exact input/acceptance manifest for the remaining P07658 Lever 3 full-length predicted-coordinate blocker. It stages no coordinate, scores no row, and does not change threshold 0.44155.
 

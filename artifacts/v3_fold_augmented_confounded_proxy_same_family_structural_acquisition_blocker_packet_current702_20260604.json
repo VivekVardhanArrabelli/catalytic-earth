@@ -1,0 +1,1771 @@
+{
+  "affected_rows": [
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:288",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 1,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:89",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 2,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:214",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 3,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:75",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 4,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:60",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 5,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:583",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 6,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:64",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 7,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:607",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 8,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:610",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 9,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": true
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:618",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "unsupported_or_missing_geometry",
+        "iron_sulfur_locus": "unsupported_or_missing_geometry",
+        "metal_ion_locus": "unsupported_or_missing_geometry",
+        "radical_sam_locus": "unsupported_or_missing_geometry"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 10,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": true
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:555",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 11,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:404",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 12,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:26",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 13,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:515",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 14,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:232",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 15,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:351",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 16,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:81",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 17,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:394",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 18,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:162",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 19,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:235",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 20,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:175",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 21,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:306",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 22,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:296",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 23,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:128",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 24,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:616",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 25,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:245",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 26,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:417",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 27,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:279",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 28,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:148",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 29,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:633",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 30,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:92",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 31,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:316",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 32,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:49",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 33,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:257",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 34,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:455",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 35,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:373",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 36,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:374",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 37,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:386",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 38,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:570",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 39,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:459",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 40,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:202",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 41,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:174",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 42,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:252",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 43,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:389",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 44,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:458",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 45,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:635",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 46,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:340",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 47,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:574",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 48,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:153",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 49,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:357",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 50,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:436",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 51,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:343",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 52,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:210",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 53,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:582",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 54,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:461",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 55,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:524",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 56,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:143",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 57,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:18",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 58,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:336",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 59,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:629",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 60,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:50",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 61,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:576",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 62,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:164",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 63,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:479",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 64,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:226",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 65,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:339",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 66,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:382",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 67,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:457",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 68,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:328",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 69,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:434",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 70,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:100",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 71,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:492",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 72,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:478",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 73,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:481",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 74,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:532",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 75,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:569",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 76,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:335",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 77,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:324",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 78,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:571",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 79,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    },
+    {
+      "any_inorganic_locus_context": false,
+      "countable_for_same_family_structural_probe_now": false,
+      "entry_id": "m_csa:550",
+      "inorganic_locus_statuses": {
+        "cobalamin_locus": "no_cobalamin_context_detected",
+        "iron_sulfur_locus": "no_iron_sulfur_context_detected",
+        "metal_ion_locus": "no_metal_context_detected",
+        "radical_sam_locus": "no_radical_sam_context_detected"
+      },
+      "label_type": "out_of_scope",
+      "metal_structural_locus_context": false,
+      "missing_evidence_type": "source-free same-family structural proxy membership evidence: an approved inorganic/structural locus or pre-registered source-free structural counteraxis, plus deployment-valid predicted-structure inputs",
+      "rank": 80,
+      "recommended_proxy_axes_after_scoring": [
+        "background_train_cal_oos_structural_pool"
+      ],
+      "smallest_row_experiment": "Do not count this background row as same-family structural evidence. Acquire or pre-register rows with source-free structural membership before fixed-threshold scoring.",
+      "split_assignment": "in_distribution",
+      "unsupported_or_missing_geometry_locus": false
+    }
+  ],
+  "artifact_id": "v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604",
+  "blockers": [
+    "current_train_cal_candidate_pool_has_zero_same_family_structural_axis_rows",
+    "one_hundred_seventy_row_same_family_structural_acquisition_not_acquired",
+    "candidate_rows_not_scored_at_fixed_threshold",
+    "high_cofactor_probe_still_separate",
+    "fixed_threshold_audit_not_ready_to_rerun"
+  ],
+  "counts": {
+    "affected_background_candidate_rows": 80,
+    "blockers": 5,
+    "candidate_rows_registered_now": 0,
+    "candidate_rows_scored_now": 0,
+    "critical_violation_total": 0,
+    "eligible_rows_missing_for_minimum": 170,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "minimum_new_abstained_rows_for_80pct": 170,
+    "priority_candidate_rows_available": 80,
+    "ready_train_cal_oos_rows": 353,
+    "same_family_structural_axis_candidate_rows": 0,
+    "unscored_ready_train_cal_oos_candidate_rows": 170
+  },
+  "created_utc": "2026-06-04T12:17:34Z",
+  "current_pool_summary": {
+    "current_candidate_pool_can_close_170_row_shortfall": false,
+    "metal_structural_locus_candidate_rows": 0,
+    "priority_candidate_rows_available": 80,
+    "ready_train_cal_oos_rows": 353,
+    "same_family_structural_axis_candidate_rows": 0,
+    "unscored_ready_train_cal_oos_candidate_rows": 170,
+    "unsupported_or_missing_geometry_locus_rows": 9
+  },
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "candidate_rows_ready_to_score_now": false,
+    "current_candidate_pool_can_close_170_row_shortfall": false,
+    "current_evidence_can_solve_same_family_structural_gap": false,
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "next_gate": "Do not score background-only train/cal rows as same-family structural evidence and do not tune threshold 0.44155. Acquire new eligible structural-axis rows after the high-cofactor and P07658 gates are addressed."
+  },
+  "gap_target": {
+    "deployment_input_requirement": "predicted structures and source-free structural/locus evidence only",
+    "fixed_threshold": 0.44155,
+    "proxy_axis": "same_family_structural_proxy",
+    "required_new_nonheldout_train_cal_oos_rows": 170,
+    "required_outcome": "enough acquired rows must abstain at fixed threshold 0.44155 to close the same-family structural 80% lower-bound target"
+  },
+  "guardrails": {
+    "candidate_rows_registered_now": false,
+    "candidate_rows_scored_now": false,
+    "fixed_threshold_audit_rerun": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_only": true
+  },
+  "interpretation": {
+    "next_action": "Treat the listed priority rows as non-countable background rows. The next same-family experiment is a new source-free structural-axis acquisition surface, not a threshold readout.",
+    "result": "The current ready train/cal OOS surface cannot close the same-family structural calibration gap: 0 eligible rows are available against a 170-row minimum."
+  },
+  "missing_evidence_type": "new non-heldout train/cal OOS rows with source-free same-family structural membership and deployment-valid predicted-structure inputs; background train/cal rows alone are insufficient",
+  "schema_version": "northstar_next_levers.v0.fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet",
+  "scope": "Precise Lever 3 blocker packet for the same-family structural confounded OOS calibration gap after Q43088 locator clearance. It composes the frozen same-family acquisition contract and the current train/cal candidate pool; it registers no rows, scores no candidates, and does not change threshold 0.44155.",
+  "smallest_next_experiment": "Acquire a large new non-heldout train/cal OOS same-family structural surface with source-free structural/locus evidence and deployment-valid predicted structures; under the current lower bound, 170 additional abstained rows are needed at unchanged threshold 0.44155.",
+  "source_artifacts": {
+    "same_family_structural_acquisition_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_contract_current702_20260604.json",
+      "sha256": "68539fdfc55f9d739edae4768aa9d5da45d7c8c70225b7e60808c4b352999ecf"
+    },
+    "surface_and_calibration_state": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_surface_and_calibration_state_after_q43088_p07658_current702_20260604.json",
+      "sha256": "81227982b758f97e558ddc9b527fa9287a544525803ee1f9bfb90cbd0cb7a69a"
+    },
+    "train_cal_candidate_pool": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_candidate_pool_current702_20260603.json",
+      "sha256": "d65d32fce6a49611fb9140685721b31023b00ee14b1ca6c2705f297db4c9edf3"
+    }
+  },
+  "status": "fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_blocked_zero_eligible_rows"
+}

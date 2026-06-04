@@ -67,7 +67,7 @@
     "selenocysteine_count": 1,
     "sequence_length": 715
   },
-  "created_utc": "2026-06-04T11:42:38Z",
+  "created_utc": "2026-06-04T12:19:23Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "fixed_threshold_audit_ready_to_rerun_now": false,
@@ -109,7 +109,7 @@
     "preferred_staging_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
     "provider_requirements": [
       "supports at least 715 residues in one full-length protein chain",
-      "preserves or explicitly documents handling of selenocysteine U at sequence position 138",
+      "preserves or explicitly documents handling of selenocysteine U at sequence position(s) 140",
       "returns a coordinate file with one residue mapping per input sequence position or a documented missing-position list",
       "provides provider, model name, model version, run timestamp, coordinate path, and checksum provenance",
       "does not use experimental PDB metadata, target names, EC/Rhea IDs, mechanism text, source IDs, labels, or heldout rows as predictive features"

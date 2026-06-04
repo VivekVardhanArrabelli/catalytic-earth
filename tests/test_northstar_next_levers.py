@@ -57,7 +57,12 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_q43088_locator_approval_packet,
     build_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval,
     build_fold_augmented_p07658_full_length_prediction_request_manifest,
+    build_fold_augmented_p07658_prediction_acceptance_preflight,
     build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage,
+    build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet,
+    build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
+    build_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    build_fold_augmented_lever3_minimum_next_experiment_queue,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
     build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
@@ -2659,6 +2664,396 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(packet["decision"]["candidate_rows_ready_to_score_now"])
         self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_high_cofactor_acquisition_blocker_packet_names_missing_evidence(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            contract_path = root / "contract.json"
+            triage_path = root / "triage.json"
+            pool_path = root / "pool.json"
+            state_path = root / "state.json"
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "minimum_new_abstained_rows_for_80pct": 2,
+                            "fixed_threshold": 0.44155,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            triage_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "ready_train_cal_oos_rows": 5,
+                            "priority_candidate_rows_available": 2,
+                            "high_cofactor_axis_candidate_rows": 0,
+                            "high_organic_cofactor_candidate_rows": 0,
+                            "high_inorganic_cofactor_locus_candidate_rows": 0,
+                            "minimum_new_abstained_rows_for_80pct": 2,
+                        },
+                        "near_miss_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:10",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "organic_cofactor_max_class": "heme",
+                                "organic_cofactor_max_score": 0.4,
+                                "high_organic_cofactor_signature": False,
+                                "high_inorganic_cofactor_locus": False,
+                                "any_inorganic_locus_context": False,
+                                "recommended_proxy_axes_after_scoring": [
+                                    "background_train_cal_oos_structural_pool"
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pool_path.write_text(
+                json.dumps({"counts": {"ready_train_cal_oos_rows": 5}}),
+                encoding="utf-8",
+            )
+            state_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "high_cofactor_min_new_abstained_rows_for_80pct": 2
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet(
+                high_cofactor_probe_contract_path=contract_path,
+                high_cofactor_candidate_near_miss_triage_path=triage_path,
+                train_cal_candidate_pool_path=pool_path,
+                surface_and_calibration_state_path=state_path,
+                artifact_id="custom_high_cofactor_blocker",
+            )
+
+        self.assertEqual(packet["artifact_id"], "custom_high_cofactor_blocker")
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_high_cofactor_acquisition_"
+                "blocker_blocked_zero_eligible_rows"
+            ),
+        )
+        self.assertEqual(packet["counts"]["high_cofactor_axis_candidate_rows"], 0)
+        self.assertEqual(
+            packet["counts"]["eligible_rows_missing_for_minimum"], 2
+        )
+        self.assertEqual(packet["counts"]["affected_near_miss_rows"], 1)
+        self.assertEqual(packet["affected_rows"][0]["entry_id"], "m_csa:10")
+        self.assertFalse(
+            packet["affected_rows"][0]["countable_for_high_cofactor_probe_now"]
+        )
+        self.assertIn("source-free high-cofactor", packet["missing_evidence_type"])
+        self.assertFalse(
+            packet["decision"]["current_evidence_can_solve_high_cofactor_gap"]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_same_family_structural_acquisition_blocker_packet_names_background_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            contract_path = root / "structural_contract.json"
+            pool_path = root / "pool.json"
+            state_path = root / "state.json"
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "minimum_new_abstained_rows_for_80pct": 170,
+                            "fixed_threshold": 0.44155,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pool_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "ready_train_cal_oos_rows": 5,
+                            "unscored_ready_train_cal_oos_candidate_rows": 3,
+                            "priority_candidate_rows_emitted": 1,
+                            "structural_locus_candidate_rows": 0,
+                            "metal_structural_locus_candidate_rows": 0,
+                            "unsupported_or_missing_geometry_locus_rows": 1,
+                        },
+                        "priority_candidate_rows": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "any_inorganic_locus_context": False,
+                                "metal_structural_locus_context": False,
+                                "unsupported_or_missing_geometry_locus": True,
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": (
+                                        "unsupported_or_missing_geometry"
+                                    )
+                                },
+                                "recommended_proxy_axes_after_scoring": [
+                                    "background_train_cal_oos_structural_pool"
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            state_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "same_family_structural_min_new_abstained_rows_for_80pct": 170
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet(
+                same_family_structural_acquisition_contract_path=contract_path,
+                train_cal_candidate_pool_path=pool_path,
+                surface_and_calibration_state_path=state_path,
+                artifact_id="custom_same_family_structural_blocker",
+            )
+
+        self.assertEqual(
+            packet["artifact_id"], "custom_same_family_structural_blocker"
+        )
+        self.assertEqual(
+            packet["status"],
+            (
+                "fold_augmented_confounded_proxy_same_family_structural_"
+                "acquisition_blocker_blocked_zero_eligible_rows"
+            ),
+        )
+        self.assertEqual(
+            packet["counts"]["same_family_structural_axis_candidate_rows"], 0
+        )
+        self.assertEqual(
+            packet["counts"]["eligible_rows_missing_for_minimum"], 170
+        )
+        self.assertEqual(
+            packet["counts"]["affected_background_candidate_rows"], 1
+        )
+        self.assertEqual(packet["affected_rows"][0]["entry_id"], "m_csa:10")
+        self.assertFalse(
+            packet["affected_rows"][0][
+                "countable_for_same_family_structural_probe_now"
+            ]
+        )
+        self.assertIn("same-family structural", packet["missing_evidence_type"])
+        self.assertFalse(
+            packet["decision"][
+                "current_evidence_can_solve_same_family_structural_gap"
+            ]
+        )
+        self.assertFalse(packet["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(packet["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_blocker_packet_guardrail_audit_flags_scoring_violation(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            clean_path = root / "clean.json"
+            dirty_path = root / "dirty.json"
+            clean_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "clean_packet",
+                        "status": "clean",
+                        "guardrails": {
+                            "review_only": True,
+                            "candidate_rows_scored_now": False,
+                            "threshold_selected_or_tuned": False,
+                        },
+                        "counts": {"critical_violation_total": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dirty_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "dirty_packet",
+                        "status": "dirty",
+                        "guardrails": {
+                            "review_only": True,
+                            "candidate_rows_scored_now": True,
+                            "threshold_selected_or_tuned": False,
+                        },
+                        "counts": {"critical_violation_total": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_lever3_blocker_packet_guardrail_audit(
+                artifact_paths=[clean_path, dirty_path],
+                artifact_id="custom_guardrail_audit",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_guardrail_audit")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_blocker_packet_guardrail_audit_blocked",
+        )
+        self.assertEqual(audit["counts"]["artifacts_checked"], 2)
+        self.assertEqual(audit["counts"]["guardrail_violation_artifacts"], 1)
+        self.assertEqual(audit["counts"]["scoring_artifacts"], 1)
+        self.assertIn("guardrail_violation_detected", audit["blockers"])
+        self.assertFalse(
+            audit["decision"]["current_blocker_packets_guardrail_clean"]
+        )
+
+    def test_lever3_minimum_next_experiment_queue_orders_blockers(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            p07658_path = root / "p07658_preflight.json"
+            high_path = root / "high_blocker.json"
+            same_path = root / "same_blocker.json"
+            guardrail_path = root / "guardrail.json"
+            p07658_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "p07658_preflight",
+                        "status": "blocked",
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "missing_evidence_type": (
+                                "accepted full-length predicted coordinate"
+                            ),
+                        },
+                        "counts": {"acceptance_checks_failed": 7},
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False,
+                            "smallest_next_experiment": "Run P07658 predictor.",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            high_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "high_blocker",
+                        "status": "blocked",
+                        "affected_rows": [
+                            {"entry_id": "m_csa:10"},
+                            {"entry_id": "m_csa:11"},
+                        ],
+                        "missing_evidence_type": "source-free high-cofactor",
+                        "counts": {
+                            "high_cofactor_axis_candidate_rows": 0,
+                            "eligible_rows_missing_for_minimum": 2,
+                            "minimum_new_abstained_rows_for_80pct": 2,
+                        },
+                        "decision": {
+                            "current_evidence_can_solve_high_cofactor_gap": False
+                        },
+                        "smallest_next_experiment": (
+                            "Acquire two high-cofactor rows."
+                        ),
+                    }
+                ),
+                encoding="utf-8",
+            )
+            same_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "same_blocker",
+                        "status": "blocked",
+                        "affected_rows": [{"entry_id": "m_csa:12"}],
+                        "missing_evidence_type": "same-family structural",
+                        "counts": {
+                            "same_family_structural_axis_candidate_rows": 0,
+                            "eligible_rows_missing_for_minimum": 170,
+                            "minimum_new_abstained_rows_for_80pct": 170,
+                        },
+                        "decision": {
+                            "current_evidence_can_solve_same_family_structural_gap": False
+                        },
+                        "smallest_next_experiment": (
+                            "Acquire same-family structural rows."
+                        ),
+                    }
+                ),
+                encoding="utf-8",
+            )
+            guardrail_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "guardrail",
+                        "status": "passed",
+                        "counts": {
+                            "guardrail_violation_artifacts": 0,
+                            "critical_violation_total": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            queue = build_fold_augmented_lever3_minimum_next_experiment_queue(
+                p07658_prediction_acceptance_preflight_path=p07658_path,
+                high_cofactor_acquisition_blocker_packet_path=high_path,
+                same_family_structural_acquisition_blocker_packet_path=same_path,
+                blocker_packet_guardrail_audit_path=guardrail_path,
+                artifact_id="custom_minimum_next_experiment_queue",
+            )
+
+        self.assertEqual(
+            queue["artifact_id"], "custom_minimum_next_experiment_queue"
+        )
+        self.assertEqual(
+            queue["status"],
+            "fold_augmented_lever3_minimum_next_experiment_queue_blocked",
+        )
+        self.assertEqual(queue["counts"]["blocked_experiment_steps"], 3)
+        self.assertEqual(
+            queue["counts"]["p07658_acceptance_checks_failed"], 7
+        )
+        self.assertEqual(
+            queue["counts"]["minimum_new_train_cal_oos_rows_needed"], 172
+        )
+        self.assertEqual(queue["counts"]["affected_rows_total_reported"], 4)
+        self.assertEqual(
+            [row["experiment_id"] for row in queue["experiment_queue"]],
+            [
+                "p07658_full_length_prediction_acceptance",
+                "high_cofactor_train_cal_oos_acquisition",
+                "same_family_structural_train_cal_oos_acquisition",
+            ],
+        )
+        self.assertEqual(
+            queue["decision"]["first_experiment_id"],
+            "p07658_full_length_prediction_acceptance",
+        )
+        self.assertFalse(
+            queue["decision"]["current_evidence_can_clear_lever3_done_bar_now"]
+        )
+        self.assertFalse(queue["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(queue["guardrails"]["threshold_selected_or_tuned"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,
@@ -5805,6 +6200,10 @@ ATOM 5 C CA . GLU A 1 250 ? 7.2 0.0 0.0 1.00 80.0 ? 250 GLU A CA 1
         self.assertEqual(
             manifest["affected_row"]["selenocysteine_positions"], [4]
         )
+        self.assertIn(
+            "position(s) 4",
+            manifest["prediction_request"]["provider_requirements"][1],
+        )
         self.assertEqual(
             manifest["prediction_request"]["sequence"], "MKKUAA"
         )
@@ -5818,6 +6217,92 @@ ATOM 5 C CA . GLU A 1 250 ? 7.2 0.0 0.0 1.00 80.0 ? 250 GLU A CA 1
         self.assertEqual(manifest["counts"]["rows_scored_now"], 0)
         self.assertFalse(manifest["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(manifest["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_p07658_prediction_acceptance_preflight_requires_coordinate_and_provenance(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            coordinate_path = root / "p07658.cif"
+            provenance_path = root / "p07658_provenance.json"
+            sequence_sha = "abc123"
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "sequence_length": 715,
+                            "selenocysteine_count": 1,
+                            "selenocysteine_positions": [140],
+                            "sequence_sha256": sequence_sha,
+                        },
+                        "prediction_request": {
+                            "preferred_staging_path": str(coordinate_path)
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            blocked = build_fold_augmented_p07658_prediction_acceptance_preflight(
+                prediction_request_manifest_path=manifest_path,
+                artifact_id="p07658_preflight_blocked_test",
+            )
+
+            coordinate_path.write_text("data_p07658_model\n", encoding="utf-8")
+            coordinate_sha = hashlib.sha256(
+                coordinate_path.read_bytes()
+            ).hexdigest()
+            provenance_path.write_text(
+                json.dumps(
+                    {
+                        "provider": "LOCAL_TEST_PREDICTOR",
+                        "model_name": "unit-test-model",
+                        "model_version": "v1",
+                        "coordinate_sha256": coordinate_sha,
+                        "input_sequence_sha256": sequence_sha,
+                        "input_sequence_length": 715,
+                        "selenocysteine_count": 1,
+                        "selenocysteine_positions": [140],
+                        "selenocysteine_handling": (
+                            "preserved_U_position_140_as_input_residue"
+                        ),
+                        "experimental_pdb_metadata_used_as_deployment_input": False,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            ready = build_fold_augmented_p07658_prediction_acceptance_preflight(
+                prediction_request_manifest_path=manifest_path,
+                candidate_coordinate_path=coordinate_path,
+                candidate_provenance_path=provenance_path,
+                artifact_id="p07658_preflight_ready_test",
+            )
+
+        self.assertEqual(
+            blocked["status"],
+            "fold_augmented_p07658_prediction_acceptance_preflight_blocked",
+        )
+        self.assertEqual(blocked["counts"]["candidate_coordinate_exists"], 0)
+        self.assertGreater(blocked["counts"]["acceptance_checks_failed"], 0)
+        self.assertFalse(
+            blocked["decision"]["p07658_acceptance_preflight_passes_now"]
+        )
+        self.assertEqual(
+            ready["status"],
+            "fold_augmented_p07658_prediction_acceptance_preflight_ready_to_stage",
+        )
+        self.assertEqual(ready["counts"]["acceptance_checks_failed"], 0)
+        self.assertTrue(
+            ready["decision"]["p07658_acceptance_preflight_passes_now"]
+        )
+        self.assertFalse(
+            ready["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertFalse(ready["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(ready["guardrails"]["threshold_selected_or_tuned"])
 
     def test_p10746_prior_human_decision_reconciles_to_current_impact(
         self,

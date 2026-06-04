@@ -137,12 +137,17 @@ from .northstar_next_levers import (
     write_fold_augmented_q43088_locator_approval_packet,
     write_fold_augmented_confounded_proxy_current_evidence_after_q43088_locator_approval,
     write_fold_augmented_p07658_full_length_prediction_request_manifest,
+    write_fold_augmented_p07658_prediction_acceptance_preflight,
     write_fold_augmented_confounded_proxy_residual_queue_after_p10746_q43088,
     write_fold_augmented_confounded_proxy_alternate_structure_source_contract,
     write_fold_augmented_confounded_proxy_deployment_input_preflight,
     write_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan,
     write_fold_augmented_confounded_proxy_swissmodel_coordinate_staging_manifest,
     write_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight,
+    write_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet,
+    write_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet,
+    write_fold_augmented_lever3_blocker_packet_guardrail_audit,
+    write_fold_augmented_lever3_minimum_next_experiment_queue,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
     write_fold_augmented_post_rerun_confounded_deployment_closure_audit,
@@ -12492,6 +12497,35 @@ def cmd_build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet(
+        high_cofactor_probe_contract_path=Path(args.high_cofactor_probe_contract),
+        high_cofactor_candidate_near_miss_triage_path=Path(
+            args.high_cofactor_candidate_near_miss_triage
+        ),
+        train_cal_candidate_pool_path=Path(args.train_cal_candidate_pool),
+        surface_and_calibration_state_path=Path(
+            args.surface_and_calibration_state
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented high-cofactor acquisition blocker packet to "
+        f"{args.out} (eligible rows: "
+        f"{counts.get('high_cofactor_axis_candidate_rows')}, missing: "
+        f"{counts.get('eligible_rows_missing_for_minimum')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
     args: argparse.Namespace,
 ) -> int:
@@ -12939,6 +12973,88 @@ def cmd_build_fold_augmented_confounded_proxy_same_family_structural_acquisition
     return 0
 
 
+def cmd_build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    packet = write_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet(
+        same_family_structural_acquisition_contract_path=Path(
+            args.same_family_structural_acquisition_contract
+        ),
+        train_cal_candidate_pool_path=Path(args.train_cal_candidate_pool),
+        surface_and_calibration_state_path=Path(
+            args.surface_and_calibration_state
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote fold-augmented same-family structural acquisition blocker "
+        f"packet to {args.out} (eligible rows: "
+        f"{counts.get('same_family_structural_axis_candidate_rows')}, "
+        f"missing: {counts.get('eligible_rows_missing_for_minimum')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_blocker_packet_guardrail_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_blocker_packet_guardrail_audit(
+        artifact_paths=[Path(path) for path in args.artifact],
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 blocker packet guardrail audit to "
+        f"{args.out} (artifacts checked: {counts.get('artifacts_checked')}, "
+        f"violations: {counts.get('guardrail_violation_artifacts')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_minimum_next_experiment_queue(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    queue = write_fold_augmented_lever3_minimum_next_experiment_queue(
+        p07658_prediction_acceptance_preflight_path=Path(
+            args.p07658_prediction_acceptance_preflight
+        ),
+        high_cofactor_acquisition_blocker_packet_path=Path(
+            args.high_cofactor_acquisition_blocker_packet
+        ),
+        same_family_structural_acquisition_blocker_packet_path=Path(
+            args.same_family_structural_acquisition_blocker_packet
+        ),
+        blocker_packet_guardrail_audit_path=Path(
+            args.blocker_packet_guardrail_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 minimum next experiment queue to "
+        f"{args.out} (blocked steps: "
+        f"{counts.get('blocked_experiment_steps')}, missing train/cal rows: "
+        f"{counts.get('minimum_new_train_cal_oos_rows_needed')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_p10746_deployment_caveat_decision_packet(
     args: argparse.Namespace,
 ) -> int:
@@ -13263,6 +13379,34 @@ def cmd_build_fold_augmented_p07658_full_length_prediction_request_manifest(
         f"to {args.out} (sequence length: {counts.get('sequence_length')}, "
         f"selenocysteines: {counts.get('selenocysteine_count')}, "
         f"coordinates staged: {counts.get('coordinates_staged_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_p07658_prediction_acceptance_preflight(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    preflight = write_fold_augmented_p07658_prediction_acceptance_preflight(
+        prediction_request_manifest_path=Path(args.prediction_request_manifest),
+        candidate_coordinate_path=Path(args.candidate_coordinate)
+        if args.candidate_coordinate
+        else None,
+        candidate_provenance_path=Path(args.candidate_provenance)
+        if args.candidate_provenance
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = preflight.get("counts", {})
+    print(
+        "Wrote fold-augmented P07658 prediction acceptance preflight to "
+        f"{args.out} (checks failed: "
+        f"{counts.get('acceptance_checks_failed')}, coordinate exists: "
+        f"{counts.get('candidate_coordinate_exists')})"
     )
     return 0
 
@@ -29823,6 +29967,60 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_confounded_proxy_high_cofactor_candidate_near_miss_triage
     )
 
+    high_cofactor_acquisition_blocker = subparsers.add_parser(
+        "build-fold-augmented-confounded-proxy-high-cofactor-acquisition-blocker-packet",
+        help=(
+            "compose the precise high-cofactor train/cal acquisition blocker "
+            "after current candidate-pool near-miss triage"
+        ),
+    )
+    high_cofactor_acquisition_blocker.add_argument(
+        "--high-cofactor-probe-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "probe_contract_current702_20260604.json"
+        ),
+    )
+    high_cofactor_acquisition_blocker.add_argument(
+        "--high-cofactor-candidate-near-miss-triage",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "candidate_near_miss_triage_current702_20260604.json"
+        ),
+    )
+    high_cofactor_acquisition_blocker.add_argument(
+        "--train-cal-candidate-pool",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "candidate_pool_current702_20260603.json"
+        ),
+    )
+    high_cofactor_acquisition_blocker.add_argument(
+        "--surface-and-calibration-state",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_surface_and_"
+            "calibration_state_after_q43088_p07658_current702_20260604.json"
+        ),
+    )
+    high_cofactor_acquisition_blocker.add_argument("--artifact-id", default=None)
+    high_cofactor_acquisition_blocker.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "acquisition_blocker_packet_current702_20260604.json"
+        ),
+    )
+    high_cofactor_acquisition_blocker.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_high_cofactor_"
+            "acquisition_blocker_packet_current702_20260604.md"
+        ),
+    )
+    high_cofactor_acquisition_blocker.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet
+    )
+
     confounded_proxy_train_cal_scoring_tranche = subparsers.add_parser(
         "build-fold-augmented-confounded-proxy-train-cal-scoring-tranche-plan",
         help=(
@@ -30684,6 +30882,167 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    confounded_proxy_same_family_structural_blocker = subparsers.add_parser(
+        (
+            "build-fold-augmented-confounded-proxy-same-family-structural-"
+            "acquisition-blocker-packet"
+        ),
+        help=(
+            "compose the precise same-family structural train/cal acquisition "
+            "blocker from the current candidate pool"
+        ),
+    )
+    confounded_proxy_same_family_structural_blocker.add_argument(
+        "--same-family-structural-acquisition-contract",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_contract_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_same_family_structural_blocker.add_argument(
+        "--train-cal-candidate-pool",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_"
+            "candidate_pool_current702_20260603.json"
+        ),
+    )
+    confounded_proxy_same_family_structural_blocker.add_argument(
+        "--surface-and-calibration-state",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_surface_and_"
+            "calibration_state_after_q43088_p07658_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_same_family_structural_blocker.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    confounded_proxy_same_family_structural_blocker.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_blocker_packet_current702_20260604.json"
+        ),
+    )
+    confounded_proxy_same_family_structural_blocker.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_confounded_proxy_same_family_structural_"
+            "acquisition_blocker_packet_current702_20260604.md"
+        ),
+    )
+    confounded_proxy_same_family_structural_blocker.set_defaults(
+        func=cmd_build_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet
+    )
+
+    lever3_blocker_packet_guardrail_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-blocker-packet-guardrail-audit",
+        help=(
+            "audit the current Lever 3 blocker packets for threshold, scoring, "
+            "heldout, import, and experimental-shortcut guardrail violations"
+        ),
+    )
+    lever3_blocker_packet_guardrail_audit.add_argument(
+        "--artifact",
+        nargs="+",
+        default=[
+            (
+                "artifacts/v3_fold_augmented_p07658_full_length_prediction_"
+                "request_manifest_current702_20260604.json"
+            ),
+            (
+                "artifacts/v3_fold_augmented_p07658_prediction_acceptance_"
+                "preflight_current702_20260604.json"
+            ),
+            (
+                "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+                "acquisition_blocker_packet_current702_20260604.json"
+            ),
+            (
+                "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+                "structural_acquisition_blocker_packet_current702_20260604.json"
+            ),
+        ],
+    )
+    lever3_blocker_packet_guardrail_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_blocker_packet_guardrail_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever3_blocker_packet_guardrail_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_blocker_packet_guardrail_audit_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_blocker_packet_guardrail_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_blocker_packet_guardrail_audit
+    )
+
+    lever3_minimum_next_experiment_queue = subparsers.add_parser(
+        "build-fold-augmented-lever3-minimum-next-experiment-queue",
+        help=(
+            "compose the smallest remaining Lever 3 experiments from the "
+            "current blocker packets and guardrail audit"
+        ),
+    )
+    lever3_minimum_next_experiment_queue.add_argument(
+        "--p07658-prediction-acceptance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_acceptance_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    lever3_minimum_next_experiment_queue.add_argument(
+        "--high-cofactor-acquisition-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_"
+            "acquisition_blocker_packet_current702_20260604.json"
+        ),
+    )
+    lever3_minimum_next_experiment_queue.add_argument(
+        "--same-family-structural-acquisition-blocker-packet",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_same_family_"
+            "structural_acquisition_blocker_packet_current702_20260604.json"
+        ),
+    )
+    lever3_minimum_next_experiment_queue.add_argument(
+        "--blocker-packet-guardrail-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever3_minimum_next_experiment_queue.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_minimum_next_experiment_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_minimum_next_experiment_"
+            "queue_current702_20260604.json"
+        ),
+    )
+    lever3_minimum_next_experiment_queue.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_minimum_next_experiment_queue_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_minimum_next_experiment_queue.set_defaults(
+        func=cmd_build_fold_augmented_lever3_minimum_next_experiment_queue
+    )
+
     p10746_caveat_decision_packet = subparsers.add_parser(
         "build-fold-augmented-p10746-deployment-caveat-decision-packet",
         help=(
@@ -31269,6 +31628,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p07658_prediction_request_manifest.set_defaults(
         func=cmd_build_fold_augmented_p07658_full_length_prediction_request_manifest
+    )
+
+    p07658_prediction_acceptance_preflight = subparsers.add_parser(
+        "build-fold-augmented-p07658-prediction-acceptance-preflight",
+        help=(
+            "fail-closed acceptance preflight for a staged P07658 predicted "
+            "coordinate candidate against the frozen request manifest"
+        ),
+    )
+    p07658_prediction_acceptance_preflight.add_argument(
+        "--prediction-request-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_full_length_prediction_"
+            "request_manifest_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_acceptance_preflight.add_argument(
+        "--candidate-coordinate",
+        default=None,
+    )
+    p07658_prediction_acceptance_preflight.add_argument(
+        "--candidate-provenance",
+        default=None,
+    )
+    p07658_prediction_acceptance_preflight.add_argument("--artifact-id", default=None)
+    p07658_prediction_acceptance_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_acceptance_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    p07658_prediction_acceptance_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p07658_prediction_acceptance_preflight_"
+            "current702_20260604.md"
+        ),
+    )
+    p07658_prediction_acceptance_preflight.set_defaults(
+        func=cmd_build_fold_augmented_p07658_prediction_acceptance_preflight
     )
 
     confounded_proxy_residual_queue_after_p10746_q43088 = subparsers.add_parser(

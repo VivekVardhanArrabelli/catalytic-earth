@@ -3,13 +3,13 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T11:02:19Z`
-- STARTED_AT_LOCAL: `2026-06-04T06:02:20-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T11:49:36Z`
-- ENDED_AT_LOCAL: `2026-06-04T06:49:36-0500 CDT`
-- ELAPSED_MINUTES: `47.3`
+- STARTED_AT_UTC: `2026-06-04T12:02:33Z`
+- STARTED_AT_LOCAL: `2026-06-04T07:02:33-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T12:53:05Z`
+- ENDED_AT_LOCAL: `2026-06-04T07:53:05-0500 CDT`
+- ELAPSED_MINUTES: `50.5`
 - Status: wrap complete; canonical `.git/catalytic-earth-automation.lock`
-  acquired before substantive work at `2026-06-04T11:02:19Z` with PID `56267`.
+  acquired before substantive work at `2026-06-04T12:02:33Z` with PID `99104`.
   Current user instruction: work only on Lever 3.
 
 ## Mission
@@ -61,6 +61,143 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 31
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T12:02:33Z`
+- STARTED_LOCAL: `2026-06-04T07:02:33-0500 CDT`
+- ENDED_AT: `2026-06-04T12:53:05Z`
+- ENDED_LOCAL: `2026-06-04T07:53:05-0500 CDT`
+- ELAPSED_MINUTES: `50.5`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T12:02:33Z` with PID `99104`.
+
+#### Current intent
+
+Work only on Lever 3. Convert the remaining predicted-structure-vs-atlas
+novelty blockers into deployment-valid, guardrail-clean blocker packets and
+smallest-next-experiment inputs without scoring rows, changing threshold
+`0.44155`, or using heldout rows.
+
+#### What changed
+
+- Added a fail-closed P07658 acceptance preflight builder/CLI and artifacts:
+  `artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json`
+  and
+  `work/fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.md`.
+  Current status is blocked: 0 candidate coordinate files, 0 provenance files,
+  7 failed acceptance checks, and no coordinate staging/scoring.
+- Corrected the P07658 request manifest selenocysteine requirement from the
+  stale hard-coded position 138 to the actual computed position 140. The
+  regenerated manifest/report still freeze the same 715-residue sequence and
+  sequence SHA-256
+  `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa`.
+- Added high-cofactor acquisition blocker packet artifacts:
+  `artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.json`
+  and
+  `work/fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.md`.
+  The ready train/cal OOS pool has 353 rows and 80 priority candidates, but 0
+  rows satisfy the frozen high-cofactor axis; 16 eligible source-free
+  high-cofactor OOS rows are still missing.
+- Added same-family structural acquisition blocker packet artifacts:
+  `artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.json`
+  and
+  `work/fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.md`.
+  The ready train/cal OOS pool still has 0 eligible same-family structural-axis
+  rows, 80 background affected rows are listed, and 170 eligible rows are still
+  missing.
+- Added blocker-packet and queue/template guardrail audits:
+  `artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.json`
+  checks 4 blocker packets with 0 violations, and
+  `artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json`
+  checks 6 queue/template artifacts with 0 violations.
+- Added a minimum next-experiment queue:
+  `artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.md`.
+  It orders the remaining blockers as: P07658 full-length prediction
+  acceptance first, 16-row source-free high-cofactor train/cal acquisition
+  second, and 170-row same-family structural acquisition third.
+- Added P07658 next-experiment input support:
+  `artifacts/v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604.json`,
+  `work/fold_augmented_p07658_prediction_provenance_template_current702_20260604.md`,
+  and
+  `work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta`.
+  The FASTA validates to length 715, SHA-256
+  `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa`,
+  and selenocysteine position 140.
+- Added unit, CLI registration, and current-artifact regression coverage in
+  `tests/test_northstar_next_levers.py`, `tests/test_cli.py`, and
+  `tests/test_geometry_artifact_regression.py`.
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md` from the progress CLI.
+
+#### Guardrails
+
+- Worked only on Lever 3.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, or threshold values changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental PDB metadata were used as predictive features.
+- No coordinate was staged, downloaded, or imported in this run.
+- No row was scored and no fixed-threshold audit was rerun.
+- P07658 experimental/public computed-model evidence remains blocker evidence
+  only; the new template requires
+  `experimental_pdb_metadata_used_as_deployment_input: false`.
+
+#### Verification
+
+- Baseline before edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1341 tests passed.
+- Focused current artifacts after the queue/template additions:
+  8 tests passed, 154 subtests passed.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1397 passed, 180 subtests passed,
+  with the existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1352 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- Repo-wide JSON parse: 3525 JSON files checked.
+- Final docs artifact-reference check to `/tmp`: missing 0.
+- Progress tooling smoke test:
+  `PYTHONPATH=src python -m pytest tests/test_progress.py -q`: 3 passed.
+- Disk guardrail remained above 10 GiB: 26 GiB available.
+
+#### Commit/push status
+
+- Handoff/status/memory were updated after validation. Commit, push,
+  `HEAD == origin/main` verification, and lock release are the remaining
+  mechanical wrap steps after this handoff edit.
+
+#### Exact next action
+
+Do not rerun or retune threshold `0.44155` yet. The next Lever 3 action is:
+
+1. Run or provision an approved full-length predictor/provider with
+   `work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta`.
+2. Fill the provenance contract from
+   `artifacts/v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604.json`
+   into a filled provenance artifact with provider/model/version, coordinate
+   path/checksum, input sequence SHA/length, selenocysteine position 140
+   handling, and explicit no-experimental-shortcut evidence.
+3. Rerun
+   `build-fold-augmented-p07658-prediction-acceptance-preflight` with the
+   candidate coordinate and filled provenance. Stage and score P07658 only if
+   every acceptance check passes.
+4. After P07658 passes, acquire 16 new non-heldout train/cal OOS rows whose
+   source-free cofactor/locus evidence satisfies the frozen high-cofactor
+   axis. Treat the 170-row same-family structural acquisition as the larger
+   follow-on blocker after the high-cofactor blocker is addressed.
 
 ### 2026-06-04 Lever 3 Forward Push Run 30
 
@@ -114,7 +251,7 @@ full-length predicted coordinate exists, and do not rerun/retune threshold
   manifest
   `artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json`
   plus report freezes the local `ref__P07658` FASTA input: 715 residues, one
-  selenocysteine at position 138, sequence SHA-256
+  selenocysteine at position 140, sequence SHA-256
   `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa`,
   accepted coordinate formats, staging path expectations, and acceptance
   checks before any scoring.

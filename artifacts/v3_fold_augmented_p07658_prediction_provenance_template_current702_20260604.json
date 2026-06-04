@@ -1,0 +1,79 @@
+{
+  "artifact_id": "v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604",
+  "schema_version": "v3.northstar_next_levers.fold_augmented_p07658_prediction_provenance_template",
+  "created_utc": "2026-06-04T12:38:57Z",
+  "status": "fold_augmented_p07658_prediction_provenance_template_ready_unfilled",
+  "scope": "Provider-fillable provenance template for the P07658 full-length predicted coordinate acceptance preflight. This template stages no coordinate, scores no row, and changes no threshold.",
+  "source_artifacts": {
+    "prediction_request_manifest": "artifacts/v3_fold_augmented_p07658_full_length_prediction_request_manifest_current702_20260604.json",
+    "acceptance_preflight": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
+    "provider_ready_fasta": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta"
+  },
+  "affected_row": {
+    "entry_id": "m_csa:562",
+    "accession": "P07658",
+    "sequence_length": 715,
+    "selenocysteine_count": 1,
+    "selenocysteine_positions": [
+      140
+    ],
+    "input_sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+    "input_fasta_path": "work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta",
+    "preferred_coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif"
+  },
+  "required_provider_fields_to_fill": {
+    "provider": "FILL_ME_PROVIDER_NAME",
+    "model_name_or_id": "FILL_ME_MODEL_NAME_OR_ID",
+    "model_version": "FILL_ME_MODEL_VERSION",
+    "run_timestamp_utc": "FILL_ME_UTC_TIMESTAMP",
+    "coordinate_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif",
+    "coordinate_sha256": "FILL_ME_SHA256_AFTER_COORDINATE_FILE_EXISTS",
+    "coordinate_format": "mmCIF",
+    "input_sequence_sha256": "3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa",
+    "input_sequence_length": 715,
+    "selenocysteine_count": 1,
+    "selenocysteine_positions": [
+      140
+    ],
+    "selenocysteine_handling": "FILL_ME_POSITION_140_U_PRESERVED_OR_EXPLICITLY_DOCUMENTED",
+    "missing_position_list": [],
+    "experimental_pdb_metadata_used_as_deployment_input": false
+  },
+  "acceptance_preflight_contract": {
+    "all_fields_must_be_filled_before_staging": true,
+    "coordinate_file_must_exist": true,
+    "coordinate_sha256_must_match_file": true,
+    "provider_model_version_required": true,
+    "input_sequence_sha256_must_match_manifest": true,
+    "input_sequence_length_must_equal_715": true,
+    "selenocysteine_handling_must_be_explicit_and_position_preserving": true,
+    "experimental_pdb_metadata_must_not_be_used": true,
+    "rerun_command_after_filling": "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-p07658-prediction-acceptance-preflight --candidate-coordinate artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/confounded_proxy_train_cal_tranche_queries/p07658_full_length_predictor_current702_20260604.cif --candidate-provenance artifacts/v3_fold_augmented_p07658_prediction_provenance_filled_current702_20260604.json"
+  },
+  "guardrails": {
+    "review_only_template": true,
+    "coordinates_staged_now": false,
+    "candidate_rows_scored_now": false,
+    "fixed_threshold_audit_rerun": false,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "production_thresholds_changed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "mechanism_text_or_source_ids_used_as_features": false,
+    "labels_registries_ontologies_changed": false,
+    "imports_or_promotions_performed": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false
+  },
+  "counts": {
+    "template_fields_to_fill": 14,
+    "coordinates_staged_now": 0,
+    "candidate_rows_scored_now": 0,
+    "fixed_threshold_audit_ready_to_rerun_now": 0,
+    "threshold_values_changed": 0,
+    "critical_violation_total": 0
+  },
+  "interpretation": {
+    "result": "The P07658 acceptance blocker is now paired with an explicit provenance template for the smallest next prediction experiment.",
+    "next_action": "Run an approved full-length predictor on the frozen P07658 sequence, fill this template with provider/model/version/path/checksum evidence, then rerun the acceptance preflight before staging."
+  }
+}
