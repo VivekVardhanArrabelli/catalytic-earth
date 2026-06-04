@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 350
-- Measured elapsed time: 10736.5 minutes (178.94 hours)
+- Entries: 351
+- Measured elapsed time: 10783.9 minutes (179.73 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 569.1 measured minutes (9.48 hours)
+- northstar-lever3: 616.4 measured minutes (10.27 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3668
-- Evidence references logged: 3022
+- Artifact references logged: 3677
+- Evidence references logged: 3031
 
 ## Recent Entries
-
-### 2026-06-04T12:50:52.667257+00:00 - northstar-lever3
-
-- Task: Lever 3 deployment-valid blocker packets and next-experiment queue
-- Time mode: measured
-- Measured minutes: 50.533
-- Started: 2026-06-04T12:02:33Z
-- Ended: 2026-06-04T12:53:05Z
-- Artifacts: artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json, work/fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.json, work/fold_augmented_confounded_proxy_high_cofactor_acquisition_blocker_packet_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.json, work/fold_augmented_confounded_proxy_same_family_structural_acquisition_blocker_packet_current702_20260604.md, artifacts/v3_fold_augmented_lever3_blocker_packet_guardrail_audit_current702_20260604.json, artifacts/v3_fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.json, work/fold_augmented_lever3_minimum_next_experiment_queue_current702_20260604.md, artifacts/v3_fold_augmented_p07658_prediction_provenance_template_current702_20260604.json, work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta, artifacts/v3_fold_augmented_lever3_queue_and_template_guardrail_audit_current702_20260604.json, work/handoff.md, work/status.md
-- Evidence: P07658 acceptance preflight blocked with 7 failed checks and no coordinate/provenance, high-cofactor blocker records 0 eligible rows and 16 missing train/cal OOS rows, same-family structural blocker records 0 eligible rows and 170 missing train/cal OOS rows, next-experiment queue orders P07658 then high-cofactor then same-family structural acquisition, guardrail audits checked 4 blocker packets and 6 queue/template artifacts with 0 violations, full pytest 1397 passed 180 subtests one existing sklearn SciPy warning, unittest discovery 1352 passed, validate passed with 702 labels, compileall git diff check JSON parse 3525 files docs reference check missing 0
-- Notes: Lever 3 only. No labels registries ontologies imports production thresholds heldout splits heldout tuning scoring coordinate staging or experimental PDB deployment shortcuts changed.
 
 ### 2026-06-04T13:53:10.947379+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json, work/fold_augmented_lever3_residual_safety_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, tests/test_northstar_next_levers.py, work/handoff.md, work/status.md
 - Evidence: residual safety readout 21 unique residual hard-confounded rows all retained by all current source-free channels; closest-channel and any-channel diagnostic shifts preserve the 31/34 in-scope floor for 0/21 residual rows; m_csa:289/P07342 high-cofactor residual best shift retains only 25/34 in-scope; live P07658 checks still show AFDB 404 and 3D-Beacons experimental-only, UniProt sequence hash matches frozen 715-aa U140 input; full pytest 1427 passed 193 subtests one existing sklearn warning; unittest 1382 passed; affected tests 555 passed 174 subtests; validate 702 labels; compileall diff-check JSON parse docs-ref and active source hashes passed
 - Notes: Lever 3 only. No labels registries ontologies imports thresholds heldout tuning scoring coordinate staging model fitting or experimental PDB deployment shortcuts changed. Implementation commit 91c501581671165b23935d9277bfe6afee6cb078 pushed to main and verified before final handoff bookkeeping.
+
+### 2026-06-04T20:51:00.471108+00:00 - northstar-lever3
+
+- Task: Lever 3 cofactor-context counteraxis and same-family bandpass scout readout
+- Time mode: measured
+- Measured minutes: 47.333
+- Started: 2026-06-04T20:03:40Z
+- Ended: 2026-06-04T20:51:00Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json, work/fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: cofactor-context counteraxis resolved high-cofactor residual 1/1 with 31/34 calibration retention, same-family numeric bandpass scout fired 9 retained residual rows and reduced same-family shortfall from 9 to 0, combined scout operating point abstained 105/204 train/cal OOS and retained 31/34 calibration rows, current evidence remains deployment-closure false pending accepted bandpass counteraxis contract and P07658 predicted-coordinate provenance, focused Lever 3 tests 4 passed 10 subtests, affected CLI/northstar/geometry regression tests 558 passed 175 subtests, full pytest 1430 passed 194 subtests with one existing sklearn/SciPy warning, unittest discovery 1385 passed, validate 702 labels compileall diff-check JSON parse and docs-reference check passed
+- Notes: Measured readout artifact first; no blocker packet produced. The fixed 0.44155 threshold remains unchanged.
 
 ## Expectation Updates
 
@@ -396,6 +396,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T16:54:35.141959+00:00: Current evidence is measured but insufficient; next action is exact P07658 full-length prediction/provenance, then 16 strict high-cofactor rows, then 170 strict same-family structural rows
 - 2026-06-04T17:54:27.719250+00:00: Current train/cal-selected source-free channels are measured but insufficient for Lever 3 closure; next progress needs accepted P07658 full-length predicted-coordinate provenance plus strict high-cofactor acquisition.
 - 2026-06-04T18:22:07.166395+00:00: Current fixed source-free channels cannot close Lever 3 at 90pct retention or at any retention; next progress needs accepted P07658 coordinate provenance plus strict high-cofactor acquisition.
+- 2026-06-04T20:51:00.471108+00:00: Current source-free numeric evidence now supports a measured operating-point closure scout for high-cofactor plus same-family shortfall at 31/34 calibration retention, but deployment closure still needs an accepted bandpass counteraxis contract and full-length P07658 predicted-coordinate provenance.
 
 ## Scope Adjustments
 
@@ -604,3 +605,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T16:54:35.141959+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds or threshold tuning changed
 - 2026-06-04T17:54:27.719250+00:00: Lever 3 only; no threshold changes, heldout tuning, row scoring, coordinate staging, labels, registries, ontologies, imports, or source decisions changed.
 - 2026-06-04T18:22:07.166395+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging or source decisions changed
+- 2026-06-04T20:51:00.471108+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting or source decisions changed

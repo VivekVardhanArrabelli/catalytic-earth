@@ -3,15 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T19:02:47Z`
-- STARTED_AT_LOCAL: `2026-06-04T14:02:47-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T19:48:40Z`
-- ENDED_AT_LOCAL: `2026-06-04T14:48:40-0500 CDT`
-- ELAPSED_MINUTES: `45.90`
-- Status: Run 38 wrap complete. Canonical
+- STARTED_AT_UTC: `2026-06-04T20:03:40Z`
+- STARTED_AT_LOCAL: `2026-06-04T15:03:40-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T20:51:13Z`
+- ENDED_AT_LOCAL: `2026-06-04T15:51:13-0500 CDT`
+- ELAPSED_MINUTES: `47.55`
+- Status: Run 39 complete. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T19:02:47Z` with PID `19099`. Work stayed on Lever 3 and
-  produced a measured residual-safety readout, not a blocker packet.
+  `2026-06-04T20:03:40Z` with PID `93039`. Work is restricted to Lever 3 and
+  produced a measured cofactor-context counteraxis readout plus a
+  same-family numeric bandpass scout. Commit/push verification is the
+  immediate post-handoff wrap step in this automation run.
 
 ## Mission
 
@@ -62,6 +64,119 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 39
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T20:03:40Z`
+- STARTED_LOCAL: `2026-06-04T15:03:40-0500 CDT`
+- ENDED_AT: `2026-06-04T20:51:13Z`
+- ENDED_LOCAL: `2026-06-04T15:51:13-0500 CDT`
+- ELAPSED_MINUTES: `47.55`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T20:03:40Z` with PID `93039`.
+
+#### What changed
+
+- Added `build-fold-augmented-lever3-cofactor-context-counteraxis-readout`
+  and the corresponding builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.md`.
+- Added regression coverage for the CLI defaults, synthetic train/cal
+  selection behavior, artifact counts, source-artifact hashes, and the new
+  same-family bandpass scout operating-point counts.
+- Fixed threshold-reader fallbacks so current train/cal contracts that expose
+  `selected_at_90pct_calibration_in_scope_retention` without the
+  `_max_oos_abstain` suffix still use the correct 0.44155 fixed threshold and
+  0.338 geometry floor.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; no production threshold,
+  labels, registries, ontologies, imports, heldout splits, scoring, coordinate
+  staging, model fitting, or source decisions changed.
+- Cofactor-context counteraxis rule:
+  `cofactor_max_score >= 0.95`,
+  `predicted_geometry_top1_cofactor_context_score <= 0.0`,
+  `fold_nearest_atlas_tm_score >= 0.85`, and
+  `geometry_top1_score >= 0.338`.
+- The counteraxis preserves the 31/34 train/cal in-scope floor, fires on
+  0 calibration rows, and abstains the high-cofactor residual row:
+  1/1 high-cofactor residual fired, 0 high-cofactor residual remaining.
+- The counteraxis alone fires on 1/21 same-family residual rows, leaving a
+  same-family shortfall of 9 retained residual rows.
+- The measured same-family numeric bandpass scout selects a source-free
+  quantile-grid rule:
+  `0.6257 <= fold_nearest_atlas_tm_score <= 0.7357` and
+  `geometry_top1_score <= 0.5757`.
+- The bandpass scout fires on 9 retained same-family residual rows with 0
+  additional calibration fires, reducing the same-family shortfall from 9 to 0
+  at the train/cal operating point.
+- Combined baseline + cofactor counteraxis + bandpass scout operating point:
+  31/34 calibration in-scope retained, 105/204 train/cal OOS abstained,
+  1/4 strict high-cofactor proxy rows abstained, and 26/59 strict same-family
+  proxy rows abstained.
+- Same-family candidate pocket descriptors remain insufficient on their own:
+  descriptors cover only 5/21 same-family residual rows, with 16/21 missing.
+- Current evidence is still not marked deployment-closed because deployment
+  use needs an accepted bandpass counteraxis contract and accepted full-length
+  P07658 predicted-coordinate provenance before a fixed-threshold surface
+  rerun.
+- No blocker packet was produced.
+
+#### Validation
+
+- Baseline before edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1382 passed with the
+  existing sklearn/SciPy warning.
+- Generated artifact:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-lever3-cofactor-context-counteraxis-readout`.
+- Focused Lever 3 tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever3_cofactor_context_counteraxis_readout_parser_defaults tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_cofactor_context_counteraxis_selects_safe_train_cal_rule tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_cofactor_context_counteraxis_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  4 passed, 10 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  558 passed, 175 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1430 passed, 194 subtests passed, with
+  the existing sklearn/SciPy warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1385 passed.
+- `python -m compileall src tests`: passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3542 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Current-docs artifact-reference check to `/tmp`: missing 0.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Exact disk check: 10.44 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended a measured progress-log entry and regenerated `work/status.md`.
+- `git fetch origin` confirmed local `HEAD` and `origin/main` matched before
+  wrap-up edits.
+- Commit/push verification is pending immediately after this handoff update;
+  release the repo lock only after `HEAD == origin/main` and the worktree is
+  clean.
+
+#### Exact next Lever 3 action
+
+Formalize the measured same-family numeric bandpass scout into an accepted
+deployment counteraxis contract, preserving the fixed 0.44155 baseline and the
+31/34 train/cal in-scope floor. In parallel, continue the P07658 full-length
+predicted-coordinate provenance path; public AFDB and 3D-Beacons checks in this
+run still did not provide a deployment-valid predicted coordinate.
 
 ### 2026-06-04 Lever 3 Forward Push Run 38
 

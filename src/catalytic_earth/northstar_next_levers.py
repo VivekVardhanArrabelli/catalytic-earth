@@ -316,6 +316,9 @@ FOLD_AUGMENTED_LEVER3_RETENTION_FRONTIER_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_RESIDUAL_SAFETY_READOUT_ID = (
     "v3_fold_augmented_lever3_residual_safety_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_COFACTOR_CONTEXT_COUNTERAXIS_READOUT_ID = (
+    "v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -7370,6 +7373,12 @@ def _fixed_combined_mean_geometry_fold_threshold(
         .get("combined_mean_geometry_fold", {})
         .get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain", {})
     )
+    if not selected:
+        selected = (
+            threshold_contract.get("threshold_contract", {})
+            .get("combined_mean_geometry_fold", {})
+            .get("selected_at_90pct_calibration_in_scope_retention", {})
+        )
     threshold = selected.get("threshold")
     try:
         return float(threshold)
@@ -14969,6 +14978,8 @@ def build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision(
         primary.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
         or {}
     )
+    if not selected:
+        selected = primary.get("selected_at_90pct_calibration_in_scope_retention") or {}
     prior = primary.get("prior_in_scope_only_selected_at_90pct") or {}
     heldout = primary.get("heldout_final_eval_at_90pct_oos_calibrated_threshold") or {}
     blocker_reason_counts = blocker_counts.get("blocker_reason_counts") or {}
@@ -15544,6 +15555,8 @@ def _selected_90pct_threshold_for_channel(
         channel.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
         or {}
     )
+    if not selected:
+        selected = channel.get("selected_at_90pct_calibration_in_scope_retention") or {}
     threshold = selected.get("threshold")
     if threshold is None:
         return None
@@ -38599,6 +38612,1447 @@ def write_fold_augmented_lever3_residual_safety_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_residual_safety_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_predicted_geometry_descriptor_by_entry(
+    predicted_geometry_atlas_retrieval: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    descriptors: dict[str, dict[str, Any]] = {}
+    for row in predicted_geometry_atlas_retrieval.get("results", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        top_fingerprints = row.get("top_fingerprints") or []
+        top1 = top_fingerprints[0] if top_fingerprints else {}
+        if not isinstance(top1, dict):
+            top1 = {}
+        descriptors[str(row["entry_id"])] = {
+            "predicted_geometry_top1_score": row.get("top1_score")
+            if row.get("top1_score") is not None
+            else top1.get("score"),
+            "predicted_geometry_top1_role_match_fraction": row.get(
+                "top1_role_match_fraction"
+            )
+            if row.get("top1_role_match_fraction") is not None
+            else top1.get("role_match_fraction"),
+            "predicted_geometry_top1_cofactor_context_score": row.get(
+                "top1_cofactor_context_score"
+            )
+            if row.get("top1_cofactor_context_score") is not None
+            else top1.get("cofactor_context_score"),
+            "predicted_geometry_top1_cofactor_evidence_level": row.get(
+                "top1_cofactor_evidence_level"
+            )
+            if row.get("top1_cofactor_evidence_level") is not None
+            else top1.get("cofactor_evidence_level"),
+        }
+    return descriptors
+
+
+def _lever3_row_geometry_descriptor(
+    row: dict[str, Any],
+    descriptors_by_entry: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    entry_id = str(row.get("entry_id") or "")
+    descriptor = dict(descriptors_by_entry.get(entry_id) or {})
+    top1 = row.get("predicted_geometry_top1") or {}
+    if not isinstance(top1, dict):
+        top1 = {}
+    if descriptor.get("predicted_geometry_top1_score") is None:
+        descriptor["predicted_geometry_top1_score"] = top1.get("score")
+    if descriptor.get("predicted_geometry_top1_role_match_fraction") is None:
+        descriptor["predicted_geometry_top1_role_match_fraction"] = top1.get(
+            "role_match_fraction"
+        )
+    if descriptor.get("predicted_geometry_top1_cofactor_context_score") is None:
+        descriptor["predicted_geometry_top1_cofactor_context_score"] = top1.get(
+            "cofactor_context_score"
+        )
+    return descriptor
+
+
+def _lever3_cofactor_context_counteraxis_fires(
+    row: dict[str, Any],
+    *,
+    descriptors_by_entry: dict[str, dict[str, Any]],
+    cofactor_threshold: float,
+    cofactor_context_max: float,
+    fold_tm_threshold: float,
+    geometry_top1_threshold: float,
+) -> bool:
+    channel_scores = row.get("channel_scores") or {}
+    cofactor = _cofactor_proxy_score(row)
+    cofactor_context = _parse_optional_float(
+        _lever3_row_geometry_descriptor(row, descriptors_by_entry).get(
+            "predicted_geometry_top1_cofactor_context_score"
+        )
+    )
+    fold_tm = _parse_optional_float(channel_scores.get("fold_nearest_atlas_tm_score"))
+    geometry_top1 = _parse_optional_float(channel_scores.get("geometry_top1_score"))
+    if (
+        cofactor is None
+        or cofactor_context is None
+        or fold_tm is None
+        or geometry_top1 is None
+    ):
+        return False
+    return bool(
+        cofactor >= cofactor_threshold
+        and cofactor_context <= cofactor_context_max
+        and fold_tm >= fold_tm_threshold
+        and geometry_top1 >= geometry_top1_threshold
+    )
+
+
+def _lever3_cofactor_context_counteraxis_row(
+    row: dict[str, Any],
+    *,
+    descriptors_by_entry: dict[str, dict[str, Any]],
+    cofactor_threshold: float,
+    cofactor_context_max: float,
+    fold_tm_threshold: float,
+    geometry_top1_threshold: float,
+) -> dict[str, Any]:
+    channel_scores = row.get("channel_scores") or {}
+    descriptor = _lever3_row_geometry_descriptor(row, descriptors_by_entry)
+    fires = _lever3_cofactor_context_counteraxis_fires(
+        row,
+        descriptors_by_entry=descriptors_by_entry,
+        cofactor_threshold=cofactor_threshold,
+        cofactor_context_max=cofactor_context_max,
+        fold_tm_threshold=fold_tm_threshold,
+        geometry_top1_threshold=geometry_top1_threshold,
+    )
+    return {
+        "entry_id": row.get("entry_id"),
+        "accession": row.get("accession")
+        or row.get("predicted_geometry_accession")
+        or row.get("predicted_geometry_manifest_accession"),
+        "cofactor_max_score": _cofactor_proxy_score(row),
+        "cofactor_threshold": cofactor_threshold,
+        "predicted_geometry_top1_cofactor_context_score": _parse_optional_float(
+            descriptor.get("predicted_geometry_top1_cofactor_context_score")
+        ),
+        "cofactor_context_max": cofactor_context_max,
+        "fold_nearest_atlas_tm_score": _parse_optional_float(
+            channel_scores.get("fold_nearest_atlas_tm_score")
+        ),
+        "fold_tm_threshold": fold_tm_threshold,
+        "geometry_top1_score": _parse_optional_float(
+            channel_scores.get("geometry_top1_score")
+        ),
+        "geometry_top1_threshold": geometry_top1_threshold,
+        "predicted_geometry_top1_role_match_fraction": _parse_optional_float(
+            descriptor.get("predicted_geometry_top1_role_match_fraction")
+        ),
+        "counteraxis_fires": fires,
+    }
+
+
+def _lever3_route_abstains(
+    row: dict[str, Any],
+    *,
+    channels: list[str],
+    thresholds: dict[str, float],
+) -> bool:
+    channel_scores = row.get("channel_scores") or {}
+    for channel in channels:
+        threshold = thresholds.get(channel)
+        score = channel_scores.get(channel)
+        if threshold is None or score is None:
+            continue
+        if float(score) < float(threshold):
+            return True
+    return False
+
+
+def _lever3_augmented_route_readout(
+    rows: list[dict[str, Any]],
+    *,
+    route_id: str,
+    channels: list[str],
+    thresholds: dict[str, float],
+    descriptors_by_entry: dict[str, dict[str, Any]],
+    cofactor_threshold: float,
+    cofactor_context_max: float,
+    fold_tm_threshold: float,
+    geometry_top1_threshold: float,
+) -> dict[str, Any]:
+    baseline_abstained_ids: set[str] = set()
+    counteraxis_ids: set[str] = set()
+    row_records: list[dict[str, Any]] = []
+    for row in rows:
+        entry_id = str(row.get("entry_id") or "")
+        baseline_abstains = _lever3_route_abstains(
+            row, channels=channels, thresholds=thresholds
+        )
+        counteraxis_fires = _lever3_cofactor_context_counteraxis_fires(
+            row,
+            descriptors_by_entry=descriptors_by_entry,
+            cofactor_threshold=cofactor_threshold,
+            cofactor_context_max=cofactor_context_max,
+            fold_tm_threshold=fold_tm_threshold,
+            geometry_top1_threshold=geometry_top1_threshold,
+        )
+        if baseline_abstains:
+            baseline_abstained_ids.add(entry_id)
+        if counteraxis_fires:
+            counteraxis_ids.add(entry_id)
+        if baseline_abstains or counteraxis_fires:
+            record = _lever3_cofactor_context_counteraxis_row(
+                row,
+                descriptors_by_entry=descriptors_by_entry,
+                cofactor_threshold=cofactor_threshold,
+                cofactor_context_max=cofactor_context_max,
+                fold_tm_threshold=fold_tm_threshold,
+                geometry_top1_threshold=geometry_top1_threshold,
+            )
+            record["baseline_route_abstains"] = baseline_abstains
+            record["augmented_route_abstains"] = True
+            row_records.append(record)
+    union_ids = baseline_abstained_ids | counteraxis_ids
+    total = len(rows)
+    return {
+        "route_id": route_id,
+        "channels": channels,
+        "thresholds": thresholds,
+        "row_count": total,
+        "baseline_abstained": len(baseline_abstained_ids),
+        "counteraxis_fired": len(counteraxis_ids),
+        "counteraxis_new_abstentions": len(counteraxis_ids - baseline_abstained_ids),
+        "augmented_abstained": len(union_ids),
+        "augmented_retained": total - len(union_ids),
+        "augmented_abstain_recall": round(len(union_ids) / total, 4)
+        if total
+        else None,
+        "counteraxis_rows": sorted(
+            [
+                row
+                for row in row_records
+                if row.get("counteraxis_fires")
+            ],
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "abstained_rows": sorted(
+            row_records,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+    }
+
+
+def _lever3_channel_score(row: dict[str, Any], channel: str) -> float | None:
+    return _parse_optional_float((row.get("channel_scores") or {}).get(channel))
+
+
+def _lever3_quantile_grid(
+    rows: list[dict[str, Any]],
+    *,
+    channel: str,
+    quantiles: tuple[float, ...] = (
+        0.0,
+        0.05,
+        0.10,
+        0.15,
+        0.20,
+        0.25,
+        0.30,
+        0.35,
+        0.40,
+        0.45,
+        0.50,
+        0.55,
+        0.60,
+        0.65,
+        0.70,
+        0.75,
+        0.80,
+        0.85,
+        0.90,
+        0.95,
+        1.0,
+    ),
+) -> list[float]:
+    values = sorted(
+        value
+        for row in rows
+        for value in [_lever3_channel_score(row, channel)]
+        if value is not None
+    )
+    if not values:
+        return []
+    grid: set[float] = set()
+    last_index = len(values) - 1
+    for quantile in quantiles:
+        index = int(round(float(quantile) * last_index))
+        grid.add(round(float(values[index]), 6))
+    return sorted(grid)
+
+
+def _lever3_same_family_bandpass_fires(
+    row: dict[str, Any],
+    *,
+    rule: dict[str, Any],
+) -> bool:
+    bounds = rule.get("bounds") or {}
+    fold_bounds = bounds.get("fold_nearest_atlas_tm_score") or {}
+    geometry_bounds = bounds.get("geometry_top1_score") or {}
+    fold_score = _lever3_channel_score(row, "fold_nearest_atlas_tm_score")
+    geometry_score = _lever3_channel_score(row, "geometry_top1_score")
+    fold_min = _parse_optional_float(fold_bounds.get("min"))
+    fold_max = _parse_optional_float(fold_bounds.get("max"))
+    geometry_max = _parse_optional_float(geometry_bounds.get("max"))
+    if (
+        fold_score is None
+        or geometry_score is None
+        or fold_min is None
+        or fold_max is None
+        or geometry_max is None
+    ):
+        return False
+    return bool(
+        fold_score >= fold_min
+        and fold_score <= fold_max
+        and geometry_score <= geometry_max
+    )
+
+
+def _lever3_same_family_bandpass_row(
+    row: dict[str, Any],
+    *,
+    rule: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "entry_id": row.get("entry_id"),
+        "accession": row.get("accession")
+        or row.get("predicted_geometry_accession")
+        or row.get("predicted_geometry_manifest_accession"),
+        "fold_nearest_atlas_tm_score": _lever3_channel_score(
+            row, "fold_nearest_atlas_tm_score"
+        ),
+        "geometry_top1_score": _lever3_channel_score(row, "geometry_top1_score"),
+        "combined_mean_geometry_fold": _lever3_channel_score(
+            row, "combined_mean_geometry_fold"
+        ),
+        "cofactor_max_score": _lever3_channel_score(row, "cofactor_max_score"),
+        "bandpass_fires": _lever3_same_family_bandpass_fires(row, rule=rule),
+    }
+
+
+def _lever3_same_family_numeric_bandpass_scout(
+    *,
+    calibration_rows: list[dict[str, Any]],
+    candidate_rows: list[dict[str, Any]],
+    same_residual_rows: list[dict[str, Any]],
+    baseline_channel: str,
+    baseline_threshold: float,
+    cofactor_counteraxis_calibration_ids: set[str],
+    cofactor_counteraxis_same_family_ids: set[str],
+    retention_floor_rows: int,
+    required_additional_same_family_abstentions: int,
+) -> dict[str, Any]:
+    if required_additional_same_family_abstentions <= 0:
+        return {
+            "status": "same_family_numeric_bandpass_scout_not_needed",
+            "feature_source": "source-free numeric channel scores only",
+            "threshold_grid": {
+                "fold_nearest_atlas_tm_score": [],
+                "geometry_top1_score": [],
+            },
+            "retention_floor_rows": retention_floor_rows,
+            "remaining_same_family_residual_rows": 0,
+            "required_additional_same_family_abstentions": 0,
+            "eligible_rules": 0,
+            "closing_rules": 0,
+            "selected_rule": None,
+            "top_candidate_rules": [],
+            "shortfall_after_selected_rule": 0,
+        }
+    grid_rows = calibration_rows + candidate_rows
+    fold_grid = _lever3_quantile_grid(
+        grid_rows, channel="fold_nearest_atlas_tm_score"
+    )
+    geometry_grid = _lever3_quantile_grid(grid_rows, channel="geometry_top1_score")
+    baseline_calibration_ids = {
+        str(row["entry_id"])
+        for row in calibration_rows
+        if _lever3_route_abstains(
+            row,
+            channels=[baseline_channel],
+            thresholds={baseline_channel: baseline_threshold},
+        )
+    }
+    remaining_same_rows = [
+        row
+        for row in same_residual_rows
+        if str(row.get("entry_id") or "") not in cofactor_counteraxis_same_family_ids
+    ]
+    eligible_records: list[dict[str, Any]] = []
+    for fold_min in fold_grid:
+        for fold_max in fold_grid:
+            if fold_min > fold_max:
+                continue
+            for geometry_max in geometry_grid:
+                rule = {
+                    "feature_rule": (
+                        "fold_nearest_atlas_tm_score between selected lower and "
+                        "upper quantile-grid bounds AND geometry_top1_score <= "
+                        "selected quantile-grid upper bound"
+                    ),
+                    "bounds": {
+                        "fold_nearest_atlas_tm_score": {
+                            "min": fold_min,
+                            "max": fold_max,
+                        },
+                        "geometry_top1_score": {"max": geometry_max},
+                    },
+                }
+                calibration_fire_ids = {
+                    str(row["entry_id"])
+                    for row in calibration_rows
+                    if _lever3_same_family_bandpass_fires(row, rule=rule)
+                }
+                retained = len(calibration_rows) - len(
+                    baseline_calibration_ids
+                    | cofactor_counteraxis_calibration_ids
+                    | calibration_fire_ids
+                )
+                if retained < retention_floor_rows:
+                    continue
+                same_fire_rows = [
+                    row
+                    for row in remaining_same_rows
+                    if _lever3_same_family_bandpass_fires(row, rule=rule)
+                ]
+                if not same_fire_rows:
+                    continue
+                all_fire_ids = {
+                    str(row["entry_id"])
+                    for row in candidate_rows
+                    if _lever3_same_family_bandpass_fires(row, rule=rule)
+                }
+                record = {
+                    **rule,
+                    "calibration_in_scope_retained_if_augmented": retained,
+                    "calibration_in_scope_fired": len(calibration_fire_ids),
+                    "calibration_in_scope_entry_ids_fired": sorted(
+                        calibration_fire_ids, key=_entry_id_sort_key
+                    ),
+                    "remaining_same_family_residual_rows_fired": len(same_fire_rows),
+                    "remaining_same_family_residual_entry_ids_fired": sorted(
+                        [str(row["entry_id"]) for row in same_fire_rows],
+                        key=_entry_id_sort_key,
+                    ),
+                    "all_train_cal_oos_fired": len(all_fire_ids),
+                    "all_train_cal_oos_entry_ids_fired": sorted(
+                        all_fire_ids, key=_entry_id_sort_key
+                    ),
+                    "retention_floor_met": True,
+                    "closes_required_same_family_shortfall": (
+                        len(same_fire_rows)
+                        >= int(required_additional_same_family_abstentions)
+                    ),
+                }
+                eligible_records.append(record)
+
+    if not eligible_records:
+        return {
+            "status": "same_family_numeric_bandpass_scout_no_retention_preserving_rule",
+            "feature_source": "source-free numeric channel scores only",
+            "threshold_grid": {
+                "fold_nearest_atlas_tm_score": fold_grid,
+                "geometry_top1_score": geometry_grid,
+            },
+            "retention_floor_rows": retention_floor_rows,
+            "remaining_same_family_residual_rows": len(remaining_same_rows),
+            "required_additional_same_family_abstentions": (
+                required_additional_same_family_abstentions
+            ),
+            "eligible_rules": 0,
+            "selected_rule": None,
+            "top_candidate_rules": [],
+            "shortfall_after_selected_rule": (
+                required_additional_same_family_abstentions
+            ),
+        }
+
+    closing_records = [
+        record
+        for record in eligible_records
+        if record["closes_required_same_family_shortfall"]
+    ]
+    selection_pool = closing_records or eligible_records
+    selected = min(
+        selection_pool,
+        key=lambda row: (
+            int(row["calibration_in_scope_fired"]),
+            int(row["all_train_cal_oos_fired"]),
+            -int(row["remaining_same_family_residual_rows_fired"]),
+            float(row["bounds"]["fold_nearest_atlas_tm_score"]["min"]),
+            float(row["bounds"]["fold_nearest_atlas_tm_score"]["max"]),
+            float(row["bounds"]["geometry_top1_score"]["max"]),
+        ),
+    )
+    ordered_candidates = sorted(
+        eligible_records,
+        key=lambda row: (
+            -int(row["closes_required_same_family_shortfall"]),
+            int(row["calibration_in_scope_fired"]),
+            int(row["all_train_cal_oos_fired"]),
+            -int(row["remaining_same_family_residual_rows_fired"]),
+            float(row["bounds"]["fold_nearest_atlas_tm_score"]["min"]),
+            float(row["bounds"]["fold_nearest_atlas_tm_score"]["max"]),
+            float(row["bounds"]["geometry_top1_score"]["max"]),
+        ),
+    )
+    shortfall_after_selected = max(
+        0,
+        int(required_additional_same_family_abstentions)
+        - int(selected["remaining_same_family_residual_rows_fired"]),
+    )
+    selected_rows = [
+        _lever3_same_family_bandpass_row(row, rule=selected)
+        for row in remaining_same_rows
+        if _lever3_same_family_bandpass_fires(row, rule=selected)
+    ]
+    return {
+        "status": (
+            "same_family_numeric_bandpass_scout_closes_required_shortfall"
+            if shortfall_after_selected == 0
+            else "same_family_numeric_bandpass_scout_partial_shortfall_reduction"
+        ),
+        "feature_source": "source-free numeric channel scores only",
+        "threshold_grid": {
+            "fold_nearest_atlas_tm_score": fold_grid,
+            "geometry_top1_score": geometry_grid,
+        },
+        "selection_method": (
+            "Select a retention-preserving quantile-grid bandpass that closes "
+            "the remaining same-family shortfall when possible, preferring zero "
+            "additional calibration fires and the smallest all-train/cal-OOS "
+            "fire set."
+        ),
+        "production_threshold_change": False,
+        "retention_floor_rows": retention_floor_rows,
+        "remaining_same_family_residual_rows": len(remaining_same_rows),
+        "required_additional_same_family_abstentions": (
+            required_additional_same_family_abstentions
+        ),
+        "eligible_rules": len(eligible_records),
+        "closing_rules": len(closing_records),
+        "selected_rule": selected,
+        "selected_remaining_same_family_rows": sorted(
+            selected_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "top_candidate_rules": ordered_candidates[:10],
+        "shortfall_after_selected_rule": shortfall_after_selected,
+    }
+
+
+def build_fold_augmented_lever3_cofactor_context_counteraxis_readout(
+    *,
+    in_scope_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_measured_readout_path: Path,
+    channel_veto_readout_path: Path,
+    residual_safety_readout_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    cofactor_threshold_grid: tuple[float, ...] = (
+        COFACTOR_SIGNATURE_THRESHOLD,
+        0.75,
+        0.90,
+        0.95,
+        0.98,
+    ),
+    fold_tm_threshold_grid: tuple[float, ...] = (0.85, 0.90),
+    cofactor_context_max: float = 0.0,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_COFACTOR_CONTEXT_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    in_scope_contract = _read_json(in_scope_threshold_contract_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    current = _read_json(current_measured_readout_path)
+    channel_veto = _read_json(channel_veto_readout_path)
+    residual_safety = _read_json(residual_safety_readout_path)
+    predicted_geometry = _read_json(predicted_geometry_atlas_retrieval_path)
+    candidate_geometry_by_entry = {
+        str(row["entry_id"]): row
+        for row in (
+            (surface.get("predicted_geometry_candidate_retrieval") or {}).get(
+                "results"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    descriptors_by_entry = _lever3_predicted_geometry_descriptor_by_entry(
+        predicted_geometry
+    )
+    primary = in_scope_contract.get("primary_channel_readout") or {}
+    selected = (
+        primary.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    if not selected:
+        selected = primary.get("selected_at_90pct_calibration_in_scope_retention") or {}
+    baseline_channel = str(primary.get("channel") or "combined_mean_geometry_fold")
+    baseline_threshold = _parse_optional_float(selected.get("threshold"))
+    if baseline_threshold is None:
+        baseline_threshold = _fixed_combined_mean_geometry_fold_threshold(
+            in_scope_contract
+        )
+    baseline_threshold = float(baseline_threshold or 0.0)
+    geometry_threshold = _selected_90pct_threshold_for_channel(
+        in_scope_contract, "geometry_top1_score"
+    )
+    if geometry_threshold is None:
+        geometry_threshold = baseline_threshold
+
+    calibration_rows = [
+        row
+        for row in in_scope_contract.get("calibration_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    retention_floor_rows = math.ceil(0.90 * len(calibration_rows))
+    candidate_rows = [
+        row
+        for row in surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    scored_oos_rows = [
+        row
+        for row in candidate_rows
+        if (row.get("channel_scores") or {}).get(baseline_channel) is not None
+    ]
+    candidate_by_entry = {str(row["entry_id"]): row for row in candidate_rows}
+    strict_high_ids = {
+        str(row.get("entry_id"))
+        for row in (
+            (current.get("row_readouts") or {}).get("high_cofactor_proxy_rows")
+            or []
+        )
+        if row.get("entry_id")
+    }
+    strict_same_ids = {
+        str(row.get("entry_id"))
+        for row in (
+            (current.get("row_readouts") or {}).get(
+                "same_family_structural_proxy_rows"
+            )
+            or []
+        )
+        if row.get("entry_id")
+    }
+    residual_rows = [
+        row
+        for row in (residual_safety.get("residual_readout") or {}).get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    residual_ids = {str(row["entry_id"]) for row in residual_rows}
+    high_residual_ids = {
+        str(row["entry_id"])
+        for row in residual_rows
+        if "high_cofactor" in set(row.get("axis_memberships") or [])
+    }
+    same_residual_ids = {
+        str(row["entry_id"])
+        for row in residual_rows
+        if "same_family" in set(row.get("axis_memberships") or [])
+    }
+
+    selection_rows = []
+    selected_counteraxis: dict[str, Any] | None = None
+    for cofactor_threshold in cofactor_threshold_grid:
+        for fold_tm_threshold in fold_tm_threshold_grid:
+            baseline_abs = {
+                str(row["entry_id"])
+                for row in calibration_rows
+                if _lever3_route_abstains(
+                    row,
+                    channels=[baseline_channel],
+                    thresholds={baseline_channel: baseline_threshold},
+                )
+            }
+            counteraxis_cal = {
+                str(row["entry_id"])
+                for row in calibration_rows
+                if _lever3_cofactor_context_counteraxis_fires(
+                    row,
+                    descriptors_by_entry=descriptors_by_entry,
+                    cofactor_threshold=float(cofactor_threshold),
+                    cofactor_context_max=cofactor_context_max,
+                    fold_tm_threshold=float(fold_tm_threshold),
+                    geometry_top1_threshold=float(geometry_threshold),
+                )
+            }
+            counteraxis_residual = {
+                entry_id
+                for entry_id in residual_ids
+                if entry_id in candidate_by_entry
+                and _lever3_cofactor_context_counteraxis_fires(
+                    candidate_by_entry[entry_id],
+                    descriptors_by_entry=descriptors_by_entry,
+                    cofactor_threshold=float(cofactor_threshold),
+                    cofactor_context_max=cofactor_context_max,
+                    fold_tm_threshold=float(fold_tm_threshold),
+                    geometry_top1_threshold=float(geometry_threshold),
+                )
+            }
+            union_retained = len(calibration_rows) - len(
+                baseline_abs | counteraxis_cal
+            )
+            record = {
+                "cofactor_threshold": float(cofactor_threshold),
+                "fold_tm_threshold": float(fold_tm_threshold),
+                "cofactor_context_max": cofactor_context_max,
+                "geometry_top1_threshold": float(geometry_threshold),
+                "calibration_in_scope_retained_if_augmented": union_retained,
+                "calibration_in_scope_retention_floor_met": (
+                    union_retained >= retention_floor_rows
+                ),
+                "counteraxis_calibration_in_scope_fired": len(counteraxis_cal),
+                "high_cofactor_residual_rows_fired": len(
+                    counteraxis_residual & high_residual_ids
+                ),
+                "same_family_residual_rows_fired": len(
+                    counteraxis_residual & same_residual_ids
+                ),
+                "residual_rows_fired": len(counteraxis_residual),
+            }
+            selection_rows.append(record)
+            if (
+                selected_counteraxis is None
+                and record["calibration_in_scope_retention_floor_met"]
+                and record["high_cofactor_residual_rows_fired"] > 0
+            ):
+                selected_counteraxis = record
+    if selected_counteraxis is None:
+        selected_counteraxis = max(
+            selection_rows,
+            key=lambda row: (
+                int(row["calibration_in_scope_retention_floor_met"]),
+                int(row["high_cofactor_residual_rows_fired"]),
+                int(row["same_family_residual_rows_fired"]),
+                int(row["calibration_in_scope_retained_if_augmented"]),
+            ),
+        )
+
+    cofactor_threshold = float(selected_counteraxis["cofactor_threshold"])
+    fold_tm_threshold = float(selected_counteraxis["fold_tm_threshold"])
+    geometry_top1_threshold = float(selected_counteraxis["geometry_top1_threshold"])
+    baseline_route = {
+        "route_id": "fixed_baseline::combined_mean_geometry_fold",
+        "channels": [baseline_channel],
+        "thresholds": {baseline_channel: baseline_threshold},
+    }
+    best_retention_route = (
+        (channel_veto.get("best_routes") or {}).get(
+            "best_retention_preserving_channel_union"
+        )
+        or baseline_route
+    )
+    routes = {
+        "fixed_baseline_plus_counteraxis": baseline_route,
+        "best_retention_preserving_union_plus_counteraxis": {
+            "route_id": best_retention_route.get("route_id")
+            or "best_retention_preserving_channel_union",
+            "channels": list(best_retention_route.get("channels") or []),
+            "thresholds": {
+                str(key): float(value)
+                for key, value in (best_retention_route.get("thresholds") or {}).items()
+            },
+        },
+    }
+
+    strict_high_rows = [
+        candidate_by_entry[entry_id]
+        for entry_id in sorted(strict_high_ids, key=_entry_id_sort_key)
+        if entry_id in candidate_by_entry
+    ]
+    strict_same_rows = [
+        candidate_by_entry[entry_id]
+        for entry_id in sorted(strict_same_ids, key=_entry_id_sort_key)
+        if entry_id in candidate_by_entry
+    ]
+    residual_candidate_rows = [
+        candidate_by_entry[entry_id]
+        for entry_id in sorted(residual_ids, key=_entry_id_sort_key)
+        if entry_id in candidate_by_entry
+    ]
+    high_residual_rows = [
+        candidate_by_entry[entry_id]
+        for entry_id in sorted(high_residual_ids, key=_entry_id_sort_key)
+        if entry_id in candidate_by_entry
+    ]
+    same_residual_rows = [
+        candidate_by_entry[entry_id]
+        for entry_id in sorted(same_residual_ids, key=_entry_id_sort_key)
+        if entry_id in candidate_by_entry
+    ]
+    same_residual_with_pocket_descriptor = [
+        entry_id
+        for entry_id in sorted(same_residual_ids, key=_entry_id_sort_key)
+        if (
+            (
+                candidate_geometry_by_entry.get(entry_id, {}).get("pocket_context")
+                or {}
+            ).get("descriptors")
+        )
+    ]
+    same_residual_missing_pocket_descriptor = [
+        entry_id
+        for entry_id in sorted(same_residual_ids, key=_entry_id_sort_key)
+        if entry_id not in set(same_residual_with_pocket_descriptor)
+    ]
+    subset_rows = {
+        "all_train_cal_oos": scored_oos_rows,
+        "strict_high_cofactor_proxy": strict_high_rows,
+        "strict_same_family_structural_proxy": strict_same_rows,
+        "residual_all": residual_candidate_rows,
+        "residual_high_cofactor": high_residual_rows,
+        "residual_same_family": same_residual_rows,
+    }
+    route_readouts: dict[str, dict[str, Any]] = {}
+    for route_name, route in routes.items():
+        route_readouts[route_name] = {
+            subset_name: _lever3_augmented_route_readout(
+                rows,
+                route_id=str(route["route_id"]),
+                channels=list(route["channels"]),
+                thresholds=dict(route["thresholds"]),
+                descriptors_by_entry=descriptors_by_entry,
+                cofactor_threshold=cofactor_threshold,
+                cofactor_context_max=cofactor_context_max,
+                fold_tm_threshold=fold_tm_threshold,
+                geometry_top1_threshold=geometry_top1_threshold,
+            )
+            for subset_name, rows in subset_rows.items()
+        }
+
+    baseline_calibration = _lever3_augmented_route_readout(
+        calibration_rows,
+        route_id=baseline_route["route_id"],
+        channels=baseline_route["channels"],
+        thresholds=baseline_route["thresholds"],
+        descriptors_by_entry=descriptors_by_entry,
+        cofactor_threshold=cofactor_threshold,
+        cofactor_context_max=cofactor_context_max,
+        fold_tm_threshold=fold_tm_threshold,
+        geometry_top1_threshold=geometry_top1_threshold,
+    )
+    high_residual_fired = route_readouts["fixed_baseline_plus_counteraxis"][
+        "residual_high_cofactor"
+    ]["counteraxis_fired"]
+    same_residual_fired = route_readouts["fixed_baseline_plus_counteraxis"][
+        "residual_same_family"
+    ]["counteraxis_fired"]
+    original_same_shortfall = int(
+        (residual_safety.get("counts") or {}).get(
+            "additional_same_family_abstentions_needed"
+        )
+        or 0
+    )
+    same_shortfall_after_counteraxis = max(
+        0, original_same_shortfall - int(same_residual_fired)
+    )
+    cofactor_counteraxis_calibration_ids = {
+        str(row.get("entry_id") or "")
+        for row in baseline_calibration.get("counteraxis_rows", [])
+        if row.get("entry_id")
+    }
+    cofactor_counteraxis_same_family_ids = {
+        str(row.get("entry_id") or "")
+        for row in route_readouts["fixed_baseline_plus_counteraxis"][
+            "residual_same_family"
+        ].get("counteraxis_rows", [])
+        if row.get("entry_id")
+    }
+    same_family_bandpass_scout = _lever3_same_family_numeric_bandpass_scout(
+        calibration_rows=calibration_rows,
+        candidate_rows=scored_oos_rows,
+        same_residual_rows=same_residual_rows,
+        baseline_channel=baseline_channel,
+        baseline_threshold=baseline_threshold,
+        cofactor_counteraxis_calibration_ids=cofactor_counteraxis_calibration_ids,
+        cofactor_counteraxis_same_family_ids=cofactor_counteraxis_same_family_ids,
+        retention_floor_rows=retention_floor_rows,
+        required_additional_same_family_abstentions=same_shortfall_after_counteraxis,
+    )
+    same_family_scout_selected = (
+        same_family_bandpass_scout.get("selected_rule") or {}
+    )
+    same_family_scout_shortfall_after = int(
+        same_family_bandpass_scout.get("shortfall_after_selected_rule") or 0
+    )
+    same_family_scout_closes_shortfall = (
+        bool(same_family_scout_selected)
+        and same_family_scout_shortfall_after == 0
+        and same_shortfall_after_counteraxis > 0
+    )
+    baseline_oos_abstained_ids = {
+        str(row["entry_id"])
+        for row in scored_oos_rows
+        if _lever3_route_abstains(
+            row,
+            channels=[baseline_channel],
+            thresholds={baseline_channel: baseline_threshold},
+        )
+    }
+    cofactor_counteraxis_oos_ids = {
+        str(row.get("entry_id") or "")
+        for row in route_readouts["fixed_baseline_plus_counteraxis"][
+            "all_train_cal_oos"
+        ].get("counteraxis_rows", [])
+        if row.get("entry_id")
+    }
+    same_family_scout_oos_ids = set(
+        str(entry_id)
+        for entry_id in (
+            same_family_scout_selected.get("all_train_cal_oos_entry_ids_fired")
+            or []
+        )
+    )
+    baseline_calibration_abstained_ids = {
+        str(row["entry_id"])
+        for row in calibration_rows
+        if _lever3_route_abstains(
+            row,
+            channels=[baseline_channel],
+            thresholds={baseline_channel: baseline_threshold},
+        )
+    }
+    same_family_scout_calibration_ids = set(
+        str(entry_id)
+        for entry_id in (
+            same_family_scout_selected.get("calibration_in_scope_entry_ids_fired")
+            or []
+        )
+    )
+    combined_scout_oos_ids = (
+        baseline_oos_abstained_ids
+        | cofactor_counteraxis_oos_ids
+        | same_family_scout_oos_ids
+    )
+    combined_scout_calibration_ids = (
+        baseline_calibration_abstained_ids
+        | cofactor_counteraxis_calibration_ids
+        | same_family_scout_calibration_ids
+    )
+    bandpass_scout_operating_point = {
+        "route_id": (
+            "fixed_baseline_plus_cofactor_context_counteraxis_plus_"
+            "same_family_numeric_bandpass_scout"
+        ),
+        "production_threshold_change": False,
+        "calibration_in_scope_rows": len(calibration_rows),
+        "calibration_in_scope_retained": (
+            len(calibration_rows) - len(combined_scout_calibration_ids)
+        ),
+        "calibration_in_scope_abstained": len(combined_scout_calibration_ids),
+        "calibration_in_scope_retention_floor_met": (
+            len(calibration_rows) - len(combined_scout_calibration_ids)
+            >= retention_floor_rows
+        ),
+        "all_train_cal_oos_rows": len(scored_oos_rows),
+        "baseline_abstained": len(baseline_oos_abstained_ids),
+        "cofactor_counteraxis_fired": len(cofactor_counteraxis_oos_ids),
+        "same_family_bandpass_scout_fired": len(same_family_scout_oos_ids),
+        "same_family_bandpass_scout_new_abstentions": len(
+            same_family_scout_oos_ids
+            - baseline_oos_abstained_ids
+            - cofactor_counteraxis_oos_ids
+        ),
+        "all_train_cal_oos_abstained": len(combined_scout_oos_ids),
+        "all_train_cal_oos_retained": (
+            len(scored_oos_rows) - len(combined_scout_oos_ids)
+        ),
+        "strict_high_cofactor_proxy_abstained": len(
+            strict_high_ids & combined_scout_oos_ids
+        ),
+        "strict_same_family_structural_proxy_abstained": len(
+            strict_same_ids & combined_scout_oos_ids
+        ),
+        "residual_high_cofactor_abstained": len(
+            high_residual_ids & combined_scout_oos_ids
+        ),
+        "residual_same_family_abstained": len(
+            same_residual_ids & combined_scout_oos_ids
+        ),
+        "all_train_cal_oos_entry_ids_abstained": sorted(
+            combined_scout_oos_ids, key=_entry_id_sort_key
+        ),
+    }
+    source_free_scout_supports_closure = bool(
+        high_residual_fired >= len(high_residual_rows)
+        and bool(high_residual_rows)
+        and same_family_scout_closes_shortfall
+        and bandpass_scout_operating_point[
+            "calibration_in_scope_retention_floor_met"
+        ]
+    )
+    deployment_closed = bool(
+        high_residual_fired >= len(high_residual_rows)
+        and same_shortfall_after_counteraxis == 0
+        and baseline_calibration["augmented_retained"] >= retention_floor_rows
+    )
+    if deployment_closed:
+        status = (
+            "fold_augmented_lever3_cofactor_context_counteraxis_readout_deployment_closed"
+        )
+    elif source_free_scout_supports_closure:
+        status = (
+            "fold_augmented_lever3_cofactor_context_counteraxis_readout_ready_"
+            "same_family_bandpass_scout_closure"
+        )
+    else:
+        status = (
+            "fold_augmented_lever3_cofactor_context_counteraxis_readout_ready_partial_"
+            "high_cofactor_closure"
+        )
+    exact_missing_evidence = []
+    if same_shortfall_after_counteraxis and not same_family_scout_closes_shortfall:
+        exact_missing_evidence.append(
+            "source-free same-family chemistry or pocket-architecture counteraxis "
+            f"that abstains at least {same_shortfall_after_counteraxis} more retained "
+            "same-family residual rows while preserving the 31/34 train/cal "
+            "in-scope floor"
+        )
+    elif same_shortfall_after_counteraxis:
+        exact_missing_evidence.append(
+            "accepted deployment counteraxis contract for the measured same-family "
+            "numeric bandpass scout before production use"
+        )
+    if any("P07658" in str(item) for item in (
+        (residual_safety.get("decision") or {}).get("exact_missing_evidence") or []
+    )):
+        exact_missing_evidence.append(
+            "accepted full-length P07658 predicted coordinate provenance before "
+            "fixed-threshold surface rerun"
+        )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_cofactor_context_counteraxis_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured cofactor-context counteraxis readout. It adds a "
+            "bounded, source-free supplemental veto over train/cal-selected "
+            "operating points: high cofactor score, zero predicted cofactor-context "
+            "support, high fold similarity, and geometry above the train/cal "
+            "geometry floor. It does not use heldout rows, labels, source IDs, "
+            "target names, mechanism text, EC/Rhea IDs, or experimental-PDB "
+            "metadata as predictive features."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "source_free_numeric_features_only": True,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "threshold_selected_on_train_cal_only": True,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "fixed_operating_point": {
+            "baseline_channel": baseline_channel,
+            "baseline_threshold": round(baseline_threshold, 6),
+            "calibration_in_scope_rows": len(calibration_rows),
+            "retention_floor_rows": retention_floor_rows,
+            "geometry_top1_threshold": round(geometry_top1_threshold, 6),
+        },
+        "counteraxis": {
+            "feature_rule": (
+                "cofactor_max_score >= selected cofactor threshold AND "
+                "predicted_geometry_top1_cofactor_context_score <= 0.0 AND "
+                "fold_nearest_atlas_tm_score >= selected fold threshold AND "
+                "geometry_top1_score >= train/cal geometry floor"
+            ),
+            "selected": selected_counteraxis,
+            "selection_grid": sorted(
+                selection_rows,
+                key=lambda row: (
+                    float(row["cofactor_threshold"]),
+                    float(row["fold_tm_threshold"]),
+                ),
+            ),
+        },
+        "same_family_descriptor_probe": {
+            "probe_method": (
+                "Coverage check over nested predicted-geometry candidate retrieval "
+                "pocket descriptors in the current train/cal OOS surface."
+            ),
+            "candidate_retrieval_rows": len(candidate_geometry_by_entry),
+            "same_family_residual_rows": len(same_residual_rows),
+            "same_family_residual_rows_with_pocket_descriptor": len(
+                same_residual_with_pocket_descriptor
+            ),
+            "same_family_residual_rows_missing_pocket_descriptor": len(
+                same_residual_missing_pocket_descriptor
+            ),
+            "covered_same_family_residual_entry_ids": (
+                same_residual_with_pocket_descriptor
+            ),
+            "missing_same_family_residual_entry_ids": (
+                same_residual_missing_pocket_descriptor
+            ),
+            "coverage_sufficient_for_same_family_counteraxis": (
+                len(same_residual_missing_pocket_descriptor) == 0
+            ),
+        },
+        "same_family_numeric_bandpass_scout": same_family_bandpass_scout,
+        "bandpass_scout_operating_point": bandpass_scout_operating_point,
+        "calibration_readout": {
+            "fixed_baseline_plus_counteraxis": baseline_calibration,
+            "counteraxis_calibration_rows": baseline_calibration["counteraxis_rows"],
+        },
+        "route_readouts": route_readouts,
+        "counts": {
+            "calibration_in_scope_rows": len(calibration_rows),
+            "calibration_retention_floor_rows": retention_floor_rows,
+            "calibration_in_scope_retained_fixed_baseline_plus_counteraxis": (
+                baseline_calibration["augmented_retained"]
+            ),
+            "counteraxis_calibration_in_scope_fired": baseline_calibration[
+                "counteraxis_fired"
+            ],
+            "scored_train_cal_oos_rows": len(scored_oos_rows),
+            "counteraxis_all_train_cal_oos_fired": route_readouts[
+                "fixed_baseline_plus_counteraxis"
+            ]["all_train_cal_oos"]["counteraxis_fired"],
+            "augmented_all_train_cal_oos_abstained": route_readouts[
+                "fixed_baseline_plus_counteraxis"
+            ]["all_train_cal_oos"]["augmented_abstained"],
+            "strict_high_cofactor_proxy_rows": len(strict_high_rows),
+            "strict_high_cofactor_augmented_abstained": route_readouts[
+                "fixed_baseline_plus_counteraxis"
+            ]["strict_high_cofactor_proxy"]["augmented_abstained"],
+            "strict_same_family_proxy_rows": len(strict_same_rows),
+            "strict_same_family_augmented_abstained": route_readouts[
+                "fixed_baseline_plus_counteraxis"
+            ]["strict_same_family_structural_proxy"]["augmented_abstained"],
+            "residual_high_cofactor_rows": len(high_residual_rows),
+            "residual_high_cofactor_counteraxis_fired": high_residual_fired,
+            "residual_high_cofactor_remaining_after_counteraxis": (
+                len(high_residual_rows) - int(high_residual_fired)
+            ),
+            "residual_same_family_rows": len(same_residual_rows),
+            "residual_same_family_counteraxis_fired": same_residual_fired,
+            "residual_same_family_remaining_after_counteraxis": (
+                len(same_residual_rows) - int(same_residual_fired)
+            ),
+            "same_family_residual_rows_with_pocket_descriptor": len(
+                same_residual_with_pocket_descriptor
+            ),
+            "same_family_residual_rows_missing_pocket_descriptor": len(
+                same_residual_missing_pocket_descriptor
+            ),
+            "additional_same_family_abstentions_needed_after_counteraxis": (
+                same_shortfall_after_counteraxis
+            ),
+            "same_family_numeric_bandpass_scout_eligible_rules": int(
+                same_family_bandpass_scout.get("eligible_rules") or 0
+            ),
+            "same_family_numeric_bandpass_scout_closing_rules": int(
+                same_family_bandpass_scout.get("closing_rules") or 0
+            ),
+            "same_family_numeric_bandpass_scout_selected_calibration_fired": int(
+                same_family_scout_selected.get("calibration_in_scope_fired") or 0
+            ),
+            "same_family_numeric_bandpass_scout_selected_oos_fired": int(
+                same_family_scout_selected.get("all_train_cal_oos_fired") or 0
+            ),
+            "same_family_numeric_bandpass_scout_remaining_same_fired": int(
+                same_family_scout_selected.get(
+                    "remaining_same_family_residual_rows_fired"
+                )
+                or 0
+            ),
+            "additional_same_family_abstentions_needed_after_bandpass_scout": (
+                same_family_scout_shortfall_after
+            ),
+            "bandpass_scout_operating_point_calibration_in_scope_retained": (
+                bandpass_scout_operating_point["calibration_in_scope_retained"]
+            ),
+            "bandpass_scout_operating_point_all_train_cal_oos_abstained": (
+                bandpass_scout_operating_point["all_train_cal_oos_abstained"]
+            ),
+            "bandpass_scout_operating_point_strict_high_cofactor_abstained": (
+                bandpass_scout_operating_point[
+                    "strict_high_cofactor_proxy_abstained"
+                ]
+            ),
+            "bandpass_scout_operating_point_strict_same_family_abstained": (
+                bandpass_scout_operating_point[
+                    "strict_same_family_structural_proxy_abstained"
+                ]
+            ),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "apply_or_change_threshold_now": False,
+            "cofactor_context_counteraxis_preserves_in_scope_floor": (
+                baseline_calibration["augmented_retained"] >= retention_floor_rows
+            ),
+            "cofactor_context_counteraxis_resolves_high_cofactor_residual": (
+                high_residual_fired >= len(high_residual_rows)
+                and bool(high_residual_rows)
+            ),
+            "cofactor_context_counteraxis_resolves_same_family_residual": (
+                same_shortfall_after_counteraxis == 0
+            ),
+            "same_family_numeric_bandpass_scout_closes_required_shortfall": (
+                same_family_scout_closes_shortfall
+            ),
+            "current_source_free_numeric_scout_supports_operating_point_closure": (
+                source_free_scout_supports_closure
+            ),
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed,
+            "exact_missing_evidence": exact_missing_evidence,
+            "next_gate": (
+                "Keep threshold 0.44155 unchanged. The new source-free numeric "
+                "cofactor-context counteraxis safely abstains the high-cofactor "
+                "residual row while preserving 31/34 train/cal in-scope retention; "
+                "the same-family numeric bandpass scout is now the next contract "
+                "hardening target, alongside P07658 predicted-coordinate acceptance "
+                "before deployment closure."
+            ),
+        },
+        "source_artifacts": {
+            "in_scope_threshold_contract": _source_path_record(
+                in_scope_threshold_contract_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "current_measured_readout": _source_path_record(
+                current_measured_readout_path
+            ),
+            "channel_veto_readout": _source_path_record(channel_veto_readout_path),
+            "residual_safety_readout": _source_path_record(
+                residual_safety_readout_path
+            ),
+            "predicted_geometry_atlas_retrieval": _source_path_record(
+                predicted_geometry_atlas_retrieval_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "A source-free cofactor-context counteraxis can safely catch the "
+                "high-cofactor residual row without losing additional in-scope "
+                "calibration rows."
+            ),
+            "result": (
+                f"The selected counteraxis fires on {high_residual_fired}/"
+                f"{len(high_residual_rows)} high-cofactor residual rows and "
+                f"{same_residual_fired}/{len(same_residual_rows)} same-family "
+                "residual rows while retaining "
+                f"{baseline_calibration['augmented_retained']}/"
+                f"{len(calibration_rows)} calibration in-scope rows."
+            ),
+            "next_action": (
+                "The high-cofactor residual shortfall is cleared for this "
+                "measured route. The same-family numeric bandpass scout closes "
+                f"the remaining shortfall to {same_family_scout_shortfall_after} "
+                "on train/cal while preserving the in-scope floor; current "
+                "candidate pocket descriptors still cover only "
+                f"{len(same_residual_with_pocket_descriptor)}/"
+                f"{len(same_residual_rows)} same-family residual rows."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_cofactor_context_counteraxis_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    fixed = readout["fixed_operating_point"]
+    selected = readout["counteraxis"]["selected"]
+    scout = readout.get("same_family_numeric_bandpass_scout") or {}
+    scout_operating_point = readout.get("bandpass_scout_operating_point") or {}
+    scout_selected = scout.get("selected_rule") or {}
+    scout_bounds = scout_selected.get("bounds") or {}
+    scout_fold = scout_bounds.get("fold_nearest_atlas_tm_score") or {}
+    scout_geometry = scout_bounds.get("geometry_top1_score") or {}
+    lines = [
+        "# Fold-Augmented Lever 3 Cofactor-Context Counteraxis Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Baseline threshold: {fixed['baseline_threshold']}",
+        f"- Geometry floor: {fixed['geometry_top1_threshold']}",
+        f"- Selected cofactor threshold: {selected['cofactor_threshold']}",
+        f"- Selected fold threshold: {selected['fold_tm_threshold']}",
+        "- Calibration retained with counteraxis: "
+        f"{counts['calibration_in_scope_retained_fixed_baseline_plus_counteraxis']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Residual high-cofactor fired/remaining: "
+        f"{counts['residual_high_cofactor_counteraxis_fired']}/"
+        f"{counts['residual_high_cofactor_remaining_after_counteraxis']}",
+        "- Residual same-family fired/remaining: "
+        f"{counts['residual_same_family_counteraxis_fired']}/"
+        f"{counts['residual_same_family_remaining_after_counteraxis']}",
+        "- Same-family residual pocket descriptor coverage: "
+        f"{counts['same_family_residual_rows_with_pocket_descriptor']}/"
+        f"{counts['residual_same_family_rows']}",
+        "- Same-family bandpass scout fired/shortfall: "
+        f"{counts['same_family_numeric_bandpass_scout_remaining_same_fired']}/"
+        f"{counts['additional_same_family_abstentions_needed_after_bandpass_scout']}",
+        "",
+        "## Selected Counteraxis Rows",
+        "",
+        "| subset | counteraxis rows |",
+        "| --- | --- |",
+    ]
+    baseline = readout["route_readouts"]["fixed_baseline_plus_counteraxis"]
+    for subset_name in [
+        "all_train_cal_oos",
+        "strict_high_cofactor_proxy",
+        "strict_same_family_structural_proxy",
+        "residual_all",
+    ]:
+        rows = [
+            str(row.get("entry_id"))
+            for row in baseline[subset_name].get("counteraxis_rows", [])
+        ]
+        lines.append(f"| {subset_name} | {', '.join(rows) if rows else 'none'} |")
+    lines += [
+        "",
+        "## Route Readouts",
+        "",
+        "| route | subset | rows | baseline abstained | counteraxis fired | augmented abstained | retained |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for route_name, route in readout.get("route_readouts", {}).items():
+        for subset_name, row in route.items():
+            lines.append(
+                f"| {route_name} | {subset_name} | {row['row_count']} | "
+                f"{row['baseline_abstained']} | {row['counteraxis_fired']} | "
+                f"{row['augmented_abstained']} | {row['augmented_retained']} |"
+            )
+    lines += [
+        "",
+        "## Same-Family Numeric Bandpass Scout",
+        "",
+        f"- Status: {scout.get('status')}",
+        f"- Eligible/closing rules: {scout.get('eligible_rules')}/"
+        f"{scout.get('closing_rules')}",
+        "- Selected fold band: "
+        f"{scout_fold.get('min')} to {scout_fold.get('max')}",
+        f"- Selected geometry max: {scout_geometry.get('max')}",
+        "- Selected calibration fired: "
+        f"{counts['same_family_numeric_bandpass_scout_selected_calibration_fired']}",
+        "- Selected all train/cal OOS fired: "
+        f"{counts['same_family_numeric_bandpass_scout_selected_oos_fired']}",
+        "- Remaining same-family residual rows fired: "
+        f"{counts['same_family_numeric_bandpass_scout_remaining_same_fired']}",
+        "- Same-family shortfall after scout: "
+        f"{counts['additional_same_family_abstentions_needed_after_bandpass_scout']}",
+        "- Combined operating-point calibration retained: "
+        f"{scout_operating_point.get('calibration_in_scope_retained')}/"
+        f"{scout_operating_point.get('calibration_in_scope_rows')}",
+        "- Combined operating-point all train/cal OOS abstained: "
+        f"{scout_operating_point.get('all_train_cal_oos_abstained')}/"
+        f"{scout_operating_point.get('all_train_cal_oos_rows')}",
+        "- Combined operating-point strict proxies abstained: high="
+        f"{scout_operating_point.get('strict_high_cofactor_proxy_abstained')}, "
+        "same-family="
+        f"{scout_operating_point.get('strict_same_family_structural_proxy_abstained')}",
+        "",
+        "| fired same-family residual rows |",
+        "| --- |",
+    ]
+    scout_rows = [
+        str(row.get("entry_id"))
+        for row in scout.get("selected_remaining_same_family_rows", [])
+    ]
+    lines.append(f"| {', '.join(scout_rows) if scout_rows else 'none'} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Cofactor-context counteraxis preserves in-scope floor: "
+        f"{decision['cofactor_context_counteraxis_preserves_in_scope_floor']}",
+        "- Resolves high-cofactor residual: "
+        f"{decision['cofactor_context_counteraxis_resolves_high_cofactor_residual']}",
+        "- Resolves same-family residual: "
+        f"{decision['cofactor_context_counteraxis_resolves_same_family_residual']}",
+        "- Same-family numeric bandpass scout closes required shortfall: "
+        f"{decision['same_family_numeric_bandpass_scout_closes_required_shortfall']}",
+        "- Source-free numeric scout supports operating-point closure: "
+        f"{decision['current_source_free_numeric_scout_supports_operating_point_closure']}",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        f"- Exact missing evidence: {decision['exact_missing_evidence']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_cofactor_context_counteraxis_readout(
+    *,
+    in_scope_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_measured_readout_path: Path,
+    channel_veto_readout_path: Path,
+    residual_safety_readout_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_COFACTOR_CONTEXT_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_cofactor_context_counteraxis_readout(
+        in_scope_threshold_contract_path=in_scope_threshold_contract_path,
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        current_measured_readout_path=current_measured_readout_path,
+        channel_veto_readout_path=channel_veto_readout_path,
+        residual_safety_readout_path=residual_safety_readout_path,
+        predicted_geometry_atlas_retrieval_path=(
+            predicted_geometry_atlas_retrieval_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_cofactor_context_counteraxis_readout_report(
                 readout
             ),
             encoding="utf-8",

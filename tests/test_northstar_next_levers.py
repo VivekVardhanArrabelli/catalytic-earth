@@ -67,6 +67,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_confounded_proxy_loose_same_family_pressure_readout,
     build_fold_augmented_lever3_blocker_packet_guardrail_audit,
     build_fold_augmented_lever3_channel_veto_readout,
+    build_fold_augmented_lever3_cofactor_context_counteraxis_readout,
     build_fold_augmented_lever3_current_measured_readout,
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_evidence_sufficiency_readout,
@@ -4525,6 +4526,274 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ]
         )
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_lever3_cofactor_context_counteraxis_selects_safe_train_cal_rule(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            in_scope_path = root / "in_scope.json"
+            surface_path = root / "surface.json"
+            current_path = root / "current.json"
+            channel_veto_path = root / "channel_veto.json"
+            residual_path = root / "residual.json"
+            predicted_geometry_path = root / "predicted_geometry.json"
+
+            in_scope_path.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.5,
+                            },
+                        },
+                        "threshold_contract": {
+                            "geometry_top1_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.3,
+                                }
+                            }
+                        },
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "cal:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.93,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.9,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "cal:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.7,
+                                    "geometry_top1_score": 0.4,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "oos:1",
+                                "accession": "P11111",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.96,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.9,
+                                    "geometry_top1_score": 0.4,
+                                },
+                                "predicted_geometry_top1": {
+                                    "cofactor_context_score": 0.0,
+                                    "role_match_fraction": 0.6,
+                                    "score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "oos:2",
+                                "accession": "P22222",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.1,
+                                    "combined_mean_geometry_fold": 0.7,
+                                    "fold_nearest_atlas_tm_score": 0.9,
+                                    "geometry_top1_score": 0.2,
+                                },
+                                "predicted_geometry_top1": {
+                                    "cofactor_context_score": 1.0,
+                                    "role_match_fraction": 0.6,
+                                    "score": 0.4,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "row_readouts": {
+                            "high_cofactor_proxy_rows": [{"entry_id": "oos:1"}],
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "oos:1"},
+                                {"entry_id": "oos:2"},
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_veto_path.write_text(
+                json.dumps(
+                    {
+                        "best_routes": {
+                            "best_retention_preserving_channel_union": {
+                                "route_id": "channel_union::geometry_top1_score",
+                                "channels": ["geometry_top1_score"],
+                                "thresholds": {"geometry_top1_score": 0.3},
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            residual_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "additional_same_family_abstentions_needed": 2,
+                        },
+                        "decision": {"exact_missing_evidence": []},
+                        "residual_readout": {
+                            "rows": [
+                                {
+                                    "entry_id": "oos:1",
+                                    "axis_memberships": [
+                                        "high_cofactor",
+                                        "same_family",
+                                    ],
+                                },
+                                {
+                                    "entry_id": "oos:2",
+                                    "axis_memberships": ["same_family"],
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_geometry_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "cal:1",
+                                "top1_cofactor_context_score": 0.0,
+                                "top1_role_match_fraction": 0.6,
+                                "top1_score": 0.4,
+                            },
+                            {
+                                "entry_id": "cal:2",
+                                "top1_cofactor_context_score": 1.0,
+                            },
+                            {
+                                "entry_id": "cal:3",
+                                "top1_cofactor_context_score": 1.0,
+                            },
+                            {
+                                "entry_id": "cal:4",
+                                "top1_cofactor_context_score": 1.0,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_lever3_cofactor_context_counteraxis_readout(
+                    in_scope_threshold_contract_path=in_scope_path,
+                    latest_train_cal_oos_surface_path=surface_path,
+                    current_measured_readout_path=current_path,
+                    channel_veto_readout_path=channel_veto_path,
+                    residual_safety_readout_path=residual_path,
+                    predicted_geometry_atlas_retrieval_path=predicted_geometry_path,
+                    artifact_id="lever3_cofactor_context_counteraxis_test",
+                )
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "lever3_cofactor_context_counteraxis_test"
+        )
+        self.assertEqual(
+            readout["counteraxis"]["selected"]["cofactor_threshold"], 0.95
+        )
+        self.assertEqual(
+            readout["counts"][
+                "calibration_in_scope_retained_fixed_baseline_plus_counteraxis"
+            ],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"]["counteraxis_calibration_in_scope_fired"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["residual_high_cofactor_counteraxis_fired"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["residual_same_family_counteraxis_fired"], 1
+        )
+        self.assertEqual(
+            readout["counts"][
+                "additional_same_family_abstentions_needed_after_bandpass_scout"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_numeric_bandpass_scout_selected_calibration_fired"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "bandpass_scout_operating_point_calibration_in_scope_retained"
+            ],
+            4,
+        )
+        self.assertTrue(
+            readout["bandpass_scout_operating_point"][
+                "calibration_in_scope_retention_floor_met"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "cofactor_context_counteraxis_resolves_high_cofactor_residual"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "same_family_numeric_bandpass_scout_closes_required_shortfall"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_deployment_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["guardrails"][
+                "labels_source_ids_target_names_or_mechanism_text_used_as_features"
+            ]
+        )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

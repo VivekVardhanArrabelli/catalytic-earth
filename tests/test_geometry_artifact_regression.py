@@ -7918,6 +7918,206 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["blocker_packet"])
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_lever3_cofactor_context_counteraxis_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_cofactor_context_counteraxis_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_cofactor_context_counteraxis_readout_"
+                "ready_same_family_bandpass_scout_closure"
+            ),
+        )
+        self.assertEqual(readout["fixed_operating_point"]["baseline_threshold"], 0.44155)
+        self.assertEqual(
+            readout["fixed_operating_point"]["geometry_top1_threshold"], 0.338
+        )
+        self.assertEqual(readout["counteraxis"]["selected"]["cofactor_threshold"], 0.95)
+        self.assertEqual(readout["counteraxis"]["selected"]["fold_tm_threshold"], 0.85)
+        self.assertEqual(
+            readout["counts"][
+                "calibration_in_scope_retained_fixed_baseline_plus_counteraxis"
+            ],
+            31,
+        )
+        self.assertEqual(
+            readout["counts"]["counteraxis_calibration_in_scope_fired"], 0
+        )
+        self.assertEqual(readout["counts"]["scored_train_cal_oos_rows"], 204)
+        self.assertEqual(
+            readout["counts"]["counteraxis_all_train_cal_oos_fired"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["augmented_all_train_cal_oos_abstained"], 73
+        )
+        self.assertEqual(readout["counts"]["strict_high_cofactor_proxy_rows"], 4)
+        self.assertEqual(
+            readout["counts"]["strict_high_cofactor_augmented_abstained"], 1
+        )
+        self.assertEqual(readout["counts"]["strict_same_family_proxy_rows"], 59)
+        self.assertEqual(
+            readout["counts"]["strict_same_family_augmented_abstained"], 12
+        )
+        self.assertEqual(readout["counts"]["residual_high_cofactor_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["residual_high_cofactor_counteraxis_fired"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["residual_high_cofactor_remaining_after_counteraxis"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["residual_same_family_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["residual_same_family_counteraxis_fired"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["residual_same_family_remaining_after_counteraxis"],
+            20,
+        )
+        self.assertEqual(
+            readout["counts"]["same_family_residual_rows_with_pocket_descriptor"],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"]["same_family_residual_rows_missing_pocket_descriptor"],
+            16,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "additional_same_family_abstentions_needed_after_counteraxis"
+            ],
+            9,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_numeric_bandpass_scout_remaining_same_fired"
+            ],
+            9,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "additional_same_family_abstentions_needed_after_bandpass_scout"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "same_family_numeric_bandpass_scout_selected_calibration_fired"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["same_family_numeric_bandpass_scout_selected_oos_fired"],
+            32,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "bandpass_scout_operating_point_calibration_in_scope_retained"
+            ],
+            31,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "bandpass_scout_operating_point_all_train_cal_oos_abstained"
+            ],
+            105,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "bandpass_scout_operating_point_strict_high_cofactor_abstained"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "bandpass_scout_operating_point_strict_same_family_abstained"
+            ],
+            26,
+        )
+        scout = readout["same_family_numeric_bandpass_scout"]
+        self.assertEqual(
+            scout["status"],
+            "same_family_numeric_bandpass_scout_closes_required_shortfall",
+        )
+        self.assertEqual(scout["eligible_rules"], 570)
+        self.assertEqual(scout["closing_rules"], 20)
+        self.assertEqual(
+            scout["selected_rule"]["bounds"]["fold_nearest_atlas_tm_score"],
+            {"max": 0.7357, "min": 0.6257},
+        )
+        self.assertEqual(
+            scout["selected_rule"]["bounds"]["geometry_top1_score"],
+            {"max": 0.5757},
+        )
+        self.assertEqual(
+            scout["selected_rule"][
+                "remaining_same_family_residual_entry_ids_fired"
+            ],
+            [
+                "m_csa:135",
+                "m_csa:223",
+                "m_csa:451",
+                "m_csa:463",
+                "m_csa:464",
+                "m_csa:488",
+                "m_csa:502",
+                "m_csa:503",
+                "m_csa:646",
+            ],
+        )
+        operating_point = readout["bandpass_scout_operating_point"]
+        self.assertTrue(
+            operating_point["calibration_in_scope_retention_floor_met"]
+        )
+        self.assertEqual(operating_point["all_train_cal_oos_retained"], 99)
+        self.assertFalse(
+            readout["same_family_descriptor_probe"][
+                "coverage_sufficient_for_same_family_counteraxis"
+            ]
+        )
+        baseline = readout["route_readouts"]["fixed_baseline_plus_counteraxis"]
+        self.assertEqual(
+            [row["entry_id"] for row in baseline["residual_all"]["counteraxis_rows"]],
+            ["m_csa:289"],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "cofactor_context_counteraxis_resolves_high_cofactor_residual"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "cofactor_context_counteraxis_resolves_same_family_residual"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "same_family_numeric_bandpass_scout_closes_required_shortfall"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_source_free_numeric_scout_supports_operating_point_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["guardrails"][
+                "labels_source_ids_target_names_or_mechanism_text_used_as_features"
+            ]
+        )
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -7967,6 +8167,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "v3_fold_augmented_lever3_evidence_sufficiency_readout_current702_20260604.json",
             "v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
             "v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json",
+            (
+                "v3_fold_augmented_lever3_cofactor_context_counteraxis_"
+                "readout_current702_20260604.json"
+            ),
         ]:
             with self.subTest(artifact_name=artifact_name):
                 artifact = _load_json(ROOT / "artifacts" / artifact_name)

@@ -176,6 +176,36 @@ class CliTests(unittest.TestCase):
         )
         self.assertEqual(args.near_margin_epsilon, 0.05)
 
+    def test_lever3_cofactor_context_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-cofactor-context-counteraxis-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+                "counteraxis_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.in_scope_threshold_contract,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertIn("current_measured_readout", args.current_measured_readout)
+        self.assertIn("lever3_channel_veto_readout", args.channel_veto_readout)
+        self.assertIn("lever3_residual_safety_readout", args.residual_safety_readout)
+        self.assertIn(
+            "predicted_geometry_in_distribution_atlas_retrieval",
+            args.predicted_geometry_atlas_retrieval,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

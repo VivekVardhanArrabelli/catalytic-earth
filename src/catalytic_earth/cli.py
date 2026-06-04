@@ -152,6 +152,7 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_proxy_loose_same_family_pressure_readout,
     write_fold_augmented_lever3_blocker_packet_guardrail_audit,
     write_fold_augmented_lever3_channel_veto_readout,
+    write_fold_augmented_lever3_cofactor_context_counteraxis_readout,
     write_fold_augmented_lever3_current_measured_readout,
     write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_evidence_sufficiency_readout,
@@ -13362,6 +13363,38 @@ def cmd_build_fold_augmented_lever3_residual_safety_readout(
         f"high/same residual: "
         f"{counts.get('strict_high_cofactor_residual_rows')}/"
         f"{counts.get('strict_same_family_residual_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_cofactor_context_counteraxis_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_cofactor_context_counteraxis_readout(
+        in_scope_threshold_contract_path=Path(args.in_scope_threshold_contract),
+        latest_train_cal_oos_surface_path=Path(args.latest_train_cal_oos_surface),
+        current_measured_readout_path=Path(args.current_measured_readout),
+        channel_veto_readout_path=Path(args.channel_veto_readout),
+        residual_safety_readout_path=Path(args.residual_safety_readout),
+        predicted_geometry_atlas_retrieval_path=Path(
+            args.predicted_geometry_atlas_retrieval
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote fold-augmented Lever 3 cofactor-context counteraxis readout to "
+        f"{args.out} (high residual fired/remaining: "
+        f"{counts.get('residual_high_cofactor_counteraxis_fired')}/"
+        f"{counts.get('residual_high_cofactor_remaining_after_counteraxis')}, "
+        f"same residual fired/remaining: "
+        f"{counts.get('residual_same_family_counteraxis_fired')}/"
+        f"{counts.get('residual_same_family_remaining_after_counteraxis')})"
     )
     return 0
 
@@ -31928,6 +31961,77 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_residual_safety_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_residual_safety_readout
+    )
+
+    lever3_cofactor_context_counteraxis_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-cofactor-context-counteraxis-readout",
+        help=(
+            "write a measured Lever 3 cofactor-context counteraxis readout "
+            "using train/cal-selected source-free numeric evidence"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--channel-veto-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--residual-safety-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_residual_safety_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--predicted-geometry-atlas-retrieval",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_cofactor_context_counteraxis_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever3_cofactor_context_counteraxis_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_cofactor_context_counteraxis_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(
