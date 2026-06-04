@@ -4,8 +4,8 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-04T17:36:54Z`
-- STARTED_AT_LOCAL: `2026-06-04T12:36:54-0500 CDT`
+- STARTED_AT_UTC: `2026-06-04T18:31:33Z`
+- STARTED_AT_LOCAL: `2026-06-04T13:31:33-0500 CDT`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -13,6 +13,133 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 5
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T18:31:33Z`
+- STARTED_LOCAL: `2026-06-04T13:31:33-0500 CDT`
+- ENDED_AT: `2026-06-04T18:56:32Z`
+- ENDED_LOCAL: `2026-06-04T13:56:32-0500 CDT`
+- ELAPSED_MINUTES: `24.98`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only. Start from the
+dedicated `lever-2-research-track` branch, rebase it onto current `origin/main`,
+and produce a measured train/cal readout before any blocker conclusion.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/b316/catalytic-earth`; found
+  existing branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued there for all branch work.
+- Initial disk was below the 10 GiB guardrail at 8.0 GiB available. Removed
+  three clean stale detached Codex worktrees with `git worktree remove`,
+  leaving the main Lever 3 worktree, the Lever 2 branch worktree, and the
+  current detached automation worktree in place. Disk recovered to 18 GiB
+  available before fetch/rebase and substantive work.
+- Fetched `origin` and rebased `lever-2-research-track` onto current
+  `origin/main`. Resolved the expected `src/catalytic_earth/cli.py` conflict
+  by keeping both the Lever 2 command handler and the newer Lever 3 channel
+  veto/retention frontier command handlers.
+- Added a measured Lever 2 event-axis frontier builder/CLI:
+  `build-lever2-event-axis-current-extended-frontier-readout`.
+- Wrote the measured readout artifact and report:
+  `artifacts/v3_lever2_event_axis_current_extended_frontier_readout_current702_20260604.json`
+  and
+  `work/lever2_event_axis_current_extended_frontier_readout_current702_20260604.md`.
+- The new readout selects simple mechanism event-axis abstention rules on the
+  mechanism calibration split only, then applies them to the current extended
+  train/cal OOS overlap from the prior Lever 2 mechanism/current readout. It
+  evaluates single axes and calibrated pair unions without scoring heldout rows
+  or changing the fixed geometry/fold threshold.
+
+#### Measured results
+
+- Current overlap measured: 21 current extended train/cal OOS rows with
+  row-specific M-CSA train/cal mechanism features, of which 13 are retained by
+  the fixed current geometry/fold surface and 8 are already abstained.
+- Single-axis frontier: best single axis is
+  `source_free_projected_proton_role_subset`; it retains 4/4 calibration
+  primaries, abstains 9/28 calibration OOS rows, catches 5/13 current-retained
+  overlap rows (`m_csa:17`, `m_csa:59`, `m_csa:85`, `m_csa:194`,
+  `m_csa:222`), and raises the fixed-current OR abstentions to 13/21 overlap
+  rows.
+- Pair frontier: best pair is
+  `source_free_projected_proton_role_subset+bond_change`; it retains 4/4
+  calibration primaries, abstains 13/28 calibration OOS rows, catches 7/13
+  current-retained overlap rows (`m_csa:17`, `m_csa:59`, `m_csa:85`,
+  `m_csa:194`, `m_csa:222`, `m_csa:256`, `m_csa:312`), and raises the fixed
+  current OR abstentions to 15/21 overlap rows.
+- Classification: research-only local signal. The event-axis frontier adds
+  signal on the current extended train/cal OOS overlap, but it is not
+  deployable and cannot claim integrated operating-point value because valid
+  current-primary calibration-feature overlap remains 0/34 and approved
+  source-free current-split event-axis rows remain missing.
+- Exact missing evidence carried by the artifact: 34 current primary rows and
+  132 current-retained OOS rows require source-free event-axis/mechanism rows.
+  The artifact also names the 5 best-single and 7 best-pair retained-overlap
+  rows to use as the first verification tranche after source-free
+  materialization.
+
+#### Guardrails
+
+- Work is restricted to Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, or heldout tuning changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or heldout
+  split information were used as predictive features.
+- Labels/`is_primary` flags were used only for calibration threshold selection
+  and metric accounting; entry IDs were used only for split/overlap accounting.
+- M-CSA row-specific mechanism features remain train/cal-only research
+  evidence; no source-free rows were materialized or promoted.
+
+#### Validation
+
+- Rebase conflict sanity check: `python -m py_compile src/catalytic_earth/cli.py`
+  passed.
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_event_axis_frontier_selects_calibrated_current_overlap_rule tests/test_cli.py::CliTests::test_lever2_event_axis_current_extended_frontier_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_current_extended_frontier_readout_counts -q`
+  passed: `3 passed`.
+- Broader Lever 2/CLI regression cluster:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py tests/test_cli.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_current_extended_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_current_extended_oos_mechanism_overlap_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_partial_surface_current_split_portability_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_split_alignment_readout_current_counts -q`
+  passed: `140 passed, 159 subtests passed`.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q` passed:
+  `1442 passed, 1 warning, 193 subtests passed in 80.95s`.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  `Ran 1397 tests in 42.004s OK`.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  12 source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated mechanism labels.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `python -m json.tool` passed for the new JSON artifact.
+- Repo-wide JSON parse passed: 3546 JSON files parsed.
+- Docs artifact-reference check to `/tmp` passed with `missing: 0`; tracked
+  timestamp churn from the report side effect was restored.
+- New artifact `source_artifacts` hashes checked: 5 checked, 0 stale.
+- `git diff --check` passed.
+- Disk guardrail after validation: 18 GiB available.
+
+#### Commit/push status
+
+- In progress; commit/push after this handoff update.
+
+#### Exact next action
+
+Materialize source-free current-split event-axis rows, starting with the 34
+current primary retention-gate rows and the 132 current-retained OOS rows. Use
+the 7 best-pair retained-overlap rows named in the new artifact as the first
+verification tranche, then rerun
+`build-lever2-event-axis-current-extended-frontier-readout` and the existing
+current-extended mechanism/electron-flow readouts before any deployable or
+heldout claim.
 
 ### 2026-06-04 Lever 2 Research Run 4
 

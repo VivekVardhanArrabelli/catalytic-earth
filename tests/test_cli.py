@@ -120,6 +120,32 @@ class CliTests(unittest.TestCase):
             args.source_free_coordinate_anchor_candidate_dir,
         )
 
+    def test_lever2_event_axis_current_extended_frontier_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-axis-current-extended-frontier-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_axis_current_extended_frontier_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 0.9)
+
     def test_lever2_partial_surface_current_split_portability_parser_defaults(
         self,
     ) -> None:

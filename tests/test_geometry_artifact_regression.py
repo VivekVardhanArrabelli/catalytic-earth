@@ -18481,6 +18481,155 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_event_axis_current_extended_frontier_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_lever2_event_axis_current_extended_frontier_readout_current702_20260604.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_event_axis_current_extended_frontier_readout_"
+            "research_only_current_extended_axis_signal",
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_current_extended_axis_signal",
+        )
+        self.assertEqual(readout["counts"]["axis_surfaces_evaluated"], 8)
+        self.assertEqual(readout["counts"]["calibration_rows"], 32)
+        self.assertEqual(readout["counts"]["calibration_primary_rows"], 4)
+        self.assertEqual(readout["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(readout["counts"]["current_extended_oos_overlap_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["current_extended_current_retained_overlap_rows"],
+            13,
+        )
+        self.assertEqual(
+            readout["counts"]["current_extended_current_abstained_overlap_rows"],
+            8,
+        )
+        self.assertEqual(
+            readout["counts"]["best_axis_current_retained_oos_catches"],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"]["best_axis_union_or_gate_abstained_overlap_rows"],
+            13,
+        )
+        self.assertEqual(readout["counts"]["axis_pair_surfaces_evaluated"], 28)
+        self.assertEqual(
+            readout["counts"]["best_axis_pair_current_retained_oos_catches"],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_axis_pair_union_or_gate_abstained_overlap_rows"
+            ],
+            15,
+        )
+        self.assertEqual(
+            readout["counts"]["best_axis_pair_calibration_oos_abstained"],
+            13,
+        )
+        self.assertEqual(readout["counts"]["best_axis_calibration_oos_abstained"], 9)
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(
+            readout["counts"][
+                "valid_current_primary_calibration_feature_overlap_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_primary_source_free_event_axis_rows"],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_retained_oos_source_free_event_axis_rows"
+            ],
+            132,
+        )
+        best = readout["measured_readout"]["best_axis"]
+        self.assertEqual(best["axis_id"], "source_free_projected_proton_role_subset")
+        self.assertEqual(
+            best["current_extended_overlap"]["current_retained_caught_entry_ids"],
+            ["m_csa:17", "m_csa:59", "m_csa:85", "m_csa:194", "m_csa:222"],
+        )
+        missing_rows = readout["missing_evidence_rows"]
+        self.assertEqual(
+            len(missing_rows["current_primary_rows_requiring_source_free_event_axis"]),
+            34,
+        )
+        self.assertEqual(
+            len(
+                missing_rows[
+                    "current_retained_oos_rows_requiring_source_free_event_axis"
+                ]
+            ),
+            132,
+        )
+        self.assertEqual(
+            [
+                row["entry_id"]
+                for row in missing_rows[
+                    "best_axis_current_retained_overlap_rows_requiring_source_free_materialization"
+                ]
+            ],
+            ["m_csa:17", "m_csa:59", "m_csa:85", "m_csa:194", "m_csa:222"],
+        )
+        self.assertEqual(
+            [
+                row["entry_id"]
+                for row in missing_rows[
+                    "best_axis_pair_current_retained_overlap_rows_requiring_source_free_materialization"
+                ]
+            ],
+            [
+                "m_csa:17",
+                "m_csa:59",
+                "m_csa:85",
+                "m_csa:194",
+                "m_csa:222",
+                "m_csa:256",
+                "m_csa:312",
+            ],
+        )
+        best_pair = readout["measured_readout"]["best_axis_pair"]
+        self.assertEqual(
+            best_pair["axis_pair_id"],
+            "source_free_projected_proton_role_subset+bond_change",
+        )
+        self.assertEqual(
+            best_pair["current_extended_overlap"]["current_retained_caught_entry_ids"],
+            [
+                "m_csa:17",
+                "m_csa:59",
+                "m_csa:85",
+                "m_csa:194",
+                "m_csa:222",
+                "m_csa:256",
+                "m_csa:312",
+            ],
+        )
+        self.assertTrue(
+            readout["decision"]["local_event_axis_signal_beyond_current_surface"]
+        )
+        self.assertTrue(
+            readout["decision"]["event_axis_pair_adds_beyond_best_single_axis"]
+        )
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        self.assertFalse(
+            readout["decision"]["source_free_current_split_operating_point_measurable"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_partial_surface_current_split_portability_readout_counts(
         self,
     ) -> None:

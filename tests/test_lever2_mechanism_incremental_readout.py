@@ -7,6 +7,7 @@ from pathlib import Path
 
 from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_current_extended_oos_mechanism_overlap_readout,
+    build_lever2_event_axis_current_extended_frontier_readout,
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_partial_surface_current_split_portability_readout,
@@ -17,6 +18,176 @@ from catalytic_earth.northstar_next_levers import (
 
 
 class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
+    def test_event_axis_frontier_selects_calibrated_current_overlap_rule(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            mechanism_path = root / "mechanism.json"
+            sidecar_path = root / "sidecar.json"
+            current_overlap_path = root / "current_overlap.json"
+            current_primary_path = root / "current_primary.json"
+            partial_path = root / "partial.json"
+
+            mechanism_path.write_text(
+                json.dumps(
+                    {
+                        "scored_rows": {
+                            "calibration": [
+                                {"entry_id": "p1", "is_primary": True},
+                                {"entry_id": "p2", "is_primary": True},
+                                {"entry_id": "o1", "is_primary": False},
+                                {"entry_id": "o2", "is_primary": False},
+                            ],
+                            "train": [
+                                {"entry_id": "p3", "is_primary": True},
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            def features(electron_count: int = 0) -> dict[str, object]:
+                return {
+                    "has_electron_transfer_event": electron_count > 0,
+                    "electron_transfer_count": electron_count,
+                    "has_bond_change_event": False,
+                    "bond_change_event_count": 0,
+                    "bond_broken_count": 0,
+                    "bond_formed_count": 0,
+                    "bond_order_changed_count": 0,
+                    "has_proton_transfer_event": False,
+                    "proton_transfer_count": 0,
+                    "event_count": 0,
+                    "multi_event_mechanism_flag": False,
+                    "mapped_active_site_residue_count": 0,
+                    "unique_mapped_active_site_residue_count": 0,
+                    "high_confidence_event_count": 0,
+                    "medium_confidence_event_count": 0,
+                    "low_confidence_event_count": 0,
+                    "unknown_confidence_event_count": 0,
+                }
+
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "p1",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(),
+                            },
+                            {
+                                "entry_id": "p2",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(),
+                            },
+                            {
+                                "entry_id": "o1",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(2),
+                            },
+                            {
+                                "entry_id": "o2",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": features(),
+                            },
+                            {
+                                "entry_id": "p3",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": features(),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_overlap_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_points": {
+                            "current_surface": {
+                                "channel": "combined_mean_geometry_fold",
+                                "threshold": 0.5,
+                            }
+                        },
+                        "row_readouts": {
+                            "current_extended_oos_overlap_rows": [
+                                {
+                                    "entry_id": "o1",
+                                    "current_surface_score": 0.7,
+                                    "current_surface_abstains": False,
+                                },
+                                {
+                                    "entry_id": "o2",
+                                    "current_surface_score": 0.4,
+                                    "current_surface_abstains": True,
+                                },
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_primary_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {"entry_id": "p1"},
+                            {"entry_id": "p3"},
+                            {"entry_id": "p4"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            partial_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "current_retained_oos_rows": 10,
+                            "missing_current_primary_source_free_partial_surface_rows": 3,
+                            "missing_current_retained_oos_source_free_partial_surface_rows": 10,
+                            "union_current_retained_oos_overlap_rows": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_event_axis_current_extended_frontier_readout(
+                mechanism_no_template_rerun_path=mechanism_path,
+                train_cal_feature_sidecar_path=sidecar_path,
+                current_extended_oos_mechanism_overlap_readout_path=(
+                    current_overlap_path
+                ),
+                current_in_scope_threshold_contract_path=current_primary_path,
+                partial_surface_current_split_portability_readout_path=partial_path,
+                artifact_id="test_event_axis_frontier",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_event_axis_frontier")
+        self.assertEqual(
+            readout["status"],
+            "lever2_event_axis_current_extended_frontier_readout_"
+            "research_only_current_extended_axis_signal",
+        )
+        self.assertEqual(readout["decision"]["best_axis_id"], "electron_flow")
+        self.assertEqual(readout["counts"]["best_axis_current_retained_oos_catches"], 1)
+        self.assertEqual(
+            readout["counts"]["valid_current_primary_calibration_feature_overlap_rows"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["current_primary_rows_excluded_as_mechanism_train_targets"],
+            1,
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(
+            readout["decision"]["local_event_axis_signal_beyond_current_surface"]
+        )
+
     def test_partial_surface_current_split_portability_measures_union_overlap(
         self,
     ) -> None:
