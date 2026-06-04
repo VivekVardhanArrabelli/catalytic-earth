@@ -229,6 +229,7 @@ from .northstar_next_levers import (
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
+    write_cofactor_graft_fidelity_probe,
     write_cofactor_restoration_recovery_probe,
     write_esmfold2_robustness_experiment_contract,
     write_predicted_geometry_failure_decomposition,
@@ -2417,6 +2418,25 @@ def cmd_build_cofactor_restoration_recovery_probe(args: argparse.Namespace) -> i
         f"recovered={head.get('recovered_under_perfect_restoration')}/"
         f"{head.get('cofactor_apo_loss_targets')}; "
         f"apo_control_matches_audit={head.get('apo_control_rescore_matches_audit')})"
+    )
+    return 0
+
+
+def cmd_build_cofactor_graft_fidelity_probe(args: argparse.Namespace) -> int:
+    probe = write_cofactor_graft_fidelity_probe(
+        cofactor_restoration_probe_path=Path(args.cofactor_restoration_probe),
+        robustness_audit_path=Path(args.robustness_audit),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    head = probe.get("headline", {})
+    print(
+        "Wrote cofactor graft fidelity probe to "
+        f"{args.out} ({probe.get('status')}; "
+        f"graft_realistic={head.get('graft_realistic_recovery')}/"
+        f"{head.get('targets')}; "
+        f"faithful={head.get('active_site_faithful')})"
     )
     return 0
 
@@ -17178,6 +17198,44 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cofactor_restoration_probe.set_defaults(
         func=cmd_build_cofactor_restoration_recovery_probe
+    )
+
+    cofactor_graft_fidelity_probe = subparsers.add_parser(
+        "build-cofactor-graft-fidelity-probe",
+        help=(
+            "refine the cofactor-restoration upper bound: measure whether a real "
+            "rigid cofactor graft keeps the cofactor proximal given the predicted "
+            "active-site internal-distance distortion"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--cofactor-restoration-probe",
+        default=(
+            "artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--robustness-audit",
+        default=(
+            "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json"
+        ),
+    )
+    cofactor_graft_fidelity_probe.add_argument(
+        "--report",
+        default="work/cofactor_graft_fidelity_probe_current702_20260604.md",
+    )
+    cofactor_graft_fidelity_probe.set_defaults(
+        func=cmd_build_cofactor_graft_fidelity_probe
     )
 
     mechanism_relationship_eval = subparsers.add_parser(

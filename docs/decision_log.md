@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-04: Cofactor Graft Is Realistic For 19/22 (3 Need Better Predicted Geometry)
+
+Decision: the idealized 22/22 cofactor-restoration recovery holds up under a
+realistic rigid graft for **19/22** rows; the 3 exceptions are where the predicted
+backbone itself is distorted, which is the boundary where the ESMFold2 secondary
+lever (better predicted geometry) matters. This refines, and does not overturn,
+the cofactor-awareness conclusion.
+
+Method (coordinate-free fidelity proxy, no fit): the restoration probe assumed
+perfect cofactor placement. This probe measures whether the predicted active-site
+scaffold is preserved well enough that a real rigid graft keeps the cofactor
+proximal. It compares catalytic-residue internal pairwise distances (CA/centroid,
+rotation/translation invariant) between experimental and predicted structures, and
+flags a row graft-realistic when it recovered idealized AND the worst active-site
+distance distortion is within the cofactor's experimental proximity margin
+(6.0 A cutoff minus the cofactor's experimental min distance).
+
+Result: graft-realistic recovery **19/22**; active-site faithful (internal RMSD
+<= 1.5 A) 20/22 — most pockets are near-rigid (RMSD 0.12–0.6 A). The distorted
+rows are `m_csa:213` (RMSD 18.6 A) and `m_csa:854` (RMSD 8.2 A); `m_csa:714` is
+faithful by RMSD but fails the proximity-margin test on its worst pair. These 3
+are exactly the rows where cofactor restoration alone is insufficient and a better
+predicted backbone would help.
+
+Why coordinate-free: numpy is unavailable in this environment (no Kabsch SVD), and
+proximal-ligand atom coordinates are not stored in the geometry features, so a
+full atom-level superposition is not run here. The internal-distance metric is
+invariant to frame and needs no superposition. The true atom-level graft
+(superpose on catalytic residue atoms, transplant cofactor atoms, recompute
+proximity, re-score) is the documented next escalation; the predicted heldout CIFs
+are already staged locally under
+`artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/`.
+
+Artifacts:
+`artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json`,
+`work/cofactor_graft_fidelity_probe_current702_20260604.md`.
+
 ## 2026-06-04: Cofactor Restoration Recovers 22/22 Lost Primaries (Backbone Is Faithful)
 
 Decision: cofactor-restoration is confirmed as the Problem-2 lever with a perfect

@@ -697,6 +697,19 @@ artifacts first.
   is faithful and the missing cofactor is the entire loss, so cofactor-restoration
   is the Problem-2 lever with a perfect-information ceiling of all 22. It is an
   upper bound (perfect placement); real docking is imperfect.
+- 2026-06-04 cofactor graft fidelity probe (see `docs/decision_log.md`,
+  coordinate-free, no fit): a realistic rigid graft (judged by whether the
+  predicted active-site internal pairwise-distance distortion stays within each
+  cofactor's proximity margin) recovers **19/22** vs the 22/22 upper bound. 20/22
+  predicted active sites are faithful (internal RMSD <= 1.5 A; most 0.12–0.6 A).
+  The 3 non-realistic rows (`m_csa:213` RMSD 18.6 A, `m_csa:854` RMSD 8.2 A, and
+  `m_csa:714` failing the proximity margin) are where the predicted backbone is
+  distorted — exactly the boundary where the ESMFold2 secondary lever (better
+  predicted geometry) would help. numpy is unavailable here, so the true
+  atom-level graft (superpose catalytic residues, transplant cofactor atoms,
+  re-score) is the documented next escalation; predicted heldout CIFs are already
+  staged under
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/`.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
@@ -746,9 +759,13 @@ artifacts first.
    M-CSA cofactor into the predicted active site (replacing the idealized
    ligand_context injection with placed cofactor atoms) or strengthen the sequence
    cofactor-presence channel (`sequence_cofactor_channel.py` /
-   `cofactor_channel_probe.py`), selected on train/cal with heldout one-shot; then
-   measure the realistic (imperfect-placement) recovery against the 22/22 upper
-   bound. The ESMFold2 coordinate-swap experiment stays
+   `cofactor_channel_probe.py`), selected on train/cal with heldout one-shot. The
+   coordinate-free fidelity probe already estimates a realistic 19/22 (3 rows have
+   distorted predicted backbones); the next escalation is the true atom-level graft
+   (superpose catalytic residues, transplant cofactor atoms from local experimental
+   coords, recompute proximity, re-score) — it needs numpy (absent here) or a pure
+   superposition, and the predicted heldout CIFs are already staged locally. The
+   ESMFold2 coordinate-swap experiment stays
    staged as a no-fit contract
    (`artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`)
    with a runnable `esmfold2` backend, but is now scoped to its secondary value
@@ -870,6 +887,7 @@ artifacts first.
 - `artifacts/v3_esmfold2_predicted_geometry_robustness_experiment_contract_current702_20260603.json`
 - `artifacts/v3_predicted_geometry_failure_decomposition_current702_20260603.json`
 - `artifacts/v3_cofactor_restoration_recovery_probe_current702_20260604.json`
+- `artifacts/v3_cofactor_graft_fidelity_probe_current702_20260604.json`
 - `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`

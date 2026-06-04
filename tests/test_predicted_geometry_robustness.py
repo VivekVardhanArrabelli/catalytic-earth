@@ -8,6 +8,7 @@ from catalytic_earth.predicted_geometry_robustness import (
     ESMFOLD2_BLOCKER,
     _target_manifest_row_selection,
     build_alphafold_predicted_geometry_features,
+    build_cofactor_graft_fidelity_probe,
     build_cofactor_restoration_recovery_probe,
     build_esmfold2_robustness_experiment_contract,
     build_predicted_geometry_failure_decomposition,
@@ -678,6 +679,64 @@ class CofactorRestorationProbeTests(unittest.TestCase):
         )
         self.assertEqual(probe["status"], "blocked")
         self.assertEqual(probe["blocker"], "robustness_audit_not_complete")
+
+
+class CofactorGraftFidelityProbeTests(unittest.TestCase):
+    def test_separates_faithful_from_distorted_active_sites(self) -> None:
+        restoration = {
+            "status": "complete",
+            "artifact_id": "restore",
+            "headline": {"recovered_under_perfect_restoration": 2},
+            "rows": [
+                {"entry_id": "good", "true_fingerprint_id": "X", "recovered": True,
+                 "wave1_readthrough_excluded": False},
+                {"entry_id": "bad", "true_fingerprint_id": "X", "recovered": True,
+                 "wave1_readthrough_excluded": False},
+            ],
+        }
+        pair = lambda dist: [{"left": "e:1", "right": "e:2", "distance": dist}]
+        audit = {
+            "artifact_id": "audit",
+            "scope": {"backend": "alphafold_db"},
+            "predicted_geometry_features": {
+                "entries": [
+                    {"entry_id": "good", "pairwise_distances_angstrom": pair(6.0)},
+                    {"entry_id": "bad", "pairwise_distances_angstrom": pair(20.0)},
+                ]
+            },
+        }
+        experimental = {
+            "entries": [
+                {"entry_id": "good", "pairwise_distances_angstrom": pair(6.0),
+                 "ligand_context": {"proximal_ligands": [
+                     {"code": "FAD", "min_distance_to_active_site": 4.0}]}},
+                {"entry_id": "bad", "pairwise_distances_angstrom": pair(6.0),
+                 "ligand_context": {"proximal_ligands": [
+                     {"code": "HEM", "min_distance_to_active_site": 4.0}]}},
+            ]
+        }
+        probe = build_cofactor_graft_fidelity_probe(
+            cofactor_restoration_probe=restoration,
+            robustness_audit=audit,
+            experimental_geometry_features=experimental,
+        )
+        self.assertEqual(probe["status"], "complete")
+        head = probe["headline"]
+        self.assertEqual(head["targets"], 2)
+        self.assertEqual(head["idealized_recovered_upper_bound"], 2)
+        self.assertEqual(head["graft_realistic_recovery"], 1)
+        self.assertEqual(head["active_site_faithful"], 1)
+        self.assertEqual(head["distorted_active_site_rows"], ["bad"])
+        self.assertFalse(probe["guardrails"]["coordinates_superposed"])
+
+    def test_blocked_when_restoration_incomplete(self) -> None:
+        probe = build_cofactor_graft_fidelity_probe(
+            cofactor_restoration_probe={"status": "blocked"},
+            robustness_audit={},
+            experimental_geometry_features={"entries": []},
+        )
+        self.assertEqual(probe["status"], "blocked")
+        self.assertEqual(probe["blocker"], "cofactor_restoration_probe_not_complete")
 
 
 if __name__ == "__main__":

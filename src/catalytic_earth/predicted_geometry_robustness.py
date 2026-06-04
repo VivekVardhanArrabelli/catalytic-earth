@@ -2043,6 +2043,279 @@ def _cofactor_restoration_probe_markdown_report(probe: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+COFACTOR_GRAFT_FIDELITY_PROBE_ARTIFACT_ID = (
+    "v3_cofactor_graft_fidelity_probe_current702_20260604"
+)
+COFACTOR_GRAFT_FIDELITY_PROBE_SCHEMA = "cofactor_graft_fidelity_probe.v1"
+COFACTOR_GRAFT_PROXIMITY_CUTOFF_ANGSTROM = 6.0
+COFACTOR_GRAFT_FAITHFUL_RMSD_ANGSTROM = 1.5
+
+
+def _internal_pairwise_by_residue_pair(entry: dict[str, Any]) -> dict[frozenset, float]:
+    out: dict[frozenset, float] = {}
+    for record in entry.get("pairwise_distances_angstrom", []) or []:
+        left = record.get("left")
+        right = record.get("right")
+        distance = record.get("distance")
+        if left and right and distance is not None:
+            out[frozenset((left, right))] = float(distance)
+    return out
+
+
+def _nearest_proximal_cofactor(entry: dict[str, Any]) -> tuple[float | None, str | None]:
+    proximal = (entry.get("ligand_context", {}) or {}).get("proximal_ligands", []) or []
+    if not proximal:
+        return None, None
+    best = min(
+        proximal,
+        key=lambda item: item.get("min_distance_to_active_site", float("inf")),
+    )
+    return best.get("min_distance_to_active_site"), best.get("code")
+
+
+def build_cofactor_graft_fidelity_probe(
+    *,
+    cofactor_restoration_probe: dict[str, Any],
+    robustness_audit: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+    cutoff_angstrom: float = COFACTOR_GRAFT_PROXIMITY_CUTOFF_ANGSTROM,
+    faithful_rmsd_angstrom: float = COFACTOR_GRAFT_FAITHFUL_RMSD_ANGSTROM,
+) -> dict[str, Any]:
+    """Turn the idealized cofactor-restoration recovery into a realistic estimate.
+
+    The restoration probe assumed perfect cofactor placement. This probe measures
+    whether the predicted active-site scaffold is preserved well enough that a
+    *real* rigid cofactor graft would keep the cofactor within the proximity
+    cutoff. It compares the catalytic-residue internal pairwise distances
+    (rotation/translation invariant) between the experimental and predicted
+    structures, and checks the worst active-site distance distortion against each
+    cofactor's experimental proximity margin. No coordinates are superposed, no
+    model is fit, no threshold is selected, and no new heldout label is read.
+    """
+    if cofactor_restoration_probe.get("status") != "complete":
+        return {
+            "artifact_id": COFACTOR_GRAFT_FIDELITY_PROBE_ARTIFACT_ID,
+            "schema_version": COFACTOR_GRAFT_FIDELITY_PROBE_SCHEMA,
+            "created_utc": _utc_now_iso(),
+            "status": "blocked",
+            "blocker": "cofactor_restoration_probe_not_complete",
+        }
+
+    predicted_entries = {
+        str(entry.get("entry_id")): entry
+        for entry in (robustness_audit.get("predicted_geometry_features", {}) or {}).get(
+            "entries", []
+        )
+        if isinstance(entry, dict)
+    }
+    exp_by_entry = {
+        str(entry.get("entry_id")): entry
+        for entry in experimental_geometry_features.get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+
+    rows: list[dict[str, Any]] = []
+    realistic = 0
+    faithful = 0
+    stays = 0
+    for target in cofactor_restoration_probe.get("rows", []):
+        entry_id = str(target.get("entry_id"))
+        recovered = bool(target.get("recovered"))
+        exp_entry = exp_by_entry.get(entry_id, {})
+        pred_entry = predicted_entries.get(entry_id, {})
+        exp_pairs = _internal_pairwise_by_residue_pair(exp_entry)
+        pred_pairs = _internal_pairwise_by_residue_pair(pred_entry)
+        shared = exp_pairs.keys() & pred_pairs.keys()
+        diffs = [exp_pairs[key] - pred_pairs[key] for key in shared]
+        if diffs:
+            rmsd = round((sum(d * d for d in diffs) / len(diffs)) ** 0.5, 4)
+            max_abs_diff = round(max(abs(d) for d in diffs), 4)
+        else:
+            rmsd = None
+            max_abs_diff = None
+        exp_min_distance, cofactor_code = _nearest_proximal_cofactor(exp_entry)
+        margin = (
+            round(cutoff_angstrom - exp_min_distance, 4)
+            if exp_min_distance is not None
+            else None
+        )
+        active_site_faithful = rmsd is not None and rmsd <= faithful_rmsd_angstrom
+        stays_proximal = (
+            max_abs_diff is not None and margin is not None and max_abs_diff <= margin
+        )
+        graft_realistic = recovered and stays_proximal
+        realistic += int(graft_realistic)
+        faithful += int(active_site_faithful)
+        stays += int(stays_proximal)
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "true_fingerprint_id": target.get("true_fingerprint_id"),
+                "recovered_idealized": recovered,
+                "matched_residue_pair_count": len(shared),
+                "active_site_internal_distance_rmsd_angstrom": rmsd,
+                "active_site_internal_distance_max_abs_diff_angstrom": max_abs_diff,
+                "active_site_faithful": active_site_faithful,
+                "nearest_proximal_cofactor_code": cofactor_code,
+                "experimental_cofactor_min_distance_angstrom": (
+                    round(exp_min_distance, 4) if exp_min_distance is not None else None
+                ),
+                "proximity_margin_angstrom": margin,
+                "graft_stays_within_cutoff": stays_proximal,
+                "graft_realistic_recovery": graft_realistic,
+                "wave1_readthrough_excluded": target.get("wave1_readthrough_excluded"),
+            }
+        )
+
+    total = len(rows)
+    distorted_rows = [
+        row["entry_id"] for row in rows if not row["active_site_faithful"]
+    ]
+    idealized = (cofactor_restoration_probe.get("headline", {}) or {}).get(
+        "recovered_under_perfect_restoration"
+    )
+    return {
+        "artifact_id": COFACTOR_GRAFT_FIDELITY_PROBE_ARTIFACT_ID,
+        "schema_version": COFACTOR_GRAFT_FIDELITY_PROBE_SCHEMA,
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "scope": {
+            "backend": (robustness_audit.get("scope", {}) or {}).get("backend"),
+            "source_cofactor_restoration_probe": cofactor_restoration_probe.get(
+                "artifact_id"
+            ),
+            "proximity_cutoff_angstrom": cutoff_angstrom,
+            "faithful_rmsd_threshold_angstrom": faithful_rmsd_angstrom,
+        },
+        "method": (
+            "compare catalytic-residue internal pairwise distances (CA/centroid, "
+            "rotation/translation invariant) between experimental and predicted "
+            "structures; a real rigid cofactor graft keeps the cofactor proximal "
+            "where the worst active-site distance distortion is within the "
+            "cofactor's experimental proximity margin (cutoff - min distance)"
+        ),
+        "approximation_caveat": (
+            "this is a coordinate-free fidelity proxy on CA/centroid internal "
+            "distances, not a full atom-level superposition; numpy is unavailable in "
+            "this environment, and proximal-ligand atom coordinates are not stored in "
+            "the geometry features. The true atom-level graft (superpose on catalytic "
+            "residue atoms, transplant cofactor atoms, recompute proximity) is the "
+            "next escalation; predicted heldout CIFs are already staged locally under "
+            "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/"
+        ),
+        "headline": {
+            "targets": total,
+            "idealized_recovered_upper_bound": idealized,
+            "graft_realistic_recovery": realistic,
+            "active_site_faithful": faithful,
+            "graft_stays_within_cutoff": stays,
+            "distorted_active_site_rows": distorted_rows,
+        },
+        "interpretation": (
+            f"A real rigid cofactor graft realistically recovers {realistic}/{total} "
+            f"rows (vs the {idealized}/{total} perfect-placement upper bound). "
+            f"{faithful}/{total} predicted active sites are faithful (internal "
+            f"distance RMSD <= {faithful_rmsd_angstrom} A), so most pockets hold the "
+            "grafted cofactor in a near-native pose. The "
+            f"{len(distorted_rows)} distorted rows ({', '.join(distorted_rows) or 'none'}) "
+            "are where the predicted backbone itself is off — exactly the rows where "
+            "a better structure predictor (the ESMFold2 secondary lever) could help, "
+            "since cofactor restoration alone is insufficient there."
+        ),
+        "rows": rows,
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "trained_a_model": False,
+            "coordinates_superposed": False,
+        },
+        "source_artifacts": {
+            "cofactor_restoration_probe": cofactor_restoration_probe.get("artifact_id"),
+            "robustness_audit": robustness_audit.get("artifact_id"),
+            "experimental_geometry_features": (
+                "artifacts/v3_geometry_features_1025.json"
+            ),
+        },
+    }
+
+
+def write_cofactor_graft_fidelity_probe(
+    *,
+    cofactor_restoration_probe_path: Path,
+    robustness_audit_path: Path,
+    experimental_geometry_features_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    with cofactor_restoration_probe_path.open("r", encoding="utf-8") as handle:
+        cofactor_restoration_probe = json.load(handle)
+    with robustness_audit_path.open("r", encoding="utf-8") as handle:
+        robustness_audit = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    probe = build_cofactor_graft_fidelity_probe(
+        cofactor_restoration_probe=cofactor_restoration_probe,
+        robustness_audit=robustness_audit,
+        experimental_geometry_features=experimental_geometry_features,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(probe, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _cofactor_graft_fidelity_probe_markdown_report(probe), encoding="utf-8"
+        )
+    return probe
+
+
+def _cofactor_graft_fidelity_probe_markdown_report(probe: dict[str, Any]) -> str:
+    if probe.get("status") != "complete":
+        return (
+            "# Cofactor Graft Fidelity Probe\n\n"
+            f"Status: `{probe.get('status')}`\n\n"
+            f"Blocker: `{probe.get('blocker')}`\n"
+        )
+    head = probe.get("headline", {})
+    scope = probe.get("scope", {})
+    lines = [
+        "# Cofactor Graft Fidelity Probe",
+        "",
+        f"Backend: `{scope.get('backend')}` | source probe: "
+        f"`{scope.get('source_cofactor_restoration_probe')}`",
+        "",
+        "## Question",
+        "",
+        "Would a real rigid cofactor graft keep the cofactor proximal, or does the "
+        "predicted pocket distort it? (Refines the perfect-placement upper bound.)",
+        "",
+        "## Result",
+        "",
+        f"- targets: {head.get('targets')}",
+        f"- idealized recovered (upper bound): {head.get('idealized_recovered_upper_bound')}",
+        f"- graft-realistic recovery: {head.get('graft_realistic_recovery')}",
+        f"- active-site faithful (internal RMSD <= "
+        f"{scope.get('faithful_rmsd_threshold_angstrom')} A): {head.get('active_site_faithful')}",
+        f"- distorted active-site rows: {head.get('distorted_active_site_rows')}",
+        "",
+        "## Interpretation",
+        "",
+        probe.get("interpretation", ""),
+        "",
+        probe.get("approximation_caveat", ""),
+        "",
+        "Coordinate-free fidelity proxy: no superposition, no model fit, no "
+        "threshold selection, no new heldout read.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def _enriched_predicted_retrieval_results(
     *,
     retrieval_results: list[dict[str, Any]],
