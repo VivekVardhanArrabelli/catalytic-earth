@@ -19142,6 +19142,257 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
 
+    def test_lever2_event_axis_signature_excluded_frontier_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_axis_signature_excluded_frontier_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_event_axis_signature_excluded_frontier_readout_"
+            "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+        )
+        self.assertEqual(
+            readout["counts"]["projection_plus_axis_surfaces_evaluated"], 7
+        )
+        self.assertEqual(readout["counts"]["calibration_rows"], 32)
+        self.assertEqual(readout["counts"]["calibration_primary_rows"], 4)
+        self.assertEqual(readout["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(readout["counts"]["current_extended_oos_overlap_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["current_extended_current_retained_overlap_rows"],
+            13,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "baseline_projected_subset_current_retained_oos_catches"
+            ],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_signature_excluded_axis_current_retained_oos_catches"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_signature_excluded_axis_marginal_current_retained_oos_catches"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_signature_excluded_axis_target_rows_passing_primary_control"
+            ],
+            21,
+        )
+        self.assertEqual(readout["counts"]["signature_excluded_target_rows"], 18)
+        self.assertEqual(
+            readout["counts"][
+                "signature_excluded_same_signature_oos_rows_for_best_axis"
+            ],
+            60,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_primary_source_free_event_axis_rows"],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_retained_oos_source_free_event_axis_rows"
+            ],
+            132,
+        )
+        self.assertEqual(
+            readout["decision"]["best_signature_excluded_axis_id"],
+            "source_free_projected_proton_role_subset+bond_change",
+        )
+        self.assertEqual(readout["decision"]["best_new_axis_id"], "bond_change")
+        best = readout["measured_readout"]["best_signature_excluded_axis"]
+        self.assertEqual(
+            best["current_extended_overlap"]["marginal_caught_entry_ids"],
+            ["m_csa:256", "m_csa:312"],
+        )
+        marginal_rows = readout["missing_evidence_rows"][
+            "best_signature_excluded_axis_marginal_rows"
+        ]
+        self.assertEqual(
+            [row["entry_id"] for row in marginal_rows],
+            ["m_csa:256", "m_csa:312"],
+        )
+        m256 = next(row for row in marginal_rows if row["entry_id"] == "m_csa:256")
+        self.assertEqual(
+            m256["signature_exclusion"]["same_signature_oos_rows_excluded"],
+            ["m_csa:25", "m_csa:40", "m_csa:287"],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "genuinely_new_axis_adds_beyond_projected_subset_after_signature_exclusion"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["research_only"])
+        self.assertFalse(readout["decision"]["negative"])
+        self.assertTrue(
+            readout["guardrails"][
+                "same_signature_calibration_oos_rows_excluded_from_target_selection"
+            ]
+        )
+        self.assertTrue(
+            readout["guardrails"][
+                "same_projected_signature_calibration_oos_rows_excluded_from_target_selection"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_event_axis_bond_signature_excluded_frontier_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_axis_bond_signature_excluded_frontier_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+        )
+        self.assertEqual(readout["decision"]["signature_axis_id"], "bond_change")
+        self.assertEqual(
+            readout["decision"]["best_signature_excluded_axis_id"],
+            "source_free_projected_proton_role_subset+electron_flow",
+        )
+        self.assertEqual(readout["decision"]["best_new_axis_id"], "electron_flow")
+        self.assertEqual(
+            readout["counts"][
+                "best_signature_excluded_axis_marginal_current_retained_oos_catches"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "signature_excluded_same_signature_oos_rows_for_best_axis"
+            ],
+            66,
+        )
+        best = readout["measured_readout"]["best_signature_excluded_axis"]
+        self.assertEqual(
+            best["current_extended_overlap"]["marginal_caught_entry_ids"],
+            ["m_csa:256"],
+        )
+        rows = {
+            row["projection_plus_axis_id"]: row
+            for row in readout["measured_readout"][
+                "projection_plus_axis_signature_excluded_rows"
+            ]
+        }
+        self.assertEqual(
+            rows["source_free_projected_proton_role_subset+bond_change"][
+                "current_extended_overlap"
+            ]["marginal_current_retained_oos_catches_beyond_projected_subset"],
+            0,
+        )
+        marginal_rows = readout["missing_evidence_rows"][
+            "best_signature_excluded_axis_marginal_rows"
+        ]
+        self.assertEqual([row["entry_id"] for row in marginal_rows], ["m_csa:256"])
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["research_only"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+        self.assertTrue(
+            readout["guardrails"][
+                "same_signature_calibration_oos_rows_excluded_from_target_selection"
+            ]
+        )
+
+    def test_lever2_event_axis_signature_exclusion_sensitivity_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_axis_signature_exclusion_sensitivity_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_signature_exclusion_sensitivity_signal_with_axis_caveat",
+        )
+        self.assertEqual(readout["counts"]["signature_axes_evaluated"], 4)
+        self.assertEqual(readout["counts"]["signature_axes_with_marginal_signal"], 4)
+        self.assertEqual(
+            readout["counts"]["projected_signature_bond_change_marginal_catches"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["bond_signature_bond_change_marginal_catches"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["bond_signature_electron_flow_marginal_catches"],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "bond_change_signal_survives_projected_signature_exclusion"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["bond_change_signal_survives_bond_signature_exclusion"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "bond_change_signal_collapses_under_own_signature_exclusion"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["electron_flow_signal_survives_bond_signature_exclusion"]
+        )
+        rows = {
+            row["signature_axis_id"]: row
+            for row in readout["measured_readout"]["signature_axis_sensitivity_rows"]
+        }
+        self.assertEqual(
+            rows["source_free_projected_proton_role_subset"]["best_new_axis_id"],
+            "bond_change",
+        )
+        self.assertEqual(rows["bond_change"]["best_new_axis_id"], "electron_flow")
+        self.assertEqual(
+            rows["bond_change"]["best_signature_excluded_axis_marginal_entry_ids"],
+            ["m_csa:256"],
+        )
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["research_only"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_partial_surface_current_split_portability_readout_counts(
         self,
     ) -> None:

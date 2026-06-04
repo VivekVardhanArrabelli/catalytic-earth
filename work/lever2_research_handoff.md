@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-04T21:32:02Z`
-- STARTED_AT_LOCAL: `2026-06-04T16:32:02-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T22:05:19Z`
-- ENDED_AT_LOCAL: `2026-06-04T17:05:19-0500 CDT`
-- ELAPSED_MINUTES: `33.28`
+- STARTED_AT_UTC: `2026-06-04T22:35:43Z`
+- STARTED_AT_LOCAL: `2026-06-04T17:35:43-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T23:25:49Z`
+- ENDED_AT_LOCAL: `2026-06-04T18:25:49-0500 CDT`
+- ELAPSED_MINUTES: `50.11`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,155 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 9
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T22:35:43Z`
+- STARTED_LOCAL: `2026-06-04T17:35:43-0500 CDT`
+- ENDED_AT: `2026-06-04T23:25:49Z`
+- ENDED_LOCAL: `2026-06-04T18:25:49-0500 CDT`
+- ELAPSED_MINUTES: `50.11`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only on the dedicated
+`lever-2-research-track` branch. Start from current `origin/main`, avoid
+repeating the settled embedding/current-surface negative, and produce another
+measured train/cal readout before any blocker conclusion.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/cca7/catalytic-earth`; found
+  the existing dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued there for all branch work.
+- Initial filesystem free space was below the 10 GiB guardrail at 6.3 GiB.
+  Removed the clean detached stale automation worktrees
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/7695/catalytic-earth` and
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/b316/catalytic-earth`,
+  restoring free space to 13 GiB before substantive work.
+- Fetched `origin` and rebased `lever-2-research-track` onto current
+  `origin/main`. Resolved the expected `src/catalytic_earth/cli.py` conflict
+  by keeping the newer Lever 3 post-bandpass commands and the Lever 2
+  mechanism command family.
+- Added a measured Lever 2 signature-excluded event-axis frontier builder/CLI:
+  `build-lever2-event-axis-signature-excluded-frontier-readout`. For each
+  current-overlap OOS target it selects train/cal event-axis rules after
+  excluding the target row and calibration OOS rows sharing the configured
+  mechanism-axis signature; mechanism calibration primaries remain the
+  retention controls.
+- Added a sensitivity builder/CLI:
+  `build-lever2-event-axis-signature-exclusion-sensitivity-readout`, covering
+  projected-subset, bond-change, electron-flow, and event-topology signature
+  exclusions.
+- Wrote the measured readout artifacts and reports:
+  `artifacts/v3_lever2_event_axis_signature_excluded_frontier_readout_current702_20260604.json`,
+  `work/lever2_event_axis_signature_excluded_frontier_readout_current702_20260604.md`,
+  `artifacts/v3_lever2_event_axis_bond_signature_excluded_frontier_readout_current702_20260604.json`,
+  `work/lever2_event_axis_bond_signature_excluded_frontier_readout_current702_20260604.md`,
+  `artifacts/v3_lever2_event_axis_signature_exclusion_sensitivity_readout_current702_20260604.json`,
+  and
+  `work/lever2_event_axis_signature_exclusion_sensitivity_readout_current702_20260604.md`.
+- Added regression and unit coverage for signature-neighbor exclusion,
+  artifact counts, parser defaults, generic signature-exclusion guardrails,
+  and empty sensitivity-axis input validation.
+
+#### Measured results
+
+- Projected-signature exclusion result:
+  `research_only_signature_excluded_marginal_axis_signal_source_free_gap`.
+  Baseline projected subset catches 5/13 current-retained overlap rows; the
+  best pair `source_free_projected_proton_role_subset+bond_change` catches
+  7/13 and adds 2 marginal current-retained OOS catches: `m_csa:256` and
+  `m_csa:312`.
+- The projected-signature best pair excludes 60 same-signature calibration OOS
+  rows across 18 target rows, and all 21/21 target-selected rules pass the
+  mechanism primary-control retention gate.
+- Bond-signature exclusion is stricter for the bond-change path. Under
+  `signature_axis_id=bond_change`, the best pair becomes
+  `source_free_projected_proton_role_subset+electron_flow`, catching 6/13 with
+  1 marginal row: `m_csa:256`. The bond-change pair itself falls to 0
+  marginal catches under its own signature exclusion.
+- Sensitivity matrix result:
+  `research_only_signature_exclusion_sensitivity_signal_with_axis_caveat`.
+  All 4 evaluated signature axes have some marginal signal, but the
+  bond-change signal is axis-fragile: it survives projected-signature
+  exclusion, collapses under bond-signature exclusion, and leaves one
+  electron-flow marginal catch for `m_csa:256`.
+- Result class is research-only, not deployable. It does not yet add
+  source-free operating-point value beyond the current geometry/fold surface
+  because current-split event-axis rows are still missing for 34 current
+  primary rows and 132 current-retained OOS rows.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, deployment gates, or heldout rows changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accession
+  fields, or source provenance were used as predictive features.
+- Entry IDs were used only for split/overlap accounting, row-level diagnostics,
+  same-signature exclusion accounting, and missing-row queue accounting.
+- M-CSA row-specific mechanism features remain train/cal-only research
+  evidence; no source-free rows were materialized or promoted.
+- Disk guardrail was restored before substantive work and remained above
+  10 GiB available; final checked free space was 15 GiB.
+
+#### Validation
+
+- Generated artifacts:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-axis-signature-excluded-frontier-readout`;
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-axis-signature-excluded-frontier-readout --signature-axis-id bond_change --artifact-id v3_lever2_event_axis_bond_signature_excluded_frontier_readout_current702_20260604 --out artifacts/v3_lever2_event_axis_bond_signature_excluded_frontier_readout_current702_20260604.json --report work/lever2_event_axis_bond_signature_excluded_frontier_readout_current702_20260604.md`;
+  and
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-axis-signature-exclusion-sensitivity-readout`.
+- Focused final guardrail test:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_event_axis_signature_excluded_frontier_removes_same_signature_oos -q`
+  passed: `1 passed`.
+- Touched Lever 2/CLI/regression cluster:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py tests/test_cli.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_signature_excluded_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_bond_signature_excluded_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_signature_exclusion_sensitivity_readout_counts -q`
+  passed: `153 passed, 159 subtests passed`.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q` passed:
+  `1474 passed, 1 warning, 201 subtests passed in 80.93s`. The warning is the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  `Ran 1429 tests in 43.025s OK`, with the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `git diff --check` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  12 source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated mechanism labels.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`
+  passed: `2 passed`.
+- Repo JSON/JSONL parse sweep passed: 3560 JSON files and 27 JSONL files
+  parsed with 0 errors.
+- New artifact `source_artifacts` hashes checked: 15 checked across 3 new
+  Lever 2 readouts, 0 stale.
+- Regenerated the 3 new readouts and markdown reports into a temporary
+  directory and confirmed they match the committed files after normalizing
+  `created_utc`.
+- Artifact leakage/guardrail assertions passed across the 3 new artifacts:
+  research-only, no deploy/apply, no heldout use, no production changes, and
+  no EC/Rhea-style identifiers in the 6 new artifact/report files.
+
+#### Commit/push status
+
+- Pending implementation/readout commit and remote push verification.
+
+#### Exact next action
+
+- Do not promote Lever 2 yet. Materialize source-free current-split event-axis
+  rows for current primary controls and signature-excluded marginal rows, then
+  rerun the signature-excluded frontier before any heldout or deployment claim.
+- Prioritize `m_csa:256` first because it remains marginal under the stricter
+  bond-signature exclusion through electron-flow. Treat `m_csa:312` as a
+  secondary smoke row only if the projected-signature bond-change path remains
+  primary-controlled after source-free materialization.
 
 ### 2026-06-04 Lever 2 Research Run 8
 

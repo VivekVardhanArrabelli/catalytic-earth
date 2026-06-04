@@ -1,0 +1,262 @@
+{
+  "artifact_id": "v3_lever2_event_axis_signature_exclusion_sensitivity_readout_current702_20260604",
+  "counts": {
+    "best_signature_axis_marginal_catches": 2,
+    "bond_signature_bond_change_marginal_catches": 0,
+    "bond_signature_electron_flow_marginal_catches": 1,
+    "critical_violation_total": 0,
+    "projected_signature_bond_change_marginal_catches": 2,
+    "signature_axes_evaluated": 4,
+    "signature_axes_with_marginal_signal": 4
+  },
+  "created_utc": "2026-06-04T23:02:43Z",
+  "decision": {
+    "adds_operating_point_value_beyond_current_surface": false,
+    "any_signature_excluded_axis_signal_beyond_current_surface": true,
+    "apply_or_promote_now": false,
+    "bond_change_signal_collapses_under_own_signature_exclusion": true,
+    "bond_change_signal_survives_bond_signature_exclusion": false,
+    "bond_change_signal_survives_projected_signature_exclusion": true,
+    "deployable_now": false,
+    "electron_flow_signal_survives_bond_signature_exclusion": true,
+    "measured_readout_available": true,
+    "negative": false,
+    "next_gate": "Treat the bond-change rescue as research-only and axis-fragile until source-free current-split event-axis evidence can be measured. Prioritize m_csa:256 because it remains marginal under the bond-signature exclusion through electron-flow.",
+    "research_only": true
+  },
+  "fixed_operating_points": {
+    "baseline_axis_id": "source_free_projected_proton_role_subset",
+    "min_primary_retain": 1.0,
+    "signature_axis_ids": [
+      "source_free_projected_proton_role_subset",
+      "bond_change",
+      "electron_flow",
+      "event_topology"
+    ]
+  },
+  "guardrails": {
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_split_overlap_accounting": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "labels_used_only_for_train_cal_metric_accounting": true,
+    "m_csa_row_specific_features_train_cal_only": true,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false
+  },
+  "interpretation": {
+    "headline": "Projected-signature exclusion preserves two bond-change marginal catches, but bond-signature exclusion removes the bond-change marginal signal and leaves one electron-flow catch.",
+    "next_action": "Materialize source-free current-split event-axis rows for m_csa:256 first, then m_csa:312 only if the projected-signature bond-change path remains primary-controlled.",
+    "result": "Research-only mixed signal: mechanism event axes add local current-retained OOS value under signature exclusion, but the bond-change marginal effect is not robust to excluding same-bond-signature calibration OOS neighbors."
+  },
+  "measured_readout": {
+    "best_signature_axis_row": {
+      "baseline_projected_subset_current_retained_oos_catches": 5,
+      "best_new_axis_id": "bond_change",
+      "best_signature_excluded_axis_current_retained_oos_catches": 7,
+      "best_signature_excluded_axis_id": "source_free_projected_proton_role_subset+bond_change",
+      "best_signature_excluded_axis_marginal_current_retained_oos_catches": 2,
+      "best_signature_excluded_axis_marginal_entry_ids": [
+        "m_csa:256",
+        "m_csa:312"
+      ],
+      "bond_change_pair": {
+        "marginal_caught_entry_ids": [
+          "m_csa:256",
+          "m_csa:312"
+        ],
+        "marginal_current_retained_oos_catches": 2
+      },
+      "deployable_now": false,
+      "electron_flow_pair": {
+        "marginal_caught_entry_ids": [
+          "m_csa:256"
+        ],
+        "marginal_current_retained_oos_catches": 1
+      },
+      "result_class": "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+      "signature_axis_id": "source_free_projected_proton_role_subset",
+      "signature_excluded_same_signature_oos_rows": 60,
+      "signature_excluded_target_rows": 18,
+      "status": "lever2_event_axis_signature_excluded_frontier_readout_research_only_signature_excluded_marginal_axis_signal_source_free_gap"
+    },
+    "signature_axis_sensitivity_rows": [
+      {
+        "baseline_projected_subset_current_retained_oos_catches": 5,
+        "best_new_axis_id": "bond_change",
+        "best_signature_excluded_axis_current_retained_oos_catches": 7,
+        "best_signature_excluded_axis_id": "source_free_projected_proton_role_subset+bond_change",
+        "best_signature_excluded_axis_marginal_current_retained_oos_catches": 2,
+        "best_signature_excluded_axis_marginal_entry_ids": [
+          "m_csa:256",
+          "m_csa:312"
+        ],
+        "bond_change_pair": {
+          "marginal_caught_entry_ids": [
+            "m_csa:256",
+            "m_csa:312"
+          ],
+          "marginal_current_retained_oos_catches": 2
+        },
+        "deployable_now": false,
+        "electron_flow_pair": {
+          "marginal_caught_entry_ids": [
+            "m_csa:256"
+          ],
+          "marginal_current_retained_oos_catches": 1
+        },
+        "result_class": "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+        "signature_axis_id": "source_free_projected_proton_role_subset",
+        "signature_excluded_same_signature_oos_rows": 60,
+        "signature_excluded_target_rows": 18,
+        "status": "lever2_event_axis_signature_excluded_frontier_readout_research_only_signature_excluded_marginal_axis_signal_source_free_gap"
+      },
+      {
+        "baseline_projected_subset_current_retained_oos_catches": 5,
+        "best_new_axis_id": "electron_flow",
+        "best_signature_excluded_axis_current_retained_oos_catches": 6,
+        "best_signature_excluded_axis_id": "source_free_projected_proton_role_subset+electron_flow",
+        "best_signature_excluded_axis_marginal_current_retained_oos_catches": 1,
+        "best_signature_excluded_axis_marginal_entry_ids": [
+          "m_csa:256"
+        ],
+        "bond_change_pair": {
+          "marginal_caught_entry_ids": [],
+          "marginal_current_retained_oos_catches": 0
+        },
+        "deployable_now": false,
+        "electron_flow_pair": {
+          "marginal_caught_entry_ids": [
+            "m_csa:256"
+          ],
+          "marginal_current_retained_oos_catches": 1
+        },
+        "result_class": "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+        "signature_axis_id": "bond_change",
+        "signature_excluded_same_signature_oos_rows": 66,
+        "signature_excluded_target_rows": 18,
+        "status": "lever2_event_axis_signature_excluded_frontier_readout_research_only_signature_excluded_marginal_axis_signal_source_free_gap"
+      },
+      {
+        "baseline_projected_subset_current_retained_oos_catches": 5,
+        "best_new_axis_id": "bond_change",
+        "best_signature_excluded_axis_current_retained_oos_catches": 7,
+        "best_signature_excluded_axis_id": "source_free_projected_proton_role_subset+bond_change",
+        "best_signature_excluded_axis_marginal_current_retained_oos_catches": 2,
+        "best_signature_excluded_axis_marginal_entry_ids": [
+          "m_csa:256",
+          "m_csa:312"
+        ],
+        "bond_change_pair": {
+          "marginal_caught_entry_ids": [
+            "m_csa:256",
+            "m_csa:312"
+          ],
+          "marginal_current_retained_oos_catches": 2
+        },
+        "deployable_now": false,
+        "electron_flow_pair": {
+          "marginal_caught_entry_ids": [
+            "m_csa:256"
+          ],
+          "marginal_current_retained_oos_catches": 1
+        },
+        "result_class": "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+        "signature_axis_id": "electron_flow",
+        "signature_excluded_same_signature_oos_rows": 302,
+        "signature_excluded_target_rows": 20,
+        "status": "lever2_event_axis_signature_excluded_frontier_readout_research_only_signature_excluded_marginal_axis_signal_source_free_gap"
+      },
+      {
+        "baseline_projected_subset_current_retained_oos_catches": 5,
+        "best_new_axis_id": "bond_change",
+        "best_signature_excluded_axis_current_retained_oos_catches": 7,
+        "best_signature_excluded_axis_id": "source_free_projected_proton_role_subset+bond_change",
+        "best_signature_excluded_axis_marginal_current_retained_oos_catches": 2,
+        "best_signature_excluded_axis_marginal_entry_ids": [
+          "m_csa:256",
+          "m_csa:312"
+        ],
+        "bond_change_pair": {
+          "marginal_caught_entry_ids": [
+            "m_csa:256",
+            "m_csa:312"
+          ],
+          "marginal_current_retained_oos_catches": 2
+        },
+        "deployable_now": false,
+        "electron_flow_pair": {
+          "marginal_caught_entry_ids": [
+            "m_csa:256"
+          ],
+          "marginal_current_retained_oos_catches": 1
+        },
+        "result_class": "research_only_signature_excluded_marginal_axis_signal_source_free_gap",
+        "signature_axis_id": "event_topology",
+        "signature_excluded_same_signature_oos_rows": 118,
+        "signature_excluded_target_rows": 20,
+        "status": "lever2_event_axis_signature_excluded_frontier_readout_research_only_signature_excluded_marginal_axis_signal_source_free_gap"
+      }
+    ]
+  },
+  "missing_evidence": [
+    {
+      "gap_id": "current_primary_source_free_event_axis_rows",
+      "missing_rows_now": 34,
+      "required_rows": 34,
+      "valid_overlap_rows_now": 0,
+      "why_it_matters": "The current primary retention gate must be measured on source-free row-specific mechanism/event-axis features before any deployable Lever 2 claim."
+    },
+    {
+      "gap_id": "current_retained_oos_source_free_event_axis_rows",
+      "missing_rows_now": 132,
+      "required_rows": 132,
+      "valid_overlap_rows_now": 0,
+      "why_it_matters": "These are rows retained by geometry/fold where event-axis mechanism evidence can add abstention value."
+    },
+    {
+      "gap_id": "best_signature_excluded_axis_source_free_fields",
+      "missing_rows_now": 5,
+      "required_rows": 9,
+      "valid_overlap_rows_now": 4,
+      "why_it_matters": "The best signature-excluded event-axis fields must exist as source-free deployment-valid row features on the current split, not only as M-CSA train/cal research fields."
+    }
+  ],
+  "result_class": "research_only_signature_exclusion_sensitivity_signal_with_axis_caveat",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.event_axis_signature_exclusion_sensitivity_readout.v0",
+  "scope": "Lever 2 train/cal sensitivity readout that reruns the signature-excluded event-axis frontier under several mechanism signature definitions. It summarizes whether marginal signal survives projected-subset, bond-change, electron-flow, and event-topology neighbor exclusions without scoring heldout rows.",
+  "source_artifacts": {
+    "current_extended_oos_mechanism_overlap_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604.json",
+      "sha256": "e85d40591ba94bc1c9040aeceb85dfaf42db3720dcfe627e303cfb59b81ce77f"
+    },
+    "current_in_scope_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    },
+    "mechanism_no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun_current702_20260602.json",
+      "sha256": "959c3da8f18bfb02d5fac18768cb3c270441054ab2d545d85f350a6295840178"
+    },
+    "partial_surface_current_split_portability_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_partial_surface_current_split_portability_readout_current702_20260604.json",
+      "sha256": "1f3bac640d2db8b009ae14376820ea940ed40fe89ac58551adcf83b0e1ee1ca6"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    }
+  },
+  "status": "lever2_event_axis_signature_exclusion_sensitivity_readout_research_only_signature_exclusion_sensitivity_signal_with_axis_caveat"
+}
