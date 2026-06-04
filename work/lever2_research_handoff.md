@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-04T19:32:33Z`
-- STARTED_AT_LOCAL: `2026-06-04T14:32:33-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T20:01:56Z`
-- ENDED_AT_LOCAL: `2026-06-04T15:01:56-0500 CDT`
-- ELAPSED_MINUTES: `29.38`
+- STARTED_AT_UTC: `2026-06-04T20:32:00Z`
+- STARTED_AT_LOCAL: `2026-06-04T15:32:00-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T21:26:51Z`
+- ENDED_AT_LOCAL: `2026-06-04T16:26:51-0500 CDT`
+- ELAPSED_MINUTES: `54.85`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,149 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 7
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T20:32:00Z`
+- STARTED_LOCAL: `2026-06-04T15:32:00-0500 CDT`
+- ENDED_AT: `2026-06-04T21:26:51Z`
+- ENDED_LOCAL: `2026-06-04T16:26:51-0500 CDT`
+- ELAPSED_MINUTES: `54.85`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only. Start from the
+dedicated `lever-2-research-track` branch/worktree, rebase it onto current
+`origin/main`, and produce a measured train/cal readout before any blocker
+conclusion.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/53b8/catalytic-earth`; found
+  the existing dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued there for all branch work.
+- Initial branch worktree was clean. Fetched `origin main`; `origin/main` was
+  at `9ae48be57c2870c837740d73c01b168e91719ec4`.
+- Rebased `lever-2-research-track` onto current `origin/main`. Resolved the
+  expected `src/catalytic_earth/cli.py` command-dispatch conflict by keeping
+  both the newer Lever 3 residual-safety command and the prior Lever 2
+  mechanism-readout command. `python -m py_compile src/catalytic_earth/cli.py`
+  passed after the conflict fix, and the rebase completed.
+- Added a measured Lever 2 primary-safe event-axis frontier builder/CLI:
+  `build-lever2-event-axis-primary-safe-frontier-readout`.
+- Wrote the measured readout artifact and report:
+  `artifacts/v3_lever2_event_axis_primary_safe_frontier_readout_current702_20260604.json`
+  and
+  `work/lever2_event_axis_primary_safe_frontier_readout_current702_20260604.md`.
+- The readout jointly selects projected-subset-plus-added-axis OR rules on
+  mechanism calibration rows while excluding each measured target row from its
+  own rule selection. It then asks whether any genuinely new event axis adds
+  marginal current-retained OOS catches beyond the projected subset while also
+  passing leave-one-primary-out control.
+- Continued after the strict primary-safe negative by adding a measured
+  primary-retention floor sensitivity table to the same artifact. This checks
+  1.0, 0.9, and 0.75 primary-retain floors without reading heldout rows or
+  changing any production threshold.
+- Added row-level control diagnostics for the failing primary-control row so
+  the artifact names the selected rule and feature scores for the row that
+  blocks promotion.
+
+#### Measured results
+
+- Strict primary-safe frontier: no projected-subset-plus-added-axis surface
+  passes primary LOO control while adding marginal current-retained OOS value.
+  Classification:
+  `research_only_primary_safe_marginal_axis_negative`.
+- Best marginal axis before primary control remains
+  `source_free_projected_proton_role_subset+bond_change`: it catches 7/13
+  current-retained overlap rows, with 2 marginal rows beyond the projected
+  subset (`m_csa:256`, `m_csa:312`).
+- The best marginal axis fails the primary LOO control, retaining 3/4
+  mechanism primaries and abstaining `m_csa:133`.
+- Detailed primary-control diagnostic for `m_csa:133`: baseline-axis score
+  3.0, added-axis score 3.0, selected baseline rule `high 3.0`, selected
+  added-axis rule `low 3.0`. This makes the current bond-change marginal path
+  research-only until a source-free surface can distinguish that known
+  in-atlas primary control from the marginal OOS rows.
+- Primary-retention floor sensitivity:
+  - At 1.0 and 0.9, primary-safe marginal catches remain 0 and no
+    projected-subset-plus-axis surface passes primary control.
+  - At 0.75, 2 surfaces pass primary control; the best primary-safe surface is
+    `source_free_projected_proton_role_subset+electron_flow`, with 1 marginal
+    current-retained OOS catch (`m_csa:256`). This confirms the signal only
+    survives below the 90% primary-retention standard.
+- Current split evidence gap remains unchanged: 34 current primary
+  retention-gate rows and 132 current-retained OOS rows still require
+  source-free current-split event-axis rows. Best marginal axis fields require
+  5 new non-projected fields beyond the 4 projected source-free-compatible
+  fields.
+- Result: research-only negative for promotion. A genuinely new mechanism axis
+  has local marginal train/cal signal before primary control, but no
+  primary-safe train/cal operating-point value beyond the current
+  geometry/fold surface can be claimed.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, deployment gates, or heldout rows changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accession
+  fields, or source provenance were used as predictive features.
+- Entry IDs were used only for split/overlap accounting, row-level diagnostics,
+  and missing-row queue accounting.
+- M-CSA row-specific mechanism features remain train/cal-only research
+  evidence; no source-free rows were materialized or promoted.
+
+#### Validation
+
+- Rebase conflict sanity:
+  `python -m py_compile src/catalytic_earth/cli.py` passed.
+- Initial focused primary-safe tests:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_event_axis_primary_safe_frontier_reports_controlled_signal tests/test_cli.py::CliTests::test_lever2_event_axis_primary_safe_frontier_parser_defaults -q`
+  passed: `2 passed`.
+- Focused primary-safe artifact regression after sensitivity/control-detail
+  refresh:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_primary_safe_frontier_readout_counts tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_event_axis_primary_safe_frontier_reports_controlled_signal -q`
+  passed: `2 passed`.
+- Broader touched Lever 2/CLI/regression cluster after the final control
+  diagnostic:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py tests/test_cli.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_current_extended_oos_mechanism_overlap_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_current_extended_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_loo_current_extended_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_axis_primary_safe_frontier_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_partial_surface_current_split_portability_readout_counts -q`
+  passed: `146 passed, 159 subtests passed`.
+- Final full pytest after the final control-diagnostic artifact refresh:
+  `PYTHONPATH=src python -m pytest -q` passed:
+  `1451 passed, 1 warning, 194 subtests passed in 81.26s`. The warning is the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Final unittest discovery after the final artifact refresh:
+  `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  `Ran 1406 tests in 44.766s OK`, with the same existing warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  12 source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated mechanism labels.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `git diff --check` passed.
+- Repo-wide artifact JSON parse passed: 3545 JSON files parsed with 0 errors.
+- New artifact `source_artifacts` hashes checked: 5 checked, 0 stale.
+- Current-docs artifact-reference check to `/tmp` passed with `missing: 0`.
+- Disk guardrail remained just above 10 GiB available.
+
+#### Commit/push status
+
+- Pending final wrap commit and push to `origin/lever-2-research-track`.
+
+#### Exact next action
+
+Do not promote Lever 2 bond-change/event-axis surfaces yet. The smallest next
+Lever 2 experiment is to materialize source-free current-split event-axis rows
+for the 34 current primary retention-gate rows plus marginal OOS rows
+`m_csa:256` and `m_csa:312`, with `m_csa:133` included as an explicit
+primary-control check. Rerun the primary-safe frontier and require marginal
+OOS value at the 0.9/1.0 primary-retention floor before any heldout or
+deployment claim.
 
 ### 2026-06-04 Lever 2 Research Run 6
 

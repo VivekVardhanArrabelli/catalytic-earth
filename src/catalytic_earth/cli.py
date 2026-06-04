@@ -46,6 +46,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_current_extended_oos_mechanism_overlap_readout,
     write_lever2_event_axis_current_extended_frontier_readout,
     write_lever2_event_axis_loo_current_extended_frontier_readout,
+    write_lever2_event_axis_primary_safe_frontier_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_partial_surface_current_split_portability_readout,
@@ -13815,6 +13816,45 @@ def cmd_build_lever2_event_axis_loo_current_extended_frontier_readout(
         f"{counts.get('best_projection_plus_axis_marginal_current_retained_oos_catches')}, "
         f"current primary overlap: "
         f"{counts.get('valid_current_primary_calibration_feature_overlap_rows')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_axis_primary_safe_frontier_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_axis_primary_safe_frontier_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-axis primary-safe frontier readout to "
+        f"{args.out} (best marginal axis: "
+        f"{decision.get('best_marginal_axis_id')}, primary-safe marginal "
+        f"catches: "
+        f"{counts.get('best_primary_safe_axis_marginal_current_retained_oos_catches')}, "
+        f"best marginal primary retained: "
+        f"{counts.get('best_marginal_axis_primary_loo_retained_rows')}/"
+        f"{counts.get('best_marginal_axis_primary_loo_control_rows')})"
     )
     return 0
 
@@ -32684,6 +32724,78 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_event_axis_loo_current_extended_frontier_readout.set_defaults(
         func=cmd_build_lever2_event_axis_loo_current_extended_frontier_readout
+    )
+
+    lever2_event_axis_primary_safe_frontier_readout = subparsers.add_parser(
+        "build-lever2-event-axis-primary-safe-frontier-readout",
+        help=(
+            "write a train/cal Lever 2 readout requiring event-axis marginal "
+            "catches to pass leave-one-primary-out control"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_axis_primary_safe_frontier_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_axis_primary_safe_frontier_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever2_event_axis_primary_safe_frontier_readout.set_defaults(
+        func=cmd_build_lever2_event_axis_primary_safe_frontier_readout
     )
 
     lever2_partial_surface_current_split_portability_readout = (
