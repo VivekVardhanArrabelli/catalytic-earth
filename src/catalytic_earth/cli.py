@@ -156,6 +156,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_dispatch_readiness_summary,
     write_fold_augmented_lever3_evidence_sufficiency_readout,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
+    write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_post_decision_deployment_closure_status,
     write_fold_augmented_post_rerun_deployment_closure_status,
     write_fold_augmented_post_rerun_confounded_deployment_closure_audit,
@@ -13297,6 +13298,41 @@ def cmd_build_fold_augmented_lever3_channel_veto_readout(
         f"{counts.get('high_cofactor_proxy_rows_found')} and "
         f"{counts.get('best_overblock_union_same_family_abstained')}/"
         f"{counts.get('same_family_proxy_rows_found')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_retention_frontier_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_retention_frontier_readout(
+        in_scope_threshold_contract_path=Path(args.in_scope_threshold_contract),
+        expanded_oos_calibrated_threshold_contract_path=Path(
+            args.expanded_oos_calibrated_threshold_contract
+        ),
+        latest_train_cal_oos_surface_path=Path(args.latest_train_cal_oos_surface),
+        current_measured_readout_path=Path(args.current_measured_readout),
+        p07658_provider_attempt_path=Path(args.p07658_provider_attempt)
+        if args.p07658_provider_attempt
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 retention-frontier readout to "
+        f"{args.out} (routes closing 90pct/any: "
+        f"{counts.get('routes_closing_both_proxy_axes_at_90pct_floor')}/"
+        f"{counts.get('routes_closing_both_proxy_axes_at_any_retention')}, "
+        f"best shortfall: "
+        f"{counts.get('best_any_retention_proxy_shortfall_rows')}, "
+        f"P07658 coordinate: "
+        f"{decision.get('fresh_p07658_provider_attempt_returned_coordinate')})"
     )
     return 0
 
@@ -31749,6 +31785,68 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_channel_veto_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_channel_veto_readout
+    )
+
+    lever3_retention_frontier_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-retention-frontier-readout",
+        help=(
+            "write a measured Lever 3 retention-frontier readout over "
+            "train/cal-selected source-free channel thresholds"
+        ),
+    )
+    lever3_retention_frontier_readout.add_argument(
+        "--in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_retention_frontier_readout.add_argument(
+        "--expanded-oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "expanded_oos_calibrated_current702_20260603.json"
+        ),
+    )
+    lever3_retention_frontier_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_retention_frontier_readout.add_argument(
+        "--current-measured-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_current_measured_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retention_frontier_readout.add_argument(
+        "--p07658-provider-attempt",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_biolm_single_provider_attempt_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retention_frontier_readout.add_argument("--artifact-id", default=None)
+    lever3_retention_frontier_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retention_frontier_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retention_frontier_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_retention_frontier_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_retention_frontier_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_retention_frontier_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

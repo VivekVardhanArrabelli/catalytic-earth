@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 348
-- Measured elapsed time: 10670.6 minutes (177.84 hours)
+- Entries: 349
+- Measured elapsed time: 10690.7 minutes (178.18 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 503.1 measured minutes (8.38 hours)
+- northstar-lever3: 523.2 measured minutes (8.72 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3648
-- Evidence references logged: 3010
+- Artifact references logged: 3659
+- Evidence references logged: 3020
 
 ## Recent Entries
-
-### 2026-06-04T09:54:33.175466+00:00 - northstar-lever3
-
-- Task: Lever 3 deployment-input preflight and repo-wide blocker scan
-- Time mode: measured
-- Measured minutes: 50.367
-- Started: 2026-06-04T09:03:05Z
-- Ended: 2026-06-04T09:53:27Z
-- Artifacts: artifacts/v3_fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.json, work/fold_augmented_confounded_proxy_deployment_input_preflight_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.json, work/fold_augmented_confounded_proxy_repo_wide_coordinate_sanity_scan_current702_20260604.md, artifacts/v3_fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.json, work/fold_augmented_q43088_source_free_locator_candidate_scout_current702_20260604.md, artifacts/v3_fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.json, work/fold_augmented_confounded_proxy_current_evidence_blocker_after_input_preflight_current702_20260604.md, docs/artifact_index.md, docs/decision_log.md, docs/project_state.md, work/handoff.md
-- Evidence: full pytest 1365 passed 169 subtests one existing sklearn SciPy warning, unittest discovery 1320 passed, focused Lever 3 artifact tests 4 passed, CLI registration 1 passed 143 subtests, compileall, validate 702 labels, git diff --check, docs artifact-reference check missing 0, JSON syntax checks
-- Notes: Lever 3 only. Current local evidence cannot close deployment or confounded-safe calibration: four coordinate-source rows lack approved predicted coordinates, Q43088 needs two approved locators or a sidecar, high-cofactor needs 16 new abstained train/cal rows, and same-family structural needs 170. No labels registries ontologies imports thresholds heldout tuning downloads scoring or source approvals changed.
 
 ### 2026-06-04T10:54:54.865818+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json, work/fold_augmented_lever3_channel_veto_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: six channels and 57 channel unions evaluated, 31/34 in-scope retention floor preserved only for non-closing routes, best retention-preserving union 2/4 high-cofactor and 0/59 same-family, best stronger union 3/4 high-cofactor and 38/59 same-family but only 22/34 in-scope retained, missing full-channel tail 6 rows with 0 strict proxy overlap, P07658 live re-probe AlphaFold 404 and ESMFold HTTP 413, full pytest 1420 passed 192 subtests, unittest discovery 1375 passed, validate passed with 702 labels
 - Notes: Readout is deployment-valid and non-blocker; it preserves threshold 0.44155 and shows stronger confounded abstention requires in-scope overblocking.
+
+### 2026-06-04T18:22:07.166395+00:00 - northstar-lever3
+
+- Task: Lever 3 retention-frontier measured readout and P07658 provider attempt
+- Time mode: measured
+- Measured minutes: 20.1
+- Started: 2026-06-04T18:01:40Z
+- Ended: 2026-06-04T18:21:46Z
+- Artifacts: artifacts/v3_fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.json, work/fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.md, artifacts/v3_fold_augmented_lever3_retention_frontier_readout_current702_20260604.json, work/fold_augmented_lever3_retention_frontier_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: BioLM exact P07658 provider attempt HTTP 401 no coordinate, retention-frontier routes closing both axes at 90pct floor 0 of 63, retention-frontier routes closing both axes at any retention 0 of 63, best no-floor route 3 of 4 high-cofactor and 38 of 59 same-family with 20 of 34 in-scope retained, best route retained m_csa:289 plus 21 same-family rows, full pytest 1424 passed 192 subtests one existing sklearn warning, unittest discovery 1379 passed, focused touched files 552 passed 173 subtests, validate passed 702 labels, compileall diff-check JSON source hashes and docs reference check passed
+- Notes: Measured readout artifact first; no blocker packet produced. P07658 U140 was preserved in the provider attempt payload.
 
 ## Expectation Updates
 
@@ -395,6 +395,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T15:52:38.463795+00:00: Current source-free evidence supports measured diagnostics but not deployment closure; strict high-cofactor and same-family acquisitions remain required
 - 2026-06-04T16:54:35.141959+00:00: Current evidence is measured but insufficient; next action is exact P07658 full-length prediction/provenance, then 16 strict high-cofactor rows, then 170 strict same-family structural rows
 - 2026-06-04T17:54:27.719250+00:00: Current train/cal-selected source-free channels are measured but insufficient for Lever 3 closure; next progress needs accepted P07658 full-length predicted-coordinate provenance plus strict high-cofactor acquisition.
+- 2026-06-04T18:22:07.166395+00:00: Current fixed source-free channels cannot close Lever 3 at 90pct retention or at any retention; next progress needs accepted P07658 coordinate provenance plus strict high-cofactor acquisition.
 
 ## Scope Adjustments
 
@@ -602,3 +603,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-04T15:52:38.463795+00:00: Lever 3 only; no labels, registries, ontologies, heldout splits, imports, or threshold changes
 - 2026-06-04T16:54:35.141959+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds or threshold tuning changed
 - 2026-06-04T17:54:27.719250+00:00: Lever 3 only; no threshold changes, heldout tuning, row scoring, coordinate staging, labels, registries, ontologies, imports, or source decisions changed.
+- 2026-06-04T18:22:07.166395+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging or source decisions changed

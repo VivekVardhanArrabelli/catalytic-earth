@@ -310,6 +310,9 @@ FOLD_AUGMENTED_LEVER3_EVIDENCE_SUFFICIENCY_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_CHANNEL_VETO_READOUT_ID = (
     "v3_fold_augmented_lever3_channel_veto_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_RETENTION_FRONTIER_READOUT_ID = (
+    "v3_fold_augmented_lever3_retention_frontier_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -37186,6 +37189,685 @@ def write_fold_augmented_lever3_channel_veto_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_channel_veto_readout_report(readout),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_retention_frontier_route_record(
+    route: dict[str, Any], *, floor_rows: int
+) -> dict[str, Any]:
+    high_shortfall = max(
+        0,
+        int(route["high_cofactor_target_rows"])
+        - int(route["high_cofactor_abstained"]),
+    )
+    same_shortfall = max(
+        0,
+        int(route["same_family_target_rows"]) - int(route["same_family_abstained"]),
+    )
+    both_axes_met = high_shortfall == 0 and same_shortfall == 0
+    retained = int(route["calibration_in_scope_retained"])
+    total = int(route["calibration_in_scope_total"])
+    return {
+        "route_id": route["route_id"],
+        "channels": route["channels"],
+        "calibration_in_scope_retained": retained,
+        "calibration_in_scope_total": total,
+        "calibration_in_scope_retention_loss": total - retained,
+        "retention_floor_rows": floor_rows,
+        "retention_floor_met": retained >= floor_rows,
+        "train_cal_oos_abstained": route["train_cal_oos_abstained"],
+        "train_cal_oos_total": route["train_cal_oos_total"],
+        "high_cofactor_abstained": route["high_cofactor_abstained"],
+        "high_cofactor_total": route["high_cofactor_total"],
+        "high_cofactor_target_rows": route["high_cofactor_target_rows"],
+        "high_cofactor_shortfall_rows": high_shortfall,
+        "same_family_abstained": route["same_family_abstained"],
+        "same_family_total": route["same_family_total"],
+        "same_family_target_rows": route["same_family_target_rows"],
+        "same_family_shortfall_rows": same_shortfall,
+        "proxy_shortfall_rows": high_shortfall + same_shortfall,
+        "both_proxy_axes_met": both_axes_met,
+        "deployment_closure_support_at_floor": bool(
+            retained >= floor_rows and both_axes_met
+        ),
+    }
+
+
+def _best_lever3_frontier_route(
+    routes: list[dict[str, Any]], *, floor_rows: int
+) -> dict[str, Any] | None:
+    eligible = [
+        _lever3_retention_frontier_route_record(route, floor_rows=floor_rows)
+        for route in routes
+        if int(route["calibration_in_scope_retained"]) >= floor_rows
+    ]
+    if not eligible:
+        return None
+    return min(
+        eligible,
+        key=lambda row: (
+            row["proxy_shortfall_rows"],
+            row["same_family_shortfall_rows"],
+            row["high_cofactor_shortfall_rows"],
+            -int(row["train_cal_oos_abstained"]),
+            row["calibration_in_scope_retention_loss"],
+            row["route_id"],
+        ),
+    )
+
+
+def _lever3_unabstained_proxy_rows_for_route(
+    rows: list[dict[str, Any]],
+    *,
+    route: dict[str, Any],
+    thresholds: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    readout = _channel_veto_readout_for_rows(
+        rows,
+        channel_names=tuple(route["channels"]),
+        thresholds=thresholds,
+    )
+    retained_rows = [
+        row for row in readout["rows"] if row.get("abstains") is not True
+    ]
+    return sorted(
+        [
+            {
+                "entry_id": row.get("entry_id"),
+                "label_type": row.get("label_type"),
+                "oos_tier": row.get("oos_tier"),
+                "split_assignment": row.get("split_assignment"),
+                "channel_results": row.get("channel_results") or [],
+            }
+            for row in retained_rows
+        ],
+        key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+    )
+
+
+def _lever3_route_readouts_for_current_surface(
+    *,
+    in_scope_threshold_contract: dict[str, Any],
+    expanded_oos_calibrated_threshold_contract: dict[str, Any],
+    latest_train_cal_oos_surface: dict[str, Any],
+    current_measured_readout: dict[str, Any],
+) -> dict[str, Any]:
+    thresholds = _channel_thresholds_90pct(expanded_oos_calibrated_threshold_contract)
+    calibration_in_scope_rows = [
+        row
+        for row in in_scope_threshold_contract.get("calibration_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    candidate_oos_rows = [
+        row
+        for row in latest_train_cal_oos_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    train_cal_oos_rows = [
+        row for row in candidate_oos_rows if row.get("channel_scores")
+    ]
+    rows_by_entry = {str(row["entry_id"]): row for row in train_cal_oos_rows}
+    row_readouts = current_measured_readout.get("row_readouts") or {}
+    high_ids = _entry_ids_from_readout_rows(
+        row_readouts.get("high_cofactor_proxy_rows") or []
+    )
+    same_ids = _entry_ids_from_readout_rows(
+        row_readouts.get("same_family_structural_proxy_rows") or []
+    )
+    high_rows = _rows_by_requested_ids(rows_by_entry, high_ids)
+    same_rows = _rows_by_requested_ids(rows_by_entry, same_ids)
+    retention_floor_rows = math.ceil(0.9 * len(calibration_in_scope_rows))
+    channel_names = tuple(sorted(thresholds))
+    single_routes = [
+        _channel_veto_summary(
+            route_id=f"single_channel::{channel_name}",
+            channel_names=(channel_name,),
+            thresholds=thresholds,
+            calibration_in_scope_rows=calibration_in_scope_rows,
+            train_cal_oos_rows=train_cal_oos_rows,
+            high_cofactor_rows=high_rows,
+            same_family_rows=same_rows,
+            retention_floor_rows=retention_floor_rows,
+        )
+        for channel_name in channel_names
+    ]
+    union_routes: list[dict[str, Any]] = []
+    for size in range(2, len(channel_names) + 1):
+        for combo in itertools.combinations(channel_names, size):
+            union_routes.append(
+                _channel_veto_summary(
+                    route_id="channel_union::" + "+".join(combo),
+                    channel_names=combo,
+                    thresholds=thresholds,
+                    calibration_in_scope_rows=calibration_in_scope_rows,
+                    train_cal_oos_rows=train_cal_oos_rows,
+                    high_cofactor_rows=high_rows,
+                    same_family_rows=same_rows,
+                    retention_floor_rows=retention_floor_rows,
+                )
+            )
+    return {
+        "thresholds": thresholds,
+        "calibration_in_scope_rows": calibration_in_scope_rows,
+        "candidate_oos_rows": candidate_oos_rows,
+        "train_cal_oos_rows": train_cal_oos_rows,
+        "high_rows": high_rows,
+        "same_rows": same_rows,
+        "single_routes": single_routes,
+        "union_routes": union_routes,
+        "all_routes": single_routes + union_routes,
+        "retention_floor_rows": retention_floor_rows,
+    }
+
+
+def build_fold_augmented_lever3_retention_frontier_readout(
+    *,
+    in_scope_threshold_contract_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_measured_readout_path: Path,
+    p07658_provider_attempt_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_RETENTION_FRONTIER_READOUT_ID,
+) -> dict[str, Any]:
+    in_scope_contract = _read_json(in_scope_threshold_contract_path)
+    expanded_contract = _read_json(expanded_oos_calibrated_threshold_contract_path)
+    latest_surface = _read_json(latest_train_cal_oos_surface_path)
+    current = _read_json(current_measured_readout_path)
+    route_state = _lever3_route_readouts_for_current_surface(
+        in_scope_threshold_contract=in_scope_contract,
+        expanded_oos_calibrated_threshold_contract=expanded_contract,
+        latest_train_cal_oos_surface=latest_surface,
+        current_measured_readout=current,
+    )
+    all_routes = route_state["all_routes"]
+    calibration_rows = route_state["calibration_in_scope_rows"]
+    calibration_total = len(calibration_rows)
+    floor_specs = [
+        ("retain_100pct", calibration_total),
+        ("retain_95pct", math.ceil(0.95 * calibration_total)),
+        ("retain_90pct", math.ceil(0.90 * calibration_total)),
+        ("retain_85pct", math.ceil(0.85 * calibration_total)),
+        ("retain_80pct", math.ceil(0.80 * calibration_total)),
+        ("retain_75pct", math.ceil(0.75 * calibration_total)),
+        ("no_in_scope_floor", 0),
+    ]
+    frontier: list[dict[str, Any]] = []
+    for floor_id, floor_rows in floor_specs:
+        eligible_routes = [
+            route
+            for route in all_routes
+            if int(route["calibration_in_scope_retained"]) >= floor_rows
+        ]
+        closing_routes = [
+            route
+            for route in eligible_routes
+            if _lever3_retention_frontier_route_record(
+                route, floor_rows=floor_rows
+            )["deployment_closure_support_at_floor"]
+        ]
+        best_route = _best_lever3_frontier_route(all_routes, floor_rows=floor_rows)
+        frontier.append(
+            {
+                "floor_id": floor_id,
+                "retention_floor_rows": floor_rows,
+                "retention_floor_fraction": (
+                    round(floor_rows / calibration_total, 4)
+                    if calibration_total
+                    else None
+                ),
+                "eligible_routes": len(eligible_routes),
+                "routes_closing_both_proxy_axes": len(closing_routes),
+                "best_route_by_proxy_shortfall": best_route,
+                "best_closing_route": (
+                    max(
+                        (
+                            _lever3_retention_frontier_route_record(
+                                route, floor_rows=floor_rows
+                            )
+                            for route in closing_routes
+                        ),
+                        key=lambda row: (
+                            row["calibration_in_scope_retained"],
+                            row["train_cal_oos_abstained"],
+                            -len(row["channels"]),
+                            row["route_id"],
+                        ),
+                    )
+                    if closing_routes
+                    else None
+                ),
+            }
+        )
+
+    any_floor_closing_routes = [
+        _lever3_retention_frontier_route_record(route, floor_rows=0)
+        for route in all_routes
+        if _lever3_retention_frontier_route_record(route, floor_rows=0)[
+            "both_proxy_axes_met"
+        ]
+    ]
+    least_loss_closing_route = (
+        max(
+            any_floor_closing_routes,
+            key=lambda row: (
+                row["calibration_in_scope_retained"],
+                row["train_cal_oos_abstained"],
+                -len(row["channels"]),
+                row["route_id"],
+            ),
+        )
+        if any_floor_closing_routes
+        else None
+    )
+    best_any_route = min(
+        (
+            _lever3_retention_frontier_route_record(route, floor_rows=0)
+            for route in all_routes
+        ),
+        key=lambda row: (
+            row["proxy_shortfall_rows"],
+            row["same_family_shortfall_rows"],
+            row["high_cofactor_shortfall_rows"],
+            -row["train_cal_oos_abstained"],
+            row["calibration_in_scope_retention_loss"],
+            row["route_id"],
+        ),
+    )
+    best_any_raw_route = next(
+        route for route in all_routes if route["route_id"] == best_any_route["route_id"]
+    )
+    best_any_unabstained_high_rows = _lever3_unabstained_proxy_rows_for_route(
+        route_state["high_rows"],
+        route=best_any_raw_route,
+        thresholds=route_state["thresholds"],
+    )
+    best_any_unabstained_same_rows = _lever3_unabstained_proxy_rows_for_route(
+        route_state["same_rows"],
+        route=best_any_raw_route,
+        thresholds=route_state["thresholds"],
+    )
+    best_90 = next(row for row in frontier if row["floor_id"] == "retain_90pct")
+    provider_attempt: dict[str, Any] = {}
+    if p07658_provider_attempt_path and Path(p07658_provider_attempt_path).exists():
+        provider_attempt = _read_json(Path(p07658_provider_attempt_path))
+    provider_attempt_summary = {
+        "attempt_artifact_provided": bool(provider_attempt),
+        "status": provider_attempt.get("status"),
+        "provider": provider_attempt.get("provider"),
+        "endpoint": provider_attempt.get("endpoint"),
+        "http_status": provider_attempt.get("http_status"),
+        "coordinate_returned": bool(provider_attempt.get("coordinate_returned")),
+        "response_summary": provider_attempt.get("response_summary"),
+    }
+    high_total = int(best_any_route["high_cofactor_total"])
+    same_total = int(best_any_route["same_family_total"])
+    current_source_free_closes_any_retention = bool(any_floor_closing_routes)
+    closes_at_90 = bool(best_90["routes_closing_both_proxy_axes"])
+    status = (
+        "fold_augmented_lever3_retention_frontier_readout_deployment_closed"
+        if closes_at_90
+        else "fold_augmented_lever3_retention_frontier_readout_ready_no_closure"
+    )
+    if not current_source_free_closes_any_retention:
+        exact_missing_evidence = [
+            (
+                "new source-free channel evidence or newly scored hard-proxy "
+                "train/cal rows; current fixed channel unions do not reach the "
+                "80pct abstention target for both strict proxy axes even with "
+                "no in-scope retention floor"
+            ),
+            (
+                "accepted full-length P07658 predicted coordinate provenance "
+                "before fixed-threshold surface rerun"
+            ),
+        ]
+    elif not closes_at_90:
+        exact_missing_evidence = [
+            (
+                "a source-free confounder axis that closes both strict proxies "
+                "while retaining at least the train/cal 90pct in-scope floor"
+            ),
+            (
+                "accepted full-length P07658 predicted coordinate provenance "
+                "before fixed-threshold surface rerun"
+            ),
+        ]
+    else:
+        exact_missing_evidence = []
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": f"{SCHEMA_VERSION}.fold_augmented_lever3_retention_frontier_readout",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured retention-frontier readout over train/cal-selected "
+            "source-free channel thresholds. It asks whether any current fixed "
+            "single-channel or channel-union route can catch the strict "
+            "high-cofactor and same-family proxy rows at an operating point, "
+            "and quantifies the in-scope retention cost. It reads no heldout "
+            "rows, scores no new rows, stages no coordinates, and does not "
+            "select or change thresholds."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "readout_only": True,
+            "candidate_rows_scored_now": False,
+            "coordinates_staged_now": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "train_cal_selected_thresholds_only": True,
+            "heldout_rows_read_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "fixed_operating_point": {
+            "baseline_channel": "combined_mean_geometry_fold",
+            "baseline_threshold": round(
+                float(
+                    route_state["thresholds"]["combined_mean_geometry_fold"][
+                        "threshold"
+                    ]
+                ),
+                6,
+            ),
+            "calibration_retention_floor_rows": route_state[
+                "retention_floor_rows"
+            ],
+            "calibration_retention_floor_fraction": 0.9,
+            "hard_proxy_abstention_target_fraction": 0.8,
+            "high_cofactor_target_rows": math.ceil(0.8 * high_total)
+            if high_total
+            else 0,
+            "same_family_target_rows": math.ceil(0.8 * same_total)
+            if same_total
+            else 0,
+        },
+        "retention_frontier": frontier,
+        "best_routes": {
+            "least_loss_route_closing_both_proxy_axes_any_retention": (
+                least_loss_closing_route
+            ),
+            "best_route_any_retention_by_proxy_shortfall": best_any_route,
+            "best_route_at_90pct_floor_by_proxy_shortfall": best_90[
+                "best_route_by_proxy_shortfall"
+            ],
+        },
+        "shortfall_diagnostics": {
+            "best_route_id": best_any_route["route_id"],
+            "best_route_unabstained_high_cofactor_rows": (
+                best_any_unabstained_high_rows
+            ),
+            "best_route_unabstained_same_family_rows": (
+                best_any_unabstained_same_rows
+            ),
+            "additional_high_cofactor_abstentions_needed": best_any_route[
+                "high_cofactor_shortfall_rows"
+            ],
+            "additional_same_family_abstentions_needed": best_any_route[
+                "same_family_shortfall_rows"
+            ],
+        },
+        "p07658_provider_attempt": provider_attempt_summary,
+        "counts": {
+            "channels_evaluated": len(route_state["single_routes"]),
+            "channel_unions_evaluated": len(route_state["union_routes"]),
+            "routes_evaluated": len(all_routes),
+            "calibration_in_scope_rows": calibration_total,
+            "calibration_retention_floor_rows": route_state[
+                "retention_floor_rows"
+            ],
+            "candidate_train_cal_oos_rows": len(route_state["candidate_oos_rows"]),
+            "scored_train_cal_oos_rows": len(route_state["train_cal_oos_rows"]),
+            "strict_high_cofactor_proxy_rows": high_total,
+            "strict_same_family_proxy_rows": same_total,
+            "routes_closing_both_proxy_axes_at_90pct_floor": int(
+                best_90["routes_closing_both_proxy_axes"]
+            ),
+            "routes_closing_both_proxy_axes_at_any_retention": len(
+                any_floor_closing_routes
+            ),
+            "minimum_retention_loss_rows_for_both_proxy_axes": (
+                least_loss_closing_route["calibration_in_scope_retention_loss"]
+                if least_loss_closing_route
+                else None
+            ),
+            "best_any_retention_high_cofactor_abstained": best_any_route[
+                "high_cofactor_abstained"
+            ],
+            "best_any_retention_same_family_abstained": best_any_route[
+                "same_family_abstained"
+            ],
+            "best_any_retention_proxy_shortfall_rows": best_any_route[
+                "proxy_shortfall_rows"
+            ],
+            "best_any_retention_unabstained_high_cofactor_rows": len(
+                best_any_unabstained_high_rows
+            ),
+            "best_any_retention_unabstained_same_family_rows": len(
+                best_any_unabstained_same_rows
+            ),
+            "p07658_provider_attempt_coordinate_returned": int(
+                provider_attempt_summary["coordinate_returned"]
+            ),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "apply_or_change_threshold_now": False,
+            "current_source_free_channels_close_both_proxy_axes_at_90pct_floor": (
+                closes_at_90
+            ),
+            "current_source_free_channels_close_both_proxy_axes_at_any_retention": (
+                current_source_free_closes_any_retention
+            ),
+            "current_evidence_sufficient_for_deployment_closure": closes_at_90,
+            "fresh_p07658_provider_attempt_returned_coordinate": bool(
+                provider_attempt_summary["coordinate_returned"]
+            ),
+            "exact_missing_evidence": exact_missing_evidence,
+            "next_gate": (
+                "Do not change threshold 0.44155. Current fixed source-free "
+                "channels do not provide a deployable hard-confounder operating "
+                "point; continue with accepted P07658 prediction provenance and "
+                "new strict high-cofactor train/cal acquisition."
+            ),
+        },
+        "source_artifacts": {
+            "in_scope_threshold_contract": _source_path_record(
+                in_scope_threshold_contract_path
+            ),
+            "expanded_oos_calibrated_threshold_contract": _source_path_record(
+                expanded_oos_calibrated_threshold_contract_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "current_measured_readout": _source_path_record(
+                current_measured_readout_path
+            ),
+            "p07658_provider_attempt": (
+                _source_path_record(p07658_provider_attempt_path)
+                if p07658_provider_attempt_path
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Current source-free fixed channel unions do not close the hard "
+                "proxy axes at the 90pct in-scope retention floor."
+            ),
+            "result": (
+                f"At the best no-floor route, high-cofactor abstention is "
+                f"{best_any_route['high_cofactor_abstained']}/"
+                f"{best_any_route['high_cofactor_total']} and same-family "
+                f"abstention is {best_any_route['same_family_abstained']}/"
+                f"{best_any_route['same_family_total']}; proxy shortfall remains "
+                f"{best_any_route['proxy_shortfall_rows']} rows."
+            ),
+            "next_action": (
+                "Treat current predicted-structure/source-free evidence as "
+                "insufficient for Lever 3 closure; obtain P07658 accepted "
+                "coordinate provenance, then add strict high-cofactor train/cal "
+                "rows before retrying the operating-point readout."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_retention_frontier_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    fixed = readout["fixed_operating_point"]
+    decision = readout["decision"]
+    provider = readout["p07658_provider_attempt"]
+    lines = [
+        "# Fold-Augmented Lever 3 Retention Frontier Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Fixed baseline threshold: {fixed['baseline_threshold']}",
+        "- Calibration retention floor: "
+        f"{counts['calibration_retention_floor_rows']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Routes evaluated: "
+        f"{counts['routes_evaluated']} "
+        f"({counts['channels_evaluated']} single, "
+        f"{counts['channel_unions_evaluated']} unions)",
+        "- Strict high-cofactor/same-family rows: "
+        f"{counts['strict_high_cofactor_proxy_rows']}/"
+        f"{counts['strict_same_family_proxy_rows']}",
+        "- Routes closing both axes at 90pct/any retention: "
+        f"{counts['routes_closing_both_proxy_axes_at_90pct_floor']}/"
+        f"{counts['routes_closing_both_proxy_axes_at_any_retention']}",
+        "- P07658 provider attempt coordinate returned: "
+        f"{provider['coordinate_returned']} ({provider['provider']}, "
+        f"HTTP {provider['http_status']})",
+        "",
+        "## Frontier",
+        "",
+        "| floor | retained rows | eligible routes | closing routes | best route | high | same | shortfall |",
+        "| --- | ---: | ---: | ---: | --- | ---: | ---: | ---: |",
+    ]
+    for row in readout.get("retention_frontier", []):
+        best = row.get("best_route_by_proxy_shortfall") or {}
+        route_id = best.get("route_id") or "n/a"
+        high_text = (
+            f"{best.get('high_cofactor_abstained')}/"
+            f"{best.get('high_cofactor_total')}"
+            if best
+            else "n/a"
+        )
+        same_text = (
+            f"{best.get('same_family_abstained')}/"
+            f"{best.get('same_family_total')}"
+            if best
+            else "n/a"
+        )
+        shortfall = best.get("proxy_shortfall_rows") if best else "n/a"
+        lines.append(
+            f"| {row['floor_id']} | {row['retention_floor_rows']} | "
+            f"{row['eligible_routes']} | {row['routes_closing_both_proxy_axes']} | "
+            f"{route_id} | {high_text} | {same_text} | {shortfall} |"
+        )
+    best_any = readout["best_routes"]["best_route_any_retention_by_proxy_shortfall"]
+    shortfall = readout.get("shortfall_diagnostics") or {}
+    high_unabstained = shortfall.get("best_route_unabstained_high_cofactor_rows") or []
+    same_unabstained = shortfall.get("best_route_unabstained_same_family_rows") or []
+    lines += [
+        "",
+        "## Best Current Route",
+        "",
+        f"- Route: {best_any['route_id']}",
+        "- In-scope retained/lost: "
+        f"{best_any['calibration_in_scope_retained']}/"
+        f"{best_any['calibration_in_scope_retention_loss']}",
+        "- High-cofactor abstained/target: "
+        f"{best_any['high_cofactor_abstained']}/"
+        f"{best_any['high_cofactor_target_rows']}",
+        "- Same-family abstained/target: "
+        f"{best_any['same_family_abstained']}/"
+        f"{best_any['same_family_target_rows']}",
+        f"- Proxy shortfall rows: {best_any['proxy_shortfall_rows']}",
+        "- Unabstained high-cofactor rows under best route: "
+        + ", ".join(str(row.get("entry_id")) for row in high_unabstained),
+        "- Unabstained same-family rows under best route: "
+        + ", ".join(str(row.get("entry_id")) for row in same_unabstained),
+        "",
+        "## P07658 Provider Attempt",
+        "",
+        f"- Provider: {provider['provider']}",
+        f"- Endpoint: {provider['endpoint']}",
+        f"- HTTP status: {provider['http_status']}",
+        f"- Coordinate returned: {provider['coordinate_returned']}",
+        f"- Response: {provider['response_summary']}",
+        "",
+        "## Decision",
+        "",
+        "- Current source-free channels close both axes at 90pct floor: "
+        f"{decision['current_source_free_channels_close_both_proxy_axes_at_90pct_floor']}",
+        "- Current source-free channels close both axes at any retention: "
+        f"{decision['current_source_free_channels_close_both_proxy_axes_at_any_retention']}",
+        "- Fresh P07658 provider attempt returned coordinate: "
+        f"{decision['fresh_p07658_provider_attempt_returned_coordinate']}",
+        f"- Exact missing evidence: {decision['exact_missing_evidence']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_retention_frontier_readout(
+    *,
+    in_scope_threshold_contract_path: Path,
+    expanded_oos_calibrated_threshold_contract_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    current_measured_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    p07658_provider_attempt_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_RETENTION_FRONTIER_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_retention_frontier_readout(
+        in_scope_threshold_contract_path=in_scope_threshold_contract_path,
+        expanded_oos_calibrated_threshold_contract_path=(
+            expanded_oos_calibrated_threshold_contract_path
+        ),
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        current_measured_readout_path=current_measured_readout_path,
+        p07658_provider_attempt_path=p07658_provider_attempt_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_retention_frontier_readout_report(
+                readout
+            ),
             encoding="utf-8",
         )
     return readout

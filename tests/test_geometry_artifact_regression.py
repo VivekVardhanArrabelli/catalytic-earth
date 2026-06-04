@@ -7642,6 +7642,139 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["blocker_packet"])
         self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_fold_augmented_p07658_biolm_single_provider_attempt_counts(
+        self,
+    ) -> None:
+        attempt = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p07658_biolm_single_provider_attempt_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            attempt["status"],
+            "fold_augmented_p07658_biolm_single_provider_attempt_no_coordinate",
+        )
+        self.assertEqual(attempt["provider"], "BioLM ESMFold")
+        self.assertEqual(attempt["http_status"], 401)
+        self.assertFalse(attempt["coordinate_returned"])
+        self.assertEqual(attempt["counts"]["provider_attempts"], 1)
+        self.assertEqual(attempt["counts"]["coordinates_returned"], 0)
+        self.assertEqual(attempt["counts"]["sequence_length"], 715)
+        self.assertEqual(attempt["counts"]["selenocysteine_count"], 1)
+        self.assertEqual(
+            attempt["affected_row"]["selenocysteine_positions"], [140]
+        )
+        self.assertFalse(
+            attempt["decision"]["p07658_coordinate_blocker_cleared_now"]
+        )
+        self.assertFalse(attempt["guardrails"]["sequence_truncated_or_substituted"])
+        self.assertFalse(attempt["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(attempt["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_fold_augmented_lever3_retention_frontier_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_retention_frontier_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_retention_frontier_readout_ready_no_closure",
+        )
+        self.assertEqual(
+            readout["fixed_operating_point"]["baseline_threshold"], 0.44155
+        )
+        self.assertEqual(readout["counts"]["routes_evaluated"], 63)
+        self.assertEqual(readout["counts"]["channels_evaluated"], 6)
+        self.assertEqual(readout["counts"]["channel_unions_evaluated"], 57)
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["calibration_retention_floor_rows"], 31
+        )
+        self.assertEqual(readout["counts"]["candidate_train_cal_oos_rows"], 210)
+        self.assertEqual(readout["counts"]["scored_train_cal_oos_rows"], 204)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_proxy_rows"], 4)
+        self.assertEqual(readout["counts"]["strict_same_family_proxy_rows"], 59)
+        self.assertEqual(
+            readout["counts"]["routes_closing_both_proxy_axes_at_90pct_floor"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["routes_closing_both_proxy_axes_at_any_retention"],
+            0,
+        )
+        self.assertIsNone(
+            readout["counts"]["minimum_retention_loss_rows_for_both_proxy_axes"]
+        )
+        self.assertEqual(
+            readout["counts"]["best_any_retention_high_cofactor_abstained"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["best_any_retention_same_family_abstained"], 38
+        )
+        self.assertEqual(
+            readout["counts"]["best_any_retention_proxy_shortfall_rows"], 11
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_any_retention_unabstained_high_cofactor_rows"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_any_retention_unabstained_same_family_rows"
+            ],
+            21,
+        )
+        best_any = readout["best_routes"][
+            "best_route_any_retention_by_proxy_shortfall"
+        ]
+        self.assertEqual(best_any["calibration_in_scope_retained"], 20)
+        self.assertEqual(best_any["calibration_in_scope_retention_loss"], 14)
+        self.assertEqual(best_any["high_cofactor_target_rows"], 4)
+        self.assertEqual(best_any["same_family_target_rows"], 48)
+        self.assertEqual(
+            [
+                row["entry_id"]
+                for row in readout["shortfall_diagnostics"][
+                    "best_route_unabstained_high_cofactor_rows"
+                ]
+            ],
+            ["m_csa:289"],
+        )
+        self.assertEqual(
+            readout["p07658_provider_attempt"]["provider"], "BioLM ESMFold"
+        )
+        self.assertEqual(readout["p07658_provider_attempt"]["http_status"], 401)
+        self.assertFalse(readout["p07658_provider_attempt"]["coordinate_returned"])
+        self.assertFalse(
+            readout["decision"][
+                "current_source_free_channels_close_both_proxy_axes_at_90pct_floor"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_source_free_channels_close_both_proxy_axes_at_any_retention"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fresh_p07658_provider_attempt_returned_coordinate"]
+        )
+        self.assertFalse(readout["decision"]["apply_or_change_threshold_now"])
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:

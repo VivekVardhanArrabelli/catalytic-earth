@@ -127,6 +127,32 @@ class CliTests(unittest.TestCase):
         )
         self.assertIn("current_measured_readout", args.current_measured_readout)
 
+    def test_lever3_retention_frontier_readout_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-retention-frontier-readout"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retention_frontier_readout_"
+                "current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "abstention_threshold_contract_current702",
+            args.in_scope_threshold_contract,
+        )
+        self.assertIn(
+            "expanded_oos_calibrated",
+            args.expanded_oos_calibrated_threshold_contract,
+        )
+        self.assertIn("current_measured_readout", args.current_measured_readout)
+        self.assertIn(
+            "p07658_biolm_single_provider_attempt",
+            args.p07658_provider_attempt,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

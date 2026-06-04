@@ -1,0 +1,1308 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_retention_frontier_readout_current702_20260604",
+  "best_routes": {
+    "best_route_any_retention_by_proxy_shortfall": {
+      "both_proxy_axes_met": false,
+      "calibration_in_scope_retained": 20,
+      "calibration_in_scope_retention_loss": 14,
+      "calibration_in_scope_total": 34,
+      "channels": [
+        "cofactor_max_score",
+        "combined_mean_geometry_cofactor_fold",
+        "combined_mean_geometry_fold",
+        "combined_min_geometry_fold",
+        "fold_nearest_atlas_tm_score"
+      ],
+      "deployment_closure_support_at_floor": false,
+      "high_cofactor_abstained": 3,
+      "high_cofactor_shortfall_rows": 1,
+      "high_cofactor_target_rows": 4,
+      "high_cofactor_total": 4,
+      "proxy_shortfall_rows": 11,
+      "retention_floor_met": true,
+      "retention_floor_rows": 0,
+      "route_id": "channel_union::cofactor_max_score+combined_mean_geometry_cofactor_fold+combined_mean_geometry_fold+combined_min_geometry_fold+fold_nearest_atlas_tm_score",
+      "same_family_abstained": 38,
+      "same_family_shortfall_rows": 10,
+      "same_family_target_rows": 48,
+      "same_family_total": 59,
+      "train_cal_oos_abstained": 150,
+      "train_cal_oos_total": 204
+    },
+    "best_route_at_90pct_floor_by_proxy_shortfall": {
+      "both_proxy_axes_met": false,
+      "calibration_in_scope_retained": 31,
+      "calibration_in_scope_retention_loss": 3,
+      "calibration_in_scope_total": 34,
+      "channels": [
+        "combined_mean_geometry_cofactor_fold"
+      ],
+      "deployment_closure_support_at_floor": false,
+      "high_cofactor_abstained": 0,
+      "high_cofactor_shortfall_rows": 4,
+      "high_cofactor_target_rows": 4,
+      "high_cofactor_total": 4,
+      "proxy_shortfall_rows": 25,
+      "retention_floor_met": true,
+      "retention_floor_rows": 31,
+      "route_id": "single_channel::combined_mean_geometry_cofactor_fold",
+      "same_family_abstained": 27,
+      "same_family_shortfall_rows": 21,
+      "same_family_target_rows": 48,
+      "same_family_total": 59,
+      "train_cal_oos_abstained": 122,
+      "train_cal_oos_total": 204
+    },
+    "least_loss_route_closing_both_proxy_axes_any_retention": null
+  },
+  "counts": {
+    "best_any_retention_high_cofactor_abstained": 3,
+    "best_any_retention_proxy_shortfall_rows": 11,
+    "best_any_retention_same_family_abstained": 38,
+    "best_any_retention_unabstained_high_cofactor_rows": 1,
+    "best_any_retention_unabstained_same_family_rows": 21,
+    "calibration_in_scope_rows": 34,
+    "calibration_retention_floor_rows": 31,
+    "candidate_train_cal_oos_rows": 210,
+    "channel_unions_evaluated": 57,
+    "channels_evaluated": 6,
+    "critical_violation_total": 0,
+    "minimum_retention_loss_rows_for_both_proxy_axes": null,
+    "p07658_provider_attempt_coordinate_returned": 0,
+    "routes_closing_both_proxy_axes_at_90pct_floor": 0,
+    "routes_closing_both_proxy_axes_at_any_retention": 0,
+    "routes_evaluated": 63,
+    "scored_train_cal_oos_rows": 204,
+    "strict_high_cofactor_proxy_rows": 4,
+    "strict_same_family_proxy_rows": 59
+  },
+  "created_utc": "2026-06-04T18:17:18Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "current_evidence_sufficient_for_deployment_closure": false,
+    "current_source_free_channels_close_both_proxy_axes_at_90pct_floor": false,
+    "current_source_free_channels_close_both_proxy_axes_at_any_retention": false,
+    "exact_missing_evidence": [
+      "new source-free channel evidence or newly scored hard-proxy train/cal rows; current fixed channel unions do not reach the 80pct abstention target for both strict proxy axes even with no in-scope retention floor",
+      "accepted full-length P07658 predicted coordinate provenance before fixed-threshold surface rerun"
+    ],
+    "fresh_p07658_provider_attempt_returned_coordinate": false,
+    "measured_readout_available": true,
+    "next_gate": "Do not change threshold 0.44155. Current fixed source-free channels do not provide a deployable hard-confounder operating point; continue with accepted P07658 prediction provenance and new strict high-cofactor train/cal acquisition."
+  },
+  "fixed_operating_point": {
+    "baseline_channel": "combined_mean_geometry_fold",
+    "baseline_threshold": 0.44155,
+    "calibration_retention_floor_fraction": 0.9,
+    "calibration_retention_floor_rows": 31,
+    "hard_proxy_abstention_target_fraction": 0.8,
+    "high_cofactor_target_rows": 4,
+    "same_family_target_rows": 48
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_read_for_training_or_threshold_tuning": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "mechanism_text_ec_rhea_source_ids_or_names_used_as_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "readout_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "train_cal_selected_thresholds_only": true
+  },
+  "interpretation": {
+    "headline": "Current source-free fixed channel unions do not close the hard proxy axes at the 90pct in-scope retention floor.",
+    "next_action": "Treat current predicted-structure/source-free evidence as insufficient for Lever 3 closure; obtain P07658 accepted coordinate provenance, then add strict high-cofactor train/cal rows before retrying the operating-point readout.",
+    "result": "At the best no-floor route, high-cofactor abstention is 3/4 and same-family abstention is 38/59; proxy shortfall remains 11 rows."
+  },
+  "p07658_provider_attempt": {
+    "attempt_artifact_provided": true,
+    "coordinate_returned": false,
+    "endpoint": "https://biolm.ai/api/v3/esmfold/predict/",
+    "http_status": 401,
+    "provider": "BioLM ESMFold",
+    "response_summary": "{\"detail\":\"Authentication credentials were not provided.\"}",
+    "status": "fold_augmented_p07658_biolm_single_provider_attempt_no_coordinate"
+  },
+  "retention_frontier": [
+    {
+      "best_closing_route": null,
+      "best_route_by_proxy_shortfall": null,
+      "eligible_routes": 0,
+      "floor_id": "retain_100pct",
+      "retention_floor_fraction": 1.0,
+      "retention_floor_rows": 34,
+      "routes_closing_both_proxy_axes": 0
+    },
+    {
+      "best_closing_route": null,
+      "best_route_by_proxy_shortfall": null,
+      "eligible_routes": 0,
+      "floor_id": "retain_95pct",
+      "retention_floor_fraction": 0.9706,
+      "retention_floor_rows": 33,
+      "routes_closing_both_proxy_axes": 0
+    },
+    {
+      "best_closing_route": null,
+      "best_route_by_proxy_shortfall": {
+        "both_proxy_axes_met": false,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_retention_loss": 3,
+        "calibration_in_scope_total": 34,
+        "channels": [
+          "combined_mean_geometry_cofactor_fold"
+        ],
+        "deployment_closure_support_at_floor": false,
+        "high_cofactor_abstained": 0,
+        "high_cofactor_shortfall_rows": 4,
+        "high_cofactor_target_rows": 4,
+        "high_cofactor_total": 4,
+        "proxy_shortfall_rows": 25,
+        "retention_floor_met": true,
+        "retention_floor_rows": 31,
+        "route_id": "single_channel::combined_mean_geometry_cofactor_fold",
+        "same_family_abstained": 27,
+        "same_family_shortfall_rows": 21,
+        "same_family_target_rows": 48,
+        "same_family_total": 59,
+        "train_cal_oos_abstained": 122,
+        "train_cal_oos_total": 204
+      },
+      "eligible_routes": 7,
+      "floor_id": "retain_90pct",
+      "retention_floor_fraction": 0.9118,
+      "retention_floor_rows": 31,
+      "routes_closing_both_proxy_axes": 0
+    },
+    {
+      "best_closing_route": null,
+      "best_route_by_proxy_shortfall": {
+        "both_proxy_axes_met": false,
+        "calibration_in_scope_retained": 29,
+        "calibration_in_scope_retention_loss": 5,
+        "calibration_in_scope_total": 34,
+        "channels": [
+          "combined_mean_geometry_cofactor_fold",
+          "combined_mean_geometry_fold"
+        ],
+        "deployment_closure_support_at_floor": false,
+        "high_cofactor_abstained": 0,
+        "high_cofactor_shortfall_rows": 4,
+        "high_cofactor_target_rows": 4,
+        "high_cofactor_total": 4,
+        "proxy_shortfall_rows": 25,
+        "retention_floor_met": true,
+        "retention_floor_rows": 29,
+        "route_id": "channel_union::combined_mean_geometry_cofactor_fold+combined_mean_geometry_fold",
+        "same_family_abstained": 27,
+        "same_family_shortfall_rows": 21,
+        "same_family_target_rows": 48,
+        "same_family_total": 59,
+        "train_cal_oos_abstained": 128,
+        "train_cal_oos_total": 204
+      },
+      "eligible_routes": 8,
+      "floor_id": "retain_85pct",
+      "retention_floor_fraction": 0.8529,
+      "retention_floor_rows": 29,
+      "routes_closing_both_proxy_axes": 0
+    },
+    {
+      "best_closing_route": null,
+      "best_route_by_proxy_shortfall": {
+        "both_proxy_axes_met": false,
+        "calibration_in_scope_retained": 28,
+        "calibration_in_scope_retention_loss": 6,
+        "calibration_in_scope_total": 34,
+        "channels": [
+          "cofactor_max_score",
+          "combined_mean_geometry_cofactor_fold"
+        ],
+        "deployment_closure_support_at_floor": false,
+        "high_cofactor_abstained": 0,
+        "high_cofactor_shortfall_rows": 4,
+        "high_cofactor_target_rows": 4,
+        "high_cofactor_total": 4,
+        "proxy_shortfall_rows": 14,
+        "retention_floor_met": true,
+        "retention_floor_rows": 28,
+        "route_id": "channel_union::cofactor_max_score+combined_mean_geometry_cofactor_fold",
+        "same_family_abstained": 38,
+        "same_family_shortfall_rows": 10,
+        "same_family_target_rows": 48,
+        "same_family_total": 59,
+        "train_cal_oos_abstained": 136,
+        "train_cal_oos_total": 204
+      },
+      "eligible_routes": 25,
+      "floor_id": "retain_80pct",
+      "retention_floor_fraction": 0.8235,
+      "retention_floor_rows": 28,
+      "routes_closing_both_proxy_axes": 0
+    },
+    {
+      "best_closing_route": null,
+      "best_route_by_proxy_shortfall": {
+        "both_proxy_axes_met": false,
+        "calibration_in_scope_retained": 26,
+        "calibration_in_scope_retention_loss": 8,
+        "calibration_in_scope_total": 34,
+        "channels": [
+          "cofactor_max_score",
+          "combined_mean_geometry_cofactor_fold",
+          "combined_mean_geometry_fold"
+        ],
+        "deployment_closure_support_at_floor": false,
+        "high_cofactor_abstained": 0,
+        "high_cofactor_shortfall_rows": 4,
+        "high_cofactor_target_rows": 4,
+        "high_cofactor_total": 4,
+        "proxy_shortfall_rows": 14,
+        "retention_floor_met": true,
+        "retention_floor_rows": 26,
+        "route_id": "channel_union::cofactor_max_score+combined_mean_geometry_cofactor_fold+combined_mean_geometry_fold",
+        "same_family_abstained": 38,
+        "same_family_shortfall_rows": 10,
+        "same_family_target_rows": 48,
+        "same_family_total": 59,
+        "train_cal_oos_abstained": 142,
+        "train_cal_oos_total": 204
+      },
+      "eligible_routes": 30,
+      "floor_id": "retain_75pct",
+      "retention_floor_fraction": 0.7647,
+      "retention_floor_rows": 26,
+      "routes_closing_both_proxy_axes": 0
+    },
+    {
+      "best_closing_route": null,
+      "best_route_by_proxy_shortfall": {
+        "both_proxy_axes_met": false,
+        "calibration_in_scope_retained": 20,
+        "calibration_in_scope_retention_loss": 14,
+        "calibration_in_scope_total": 34,
+        "channels": [
+          "cofactor_max_score",
+          "combined_mean_geometry_cofactor_fold",
+          "combined_mean_geometry_fold",
+          "combined_min_geometry_fold",
+          "fold_nearest_atlas_tm_score"
+        ],
+        "deployment_closure_support_at_floor": false,
+        "high_cofactor_abstained": 3,
+        "high_cofactor_shortfall_rows": 1,
+        "high_cofactor_target_rows": 4,
+        "high_cofactor_total": 4,
+        "proxy_shortfall_rows": 11,
+        "retention_floor_met": true,
+        "retention_floor_rows": 0,
+        "route_id": "channel_union::cofactor_max_score+combined_mean_geometry_cofactor_fold+combined_mean_geometry_fold+combined_min_geometry_fold+fold_nearest_atlas_tm_score",
+        "same_family_abstained": 38,
+        "same_family_shortfall_rows": 10,
+        "same_family_target_rows": 48,
+        "same_family_total": 59,
+        "train_cal_oos_abstained": 150,
+        "train_cal_oos_total": 204
+      },
+      "eligible_routes": 63,
+      "floor_id": "no_in_scope_floor",
+      "retention_floor_fraction": 0.0,
+      "retention_floor_rows": 0,
+      "routes_closing_both_proxy_axes": 0
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_retention_frontier_readout",
+  "scope": "Lever 3 measured retention-frontier readout over train/cal-selected source-free channel thresholds. It asks whether any current fixed single-channel or channel-union route can catch the strict high-cofactor and same-family proxy rows at an operating point, and quantifies the in-scope retention cost. It reads no heldout rows, scores no new rows, stages no coordinates, and does not select or change thresholds.",
+  "shortfall_diagnostics": {
+    "additional_high_cofactor_abstentions_needed": 1,
+    "additional_same_family_abstentions_needed": 10,
+    "best_route_id": "channel_union::cofactor_max_score+combined_mean_geometry_cofactor_fold+combined_mean_geometry_fold+combined_min_geometry_fold+fold_nearest_atlas_tm_score",
+    "best_route_unabstained_high_cofactor_rows": [
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.95832,
+            "score": 0.980742,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.395979,
+            "score": 0.753447,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.19825,
+            "score": 0.6398,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0287,
+            "score": 0.3667,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.4804,
+            "score": 0.9129,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:289",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      }
+    ],
+    "best_route_unabstained_same_family_rows": [
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.139454,
+            "score": 0.161876,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.112557,
+            "score": 0.470025,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.18255,
+            "score": 0.6241,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0398,
+            "score": 0.3778,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.4379,
+            "score": 0.8704,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:25",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.062269,
+            "score": 0.084691,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.081029,
+            "score": 0.438497,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.17385,
+            "score": 0.6154,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2597,
+            "score": 0.5977,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2006,
+            "score": 0.6331,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:52",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.011125,
+            "score": 0.033547,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.062414,
+            "score": 0.419882,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.1715,
+            "score": 0.61305,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2484,
+            "score": 0.5864,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2072,
+            "score": 0.6397,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:74",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.026454,
+            "score": 0.048876,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.037191,
+            "score": 0.394659,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.126,
+            "score": 0.56755,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2,
+            "score": 0.538,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.1055,
+            "score": 0.538,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:84",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.375917,
+            "score": 0.398339,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.075312,
+            "score": 0.43278,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.00845,
+            "score": 0.45,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.071,
+            "score": 0.409,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.0585,
+            "score": 0.491,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:89",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.13065,
+            "score": 0.153072,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.048023,
+            "score": 0.405491,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.09015,
+            "score": 0.5317,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.066,
+            "score": 0.404,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2269,
+            "score": 0.6594,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:135",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.025247,
+            "score": 0.047669,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.082755,
+            "score": 0.440223,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.19495,
+            "score": 0.6365,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2506,
+            "score": 0.5886,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2519,
+            "score": 0.6844,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:190",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.046169,
+            "score": 0.068591,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.003929,
+            "score": 0.361397,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.06625,
+            "score": 0.5078,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0397,
+            "score": 0.3777,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2054,
+            "score": 0.6379,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:223",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.004742,
+            "score": 0.027164,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.01412,
+            "score": 0.371588,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.10225,
+            "score": 0.5438,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.1667,
+            "score": 0.5047,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.0722,
+            "score": 0.5047,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:229",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.015781,
+            "score": 0.038203,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.0681,
+            "score": 0.425568,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.1777,
+            "score": 0.61925,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2594,
+            "score": 0.5974,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2086,
+            "score": 0.6411,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:256",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.95832,
+            "score": 0.980742,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.395979,
+            "score": 0.753447,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.19825,
+            "score": 0.6398,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0287,
+            "score": 0.3667,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.4804,
+            "score": 0.9129,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:289",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.269231,
+            "score": 0.291653,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.19385,
+            "score": 0.551318,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.2396,
+            "score": 0.68115,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2408,
+            "score": 0.5788,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.351,
+            "score": 0.7835,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:308",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.042344,
+            "score": 0.064766,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.056121,
+            "score": 0.413589,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.14645,
+            "score": 0.588,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2039,
+            "score": 0.5419,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2016,
+            "score": 0.6341,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:451",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.02616,
+            "score": 0.048582,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.023826,
+            "score": 0.381294,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.1061,
+            "score": 0.54765,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0782,
+            "score": 0.4162,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2466,
+            "score": 0.6791,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:463",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.006482,
+            "score": 0.028904,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.054133,
+            "score": 0.411601,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.1614,
+            "score": 0.60295,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2258,
+            "score": 0.5638,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2096,
+            "score": 0.6421,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:464",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.158846,
+            "score": 0.181268,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.131121,
+            "score": 0.488589,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.2007,
+            "score": 0.64225,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.253,
+            "score": 0.591,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.261,
+            "score": 0.6935,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:468",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.061709,
+            "score": 0.084131,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.097542,
+            "score": 0.45501,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.1989,
+            "score": 0.64045,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.2123,
+            "score": 0.5503,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2981,
+            "score": 0.7306,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:488",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.183726,
+            "score": 0.206148,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.108381,
+            "score": 0.465849,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.15415,
+            "score": 0.5957,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.1882,
+            "score": 0.5262,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2327,
+            "score": 0.6652,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:502",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.021129,
+            "score": 0.043551,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.025482,
+            "score": 0.38295,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.1111,
+            "score": 0.55265,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0816,
+            "score": 0.4196,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2532,
+            "score": 0.6857,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:503",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.019535,
+            "score": 0.041957,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.047318,
+            "score": 0.404786,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.14465,
+            "score": 0.5862,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0376,
+            "score": 0.3756,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.3643,
+            "score": 0.7968,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:638",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "channel_results": [
+          {
+            "abstains": false,
+            "channel": "cofactor_max_score",
+            "margin": 0.151582,
+            "score": 0.174004,
+            "threshold": 0.022422
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_cofactor_fold",
+            "margin": 0.061767,
+            "score": 0.419235,
+            "threshold": 0.357468
+          },
+          {
+            "abstains": false,
+            "channel": "combined_mean_geometry_fold",
+            "margin": 0.1003,
+            "score": 0.54185,
+            "threshold": 0.44155
+          },
+          {
+            "abstains": false,
+            "channel": "combined_min_geometry_fold",
+            "margin": 0.0287,
+            "score": 0.3667,
+            "threshold": 0.338
+          },
+          {
+            "abstains": false,
+            "channel": "fold_nearest_atlas_tm_score",
+            "margin": 0.2845,
+            "score": 0.717,
+            "threshold": 0.4325
+          }
+        ],
+        "entry_id": "m_csa:646",
+        "label_type": "out_of_scope",
+        "oos_tier": "unknown_oos",
+        "split_assignment": "in_distribution"
+      }
+    ]
+  },
+  "source_artifacts": {
+    "current_measured_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_current_measured_readout_current702_20260604.json",
+      "sha256": "4c25cacd420898f5ab8694b378214a50f92004467a7fff12fcb4c2cca9b0a2b4"
+    },
+    "expanded_oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_expanded_oos_calibrated_current702_20260603.json",
+      "sha256": "e8edda79502c36a44f643f7bd425075c23868ab6a19d7a82e4a02c64ac4ee2de"
+    },
+    "in_scope_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    },
+    "latest_train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20"
+    },
+    "p07658_provider_attempt": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.json",
+      "sha256": "98078f628f0693fdff980b5a665f5b680edc535e5f8f27ee19ab87f24ef825eb"
+    }
+  },
+  "status": "fold_augmented_lever3_retention_frontier_readout_ready_no_closure"
+}

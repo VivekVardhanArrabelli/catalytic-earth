@@ -3,17 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T17:03:20Z`
-- STARTED_AT_LOCAL: `2026-06-04T12:03:20-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T17:53:23Z`
-- ENDED_AT_LOCAL: `2026-06-04T12:53:23-0500 CDT`
-- ELAPSED_MINUTES: `50.06`
-- Status: Run 36 wrap complete. Canonical
+- STARTED_AT_UTC: `2026-06-04T18:01:40Z`
+- STARTED_AT_LOCAL: `2026-06-04T13:01:40-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T18:22:20Z`
+- ENDED_AT_LOCAL: `2026-06-04T13:22:20-0500 CDT`
+- ELAPSED_MINUTES: `20.67`
+- Status: Run 37 wrap complete. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T17:03:20Z` with PID `82974`. Current user instruction: work
-  only on Lever 3. Produced a deployment-valid measured channel-veto readout;
-  commit/push and lock release are the remaining mechanical steps after this
-  handoff edit.
+  `2026-06-04T18:01:40Z` with PID `64058`. Current user instruction: work
+  only on Lever 3. Produced a deployment-valid measured retention-frontier
+  readout and a fresh exact-sequence P07658 provider-attempt artifact; commit,
+  push, sync verification, and lock release are the remaining mechanical steps.
 
 ## Mission
 
@@ -64,6 +64,119 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 37
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T18:01:40Z`
+- STARTED_LOCAL: `2026-06-04T13:01:40-0500 CDT`
+- ENDED_AT: `2026-06-04T18:22:20Z`
+- ENDED_LOCAL: `2026-06-04T13:22:20-0500 CDT`
+- ELAPSED_MINUTES: `20.67`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-04T18:01:40Z` with PID `64058`.
+
+#### Current intent
+
+Work only on Lever 3. Start from the exact P07658 full-length predicted
+coordinate gap. If a deployment-valid coordinate cannot be acquired and
+accepted during the run, continue to a measured source-free Lever 3 readout.
+
+#### What changed
+
+- Ran one approved full-length provider route attempt for P07658 using the
+  frozen exact 715-residue sequence in
+  `work/fold_augmented_p07658_full_length_prediction_input_current702_20260604.fasta`.
+  The submitted sequence preserved selenocysteine `U140`; BioLM ESMFold
+  returned HTTP 401 with no coordinate. New artifacts:
+  `artifacts/v3_fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.json`
+  and
+  `work/fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.md`.
+- Added a measured, non-blocker Lever 3 retention-frontier builder/CLI:
+  `build-fold-augmented-lever3-retention-frontier-readout`. It writes
+  `artifacts/v3_fold_augmented_lever3_retention_frontier_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_retention_frontier_readout_current702_20260604.md`.
+- The readout evaluates the same six train/cal-selected source-free channel
+  thresholds and 57 channel unions, across in-scope retention floors from
+  100% through no floor. It selects or changes no threshold; the baseline
+  threshold remains `0.44155`.
+- Measured result: 0/63 routes close both strict proxy axes at the 31/34
+  train/cal in-scope retention floor, and 0/63 routes close both strict proxy
+  axes even with no in-scope retention floor.
+- Best no-floor current route:
+  `cofactor_max_score+combined_mean_geometry_cofactor_fold+combined_mean_geometry_fold+combined_min_geometry_fold+fold_nearest_atlas_tm_score`.
+  It retains only 20/34 calibration in-scope rows, abstains 3/4 strict
+  high-cofactor rows and 38/59 strict same-family rows, and still has an
+  11-row proxy shortfall against the 80%/80% hard-proxy target.
+- Added row-level shortfall diagnostics for the best current route. The
+  retained strict high-cofactor shortfall row is `m_csa:289`; 21 strict
+  same-family rows remain retained under that route.
+
+#### Guardrails
+
+- Work is restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold selection, threshold tuning, row
+  scoring, coordinate staging, source decisions, or model fitting changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, target names, source IDs, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The provider attempt submitted the exact P07658 sequence and did not
+  truncate or substitute selenocysteine.
+- No blocker packet was produced.
+
+#### Verification
+
+- Baseline `PYTHONPATH=src python -m unittest discover -s tests`: 1375 tests
+  passed before code changes, with the existing sklearn/SciPy deprecation
+  warning.
+- New focused tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever3_retention_frontier_readout_parser_defaults tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_retention_frontier_readout_reports_operating_point_cost -q`:
+  2 passed.
+- Focused artifact regression for new artifacts: 4 passed.
+- Focused Lever 3 readout cluster after adding the new readout: 8 passed.
+- Final full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1424 passed, 192 subtests, with the
+  existing sklearn/SciPy deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1379 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Touched test files:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  552 passed, 173 subtests.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- New JSON artifacts parsed with `python -m json.tool`.
+- New artifact `source_artifacts` hashes checked: 6 checked, 0 stale.
+- Current-docs artifact-reference check to `/tmp`: missing 0.
+- Disk guardrail remained above 10 GiB: `df -h .` reported 11 GiB free.
+
+#### Commit/push status
+
+- Pending after this handoff edit: commit, push, verify `HEAD == origin/main`,
+  and release `.git/catalytic-earth-automation.lock`. If any of those fail,
+  update this section before returning.
+
+#### Exact next action
+
+- Do not change or retune threshold `0.44155`.
+- First, obtain an accepted full-length P07658 predicted coordinate with
+  provider/model/version/path/checksum provenance for the exact 715-residue
+  sequence including documented `U140` handling. Rerun
+  `build-fold-augmented-p07658-prediction-acceptance-preflight` only after a
+  coordinate and filled provenance exist.
+- Then acquire and score strict non-heldout train/cal high-cofactor OOS rows.
+  Current fixed source-free routes cannot close Lever 3 at the 90% retention
+  floor or even with no retention floor, so the next measured separation
+  attempt needs new evidence rather than another union of the existing channel
+  thresholds.
 
 ### 2026-06-04 Lever 3 Forward Push Run 36
 

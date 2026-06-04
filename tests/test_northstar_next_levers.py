@@ -71,6 +71,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_evidence_sufficiency_readout,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
+    build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_p10746_deployment_caveat_decision_application,
     build_fold_augmented_p10746_deployment_caveat_decision_packet,
     build_fold_augmented_p10746_prior_human_decision_reviewed_stub,
@@ -4127,6 +4128,198 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ),
             2,
         )
+
+    def test_lever3_retention_frontier_readout_reports_operating_point_cost(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            in_scope_path = root / "in_scope.json"
+            expanded_path = root / "expanded.json"
+            surface_path = root / "surface.json"
+            current_path = root / "current.json"
+            provider_path = root / "provider_attempt.json"
+
+            expanded_path.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "cofactor_max_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "combined_mean_geometry_fold": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                            "fold_nearest_atlas_tm_score": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.5
+                                }
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            in_scope_rows = []
+            for idx in range(1, 9):
+                in_scope_rows.append(
+                    {
+                        "entry_id": f"cal:{idx}",
+                        "channel_scores": {
+                            "cofactor_max_score": 0.6,
+                            "combined_mean_geometry_fold": 0.6,
+                            "fold_nearest_atlas_tm_score": 0.6,
+                        },
+                    }
+                )
+            in_scope_rows.extend(
+                [
+                    {
+                        "entry_id": "cal:9",
+                        "channel_scores": {
+                            "cofactor_max_score": 0.6,
+                            "combined_mean_geometry_fold": 0.6,
+                            "fold_nearest_atlas_tm_score": 0.4,
+                        },
+                    },
+                    {
+                        "entry_id": "cal:10",
+                        "channel_scores": {
+                            "cofactor_max_score": 0.4,
+                            "combined_mean_geometry_fold": 0.4,
+                            "fold_nearest_atlas_tm_score": 0.6,
+                        },
+                    },
+                ]
+            )
+            in_scope_path.write_text(
+                json.dumps({"calibration_row_scores": in_scope_rows}),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.4,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.4,
+                                    "combined_mean_geometry_fold": 0.6,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "channel_scores": {
+                                    "cofactor_max_score": 0.6,
+                                    "combined_mean_geometry_fold": 0.4,
+                                    "fold_nearest_atlas_tm_score": 0.6,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_path.write_text(
+                json.dumps(
+                    {
+                        "row_readouts": {
+                            "high_cofactor_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                            ],
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            provider_path.write_text(
+                json.dumps(
+                    {
+                        "status": "p07658_provider_attempt_auth_required",
+                        "provider": "BioLM ESMFold",
+                        "endpoint": "https://biolm.ai/api/v3/esmfold/predict/",
+                        "http_status": 401,
+                        "coordinate_returned": False,
+                        "response_summary": "Authentication credentials were not provided.",
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retention_frontier_readout(
+                in_scope_threshold_contract_path=in_scope_path,
+                expanded_oos_calibrated_threshold_contract_path=expanded_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                current_measured_readout_path=current_path,
+                p07658_provider_attempt_path=provider_path,
+                artifact_id="lever3_retention_frontier_test",
+            )
+
+        self.assertEqual(readout["artifact_id"], "lever3_retention_frontier_test")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_retention_frontier_readout_ready_no_closure",
+        )
+        self.assertEqual(readout["counts"]["routes_evaluated"], 7)
+        self.assertEqual(
+            readout["counts"]["routes_closing_both_proxy_axes_at_90pct_floor"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["routes_closing_both_proxy_axes_at_any_retention"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["minimum_retention_loss_rows_for_both_proxy_axes"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["best_any_retention_proxy_shortfall_rows"], 0
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_source_free_channels_close_both_proxy_axes_at_90pct_floor"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_source_free_channels_close_both_proxy_axes_at_any_retention"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fresh_p07658_provider_attempt_returned_coordinate"]
+        )
+        self.assertEqual(
+            readout["p07658_provider_attempt"]["provider"], "BioLM ESMFold"
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,
