@@ -7421,6 +7421,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "readout_recovery_queue_current702_20260604.json"
             )
         )
+        pair_source_free_feature_repair_preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+                "safe_feature_repair_preflight_current702_20260604.json"
+            )
+        )
+        pair_source_free_projection_repair_candidate_surface = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+                "repair_candidate_surface_current702_20260604.json"
+            )
+        )
+        pair_source_free_projection_repair_axis_packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+                "repair_axis_review_packet_current702_20260604.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -8725,6 +8752,213 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_source_free_post_readout_queue["guardrails"][
                 "heldout_rows_rescored"
             ]
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_ready_deployment_blocked",
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "feature_complete_readout_rows"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "feature_complete_primary_abstentions"
+            ],
+            32,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "feature_complete_primary_abstentions_with_projection_gap"
+            ],
+            32,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "frozen_feature_fields"
+            ],
+            19,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "source_free_projected_feature_fields"
+            ],
+            2,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "frozen_feature_fields_missing_from_source_free_projection"
+            ],
+            17,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "priority_repair_feature_fields"
+            ],
+            11,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "priority_repair_fields_with_direct_existing_source_free_axis"
+            ],
+            2,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "priority_repair_fields_requiring_new_source_free_axis"
+            ],
+            9,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "priority_repair_category_counts"
+            ],
+            {
+                "bond_change": 5,
+                "electron_flow": 2,
+                "event_topology": 2,
+                "proton_transfer": 2,
+            },
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "source_free_event_axis_materialized_rows"
+            ],
+            14,
+        )
+        self.assertEqual(
+            pair_source_free_feature_repair_preflight["counts"][
+                "source_free_event_axis_type_counts"
+            ],
+            {"proton_transfer": 14},
+        )
+        self.assertTrue(
+            pair_source_free_feature_repair_preflight["decision"][
+                "train_cal_safe_feature_repair_required"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_feature_repair_preflight["decision"][
+                "coverage_repair_alone_sufficient_for_deployment"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_feature_repair_preflight["decision"][
+                "rerun_or_retune_heldout_authorized"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_feature_repair_preflight["guardrails"][
+                "heldout_rows_rescored"
+            ]
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_candidate_surface["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_partial_not_scoreable",
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_candidate_surface["counts"][
+                "candidate_projection_rows"
+            ],
+            53,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_candidate_surface["counts"][
+                "rows_with_direct_proton_transfer_projection"
+            ],
+            14,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_candidate_surface["counts"][
+                "rows_pair_only_no_direct_projection"
+            ],
+            39,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_candidate_surface["counts"][
+                "full_frozen_projection_ready_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_candidate_surface["counts"][
+                "threshold_scoring_ready_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_candidate_surface["counts"][
+                "new_source_free_axis_required_fields"
+            ],
+            9,
+        )
+        self.assertFalse(
+            pair_source_free_projection_repair_candidate_surface["decision"][
+                "candidate_surface_ready_for_threshold_scoring"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_projection_repair_candidate_surface["decision"][
+                "rerun_or_retune_heldout_authorized"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_projection_repair_candidate_surface["guardrails"][
+                "heldout_rows_rescored"
+            ]
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_axis_packet["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_ready_review_only",
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_axis_packet["counts"][
+                "review_items"
+            ],
+            3,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_axis_packet["counts"][
+                "pending_review_items"
+            ],
+            3,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_axis_packet["counts"][
+                "covered_priority_fields"
+            ],
+            9,
+        )
+        self.assertEqual(
+            pair_source_free_projection_repair_axis_packet["counts"][
+                "materialization_gate_ready_items"
+            ],
+            0,
+        )
+        self.assertFalse(
+            pair_source_free_projection_repair_axis_packet["decision"][
+                "materialization_gate_ready_now"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_projection_repair_axis_packet["decision"][
+                "rerun_or_retune_heldout_authorized"
+            ]
+        )
+        self.assertEqual(
+            [
+                item["axis_id"]
+                for item in pair_source_free_projection_repair_axis_packet[
+                    "review_items"
+                ]
+            ],
+            [
+                "source_free_bond_change_axis",
+                "source_free_electron_flow_axis",
+                "source_free_event_topology_axis",
+            ],
         )
         self.assertEqual(
             pair_coordinate_anchor["status"],

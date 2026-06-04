@@ -1,0 +1,185 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_current702_20260604",
+  "blockers": [
+    "source_free_projection_axis_reviews_pending",
+    "projection_candidate_surface_not_scoreable"
+  ],
+  "counts": {
+    "blockers": 2,
+    "candidate_projection_rows": 53,
+    "candidate_surface_threshold_scoring_ready_rows": 0,
+    "covered_priority_fields": 9,
+    "critical_violation_total": 0,
+    "direct_existing_source_free_projection_fields": 2,
+    "materialization_gate_ready_items": 0,
+    "pending_review_items": 3,
+    "review_items": 3
+  },
+  "created_utc": "2026-06-04T02:17:36Z",
+  "decision": {
+    "materialization_gate_ready_now": false,
+    "next_gate": "Review the source-free bond-change and electron-flow axis stubs first; event topology stays blocked until primitive axes define true absence versus unknown. After explicit decisions, build a materialization gate, not a heldout rerun.",
+    "rerun_or_retune_heldout_authorized": false,
+    "review_packet_ready": true
+  },
+  "guardrails": {
+    "frozen_residual_threshold_changed": false,
+    "heldout_rows_rescored": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_or_target_names_used_as_predictive_features": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Record explicit source-free axis decisions with hashes intact, then materialize approved primitive axes before any scoring surface is considered.",
+    "result": "3 source-free axis review items cover 9 priority fields still missing from the deployable projection."
+  },
+  "review_items": [
+    {
+      "allowed_reviewer_decisions": [
+        "approve_source_free_bond_change_axis",
+        "reject_source_free_bond_change_axis",
+        "hold_for_rewrite_source_free_bond_change_axis"
+      ],
+      "axis_id": "source_free_bond_change_axis",
+      "blocked_by": [],
+      "covered_priority_fields": [
+        "bond_broken_count",
+        "bond_change_event_count",
+        "bond_formed_count",
+        "bond_order_changed_count",
+        "has_bond_change_event"
+      ],
+      "decision_context": {
+        "allowed_reviewer_decisions": [
+          "approve_source_free_bond_change_axis",
+          "reject_source_free_bond_change_axis",
+          "hold_for_rewrite_source_free_bond_change_axis"
+        ],
+        "axis_id": "source_free_bond_change_axis",
+        "blocked_by": [],
+        "candidate_surface_rows": 53,
+        "covered_priority_fields": [
+          "bond_broken_count",
+          "bond_change_event_count",
+          "bond_formed_count",
+          "bond_order_changed_count",
+          "has_bond_change_event"
+        ],
+        "direct_proton_projection_rows": 14,
+        "repair_category": "bond_change",
+        "source_free_evidence_contract": "Template-free structural or coordinate-local evidence that a row has bond formation, bond cleavage, or bond-order change support. Do not use mechanism text, Rhea/EC IDs, labels, target names, or M-CSA heldout annotations as features.",
+        "threshold_scoring_ready_rows": 0
+      },
+      "decision_context_sha256": "935ce7f4291f69ac077a3b2ef911c5adb959a247161811cab8740ff0b6846fcf",
+      "materialization_gate_ready": false,
+      "priority": 1,
+      "repair_category": "bond_change",
+      "review_status": "pending_source_free_axis_review",
+      "reviewer_decision": "pending_review",
+      "source_free_evidence_contract": "Template-free structural or coordinate-local evidence that a row has bond formation, bond cleavage, or bond-order change support. Do not use mechanism text, Rhea/EC IDs, labels, target names, or M-CSA heldout annotations as features."
+    },
+    {
+      "allowed_reviewer_decisions": [
+        "approve_source_free_electron_flow_axis",
+        "reject_source_free_electron_flow_axis",
+        "hold_for_rewrite_source_free_electron_flow_axis"
+      ],
+      "axis_id": "source_free_electron_flow_axis",
+      "blocked_by": [],
+      "covered_priority_fields": [
+        "electron_transfer_count",
+        "has_electron_transfer_event"
+      ],
+      "decision_context": {
+        "allowed_reviewer_decisions": [
+          "approve_source_free_electron_flow_axis",
+          "reject_source_free_electron_flow_axis",
+          "hold_for_rewrite_source_free_electron_flow_axis"
+        ],
+        "axis_id": "source_free_electron_flow_axis",
+        "blocked_by": [],
+        "candidate_surface_rows": 53,
+        "covered_priority_fields": [
+          "electron_transfer_count",
+          "has_electron_transfer_event"
+        ],
+        "direct_proton_projection_rows": 14,
+        "repair_category": "electron_flow",
+        "source_free_evidence_contract": "Template-free redox/electron-transfer support from local structure, cofactor geometry, or approved source-free active site evidence only. Do not use labels, EC/Rhea IDs, source IDs, target names, or mechanism text as predictive features.",
+        "threshold_scoring_ready_rows": 0
+      },
+      "decision_context_sha256": "479496d1e580324dcd3cc3f9b50436421203c6f9d541fd46e83daccd69b1a2a5",
+      "materialization_gate_ready": false,
+      "priority": 2,
+      "repair_category": "electron_flow",
+      "review_status": "pending_source_free_axis_review",
+      "reviewer_decision": "pending_review",
+      "source_free_evidence_contract": "Template-free redox/electron-transfer support from local structure, cofactor geometry, or approved source-free active site evidence only. Do not use labels, EC/Rhea IDs, source IDs, target names, or mechanism text as predictive features."
+    },
+    {
+      "allowed_reviewer_decisions": [
+        "approve_source_free_event_topology_axis_after_primitives",
+        "reject_source_free_event_topology_axis",
+        "hold_for_primitive_axis_rewrite"
+      ],
+      "axis_id": "source_free_event_topology_axis",
+      "blocked_by": [
+        "source_free_bond_change_axis",
+        "source_free_electron_flow_axis"
+      ],
+      "covered_priority_fields": [
+        "event_count",
+        "multi_event_mechanism_flag"
+      ],
+      "decision_context": {
+        "allowed_reviewer_decisions": [
+          "approve_source_free_event_topology_axis_after_primitives",
+          "reject_source_free_event_topology_axis",
+          "hold_for_primitive_axis_rewrite"
+        ],
+        "axis_id": "source_free_event_topology_axis",
+        "blocked_by": [
+          "source_free_bond_change_axis",
+          "source_free_electron_flow_axis"
+        ],
+        "candidate_surface_rows": 53,
+        "covered_priority_fields": [
+          "event_count",
+          "multi_event_mechanism_flag"
+        ],
+        "direct_proton_projection_rows": 14,
+        "repair_category": "event_topology",
+        "source_free_evidence_contract": "Derived event-count and multi-event topology projection. This axis is not independently approvable until the primitive bond-change, proton-transfer, and electron-flow axes define which absent events are true negatives versus unknowns.",
+        "threshold_scoring_ready_rows": 0
+      },
+      "decision_context_sha256": "04ebd2d6bc695c0667c8a325fd05370903fb05f71fa775d3cf2ef398c3b191da",
+      "materialization_gate_ready": false,
+      "priority": 3,
+      "repair_category": "event_topology",
+      "review_status": "pending_source_free_axis_review",
+      "reviewer_decision": "pending_review",
+      "source_free_evidence_contract": "Derived event-count and multi-event topology projection. This axis is not independently approvable until the primitive bond-change, proton-transfer, and electron-flow axes define which absent events are true negatives versus unknowns."
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet",
+  "scope": "Review-only packet for the source-free projection axes still missing after the direct proton-transfer candidate repair. It creates hash-stable decision contexts but does not apply decisions, materialize features, score heldout rows, or change thresholds.",
+  "source_artifacts": {
+    "feature_repair_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_current702_20260604.json",
+      "sha256": "1602706e05cfef980a68c2fdfa36f03dea669848323b6210fb7cec6315977a30"
+    },
+    "projection_repair_candidate_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604.json",
+      "sha256": "ecf532516d30980a16001071091795cdc009a3e7c808c67b37ed647fcc572313"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_ready_review_only"
+}

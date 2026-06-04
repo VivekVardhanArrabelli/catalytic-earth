@@ -3,11 +3,11 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T01:01:46Z`
-- STARTED_AT_LOCAL: `2026-06-03T20:01:46-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T01:43:38Z`
-- ENDED_AT_LOCAL: `2026-06-03T20:43:38-0500 CDT`
-- ELAPSED_MINUTES: `41.9`
+- STARTED_AT_UTC: `2026-06-04T02:02:31Z`
+- STARTED_AT_LOCAL: `2026-06-03T21:02:32-0500 CDT`
+- ENDED_AT_UTC: `2026-06-04T02:21:53Z`
+- ENDED_AT_LOCAL: `2026-06-03T21:21:53-0500 CDT`
+- ELAPSED_MINUTES: `19.4`
 - Status: complete; canonical `.git/catalytic-earth-automation.lock`
   acquired before substantive work and ready to release after push verification
 
@@ -60,6 +60,98 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-03/04 Lever 3/2/4 Forward Push Active Run 25
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T02:02:31Z`
+- STARTED_LOCAL: `2026-06-03T21:02:32-0500 CDT`
+- ENDED_AT: `2026-06-04T02:21:53Z`
+- ENDED_LOCAL: `2026-06-03T21:21:53-0500 CDT`
+- ELAPSED_MINUTES: `19.4`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work.
+
+#### Current intent
+
+Continue Run 24's exact next action: do not rerun or retune the Lever 2
+heldout readout; continue with train/cal-safe feature repair for the 32
+feature-complete primary residual abstentions, then repair the 16 missing
+primary source-free locator rows.
+
+Ended before 55 minutes because the Lever 2 feature-repair path reached a
+concrete external-review gate: the missing source-free projection axes are now
+represented as hash-stable review stubs, and no further automatic
+materialization or heldout scoring is authorized until those stubs are reviewed.
+
+#### What changed
+
+- Added a train/cal-safe feature-repair preflight:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_current702_20260604.json`
+  plus Markdown report. It proves the frozen pair residual contract has 19
+  model fields but the source-free heldout projection populated only 2; all 32
+  feature-complete primary residual abstentions share that projection gap.
+- The preflight separates the 11 priority missing fields: 2 proton-transfer
+  fields have partial direct support from the already-approved source-free
+  event axis; 9 bond-change/electron-flow/event-topology fields require a new
+  source-free axis.
+- Added a partial projection repair candidate surface:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604.json`
+  plus Markdown report. It materializes only the direct proton projection for
+  14 rows, leaves 0 rows score-ready, and keeps threshold scoring closed.
+- Added a source-free projection repair axis review packet:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_current702_20260604.json`
+  plus Markdown report. It creates 3 hash-stable pending review items:
+  `source_free_bond_change_axis`, `source_free_electron_flow_axis`, and
+  `source_free_event_topology_axis`, covering the 9 remaining priority fields.
+- Added CLI commands for all three artifacts and pinned their counts/guardrails
+  in `tests/test_geometry_artifact_regression.py`.
+
+#### Guardrails
+
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, threshold tuning, heldout training, heldout retuning, or heldout
+  threshold rereads changed.
+- The spent heldout readout was consumed only as a fixed failure set; no
+  heldout rows were rescored.
+- The candidate surface is explicitly not scoreable: 0 rows have the full
+  frozen 19-field projection, and rerun/retune authorization remains false.
+
+#### Verification
+
+- Generated the feature-repair preflight, candidate surface, and axis review
+  packet through their new CLI commands.
+- Focused affected regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change or active_lever_mechanical_actionability' -q`:
+  35 passed.
+- Broader affected regression:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  359 passed and 7 subtests passed.
+- Full pytest: `PYTHONPATH=src python -m pytest -q`: 1350 passed, 156 subtests
+  passed, with one existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1305 tests passed,
+  with the same existing sklearn/SciPy deprecation warning.
+- Final `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 labels.
+- Final `PYTHONPATH=src python -m compileall -q src tests`.
+- Final `git diff --check`.
+- JSON syntax checks passed for the three new Lever 2 projection-repair
+  artifacts.
+
+#### Exact next action
+
+Do not rerun or retune the Lever 2 heldout readout and do not score the partial
+projection candidate surface. Review the source-free projection repair axis
+packet first, especially `source_free_bond_change_axis` and
+`source_free_electron_flow_axis`; `source_free_event_topology_axis` remains
+blocked until primitive axes define true absence versus unknown. After explicit
+axis decisions are recorded with hashes unchanged, build a materialization gate
+for approved primitive axes before considering any scoring surface or
+deployable Lever 2 claim.
 
 ### 2026-06-03/04 Lever 3/2/4 Forward Push Active Run 24
 

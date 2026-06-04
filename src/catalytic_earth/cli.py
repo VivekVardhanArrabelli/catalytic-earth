@@ -174,6 +174,9 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_heldout_threshold_readout,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_pre_threshold_readiness,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar,
@@ -15233,6 +15236,92 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"queue rows: {counts.get('queue_rows')}, "
         f"primary retention failures: "
         f"{counts.get('primary_retention_failure_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight(
+    args: argparse.Namespace,
+) -> int:
+    preflight = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight(
+        heldout_threshold_readout_path=Path(args.heldout_threshold_readout),
+        post_readout_recovery_queue_path=Path(args.post_readout_recovery_queue),
+        no_template_rerun_path=Path(args.no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        expanded_train_cal_feature_sidecar_path=Path(
+            args.expanded_train_cal_feature_sidecar
+        )
+        if args.expanded_train_cal_feature_sidecar
+        else None,
+        source_free_application_surface_path=Path(
+            args.source_free_application_surface
+        )
+        if args.source_free_application_surface
+        else None,
+        event_axis_linker_materialization_gate_path=Path(
+            args.event_axis_linker_materialization_gate
+        )
+        if args.event_axis_linker_materialization_gate
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = preflight.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free train/cal-safe feature repair preflight to "
+        f"{args.out} (status: {preflight.get('status')}, "
+        f"missing frozen fields: "
+        f"{counts.get('frozen_feature_fields_missing_from_source_free_projection')}, "
+        f"primary abstentions: "
+        f"{counts.get('feature_complete_primary_abstentions')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface(
+    args: argparse.Namespace,
+) -> int:
+    surface = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface(
+        feature_repair_preflight_path=Path(args.feature_repair_preflight),
+        source_free_application_surface_path=Path(args.source_free_application_surface),
+        event_axis_linker_materialization_gate_path=Path(
+            args.event_axis_linker_materialization_gate
+        ),
+        no_template_rerun_path=Path(args.no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = surface.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free projection repair candidate surface to "
+        f"{args.out} (status: {surface.get('status')}, "
+        f"direct proton rows: "
+        f"{counts.get('rows_with_direct_proton_transfer_projection')}, "
+        f"scoring-ready rows: {counts.get('threshold_scoring_ready_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet(
+    args: argparse.Namespace,
+) -> int:
+    packet = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet(
+        feature_repair_preflight_path=Path(args.feature_repair_preflight),
+        projection_repair_candidate_surface_path=Path(
+            args.projection_repair_candidate_surface
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free projection repair axis review packet to "
+        f"{args.out} (status: {packet.get('status')}, "
+        f"review items: {counts.get('review_items')}, "
+        f"covered fields: {counts.get('covered_priority_fields')})"
     )
     return 0
 
@@ -35073,6 +35162,210 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_post_readout_recovery_queue.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "train-cal-safe-feature-repair-preflight"
+        ),
+        help=(
+            "diagnose the train/cal feature projection gap behind the "
+            "already-spent source-free heldout readout without rescoring or "
+            "retuning heldout"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--heldout-threshold-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_heldout_"
+            "threshold_readout_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--post-readout-recovery-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_post_readout_"
+            "recovery_queue_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--expanded-train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_"
+            "surface_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_materialization_gate_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "safe_feature_repair_preflight_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "safe_feature_repair_preflight_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_train_cal_safe_feature_repair_preflight.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "projection-repair-candidate-surface"
+        ),
+        help=(
+            "materialize the partial source-free projection repair surface "
+            "from already-approved event-axis linkers without threshold scoring"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.add_argument(
+        "--feature-repair-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "safe_feature_repair_preflight_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_"
+            "surface_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.add_argument(
+        "--event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_materialization_gate_current702_20260603.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_candidate_surface.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_axis_review_packet = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "projection-repair-axis-review-packet"
+        ),
+        help=(
+            "create review-only decision stubs for missing source-free "
+            "projection repair axes"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_axis_review_packet.add_argument(
+        "--feature-repair-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_"
+            "safe_feature_repair_preflight_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_axis_review_packet.add_argument(
+        "--projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_axis_review_packet.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+            "repair_axis_review_packet_current702_20260604.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_axis_review_packet.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_"
+            "repair_axis_review_packet_current702_20260604.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_projection_repair_axis_review_packet.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet
         )
     )
 

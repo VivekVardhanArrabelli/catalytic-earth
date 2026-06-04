@@ -573,6 +573,15 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_POST_READOUT_RECOVERY_QUEUE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_post_readout_recovery_queue_current702_20260604"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_TRAIN_CAL_SAFE_FEATURE_REPAIR_PREFLIGHT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_current702_20260604"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PROJECTION_REPAIR_CANDIDATE_SURFACE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PROJECTION_REPAIR_AXIS_REVIEW_PACKET_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_current702_20260604"
+)
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
 RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
@@ -626,6 +635,12 @@ def _partial_surface_operating_contract_decision_context_sha256(
         json.dumps(context, sort_keys=True, separators=(",", ":")).encode(
             "utf-8"
         )
+    ).hexdigest()
+
+
+def _hash_json_payload(payload: dict[str, Any]) -> str:
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
 
 
@@ -60919,6 +60934,1143 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return queue
+
+
+def _feature_projection_repair_category(field: str) -> str:
+    if "electron" in field:
+        return "electron_flow"
+    if "proton" in field:
+        return "proton_transfer"
+    if "bond" in field:
+        return "bond_change"
+    if field in {"event_count", "multi_event_mechanism_flag"}:
+        return "event_topology"
+    if "mapped_active_site_residue" in field:
+        return "active_site_locator_count"
+    if "confidence" in field:
+        return "confidence_metadata"
+    return "other"
+
+
+def _feature_positive(row_features: dict[str, Any], field: str) -> bool:
+    value = row_features.get(field)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return bool(value)
+    return value is not None
+
+
+def _source_free_feature_profile_key(features: dict[str, Any]) -> str:
+    if not features:
+        return "no_source_free_pair_features"
+    return ";".join(f"{key}={features[key]}" for key in sorted(features))
+
+
+def _markdown_table_cell(value: object) -> str:
+    return str(value).replace("|", "\\|").replace("\n", " ")
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight(
+    *,
+    heldout_threshold_readout_path: Path,
+    post_readout_recovery_queue_path: Path,
+    no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    expanded_train_cal_feature_sidecar_path: Path | None = None,
+    source_free_application_surface_path: Path | None = None,
+    event_axis_linker_materialization_gate_path: Path | None = None,
+) -> dict[str, Any]:
+    readout = _read_json(heldout_threshold_readout_path)
+    queue = _read_json(post_readout_recovery_queue_path)
+    rerun = _read_json(no_template_rerun_path)
+    train_cal_sidecar = _read_json(train_cal_feature_sidecar_path)
+    expanded_sidecar = (
+        _read_json(expanded_train_cal_feature_sidecar_path)
+        if expanded_train_cal_feature_sidecar_path is not None
+        and Path(expanded_train_cal_feature_sidecar_path).exists()
+        else None
+    )
+    source_free_surface = (
+        _read_json(source_free_application_surface_path)
+        if source_free_application_surface_path is not None
+        and Path(source_free_application_surface_path).exists()
+        else None
+    )
+    event_axis_gate = (
+        _read_json(event_axis_linker_materialization_gate_path)
+        if event_axis_linker_materialization_gate_path is not None
+        and Path(event_axis_linker_materialization_gate_path).exists()
+        else None
+    )
+    frozen_feature_fields = [
+        str(field) for field in rerun.get("feature_fields", []) if field
+    ]
+    readout_rows = [
+        row
+        for row in readout.get("heldout_readout_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    feature_complete_rows = [
+        row
+        for row in readout_rows
+        if row.get("policy_surface_status") == "source_free_pair_features_ready"
+    ]
+    projected_fields = sorted(
+        {
+            str(field)
+            for row in feature_complete_rows
+            for field in (row.get("row_specific_event_features") or {})
+        }
+    )
+    missing_projection_fields = [
+        field for field in frozen_feature_fields if field not in projected_fields
+    ]
+    feature_complete_rows_with_projection_gap = [
+        row
+        for row in feature_complete_rows
+        if any(
+            field not in (row.get("row_specific_event_features") or {})
+            for field in frozen_feature_fields
+        )
+    ]
+    recovery_rows = [
+        row
+        for row in queue.get("queue_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    feature_complete_primary_failures = [
+        row
+        for row in recovery_rows
+        if row.get("queue_class") == "feature_complete_primary_abstained_by_residual"
+    ]
+    primary_failure_ids = {
+        str(row.get("entry_id")) for row in feature_complete_primary_failures
+    }
+    primary_failure_readout_rows = [
+        row
+        for row in feature_complete_rows
+        if str(row.get("entry_id")) in primary_failure_ids
+    ]
+    primary_failures_with_projection_gap = [
+        row
+        for row in primary_failure_readout_rows
+        if any(
+            field not in (row.get("row_specific_event_features") or {})
+            for field in frozen_feature_fields
+        )
+    ]
+    train_cal_rows = [
+        row
+        for row in train_cal_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    support_rows: list[dict[str, Any]] = []
+    priority_categories = {
+        "bond_change",
+        "electron_flow",
+        "event_topology",
+        "proton_transfer",
+    }
+    event_axis_rows = [
+        row
+        for row in (
+            event_axis_gate.get("materialization_rows", [])
+            if isinstance(event_axis_gate, dict)
+            else []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    event_axis_type_counts = Counter(str(row.get("event_type")) for row in event_axis_rows)
+    source_free_surface_rows = [
+        row
+        for row in (
+            source_free_surface.get("surface_rows", [])
+            if isinstance(source_free_surface, dict)
+            else []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    source_free_surface_with_event_axis = [
+        row
+        for row in source_free_surface_rows
+        if row.get("event_axis_materialization_reference")
+    ]
+    priority_repair_fields: list[str] = []
+    direct_existing_source_free_axis_fields: list[str] = []
+    new_source_free_axis_required_fields: list[str] = []
+    for field in missing_projection_fields:
+        category = _feature_projection_repair_category(field)
+        train_positive = 0
+        calibration_positive = 0
+        for row in train_cal_rows:
+            features = row.get("row_specific_event_features") or {}
+            if not _feature_positive(features, field):
+                continue
+            if row.get("assigned_embedding_split") == "train":
+                train_positive += 1
+            elif row.get("assigned_embedding_split") == "calibration":
+                calibration_positive += 1
+        positive = train_positive + calibration_positive
+        priority = category in priority_categories and positive > 0
+        if priority:
+            priority_repair_fields.append(field)
+        if category == "proton_transfer" and event_axis_type_counts.get(
+            "proton_transfer"
+        ):
+            existing_support_status = "partial_existing_source_free_event_axis_support"
+            existing_source_free_support_rows = event_axis_type_counts.get(
+                "proton_transfer", 0
+            )
+            if priority:
+                direct_existing_source_free_axis_fields.append(field)
+        elif category == "event_topology":
+            existing_support_status = "requires_multi_axis_source_free_projection"
+            existing_source_free_support_rows = len(event_axis_rows)
+            if priority:
+                new_source_free_axis_required_fields.append(field)
+        elif category in {"bond_change", "electron_flow"}:
+            existing_support_status = "missing_source_free_axis"
+            existing_source_free_support_rows = 0
+            if priority:
+                new_source_free_axis_required_fields.append(field)
+        else:
+            existing_support_status = "not_a_priority_event_axis_repair"
+            existing_source_free_support_rows = 0
+        support_rows.append(
+            {
+                "field": field,
+                "repair_category": category,
+                "positive_train_cal_rows": positive,
+                "positive_train_rows": train_positive,
+                "positive_calibration_rows": calibration_positive,
+                "priority_repair_field": priority,
+                "existing_source_free_support_status": existing_support_status,
+                "existing_source_free_support_rows": existing_source_free_support_rows,
+            }
+        )
+    support_rows.sort(
+        key=lambda row: (
+            not bool(row["priority_repair_field"]),
+            str(row["repair_category"]),
+            str(row["field"]),
+        )
+    )
+    profile_counter: Counter[str] = Counter()
+    profile_entry_ids: dict[str, list[str]] = defaultdict(list)
+    for row in feature_complete_primary_failures:
+        profile = _source_free_feature_profile_key(
+            row.get("source_free_pair_features") or {}
+        )
+        profile_counter[profile] += 1
+        profile_entry_ids[profile].append(str(row.get("entry_id")))
+    failure_profiles = [
+        {
+            "profile": profile,
+            "rows": count,
+            "entry_ids": sorted(entry_ids, key=_entry_id_sort_key),
+        }
+        for profile, count in profile_counter.most_common()
+        for entry_ids in [profile_entry_ids[profile]]
+    ]
+    priority_repair_category_counts = Counter(
+        row["repair_category"]
+        for row in support_rows
+        if row.get("priority_repair_field")
+    )
+    blockers = []
+    if missing_projection_fields:
+        blockers.append("source_free_projection_missing_frozen_train_cal_event_fields")
+    if feature_complete_primary_failures:
+        blockers.append("feature_complete_primary_residual_abstentions_remain")
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_TRAIN_CAL_SAFE_FEATURE_REPAIR_PREFLIGHT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_ready_deployment_blocked"
+        ),
+        "scope": (
+            "Train/cal-safe post-readout diagnosis for the source-free pair "
+            "surface. It consumes the already-spent heldout readout only as a "
+            "fixed failure set, compares its populated source-free model "
+            "features to the frozen train/cal residual feature contract, and "
+            "does not rescore heldout rows, refit models, retune thresholds, or "
+            "authorize another heldout read."
+        ),
+        "counts": {
+            "heldout_readout_rows": len(readout_rows),
+            "feature_complete_readout_rows": len(feature_complete_rows),
+            "feature_complete_rows_with_projection_gap": len(
+                feature_complete_rows_with_projection_gap
+            ),
+            "feature_complete_primary_abstentions": len(
+                feature_complete_primary_failures
+            ),
+            "feature_complete_primary_abstentions_with_projection_gap": len(
+                primary_failures_with_projection_gap
+            ),
+            "frozen_feature_fields": len(frozen_feature_fields),
+            "source_free_projected_feature_fields": len(projected_fields),
+            "frozen_feature_fields_missing_from_source_free_projection": len(
+                missing_projection_fields
+            ),
+            "train_cal_feature_rows": len(train_cal_rows),
+            "train_rows": int(
+                train_cal_sidecar.get("counts", {}).get("train_rows") or 0
+            ),
+            "calibration_rows": int(
+                train_cal_sidecar.get("counts", {}).get("calibration_rows") or 0
+            ),
+            "priority_repair_feature_fields": len(priority_repair_fields),
+            "priority_repair_fields_with_direct_existing_source_free_axis": len(
+                direct_existing_source_free_axis_fields
+            ),
+            "priority_repair_fields_requiring_new_source_free_axis": len(
+                new_source_free_axis_required_fields
+            ),
+            "priority_repair_category_counts": dict(
+                sorted(priority_repair_category_counts.items())
+            ),
+            "source_free_event_axis_materialized_rows": len(event_axis_rows),
+            "source_free_event_axis_type_counts": dict(
+                sorted(event_axis_type_counts.items())
+            ),
+            "source_free_surface_rows": len(source_free_surface_rows),
+            "source_free_surface_rows_with_event_axis_reference": len(
+                source_free_surface_with_event_axis
+            ),
+            "feature_complete_primary_failure_profiles": len(failure_profiles),
+            "expanded_train_cal_total_feature_dimensions": (
+                expanded_sidecar.get("counts", {}).get("total_feature_dimensions")
+                if isinstance(expanded_sidecar, dict)
+                else None
+            ),
+            "expanded_train_cal_expanded_feature_dimensions": (
+                expanded_sidecar.get("counts", {}).get("expanded_feature_dimensions")
+                if isinstance(expanded_sidecar, dict)
+                else None
+            ),
+            "critical_violation_total": 0,
+            "blockers": len(blockers),
+        },
+        "blockers": blockers,
+        "feature_projection_gap": {
+            "frozen_feature_fields": frozen_feature_fields,
+            "source_free_projected_feature_fields": projected_fields,
+            "missing_frozen_feature_fields": missing_projection_fields,
+            "priority_missing_frozen_feature_fields": priority_repair_fields,
+            "priority_missing_fields_with_direct_existing_source_free_axis": (
+                direct_existing_source_free_axis_fields
+            ),
+            "priority_missing_fields_requiring_new_source_free_axis": (
+                new_source_free_axis_required_fields
+            ),
+        },
+        "train_cal_feature_support_rows": support_rows,
+        "feature_complete_primary_failure_profiles": failure_profiles,
+        "feature_complete_primary_abstention_rows": [
+            {
+                "entry_id": row.get("entry_id"),
+                "out_of_atlas_span_residual": row.get(
+                    "out_of_atlas_span_residual"
+                ),
+                "residual_threshold": row.get("residual_threshold"),
+                "source_free_pair_features": row.get(
+                    "source_free_pair_features", {}
+                ),
+                "populated_projected_feature_fields": sorted(
+                    (row.get("row_specific_event_features") or {}).keys()
+                ),
+                "missing_frozen_feature_fields": missing_projection_fields,
+            }
+            for row in primary_failure_readout_rows
+        ],
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_changed": False,
+            "heldout_rows_rescored": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_readout_consumed_as_fixed_failure_set": True,
+            "rerun_or_retune_heldout_authorized": False,
+            "m_csa_heldout_mechanism_text_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "labels_or_target_names_used_as_predictive_features": False,
+            "review_only": True,
+        },
+        "decision": {
+            "deployable_claim_blocked": True,
+            "train_cal_safe_feature_repair_required": bool(
+                missing_projection_fields and feature_complete_primary_failures
+            ),
+            "coverage_repair_alone_sufficient_for_deployment": False,
+            "source_free_projection_gap_is_current_primary_failure_gate": bool(
+                primary_failures_with_projection_gap
+                and len(primary_failures_with_projection_gap)
+                == len(feature_complete_primary_failures)
+            ),
+            "ready_to_design_source_free_projection_repair": bool(
+                priority_repair_fields
+            ),
+            "heldout_read_once_performed": bool(
+                readout.get("decision", {}).get("heldout_read_once_performed")
+            ),
+            "rerun_or_retune_heldout_authorized": False,
+            "next_gate": (
+                "Do not rerun or retune the heldout read. Materialize a "
+                "source-free projection for the priority frozen train/cal "
+                "event fields first, especially bond-change, proton-transfer, "
+                "electron-flow, and event-topology counts; then validate only "
+                "through train/cal guardrails before any deployable Lever 2 "
+                "claim."
+            ),
+        },
+        "source_artifacts": {
+            "heldout_threshold_readout": _source_path_record(
+                heldout_threshold_readout_path
+            ),
+            "post_readout_recovery_queue": _source_path_record(
+                post_readout_recovery_queue_path
+            ),
+            "no_template_rerun": _source_path_record(no_template_rerun_path),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+            "expanded_train_cal_feature_sidecar": (
+                _source_path_record(expanded_train_cal_feature_sidecar_path)
+                if expanded_train_cal_feature_sidecar_path is not None
+                else None
+            ),
+            "source_free_application_surface": (
+                _source_path_record(source_free_application_surface_path)
+                if source_free_application_surface_path is not None
+                else None
+            ),
+            "event_axis_linker_materialization_gate": (
+                _source_path_record(event_axis_linker_materialization_gate_path)
+                if event_axis_linker_materialization_gate_path is not None
+                else None
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "All feature-complete primary residual abstentions share the "
+                "same contract gap: the source-free readout populated only "
+                f"{len(projected_fields)}/{len(frozen_feature_fields)} frozen "
+                "model fields, leaving the train/cal event-count surface "
+                "zero-filled at application time."
+            ),
+            "next_action": (
+                "Repair feature projection before locator coverage: source-free "
+                "locators alone cannot make the frozen pair channel deployable. "
+                "Existing source-free event-axis rows can only partially support "
+                "the proton-transfer fields; bond-change, electron-flow, and "
+                "event-topology fields need a new source-free projection packet."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    decision = preflight["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Train/Cal-Safe Feature Repair Preflight - current702",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        f"- Feature-complete readout rows: {counts['feature_complete_readout_rows']}",
+        "- Feature-complete primary abstentions: "
+        f"{counts['feature_complete_primary_abstentions']}",
+        "- Primary abstentions with projection gap: "
+        f"{counts['feature_complete_primary_abstentions_with_projection_gap']}",
+        f"- Frozen feature fields: {counts['frozen_feature_fields']}",
+        "- Source-free projected feature fields: "
+        f"{counts['source_free_projected_feature_fields']}",
+        "- Missing frozen feature fields: "
+        f"{counts['frozen_feature_fields_missing_from_source_free_projection']}",
+        "- Priority repair feature fields: "
+        f"{counts['priority_repair_feature_fields']}",
+        "- Priority fields with direct existing source-free axis: "
+        f"{counts['priority_repair_fields_with_direct_existing_source_free_axis']}",
+        "- Priority fields requiring new source-free axis: "
+        f"{counts['priority_repair_fields_requiring_new_source_free_axis']}",
+        f"- Repair categories: {counts['priority_repair_category_counts']}",
+        "- Source-free event-axis materialized rows: "
+        f"{counts['source_free_event_axis_materialized_rows']}",
+        "- Source-free event-axis types: "
+        f"{counts['source_free_event_axis_type_counts']}",
+        f"- Blockers: {', '.join(preflight['blockers']) or 'none'}",
+        "",
+        "## Decision",
+        "",
+        f"- Deployable claim blocked: {decision['deployable_claim_blocked']}",
+        "- Train/cal-safe feature repair required: "
+        f"{decision['train_cal_safe_feature_repair_required']}",
+        "- Coverage repair alone sufficient: "
+        f"{decision['coverage_repair_alone_sufficient_for_deployment']}",
+        "- Projection gap is current primary failure gate: "
+        f"{decision['source_free_projection_gap_is_current_primary_failure_gate']}",
+        "- Rerun or retune heldout authorized: "
+        f"{decision['rerun_or_retune_heldout_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Missing Frozen Fields",
+        "",
+        "| field | category | train/cal positives | source-free status | priority |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in preflight.get("train_cal_feature_support_rows", []):
+        lines.append(
+            f"| {row['field']} | {row['repair_category']} | "
+            f"{row['positive_train_cal_rows']} | "
+            f"{row['existing_source_free_support_status']} | "
+            f"{row['priority_repair_field']} |"
+        )
+    lines += [
+        "",
+        "## Failure Profiles",
+        "",
+        "| rows | profile |",
+        "| ---: | --- |",
+    ]
+    for row in preflight.get("feature_complete_primary_failure_profiles", []):
+        lines.append(f"| {row['rows']} | {_markdown_table_cell(row['profile'])} |")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight(
+    *,
+    heldout_threshold_readout_path: Path,
+    post_readout_recovery_queue_path: Path,
+    no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    expanded_train_cal_feature_sidecar_path: Path | None = None,
+    source_free_application_surface_path: Path | None = None,
+    event_axis_linker_materialization_gate_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight(
+        heldout_threshold_readout_path=heldout_threshold_readout_path,
+        post_readout_recovery_queue_path=post_readout_recovery_queue_path,
+        no_template_rerun_path=no_template_rerun_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        expanded_train_cal_feature_sidecar_path=(
+            expanded_train_cal_feature_sidecar_path
+        ),
+        source_free_application_surface_path=source_free_application_surface_path,
+        event_axis_linker_materialization_gate_path=(
+            event_axis_linker_materialization_gate_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_safe_feature_repair_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface(
+    *,
+    feature_repair_preflight_path: Path,
+    source_free_application_surface_path: Path,
+    event_axis_linker_materialization_gate_path: Path,
+    no_template_rerun_path: Path,
+) -> dict[str, Any]:
+    preflight = _read_json(feature_repair_preflight_path)
+    surface = _read_json(source_free_application_surface_path)
+    event_axis_gate = _read_json(event_axis_linker_materialization_gate_path)
+    rerun = _read_json(no_template_rerun_path)
+    frozen_feature_fields = [
+        str(field) for field in rerun.get("feature_fields", []) if field
+    ]
+    projected_pair_fields = set(
+        preflight.get("feature_projection_gap", {}).get(
+            "source_free_projected_feature_fields", []
+        )
+    )
+    direct_existing_fields = [
+        str(field)
+        for field in preflight.get("feature_projection_gap", {}).get(
+            "priority_missing_fields_with_direct_existing_source_free_axis", []
+        )
+    ]
+    new_axis_required_fields = [
+        str(field)
+        for field in preflight.get("feature_projection_gap", {}).get(
+            "priority_missing_fields_requiring_new_source_free_axis", []
+        )
+    ]
+    materialized_event_by_entry = {
+        str(row.get("entry_id")): row
+        for row in event_axis_gate.get("materialization_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    surface_rows = [
+        row
+        for row in surface.get("surface_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    candidate_rows: list[dict[str, Any]] = []
+    for row in sorted(
+        surface_rows, key=lambda item: _entry_id_sort_key(str(item.get("entry_id")))
+    ):
+        entry_id = str(row.get("entry_id"))
+        pair_features = _source_free_pair_surface_model_features(row)
+        event_row = materialized_event_by_entry.get(entry_id)
+        direct_projection: dict[str, Any] = {}
+        if event_row and event_row.get("event_type") == "proton_transfer":
+            direct_projection = {
+                "has_proton_transfer_event": True,
+                "proton_transfer_count": 1,
+            }
+        candidate_features = {**pair_features, **direct_projection}
+        missing_after_candidate = [
+            field
+            for field in frozen_feature_fields
+            if field not in candidate_features
+        ]
+        candidate_rows.append(
+            {
+                "entry_id": entry_id,
+                "projection_status": (
+                    "partial_direct_proton_projection"
+                    if direct_projection
+                    else "pair_only_projection_missing_priority_fields"
+                ),
+                "source_free_pair_features": row.get(
+                    "source_free_pair_features", {}
+                ),
+                "candidate_projected_event_features": candidate_features,
+                "direct_existing_source_free_projection_fields": sorted(
+                    direct_projection
+                ),
+                "missing_frozen_feature_fields_after_candidate_projection": (
+                    missing_after_candidate
+                ),
+                "full_frozen_projection_ready": not missing_after_candidate,
+                "threshold_scoring_authorized": False,
+                "event_axis_materialization_reference": (
+                    row.get("event_axis_materialization_reference")
+                ),
+            }
+        )
+    direct_projection_rows = [
+        row
+        for row in candidate_rows
+        if row["projection_status"] == "partial_direct_proton_projection"
+    ]
+    full_projection_ready_rows = [
+        row for row in candidate_rows if row["full_frozen_projection_ready"]
+    ]
+    missing_field_counts = Counter(
+        field
+        for row in candidate_rows
+        for field in row["missing_frozen_feature_fields_after_candidate_projection"]
+    )
+    blockers = [
+        "projection_candidate_surface_partial_missing_new_source_free_axes",
+        "heldout_read_already_spent_no_threshold_application_authorized",
+    ]
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PROJECTION_REPAIR_CANDIDATE_SURFACE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_partial_not_scoreable"
+        ),
+        "scope": (
+            "Partial candidate projection surface for the source-free pair "
+            "feature repair path. It materializes only direct fields supported "
+            "by already-approved source-free event-axis linkers, keeps missing "
+            "bond-change/electron/event-topology axes explicit, and does not "
+            "apply the frozen residual threshold or rescore heldout rows."
+        ),
+        "counts": {
+            "surface_rows": len(surface_rows),
+            "candidate_projection_rows": len(candidate_rows),
+            "rows_with_direct_proton_transfer_projection": len(
+                direct_projection_rows
+            ),
+            "rows_pair_only_no_direct_projection": (
+                len(candidate_rows) - len(direct_projection_rows)
+            ),
+            "frozen_feature_fields": len(frozen_feature_fields),
+            "pair_projected_feature_fields": len(projected_pair_fields),
+            "direct_existing_source_free_projection_fields": len(
+                direct_existing_fields
+            ),
+            "new_source_free_axis_required_fields": len(new_axis_required_fields),
+            "full_frozen_projection_ready_rows": len(full_projection_ready_rows),
+            "threshold_scoring_ready_rows": 0,
+            "missing_field_counts": dict(sorted(missing_field_counts.items())),
+            "critical_violation_total": 0,
+            "blockers": len(blockers),
+        },
+        "blockers": blockers,
+        "direct_existing_source_free_projection_fields": direct_existing_fields,
+        "new_source_free_axis_required_fields": new_axis_required_fields,
+        "candidate_projection_rows": candidate_rows,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_changed": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_rescored": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "rerun_or_retune_heldout_authorized": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "labels_or_target_names_used_as_predictive_features": False,
+            "review_only": True,
+        },
+        "decision": {
+            "candidate_surface_ready_for_threshold_scoring": False,
+            "source_free_direct_proton_projection_materialized": bool(
+                direct_projection_rows
+            ),
+            "new_source_free_axis_review_packet_required": bool(
+                new_axis_required_fields
+            ),
+            "coverage_repair_alone_sufficient_for_deployment": False,
+            "rerun_or_retune_heldout_authorized": False,
+            "next_gate": (
+                "Use this partial candidate only as repair evidence. Build a "
+                "source-free bond-change/electron-flow/event-topology axis "
+                "review packet for the 9 priority fields still lacking direct "
+                "source-free support; do not score or rerun heldout from this "
+                "partial projection."
+            ),
+        },
+        "source_artifacts": {
+            "feature_repair_preflight": _source_path_record(
+                feature_repair_preflight_path
+            ),
+            "source_free_application_surface": _source_path_record(
+                source_free_application_surface_path
+            ),
+            "event_axis_linker_materialization_gate": _source_path_record(
+                event_axis_linker_materialization_gate_path
+            ),
+            "no_template_rerun": _source_path_record(no_template_rerun_path),
+        },
+        "interpretation": {
+            "result": (
+                "Existing approved source-free event-axis evidence can fill the "
+                f"direct proton-transfer projection for {len(direct_projection_rows)} "
+                "rows, but no row has the full frozen 19-field projection."
+            ),
+            "next_action": (
+                "Create the missing source-free bond/electron/event-topology "
+                "axis packet before any scoring surface or deployable Lever 2 "
+                "claim is considered."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_report(
+    surface: dict[str, Any],
+) -> str:
+    counts = surface["counts"]
+    decision = surface["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Projection Repair Candidate Surface - current702",
+        "",
+        f"Run: {surface['created_utc']}",
+        "",
+        surface["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {surface['status']}",
+        f"- Candidate rows: {counts['candidate_projection_rows']}",
+        "- Direct proton-transfer projection rows: "
+        f"{counts['rows_with_direct_proton_transfer_projection']}",
+        "- Pair-only rows: "
+        f"{counts['rows_pair_only_no_direct_projection']}",
+        f"- Full frozen projection ready rows: {counts['full_frozen_projection_ready_rows']}",
+        f"- Threshold-scoring ready rows: {counts['threshold_scoring_ready_rows']}",
+        "- Direct existing source-free fields: "
+        f"{surface['direct_existing_source_free_projection_fields']}",
+        "- New source-free axis required fields: "
+        f"{surface['new_source_free_axis_required_fields']}",
+        f"- Blockers: {', '.join(surface['blockers']) or 'none'}",
+        "",
+        "## Decision",
+        "",
+        "- Candidate surface ready for threshold scoring: "
+        f"{decision['candidate_surface_ready_for_threshold_scoring']}",
+        "- Direct proton projection materialized: "
+        f"{decision['source_free_direct_proton_projection_materialized']}",
+        "- New source-free axis review packet required: "
+        f"{decision['new_source_free_axis_review_packet_required']}",
+        "- Rerun or retune heldout authorized: "
+        f"{decision['rerun_or_retune_heldout_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Candidate Rows",
+        "",
+        "| row | status | direct fields | missing frozen fields |",
+        "| --- | --- | --- | ---: |",
+    ]
+    for row in surface.get("candidate_projection_rows", [])[:160]:
+        lines.append(
+            f"| {row['entry_id']} | {row['projection_status']} | "
+            f"{row['direct_existing_source_free_projection_fields']} | "
+            f"{len(row['missing_frozen_feature_fields_after_candidate_projection'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {surface['interpretation']['result']}",
+        f"- {surface['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface(
+    *,
+    feature_repair_preflight_path: Path,
+    source_free_application_surface_path: Path,
+    event_axis_linker_materialization_gate_path: Path,
+    no_template_rerun_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    surface = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface(
+        feature_repair_preflight_path=feature_repair_preflight_path,
+        source_free_application_surface_path=source_free_application_surface_path,
+        event_axis_linker_materialization_gate_path=(
+            event_axis_linker_materialization_gate_path
+        ),
+        no_template_rerun_path=no_template_rerun_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(surface, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_report(
+                surface
+            ),
+            encoding="utf-8",
+        )
+    return surface
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet(
+    *,
+    feature_repair_preflight_path: Path,
+    projection_repair_candidate_surface_path: Path,
+) -> dict[str, Any]:
+    preflight = _read_json(feature_repair_preflight_path)
+    candidate_surface = _read_json(projection_repair_candidate_surface_path)
+    required_fields = [
+        str(field)
+        for field in candidate_surface.get("new_source_free_axis_required_fields", [])
+    ]
+    fields_by_category: dict[str, list[str]] = defaultdict(list)
+    for field in required_fields:
+        fields_by_category[_feature_projection_repair_category(field)].append(field)
+    axis_specs = [
+        {
+            "axis_id": "source_free_bond_change_axis",
+            "repair_category": "bond_change",
+            "priority": 1,
+            "source_free_evidence_contract": (
+                "Template-free structural or coordinate-local evidence that a "
+                "row has bond formation, bond cleavage, or bond-order change "
+                "support. Do not use mechanism text, Rhea/EC IDs, labels, "
+                "target names, or M-CSA heldout annotations as features."
+            ),
+            "allowed_reviewer_decisions": [
+                "approve_source_free_bond_change_axis",
+                "reject_source_free_bond_change_axis",
+                "hold_for_rewrite_source_free_bond_change_axis",
+            ],
+            "blocked_by": [],
+        },
+        {
+            "axis_id": "source_free_electron_flow_axis",
+            "repair_category": "electron_flow",
+            "priority": 2,
+            "source_free_evidence_contract": (
+                "Template-free redox/electron-transfer support from local "
+                "structure, cofactor geometry, or approved source-free active "
+                "site evidence only. Do not use labels, EC/Rhea IDs, source IDs, "
+                "target names, or mechanism text as predictive features."
+            ),
+            "allowed_reviewer_decisions": [
+                "approve_source_free_electron_flow_axis",
+                "reject_source_free_electron_flow_axis",
+                "hold_for_rewrite_source_free_electron_flow_axis",
+            ],
+            "blocked_by": [],
+        },
+        {
+            "axis_id": "source_free_event_topology_axis",
+            "repair_category": "event_topology",
+            "priority": 3,
+            "source_free_evidence_contract": (
+                "Derived event-count and multi-event topology projection. This "
+                "axis is not independently approvable until the primitive "
+                "bond-change, proton-transfer, and electron-flow axes define "
+                "which absent events are true negatives versus unknowns."
+            ),
+            "allowed_reviewer_decisions": [
+                "approve_source_free_event_topology_axis_after_primitives",
+                "reject_source_free_event_topology_axis",
+                "hold_for_primitive_axis_rewrite",
+            ],
+            "blocked_by": [
+                "source_free_bond_change_axis",
+                "source_free_electron_flow_axis",
+            ],
+        },
+    ]
+    review_items = []
+    for spec in axis_specs:
+        fields = sorted(fields_by_category.get(spec["repair_category"], []))
+        if not fields:
+            continue
+        decision_context = {
+            "axis_id": spec["axis_id"],
+            "repair_category": spec["repair_category"],
+            "covered_priority_fields": fields,
+            "candidate_surface_rows": candidate_surface.get("counts", {}).get(
+                "candidate_projection_rows"
+            ),
+            "direct_proton_projection_rows": candidate_surface.get("counts", {}).get(
+                "rows_with_direct_proton_transfer_projection"
+            ),
+            "threshold_scoring_ready_rows": candidate_surface.get("counts", {}).get(
+                "threshold_scoring_ready_rows"
+            ),
+            "source_free_evidence_contract": spec["source_free_evidence_contract"],
+            "allowed_reviewer_decisions": spec["allowed_reviewer_decisions"],
+            "blocked_by": spec["blocked_by"],
+        }
+        review_items.append(
+            {
+                **spec,
+                "covered_priority_fields": fields,
+                "review_status": "pending_source_free_axis_review",
+                "reviewer_decision": "pending_review",
+                "decision_context": decision_context,
+                "decision_context_sha256": _hash_json_payload(decision_context),
+                "materialization_gate_ready": False,
+            }
+        )
+    blockers = [
+        "source_free_projection_axis_reviews_pending",
+        "projection_candidate_surface_not_scoreable",
+    ]
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_PROJECTION_REPAIR_AXIS_REVIEW_PACKET_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_ready_review_only"
+        ),
+        "scope": (
+            "Review-only packet for the source-free projection axes still "
+            "missing after the direct proton-transfer candidate repair. It "
+            "creates hash-stable decision contexts but does not apply decisions, "
+            "materialize features, score heldout rows, or change thresholds."
+        ),
+        "counts": {
+            "review_items": len(review_items),
+            "pending_review_items": len(review_items),
+            "covered_priority_fields": sum(
+                len(item["covered_priority_fields"]) for item in review_items
+            ),
+            "direct_existing_source_free_projection_fields": len(
+                preflight.get("feature_projection_gap", {}).get(
+                    "priority_missing_fields_with_direct_existing_source_free_axis",
+                    [],
+                )
+            ),
+            "candidate_projection_rows": candidate_surface.get("counts", {}).get(
+                "candidate_projection_rows"
+            ),
+            "candidate_surface_threshold_scoring_ready_rows": candidate_surface.get(
+                "counts", {}
+            ).get("threshold_scoring_ready_rows"),
+            "materialization_gate_ready_items": 0,
+            "critical_violation_total": 0,
+            "blockers": len(blockers),
+        },
+        "blockers": blockers,
+        "review_items": review_items,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_changed": False,
+            "heldout_rows_rescored": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "labels_or_target_names_used_as_predictive_features": False,
+            "review_only": True,
+        },
+        "decision": {
+            "review_packet_ready": True,
+            "materialization_gate_ready_now": False,
+            "rerun_or_retune_heldout_authorized": False,
+            "next_gate": (
+                "Review the source-free bond-change and electron-flow axis "
+                "stubs first; event topology stays blocked until primitive "
+                "axes define true absence versus unknown. After explicit "
+                "decisions, build a materialization gate, not a heldout rerun."
+            ),
+        },
+        "source_artifacts": {
+            "feature_repair_preflight": _source_path_record(
+                feature_repair_preflight_path
+            ),
+            "projection_repair_candidate_surface": _source_path_record(
+                projection_repair_candidate_surface_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(review_items)} source-free axis review items cover "
+                f"{sum(len(item['covered_priority_fields']) for item in review_items)} "
+                "priority fields still missing from the deployable projection."
+            ),
+            "next_action": (
+                "Record explicit source-free axis decisions with hashes intact, "
+                "then materialize approved primitive axes before any scoring "
+                "surface is considered."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Projection Repair Axis Review Packet - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Review items: {counts['review_items']}",
+        f"- Covered priority fields: {counts['covered_priority_fields']}",
+        "- Candidate surface scoring-ready rows: "
+        f"{counts['candidate_surface_threshold_scoring_ready_rows']}",
+        f"- Blockers: {', '.join(packet['blockers']) or 'none'}",
+        "",
+        "## Decision",
+        "",
+        f"- Review packet ready: {decision['review_packet_ready']}",
+        "- Materialization gate ready now: "
+        f"{decision['materialization_gate_ready_now']}",
+        "- Rerun or retune heldout authorized: "
+        f"{decision['rerun_or_retune_heldout_authorized']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Review Items",
+        "",
+        "| priority | axis | fields | status | blocked by |",
+        "| ---: | --- | --- | --- | --- |",
+    ]
+    for item in packet.get("review_items", []):
+        lines.append(
+            f"| {item['priority']} | {item['axis_id']} | "
+            f"{', '.join(item['covered_priority_fields'])} | "
+            f"{item['review_status']} | {', '.join(item['blocked_by']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet(
+    *,
+    feature_repair_preflight_path: Path,
+    projection_repair_candidate_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    packet = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet(
+        feature_repair_preflight_path=feature_repair_preflight_path,
+        projection_repair_candidate_surface_path=(
+            projection_repair_candidate_surface_path
+        ),
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_axis_review_packet_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
 
 
 def _predicted_geometry_source_free_anchor_summary(
