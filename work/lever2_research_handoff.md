@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T10:32:36Z`
-- STARTED_AT_LOCAL: `2026-06-05T05:32:36-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T11:27:46Z`
-- ENDED_AT_LOCAL: `2026-06-05T06:27:46-0500 CDT`
-- ELAPSED_MINUTES: `55.2`
+- STARTED_AT_UTC: `2026-06-05T11:32:43Z`
+- STARTED_AT_LOCAL: `2026-06-05T06:32:43-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T12:26:07Z`
+- ENDED_AT_LOCAL: `2026-06-05T07:26:07-0500 CDT`
+- ELAPSED_MINUTES: `53.4`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,142 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 21
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T11:32:43Z`
+- STARTED_LOCAL: `2026-06-05T06:32:43-0500 CDT`
+- ENDED_AT: `2026-06-05T12:26:07Z`
+- ENDED_LOCAL: `2026-06-05T07:26:07-0500 CDT`
+- ELAPSED_MINUTES: `53.4`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured direct source-free electron-flow readouts and test the
+smallest train/cal-disciplined route that can add Fe-S/iron support without
+editing labels, registries, imports, production thresholds, or heldout splits.
+
+#### Work log
+
+- Run opened in the existing dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3. Disk stayed above the
+  10 GiB guardrail at 12 GiB free.
+- Added
+  `build-lever2-source-free-electron-flow-iron-sulfur-approval-qualified-union-readout`.
+  This consumes the projection-backed `PQQ + NAD-family` sidecar, the relaxed
+  non-PQQ direct sidecar, and the Fe-S/iron projection-support readout, then
+  measures the supported-now route against an approval-qualified
+  `PQQ + NAD + Fe-S/iron` union on the same 74-row current split.
+- The readout also emits fixed family-ablation gates for PQQ-only, NAD-only,
+  and Fe-S/iron-only direct source-free electron-flow fields so the Fe-S
+  contribution is measured as a distinct component rather than only as a union
+  side effect.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout_current702_20260605.md`.
+- No blocker packet was written; the run produced a measured readout first and
+  continued into component ablation plus source-chain validation.
+
+#### Measured results
+
+- Approval-qualified union status:
+  `lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout_research_only_approval_qualified_iron_sulfur_adds_incremental_signal_pending_feature_sidecar_approval`.
+  Result class:
+  `research_only_approval_qualified_iron_sulfur_adds_incremental_signal_pending_feature_sidecar_approval`.
+- Supported-now projection-backed `PQQ + NAD-family` direct route remains
+  complete on 74/74 current-split rows, preserves primary retention with 0/34
+  primary positives, and catches 2/40 current-retained OOS rows:
+  `m_csa:104` and `m_csa:464`.
+- Approval-qualified `PQQ + NAD + Fe-S/iron` union is complete on 74/74 rows,
+  preserves primary retention with 0/34 primary positives, and catches 3/40
+  current-retained OOS rows: `m_csa:104`, `m_csa:119`, and `m_csa:464`.
+  Retained-OOS abstain recall is 0.075, incremental OOS recall vs current
+  geometry/fold is 0.04, and union OOS recall is 0.506667.
+- Fe-S/iron adds exactly 1 current-retained OOS row beyond supported PQQ+NAD:
+  `m_csa:119`. The incremental OOS recall delta beyond PQQ+NAD is 0.013333
+  vs the current geometry/fold OOS denominator.
+- Family ablation measured three distinct primary-safe components:
+  PQQ-only catches `m_csa:104`, NAD-only catches `m_csa:464`, and
+  Fe-S/iron-only catches `m_csa:119`; all three component gates have 0 current
+  primary positives.
+- The tiny Fe-S/iron projection tranche remains 3/3 source-free positive
+  (`m_csa:127`, `m_csa:281`, `m_csa:443`) and the expanded non-current
+  tranche remains 12/12 source-free positive.
+- Interpretation: `m_csa:119` can join the supported direct electron-flow
+  route after the tiny Fe-S/iron projection tranche is approved/imported, but
+  it is not train/cal-supported now because those support rows still have
+  `predictive_use_allowed=false` and are not in an approved train/cal feature
+  sidecar.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- The Fe-S support rows used in the tiny approval-qualified tranche are
+  nonheldout/in-distribution but remain non-consumable because
+  `predictive_use_allowed=false`.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  PDB IDs, or coordinate paths were used as predictive feature values. Entry
+  IDs and source paths appear only outside `row_specific_event_features` for
+  tranche/source-evidence accounting.
+- The new approval-qualified union remains research-only and unapproved. No
+  threshold was selected, tuned, or promoted by this run.
+
+#### Validation
+
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_iron_sulfur_approval_qualified_union_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_iron_sulfur_approval_qualified_union_readout tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_iron_sulfur_approval_qualified_union_readout_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  479 passed, 193 subtests passed.
+- Compile check:
+  `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `git diff --check`: passed.
+- Full pytest: `PYTHONPATH=src python -m pytest -q`: 1556 passed, 212 subtests
+  passed, with the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1511 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3589 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact regeneration/source audit passed after normalizing `created_utc`.
+- Source-chain temporary regeneration passed for the direct electron-flow chain:
+  PQQ 1 OOS catch, relaxed non-PQQ 2, combined direct 3, supported PQQ+NAD 2,
+  Fe-S tiny projection 3/3, and approval-qualified union 3.
+- New artifact source hash audit passed for all three source artifacts.
+- New artifact feature-key guardrail audit found 0 forbidden keys across 74
+  approval-qualified feature rows; repo-wide electron-flow artifact inventory
+  found 14 electron-flow artifacts and 0 forbidden row-feature key hits.
+- Scope audit found 0 protected-surface path changes.
+
+#### Commit/push status
+
+- Pending during this handoff edit; the final handoff status update will record
+  the pushed commit hash and sync verification after push.
+
+#### Exact next action
+
+- Keep projection-backed `PQQ + NAD-family` as the supported measured route for
+  now. The exact next Fe-S/iron action is approval/import of the 3-row tiny
+  projection tranche (`m_csa:127`, `m_csa:281`, `m_csa:443`) into the
+  train/cal source-free feature sidecar with `predictive_use_allowed=true`,
+  then rerun the fixed approval-qualified union without threshold changes or
+  heldout use to decide whether `m_csa:119` should join the supported route.
 
 ### 2026-06-05 Lever 2 Research Run 20
 

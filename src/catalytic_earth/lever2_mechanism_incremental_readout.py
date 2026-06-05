@@ -79,6 +79,10 @@ DEFAULT_ELECTRON_FLOW_IRON_SULFUR_PROJECTION_SUPPORT_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_iron_sulfur_projection_support_"
     "readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_IRON_SULFUR_APPROVAL_QUALIFIED_UNION_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_"
+    "union_readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -12617,6 +12621,800 @@ def write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readou
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_iron_sulfur_projection_support_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _count_feature(features: dict[str, Any], key: str) -> int:
+    try:
+        return int(features.get(key) or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
+def _metric_delta(value: Any, baseline: Any) -> float | None:
+    if value is None or baseline is None:
+        return None
+    try:
+        return round(float(value) - float(baseline), 6)
+    except (TypeError, ValueError):
+        return None
+
+
+def _relaxed_non_pqq_positive_instances_for_family(
+    row: dict[str, Any] | None,
+    *,
+    family_id: str,
+) -> list[dict[str, Any]]:
+    if row is None:
+        return []
+    evidence = row.get("relaxed_non_pqq_donor_acceptor_evidence") or {}
+    return [
+        instance
+        for instance in evidence.get("positive_contact_examples") or []
+        if isinstance(instance, dict) and instance.get("reported_family") == family_id
+    ]
+
+
+def build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout(
+    *,
+    projection_backed_pqq_nad_feature_sidecar_readout_path: Path,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    iron_sulfur_projection_support_readout_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_APPROVAL_QUALIFIED_UNION_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    pqq_nad_readout = _read_json(projection_backed_pqq_nad_feature_sidecar_readout_path)
+    relaxed_readout = _read_json(relaxed_non_pqq_feature_sidecar_readout_path)
+    iron_support = _read_json(iron_sulfur_projection_support_readout_path)
+
+    pqq_nad_rows = [
+        row
+        for row in pqq_nad_readout.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    relaxed_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in relaxed_readout.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    current_gate = (
+        (iron_support.get("measured_readout") or {}).get(
+            "current_split_iron_sulfur_or_iron_family_gate"
+        )
+        or {}
+    )
+    tiny_materialization = (
+        (iron_support.get("measured_readout") or {}).get(
+            "tiny_iron_sulfur_projection_materialization_attempt"
+        )
+        or {}
+    )
+    expanded_materialization = (
+        (iron_support.get("measured_readout") or {}).get(
+            "expanded_iron_sulfur_projection_materialization_attempt"
+        )
+        or {}
+    )
+    split_oos_rows = current_gate.get("current_geometry_fold_oos_rows")
+    try:
+        split_oos_rows = int(split_oos_rows) if split_oos_rows is not None else None
+    except (TypeError, ValueError):
+        split_oos_rows = pqq_nad_readout.get("counts", {}).get(
+            "current_geometry_fold_oos_rows"
+        )
+
+    supported_feature_fields = [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+    ]
+    approval_feature_fields = [
+        *supported_feature_fields,
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+    ]
+    supported_gate = _donor_acceptor_gate_readout(
+        pqq_nad_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_projection_backed_pqq_plus_nad_family_supported_now",
+        feature_fields=supported_feature_fields,
+        gate_rule=(
+            "Supported-now direct electron-flow route: fixed PQQ donor/acceptor "
+            "contact or fixed 8 A NAD-family donor/acceptor distance. Fe-S/iron "
+            "current positives are excluded until the non-current source-free "
+            "projection support tranche is approved."
+        ),
+    )
+
+    approval_rows: list[dict[str, Any]] = []
+    iron_sulfur_positive_rows: list[dict[str, Any]] = []
+    for row in pqq_nad_rows:
+        entry_id = str(row["entry_id"])
+        pqq_features = row.get("row_specific_event_features") or {}
+        relaxed_row = relaxed_rows_by_entry.get(entry_id)
+        iron_instances = _relaxed_non_pqq_positive_instances_for_family(
+            relaxed_row,
+            family_id="iron_sulfur_or_iron",
+        )
+        pqq_nad_complete = bool(row.get("source_free_electron_flow_field_complete"))
+        relaxed_complete = bool(
+            relaxed_row
+            and relaxed_row.get("source_free_electron_flow_field_complete")
+        )
+        complete = bool(pqq_nad_complete and relaxed_complete)
+        pqq_count = _count_feature(
+            pqq_features, "source_free_pqq_donor_acceptor_contact_count"
+        )
+        nad_count = _count_feature(
+            pqq_features, "source_free_nad_family_donor_acceptor_distance_count"
+        )
+        iron_count = len(iron_instances) if complete else None
+        total_count = (pqq_count + nad_count + (iron_count or 0)) if complete else None
+        iron_positive = bool(complete and iron_count)
+        if iron_positive:
+            iron_sulfur_positive_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "current_split_role": row.get("current_split_role"),
+                    "iron_sulfur_or_iron_contact_count": iron_count,
+                    "iron_sulfur_or_iron_contact_examples": iron_instances[:3],
+                }
+            )
+        approval_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "current_split_role": row.get("current_split_role"),
+                "source_free_electron_flow_field_complete": complete,
+                "row_specific_event_features": {
+                    "has_electron_transfer_event": (
+                        bool(total_count) if complete else None
+                    ),
+                    "electron_transfer_count": total_count,
+                    "has_source_free_pqq_donor_acceptor_contact": (
+                        bool(pqq_count) if complete else None
+                    ),
+                    "source_free_pqq_donor_acceptor_contact_count": (
+                        pqq_count if complete else None
+                    ),
+                    "has_source_free_nad_family_donor_acceptor_distance": (
+                        bool(nad_count) if complete else None
+                    ),
+                    "source_free_nad_family_donor_acceptor_distance_count": (
+                        nad_count if complete else None
+                    ),
+                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": (
+                        iron_positive if complete else None
+                    ),
+                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": (
+                        iron_count
+                    ),
+                },
+                "approval_qualified_evidence": {
+                    "projection_backed_pqq_nad_evidence": row.get(
+                        "projection_backed_evidence"
+                    ),
+                    "iron_sulfur_or_iron_donor_acceptor_distance_examples": (
+                        iron_instances[:6]
+                    ),
+                    "iron_sulfur_support_tranche_required_before_use": (
+                        "tiny_iron_sulfur_projection_materialization_attempt"
+                    ),
+                },
+            }
+        )
+
+    approval_gate = _donor_acceptor_gate_readout(
+        approval_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id=(
+            "fixed_binary_projection_backed_pqq_plus_nad_plus_approval_qualified_"
+            "iron_sulfur_family"
+        ),
+        feature_fields=approval_feature_fields,
+        gate_rule=(
+            "Approval-qualified direct electron-flow union: fixed PQQ "
+            "donor/acceptor contact, fixed 8 A NAD-family donor/acceptor "
+            "distance, or fixed 8 A Fe-S/iron donor/acceptor distance. The "
+            "Fe-S/iron component is counted only in this research-only what-if "
+            "gate because the tiny non-current Fe-S/iron projection tranche is "
+            "source-free positive but not approved/imported."
+        ),
+    )
+    component_specs = {
+        "pqq_donor_acceptor_only": {
+            "flag": "has_source_free_pqq_donor_acceptor_contact",
+            "count": "source_free_pqq_donor_acceptor_contact_count",
+            "rule": (
+                "Component ablation: fixed PQQ donor/acceptor contact only."
+            ),
+        },
+        "nad_family_distance_only": {
+            "flag": "has_source_free_nad_family_donor_acceptor_distance",
+            "count": "source_free_nad_family_donor_acceptor_distance_count",
+            "rule": (
+                "Component ablation: fixed 8 A NAD-family donor/acceptor "
+                "distance only."
+            ),
+        },
+        "iron_sulfur_or_iron_distance_only": {
+            "flag": "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+            "count": "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+            "rule": (
+                "Component ablation: fixed 8 A Fe-S/iron donor/acceptor "
+                "distance only, counted as approval-qualified research-only "
+                "signal pending tiny projection-tranche approval."
+            ),
+        },
+    }
+    family_ablation_gates: dict[str, dict[str, Any]] = {}
+    for component_id, spec in component_specs.items():
+        flag_key = str(spec["flag"])
+        count_key = str(spec["count"])
+        component_rows: list[dict[str, Any]] = []
+        for row in approval_rows:
+            features = row.get("row_specific_event_features") or {}
+            complete = bool(
+                row.get("source_free_electron_flow_field_complete")
+                and features.get(count_key) is not None
+            )
+            count = _count_feature(features, count_key) if complete else None
+            component_rows.append(
+                {
+                    "entry_id": row["entry_id"],
+                    "assigned_embedding_split": row.get(
+                        "assigned_embedding_split"
+                    ),
+                    "current_split_role": row.get("current_split_role"),
+                    "source_free_electron_flow_field_complete": complete,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": (
+                            bool(count) if complete else None
+                        ),
+                        "electron_transfer_count": count,
+                        flag_key: bool(count) if complete else None,
+                        count_key: count,
+                    },
+                }
+            )
+        family_ablation_gates[component_id] = _donor_acceptor_gate_readout(
+            component_rows,
+            split_oos_rows=split_oos_rows,
+            gate_id=f"fixed_binary_{component_id}",
+            feature_fields=[
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                flag_key,
+                count_key,
+            ],
+            gate_rule=str(spec["rule"]),
+        )
+    family_ablation_primary_safe_signal_components = [
+        component_id
+        for component_id, gate in sorted(family_ablation_gates.items())
+        if gate.get("preserves_primary_retention")
+        and gate.get("adds_incremental_oos_abstention")
+    ]
+    family_ablation_retained_oos_entry_ids = sorted(
+        {
+            str(entry_id)
+            for gate in family_ablation_gates.values()
+            for entry_id in gate.get("retained_oos_positive_entry_ids") or []
+        },
+        key=_entry_sort_key,
+    )
+    forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(
+        approval_rows
+    )
+    tiny_candidate_rows = int(tiny_materialization.get("candidate_rows") or 0)
+    tiny_complete_rows = int(tiny_materialization.get("complete_rows") or 0)
+    tiny_positive_rows = int(tiny_materialization.get("positive_rows") or 0)
+    tiny_approval_qualified = bool(
+        tiny_candidate_rows
+        and tiny_complete_rows == tiny_candidate_rows
+        and tiny_positive_rows == tiny_candidate_rows
+    )
+    expanded_candidate_rows = int(expanded_materialization.get("candidate_rows") or 0)
+    expanded_complete_rows = int(expanded_materialization.get("complete_rows") or 0)
+    expanded_positive_rows = int(expanded_materialization.get("positive_rows") or 0)
+    expanded_approval_qualified = bool(
+        expanded_candidate_rows
+        and expanded_complete_rows == expanded_candidate_rows
+        and expanded_positive_rows == expanded_candidate_rows
+    )
+    supported_signal = bool(
+        supported_gate.get("operating_point_measurable_now")
+        and supported_gate.get("preserves_primary_retention")
+        and supported_gate.get("adds_incremental_oos_abstention")
+    )
+    approval_signal = bool(
+        approval_gate.get("operating_point_measurable_now")
+        and approval_gate.get("preserves_primary_retention")
+        and approval_gate.get("adds_incremental_oos_abstention")
+        and tiny_approval_qualified
+        and not forbidden_feature_key_hits
+    )
+    fe_s_incremental_rows = (
+        int(approval_gate.get("retained_oos_positive_rows") or 0)
+        - int(supported_gate.get("retained_oos_positive_rows") or 0)
+    )
+    m_csa119_can_join_after_approval = bool(
+        approval_signal
+        and "m_csa:119"
+        in set(approval_gate.get("retained_oos_positive_entry_ids") or [])
+        and "m_csa:119"
+        in set(current_gate.get("retained_oos_positive_entry_ids") or [])
+    )
+    support_consumable_now = bool(
+        (iron_support.get("decision") or {}).get("train_cal_supported_now")
+    )
+    result_class = (
+        "research_only_approval_qualified_iron_sulfur_supported_operating_point_signal"
+        if approval_signal and support_consumable_now
+        else (
+            "research_only_approval_qualified_iron_sulfur_adds_incremental_signal_pending_feature_sidecar_approval"
+            if approval_signal and fe_s_incremental_rows > 0
+            else (
+                "research_only_approval_qualified_iron_sulfur_no_incremental_signal"
+                if approval_signal
+                else "research_only_approval_qualified_iron_sulfur_incomplete_or_negative"
+            )
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_"
+        f"union_readout_{result_class}"
+    )
+    tiny_entry_ids = tiny_materialization.get("positive_entry_ids") or []
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined source-free direct electron-flow "
+            "readout that measures the supported-now PQQ+NAD route against an "
+            "approval-qualified PQQ+NAD+Fe-S/iron union on the same 74-row "
+            "current split. It consumes only prior source-free feature sidecars "
+            "and the Fe-S/iron projection-support artifact; it does not approve, "
+            "import, tune, train, score heldout, or promote any feature."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": (
+                "source_free_projection_backed_pqq_nad_plus_approval_qualified_"
+                "iron_sulfur_current_split_feature_sidecar"
+            ),
+            "axis_id": (
+                "source_free_direct_electron_flow_pqq_nad_plus_iron_sulfur"
+            ),
+            "contract_status": "research_only_unapproved_unimported",
+            "row_scope": (
+                "current train/cal calibration split: 34 primary retention-gate "
+                "rows plus 40 current-retained OOS rows"
+            ),
+            "feature_fields": approval_feature_fields,
+            "direct_electron_flow_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "approval_condition_for_iron_sulfur_component": (
+                "The tiny Fe-S/iron source-free projection tranche must be "
+                "approved/imported with predictive_use_allowed=true before "
+                "the Fe-S/iron feature can be counted outside this what-if "
+                "research readout."
+            ),
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "feature_rows": approval_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "current_split_role",
+            "assigned_embedding_split",
+            "approval_qualified_evidence",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "supported_now_projection_backed_pqq_plus_nad_gate": supported_gate,
+            "approval_qualified_pqq_nad_plus_iron_sulfur_gate": approval_gate,
+            "current_split_iron_sulfur_or_iron_family_gate": current_gate,
+            "family_ablation_fixed_gates": family_ablation_gates,
+            "tiny_iron_sulfur_projection_materialization_support": (
+                tiny_materialization
+            ),
+            "expanded_iron_sulfur_projection_materialization_support": (
+                expanded_materialization
+            ),
+            "approval_qualified_iron_sulfur_positive_current_rows": (
+                sorted(
+                    iron_sulfur_positive_rows,
+                    key=lambda item: _entry_sort_key(item["entry_id"]),
+                )
+            ),
+            "forbidden_feature_key_hits": forbidden_feature_key_hits,
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_feature_key_hits),
+            "materialized_feature_rows": len(approval_rows),
+            "approval_qualified_feature_complete_rows": approval_gate[
+                "complete_rows"
+            ],
+            "approval_qualified_feature_incomplete_rows": approval_gate[
+                "incomplete_rows"
+            ],
+            "current_primary_rows": approval_gate["primary_rows"],
+            "current_retained_oos_rows": approval_gate["retained_oos_rows"],
+            "current_geometry_fold_oos_rows": approval_gate[
+                "current_geometry_fold_oos_rows"
+            ],
+            "supported_now_current_primary_positive_rows": supported_gate[
+                "primary_positive_rows"
+            ],
+            "supported_now_current_retained_oos_positive_rows": supported_gate[
+                "retained_oos_positive_rows"
+            ],
+            "supported_now_current_retained_oos_positive_entry_ids": supported_gate[
+                "retained_oos_positive_entry_ids"
+            ],
+            "supported_now_current_retained_oos_abstain_recall": supported_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "supported_now_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                supported_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "supported_now_union_or_gate_oos_abstain_recall": supported_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "approval_qualified_current_primary_positive_rows": approval_gate[
+                "primary_positive_rows"
+            ],
+            "approval_qualified_current_retained_oos_positive_rows": approval_gate[
+                "retained_oos_positive_rows"
+            ],
+            "approval_qualified_current_retained_oos_positive_entry_ids": (
+                approval_gate["retained_oos_positive_entry_ids"]
+            ),
+            "approval_qualified_current_primary_retain_recall": approval_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "approval_qualified_current_retained_oos_abstain_recall": (
+                approval_gate["retained_oos_abstain_recall_if_abstain_positive"]
+            ),
+            "approval_qualified_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                approval_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "approval_qualified_union_or_gate_oos_abstain_recall": approval_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                fe_s_incremental_rows
+            ),
+            "iron_sulfur_incremental_retained_oos_abstain_recall_beyond_pqq_nad": (
+                _metric_delta(
+                    approval_gate[
+                        "retained_oos_abstain_recall_if_abstain_positive"
+                    ],
+                    supported_gate[
+                        "retained_oos_abstain_recall_if_abstain_positive"
+                    ],
+                )
+            ),
+            "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad": (
+                _metric_delta(
+                    approval_gate[
+                        "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                    ],
+                    supported_gate[
+                        "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                    ],
+                )
+            ),
+            "family_ablation_primary_safe_components_with_retained_oos_signal": (
+                family_ablation_primary_safe_signal_components
+            ),
+            "family_ablation_distinct_retained_oos_positive_entry_ids": (
+                family_ablation_retained_oos_entry_ids
+            ),
+            "family_ablation_distinct_retained_oos_positive_rows": len(
+                family_ablation_retained_oos_entry_ids
+            ),
+            "tiny_projection_candidate_rows": tiny_candidate_rows,
+            "tiny_projection_complete_rows": tiny_complete_rows,
+            "tiny_projection_positive_rows": tiny_positive_rows,
+            "tiny_projection_positive_entry_ids": tiny_entry_ids,
+            "expanded_projection_candidate_rows": expanded_candidate_rows,
+            "expanded_projection_complete_rows": expanded_complete_rows,
+            "expanded_projection_positive_rows": expanded_positive_rows,
+            "forbidden_row_feature_key_hits": len(forbidden_feature_key_hits),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "supported_now_pqq_nad_preserves_primary_retention": supported_gate[
+                "preserves_primary_retention"
+            ],
+            "supported_now_pqq_nad_adds_operating_point_value_beyond_current_geometry_fold": (
+                supported_signal
+            ),
+            "approval_qualified_union_preserves_primary_retention": approval_gate[
+                "preserves_primary_retention"
+            ],
+            "approval_qualified_union_adds_operating_point_value_beyond_current_geometry_fold": (
+                approval_signal
+            ),
+            "approval_qualified_iron_sulfur_adds_incremental_oos_abstention_beyond_pqq_nad": (
+                fe_s_incremental_rows > 0
+            ),
+            "family_ablation_components_each_add_distinct_primary_safe_oos_signal": (
+                set(family_ablation_primary_safe_signal_components)
+                == set(component_specs)
+                and len(family_ablation_retained_oos_entry_ids)
+                == int(approval_gate.get("retained_oos_positive_rows") or 0)
+            ),
+            "tiny_projection_tranche_source_free_positive": (
+                tiny_approval_qualified
+            ),
+            "expanded_projection_tranche_source_free_positive": (
+                expanded_approval_qualified
+            ),
+            "tiny_projection_tranche_consumable_as_train_cal_support_now": (
+                support_consumable_now
+            ),
+            "m_csa119_can_join_supported_route_after_tiny_tranche_approval": (
+                m_csa119_can_join_after_approval
+            ),
+            "train_cal_supported_now": bool(approval_signal and support_consumable_now),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not approval_signal,
+            "apply_or_promote_now": False,
+            "remaining_gap": (
+                "The approval-qualified PQQ+NAD+Fe-S/iron union is measured, "
+                "source-free, primary-safe, and incrementally catches m_csa:119 "
+                "beyond the supported PQQ+NAD route, but the Fe-S/iron "
+                "projection support rows are still not approved/imported and "
+                "predictive_use_allowed remains false."
+            ),
+            "smallest_next_experiment": (
+                "Approve/import the tiny Fe-S/iron projection tranche "
+                f"({', '.join(tiny_entry_ids) or 'none available'}) into the "
+                "train/cal source-free feature sidecar with predictive_use_allowed "
+                "true, then rerun this fixed union readout without threshold "
+                "changes or heldout use."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_source_artifacts": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": False,
+            "review_only_locus_sidecar_imported_or_promoted": False,
+            "tiny_projection_materialization_imported_or_promoted": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "projection_backed_pqq_nad_feature_sidecar_readout": _source_path_record(
+                projection_backed_pqq_nad_feature_sidecar_readout_path
+            ),
+            "relaxed_non_pqq_feature_sidecar_readout": _source_path_record(
+                relaxed_non_pqq_feature_sidecar_readout_path
+            ),
+            "iron_sulfur_projection_support_readout": _source_path_record(
+                iron_sulfur_projection_support_readout_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The approval-qualified PQQ+NAD+Fe-S/iron union preserves the "
+                "34 current primary retention-gate rows, catches 3/40 "
+                "current-retained OOS rows, and adds one Fe-S/iron OOS catch "
+                "beyond the supported PQQ+NAD route."
+            )
+            if approval_signal
+            else (
+                "The approval-qualified PQQ+NAD+Fe-S/iron union is incomplete "
+                "or does not add a primary-safe current-split OOS signal."
+            ),
+            "next_action": (
+                "Keep PQQ+NAD as the supported measured route until the tiny "
+                "Fe-S/iron projection tranche is approved/imported; after that, "
+                "rerun this fixed union to decide promotion without changing "
+                "thresholds."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    supported = readout["measured_readout"][
+        "supported_now_projection_backed_pqq_plus_nad_gate"
+    ]
+    approval = readout["measured_readout"][
+        "approval_qualified_pqq_nad_plus_iron_sulfur_gate"
+    ]
+    family_ablation = readout["measured_readout"]["family_ablation_fixed_gates"]
+    iron_rows = readout["measured_readout"][
+        "approval_qualified_iron_sulfur_positive_current_rows"
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Fe-S/Iron Approval-Qualified Union Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Supported-now PQQ+NAD primary/OOS positives: "
+        f"{counts['supported_now_current_primary_positive_rows']}/"
+        f"{counts['supported_now_current_retained_oos_positive_rows']}",
+        "- Approval-qualified PQQ+NAD+Fe-S primary/OOS positives: "
+        f"{counts['approval_qualified_current_primary_positive_rows']}/"
+        f"{counts['approval_qualified_current_retained_oos_positive_rows']}",
+        "- Approval-qualified primary retain recall: "
+        f"{counts['approval_qualified_current_primary_retain_recall']}",
+        "- Approval-qualified retained-OOS abstain recall: "
+        f"{counts['approval_qualified_current_retained_oos_abstain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold: "
+        f"{counts['approval_qualified_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Fe-S incremental retained-OOS rows beyond PQQ+NAD: "
+        f"{counts['iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad']}",
+        "- Tiny projection tranche positives: "
+        f"{counts['tiny_projection_positive_rows']}/"
+        f"{counts['tiny_projection_candidate_rows']}",
+        "",
+        "## Fixed Gates",
+        "",
+        "| gate | complete | primary positives | retained-OOS positives | retained-OOS recall | union OOS recall |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+        "| supported PQQ+NAD | "
+        f"{supported.get('complete_rows')}/{supported.get('rows')} | "
+        f"{supported.get('primary_positive_rows')} | "
+        f"{supported.get('retained_oos_positive_rows')} | "
+        f"{supported.get('retained_oos_abstain_recall_if_abstain_positive')} | "
+        f"{supported.get('union_or_gate_oos_abstain_recall')} |",
+        "| approval-qualified PQQ+NAD+Fe-S | "
+        f"{approval.get('complete_rows')}/{approval.get('rows')} | "
+        f"{approval.get('primary_positive_rows')} | "
+        f"{approval.get('retained_oos_positive_rows')} | "
+        f"{approval.get('retained_oos_abstain_recall_if_abstain_positive')} | "
+        f"{approval.get('union_or_gate_oos_abstain_recall')} |",
+        "",
+        "## Family Ablation",
+        "",
+        "| component | primary positives | retained-OOS positives | positive rows |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for component_id, gate in sorted(family_ablation.items()):
+        lines.append(
+            f"| {component_id} | {gate.get('primary_positive_rows')} | "
+            f"{gate.get('retained_oos_positive_rows')} | "
+            f"{', '.join(gate.get('retained_oos_positive_entry_ids') or []) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Fe-S Current Positives",
+        "",
+        "| row | role | Fe-S count |",
+        "| --- | --- | ---: |",
+    ]
+    if not iron_rows:
+        lines.append("| none | none | 0 |")
+    for row in iron_rows:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('current_split_role')} | "
+            f"{row.get('iron_sulfur_or_iron_contact_count')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Supported PQQ+NAD adds value now: "
+        f"{decision['supported_now_pqq_nad_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Approval-qualified union adds value: "
+        f"{decision['approval_qualified_union_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Fe-S adds OOS abstention beyond PQQ+NAD: "
+        f"{decision['approval_qualified_iron_sulfur_adds_incremental_oos_abstention_beyond_pqq_nad']}",
+        "- Tiny Fe-S projection tranche source-free positive: "
+        f"{decision['tiny_projection_tranche_source_free_positive']}",
+        "- Tiny Fe-S projection tranche consumable now: "
+        f"{decision['tiny_projection_tranche_consumable_as_train_cal_support_now']}",
+        "- m_csa:119 can join after tiny tranche approval: "
+        f"{decision['m_csa119_can_join_supported_route_after_tiny_tranche_approval']}",
+        "- Train/cal supported now: "
+        f"{decision['train_cal_supported_now']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout(
+    *,
+    projection_backed_pqq_nad_feature_sidecar_readout_path: Path,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    iron_sulfur_projection_support_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_APPROVAL_QUALIFIED_UNION_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout(
+        projection_backed_pqq_nad_feature_sidecar_readout_path=(
+            projection_backed_pqq_nad_feature_sidecar_readout_path
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=(
+            relaxed_non_pqq_feature_sidecar_readout_path
+        ),
+        iron_sulfur_projection_support_readout_path=(
+            iron_sulfur_projection_support_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_report(
                 readout
             ),
             encoding="utf-8",

@@ -19979,6 +19979,175 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertTrue(readout["source_artifacts"]["geometry_features"]["exists"])
 
+    def test_lever2_electron_flow_iron_sulfur_approval_qualified_union_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_iron_sulfur_approval_"
+                "qualified_union_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_iron_sulfur_approval_"
+                "qualified_union_readout_research_only_approval_qualified_"
+                "iron_sulfur_adds_incremental_signal_pending_feature_sidecar_approval"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_approval_qualified_iron_sulfur_adds_incremental_signal_pending_feature_sidecar_approval",
+        )
+        self.assertEqual(readout["counts"]["materialized_feature_rows"], 74)
+        self.assertEqual(
+            readout["counts"]["approval_qualified_feature_complete_rows"], 74
+        )
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["current_retained_oos_rows"], 40)
+        self.assertEqual(
+            readout["counts"]["supported_now_current_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"][
+                "supported_now_current_retained_oos_positive_rows"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "supported_now_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_primary_positive_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_retained_oos_positive_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["approval_qualified_current_primary_retain_recall"],
+            1.0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_retained_oos_abstain_recall"
+            ],
+            0.075,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "iron_sulfur_incremental_oos_abstain_recall_vs_current_geometry_fold_beyond_pqq_nad"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "family_ablation_primary_safe_components_with_retained_oos_signal"
+            ],
+            [
+                "iron_sulfur_or_iron_distance_only",
+                "nad_family_distance_only",
+                "pqq_donor_acceptor_only",
+            ],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "family_ablation_distinct_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        family_ablation = readout["measured_readout"]["family_ablation_fixed_gates"]
+        self.assertEqual(
+            family_ablation["pqq_donor_acceptor_only"][
+                "retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            family_ablation["nad_family_distance_only"][
+                "retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:464"],
+        )
+        self.assertEqual(
+            family_ablation["iron_sulfur_or_iron_distance_only"][
+                "retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:119"],
+        )
+        self.assertEqual(readout["counts"]["tiny_projection_candidate_rows"], 3)
+        self.assertEqual(readout["counts"]["tiny_projection_complete_rows"], 3)
+        self.assertEqual(readout["counts"]["tiny_projection_positive_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["tiny_projection_positive_entry_ids"],
+            ["m_csa:127", "m_csa:281", "m_csa:443"],
+        )
+        self.assertEqual(readout["counts"]["expanded_projection_positive_rows"], 12)
+        self.assertTrue(
+            readout["decision"][
+                "approval_qualified_union_preserves_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approval_qualified_union_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approval_qualified_iron_sulfur_adds_incremental_oos_abstention_beyond_pqq_nad"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "m_csa119_can_join_supported_route_after_tiny_tranche_approval"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "family_ablation_components_each_add_distinct_primary_safe_oos_signal"
+            ]
+        )
+        self.assertFalse(readout["decision"]["train_cal_supported_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
+        self.assertTrue(
+            readout["source_artifacts"][
+                "projection_backed_pqq_nad_feature_sidecar_readout"
+            ]["exists"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

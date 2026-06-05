@@ -392,6 +392,35 @@ class CliTests(unittest.TestCase):
         self.assertIn("v3_geometry_features_1025", args.geometry_features)
         self.assertIsNone(args.coordinate_cif)
 
+    def test_lever2_electron_flow_iron_sulfur_approval_qualified_union_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-iron-sulfur-"
+                    "approval-qualified-union-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout",
+            args.projection_backed_pqq_nad_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.relaxed_non_pqq_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_projection_support_readout",
+            args.iron_sulfur_projection_support_readout,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

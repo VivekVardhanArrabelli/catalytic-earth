@@ -57,6 +57,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
     write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
@@ -14136,6 +14137,41 @@ def cmd_build_lever2_source_free_electron_flow_iron_sulfur_projection_support_re
         f"{counts.get('tiny_projection_positive_rows')}, "
         "review-only noncurrent proximal rows: "
         f"{counts.get('review_only_nonheldout_proximal_rows_outside_current_split')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout(
+        projection_backed_pqq_nad_feature_sidecar_readout_path=Path(
+            args.projection_backed_pqq_nad_feature_sidecar_readout
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        iron_sulfur_projection_support_readout_path=Path(
+            args.iron_sulfur_projection_support_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron "
+        f"approval-qualified union readout to {args.out} "
+        "supported-now OOS positives: "
+        f"{counts.get('supported_now_current_retained_oos_positive_rows')}, "
+        "approval-qualified OOS positives: "
+        f"{counts.get('approval_qualified_current_retained_oos_positive_rows')}, "
+        "Fe-S incremental rows: "
+        f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -33789,6 +33825,62 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_iron_sulfur_projection_support.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_approval_qualified_union = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "approval-qualified-union-readout"
+            ),
+            help=(
+                "measure the supported PQQ+NAD electron-flow route against a "
+                "research-only Fe-S/iron approval-qualified union"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--projection-backed-pqq-nad-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--iron-sulfur-projection-support-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "projection_support_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_approval_qualified_union.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout
         )
     )
 
