@@ -162,9 +162,9 @@ labels, registries, imports, production thresholds, or heldout splits.
 - Sync verification after that push matched local `HEAD` and
   `origin/lever-2-research-track` at
   `0a9635ea0e7359fe5b610189f2db90dbfd9cc910`.
-- This final ledger/status update is the only post-verification repo change and
-  will be committed, pushed, and verified as the wrap-up commit immediately
-  after the handoff edit.
+- The final ledger/status update was committed and pushed as a handoff-only
+  wrap-up change; final fetch verification matched local `HEAD` and
+  `origin/lever-2-research-track`.
 
 #### Exact next action
 
