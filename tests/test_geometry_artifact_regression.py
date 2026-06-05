@@ -18397,6 +18397,120 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_acquisition_ceiling_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_lever2_source_free_electron_flow_acquisition_ceiling_readout_current702_20260604.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_acquisition_ceiling_readout_"
+                "research_only_acquisition_ceiling"
+            ),
+        )
+        self.assertEqual(readout["result_class"], "research_only_acquisition_ceiling")
+        self.assertEqual(readout["counts"]["retained_oos_priority_rows"], 40)
+        self.assertEqual(readout["counts"]["primary_retention_gate_rows"], 34)
+        self.assertEqual(readout["counts"]["already_abstained_oos_rows"], 27)
+        self.assertEqual(
+            readout["counts"]["candidate_projection_overlap_retained_oos_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_projection_overlap_primary_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["smallest_smoke_source_free_rows_required"], 35
+        )
+        self.assertEqual(
+            readout["counts"]["full_retained_current_split_source_free_rows_required"],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"]["all_oos_plus_primary_source_free_rows_required"],
+            101,
+        )
+        self.assertEqual(
+            readout["counts"]["best_axis_new_current_retained_oos_catches"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["best_axis_catches_in_acquisition_priority_rows"], 0
+        )
+        self.assertFalse(readout["decision"]["smallest_smoke_tranche_measurable_now"])
+        self.assertFalse(
+            readout["decision"]["full_retained_current_split_measurable_now"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_source_free_axis_acquisition_ranking_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_lever2_source_free_mechanism_axis_acquisition_ranking_readout_current702_20260604.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_mechanism_axis_acquisition_ranking_readout_"
+                "research_only_axis_ranked_evidence_gap"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"], "research_only_axis_ranked_evidence_gap"
+        )
+        self.assertEqual(readout["counts"]["axis_candidates_ranked"], 5)
+        self.assertEqual(
+            readout["counts"]["genuine_mechanism_axis_candidates_ranked"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_ready_genuine_mechanism_axes_now"],
+            0,
+        )
+        self.assertEqual(
+            readout["decision"]["best_genuine_mechanism_axis_id"],
+            "electron_flow",
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_genuine_axis_delta_vs_current_projected_oos_abstain_recall"
+            ],
+            0.142857,
+        )
+        self.assertEqual(
+            readout["counts"]["best_genuine_axis_added_feature_fields"], 2
+        )
+        self.assertEqual(
+            readout["counts"][
+                "source_free_candidate_projection_overlap_primary_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_candidate_projection_overlap_oos_rows"],
+            0,
+        )
+        axis_ids = [
+            row["axis_id"]
+            for row in readout["measured_readout"][
+                "genuine_mechanism_axis_rankings"
+            ]
+        ]
+        self.assertEqual(axis_ids, ["electron_flow", "bond_change", "event_topology"])
+        self.assertFalse(
+            readout["decision"]["current_split_axis_readout_measurable_now"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_current_extended_oos_mechanism_overlap_readout_counts(
         self,
     ) -> None:

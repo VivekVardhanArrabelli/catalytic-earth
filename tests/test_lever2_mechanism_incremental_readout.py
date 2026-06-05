@@ -15,7 +15,9 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_event_axis_signature_exclusion_sensitivity_readout,
     build_lever2_event_axis_signature_excluded_frontier_readout,
     build_lever2_mechanism_feature_incremental_readout,
+    build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
+    build_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
     build_lever2_source_free_partial_surface_current_split_portability_readout,
 )
 from catalytic_earth.northstar_next_levers import (
@@ -2204,6 +2206,279 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             raw["counts"]["electron_positive_current_retained_oos_overlap_rows"],
             1,
         )
+
+    def test_electron_flow_acquisition_ceiling_tranches_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            split_path = root / "split.json"
+            acquisition_rows = [
+                {
+                    "entry_id": "m_csa:10",
+                    "priority_class": (
+                        "current_retained_oos_missing_electron_flow_axis"
+                    ),
+                    "source_free_candidate_projection_row_available": True,
+                },
+                {
+                    "entry_id": "m_csa:11",
+                    "priority_class": (
+                        "current_retained_oos_missing_electron_flow_axis"
+                    ),
+                    "source_free_candidate_projection_row_available": False,
+                },
+                {
+                    "entry_id": "m_csa:12",
+                    "priority_class": (
+                        "current_retained_oos_missing_electron_flow_axis"
+                    ),
+                    "source_free_candidate_projection_row_available": False,
+                },
+                {
+                    "entry_id": "m_csa:20",
+                    "priority_class": (
+                        "current_primary_retention_gate_missing_electron_flow_axis"
+                    ),
+                    "source_free_candidate_projection_row_available": False,
+                },
+                {
+                    "entry_id": "m_csa:21",
+                    "priority_class": (
+                        "current_primary_retention_gate_missing_electron_flow_axis"
+                    ),
+                    "source_free_candidate_projection_row_available": False,
+                },
+                {
+                    "entry_id": "m_csa:30",
+                    "priority_class": (
+                        "already_abstained_oos_missing_electron_flow_axis"
+                    ),
+                    "source_free_candidate_projection_row_available": False,
+                },
+            ]
+            split_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "lever2_source_free_electron_flow_"
+                            "split_alignment_readout_research_only"
+                        ),
+                        "decision": {
+                            "source_free_electron_flow_axis_has_train_cal_signal": True
+                        },
+                        "counts": {
+                            "missing_current_retained_oos_electron_flow_rows": 3,
+                            "missing_current_primary_electron_flow_rows": 2,
+                        },
+                        "measured_readout": {
+                            "train_cal_axis_ceiling": {
+                                "current_source_free_projected_subset": {
+                                    "oos_abstain_recall": 0.5,
+                                    "auc_oos_gt_primary": 0.75,
+                                },
+                                "current_plus_missing_electron_flow": {
+                                    "oos_abstain_recall": 0.75,
+                                    "auc_oos_gt_primary": 0.85,
+                                    "primary_retain_recall": 1.0,
+                                },
+                                "electron_flow_oos_abstain_recall_delta_vs_current_projected": 0.25,
+                            },
+                            "raw_full_sidecar_current_surface_overlap_diagnostic": {
+                                "available": True,
+                                "counts": {
+                                    "valid_current_primary_calibration_feature_overlap_rows": 0,
+                                    "current_oos_calibration_feature_overlap_rows": 2,
+                                    "current_retained_oos_overlap_rows": 2,
+                                    "electron_positive_current_retained_oos_overlap_rows": 1,
+                                },
+                            },
+                            "best_axis_current_extended_oos_overlap_diagnostic": {
+                                "available": True,
+                                "best_single_axis_new_oos_rows": [
+                                    {
+                                        "entry_id": "m_csa:11",
+                                        "current_retained_oos_caught_by_best_axis": True,
+                                    },
+                                    {
+                                        "entry_id": "m_csa:99",
+                                        "current_retained_oos_caught_by_best_axis": True,
+                                    },
+                                ],
+                            },
+                        },
+                        "acquisition_priority_rows": acquisition_rows,
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+                electron_flow_split_alignment_readout_path=split_path,
+                tranche_sizes=(1, 2),
+                artifact_id="test_electron_flow_acquisition_ceiling",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "test_electron_flow_acquisition_ceiling"
+        )
+        self.assertEqual(readout["result_class"], "research_only_acquisition_ceiling")
+        self.assertEqual(
+            readout["counts"]["smallest_smoke_source_free_rows_required"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["full_retained_current_split_source_free_rows_required"],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"]["all_oos_plus_primary_source_free_rows_required"],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_projection_overlap_retained_oos_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_projection_overlap_primary_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["best_axis_catches_in_acquisition_priority_rows"], 1
+        )
+        self.assertFalse(
+            readout["decision"]["smallest_smoke_tranche_measurable_now"]
+        )
+        self.assertFalse(
+            readout["decision"]["full_retained_current_split_measurable_now"]
+        )
+        self.assertIn("top 1", readout["decision"]["smallest_next_experiment"])
+
+    def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            projection_path = root / "projection.json"
+            candidate_path = root / "candidate.json"
+            partial_path = root / "partial.json"
+            baseline_fields = ["has_proton_transfer_event"]
+            projection_path.write_text(
+                json.dumps(
+                    {
+                        "measured_readout": {
+                            "axis_repair_ceiling_rows": [
+                                {
+                                    "variant": "current_source_free_projected_subset",
+                                    "feature_fields": baseline_fields,
+                                    "primary_retain_recall": 1.0,
+                                    "oos_abstain_recall": 0.5,
+                                    "auc_oos_gt_primary": 0.7,
+                                    "delta_vs_current_projected_oos_abstain_recall": 0.0,
+                                },
+                                {
+                                    "variant": "current_plus_missing_bond_change",
+                                    "feature_fields": [
+                                        *baseline_fields,
+                                        "has_bond_change_event",
+                                        "bond_change_event_count",
+                                    ],
+                                    "primary_retain_recall": 1.0,
+                                    "oos_abstain_recall": 0.6,
+                                    "auc_oos_gt_primary": 0.75,
+                                    "delta_vs_current_projected_oos_abstain_recall": 0.1,
+                                },
+                                {
+                                    "variant": "current_plus_missing_electron_flow",
+                                    "feature_fields": [
+                                        *baseline_fields,
+                                        "has_electron_transfer_event",
+                                        "electron_transfer_count",
+                                    ],
+                                    "primary_retain_recall": 1.0,
+                                    "oos_abstain_recall": 0.75,
+                                    "auc_oos_gt_primary": 0.9,
+                                    "delta_vs_current_projected_oos_abstain_recall": 0.25,
+                                },
+                                {
+                                    "variant": "current_plus_missing_confidence_metadata",
+                                    "feature_fields": [
+                                        *baseline_fields,
+                                        "medium_confidence_event_count",
+                                    ],
+                                    "primary_retain_recall": 1.0,
+                                    "oos_abstain_recall": 0.8,
+                                    "auc_oos_gt_primary": 0.85,
+                                    "delta_vs_current_projected_oos_abstain_recall": 0.3,
+                                },
+                            ],
+                            "split_alignment_context": {
+                                "current_geometry_fold_calibration_primary_rows": 2,
+                                "current_geometry_fold_calibration_oos_rows": 3,
+                                "source_free_candidate_projection_overlap_primary_rows": 0,
+                                "source_free_candidate_projection_overlap_oos_rows": 0,
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "surface_rows": 5,
+                            "missing_field_counts": {
+                                "has_bond_change_event": 5,
+                                "bond_change_event_count": 5,
+                                "has_electron_transfer_event": 5,
+                                "electron_transfer_count": 5,
+                                "medium_confidence_event_count": 5,
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            partial_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "union_current_primary_overlap_rows": 0,
+                            "union_current_retained_oos_overlap_rows": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+                projection_readout_path=projection_path,
+                source_free_projection_repair_candidate_surface_path=candidate_path,
+                partial_surface_current_split_portability_readout_path=partial_path,
+                artifact_id="test_axis_ranking",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_axis_ranking")
+        self.assertEqual(
+            readout["result_class"], "research_only_axis_ranked_evidence_gap"
+        )
+        self.assertEqual(
+            readout["decision"]["best_genuine_mechanism_axis_id"],
+            "electron_flow",
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_genuine_axis_delta_vs_current_projected_oos_abstain_recall"
+            ],
+            0.25,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_ready_genuine_mechanism_axes_now"], 0
+        )
+        self.assertFalse(
+            readout["decision"]["current_split_axis_readout_measurable_now"]
+        )
+        axis_ids = [
+            row["axis_id"]
+            for row in readout["measured_readout"]["genuine_mechanism_axis_rankings"]
+        ]
+        self.assertEqual(axis_ids, ["electron_flow", "bond_change"])
 
 
 if __name__ == "__main__":

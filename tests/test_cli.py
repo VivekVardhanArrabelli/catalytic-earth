@@ -94,6 +94,44 @@ class CliTests(unittest.TestCase):
             "extended_train_cal_oos_surface", args.current_extended_oos_surface
         )
 
+    def test_lever2_electron_flow_acquisition_ceiling_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-source-free-electron-flow-acquisition-ceiling-readout"]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_acquisition_ceiling_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_split_alignment_readout",
+            args.electron_flow_split_alignment_readout,
+        )
+        self.assertEqual(args.tranche_sizes, [1, 2, 5, 10, 20, 40])
+
+    def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-mechanism-axis-acquisition-ranking-readout"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_mechanism_axis_acquisition_ranking_readout",
+            args.out,
+        )
+        self.assertIn("source_free_train_cal_projection_readout", args.projection_readout)
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+
     def test_lever2_current_extended_oos_mechanism_overlap_parser_defaults(
         self,
     ) -> None:

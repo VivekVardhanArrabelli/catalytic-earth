@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T00:31:33Z`
-- STARTED_AT_LOCAL: `2026-06-04T19:31:33-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T01:27:10Z`
-- ENDED_AT_LOCAL: `2026-06-04T20:27:10-0500 CDT`
-- ELAPSED_MINUTES: `55.62`
+- STARTED_AT_UTC: `2026-06-05T01:33:02Z`
+- STARTED_AT_LOCAL: `2026-06-04T20:33:02-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T01:57:40Z`
+- ENDED_AT_LOCAL: `2026-06-04T20:57:40-0500 CDT`
+- ELAPSED_MINUTES: `24.63`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,160 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 12
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T01:33:02Z`
+- STARTED_LOCAL: `2026-06-04T20:33:02-0500 CDT`
+- ENDED_AT: `2026-06-05T01:57:40Z`
+- ENDED_LOCAL: `2026-06-04T20:57:40-0500 CDT`
+- ELAPSED_MINUTES: `24.63`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only on
+`lever-2-research-track`, starting from current `origin/main`. Avoid repeating
+the settled current-surface embedding and event-axis/motif null negatives; run
+a measured source-free mechanism-evidence follow-up if the available artifacts
+support one.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/80ee/catalytic-earth`; found
+  the existing dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued there for all branch work.
+- Fetched `origin main` and `origin lever-2-research-track`; confirmed current
+  `origin/main` `f599ef4126e8f86aaf415093f56f979c554d81ce` is already an
+  ancestor of `lever-2-research-track`; `git rebase origin/main` reported the
+  branch was up to date.
+- Disk started at the guardrail edge and dipped to about 9.8 GiB after tests.
+  Removed clean stale detached worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/a14d/catalytic-earth`,
+  restoring free space to about 13 GiB without touching main or the Lever 2
+  branch worktree.
+- Added `build-lever2-source-free-electron-flow-acquisition-ceiling-readout`.
+  It consumes the prior source-free electron-flow split-alignment readout and
+  measures the current-split source-free row tranches needed to make the
+  electron-flow operating-point readout measurable.
+- Added `build-lever2-source-free-mechanism-axis-acquisition-ranking-readout`.
+  It consumes the train/cal projection readout and candidate-surface field
+  coverage, ranks missing source-free axes by measured train/cal value and
+  evidence burden, and separates genuine mechanism axes from non-mechanism
+  confidence/locator support axes.
+- Generated two committed measured artifacts/reports:
+  `artifacts/v3_lever2_source_free_electron_flow_acquisition_ceiling_readout_current702_20260604.json`,
+  `work/lever2_source_free_electron_flow_acquisition_ceiling_readout_current702_20260604.md`,
+  `artifacts/v3_lever2_source_free_mechanism_axis_acquisition_ranking_readout_current702_20260604.json`,
+  and
+  `work/lever2_source_free_mechanism_axis_acquisition_ranking_readout_current702_20260604.md`.
+- Added CLI parser coverage, synthetic builder coverage, and generated-artifact
+  regressions for both readouts.
+- Checked the adjacent source-free partial-surface reuse route as a second
+  Lever 2 attempt. The existing measured artifact remains a current-split
+  reuse negative with 0/34 primary overlap and 0/132 current-retained OOS
+  overlap, so it reinforces the new source-free electron-flow acquisition gate
+  rather than opening a separate deployable path.
+
+#### Measured results
+
+- Electron-flow acquisition-ceiling readout:
+  `lever2_source_free_electron_flow_acquisition_ceiling_readout_research_only_acquisition_ceiling`.
+  The measured train/cal electron-flow gain is retained:
+  OOS abstain recall improves from 0.642857 to 0.785714 at primary retain
+  recall 1.0, delta 0.142857.
+- Current source-free candidate coverage is still 0/40 retained-OOS priority
+  rows and 0/34 current primary retention-gate rows. The smallest measurable
+  smoke tranche is 35 rows: top 1 retained-OOS row (`m_csa:104`) plus all
+  34 current primary rows. The full retained-OOS current-split tranche is
+  74 rows: all 40 retained-OOS priority rows plus all 34 primary rows.
+- Best-axis current-extended retained-OOS catches remain 2, but 0 of those
+  catches are already in the current acquisition-priority queue, so no
+  split-aligned operating-point value can be claimed now.
+- Mechanism-axis acquisition-ranking readout:
+  `lever2_source_free_mechanism_axis_acquisition_ranking_readout_research_only_axis_ranked_evidence_gap`.
+  Among genuine mechanism axes, electron-flow ranks first by measured train/cal
+  OOS-recall delta and value density: electron-flow delta 0.142857 with
+  2 added fields; bond-change delta 0.107143 with 5 added fields; event
+  topology delta 0.071429 with 2 added fields.
+- Confidence metadata ties electron-flow on raw OOS recall delta (0.142857) but
+  is explicitly classified as non-mechanism/review metadata and not a promotion
+  axis. Active-site locator count is also non-event support, with delta 0.035714.
+- No genuine mechanism axis is source-free ready now: 0/3 ready. The best axis,
+  electron-flow, still lacks both direct source-free fields
+  (`electron_transfer_count`, `has_electron_transfer_event`) across all
+  53 candidate-surface rows and current-split row coverage.
+- Classification: research-only measured evidence gap, not deployable and not
+  a negative against electron-flow as a train/cal signal. The current data are
+  insufficient for Lever 2 promotion because source-free, split-aligned
+  electron-flow rows do not yet exist for the current primary and retained-OOS
+  rows.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, or heldout splits changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or source
+  provenance were used as predictive features.
+- Entry IDs were used only for split accounting, row-tranche accounting,
+  deterministic diagnostics, and missing-evidence accounting.
+- M-CSA row-specific mechanism features remain train/cal-only research
+  evidence; no source-free current-split rows were materialized or promoted.
+
+#### Validation
+
+- Generated electron-flow acquisition-ceiling readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-acquisition-ceiling-readout`.
+- Generated mechanism-axis acquisition-ranking readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-mechanism-axis-acquisition-ranking-readout`.
+- Focused new parser/builder/artifact tests passed:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_source_free_axis_acquisition_ranking_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_source_free_axis_acquisition_ranking_readout_current_counts -q`:
+  3 passed.
+- Focused combined parser/builder/artifact tests for both new readouts passed:
+  6 passed before the second readout and 3 passed after the second readout.
+- Broader touched-file slice after both readouts:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  429 passed, 186 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1498 passed, 205 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1453 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep passed: 3570 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact source records were manually checked: all referenced source
+  artifacts exist and have recorded hashes; both new artifacts report
+  `critical_violation_total` 0 and `heldout_rows_scored_by_this_artifact`
+  false.
+- Disk ended above the guardrail at about 13 GiB free.
+
+#### Commit/push status
+
+- Pending at handoff-write time; this run will commit and push the touched
+  code, generated readouts, and this handoff on `lever-2-research-track`.
+
+#### Exact next action
+
+Materialize direct source-free electron-flow fields first for the 35-row smoke
+tranche: `m_csa:104` plus all 34 current primary retention-gate rows. Then
+rerun the train/cal projection and fixed-threshold incremental readouts. Only
+expand to the 74-row retained-OOS current-split tranche if the smoke tranche
+preserves primary retention and adds incremental OOS abstention. Do not spend
+promotion effort on confidence metadata, and do not evaluate heldout until the
+current train/cal split is measurable.
 
 ### 2026-06-04 Lever 2 Research Run 11
 

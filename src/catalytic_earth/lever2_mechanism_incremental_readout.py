@@ -24,6 +24,14 @@ DEFAULT_ARTIFACT_ID = (
 DEFAULT_ELECTRON_FLOW_SPLIT_ALIGNMENT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_split_alignment_readout_current702_20260604"
 )
+DEFAULT_ELECTRON_FLOW_ACQUISITION_CEILING_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_acquisition_ceiling_readout_"
+    "current702_20260604"
+)
+DEFAULT_SOURCE_FREE_AXIS_ACQUISITION_RANKING_ARTIFACT_ID = (
+    "v3_lever2_source_free_mechanism_axis_acquisition_ranking_readout_"
+    "current702_20260604"
+)
 DEFAULT_CURRENT_EXTENDED_OOS_MECHANISM_OVERLAP_ARTIFACT_ID = (
     "v3_lever2_current_extended_oos_mechanism_overlap_readout_current702_20260604"
 )
@@ -2923,6 +2931,713 @@ def build_lever2_source_free_electron_flow_split_alignment_readout(
                 "Acquire split-aligned source-free electron-flow evidence for "
                 "the priority rows in this artifact; start with current-retained "
                 "OOS rows, then primary retention-gate rows."
+            ),
+        },
+    }
+
+
+def build_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+    *,
+    electron_flow_split_alignment_readout_path: Path,
+    tranche_sizes: tuple[int, ...] = (1, 2, 5, 10, 20, 40),
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_ACQUISITION_CEILING_ARTIFACT_ID,
+) -> dict[str, Any]:
+    if not tranche_sizes:
+        raise ValueError("tranche_sizes must not be empty")
+    if any(size <= 0 for size in tranche_sizes):
+        raise ValueError("tranche_sizes must contain positive integers")
+
+    split = _read_json(electron_flow_split_alignment_readout_path)
+    split_counts = split.get("counts") or {}
+    split_decision = split.get("decision") or {}
+    measured = split.get("measured_readout") or {}
+    acquisition_rows = [
+        row for row in split.get("acquisition_priority_rows", []) if isinstance(row, dict)
+    ]
+
+    def _priority_rows(priority_class: str) -> list[dict[str, Any]]:
+        return [
+            row
+            for row in acquisition_rows
+            if row.get("priority_class") == priority_class
+        ]
+
+    retained_oos_rows = _priority_rows(
+        "current_retained_oos_missing_electron_flow_axis"
+    )
+    primary_rows = _priority_rows(
+        "current_primary_retention_gate_missing_electron_flow_axis"
+    )
+    already_abstained_oos_rows = _priority_rows(
+        "already_abstained_oos_missing_electron_flow_axis"
+    )
+
+    best_axis_overlap = (
+        measured.get("best_axis_current_extended_oos_overlap_diagnostic") or {}
+    )
+    best_axis_rows = best_axis_overlap.get("best_single_axis_new_oos_rows") or []
+    best_axis_current_retained_catches = [
+        row
+        for row in best_axis_rows
+        if bool(row.get("current_retained_oos_caught_by_best_axis"))
+    ]
+    acquisition_ids = {str(row.get("entry_id")) for row in acquisition_rows}
+    best_axis_catches_in_acquisition = [
+        row
+        for row in best_axis_current_retained_catches
+        if str(row.get("entry_id")) in acquisition_ids
+    ]
+
+    raw_overlap = measured.get("raw_full_sidecar_current_surface_overlap_diagnostic")
+    raw_counts = (
+        raw_overlap.get("counts", {})
+        if isinstance(raw_overlap, dict) and raw_overlap.get("available")
+        else {}
+    )
+    train_cal_ceiling = measured.get("train_cal_axis_ceiling") or {}
+    current_subset = (
+        train_cal_ceiling.get("current_source_free_projected_subset") or {}
+    )
+    electron_flow = train_cal_ceiling.get("current_plus_missing_electron_flow") or {}
+
+    tranche_sizes = tuple(sorted(set(min(size, len(retained_oos_rows)) for size in tranche_sizes)))
+    tranche_sizes = tuple(size for size in tranche_sizes if size > 0)
+    if retained_oos_rows and len(retained_oos_rows) not in tranche_sizes:
+        tranche_sizes = tuple(sorted((*tranche_sizes, len(retained_oos_rows))))
+
+    def _entry_ids(rows: list[dict[str, Any]]) -> list[str]:
+        return [str(row.get("entry_id")) for row in rows if row.get("entry_id")]
+
+    def _candidate_overlap_count(rows: list[dict[str, Any]]) -> int:
+        return sum(
+            1
+            for row in rows
+            if bool(row.get("source_free_candidate_projection_row_available"))
+        )
+
+    primary_candidate_rows = _candidate_overlap_count(primary_rows)
+    retained_candidate_rows = _candidate_overlap_count(retained_oos_rows)
+    already_abstained_candidate_rows = _candidate_overlap_count(
+        already_abstained_oos_rows
+    )
+    tranche_rows: list[dict[str, Any]] = []
+    for size in tranche_sizes:
+        retained_tranche = retained_oos_rows[:size]
+        rows_required = len(primary_rows) + len(retained_tranche)
+        retained_candidate_tranche_rows = _candidate_overlap_count(retained_tranche)
+        candidate_rows_now = primary_candidate_rows + retained_candidate_tranche_rows
+        tranche_rows.append(
+            {
+                "tranche_id": f"top_{size}_retained_oos_plus_all_primary",
+                "retained_oos_rows": len(retained_tranche),
+                "primary_rows": len(primary_rows),
+                "total_source_free_rows_required": rows_required,
+                "candidate_projection_rows_now": candidate_rows_now,
+                "candidate_projection_rows_missing_now": (
+                    rows_required - candidate_rows_now
+                ),
+                "retained_oos_entry_ids": _entry_ids(retained_tranche),
+                "primary_entry_ids": _entry_ids(primary_rows),
+                "max_current_retained_oos_catches_measurable_if_all_positive": (
+                    len(retained_tranche)
+                ),
+                "primary_retention_cost_measurable": bool(primary_rows),
+                "current_retained_oos_increment_measurable": bool(retained_tranche),
+                "full_retained_oos_surface_measurable": (
+                    len(retained_tranche) == len(retained_oos_rows)
+                ),
+            }
+        )
+
+    smallest_smoke_tranche = tranche_rows[0] if tranche_rows else None
+    full_retained_tranche = tranche_rows[-1] if tranche_rows else None
+    train_cal_signal = bool(
+        split_decision.get("source_free_electron_flow_axis_has_train_cal_signal")
+    )
+    split_ready_now = bool(
+        primary_rows
+        and retained_oos_rows
+        and primary_candidate_rows == len(primary_rows)
+        and retained_candidate_rows == len(retained_oos_rows)
+    )
+    smoke_ready_now = bool(
+        smallest_smoke_tranche
+        and smallest_smoke_tranche["candidate_projection_rows_missing_now"] == 0
+    )
+    result_class = (
+        "research_only_acquisition_ceiling"
+        if train_cal_signal
+        else "negative_no_train_cal_signal"
+    )
+    status = (
+        "lever2_source_free_electron_flow_acquisition_ceiling_readout_"
+        f"{result_class}"
+    )
+
+    smoke_rows_required = (
+        int(smallest_smoke_tranche["total_source_free_rows_required"])
+        if smallest_smoke_tranche is not None
+        else 0
+    )
+    full_rows_required = (
+        int(full_retained_tranche["total_source_free_rows_required"])
+        if full_retained_tranche is not None
+        else 0
+    )
+    electron_delta = train_cal_ceiling.get(
+        "electron_flow_oos_abstain_recall_delta_vs_current_projected"
+    )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_acquisition_ceiling_"
+            "readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 2 measured acquisition-ceiling readout for source-free "
+            "electron-flow evidence. It consumes the prior train/cal "
+            "electron-flow split-alignment artifact, measures the smallest "
+            "source-free row tranches needed to make the current split "
+            "operating-point readout measurable, and does not materialize "
+            "features, train models, tune thresholds, score heldout, or promote "
+            "deployment state."
+        ),
+        "result_class": result_class,
+        "measured_readout": {
+            "source_split_alignment_status": split.get("status"),
+            "train_cal_axis_signal": {
+                "current_projected_subset_oos_abstain_recall": (
+                    current_subset.get("oos_abstain_recall")
+                ),
+                "current_projected_subset_primary_retain_recall": (
+                    current_subset.get("primary_retain_recall")
+                ),
+                "current_plus_electron_flow_oos_abstain_recall": (
+                    electron_flow.get("oos_abstain_recall")
+                ),
+                "electron_flow_oos_abstain_recall_delta_vs_current_projected": (
+                    electron_delta
+                ),
+                "current_projected_subset_auc_oos_gt_primary": (
+                    current_subset.get("auc_oos_gt_primary")
+                ),
+                "current_plus_electron_flow_auc_oos_gt_primary": (
+                    electron_flow.get("auc_oos_gt_primary")
+                ),
+                "electron_flow_primary_retain_recall": (
+                    electron_flow.get("primary_retain_recall")
+                ),
+            },
+            "raw_current_split_overlap": {
+                "available": bool(
+                    isinstance(raw_overlap, dict) and raw_overlap.get("available")
+                ),
+                "valid_current_primary_calibration_feature_overlap_rows": (
+                    raw_counts.get(
+                        "valid_current_primary_calibration_feature_overlap_rows"
+                    )
+                ),
+                "current_oos_calibration_feature_overlap_rows": raw_counts.get(
+                    "current_oos_calibration_feature_overlap_rows"
+                ),
+                "current_retained_oos_overlap_rows": raw_counts.get(
+                    "current_retained_oos_overlap_rows"
+                ),
+                "electron_positive_current_retained_oos_overlap_rows": (
+                    raw_counts.get(
+                        "electron_positive_current_retained_oos_overlap_rows"
+                    )
+                ),
+            },
+            "best_axis_current_extended_overlap": {
+                "available": bool(best_axis_overlap.get("available")),
+                "best_axis_new_current_retained_oos_catches": len(
+                    best_axis_current_retained_catches
+                ),
+                "best_axis_new_current_retained_oos_entry_ids": _entry_ids(
+                    best_axis_current_retained_catches
+                ),
+                "best_axis_new_current_retained_oos_catches_in_acquisition_queue": (
+                    len(best_axis_catches_in_acquisition)
+                ),
+                "best_axis_catch_entry_ids_in_acquisition_queue": _entry_ids(
+                    best_axis_catches_in_acquisition
+                ),
+            },
+            "acquisition_tranches": tranche_rows,
+            "smallest_source_free_smoke_tranche": smallest_smoke_tranche,
+            "full_retained_oos_current_split_tranche": full_retained_tranche,
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "source_free_electron_flow_smoke_tranche",
+                "required_rows": smoke_rows_required,
+                "valid_candidate_projection_rows_now": (
+                    int(smallest_smoke_tranche["candidate_projection_rows_now"])
+                    if smallest_smoke_tranche is not None
+                    else 0
+                ),
+                "why_it_matters": (
+                    "This is the smallest train/cal-disciplined experiment "
+                    "that can measure at least one current-retained OOS "
+                    "electron-flow candidate while preserving the current "
+                    "primary retention gate."
+                ),
+            },
+            {
+                "gap_id": "source_free_electron_flow_full_retained_current_split",
+                "required_rows": full_rows_required,
+                "valid_candidate_projection_rows_now": (
+                    int(full_retained_tranche["candidate_projection_rows_now"])
+                    if full_retained_tranche is not None
+                    else 0
+                ),
+                "why_it_matters": (
+                    "This tranche covers every current-retained OOS row plus "
+                    "all current primary rows needed for a split-aligned "
+                    "operating-point readout."
+                ),
+            },
+            {
+                "gap_id": "source_free_electron_flow_already_abstained_oos_completion",
+                "required_rows": len(already_abstained_oos_rows),
+                "valid_candidate_projection_rows_now": already_abstained_candidate_rows,
+                "why_it_matters": (
+                    "These OOS rows are lower priority for incremental value "
+                    "because the current geometry/fold surface already "
+                    "abstains, but they complete the electron-flow OOS surface."
+                ),
+            },
+        ],
+        "counts": {
+            "critical_violation_total": 0,
+            "retained_oos_priority_rows": len(retained_oos_rows),
+            "primary_retention_gate_rows": len(primary_rows),
+            "already_abstained_oos_rows": len(already_abstained_oos_rows),
+            "candidate_projection_overlap_retained_oos_rows": retained_candidate_rows,
+            "candidate_projection_overlap_primary_rows": primary_candidate_rows,
+            "candidate_projection_overlap_already_abstained_oos_rows": (
+                already_abstained_candidate_rows
+            ),
+            "smallest_smoke_source_free_rows_required": smoke_rows_required,
+            "full_retained_current_split_source_free_rows_required": (
+                full_rows_required
+            ),
+            "all_oos_plus_primary_source_free_rows_required": (
+                len(retained_oos_rows)
+                + len(primary_rows)
+                + len(already_abstained_oos_rows)
+            ),
+            "acquisition_tranches": len(tranche_rows),
+            "train_cal_electron_flow_oos_recall_delta": electron_delta,
+            "best_axis_new_current_retained_oos_catches": len(
+                best_axis_current_retained_catches
+            ),
+            "best_axis_catches_in_acquisition_priority_rows": len(
+                best_axis_catches_in_acquisition
+            ),
+            "source_split_missing_current_retained_oos_electron_flow_rows": (
+                split_counts.get("missing_current_retained_oos_electron_flow_rows")
+            ),
+            "source_split_missing_current_primary_electron_flow_rows": (
+                split_counts.get("missing_current_primary_electron_flow_rows")
+            ),
+        },
+        "decision": {
+            "measured_train_cal_signal_available": train_cal_signal,
+            "smallest_smoke_tranche_measurable_now": smoke_ready_now,
+            "full_retained_current_split_measurable_now": split_ready_now,
+            "adds_operating_point_value_beyond_current_surface": False,
+            "deployable_now": False,
+            "research_only": train_cal_signal,
+            "negative": not train_cal_signal,
+            "apply_or_promote_now": False,
+            "smallest_next_experiment": (
+                "Acquire source-free electron-flow fields for the top "
+                f"{smallest_smoke_tranche['retained_oos_rows']} "
+                "current-retained OOS row(s) and all "
+                f"{smallest_smoke_tranche['primary_rows']} current primary "
+                "rows, then rerun the train/cal projection and incremental "
+                "readouts."
+                if smallest_smoke_tranche is not None
+                else "No retained-OOS acquisition tranche is available."
+            ),
+            "promotion_gate": (
+                "Require actual source-free electron-flow rows for all "
+                f"{len(retained_oos_rows)} retained-OOS priority rows and all "
+                f"{len(primary_rows)} primary rows, followed by a fixed "
+                "train/cal operating-point readout, before any heldout or "
+                "deployment claim."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_split_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_axis_materialized_by_this_artifact": False,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "electron_flow_split_alignment_readout": _source_path_record(
+                electron_flow_split_alignment_readout_path
+            )
+        },
+        "interpretation": {
+            "result": (
+                "Research-only acquisition ceiling: electron-flow has measured "
+                f"train/cal OOS recall delta {electron_delta}, but the current "
+                "source-free candidate surface covers "
+                f"{retained_candidate_rows}/{len(retained_oos_rows)} retained "
+                f"OOS rows and {primary_candidate_rows}/{len(primary_rows)} "
+                "primary rows, so no split-aligned operating-point value can "
+                "be claimed yet."
+                if train_cal_signal
+                else (
+                    "Negative acquisition ceiling: the source split-alignment "
+                    "readout did not preserve a train/cal electron-flow signal."
+                )
+            ),
+            "next_action": (
+                "Run the 35-row source-free electron-flow smoke tranche first; "
+                "only expand to the 74-row retained-OOS current-split tranche "
+                "if the smoke tranche preserves primary retention and adds "
+                "incremental OOS abstention."
+            ),
+        },
+    }
+
+
+def build_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+    *,
+    projection_readout_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    artifact_id: str = DEFAULT_SOURCE_FREE_AXIS_ACQUISITION_RANKING_ARTIFACT_ID,
+) -> dict[str, Any]:
+    projection = _read_json(projection_readout_path)
+    candidate_surface = _read_json(source_free_projection_repair_candidate_surface_path)
+    partial_surface = (
+        _read_json(partial_surface_current_split_portability_readout_path)
+        if partial_surface_current_split_portability_readout_path is not None
+        and Path(partial_surface_current_split_portability_readout_path).exists()
+        else None
+    )
+    measured = projection.get("measured_readout") or {}
+    axis_rows = measured.get("axis_repair_ceiling_rows") or []
+    baseline = _variant_by_name(projection, "current_source_free_projected_subset")
+    if baseline is None:
+        raise ValueError("current_source_free_projected_subset variant missing")
+    baseline_fields = set(baseline.get("feature_fields") or [])
+    candidate_counts = candidate_surface.get("counts") or {}
+    missing_field_counts = candidate_counts.get("missing_field_counts") or {}
+    split_context = measured.get("split_alignment_context") or {}
+    partial_counts = (partial_surface or {}).get("counts", {})
+
+    genuine_mechanism_axes = {"bond_change", "electron_flow", "event_topology"}
+    nonmechanism_axis_notes = {
+        "active_site_locator_count": (
+            "supporting locator-count feature, not a row-specific mechanism "
+            "event axis"
+        ),
+        "confidence_metadata": (
+            "review-confidence metadata; excluded from genuine source-free "
+            "mechanism promotion"
+        ),
+    }
+
+    ranked_axes: list[dict[str, Any]] = []
+    for row in axis_rows:
+        variant = str(row.get("variant") or "")
+        if variant in {
+            "current_source_free_projected_subset",
+            "full_frozen_row_specific_surface",
+        }:
+            continue
+        if not variant.startswith("current_plus_missing_"):
+            continue
+        axis_id = variant.removeprefix("current_plus_missing_")
+        feature_fields = set(row.get("feature_fields") or [])
+        added_fields = sorted(feature_fields - baseline_fields)
+        delta = float(row.get("delta_vs_current_projected_oos_abstain_recall") or 0.0)
+        field_missing = {
+            field: int(missing_field_counts.get(field, 0)) for field in added_fields
+        }
+        ready_fields = [
+            field for field, missing_count in field_missing.items() if missing_count == 0
+        ]
+        axis_ready_now = bool(added_fields) and len(ready_fields) == len(added_fields)
+        ranked_axes.append(
+            {
+                "axis_id": axis_id,
+                "variant": variant,
+                "genuine_mechanism_axis": axis_id in genuine_mechanism_axes,
+                "mechanism_axis_note": nonmechanism_axis_notes.get(
+                    axis_id, "row-specific mechanism event axis"
+                ),
+                "primary_retain_recall": row.get("primary_retain_recall"),
+                "oos_abstain_recall": row.get("oos_abstain_recall"),
+                "auc_oos_gt_primary": row.get("auc_oos_gt_primary"),
+                "delta_vs_current_projected_oos_abstain_recall": delta,
+                "remaining_gap_to_full_oos_abstain_recall": row.get(
+                    "remaining_gap_to_full_oos_abstain_recall"
+                ),
+                "added_feature_fields": added_fields,
+                "added_feature_field_count": len(added_fields),
+                "value_density_per_added_field": round(
+                    delta / len(added_fields), 6
+                )
+                if added_fields
+                else None,
+                "candidate_surface_added_fields_ready_now": axis_ready_now,
+                "candidate_surface_ready_added_fields": ready_fields,
+                "candidate_surface_missing_added_field_counts": field_missing,
+                "source_free_candidate_surface_rows": int(
+                    candidate_counts.get("surface_rows") or 0
+                ),
+            }
+        )
+
+    ranked_axes.sort(
+        key=lambda row: (
+            int(bool(row["genuine_mechanism_axis"])),
+            float(row["delta_vs_current_projected_oos_abstain_recall"]),
+            float(row["value_density_per_added_field"] or 0.0),
+            -int(row["added_feature_field_count"]),
+            str(row["axis_id"]),
+        ),
+        reverse=True,
+    )
+    genuine_ranked_axes = [row for row in ranked_axes if row["genuine_mechanism_axis"]]
+    best_genuine_axis = genuine_ranked_axes[0] if genuine_ranked_axes else None
+    source_free_ready_axes = [
+        row for row in ranked_axes if row["candidate_surface_added_fields_ready_now"]
+    ]
+    ready_genuine_axes = [
+        row
+        for row in genuine_ranked_axes
+        if row["candidate_surface_added_fields_ready_now"]
+    ]
+    split_primary_rows = int(
+        split_context.get("current_geometry_fold_calibration_primary_rows") or 0
+    )
+    split_oos_rows = int(
+        split_context.get("current_geometry_fold_calibration_oos_rows") or 0
+    )
+    candidate_primary_overlap = int(
+        split_context.get("source_free_candidate_projection_overlap_primary_rows") or 0
+    )
+    candidate_oos_overlap = int(
+        split_context.get("source_free_candidate_projection_overlap_oos_rows") or 0
+    )
+    partial_primary_overlap = int(
+        partial_counts.get("union_current_primary_overlap_rows") or 0
+    )
+    partial_retained_oos_overlap = int(
+        partial_counts.get("union_current_retained_oos_overlap_rows") or 0
+    )
+    best_delta = (
+        best_genuine_axis["delta_vs_current_projected_oos_abstain_recall"]
+        if best_genuine_axis is not None
+        else None
+    )
+    split_measurable_now = bool(
+        ready_genuine_axes
+        and candidate_primary_overlap >= split_primary_rows
+        and candidate_oos_overlap > 0
+    )
+    result_class = (
+        "research_only_axis_ranked_evidence_gap"
+        if best_genuine_axis is not None and best_delta and best_delta > 0
+        else "negative_no_genuine_axis_gain"
+    )
+    status = (
+        "lever2_source_free_mechanism_axis_acquisition_ranking_readout_"
+        f"{result_class}"
+    )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_mechanism_axis_acquisition_ranking_"
+            "readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 2 measured train/cal ranking of missing source-free "
+            "mechanism axes by operating-point value and evidence burden. It "
+            "consumes the source-free projection readout plus candidate-surface "
+            "field coverage, does not materialize mechanism rows, and does not "
+            "read heldout, tune thresholds, or promote deployment state."
+        ),
+        "result_class": result_class,
+        "measured_readout": {
+            "axis_rankings": ranked_axes,
+            "genuine_mechanism_axis_rankings": genuine_ranked_axes,
+            "best_genuine_mechanism_axis": best_genuine_axis,
+            "source_free_ready_axes_now": source_free_ready_axes,
+            "source_free_ready_genuine_mechanism_axes_now": ready_genuine_axes,
+            "split_alignment_context": split_context,
+            "partial_surface_current_split_overlap": {
+                "available": partial_surface is not None,
+                "union_current_primary_overlap_rows": partial_primary_overlap,
+                "union_current_retained_oos_overlap_rows": (
+                    partial_retained_oos_overlap
+                ),
+            },
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "best_genuine_axis_added_source_free_fields",
+                "required_fields": (
+                    best_genuine_axis["added_feature_fields"]
+                    if best_genuine_axis is not None
+                    else []
+                ),
+                "candidate_surface_missing_field_counts": (
+                    best_genuine_axis[
+                        "candidate_surface_missing_added_field_counts"
+                    ]
+                    if best_genuine_axis is not None
+                    else {}
+                ),
+                "why_it_matters": (
+                    "These are the direct source-free fields needed before the "
+                    "best measured genuine mechanism axis can be applied to "
+                    "current-split rows."
+                ),
+            },
+            {
+                "gap_id": "current_split_source_free_axis_rows",
+                "required_primary_rows": split_primary_rows,
+                "required_oos_rows": split_oos_rows,
+                "candidate_primary_rows_now": candidate_primary_overlap,
+                "candidate_oos_rows_now": candidate_oos_overlap,
+                "why_it_matters": (
+                    "Primary retention and OOS abstention must both be "
+                    "measurable on the current train/cal split before Lever 2 "
+                    "can claim operating-point value."
+                ),
+            },
+        ],
+        "counts": {
+            "critical_violation_total": 0,
+            "axis_candidates_ranked": len(ranked_axes),
+            "genuine_mechanism_axis_candidates_ranked": len(genuine_ranked_axes),
+            "source_free_ready_axes_now": len(source_free_ready_axes),
+            "source_free_ready_genuine_mechanism_axes_now": len(ready_genuine_axes),
+            "candidate_surface_rows": int(candidate_counts.get("surface_rows") or 0),
+            "current_geometry_fold_calibration_primary_rows": split_primary_rows,
+            "current_geometry_fold_calibration_oos_rows": split_oos_rows,
+            "source_free_candidate_projection_overlap_primary_rows": (
+                candidate_primary_overlap
+            ),
+            "source_free_candidate_projection_overlap_oos_rows": (
+                candidate_oos_overlap
+            ),
+            "partial_surface_union_current_primary_overlap_rows": (
+                partial_primary_overlap
+            ),
+            "partial_surface_union_current_retained_oos_overlap_rows": (
+                partial_retained_oos_overlap
+            ),
+            "best_genuine_axis_delta_vs_current_projected_oos_abstain_recall": (
+                best_delta
+            ),
+            "best_genuine_axis_added_feature_fields": (
+                len(best_genuine_axis["added_feature_fields"])
+                if best_genuine_axis is not None
+                else 0
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "best_genuine_mechanism_axis_id": (
+                best_genuine_axis["axis_id"] if best_genuine_axis else None
+            ),
+            "best_genuine_mechanism_axis_has_train_cal_value": bool(
+                best_delta and best_delta > 0
+            ),
+            "best_genuine_mechanism_axis_source_free_ready_now": bool(
+                best_genuine_axis
+                and best_genuine_axis["candidate_surface_added_fields_ready_now"]
+            ),
+            "current_split_axis_readout_measurable_now": split_measurable_now,
+            "adds_operating_point_value_beyond_current_surface": False,
+            "deployable_now": False,
+            "research_only": result_class.startswith("research_only"),
+            "negative": result_class.startswith("negative"),
+            "apply_or_promote_now": False,
+            "next_gate": (
+                "Prioritize the best genuine mechanism axis, "
+                f"{best_genuine_axis['axis_id'] if best_genuine_axis else 'none'}, "
+                "only after direct source-free fields and current-split primary "
+                "plus OOS rows are materialized; then rerun train/cal "
+                "projection and fixed-threshold incremental readouts."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "labels_used_as_feature_values": False,
+            "source_free_axis_rows_materialized_by_this_artifact": False,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "projection_readout": _source_path_record(projection_readout_path),
+            "source_free_projection_repair_candidate_surface": _source_path_record(
+                source_free_projection_repair_candidate_surface_path
+            ),
+            "partial_surface_current_split_portability_readout": (
+                _source_path_record(partial_surface_current_split_portability_readout_path)
+                if partial_surface_current_split_portability_readout_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Research-only axis ranking: electron-flow is the best measured "
+                "genuine missing mechanism axis by train/cal OOS-recall gain, "
+                f"with delta {best_delta}, but no genuine mechanism axis is "
+                "source-free ready on the current split."
+                if best_genuine_axis is not None and best_delta and best_delta > 0
+                else (
+                    "Negative axis ranking: no genuine missing mechanism axis "
+                    "adds train/cal OOS-recall value beyond the current "
+                    "projected subset."
+                )
+            ),
+            "next_action": (
+                "Materialize direct source-free electron-flow fields first; "
+                "do not spend promotion effort on confidence metadata, and do "
+                "not evaluate heldout until the current train/cal split is "
+                "measurable."
             ),
         },
     }
@@ -11806,6 +12521,202 @@ def render_lever2_source_free_electron_flow_split_alignment_readout_report(
     return "\n".join(lines) + "\n"
 
 
+def render_lever2_source_free_electron_flow_acquisition_ceiling_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    signal = measured["train_cal_axis_signal"]
+    raw = measured["raw_current_split_overlap"]
+    best_axis = measured["best_axis_current_extended_overlap"]
+    smallest = measured.get("smallest_source_free_smoke_tranche") or {}
+    full = measured.get("full_retained_oos_current_split_tranche") or {}
+    tranches = measured.get("acquisition_tranches") or []
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Acquisition-Ceiling Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Train/cal electron-flow OOS recall delta: "
+        f"{signal['electron_flow_oos_abstain_recall_delta_vs_current_projected']}",
+        "- Current candidate coverage for retained OOS rows: "
+        f"{counts['candidate_projection_overlap_retained_oos_rows']}/"
+        f"{counts['retained_oos_priority_rows']}",
+        "- Current candidate coverage for primary rows: "
+        f"{counts['candidate_projection_overlap_primary_rows']}/"
+        f"{counts['primary_retention_gate_rows']}",
+        "- Smallest smoke tranche rows required: "
+        f"{counts['smallest_smoke_source_free_rows_required']}",
+        "- Full retained-OOS current-split rows required: "
+        f"{counts['full_retained_current_split_source_free_rows_required']}",
+        "",
+        "## Measured Signal Context",
+        "",
+        "| surface | OOS abstain recall | AUC OOS > primary | primary retain |",
+        "| --- | ---: | ---: | ---: |",
+        (
+            "| current projected subset | "
+            f"{signal['current_projected_subset_oos_abstain_recall']} | "
+            f"{signal['current_projected_subset_auc_oos_gt_primary']} | "
+            f"{signal['current_projected_subset_primary_retain_recall']} |"
+        ),
+        (
+            "| current + electron flow | "
+            f"{signal['current_plus_electron_flow_oos_abstain_recall']} | "
+            f"{signal['current_plus_electron_flow_auc_oos_gt_primary']} | "
+            f"{signal['electron_flow_primary_retain_recall']} |"
+        ),
+        "",
+        "## Current-Split Measurability",
+        "",
+        f"- Raw current-split overlap available: {raw['available']}",
+        "- Valid current-primary feature overlap rows: "
+        f"{raw['valid_current_primary_calibration_feature_overlap_rows']}",
+        "- Current OOS feature overlap rows: "
+        f"{raw['current_oos_calibration_feature_overlap_rows']}",
+        "- Electron-positive current-retained OOS overlap rows: "
+        f"{raw['electron_positive_current_retained_oos_overlap_rows']}/"
+        f"{raw['current_retained_oos_overlap_rows']}",
+        "- Best-axis current-retained OOS catches in extended surface: "
+        f"{best_axis['best_axis_new_current_retained_oos_catches']}",
+        "- Best-axis catches already in acquisition queue: "
+        f"{best_axis['best_axis_new_current_retained_oos_catches_in_acquisition_queue']}",
+        "",
+        "## Acquisition Tranches",
+        "",
+        "| tranche | retained OOS | primary | rows required | candidate rows now | max retained-OOS catches measurable |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in tranches:
+        lines.append(
+            f"| {row['tranche_id']} | {row['retained_oos_rows']} | "
+            f"{row['primary_rows']} | {row['total_source_free_rows_required']} | "
+            f"{row['candidate_projection_rows_now']} | "
+            f"{row['max_current_retained_oos_catches_measurable_if_all_positive']} |"
+        )
+    lines += [
+        "",
+        "## Smallest Next Experiment",
+        "",
+        "- Smoke tranche: "
+        f"{smallest.get('tranche_id')} with "
+        f"{smallest.get('total_source_free_rows_required')} rows.",
+        "- Full retained-OOS tranche: "
+        f"{full.get('tranche_id')} with "
+        f"{full.get('total_source_free_rows_required')} rows.",
+        "- Smoke tranche retained-OOS rows: "
+        f"{', '.join((smallest.get('retained_oos_entry_ids') or [])[:10])}",
+        "- Smoke tranche primary row count: "
+        f"{len(smallest.get('primary_entry_ids') or [])}",
+        "",
+        "## Decision",
+        "",
+        "- Measured train/cal signal available: "
+        f"{decision['measured_train_cal_signal_available']}",
+        "- Smallest smoke tranche measurable now: "
+        f"{decision['smallest_smoke_tranche_measurable_now']}",
+        "- Full retained current split measurable now: "
+        f"{decision['full_retained_current_split_measurable_now']}",
+        "- Adds operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        f"- Promotion gate: {decision['promotion_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def render_lever2_source_free_mechanism_axis_acquisition_ranking_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    best = measured.get("best_genuine_mechanism_axis") or {}
+    lines = [
+        "# Lever 2 Source-Free Mechanism Axis Acquisition-Ranking Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Best genuine mechanism axis: "
+        f"{decision['best_genuine_mechanism_axis_id']}",
+        "- Best genuine-axis train/cal OOS recall delta: "
+        f"{counts['best_genuine_axis_delta_vs_current_projected_oos_abstain_recall']}",
+        "- Source-free ready genuine axes now: "
+        f"{counts['source_free_ready_genuine_mechanism_axes_now']}/"
+        f"{counts['genuine_mechanism_axis_candidates_ranked']}",
+        "- Current candidate overlap with primary rows: "
+        f"{counts['source_free_candidate_projection_overlap_primary_rows']}/"
+        f"{counts['current_geometry_fold_calibration_primary_rows']}",
+        "- Current candidate overlap with calibration OOS rows: "
+        f"{counts['source_free_candidate_projection_overlap_oos_rows']}/"
+        f"{counts['current_geometry_fold_calibration_oos_rows']}",
+        "",
+        "## Axis Ranking",
+        "",
+        "| axis | genuine mechanism | delta | AUC | added fields | value/field | ready now |",
+        "| --- | --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in measured.get("axis_rankings") or []:
+        lines.append(
+            f"| {row['axis_id']} | {row['genuine_mechanism_axis']} | "
+            f"{row['delta_vs_current_projected_oos_abstain_recall']} | "
+            f"{row['auc_oos_gt_primary']} | "
+            f"{row['added_feature_field_count']} | "
+            f"{row['value_density_per_added_field']} | "
+            f"{row['candidate_surface_added_fields_ready_now']} |"
+        )
+    lines += [
+        "",
+        "## Best Genuine Axis Evidence Burden",
+        "",
+        f"- Axis: {best.get('axis_id')}",
+        "- Added fields: "
+        f"{', '.join(best.get('added_feature_fields') or [])}",
+        "- Candidate-surface missing field counts: "
+        f"{best.get('candidate_surface_missing_added_field_counts')}",
+        "",
+        "## Decision",
+        "",
+        "- Best genuine axis has train/cal value: "
+        f"{decision['best_genuine_mechanism_axis_has_train_cal_value']}",
+        "- Best genuine axis source-free ready now: "
+        f"{decision['best_genuine_mechanism_axis_source_free_ready_now']}",
+        "- Current-split axis readout measurable now: "
+        f"{decision['current_split_axis_readout_measurable_now']}",
+        "- Adds operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def write_lever2_source_free_electron_flow_split_alignment_readout(
     *,
     projection_readout_path: Path,
@@ -11842,6 +12753,72 @@ def write_lever2_source_free_electron_flow_split_alignment_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             render_lever2_source_free_electron_flow_split_alignment_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def write_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+    *,
+    electron_flow_split_alignment_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    tranche_sizes: tuple[int, ...] = (1, 2, 5, 10, 20, 40),
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_ACQUISITION_CEILING_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+        electron_flow_split_alignment_readout_path=(
+            electron_flow_split_alignment_readout_path
+        ),
+        tranche_sizes=tranche_sizes,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_source_free_electron_flow_acquisition_ceiling_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def write_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+    *,
+    projection_readout_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    artifact_id: str = DEFAULT_SOURCE_FREE_AXIS_ACQUISITION_RANKING_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+        projection_readout_path=projection_readout_path,
+        source_free_projection_repair_candidate_surface_path=(
+            source_free_projection_repair_candidate_surface_path
+        ),
+        partial_surface_current_split_portability_readout_path=(
+            partial_surface_current_split_portability_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_source_free_mechanism_axis_acquisition_ranking_readout_report(
                 readout
             ),
             encoding="utf-8",

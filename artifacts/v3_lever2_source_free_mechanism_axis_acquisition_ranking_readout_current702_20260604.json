@@ -1,0 +1,366 @@
+{
+  "artifact_id": "v3_lever2_source_free_mechanism_axis_acquisition_ranking_readout_current702_20260604",
+  "counts": {
+    "axis_candidates_ranked": 5,
+    "best_genuine_axis_added_feature_fields": 2,
+    "best_genuine_axis_delta_vs_current_projected_oos_abstain_recall": 0.142857,
+    "candidate_surface_rows": 53,
+    "critical_violation_total": 0,
+    "current_geometry_fold_calibration_oos_rows": 75,
+    "current_geometry_fold_calibration_primary_rows": 34,
+    "genuine_mechanism_axis_candidates_ranked": 3,
+    "partial_surface_union_current_primary_overlap_rows": 0,
+    "partial_surface_union_current_retained_oos_overlap_rows": 0,
+    "source_free_candidate_projection_overlap_oos_rows": 0,
+    "source_free_candidate_projection_overlap_primary_rows": 0,
+    "source_free_ready_axes_now": 0,
+    "source_free_ready_genuine_mechanism_axes_now": 0
+  },
+  "created_utc": "2026-06-05T01:52:59Z",
+  "decision": {
+    "adds_operating_point_value_beyond_current_surface": false,
+    "apply_or_promote_now": false,
+    "best_genuine_mechanism_axis_has_train_cal_value": true,
+    "best_genuine_mechanism_axis_id": "electron_flow",
+    "best_genuine_mechanism_axis_source_free_ready_now": false,
+    "current_split_axis_readout_measurable_now": false,
+    "deployable_now": false,
+    "measured_readout_available": true,
+    "negative": false,
+    "next_gate": "Prioritize the best genuine mechanism axis, electron_flow, only after direct source-free fields and current-split primary plus OOS rows are materialized; then rerun train/cal projection and fixed-threshold incremental readouts.",
+    "research_only": true
+  },
+  "guardrails": {
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "m_csa_row_specific_features_train_cal_only": true,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "source_free_axis_rows_materialized_by_this_artifact": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Materialize direct source-free electron-flow fields first; do not spend promotion effort on confidence metadata, and do not evaluate heldout until the current train/cal split is measurable.",
+    "result": "Research-only axis ranking: electron-flow is the best measured genuine missing mechanism axis by train/cal OOS-recall gain, with delta 0.142857, but no genuine mechanism axis is source-free ready on the current split."
+  },
+  "measured_readout": {
+    "axis_rankings": [
+      {
+        "added_feature_field_count": 2,
+        "added_feature_fields": [
+          "electron_transfer_count",
+          "has_electron_transfer_event"
+        ],
+        "auc_oos_gt_primary": 0.870536,
+        "axis_id": "electron_flow",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "electron_transfer_count": 53,
+          "has_electron_transfer_event": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+        "genuine_mechanism_axis": true,
+        "mechanism_axis_note": "row-specific mechanism event axis",
+        "oos_abstain_recall": 0.785714,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.071429,
+        "variant": "current_plus_missing_electron_flow"
+      },
+      {
+        "added_feature_field_count": 5,
+        "added_feature_fields": [
+          "bond_broken_count",
+          "bond_change_event_count",
+          "bond_formed_count",
+          "bond_order_changed_count",
+          "has_bond_change_event"
+        ],
+        "auc_oos_gt_primary": 0.790179,
+        "axis_id": "bond_change",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "bond_broken_count": 53,
+          "bond_change_event_count": 53,
+          "bond_formed_count": 53,
+          "bond_order_changed_count": 53,
+          "has_bond_change_event": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.107143,
+        "genuine_mechanism_axis": true,
+        "mechanism_axis_note": "row-specific mechanism event axis",
+        "oos_abstain_recall": 0.75,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.107143,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.021429,
+        "variant": "current_plus_missing_bond_change"
+      },
+      {
+        "added_feature_field_count": 2,
+        "added_feature_fields": [
+          "event_count",
+          "multi_event_mechanism_flag"
+        ],
+        "auc_oos_gt_primary": 0.803571,
+        "axis_id": "event_topology",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "event_count": 53,
+          "multi_event_mechanism_flag": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.071429,
+        "genuine_mechanism_axis": true,
+        "mechanism_axis_note": "row-specific mechanism event axis",
+        "oos_abstain_recall": 0.714286,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.142857,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.035715,
+        "variant": "current_plus_missing_event_topology"
+      },
+      {
+        "added_feature_field_count": 4,
+        "added_feature_fields": [
+          "high_confidence_event_count",
+          "low_confidence_event_count",
+          "medium_confidence_event_count",
+          "unknown_confidence_event_count"
+        ],
+        "auc_oos_gt_primary": 0.8125,
+        "axis_id": "confidence_metadata",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "high_confidence_event_count": 53,
+          "low_confidence_event_count": 53,
+          "medium_confidence_event_count": 53,
+          "unknown_confidence_event_count": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+        "genuine_mechanism_axis": false,
+        "mechanism_axis_note": "review-confidence metadata; excluded from genuine source-free mechanism promotion",
+        "oos_abstain_recall": 0.785714,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.035714,
+        "variant": "current_plus_missing_confidence_metadata"
+      },
+      {
+        "added_feature_field_count": 2,
+        "added_feature_fields": [
+          "mapped_active_site_residue_count",
+          "unique_mapped_active_site_residue_count"
+        ],
+        "auc_oos_gt_primary": 0.830357,
+        "axis_id": "active_site_locator_count",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "mapped_active_site_residue_count": 53,
+          "unique_mapped_active_site_residue_count": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.035714,
+        "genuine_mechanism_axis": false,
+        "mechanism_axis_note": "supporting locator-count feature, not a row-specific mechanism event axis",
+        "oos_abstain_recall": 0.678571,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.178572,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.017857,
+        "variant": "current_plus_missing_active_site_locator_count"
+      }
+    ],
+    "best_genuine_mechanism_axis": {
+      "added_feature_field_count": 2,
+      "added_feature_fields": [
+        "electron_transfer_count",
+        "has_electron_transfer_event"
+      ],
+      "auc_oos_gt_primary": 0.870536,
+      "axis_id": "electron_flow",
+      "candidate_surface_added_fields_ready_now": false,
+      "candidate_surface_missing_added_field_counts": {
+        "electron_transfer_count": 53,
+        "has_electron_transfer_event": 53
+      },
+      "candidate_surface_ready_added_fields": [],
+      "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+      "genuine_mechanism_axis": true,
+      "mechanism_axis_note": "row-specific mechanism event axis",
+      "oos_abstain_recall": 0.785714,
+      "primary_retain_recall": 1.0,
+      "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+      "source_free_candidate_surface_rows": 53,
+      "value_density_per_added_field": 0.071429,
+      "variant": "current_plus_missing_electron_flow"
+    },
+    "genuine_mechanism_axis_rankings": [
+      {
+        "added_feature_field_count": 2,
+        "added_feature_fields": [
+          "electron_transfer_count",
+          "has_electron_transfer_event"
+        ],
+        "auc_oos_gt_primary": 0.870536,
+        "axis_id": "electron_flow",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "electron_transfer_count": 53,
+          "has_electron_transfer_event": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.142857,
+        "genuine_mechanism_axis": true,
+        "mechanism_axis_note": "row-specific mechanism event axis",
+        "oos_abstain_recall": 0.785714,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.071429,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.071429,
+        "variant": "current_plus_missing_electron_flow"
+      },
+      {
+        "added_feature_field_count": 5,
+        "added_feature_fields": [
+          "bond_broken_count",
+          "bond_change_event_count",
+          "bond_formed_count",
+          "bond_order_changed_count",
+          "has_bond_change_event"
+        ],
+        "auc_oos_gt_primary": 0.790179,
+        "axis_id": "bond_change",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "bond_broken_count": 53,
+          "bond_change_event_count": 53,
+          "bond_formed_count": 53,
+          "bond_order_changed_count": 53,
+          "has_bond_change_event": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.107143,
+        "genuine_mechanism_axis": true,
+        "mechanism_axis_note": "row-specific mechanism event axis",
+        "oos_abstain_recall": 0.75,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.107143,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.021429,
+        "variant": "current_plus_missing_bond_change"
+      },
+      {
+        "added_feature_field_count": 2,
+        "added_feature_fields": [
+          "event_count",
+          "multi_event_mechanism_flag"
+        ],
+        "auc_oos_gt_primary": 0.803571,
+        "axis_id": "event_topology",
+        "candidate_surface_added_fields_ready_now": false,
+        "candidate_surface_missing_added_field_counts": {
+          "event_count": 53,
+          "multi_event_mechanism_flag": 53
+        },
+        "candidate_surface_ready_added_fields": [],
+        "delta_vs_current_projected_oos_abstain_recall": 0.071429,
+        "genuine_mechanism_axis": true,
+        "mechanism_axis_note": "row-specific mechanism event axis",
+        "oos_abstain_recall": 0.714286,
+        "primary_retain_recall": 1.0,
+        "remaining_gap_to_full_oos_abstain_recall": 0.142857,
+        "source_free_candidate_surface_rows": 53,
+        "value_density_per_added_field": 0.035715,
+        "variant": "current_plus_missing_event_topology"
+      }
+    ],
+    "partial_surface_current_split_overlap": {
+      "available": true,
+      "union_current_primary_overlap_rows": 0,
+      "union_current_retained_oos_overlap_rows": 0
+    },
+    "source_free_ready_axes_now": [],
+    "source_free_ready_genuine_mechanism_axes_now": [],
+    "split_alignment_context": {
+      "available": true,
+      "current_geometry_fold_calibration_oos_rows": 75,
+      "current_geometry_fold_calibration_primary_rows": 34,
+      "full_row_specific_feature_overlap_oos_entry_ids": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:78",
+        "m_csa:85",
+        "m_csa:149",
+        "m_csa:222",
+        "m_csa:246"
+      ],
+      "full_row_specific_feature_overlap_oos_rows": 8,
+      "full_row_specific_feature_overlap_primary_entry_ids": [
+        "m_csa:102"
+      ],
+      "full_row_specific_feature_overlap_primary_rows": 1,
+      "measurability_note": "The current source-free candidate projection cannot support a split-aligned incremental operating-point readout until it covers the current geometry/fold calibration-primary and train/cal OOS rows.",
+      "source_free_candidate_projection_overlap_oos_entry_ids": [],
+      "source_free_candidate_projection_overlap_oos_rows": 0,
+      "source_free_candidate_projection_overlap_primary_entry_ids": [],
+      "source_free_candidate_projection_overlap_primary_rows": 0
+    }
+  },
+  "missing_evidence": [
+    {
+      "candidate_surface_missing_field_counts": {
+        "electron_transfer_count": 53,
+        "has_electron_transfer_event": 53
+      },
+      "gap_id": "best_genuine_axis_added_source_free_fields",
+      "required_fields": [
+        "electron_transfer_count",
+        "has_electron_transfer_event"
+      ],
+      "why_it_matters": "These are the direct source-free fields needed before the best measured genuine mechanism axis can be applied to current-split rows."
+    },
+    {
+      "candidate_oos_rows_now": 0,
+      "candidate_primary_rows_now": 0,
+      "gap_id": "current_split_source_free_axis_rows",
+      "required_oos_rows": 75,
+      "required_primary_rows": 34,
+      "why_it_matters": "Primary retention and OOS abstention must both be measurable on the current train/cal split before Lever 2 can claim operating-point value."
+    }
+  ],
+  "result_class": "research_only_axis_ranked_evidence_gap",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_mechanism_axis_acquisition_ranking_readout.v0",
+  "scope": "Lever 2 measured train/cal ranking of missing source-free mechanism axes by operating-point value and evidence burden. It consumes the source-free projection readout plus candidate-surface field coverage, does not materialize mechanism rows, and does not read heldout, tune thresholds, or promote deployment state.",
+  "source_artifacts": {
+    "partial_surface_current_split_portability_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_partial_surface_current_split_portability_readout_current702_20260604.json",
+      "sha256": "1f3bac640d2db8b009ae14376820ea940ed40fe89ac58551adcf83b0e1ee1ca6"
+    },
+    "projection_readout": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_train_cal_projection_readout_current702_20260604.json",
+      "sha256": "deb59488cfb6efa79e8f9d5b4a13cb67d836cd81fa498bff47169ba0b4bb913d"
+    },
+    "source_free_projection_repair_candidate_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604.json",
+      "sha256": "ecf532516d30980a16001071091795cdc009a3e7c808c67b37ed647fcc572313"
+    }
+  },
+  "status": "lever2_source_free_mechanism_axis_acquisition_ranking_readout_research_only_axis_ranked_evidence_gap"
+}

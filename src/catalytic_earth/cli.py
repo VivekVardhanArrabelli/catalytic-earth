@@ -53,7 +53,9 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_event_axis_signature_excluded_frontier_readout,
     write_lever2_event_motif_interaction_null_readout,
     write_lever2_mechanism_feature_incremental_readout,
+    write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
+    write_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
     write_lever2_source_free_partial_surface_current_split_portability_readout,
 )
 from .mechanism_residual_gate_integration import write_residual_gate_integration_eval
@@ -13711,6 +13713,64 @@ def cmd_build_lever2_source_free_electron_flow_split_alignment_readout(
         f"{counts.get('missing_current_retained_oos_electron_flow_rows')}, "
         f"best-axis current OOS catches: "
         f"{counts.get('best_single_axis_new_oos_catches_on_current_geometry_fold_oos')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_acquisition_ceiling_readout(
+        electron_flow_split_alignment_readout_path=Path(
+            args.electron_flow_split_alignment_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        tranche_sizes=tuple(args.tranche_sizes),
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow acquisition-ceiling readout to "
+        f"{args.out} (smoke rows: "
+        f"{counts.get('smallest_smoke_source_free_rows_required')}, "
+        "full retained rows: "
+        f"{counts.get('full_retained_current_split_source_free_rows_required')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_mechanism_axis_acquisition_ranking_readout(
+        projection_readout_path=Path(args.projection_readout),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 source-free mechanism-axis acquisition-ranking readout "
+        f"to {args.out} (best axis: "
+        f"{decision.get('best_genuine_mechanism_axis_id')}, "
+        "ready genuine axes: "
+        f"{counts.get('source_free_ready_genuine_mechanism_axes_now')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -32689,6 +32749,98 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_electron_flow_split_alignment_readout.set_defaults(
         func=cmd_build_lever2_source_free_electron_flow_split_alignment_readout
+    )
+
+    lever2_electron_flow_acquisition_ceiling_readout = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-acquisition-ceiling-readout",
+        help=(
+            "write a Lever 2 acquisition-ceiling readout for source-free "
+            "electron-flow evidence tranches after the split-alignment readout"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--electron-flow-split-alignment-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_split_alignment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--tranche-sizes",
+        type=int,
+        nargs="+",
+        default=[1, 2, 5, 10, 20, 40],
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_acquisition_"
+            "ceiling_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_acquisition_ceiling_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_acquisition_ceiling_readout.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_acquisition_ceiling_readout
+    )
+
+    lever2_axis_acquisition_ranking_readout = subparsers.add_parser(
+        "build-lever2-source-free-mechanism-axis-acquisition-ranking-readout",
+        help=(
+            "write a Lever 2 train/cal ranking of missing source-free "
+            "mechanism axes by value and evidence burden"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--projection-readout",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_train_cal_"
+            "projection_readout_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_mechanism_axis_acquisition_"
+            "ranking_readout_current702_20260604.json"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_mechanism_axis_acquisition_ranking_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever2_axis_acquisition_ranking_readout.set_defaults(
+        func=cmd_build_lever2_source_free_mechanism_axis_acquisition_ranking_readout
     )
 
     lever2_current_extended_oos_mechanism_overlap_readout = subparsers.add_parser(
