@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T01:33:02Z`
-- STARTED_AT_LOCAL: `2026-06-04T20:33:02-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T02:00:18Z`
-- ENDED_AT_LOCAL: `2026-06-04T21:00:18-0500 CDT`
-- ELAPSED_MINUTES: `27.27`
+- STARTED_AT_UTC: `2026-06-05T02:31:31Z`
+- STARTED_AT_LOCAL: `2026-06-04T21:31:31-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T03:26:38Z`
+- ENDED_AT_LOCAL: `2026-06-04T22:26:38-0500 CDT`
+- ELAPSED_MINUTES: `55.12`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,154 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 13
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T02:31:31Z`
+- STARTED_LOCAL: `2026-06-04T21:31:31-0500 CDT`
+- ENDED_AT: `2026-06-05T03:26:38Z`
+- ENDED_LOCAL: `2026-06-04T22:26:38-0500 CDT`
+- ELAPSED_MINUTES: `55.12`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only on
+`lever-2-research-track`, starting from current `origin/main`. Follow the prior
+run's electron-flow acquisition next action, but do a measured source-free
+evidence scan first rather than writing a blocker packet.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/a502/catalytic-earth`; found
+  the dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued all branch work there.
+- Initial disk check was below the 10 GiB guardrail at about 9.8 GiB free.
+  Removed the clean stale detached worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/80ee/catalytic-earth`,
+  restoring free space to about 13 GiB before substantive work.
+- Fetched `origin` and rebased `lever-2-research-track` onto current
+  `origin/main` `e68e70889cde28c1de04da8b8d6948141055b0f3`.
+  Resolved the recurring `src/catalytic_earth/cli.py` conflicts by preserving
+  both the current Lever 3 P07658/safe-abstention command family and the Lever 2
+  mechanism command family.
+- Added
+  `build-lever2-source-free-electron-flow-smoke-tranche-evidence-scan`.
+  It consumes the source-free electron-flow acquisition ceiling, the existing
+  source-free projection repair candidate surface, the partial-surface
+  current-split portability readout, the review-only locator candidate
+  directory, the materialized locator gate, and the event-axis linker gate. It
+  checks the 35-row smoke tranche for the two direct electron-flow fields
+  (`has_electron_transfer_event`, `electron_transfer_count`) and separately
+  counts source-free scaffold evidence without treating that scaffold as a
+  predictive electron-flow feature.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_smoke_tranche_evidence_scan_current702_20260604.json`
+  and
+  `work/lever2_source_free_electron_flow_smoke_tranche_evidence_scan_current702_20260604.md`.
+- Added CLI parser coverage, synthetic builder coverage, and artifact-count
+  regression coverage for the smoke-tranche scan.
+- Checked an alternate source-free cofactor/locus proxy route. Existing organic
+  cofactor score sidecars cover all 35 smoke rows for flavin/heme records and
+  have 10 rows at score >= 0.5 (`m_csa:102`, `m_csa:277`, `m_csa:319`,
+  `m_csa:320`, `m_csa:399`, `m_csa:473`, `m_csa:694`, `m_csa:800`,
+  `m_csa:879`, `m_csa:973`), but this is sequence/cofactor-channel evidence,
+  not direct electron-flow evidence. Review-only locus sidecars had 0 proximal
+  Fe-S smoke rows, 0 proximal radical-SAM smoke rows, and 12 proximal metal
+  smoke rows; all had `predictive_use_allowed_rows=0`. No cofactor/locus proxy
+  was promoted into the electron-flow feature surface.
+
+#### Measured results
+
+- Smoke-tranche evidence scan:
+  `lever2_source_free_electron_flow_smoke_tranche_evidence_scan_research_only_smoke_tranche_evidence_gap`.
+  The prior measured train/cal electron-flow signal is retained
+  (`train_cal_electron_flow_oos_recall_delta=0.142857`), but the current
+  source-free evidence is still insufficient to measure the smoke tranche.
+- Direct source-free electron-flow field coverage is 0/35 rows: 0/1 retained
+  OOS row (`m_csa:104`) and 0/34 current primary retention-gate rows have both
+  required direct fields. Both `has_electron_transfer_event` and
+  `electron_transfer_count` are missing on all 35 smoke rows.
+- Current source-free projection candidate overlap with the smoke tranche is
+  0/35 rows; partial-surface missing coverage is 35/35 rows.
+- Source-free scaffold coverage is not enough for a mechanism feature claim:
+  exactly 1/35 smoke rows (`m_csa:216`) has a review-only locator candidate;
+  0/35 have materialized source-free locators; 0/35 have source-free event-axis
+  linker rows; 0/35 have source-free pair support or event-axis references in
+  the candidate surface.
+- Classification: research-only measured evidence gap, not deployable, not a
+  negative against electron-flow as a train/cal signal, and no Lever 2
+  promotion.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, or heldout splits changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or source
+  provenance were used as predictive features.
+- Entry IDs were used only for tranche, split, artifact-overlap, scaffold, and
+  missing-evidence accounting.
+- The new artifact did not materialize source-free electron-flow rows and did
+  not authorize partial locator/proton/cofactor support as an electron-flow
+  substitute.
+
+#### Validation
+
+- Generated smoke-tranche evidence scan:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-smoke-tranche-evidence-scan`.
+- Focused parser/builder/artifact tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_smoke_tranche_scan_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_smoke_tranche_scan_requires_direct_fields tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_smoke_tranche_evidence_scan_counts -q`:
+  3 passed.
+- Broader touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  436 passed, 188 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1508 passed, 207 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1463 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep passed: 3569 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact source-record audit passed: all source artifacts/directories
+  exist, `critical_violation_total=0`, heldout scoring is false, and the
+  artifact did not materialize source-free electron-flow rows.
+- Artifact regeneration comparison passed after normalizing `created_utc`.
+- Disk remained above the guardrail at about 13 GiB free.
+
+#### Commit/push status
+
+- Implementation/readout commit
+  `49cde114e325196ca1f781db63fa4131fb0d56c7` was pushed to
+  `origin/lever-2-research-track` with `--force-with-lease` after the rebase.
+  Fetch verification showed local `HEAD == origin/lever-2-research-track` at
+  `49cde114e325196ca1f781db63fa4131fb0d56c7` before this handoff-only commit.
+
+#### Exact next action
+
+Materialize direct source-free electron-flow fields for the exact 35-row smoke
+tranche first: `m_csa:104` plus the 34 current primary retention-gate rows
+listed in
+`artifacts/v3_lever2_source_free_electron_flow_smoke_tranche_evidence_scan_current702_20260604.json`.
+Do not use organic cofactor scores, metal/Fe-S/radical-SAM review-only locus
+sidecars, locator-only rows, or proton/pair support as substitutes for
+`has_electron_transfer_event` and `electron_transfer_count`. After those two
+fields exist for all 35 rows, rerun the train/cal source-free projection and
+fixed-threshold incremental readouts. Expand to the 74-row retained-OOS
+current-split tranche only if the smoke tranche preserves primary retention and
+adds incremental OOS abstention.
 
 ### 2026-06-04 Lever 2 Research Run 12
 
