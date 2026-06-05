@@ -18448,6 +18448,79 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_smoke_tranche_evidence_scan_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_smoke_tranche_"
+                "evidence_scan_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_smoke_tranche_evidence_scan_"
+                "research_only_smoke_tranche_evidence_gap"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"], "research_only_smoke_tranche_evidence_gap"
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_tranche_retained_oos_rows"], 1)
+        self.assertEqual(readout["counts"]["smoke_tranche_primary_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["candidate_projection_rows_for_smoke_tranche"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["complete_source_free_electron_flow_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["rows_missing_required_electron_flow_fields"], 35
+        )
+        self.assertEqual(
+            readout["counts"]["partial_surface_missing_rows_in_smoke_tranche"],
+            35,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "review_only_locator_candidate_rows_in_smoke_tranche"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "materialized_source_free_locator_rows_in_smoke_tranche"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_event_axis_linker_rows_in_smoke_tranche"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["rows_with_any_source_free_scaffold_in_smoke_tranche"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["missing_has_electron_transfer_event_rows"], 35
+        )
+        self.assertEqual(
+            readout["counts"]["missing_electron_transfer_count_rows"], 35
+        )
+        self.assertEqual(
+            readout["counts"]["train_cal_electron_flow_oos_recall_delta"],
+            0.142857,
+        )
+        self.assertFalse(readout["decision"]["smoke_tranche_measurable_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["research_only"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_source_free_axis_acquisition_ranking_readout_current_counts(
         self,
     ) -> None:

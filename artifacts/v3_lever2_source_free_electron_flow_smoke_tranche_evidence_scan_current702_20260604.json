@@ -1,0 +1,889 @@
+{
+  "artifact_id": "v3_lever2_source_free_electron_flow_smoke_tranche_evidence_scan_current702_20260604",
+  "counts": {
+    "candidate_projection_rows_for_smoke_tranche": 0,
+    "candidate_surface_rows": 53,
+    "complete_source_free_electron_flow_rows": 0,
+    "critical_violation_total": 0,
+    "materialized_source_free_locator_rows_in_smoke_tranche": 0,
+    "missing_electron_transfer_count_rows": 35,
+    "missing_has_electron_transfer_event_rows": 35,
+    "partial_surface_missing_rows_in_smoke_tranche": 35,
+    "required_electron_flow_fields": 2,
+    "review_only_locator_candidate_rows_in_smoke_tranche": 1,
+    "rows_missing_required_electron_flow_fields": 35,
+    "rows_with_any_source_free_scaffold_in_smoke_tranche": 1,
+    "smoke_tranche_primary_rows": 34,
+    "smoke_tranche_retained_oos_rows": 1,
+    "smoke_tranche_rows": 35,
+    "source_free_event_axis_linker_rows_in_smoke_tranche": 0,
+    "source_free_event_axis_reference_rows_in_smoke_tranche": 0,
+    "source_free_pair_support_rows_in_smoke_tranche": 0,
+    "train_cal_electron_flow_oos_recall_delta": 0.142857
+  },
+  "created_utc": "2026-06-05T02:46:15Z",
+  "decision": {
+    "adds_operating_point_value_beyond_current_surface": false,
+    "any_source_free_scaffold_available_now": true,
+    "apply_or_promote_now": false,
+    "deployable_now": false,
+    "direct_source_free_electron_flow_fields_complete_now": false,
+    "measured_readout_available": true,
+    "negative": false,
+    "promotion_gate": "Require complete direct source-free electron-flow fields for the smoke tranche first; only expand to the full retained-OOS current split if the smoke readout preserves primary retention and adds incremental OOS abstention.",
+    "research_only": true,
+    "smallest_next_experiment": "Materialize direct source-free electron-flow fields has_electron_transfer_event and electron_transfer_count for 35 smoke-tranche rows, then rerun the train/cal projection and incremental readouts.",
+    "smoke_tranche_measurable_now": false
+  },
+  "guardrails": {
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "m_csa_row_specific_features_train_cal_only": true,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "source_free_electron_flow_axis_materialized_by_this_artifact": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Fill the two direct electron-flow fields on exactly the smoke-tranche rows before rerunning train/cal readouts; do not use partial locator/proton support as an electron-flow substitute.",
+    "result": "Research-only evidence gap: the smoke tranche retains the measured train/cal electron-flow delta 0.142857, but 0/35 rows currently have complete direct source-free electron-flow fields."
+  },
+  "measured_readout": {
+    "candidate_surface_counts": {
+      "blockers": 2,
+      "candidate_projection_rows": 53,
+      "critical_violation_total": 0,
+      "direct_existing_source_free_projection_fields": 2,
+      "frozen_feature_fields": 19,
+      "full_frozen_projection_ready_rows": 0,
+      "missing_field_counts": {
+        "bond_broken_count": 53,
+        "bond_change_event_count": 53,
+        "bond_formed_count": 53,
+        "bond_order_changed_count": 53,
+        "electron_transfer_count": 53,
+        "event_count": 53,
+        "has_bond_change_event": 53,
+        "has_electron_transfer_event": 53,
+        "has_proton_transfer_event": 39,
+        "high_confidence_event_count": 53,
+        "low_confidence_event_count": 53,
+        "mapped_active_site_residue_count": 53,
+        "medium_confidence_event_count": 53,
+        "multi_event_mechanism_flag": 53,
+        "proton_transfer_count": 39,
+        "unique_mapped_active_site_residue_count": 53,
+        "unknown_confidence_event_count": 53
+      },
+      "new_source_free_axis_required_fields": 9,
+      "pair_projected_feature_fields": 2,
+      "rows_pair_only_no_direct_projection": 39,
+      "rows_with_direct_proton_transfer_projection": 14,
+      "surface_rows": 53,
+      "threshold_scoring_ready_rows": 0
+    },
+    "partial_surface_counts": {
+      "critical_violation_total": 0,
+      "current_abstained_oos_rows": 72,
+      "current_extended_candidate_oos_rows": 210,
+      "current_extended_scored_oos_rows": 204,
+      "current_extended_unscored_oos_rows": 6,
+      "current_primary_rows": 34,
+      "current_retained_oos_rows": 132,
+      "missing_current_abstained_oos_source_free_partial_surface_rows": 72,
+      "missing_current_primary_source_free_partial_surface_rows": 34,
+      "missing_current_retained_oos_source_free_partial_surface_rows": 132,
+      "review_only_locator_candidate_current_abstained_oos_overlap_rows": 0,
+      "review_only_locator_candidate_current_primary_overlap_rows": 1,
+      "review_only_locator_candidate_current_retained_oos_overlap_rows": 0,
+      "review_only_locator_candidate_rows": 2,
+      "source_free_event_axis_linker_rows": 14,
+      "source_free_locator_sidecar_rows": 53,
+      "source_free_partial_surface_union_rows": 53,
+      "source_free_projection_candidate_rows": 53,
+      "union_current_abstained_oos_overlap_rows": 0,
+      "union_current_primary_overlap_rows": 0,
+      "union_current_retained_oos_overlap_rows": 0,
+      "union_current_scored_oos_overlap_rows": 0
+    },
+    "required_electron_flow_fields": [
+      "has_electron_transfer_event",
+      "electron_transfer_count"
+    ],
+    "smallest_source_free_smoke_tranche": {
+      "candidate_projection_rows_missing_now": 35,
+      "candidate_projection_rows_now": 0,
+      "current_retained_oos_increment_measurable": true,
+      "full_retained_oos_surface_measurable": false,
+      "max_current_retained_oos_catches_measurable_if_all_positive": 1,
+      "primary_entry_ids": [
+        "m_csa:973",
+        "m_csa:165",
+        "m_csa:399",
+        "m_csa:233",
+        "m_csa:216",
+        "m_csa:837",
+        "m_csa:338",
+        "m_csa:754",
+        "m_csa:38",
+        "m_csa:320",
+        "m_csa:41",
+        "m_csa:160",
+        "m_csa:410",
+        "m_csa:800",
+        "m_csa:277",
+        "m_csa:865",
+        "m_csa:933",
+        "m_csa:879",
+        "m_csa:988",
+        "m_csa:319",
+        "m_csa:482",
+        "m_csa:102",
+        "m_csa:630",
+        "m_csa:305",
+        "m_csa:694",
+        "m_csa:87",
+        "m_csa:27",
+        "m_csa:912",
+        "m_csa:473",
+        "m_csa:556",
+        "m_csa:387",
+        "m_csa:900",
+        "m_csa:922",
+        "m_csa:173"
+      ],
+      "primary_retention_cost_measurable": true,
+      "primary_rows": 34,
+      "retained_oos_entry_ids": [
+        "m_csa:104"
+      ],
+      "retained_oos_rows": 1,
+      "total_source_free_rows_required": 35,
+      "tranche_id": "top_1_retained_oos_plus_all_primary"
+    },
+    "smoke_tranche_rows": [
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:104",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_retained_oos"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:973",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:165",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:399",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:233",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:216",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": true,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:837",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:338",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:754",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:38",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:320",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:41",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:160",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:410",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:800",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:277",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:865",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:933",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:879",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:988",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:319",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:482",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:102",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:630",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:305",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:694",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:87",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:27",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:912",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:473",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:556",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:387",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:900",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:922",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      },
+      {
+        "candidate_projection_row_available": false,
+        "candidate_projection_status": null,
+        "complete_source_free_electron_flow_row": false,
+        "direct_source_free_electron_flow_fields_present": [],
+        "entry_id": "m_csa:173",
+        "materialized_source_free_locator_available": false,
+        "missing_electron_flow_fields": [
+          "has_electron_transfer_event",
+          "electron_transfer_count"
+        ],
+        "partial_surface_row_missing_now": true,
+        "review_only_locator_candidate_available": false,
+        "source_free_event_axis_linker_ready": false,
+        "source_free_event_axis_reference_available": false,
+        "source_free_pair_features_available": false,
+        "tranche_role": "current_primary_retention_gate"
+      }
+    ],
+    "source_acquisition_status": "lever2_source_free_electron_flow_acquisition_ceiling_readout_research_only_acquisition_ceiling",
+    "source_free_scaffold_context": {
+      "materialized_source_free_locator_entry_ids": [],
+      "review_only_locator_candidate_entry_ids": [
+        "m_csa:216"
+      ],
+      "source_free_event_axis_linker_entry_ids": []
+    },
+    "train_cal_axis_signal": {
+      "current_plus_electron_flow_auc_oos_gt_primary": 0.870536,
+      "current_plus_electron_flow_oos_abstain_recall": 0.785714,
+      "current_projected_subset_auc_oos_gt_primary": 0.794643,
+      "current_projected_subset_oos_abstain_recall": 0.642857,
+      "current_projected_subset_primary_retain_recall": 1.0,
+      "electron_flow_oos_abstain_recall_delta_vs_current_projected": 0.142857,
+      "electron_flow_primary_retain_recall": 1.0
+    }
+  },
+  "missing_evidence": [
+    {
+      "gap_id": "source_free_electron_flow_smoke_tranche_direct_fields",
+      "missing_field_counts": {
+        "electron_transfer_count": 35,
+        "has_electron_transfer_event": 35
+      },
+      "missing_rows_now": 35,
+      "required_fields_per_row": [
+        "has_electron_transfer_event",
+        "electron_transfer_count"
+      ],
+      "required_rows": 35,
+      "valid_source_free_rows_now": 0,
+      "why_it_matters": "The smoke tranche is the smallest train/cal-disciplined experiment that can test whether electron-flow evidence adds current-split operating-point value."
+    },
+    {
+      "gap_id": "source_free_electron_flow_smoke_tranche_primary_gate",
+      "missing_rows_now": 34,
+      "required_rows": 34,
+      "valid_source_free_rows_now": 0,
+      "why_it_matters": "Primary retention cost must be measurable before a mechanism-axis promotion or heldout read."
+    },
+    {
+      "gap_id": "source_free_electron_flow_smoke_tranche_retained_oos",
+      "missing_rows_now": 1,
+      "required_rows": 1,
+      "valid_source_free_rows_now": 0,
+      "why_it_matters": "At least one current-retained OOS row is required to measure incremental abstention beyond geometry/fold."
+    }
+  ],
+  "result_class": "research_only_smoke_tranche_evidence_gap",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_smoke_tranche_evidence_scan.v0",
+  "scope": "Lever 2 measured evidence scan for the smallest source-free electron-flow smoke tranche. It verifies whether the direct source-free electron-flow fields required by the acquisition ceiling already exist in current candidate artifacts. It does not materialize features, infer labels, tune thresholds, score heldout, or promote deployment state.",
+  "source_artifacts": {
+    "electron_flow_acquisition_ceiling_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_acquisition_ceiling_readout_current702_20260604.json",
+      "sha256": "5bda608fff5ff7c90ff84ebdd5efd5e75cd8be6f76b1b6d5eab9a5e32427e42e"
+    },
+    "partial_surface_current_split_portability_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_partial_surface_current_split_portability_readout_current702_20260604.json",
+      "sha256": "1f3bac640d2db8b009ae14376820ea940ed40fe89ac58551adcf83b0e1ee1ca6"
+    },
+    "review_only_locator_candidate_dir": {
+      "exists": true,
+      "file_count": 10,
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601"
+    },
+    "source_free_event_axis_linker_materialization_gate": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_materialization_gate_current702_20260603.json",
+      "sha256": "c241e181b166ee798e2112e0126ab7621dbcec667eae0f52b7226287ba8ca25e"
+    },
+    "source_free_locator_rewrite_materialization_gate": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_rewrite_materialization_gate_materialized_current702_20260603.json",
+      "sha256": "6ee5e32d03f8784ee4366f62660a1c2d73d8a51786c32011bcebf59b060d54a8"
+    },
+    "source_free_projection_repair_candidate_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_projection_repair_candidate_surface_current702_20260604.json",
+      "sha256": "ecf532516d30980a16001071091795cdc009a3e7c808c67b37ed647fcc572313"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_smoke_tranche_evidence_scan_research_only_smoke_tranche_evidence_gap"
+}

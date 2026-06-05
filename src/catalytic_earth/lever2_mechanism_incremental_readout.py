@@ -28,6 +28,10 @@ DEFAULT_ELECTRON_FLOW_ACQUISITION_CEILING_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_acquisition_ceiling_readout_"
     "current702_20260604"
 )
+DEFAULT_ELECTRON_FLOW_SMOKE_TRANCHE_SCAN_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_smoke_tranche_evidence_scan_"
+    "current702_20260604"
+)
 DEFAULT_SOURCE_FREE_AXIS_ACQUISITION_RANKING_ARTIFACT_ID = (
     "v3_lever2_source_free_mechanism_axis_acquisition_ranking_readout_"
     "current702_20260604"
@@ -3317,6 +3321,428 @@ def build_lever2_source_free_electron_flow_acquisition_ceiling_readout(
                 "only expand to the 74-row retained-OOS current-split tranche "
                 "if the smoke tranche preserves primary retention and adds "
                 "incremental OOS abstention."
+            ),
+        },
+    }
+
+
+def build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+    *,
+    electron_flow_acquisition_ceiling_readout_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    review_only_locator_candidate_dir_path: Path | None = None,
+    source_free_locator_rewrite_materialization_gate_path: Path | None = None,
+    source_free_event_axis_linker_materialization_gate_path: Path | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_SMOKE_TRANCHE_SCAN_ARTIFACT_ID,
+) -> dict[str, Any]:
+    acquisition = _read_json(electron_flow_acquisition_ceiling_readout_path)
+    candidate_surface = _read_json(source_free_projection_repair_candidate_surface_path)
+    partial_surface = (
+        _read_json(partial_surface_current_split_portability_readout_path)
+        if partial_surface_current_split_portability_readout_path is not None
+        and Path(partial_surface_current_split_portability_readout_path).exists()
+        else None
+    )
+    measured = acquisition.get("measured_readout") or {}
+    smoke = measured.get("smallest_source_free_smoke_tranche") or {}
+    retained_oos_ids = [
+        str(entry_id)
+        for entry_id in smoke.get("retained_oos_entry_ids", [])
+        if entry_id
+    ]
+    primary_ids = [
+        str(entry_id)
+        for entry_id in smoke.get("primary_entry_ids", [])
+        if entry_id
+    ]
+    required_fields = ["has_electron_transfer_event", "electron_transfer_count"]
+    candidate_rows = {
+        str(row.get("entry_id")): row
+        for row in candidate_surface.get("candidate_projection_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    partial_missing_rows = (
+        (partial_surface or {}).get("missing_evidence_rows") or {}
+    )
+
+    def _partial_missing_ids(key: str) -> set[str]:
+        return {
+            str(row.get("entry_id"))
+            for row in partial_missing_rows.get(key, [])
+            if isinstance(row, dict) and row.get("entry_id")
+        }
+
+    partial_missing_primary = _partial_missing_ids(
+        "current_primary_rows_requiring_source_free_partial_surface"
+    )
+    partial_missing_retained_oos = _partial_missing_ids(
+        "current_retained_oos_rows_requiring_source_free_partial_surface"
+    )
+    review_only_locator_candidate_ids = _m_csa_ids_from_candidate_dir(
+        review_only_locator_candidate_dir_path
+    )
+    materialized_locator_ids: set[str] = set()
+    if (
+        source_free_locator_rewrite_materialization_gate_path is not None
+        and Path(source_free_locator_rewrite_materialization_gate_path).exists()
+    ):
+        materialized_locator_ids = _entry_ids_from_locator_materialization(
+            _read_json(source_free_locator_rewrite_materialization_gate_path)
+        )
+    source_free_event_axis_ids: set[str] = set()
+    if (
+        source_free_event_axis_linker_materialization_gate_path is not None
+        and Path(source_free_event_axis_linker_materialization_gate_path).exists()
+    ):
+        source_free_event_axis_ids = _entry_ids_from_event_axis_materialization(
+            _read_json(source_free_event_axis_linker_materialization_gate_path)
+        )
+
+    def _field_presence(row: dict[str, Any] | None) -> tuple[list[str], list[str]]:
+        if row is None:
+            return [], list(required_fields)
+        direct_fields = set(row.get("direct_existing_source_free_projection_fields") or [])
+        projected_features = row.get("candidate_projected_event_features") or {}
+        present = [
+            field
+            for field in required_fields
+            if field in direct_fields or field in projected_features
+        ]
+        missing = [field for field in required_fields if field not in present]
+        return present, missing
+
+    smoke_rows: list[dict[str, Any]] = []
+    for role, entry_ids in (
+        ("current_retained_oos", retained_oos_ids),
+        ("current_primary_retention_gate", primary_ids),
+    ):
+        for entry_id in entry_ids:
+            candidate_row = candidate_rows.get(entry_id)
+            present_fields, missing_fields = _field_presence(candidate_row)
+            if role == "current_primary_retention_gate":
+                partial_missing = entry_id in partial_missing_primary
+            else:
+                partial_missing = entry_id in partial_missing_retained_oos
+            smoke_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "tranche_role": role,
+                    "candidate_projection_row_available": candidate_row is not None,
+                    "candidate_projection_status": (
+                        candidate_row.get("projection_status")
+                        if candidate_row is not None
+                        else None
+                    ),
+                    "direct_source_free_electron_flow_fields_present": present_fields,
+                    "missing_electron_flow_fields": missing_fields,
+                    "complete_source_free_electron_flow_row": not missing_fields,
+                    "partial_surface_row_missing_now": partial_missing,
+                    "review_only_locator_candidate_available": (
+                        entry_id in review_only_locator_candidate_ids
+                    ),
+                    "materialized_source_free_locator_available": (
+                        entry_id in materialized_locator_ids
+                    ),
+                    "source_free_event_axis_linker_ready": (
+                        entry_id in source_free_event_axis_ids
+                    ),
+                    "source_free_event_axis_reference_available": bool(
+                        candidate_row
+                        and candidate_row.get("event_axis_materialization_reference")
+                    ),
+                    "source_free_pair_features_available": bool(
+                        candidate_row and candidate_row.get("source_free_pair_features")
+                    ),
+                }
+            )
+
+    candidate_overlap_rows = [
+        row for row in smoke_rows if row["candidate_projection_row_available"]
+    ]
+    complete_rows = [
+        row for row in smoke_rows if row["complete_source_free_electron_flow_row"]
+    ]
+    partial_missing_smoke_rows = [
+        row for row in smoke_rows if row["partial_surface_row_missing_now"]
+    ]
+    source_free_pair_support_rows = [
+        row for row in smoke_rows if row["source_free_pair_features_available"]
+    ]
+    event_axis_reference_rows = [
+        row for row in smoke_rows if row["source_free_event_axis_reference_available"]
+    ]
+    review_only_locator_candidate_rows = [
+        row for row in smoke_rows if row["review_only_locator_candidate_available"]
+    ]
+    materialized_locator_rows = [
+        row for row in smoke_rows if row["materialized_source_free_locator_available"]
+    ]
+    event_axis_linker_rows = [
+        row for row in smoke_rows if row["source_free_event_axis_linker_ready"]
+    ]
+    field_missing_counts = {
+        field: sum(1 for row in smoke_rows if field in row["missing_electron_flow_fields"])
+        for field in required_fields
+    }
+    smoke_ready_now = bool(smoke_rows and len(complete_rows) == len(smoke_rows))
+    acquisition_counts = acquisition.get("counts") or {}
+    train_cal_delta = acquisition_counts.get("train_cal_electron_flow_oos_recall_delta")
+    result_class = (
+        "deployable_smoke_tranche_ready"
+        if smoke_ready_now
+        else "research_only_smoke_tranche_evidence_gap"
+    )
+    status = (
+        "lever2_source_free_electron_flow_smoke_tranche_evidence_scan_"
+        f"{result_class}"
+    )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_smoke_tranche_"
+            "evidence_scan.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 2 measured evidence scan for the smallest source-free "
+            "electron-flow smoke tranche. It verifies whether the direct "
+            "source-free electron-flow fields required by the acquisition "
+            "ceiling already exist in current candidate artifacts. It does "
+            "not materialize features, infer labels, tune thresholds, score "
+            "heldout, or promote deployment state."
+        ),
+        "result_class": result_class,
+        "measured_readout": {
+            "source_acquisition_status": acquisition.get("status"),
+            "train_cal_axis_signal": (
+                (measured.get("train_cal_axis_signal") or {})
+                if isinstance(measured.get("train_cal_axis_signal"), dict)
+                else {}
+            ),
+            "smallest_source_free_smoke_tranche": smoke,
+            "smoke_tranche_rows": smoke_rows,
+            "required_electron_flow_fields": required_fields,
+            "candidate_surface_counts": candidate_surface.get("counts") or {},
+            "partial_surface_counts": (partial_surface or {}).get("counts", {}),
+            "source_free_scaffold_context": {
+                "review_only_locator_candidate_entry_ids": sorted(
+                    review_only_locator_candidate_ids & {row["entry_id"] for row in smoke_rows},
+                    key=_entry_sort_key,
+                ),
+                "materialized_source_free_locator_entry_ids": sorted(
+                    materialized_locator_ids & {row["entry_id"] for row in smoke_rows},
+                    key=_entry_sort_key,
+                ),
+                "source_free_event_axis_linker_entry_ids": sorted(
+                    source_free_event_axis_ids & {row["entry_id"] for row in smoke_rows},
+                    key=_entry_sort_key,
+                ),
+            },
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "source_free_electron_flow_smoke_tranche_direct_fields",
+                "required_rows": len(smoke_rows),
+                "valid_source_free_rows_now": len(complete_rows),
+                "missing_rows_now": len(smoke_rows) - len(complete_rows),
+                "required_fields_per_row": required_fields,
+                "missing_field_counts": field_missing_counts,
+                "why_it_matters": (
+                    "The smoke tranche is the smallest train/cal-disciplined "
+                    "experiment that can test whether electron-flow evidence "
+                    "adds current-split operating-point value."
+                ),
+            },
+            {
+                "gap_id": "source_free_electron_flow_smoke_tranche_primary_gate",
+                "required_rows": len(primary_ids),
+                "valid_source_free_rows_now": sum(
+                    1
+                    for row in complete_rows
+                    if row["tranche_role"] == "current_primary_retention_gate"
+                ),
+                "missing_rows_now": sum(
+                    1
+                    for row in smoke_rows
+                    if row["tranche_role"] == "current_primary_retention_gate"
+                    and not row["complete_source_free_electron_flow_row"]
+                ),
+                "why_it_matters": (
+                    "Primary retention cost must be measurable before a "
+                    "mechanism-axis promotion or heldout read."
+                ),
+            },
+            {
+                "gap_id": "source_free_electron_flow_smoke_tranche_retained_oos",
+                "required_rows": len(retained_oos_ids),
+                "valid_source_free_rows_now": sum(
+                    1
+                    for row in complete_rows
+                    if row["tranche_role"] == "current_retained_oos"
+                ),
+                "missing_rows_now": sum(
+                    1
+                    for row in smoke_rows
+                    if row["tranche_role"] == "current_retained_oos"
+                    and not row["complete_source_free_electron_flow_row"]
+                ),
+                "why_it_matters": (
+                    "At least one current-retained OOS row is required to "
+                    "measure incremental abstention beyond geometry/fold."
+                ),
+            },
+        ],
+        "counts": {
+            "critical_violation_total": 0,
+            "smoke_tranche_rows": len(smoke_rows),
+            "smoke_tranche_retained_oos_rows": len(retained_oos_ids),
+            "smoke_tranche_primary_rows": len(primary_ids),
+            "candidate_projection_rows_for_smoke_tranche": len(candidate_overlap_rows),
+            "complete_source_free_electron_flow_rows": len(complete_rows),
+            "rows_missing_required_electron_flow_fields": (
+                len(smoke_rows) - len(complete_rows)
+            ),
+            "partial_surface_missing_rows_in_smoke_tranche": len(
+                partial_missing_smoke_rows
+            ),
+            "source_free_pair_support_rows_in_smoke_tranche": len(
+                source_free_pair_support_rows
+            ),
+            "source_free_event_axis_reference_rows_in_smoke_tranche": len(
+                event_axis_reference_rows
+            ),
+            "review_only_locator_candidate_rows_in_smoke_tranche": len(
+                review_only_locator_candidate_rows
+            ),
+            "materialized_source_free_locator_rows_in_smoke_tranche": len(
+                materialized_locator_rows
+            ),
+            "source_free_event_axis_linker_rows_in_smoke_tranche": len(
+                event_axis_linker_rows
+            ),
+            "rows_with_any_source_free_scaffold_in_smoke_tranche": len(
+                {
+                    row["entry_id"]
+                    for row in smoke_rows
+                    if row["review_only_locator_candidate_available"]
+                    or row["materialized_source_free_locator_available"]
+                    or row["source_free_event_axis_linker_ready"]
+                    or row["source_free_pair_features_available"]
+                    or row["source_free_event_axis_reference_available"]
+                }
+            ),
+            "candidate_surface_rows": int(
+                (candidate_surface.get("counts") or {}).get("surface_rows") or 0
+            ),
+            "required_electron_flow_fields": len(required_fields),
+            "missing_has_electron_transfer_event_rows": field_missing_counts[
+                "has_electron_transfer_event"
+            ],
+            "missing_electron_transfer_count_rows": field_missing_counts[
+                "electron_transfer_count"
+            ],
+            "train_cal_electron_flow_oos_recall_delta": train_cal_delta,
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "smoke_tranche_measurable_now": smoke_ready_now,
+            "direct_source_free_electron_flow_fields_complete_now": smoke_ready_now,
+            "any_source_free_scaffold_available_now": any(
+                row["review_only_locator_candidate_available"]
+                or row["materialized_source_free_locator_available"]
+                or row["source_free_event_axis_linker_ready"]
+                or row["source_free_pair_features_available"]
+                or row["source_free_event_axis_reference_available"]
+                for row in smoke_rows
+            ),
+            "adds_operating_point_value_beyond_current_surface": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": False,
+            "apply_or_promote_now": False,
+            "smallest_next_experiment": (
+                "Materialize direct source-free electron-flow fields "
+                "has_electron_transfer_event and electron_transfer_count for "
+                f"{len(smoke_rows)} smoke-tranche rows, then rerun the "
+                "train/cal projection and incremental readouts."
+            ),
+            "promotion_gate": (
+                "Require complete direct source-free electron-flow fields for "
+                "the smoke tranche first; only expand to the full retained-OOS "
+                "current split if the smoke readout preserves primary "
+                "retention and adds incremental OOS abstention."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_axis_materialized_by_this_artifact": False,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "electron_flow_acquisition_ceiling_readout": _source_path_record(
+                electron_flow_acquisition_ceiling_readout_path
+            ),
+            "source_free_projection_repair_candidate_surface": _source_path_record(
+                source_free_projection_repair_candidate_surface_path
+            ),
+            "partial_surface_current_split_portability_readout": (
+                _source_path_record(partial_surface_current_split_portability_readout_path)
+                if partial_surface_current_split_portability_readout_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "review_only_locator_candidate_dir": (
+                {
+                    "path": str(review_only_locator_candidate_dir_path),
+                    "exists": Path(review_only_locator_candidate_dir_path).exists(),
+                    "file_count": len(
+                        list(Path(review_only_locator_candidate_dir_path).glob("*.json"))
+                    )
+                    if Path(review_only_locator_candidate_dir_path).exists()
+                    else 0,
+                }
+                if review_only_locator_candidate_dir_path is not None
+                else {"path": None, "exists": False, "file_count": 0}
+            ),
+            "source_free_locator_rewrite_materialization_gate": (
+                _source_path_record(source_free_locator_rewrite_materialization_gate_path)
+                if source_free_locator_rewrite_materialization_gate_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "source_free_event_axis_linker_materialization_gate": (
+                _source_path_record(source_free_event_axis_linker_materialization_gate_path)
+                if source_free_event_axis_linker_materialization_gate_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Research-only evidence gap: the smoke tranche retains the "
+                f"measured train/cal electron-flow delta {train_cal_delta}, "
+                f"but {len(complete_rows)}/{len(smoke_rows)} rows currently "
+                "have complete direct source-free electron-flow fields."
+            ),
+            "next_action": (
+                "Fill the two direct electron-flow fields on exactly the "
+                "smoke-tranche rows before rerunning train/cal readouts; do "
+                "not use partial locator/proton support as an electron-flow "
+                "substitute."
             ),
         },
     }
@@ -12639,6 +13065,99 @@ def render_lever2_source_free_electron_flow_acquisition_ceiling_readout_report(
     return "\n".join(lines) + "\n"
 
 
+def render_lever2_source_free_electron_flow_smoke_tranche_evidence_scan_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    smoke = measured.get("smallest_source_free_smoke_tranche") or {}
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Smoke-Tranche Evidence Scan - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Train/cal electron-flow OOS recall delta: "
+        f"{counts['train_cal_electron_flow_oos_recall_delta']}",
+        "- Smoke-tranche source-free rows complete now: "
+        f"{counts['complete_source_free_electron_flow_rows']}/"
+        f"{counts['smoke_tranche_rows']}",
+        "- Candidate projection rows in smoke tranche: "
+        f"{counts['candidate_projection_rows_for_smoke_tranche']}/"
+        f"{counts['smoke_tranche_rows']}",
+        "- Partial-surface rows still missing in smoke tranche: "
+        f"{counts['partial_surface_missing_rows_in_smoke_tranche']}/"
+        f"{counts['smoke_tranche_rows']}",
+        "- Rows with any source-free acquisition scaffold: "
+        f"{counts['rows_with_any_source_free_scaffold_in_smoke_tranche']}/"
+        f"{counts['smoke_tranche_rows']}",
+        "",
+        "## Smoke Tranche",
+        "",
+        "- Tranche: "
+        f"{smoke.get('tranche_id')}",
+        "- Retained-OOS rows: "
+        f"{counts['smoke_tranche_retained_oos_rows']}",
+        "- Primary retention-gate rows: "
+        f"{counts['smoke_tranche_primary_rows']}",
+        "- Required direct electron-flow fields: "
+        f"{', '.join(measured.get('required_electron_flow_fields') or [])}",
+        "",
+        "| row | role | candidate row | locator candidate | materialized locator | "
+        "event-axis linker | complete electron-flow fields | missing fields |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in measured.get("smoke_tranche_rows") or []:
+        lines.append(
+            f"| {row['entry_id']} | {row['tranche_role']} | "
+            f"{row['candidate_projection_row_available']} | "
+            f"{row['review_only_locator_candidate_available']} | "
+            f"{row['materialized_source_free_locator_available']} | "
+            f"{row['source_free_event_axis_linker_ready']} | "
+            f"{row['complete_source_free_electron_flow_row']} | "
+            f"{', '.join(row['missing_electron_flow_fields'])} |"
+        )
+    lines += [
+        "",
+        "## Missing Evidence",
+        "",
+        "| gap | required | valid now | missing now | why it matters |",
+        "| --- | ---: | ---: | ---: | --- |",
+    ]
+    for gap in readout["missing_evidence"]:
+        lines.append(
+            f"| {gap['gap_id']} | {gap['required_rows']} | "
+            f"{gap['valid_source_free_rows_now']} | "
+            f"{gap['missing_rows_now']} | {gap['why_it_matters']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Smoke tranche measurable now: {decision['smoke_tranche_measurable_now']}",
+        "- Direct source-free electron-flow fields complete now: "
+        f"{decision['direct_source_free_electron_flow_fields_complete_now']}",
+        "- Adds operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        f"- Promotion gate: {decision['promotion_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def render_lever2_source_free_mechanism_axis_acquisition_ranking_readout_report(
     readout: dict[str, Any],
 ) -> str:
@@ -12784,6 +13303,53 @@ def write_lever2_source_free_electron_flow_acquisition_ceiling_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             render_lever2_source_free_electron_flow_acquisition_ceiling_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+    *,
+    electron_flow_acquisition_ceiling_readout_path: Path,
+    source_free_projection_repair_candidate_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    review_only_locator_candidate_dir_path: Path | None = None,
+    source_free_locator_rewrite_materialization_gate_path: Path | None = None,
+    source_free_event_axis_linker_materialization_gate_path: Path | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_SMOKE_TRANCHE_SCAN_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+        electron_flow_acquisition_ceiling_readout_path=(
+            electron_flow_acquisition_ceiling_readout_path
+        ),
+        source_free_projection_repair_candidate_surface_path=(
+            source_free_projection_repair_candidate_surface_path
+        ),
+        partial_surface_current_split_portability_readout_path=(
+            partial_surface_current_split_portability_readout_path
+        ),
+        review_only_locator_candidate_dir_path=review_only_locator_candidate_dir_path,
+        source_free_locator_rewrite_materialization_gate_path=(
+            source_free_locator_rewrite_materialization_gate_path
+        ),
+        source_free_event_axis_linker_materialization_gate_path=(
+            source_free_event_axis_linker_materialization_gate_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_source_free_electron_flow_smoke_tranche_evidence_scan_report(
                 readout
             ),
             encoding="utf-8",

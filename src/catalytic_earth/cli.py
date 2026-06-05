@@ -55,6 +55,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
+    write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     write_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
     write_lever2_source_free_partial_surface_current_split_portability_readout,
 )
@@ -13741,6 +13742,46 @@ def cmd_build_lever2_source_free_electron_flow_acquisition_ceiling_readout(
         "full retained rows: "
         f"{counts.get('full_retained_current_split_source_free_rows_required')}, "
         f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+        electron_flow_acquisition_ceiling_readout_path=Path(
+            args.electron_flow_acquisition_ceiling_readout
+        ),
+        source_free_projection_repair_candidate_surface_path=Path(
+            args.source_free_projection_repair_candidate_surface
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        review_only_locator_candidate_dir_path=Path(
+            args.review_only_locator_candidate_dir
+        ),
+        source_free_locator_rewrite_materialization_gate_path=Path(
+            args.source_free_locator_rewrite_materialization_gate
+        ),
+        source_free_event_axis_linker_materialization_gate_path=Path(
+            args.source_free_event_axis_linker_materialization_gate
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow smoke-tranche evidence scan "
+        f"to {args.out} (complete rows: "
+        f"{counts.get('complete_source_free_electron_flow_rows')}/"
+        f"{counts.get('smoke_tranche_rows')}, result: "
+        f"{readout.get('result_class')})"
     )
     return 0
 
@@ -32790,6 +32831,79 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_electron_flow_acquisition_ceiling_readout.set_defaults(
         func=cmd_build_lever2_source_free_electron_flow_acquisition_ceiling_readout
+    )
+
+    lever2_electron_flow_smoke_tranche_scan = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-smoke-tranche-evidence-scan",
+        help=(
+            "scan whether the smallest source-free electron-flow smoke tranche "
+            "already has direct deployment-valid electron-flow fields"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--electron-flow-acquisition-ceiling-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_acquisition_"
+            "ceiling_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--source-free-projection-repair-candidate-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_projection_"
+            "repair_candidate_surface_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--review-only-locator-candidate-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locator_candidates_"
+            "current702_20260601"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--source-free-locator-rewrite-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_locator_rewrite_"
+            "materialization_gate_materialized_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--source-free-event-axis-linker-materialization-gate",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_source_free_event_axis_linker_"
+            "materialization_gate_current702_20260603.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_smoke_tranche_"
+            "evidence_scan_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_smoke_tranche_"
+            "evidence_scan_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_smoke_tranche_scan.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan
     )
 
     lever2_axis_acquisition_ranking_readout = subparsers.add_parser(

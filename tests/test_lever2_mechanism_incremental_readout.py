@@ -17,6 +17,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
+    build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     build_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
     build_lever2_source_free_partial_surface_current_split_portability_readout,
 )
@@ -2348,6 +2349,172 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             readout["decision"]["full_retained_current_split_measurable_now"]
         )
         self.assertIn("top 1", readout["decision"]["smallest_next_experiment"])
+
+    def test_electron_flow_smoke_tranche_scan_requires_direct_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acquisition_path = root / "acquisition.json"
+            candidate_path = root / "candidate.json"
+            partial_path = root / "partial.json"
+            locator_candidate_dir = root / "locator_candidates"
+            locator_candidate_dir.mkdir()
+            locator_materialization_path = root / "locator_materialized.json"
+            event_axis_path = root / "event_axis.json"
+            acquisition_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "lever2_source_free_electron_flow_acquisition_"
+                            "ceiling_readout_research_only_acquisition_ceiling"
+                        ),
+                        "counts": {
+                            "train_cal_electron_flow_oos_recall_delta": 0.25
+                        },
+                        "measured_readout": {
+                            "train_cal_axis_signal": {
+                                "electron_flow_oos_abstain_recall_delta_vs_current_projected": (
+                                    0.25
+                                )
+                            },
+                            "smallest_source_free_smoke_tranche": {
+                                "tranche_id": "top_1_retained_oos_plus_all_primary",
+                                "retained_oos_entry_ids": ["m_csa:10"],
+                                "primary_entry_ids": ["m_csa:20", "m_csa:21"],
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"surface_rows": 2},
+                        "candidate_projection_rows": [
+                            {
+                                "entry_id": "m_csa:20",
+                                "direct_existing_source_free_projection_fields": [
+                                    "has_electron_transfer_event"
+                                ],
+                                "candidate_projected_event_features": {
+                                    "has_electron_transfer_event": True
+                                },
+                                "projection_status": "partial_direct_projection",
+                                "source_free_pair_features": {"x": True},
+                            },
+                            {
+                                "entry_id": "m_csa:21",
+                                "direct_existing_source_free_projection_fields": [
+                                    "has_electron_transfer_event",
+                                    "electron_transfer_count",
+                                ],
+                                "candidate_projected_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                },
+                                "projection_status": "direct_projection",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            partial_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "missing_current_primary_source_free_partial_surface_rows": 1
+                        },
+                        "missing_evidence_rows": {
+                            "current_primary_rows_requiring_source_free_partial_surface": [
+                                {"entry_id": "m_csa:20"}
+                            ],
+                            "current_retained_oos_rows_requiring_source_free_partial_surface": [
+                                {"entry_id": "m_csa:10"}
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (locator_candidate_dir / "candidate.json").write_text(
+                json.dumps({"entry_id": "m_csa:20"}),
+                encoding="utf-8",
+            )
+            locator_materialization_path.write_text(
+                json.dumps(
+                    {
+                        "row_decisions": [
+                            {
+                                "entry_id": "m_csa:21",
+                                "approved_locator_sidecar_written": True,
+                                "decision": "materialized_to_audited_locator_dir",
+                                "critical_violations": [],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_axis_path.write_text(
+                json.dumps(
+                    {
+                        "materialization_rows": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "source_free_event_axis_status": (
+                                    "source_free_event_axis_linker_ready"
+                                ),
+                                "critical_violations": [],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
+                electron_flow_acquisition_ceiling_readout_path=acquisition_path,
+                source_free_projection_repair_candidate_surface_path=candidate_path,
+                partial_surface_current_split_portability_readout_path=partial_path,
+                review_only_locator_candidate_dir_path=locator_candidate_dir,
+                source_free_locator_rewrite_materialization_gate_path=(
+                    locator_materialization_path
+                ),
+                source_free_event_axis_linker_materialization_gate_path=(
+                    event_axis_path
+                ),
+                artifact_id="test_electron_flow_smoke_scan",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_electron_flow_smoke_scan")
+        self.assertEqual(
+            readout["result_class"], "research_only_smoke_tranche_evidence_gap"
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["candidate_projection_rows_for_smoke_tranche"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["complete_source_free_electron_flow_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["review_only_locator_candidate_rows_in_smoke_tranche"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["materialized_source_free_locator_rows_in_smoke_tranche"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_event_axis_linker_rows_in_smoke_tranche"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["rows_missing_required_electron_flow_fields"], 2
+        )
+        self.assertFalse(readout["decision"]["smoke_tranche_measurable_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

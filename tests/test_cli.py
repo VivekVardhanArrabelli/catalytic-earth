@@ -109,6 +109,42 @@ class CliTests(unittest.TestCase):
         )
         self.assertEqual(args.tranche_sizes, [1, 2, 5, 10, 20, 40])
 
+    def test_lever2_electron_flow_smoke_tranche_scan_parser_defaults(self) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-lever2-source-free-electron-flow-smoke-tranche-evidence-scan"
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_smoke_tranche_evidence_scan",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_acquisition_ceiling_readout",
+            args.electron_flow_acquisition_ceiling_readout,
+        )
+        self.assertIn(
+            "source_free_projection_repair_candidate_surface",
+            args.source_free_projection_repair_candidate_surface,
+        )
+        self.assertIn(
+            "source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertIn(
+            "source_free_active_site_locator_candidates",
+            args.review_only_locator_candidate_dir,
+        )
+        self.assertIn(
+            "source_free_locator_rewrite_materialization_gate_materialized",
+            args.source_free_locator_rewrite_materialization_gate,
+        )
+        self.assertIn(
+            "source_free_event_axis_linker_materialization_gate",
+            args.source_free_event_axis_linker_materialization_gate,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:
