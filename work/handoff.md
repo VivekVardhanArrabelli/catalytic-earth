@@ -3,16 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T03:01:13Z`
-- STARTED_AT_LOCAL: `2026-06-04T22:01:13-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T03:33:38Z`
-- ENDED_AT_LOCAL: `2026-06-04T22:33:38-0500 CDT`
-- ELAPSED_MINUTES: `32.42`
-- Status: Run 46 wrap-up. Canonical
+- STARTED_AT_UTC: `2026-06-05T04:01:15Z`
+- STARTED_AT_LOCAL: `2026-06-04T23:01:15-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T04:21:22Z`
+- ENDED_AT_LOCAL: `2026-06-04T23:21:22-0500 CDT`
+- ELAPSED_MINUTES: `20.13`
+- Status: Run 47 wrap-up. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-05T03:01:13Z`. Lever 3 deployment-action readout is validated;
-  commit, push verification, and lock release are the remaining mechanical
-  steps.
+  `2026-06-05T04:01:15Z`. Lever 3 retained-residual risk and descriptor-input
+  preflight readouts are validated. Actual elapsed time is shorter than the
+  requested 55-minute work block; the progress ledger records the measured
+  duration rather than inflating it.
 
 ## Mission
 
@@ -63,6 +64,129 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 47
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T04:01:15Z`
+- STARTED_LOCAL: `2026-06-04T23:01:15-0500 CDT`
+- ENDED_AT: `2026-06-05T04:21:22Z`
+- ENDED_LOCAL: `2026-06-04T23:21:22-0500 CDT`
+- ELAPSED_MINUTES: `20.13`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T04:01:15Z`.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-retained-residual-risk-readout` with builder/
+  writer/report renderer in `src/catalytic_earth/northstar_next_levers.py` and
+  CLI wiring in `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.md`.
+- Added
+  `build-fold-augmented-lever3-descriptor-present-counteraxis-preflight` with
+  builder/writer/report renderer and CLI wiring.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.md`.
+- Added synthetic builder coverage, parser-default coverage, artifact-count
+  regression coverage, and source-artifact hash coverage for both new outputs.
+- Appended the measured progress-log entry and regenerated `work/status.md`.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; threshold selection remains
+  train/cal only.
+- Safe abstention routing remains available from the deployment-action readout:
+  31/34 calibration in-scope rows retained, 105/204 train/cal OOS rows
+  abstained, and P07658 (`m_csa:562`) remains fail-closed while full-length
+  predicted coordinate/provenance is missing.
+- After accepted counteraxes, 11 residual same-family rows remain retained at
+  the fixed operating point; zero residual retained-transfer risk is not ready.
+- Retained residual descriptor split is now measured: 2/11 retained rows have
+  pocket descriptors (`m_csa:25`, `m_csa:52`) and 9/11 still need source-free
+  pocket descriptor acquisition.
+- Descriptor-present preflight freezes the current allowed source-free input
+  contract for `m_csa:25` and `m_csa:52`: 8 numeric pocket descriptor fields
+  and 20 residue-code count fields are present. Mechanism text, true/top1
+  fingerprint IDs, entry names, PDB IDs, and experimental-PDB metadata are
+  explicitly forbidden fields.
+- No counteraxis was selected; retained rows may not select or tune a rule, and
+  they do not count as new abstained evidence now.
+- Current evidence is sufficient for fail-closed routing, not fixed-threshold
+  scoring closure and not zero residual retained-transfer risk.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new readouts compose existing deployment-valid artifacts only; they
+  perform no provider calls, coordinate downloads, coordinate staging, scoring,
+  counteraxis selection, or threshold selection.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1418 passed.
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_retained_residual_risk_readout_splits_descriptor_gates tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_descriptor_present_counteraxis_preflight_freezes_fields tests/test_cli.py::CliTests::test_lever3_retained_residual_risk_readout_parser_defaults tests/test_cli.py::CliTests::test_lever3_descriptor_present_counteraxis_preflight_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_retained_residual_risk_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_descriptor_present_counteraxis_preflight_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  7 passed, 25 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  597 passed, 190 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1469 passed, 209 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery after final edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1424 passed.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3557 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  3 passed, 25 subtests passed.
+- Normalized reproducibility check passed for both new CLI artifacts after
+  normalizing `created_utc`.
+- Disk check remained above the guardrail: about 21 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md`.
+- Commit, push, `HEAD == origin/main` verification, and lock release are the
+  remaining mechanical wrap steps after this handoff edit.
+
+#### Exact next Lever 3 action
+
+Use the deployment-action readout for fail-closed routing now. For zero
+residual retained-transfer risk, first design or validate a source-free
+same-family pocket/chemistry counteraxis on an explicitly train/cal-only
+calibration surface using the frozen descriptor contract from
+`v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604`;
+do not tune on `m_csa:25` or `m_csa:52`. In parallel or next, acquire
+source-free pocket descriptors for the 9 retained descriptor-missing rows:
+`m_csa:229`, `m_csa:89`, `m_csa:74`, `m_csa:256`, `m_csa:638`,
+`m_csa:190`, `m_csa:84`, `m_csa:468`, and `m_csa:308`. For fixed-threshold
+scoring closure, P07658 still needs exactly one credentialed provider route or
+local full-length predictor runtime with full coordinate/provenance, then the
+P07658 acceptance preflight; keep threshold `0.44155` unchanged.
 
 ### 2026-06-04 Lever 3 Forward Push Run 46
 

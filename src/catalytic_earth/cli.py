@@ -165,6 +165,8 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_p07658_sequence_compatibility_readout,
     write_fold_augmented_lever3_confounded_safe_abstention_readout,
     write_fold_augmented_lever3_deployment_action_readout,
+    write_fold_augmented_lever3_retained_residual_risk_readout,
+    write_fold_augmented_lever3_descriptor_present_counteraxis_preflight,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13727,6 +13729,60 @@ def cmd_build_fold_augmented_lever3_deployment_action_readout(
         f"{counts.get('residual_rows')}, P07658 forced abstentions: "
         f"{counts.get('p07658_forced_abstention_rows')}, scoring closure: "
         f"{decision.get('current_evidence_sufficient_for_fixed_threshold_scoring_closure')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_retained_residual_risk_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_retained_residual_risk_readout(
+        deployment_action_readout_path=Path(args.deployment_action_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 retained residual risk readout to "
+        f"{args.out} (retained residual rows: "
+        f"{counts.get('retained_residual_rows')}, descriptor present/missing: "
+        f"{counts.get('retained_residual_rows_with_pocket_descriptor')}/"
+        f"{counts.get('retained_residual_rows_missing_pocket_descriptor')}, "
+        "zero residual risk ready: "
+        f"{decision.get('zero_residual_retained_transfer_risk_available_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    preflight = write_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
+        retained_residual_risk_readout_path=Path(
+            args.retained_residual_risk_readout
+        ),
+        latest_train_cal_oos_surface_path=Path(args.latest_train_cal_oos_surface),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = preflight.get("counts", {})
+    decision = preflight.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 descriptor-present counteraxis preflight to "
+        f"{args.out} (descriptor rows found: "
+        f"{counts.get('descriptor_value_rows_found')}/"
+        f"{counts.get('retained_descriptor_present_rows_requested')}, "
+        "counteraxis ready: "
+        f"{decision.get('counteraxis_ready_for_deployment_now')})"
     )
     return 0
 
@@ -32878,6 +32934,88 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_deployment_action_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_deployment_action_readout
+    )
+
+    lever3_retained_residual_risk_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-retained-residual-risk-readout",
+        help=(
+            "measure retained same-family residual risk and source-free "
+            "evidence gates downstream of the Lever 3 deployment-action readout"
+        ),
+    )
+    lever3_retained_residual_risk_readout.add_argument(
+        "--deployment-action-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_action_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_residual_risk_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_retained_residual_risk_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_residual_risk_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_residual_risk_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_retained_residual_risk_readout_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_retained_residual_risk_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_retained_residual_risk_readout
+    )
+
+    lever3_descriptor_present_counteraxis_preflight = subparsers.add_parser(
+        "build-fold-augmented-lever3-descriptor-present-counteraxis-preflight",
+        help=(
+            "freeze source-free pocket descriptor fields for descriptor-present "
+            "retained residual rows before any train/cal-only counteraxis design"
+        ),
+    )
+    lever3_descriptor_present_counteraxis_preflight.add_argument(
+        "--retained-residual-risk-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_residual_risk_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_descriptor_present_counteraxis_preflight.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_descriptor_present_counteraxis_preflight.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_descriptor_present_counteraxis_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_descriptor_present_"
+            "counteraxis_preflight_current702_20260604.json"
+        ),
+    )
+    lever3_descriptor_present_counteraxis_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_descriptor_present_counteraxis_"
+            "preflight_current702_20260604.md"
+        ),
+    )
+    lever3_descriptor_present_counteraxis_preflight.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_descriptor_present_counteraxis_preflight
+        )
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

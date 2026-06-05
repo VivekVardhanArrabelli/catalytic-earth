@@ -80,6 +80,8 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_p07658_sequence_compatibility_readout,
     build_fold_augmented_lever3_confounded_safe_abstention_readout,
     build_fold_augmented_lever3_deployment_action_readout,
+    build_fold_augmented_lever3_retained_residual_risk_readout,
+    build_fold_augmented_lever3_descriptor_present_counteraxis_preflight,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -6193,6 +6195,222 @@ class NorthstarNextLeversTests(unittest.TestCase):
             readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
         )
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
+    def test_lever3_retained_residual_risk_readout_splits_descriptor_gates(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            action_path = root / "deployment_action.json"
+            action_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "residual_rows": 4,
+                            "unique_residual_rows_abstained_by_accepted_counteraxes": 2,
+                            "p07658_forced_abstention_rows": 1,
+                        },
+                        "decision": {
+                            "deployment_valid_action_readout_available": True,
+                            "current_evidence_sufficient_for_safe_abstention_routing": True,
+                            "current_evidence_sufficient_for_fixed_threshold_scoring_closure": False,
+                        },
+                        "operating_point": {
+                            "route_id": "fixed_route",
+                            "baseline_threshold": 0.44155,
+                            "threshold_selection_source": "train_calibration_only",
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "retained_residual_evidence_queue": [
+                            {
+                                "rank": 2,
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "axis_memberships": ["same_family"],
+                                "closest_current_channel": "cofactor_max_score",
+                                "closest_current_channel_margin": 0.03,
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_missing"
+                                ),
+                            },
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "axis_memberships": ["same_family"],
+                                "closest_current_channel": "geometry_top1_score",
+                                "closest_current_channel_margin": 0.01,
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_present"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_residual_risk_readout(
+                deployment_action_readout_path=action_path,
+                artifact_id="custom_retained_residual_risk",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_retained_residual_risk")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_residual_risk_readout_"
+                "descriptor_present_actionable"
+            ),
+        )
+        self.assertEqual(readout["counts"]["retained_residual_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_with_pocket_descriptor"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_missing_pocket_descriptor"],
+            1,
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["score_or_force_mechanism_label_for_retained_rows_now"]
+        )
+        self.assertEqual(
+            readout["retained_residual_risk_rows"][0]["entry_id"],
+            "m_csa:1",
+        )
+        self.assertEqual(
+            readout["retained_residual_risk_rows"][0]["next_evidence_gate"],
+            "train_cal_only_same_family_pocket_counteraxis_design_required",
+        )
+        self.assertEqual(
+            readout["retained_residual_risk_rows"][1]["next_evidence_gate"],
+            "source_free_pocket_descriptor_acquisition_required",
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(
+            readout["guardrails"][
+                "heldout_rows_used_for_training_or_threshold_tuning"
+            ]
+        )
+
+    def test_lever3_descriptor_present_counteraxis_preflight_freezes_fields(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            risk_path = root / "risk.json"
+            surface_path = root / "surface.json"
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "retained_residual_risk_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_present"
+                                ),
+                                "closest_current_channel": "geometry_top1_score",
+                                "closest_current_channel_margin": 0.01,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "top1_score": 0.4,
+                                    "mechanism_text_count": 9,
+                                    "pocket_context": {
+                                        "distance_cutoff_angstrom": 8.0,
+                                        "nearby_residue_count": 2,
+                                        "descriptors": {
+                                            "hydrophobic_fraction": 0.5,
+                                            "polar_fraction": 0.25,
+                                        },
+                                        "residue_code_counts": {
+                                            "ASP": 1,
+                                            "HIS": 1,
+                                        },
+                                    },
+                                }
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = (
+                build_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
+                    retained_residual_risk_readout_path=risk_path,
+                    latest_train_cal_oos_surface_path=surface_path,
+                    artifact_id="custom_descriptor_present_preflight",
+                )
+            )
+
+        self.assertEqual(
+            preflight["artifact_id"],
+            "custom_descriptor_present_preflight",
+        )
+        self.assertEqual(
+            preflight["status"],
+            (
+                "fold_augmented_lever3_descriptor_present_counteraxis_"
+                "preflight_ready_input_frozen"
+            ),
+        )
+        self.assertEqual(preflight["counts"]["descriptor_value_rows_found"], 1)
+        self.assertEqual(preflight["counts"]["descriptor_feature_fields"], 2)
+        self.assertEqual(
+            preflight["allowed_source_free_feature_contract"]["descriptor_fields"],
+            ["hydrophobic_fraction", "polar_fraction"],
+        )
+        self.assertIn(
+            "mechanism_text_count",
+            preflight["allowed_source_free_feature_contract"]["forbidden_fields"],
+        )
+        self.assertTrue(
+            preflight["allowed_source_free_feature_contract"][
+                "retained_rows_may_not_select_or_tune_rule"
+            ]
+        )
+        self.assertFalse(preflight["decision"]["counteraxis_selected_now"])
+        self.assertFalse(
+            preflight["descriptor_present_rows"][0][
+                "allowed_for_rule_selection_on_this_row"
+            ]
+        )
+        self.assertFalse(
+            preflight["guardrails"][
+                "heldout_rows_used_for_training_or_threshold_tuning"
+            ]
+        )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

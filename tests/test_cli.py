@@ -536,6 +536,62 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_retained_residual_risk_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-residual-risk-"
+                "readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_residual_"
+                "risk_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_deployment_action_readout",
+            args.deployment_action_readout,
+        )
+        self.assertIn(
+            "lever3_retained_residual_risk_readout",
+            args.report,
+        )
+
+    def test_lever3_descriptor_present_counteraxis_preflight_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-descriptor-present-"
+                "counteraxis-preflight"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_descriptor_present_"
+                "counteraxis_preflight_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_retained_residual_risk_readout",
+            args.retained_residual_risk_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertIn(
+            "descriptor_present_counteraxis_preflight",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

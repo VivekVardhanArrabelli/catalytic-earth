@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 358
-- Measured elapsed time: 10968.3 minutes (182.81 hours)
+- Entries: 359
+- Measured elapsed time: 10988.2 minutes (183.14 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 800.9 measured minutes (13.35 hours)
+- northstar-lever3: 820.8 measured minutes (13.68 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3756
-- Evidence references logged: 3093
+- Artifact references logged: 3767
+- Evidence references logged: 3103
 
 ## Recent Entries
-
-### 2026-06-04T20:51:00.471108+00:00 - northstar-lever3
-
-- Task: Lever 3 cofactor-context counteraxis and same-family bandpass scout readout
-- Time mode: measured
-- Measured minutes: 47.333
-- Started: 2026-06-04T20:03:40Z
-- Ended: 2026-06-04T20:51:00Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json, work/fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: cofactor-context counteraxis resolved high-cofactor residual 1/1 with 31/34 calibration retention, same-family numeric bandpass scout fired 9 retained residual rows and reduced same-family shortfall from 9 to 0, combined scout operating point abstained 105/204 train/cal OOS and retained 31/34 calibration rows, current evidence remains deployment-closure false pending accepted bandpass counteraxis contract and P07658 predicted-coordinate provenance, focused Lever 3 tests 4 passed 10 subtests, affected CLI/northstar/geometry regression tests 558 passed 175 subtests, full pytest 1430 passed 194 subtests with one existing sklearn/SciPy warning, unittest discovery 1385 passed, validate 702 labels compileall diff-check JSON parse and docs-reference check passed
-- Notes: Measured readout artifact first; no blocker packet produced. The fixed 0.44155 threshold remains unchanged.
 
 ### 2026-06-04T21:37:20.235148+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_deployment_action_readout_current702_20260604.json, work/fold_augmented_lever3_deployment_action_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: deployment-action readout ready fail-closed P07658, residual hard-confounded rows abstained by accepted counteraxes 10 of 21, residual rows retained for evidence queue 11, calibration retention 31 of 34, train-cal OOS abstention 105 of 204, P07658 forced abstention rows 1, fixed-threshold scoring closure false, full pytest 1463 passed 207 subtests with existing sklearn warning, unittest discovery 1418 passed, validate passed 702 labels, compileall diff-check JSON parse docs-reference and reproducibility checks passed
 - Notes: Measured readout artifact first; no blocker packet produced. Fixed threshold 0.44155 remains unchanged.
+
+### 2026-06-05T04:21:10.584820+00:00 - northstar-lever3
+
+- Task: Lever 3 retained residual risk and descriptor-present counteraxis preflight
+- Time mode: measured
+- Measured minutes: 19.917
+- Started: 2026-06-05T04:01:15Z
+- Ended: 2026-06-05T04:21:10Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json, work/fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json, work/fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: retained residual risk readout keeps safe abstention routing true and fixed-threshold closure false, 11 residual same-family rows remain retained after accepted counteraxes, 2 retained rows have pocket descriptors and 9 need source-free descriptor acquisition, descriptor-present preflight freezes 8 numeric descriptor fields and 20 residue-code count fields for m_csa:25 and m_csa:52, no counteraxis selected or threshold changed, focused tests 7 passed 25 subtests, affected suite 597 passed 190 subtests, full pytest 1469 passed 209 subtests with existing sklearn warning, unittest discovery 1424 passed, validate compileall diff-check JSON parse doc/source-hash and normalized reproducibility checks passed
+- Notes: Measured readouts first; no blocker packet produced; threshold 0.44155 unchanged.
 
 ## Expectation Updates
 

@@ -8974,6 +8974,117 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_retained_residual_risk_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_retained_residual_risk_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_residual_risk_readout_"
+                "descriptor_present_actionable"
+            ),
+        )
+        self.assertEqual(readout["operating_point"]["baseline_threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["retained_residual_rows"], 11)
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_with_pocket_descriptor"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_missing_pocket_descriptor"],
+            9,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_unknown_descriptor_status"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["deployment_action_residual_rows_abstained"],
+            10,
+        )
+        self.assertEqual(readout["counts"]["deployment_action_residual_rows"], 21)
+        self.assertTrue(
+            readout["decision"]["safe_abstention_routing_available_now"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["score_or_force_mechanism_label_for_retained_rows_now"]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_lever3_descriptor_present_counteraxis_preflight_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_descriptor_present_"
+                "counteraxis_preflight_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            (
+                "fold_augmented_lever3_descriptor_present_counteraxis_"
+                "preflight_ready_input_frozen"
+            ),
+        )
+        self.assertEqual(
+            preflight["counts"]["retained_descriptor_present_rows_requested"],
+            2,
+        )
+        self.assertEqual(preflight["counts"]["descriptor_value_rows_found"], 2)
+        self.assertEqual(preflight["counts"]["descriptor_value_rows_missing"], 0)
+        self.assertEqual(preflight["counts"]["descriptor_feature_fields"], 8)
+        self.assertEqual(preflight["counts"]["residue_code_count_fields"], 20)
+        self.assertEqual(
+            preflight["allowed_source_free_feature_contract"][
+                "descriptor_fields"
+            ],
+            [
+                "aromatic_fraction",
+                "charge_balance",
+                "hydrophobic_fraction",
+                "mean_min_distance_to_active_site",
+                "negative_fraction",
+                "polar_fraction",
+                "positive_fraction",
+                "sulfur_fraction",
+            ],
+        )
+        self.assertIn(
+            "mechanism_text_count",
+            preflight["allowed_source_free_feature_contract"]["forbidden_fields"],
+        )
+        self.assertTrue(
+            preflight["allowed_source_free_feature_contract"][
+                "retained_rows_may_not_select_or_tune_rule"
+            ]
+        )
+        self.assertFalse(preflight["decision"]["counteraxis_selected_now"])
+        self.assertFalse(
+            preflight["decision"]["counteraxis_ready_for_deployment_now"]
+        )
+        self.assertFalse(preflight["guardrails"]["blocker_packet"])
+        self.assertFalse(preflight["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -9078,6 +9189,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_deployment_action_readout_"
                 "current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_retained_residual_risk_"
+                "readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_descriptor_present_"
+                "counteraxis_preflight_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

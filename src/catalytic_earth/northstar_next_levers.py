@@ -351,6 +351,12 @@ FOLD_AUGMENTED_LEVER3_CONFOUNDED_SAFE_ABSTENTION_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_DEPLOYMENT_ACTION_READOUT_ID = (
     "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_RETAINED_RESIDUAL_RISK_READOUT_ID = (
+    "v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_DESCRIPTOR_PRESENT_COUNTERAXIS_PREFLIGHT_ID = (
+    "v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -44650,6 +44656,736 @@ def write_fold_augmented_lever3_deployment_action_readout(
             encoding="utf-8",
         )
     return readout
+
+
+def build_fold_augmented_lever3_retained_residual_risk_readout(
+    *,
+    deployment_action_readout_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_RETAINED_RESIDUAL_RISK_READOUT_ID,
+) -> dict[str, Any]:
+    action = _read_json(deployment_action_readout_path)
+    action_counts = action.get("counts") or {}
+    action_decision = action.get("decision") or {}
+    operating = action.get("operating_point") or {}
+    retained_queue = [
+        row
+        for row in action.get("retained_residual_evidence_queue", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    retained_rows = sorted(
+        retained_queue,
+        key=lambda row: (
+            int(row.get("rank") or 9999),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+    )
+    descriptor_present = [
+        row
+        for row in retained_rows
+        if row.get("same_family_pocket_descriptor_status")
+        == "pocket_descriptor_present"
+    ]
+    descriptor_missing = [
+        row
+        for row in retained_rows
+        if row.get("same_family_pocket_descriptor_status")
+        == "pocket_descriptor_missing"
+    ]
+    descriptor_unknown = [
+        row
+        for row in retained_rows
+        if row.get("same_family_pocket_descriptor_status")
+        not in {"pocket_descriptor_present", "pocket_descriptor_missing"}
+    ]
+
+    risk_rows: list[dict[str, Any]] = []
+    for row in retained_rows:
+        descriptor_status = str(
+            row.get("same_family_pocket_descriptor_status") or "unknown"
+        )
+        if descriptor_status == "pocket_descriptor_present":
+            evidence_gate = (
+                "train_cal_only_same_family_pocket_counteraxis_design_required"
+            )
+        elif descriptor_status == "pocket_descriptor_missing":
+            evidence_gate = "source_free_pocket_descriptor_acquisition_required"
+        else:
+            evidence_gate = "descriptor_status_reconciliation_required"
+        risk_rows.append(
+            {
+                "rank": int(row.get("rank") or 0),
+                "entry_id": str(row["entry_id"]),
+                "accession": row.get("accession"),
+                "axis_memberships": list(row.get("axis_memberships") or []),
+                "closest_current_channel": row.get("closest_current_channel"),
+                "closest_current_channel_margin": row.get(
+                    "closest_current_channel_margin"
+                ),
+                "same_family_pocket_descriptor_status": descriptor_status,
+                "deployment_action_now": (
+                    "retain_at_fixed_operating_point_not_scoring_closure"
+                ),
+                "unsafe_mechanism_transfer_allowed_now": False,
+                "count_as_abstained_evidence_now": False,
+                "score_or_force_label_now": False,
+                "next_evidence_gate": evidence_gate,
+            }
+        )
+
+    descriptor_present_ids = [str(row["entry_id"]) for row in descriptor_present]
+    descriptor_missing_ids = [str(row["entry_id"]) for row in descriptor_missing]
+    zero_residual_risk_ready = not retained_rows
+    descriptor_present_counteraxis_ready = False
+    descriptor_acquisition_ready = False
+    smallest_next_experiments = [
+        {
+            "experiment_id": "retained_descriptor_present_counteraxis_design",
+            "row_count": len(descriptor_present),
+            "entry_ids": descriptor_present_ids,
+            "current_evidence_state": (
+                "source_free_pocket_descriptors_present_but_no_accepted_"
+                "train_cal_selected_counteraxis"
+            ),
+            "action_now": (
+                "calibrate_or_validate a source-free pocket/chemistry "
+                "counteraxis on train/cal evidence only before applying it to "
+                "these retained rows"
+            ),
+            "countable_abstention_evidence_now": False,
+        },
+        {
+            "experiment_id": "retained_descriptor_missing_acquisition",
+            "row_count": len(descriptor_missing),
+            "entry_ids": descriptor_missing_ids,
+            "current_evidence_state": (
+                "source_free_same_family_pocket_descriptors_missing"
+            ),
+            "action_now": (
+                "acquire source-free pocket descriptors without "
+                "experimental-PDB deployment shortcuts or heldout tuning"
+            ),
+            "countable_abstention_evidence_now": False,
+        },
+    ]
+    missing_evidence = [
+        (
+            "train/cal-only source-free pocket or chemistry counteraxis for "
+            f"{len(descriptor_present)} descriptor-present retained residual rows"
+        ),
+        (
+            "source-free pocket descriptor acquisition for "
+            f"{len(descriptor_missing)} descriptor-missing retained residual rows"
+        ),
+    ]
+    if descriptor_unknown:
+        missing_evidence.append(
+            f"descriptor status reconciliation for {len(descriptor_unknown)} retained rows"
+        )
+
+    status = (
+        "fold_augmented_lever3_retained_residual_risk_readout_zero_residual_ready"
+        if zero_residual_risk_ready
+        else (
+            "fold_augmented_lever3_retained_residual_risk_readout_descriptor_present_actionable"
+            if descriptor_present
+            else "fold_augmented_lever3_retained_residual_risk_readout_descriptor_acquisition_needed"
+        )
+    )
+    safe_abstention = bool(
+        action_decision.get("current_evidence_sufficient_for_safe_abstention_routing")
+    )
+    scoring_closure = bool(
+        action_decision.get(
+            "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+        )
+    )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_retained_residual_risk_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured retained-residual risk readout downstream of "
+            "the deployment-action surface. It quantifies retained same-family "
+            "residual rows, pocket-descriptor coverage, and the smallest "
+            "source-free evidence gates needed before any zero-residual-risk "
+            "claim. It scores no rows, stages no coordinates, changes no "
+            "thresholds, and uses no heldout rows for training or threshold "
+            "selection."
+        ),
+        "operating_point": {
+            "route_id": operating.get("route_id"),
+            "baseline_threshold": operating.get("baseline_threshold"),
+            "threshold_selection_source": operating.get(
+                "threshold_selection_source", "train_calibration_only"
+            ),
+            "calibration_in_scope_rows": int(
+                operating.get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                operating.get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                operating.get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                operating.get("all_train_cal_oos_abstained") or 0
+            ),
+            "safe_abstention_routing_available": safe_abstention,
+            "fixed_threshold_scoring_closure_available": scoring_closure,
+            "threshold_or_value_changed_now": False,
+        },
+        "counts": {
+            "retained_residual_rows": len(retained_rows),
+            "retained_residual_rows_with_pocket_descriptor": len(
+                descriptor_present
+            ),
+            "retained_residual_rows_missing_pocket_descriptor": len(
+                descriptor_missing
+            ),
+            "retained_residual_rows_unknown_descriptor_status": len(
+                descriptor_unknown
+            ),
+            "deployment_action_residual_rows": int(
+                action_counts.get("residual_rows") or 0
+            ),
+            "deployment_action_residual_rows_abstained": int(
+                action_counts.get(
+                    "unique_residual_rows_abstained_by_accepted_counteraxes"
+                )
+                or 0
+            ),
+            "p07658_forced_abstention_rows": int(
+                action_counts.get("p07658_forced_abstention_rows") or 0
+            ),
+            "calibration_in_scope_rows": int(
+                operating.get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                operating.get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                operating.get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                operating.get("all_train_cal_oos_abstained") or 0
+            ),
+        },
+        "retained_residual_risk_rows": risk_rows,
+        "smallest_next_experiments": smallest_next_experiments,
+        "decision": {
+            "deployment_valid_action_readout_available": bool(
+                action_decision.get("deployment_valid_action_readout_available")
+            ),
+            "safe_abstention_routing_available_now": safe_abstention,
+            "fixed_threshold_scoring_closure_available_now": scoring_closure,
+            "zero_residual_retained_transfer_risk_available_now": (
+                zero_residual_risk_ready
+            ),
+            "descriptor_present_counteraxis_ready_now": (
+                descriptor_present_counteraxis_ready
+            ),
+            "descriptor_missing_acquisition_ready_now": descriptor_acquisition_ready,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_zero_residual_risk": missing_evidence,
+            "next_gate": (
+                "First run a train/cal-only source-free pocket/chemistry "
+                "counteraxis design for the descriptor-present retained rows; "
+                "then acquire source-free pocket descriptors for the remaining "
+                "descriptor-missing retained rows. Keep threshold 0.44155 "
+                "unchanged and keep retained rows non-closure evidence until "
+                "a counteraxis is accepted."
+                if retained_rows
+                else "No retained residual same-family rows remain."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_action_readout": _source_path_record(
+                deployment_action_readout_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Safe fail-closed routing is available, but zero residual "
+                "same-family transfer risk is not yet evidence-complete."
+                if retained_rows
+                else "No retained residual same-family transfer risk remains."
+            ),
+            "result": (
+                f"{len(retained_rows)} retained residual rows remain after "
+                "accepted counteraxes; "
+                f"{len(descriptor_present)} have pocket descriptors and "
+                f"{len(descriptor_missing)} still need descriptor acquisition."
+            ),
+            "next_action": (
+                "Use the deployment-action readout for routing now; do not "
+                "treat retained residual rows as scoring closure until a "
+                "train/cal-selected source-free counteraxis exists."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_retained_residual_risk_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    operating = readout["operating_point"]
+    lines = [
+        "# Fold-Augmented Lever 3 Retained Residual Risk Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Safe abstention routing available now: "
+        f"{decision['safe_abstention_routing_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{operating['all_train_cal_oos_abstained']}/"
+        f"{operating['all_train_cal_oos_rows']}",
+        "",
+        "## Retained Residual Queue",
+        "",
+        f"- Retained residual rows: {counts['retained_residual_rows']}",
+        "- With/missing/unknown pocket descriptors: "
+        f"{counts['retained_residual_rows_with_pocket_descriptor']}/"
+        f"{counts['retained_residual_rows_missing_pocket_descriptor']}/"
+        f"{counts['retained_residual_rows_unknown_descriptor_status']}",
+        "- Deployment-action residual abstentions: "
+        f"{counts['deployment_action_residual_rows_abstained']}/"
+        f"{counts['deployment_action_residual_rows']}",
+        "",
+        "| rank | row | closest channel | margin | descriptor | next evidence gate |",
+        "| ---: | --- | --- | ---: | --- | --- |",
+    ]
+    for row in readout.get("retained_residual_risk_rows", []):
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | "
+            f"{row.get('closest_current_channel') or ''} | "
+            f"{row.get('closest_current_channel_margin')} | "
+            f"{row.get('same_family_pocket_descriptor_status') or ''} | "
+            f"{row.get('next_evidence_gate') or ''} |"
+        )
+    lines += [
+        "",
+        "## Smallest Next Experiments",
+        "",
+        "| experiment | rows | countable now | action |",
+        "| --- | ---: | --- | --- |",
+    ]
+    for experiment in readout.get("smallest_next_experiments", []):
+        lines.append(
+            f"| {experiment['experiment_id']} | {experiment['row_count']} | "
+            f"{experiment['countable_abstention_evidence_now']} | "
+            f"{experiment['action_now']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Score or force mechanism label for retained rows now: "
+        f"{decision['score_or_force_mechanism_label_for_retained_rows_now']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        "- Missing evidence for zero residual risk: "
+        f"{decision['exact_missing_evidence_for_zero_residual_risk']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_retained_residual_risk_readout(
+    *,
+    deployment_action_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_RETAINED_RESIDUAL_RISK_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_retained_residual_risk_readout(
+        deployment_action_readout_path=deployment_action_readout_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_retained_residual_risk_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
+    *,
+    retained_residual_risk_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DESCRIPTOR_PRESENT_COUNTERAXIS_PREFLIGHT_ID
+    ),
+) -> dict[str, Any]:
+    risk = _read_json(retained_residual_risk_readout_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    retained_rows = [
+        row
+        for row in risk.get("retained_residual_risk_rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("same_family_pocket_descriptor_status")
+        == "pocket_descriptor_present"
+    ]
+    retrieval_rows = {
+        str(row["entry_id"]): row
+        for row in (
+            (surface.get("predicted_geometry_candidate_retrieval") or {}).get(
+                "results"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    descriptor_rows: list[dict[str, Any]] = []
+    missing_descriptor_rows: list[dict[str, Any]] = []
+    descriptor_field_names: set[str] = set()
+    residue_code_names: set[str] = set()
+    for retained in sorted(
+        retained_rows,
+        key=lambda row: (
+            int(row.get("rank") or 9999),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+    ):
+        entry_id = str(retained["entry_id"])
+        retrieval = retrieval_rows.get(entry_id) or {}
+        pocket = retrieval.get("pocket_context") or {}
+        descriptors = pocket.get("descriptors") or {}
+        residue_counts = pocket.get("residue_code_counts") or {}
+        if not descriptors:
+            missing_descriptor_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "accession": retained.get("accession"),
+                    "reason": "pocket_descriptor_values_missing_from_surface",
+                }
+            )
+            continue
+        descriptor_field_names.update(str(key) for key in descriptors)
+        residue_code_names.update(str(key) for key in residue_counts)
+        descriptor_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": retained.get("accession"),
+                "rank": int(retained.get("rank") or 0),
+                "closest_current_channel": retained.get("closest_current_channel"),
+                "closest_current_channel_margin": retained.get(
+                    "closest_current_channel_margin"
+                ),
+                "top1_score": retrieval.get("top1_score"),
+                "distance_cutoff_angstrom": pocket.get("distance_cutoff_angstrom"),
+                "nearby_residue_count": pocket.get("nearby_residue_count"),
+                "descriptor_values": {
+                    str(key): descriptors[key] for key in sorted(descriptors)
+                },
+                "residue_code_counts": {
+                    str(key): residue_counts[key] for key in sorted(residue_counts)
+                },
+                "count_as_counteraxis_evidence_now": False,
+                "allowed_for_rule_selection_on_this_row": False,
+                "next_gate": (
+                    "train_cal_only_same_family_pocket_counteraxis_design_required"
+                ),
+            }
+        )
+    descriptor_fields = sorted(descriptor_field_names)
+    residue_codes = sorted(residue_code_names)
+    ready_for_design_input = bool(
+        descriptor_rows and len(descriptor_rows) == len(retained_rows)
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_descriptor_present_counteraxis_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_descriptor_present_counteraxis_preflight_ready_input_frozen"
+            if ready_for_design_input
+            else "fold_augmented_lever3_descriptor_present_counteraxis_preflight_partial_input"
+        ),
+        "scope": (
+            "Lever 3 measured preflight for descriptor-present retained "
+            "same-family residual rows. It freezes the source-free pocket "
+            "descriptor fields that can be used as input to a future "
+            "train/cal-only counteraxis design, but it does not select a "
+            "counteraxis, tune a threshold, score rows, stage coordinates, or "
+            "use these retained rows as calibration evidence."
+        ),
+        "counts": {
+            "retained_descriptor_present_rows_requested": len(retained_rows),
+            "descriptor_value_rows_found": len(descriptor_rows),
+            "descriptor_value_rows_missing": len(missing_descriptor_rows),
+            "descriptor_feature_fields": len(descriptor_fields),
+            "residue_code_count_fields": len(residue_codes),
+            "calibration_in_scope_rows": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_abstained") or 0
+            ),
+        },
+        "allowed_source_free_feature_contract": {
+            "descriptor_fields": descriptor_fields,
+            "residue_code_count_fields": residue_codes,
+            "forbidden_fields": [
+                "mechanism_text_count",
+                "mechanism_text_snippets",
+                "true_fingerprint_id",
+                "top1_fingerprint_id",
+                "entry_name",
+                "experimental_pdb_id",
+                "pdb_id",
+            ],
+            "rule_selection_rows": "train_cal_only_future_design_surface",
+            "retained_rows_may_not_select_or_tune_rule": True,
+        },
+        "descriptor_present_rows": descriptor_rows,
+        "missing_descriptor_rows": missing_descriptor_rows,
+        "decision": {
+            "descriptor_input_values_frozen": ready_for_design_input,
+            "counteraxis_selected_now": False,
+            "counteraxis_ready_for_deployment_now": False,
+            "count_retained_rows_as_abstained_now": False,
+            "safe_abstention_routing_available_now": bool(
+                (risk.get("decision") or {}).get(
+                    "safe_abstention_routing_available_now"
+                )
+            ),
+            "zero_residual_retained_transfer_risk_available_now": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Use these frozen descriptor fields only as a candidate input "
+                "contract. Select any pocket/chemistry counteraxis on a "
+                "train/cal-only surface, then rerun the retained-risk readout; "
+                "do not tune on m_csa:25 or m_csa:52."
+                if ready_for_design_input
+                else "Repair descriptor extraction before any counteraxis design."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "counteraxis_selected_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "retained_residual_risk_readout": _source_path_record(
+                retained_residual_risk_readout_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(descriptor_rows)}/{len(retained_rows)} descriptor-present "
+                "retained residual rows have frozen source-free pocket values."
+            ),
+            "result": (
+                f"The candidate input contract exposes {len(descriptor_fields)} "
+                "numeric descriptor fields and "
+                f"{len(residue_codes)} residue-count fields, but no "
+                "counteraxis is selected now."
+            ),
+            "next_action": (
+                "Design any same-family pocket counteraxis on train/cal-only "
+                "evidence, then apply it through a new measured readout without "
+                "changing threshold 0.44155."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_descriptor_present_counteraxis_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    decision = preflight["decision"]
+    feature_contract = preflight["allowed_source_free_feature_contract"]
+    lines = [
+        "# Fold-Augmented Lever 3 Descriptor-Present Counteraxis Preflight - current702",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        "- Descriptor input values frozen: "
+        f"{decision['descriptor_input_values_frozen']}",
+        f"- Counteraxis selected now: {decision['counteraxis_selected_now']}",
+        "- Counteraxis ready for deployment now: "
+        f"{decision['counteraxis_ready_for_deployment_now']}",
+        "",
+        "## Counts",
+        "",
+        "- Descriptor-present retained rows requested/found/missing: "
+        f"{counts['retained_descriptor_present_rows_requested']}/"
+        f"{counts['descriptor_value_rows_found']}/"
+        f"{counts['descriptor_value_rows_missing']}",
+        f"- Descriptor fields: {counts['descriptor_feature_fields']}",
+        f"- Residue-code count fields: {counts['residue_code_count_fields']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{counts['all_train_cal_oos_abstained']}/"
+        f"{counts['all_train_cal_oos_rows']}",
+        "",
+        "## Allowed Feature Contract",
+        "",
+        f"- Descriptor fields: {feature_contract['descriptor_fields']}",
+        f"- Residue-code fields: {feature_contract['residue_code_count_fields']}",
+        f"- Forbidden fields: {feature_contract['forbidden_fields']}",
+        "- Retained rows may select/tune rule: "
+        f"{not feature_contract['retained_rows_may_not_select_or_tune_rule']}",
+        "",
+        "## Descriptor-Present Rows",
+        "",
+        "| row | top1 score | nearby residues | descriptor keys | countable now |",
+        "| --- | ---: | ---: | --- | --- |",
+    ]
+    for row in preflight.get("descriptor_present_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row.get('top1_score')} | "
+            f"{row.get('nearby_residue_count')} | "
+            f"{', '.join(row.get('descriptor_values', {}).keys())} | "
+            f"{row['count_as_counteraxis_evidence_now']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Score or force mechanism label for retained rows now: "
+        f"{decision['score_or_force_mechanism_label_for_retained_rows_now']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured preflight only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['headline']}",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
+    *,
+    retained_residual_risk_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DESCRIPTOR_PRESENT_COUNTERAXIS_PREFLIGHT_ID
+    ),
+) -> dict[str, Any]:
+    preflight = build_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
+        retained_residual_risk_readout_path=retained_residual_risk_readout_path,
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_descriptor_present_counteraxis_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
 
 
 def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(
