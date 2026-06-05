@@ -49,6 +49,9 @@ DEFAULT_EVENT_AXIS_SIGNATURE_EXCLUDED_FRONTIER_ARTIFACT_ID = (
 DEFAULT_EVENT_AXIS_SIGNATURE_EXCLUSION_SENSITIVITY_ARTIFACT_ID = (
     "v3_lever2_event_axis_signature_exclusion_sensitivity_readout_current702_20260604"
 )
+DEFAULT_EVENT_AXIS_PRIMARY_CONTROLLED_NULL_ARTIFACT_ID = (
+    "v3_lever2_event_axis_primary_controlled_null_readout_current702_20260604"
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -86,6 +89,55 @@ def _entry_sort_key(entry_id: str) -> tuple[int, str]:
         if suffix.isdigit():
             return (0, f"{int(suffix):08d}")
     return (1, entry_id)
+
+
+def _stable_hash_text(*parts: object) -> str:
+    return hashlib.sha256(
+        "::".join(str(part) for part in parts).encode("utf-8")
+    ).hexdigest()
+
+
+def _deterministic_null_mapping(
+    entry_ids: list[str],
+    *,
+    seed: str,
+) -> dict[str, str]:
+    ordered = sorted(entry_ids, key=_entry_sort_key)
+    if not ordered:
+        return {}
+    permuted = sorted(
+        ordered,
+        key=lambda entry_id: _stable_hash_text(seed, entry_id),
+    )
+    if len(ordered) > 1:
+        for offset in range(len(permuted)):
+            candidate = permuted[offset:] + permuted[:offset]
+            if all(target != source for target, source in zip(ordered, candidate)):
+                permuted = candidate
+                break
+        else:
+            permuted = permuted[1:] + permuted[:1]
+    return dict(zip(ordered, permuted))
+
+
+def _features_with_axis_fields_from_source(
+    features: dict[str, Any],
+    source_features: dict[str, Any],
+    fields: list[str],
+) -> dict[str, Any]:
+    copied = dict(features)
+    for field in fields:
+        copied[field] = source_features.get(field, 0)
+    return copied
+
+
+def _empirical_quantile(values: list[int], percentile: float) -> int | None:
+    if not values:
+        return None
+    ordered = sorted(int(value) for value in values)
+    bounded = min(1.0, max(0.0, percentile))
+    index = int((len(ordered) - 1) * bounded)
+    return ordered[index]
 
 
 def _channel_threshold(expanded_threshold_contract: dict[str, Any]) -> tuple[str, float]:
@@ -6988,6 +7040,735 @@ def build_lever2_event_axis_signature_exclusion_sensitivity_readout(
     }
 
 
+def build_lever2_event_axis_primary_controlled_null_readout(
+    *,
+    mechanism_no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    current_extended_oos_mechanism_overlap_readout_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    min_primary_retain: float = 1.0,
+    baseline_axis_id: str = "source_free_projected_proton_role_subset",
+    null_permutations: int = 128,
+    null_seed: str = "lever2_primary_controlled_event_axis_null_v0",
+    artifact_id: str = DEFAULT_EVENT_AXIS_PRIMARY_CONTROLLED_NULL_ARTIFACT_ID,
+) -> dict[str, Any]:
+    if null_permutations <= 0:
+        raise ValueError("null_permutations must be positive")
+
+    observed = build_lever2_event_axis_primary_controlled_rescue_readout(
+        mechanism_no_template_rerun_path=mechanism_no_template_rerun_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        current_extended_oos_mechanism_overlap_readout_path=(
+            current_extended_oos_mechanism_overlap_readout_path
+        ),
+        current_in_scope_threshold_contract_path=current_in_scope_threshold_contract_path,
+        partial_surface_current_split_portability_readout_path=(
+            partial_surface_current_split_portability_readout_path
+        ),
+        min_primary_retain=min_primary_retain,
+        baseline_axis_id=baseline_axis_id,
+        artifact_id=f"{artifact_id}.observed",
+    )
+    mechanism = _read_json(mechanism_no_template_rerun_path)
+    feature_sidecar = _read_json(train_cal_feature_sidecar_path)
+    current_overlap = _read_json(current_extended_oos_mechanism_overlap_readout_path)
+    current_primary_contract = _read_json(current_in_scope_threshold_contract_path)
+
+    feature_rows = _feature_rows_by_id(feature_sidecar)
+    calibration_rows: list[dict[str, Any]] = []
+    for row in (mechanism.get("scored_rows") or {}).get("calibration") or []:
+        entry_id = str(row.get("entry_id") or "")
+        feature_row = feature_rows.get(entry_id)
+        if not entry_id or feature_row is None:
+            continue
+        calibration_rows.append(
+            {
+                "entry_id": entry_id,
+                "is_primary": bool(row.get("is_primary")),
+                "features": feature_row.get("row_specific_event_features") or {},
+            }
+        )
+    current_rows = [
+        row
+        for row in (current_overlap.get("row_readouts") or {}).get(
+            "current_extended_oos_overlap_rows"
+        )
+        or []
+        if isinstance(row, dict) and row.get("entry_id") in feature_rows
+    ]
+    current_retained_rows = [
+        row for row in current_rows if not row.get("current_surface_abstains")
+    ]
+    current_abstained_rows = [
+        row for row in current_rows if row.get("current_surface_abstains")
+    ]
+    current_primary_rows = _fold_rows_by_id(
+        current_primary_contract.get("calibration_row_scores") or []
+    )
+    calibration_feature_ids = {
+        entry_id
+        for entry_id, row in feature_rows.items()
+        if row.get("assigned_embedding_split") == "calibration"
+    }
+    valid_current_primary_overlap = sorted(
+        set(current_primary_rows) & calibration_feature_ids, key=_entry_sort_key
+    )
+    primary_control_rows = [row for row in calibration_rows if row["is_primary"]]
+    axes_by_id = {
+        str(axis["axis_id"]): axis for axis in _event_axis_frontier_definitions()
+    }
+    if baseline_axis_id not in axes_by_id:
+        raise ValueError(f"unknown baseline event axis: {baseline_axis_id}")
+    baseline_fields = list(axes_by_id[baseline_axis_id]["feature_fields"])
+
+    feature_universe_ids = sorted(
+        {
+            row["entry_id"]
+            for row in calibration_rows
+            if row["entry_id"] in feature_rows
+        }
+        | {
+            str(row["entry_id"])
+            for row in current_rows
+            if str(row["entry_id"]) in feature_rows
+        },
+        key=_entry_sort_key,
+    )
+    source_features_by_id = {
+        entry_id: (
+            feature_rows.get(entry_id, {}).get("row_specific_event_features") or {}
+        )
+        for entry_id in feature_universe_ids
+    }
+
+    def _selection_rows_for(entry_id: str) -> list[dict[str, Any]]:
+        return [row for row in calibration_rows if row["entry_id"] != entry_id]
+
+    baseline_row_readouts: list[dict[str, Any]] = []
+    for row in current_rows:
+        entry_id = str(row["entry_id"])
+        features = (
+            feature_rows.get(entry_id, {}).get("row_specific_event_features") or {}
+        )
+        current_surface_abstains = bool(row.get("current_surface_abstains"))
+        try:
+            rule = _select_primary_controlled_axis_rule(
+                _selection_rows_for(entry_id),
+                primary_control_rows,
+                baseline_fields,
+                min_primary_retain=min_primary_retain,
+            )
+            baseline_score = round(_axis_score(features, baseline_fields), 8)
+            baseline_abstains = _axis_rule_abstains(
+                baseline_score,
+                direction=str(rule["direction"]),
+                threshold=float(rule["threshold"]),
+            )
+            selection_error = None
+        except ValueError as exc:
+            rule = None
+            baseline_score = round(_axis_score(features, baseline_fields), 8)
+            baseline_abstains = False
+            selection_error = str(exc)
+        baseline_row_readouts.append(
+            {
+                "entry_id": entry_id,
+                "current_surface_abstains": current_surface_abstains,
+                "baseline_rule_evaluable": rule is not None,
+                "selection_error": selection_error,
+                "baseline_axis_score": baseline_score,
+                "selected_rule": rule,
+                "baseline_axis_abstains": baseline_abstains,
+                "current_retained_caught_by_baseline": bool(
+                    baseline_abstains and not current_surface_abstains
+                ),
+            }
+        )
+    baseline_by_entry = {row["entry_id"]: row for row in baseline_row_readouts}
+    baseline_caught_ids = [
+        row["entry_id"]
+        for row in baseline_row_readouts
+        if row["current_retained_caught_by_baseline"]
+    ]
+
+    added_axes = [
+        axis
+        for axis in _event_axis_frontier_definitions()
+        if str(axis["axis_id"]) != baseline_axis_id
+        and any(field not in baseline_fields for field in axis["feature_fields"])
+    ]
+
+    def _with_shuffled_added_fields(
+        row: dict[str, Any],
+        *,
+        mapping: dict[str, str],
+        shuffle_fields: list[str],
+    ) -> dict[str, Any]:
+        source_id = mapping.get(row["entry_id"], row["entry_id"])
+        source_features = source_features_by_id.get(source_id, {})
+        return {
+            **row,
+            "features": _features_with_axis_fields_from_source(
+                row["features"], source_features, shuffle_fields
+            ),
+        }
+
+    null_permutation_rows: list[dict[str, Any]] = []
+    for permutation_index in range(null_permutations):
+        axis_rows: list[dict[str, Any]] = []
+        for axis in added_axes:
+            axis_id = str(axis["axis_id"])
+            added_fields = list(axis["feature_fields"])
+            shuffle_fields = [
+                field for field in added_fields if field not in baseline_fields
+            ]
+            mapping = _deterministic_null_mapping(
+                feature_universe_ids,
+                seed=f"{null_seed}:{axis_id}:{permutation_index}",
+            )
+            shuffled_primary_control_rows = [
+                _with_shuffled_added_fields(
+                    row, mapping=mapping, shuffle_fields=shuffle_fields
+                )
+                for row in primary_control_rows
+            ]
+            row_readouts: list[dict[str, Any]] = []
+            for row in current_rows:
+                entry_id = str(row["entry_id"])
+                target_feature_row = feature_rows[entry_id]
+                target_features = (
+                    target_feature_row.get("row_specific_event_features") or {}
+                )
+                source_id = mapping.get(entry_id, entry_id)
+                shuffled_target_features = _features_with_axis_fields_from_source(
+                    target_features,
+                    source_features_by_id.get(source_id, {}),
+                    shuffle_fields,
+                )
+                shuffled_selection_rows = [
+                    _with_shuffled_added_fields(
+                        cal_row, mapping=mapping, shuffle_fields=shuffle_fields
+                    )
+                    for cal_row in _selection_rows_for(entry_id)
+                ]
+                current_surface_abstains = bool(row.get("current_surface_abstains"))
+                baseline_only_catch = bool(
+                    baseline_by_entry.get(entry_id, {}).get(
+                        "current_retained_caught_by_baseline"
+                    )
+                )
+                try:
+                    pair_rule = _select_primary_controlled_axis_pair_rule(
+                        shuffled_selection_rows,
+                        shuffled_primary_control_rows,
+                        baseline_fields,
+                        added_fields,
+                        min_primary_retain=min_primary_retain,
+                    )
+                    baseline_score = round(
+                        _axis_score(shuffled_target_features, baseline_fields), 8
+                    )
+                    added_score = round(
+                        _axis_score(shuffled_target_features, added_fields), 8
+                    )
+                    pair_baseline_abstains = _axis_rule_abstains(
+                        baseline_score,
+                        direction=str(pair_rule["baseline_rule"]["direction"]),
+                        threshold=float(pair_rule["baseline_rule"]["threshold"]),
+                    )
+                    added_abstains = _axis_rule_abstains(
+                        added_score,
+                        direction=str(pair_rule["added_rule"]["direction"]),
+                        threshold=float(pair_rule["added_rule"]["threshold"]),
+                    )
+                    pair_abstains = bool(pair_baseline_abstains or added_abstains)
+                    pair_error = None
+                except ValueError as exc:
+                    pair_rule = None
+                    baseline_score = round(
+                        _axis_score(shuffled_target_features, baseline_fields), 8
+                    )
+                    added_score = round(
+                        _axis_score(shuffled_target_features, added_fields), 8
+                    )
+                    pair_baseline_abstains = False
+                    added_abstains = False
+                    pair_abstains = False
+                    pair_error = str(exc)
+                pair_current_retained_catch = bool(
+                    pair_abstains and not current_surface_abstains
+                )
+                row_readouts.append(
+                    {
+                        "entry_id": entry_id,
+                        "source_entry_id_for_shuffled_added_axis": source_id,
+                        "current_surface_abstains": current_surface_abstains,
+                        "pair_rule_evaluable": pair_rule is not None,
+                        "selection_error": pair_error,
+                        "baseline_axis_score": baseline_score,
+                        "added_axis_score": added_score,
+                        "pair_baseline_axis_abstains": pair_baseline_abstains,
+                        "added_axis_abstains": added_abstains,
+                        "projection_plus_axis_abstains": pair_abstains,
+                        "current_retained_caught_by_projected_subset": (
+                            baseline_only_catch
+                        ),
+                        "current_retained_caught_by_projection_plus_axis": (
+                            pair_current_retained_catch
+                        ),
+                        "current_retained_caught_beyond_projected_subset": bool(
+                            pair_current_retained_catch and not baseline_only_catch
+                        ),
+                    }
+                )
+            evaluable_rows = [
+                row for row in row_readouts if row["pair_rule_evaluable"]
+            ]
+            pair_caught = [
+                row
+                for row in evaluable_rows
+                if row["current_retained_caught_by_projection_plus_axis"]
+            ]
+            marginal_caught = [
+                row
+                for row in evaluable_rows
+                if row["current_retained_caught_beyond_projected_subset"]
+            ]
+            axis_rows.append(
+                {
+                    "axis_id": axis_id,
+                    "projection_plus_axis_id": f"{baseline_axis_id}+{axis_id}",
+                    "shuffle_fields": shuffle_fields,
+                    "evaluable_rows": len(evaluable_rows),
+                    "projection_plus_axis_current_retained_oos_catches": len(
+                        pair_caught
+                    ),
+                    "marginal_current_retained_oos_catches_beyond_projected_subset": len(
+                        marginal_caught
+                    ),
+                    "marginal_caught_entry_ids": [
+                        row["entry_id"] for row in marginal_caught
+                    ],
+                }
+            )
+
+        def _axis_null_sort_key(row: dict[str, Any]) -> tuple[int, int, str]:
+            return (
+                int(row["marginal_current_retained_oos_catches_beyond_projected_subset"]),
+                int(row["projection_plus_axis_current_retained_oos_catches"]),
+                str(row["projection_plus_axis_id"]),
+            )
+
+        best_null_axis = sorted(axis_rows, key=_axis_null_sort_key, reverse=True)[0]
+        null_permutation_rows.append(
+            {
+                "permutation_index": permutation_index,
+                "best_null_axis": best_null_axis,
+                "axis_rows": axis_rows,
+            }
+        )
+
+    priority_null_axis_ids = {
+        "bond_change",
+        "electron_flow",
+        "event_topology",
+        "all_priority_event_axes",
+    }
+    priority_null_rows: list[dict[str, Any]] = []
+    for row in null_permutation_rows:
+        priority_axis_rows = [
+            axis_row
+            for axis_row in row["axis_rows"]
+            if axis_row["axis_id"] in priority_null_axis_ids
+        ]
+        if not priority_axis_rows:
+            continue
+        best_priority_axis = sorted(
+            priority_axis_rows,
+            key=lambda axis_row: (
+                int(
+                    axis_row[
+                        "marginal_current_retained_oos_catches_beyond_projected_subset"
+                    ]
+                ),
+                int(axis_row["projection_plus_axis_current_retained_oos_catches"]),
+                str(axis_row["projection_plus_axis_id"]),
+            ),
+            reverse=True,
+        )[0]
+        priority_null_rows.append(
+            {
+                "permutation_index": row["permutation_index"],
+                "best_null_axis": best_priority_axis,
+            }
+        )
+
+    observed_counts = observed["counts"]
+    observed_best = observed["measured_readout"]["best_primary_controlled_axis"]
+    observed_best_overlap = observed_best["current_extended_overlap"]
+    observed_marginal = int(
+        observed_counts[
+            "best_primary_controlled_axis_marginal_current_retained_oos_catches"
+        ]
+    )
+    observed_total = int(
+        observed_counts["best_primary_controlled_axis_current_retained_oos_catches"]
+    )
+    null_max_marginals = [
+        int(
+            row["best_null_axis"][
+                "marginal_current_retained_oos_catches_beyond_projected_subset"
+            ]
+        )
+        for row in null_permutation_rows
+    ]
+    null_max_totals = [
+        int(
+            row["best_null_axis"][
+                "projection_plus_axis_current_retained_oos_catches"
+            ]
+        )
+        for row in null_permutation_rows
+    ]
+    priority_null_max_marginals = [
+        int(
+            row["best_null_axis"][
+                "marginal_current_retained_oos_catches_beyond_projected_subset"
+            ]
+        )
+        for row in priority_null_rows
+    ]
+    priority_null_ge_observed = sum(
+        1 for value in priority_null_max_marginals if value >= observed_marginal
+    )
+    priority_empirical_p_value = round(
+        (priority_null_ge_observed + 1)
+        / (len(priority_null_max_marginals) + 1),
+        6,
+    )
+    priority_null_marginal_q95 = _empirical_quantile(
+        priority_null_max_marginals, 0.95
+    )
+    observed_exceeds_priority_null_95 = bool(
+        priority_null_marginal_q95 is not None
+        and observed_marginal > priority_null_marginal_q95
+    )
+    null_ge_observed = sum(
+        1 for value in null_max_marginals if value >= observed_marginal
+    )
+    empirical_p_value = round(
+        (null_ge_observed + 1) / (len(null_max_marginals) + 1), 6
+    )
+    null_marginal_q95 = _empirical_quantile(null_max_marginals, 0.95)
+    observed_exceeds_null_95 = bool(
+        null_marginal_q95 is not None and observed_marginal > null_marginal_q95
+    )
+    observed_above_null_max = bool(
+        null_max_marginals and observed_marginal > max(null_max_marginals)
+    )
+    null_top_rows = sorted(
+        null_permutation_rows,
+        key=lambda row: (
+            int(
+                row["best_null_axis"][
+                    "marginal_current_retained_oos_catches_beyond_projected_subset"
+                ]
+            ),
+            int(
+                row["best_null_axis"][
+                    "projection_plus_axis_current_retained_oos_catches"
+                ]
+            ),
+            str(row["best_null_axis"]["projection_plus_axis_id"]),
+        ),
+        reverse=True,
+    )[:10]
+
+    result_class = (
+        "research_only_null_controlled_marginal_axis_signal_source_free_gap"
+        if observed_marginal > 0 and observed_exceeds_null_95
+        else (
+            "research_only_null_controlled_marginal_signal_not_distinguishable_from_null"
+            if observed_marginal > 0
+            else "research_only_null_controlled_axis_negative"
+        )
+    )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.event_axis_primary_controlled_null_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": f"lever2_event_axis_primary_controlled_null_readout_{result_class}",
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal null-control readout for the primary-controlled "
+            "event-axis rescue. The observed projected-subset-plus-axis result "
+            "is compared with deterministic permutations of the genuinely new "
+            "added-axis fields while preserving the fixed geometry/fold surface, "
+            "split rows, baseline projected subset, primary controls, and rule "
+            "selection discipline. No heldout rows are scored or tuned."
+        ),
+        "fixed_operating_points": {
+            "current_surface": (
+                current_overlap.get("fixed_operating_points") or {}
+            ).get("current_surface")
+            or {},
+            "axis_selection": {
+                "baseline_axis_id": baseline_axis_id,
+                "min_primary_retain": min_primary_retain,
+                "null_seed": null_seed,
+                "null_permutations": null_permutations,
+                "null_added_axis_assignment": (
+                    "deterministic SHA256 permutation of non-baseline added-axis "
+                    "feature fields across train/cal feature rows"
+                ),
+            },
+        },
+        "measured_readout": {
+            "observed_primary_controlled_rescue": {
+                "status": observed["status"],
+                "result_class": observed["result_class"],
+                "best_axis_id": observed["decision"][
+                    "best_primary_controlled_axis_id"
+                ],
+                "best_new_axis_id": observed["decision"]["best_new_axis_id"],
+                "baseline_projected_subset_current_retained_oos_catches": (
+                    observed_counts[
+                        "baseline_projected_subset_current_retained_oos_catches"
+                    ]
+                ),
+                "best_axis_current_retained_oos_catches": observed_total,
+                "best_axis_marginal_current_retained_oos_catches": (
+                    observed_marginal
+                ),
+                "best_axis_marginal_entry_ids": observed_best_overlap[
+                    "marginal_caught_entry_ids"
+                ],
+            },
+            "baseline_projected_subset_row_readouts": baseline_row_readouts,
+            "null_distribution": {
+                "permutations": null_permutations,
+                "added_axes_evaluated_per_permutation": len(added_axes),
+                "max_marginal_catches_by_permutation": null_max_marginals,
+                "max_total_catches_by_permutation": null_max_totals,
+                "summary": {
+                    "min": min(null_max_marginals) if null_max_marginals else None,
+                    "median": _empirical_quantile(null_max_marginals, 0.5),
+                    "p90": _empirical_quantile(null_max_marginals, 0.9),
+                    "p95": null_marginal_q95,
+                    "max": max(null_max_marginals) if null_max_marginals else None,
+                    "null_ge_observed_permutations": null_ge_observed,
+                    "empirical_p_value_greater_equal_observed": empirical_p_value,
+                },
+            },
+            "priority_event_axis_null_distribution": {
+                "priority_axis_ids": sorted(priority_null_axis_ids),
+                "permutations": len(priority_null_rows),
+                "max_marginal_catches_by_permutation": (
+                    priority_null_max_marginals
+                ),
+                "summary": {
+                    "min": (
+                        min(priority_null_max_marginals)
+                        if priority_null_max_marginals
+                        else None
+                    ),
+                    "median": _empirical_quantile(
+                        priority_null_max_marginals, 0.5
+                    ),
+                    "p90": _empirical_quantile(priority_null_max_marginals, 0.9),
+                    "p95": priority_null_marginal_q95,
+                    "max": (
+                        max(priority_null_max_marginals)
+                        if priority_null_max_marginals
+                        else None
+                    ),
+                    "null_ge_observed_permutations": priority_null_ge_observed,
+                    "empirical_p_value_greater_equal_observed": (
+                        priority_empirical_p_value
+                    ),
+                },
+            },
+            "top_null_permutations": null_top_rows,
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "calibration_rows": len(calibration_rows),
+            "calibration_primary_rows": len(primary_control_rows),
+            "calibration_oos_rows": sum(
+                1 for row in calibration_rows if not row["is_primary"]
+            ),
+            "current_extended_oos_overlap_rows": len(current_rows),
+            "current_extended_current_retained_overlap_rows": len(
+                current_retained_rows
+            ),
+            "current_extended_current_abstained_overlap_rows": len(
+                current_abstained_rows
+            ),
+            "current_primary_rows": len(current_primary_rows),
+            "valid_current_primary_calibration_feature_overlap_rows": len(
+                valid_current_primary_overlap
+            ),
+            "baseline_projected_subset_current_retained_oos_catches": len(
+                baseline_caught_ids
+            ),
+            "observed_best_axis_current_retained_oos_catches": observed_total,
+            "observed_best_axis_marginal_current_retained_oos_catches": (
+                observed_marginal
+            ),
+            "null_permutations": null_permutations,
+            "null_added_axes_evaluated": len(added_axes),
+            "null_max_marginal_catches_min": (
+                min(null_max_marginals) if null_max_marginals else None
+            ),
+            "null_max_marginal_catches_median": _empirical_quantile(
+                null_max_marginals, 0.5
+            ),
+            "null_max_marginal_catches_p90": _empirical_quantile(
+                null_max_marginals, 0.9
+            ),
+            "null_max_marginal_catches_p95": null_marginal_q95,
+            "null_max_marginal_catches_max": (
+                max(null_max_marginals) if null_max_marginals else None
+            ),
+            "null_permutations_ge_observed_marginal": null_ge_observed,
+            "priority_event_axis_null_max_marginal_catches_p95": (
+                priority_null_marginal_q95
+            ),
+            "priority_event_axis_null_max_marginal_catches_max": (
+                max(priority_null_max_marginals)
+                if priority_null_max_marginals
+                else None
+            ),
+            "priority_event_axis_null_permutations_ge_observed_marginal": (
+                priority_null_ge_observed
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "observed_primary_controlled_marginal_signal": bool(
+                observed_marginal > 0
+            ),
+            "observed_marginal_exceeds_empirical_null_p95": (
+                observed_exceeds_null_95
+            ),
+            "observed_marginal_exceeds_empirical_null_max": observed_above_null_max,
+            "empirical_p_value_greater_equal_observed": empirical_p_value,
+            "null_control_supports_genuinely_new_axis_signal": bool(
+                observed_marginal > 0 and observed_exceeds_null_95
+            ),
+            "priority_event_axis_null_control_supports_signal": bool(
+                observed_marginal > 0 and observed_exceeds_priority_null_95
+            ),
+            "null_controlled_result_is_negative": not bool(
+                observed_marginal > 0 and observed_exceeds_null_95
+            ),
+            "adds_local_overlap_value_beyond_current_surface": bool(
+                observed_marginal > 0
+            ),
+            "adds_operating_point_value_beyond_current_surface": False,
+            "source_free_current_split_operating_point_measurable": (
+                observed["decision"][
+                    "source_free_current_split_operating_point_measurable"
+                ]
+            ),
+            "valid_integrated_operating_point_measurable": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not bool(
+                observed_marginal > 0 and observed_exceeds_null_95
+            ),
+            "apply_or_promote_now": False,
+            "best_observed_axis_id": observed["decision"][
+                "best_primary_controlled_axis_id"
+            ],
+            "best_observed_new_axis_id": observed["decision"]["best_new_axis_id"],
+            "next_gate": (
+                "Do not promote Lever 2 from this result. If source-free "
+                "event-axis rows are materialized, rerun the primary-controlled "
+                "frontier plus this null control and require an observed "
+                "marginal count above the empirical null p95 before any "
+                "heldout or deployment claim."
+            ),
+        },
+        "missing_evidence": observed["missing_evidence"],
+        "missing_evidence_rows": observed["missing_evidence_rows"],
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "labels_used_only_for_train_cal_metric_accounting": True,
+            "entry_ids_used_only_for_split_overlap_accounting": True,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "target_oos_rows_excluded_from_their_own_axis_rule_selection": True,
+            "primary_labels_used_only_for_retention_control": True,
+            "null_control_randomizes_added_axis_feature_assignments_only": True,
+            "null_control_preserves_current_surface_and_split_rows": True,
+            "threshold_selected_or_tuned": True,
+            "threshold_selection_rows": (
+                "calibration_only_leave_one_oos_row_out_with_all_primary_controls"
+            ),
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "mechanism_no_template_rerun": _source_path_record(
+                mechanism_no_template_rerun_path
+            ),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+            "current_extended_oos_mechanism_overlap_readout": _source_path_record(
+                current_extended_oos_mechanism_overlap_readout_path
+            ),
+            "current_in_scope_threshold_contract": _source_path_record(
+                current_in_scope_threshold_contract_path
+            ),
+            "partial_surface_current_split_portability_readout": (
+                _source_path_record(partial_surface_current_split_portability_readout_path)
+                if partial_surface_current_split_portability_readout_path is not None
+                else {"exists": False, "path": None, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"Observed primary-controlled marginal catches: {observed_marginal}; "
+                f"empirical null p95: {null_marginal_q95}; empirical p-value: "
+                f"{empirical_p_value}; priority-event null p95: "
+                f"{priority_null_marginal_q95}."
+            ),
+            "result": (
+                "Research-only null-controlled signal: the observed new-axis "
+                "marginal count exceeds the deterministic added-axis null p95, "
+                "but source-free current-split event-axis rows are still "
+                "missing."
+                if observed_marginal > 0 and observed_exceeds_null_95
+                else (
+                    "Research-only measured negative: the observed "
+                    "primary-controlled marginal signal is not distinguishable "
+                    "from deterministic added-axis assignment nulls under the "
+                    "same split and primary-control discipline."
+                )
+            ),
+            "next_action": (
+                "Use this as the promotion gate for future source-free "
+                "materialization: rerun on materialized current-split rows and "
+                "require null-controlled marginal signal before heldout or "
+                "deployment work."
+            ),
+        },
+    }
+
+
 def build_lever2_source_free_partial_surface_current_split_portability_readout(
     *,
     current_measured_readout_path: Path,
@@ -9035,6 +9816,98 @@ def render_lever2_event_axis_signature_exclusion_sensitivity_readout_report(
     return "\n".join(lines) + "\n"
 
 
+def render_lever2_event_axis_primary_controlled_null_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    observed = readout["measured_readout"]["observed_primary_controlled_rescue"]
+    null_summary = readout["measured_readout"]["null_distribution"]["summary"]
+    priority_null_summary = readout["measured_readout"][
+        "priority_event_axis_null_distribution"
+    ]["summary"]
+    lines = [
+        "# Lever 2 Event-Axis Primary-Controlled Null Readout",
+        "",
+        f"- Artifact: `{readout['artifact_id']}`",
+        f"- Status: `{readout['status']}`",
+        f"- Created UTC: `{readout['created_utc']}`",
+        "",
+        "## Measured Result",
+        "",
+        (
+            "- Observed best pair: "
+            f"`{observed['best_axis_id']}` with "
+            f"{observed['best_axis_current_retained_oos_catches']}/"
+            f"{counts['current_extended_current_retained_overlap_rows']} "
+            "current-retained catches and "
+            f"{observed['best_axis_marginal_current_retained_oos_catches']} "
+            "marginal catches beyond the projected subset."
+        ),
+        (
+            "- Observed marginal rows: "
+            f"{', '.join(observed['best_axis_marginal_entry_ids']) or 'none'}."
+        ),
+        (
+            "- Null distribution over "
+            f"{counts['null_permutations']} deterministic permutations and "
+            f"{counts['null_added_axes_evaluated']} added axes: min "
+            f"{null_summary['min']}, median {null_summary['median']}, p90 "
+            f"{null_summary['p90']}, p95 {null_summary['p95']}, max "
+            f"{null_summary['max']}."
+        ),
+        (
+            "- Priority event-axis null p95: "
+            f"{priority_null_summary['p95']} with empirical p-value "
+            f"{priority_null_summary['empirical_p_value_greater_equal_observed']}."
+        ),
+        (
+            "- Empirical p-value for null max marginal catches >= observed: "
+            f"{null_summary['empirical_p_value_greater_equal_observed']} "
+            f"({null_summary['null_ge_observed_permutations']} permutations)."
+        ),
+        "",
+        "## Top Null Permutations",
+        "",
+        "| permutation | best null axis | total catches | marginal catches | marginal rows |",
+        "| ---: | --- | ---: | ---: | --- |",
+    ]
+    for row in readout["measured_readout"]["top_null_permutations"]:
+        axis = row["best_null_axis"]
+        lines.append(
+            f"| {row['permutation_index']} | {axis['projection_plus_axis_id']} | "
+            f"{axis['projection_plus_axis_current_retained_oos_catches']} | "
+            f"{axis['marginal_current_retained_oos_catches_beyond_projected_subset']} | "
+            f"{', '.join(axis['marginal_caught_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Observed marginal signal: "
+        f"{decision['observed_primary_controlled_marginal_signal']}",
+        "- Observed marginal exceeds null p95: "
+        f"{decision['observed_marginal_exceeds_empirical_null_p95']}",
+        "- Null control supports genuinely new axis signal: "
+        f"{decision['null_control_supports_genuinely_new_axis_signal']}",
+        "- Priority event-axis null supports signal: "
+        f"{decision['priority_event_axis_null_control_supports_signal']}",
+        "- Adds integrated operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Negative: {decision['negative']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def write_lever2_mechanism_feature_incremental_readout(
     *,
     mechanism_no_template_rerun_path: Path,
@@ -9336,6 +10209,55 @@ def write_lever2_event_axis_signature_exclusion_sensitivity_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             render_lever2_event_axis_signature_exclusion_sensitivity_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def write_lever2_event_axis_primary_controlled_null_readout(
+    *,
+    mechanism_no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    current_extended_oos_mechanism_overlap_readout_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    min_primary_retain: float = 1.0,
+    baseline_axis_id: str = "source_free_projected_proton_role_subset",
+    null_permutations: int = 128,
+    null_seed: str = "lever2_primary_controlled_event_axis_null_v0",
+    artifact_id: str = DEFAULT_EVENT_AXIS_PRIMARY_CONTROLLED_NULL_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_event_axis_primary_controlled_null_readout(
+        mechanism_no_template_rerun_path=mechanism_no_template_rerun_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        current_extended_oos_mechanism_overlap_readout_path=(
+            current_extended_oos_mechanism_overlap_readout_path
+        ),
+        current_in_scope_threshold_contract_path=(
+            current_in_scope_threshold_contract_path
+        ),
+        partial_surface_current_split_portability_readout_path=(
+            partial_surface_current_split_portability_readout_path
+        ),
+        min_primary_retain=min_primary_retain,
+        baseline_axis_id=baseline_axis_id,
+        null_permutations=null_permutations,
+        null_seed=null_seed,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_event_axis_primary_controlled_null_readout_report(
                 readout
             ),
             encoding="utf-8",

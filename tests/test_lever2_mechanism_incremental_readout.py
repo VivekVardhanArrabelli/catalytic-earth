@@ -9,6 +9,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_current_extended_oos_mechanism_overlap_readout,
     build_lever2_event_axis_current_extended_frontier_readout,
     build_lever2_event_axis_loo_current_extended_frontier_readout,
+    build_lever2_event_axis_primary_controlled_null_readout,
     build_lever2_event_axis_primary_controlled_rescue_readout,
     build_lever2_event_axis_primary_safe_frontier_readout,
     build_lever2_event_axis_signature_exclusion_sensitivity_readout,
@@ -771,6 +772,17 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
                 partial_surface_current_split_portability_readout_path=partial_path,
                 artifact_id="test_event_axis_primary_controlled_rescue",
             )
+            null_readout = build_lever2_event_axis_primary_controlled_null_readout(
+                mechanism_no_template_rerun_path=mechanism_path,
+                train_cal_feature_sidecar_path=sidecar_path,
+                current_extended_oos_mechanism_overlap_readout_path=(
+                    current_overlap_path
+                ),
+                current_in_scope_threshold_contract_path=current_primary_path,
+                partial_surface_current_split_portability_readout_path=partial_path,
+                null_permutations=8,
+                artifact_id="test_event_axis_primary_controlled_null",
+            )
 
         self.assertEqual(
             readout["result_class"],
@@ -850,6 +862,27 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
         self.assertTrue(
             readout["guardrails"][
                 "target_oos_rows_excluded_from_their_own_axis_rule_selection"
+            ]
+        )
+        self.assertEqual(
+            null_readout["counts"][
+                "observed_best_axis_marginal_current_retained_oos_catches"
+            ],
+            1,
+        )
+        self.assertEqual(null_readout["counts"]["null_permutations"], 8)
+        self.assertGreaterEqual(
+            null_readout["counts"]["null_max_marginal_catches_p95"],
+            1,
+        )
+        self.assertFalse(
+            null_readout["decision"][
+                "null_control_supports_genuinely_new_axis_signal"
+            ]
+        )
+        self.assertTrue(
+            null_readout["guardrails"][
+                "null_control_randomizes_added_axis_feature_assignments_only"
             ]
         )
 

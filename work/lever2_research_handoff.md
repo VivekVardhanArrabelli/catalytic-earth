@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-04T22:35:43Z`
-- STARTED_AT_LOCAL: `2026-06-04T17:35:43-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T23:25:49Z`
-- ENDED_AT_LOCAL: `2026-06-04T18:25:49-0500 CDT`
-- ELAPSED_MINUTES: `50.11`
+- STARTED_AT_UTC: `2026-06-04T23:33:05Z`
+- STARTED_AT_LOCAL: `2026-06-04T18:33:05-0500 CDT`
+- ENDED_AT_UTC: `in_progress`
+- ENDED_AT_LOCAL: `in_progress`
+- ELAPSED_MINUTES: `in_progress`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,158 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 10
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-04T23:33:05Z`
+- STARTED_LOCAL: `2026-06-04T18:33:05-0500 CDT`
+- ENDED_AT: `in_progress`
+- ENDED_LOCAL: `in_progress`
+- ELAPSED_MINUTES: `in_progress`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only. Use the dedicated
+`lever-2-research-track` branch, start from current `origin/main`, and test
+whether the primary-controlled event-axis rescue signal survives an explicit
+null control rather than only another neighboring-signature exclusion.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/aa98/catalytic-earth`; found
+  the existing dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued there for all branch work.
+- Fetched `origin` and rebased `lever-2-research-track` onto current
+  `origin/main` `bd0a57f6ccefbfcb7e90a7ebf63eb8f3bcddb80c`.
+  Resolved the expected `src/catalytic_earth/cli.py` conflict by preserving
+  both the latest Lever 3 command family and the Lever 2 mechanism command
+  family.
+- Added a deterministic primary-controlled event-axis null-control readout:
+  `build-lever2-event-axis-primary-controlled-null-readout`. It regenerates
+  the observed primary-controlled rescue result, then applies deterministic
+  SHA256 permutations to non-baseline added-axis feature fields while keeping
+  the fixed geometry/fold surface, target rows, baseline projected subset,
+  primary-control filtering, and leave-target-out selection discipline.
+- Added a narrower priority-event-axis null summary inside the same readout for
+  `bond_change`, `electron_flow`, `event_topology`, and
+  `all_priority_event_axes`, so the negative is not dependent only on locator
+  or confidence-metadata axes in the broader frontier.
+- Generated two measured readout artifacts/reports:
+  `artifacts/v3_lever2_event_axis_primary_controlled_null_readout_current702_20260604.json`,
+  `work/lever2_event_axis_primary_controlled_null_readout_current702_20260604.md`,
+  `artifacts/v3_lever2_event_axis_primary_controlled_null_altseed_readout_current702_20260604.json`,
+  and
+  `work/lever2_event_axis_primary_controlled_null_altseed_readout_current702_20260604.md`.
+- Added parser, synthetic unit, generated-artifact regression, and alternate
+  null-seed regression coverage.
+
+#### Measured results
+
+- Default null seed result:
+  `research_only_null_controlled_marginal_signal_not_distinguishable_from_null`.
+  Observed primary-controlled rescue remains
+  `source_free_projected_proton_role_subset+bond_change`, catching 7/13
+  current-retained overlap rows with 2 marginal catches beyond the projected
+  subset: `m_csa:256` and `m_csa:312`.
+- The deterministic null distribution over 128 permutations and 6 searched
+  added axes has max-marginal min/median/p90/p95/max = 0/4/6/6/8. 123/128
+  permutations meet or exceed the observed 2 marginal catches; empirical
+  p-value is `0.96124`.
+- The narrower priority-event-axis null also rejects the signal: priority-null
+  p95 is 6, max is 7, and 108/128 permutations meet or exceed the observed 2
+  marginal catches.
+- Alternate null seed stability readout agrees. Full null p95 is 7, max is 8,
+  and 127/128 permutations meet or exceed the observed 2 marginal catches
+  (`p=0.992248`). Priority-event null p95 is 5, max is 7, and 114/128
+  permutations meet or exceed the observed signal.
+- Temporary higher-permutation probes also agree and were kept in `/tmp`
+  rather than committed because they did not change the decision. A 256-null
+  probe had full-null p95/max = 6/7 with 250/256 permutations at or above the
+  observed signal (`p=0.976654`); its priority-event null p95/max = 6/7 with
+  229/256 at or above observed. A 512-null probe had full-null p95/max = 6/8
+  with 495/512 permutations at or above observed (`p=0.966862`); its
+  priority-event null p95/max = 6/8 with 450/512 at or above observed.
+- Classification: measured research-only negative for the current
+  primary-controlled event-axis rescue. The prior local marginal signal is not
+  distinguishable from deterministic added-axis assignment nulls under the same
+  split and primary-control discipline.
+- Deployability: not deployable. The readouts do not add operating-point value
+  beyond current geometry/fold, do not promote Lever 2, and still inherit the
+  source-free current-split evidence gap for 34 current primary rows and 132
+  current-retained OOS rows.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, deployment gates, or heldout rows changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  or source provenance were used as predictive features.
+- Entry IDs were used only for split/overlap accounting, row diagnostics,
+  deterministic null assignment bookkeeping, and missing-evidence accounting.
+- M-CSA row-specific mechanism features remain train/cal-only research
+  evidence; no source-free rows were materialized or promoted.
+
+#### Validation
+
+- Generated default null readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-axis-primary-controlled-null-readout`.
+- Generated alternate-seed null readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-axis-primary-controlled-null-readout --null-seed lever2_primary_controlled_event_axis_null_altseed_v0 --artifact-id v3_lever2_event_axis_primary_controlled_null_altseed_readout_current702_20260604 --out artifacts/v3_lever2_event_axis_primary_controlled_null_altseed_readout_current702_20260604.json --report work/lever2_event_axis_primary_controlled_null_altseed_readout_current702_20260604.md`.
+- Focused parser/unit/artifact tests passed: `4 passed`.
+- Broader Lever 2/CLI/regression slice passed: `164 passed, 159 subtests`.
+- Full pytest passed on the final tree:
+  `1483 passed, 1 warning, 203 subtests passed`; rerun later in the block also
+  passed: `1483 passed, 1 warning, 203 subtests passed in 84.55s`. The warning
+  is the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery passed on the final tree:
+  `Ran 1438 tests in 42.613s OK`; rerun later in the block also passed:
+  `Ran 1438 tests in 43.969s OK`, with the same existing warning.
+- Focused Lever 2/CLI/artifact regression rerun passed:
+  `416 passed, 184 subtests passed in 26.77s`.
+- Full geometry artifact regression file passed: `263 passed, 25 subtests`.
+- `python -m py_compile src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py` passed.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  12 source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated labels; rerun later in the block passed with the same counts.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`
+  passed: `2 passed`.
+- Repo JSON/JSONL parse sweep passed: 3564 JSON files and 27 JSONL files
+  parsed with 0 errors.
+- New artifact `source_artifacts` hashes checked: 10 checked across the 2 new
+  Lever 2 null readouts, 0 stale.
+- Default null readout regeneration matched committed JSON and Markdown after
+  normalizing `created_utc`.
+- Default and alternate-seed null readouts both regenerated into `/tmp` and
+  matched the committed JSON/Markdown after normalizing `created_utc`.
+- Temporary 256-null and 512-null stability probes completed and both remained
+  null-controlled negatives.
+- CLI help smoke for
+  `build-lever2-event-axis-primary-controlled-null-readout --help` passed.
+- Guardrail assertions passed across both new null artifacts: no heldout
+  scoring/tuning, no mechanism text/source IDs as predictive features, no
+  EC/Rhea/label/source/target fields as predictive features, not deployable,
+  not promoted, and no operating-point value claim.
+- `git diff --check` passed. Disk remained above the 10 GiB guardrail
+  (about 13 GiB free during validation).
+
+#### Commit/push status
+
+- Pending wrap-up commit and push.
+
+#### Exact next action
+
+Do not promote Lever 2 event-axis/bond-change from the current rescue result.
+If source-free current-split event-axis rows are materialized, rerun the
+primary-controlled frontier plus this null-control readout and require observed
+marginal catches above the empirical null p95 before any heldout or deployment
+claim.
 
 ### 2026-06-04 Lever 2 Research Run 9
 

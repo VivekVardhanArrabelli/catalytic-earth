@@ -19142,6 +19142,159 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
 
+    def test_lever2_event_axis_primary_controlled_null_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_axis_primary_controlled_null_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_event_axis_primary_controlled_null_readout_"
+            "research_only_null_controlled_marginal_signal_not_distinguishable_from_null",
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_null_controlled_marginal_signal_not_distinguishable_from_null",
+        )
+        self.assertEqual(readout["counts"]["null_permutations"], 128)
+        self.assertEqual(readout["counts"]["null_added_axes_evaluated"], 6)
+        self.assertEqual(
+            readout["counts"][
+                "baseline_projected_subset_current_retained_oos_catches"
+            ],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "observed_best_axis_current_retained_oos_catches"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "observed_best_axis_marginal_current_retained_oos_catches"
+            ],
+            2,
+        )
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_p95"], 6)
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_max"], 8)
+        self.assertEqual(
+            readout["counts"]["null_permutations_ge_observed_marginal"], 123
+        )
+        self.assertEqual(
+            readout["counts"][
+                "priority_event_axis_null_max_marginal_catches_p95"
+            ],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "priority_event_axis_null_max_marginal_catches_max"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "priority_event_axis_null_permutations_ge_observed_marginal"
+            ],
+            108,
+        )
+        self.assertEqual(
+            readout["decision"]["best_observed_axis_id"],
+            "source_free_projected_proton_role_subset+bond_change",
+        )
+        self.assertEqual(readout["decision"]["best_observed_new_axis_id"], "bond_change")
+        self.assertFalse(
+            readout["decision"]["null_control_supports_genuinely_new_axis_signal"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "priority_event_axis_null_control_supports_signal"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["observed_marginal_exceeds_empirical_null_p95"]
+        )
+        self.assertTrue(readout["decision"]["negative"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        self.assertEqual(
+            readout["measured_readout"]["observed_primary_controlled_rescue"][
+                "best_axis_marginal_entry_ids"
+            ],
+            ["m_csa:256", "m_csa:312"],
+        )
+        self.assertTrue(
+            readout["guardrails"][
+                "null_control_randomizes_added_axis_feature_assignments_only"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_event_axis_primary_controlled_null_altseed_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_axis_primary_controlled_null_altseed_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_null_controlled_marginal_signal_not_distinguishable_from_null",
+        )
+        self.assertEqual(
+            readout["fixed_operating_points"]["axis_selection"]["null_seed"],
+            "lever2_primary_controlled_event_axis_null_altseed_v0",
+        )
+        self.assertEqual(
+            readout["counts"][
+                "observed_best_axis_marginal_current_retained_oos_catches"
+            ],
+            2,
+        )
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_p95"], 7)
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_max"], 8)
+        self.assertEqual(
+            readout["counts"]["null_permutations_ge_observed_marginal"], 127
+        )
+        self.assertEqual(
+            readout["counts"][
+                "priority_event_axis_null_max_marginal_catches_p95"
+            ],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "priority_event_axis_null_permutations_ge_observed_marginal"
+            ],
+            114,
+        )
+        self.assertFalse(
+            readout["decision"]["null_control_supports_genuinely_new_axis_signal"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "priority_event_axis_null_control_supports_signal"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["negative"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_event_axis_signature_excluded_frontier_readout_counts(
         self,
     ) -> None:
