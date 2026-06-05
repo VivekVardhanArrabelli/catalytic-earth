@@ -95,6 +95,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_deployment_contract_readiness_audit,
     build_fold_augmented_lever3_deployment_contract_lineage_audit,
     build_fold_augmented_lever3_deployment_contract_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_manifest_audit,
+    build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_stage_provenance_audit,
+    build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -8957,6 +8961,714 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertIn(
             "readiness_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_manifest_audit_strips_to_safe_actions(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            readiness_path = root / "readiness.json"
+            lineage_path = root / "lineage.json"
+            repro_path = root / "repro.json"
+            app_path.write_text(
+                json.dumps({"artifact_id": "application"}),
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps({"artifact_id": "lineage"}),
+                encoding="utf-8",
+            )
+            readiness = {
+                "artifact_id": "readiness",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+                ),
+                "readiness_violations": [],
+                "counts": {
+                    "application_rows": 2,
+                    "calibration_in_scope_retained": 2,
+                    "calibration_in_scope_rows": 2,
+                    "train_cal_oos_abstained_or_routed": 4,
+                    "train_cal_oos_rows": 5,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_contract_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "threshold_values_changed": False,
+                    "production_thresholds_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                },
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "accepted_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "route_stage_rows": [
+                    {"route_stage": "fold_tm_bandpass_counteraxis", "rows": 1},
+                    {"route_stage": "geometry_mismatch_counteraxis", "rows": 1},
+                ],
+                "route_stage_source_rows": [
+                    {
+                        "entry_id": "m_csa:2",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "source_artifact": "geometry",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                        "accession": "P00002",
+                        "label_type": "out_of_scope",
+                    },
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_stage": "fold_tm_bandpass_counteraxis",
+                        "source_artifact": "bandpass",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                        "accession": "P00001",
+                        "label_type": "out_of_scope",
+                    },
+                ],
+                "source_artifacts": {
+                    "operating_point_application_audit": {
+                        "path": str(app_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            app_path.read_bytes()
+                        ).hexdigest(),
+                    }
+                },
+            }
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            repro = {
+                "artifact_id": "repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "decision": {
+                    "deployment_contract_reproducible": True,
+                    "deployment_contract_ready": True,
+                },
+                "source_artifacts": {
+                    "deployment_contract_readiness_audit": {
+                        "path": str(readiness_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            readiness_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                    "deployment_contract_lineage_audit": {
+                        "path": str(lineage_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            lineage_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                },
+            }
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_operator_manifest_audit(
+                deployment_contract_reproducibility_audit_path=repro_path,
+                deployment_contract_readiness_audit_path=readiness_path,
+                artifact_id="operator",
+            )
+
+            readiness["route_stage_source_rows"][0]["action"] = "force_label"
+            readiness["route_stage_source_rows"][0][
+                "force_mechanism_label_now"
+            ] = True
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            repro["source_artifacts"]["deployment_contract_readiness_audit"][
+                "sha256"
+            ] = hashlib.sha256(readiness_path.read_bytes()).hexdigest()
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_operator_manifest_audit(
+                    deployment_contract_reproducibility_audit_path=repro_path,
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    artifact_id="operator_blocked",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "operator")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_operator_manifest_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_operator_manifest_ready"])
+        self.assertEqual(audit["counts"]["operator_manifest_rows"], 2)
+        self.assertEqual(
+            audit["counts"]["operator_manifest_rows_abstain_or_route_novel_oos"],
+            2,
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 5)
+        self.assertEqual(audit["counts"]["forbidden_manifest_field_rows"], 0)
+        self.assertEqual(audit["operator_manifest_violations"], [])
+        self.assertEqual(
+            sorted(audit["operator_manifest"]["action_rows"][0]),
+            audit["operator_manifest"]["allowed_row_fields"],
+        )
+        self.assertNotIn(
+            "accession", audit["operator_manifest"]["action_rows"][0]
+        )
+        self.assertTrue(
+            audit["operator_manifest_checks"][
+                "manifest_strips_forbidden_predictive_fields"
+            ]
+        )
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_"
+                "manifest_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["operator_manifest_checks"][
+                "all_manifest_rows_abstain_or_route_novel_oos"
+            ]
+        )
+        self.assertFalse(
+            blocked["operator_manifest_checks"][
+                "no_manifest_rows_force_mechanism_labels"
+            ]
+        )
+        self.assertIn(
+            "all_manifest_rows_abstain_or_route_novel_oos",
+            blocked["operator_manifest_violations"],
+        )
+
+    def test_lever3_deployment_operator_manifest_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            readiness_path = root / "readiness.json"
+            lineage_path = root / "lineage.json"
+            repro_path = root / "repro.json"
+            manifest_path = root / "manifest.json"
+            app_path.write_text(
+                json.dumps({"artifact_id": "application"}),
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps({"artifact_id": "lineage"}),
+                encoding="utf-8",
+            )
+            readiness = {
+                "artifact_id": "readiness",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+                ),
+                "readiness_violations": [],
+                "counts": {
+                    "application_rows": 1,
+                    "calibration_in_scope_retained": 1,
+                    "calibration_in_scope_rows": 1,
+                    "train_cal_oos_abstained_or_routed": 1,
+                    "train_cal_oos_rows": 2,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_contract_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "threshold_values_changed": False,
+                    "production_thresholds_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                },
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "accepted_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "route_stage_rows": [
+                    {"route_stage": "geometry_mismatch_counteraxis", "rows": 1}
+                ],
+                "route_stage_source_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "source_artifact": "geometry",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+                "source_artifacts": {
+                    "operating_point_application_audit": {
+                        "path": str(app_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            app_path.read_bytes()
+                        ).hexdigest(),
+                    }
+                },
+            }
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            repro = {
+                "artifact_id": "repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "decision": {
+                    "deployment_contract_reproducible": True,
+                    "deployment_contract_ready": True,
+                },
+                "source_artifacts": {
+                    "deployment_contract_readiness_audit": {
+                        "path": str(readiness_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            readiness_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                    "deployment_contract_lineage_audit": {
+                        "path": str(lineage_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            lineage_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                },
+            }
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            manifest = (
+                build_fold_augmented_lever3_deployment_operator_manifest_audit(
+                    deployment_contract_reproducibility_audit_path=repro_path,
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    artifact_id="manifest",
+                )
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    artifact_id="manifest_repro",
+                )
+            )
+
+            readiness["counts"]["train_cal_oos_abstained_or_routed"] = 2
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    artifact_id="manifest_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "manifest_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_manifest_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_operator_manifest_reproducible"]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_manifest_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_manifest_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_manifest_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_manifest_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "operator_manifest_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_stage_provenance_audit_requires_lineage_coverage(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            lineage_path = root / "lineage.json"
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "counts": {
+                    "operator_manifest_rows": 2,
+                    "operator_manifest_rows_abstain_or_route_novel_oos": 2,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "forbidden_manifest_field_rows": 0,
+                    "rule_selection_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                    "calibration_in_scope_retained": 2,
+                    "calibration_in_scope_rows": 2,
+                    "train_cal_oos_abstained_or_routed": 4,
+                    "train_cal_oos_rows": 5,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "stage_a",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "route_stage": "stage_b",
+                            "stage_source_artifact_id": "artifact_b",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                    ]
+                },
+            }
+            lineage = {
+                "artifact_id": "lineage",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_lineage_audit_passed"
+                ),
+                "lineage_violations": [],
+                "decision": {
+                    "deployment_contract_lineage_clean": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                },
+                "counts": {
+                    "application_rows": 2,
+                    "application_rows_abstain_or_route_novel_oos": 2,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "artifact_guardrail_rows": [
+                    {
+                        "artifact_id": "artifact_a",
+                        "depth": 3,
+                        "path": "artifact_a.json",
+                        "status": "passed",
+                        "guardrail_violations": [],
+                    },
+                    {
+                        "artifact_id": "artifact_b",
+                        "depth": 3,
+                        "path": "artifact_b.json",
+                        "status": "passed",
+                        "guardrail_violations": [],
+                    },
+                ],
+                "source_hash_audit_rows": [
+                    {
+                        "parent_artifact_id": "artifact_a",
+                        "source_hash_current": True,
+                    },
+                    {
+                        "parent_artifact_id": "artifact_b",
+                        "source_hash_current": True,
+                    },
+                ],
+            }
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_stage_provenance_audit(
+                deployment_operator_manifest_audit_path=manifest_path,
+                deployment_contract_lineage_audit_path=lineage_path,
+                artifact_id="stage_provenance",
+            )
+
+            lineage["artifact_guardrail_rows"] = [
+                lineage["artifact_guardrail_rows"][0]
+            ]
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_stage_provenance_audit(
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    deployment_contract_lineage_audit_path=lineage_path,
+                    artifact_id="stage_provenance_blocked",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "stage_provenance")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_stage_provenance_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_stage_provenance_clean"])
+        self.assertEqual(audit["counts"]["unique_stage_source_artifacts"], 2)
+        self.assertEqual(
+            audit["counts"]["stage_source_artifacts_covered_by_lineage"], 2
+        )
+        self.assertEqual(
+            audit["counts"]["stage_source_artifacts_guardrail_clean"], 2
+        )
+        self.assertEqual(audit["stage_provenance_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_stage_"
+                "provenance_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["stage_provenance_checks"][
+                "all_manifest_stage_sources_present"
+            ]
+        )
+        self.assertEqual(blocked["counts"]["missing_stage_source_artifacts"], 1)
+        self.assertIn(
+            "all_manifest_stage_sources_present",
+            blocked["stage_provenance_violations"],
+        )
+
+    def test_lever3_deployment_stage_provenance_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            lineage_path = root / "lineage.json"
+            stage_path = root / "stage.json"
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "counts": {
+                    "operator_manifest_rows": 1,
+                    "operator_manifest_rows_abstain_or_route_novel_oos": 1,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "forbidden_manifest_field_rows": 0,
+                    "rule_selection_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                    "calibration_in_scope_retained": 1,
+                    "calibration_in_scope_rows": 1,
+                    "train_cal_oos_abstained_or_routed": 1,
+                    "train_cal_oos_rows": 2,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "stage_a",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        }
+                    ]
+                },
+            }
+            lineage = {
+                "artifact_id": "lineage",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_lineage_audit_passed"
+                ),
+                "lineage_violations": [],
+                "decision": {
+                    "deployment_contract_lineage_clean": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                },
+                "counts": {
+                    "application_rows": 1,
+                    "application_rows_abstain_or_route_novel_oos": 1,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "artifact_guardrail_rows": [
+                    {
+                        "artifact_id": "artifact_a",
+                        "depth": 3,
+                        "path": "artifact_a.json",
+                        "status": "passed",
+                        "guardrail_violations": [],
+                    }
+                ],
+                "source_hash_audit_rows": [
+                    {
+                        "parent_artifact_id": "artifact_a",
+                        "source_hash_current": True,
+                    }
+                ],
+            }
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stage = build_fold_augmented_lever3_deployment_stage_provenance_audit(
+                deployment_operator_manifest_audit_path=manifest_path,
+                deployment_contract_lineage_audit_path=lineage_path,
+                artifact_id="stage",
+            )
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="stage_repro",
+                )
+            )
+
+            manifest["counts"]["train_cal_oos_abstained_or_routed"] = 2
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="stage_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "stage_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_stage_provenance_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_stage_provenance_reproducible"]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["stage_provenance_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_stage_provenance_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "stage_provenance_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "stage_provenance_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "stage_provenance_rebuild_matches_stored_after_created_utc_normalization",
             stale_audit["reproducibility_violations"],
         )
 

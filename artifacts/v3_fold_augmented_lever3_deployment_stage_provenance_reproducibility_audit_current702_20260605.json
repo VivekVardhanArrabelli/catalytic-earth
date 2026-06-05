@@ -1,0 +1,121 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605",
+  "counts": {
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "forbidden_manifest_field_rows": 0,
+    "forced_mechanism_label_rows": 0,
+    "lineage_source_records_checked": 43,
+    "lineage_source_records_hash_current": 43,
+    "manifest_action_rows": 21,
+    "manifest_action_rows_abstain_or_route_novel_oos": 21,
+    "rebuild_difference_count": 0,
+    "reproducibility_violation_total": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "source_records_checked": 2,
+    "source_records_hash_current": 2,
+    "stage_source_artifacts_covered_by_lineage": 5,
+    "stage_source_artifacts_guardrail_clean": 5,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "unique_stage_source_artifacts": 5,
+    "unsafe_action_rows": 0
+  },
+  "created_utc": "2026-06-05T12:22:59Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_stage_provenance_clean": true,
+    "deployment_stage_provenance_reproducible": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Use the reproducible stage-provenance readout and operator manifest for abstain/route actions only; keep fixed-threshold scoring closure fail-closed pending exact P07658 evidence.",
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "stage_provenance_reproducibility_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 stage provenance is reproducible.",
+    "next_action": "Use the reproducible manifest/stage-provenance readouts for abstain/route actions only.",
+    "result": "Stage-provenance audit rebuilds after created_utc normalization with 0 reproducibility violations."
+  },
+  "reproducibility_checks": {
+    "fixed_threshold_scoring_fail_closed": true,
+    "operating_point_metrics_stable": true,
+    "stage_provenance_audit_passed": true,
+    "stage_provenance_rebuild_matches_stored_after_created_utc_normalization": true,
+    "stage_provenance_source_hashes_current": true,
+    "stage_source_coverage_metrics_stable": true
+  },
+  "reproducibility_violations": [],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit",
+  "scope": "Reproducibility audit for the current Lever 3 stage-provenance readout. It rebuilds the stage-provenance audit from its recorded operator-manifest and lineage artifacts, normalizes only created_utc, and checks source-hash and metric stability.",
+  "source_artifacts": {
+    "deployment_stage_provenance_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.json",
+      "sha256": "bcb8447495dc8e3a01912967f4eb5f3f189a48565e3a5bacc27bf8199453b1a3"
+    }
+  },
+  "source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "2129546e994e6ad6f9ec96406ccf44c24a974594ad93024558305a2647ca4816",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "2129546e994e6ad6f9ec96406ccf44c24a974594ad93024558305a2647ca4816",
+      "source_hash_current": true,
+      "source_key": "deployment_contract_lineage_audit"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "89fa89e03e9e99cf0e0fbdeb61e5ed4180c0f0706269c8bd719e0fdd85411cb8",
+      "source_hash_current": true,
+      "source_key": "deployment_operator_manifest_audit"
+    }
+  ],
+  "stage_provenance_artifact": {
+    "artifact_id": "v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605",
+    "normalized_rebuild_matches_stored": true,
+    "path": "artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.json",
+    "rebuild_error": null,
+    "rebuilt_created_utc": "2026-06-05T12:22:59Z",
+    "rebuilt_normalized_sha256": "5d76a1f1a68e356ad8b737d3112bc72d594a5bde8be16d1b85309e2c964a4386",
+    "stored_created_utc": "2026-06-05T12:18:38Z",
+    "stored_normalized_sha256": "5d76a1f1a68e356ad8b737d3112bc72d594a5bde8be16d1b85309e2c964a4386"
+  },
+  "status": "fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_passed"
+}

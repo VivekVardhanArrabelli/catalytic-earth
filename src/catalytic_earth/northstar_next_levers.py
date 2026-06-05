@@ -393,6 +393,18 @@ FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_LINEAGE_AUDIT_ID = (
 FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_REPRODUCIBILITY_AUDIT_ID = (
     "v3_fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605"
 )
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_MANIFEST_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_MANIFEST_REPRODUCIBILITY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_REPRODUCIBILITY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -54286,6 +54298,1893 @@ def write_fold_augmented_lever3_deployment_contract_reproducibility_audit(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_deployment_contract_reproducibility_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_operator_manifest_audit(
+    *,
+    deployment_contract_reproducibility_audit_path: Path,
+    deployment_contract_readiness_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_MANIFEST_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    reproducibility = _read_json(deployment_contract_reproducibility_audit_path)
+    readiness = _read_json(deployment_contract_readiness_audit_path)
+    readiness_counts = readiness.get("counts") or {}
+    readiness_decision = readiness.get("decision") or {}
+    readiness_operating = readiness.get("operating_point") or {}
+
+    direct_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=artifact_id,
+        source_artifacts={
+            "deployment_contract_reproducibility_audit": _source_path_record(
+                deployment_contract_reproducibility_audit_path
+            ),
+            "deployment_contract_readiness_audit": _source_path_record(
+                deployment_contract_readiness_audit_path
+            ),
+        },
+    )
+    reproducibility_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=reproducibility.get("artifact_id"),
+        source_artifacts=reproducibility.get("source_artifacts") or {},
+    )
+    readiness_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=readiness.get("artifact_id"),
+        source_artifacts=readiness.get("source_artifacts") or {},
+    )
+    all_source_rows = (
+        direct_source_rows + reproducibility_source_rows + readiness_source_rows
+    )
+
+    reproducibility_readiness_source = (
+        (reproducibility.get("source_artifacts") or {}).get(
+            "deployment_contract_readiness_audit"
+        )
+        or {}
+    )
+    recorded_readiness_path = reproducibility_readiness_source.get("path")
+    try:
+        readiness_path_matches = (
+            recorded_readiness_path is not None
+            and Path(recorded_readiness_path).resolve()
+            == Path(deployment_contract_readiness_audit_path).resolve()
+        )
+    except OSError:
+        readiness_path_matches = False
+
+    allowed_row_fields = {
+        "action",
+        "entry_id",
+        "force_mechanism_label_now",
+        "route_stage",
+        "stage_source_artifact_id",
+        "used_for_rule_selection",
+    }
+    forbidden_manifest_fields = {
+        "accession",
+        "baseline_score",
+        "ec",
+        "ec_id",
+        "experiment",
+        "experimental_pdb_id",
+        "label",
+        "label_type",
+        "mechanism",
+        "mechanism_text",
+        "pdb_id",
+        "predicted_pdb_id",
+        "rhea_id",
+        "score",
+        "selected_pdb_id",
+        "source_id",
+        "target_name",
+        "threshold_margin",
+        "top1_fingerprint_id",
+        "true_fingerprint_id",
+    }
+    readiness_rows = [
+        row
+        for row in readiness.get("route_stage_source_rows", []) or []
+        if isinstance(row, dict)
+    ]
+    action_rows = [
+        {
+            "entry_id": str(row.get("entry_id") or ""),
+            "route_stage": str(row.get("route_stage") or ""),
+            "stage_source_artifact_id": str(row.get("source_artifact") or ""),
+            "action": str(row.get("action") or ""),
+            "force_mechanism_label_now": bool(
+                row.get("force_mechanism_label_now")
+            ),
+            "used_for_rule_selection": bool(row.get("used_for_rule_selection")),
+        }
+        for row in sorted(
+            readiness_rows,
+            key=lambda item: _entry_id_sort_key(str(item.get("entry_id") or "")),
+        )
+    ]
+    action_row_key_violations = [
+        {
+            "entry_id": row.get("entry_id"),
+            "unexpected_fields": sorted(set(row) - allowed_row_fields),
+        }
+        for row in action_rows
+        if set(row) - allowed_row_fields
+    ]
+    forbidden_field_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "forbidden_fields": sorted(set(row) & forbidden_manifest_fields),
+        }
+        for row in action_rows
+        if set(row) & forbidden_manifest_fields
+    ]
+    unsafe_action_rows = [
+        row
+        for row in action_rows
+        if row.get("action") != "abstain_or_route_novel_oos"
+    ]
+    forced_label_rows = [
+        row for row in action_rows if bool(row.get("force_mechanism_label_now"))
+    ]
+    rule_selection_rows = [
+        row for row in action_rows if bool(row.get("used_for_rule_selection"))
+    ]
+    missing_stage_source_rows = [
+        row for row in action_rows if not row.get("stage_source_artifact_id")
+    ]
+    missing_route_stage_rows = [
+        row for row in action_rows if not row.get("route_stage")
+    ]
+    missing_entry_id_rows = [row for row in action_rows if not row.get("entry_id")]
+    route_stage_counts = Counter(str(row.get("route_stage") or "") for row in action_rows)
+    route_stage_rows = [
+        {
+            "route_stage": route_stage,
+            "rows": count,
+        }
+        for route_stage, count in sorted(route_stage_counts.items())
+        if route_stage
+    ]
+    readiness_route_stage_counts = {
+        str(row.get("route_stage")): int(row.get("rows") or 0)
+        for row in readiness.get("route_stage_rows", []) or []
+        if isinstance(row, dict) and row.get("route_stage")
+    }
+    route_stage_count_mismatches = [
+        {
+            "route_stage": route_stage,
+            "manifest_rows": int(count),
+            "readiness_rows": int(readiness_route_stage_counts.get(route_stage) or 0),
+        }
+        for route_stage, count in sorted(route_stage_counts.items())
+        if route_stage
+        and int(count) != int(readiness_route_stage_counts.get(route_stage) or 0)
+    ]
+    threshold_value = readiness_operating.get("baseline_threshold")
+    try:
+        threshold_locked = (
+            threshold_value is not None
+            and abs(float(threshold_value) - 0.44155) < 1e-12
+            and abs(float(readiness_operating.get("accepted_threshold")) - 0.44155)
+            < 1e-12
+        )
+    except (TypeError, ValueError):
+        threshold_locked = False
+
+    operator_payload = {
+        "allowed_row_fields": sorted(allowed_row_fields),
+        "operating_point": {
+            "route_id": readiness_operating.get("route_id"),
+            "baseline_threshold": threshold_value,
+            "accepted_threshold": readiness_operating.get("accepted_threshold"),
+            "threshold_selection_source": readiness_operating.get(
+                "threshold_selection_source"
+            ),
+            "threshold_or_value_changed_now": readiness_operating.get(
+                "threshold_or_value_changed_now"
+            ),
+        },
+        "action_rows": action_rows,
+    }
+    operator_manifest_sha256 = _hash_json_payload(operator_payload)
+
+    checks = {
+        "deployment_contract_reproducibility_audit_passed": (
+            reproducibility.get("status")
+            == "fold_augmented_lever3_deployment_contract_reproducibility_audit_passed"
+            and not reproducibility.get("reproducibility_violations")
+            and bool(
+                (reproducibility.get("decision") or {}).get(
+                    "deployment_contract_reproducible"
+                )
+            )
+            and bool(
+                (reproducibility.get("decision") or {}).get(
+                    "deployment_contract_ready"
+                )
+            )
+        ),
+        "deployment_contract_readiness_audit_passed": (
+            readiness.get("status")
+            == "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+            and not readiness.get("readiness_violations")
+            and bool(readiness_decision.get("deployment_contract_ready"))
+        ),
+        "readiness_path_matches_reproducibility_source": readiness_path_matches,
+        "all_source_hashes_current": (
+            bool(all_source_rows)
+            and all(row["source_hash_current"] for row in all_source_rows)
+        ),
+        "manifest_row_count_matches_readiness": (
+            len(action_rows) == int(readiness_counts.get("application_rows") or 0)
+        ),
+        "all_manifest_rows_abstain_or_route_novel_oos": (
+            bool(action_rows) and not unsafe_action_rows
+        ),
+        "no_manifest_rows_force_mechanism_labels": not forced_label_rows,
+        "no_manifest_rows_used_for_rule_selection": not rule_selection_rows,
+        "all_manifest_rows_have_route_stage": not missing_route_stage_rows,
+        "all_manifest_rows_have_stage_source": not missing_stage_source_rows,
+        "all_manifest_rows_have_entry_id": not missing_entry_id_rows,
+        "manifest_route_stage_counts_match_readiness": (
+            not route_stage_count_mismatches
+        ),
+        "manifest_contains_only_allowed_row_fields": not action_row_key_violations,
+        "manifest_strips_forbidden_predictive_fields": not forbidden_field_rows,
+        "threshold_locked_to_train_cal_0_44155": (
+            threshold_locked
+            and readiness_operating.get("threshold_selection_source")
+            == "train_calibration_only"
+        ),
+        "threshold_not_changed": (
+            not bool(readiness_operating.get("threshold_or_value_changed_now"))
+            and not bool((readiness.get("guardrails") or {}).get("threshold_values_changed"))
+            and not bool(
+                (readiness.get("guardrails") or {}).get(
+                    "production_thresholds_changed"
+                )
+            )
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(
+                readiness_decision.get("fixed_threshold_scoring_closure_available_now")
+            )
+            and not bool(
+                readiness_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+        "safe_abstention_evidence_sufficient": bool(
+            readiness_decision.get(
+                "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+            )
+        ),
+        "no_heldout_metadata_or_forbidden_feature_shortcuts": (
+            not bool(
+                (readiness.get("guardrails") or {}).get(
+                    "heldout_rows_used_for_training_or_threshold_tuning"
+                )
+            )
+            and not bool(
+                (readiness.get("guardrails") or {}).get(
+                    "heldout_rows_used_for_rule_selection"
+                )
+            )
+            and not bool(
+                (readiness.get("guardrails") or {}).get(
+                    "experimental_pdb_metadata_used_as_deployment_input"
+                )
+            )
+            and not bool(
+                (readiness.get("guardrails") or {}).get(
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features"
+                )
+            )
+        ),
+    }
+    violations = sorted([name for name, passed in checks.items() if not passed])
+    manifest_ready = not violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_manifest_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+            if manifest_ready
+            else "fold_augmented_lever3_deployment_operator_manifest_audit_needs_more_work"
+        ),
+        "scope": (
+            "Operator-manifest audit for the current Lever 3 abstain/route "
+            "contract. It packages the accepted contract into a minimal "
+            "row-action table and verifies threshold lock, source currency, "
+            "safe abstain-only actions, and removal of leakage-prone fields."
+        ),
+        "operator_manifest_checks": checks,
+        "operator_manifest_violations": violations,
+        "operator_manifest": {
+            "sha256": operator_manifest_sha256,
+            "allowed_row_fields": sorted(allowed_row_fields),
+            "forbidden_manifest_fields": sorted(forbidden_manifest_fields),
+            "row_count": len(action_rows),
+            "action_rows": action_rows,
+        },
+        "route_stage_rows": route_stage_rows,
+        "route_stage_count_mismatches": route_stage_count_mismatches,
+        "unsafe_action_rows": unsafe_action_rows,
+        "forced_label_rows": forced_label_rows,
+        "rule_selection_rows": rule_selection_rows,
+        "missing_stage_source_rows": missing_stage_source_rows,
+        "missing_route_stage_rows": missing_route_stage_rows,
+        "missing_entry_id_rows": missing_entry_id_rows,
+        "action_row_key_violations": action_row_key_violations,
+        "forbidden_field_rows": forbidden_field_rows,
+        "source_hash_audit_rows": all_source_rows,
+        "operating_point": {
+            "route_id": readiness_operating.get("route_id"),
+            "baseline_threshold": threshold_value,
+            "accepted_threshold": readiness_operating.get("accepted_threshold"),
+            "threshold_selection_source": readiness_operating.get(
+                "threshold_selection_source"
+            ),
+            "threshold_or_value_changed_now": readiness_operating.get(
+                "threshold_or_value_changed_now"
+            ),
+            "calibration_in_scope_retained": readiness_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": readiness_counts.get(
+                "calibration_in_scope_rows"
+            ),
+            "train_cal_oos_abstained_or_routed": readiness_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": readiness_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": readiness_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+        },
+        "counts": {
+            "operator_manifest_rows": len(action_rows),
+            "operator_manifest_rows_abstain_or_route_novel_oos": len(
+                [
+                    row
+                    for row in action_rows
+                    if row.get("action") == "abstain_or_route_novel_oos"
+                ]
+            ),
+            "route_stages_with_rows": len(route_stage_rows),
+            "source_records_checked": len(all_source_rows),
+            "source_records_hash_current": len(
+                [row for row in all_source_rows if row["source_hash_current"]]
+            ),
+            "direct_source_records_checked": len(direct_source_rows),
+            "direct_source_records_hash_current": len(
+                [row for row in direct_source_rows if row["source_hash_current"]]
+            ),
+            "unsafe_action_rows": len(unsafe_action_rows),
+            "forced_mechanism_label_rows": len(forced_label_rows),
+            "rule_selection_rows": len(rule_selection_rows),
+            "missing_stage_source_rows": len(missing_stage_source_rows),
+            "missing_route_stage_rows": len(missing_route_stage_rows),
+            "missing_entry_id_rows": len(missing_entry_id_rows),
+            "route_stage_count_mismatches": len(route_stage_count_mismatches),
+            "unexpected_manifest_field_rows": len(action_row_key_violations),
+            "forbidden_manifest_field_rows": len(forbidden_field_rows),
+            "operator_manifest_violation_total": len(violations),
+            "calibration_in_scope_retained": readiness_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": readiness_counts.get(
+                "calibration_in_scope_rows"
+            ),
+            "train_cal_oos_abstained_or_routed": readiness_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": readiness_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": readiness_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+        },
+        "decision": {
+            "deployment_operator_manifest_ready": manifest_ready,
+            "deployable_abstain_route_action_table_available": manifest_ready,
+            "safe_abstention_route_remains_current": manifest_ready,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                manifest_ready
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "operator_action": (
+                "use_the_minimal_manifest_to_abstain_or_route_novel_oos_for_hard_confounded_rows"
+            ),
+            "exact_missing_evidence_for_scoring_closure": readiness_decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use this manifest only as the operator-facing abstain/route "
+                "table; keep fixed-threshold scoring closure fail-closed "
+                "pending exact P07658 coordinate/provenance evidence."
+                if manifest_ready
+                else (
+                    "Do not use the operator manifest until the listed "
+                    "manifest violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_packaging_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_contract_reproducibility_audit": _source_path_record(
+                deployment_contract_reproducibility_audit_path
+            ),
+            "deployment_contract_readiness_audit": _source_path_record(
+                deployment_contract_readiness_audit_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 operator manifest is ready for abstain/route use."
+                if manifest_ready
+                else "Lever 3 operator manifest needs repair before use."
+            ),
+            "result": (
+                f"{len(action_rows)} manifest rows, "
+                f"{len(unsafe_action_rows)} unsafe non-abstain actions, "
+                f"{len(forced_label_rows)} forced-label rows, and "
+                f"{len(forbidden_field_rows)} forbidden-field rows."
+            ),
+            "next_action": (
+                "Apply only the manifest abstain/route actions; keep scoring "
+                "closure fail-closed until the exact P07658 route passes."
+                if manifest_ready
+                else "Resolve manifest violations before operational use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_manifest_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    operating = audit["operating_point"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Manifest Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Operator manifest ready: "
+        f"{decision['deployment_operator_manifest_ready']}",
+        "- Safe abstention route remains current: "
+        f"{decision['safe_abstention_route_remains_current']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Manifest violations: {audit['operator_manifest_violations']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route ID: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        f"- Accepted threshold: {operating['accepted_threshold']}",
+        f"- Threshold selection source: {operating['threshold_selection_source']}",
+        "- Threshold/value changed now: "
+        f"{operating['threshold_or_value_changed_now']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained or routed: "
+        f"{operating['train_cal_oos_abstained_or_routed']}/"
+        f"{operating['train_cal_oos_rows']}",
+        "- Retained residual rows after all counteraxes: "
+        f"{operating['retained_residual_rows_after_all_counteraxes']}",
+        "",
+        "## Manifest Counts",
+        "",
+        "- Manifest rows abstain/route: "
+        f"{counts['operator_manifest_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['operator_manifest_rows']}",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Route stages with rows: {counts['route_stages_with_rows']}",
+        f"- Unsafe action rows: {counts['unsafe_action_rows']}",
+        f"- Forced mechanism-label rows: {counts['forced_mechanism_label_rows']}",
+        f"- Rule-selection rows: {counts['rule_selection_rows']}",
+        f"- Forbidden-field rows: {counts['forbidden_manifest_field_rows']}",
+        f"- Manifest SHA-256: {audit['operator_manifest']['sha256']}",
+        "",
+        "## Operator Manifest Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("operator_manifest_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Route Stages",
+        "",
+        "| route_stage | rows |",
+        "| --- | ---: |",
+    ]
+    for row in audit.get("route_stage_rows", []):
+        lines.append(f"| {row['route_stage']} | {row['rows']} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing contract artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_manifest_audit(
+    *,
+    deployment_contract_reproducibility_audit_path: Path,
+    deployment_contract_readiness_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_MANIFEST_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_operator_manifest_audit(
+        deployment_contract_reproducibility_audit_path=(
+            deployment_contract_reproducibility_audit_path
+        ),
+        deployment_contract_readiness_audit_path=deployment_contract_readiness_audit_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_manifest_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+    *,
+    deployment_operator_manifest_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_MANIFEST_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    manifest = _read_json(deployment_operator_manifest_audit_path)
+    manifest_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=manifest.get("artifact_id"),
+        source_artifacts=manifest.get("source_artifacts") or {},
+    )
+    source_artifacts = manifest.get("source_artifacts") or {}
+    reproducibility_source = (
+        source_artifacts.get("deployment_contract_reproducibility_audit") or {}
+    )
+    readiness_source = (
+        source_artifacts.get("deployment_contract_readiness_audit") or {}
+    )
+    reproducibility_path_value = reproducibility_source.get("path")
+    readiness_path_value = readiness_source.get("path")
+    rebuilt_manifest: dict[str, Any] | None = None
+    rebuild_error = None
+    if (
+        reproducibility_path_value
+        and readiness_path_value
+        and Path(reproducibility_path_value).exists()
+        and Path(readiness_path_value).exists()
+    ):
+        try:
+            rebuilt_manifest = (
+                build_fold_augmented_lever3_deployment_operator_manifest_audit(
+                    deployment_contract_reproducibility_audit_path=Path(
+                        reproducibility_path_value
+                    ),
+                    deployment_contract_readiness_audit_path=Path(
+                        readiness_path_value
+                    ),
+                    artifact_id=str(
+                        manifest.get("artifact_id")
+                        or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_MANIFEST_AUDIT_ID
+                    ),
+                )
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        rebuild_error = "missing_operator_manifest_source_artifacts"
+
+    normalized_manifest = _normalize_lever3_closure_for_reproducibility(manifest)
+    normalized_rebuilt_manifest = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_manifest)
+        if rebuilt_manifest is not None
+        else None
+    )
+    rebuild_matches = (
+        normalized_rebuilt_manifest == normalized_manifest
+        if normalized_rebuilt_manifest is not None
+        else False
+    )
+    counts = manifest.get("counts") or {}
+    decision = manifest.get("decision") or {}
+    reproducibility_checks = {
+        "operator_manifest_audit_passed": (
+            manifest.get("status")
+            == "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+            and not manifest.get("operator_manifest_violations")
+            and bool(decision.get("deployment_operator_manifest_ready"))
+        ),
+        "operator_manifest_source_hashes_current": (
+            bool(manifest_source_rows)
+            and all(row["source_hash_current"] for row in manifest_source_rows)
+        ),
+        "operator_manifest_rebuild_matches_stored_after_created_utc_normalization": (
+            rebuild_matches
+        ),
+        "operator_manifest_sha_stable": (
+            rebuilt_manifest is not None
+            and (rebuilt_manifest.get("operator_manifest") or {}).get("sha256")
+            == (manifest.get("operator_manifest") or {}).get("sha256")
+        ),
+        "operating_point_metrics_stable": (
+            rebuilt_manifest is not None
+            and (rebuilt_manifest.get("counts") or {}).get(
+                "operator_manifest_rows"
+            )
+            == counts.get("operator_manifest_rows")
+            and (rebuilt_manifest.get("counts") or {}).get(
+                "operator_manifest_rows_abstain_or_route_novel_oos"
+            )
+            == counts.get("operator_manifest_rows_abstain_or_route_novel_oos")
+            and (rebuilt_manifest.get("counts") or {}).get(
+                "retained_residual_rows_after_all_counteraxes"
+            )
+            == counts.get("retained_residual_rows_after_all_counteraxes")
+            and (rebuilt_manifest.get("counts") or {}).get(
+                "forced_mechanism_label_rows"
+            )
+            == counts.get("forced_mechanism_label_rows")
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+    }
+    reproducibility_violations = sorted(
+        [
+            name
+            for name, passed in reproducibility_checks.items()
+            if not passed
+        ]
+    )
+    reproducibility_passed = not reproducibility_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_passed"
+            if reproducibility_passed
+            else "fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_needs_more_work"
+        ),
+        "scope": (
+            "Reproducibility audit for the current Lever 3 operator manifest. "
+            "It rebuilds the manifest audit from its recorded deployment "
+            "contract sources, normalizes only created_utc, and checks source "
+            "hash currency plus manifest SHA and metric stability."
+        ),
+        "reproducibility_checks": reproducibility_checks,
+        "reproducibility_violations": reproducibility_violations,
+        "operator_manifest_artifact": {
+            "artifact_id": manifest.get("artifact_id"),
+            "path": str(deployment_operator_manifest_audit_path),
+            "stored_created_utc": manifest.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_manifest.get("created_utc")
+                if rebuilt_manifest is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_manifest),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt_manifest)
+                if normalized_rebuilt_manifest is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": rebuild_matches,
+            "stored_operator_manifest_sha256": (
+                (manifest.get("operator_manifest") or {}).get("sha256")
+            ),
+            "rebuilt_operator_manifest_sha256": (
+                (rebuilt_manifest.get("operator_manifest") or {}).get("sha256")
+                if rebuilt_manifest is not None
+                else None
+            ),
+            "rebuild_error": rebuild_error,
+        },
+        "source_hash_audit_rows": manifest_source_rows,
+        "counts": {
+            "source_records_checked": len(manifest_source_rows),
+            "source_records_hash_current": len(
+                [row for row in manifest_source_rows if row["source_hash_current"]]
+            ),
+            "rebuild_difference_count": int(not rebuild_matches),
+            "operator_manifest_rows": counts.get("operator_manifest_rows"),
+            "operator_manifest_rows_abstain_or_route_novel_oos": counts.get(
+                "operator_manifest_rows_abstain_or_route_novel_oos"
+            ),
+            "unsafe_action_rows": counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "forbidden_manifest_field_rows": counts.get(
+                "forbidden_manifest_field_rows"
+            ),
+            "calibration_in_scope_retained": counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "reproducibility_violation_total": len(reproducibility_violations),
+        },
+        "decision": {
+            "deployment_operator_manifest_reproducible": reproducibility_passed,
+            "deployment_operator_manifest_ready": (
+                reproducibility_passed
+                and bool(decision.get("deployment_operator_manifest_ready"))
+            ),
+            "safe_abstention_route_remains_current": reproducibility_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the reproducible operator manifest only as the "
+                "abstain/route action table; keep fixed-threshold scoring "
+                "closure fail-closed pending exact P07658 coordinate/provenance evidence."
+                if reproducibility_passed
+                else (
+                    "Do not rely on the operator manifest until the listed "
+                    "reproducibility violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_manifest_reproducibility_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_manifest_audit": _source_path_record(
+                deployment_operator_manifest_audit_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 operator manifest is reproducible."
+                if reproducibility_passed
+                else "Lever 3 operator manifest reproducibility needs repair."
+            ),
+            "result": (
+                "Operator manifest audit rebuilds after created_utc "
+                f"normalization with {len(reproducibility_violations)} "
+                "reproducibility violations."
+            ),
+            "next_action": (
+                "Use the reproducible manifest for abstain/route actions only; "
+                "keep scoring closure fail-closed."
+                if reproducibility_passed
+                else "Resolve reproducibility violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    manifest_artifact = audit["operator_manifest_artifact"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Manifest Reproducibility Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Operator manifest reproducible: "
+        f"{decision['deployment_operator_manifest_reproducible']}",
+        "- Operator manifest ready: "
+        f"{decision['deployment_operator_manifest_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Reproducibility violations: {audit['reproducibility_violations']}",
+        "",
+        "## Rebuild",
+        "",
+        "- Normalized rebuild matches stored: "
+        f"{manifest_artifact['normalized_rebuild_matches_stored']}",
+        "- Stored normalized SHA-256: "
+        f"{manifest_artifact['stored_normalized_sha256']}",
+        "- Stored operator manifest SHA-256: "
+        f"{manifest_artifact['stored_operator_manifest_sha256']}",
+        "- Rebuilt operator manifest SHA-256: "
+        f"{manifest_artifact['rebuilt_operator_manifest_sha256']}",
+        f"- Rebuild error: {manifest_artifact['rebuild_error']}",
+        "",
+        "## Counts",
+        "",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Rebuild difference count: {counts['rebuild_difference_count']}",
+        "- Manifest rows abstain/route: "
+        f"{counts['operator_manifest_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['operator_manifest_rows']}",
+        f"- Unsafe action rows: {counts['unsafe_action_rows']}",
+        f"- Forced mechanism-label rows: {counts['forced_mechanism_label_rows']}",
+        f"- Forbidden-field rows: {counts['forbidden_manifest_field_rows']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained or routed: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "",
+        "## Reproducibility Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("reproducibility_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing operator manifest artifact only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+    *,
+    deployment_operator_manifest_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_MANIFEST_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = (
+        build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit(
+            deployment_operator_manifest_audit_path=(
+                deployment_operator_manifest_audit_path
+            ),
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_stage_provenance_audit(
+    *,
+    deployment_operator_manifest_audit_path: Path,
+    deployment_contract_lineage_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    manifest = _read_json(deployment_operator_manifest_audit_path)
+    lineage = _read_json(deployment_contract_lineage_audit_path)
+    direct_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=artifact_id,
+        source_artifacts={
+            "deployment_operator_manifest_audit": _source_path_record(
+                deployment_operator_manifest_audit_path
+            ),
+            "deployment_contract_lineage_audit": _source_path_record(
+                deployment_contract_lineage_audit_path
+            ),
+        },
+    )
+    action_rows = [
+        row
+        for row in (manifest.get("operator_manifest") or {}).get(
+            "action_rows", []
+        )
+        if isinstance(row, dict)
+    ]
+    source_counts = Counter(
+        str(row.get("stage_source_artifact_id") or "") for row in action_rows
+    )
+    lineage_artifact_rows = [
+        row
+        for row in lineage.get("artifact_guardrail_rows", []) or []
+        if isinstance(row, dict)
+    ]
+    lineage_by_artifact = {
+        str(row.get("artifact_id")): row
+        for row in lineage_artifact_rows
+        if row.get("artifact_id")
+    }
+    lineage_source_hash_rows = [
+        row
+        for row in lineage.get("source_hash_audit_rows", []) or []
+        if isinstance(row, dict)
+    ]
+    lineage_source_records_by_parent = Counter(
+        str(row.get("parent_artifact_id") or "")
+        for row in lineage_source_hash_rows
+    )
+    lineage_source_current_by_parent = Counter(
+        str(row.get("parent_artifact_id") or "")
+        for row in lineage_source_hash_rows
+        if row.get("source_hash_current")
+    )
+    stage_source_rows = []
+    for stage_source_id, row_count in sorted(source_counts.items()):
+        if not stage_source_id:
+            continue
+        lineage_row = lineage_by_artifact.get(stage_source_id)
+        guardrail_violations = (
+            list(lineage_row.get("guardrail_violations") or [])
+            if lineage_row
+            else []
+        )
+        stage_source_rows.append(
+            {
+                "stage_source_artifact_id": stage_source_id,
+                "manifest_rows": int(row_count),
+                "lineage_covered": lineage_row is not None,
+                "lineage_depth": lineage_row.get("depth") if lineage_row else None,
+                "lineage_status": (
+                    lineage_row.get("status") if lineage_row else None
+                ),
+                "lineage_path": lineage_row.get("path") if lineage_row else None,
+                "guardrail_violations": guardrail_violations,
+                "source_records_checked": int(
+                    lineage_source_records_by_parent.get(stage_source_id) or 0
+                ),
+                "source_records_hash_current": int(
+                    lineage_source_current_by_parent.get(stage_source_id) or 0
+                ),
+            }
+        )
+    missing_stage_source_rows = [
+        row for row in stage_source_rows if not row["lineage_covered"]
+    ]
+    guardrail_violation_stage_rows = [
+        row for row in stage_source_rows if row["guardrail_violations"]
+    ]
+    direct_sources_current = (
+        bool(direct_source_rows)
+        and all(row["source_hash_current"] for row in direct_source_rows)
+    )
+    lineage_sources_current = (
+        bool(lineage_source_hash_rows)
+        and all(row.get("source_hash_current") for row in lineage_source_hash_rows)
+    )
+    manifest_counts = manifest.get("counts") or {}
+    lineage_counts = lineage.get("counts") or {}
+    stage_checks = {
+        "operator_manifest_audit_passed": (
+            manifest.get("status")
+            == "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+            and not manifest.get("operator_manifest_violations")
+            and bool(
+                (manifest.get("decision") or {}).get(
+                    "deployment_operator_manifest_ready"
+                )
+            )
+        ),
+        "deployment_contract_lineage_audit_passed": (
+            lineage.get("status")
+            == "fold_augmented_lever3_deployment_contract_lineage_audit_passed"
+            and not lineage.get("lineage_violations")
+            and bool(
+                (lineage.get("decision") or {}).get(
+                    "deployment_contract_lineage_clean"
+                )
+            )
+        ),
+        "direct_source_hashes_current": direct_sources_current,
+        "lineage_source_hashes_current": lineage_sources_current,
+        "all_manifest_stage_sources_present": (
+            bool(stage_source_rows) and not missing_stage_source_rows
+        ),
+        "all_manifest_stage_sources_guardrail_clean": (
+            bool(stage_source_rows) and not guardrail_violation_stage_rows
+        ),
+        "stage_source_row_counts_match_manifest": (
+            sum(row["manifest_rows"] for row in stage_source_rows)
+            == len(action_rows)
+        ),
+        "manifest_has_no_unsafe_actions": (
+            int(manifest_counts.get("unsafe_action_rows") or 0) == 0
+            and int(manifest_counts.get("forced_mechanism_label_rows") or 0) == 0
+        ),
+        "manifest_has_no_forbidden_fields_or_rule_selection_rows": (
+            int(manifest_counts.get("forbidden_manifest_field_rows") or 0) == 0
+            and int(manifest_counts.get("rule_selection_rows") or 0) == 0
+            and int(manifest_counts.get("unexpected_manifest_field_rows") or 0) == 0
+        ),
+        "operating_point_metrics_match_lineage": (
+            manifest_counts.get("operator_manifest_rows")
+            == lineage_counts.get("application_rows")
+            and manifest_counts.get(
+                "operator_manifest_rows_abstain_or_route_novel_oos"
+            )
+            == lineage_counts.get("application_rows_abstain_or_route_novel_oos")
+            and manifest_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            )
+            == lineage_counts.get("retained_residual_rows_after_all_counteraxes")
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(
+                (manifest.get("decision") or {}).get(
+                    "fixed_threshold_scoring_closure_available_now"
+                )
+            )
+            and not bool(
+                (lineage.get("decision") or {}).get(
+                    "fixed_threshold_scoring_closure_available_now"
+                )
+            )
+        ),
+    }
+    stage_violations = sorted(
+        [name for name, passed in stage_checks.items() if not passed]
+    )
+    stage_passed = not stage_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_stage_provenance_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+            if stage_passed
+            else "fold_augmented_lever3_deployment_stage_provenance_audit_needs_more_work"
+        ),
+        "scope": (
+            "Stage-provenance audit for the current Lever 3 operator manifest. "
+            "It verifies that every row-level stage source artifact referenced "
+            "by the manifest is present in the bounded, guardrail-clean "
+            "deployment-contract lineage."
+        ),
+        "stage_provenance_checks": stage_checks,
+        "stage_provenance_violations": stage_violations,
+        "stage_source_rows": stage_source_rows,
+        "missing_stage_source_rows": missing_stage_source_rows,
+        "guardrail_violation_stage_rows": guardrail_violation_stage_rows,
+        "direct_source_hash_audit_rows": direct_source_rows,
+        "operating_point": {
+            "operator_manifest_rows": manifest_counts.get(
+                "operator_manifest_rows"
+            ),
+            "operator_manifest_rows_abstain_or_route_novel_oos": (
+                manifest_counts.get(
+                    "operator_manifest_rows_abstain_or_route_novel_oos"
+                )
+            ),
+            "calibration_in_scope_retained": manifest_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": manifest_counts.get(
+                "calibration_in_scope_rows"
+            ),
+            "train_cal_oos_abstained_or_routed": manifest_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": manifest_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": manifest_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+        },
+        "counts": {
+            "manifest_action_rows": len(action_rows),
+            "manifest_action_rows_abstain_or_route_novel_oos": manifest_counts.get(
+                "operator_manifest_rows_abstain_or_route_novel_oos"
+            ),
+            "unique_stage_source_artifacts": len(stage_source_rows),
+            "stage_source_artifacts_covered_by_lineage": len(
+                [row for row in stage_source_rows if row["lineage_covered"]]
+            ),
+            "stage_source_artifacts_guardrail_clean": len(
+                [
+                    row
+                    for row in stage_source_rows
+                    if row["lineage_covered"] and not row["guardrail_violations"]
+                ]
+            ),
+            "missing_stage_source_artifacts": len(missing_stage_source_rows),
+            "stage_source_artifacts_with_guardrail_violations": len(
+                guardrail_violation_stage_rows
+            ),
+            "direct_source_records_checked": len(direct_source_rows),
+            "direct_source_records_hash_current": len(
+                [row for row in direct_source_rows if row["source_hash_current"]]
+            ),
+            "lineage_source_records_checked": len(lineage_source_hash_rows),
+            "lineage_source_records_hash_current": len(
+                [
+                    row
+                    for row in lineage_source_hash_rows
+                    if row.get("source_hash_current")
+                ]
+            ),
+            "unsafe_action_rows": manifest_counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": manifest_counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "forbidden_manifest_field_rows": manifest_counts.get(
+                "forbidden_manifest_field_rows"
+            ),
+            "stage_provenance_violation_total": len(stage_violations),
+            "calibration_in_scope_retained": manifest_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": manifest_counts.get(
+                "calibration_in_scope_rows"
+            ),
+            "train_cal_oos_abstained_or_routed": manifest_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": manifest_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": manifest_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+        },
+        "decision": {
+            "deployment_stage_provenance_clean": stage_passed,
+            "operator_manifest_stage_sources_covered": stage_passed,
+            "safe_abstention_route_remains_current": stage_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                stage_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": (
+                (manifest.get("decision") or {}).get(
+                    "exact_missing_evidence_for_scoring_closure"
+                )
+                or []
+            ),
+            "next_gate": (
+                "Use the operator manifest with its lineage-covered stage "
+                "sources for abstain/route actions only; keep fixed-threshold "
+                "scoring closure fail-closed pending exact P07658 evidence."
+                if stage_passed
+                else (
+                    "Do not use the operator manifest until stage provenance "
+                    "violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "stage_provenance_audit_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_manifest_audit": _source_path_record(
+                deployment_operator_manifest_audit_path
+            ),
+            "deployment_contract_lineage_audit": _source_path_record(
+                deployment_contract_lineage_audit_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 manifest stage provenance is lineage-covered."
+                if stage_passed
+                else "Lever 3 manifest stage provenance needs repair."
+            ),
+            "result": (
+                f"{len(stage_source_rows)} unique stage-source artifacts cover "
+                f"{len(action_rows)} manifest rows with "
+                f"{len(missing_stage_source_rows)} missing lineage artifacts."
+            ),
+            "next_action": (
+                "Use the manifest only for abstain/route actions; stage "
+                "sources are covered by clean lineage."
+                if stage_passed
+                else "Resolve missing or dirty stage-source lineage before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_stage_provenance_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Stage Provenance Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Stage provenance clean: "
+        f"{decision['deployment_stage_provenance_clean']}",
+        "- Stage sources covered: "
+        f"{decision['operator_manifest_stage_sources_covered']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Stage provenance violations: {audit['stage_provenance_violations']}",
+        "",
+        "## Counts",
+        "",
+        "- Manifest rows abstain/route: "
+        f"{counts['manifest_action_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['manifest_action_rows']}",
+        "- Stage-source artifacts covered: "
+        f"{counts['stage_source_artifacts_covered_by_lineage']}/"
+        f"{counts['unique_stage_source_artifacts']}",
+        "- Stage-source artifacts guardrail-clean: "
+        f"{counts['stage_source_artifacts_guardrail_clean']}/"
+        f"{counts['unique_stage_source_artifacts']}",
+        "- Direct source hashes current: "
+        f"{counts['direct_source_records_hash_current']}/"
+        f"{counts['direct_source_records_checked']}",
+        "- Lineage source hashes current: "
+        f"{counts['lineage_source_records_hash_current']}/"
+        f"{counts['lineage_source_records_checked']}",
+        f"- Unsafe action rows: {counts['unsafe_action_rows']}",
+        f"- Forced mechanism-label rows: {counts['forced_mechanism_label_rows']}",
+        f"- Forbidden-field rows: {counts['forbidden_manifest_field_rows']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained or routed: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "",
+        "## Stage Sources",
+        "",
+        "| stage source artifact | manifest rows | lineage depth | guardrail violations |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for row in audit.get("stage_source_rows", []):
+        lines.append(
+            f"| {row['stage_source_artifact_id']} | {row['manifest_rows']} | "
+            f"{row['lineage_depth']} | {row['guardrail_violations']} |"
+        )
+    lines += [
+        "",
+        "## Stage Provenance Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("stage_provenance_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing operator manifest and lineage artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_stage_provenance_audit(
+    *,
+    deployment_operator_manifest_audit_path: Path,
+    deployment_contract_lineage_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_stage_provenance_audit(
+        deployment_operator_manifest_audit_path=(
+            deployment_operator_manifest_audit_path
+        ),
+        deployment_contract_lineage_audit_path=deployment_contract_lineage_audit_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_stage_provenance_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+    *,
+    deployment_stage_provenance_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    stage = _read_json(deployment_stage_provenance_audit_path)
+    stage_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=stage.get("artifact_id"),
+        source_artifacts=stage.get("source_artifacts") or {},
+    )
+    source_artifacts = stage.get("source_artifacts") or {}
+    manifest_source = source_artifacts.get("deployment_operator_manifest_audit") or {}
+    lineage_source = source_artifacts.get("deployment_contract_lineage_audit") or {}
+    manifest_path_value = manifest_source.get("path")
+    lineage_path_value = lineage_source.get("path")
+    rebuilt_stage: dict[str, Any] | None = None
+    rebuild_error = None
+    if (
+        manifest_path_value
+        and lineage_path_value
+        and Path(manifest_path_value).exists()
+        and Path(lineage_path_value).exists()
+    ):
+        try:
+            rebuilt_stage = build_fold_augmented_lever3_deployment_stage_provenance_audit(
+                deployment_operator_manifest_audit_path=Path(manifest_path_value),
+                deployment_contract_lineage_audit_path=Path(lineage_path_value),
+                artifact_id=str(
+                    stage.get("artifact_id")
+                    or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_AUDIT_ID
+                ),
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        rebuild_error = "missing_stage_provenance_source_artifacts"
+
+    normalized_stage = _normalize_lever3_closure_for_reproducibility(stage)
+    normalized_rebuilt_stage = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_stage)
+        if rebuilt_stage is not None
+        else None
+    )
+    rebuild_matches = (
+        normalized_rebuilt_stage == normalized_stage
+        if normalized_rebuilt_stage is not None
+        else False
+    )
+    counts = stage.get("counts") or {}
+    decision = stage.get("decision") or {}
+    reproducibility_checks = {
+        "stage_provenance_audit_passed": (
+            stage.get("status")
+            == "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+            and not stage.get("stage_provenance_violations")
+            and bool(decision.get("deployment_stage_provenance_clean"))
+        ),
+        "stage_provenance_source_hashes_current": (
+            bool(stage_source_rows)
+            and all(row["source_hash_current"] for row in stage_source_rows)
+        ),
+        "stage_provenance_rebuild_matches_stored_after_created_utc_normalization": (
+            rebuild_matches
+        ),
+        "stage_source_coverage_metrics_stable": (
+            rebuilt_stage is not None
+            and (rebuilt_stage.get("counts") or {}).get(
+                "unique_stage_source_artifacts"
+            )
+            == counts.get("unique_stage_source_artifacts")
+            and (rebuilt_stage.get("counts") or {}).get(
+                "stage_source_artifacts_covered_by_lineage"
+            )
+            == counts.get("stage_source_artifacts_covered_by_lineage")
+            and (rebuilt_stage.get("counts") or {}).get(
+                "stage_source_artifacts_guardrail_clean"
+            )
+            == counts.get("stage_source_artifacts_guardrail_clean")
+            and (rebuilt_stage.get("counts") or {}).get("manifest_action_rows")
+            == counts.get("manifest_action_rows")
+        ),
+        "operating_point_metrics_stable": (
+            rebuilt_stage is not None
+            and (rebuilt_stage.get("counts") or {}).get(
+                "manifest_action_rows_abstain_or_route_novel_oos"
+            )
+            == counts.get("manifest_action_rows_abstain_or_route_novel_oos")
+            and (rebuilt_stage.get("counts") or {}).get(
+                "retained_residual_rows_after_all_counteraxes"
+            )
+            == counts.get("retained_residual_rows_after_all_counteraxes")
+            and (rebuilt_stage.get("counts") or {}).get(
+                "forced_mechanism_label_rows"
+            )
+            == counts.get("forced_mechanism_label_rows")
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+    }
+    reproducibility_violations = sorted(
+        [
+            name
+            for name, passed in reproducibility_checks.items()
+            if not passed
+        ]
+    )
+    reproducibility_passed = not reproducibility_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_passed"
+            if reproducibility_passed
+            else "fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_needs_more_work"
+        ),
+        "scope": (
+            "Reproducibility audit for the current Lever 3 stage-provenance "
+            "readout. It rebuilds the stage-provenance audit from its "
+            "recorded operator-manifest and lineage artifacts, normalizes "
+            "only created_utc, and checks source-hash and metric stability."
+        ),
+        "reproducibility_checks": reproducibility_checks,
+        "reproducibility_violations": reproducibility_violations,
+        "stage_provenance_artifact": {
+            "artifact_id": stage.get("artifact_id"),
+            "path": str(deployment_stage_provenance_audit_path),
+            "stored_created_utc": stage.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_stage.get("created_utc")
+                if rebuilt_stage is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_stage),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt_stage)
+                if normalized_rebuilt_stage is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": rebuild_matches,
+            "rebuild_error": rebuild_error,
+        },
+        "source_hash_audit_rows": stage_source_rows,
+        "counts": {
+            "source_records_checked": len(stage_source_rows),
+            "source_records_hash_current": len(
+                [row for row in stage_source_rows if row["source_hash_current"]]
+            ),
+            "rebuild_difference_count": int(not rebuild_matches),
+            "manifest_action_rows": counts.get("manifest_action_rows"),
+            "manifest_action_rows_abstain_or_route_novel_oos": counts.get(
+                "manifest_action_rows_abstain_or_route_novel_oos"
+            ),
+            "unique_stage_source_artifacts": counts.get(
+                "unique_stage_source_artifacts"
+            ),
+            "stage_source_artifacts_covered_by_lineage": counts.get(
+                "stage_source_artifacts_covered_by_lineage"
+            ),
+            "stage_source_artifacts_guardrail_clean": counts.get(
+                "stage_source_artifacts_guardrail_clean"
+            ),
+            "lineage_source_records_checked": counts.get(
+                "lineage_source_records_checked"
+            ),
+            "lineage_source_records_hash_current": counts.get(
+                "lineage_source_records_hash_current"
+            ),
+            "unsafe_action_rows": counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "forbidden_manifest_field_rows": counts.get(
+                "forbidden_manifest_field_rows"
+            ),
+            "calibration_in_scope_retained": counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "reproducibility_violation_total": len(reproducibility_violations),
+        },
+        "decision": {
+            "deployment_stage_provenance_reproducible": reproducibility_passed,
+            "deployment_stage_provenance_clean": (
+                reproducibility_passed
+                and bool(decision.get("deployment_stage_provenance_clean"))
+            ),
+            "safe_abstention_route_remains_current": reproducibility_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the reproducible stage-provenance readout and operator "
+                "manifest for abstain/route actions only; keep fixed-threshold "
+                "scoring closure fail-closed pending exact P07658 evidence."
+                if reproducibility_passed
+                else (
+                    "Do not rely on stage provenance until the listed "
+                    "reproducibility violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "stage_provenance_reproducibility_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_stage_provenance_audit": _source_path_record(
+                deployment_stage_provenance_audit_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 stage provenance is reproducible."
+                if reproducibility_passed
+                else "Lever 3 stage provenance reproducibility needs repair."
+            ),
+            "result": (
+                "Stage-provenance audit rebuilds after created_utc "
+                f"normalization with {len(reproducibility_violations)} "
+                "reproducibility violations."
+            ),
+            "next_action": (
+                "Use the reproducible manifest/stage-provenance readouts for "
+                "abstain/route actions only."
+                if reproducibility_passed
+                else "Resolve reproducibility violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    stage_artifact = audit["stage_provenance_artifact"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Stage Provenance Reproducibility Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Stage provenance reproducible: "
+        f"{decision['deployment_stage_provenance_reproducible']}",
+        "- Stage provenance clean: "
+        f"{decision['deployment_stage_provenance_clean']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Reproducibility violations: {audit['reproducibility_violations']}",
+        "",
+        "## Rebuild",
+        "",
+        "- Normalized rebuild matches stored: "
+        f"{stage_artifact['normalized_rebuild_matches_stored']}",
+        "- Stored normalized SHA-256: "
+        f"{stage_artifact['stored_normalized_sha256']}",
+        "- Rebuilt normalized SHA-256: "
+        f"{stage_artifact['rebuilt_normalized_sha256']}",
+        f"- Rebuild error: {stage_artifact['rebuild_error']}",
+        "",
+        "## Counts",
+        "",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Rebuild difference count: {counts['rebuild_difference_count']}",
+        "- Manifest rows abstain/route: "
+        f"{counts['manifest_action_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['manifest_action_rows']}",
+        "- Stage-source artifacts covered: "
+        f"{counts['stage_source_artifacts_covered_by_lineage']}/"
+        f"{counts['unique_stage_source_artifacts']}",
+        "- Stage-source artifacts guardrail-clean: "
+        f"{counts['stage_source_artifacts_guardrail_clean']}/"
+        f"{counts['unique_stage_source_artifacts']}",
+        "- Lineage source hashes current: "
+        f"{counts['lineage_source_records_hash_current']}/"
+        f"{counts['lineage_source_records_checked']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained or routed: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "",
+        "## Reproducibility Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("reproducibility_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing stage-provenance artifact only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+    *,
+    deployment_stage_provenance_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = (
+        build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit(
+            deployment_stage_provenance_audit_path=(
+                deployment_stage_provenance_audit_path
+            ),
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_report(
                 audit
             ),
             encoding="utf-8",

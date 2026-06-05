@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 366
-- Measured elapsed time: 11282.8 minutes (188.05 hours)
+- Entries: 367
+- Measured elapsed time: 11310.2 minutes (188.50 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 1115.3 measured minutes (18.59 hours)
+- northstar-lever3: 1142.8 measured minutes (19.05 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3840
-- Evidence references logged: 3172
+- Artifact references logged: 3855
+- Evidence references logged: 3182
 
 ## Recent Entries
-
-### 2026-06-05T04:21:10.584820+00:00 - northstar-lever3
-
-- Task: Lever 3 retained residual risk and descriptor-present counteraxis preflight
-- Time mode: measured
-- Measured minutes: 19.917
-- Started: 2026-06-05T04:01:15Z
-- Ended: 2026-06-05T04:21:10Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json, work/fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json, work/fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: retained residual risk readout keeps safe abstention routing true and fixed-threshold closure false, 11 residual same-family rows remain retained after accepted counteraxes, 2 retained rows have pocket descriptors and 9 need source-free descriptor acquisition, descriptor-present preflight freezes 8 numeric descriptor fields and 20 residue-code count fields for m_csa:25 and m_csa:52, no counteraxis selected or threshold changed, focused tests 7 passed 25 subtests, affected suite 597 passed 190 subtests, full pytest 1469 passed 209 subtests with existing sklearn warning, unittest discovery 1424 passed, validate compileall diff-check JSON parse doc/source-hash and normalized reproducibility checks passed
-- Notes: Measured readouts first; no blocker packet produced; threshold 0.44155 unchanged.
 
 ### 2026-06-05T05:24:07.185327+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: deployment contract readiness passed with 21 of 21 hard residual rows abstain route novel OOS, threshold 0.44155 locked and 31 of 34 calibration rows retained, 167 of 204 train cal OOS rows abstained or routed, lineage audit passed with 9 artifacts checked and 43 of 43 source hashes current, reproducibility audit rebuilt readiness and lineage artifacts with 0 normalized rebuild differences, focused tests 10 passed and 37 subtests, affected suite 633 passed and 202 subtests, full pytest 1505 passed and 221 subtests with existing sklearn warning, unittest discovery 1460 passed, validate compileall diff-check JSON parse CLI smoke and disk checks passed
 - Notes: Measured readout artifacts first; no blocker packet produced; fixed threshold 0.44155 unchanged; fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance.
+
+### 2026-06-05T12:29:58.962873+00:00 - northstar-lever3
+
+- Task: Lever 3 operator manifest and stage provenance deployment readouts
+- Time mode: measured
+- Measured minutes: 27.433
+- Started: 2026-06-05T12:02:13Z
+- Ended: 2026-06-05T12:29:39Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: operator manifest audit passed with 21 of 21 hard residual rows abstain route novel OOS and zero forbidden fields, operator manifest reproducibility audit rebuilt with zero normalized differences, stage provenance audit covered 5 of 5 manifest stage source artifacts in clean lineage, stage provenance reproducibility audit rebuilt with zero normalized differences, calibration retention stayed 31 of 34 and train cal OOS abstention stayed 167 of 204, focused tests 13 passed and 41 subtests passed, affected suite 645 passed and 206 subtests passed, full pytest 1517 passed and 225 subtests passed with existing sklearn warning, unittest discovery 1472 passed, validate compileall diff-check JSON parse CLI smoke guardrail audit and disk checks passed
+- Notes: Measured readouts first; no blocker packet produced; fixed threshold 0.44155 unchanged; fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance. Actual elapsed is below the planned wall-clock window because the bounded implementation and validation completed early.
 
 ## Expectation Updates
 
@@ -627,3 +627,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T09:52:04.608209+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions provider calls secret values or experimental-PDB deployment shortcuts changed.
 - 2026-06-05T10:52:49.778990+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions provider calls secret values or experimental-PDB deployment shortcuts changed.
 - 2026-06-05T11:52:16.895985+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions provider calls secret values or experimental-PDB deployment shortcuts changed.
+- 2026-06-05T12:29:58.962873+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions provider calls secret values or experimental-PDB deployment shortcuts changed.

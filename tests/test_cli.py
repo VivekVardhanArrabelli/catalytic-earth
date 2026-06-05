@@ -1003,6 +1003,115 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_deployment_operator_manifest_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "manifest-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "manifest_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_contract_reproducibility_audit",
+            args.deployment_contract_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.deployment_contract_readiness_audit,
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_manifest_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "manifest-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "manifest_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.deployment_operator_manifest_audit,
+        )
+        self.assertIn(
+            "deployment_operator_manifest_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_stage_provenance_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-deployment-stage-provenance-audit"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+                "provenance_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.deployment_operator_manifest_audit,
+        )
+        self.assertIn(
+            "deployment_contract_lineage_audit",
+            args.deployment_contract_lineage_audit,
+        )
+        self.assertIn(
+            "deployment_stage_provenance_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_stage_provenance_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-stage-"
+                "provenance-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+                "provenance_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_stage_provenance_audit",
+            args.deployment_stage_provenance_audit,
+        )
+        self.assertIn(
+            "deployment_stage_provenance_reproducibility_audit",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

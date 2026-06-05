@@ -3,15 +3,15 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T11:01:45Z`
-- STARTED_AT_LOCAL: `2026-06-05T06:01:45-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T11:52:01Z`
-- ENDED_AT_LOCAL: `2026-06-05T06:52:01-0500 CDT`
-- ELAPSED_MINUTES: `50.27`
-- Status: Run 54 validation complete; commit/push/sync verification follows
+- STARTED_AT_UTC: `2026-06-05T12:02:13Z`
+- STARTED_AT_LOCAL: `2026-06-05T07:02:13-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T12:30:20Z`
+- ENDED_AT_LOCAL: `2026-06-05T07:30:20-0500 CDT`
+- ELAPSED_MINUTES: `28.12`
+- Status: Run 55 validation complete; commit/push/sync verification follows
   this handoff write. Canonical
   `.git/catalytic-earth-automation.lock` was acquired before substantive work
-  at `2026-06-05T11:01:39Z`. Lever 3 work is restricted to
+  at `2026-06-05T12:02:13Z`. Lever 3 work is restricted to
   deployment-valid fold/geometry novelty-gate readouts.
 
 ## Mission
@@ -63,6 +63,151 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 55
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T12:02:13Z`
+- STARTED_LOCAL: `2026-06-05T07:02:13-0500 CDT`
+- ENDED_AT: `2026-06-05T12:30:20Z`
+- ENDED_LOCAL: `2026-06-05T07:30:20-0500 CDT`
+- ELAPSED_MINUTES: `28.12`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T12:02:13Z`.
+
+#### Current objective
+
+Continue Lever 3 only: extend the deployment-valid operating-point contract
+with the next measured readout that makes safe abstain/route behavior easier to
+operate without changing thresholds, labels, registries, heldout splits,
+imports, production thresholds, or row scoring.
+
+#### Run notes
+
+- Built
+  `build-fold-augmented-lever3-deployment-operator-manifest-audit` with
+  builder, writer, report renderer, and CLI wiring.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.md`.
+- Built
+  `build-fold-augmented-lever3-deployment-operator-manifest-reproducibility-audit`
+  to rebuild the operator manifest from its recorded contract sources after
+  normalizing only `created_utc`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605.md`.
+- Built
+  `build-fold-augmented-lever3-deployment-stage-provenance-audit` to verify
+  every row-level manifest stage source is present in the clean bounded
+  deployment-contract lineage.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.md`.
+- Built
+  `build-fold-augmented-lever3-deployment-stage-provenance-reproducibility-audit`
+  to rebuild the stage-provenance audit from its recorded manifest and lineage
+  sources after normalizing only `created_utc`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.md`.
+- Added synthetic builder coverage, parser-default coverage,
+  artifact-count regression coverage, and source-artifact hash coverage for
+  the four new readouts.
+
+#### Measured results
+
+- Operator manifest audit passed: 21/21 manifest rows have
+  `abstain_or_route_novel_oos` actions, 0 unsafe action rows, 0 forced
+  mechanism-label rows, 0 rule-selection rows, 0 forbidden-field rows, and
+  5/5 source records hash-current.
+- Operator manifest reproducibility passed: the manifest audit rebuilds with
+  0 normalized differences and 2/2 direct source records hash-current.
+- Stage provenance audit passed: 5/5 unique manifest stage-source artifacts
+  are covered by the bounded lineage and 5/5 are guardrail-clean; the stage
+  sources cover all 21 manifest rows, with 43/43 lineage source records
+  hash-current.
+- Stage provenance reproducibility passed: the stage-provenance audit rebuilds
+  with 0 normalized differences and 2/2 direct source records hash-current.
+- Operating-point metrics remain unchanged: 21/21 hard residual rows
+  abstain/route, 31/34 calibration in-scope rows retained, 167/204 train/cal
+  OOS rows abstained or routed, and 0 retained residual transfer-risk rows
+  after all counteraxes.
+- Current predicted/source-free evidence remains enough for safe
+  abstention/routing and not enough for fixed-threshold scoring closure. The
+  exact missing scoring-closure evidence remains the separate full-length
+  P07658 coordinate/provenance route plus passing acceptance preflight.
+- No blocker packet was produced.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training, rule selection, or threshold
+  tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new readouts consume existing measured contract artifacts only and
+  perform no provider calls, coordinate downloads, coordinate staging,
+  imports, scoring reruns, or production-threshold changes.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1460 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest ... -q`: 13 passed, 41 subtests passed.
+- CLI smoke regenerated all four new readouts into temporary paths and parsed
+  the outputs with `python -m json.tool`; statuses/counts matched expected
+  operator/stage provenance readiness.
+- Affected suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  645 passed, 206 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1517 passed, 225 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Final unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1472 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3573 JSON files and 27 JSONL files parsed with
+  0 errors.
+- Direct guardrail audit over the four new artifacts passed; each is a
+  measured Lever 3 readout with blocker packet false and all forbidden change
+  flags false.
+- Disk check remained above the guardrail: 12 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md` from the progress CLI.
+- Commit, push, `HEAD == origin/main` verification, and lock release remain
+  the final mechanical wrap steps after this handoff update.
+
+#### Exact next Lever 3 action
+
+Treat
+`artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.json`
+as the current reproducible operator-facing Lever 3 abstain/route manifest and
+stage-provenance readout. Use it only to abstain or route hard confounded rows
+as novel/OOS; do not change threshold `0.44155`, do not force mechanism labels,
+and keep fixed-threshold scoring closure fail-closed until the separate exact
+P07658 coordinate/provenance route exists and passes acceptance preflight.
 
 ### 2026-06-05 Lever 3 Forward Push Run 54
 
