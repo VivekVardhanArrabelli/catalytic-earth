@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T05:34:30Z`
-- STARTED_AT_LOCAL: `2026-06-05T00:34:30-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T06:29:33Z`
-- ENDED_AT_LOCAL: `2026-06-05T01:29:33-0500 CDT`
-- ELAPSED_MINUTES: `55.05`
+- STARTED_AT_UTC: `2026-06-05T06:33:08Z`
+- STARTED_AT_LOCAL: `2026-06-05T01:33:08-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T07:25:03Z`
+- ENDED_AT_LOCAL: `2026-06-05T02:25:03-0500 CDT`
+- ELAPSED_MINUTES: `51.92`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,181 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 17
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T06:33:08Z`
+- STARTED_LOCAL: `2026-06-05T01:33:08-0500 CDT`
+- ENDED_AT: `2026-06-05T07:25:03Z`
+- ENDED_LOCAL: `2026-06-05T02:25:03-0500 CDT`
+- ELAPSED_MINUTES: `51.92`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the direct source-free PQQ current-split sidecar result and test the
+next smallest atom-level donor/acceptor contact primitive that could separate
+electron-flow topology from generic cofactor/redox-center contact while
+preserving the current 34-row primary retention gate.
+
+#### Work log
+
+- Run opened in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from the active Lever 3 worktree.
+- `origin/lever-2-research-track` was synced with local `HEAD`; `origin/main`
+  had one newer commit, but this run initially stayed branch-isolated rather
+  than rebasing into the active Lever 3 lane.
+- Disk was at the 10 GiB guardrail after the previous run. Removed the clean
+  stale detached worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/6a70/catalytic-earth`, which
+  restored free space above the guardrail before substantive work. Wrap-up disk
+  check showed 12 GiB available.
+- Added
+  `build-lever2-source-free-electron-flow-pqq-donor-acceptor-contact-readout`.
+  This readout starts from the prior PQQ primitive-axis audit and asks whether
+  the measured PQQ redox-center contact is specifically a fixed PQQ `O4`/`O5`
+  to active-site `N`/`O`/`S` donor/acceptor-capable atom contact within a fixed
+  3.2 A cutoff.
+- Added
+  `build-lever2-source-free-electron-flow-donor-acceptor-contact-readout`.
+  This is the main measured artifact for the run. It consumes the source-free
+  coordinate proxy readout, geometry features, the train/cal projection
+  readout, and the existing train/cal feature sidecar. It materializes a direct
+  source-free PQQ donor/acceptor candidate field and a research-only broad
+  redox-center donor/acceptor control.
+- Generated the measured artifacts/reports:
+  `artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout_current702_20260604.json`,
+  `work/lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout_current702_20260604.md`,
+  `artifacts/v3_lever2_source_free_electron_flow_donor_acceptor_contact_readout_current702_20260605.json`,
+  and
+  `work/lever2_source_free_electron_flow_donor_acceptor_contact_readout_current702_20260605.md`.
+- Added a projection-row donor/acceptor scout and broad-positive family audit
+  to identify whether non-PQQ train/cal signal is heme, flavin, NAD, or another
+  redox family. The audit is descriptive only; it does not tune thresholds or
+  promote/import a feature route.
+
+#### Measured results
+
+- Main donor/acceptor readout status:
+  `lever2_source_free_electron_flow_donor_acceptor_contact_readout_research_only_direct_pqq_donor_acceptor_operating_point_signal`.
+  Result class: `research_only_direct_pqq_donor_acceptor_operating_point_signal`.
+- Fixed direct PQQ donor/acceptor candidate: 35/35 smoke rows complete and
+  74/74 full current-split rows complete. Smoke tranche is primary-safe with
+  0/34 primary positives and 1/1 retained-OOS positive. Full current split is
+  primary-safe with 0/34 primary positives and 1/40 retained-OOS positive
+  (`m_csa:104`).
+- Full current-split PQQ donor/acceptor operating point preserves primary
+  retain recall 1.0, adds retained-OOS abstain recall 0.025, adds incremental
+  OOS abstain recall 0.013333 beyond the current geometry/fold OOS surface,
+  and yields union-or-gate OOS recall 0.48.
+- Positive source-free evidence is the committed local CIF
+  `artifacts/v3_foldseek_coordinates_1000/pdb_1C9U.cif`: PQQ `O5` contacts
+  `ARG 228 NH1` at 2.768 A in `m_csa:104`.
+- The narrow PQQ donor/acceptor comparison artifact is also 74/74 complete,
+  primary-safe, and catches the same single row (`m_csa:104`). It adds 0 rows
+  beyond the prior PQQ redox-center contact and loses 0 prior PQQ redox-center
+  positives.
+- Broad redox-center donor/acceptor control is complete on 74/74 rows but is
+  not promotable: it hits 6/34 current primary rows and 1/40 retained-OOS rows,
+  lowering primary retain recall to 0.823529. Current-split broad positives by
+  family are heme 3, flavin 3, and PQQ 1; the retained-OOS gain remains only
+  PQQ (`m_csa:104`).
+- Organic redox family controls: NAD-family center only preserves primary
+  retention but catches no retained-OOS rows; PQQ+NAD preserves primary
+  retention but adds no rows beyond PQQ; PQQ+organic non-heme catches
+  `m_csa:104` but leaks into 3 primary rows.
+- Projection-row scout: 43/43 existing train/cal projection rows are complete
+  for both PQQ and broad donor/acceptor measurement. PQQ donor/acceptor has
+  0/43 positives. Broad redox donor/acceptor has 6/43 positives, split 3 train
+  and 3 calibration, with families heme 3, flavin 2, and NAD 1. This confirms
+  train/cal donor/acceptor signal exists outside PQQ, but the current broad
+  primitive is primary-unsafe on the current split.
+- PQQ cutoff sensitivity scout checked 10 fixed distances. Only one
+  current-split PQQ donor/acceptor finite row exists; no audited cutoff adds
+  rows beyond the fixed 3.2 A positive while preserving primary retention.
+- Classification: measured direct source-free PQQ donor/acceptor fields add
+  primary-safe operating-point value beyond the current geometry/fold surface,
+  but the route remains research-only because the PQQ donor/acceptor primitive
+  contract is unapproved/unimported and has no positive train/cal projection
+  rows. Broad non-PQQ evidence exists, but the broad heme/flavin/NAD atomset
+  control is not primary-safe.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  or provenance were used as predictive features. Entry IDs and coordinate
+  paths were used only for tranche accounting, source-artifact lookup, and
+  missing-evidence accounting.
+- The new fields use fixed PQQ atom names, fixed broad redox atomsets for
+  controls, fixed active-site donor/acceptor atom elements, committed local CIF
+  atom sites, and fixed cutoffs. No threshold was selected or tuned.
+- `critical_violation_total=0`; all source artifact records are present; exact
+  forbidden row-feature-key audit returned 0 hits for both new artifacts.
+- `deployable_now=false`; `candidate_direct_electron_flow_sidecar_materialized_by_this_artifact=true`;
+  `approved_direct_electron_flow_axis_materialized_by_this_artifact=false`.
+
+#### Validation
+
+- Generated donor/acceptor contact readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-donor-acceptor-contact-readout`.
+- Generated PQQ donor/acceptor comparison readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-pqq-donor-acceptor-contact-readout`.
+- Focused parser/builder/artifact tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_donor_acceptor_contact_parser_defaults tests/test_cli.py::CliTests::test_lever2_electron_flow_pqq_donor_acceptor_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_donor_acceptor_contact_readout_controls_broad_redox tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_pqq_donor_acceptor_contact_readout_maps_strict_contact tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_donor_acceptor_contact_readout_current_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts -q`:
+  6 passed.
+- Broader touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  461 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1538 passed, 212 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1493 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3583 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact regeneration comparison passed after normalizing `created_utc`
+  for both donor/acceptor artifacts.
+- New artifact source/guardrail audit passed: 0 bad guardrail flags, 0 missing
+  sources, and 0 exact forbidden row-feature keys.
+- `git diff --check`: passed.
+- Disk remained above the guardrail at 12 GiB free.
+
+#### Commit/push status
+
+- Implementation/readout commit
+  `708f76dae5c00ed52f0787ac8036e60bf4a2edac` is pushed to
+  `origin/lever-2-research-track` and verified equal to local `HEAD` before
+  this handoff-only status commit.
+- Pending final handoff sync commit/push verification.
+
+#### Exact next action
+
+- Decide whether the fixed PQQ `O4`/`O5` to active-site `N`/`O`/`S`
+  donor/acceptor contact contract is acceptable as a narrow primitive
+  source-free electron-flow subaxis. If yes, materialize the two direct fields
+  (`has_electron_transfer_event`, `electron_transfer_count`) in the normal
+  train/cal source-free feature sidecar for the 74-row current split and rerun
+  the fixed operating-point readout without heldout scoring or threshold
+  tuning. If rejected as too narrow, the smallest next electron-flow experiment
+  is a non-PQQ donor/acceptor primitive that predeclares how to exclude generic
+  heme/flavin active-site ligation controls, because the broad control has
+  train/cal positives but fails the primary retention gate.
 
 ### 2026-06-05 Lever 2 Research Run 16
 
