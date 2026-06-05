@@ -3,19 +3,14 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T00:03:41Z`
-- STARTED_AT_LOCAL: `2026-06-04T19:03:41-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T00:24:55Z`
-- ENDED_AT_LOCAL: `2026-06-04T19:24:55-0500 CDT`
-- ELAPSED_MINUTES: `21.23`
-- Status: Run 43 complete. Canonical
+- STARTED_AT_UTC: `2026-06-05T01:02:11Z`
+- STARTED_AT_LOCAL: `2026-06-04T20:02:11-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T01:33:24Z`
+- ENDED_AT_LOCAL: `2026-06-04T20:33:24-0500 CDT`
+- ELAPSED_MINUTES: `31.22`
+- Status: Run 44 complete pending commit/push verification. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-05T00:03:41Z`. Work was restricted to Lever 3 and produced
-  measured deployment-input gap and local P07658 input inventory readouts. No
-  blocker packet was produced. No coordinate was staged, no row was scored, no
-  threshold changed, and no secret values were recorded. Implementation commit
-  `59959073b01c5e17133cc0a3d7c2ace8409b589a` was pushed to `origin/main` and
-  sync was verified before the final handoff-result update.
+  `2026-06-05T01:02:11Z`. Work was restricted to Lever 3.
 
 ## Mission
 
@@ -66,6 +61,131 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 44
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T01:02:11Z`
+- STARTED_LOCAL: `2026-06-04T20:02:11-0500 CDT`
+- ENDED_AT: `2026-06-05T01:33:24Z`
+- ENDED_LOCAL: `2026-06-04T20:33:24-0500 CDT`
+- ELAPSED_MINUTES: `31.22`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T01:02:11Z`.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-p07658-sequence-compatibility-readout` with
+  builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.md`.
+- Refreshed the upstream P07658 credential-route preflight, deployment-input
+  gap audit, and local input inventory audit without no-credential provider
+  retries.
+- Added parser, synthetic builder, artifact-count, all-or-abstain gate, and
+  source-hash regression coverage for the new Lever 3 readout.
+- Appended the measured progress-log entry and regenerated `work/status.md`.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; no production threshold,
+  labels, registries, ontologies, imports, heldout splits, scoring, coordinate
+  staging, model fitting, source decisions, or secret values changed.
+- The deployment-valid train/cal operating-point context is preserved:
+  31/34 calibration in-scope rows retained and 105/204 train/cal OOS rows
+  abstained.
+- The frozen P07658 sequence contract is valid: the manifest and provider-ready
+  dispatch FASTA both preserve the exact 715-aa sequence, SHA-256
+  `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa`, and
+  U140 at position `[140]`.
+- The sequence-policy readout rejects unsafe shortcuts: U140 mutation,
+  truncation/split prediction, and experimental-PDB/PDB-provider deployment
+  shortcuts are not acceptable closure inputs.
+- The all-or-abstain P07658 gate passes 3/7 required gates and fails 4/7:
+  `credentialed_or_local_exact_prediction_route_available`,
+  `preferred_full_length_coordinate_present`,
+  `filled_prediction_provenance_present`, and
+  `local_inventory_ready_for_acceptance_preflight`.
+- Current action is fail-closed:
+  `abstain_or_route_novel_oos_until_coordinate_provenance_exists`; this is
+  operationally safe but not deployment closure and does not authorize a
+  fixed-threshold rerun.
+- Refreshed credential preflight found 0/3 credentialed provider routes and
+  0/6 local predictor modules available.
+- Local input inventory scanned 8,028 files under bounded repo roots, matched
+  38 P07658 files, and still found 0 coordinate candidates plus 0 filled
+  provenance candidates.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, or experimental-PDB
+  deployment shortcuts changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The credential preflight records env-var presence only, not token values.
+- The local inventory audit records bounded workspace file presence and
+  checksums only; it does not treat reports/templates as deployment evidence.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1408 passed.
+- Focused new readout tests after regeneration:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_p07658_sequence_compatibility_readout_rejects_shortcuts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_p07658_sequence_compatibility_readout_counts tests/test_cli.py::CliTests::test_lever3_p07658_sequence_compatibility_readout_parser_defaults -q`:
+  3 passed.
+- Affected file suites after final edits:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  584 passed, 186 subtests passed.
+- Full pytest after final edits:
+  `PYTHONPATH=src python -m pytest -q`: 1456 passed, 205 subtests passed, with
+  the existing sklearn/SciPy warning.
+- Full unittest discovery after final edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1411 passed.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3553 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Source-artifact hash regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  1 passed, 21 subtests passed.
+- Disk check remained above the guardrail: about 13 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended a measured progress-log entry and regenerated `work/status.md`.
+- Commit/push verification is pending during wrap-up; update this subsection
+  after pushing and verifying `HEAD == origin/main`.
+
+#### Exact next Lever 3 action
+
+Stop route-equivalent no-credential retries. Provision exactly one
+credentialed provider route (`HF_TOKEN`, `NVIDIA_API_KEY`, or `BIOLM_API_KEY`)
+or install exactly one local full-length predictor runtime that accepts the
+frozen 715-residue P07658 sequence with U140 preserved or explicitly
+documented. Write provider/model/version/path/checksum/sequence-hash/U140
+provenance, rerun
+`build-fold-augmented-p07658-prediction-acceptance-preflight`, and only if all
+required acceptance checks pass rerun the fixed-threshold surface with
+threshold `0.44155` unchanged and the accepted cofactor-context plus
+same-family bandpass counteraxis contracts.
 
 ### 2026-06-04 Lever 3 Forward Push Run 43
 

@@ -32,7 +32,7 @@
     "required_acceptance_checks_failed": 7,
     "rows_scored_now": 0
   },
-  "created_utc": "2026-06-05T00:11:42Z",
+  "created_utc": "2026-06-05T01:16:00Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "credentialed_or_local_exact_route_available_now": false,
@@ -142,7 +142,7 @@
     "p07658_credential_route_preflight": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.json",
-      "sha256": "c8301c0a1e6e6098660d97ab6e54f63cc4ad9adc2352d837b15b9374848e75ab"
+      "sha256": "f151c4f4022c15e2fcbe8c6ecfa320cfd96a36e192934b86053bcad79b54001d"
     },
     "p07658_prediction_acceptance_preflight": {
       "exists": true,

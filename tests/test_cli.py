@@ -418,6 +418,52 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_p07658_sequence_compatibility_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-p07658-sequence-"
+                "compatibility-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_p07658_sequence_"
+                "compatibility_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "p07658_full_length_prediction_request_manifest",
+            args.prediction_request_manifest,
+        )
+        self.assertIn(
+            "p07658_prediction_dispatch_packet",
+            args.p07658_prediction_dispatch_packet,
+        )
+        self.assertIn(
+            "p07658_exact_route_attempts",
+            args.p07658_exact_route_attempts,
+        )
+        self.assertIn(
+            "p07658_credential_route_preflight",
+            args.p07658_credential_route_preflight,
+        )
+        self.assertIn(
+            "p07658_local_input_inventory_audit",
+            args.p07658_local_input_inventory_audit,
+        )
+        self.assertIn(
+            "p07658_full_length_prediction_input",
+            args.provider_ready_fasta,
+        )
+        self.assertIn(
+            "p07658_sequence_compatibility_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

@@ -1,6 +1,6 @@
 # Fold-Augmented Lever 3 P07658 Local Input Inventory Audit - current702
 
-Run: 2026-06-05T00:20:02Z
+Run: 2026-06-05T01:16:10Z
 
 Lever 3 measured local inventory audit for the remaining P07658 deployment input gap. It scans bounded repo roots for P07658 coordinate/provenance candidates, records checksums, and does not stage coordinates or score rows.
 
@@ -12,8 +12,8 @@ Lever 3 measured local inventory audit for the remaining P07658 deployment input
 
 ## Counts
 
-- Files scanned: 8027
-- P07658 matched files: 36
+- Files scanned: 8028
+- P07658 matched files: 38
 - Coordinate candidates: 0
 - Filled provenance candidates: 0
 - Provenance templates: 2
@@ -34,6 +34,7 @@ Lever 3 measured local inventory audit for the remaining P07658 deployment input
 | readout_or_probe_json | artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempts_current702_20260604.json | 10784 |
 | readout_or_probe_json | artifacts/v3_fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.json | 4788 |
 | readout_or_probe_json | artifacts/v3_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_current702_20260604.json | 5474 |
+| readout_or_probe_json | artifacts/v3_fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.json | 8973 |
 | readout_or_probe_json | artifacts/v3_fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.json | 6043 |
 | readout_or_probe_json | artifacts/v3_fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.json | 3858 |
 | readout_or_probe_json | artifacts/v3_fold_augmented_p07658_biolm_single_provider_attempt_current702_20260604.json | 3125 |
@@ -50,6 +51,7 @@ Lever 3 measured local inventory audit for the remaining P07658 deployment input
 | human_report | work/fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.md | 2704 |
 | human_report | work/fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.md | 2795 |
 | human_report | work/fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.md | 1014 |
+| human_report | work/fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.md | 4209 |
 | human_report | work/fold_augmented_lever3_post_bandpass_p07658_live_probe_current702_20260604.md | 1941 |
 | human_report | work/fold_augmented_p07658_3dbeacons_predicted_structure_probe_current702_20260604.md | 1976 |
 | human_report | work/fold_augmented_p07658_alphafold_prediction_api_probe_current702_20260604.md | 1352 |
@@ -80,5 +82,5 @@ Lever 3 measured local inventory audit for the remaining P07658 deployment input
 ## Interpretation
 
 - No local P07658 coordinate/provenance candidate is present in the bounded repo inventory.
-- 0 coordinate-like P07658 files and 0 filled provenance files were found across 8027 files.
+- 0 coordinate-like P07658 files and 0 filled provenance files were found across 8028 files.
 - Continue with the credentialed/local predictor experiment; the repo currently contains only dispatch/report/template P07658 files, not a coordinate candidate.

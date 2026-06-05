@@ -1,6 +1,6 @@
 # Fold-Augmented Lever 3 Deployment Input Gap Audit - current702
 
-Run: 2026-06-05T00:11:42Z
+Run: 2026-06-05T01:16:00Z
 
 Lever 3 measured deployment-input gap audit. It separates the accepted operating-point evidence from the remaining P07658 predicted-coordinate input gates, uses only existing source-free readouts and preflights, and does not score rows or create coordinates.
 

@@ -77,6 +77,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_p07658_exact_route_attempt_readout,
     build_fold_augmented_lever3_p07658_credential_route_preflight,
     build_fold_augmented_lever3_p07658_local_input_inventory_audit,
+    build_fold_augmented_lever3_p07658_sequence_compatibility_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -5612,6 +5613,153 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(
             audit["decision"]["route_equivalent_no_credential_retries_should_stop"]
         )
+
+    def test_lever3_p07658_sequence_compatibility_readout_rejects_shortcuts(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest_path = root / "manifest.json"
+            dispatch_path = root / "dispatch.json"
+            attempts_path = root / "attempts.json"
+            credential_path = root / "credential.json"
+            inventory_path = root / "inventory.json"
+            fasta_path = root / "p07658.fasta"
+            sequence = "MAUAA"
+            sequence_sha = hashlib.sha256(sequence.encode("utf-8")).hexdigest()
+            fasta_path.write_text(">p07658\nMAUAA\n", encoding="utf-8")
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "affected_row": {
+                            "entry_id": "m_csa:562",
+                            "accession": "P07658",
+                            "sequence_length": len(sequence),
+                            "sequence_sha256": sequence_sha,
+                            "selenocysteine_positions": [3],
+                        },
+                        "prediction_request": {"sequence": sequence},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(json.dumps({"counts": {}}), encoding="utf-8")
+            attempts_path.write_text(
+                json.dumps(
+                    {
+                        "route_attempts": [
+                            {
+                                "route_id": "hf_router",
+                                "rejection_reason": "authentication_required",
+                            }
+                        ],
+                        "counts": {
+                            "routes_attempted": 2,
+                            "exact_sequence_submitted_routes": 1,
+                            "sequence_modified_or_truncated_routes": 0,
+                            "deployment_valid_predicted_coordinate_rows": 0,
+                            "esm_atlas_length_rejection_rows": 1,
+                            "pdb_provider_rows_rejected": 5,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            credential_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "credential_provider_routes_checked": 3,
+                            "provider_routes_with_credentials": 0,
+                            "local_predictor_modules_checked": 6,
+                            "local_predictor_modules_present": 0,
+                        },
+                        "operating_point_context": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "calibration_in_scope_retained": 31,
+                            "calibration_in_scope_rows": 34,
+                            "all_train_cal_oos_abstained": 105,
+                            "all_train_cal_oos_rows": 204,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            inventory_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "coordinate_candidate_files": 0,
+                            "filled_provenance_candidate_files": 0,
+                            "preferred_coordinate_path_exists": 0,
+                            "filled_provenance_path_exists": 0,
+                            "acceptance_preflight_ready_from_local_inventory": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
+                prediction_request_manifest_path=manifest_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                p07658_exact_route_attempts_path=attempts_path,
+                p07658_credential_route_preflight_path=credential_path,
+                p07658_local_input_inventory_audit_path=inventory_path,
+                provider_ready_fasta_path=fasta_path,
+                artifact_id="custom_p07658_sequence_compatibility",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "custom_p07658_sequence_compatibility"
+        )
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_p07658_sequence_compatibility_"
+                "readout_no_compatible_route"
+            ),
+        )
+        self.assertTrue(readout["decision"]["p07658_sequence_contract_valid"])
+        self.assertFalse(
+            readout["decision"]["sequence_mutation_or_truncation_allowed_now"]
+        )
+        self.assertTrue(
+            readout["decision"]["missing_coordinate_abstention_safe_but_not_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["credentialed_or_local_exact_route_available_now"]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertEqual(
+            readout["counts"]["accepted_sequence_policy_rows_ready_now"], 0
+        )
+        self.assertEqual(readout["counts"]["rejected_shortcut_policy_rows"], 3)
+        self.assertEqual(readout["counts"]["acceptance_gates_total"], 7)
+        self.assertEqual(readout["counts"]["acceptance_gates_passed"], 2)
+        self.assertEqual(readout["counts"]["required_acceptance_gates_failed"], 5)
+        self.assertEqual(
+            readout["decision"]["required_acceptance_gate_ids_failed"],
+            [
+                "provider_dispatch_packet_ready",
+                "credentialed_or_local_exact_prediction_route_available",
+                "preferred_full_length_coordinate_present",
+                "filled_prediction_provenance_present",
+                "local_inventory_ready_for_acceptance_preflight",
+            ],
+        )
+        self.assertEqual(
+            readout["decision"]["p07658_all_or_abstain_gate_action_now"],
+            "abstain_or_route_novel_oos_until_coordinate_provenance_exists",
+        )
+        self.assertTrue(readout["decision"]["unsafe_sequence_shortcuts_rejected"])
+        self.assertEqual(readout["counts"]["credential_or_auth_denial_routes"], 1)
+        self.assertEqual(readout["counts"]["sequence_modified_or_truncated_routes"], 0)
+        self.assertEqual(readout["counts"]["local_coordinate_candidate_files"], 0)
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

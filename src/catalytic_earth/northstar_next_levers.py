@@ -342,6 +342,9 @@ FOLD_AUGMENTED_LEVER3_DEPLOYMENT_INPUT_GAP_AUDIT_ID = (
 FOLD_AUGMENTED_LEVER3_P07658_LOCAL_INPUT_INVENTORY_AUDIT_ID = (
     "v3_fold_augmented_lever3_p07658_local_input_inventory_audit_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_P07658_SEQUENCE_COMPATIBILITY_READOUT_ID = (
+    "v3_fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -42889,6 +42892,661 @@ def write_fold_augmented_lever3_p07658_local_input_inventory_audit(
             encoding="utf-8",
         )
     return audit
+
+
+def _read_single_fasta_sequence_if_present(fasta_path: Path) -> str | None:
+    if not fasta_path.exists():
+        return None
+    sequence_lines = [
+        line.strip()
+        for line in fasta_path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.startswith(">")
+    ]
+    return "".join(sequence_lines) if sequence_lines else None
+
+
+def _residue_positions(sequence: str, residue: str) -> list[int]:
+    return [
+        index for index, observed in enumerate(sequence, start=1)
+        if observed == residue
+    ]
+
+
+def build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
+    *,
+    prediction_request_manifest_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    p07658_exact_route_attempts_path: Path,
+    p07658_credential_route_preflight_path: Path,
+    p07658_local_input_inventory_audit_path: Path,
+    provider_ready_fasta_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_SEQUENCE_COMPATIBILITY_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    manifest = _read_json(prediction_request_manifest_path)
+    dispatch = _read_json(p07658_prediction_dispatch_packet_path)
+    route_attempts = _read_json(p07658_exact_route_attempts_path)
+    credential = _read_json(p07658_credential_route_preflight_path)
+    inventory = _read_json(p07658_local_input_inventory_audit_path)
+
+    affected = manifest.get("affected_row") or {}
+    request = manifest.get("prediction_request") or {}
+    manifest_sequence = str(request.get("sequence") or "")
+    manifest_sequence_sha = hashlib.sha256(
+        manifest_sequence.encode("utf-8")
+    ).hexdigest() if manifest_sequence else None
+    expected_sequence_sha = affected.get("sequence_sha256")
+    expected_sequence_length = int(affected.get("sequence_length") or 0)
+    expected_u_positions = list(affected.get("selenocysteine_positions") or [])
+    dispatch_sequence = _read_single_fasta_sequence_if_present(provider_ready_fasta_path)
+    dispatch_sequence_sha = (
+        hashlib.sha256(dispatch_sequence.encode("utf-8")).hexdigest()
+        if dispatch_sequence
+        else None
+    )
+    dispatch_u_positions = _residue_positions(dispatch_sequence or "", "U")
+    manifest_matches_expected = bool(
+        manifest_sequence
+        and manifest_sequence_sha == expected_sequence_sha
+        and len(manifest_sequence) == expected_sequence_length
+        and _residue_positions(manifest_sequence, "U") == expected_u_positions
+    )
+    dispatch_matches_manifest = bool(
+        dispatch_sequence
+        and dispatch_sequence == manifest_sequence
+        and dispatch_sequence_sha == expected_sequence_sha
+        and dispatch_u_positions == expected_u_positions
+    )
+
+    route_counts = route_attempts.get("counts") or {}
+    credential_counts = credential.get("counts") or {}
+    inventory_counts = inventory.get("counts") or {}
+    operating_context = credential.get("operating_point_context") or {}
+    route_rows = [
+        row for row in route_attempts.get("route_attempts", [])
+        if isinstance(row, dict)
+    ]
+    auth_denial_rows = [
+        row
+        for row in route_rows
+        if "auth" in str(row.get("rejection_reason") or "").lower()
+        or "authorization" in str(row.get("rejection_reason") or "").lower()
+    ]
+    provider_internal_u_policy_available = False
+    exact_full_length_route_available = bool(
+        credential_counts.get("provider_routes_with_credentials")
+        or credential_counts.get("local_predictor_modules_present")
+        or route_counts.get("deployment_valid_predicted_coordinate_rows")
+        or inventory_counts.get("acceptance_preflight_ready_from_local_inventory")
+    )
+
+    sequence_policy_rows = [
+        {
+            "policy_id": "submit_exact_full_length_u_preserved_sequence",
+            "acceptable_for_deployment_closure": True,
+            "available_now": exact_full_length_route_available,
+            "reason": (
+                "The manifest and dispatch FASTA preserve the exact 715-aa "
+                "P07658 sequence with U140; closure still needs a route that "
+                "returns a coordinate and filled provenance."
+            ),
+        },
+        {
+            "policy_id": "provider_internal_u140_handling_documented",
+            "acceptable_for_deployment_closure": True,
+            "available_now": provider_internal_u_policy_available,
+            "reason": (
+                "A provider may internally normalize or model selenocysteine "
+                "only if the submitted input hash still matches the frozen "
+                "manifest and provenance documents U140 handling."
+            ),
+        },
+        {
+            "policy_id": "submit_u140_mutated_sequence",
+            "acceptable_for_deployment_closure": False,
+            "available_now": False,
+            "reason": (
+                "Submitting a mutated sequence would fail the frozen input "
+                "sequence-hash and U140-position acceptance checks."
+            ),
+        },
+        {
+            "policy_id": "truncate_or_split_715aa_sequence",
+            "acceptable_for_deployment_closure": False,
+            "available_now": False,
+            "reason": (
+                "Truncation or fragment stitching would no longer measure the "
+                "full-length deployment row and is rejected by the sequence "
+                "length/hash contract."
+            ),
+        },
+        {
+            "policy_id": "use_experimental_pdb_or_pdb_provider_mapping",
+            "acceptable_for_deployment_closure": False,
+            "available_now": False,
+            "reason": (
+                "Experimental PDB shortcuts and provider=PDB repository rows "
+                "are explicitly disallowed deployment inputs for this gate."
+            ),
+        },
+        {
+            "policy_id": "deterministic_missing_coordinate_abstention",
+            "acceptable_for_deployment_closure": False,
+            "available_now": True,
+            "reason": (
+                "Fail-closed abstention is operationally safe when no predicted "
+                "coordinate exists, but it cannot prove fold/chemistry "
+                "confounded separation or authorize the fixed-threshold rerun."
+            ),
+        },
+    ]
+    acceptable_policies_ready = [
+        row for row in sequence_policy_rows
+        if row["acceptable_for_deployment_closure"] and row["available_now"]
+    ]
+    rejected_shortcut_rows = [
+        row for row in sequence_policy_rows
+        if not row["acceptable_for_deployment_closure"]
+        and row["policy_id"] != "deterministic_missing_coordinate_abstention"
+    ]
+    dispatch_decision = dispatch.get("decision") or {}
+    dispatch_counts = dispatch.get("counts") or {}
+    operating_point_ready = bool(
+        operating_context.get("deployment_valid_operating_point_readout_available")
+    )
+    dispatch_packet_ready = bool(
+        dispatch_decision.get("dispatch_packet_ready_for_provider_run")
+        or int(dispatch_counts.get("dispatch_inputs_present") or 0)
+        == int(dispatch_counts.get("dispatch_inputs_total") or -1)
+    )
+    preferred_coordinate_present = bool(
+        int(inventory_counts.get("preferred_coordinate_path_exists") or 0) == 1
+    )
+    filled_provenance_present = bool(
+        int(inventory_counts.get("filled_provenance_path_exists") or 0) == 1
+    )
+    inventory_ready_for_preflight = bool(
+        int(
+            inventory_counts.get(
+                "acceptance_preflight_ready_from_local_inventory"
+            )
+            or 0
+        )
+        == 1
+    )
+    acceptance_gate_rows = [
+        {
+            "gate_id": "train_cal_operating_point_context_available",
+            "required": True,
+            "passed": operating_point_ready,
+            "deployment_action_if_failed": "abstain_or_route_novel_oos",
+            "evidence": (
+                "A train/cal-selected operating point must be available before "
+                "any fixed-threshold rerun can be interpreted."
+            ),
+        },
+        {
+            "gate_id": "p07658_sequence_contract_preserved",
+            "required": True,
+            "passed": bool(manifest_matches_expected and dispatch_matches_manifest),
+            "deployment_action_if_failed": "abstain_or_route_novel_oos",
+            "evidence": (
+                "The submitted FASTA must match the frozen 715-aa P07658 input "
+                "hash and U140 position."
+            ),
+        },
+        {
+            "gate_id": "provider_dispatch_packet_ready",
+            "required": True,
+            "passed": dispatch_packet_ready,
+            "deployment_action_if_failed": "abstain_or_route_novel_oos",
+            "evidence": (
+                "The provider-neutral dispatch packet must have all required "
+                "operator inputs before a coordinate run is requested."
+            ),
+        },
+        {
+            "gate_id": "credentialed_or_local_exact_prediction_route_available",
+            "required": True,
+            "passed": bool(exact_full_length_route_available),
+            "deployment_action_if_failed": "abstain_or_route_novel_oos",
+            "evidence": (
+                "At least one credentialed provider route or local predictor "
+                "must accept the exact full-length sequence."
+            ),
+        },
+        {
+            "gate_id": "preferred_full_length_coordinate_present",
+            "required": True,
+            "passed": preferred_coordinate_present,
+            "deployment_action_if_failed": "abstain_or_route_novel_oos",
+            "evidence": (
+                "The returned full-length coordinate must exist at the preferred "
+                "staging path before row scoring."
+            ),
+        },
+        {
+            "gate_id": "filled_prediction_provenance_present",
+            "required": True,
+            "passed": filled_provenance_present,
+            "deployment_action_if_failed": "abstain_or_route_novel_oos",
+            "evidence": (
+                "Provider/model/version/path/checksum/input-sequence/U140 "
+                "provenance must be filled before acceptance."
+            ),
+        },
+        {
+            "gate_id": "local_inventory_ready_for_acceptance_preflight",
+            "required": True,
+            "passed": inventory_ready_for_preflight,
+            "deployment_action_if_failed": "abstain_or_route_novel_oos",
+            "evidence": (
+                "Coordinate and provenance files must both be present before "
+                "the P07658 acceptance preflight is rerun."
+            ),
+        },
+    ]
+    failed_required_gate_ids = [
+        row["gate_id"]
+        for row in acceptance_gate_rows
+        if row["required"] and not row["passed"]
+    ]
+    current_evidence_sufficient = not failed_required_gate_ids
+    status = (
+        "fold_augmented_lever3_p07658_sequence_compatibility_readout_ready_for_preflight"
+        if current_evidence_sufficient
+        else "fold_augmented_lever3_p07658_sequence_compatibility_readout_no_compatible_route"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_p07658_sequence_compatibility_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured P07658 sequence-compatibility readout. It "
+            "checks the frozen full-length sequence contract, classifies "
+            "allowed versus rejected U140 handling policies, and composes the "
+            "credential/local route and local inventory evidence without "
+            "generating coordinates, scoring rows, or changing threshold 0.44155."
+        ),
+        "sequence_contract": {
+            "entry_id": affected.get("entry_id"),
+            "accession": affected.get("accession"),
+            "expected_sequence_length": expected_sequence_length,
+            "expected_sequence_sha256": expected_sequence_sha,
+            "manifest_sequence_sha256": manifest_sequence_sha,
+            "dispatch_fasta_path": str(provider_ready_fasta_path),
+            "dispatch_sequence_sha256": dispatch_sequence_sha,
+            "expected_selenocysteine_positions": expected_u_positions,
+            "dispatch_selenocysteine_positions": dispatch_u_positions,
+            "manifest_matches_expected_sequence_contract": manifest_matches_expected,
+            "dispatch_fasta_matches_manifest_sequence": dispatch_matches_manifest,
+        },
+        "operating_point_context": {
+            "deployment_valid_operating_point_readout_available": bool(
+                operating_context.get(
+                    "deployment_valid_operating_point_readout_available"
+                )
+            ),
+            "calibration_in_scope_retained": int(
+                operating_context.get("calibration_in_scope_retained") or 0
+            ),
+            "calibration_in_scope_rows": int(
+                operating_context.get("calibration_in_scope_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                operating_context.get("all_train_cal_oos_abstained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                operating_context.get("all_train_cal_oos_rows") or 0
+            ),
+        },
+        "sequence_policy_rows": sequence_policy_rows,
+        "acceptance_gate_rows": acceptance_gate_rows,
+        "route_evidence": {
+            "routes_attempted": int(route_counts.get("routes_attempted") or 0),
+            "exact_sequence_submitted_routes": int(
+                route_counts.get("exact_sequence_submitted_routes") or 0
+            ),
+            "sequence_modified_or_truncated_routes": int(
+                route_counts.get("sequence_modified_or_truncated_routes") or 0
+            ),
+            "deployment_valid_predicted_coordinate_rows": int(
+                route_counts.get("deployment_valid_predicted_coordinate_rows") or 0
+            ),
+            "esm_atlas_length_rejection_rows": int(
+                route_counts.get("esm_atlas_length_rejection_rows") or 0
+            ),
+            "credential_or_auth_denial_routes": len(auth_denial_rows),
+            "pdb_provider_rows_rejected": int(
+                route_counts.get("pdb_provider_rows_rejected") or 0
+            ),
+            "credential_provider_routes_checked": int(
+                credential_counts.get("credential_provider_routes_checked") or 0
+            ),
+            "provider_routes_with_credentials": int(
+                credential_counts.get("provider_routes_with_credentials") or 0
+            ),
+            "local_predictor_modules_checked": int(
+                credential_counts.get("local_predictor_modules_checked") or 0
+            ),
+            "local_predictor_modules_present": int(
+                credential_counts.get("local_predictor_modules_present") or 0
+            ),
+            "local_coordinate_candidate_files": int(
+                inventory_counts.get("coordinate_candidate_files") or 0
+            ),
+            "local_filled_provenance_candidate_files": int(
+                inventory_counts.get("filled_provenance_candidate_files") or 0
+            ),
+        },
+        "counts": {
+            "sequence_contract_checks": 2,
+            "sequence_contract_checks_passed": int(manifest_matches_expected)
+            + int(dispatch_matches_manifest),
+            "sequence_length": expected_sequence_length,
+            "selenocysteine_count": len(expected_u_positions),
+            "accepted_sequence_policy_rows": sum(
+                1 for row in sequence_policy_rows
+                if row["acceptable_for_deployment_closure"]
+            ),
+            "accepted_sequence_policy_rows_ready_now": len(
+                acceptable_policies_ready
+            ),
+            "rejected_shortcut_policy_rows": len(rejected_shortcut_rows),
+            "fail_closed_missing_coordinate_policy_rows": 1,
+            "acceptance_gates_total": len(acceptance_gate_rows),
+            "acceptance_gates_passed": sum(
+                1 for row in acceptance_gate_rows if row["passed"]
+            ),
+            "acceptance_gates_failed": sum(
+                1 for row in acceptance_gate_rows if not row["passed"]
+            ),
+            "required_acceptance_gates_failed": len(failed_required_gate_ids),
+            "routes_attempted": int(route_counts.get("routes_attempted") or 0),
+            "exact_sequence_submitted_routes": int(
+                route_counts.get("exact_sequence_submitted_routes") or 0
+            ),
+            "sequence_modified_or_truncated_routes": int(
+                route_counts.get("sequence_modified_or_truncated_routes") or 0
+            ),
+            "credential_or_auth_denial_routes": len(auth_denial_rows),
+            "provider_routes_with_credentials": int(
+                credential_counts.get("provider_routes_with_credentials") or 0
+            ),
+            "local_predictor_modules_present": int(
+                credential_counts.get("local_predictor_modules_present") or 0
+            ),
+            "local_coordinate_candidate_files": int(
+                inventory_counts.get("coordinate_candidate_files") or 0
+            ),
+            "local_filled_provenance_candidate_files": int(
+                inventory_counts.get("filled_provenance_candidate_files") or 0
+            ),
+            "coordinates_generated_now": 0,
+            "coordinates_staged_now": 0,
+            "rows_scored_now": 0,
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "p07658_sequence_contract_valid": bool(
+                manifest_matches_expected and dispatch_matches_manifest
+            ),
+            "sequence_mutation_or_truncation_allowed_now": False,
+            "missing_coordinate_abstention_safe_but_not_closure": True,
+            "credentialed_or_local_exact_route_available_now": bool(
+                exact_full_length_route_available
+            ),
+            "current_evidence_sufficient_for_deployment_closure": (
+                current_evidence_sufficient
+            ),
+            "fixed_threshold_audit_ready_to_rerun_now": current_evidence_sufficient,
+            "apply_or_change_threshold_now": False,
+            "all_required_acceptance_gates_pass_now": not failed_required_gate_ids,
+            "required_acceptance_gate_ids_failed": failed_required_gate_ids,
+            "p07658_all_or_abstain_gate_action_now": (
+                "rerun_acceptance_preflight_then_fixed_threshold_if_passes"
+                if not failed_required_gate_ids
+                else "abstain_or_route_novel_oos_until_coordinate_provenance_exists"
+            ),
+            "unsafe_sequence_shortcuts_rejected": True,
+            "exact_missing_evidence_needed": [
+                (
+                    "one credentialed provider route or local predictor that "
+                    "accepts the exact 715-aa P07658 FASTA"
+                ),
+                (
+                    "returned full-length coordinate file at the preferred "
+                    "staging path"
+                ),
+                (
+                    "filled provenance with provider/model/version/path/checksum, "
+                    "input sequence hash, and documented U140 handling"
+                ),
+                "P07658 acceptance preflight with all required checks passing",
+            ],
+            "next_gate": (
+                "Do not mutate or truncate U140 and do not use experimental PDB "
+                "shortcuts. Run exactly one credentialed/local full-length "
+                "prediction route, fill provenance, and rerun acceptance preflight."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "sequence_policy_only": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "prediction_request_manifest": _source_path_record(
+                prediction_request_manifest_path
+            ),
+            "p07658_prediction_dispatch_packet": _source_path_record(
+                p07658_prediction_dispatch_packet_path
+            ),
+            "p07658_exact_route_attempts": _source_path_record(
+                p07658_exact_route_attempts_path
+            ),
+            "p07658_credential_route_preflight": _source_path_record(
+                p07658_credential_route_preflight_path
+            ),
+            "p07658_local_input_inventory_audit": _source_path_record(
+                p07658_local_input_inventory_audit_path
+            ),
+            "provider_ready_fasta": _source_path_record(provider_ready_fasta_path),
+        },
+        "interpretation": {
+            "headline": (
+                "The frozen P07658 sequence contract is valid, but no compatible "
+                "exact full-length prediction route is available now."
+                if not current_evidence_sufficient
+                else "P07658 sequence compatibility is ready for acceptance preflight."
+            ),
+            "result": (
+                "The manifest and dispatch FASTA preserve the 715-aa sequence "
+                "with U140, 0 credentialed/local routes are available, 0 local "
+                "coordinate/provenance candidates are present, and mutation, "
+                "truncation, split prediction, or experimental-PDB shortcuts "
+                "remain rejected. The all-or-abstain gate fails until an exact "
+                "route, coordinate, and filled provenance are present."
+            ),
+            "next_action": (
+                "Provision exactly one full-length predictor route; if the "
+                "provider internally handles U140, record that handling in "
+                "provenance while keeping the submitted sequence hash fixed."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_p07658_sequence_compatibility_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    sequence = readout["sequence_contract"]
+    context = readout["operating_point_context"]
+    lines = [
+        "# Fold-Augmented Lever 3 P07658 Sequence Compatibility Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Sequence contract valid: {decision['p07658_sequence_contract_valid']}",
+        "- Current evidence sufficient for deployment closure: "
+        f"{decision['current_evidence_sufficient_for_deployment_closure']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        "",
+        "## Sequence Contract",
+        "",
+        f"- Expected length: {sequence['expected_sequence_length']}",
+        f"- Expected SHA-256: {sequence['expected_sequence_sha256']}",
+        f"- Dispatch FASTA SHA-256: {sequence['dispatch_sequence_sha256']}",
+        "- Expected U positions: "
+        f"{sequence['expected_selenocysteine_positions']}",
+        "- Dispatch U positions: "
+        f"{sequence['dispatch_selenocysteine_positions']}",
+        "- Dispatch FASTA matches manifest: "
+        f"{sequence['dispatch_fasta_matches_manifest_sequence']}",
+        "",
+        "## Operating Point Context",
+        "",
+        "- Calibration retained: "
+        f"{context['calibration_in_scope_retained']}/"
+        f"{context['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{context['all_train_cal_oos_abstained']}/"
+        f"{context['all_train_cal_oos_rows']}",
+        "",
+        "## Sequence Policies",
+        "",
+        "| policy | acceptable closure input | available now | reason |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for row in readout.get("sequence_policy_rows", []):
+        lines.append(
+            f"| {row['policy_id']} | "
+            f"{row['acceptable_for_deployment_closure']} | "
+            f"{row['available_now']} | {row['reason']} |"
+        )
+    lines += [
+        "",
+        "## Route Evidence",
+        "",
+        f"- Routes attempted: {counts['routes_attempted']}",
+        f"- Exact-sequence submitted routes: {counts['exact_sequence_submitted_routes']}",
+        "- Sequence modified or truncated routes: "
+        f"{counts['sequence_modified_or_truncated_routes']}",
+        f"- Credential/auth denial routes: {counts['credential_or_auth_denial_routes']}",
+        f"- Provider routes with credentials: {counts['provider_routes_with_credentials']}",
+        f"- Local predictor modules present: {counts['local_predictor_modules_present']}",
+        f"- Local coordinate candidates: {counts['local_coordinate_candidate_files']}",
+        "- Local filled provenance candidates: "
+        f"{counts['local_filled_provenance_candidate_files']}",
+        "",
+        "## Acceptance Gate Matrix",
+        "",
+        "- Required gates passed: "
+        f"{counts['acceptance_gates_passed']}/"
+        f"{counts['acceptance_gates_total']}",
+        "- Required gate failures: "
+        f"{decision['required_acceptance_gate_ids_failed']}",
+        "- All-or-abstain action now: "
+        f"{decision['p07658_all_or_abstain_gate_action_now']}",
+        "",
+        "| gate | passed | action if failed | evidence |",
+        "| --- | ---: | --- | --- |",
+    ]
+    for row in readout.get("acceptance_gate_rows", []):
+        lines.append(
+            f"| {row['gate_id']} | {row['passed']} | "
+            f"{row['deployment_action_if_failed']} | {row['evidence']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Missing-coordinate abstention safe but not closure: "
+        f"{decision['missing_coordinate_abstention_safe_but_not_closure']}",
+        "- Sequence mutation or truncation allowed now: "
+        f"{decision['sequence_mutation_or_truncation_allowed_now']}",
+        "- Exact missing evidence needed: "
+        f"{decision['exact_missing_evidence_needed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, or secret values changed.",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_p07658_sequence_compatibility_readout(
+    *,
+    prediction_request_manifest_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    p07658_exact_route_attempts_path: Path,
+    p07658_credential_route_preflight_path: Path,
+    p07658_local_input_inventory_audit_path: Path,
+    provider_ready_fasta_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_SEQUENCE_COMPATIBILITY_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
+        prediction_request_manifest_path=prediction_request_manifest_path,
+        p07658_prediction_dispatch_packet_path=p07658_prediction_dispatch_packet_path,
+        p07658_exact_route_attempts_path=p07658_exact_route_attempts_path,
+        p07658_credential_route_preflight_path=p07658_credential_route_preflight_path,
+        p07658_local_input_inventory_audit_path=(
+            p07658_local_input_inventory_audit_path
+        ),
+        provider_ready_fasta_path=provider_ready_fasta_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_p07658_sequence_compatibility_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
 
 
 def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(

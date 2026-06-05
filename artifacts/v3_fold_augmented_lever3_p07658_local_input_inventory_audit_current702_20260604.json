@@ -7,17 +7,17 @@
     "coordinates_staged_now": 0,
     "critical_violation_total": 0,
     "dispatch_fasta_files": 1,
-    "files_scanned": 8027,
+    "files_scanned": 8028,
     "filled_provenance_candidate_files": 0,
     "filled_provenance_path_exists": 0,
-    "p07658_matched_files": 36,
+    "p07658_matched_files": 38,
     "preferred_coordinate_path_exists": 0,
     "provenance_template_files": 2,
     "rows_scored_now": 0,
     "search_roots_checked": 2,
     "search_roots_existing": 2
   },
-  "created_utc": "2026-06-05T00:20:02Z",
+  "created_utc": "2026-06-05T01:16:10Z",
   "decision": {
     "acceptance_preflight_ready_from_local_inventory": false,
     "apply_or_change_threshold_now": false,
@@ -54,7 +54,7 @@
   "interpretation": {
     "headline": "No local P07658 coordinate/provenance candidate is present in the bounded repo inventory.",
     "next_action": "Continue with the credentialed/local predictor experiment; the repo currently contains only dispatch/report/template P07658 files, not a coordinate candidate.",
-    "result": "0 coordinate-like P07658 files and 0 filled provenance files were found across 8027 files."
+    "result": "0 coordinate-like P07658 files and 0 filled provenance files were found across 8028 files."
   },
   "operator_fill_targets": {
     "filled_provenance_path": "artifacts/v3_fold_augmented_p07658_prediction_provenance_filled_current702_20260604.json",
@@ -73,7 +73,7 @@
     {
       "kind": "readout_or_probe_json",
       "path": "artifacts/v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.json",
-      "sha256": "c8301c0a1e6e6098660d97ab6e54f63cc4ad9adc2352d837b15b9374848e75ab",
+      "sha256": "f151c4f4022c15e2fcbe8c6ecfa320cfd96a36e192934b86053bcad79b54001d",
       "size_bytes": 6246,
       "suffix": ".json"
     },
@@ -103,6 +103,13 @@
       "path": "artifacts/v3_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_current702_20260604.json",
       "sha256": "93acfe3d10e93af91b1c305759b42e32908ec0053abe784b264ca6371d72e760",
       "size_bytes": 5474,
+      "suffix": ".json"
+    },
+    {
+      "kind": "readout_or_probe_json",
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.json",
+      "sha256": "083996e7722391430ac57942f1f71751160f1c0b5a2ef3209532ecd8fb258d0a",
+      "size_bytes": 8973,
       "suffix": ".json"
     },
     {
@@ -199,7 +206,7 @@
     {
       "kind": "human_report",
       "path": "work/fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.md",
-      "sha256": "4c6f966f076247fa614cf74ec5dea03d1684e30a8bdc7d64cf29d0714c3545d8",
+      "sha256": "fff12de67c7b216d5da344b8165e80e86162991c08799a80ae41ac4256c0a580",
       "size_bytes": 2704,
       "suffix": ".md"
     },
@@ -215,6 +222,13 @@
       "path": "work/fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.md",
       "sha256": "45f5e29db85b756314077ad1c0f91a584b9bff2f30249af7d309fa1fc3b975a4",
       "size_bytes": 1014,
+      "suffix": ".md"
+    },
+    {
+      "kind": "human_report",
+      "path": "work/fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604.md",
+      "sha256": "76c01529f49f8754d5368631589cadbd3606a7823a71c0a2bf0b9cc19708f079",
+      "size_bytes": 4209,
       "suffix": ".md"
     },
     {
@@ -321,14 +335,14 @@
   "search_roots": [
     {
       "exists": true,
-      "files_scanned": 7560,
-      "p07658_matched_files": 18,
+      "files_scanned": 7561,
+      "p07658_matched_files": 19,
       "path": "artifacts"
     },
     {
       "exists": true,
       "files_scanned": 467,
-      "p07658_matched_files": 18,
+      "p07658_matched_files": 19,
       "path": "work"
     }
   ],
@@ -336,7 +350,7 @@
     "deployment_input_gap_audit": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_lever3_deployment_input_gap_audit_current702_20260604.json",
-      "sha256": "24a47bf29f60e084bfcb42c5173e96629c49597b06365d1355580f112698cc1b"
+      "sha256": "e5deaf072372117f1ed4d4ad7ec91f38d887acb05f7dac3ed0227c4f1c76bdd4"
     },
     "p07658_prediction_dispatch_packet": {
       "exists": true,

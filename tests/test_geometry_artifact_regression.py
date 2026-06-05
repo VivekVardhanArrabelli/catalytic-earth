@@ -8637,8 +8637,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(audit["counts"]["search_roots_checked"], 2)
         self.assertEqual(audit["counts"]["search_roots_existing"], 2)
-        self.assertEqual(audit["counts"]["files_scanned"], 8027)
-        self.assertEqual(audit["counts"]["p07658_matched_files"], 36)
+        self.assertEqual(audit["counts"]["files_scanned"], 8028)
+        self.assertEqual(audit["counts"]["p07658_matched_files"], 38)
         self.assertEqual(audit["counts"]["coordinate_candidate_files"], 0)
         self.assertEqual(audit["counts"]["filled_provenance_candidate_files"], 0)
         self.assertEqual(audit["counts"]["provenance_template_files"], 2)
@@ -8652,6 +8652,99 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["blocker_packet"])
         self.assertFalse(audit["guardrails"]["coordinates_staged_now"])
         self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_lever3_p07658_sequence_compatibility_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_p07658_sequence_"
+                "compatibility_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_p07658_sequence_compatibility_"
+                "readout_no_compatible_route"
+            ),
+        )
+        self.assertTrue(readout["decision"]["p07658_sequence_contract_valid"])
+        self.assertFalse(
+            readout["decision"]["sequence_mutation_or_truncation_allowed_now"]
+        )
+        self.assertTrue(
+            readout["decision"]["missing_coordinate_abstention_safe_but_not_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["credentialed_or_local_exact_route_available_now"]
+        )
+        self.assertFalse(
+            readout["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertEqual(readout["counts"]["sequence_length"], 715)
+        self.assertEqual(readout["counts"]["selenocysteine_count"], 1)
+        self.assertEqual(readout["counts"]["sequence_contract_checks"], 2)
+        self.assertEqual(readout["counts"]["sequence_contract_checks_passed"], 2)
+        self.assertEqual(readout["counts"]["accepted_sequence_policy_rows"], 2)
+        self.assertEqual(readout["counts"]["acceptance_gates_total"], 7)
+        self.assertEqual(readout["counts"]["acceptance_gates_passed"], 3)
+        self.assertEqual(readout["counts"]["acceptance_gates_failed"], 4)
+        self.assertEqual(readout["counts"]["required_acceptance_gates_failed"], 4)
+        self.assertEqual(
+            readout["decision"]["required_acceptance_gate_ids_failed"],
+            [
+                "credentialed_or_local_exact_prediction_route_available",
+                "preferred_full_length_coordinate_present",
+                "filled_prediction_provenance_present",
+                "local_inventory_ready_for_acceptance_preflight",
+            ],
+        )
+        self.assertEqual(
+            readout["decision"]["p07658_all_or_abstain_gate_action_now"],
+            "abstain_or_route_novel_oos_until_coordinate_provenance_exists",
+        )
+        self.assertTrue(readout["decision"]["unsafe_sequence_shortcuts_rejected"])
+        self.assertEqual(
+            readout["counts"]["accepted_sequence_policy_rows_ready_now"], 0
+        )
+        self.assertEqual(readout["counts"]["rejected_shortcut_policy_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["fail_closed_missing_coordinate_policy_rows"], 1
+        )
+        self.assertEqual(readout["counts"]["routes_attempted"], 6)
+        self.assertEqual(readout["counts"]["exact_sequence_submitted_routes"], 5)
+        self.assertEqual(
+            readout["counts"]["sequence_modified_or_truncated_routes"], 0
+        )
+        self.assertEqual(readout["counts"]["credential_or_auth_denial_routes"], 3)
+        self.assertEqual(readout["counts"]["provider_routes_with_credentials"], 0)
+        self.assertEqual(readout["counts"]["local_predictor_modules_present"], 0)
+        self.assertEqual(readout["counts"]["local_coordinate_candidate_files"], 0)
+        self.assertEqual(
+            readout["counts"]["local_filled_provenance_candidate_files"], 0
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            readout["sequence_contract"]["expected_selenocysteine_positions"],
+            [140],
+        )
+        self.assertEqual(
+            readout["sequence_contract"]["dispatch_selenocysteine_positions"],
+            [140],
+        )
+        self.assertTrue(
+            readout["sequence_contract"]["dispatch_fasta_matches_manifest_sequence"]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
@@ -8745,6 +8838,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_p07658_local_input_inventory_"
                 "audit_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_p07658_sequence_"
+                "compatibility_readout_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

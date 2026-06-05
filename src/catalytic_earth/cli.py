@@ -162,6 +162,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_p07658_exact_route_attempt_readout,
     write_fold_augmented_lever3_p07658_credential_route_preflight,
     write_fold_augmented_lever3_p07658_local_input_inventory_audit,
+    write_fold_augmented_lever3_p07658_sequence_compatibility_readout,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13623,6 +13624,41 @@ def cmd_build_fold_augmented_lever3_p07658_local_input_inventory_audit(
         f"{counts.get('coordinate_candidate_files')}, filled provenance: "
         f"{counts.get('filled_provenance_candidate_files')}, preflight-ready: "
         f"{decision.get('acceptance_preflight_ready_from_local_inventory')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_p07658_sequence_compatibility_readout(
+        prediction_request_manifest_path=Path(args.prediction_request_manifest),
+        p07658_prediction_dispatch_packet_path=Path(
+            args.p07658_prediction_dispatch_packet
+        ),
+        p07658_exact_route_attempts_path=Path(args.p07658_exact_route_attempts),
+        p07658_credential_route_preflight_path=Path(
+            args.p07658_credential_route_preflight
+        ),
+        p07658_local_input_inventory_audit_path=Path(
+            args.p07658_local_input_inventory_audit
+        ),
+        provider_ready_fasta_path=Path(args.provider_ready_fasta),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 P07658 sequence compatibility readout to "
+        f"{args.out} (contract valid: "
+        f"{decision.get('p07658_sequence_contract_valid')}, compatible routes: "
+        f"{counts.get('accepted_sequence_policy_rows_ready_now')}, rerun ready: "
+        f"{decision.get('fixed_threshold_audit_ready_to_rerun_now')})"
     )
     return 0
 
@@ -32596,6 +32632,77 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_p07658_local_input_inventory_audit.set_defaults(
         func=cmd_build_fold_augmented_lever3_p07658_local_input_inventory_audit
+    )
+
+    lever3_p07658_sequence_compatibility_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-p07658-sequence-compatibility-readout",
+        help=(
+            "classify exact P07658 sequence/U140 compatibility policies for "
+            "the remaining Lever 3 coordinate/provenance gate"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--prediction-request-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_full_length_prediction_"
+            "request_manifest_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--p07658-prediction-dispatch-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--p07658-exact-route-attempts",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_exact_route_"
+            "attempts_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--p07658-credential-route-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_credential_route_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--p07658-local-input-inventory-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_local_input_inventory_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--provider-ready-fasta",
+        default=(
+            "work/fold_augmented_p07658_full_length_prediction_input_"
+            "current702_20260604.fasta"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_sequence_"
+            "compatibility_readout_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_p07658_sequence_compatibility_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever3_p07658_sequence_compatibility_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_p07658_sequence_compatibility_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(
