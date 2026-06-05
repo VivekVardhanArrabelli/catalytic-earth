@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-05T06:33:08Z`
 - STARTED_AT_LOCAL: `2026-06-05T01:33:08-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T07:25:38Z`
-- ENDED_AT_LOCAL: `2026-06-05T02:25:38-0500 CDT`
-- ELAPSED_MINUTES: `52.50`
+- ENDED_AT_UTC: `2026-06-05T07:29:09Z`
+- ENDED_AT_LOCAL: `2026-06-05T02:29:09-0500 CDT`
+- ELAPSED_MINUTES: `56.02`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-05T06:33:08Z`
 - STARTED_LOCAL: `2026-06-05T01:33:08-0500 CDT`
-- ENDED_AT: `2026-06-05T07:25:38Z`
-- ENDED_LOCAL: `2026-06-05T02:25:38-0500 CDT`
-- ELAPSED_MINUTES: `52.50`
+- ENDED_AT: `2026-06-05T07:29:09Z`
+- ENDED_LOCAL: `2026-06-05T02:29:09-0500 CDT`
+- ELAPSED_MINUTES: `56.02`
 
 #### Intent
 
@@ -151,10 +151,13 @@ preserving the current 34-row primary retention gate.
   461 passed, 193 subtests passed.
 - Full pytest:
   `PYTHONPATH=src python -m pytest -q`: 1538 passed, 212 subtests passed, with
-  the existing sklearn/SciPy deprecation warning.
+  the existing sklearn/SciPy deprecation warning. This was rerun post-push
+  after the implementation commit and passed again: 1538 passed, 212 subtests,
+  same warning.
 - Full unittest discovery:
   `PYTHONPATH=src python -m unittest discover -s tests`: 1493 tests OK, with
-  the same existing warning.
+  the same existing warning. This was rerun post-push and passed again:
+  1493 tests OK, same warning.
 - `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
   passed.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
@@ -180,7 +183,8 @@ preserving the current 34-row primary retention gate.
 - Handoff status commit `5a984c3d0a0dde930820f989c78ad8a7d88b42f5` was pushed
   to `origin/lever-2-research-track`. Fetch verification after that push showed
   local `HEAD == origin/lever-2-research-track` at the same hash before this
-  final ledger edit.
+  final ledger edit. Final ledger correction commit is to be pushed after this
+  update so the recorded wall clock reflects the actual 55+ minute run.
 
 #### Exact next action
 
