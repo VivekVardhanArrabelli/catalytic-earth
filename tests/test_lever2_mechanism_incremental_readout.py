@@ -16,12 +16,14 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_event_axis_signature_excluded_frontier_readout,
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
     build_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     build_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
+    build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     build_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
@@ -3674,6 +3676,414 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
                 "relaxed_non_pqq_distance_scout_finds_primary_safe_signal"
             ]
         )
+
+    def test_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            donor_acceptor_path = root / "donor_acceptor.json"
+
+            def broad_row(
+                entry_id: str,
+                role: str,
+                ligand_code: str,
+                distance: float,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "tranche_role": role,
+                    "source_free_broad_redox_center_donor_acceptor_field_complete": True,
+                    "field_status": "ok",
+                    "geometry_status": "ok",
+                    "coordinate_path": "artifacts/pdb_1AAA.cif",
+                    "broad_redox_center_contact_cutoff_angstrom": 3.2,
+                    "donor_acceptor_active_atom_elements": ["N", "O", "S"],
+                    "missing_source_free_evidence": [],
+                    "broad_redox_center_donor_acceptor_instances": [
+                        {
+                            "ligand_code": ligand_code,
+                            "ligand_chain": "A",
+                            "ligand_resid": "100",
+                            "has_donor_acceptor_contact": distance <= 3.2,
+                            "min_distance_to_active_site_donor_acceptor_atom": (
+                                distance
+                            ),
+                            "closest_contact": {
+                                "distance_angstrom": distance,
+                                "ligand_atom": "N1N",
+                                "active_atom": "OG",
+                            },
+                        }
+                    ],
+                }
+
+            full_rows = [
+                broad_row("m_csa:10", "current_retained_oos", "NAD", 5.5),
+                broad_row("m_csa:11", "current_retained_oos", "SF4", 9.0),
+                broad_row(
+                    "m_csa:20",
+                    "current_primary_retention_gate",
+                    "FAD",
+                    2.8,
+                ),
+                broad_row(
+                    "m_csa:21",
+                    "current_primary_retention_gate",
+                    "HEM",
+                    2.2,
+                ),
+            ]
+            donor_acceptor_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "current_geometry_fold_oos_rows": 4,
+                        },
+                        "measured_readout": {
+                            "projection_context": {
+                                "split_alignment_context": {
+                                    "current_geometry_fold_calibration_oos_rows": 4
+                                }
+                            },
+                            "smallest_source_free_smoke_tranche": {
+                                "broad_redox_center_donor_acceptor_control": {
+                                    "rows": full_rows
+                                }
+                            },
+                            "full_retained_oos_current_split_tranche": {
+                                "broad_redox_center_donor_acceptor_control": {
+                                    "rows": full_rows
+                                }
+                            },
+                            "projection_model_relaxed_non_pqq_distance_row_scout": {
+                                "available": True,
+                                "projection_row_materialization_complete_now": True,
+                                "projection_rows": 2,
+                                "complete_rows": 2,
+                                "incomplete_rows": 0,
+                                "positive_rows": 1,
+                                "positive_entry_ids": ["m_csa:59"],
+                                "train_positive_rows": 0,
+                                "calibration_positive_rows": 1,
+                                "train_cal_supports_fixed_contract": True,
+                                "interpretation": "synthetic projection support",
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+                donor_acceptor_readout_path=donor_acceptor_path,
+                artifact_id="test_relaxed_non_pqq_donor_acceptor_sidecar",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "test_relaxed_non_pqq_donor_acceptor_sidecar"
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_fixed_relaxed_non_pqq_distance_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["materialized_feature_rows"], 4)
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_complete_rows"],
+            4,
+        )
+        self.assertEqual(readout["counts"]["current_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.25,
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_positive_entry_ids"],
+            ["m_csa:59"],
+        )
+        feature_row = readout["feature_rows"][0]
+        self.assertEqual(
+            sorted(feature_row["row_specific_event_features"]),
+            [
+                "electron_transfer_count",
+                "has_electron_transfer_event",
+                "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+                "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+            ],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "fixed_relaxed_non_pqq_distance_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "projection_rows_have_positive_train_cal_signal_for_fixed_contract"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+
+    def test_electron_flow_combined_direct_feature_sidecar_readout(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pqq_path = root / "pqq.json"
+            relaxed_path = root / "relaxed.json"
+
+            def pqq_row(entry_id: str, role: str, positive: bool) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "current_split_role": role,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": positive,
+                        "electron_transfer_count": 1 if positive else 0,
+                        "has_source_free_pqq_donor_acceptor_contact": positive,
+                        "source_free_pqq_donor_acceptor_contact_count": (
+                            1 if positive else 0
+                        ),
+                    },
+                    "pqq_donor_acceptor_evidence": {
+                        "coordinate_path": "artifacts/pdb_1AAA.cif"
+                    },
+                }
+
+            def relaxed_row(
+                entry_id: str,
+                role: str,
+                positive: bool,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "current_split_role": role,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": positive,
+                        "electron_transfer_count": 1 if positive else 0,
+                        "has_source_free_relaxed_non_pqq_donor_acceptor_contact": (
+                            positive
+                        ),
+                        "source_free_relaxed_non_pqq_donor_acceptor_contact_count": (
+                            1 if positive else 0
+                        ),
+                    },
+                    "relaxed_non_pqq_donor_acceptor_evidence": {
+                        "coordinate_path": "artifacts/pdb_1BBB.cif",
+                        "positive_contact_examples": (
+                            [
+                                {
+                                    "reported_family": "nad",
+                                    "ligand_code": "NAD",
+                                    "min_distance_to_active_site_donor_acceptor_atom": (
+                                        5.5
+                                    ),
+                                }
+                            ]
+                            if positive
+                            else []
+                        ),
+                    },
+                }
+
+            pqq_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "current_geometry_fold_oos_rows": 4,
+                            "current_retained_oos_positive_rows": 1,
+                            "projection_row_scout_pqq_positive_rows": 0,
+                        },
+                        "decision": {
+                            "pqq_projection_rows_have_positive_train_cal_signal": False
+                        },
+                        "measured_readout": {
+                            "smallest_source_free_smoke_tranche": {
+                                "feature_rows": [
+                                    pqq_row(
+                                        "m_csa:10",
+                                        "current_retained_oos",
+                                        True,
+                                    ),
+                                    pqq_row(
+                                        "m_csa:20",
+                                        "current_primary_retention_gate",
+                                        False,
+                                    ),
+                                    pqq_row(
+                                        "m_csa:21",
+                                        "current_primary_retention_gate",
+                                        False,
+                                    ),
+                                ]
+                            }
+                        },
+                        "feature_rows": [
+                            pqq_row("m_csa:10", "current_retained_oos", True),
+                            pqq_row("m_csa:11", "current_retained_oos", False),
+                            pqq_row(
+                                "m_csa:20",
+                                "current_primary_retention_gate",
+                                False,
+                            ),
+                            pqq_row(
+                                "m_csa:21",
+                                "current_primary_retention_gate",
+                                False,
+                            ),
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            relaxed_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "current_geometry_fold_oos_rows": 4,
+                            "current_retained_oos_positive_rows": 1,
+                            "projection_row_scout_positive_rows": 1,
+                            "projection_row_scout_positive_entry_ids": [
+                                "m_csa:59"
+                            ],
+                        },
+                        "decision": {
+                            "projection_rows_have_positive_train_cal_signal_for_fixed_contract": True
+                        },
+                        "measured_readout": {
+                            "smallest_source_free_smoke_tranche": {
+                                "feature_rows": [
+                                    relaxed_row(
+                                        "m_csa:10",
+                                        "current_retained_oos",
+                                        False,
+                                    ),
+                                    relaxed_row(
+                                        "m_csa:20",
+                                        "current_primary_retention_gate",
+                                        False,
+                                    ),
+                                    relaxed_row(
+                                        "m_csa:21",
+                                        "current_primary_retention_gate",
+                                        False,
+                                    ),
+                                ]
+                            }
+                        },
+                        "feature_rows": [
+                            relaxed_row(
+                                "m_csa:10",
+                                "current_retained_oos",
+                                False,
+                            ),
+                            relaxed_row(
+                                "m_csa:11",
+                                "current_retained_oos",
+                                True,
+                            ),
+                            relaxed_row(
+                                "m_csa:20",
+                                "current_primary_retention_gate",
+                                False,
+                            ),
+                            relaxed_row(
+                                "m_csa:21",
+                                "current_primary_retention_gate",
+                                False,
+                            ),
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+                pqq_donor_acceptor_feature_sidecar_readout_path=pqq_path,
+                relaxed_non_pqq_feature_sidecar_readout_path=relaxed_path,
+                artifact_id="test_combined_direct_electron_flow_sidecar",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "test_combined_direct_electron_flow_sidecar"
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_combined_direct_electron_flow_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["materialized_feature_rows"], 4)
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_complete_rows"],
+            4,
+        )
+        self.assertEqual(readout["counts"]["current_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_positive_rows"], 2
+        )
+        self.assertEqual(readout["counts"]["smoke_feature_rows"], 3)
+        self.assertEqual(readout["counts"]["smoke_complete_feature_rows"], 3)
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.5,
+        )
+        feature_row = readout["feature_rows"][0]
+        self.assertEqual(
+            sorted(feature_row["row_specific_event_features"]),
+            [
+                "electron_transfer_count",
+                "has_electron_transfer_event",
+                "has_source_free_pqq_donor_acceptor_contact",
+                "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+                "source_free_pqq_donor_acceptor_contact_count",
+                "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+            ],
+        )
+        self.assertEqual(
+            readout["measured_readout"][
+                "full_retained_oos_current_split_tranche"
+            ]["fixed_gate_readout"]["retained_oos_positive_entry_ids"],
+            ["m_csa:10", "m_csa:11"],
+        )
+        self.assertEqual(
+            readout["measured_readout"][
+                "smallest_source_free_smoke_tranche"
+            ]["fixed_gate_readout"]["retained_oos_positive_entry_ids"],
+            ["m_csa:10"],
+        )
+        self.assertEqual(
+            readout["measured_readout"][
+                "projection_backed_pqq_plus_nad_family_subunion"
+            ]["fixed_gate_readout"]["retained_oos_positive_entry_ids"],
+            ["m_csa:10", "m_csa:11"],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "combined_direct_electron_flow_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["smoke_tranche_preserves_primary_retention"]
+        )
+        self.assertTrue(
+            readout["decision"]["smoke_tranche_adds_retained_oos_abstention"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "projection_rows_have_positive_train_cal_signal_for_combined_contract"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

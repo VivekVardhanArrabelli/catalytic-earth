@@ -63,6 +63,14 @@ DEFAULT_ELECTRON_FLOW_PQQ_DONOR_ACCEPTOR_CURRENT_SPLIT_FEATURE_SIDECAR_READOUT_A
     "v3_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_"
     "feature_sidecar_readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_RELAXED_NON_PQQ_DONOR_ACCEPTOR_FEATURE_SIDECAR_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_"
+    "feature_sidecar_readout_current702_20260605"
+)
+DEFAULT_ELECTRON_FLOW_COMBINED_DIRECT_FEATURE_SIDECAR_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_combined_direct_feature_sidecar_"
+    "readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -149,6 +157,17 @@ PQQ_DONOR_ACCEPTOR_THRESHOLD_SCOUT_CUTOFFS = (
     12.0,
     25.0,
 )
+RELAXED_NON_PQQ_DONOR_ACCEPTOR_DISTANCE_CUTOFF_ANGSTROM = 8.0
+RELAXED_NON_PQQ_DONOR_ACCEPTOR_FAMILIES = {
+    "iron_sulfur_or_iron",
+    "nad",
+    "other",
+}
+RELAXED_NON_PQQ_DONOR_ACCEPTOR_EXCLUDED_FAMILIES = {
+    "flavin",
+    "heme",
+    "pqq",
+}
 PQQ_DONOR_ACCEPTOR_ATOM_NAMES = PQQ_DONOR_ACCEPTOR_PQQ_ATOM_NAMES
 DONOR_ACCEPTOR_ACTIVE_ATOM_ELEMENTS = {"N", "O", "S"}
 REDOX_CENTER_DONOR_ACCEPTOR_ATOM_ELEMENTS = {"FE", "N", "O", "S"}
@@ -9539,6 +9558,1910 @@ def _non_pqq_donor_acceptor_family_exclusion_scout(
             "retained-OOS positives."
         ),
     }
+
+
+def _relaxed_non_pqq_distance_instances(
+    row: dict[str, Any],
+    *,
+    included_families: set[str] = RELAXED_NON_PQQ_DONOR_ACCEPTOR_FAMILIES,
+    cutoff_angstrom: float = RELAXED_NON_PQQ_DONOR_ACCEPTOR_DISTANCE_CUTOFF_ANGSTROM,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    family_instances: list[dict[str, Any]] = []
+    positive_instances: list[dict[str, Any]] = []
+    for instance in row.get("broad_redox_center_donor_acceptor_instances") or []:
+        if not isinstance(instance, dict):
+            continue
+        family = _reported_redox_donor_acceptor_family(instance.get("ligand_code"))
+        if family not in included_families:
+            continue
+        try:
+            distance = float(
+                instance.get("min_distance_to_active_site_donor_acceptor_atom")
+            )
+        except (TypeError, ValueError):
+            continue
+        record = {
+            "ligand_code": str(instance.get("ligand_code") or "").upper(),
+            "reported_family": family,
+            "ligand_chain": instance.get("ligand_chain"),
+            "ligand_resid": instance.get("ligand_resid"),
+            "min_distance_to_active_site_donor_acceptor_atom": round(distance, 3),
+            "closest_contact": instance.get("closest_contact"),
+        }
+        family_instances.append(record)
+        if distance <= cutoff_angstrom:
+            positive_instances.append(record)
+    family_instances.sort(
+        key=lambda item: (
+            float(item["min_distance_to_active_site_donor_acceptor_atom"]),
+            str(item["ligand_code"]),
+            str(item.get("ligand_chain") or ""),
+            str(item.get("ligand_resid") or ""),
+        )
+    )
+    positive_instances.sort(
+        key=lambda item: (
+            float(item["min_distance_to_active_site_donor_acceptor_atom"]),
+            str(item["ligand_code"]),
+            str(item.get("ligand_chain") or ""),
+            str(item.get("ligand_resid") or ""),
+        )
+    )
+    return family_instances, positive_instances
+
+
+def _relaxed_non_pqq_donor_acceptor_feature_sidecar_rows_from_broad_rows(
+    rows: list[dict[str, Any]],
+    *,
+    cutoff_angstrom: float = RELAXED_NON_PQQ_DONOR_ACCEPTOR_DISTANCE_CUTOFF_ANGSTROM,
+    included_families: set[str] = RELAXED_NON_PQQ_DONOR_ACCEPTOR_FAMILIES,
+) -> list[dict[str, Any]]:
+    feature_rows: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        complete = bool(
+            row.get(
+                "source_free_broad_redox_center_donor_acceptor_field_complete"
+            )
+        )
+        family_instances, positive_instances = (
+            _relaxed_non_pqq_distance_instances(
+                row,
+                included_families=included_families,
+                cutoff_angstrom=cutoff_angstrom,
+            )
+            if complete
+            else ([], [])
+        )
+        contact_count = len(positive_instances) if complete else None
+        contact_positive = bool(complete and positive_instances)
+        min_distance = (
+            family_instances[0][
+                "min_distance_to_active_site_donor_acceptor_atom"
+            ]
+            if family_instances
+            else None
+        )
+        feature_rows.append(
+            {
+                "entry_id": str(row["entry_id"]),
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "current_split_role": row.get("tranche_role")
+                or row.get("current_split_role"),
+                "source_free_electron_flow_field_complete": complete,
+                "row_specific_event_features": {
+                    "has_electron_transfer_event": (
+                        contact_positive if complete else None
+                    ),
+                    "electron_transfer_count": contact_count,
+                    "has_source_free_relaxed_non_pqq_donor_acceptor_contact": (
+                        contact_positive if complete else None
+                    ),
+                    "source_free_relaxed_non_pqq_donor_acceptor_contact_count": (
+                        contact_count
+                    ),
+                },
+                "relaxed_non_pqq_donor_acceptor_evidence": {
+                    "field_status": row.get("field_status"),
+                    "geometry_status": row.get("geometry_status"),
+                    "coordinate_path": row.get("coordinate_path"),
+                    "included_redox_families": sorted(included_families),
+                    "excluded_redox_families": sorted(
+                        RELAXED_NON_PQQ_DONOR_ACCEPTOR_EXCLUDED_FAMILIES
+                    ),
+                    "donor_acceptor_active_atom_elements": row.get(
+                        "donor_acceptor_active_atom_elements", []
+                    ),
+                    "relaxed_non_pqq_distance_cutoff_angstrom": cutoff_angstrom,
+                    "fixed_broad_contact_cutoff_reference_angstrom": row.get(
+                        "broad_redox_center_contact_cutoff_angstrom"
+                    ),
+                    "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom": (
+                        min_distance
+                    ),
+                    "family_distance_examples": family_instances[:6],
+                    "positive_contact_examples": positive_instances[:6],
+                    "contact_count": contact_count,
+                    "missing_source_free_evidence": row.get(
+                        "missing_source_free_evidence", []
+                    ),
+                },
+                "feature_guardrails": {
+                    "mechanism_text_excluded_from_features": True,
+                    "ec_rhea_ids_excluded_from_features": True,
+                    "labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "accessions_excluded_from_features": True,
+                    "pdb_ids_and_coordinate_paths_excluded_from_features": True,
+                    "heldout_row": False,
+                    "fixed_relaxed_distance_cutoff_used": True,
+                    "heme_flavin_pqq_excluded_from_feature_contract": True,
+                },
+            }
+        )
+    return sorted(feature_rows, key=lambda row: _entry_sort_key(row["entry_id"]))
+
+
+def _relaxed_non_pqq_projection_scout_from_feature_rows(
+    feature_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    complete_rows = [
+        row
+        for row in feature_rows
+        if row.get("source_free_electron_flow_field_complete")
+    ]
+    positive_rows = [
+        row
+        for row in complete_rows
+        if (
+            row.get("row_specific_event_features") or {}
+        ).get("has_electron_transfer_event")
+    ]
+    split_counts: dict[str, int] = {}
+    family_counts: dict[str, int] = {}
+    examples: list[dict[str, Any]] = []
+    negative_distance_examples: list[dict[str, Any]] = []
+    for row in positive_rows:
+        split = str(row.get("assigned_embedding_split") or "unknown")
+        split_counts[split] = split_counts.get(split, 0) + 1
+        evidence = row.get("relaxed_non_pqq_donor_acceptor_evidence") or {}
+        positive_instances = evidence.get("positive_contact_examples") or []
+        families = sorted(
+            {
+                str(instance.get("reported_family") or "other")
+                for instance in positive_instances
+                if isinstance(instance, dict)
+            }
+        )
+        ligand_codes = sorted(
+            {
+                str(instance.get("ligand_code") or "").upper()
+                for instance in positive_instances
+                if isinstance(instance, dict) and instance.get("ligand_code")
+            }
+        )
+        for family in families:
+            family_counts[family] = family_counts.get(family, 0) + 1
+        examples.append(
+            {
+                "entry_id": row["entry_id"],
+                "assigned_embedding_split": split,
+                "families": families,
+                "positive_ligand_codes": ligand_codes,
+                "min_distance_angstrom": evidence.get(
+                    "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom"
+                ),
+            }
+        )
+    for row in complete_rows:
+        if row in positive_rows:
+            continue
+        evidence = row.get("relaxed_non_pqq_donor_acceptor_evidence") or {}
+        min_distance = evidence.get(
+            "min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom"
+        )
+        if min_distance is None:
+            continue
+        family_instances = evidence.get("family_distance_examples") or []
+        families = sorted(
+            {
+                str(instance.get("reported_family") or "other")
+                for instance in family_instances
+                if isinstance(instance, dict)
+            }
+        )
+        ligand_codes = sorted(
+            {
+                str(instance.get("ligand_code") or "").upper()
+                for instance in family_instances
+                if isinstance(instance, dict) and instance.get("ligand_code")
+            }
+        )
+        negative_distance_examples.append(
+            {
+                "entry_id": row["entry_id"],
+                "assigned_embedding_split": str(
+                    row.get("assigned_embedding_split") or "unknown"
+                ),
+                "families": families,
+                "ligand_codes": ligand_codes,
+                "min_distance_angstrom": min_distance,
+            }
+        )
+    negative_distance_examples.sort(
+        key=lambda item: (
+            float(item["min_distance_angstrom"]),
+            _entry_sort_key(str(item["entry_id"])),
+        )
+    )
+    train_positive = split_counts.get("train", 0)
+    calibration_positive = split_counts.get("calibration", 0)
+    return {
+        "available": True,
+        "projection_row_materialization_complete_now": bool(
+            feature_rows and len(complete_rows) == len(feature_rows)
+        ),
+        "projection_rows": len(feature_rows),
+        "complete_rows": len(complete_rows),
+        "incomplete_rows": len(feature_rows) - len(complete_rows),
+        "positive_rows": len(positive_rows),
+        "positive_entry_ids": _entry_ids(positive_rows),
+        "train_positive_rows": train_positive,
+        "calibration_positive_rows": calibration_positive,
+        "split_positive_row_counts": dict(sorted(split_counts.items())),
+        "family_positive_row_counts": dict(sorted(family_counts.items())),
+        "positive_row_examples": sorted(
+            examples,
+            key=lambda item: _entry_sort_key(item["entry_id"]),
+        ),
+        "closest_negative_distance_examples": negative_distance_examples[:5],
+        "closest_negative_distance_angstrom": (
+            negative_distance_examples[0]["min_distance_angstrom"]
+            if negative_distance_examples
+            else None
+        ),
+        "train_cal_supports_fixed_contract": bool(
+            train_positive or calibration_positive
+        ),
+        "interpretation": (
+            "The fixed relaxed non-PQQ distance contract has source-free "
+            "train/cal projection positives."
+            if train_positive or calibration_positive
+            else (
+                "The fixed relaxed non-PQQ distance contract has no positive "
+                "train/cal projection rows."
+            )
+        ),
+    }
+
+
+def _relaxed_non_pqq_projection_row_scout(
+    *,
+    train_cal_feature_sidecar_path: Path | None,
+    geometry_by_entry: dict[str, dict[str, Any]] | None,
+    coordinate_cif_paths: dict[str, Path],
+    included_families: set[str] = RELAXED_NON_PQQ_DONOR_ACCEPTOR_FAMILIES,
+) -> dict[str, Any]:
+    if (
+        train_cal_feature_sidecar_path is None
+        or geometry_by_entry is None
+        or not Path(train_cal_feature_sidecar_path).exists()
+    ):
+        return {
+            "available": False,
+            "projection_row_materialization_complete_now": False,
+            "train_cal_supports_fixed_contract": False,
+            "required_evidence": (
+                "existing train/cal feature sidecar plus geometry features for "
+                "the fixed relaxed non-PQQ donor/acceptor projection rows"
+            ),
+        }
+    train_cal_sidecar = _read_json(train_cal_feature_sidecar_path)
+    broad_rows: list[dict[str, Any]] = []
+    for source_row in train_cal_sidecar.get("feature_rows", []) or []:
+        if not isinstance(source_row, dict) or not source_row.get("entry_id"):
+            continue
+        entry_id = str(source_row["entry_id"])
+        split = str(source_row.get("assigned_embedding_split") or "unknown")
+        geometry_row = geometry_by_entry.get(entry_id)
+        coordinate_features = _source_free_coordinate_electron_flow_features(
+            entry_id=entry_id,
+            geometry_row=geometry_row,
+        )
+        gap_probe_by_entry: dict[str, dict[str, Any]] = {}
+        if (
+            geometry_row is not None
+            and not coordinate_features.get("source_free_coordinate_features_available")
+        ):
+            structure_ligand_codes = sorted(
+                {
+                    str(code).upper()
+                    for code in (
+                        (geometry_row.get("ligand_context") or {}).get(
+                            "structure_ligand_codes"
+                        )
+                        or []
+                    )
+                    if code
+                }
+            )
+            if structure_ligand_codes:
+                default_cif = _default_pdb_cif_path_for_geometry_row(geometry_row)
+                gap_probe_by_entry[entry_id] = {
+                    "entry_id": entry_id,
+                    "sidecar_available": True,
+                    "sidecar_status": "geometry_ligand_inventory",
+                    "coordinate_path": str(default_cif) if default_cif else None,
+                    "structure_ligand_codes": structure_ligand_codes,
+                    "structure_redox_ligand_codes": sorted(
+                        set(structure_ligand_codes) & COORDINATE_REDOX_LIGAND_CODES
+                    ),
+                    "structure_quinone_redox_ligand_codes": sorted(
+                        set(structure_ligand_codes)
+                        & COORDINATE_QUINONE_REDOX_LIGAND_CODES
+                    ),
+                }
+        proxy_row = {
+            "entry_id": entry_id,
+            "tranche_role": f"projection_{split}",
+            "coordinate_evidence": coordinate_features,
+        }
+        broad_row = _broad_redox_center_donor_acceptor_control_row(
+            proxy_row=proxy_row,
+            geometry_row=geometry_row,
+            gap_probe_by_entry=gap_probe_by_entry,
+            coordinate_cif_paths=coordinate_cif_paths,
+        )
+        broad_row["assigned_embedding_split"] = split
+        broad_rows.append(broad_row)
+    feature_rows = _relaxed_non_pqq_donor_acceptor_feature_sidecar_rows_from_broad_rows(
+        broad_rows,
+        included_families=included_families,
+    )
+    scout = _relaxed_non_pqq_projection_scout_from_feature_rows(feature_rows)
+    scout["feature_rows"] = feature_rows
+    return scout
+
+
+def _relaxed_non_pqq_family_split_readouts(
+    *,
+    broad_rows: list[dict[str, Any]],
+    split_oos_rows: int | None,
+    train_cal_feature_sidecar_path: Path | None,
+    geometry_by_entry: dict[str, dict[str, Any]] | None,
+    coordinate_cif_paths: dict[str, Path],
+) -> dict[str, Any]:
+    candidate_family_sets = {
+        "nad_family_only": {"nad"},
+        "iron_sulfur_or_iron_only": {"iron_sulfur_or_iron"},
+        "other_non_pqq_only": {"other"},
+    }
+    candidate_readouts: list[dict[str, Any]] = []
+    for candidate_id, families in candidate_family_sets.items():
+        sidecar_rows = (
+            _relaxed_non_pqq_donor_acceptor_feature_sidecar_rows_from_broad_rows(
+                broad_rows,
+                included_families=families,
+            )
+        )
+        gate = _donor_acceptor_gate_readout(
+            sidecar_rows,
+            split_oos_rows=split_oos_rows,
+            gate_id=f"fixed_binary_relaxed_non_pqq_{candidate_id}_distance_8A",
+            feature_fields=[
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+                "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+            ],
+            gate_rule=(
+                "Family-split scout over the fixed 8 A relaxed non-PQQ "
+                "donor/acceptor distance contract. This readout measures a "
+                "single redox family at a time and does not tune thresholds."
+            ),
+        )
+        projection_scout = _relaxed_non_pqq_projection_row_scout(
+            train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+            geometry_by_entry=geometry_by_entry,
+            coordinate_cif_paths=coordinate_cif_paths,
+            included_families=families,
+        )
+        candidate_readouts.append(
+            {
+                "candidate_id": candidate_id,
+                "included_redox_families": sorted(families),
+                "fixed_gate_readout": gate,
+                "projection_scout": {
+                    key: value
+                    for key, value in projection_scout.items()
+                    if key != "feature_rows"
+                },
+            }
+        )
+    primary_safe_with_oos = [
+        candidate
+        for candidate in candidate_readouts
+        if candidate["fixed_gate_readout"]["preserves_primary_retention"]
+        and candidate["fixed_gate_readout"]["retained_oos_positive_rows"]
+    ]
+    with_projection_support = [
+        candidate
+        for candidate in candidate_readouts
+        if candidate["projection_scout"].get("train_cal_supports_fixed_contract")
+    ]
+    current_signal_without_projection = [
+        candidate
+        for candidate in primary_safe_with_oos
+        if not candidate["projection_scout"].get(
+            "train_cal_supports_fixed_contract"
+        )
+    ]
+    return {
+        "available": True,
+        "fixed_distance_cutoff_angstrom": (
+            RELAXED_NON_PQQ_DONOR_ACCEPTOR_DISTANCE_CUTOFF_ANGSTROM
+        ),
+        "candidate_readouts": candidate_readouts,
+        "primary_safe_current_split_candidate_ids_with_retained_oos_signal": [
+            candidate["candidate_id"] for candidate in primary_safe_with_oos
+        ],
+        "candidate_ids_with_projection_support": [
+            candidate["candidate_id"] for candidate in with_projection_support
+        ],
+        "primary_safe_current_split_signal_without_projection_support": [
+            {
+                "candidate_id": candidate["candidate_id"],
+                "retained_oos_positive_entry_ids": candidate[
+                    "fixed_gate_readout"
+                ]["retained_oos_positive_entry_ids"],
+                "missing_source_free_evidence": (
+                    "positive train/cal projection rows for the same fixed "
+                    "family-specific 8 A source-free distance contract"
+                ),
+            }
+            for candidate in current_signal_without_projection
+        ],
+        "interpretation": (
+            "Family split shows which relaxed non-PQQ subcontracts have both "
+            "current-split signal and train/cal projection support."
+        ),
+    }
+
+
+def build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+    *,
+    donor_acceptor_readout_path: Path,
+    geometry_features_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    coordinate_cif_paths: dict[str, Path] | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_RELAXED_NON_PQQ_DONOR_ACCEPTOR_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    donor_acceptor = _read_json(donor_acceptor_readout_path)
+    measured = donor_acceptor.get("measured_readout") or {}
+    source_counts = donor_acceptor.get("counts") or {}
+    projection_context = measured.get("projection_context") or {}
+    split_oos_rows = _split_oos_rows_from_projection_context_or_counts(
+        projection_context,
+        source_counts,
+    )
+    smoke_source = measured.get("smallest_source_free_smoke_tranche") or {}
+    full_source = measured.get("full_retained_oos_current_split_tranche") or {}
+
+    def _broad_rows(tranche: dict[str, Any]) -> list[dict[str, Any]]:
+        return (
+            (tranche.get("broad_redox_center_donor_acceptor_control") or {}).get(
+                "rows"
+            )
+            or []
+        )
+
+    smoke_broad_rows = _broad_rows(smoke_source)
+    full_broad_rows = _broad_rows(full_source)
+    smoke_feature_rows = (
+        _relaxed_non_pqq_donor_acceptor_feature_sidecar_rows_from_broad_rows(
+            smoke_broad_rows
+        )
+    )
+    feature_rows = (
+        _relaxed_non_pqq_donor_acceptor_feature_sidecar_rows_from_broad_rows(
+            full_broad_rows
+        )
+    )
+    feature_fields = [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+        "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+    ]
+    smoke_gate = _donor_acceptor_gate_readout(
+        smoke_feature_rows,
+        gate_id=(
+            "fixed_binary_relaxed_non_pqq_donor_acceptor_distance_8A_smoke"
+        ),
+        feature_fields=feature_fields,
+        gate_rule=(
+            "Use only standalone fixed 8 A source-free non-PQQ donor/acceptor "
+            "distance feature rows; positives abstain and complete negatives "
+            "retain. Heme, flavin, and PQQ are excluded from this contract."
+        ),
+    )
+    full_gate = _donor_acceptor_gate_readout(
+        feature_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id=(
+            "fixed_binary_relaxed_non_pqq_donor_acceptor_distance_8A_or_current_surface"
+        ),
+        feature_fields=feature_fields,
+        gate_rule=(
+            "At the current operating point, abstain a currently retained OOS "
+            "row when a complete source-free NAD/Fe-S/other non-PQQ redox-center "
+            "atom is within the fixed 8 A distance cutoff of an active-site N/O/S "
+            "atom; retain a primary row unless that same complete feature row is "
+            "positive. Heme, flavin, and PQQ are excluded; no threshold is "
+            "selected or tuned by this artifact."
+        ),
+    )
+    geometry_by_entry = None
+    if geometry_features_path is not None and Path(geometry_features_path).exists():
+        geometry_by_entry = _geometry_feature_rows_by_entry(
+            _read_json(geometry_features_path)
+        )
+    if coordinate_cif_paths is None:
+        coordinate_cif_paths = {}
+    projection_scout = (
+        measured.get("projection_model_relaxed_non_pqq_distance_row_scout")
+        or _relaxed_non_pqq_projection_row_scout(
+            train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+            geometry_by_entry=geometry_by_entry,
+            coordinate_cif_paths=coordinate_cif_paths,
+        )
+    )
+    family_split_readout = _relaxed_non_pqq_family_split_readouts(
+        broad_rows=full_broad_rows,
+        split_oos_rows=split_oos_rows,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        geometry_by_entry=geometry_by_entry,
+        coordinate_cif_paths=coordinate_cif_paths,
+    )
+    forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(
+        feature_rows
+    )
+    complete_sidecar = bool(
+        full_gate["rows"] and full_gate["complete_rows"] == full_gate["rows"]
+    )
+    measured_positive = bool(
+        full_gate["operating_point_measurable_now"]
+        and full_gate["preserves_primary_retention"]
+        and full_gate["adds_incremental_oos_abstention"]
+        and not forbidden_feature_key_hits
+    )
+    projection_support = bool(
+        projection_scout.get("available")
+        and projection_scout.get("train_cal_supports_fixed_contract")
+    )
+    result_class = (
+        "research_only_fixed_relaxed_non_pqq_distance_operating_point_signal"
+        if measured_positive and projection_support
+        else (
+            "research_only_fixed_relaxed_non_pqq_distance_current_split_signal_no_projection_support"
+            if measured_positive
+            else "research_only_fixed_relaxed_non_pqq_distance_incomplete_or_negative"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_"
+        f"feature_sidecar_readout_{result_class}"
+    )
+    missing_feature_rows = [
+        {
+            "entry_id": row["entry_id"],
+            "current_split_role": row.get("current_split_role"),
+            "missing_source_free_evidence": (
+                (row.get("relaxed_non_pqq_donor_acceptor_evidence") or {}).get(
+                    "missing_source_free_evidence", []
+                )
+            ),
+        }
+        for row in feature_rows
+        if not row.get("source_free_electron_flow_field_complete")
+    ]
+    positive_rows = [
+        row
+        for row in feature_rows
+        if (
+            row.get("row_specific_event_features") or {}
+        ).get("has_electron_transfer_event")
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined source-free feature-sidecar readout "
+            "for a fixed relaxed non-PQQ donor/acceptor electron-flow distance "
+            "primitive on the current split. It consumes the measured broad "
+            "redox-center donor/acceptor rows, emits standalone normal-shaped "
+            "row_specific_event_features for the 34 current primary rows and "
+            "40 current-retained OOS rows, and measures a fixed 8 A gate. It "
+            "does not train, tune thresholds, read heldout, edit registries, or "
+            "promote imports."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": (
+                "source_free_relaxed_non_pqq_donor_acceptor_distance_8A_"
+                "current_split_feature_sidecar"
+            ),
+            "axis_id": "source_free_relaxed_non_pqq_donor_acceptor_distance_8A",
+            "contract_status": "research_only_unapproved_unimported",
+            "row_scope": (
+                "current train/cal calibration split: 34 primary retention-gate "
+                "rows plus 40 current-retained OOS rows"
+            ),
+            "feature_fields": feature_fields,
+            "direct_electron_flow_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "included_redox_families": sorted(
+                RELAXED_NON_PQQ_DONOR_ACCEPTOR_FAMILIES
+            ),
+            "excluded_redox_families": sorted(
+                RELAXED_NON_PQQ_DONOR_ACCEPTOR_EXCLUDED_FAMILIES
+            ),
+            "fixed_distance_cutoff_angstrom": (
+                RELAXED_NON_PQQ_DONOR_ACCEPTOR_DISTANCE_CUTOFF_ANGSTROM
+            ),
+            "allowed_source_free_inputs": [
+                "committed donor_acceptor_readout broad redox-center rows",
+                "fixed NAD/Fe-S/other non-PQQ redox family inclusion",
+                "fixed heme/flavin/PQQ family exclusion",
+                "fixed active-site N/O/S atom elements",
+                "fixed 8 angstrom distance cutoff",
+                "committed local CIF atom-site evidence",
+            ],
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "feature_rows": feature_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "current_split_role",
+            "assigned_embedding_split",
+            "relaxed_non_pqq_donor_acceptor_evidence",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "projection_context": projection_context,
+            "smallest_source_free_smoke_tranche": {
+                "feature_rows": smoke_feature_rows,
+                "fixed_gate_readout": smoke_gate,
+            },
+            "full_retained_oos_current_split_tranche": {
+                "feature_rows": feature_rows,
+                "fixed_gate_readout": full_gate,
+            },
+            "projection_model_relaxed_non_pqq_distance_row_scout": (
+                projection_scout
+            ),
+            "family_split_fixed_8A_readouts": family_split_readout,
+            "positive_feature_rows": positive_rows,
+            "missing_feature_rows": missing_feature_rows,
+            "forbidden_feature_key_hits": forbidden_feature_key_hits,
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_feature_key_hits),
+            "materialized_feature_rows": len(feature_rows),
+            "source_free_electron_flow_feature_complete_rows": full_gate[
+                "complete_rows"
+            ],
+            "source_free_electron_flow_feature_incomplete_rows": full_gate[
+                "incomplete_rows"
+            ],
+            "current_primary_rows": full_gate["primary_rows"],
+            "current_retained_oos_rows": full_gate["retained_oos_rows"],
+            "current_primary_positive_rows": full_gate[
+                "primary_positive_rows"
+            ],
+            "current_retained_oos_positive_rows": full_gate[
+                "retained_oos_positive_rows"
+            ],
+            "current_primary_retain_recall": full_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "current_retained_oos_abstain_recall": full_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "current_geometry_fold_oos_rows": full_gate[
+                "current_geometry_fold_oos_rows"
+            ],
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "union_or_gate_oos_abstain_recall": full_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "smoke_feature_rows": len(smoke_feature_rows),
+            "smoke_complete_feature_rows": smoke_gate["complete_rows"],
+            "smoke_primary_positive_rows": smoke_gate["primary_positive_rows"],
+            "smoke_retained_oos_positive_rows": smoke_gate[
+                "retained_oos_positive_rows"
+            ],
+            "fixed_distance_cutoff_angstrom": (
+                RELAXED_NON_PQQ_DONOR_ACCEPTOR_DISTANCE_CUTOFF_ANGSTROM
+            ),
+            "included_redox_family_count": len(
+                RELAXED_NON_PQQ_DONOR_ACCEPTOR_FAMILIES
+            ),
+            "excluded_redox_family_count": len(
+                RELAXED_NON_PQQ_DONOR_ACCEPTOR_EXCLUDED_FAMILIES
+            ),
+            "forbidden_row_feature_key_hits": len(forbidden_feature_key_hits),
+            "projection_row_scout_available": bool(
+                projection_scout.get("available")
+            ),
+            "projection_row_scout_rows": projection_scout.get("projection_rows"),
+            "projection_row_scout_complete_rows": projection_scout.get(
+                "complete_rows"
+            ),
+            "projection_row_scout_positive_rows": projection_scout.get(
+                "positive_rows"
+            ),
+            "projection_row_scout_train_positive_rows": projection_scout.get(
+                "train_positive_rows"
+            ),
+            "projection_row_scout_calibration_positive_rows": (
+                projection_scout.get("calibration_positive_rows")
+            ),
+            "projection_row_scout_positive_entry_ids": projection_scout.get(
+                "positive_entry_ids"
+            ),
+            "family_split_candidates_checked": len(
+                family_split_readout["candidate_readouts"]
+            ),
+            "family_split_primary_safe_current_split_candidates_with_retained_oos_signal": len(
+                family_split_readout[
+                    "primary_safe_current_split_candidate_ids_with_retained_oos_signal"
+                ]
+            ),
+            "family_split_candidates_with_projection_support": len(
+                family_split_readout["candidate_ids_with_projection_support"]
+            ),
+            "family_split_current_signal_without_projection_support": len(
+                family_split_readout[
+                    "primary_safe_current_split_signal_without_projection_support"
+                ]
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "standalone_current_split_feature_sidecar_materialized": True,
+            "current_split_feature_sidecar_complete": complete_sidecar,
+            "source_free_current_split_rows_missing_now": full_gate[
+                "incomplete_rows"
+            ],
+            "fixed_relaxed_non_pqq_distance_preserves_primary_retention": (
+                full_gate["preserves_primary_retention"]
+            ),
+            "fixed_relaxed_non_pqq_distance_adds_current_retained_oos_abstention": (
+                full_gate["adds_incremental_oos_abstention"]
+            ),
+            "fixed_relaxed_non_pqq_distance_adds_operating_point_value_beyond_current_geometry_fold": (
+                measured_positive
+            ),
+            "projection_rows_have_positive_train_cal_signal_for_fixed_contract": (
+                projection_support
+            ),
+            "nad_family_split_has_current_signal_and_projection_support": (
+                "nad_family_only"
+                in family_split_readout["candidate_ids_with_projection_support"]
+                and "nad_family_only"
+                in family_split_readout[
+                    "primary_safe_current_split_candidate_ids_with_retained_oos_signal"
+                ]
+            ),
+            "iron_sulfur_family_split_has_current_signal_and_projection_support": (
+                "iron_sulfur_or_iron_only"
+                in family_split_readout["candidate_ids_with_projection_support"]
+                and "iron_sulfur_or_iron_only"
+                in family_split_readout[
+                    "primary_safe_current_split_candidate_ids_with_retained_oos_signal"
+                ]
+            ),
+            "normal_shaped_row_specific_feature_sidecar_emitted": True,
+            "forbidden_fields_absent_from_row_specific_event_features": (
+                not forbidden_feature_key_hits
+            ),
+            "source_free_relaxed_non_pqq_distance_contract_approved": False,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not measured_positive,
+            "apply_or_promote_now": False,
+            "remaining_deployability_gap": (
+                "The fixed 8 A relaxed non-PQQ donor/acceptor distance contract "
+                "is measured and primary-safe on the current split, but remains "
+                "an unapproved research primitive and is not imported into the "
+                "normal source-free train/cal feature sidecar."
+            ),
+            "smallest_next_experiment": (
+                "Union this fixed relaxed non-PQQ distance primitive with the "
+                "narrow PQQ donor/acceptor primitive in a measured research-only "
+                "readout. If the non-PQQ contract is too broad, keep NAD-family "
+                "as the supported subprimitive and run the smallest Fe-S/iron "
+                "train/cal source-free evidence experiment."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "fixed_distance_cutoff_predeclared_for_this_readout": True,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "donor_acceptor_contact_readout": _source_path_record(
+                donor_acceptor_readout_path
+            ),
+            "geometry_features": (
+                _source_path_record(geometry_features_path)
+                if geometry_features_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The fixed 8 A relaxed non-PQQ donor/acceptor distance feature "
+                f"sidecar is complete on {full_gate['complete_rows']}/"
+                f"{full_gate['rows']} current-split rows, preserves all current "
+                "primary rows, and catches "
+                f"{full_gate['retained_oos_positive_rows']}/"
+                f"{full_gate['retained_oos_rows']} current-retained OOS rows "
+                "from normal-shaped row_specific_event_features."
+            )
+            if measured_positive
+            else (
+                "The fixed 8 A relaxed non-PQQ donor/acceptor distance feature "
+                "sidecar does not yet provide a complete primary-safe incremental "
+                "OOS signal."
+            ),
+            "next_action": (
+                "Keep this primitive research-only until explicitly approved, "
+                "then test a union with the narrow PQQ donor/acceptor feature to "
+                "measure the combined direct electron-flow operating point."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    full_gate = readout["measured_readout"][
+        "full_retained_oos_current_split_tranche"
+    ]["fixed_gate_readout"]
+    projection_scout = readout["measured_readout"][
+        "projection_model_relaxed_non_pqq_distance_row_scout"
+    ]
+    family_split = readout["measured_readout"]["family_split_fixed_8A_readouts"]
+    positive_rows = readout["measured_readout"]["positive_feature_rows"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Relaxed Non-PQQ Donor/Acceptor Feature Sidecar Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Materialized feature rows complete: "
+        f"{counts['source_free_electron_flow_feature_complete_rows']}/"
+        f"{counts['materialized_feature_rows']}",
+        "- Current primary/OOS positives: "
+        f"{counts['current_primary_positive_rows']}/"
+        f"{counts['current_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['current_primary_retain_recall']}",
+        "- Retained-OOS abstain recall: "
+        f"{counts['current_retained_oos_abstain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold OOS: "
+        f"{counts['incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Union OOS recall: "
+        f"{counts['union_or_gate_oos_abstain_recall']}",
+        "- Projection-row positives: "
+        f"{counts['projection_row_scout_positive_rows']}",
+        "- Forbidden row-feature key hits: "
+        f"{counts['forbidden_row_feature_key_hits']}",
+        "",
+        "## Fixed Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | primary retain | retained-OOS recall | union OOS recall |",
+        "| ---: | ---: | ---: | ---: | ---: | ---: |",
+        f"| {full_gate['complete_rows']}/{full_gate['rows']} | "
+        f"{full_gate['primary_positive_rows']} | "
+        f"{full_gate['retained_oos_positive_rows']} | "
+        f"{full_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{full_gate['retained_oos_abstain_recall_if_abstain_positive']} | "
+        f"{full_gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Positive Feature Rows",
+        "",
+        "| row | role | count | min distance | families | coordinate evidence |",
+        "| --- | --- | ---: | ---: | --- | --- |",
+    ]
+    if not positive_rows:
+        lines.append("| none | none | 0 | none | none | none |")
+    for row in positive_rows:
+        evidence = row.get("relaxed_non_pqq_donor_acceptor_evidence") or {}
+        features = row.get("row_specific_event_features") or {}
+        families = sorted(
+            {
+                str(instance.get("reported_family") or "other")
+                for instance in evidence.get("positive_contact_examples") or []
+                if isinstance(instance, dict)
+            }
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row.get('current_split_role')} | "
+            f"{features.get('electron_transfer_count')} | "
+            f"{evidence.get('min_relaxed_non_pqq_donor_acceptor_distance_to_active_site_atom')} | "
+            f"{', '.join(families) or 'none'} | "
+            f"{evidence.get('coordinate_path') or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Projection Scout",
+        "",
+        "- Available: "
+        f"{projection_scout.get('available')}",
+        "- Complete rows: "
+        f"{projection_scout.get('complete_rows')}/"
+        f"{projection_scout.get('projection_rows')}",
+        "- Positive train/cal rows: "
+        f"{projection_scout.get('train_positive_rows')}/"
+        f"{projection_scout.get('calibration_positive_rows')}",
+        "- Positive row IDs: "
+        f"{', '.join(projection_scout.get('positive_entry_ids') or []) or 'none'}",
+        f"- {projection_scout.get('interpretation')}",
+        "",
+        "## Family Split",
+        "",
+        "| candidate | primary positives | retained-OOS positives | projection positives | projection support | closest projection negative | retained-OOS rows |",
+        "| --- | ---: | ---: | ---: | --- | ---: | --- |",
+    ]
+    for candidate in family_split["candidate_readouts"]:
+        gate = candidate["fixed_gate_readout"]
+        projection = candidate["projection_scout"]
+        closest_negative = projection.get("closest_negative_distance_angstrom")
+        lines.append(
+            f"| {candidate['candidate_id']} | "
+            f"{gate['primary_positive_rows']} | "
+            f"{gate['retained_oos_positive_rows']} | "
+            f"{projection.get('positive_rows')} | "
+            f"{projection.get('train_cal_supports_fixed_contract')} | "
+            f"{closest_negative if closest_negative is not None else 'none'} | "
+            f"{', '.join(gate['retained_oos_positive_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "- Current-split signal without projection support: "
+        f"{family_split['primary_safe_current_split_signal_without_projection_support']}",
+        "",
+        "## Decision",
+        "",
+        "- Standalone sidecar materialized: "
+        f"{decision['standalone_current_split_feature_sidecar_materialized']}",
+        "- Current-split sidecar complete: "
+        f"{decision['current_split_feature_sidecar_complete']}",
+        "- Preserves primary retention: "
+        f"{decision['fixed_relaxed_non_pqq_distance_preserves_primary_retention']}",
+        "- Adds value beyond current geometry/fold: "
+        f"{decision['fixed_relaxed_non_pqq_distance_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Projection rows support fixed contract: "
+        f"{decision['projection_rows_have_positive_train_cal_signal_for_fixed_contract']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_deployability_gap']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+    *,
+    donor_acceptor_readout_path: Path,
+    out_path: Path,
+    geometry_features_path: Path | None = None,
+    train_cal_feature_sidecar_path: Path | None = None,
+    coordinate_cif_paths: dict[str, Path] | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_RELAXED_NON_PQQ_DONOR_ACCEPTOR_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+        donor_acceptor_readout_path=donor_acceptor_readout_path,
+        geometry_features_path=geometry_features_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        coordinate_cif_paths=coordinate_cif_paths,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+    *,
+    pqq_donor_acceptor_feature_sidecar_readout_path: Path,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_COMBINED_DIRECT_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    pqq_readout = _read_json(pqq_donor_acceptor_feature_sidecar_readout_path)
+    relaxed_readout = _read_json(relaxed_non_pqq_feature_sidecar_readout_path)
+    pqq_rows_by_id = _feature_rows_by_id(pqq_readout)
+    relaxed_rows_by_id = _feature_rows_by_id(relaxed_readout)
+    entry_ids = sorted(
+        set(pqq_rows_by_id) | set(relaxed_rows_by_id),
+        key=_entry_sort_key,
+    )
+    feature_rows: list[dict[str, Any]] = []
+    for entry_id in entry_ids:
+        pqq_row = pqq_rows_by_id.get(entry_id)
+        relaxed_row = relaxed_rows_by_id.get(entry_id)
+        pqq_complete = bool(
+            pqq_row and pqq_row.get("source_free_electron_flow_field_complete")
+        )
+        relaxed_complete = bool(
+            relaxed_row
+            and relaxed_row.get("source_free_electron_flow_field_complete")
+        )
+        complete = bool(pqq_complete and relaxed_complete)
+        pqq_features = (pqq_row or {}).get("row_specific_event_features") or {}
+        relaxed_features = (
+            (relaxed_row or {}).get("row_specific_event_features") or {}
+        )
+        pqq_positive = bool(
+            pqq_complete
+            and pqq_features.get("has_source_free_pqq_donor_acceptor_contact")
+        )
+        relaxed_positive = bool(
+            relaxed_complete
+            and relaxed_features.get(
+                "has_source_free_relaxed_non_pqq_donor_acceptor_contact"
+            )
+        )
+        pqq_count = (
+            int(
+                pqq_features.get("source_free_pqq_donor_acceptor_contact_count")
+                or 0
+            )
+            if pqq_complete
+            else None
+        )
+        relaxed_count = (
+            int(
+                relaxed_features.get(
+                    "source_free_relaxed_non_pqq_donor_acceptor_contact_count"
+                )
+                or 0
+            )
+            if relaxed_complete
+            else None
+        )
+        electron_transfer_count = (
+            int(pqq_count or 0) + int(relaxed_count or 0)
+            if complete
+            else None
+        )
+        feature_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": (
+                    (pqq_row or {}).get("assigned_embedding_split")
+                    or (relaxed_row or {}).get("assigned_embedding_split")
+                ),
+                "current_split_role": (
+                    (pqq_row or {}).get("current_split_role")
+                    or (relaxed_row or {}).get("current_split_role")
+                ),
+                "source_free_electron_flow_field_complete": complete,
+                "row_specific_event_features": {
+                    "has_electron_transfer_event": (
+                        bool(pqq_positive or relaxed_positive) if complete else None
+                    ),
+                    "electron_transfer_count": electron_transfer_count,
+                    "has_source_free_pqq_donor_acceptor_contact": (
+                        pqq_positive if pqq_complete else None
+                    ),
+                    "source_free_pqq_donor_acceptor_contact_count": pqq_count,
+                    "has_source_free_relaxed_non_pqq_donor_acceptor_contact": (
+                        relaxed_positive if relaxed_complete else None
+                    ),
+                    "source_free_relaxed_non_pqq_donor_acceptor_contact_count": (
+                        relaxed_count
+                    ),
+                },
+                "combined_direct_electron_flow_evidence": {
+                    "pqq_donor_acceptor_evidence": (
+                        (pqq_row or {}).get("pqq_donor_acceptor_evidence")
+                    ),
+                    "relaxed_non_pqq_donor_acceptor_evidence": (
+                        (relaxed_row or {}).get(
+                            "relaxed_non_pqq_donor_acceptor_evidence"
+                        )
+                    ),
+                    "source_components_complete": {
+                        "pqq_donor_acceptor": pqq_complete,
+                        "relaxed_non_pqq_donor_acceptor": relaxed_complete,
+                    },
+                    "positive_components": {
+                        "pqq_donor_acceptor": pqq_positive,
+                        "relaxed_non_pqq_donor_acceptor": relaxed_positive,
+                    },
+                    "missing_source_free_evidence": [
+                        label
+                        for label, is_complete in [
+                            ("pqq_donor_acceptor_feature_row", pqq_complete),
+                            (
+                                "relaxed_non_pqq_donor_acceptor_feature_row",
+                                relaxed_complete,
+                            ),
+                        ]
+                        if not is_complete
+                    ],
+                },
+                "feature_guardrails": {
+                    "mechanism_text_excluded_from_features": True,
+                    "ec_rhea_ids_excluded_from_features": True,
+                    "labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "accessions_excluded_from_features": True,
+                    "pdb_ids_and_coordinate_paths_excluded_from_features": True,
+                    "heldout_row": False,
+                    "feature_is_union_of_measured_direct_electron_flow_sidecars": True,
+                },
+            }
+        )
+
+    relaxed_counts = relaxed_readout.get("counts") or {}
+    pqq_counts = pqq_readout.get("counts") or {}
+    split_oos_rows = relaxed_counts.get("current_geometry_fold_oos_rows")
+    if split_oos_rows is None:
+        split_oos_rows = pqq_counts.get("current_geometry_fold_oos_rows")
+    try:
+        split_oos_rows = int(split_oos_rows)
+    except (TypeError, ValueError):
+        split_oos_rows = None
+    feature_fields = [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+        "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+    ]
+    smoke_entry_ids: set[str] = set()
+    for source_readout in (pqq_readout, relaxed_readout):
+        smoke_source = (
+            (source_readout.get("measured_readout") or {}).get(
+                "smallest_source_free_smoke_tranche"
+            )
+            or {}
+        )
+        for row in smoke_source.get("feature_rows") or []:
+            if isinstance(row, dict) and row.get("entry_id"):
+                smoke_entry_ids.add(str(row["entry_id"]))
+    smoke_feature_rows = [
+        row for row in feature_rows if row["entry_id"] in smoke_entry_ids
+    ]
+    smoke_gate = _donor_acceptor_gate_readout(
+        smoke_feature_rows,
+        gate_id="fixed_binary_combined_direct_electron_flow_sidecar_smoke",
+        feature_fields=feature_fields,
+        gate_rule=(
+            "Smoke tranche: abstain on the union of measured direct source-free "
+            "electron-flow sidecars for the m_csa:104 retained-OOS row plus "
+            "the 34 current primary retention-gate rows."
+        ),
+    )
+    full_gate = _donor_acceptor_gate_readout(
+        feature_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_combined_direct_electron_flow_sidecar_or_current_surface",
+        feature_fields=feature_fields,
+        gate_rule=(
+            "At the current operating point, abstain a currently retained OOS "
+            "row when either measured direct source-free electron-flow sidecar "
+            "is positive: fixed PQQ donor/acceptor contact or fixed 8 A relaxed "
+            "non-PQQ donor/acceptor distance. Retain primary rows unless the "
+            "same complete union feature row is positive."
+        ),
+    )
+    projection_backed_feature_fields = [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+    ]
+    projection_backed_rows: list[dict[str, Any]] = []
+    unsupported_relaxed_positive_rows: list[dict[str, Any]] = []
+    for row in feature_rows:
+        features = row.get("row_specific_event_features") or {}
+        evidence = row.get("combined_direct_electron_flow_evidence") or {}
+        pqq_positive = bool(
+            features.get("has_source_free_pqq_donor_acceptor_contact")
+        )
+        pqq_count = int(
+            features.get("source_free_pqq_donor_acceptor_contact_count") or 0
+        )
+        relaxed_evidence = (
+            evidence.get("relaxed_non_pqq_donor_acceptor_evidence") or {}
+        )
+        relaxed_instances = [
+            instance
+            for instance in relaxed_evidence.get("positive_contact_examples") or []
+            if isinstance(instance, dict)
+        ]
+        nad_instances = [
+            instance
+            for instance in relaxed_instances
+            if instance.get("reported_family") == "nad"
+        ]
+        unsupported_instances = [
+            instance
+            for instance in relaxed_instances
+            if instance.get("reported_family") != "nad"
+        ]
+        if unsupported_instances:
+            unsupported_relaxed_positive_rows.append(
+                {
+                    "entry_id": row["entry_id"],
+                    "current_split_role": row.get("current_split_role"),
+                    "unsupported_families": sorted(
+                        {
+                            str(instance.get("reported_family") or "other")
+                            for instance in unsupported_instances
+                        }
+                    ),
+                }
+            )
+        complete = bool(row.get("source_free_electron_flow_field_complete"))
+        supported_count = pqq_count + len(nad_instances) if complete else None
+        supported_positive = bool(complete and supported_count)
+        projection_backed_rows.append(
+            {
+                "entry_id": row["entry_id"],
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "current_split_role": row.get("current_split_role"),
+                "source_free_electron_flow_field_complete": complete,
+                "row_specific_event_features": {
+                    "has_electron_transfer_event": (
+                        supported_positive if complete else None
+                    ),
+                    "electron_transfer_count": supported_count,
+                    "has_source_free_pqq_donor_acceptor_contact": (
+                        pqq_positive if complete else None
+                    ),
+                    "source_free_pqq_donor_acceptor_contact_count": (
+                        pqq_count if complete else None
+                    ),
+                    "has_source_free_nad_family_donor_acceptor_distance": (
+                        bool(nad_instances) if complete else None
+                    ),
+                    "source_free_nad_family_donor_acceptor_distance_count": (
+                        len(nad_instances) if complete else None
+                    ),
+                },
+                "projection_backed_evidence": {
+                    "pqq_donor_acceptor_evidence": evidence.get(
+                        "pqq_donor_acceptor_evidence"
+                    ),
+                    "nad_family_donor_acceptor_distance_examples": nad_instances[:6],
+                    "excluded_relaxed_non_pqq_positive_examples": (
+                        unsupported_instances[:6]
+                    ),
+                },
+            }
+        )
+    projection_backed_gate = _donor_acceptor_gate_readout(
+        projection_backed_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_projection_backed_pqq_plus_nad_family_direct_electron_flow",
+        feature_fields=projection_backed_feature_fields,
+        gate_rule=(
+            "Projection-backed subunion: abstain on fixed PQQ donor/acceptor "
+            "contact or fixed 8 A NAD-family donor/acceptor distance. Fe-S/iron "
+            "current-split positives are excluded until matching train/cal "
+            "projection support exists."
+        ),
+    )
+    forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(
+        feature_rows
+    )
+    projection_backed_forbidden_feature_key_hits = (
+        _feature_row_exact_forbidden_key_hits(projection_backed_rows)
+    )
+    complete_sidecar = bool(
+        full_gate["rows"] and full_gate["complete_rows"] == full_gate["rows"]
+    )
+    measured_positive = bool(
+        full_gate["operating_point_measurable_now"]
+        and full_gate["preserves_primary_retention"]
+        and full_gate["adds_incremental_oos_abstention"]
+        and not forbidden_feature_key_hits
+    )
+    relaxed_projection_ids = relaxed_counts.get(
+        "projection_row_scout_positive_entry_ids"
+    ) or []
+    projection_support = bool(
+        (pqq_readout.get("decision") or {}).get(
+            "pqq_projection_rows_have_positive_train_cal_signal"
+        )
+        or (relaxed_readout.get("decision") or {}).get(
+            "projection_rows_have_positive_train_cal_signal_for_fixed_contract"
+        )
+    )
+    result_class = (
+        "research_only_combined_direct_electron_flow_operating_point_signal"
+        if measured_positive and projection_support
+        else (
+            "research_only_combined_direct_electron_flow_current_split_signal_no_projection_support"
+            if measured_positive
+            else "research_only_combined_direct_electron_flow_incomplete_or_negative"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_combined_direct_feature_sidecar_"
+        f"readout_{result_class}"
+    )
+    positive_rows = [
+        row
+        for row in feature_rows
+        if (
+            row.get("row_specific_event_features") or {}
+        ).get("has_electron_transfer_event")
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined source-free feature-sidecar readout "
+            "for the union of two measured direct electron-flow features on the "
+            "current split: fixed PQQ donor/acceptor contact and fixed 8 A "
+            "relaxed non-PQQ donor/acceptor distance. It consumes only measured "
+            "sidecar artifacts, emits normal-shaped row_specific_event_features, "
+            "and does not train, tune thresholds, read heldout, edit registries, "
+            "or promote imports."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": "source_free_combined_direct_electron_flow_current_split_feature_sidecar",
+            "axis_id": "source_free_combined_direct_electron_flow",
+            "contract_status": "research_only_unapproved_unimported",
+            "row_scope": (
+                "current train/cal calibration split: 34 primary retention-gate "
+                "rows plus 40 current-retained OOS rows"
+            ),
+            "feature_fields": feature_fields,
+            "direct_electron_flow_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "source_components": [
+                "source_free_pqq_donor_acceptor_contact",
+                "source_free_relaxed_non_pqq_donor_acceptor_distance_8A",
+            ],
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "feature_rows": feature_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "current_split_role",
+            "assigned_embedding_split",
+            "combined_direct_electron_flow_evidence",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "smallest_source_free_smoke_tranche": {
+                "feature_rows": smoke_feature_rows,
+                "fixed_gate_readout": smoke_gate,
+            },
+            "full_retained_oos_current_split_tranche": {
+                "feature_rows": feature_rows,
+                "fixed_gate_readout": full_gate,
+            },
+            "projection_backed_pqq_plus_nad_family_subunion": {
+                "feature_rows": projection_backed_rows,
+                "fixed_gate_readout": projection_backed_gate,
+                "unsupported_relaxed_non_pqq_positive_rows": (
+                    unsupported_relaxed_positive_rows
+                ),
+                "forbidden_feature_key_hits": (
+                    projection_backed_forbidden_feature_key_hits
+                ),
+            },
+            "source_component_counts": {
+                "pqq_current_retained_oos_positive_rows": pqq_counts.get(
+                    "current_retained_oos_positive_rows"
+                ),
+                "relaxed_non_pqq_current_retained_oos_positive_rows": (
+                    relaxed_counts.get("current_retained_oos_positive_rows")
+                ),
+                "pqq_projection_positive_rows": pqq_counts.get(
+                    "projection_row_scout_pqq_positive_rows"
+                ),
+                "relaxed_non_pqq_projection_positive_rows": relaxed_counts.get(
+                    "projection_row_scout_positive_rows"
+                ),
+            },
+            "projection_support_summary": {
+                "pqq_projection_positive_rows": pqq_counts.get(
+                    "projection_row_scout_pqq_positive_rows"
+                ),
+                "relaxed_non_pqq_projection_positive_rows": relaxed_counts.get(
+                    "projection_row_scout_positive_rows"
+                ),
+                "combined_projection_positive_entry_ids": sorted(
+                    {str(entry_id) for entry_id in relaxed_projection_ids},
+                    key=_entry_sort_key,
+                ),
+                "train_cal_supports_combined_contract": projection_support,
+            },
+            "positive_feature_rows": positive_rows,
+            "forbidden_feature_key_hits": forbidden_feature_key_hits,
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_feature_key_hits),
+            "materialized_feature_rows": len(feature_rows),
+            "source_free_electron_flow_feature_complete_rows": full_gate[
+                "complete_rows"
+            ],
+            "source_free_electron_flow_feature_incomplete_rows": full_gate[
+                "incomplete_rows"
+            ],
+            "current_primary_rows": full_gate["primary_rows"],
+            "current_retained_oos_rows": full_gate["retained_oos_rows"],
+            "current_primary_positive_rows": full_gate[
+                "primary_positive_rows"
+            ],
+            "current_retained_oos_positive_rows": full_gate[
+                "retained_oos_positive_rows"
+            ],
+            "current_primary_retain_recall": full_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "current_retained_oos_abstain_recall": full_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "current_geometry_fold_oos_rows": full_gate[
+                "current_geometry_fold_oos_rows"
+            ],
+            "smoke_feature_rows": len(smoke_feature_rows),
+            "smoke_complete_feature_rows": smoke_gate["complete_rows"],
+            "smoke_primary_positive_rows": smoke_gate[
+                "primary_positive_rows"
+            ],
+            "smoke_retained_oos_positive_rows": smoke_gate[
+                "retained_oos_positive_rows"
+            ],
+            "smoke_primary_retain_recall": smoke_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "smoke_retained_oos_abstain_recall": smoke_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "union_or_gate_oos_abstain_recall": full_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "pqq_current_retained_oos_positive_rows": pqq_counts.get(
+                "current_retained_oos_positive_rows"
+            ),
+            "relaxed_non_pqq_current_retained_oos_positive_rows": (
+                relaxed_counts.get("current_retained_oos_positive_rows")
+            ),
+            "projection_backed_pqq_plus_nad_current_primary_positive_rows": (
+                projection_backed_gate["primary_positive_rows"]
+            ),
+            "projection_backed_pqq_plus_nad_current_retained_oos_positive_rows": (
+                projection_backed_gate["retained_oos_positive_rows"]
+            ),
+            "projection_backed_pqq_plus_nad_current_retained_oos_abstain_recall": (
+                projection_backed_gate[
+                    "retained_oos_abstain_recall_if_abstain_positive"
+                ]
+            ),
+            "projection_backed_pqq_plus_nad_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                projection_backed_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "projection_backed_pqq_plus_nad_union_or_gate_oos_abstain_recall": (
+                projection_backed_gate["union_or_gate_oos_abstain_recall"]
+            ),
+            "projection_backed_pqq_plus_nad_unsupported_relaxed_positive_rows": len(
+                unsupported_relaxed_positive_rows
+            ),
+            "combined_projection_positive_entry_ids": sorted(
+                {str(entry_id) for entry_id in relaxed_projection_ids},
+                key=_entry_sort_key,
+            ),
+            "combined_projection_positive_rows": len(relaxed_projection_ids),
+            "forbidden_row_feature_key_hits": len(forbidden_feature_key_hits),
+            "projection_backed_forbidden_row_feature_key_hits": len(
+                projection_backed_forbidden_feature_key_hits
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "standalone_current_split_feature_sidecar_materialized": True,
+            "current_split_feature_sidecar_complete": complete_sidecar,
+            "smoke_tranche_preserves_primary_retention": smoke_gate[
+                "preserves_primary_retention"
+            ],
+            "smoke_tranche_adds_retained_oos_abstention": smoke_gate[
+                "adds_incremental_oos_abstention"
+            ],
+            "combined_direct_electron_flow_preserves_primary_retention": (
+                full_gate["preserves_primary_retention"]
+            ),
+            "combined_direct_electron_flow_adds_current_retained_oos_abstention": (
+                full_gate["adds_incremental_oos_abstention"]
+            ),
+            "combined_direct_electron_flow_adds_operating_point_value_beyond_current_geometry_fold": (
+                measured_positive
+            ),
+            "projection_rows_have_positive_train_cal_signal_for_combined_contract": (
+                projection_support
+            ),
+            "projection_backed_pqq_plus_nad_subunion_preserves_primary_retention": (
+                projection_backed_gate["preserves_primary_retention"]
+            ),
+            "projection_backed_pqq_plus_nad_subunion_adds_operating_point_value_beyond_current_geometry_fold": (
+                bool(
+                    projection_backed_gate["operating_point_measurable_now"]
+                    and projection_backed_gate["preserves_primary_retention"]
+                    and projection_backed_gate["adds_incremental_oos_abstention"]
+                    and not projection_backed_forbidden_feature_key_hits
+                )
+            ),
+            "normal_shaped_row_specific_feature_sidecar_emitted": True,
+            "forbidden_fields_absent_from_row_specific_event_features": (
+                not forbidden_feature_key_hits
+            ),
+            "source_free_combined_direct_electron_flow_contract_approved": False,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not measured_positive,
+            "apply_or_promote_now": False,
+            "remaining_deployability_gap": (
+                "The combined direct electron-flow sidecar is measured and "
+                "primary-safe on the current split, but both component contracts "
+                "remain research-only and unimported."
+            ),
+            "smallest_next_experiment": (
+                "If the fixed 8 A non-PQQ distance primitive is considered too "
+                "broad, split it into separate NAD-family and Fe-S/iron-family "
+                "contracts and remeasure the same current-split gate."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "pqq_donor_acceptor_feature_sidecar_readout": _source_path_record(
+                pqq_donor_acceptor_feature_sidecar_readout_path
+            ),
+            "relaxed_non_pqq_feature_sidecar_readout": _source_path_record(
+                relaxed_non_pqq_feature_sidecar_readout_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The combined direct source-free electron-flow feature sidecar "
+                f"is complete on {full_gate['complete_rows']}/"
+                f"{full_gate['rows']} current-split rows, preserves all current "
+                "primary rows, and catches "
+                f"{full_gate['retained_oos_positive_rows']}/"
+                f"{full_gate['retained_oos_rows']} current-retained OOS rows."
+            )
+            if measured_positive
+            else (
+                "The combined direct source-free electron-flow sidecar does not "
+                "yet provide a complete primary-safe incremental OOS signal."
+            ),
+            "next_action": (
+                "Keep the union research-only; use the component rows to decide "
+                "whether to approve the fixed non-PQQ distance contract as-is or "
+                "split it into smaller NAD and Fe-S/iron source-free primitives."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_combined_direct_feature_sidecar_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    smoke_gate = readout["measured_readout"]["smallest_source_free_smoke_tranche"][
+        "fixed_gate_readout"
+    ]
+    full_gate = readout["measured_readout"][
+        "full_retained_oos_current_split_tranche"
+    ]["fixed_gate_readout"]
+    projection_backed = readout["measured_readout"][
+        "projection_backed_pqq_plus_nad_family_subunion"
+    ]
+    projection_backed_gate = projection_backed["fixed_gate_readout"]
+    projection = readout["measured_readout"]["projection_support_summary"]
+    positive_rows = readout["measured_readout"]["positive_feature_rows"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Combined Direct Feature Sidecar Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Materialized feature rows complete: "
+        f"{counts['source_free_electron_flow_feature_complete_rows']}/"
+        f"{counts['materialized_feature_rows']}",
+        "- Current primary/OOS positives: "
+        f"{counts['current_primary_positive_rows']}/"
+        f"{counts['current_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['current_primary_retain_recall']}",
+        "- Retained-OOS abstain recall: "
+        f"{counts['current_retained_oos_abstain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold OOS: "
+        f"{counts['incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Union OOS recall: "
+        f"{counts['union_or_gate_oos_abstain_recall']}",
+        "- Combined projection positive rows: "
+        f"{counts['combined_projection_positive_rows']}",
+        "",
+        "## Fixed Gate",
+        "",
+        "| variant | rows complete | primary positives | retained-OOS positives | primary retain | retained-OOS recall | union OOS recall |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        f"| smoke m_csa:104+primary | {smoke_gate['complete_rows']}/{smoke_gate['rows']} | "
+        f"{smoke_gate['primary_positive_rows']} | "
+        f"{smoke_gate['retained_oos_positive_rows']} | "
+        f"{smoke_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{smoke_gate['retained_oos_abstain_recall_if_abstain_positive']} | "
+        f"{smoke_gate['union_or_gate_oos_abstain_recall']} |",
+        f"| combined direct union | {full_gate['complete_rows']}/{full_gate['rows']} | "
+        f"{full_gate['primary_positive_rows']} | "
+        f"{full_gate['retained_oos_positive_rows']} | "
+        f"{full_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{full_gate['retained_oos_abstain_recall_if_abstain_positive']} | "
+        f"{full_gate['union_or_gate_oos_abstain_recall']} |",
+        f"| projection-backed PQQ+NAD | {projection_backed_gate['complete_rows']}/{projection_backed_gate['rows']} | "
+        f"{projection_backed_gate['primary_positive_rows']} | "
+        f"{projection_backed_gate['retained_oos_positive_rows']} | "
+        f"{projection_backed_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{projection_backed_gate['retained_oos_abstain_recall_if_abstain_positive']} | "
+        f"{projection_backed_gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Positive Feature Rows",
+        "",
+        "| row | role | count | PQQ | relaxed non-PQQ |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    if not positive_rows:
+        lines.append("| none | none | 0 | False | False |")
+    for row in positive_rows:
+        features = row.get("row_specific_event_features") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row.get('current_split_role')} | "
+            f"{features.get('electron_transfer_count')} | "
+            f"{features.get('has_source_free_pqq_donor_acceptor_contact')} | "
+            f"{features.get('has_source_free_relaxed_non_pqq_donor_acceptor_contact')} |"
+        )
+    lines += [
+        "",
+        "## Projection Support",
+        "",
+        "- PQQ projection positives: "
+        f"{projection.get('pqq_projection_positive_rows')}",
+        "- Relaxed non-PQQ projection positives: "
+        f"{projection.get('relaxed_non_pqq_projection_positive_rows')}",
+        "- Combined projection positive row IDs: "
+        f"{', '.join(projection.get('combined_projection_positive_entry_ids') or []) or 'none'}",
+        "- Train/cal supports combined contract: "
+        f"{projection.get('train_cal_supports_combined_contract')}",
+        "- Projection-backed PQQ+NAD retained-OOS rows: "
+        f"{', '.join(projection_backed_gate['retained_oos_positive_entry_ids']) or 'none'}",
+        "- Unsupported relaxed non-PQQ positives: "
+        f"{projection_backed['unsupported_relaxed_non_pqq_positive_rows']}",
+        "",
+        "## Decision",
+        "",
+        "- Standalone sidecar materialized: "
+        f"{decision['standalone_current_split_feature_sidecar_materialized']}",
+        "- Current-split sidecar complete: "
+        f"{decision['current_split_feature_sidecar_complete']}",
+        "- Smoke tranche preserves primary retention: "
+        f"{decision['smoke_tranche_preserves_primary_retention']}",
+        "- Smoke tranche adds retained-OOS abstention: "
+        f"{decision['smoke_tranche_adds_retained_oos_abstention']}",
+        "- Preserves primary retention: "
+        f"{decision['combined_direct_electron_flow_preserves_primary_retention']}",
+        "- Adds value beyond current geometry/fold: "
+        f"{decision['combined_direct_electron_flow_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Projection rows support combined contract: "
+        f"{decision['projection_rows_have_positive_train_cal_signal_for_combined_contract']}",
+        "- Projection-backed PQQ+NAD adds value: "
+        f"{decision['projection_backed_pqq_plus_nad_subunion_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_deployability_gap']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+    *,
+    pqq_donor_acceptor_feature_sidecar_readout_path: Path,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_COMBINED_DIRECT_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+        pqq_donor_acceptor_feature_sidecar_readout_path=(
+            pqq_donor_acceptor_feature_sidecar_readout_path
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=(
+            relaxed_non_pqq_feature_sidecar_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_combined_direct_feature_sidecar_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
 
 
 def build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(

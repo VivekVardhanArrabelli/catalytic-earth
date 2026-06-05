@@ -54,12 +54,14 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_event_motif_interaction_null_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
+    write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     write_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
@@ -13984,6 +13986,77 @@ def cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_
     print(
         "Wrote Lever 2 source-free electron-flow PQQ donor/acceptor "
         f"current-split feature sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout(
+        donor_acceptor_readout_path=Path(args.donor_acceptor_readout),
+        geometry_features_path=Path(args.geometry_features),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow relaxed non-PQQ "
+        f"donor/acceptor feature sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        "projection positives: "
+        f"{counts.get('projection_row_scout_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout(
+        pqq_donor_acceptor_feature_sidecar_readout_path=Path(
+            args.pqq_donor_acceptor_feature_sidecar_readout
+        ),
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow combined direct feature "
+        f"sidecar readout to {args.out} "
         f"(feature rows: {counts.get('materialized_feature_rows')}, "
         "complete rows: "
         f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
@@ -33426,6 +33499,118 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-relaxed-non-pqq-"
+                "donor-acceptor-feature-sidecar-readout"
+            ),
+            help=(
+                "emit fixed 8 A source-free non-PQQ donor/acceptor feature "
+                "rows and remeasure the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--donor-acceptor-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for projection atom checks, "
+            "as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_combined_direct_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-combined-direct-"
+                "feature-sidecar-readout"
+            ),
+            help=(
+                "union measured PQQ and relaxed non-PQQ direct electron-flow "
+                "feature rows and remeasure the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--pqq-donor-acceptor-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "current_split_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_combined_direct_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout
         )
     )
 

@@ -293,6 +293,57 @@ class CliTests(unittest.TestCase):
             args.donor_acceptor_readout,
         )
 
+    def test_lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-relaxed-non-pqq-"
+                    "donor-acceptor-feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_donor_acceptor_contact_readout",
+            args.donor_acceptor_readout,
+        )
+        self.assertIn("v3_geometry_features_1025", args.geometry_features)
+        self.assertIn(
+            "train_cal_feature_sidecar",
+            args.train_cal_feature_sidecar,
+        )
+
+    def test_lever2_electron_flow_combined_direct_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-combined-direct-"
+                    "feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout",
+            args.pqq_donor_acceptor_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.relaxed_non_pqq_feature_sidecar_readout,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

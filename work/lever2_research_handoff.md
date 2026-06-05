@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T07:32:31Z`
-- STARTED_AT_LOCAL: `2026-06-05T02:32:31-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T08:28:22Z`
-- ENDED_AT_LOCAL: `2026-06-05T03:28:22-0500 CDT`
-- ELAPSED_MINUTES: `55.85`
+- STARTED_AT_UTC: `2026-06-05T08:38:48Z`
+- STARTED_AT_LOCAL: `2026-06-05T03:38:48-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T09:34:08Z`
+- ENDED_AT_LOCAL: `2026-06-05T04:34:08-0500 CDT`
+- ELAPSED_MINUTES: `55.33`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,156 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 19
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T08:38:48Z`
+- STARTED_LOCAL: `2026-06-05T03:38:48-0500 CDT`
+- ENDED_AT: `2026-06-05T09:34:08Z`
+- ENDED_LOCAL: `2026-06-05T04:34:08-0500 CDT`
+- ELAPSED_MINUTES: `55.33`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the materialized source-free PQQ donor/acceptor feature sidecar and
+attempt the smallest train/cal-disciplined relaxed non-PQQ electron-flow
+distance readout that can preserve the 34 current primary retention-gate rows.
+
+#### Work log
+
+- Run opened in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial automation checkout was detached and disk was below the 10 GiB
+  guardrail at 9.1 GiB free. Removed three clean stale detached worktrees,
+  restoring disk to 20 GiB free before substantive work.
+- Wrap-up disk check showed 19 GiB free.
+- Added
+  `build-lever2-source-free-electron-flow-relaxed-non-pqq-donor-acceptor-feature-sidecar-readout`.
+  This formalizes the prior scout into a fixed 8 A source-free non-PQQ
+  donor/acceptor distance readout over NAD-family, Fe-S/iron-family, and other
+  non-PQQ redox-center atoms while excluding heme, flavin, and PQQ from the
+  feature contract.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout_current702_20260605.md`.
+- Added
+  `build-lever2-source-free-electron-flow-combined-direct-feature-sidecar-readout`.
+  This consumes the measured PQQ donor/acceptor sidecar and the fixed relaxed
+  non-PQQ sidecar, then remeasures both the broad combined direct
+  electron-flow union and a projection-backed `PQQ + NAD-family` subunion.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout_current702_20260605.md`.
+- Tightened the combined direct readout to report the mandated smallest smoke
+  tranche explicitly: `m_csa:104` plus the 34 current primary retention-gate
+  rows. The smoke gate is measured separately inside the combined artifact
+  before the full retained-OOS current-split tranche.
+
+#### Measured results
+
+- Fixed relaxed non-PQQ donor/acceptor sidecar status:
+  `lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout_research_only_fixed_relaxed_non_pqq_distance_operating_point_signal`.
+  Result class:
+  `research_only_fixed_relaxed_non_pqq_distance_operating_point_signal`.
+- Fixed relaxed non-PQQ sidecar rows are complete on 74/74 current-split rows,
+  preserve primary retention with 0/34 primary positives and primary retain
+  recall 1.0, and catch 2/40 current-retained OOS rows:
+  `m_csa:119` (Fe-S/iron, minimum distance 5.054 A) and `m_csa:464`
+  (NAD-family, minimum distance 5.527 A). Retained-OOS abstain recall is 0.05,
+  incremental OOS recall beyond current geometry/fold is 0.026667, and union
+  OOS recall is 0.493333.
+- Projection scout for the same fixed relaxed non-PQQ contract is complete on
+  43/43 train/cal projection rows and has 2 calibration positives:
+  `m_csa:59` and `m_csa:256`, both NAD-family. There are 0 train positives.
+- Family split at the same fixed 8 A contract: `nad_family_only` has both
+  current-split signal (`m_csa:464`) and projection support
+  (`m_csa:59`, `m_csa:256`); `iron_sulfur_or_iron_only` has current-split
+  signal (`m_csa:119`) but no positive train/cal projection rows and no finite
+  Fe-S/iron projection distance examples in the available train/cal geometry;
+  `other_non_pqq_only` has no signal.
+- Combined direct electron-flow sidecar status:
+  `lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout_research_only_combined_direct_electron_flow_operating_point_signal`.
+  Result class:
+  `research_only_combined_direct_electron_flow_operating_point_signal`.
+- Combined smoke tranche is complete on 35/35 rows (`m_csa:104` plus 34
+  current primary rows), has 0/34 primary positives, catches `m_csa:104` as
+  1/1 retained-OOS smoke row, and preserves primary retention.
+- Combined direct source-free sidecar rows are complete on 74/74 current-split
+  rows, preserve primary retention with 0/34 primary positives and catch 3/40
+  current-retained OOS rows: `m_csa:104` from PQQ donor/acceptor,
+  `m_csa:119` from Fe-S/iron relaxed non-PQQ, and `m_csa:464` from NAD-family
+  relaxed non-PQQ. Retained-OOS abstain recall is 0.075, incremental OOS
+  recall beyond current geometry/fold is 0.04, and union OOS recall is
+  0.506667.
+- Projection-backed `PQQ + NAD-family` subunion excludes the unsupported
+  Fe-S/iron row and still preserves primary retention with 0/34 primary
+  positives while catching 2/40 retained-OOS rows (`m_csa:104`, `m_csa:464`).
+  Retained-OOS abstain recall is 0.05, incremental OOS recall is 0.026667, and
+  union OOS recall is 0.493333.
+- Exact row-feature-key guardrails found 0 forbidden keys in both new
+  `row_specific_event_features` surfaces; source artifacts are present and the
+  new artifacts regenerate identically after normalizing `created_utc`.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  PDB IDs, or coordinate paths were used as predictive feature values. Entry IDs
+  and coordinate paths appear only outside `row_specific_event_features` for
+  tranche/source-evidence accounting.
+- The fixed 8 A distance contract and family split remain research-only and
+  unapproved/unimported. No threshold was selected or promoted by this run.
+
+#### Validation
+
+- Focused parser/builder/regression tests for the two new readouts:
+  6 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  470 passed, 193 subtests passed.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep passed: 3582 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact exact feature-key/source/regeneration audit passed for both
+  relaxed non-PQQ and combined direct electron-flow artifacts after normalizing
+  `created_utc`.
+- Full pytest after final artifact/source update:
+  `PYTHONPATH=src python -m pytest -q`: 1547 passed, 212 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery after final artifact/source update:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1502 tests OK, with
+  the same existing warning.
+
+#### Commit/push status
+
+- Committed on `lever-2-research-track` and pushed to
+  `origin/lever-2-research-track`; sync verified after push.
+
+#### Exact next action
+
+- Keep all outputs research-only. The next Lever 2 electron-flow action is to
+  decide whether the fixed 8 A relaxed non-PQQ contract is acceptable as one
+  primitive. If too broad, keep the projection-backed `PQQ + NAD-family`
+  subunion as the supported measured route and run the smallest Fe-S/iron
+  source-free train/cal evidence experiment needed to support or reject
+  `m_csa:119`.
 
 ### 2026-06-05 Lever 2 Research Run 18
 

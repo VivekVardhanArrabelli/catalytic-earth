@@ -19320,6 +19320,400 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+                "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_"
+                "feature_sidecar_readout_research_only_fixed_relaxed_non_pqq_distance_operating_point_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_fixed_relaxed_non_pqq_distance_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["materialized_feature_rows"], 74)
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_complete_rows"],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_incomplete_rows"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["current_retained_oos_rows"], 40)
+        self.assertEqual(readout["counts"]["current_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_positive_rows"], 2
+        )
+        self.assertEqual(readout["counts"]["current_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_abstain_recall"], 0.05
+        )
+        self.assertEqual(readout["counts"]["current_geometry_fold_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.026667,
+        )
+        self.assertEqual(
+            readout["counts"]["union_or_gate_oos_abstain_recall"], 0.493333
+        )
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
+        self.assertEqual(readout["counts"]["fixed_distance_cutoff_angstrom"], 8.0)
+        self.assertEqual(readout["counts"]["projection_row_scout_rows"], 43)
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_complete_rows"], 43
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_positive_rows"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_train_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_calibration_positive_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["projection_row_scout_positive_entry_ids"],
+            ["m_csa:59", "m_csa:256"],
+        )
+        self.assertEqual(readout["counts"]["family_split_candidates_checked"], 3)
+        self.assertEqual(
+            readout["counts"][
+                "family_split_primary_safe_current_split_candidates_with_retained_oos_signal"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["family_split_candidates_with_projection_support"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "family_split_current_signal_without_projection_support"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["feature_sidecar_contract"]["feature_fields"],
+            [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_relaxed_non_pqq_donor_acceptor_contact",
+                "source_free_relaxed_non_pqq_donor_acceptor_contact_count",
+            ],
+        )
+        self.assertEqual(
+            readout["feature_sidecar_contract"]["excluded_redox_families"],
+            ["flavin", "heme", "pqq"],
+        )
+        full_gate = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]["fixed_gate_readout"]
+        self.assertEqual(
+            full_gate["retained_oos_positive_entry_ids"],
+            ["m_csa:119", "m_csa:464"],
+        )
+        positive_rows = [
+            row
+            for row in readout["feature_rows"]
+            if row["row_specific_event_features"][
+                "has_electron_transfer_event"
+            ]
+        ]
+        self.assertEqual(
+            [row["entry_id"] for row in positive_rows],
+            ["m_csa:119", "m_csa:464"],
+        )
+        feature_text = json.dumps(
+            [row["row_specific_event_features"] for row in readout["feature_rows"]]
+        )
+        self.assertNotIn("coordinate_path", feature_text)
+        projection_scout = readout["measured_readout"][
+            "projection_model_relaxed_non_pqq_distance_row_scout"
+        ]
+        self.assertEqual(
+            projection_scout["positive_entry_ids"], ["m_csa:59", "m_csa:256"]
+        )
+        self.assertEqual(
+            projection_scout["family_positive_row_counts"], {"nad": 2}
+        )
+        family_split = readout["measured_readout"][
+            "family_split_fixed_8A_readouts"
+        ]
+        by_candidate = {
+            candidate["candidate_id"]: candidate
+            for candidate in family_split["candidate_readouts"]
+        }
+        self.assertEqual(
+            by_candidate["nad_family_only"]["fixed_gate_readout"][
+                "retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:464"],
+        )
+        self.assertEqual(
+            by_candidate["nad_family_only"]["projection_scout"][
+                "positive_entry_ids"
+            ],
+            ["m_csa:59", "m_csa:256"],
+        )
+        self.assertEqual(
+            by_candidate["iron_sulfur_or_iron_only"]["fixed_gate_readout"][
+                "retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:119"],
+        )
+        self.assertEqual(
+            by_candidate["iron_sulfur_or_iron_only"]["projection_scout"][
+                "positive_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            family_split[
+                "primary_safe_current_split_signal_without_projection_support"
+            ][0]["candidate_id"],
+            "iron_sulfur_or_iron_only",
+        )
+        self.assertTrue(
+            readout["decision"][
+                "fixed_relaxed_non_pqq_distance_preserves_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "fixed_relaxed_non_pqq_distance_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "projection_rows_have_positive_train_cal_signal_for_fixed_contract"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "nad_family_split_has_current_signal_and_projection_support"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "iron_sulfur_family_split_has_current_signal_and_projection_support"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_electron_flow_combined_direct_feature_sidecar_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_combined_direct_"
+                "feature_sidecar_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_combined_direct_feature_sidecar_"
+                "readout_research_only_combined_direct_electron_flow_operating_point_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_combined_direct_electron_flow_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["materialized_feature_rows"], 74)
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_complete_rows"],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_incomplete_rows"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["current_retained_oos_rows"], 40)
+        self.assertEqual(readout["counts"]["current_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_positive_rows"], 3
+        )
+        self.assertEqual(readout["counts"]["smoke_feature_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_complete_feature_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(readout["counts"]["smoke_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_abstain_recall"], 1.0
+        )
+        self.assertEqual(readout["counts"]["current_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_abstain_recall"], 0.075
+        )
+        self.assertEqual(readout["counts"]["current_geometry_fold_oos_rows"], 75)
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["union_or_gate_oos_abstain_recall"], 0.506667
+        )
+        self.assertEqual(
+            readout["counts"]["pqq_current_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["relaxed_non_pqq_current_retained_oos_positive_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_backed_pqq_plus_nad_current_primary_positive_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_backed_pqq_plus_nad_current_retained_oos_positive_rows"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_backed_pqq_plus_nad_current_retained_oos_abstain_recall"
+            ],
+            0.05,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_backed_pqq_plus_nad_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.026667,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_backed_pqq_plus_nad_union_or_gate_oos_abstain_recall"
+            ],
+            0.493333,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "projection_backed_pqq_plus_nad_unsupported_relaxed_positive_rows"
+            ],
+            1,
+        )
+        self.assertEqual(readout["counts"]["combined_projection_positive_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["combined_projection_positive_entry_ids"],
+            ["m_csa:59", "m_csa:256"],
+        )
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
+        self.assertEqual(
+            readout["counts"]["projection_backed_forbidden_row_feature_key_hits"],
+            0,
+        )
+        full_gate = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]["fixed_gate_readout"]
+        self.assertEqual(
+            full_gate["retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        smoke_gate = readout["measured_readout"][
+            "smallest_source_free_smoke_tranche"
+        ]["fixed_gate_readout"]
+        self.assertEqual(
+            smoke_gate["retained_oos_positive_entry_ids"], ["m_csa:104"]
+        )
+        positive_rows = [
+            row
+            for row in readout["feature_rows"]
+            if row["row_specific_event_features"][
+                "has_electron_transfer_event"
+            ]
+        ]
+        self.assertEqual(
+            [row["entry_id"] for row in positive_rows],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        projection_backed = readout["measured_readout"][
+            "projection_backed_pqq_plus_nad_family_subunion"
+        ]
+        self.assertEqual(
+            projection_backed["fixed_gate_readout"][
+                "retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertEqual(
+            projection_backed["unsupported_relaxed_non_pqq_positive_rows"],
+            [
+                {
+                    "entry_id": "m_csa:119",
+                    "current_split_role": "current_retained_oos",
+                    "unsupported_families": ["iron_sulfur_or_iron"],
+                }
+            ],
+        )
+        feature_text = json.dumps(
+            [row["row_specific_event_features"] for row in readout["feature_rows"]]
+        )
+        self.assertNotIn("coordinate_path", feature_text)
+        self.assertTrue(
+            readout["decision"][
+                "combined_direct_electron_flow_preserves_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["smoke_tranche_preserves_primary_retention"]
+        )
+        self.assertTrue(
+            readout["decision"]["smoke_tranche_adds_retained_oos_abstention"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "combined_direct_electron_flow_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "projection_rows_have_positive_train_cal_signal_for_combined_contract"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "projection_backed_pqq_plus_nad_subunion_preserves_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "projection_backed_pqq_plus_nad_subunion_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:
