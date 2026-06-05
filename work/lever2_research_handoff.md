@@ -131,8 +131,15 @@ OOS abstention beyond the current geometry/fold surface.
 
 #### Commit/push status
 
-- Commit, push, and sync verification are the immediate mechanical wrap steps
-  after this handoff write.
+- Primary research commit
+  `c4e483ed3c62bb777c144773cf4b49a902ba2aee`
+  (`Add Lever 2 electron-flow smoke materialization readout`) was pushed to
+  `origin/lever-2-research-track`.
+- Fetch/sync verification after the push matched local `HEAD` and
+  `origin/lever-2-research-track` at
+  `c4e483ed3c62bb777c144773cf4b49a902ba2aee`.
+- This final handoff status update is being committed and pushed separately as
+  a handoff-only wrap-up change.
 
 #### Exact next action
 
