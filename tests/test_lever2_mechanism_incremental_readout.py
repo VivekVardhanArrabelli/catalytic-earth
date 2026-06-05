@@ -18,6 +18,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout,
     build_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     build_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout,
     build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
@@ -4892,6 +4893,205 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             readout["decision"]["approval_readiness_has_minimal_feature_bundle_gap"]
         )
         self.assertFalse(readout["decision"]["train_cal_supported_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
+
+    def test_electron_flow_current_split_smoke_materialization_readout(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pqq_nad_path = root / "pqq_nad.json"
+            combined_path = root / "combined.json"
+            approval_path = root / "approval.json"
+
+            def feature_row(
+                entry_id: str,
+                role: str,
+                electron_count: int,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "calibration",
+                    "current_split_role": role,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": electron_count > 0,
+                        "electron_transfer_count": electron_count,
+                        "has_source_free_pqq_donor_acceptor_contact": (
+                            electron_count > 0
+                        ),
+                        "source_free_pqq_donor_acceptor_contact_count": (
+                            electron_count
+                        ),
+                        "has_source_free_nad_family_donor_acceptor_distance": False,
+                        "source_free_nad_family_donor_acceptor_distance_count": 0,
+                    },
+                }
+
+            pqq_nad_path.write_text(
+                json.dumps(
+                    {
+                        "feature_sidecar_contract": {
+                            "feature_fields": [
+                                "has_electron_transfer_event",
+                                "electron_transfer_count",
+                                "has_source_free_pqq_donor_acceptor_contact",
+                                "source_free_pqq_donor_acceptor_contact_count",
+                                "has_source_free_nad_family_donor_acceptor_distance",
+                                "source_free_nad_family_donor_acceptor_distance_count",
+                            ]
+                        },
+                        "feature_rows": [
+                            feature_row(
+                                "m_csa:104", "current_retained_oos", 1
+                            ),
+                            feature_row(
+                                "m_csa:10",
+                                "current_primary_retention_gate",
+                                0,
+                            ),
+                            feature_row(
+                                "m_csa:20",
+                                "current_primary_retention_gate",
+                                0,
+                            ),
+                            feature_row(
+                                "m_csa:464", "current_retained_oos", 1
+                            ),
+                        ],
+                        "counts": {"current_geometry_fold_oos_rows": 6},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            combined_path.write_text(
+                json.dumps(
+                    {
+                        "status": "combined",
+                        "result_class": "combined_signal",
+                        "measured_readout": {
+                            "smallest_source_free_smoke_tranche": {
+                                "fixed_gate_readout": {"rows": 3}
+                            },
+                            "full_retained_oos_current_split_tranche": {
+                                "fixed_gate_readout": {"rows": 4}
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            approval_path.write_text(
+                json.dumps(
+                    {
+                        "status": "approval",
+                        "result_class": "pending_support",
+                        "counts": {
+                            "approval_qualified_current_retained_oos_positive_rows": 3,
+                            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": 1,
+                        },
+                        "measured_readout": {
+                            "approval_qualified_pqq_nad_plus_iron_sulfur_gate": {
+                                "retained_oos_positive_entry_ids": [
+                                    "m_csa:104",
+                                    "m_csa:119",
+                                    "m_csa:464",
+                                ]
+                            }
+                        },
+                        "decision": {"train_cal_supported_now": False},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+                projection_backed_pqq_nad_feature_sidecar_readout_path=pqq_nad_path,
+                combined_direct_feature_sidecar_readout_path=combined_path,
+                approval_qualified_union_readout_path=approval_path,
+                artifact_id="test_smoke_materialization",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_smoke_materialization")
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_source_free_smoke_tranche_measured_expands_to_74row_current_split_pending_contract_approval",
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_rows"], 3)
+        self.assertEqual(readout["counts"]["smoke_tranche_missing_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_complete_source_free_electron_flow_rows"], 3
+        )
+        self.assertEqual(readout["counts"]["smoke_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.166667,
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_union_or_gate_oos_abstain_recall"],
+            0.833333,
+        )
+        self.assertEqual(readout["counts"]["full_current_split_rows"], 4)
+        self.assertEqual(
+            readout["counts"][
+                "full_current_split_complete_source_free_electron_flow_rows"
+            ],
+            4,
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["full_current_split_retained_oos_complete_rows"], 2
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approval_qualified_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        expansion_rows = readout["measured_readout"][
+            "full_74row_current_split_expansion"
+        ]["retained_oos_expansion_rows"]
+        self.assertEqual(
+            [row["entry_id"] for row in expansion_rows],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertTrue(
+            all(row["projection_backed_pqq_nad_positive"] for row in expansion_rows)
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.333333,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "source_free_current_split_operating_point_measurable_on_smoke"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["retained_oos_expansion_row_matrix_emitted"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "iron_sulfur_expansion_has_incremental_row_pending_support"
+            ]
+        )
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
 

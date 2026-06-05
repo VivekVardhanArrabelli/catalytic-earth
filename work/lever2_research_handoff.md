@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T12:34:49Z`
-- STARTED_AT_LOCAL: `2026-06-05T07:34:49-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T13:29:54Z`
-- ENDED_AT_LOCAL: `2026-06-05T08:29:54-0500 CDT`
-- ELAPSED_MINUTES: `55.1`
+- STARTED_AT_UTC: `2026-06-05T13:32:10Z`
+- STARTED_AT_LOCAL: `2026-06-05T08:32:10-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T14:22:35Z`
+- ENDED_AT_LOCAL: `2026-06-05T09:22:35-0500 CDT`
+- ELAPSED_MINUTES: `50.42`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,137 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 23
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T13:32:10Z`
+- STARTED_LOCAL: `2026-06-05T08:32:10-0500 CDT`
+- ENDED_AT: `2026-06-05T14:22:35Z`
+- ENDED_LOCAL: `2026-06-05T09:22:35-0500 CDT`
+- ELAPSED_MINUTES: `50.42`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Measure whether direct source-free electron-flow fields can be materialized for
+the current train/cal smoke tranche (`m_csa:104` plus the 34 current primary
+retention-gate rows), preserving primary retention while testing incremental
+OOS abstention beyond the current geometry/fold surface.
+
+#### Work log
+
+- Run opened in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- The automation initially started in a clean detached duplicate checkout
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/3c59/catalytic-earth` with
+  disk at 9.0 GiB free, below the 10 GiB guardrail. That duplicate checkout had
+  no branch and no local changes, so it was removed with `git worktree remove`
+  after switching all substantive work to the Lever 2 branch worktree. Disk
+  then returned to 13 GiB free.
+- Added
+  `build-lever2-source-free-electron-flow-current-split-smoke-materialization-readout`.
+  This consumes the measured projection-backed `PQQ + NAD-family` direct
+  electron-flow feature sidecar, the combined-direct feature sidecar, and the
+  approval-qualified `PQQ + NAD + Fe-S/iron` union readout.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_smoke_materialization_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_current_split_smoke_materialization_readout_current702_20260605.md`.
+- The readout measures the requested smallest smoke tranche first
+  (`m_csa:104` plus 34 current primary retention-gate rows), then expands the
+  same source-free PQQ+NAD fields to the 74-row current split and emits a
+  40-row retained-OOS expansion matrix. No blocker packet was written.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_current_split_smoke_materialization_readout_research_only_source_free_smoke_tranche_measured_expands_to_74row_current_split_pending_contract_approval`.
+  Result class:
+  `research_only_source_free_smoke_tranche_measured_expands_to_74row_current_split_pending_contract_approval`.
+- Smoke tranche: 35/35 rows have complete direct source-free electron-flow
+  fields, with 34/34 current primary rows retained, 0 current-primary
+  positives, and exactly 1 current-retained OOS positive: `m_csa:104`.
+  Smoke retained-OOS abstain recall is `1.0`; incremental OOS abstain recall
+  vs the current geometry/fold OOS denominator is `0.013333`, and the union
+  OOS recall is `0.48`.
+- Full current split expansion: 74/74 rows have complete source-free PQQ+NAD
+  fields, covering 34 current primary rows and 40 current-retained OOS rows.
+  It preserves primary retention at `1.0`, has 0 current-primary positives,
+  catches 2/40 current-retained OOS rows (`m_csa:104`, `m_csa:464`), and adds
+  `0.026667` incremental OOS abstain recall beyond current geometry/fold with
+  union OOS recall `0.493333`.
+- Retained-OOS expansion matrix: all 40 current-retained OOS rows are emitted;
+  PQQ+NAD positives are `m_csa:104` and `m_csa:464`, while the
+  approval-qualified Fe-S/iron context adds `m_csa:119`.
+- Fe-S/iron remains the next support gap: approval-qualified
+  `PQQ + NAD + Fe-S/iron` catches 3 current-retained OOS rows
+  (`m_csa:104`, `m_csa:119`, `m_csa:464`) with 0 current-primary positives,
+  but `m_csa:119` remains research-only until the bundle-ready Fe-S/iron
+  support subset is approved/imported.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Forbidden row-specific feature-key audit found 0 hits.
+- The new readout remains research-only. It emits measured source-free feature
+  rows and retained-OOS accounting but does not approve, import, or promote
+  any direct electron-flow contract.
+- Disk guardrail ended at 13 GiB free.
+
+#### Validation
+
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_current_split_smoke_materialization_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_current_split_smoke_materialization_readout tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_current_split_smoke_materialization_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  485 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1562 passed, 212 subtests passed,
+  with the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1517 tests OK,
+  with the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3591 JSON files and 27 JSONL files parsed with
+  0 errors.
+- New artifact regeneration/source audit passed after normalizing
+  `created_utc`; all 3 source artifacts hash-current.
+- New artifact forbidden predictive-key audit found 0 hits inside
+  `row_specific_event_features`; protected-surface path audit found 8 expected
+  changed paths and 0 protected-surface violations.
+
+#### Commit/push status
+
+- Commit, push, and sync verification are the immediate mechanical wrap steps
+  after this handoff write.
+
+#### Exact next action
+
+- Treat the `m_csa:104` plus 34-primary source-free electron-flow smoke
+  tranche as materialized and use the 74-row PQQ+NAD expansion in
+  `artifacts/v3_lever2_source_free_electron_flow_current_split_smoke_materialization_readout_current702_20260605.json`
+  as the current measured baseline.
+- Next electron-flow experiment: approve/import the bundle-ready source-free
+  Fe-S/iron support subset (`m_csa:127`, `m_csa:281`) with
+  `predictive_use_allowed=true` and explicit train/cal split assignment, then
+  rerun the fixed approval-qualified `PQQ + NAD + Fe-S/iron` union without
+  threshold changes or heldout use. If the approval contract requires the
+  original 3-row tiny tranche, first repair `m_csa:443` accession-compatible
+  role-graph sequence-position evidence.
 
 ### 2026-06-05 Lever 2 Research Run 22
 

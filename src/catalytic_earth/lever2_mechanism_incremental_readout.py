@@ -87,6 +87,10 @@ DEFAULT_ELECTRON_FLOW_IRON_SULFUR_TINY_TRANCHE_APPROVAL_READINESS_READOUT_ARTIFA
     "v3_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_"
     "approval_readiness_readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_current_split_smoke_"
+    "materialization_readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -14540,6 +14544,689 @@ def write_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_rea
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+    *,
+    projection_backed_pqq_nad_feature_sidecar_readout_path: Path,
+    combined_direct_feature_sidecar_readout_path: Path,
+    approval_qualified_union_readout_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    pqq_nad_readout = _read_json(projection_backed_pqq_nad_feature_sidecar_readout_path)
+    combined_readout = _read_json(combined_direct_feature_sidecar_readout_path)
+    approval_readout = _read_json(approval_qualified_union_readout_path)
+    combined_counts = combined_readout.get("counts") or {}
+    approval_counts = approval_readout.get("counts") or {}
+    feature_rows = [
+        row
+        for row in pqq_nad_readout.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    feature_rows_by_entry = {
+        str(row["entry_id"]): row for row in feature_rows
+    }
+    primary_entry_ids = sorted(
+        [
+            str(row["entry_id"])
+            for row in feature_rows
+            if row.get("current_split_role") == "current_primary_retention_gate"
+        ],
+        key=_entry_sort_key,
+    )
+    requested_smoke_entry_ids = ["m_csa:104", *primary_entry_ids]
+    missing_smoke_entry_ids = [
+        entry_id
+        for entry_id in requested_smoke_entry_ids
+        if entry_id not in feature_rows_by_entry
+    ]
+    smoke_rows = [
+        feature_rows_by_entry[entry_id]
+        for entry_id in requested_smoke_entry_ids
+        if entry_id in feature_rows_by_entry
+    ]
+    feature_fields = (
+        (pqq_nad_readout.get("feature_sidecar_contract") or {}).get(
+            "feature_fields"
+        )
+        or [
+            "has_electron_transfer_event",
+            "electron_transfer_count",
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+            "has_source_free_nad_family_donor_acceptor_distance",
+            "source_free_nad_family_donor_acceptor_distance_count",
+        ]
+    )
+    pqq_counts = pqq_nad_readout.get("counts") or {}
+    split_oos_rows = (
+        pqq_counts.get("current_geometry_fold_oos_rows")
+        or combined_counts.get("current_geometry_fold_oos_rows")
+        or approval_counts.get("current_geometry_fold_oos_rows")
+    )
+    try:
+        split_oos_rows = int(split_oos_rows) if split_oos_rows is not None else None
+    except (TypeError, ValueError):
+        split_oos_rows = None
+    smoke_gate = _donor_acceptor_gate_readout(
+        smoke_rows,
+        gate_id="fixed_binary_projection_backed_pqq_nad_smoke_m_csa104_plus_primary",
+        feature_fields=list(feature_fields),
+        gate_rule=(
+            "Smallest smoke tranche: abstain on complete source-free "
+            "projection-backed PQQ+NAD direct electron-flow fields for "
+            "m_csa:104 plus the 34 current primary retention-gate rows."
+        ),
+    )
+    full_gate = _donor_acceptor_gate_readout(
+        feature_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_projection_backed_pqq_nad_full_74row_current_split",
+        feature_fields=list(feature_fields),
+        gate_rule=(
+            "Expansion tranche: abstain on the same projection-backed PQQ+NAD "
+            "direct electron-flow fields across the 74-row retained current "
+            "split: 34 primary retention-gate rows plus 40 current-retained "
+            "OOS rows."
+        ),
+    )
+    forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(feature_rows)
+    smoke_forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(
+        smoke_rows
+    )
+    smoke_positive_entry_ids = smoke_gate["retained_oos_positive_entry_ids"]
+    baseline_current_abstained = full_gate.get(
+        "baseline_current_geometry_fold_abstained_oos_rows"
+    )
+    smoke_incremental_oos_recall = (
+        _recall(len(smoke_positive_entry_ids), split_oos_rows)
+        if split_oos_rows is not None
+        else None
+    )
+    smoke_union_oos_recall = (
+        _recall(
+            int(baseline_current_abstained or 0) + len(smoke_positive_entry_ids),
+            split_oos_rows,
+        )
+        if split_oos_rows is not None and baseline_current_abstained is not None
+        else None
+    )
+    combined_smoke_gate = (
+        ((combined_readout.get("measured_readout") or {}).get(
+            "smallest_source_free_smoke_tranche"
+        ) or {}).get("fixed_gate_readout")
+        or {}
+    )
+    combined_full_gate = (
+        ((combined_readout.get("measured_readout") or {}).get(
+            "full_retained_oos_current_split_tranche"
+        ) or {}).get("fixed_gate_readout")
+        or {}
+    )
+    approval_measured = approval_readout.get("measured_readout") or {}
+    approval_decision = approval_readout.get("decision") or {}
+    approval_gate = (
+        approval_measured.get("approval_qualified_pqq_nad_plus_iron_sulfur_gate")
+        or {}
+    )
+    approval_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in approval_readout.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    supported_now_gate = (
+        approval_measured.get("supported_now_projection_backed_pqq_plus_nad_gate")
+        or {}
+    )
+    smoke_measured = bool(
+        not missing_smoke_entry_ids
+        and smoke_gate["operating_point_measurable_now"]
+        and smoke_gate["preserves_primary_retention"]
+        and smoke_gate["adds_incremental_oos_abstention"]
+        and smoke_positive_entry_ids == ["m_csa:104"]
+        and not smoke_forbidden_feature_key_hits
+    )
+    full_measured = bool(
+        full_gate["operating_point_measurable_now"]
+        and full_gate["preserves_primary_retention"]
+        and full_gate["adds_incremental_oos_abstention"]
+        and not forbidden_feature_key_hits
+    )
+    fe_s_incremental_rows = int(
+        approval_counts.get(
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad"
+        )
+        or 0
+    )
+    fe_s_pending_support = bool(
+        fe_s_incremental_rows
+        and not approval_decision.get("train_cal_supported_now")
+    )
+    retained_oos_expansion_rows: list[dict[str, Any]] = []
+    for row in sorted(
+        [
+            source_row
+            for source_row in feature_rows
+            if source_row.get("current_split_role") == "current_retained_oos"
+        ],
+        key=lambda item: _entry_sort_key(str(item.get("entry_id") or "")),
+    ):
+        entry_id = str(row["entry_id"])
+        features = row.get("row_specific_event_features") or {}
+        approval_row = approval_rows_by_entry.get(entry_id) or {}
+        approval_features = approval_row.get("row_specific_event_features") or {}
+        retained_oos_expansion_rows.append(
+            {
+                "entry_id": entry_id,
+                "source_free_electron_flow_field_complete": bool(
+                    row.get("source_free_electron_flow_field_complete")
+                ),
+                "projection_backed_pqq_nad_positive": bool(
+                    features.get("has_electron_transfer_event")
+                ),
+                "projection_backed_pqq_nad_electron_transfer_count": (
+                    features.get("electron_transfer_count")
+                ),
+                "pqq_donor_acceptor_positive": bool(
+                    features.get("has_source_free_pqq_donor_acceptor_contact")
+                ),
+                "nad_family_distance_positive": bool(
+                    features.get("has_source_free_nad_family_donor_acceptor_distance")
+                ),
+                "approval_qualified_pqq_nad_plus_iron_sulfur_positive": bool(
+                    approval_features.get("has_electron_transfer_event")
+                ),
+                "iron_sulfur_or_iron_distance_positive": bool(
+                    approval_features.get(
+                        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance"
+                    )
+                ),
+            }
+        )
+    result_class = (
+        "research_only_source_free_smoke_tranche_measured_expands_to_74row_current_split_pending_contract_approval"
+        if smoke_measured and full_measured
+        else (
+            "research_only_source_free_smoke_tranche_measured_full_split_incomplete"
+            if smoke_measured
+            else "research_only_source_free_smoke_tranche_incomplete_or_negative"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_current_split_smoke_"
+        f"materialization_readout_{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_current_split_"
+            "smoke_materialization_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined direct source-free electron-flow "
+            "materialization readout for the smallest current-split smoke "
+            "tranche. It measures m_csa:104 plus the 34 current primary "
+            "retention-gate rows first, then reports the same fixed PQQ+NAD "
+            "source-free feature fields on the 74-row retained current split. "
+            "It consumes existing measured feature-sidecar readouts only and "
+            "does not approve, import, tune, train, score heldout, or promote "
+            "any feature."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": (
+                "source_free_projection_backed_pqq_nad_direct_electron_flow_"
+                "smoke_then_current_split_readout"
+            ),
+            "axis_id": "source_free_projection_backed_pqq_plus_nad_direct_electron_flow",
+            "contract_status": "research_only_unapproved_unimported",
+            "smoke_tranche_entry_ids": requested_smoke_entry_ids,
+            "full_current_split_row_scope": (
+                "34 primary retention-gate rows plus 40 current-retained OOS rows"
+            ),
+            "feature_fields": list(feature_fields),
+            "direct_electron_flow_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "included_components": [
+                "source_free_pqq_donor_acceptor_contact",
+                "source_free_nad_family_donor_acceptor_distance_8A",
+            ],
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "feature_rows": feature_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "current_split_role",
+            "assigned_embedding_split",
+            "projection_backed_evidence",
+            "combined_direct_electron_flow_evidence",
+            "approval_qualified_evidence",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "smallest_smoke_tranche_m_csa104_plus_current_primary": {
+                "requested_entry_ids": requested_smoke_entry_ids,
+                "missing_entry_ids": missing_smoke_entry_ids,
+                "feature_rows": smoke_rows,
+                "fixed_gate_readout": smoke_gate,
+                "current_geometry_fold_projection": {
+                    "current_geometry_fold_oos_rows": split_oos_rows,
+                    "baseline_current_geometry_fold_abstained_oos_rows": (
+                        baseline_current_abstained
+                    ),
+                    "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                        smoke_incremental_oos_recall
+                    ),
+                    "smoke_union_or_gate_oos_abstain_recall": (
+                        smoke_union_oos_recall
+                    ),
+                },
+            },
+            "full_74row_current_split_expansion": {
+                "feature_rows": feature_rows,
+                "fixed_gate_readout": full_gate,
+                "retained_oos_expansion_rows": retained_oos_expansion_rows,
+            },
+            "combined_direct_research_union_context": {
+                "status": combined_readout.get("status"),
+                "result_class": combined_readout.get("result_class"),
+                "smoke_gate": combined_smoke_gate,
+                "full_gate": combined_full_gate,
+            },
+            "approval_qualified_iron_sulfur_expansion_context": {
+                "status": approval_readout.get("status"),
+                "result_class": approval_readout.get("result_class"),
+                "supported_now_gate": supported_now_gate,
+                "approval_qualified_gate": approval_gate,
+                "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                    fe_s_incremental_rows
+                ),
+                "train_cal_supported_now": approval_decision.get(
+                    "train_cal_supported_now"
+                ),
+                "smallest_next_experiment": approval_decision.get(
+                    "smallest_next_experiment"
+                ),
+            },
+            "forbidden_feature_key_hits": forbidden_feature_key_hits,
+            "smoke_forbidden_feature_key_hits": smoke_forbidden_feature_key_hits,
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_feature_key_hits),
+            "smoke_tranche_rows": len(smoke_rows),
+            "smoke_tranche_requested_rows": len(requested_smoke_entry_ids),
+            "smoke_tranche_missing_rows": len(missing_smoke_entry_ids),
+            "smoke_tranche_missing_entry_ids": missing_smoke_entry_ids,
+            "smoke_primary_rows": smoke_gate["primary_rows"],
+            "smoke_retained_oos_rows": smoke_gate["retained_oos_rows"],
+            "smoke_complete_source_free_electron_flow_rows": smoke_gate[
+                "complete_rows"
+            ],
+            "smoke_incomplete_source_free_electron_flow_rows": smoke_gate[
+                "incomplete_rows"
+            ],
+            "smoke_primary_positive_rows": smoke_gate[
+                "primary_positive_rows"
+            ],
+            "smoke_retained_oos_positive_rows": smoke_gate[
+                "retained_oos_positive_rows"
+            ],
+            "smoke_retained_oos_positive_entry_ids": smoke_positive_entry_ids,
+            "smoke_primary_retain_recall": smoke_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "smoke_retained_oos_abstain_recall": smoke_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                smoke_incremental_oos_recall
+            ),
+            "smoke_union_or_gate_oos_abstain_recall": smoke_union_oos_recall,
+            "full_current_split_rows": full_gate["rows"],
+            "full_current_split_complete_source_free_electron_flow_rows": (
+                full_gate["complete_rows"]
+            ),
+            "full_current_split_incomplete_source_free_electron_flow_rows": (
+                full_gate["incomplete_rows"]
+            ),
+            "full_current_split_primary_rows": full_gate["primary_rows"],
+            "full_current_split_retained_oos_rows": full_gate[
+                "retained_oos_rows"
+            ],
+            "full_current_split_retained_oos_complete_rows": sum(
+                1
+                for row in retained_oos_expansion_rows
+                if row["source_free_electron_flow_field_complete"]
+            ),
+            "full_current_split_primary_positive_rows": full_gate[
+                "primary_positive_rows"
+            ],
+            "full_current_split_retained_oos_positive_rows": full_gate[
+                "retained_oos_positive_rows"
+            ],
+            "full_current_split_retained_oos_positive_entry_ids": full_gate[
+                "retained_oos_positive_entry_ids"
+            ],
+            "full_current_split_primary_retain_recall": full_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "full_current_split_retained_oos_abstain_recall": full_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "current_geometry_fold_oos_rows": split_oos_rows,
+            "baseline_current_geometry_fold_abstained_oos_rows": (
+                baseline_current_abstained
+            ),
+            "full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "full_current_split_union_or_gate_oos_abstain_recall": full_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "approval_qualified_current_retained_oos_positive_rows": (
+                approval_counts.get(
+                    "approval_qualified_current_retained_oos_positive_rows"
+                )
+            ),
+            "approval_qualified_current_retained_oos_positive_entry_ids": (
+                approval_gate.get("retained_oos_positive_entry_ids") or []
+            ),
+            "iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad": (
+                fe_s_incremental_rows
+            ),
+            "forbidden_row_feature_key_hits": len(forbidden_feature_key_hits),
+            "smoke_forbidden_row_feature_key_hits": len(
+                smoke_forbidden_feature_key_hits
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "smoke_tranche_source_free_fields_materialized": bool(
+                smoke_gate["operating_point_measurable_now"]
+                and not missing_smoke_entry_ids
+            ),
+            "smoke_tranche_preserves_primary_retention": smoke_gate[
+                "preserves_primary_retention"
+            ],
+            "smoke_tranche_adds_m_csa104_retained_oos_abstention": smoke_measured,
+            "source_free_current_split_operating_point_measurable_on_smoke": (
+                smoke_measured
+            ),
+            "full_74row_current_split_source_free_fields_materialized": bool(
+                full_gate["operating_point_measurable_now"]
+            ),
+            "full_74row_expansion_preserves_primary_retention": full_gate[
+                "preserves_primary_retention"
+            ],
+            "full_74row_expansion_adds_incremental_oos_abstention": full_gate[
+                "adds_incremental_oos_abstention"
+            ],
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold": (
+                full_measured
+            ),
+            "retained_oos_expansion_row_matrix_emitted": bool(
+                len(retained_oos_expansion_rows)
+                == full_gate["retained_oos_rows"]
+            ),
+            "projection_backed_pqq_nad_contract_approved": False,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "iron_sulfur_expansion_has_incremental_row_pending_support": (
+                fe_s_pending_support
+            ),
+            "train_cal_supported_now": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not (smoke_measured and full_measured),
+            "apply_or_promote_now": False,
+            "remaining_gap": (
+                "The source-free smoke tranche and PQQ+NAD 74-row expansion "
+                "are measured and primary-safe, but the direct electron-flow "
+                "contracts remain research-only and unimported. The Fe-S/iron "
+                "incremental row remains blocked by support-row approval/import "
+                "before it can join the supported route."
+            ),
+            "smallest_next_experiment": (
+                "Treat the m_csa:104 plus 34-primary smoke tranche as "
+                "materialized; rerun the 74-row current-split PQQ+NAD route "
+                "as the measured expansion baseline, then approve/import the "
+                "bundle-ready Fe-S/iron support subset before adding m_csa:119 "
+                "to the supported direct electron-flow route."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_source_artifacts": True,
+            "source_free_electron_flow_rows_promoted_or_imported": False,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "projection_backed_pqq_nad_feature_sidecar_readout": _source_path_record(
+                projection_backed_pqq_nad_feature_sidecar_readout_path
+            ),
+            "combined_direct_feature_sidecar_readout": _source_path_record(
+                combined_direct_feature_sidecar_readout_path
+            ),
+            "approval_qualified_union_readout": _source_path_record(
+                approval_qualified_union_readout_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The direct source-free electron-flow smoke tranche is complete "
+                f"on {smoke_gate['complete_rows']}/{smoke_gate['rows']} rows, "
+                "preserves all current primary rows, and catches m_csa:104. "
+                "The same PQQ+NAD feature fields expand to "
+                f"{full_gate['complete_rows']}/{full_gate['rows']} current-split "
+                "rows and catch "
+                f"{full_gate['retained_oos_positive_rows']}/"
+                f"{full_gate['retained_oos_rows']} retained OOS rows."
+            )
+            if smoke_measured and full_measured
+            else (
+                "The direct source-free electron-flow smoke tranche is still "
+                "incomplete or does not preserve the primary-retention gate."
+            ),
+            "next_action": (
+                "Use this smoke readout as the measured source-free baseline; "
+                "continue only with approval/import evidence for the direct "
+                "electron-flow contracts, especially the bundle-ready Fe-S/iron "
+                "support subset."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_current_split_smoke_materialization_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    smoke_gate = readout["measured_readout"][
+        "smallest_smoke_tranche_m_csa104_plus_current_primary"
+    ]["fixed_gate_readout"]
+    full_gate = readout["measured_readout"][
+        "full_74row_current_split_expansion"
+    ]["fixed_gate_readout"]
+    fe_s_context = readout["measured_readout"][
+        "approval_qualified_iron_sulfur_expansion_context"
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Current-Split Smoke Materialization Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Smoke rows complete: "
+        f"{counts['smoke_complete_source_free_electron_flow_rows']}/"
+        f"{counts['smoke_tranche_rows']}",
+        "- Smoke primary/OOS positives: "
+        f"{counts['smoke_primary_positive_rows']}/"
+        f"{counts['smoke_retained_oos_positive_rows']}",
+        "- Smoke primary retain recall: "
+        f"{counts['smoke_primary_retain_recall']}",
+        "- Smoke retained-OOS recall: "
+        f"{counts['smoke_retained_oos_abstain_recall']}",
+        "- Full current split rows complete: "
+        f"{counts['full_current_split_complete_source_free_electron_flow_rows']}/"
+        f"{counts['full_current_split_rows']}",
+        "- Full retained-OOS rows complete: "
+        f"{counts['full_current_split_retained_oos_complete_rows']}/"
+        f"{counts['full_current_split_retained_oos_rows']}",
+        "- Full current split primary/OOS positives: "
+        f"{counts['full_current_split_primary_positive_rows']}/"
+        f"{counts['full_current_split_retained_oos_positive_rows']}",
+        "- Full current split incremental OOS recall vs current geometry/fold: "
+        f"{counts['full_current_split_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Fe-S/iron incremental rows pending support: "
+        f"{counts['iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad']}",
+        "",
+        "## Fixed Gates",
+        "",
+        "| tranche | rows complete | primary positives | retained-OOS positives | primary retain | retained-OOS recall | union OOS recall |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        f"| m_csa:104 + primary smoke | {smoke_gate['complete_rows']}/{smoke_gate['rows']} | "
+        f"{smoke_gate['primary_positive_rows']} | "
+        f"{smoke_gate['retained_oos_positive_rows']} | "
+        f"{smoke_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{smoke_gate['retained_oos_abstain_recall_if_abstain_positive']} | "
+        f"{counts['smoke_union_or_gate_oos_abstain_recall']} |",
+        f"| 74-row PQQ+NAD expansion | {full_gate['complete_rows']}/{full_gate['rows']} | "
+        f"{full_gate['primary_positive_rows']} | "
+        f"{full_gate['retained_oos_positive_rows']} | "
+        f"{full_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{full_gate['retained_oos_abstain_recall_if_abstain_positive']} | "
+        f"{full_gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Positive Rows",
+        "",
+        "- Smoke retained-OOS positives: "
+        f"{', '.join(counts['smoke_retained_oos_positive_entry_ids']) or 'none'}",
+        "- Full current-split retained-OOS positives: "
+        f"{', '.join(counts['full_current_split_retained_oos_positive_entry_ids']) or 'none'}",
+        "- Approval-qualified retained-OOS positives: "
+        f"{', '.join(counts['approval_qualified_current_retained_oos_positive_entry_ids']) or 'none'}",
+        "",
+        "## Fe-S Expansion Context",
+        "",
+        "- Approval-qualified union status: "
+        f"{fe_s_context.get('status')}",
+        "- Fe-S incremental retained-OOS rows beyond PQQ+NAD: "
+        f"{fe_s_context.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}",
+        "- Train/cal supported now: "
+        f"{fe_s_context.get('train_cal_supported_now')}",
+        "",
+        "## Decision",
+        "",
+        "- Smoke materialized: "
+        f"{decision['smoke_tranche_source_free_fields_materialized']}",
+        "- Smoke preserves primary retention: "
+        f"{decision['smoke_tranche_preserves_primary_retention']}",
+        "- Smoke catches m_csa:104: "
+        f"{decision['smoke_tranche_adds_m_csa104_retained_oos_abstention']}",
+        "- Full 74-row expansion materialized: "
+        f"{decision['full_74row_current_split_source_free_fields_materialized']}",
+        "- Full expansion adds value beyond geometry/fold: "
+        f"{decision['direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Retained-OOS expansion row matrix emitted: "
+        f"{decision['retained_oos_expansion_row_matrix_emitted']}",
+        "- Fe-S expansion pending support: "
+        f"{decision['iron_sulfur_expansion_has_incremental_row_pending_support']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+    *,
+    projection_backed_pqq_nad_feature_sidecar_readout_path: Path,
+    combined_direct_feature_sidecar_readout_path: Path,
+    approval_qualified_union_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_CURRENT_SPLIT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+        projection_backed_pqq_nad_feature_sidecar_readout_path=(
+            projection_backed_pqq_nad_feature_sidecar_readout_path
+        ),
+        combined_direct_feature_sidecar_readout_path=(
+            combined_direct_feature_sidecar_readout_path
+        ),
+        approval_qualified_union_readout_path=approval_qualified_union_readout_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_current_split_smoke_materialization_report(
                 readout
             ),
             encoding="utf-8",

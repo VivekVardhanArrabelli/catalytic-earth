@@ -462,6 +462,35 @@ class CliTests(unittest.TestCase):
             args.role_graph_sidecar,
         )
 
+    def test_lever2_electron_flow_current_split_smoke_materialization_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-current-split-"
+                    "smoke-materialization-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_current_split_smoke_materialization_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout",
+            args.projection_backed_pqq_nad_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout",
+            args.combined_direct_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout",
+            args.approval_qualified_union_readout,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

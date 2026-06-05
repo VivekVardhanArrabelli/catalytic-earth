@@ -56,6 +56,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
+    write_lever2_source_free_electron_flow_current_split_smoke_materialization_readout,
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_approval_qualified_union_readout,
     write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
@@ -14210,6 +14211,43 @@ def cmd_build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval
         f"{counts.get('tiny_tranche_minimal_train_cal_feature_bundle_ready_rows')}, "
         "Fe-S incremental rows: "
         f"{counts.get('iron_sulfur_incremental_current_retained_oos_positive_rows_beyond_pqq_nad')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_current_split_smoke_materialization_readout(
+        projection_backed_pqq_nad_feature_sidecar_readout_path=Path(
+            args.projection_backed_pqq_nad_feature_sidecar_readout
+        ),
+        combined_direct_feature_sidecar_readout_path=Path(
+            args.combined_direct_feature_sidecar_readout
+        ),
+        approval_qualified_union_readout_path=Path(
+            args.approval_qualified_union_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow current-split smoke "
+        f"materialization readout to {args.out} "
+        "smoke complete rows: "
+        f"{counts.get('smoke_complete_source_free_electron_flow_rows')}/"
+        f"{counts.get('smoke_tranche_rows')}, "
+        "smoke primary/OOS positives: "
+        f"{counts.get('smoke_primary_positive_rows')}/"
+        f"{counts.get('smoke_retained_oos_positive_rows')}, "
+        "full OOS positives: "
+        f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -33997,6 +34035,62 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout
+        )
+    )
+
+    lever2_electron_flow_current_split_smoke_materialization = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-current-split-"
+                "smoke-materialization-readout"
+            ),
+            help=(
+                "measure the m_csa:104 plus primary current-split smoke "
+                "tranche from direct source-free electron-flow feature rows"
+            ),
+        )
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--projection-backed-pqq-nad-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--combined-direct-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--approval-qualified-union-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "approval_qualified_union_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_current_split_"
+            "smoke_materialization_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_current_split_"
+            "smoke_materialization_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_current_split_smoke_materialization.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_current_split_smoke_materialization_readout
         )
     )
 
