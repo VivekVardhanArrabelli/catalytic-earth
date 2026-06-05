@@ -103,6 +103,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit,
     build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout,
     build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit,
+    build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -10293,6 +10297,624 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertIn(
             "operator_route_class_provenance_rebuild_matches_stored_after_created_utc_normalization",
             stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_matrix_requires_safe_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            provenance_path = root / "provenance.json"
+            reproducibility_path = root / "provenance_repro.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 2,
+                    "operator_action_rows_abstain_or_route_novel_oos": 2,
+                    "route_classes_with_rows": 2,
+                    "route_class_counts": {
+                        "cofactor_or_same_family_confound": 1,
+                        "pocket_geometry_confound": 1,
+                    },
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "cofactor_or_same_family_confound",
+                        "route_stage": "accepted_cofactor_or_same_family_bandpass",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "route_class": "pocket_geometry_confound",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "stage_source_artifact_id": "artifact_b",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                ],
+                "guardrails": {
+                    "candidate_rows_scored_now": False,
+                    "threshold_values_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                },
+            }
+            provenance = {
+                "artifact_id": "provenance",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_readout_passed"
+                ),
+                "provenance_violations": [],
+                "counts": {
+                    "route_classes_with_stage_sources": 2,
+                    "route_class_stage_source_links": 2,
+                    "route_class_stage_source_links_lineage_covered": 2,
+                    "route_class_stage_source_links_guardrail_clean": 2,
+                    "route_class_stage_source_links_hash_current": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "route_class_stage_source_rows": [
+                    {
+                        "route_class": "cofactor_or_same_family_confound",
+                        "stage_source_artifact_id": "artifact_a",
+                        "entry_ids": ["m_csa:1"],
+                        "route_stages": [
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ],
+                        "operator_rows": 1,
+                        "lineage_covered": True,
+                        "guardrail_clean": True,
+                        "stage_source_hashes_current": True,
+                    },
+                    {
+                        "route_class": "pocket_geometry_confound",
+                        "stage_source_artifact_id": "artifact_b",
+                        "entry_ids": ["m_csa:2"],
+                        "route_stages": ["geometry_mismatch_counteraxis"],
+                        "operator_rows": 1,
+                        "lineage_covered": True,
+                        "guardrail_clean": True,
+                        "stage_source_hashes_current": True,
+                    },
+                ],
+                "guardrails": {
+                    "candidate_rows_scored_now": False,
+                    "threshold_values_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                },
+            }
+            reproducibility = {
+                "artifact_id": "provenance_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "route_class_stage_source_links": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_reproducible": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "guardrails": {
+                    "candidate_rows_scored_now": False,
+                    "threshold_values_changed": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                },
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            reproducibility_path.write_text(
+                json.dumps(reproducibility, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+                deployment_operator_route_class_readout_path=route_class_path,
+                deployment_operator_route_class_provenance_readout_path=(
+                    provenance_path
+                ),
+                deployment_operator_route_class_provenance_reproducibility_audit_path=(
+                    reproducibility_path
+                ),
+                artifact_id="transfer_safety_matrix",
+            )
+
+            route_class["operator_route_class_rows"][0]["action"] = "force_label"
+            route_class["operator_route_class_rows"][0][
+                "force_mechanism_label_now"
+            ] = True
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+                deployment_operator_route_class_readout_path=route_class_path,
+                deployment_operator_route_class_provenance_readout_path=(
+                    provenance_path
+                ),
+                deployment_operator_route_class_provenance_reproducibility_audit_path=(
+                    reproducibility_path
+                ),
+                artifact_id="transfer_safety_matrix_blocked",
+            )
+
+        self.assertEqual(readout["artifact_id"], "transfer_safety_matrix")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_readout_passed"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"][
+                "deployment_operator_transfer_safety_matrix_ready"
+            ]
+        )
+        self.assertEqual(readout["counts"]["row_safety_records"], 2)
+        self.assertEqual(
+            readout["counts"]["row_safety_records_safe_to_abstain_or_route"],
+            2,
+        )
+        self.assertEqual(readout["counts"]["mechanism_transfer_allowed_rows"], 0)
+        self.assertEqual(readout["counts"]["source_records_hash_current"], 3)
+        self.assertEqual(readout["transfer_safety_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_readout_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["transfer_safety_checks"][
+                "all_operator_rows_abstain_or_route_novel_oos"
+            ]
+        )
+        self.assertFalse(
+            blocked["transfer_safety_checks"][
+                "no_operator_rows_allow_scoring_or_forced_labels"
+            ]
+        )
+        self.assertIn(
+            "all_operator_rows_abstain_or_route_novel_oos",
+            blocked["transfer_safety_violations"],
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            provenance_path = root / "provenance.json"
+            provenance_repro_path = root / "provenance_repro.json"
+            matrix_path = root / "matrix.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 1,
+                    "operator_action_rows_abstain_or_route_novel_oos": 1,
+                    "route_classes_with_rows": 1,
+                    "route_class_counts": {"pocket_geometry_confound": 1},
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "pocket_geometry_confound",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            provenance = {
+                "artifact_id": "provenance",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_readout_passed"
+                ),
+                "provenance_violations": [],
+                "counts": {
+                    "route_classes_with_stage_sources": 1,
+                    "route_class_stage_source_links": 1,
+                    "route_class_stage_source_links_lineage_covered": 1,
+                    "route_class_stage_source_links_guardrail_clean": 1,
+                    "route_class_stage_source_links_hash_current": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_ready": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "route_class_stage_source_rows": [
+                    {
+                        "route_class": "pocket_geometry_confound",
+                        "stage_source_artifact_id": "artifact_a",
+                        "entry_ids": ["m_csa:1"],
+                        "route_stages": ["geometry_mismatch_counteraxis"],
+                        "operator_rows": 1,
+                        "lineage_covered": True,
+                        "guardrail_clean": True,
+                        "stage_source_hashes_current": True,
+                    }
+                ],
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            provenance_repro = {
+                "artifact_id": "provenance_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "provenance_reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "route_class_stage_source_links": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_provenance_reproducible": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance_repro_path.write_text(
+                json.dumps(provenance_repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            matrix = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+                deployment_operator_route_class_readout_path=route_class_path,
+                deployment_operator_route_class_provenance_readout_path=(
+                    provenance_path
+                ),
+                deployment_operator_route_class_provenance_reproducibility_audit_path=(
+                    provenance_repro_path
+                ),
+                artifact_id="transfer_safety_matrix",
+            )
+            matrix_path.write_text(
+                json.dumps(matrix, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=(
+                    matrix_path
+                ),
+                artifact_id="transfer_safety_matrix_repro",
+            )
+
+            provenance["route_class_stage_source_rows"][0][
+                "stage_source_hashes_current"
+            ] = False
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=(
+                    matrix_path
+                ),
+                artifact_id="transfer_safety_matrix_repro_stale",
+            )
+
+        self.assertEqual(audit["artifact_id"], "transfer_safety_matrix_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_transfer_safety_matrix_reproducible"
+            ]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 3)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_transfer_safety_matrix_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "matrix_reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "transfer_safety_matrix_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "transfer_safety_matrix_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "transfer_safety_matrix_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_application_audit_checks_matrix_source(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            matrix_path = root / "matrix.json"
+            repro_path = root / "matrix_repro.json"
+            application_path = root / "application.json"
+            matrix = {
+                "artifact_id": "matrix",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                    "matrix_readout_passed"
+                ),
+                "transfer_safety_violations": [],
+                "transfer_safety_matrix": {"sha256": "abc123"},
+                "counts": {
+                    "operator_action_rows": 1,
+                    "row_safety_records": 1,
+                    "row_safety_records_safe_to_abstain_or_route": 1,
+                    "transfer_safety_matrix_rows": 1,
+                    "mechanism_transfer_allowed_rows": 0,
+                    "score_or_force_mechanism_label_allowed_rows": 0,
+                    "threshold_change_allowed_rows": 0,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "rule_selection_rows": 0,
+                    "route_class_counts": {"pocket_geometry_confound": 1},
+                    "route_class_stage_source_links": 1,
+                    "route_class_stage_source_links_hash_current": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_transfer_safety_matrix_ready": True,
+                    "mechanism_transfer_disallowed_for_all_rows": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "score_or_force_mechanism_label_for_retained_rows_now": False,
+                    "apply_or_change_threshold_now": False,
+                    "operator_action": "apply_transfer_safety_matrix_to_abstain_or_route_novel_oos",
+                },
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            matrix_path.write_text(
+                json.dumps(matrix, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            matrix_sha = hashlib.sha256(matrix_path.read_bytes()).hexdigest()
+            repro = {
+                "artifact_id": "matrix_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                    "matrix_reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "operator_transfer_safety_matrix_artifact": {
+                    "normalized_rebuild_matches_stored": True
+                },
+                "source_artifacts": {
+                    "deployment_operator_transfer_safety_matrix_readout": {
+                        "exists": True,
+                        "path": str(matrix_path),
+                        "sha256": matrix_sha,
+                    }
+                },
+                "counts": {
+                    "rebuild_difference_count": 0,
+                    "operator_action_rows": 1,
+                    "row_safety_records": 1,
+                    "row_safety_records_safe_to_abstain_or_route": 1,
+                    "mechanism_transfer_allowed_rows": 0,
+                    "route_class_counts": {"pocket_geometry_confound": 1},
+                    "route_class_stage_source_links": 1,
+                    "route_class_stage_source_links_hash_current": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_operator_transfer_safety_matrix_reproducible": True,
+                    "mechanism_transfer_disallowed_for_all_rows": True,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                },
+                "guardrails": {"candidate_rows_scored_now": False},
+            }
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=matrix_path,
+                deployment_operator_transfer_safety_matrix_reproducibility_audit_path=(
+                    repro_path
+                ),
+                artifact_id="transfer_safety_application",
+            )
+            application_path.write_text(
+                json.dumps(audit, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            reproducibility_audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+                deployment_operator_transfer_safety_application_audit_path=(
+                    application_path
+                ),
+                artifact_id="transfer_safety_application_repro",
+            )
+
+            repro["source_artifacts"][
+                "deployment_operator_transfer_safety_matrix_readout"
+            ]["path"] = str(root / "other_matrix.json")
+            repro_path.write_text(
+                json.dumps(repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=matrix_path,
+                deployment_operator_transfer_safety_matrix_reproducibility_audit_path=(
+                    repro_path
+                ),
+                artifact_id="transfer_safety_application_blocked",
+            )
+
+        self.assertEqual(audit["artifact_id"], "transfer_safety_application")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "application_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_transfer_safety_application_ready"
+            ]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["application_operator_rows"], 1)
+        self.assertEqual(audit["application_violations"], [])
+        self.assertEqual(
+            reproducibility_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "application_reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            reproducibility_audit["decision"][
+                "deployment_operator_transfer_safety_application_reproducible"
+            ]
+        )
+        self.assertEqual(
+            reproducibility_audit["counts"]["rebuild_difference_count"],
+            0,
+        )
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_transfer_safety_"
+                "application_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["application_checks"][
+                "matrix_path_matches_reproducibility_source"
+            ]
+        )
+        self.assertIn(
+            "matrix_path_matches_reproducibility_source",
+            blocked["application_violations"],
         )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(

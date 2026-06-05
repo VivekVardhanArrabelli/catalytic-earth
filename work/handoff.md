@@ -3,15 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T13:01:51Z`
-- STARTED_AT_LOCAL: `2026-06-05T08:01:51-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T13:51:36Z`
-- ENDED_AT_LOCAL: `2026-06-05T08:51:36-0500 CDT`
-- ELAPSED_MINUTES: `49.77`
-- Status: Run 56 validation complete; commit/push/sync verification follows
+- STARTED_AT_UTC: `2026-06-05T14:01:50Z`
+- STARTED_AT_LOCAL: `2026-06-05T09:01:50-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T14:35:57Z`
+- ENDED_AT_LOCAL: `2026-06-05T09:35:57-0500 CDT`
+- ELAPSED_MINUTES: `34.12`
+- Status: Run 57 validation complete; commit/push/sync verification follows
   this handoff write. Canonical `.git/catalytic-earth-automation.lock` was
-  acquired before substantive work at `2026-06-05T13:01:51Z`. Lever 3 work is
-  restricted to deployment-valid fold/geometry novelty-gate readouts.
+  acquired before substantive work at `2026-06-05T14:01:50Z`. Lever 3 work is
+  restricted to deployment-valid fold/geometry novelty-gate readouts. Actual
+  elapsed is below the planned wall-clock window because the bounded
+  implementation and validation completed early.
 
 ## Mission
 
@@ -62,6 +64,166 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 57
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T14:01:50Z`
+- STARTED_LOCAL: `2026-06-05T09:01:50-0500 CDT`
+- ENDED_AT: `2026-06-05T14:35:57Z`
+- ENDED_LOCAL: `2026-06-05T09:35:57-0500 CDT`
+- ELAPSED_MINUTES: `34.12`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T14:01:50Z`.
+
+#### Current objective
+
+Continue Lever 3 only: make the existing route-class/provenance operator
+readout directly applicable as a transfer-safety matrix for hard confounded
+OOS rows, with reproducible source checks and no threshold, label, registry,
+heldout, import, production-scoring, or row-scoring changes.
+
+#### Run notes
+
+- Built
+  `build-fold-augmented-lever3-deployment-operator-transfer-safety-matrix-readout`
+  with builder, writer, report renderer, and CLI wiring.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605.md`.
+- Built
+  `build-fold-augmented-lever3-deployment-operator-transfer-safety-matrix-reproducibility-audit`
+  to rebuild the matrix from recorded route-class/provenance sources after
+  normalizing only `created_utc`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_current702_20260605.md`.
+- Built
+  `build-fold-augmented-lever3-deployment-operator-transfer-safety-application-audit`
+  to verify the reproducible matrix source path, source hashes, rebuild
+  stability, safe abstain/route actions, and fail-closed scoring behavior
+  before operator use.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_current702_20260605.md`.
+- Built
+  `build-fold-augmented-lever3-deployment-operator-transfer-safety-application-reproducibility-audit`
+  to rebuild the application audit from its recorded matrix sources after
+  normalizing only `created_utc`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.md`.
+- Added synthetic builder coverage, parser-default coverage,
+  artifact-count regression coverage, source-artifact hash coverage, stale
+  source/path regression coverage, and guardrail/source consistency checks for
+  the new transfer-safety readouts.
+
+#### Measured results
+
+- Transfer-safety matrix readout passed: 21/21 operator rows are
+  safe-to-abstain/route novel-OOS, 0 mechanism-transfer-allowed rows,
+  0 score/force-label rows, 0 threshold-change rows, 0 unsafe action rows,
+  0 forced mechanism-label rows, 0 rule-selection rows, and 3/3 direct source
+  records hash-current.
+- Transfer-safety classes remain operator-usable: 11 cofactor/same-family
+  confound rows, 4 fold-similarity confound rows, 3 pocket-geometry confound
+  rows, 2 protein-descriptor counteraxis rows, and 1 pocket-chemistry confound
+  row.
+- Transfer-safety matrix reproducibility passed: the matrix rebuilds with
+  0 normalized differences and 3/3 direct source records hash-current.
+- Transfer-safety application audit passed: 21/21 application rows remain
+  safe-to-abstain/route, matrix source path matches the reproducibility source,
+  matrix rebuild difference count is 0, and 2/2 direct source records are
+  hash-current.
+- Transfer-safety application reproducibility passed: the application audit
+  rebuilds with 0 normalized differences and 2/2 direct source records
+  hash-current.
+- Operating-point metrics remain unchanged: 21/21 hard residual rows
+  abstain/route, 31/34 calibration in-scope rows retained, 167/204 train/cal
+  OOS rows abstained or routed, and 0 retained residual transfer-risk rows
+  after all counteraxes.
+- Current predicted/source-free evidence remains enough for safe
+  abstention/routing and not enough for fixed-threshold scoring closure. The
+  exact missing scoring-closure evidence remains the separate full-length
+  P07658 coordinate/provenance route plus passing acceptance preflight.
+- No blocker packet was produced.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training, rule selection, or threshold
+  tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new readouts consume existing measured contract artifacts only and
+  perform no provider calls, coordinate downloads, coordinate staging,
+  imports, scoring reruns, or production-threshold changes.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1484 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Focused new-readout tests: targeted builder, parser, artifact-count,
+  source-hash, stale-source/path, CLI-smoke, and guardrail/source consistency
+  checks all passed.
+- Affected suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  668 passed, 214 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1540 passed, 233 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Final unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1495 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3581 JSON files and 27 JSONL files parsed with
+  0 errors.
+- CLI smoke regenerated all four new readouts into temporary paths and parsed
+  the outputs with `python -m json.tool`; statuses matched expected matrix,
+  matrix-reproducibility, application, and application-reproducibility
+  readiness.
+- Direct guardrail audit over the four new artifacts passed; each is a
+  measured Lever 3 readout with blocker packet false, 0 mechanism-transfer
+  rows, 0 forced mechanism-label rows, 0 rule-selection rows, and all forbidden
+  change flags false.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  3 passed, 49 subtests passed.
+- Disk check remained above the guardrail after validation settled: 13 GiB
+  free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md` from the progress CLI.
+- Commit, push, `HEAD == origin/main` verification, and lock release remain
+  the final mechanical wrap steps after this handoff update.
+
+#### Exact next Lever 3 action
+
+Treat
+`artifacts/v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605.json`
+as the current reproducible operator-facing Lever 3 transfer-safety application
+readout. Use it only to apply abstain/route novel-OOS actions for hard
+confounded rows; do not change threshold `0.44155`, do not force mechanism
+labels, and keep fixed-threshold scoring closure fail-closed until the
+separate exact P07658 coordinate/provenance route exists and passes acceptance
+preflight.
 
 ### 2026-06-05 Lever 3 Forward Push Run 56
 

@@ -417,6 +417,18 @@ FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_REPRODUCIBILITY_AUDIT_ID = (
     "v3_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605"
 )
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_MATRIX_READOUT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_MATRIX_REPRODUCIBILITY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_APPLICATION_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_APPLICATION_REPRODUCIBILITY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_current702_20260605"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -57928,6 +57940,2161 @@ def write_fold_augmented_lever3_deployment_operator_route_class_provenance_repro
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+    *,
+    deployment_operator_route_class_readout_path: Path,
+    deployment_operator_route_class_provenance_readout_path: Path,
+    deployment_operator_route_class_provenance_reproducibility_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_MATRIX_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    route_class_readout = _read_json(deployment_operator_route_class_readout_path)
+    provenance_readout = _read_json(
+        deployment_operator_route_class_provenance_readout_path
+    )
+    provenance_reproducibility = _read_json(
+        deployment_operator_route_class_provenance_reproducibility_audit_path
+    )
+    route_counts = route_class_readout.get("counts") or {}
+    route_decision = route_class_readout.get("decision") or {}
+    provenance_counts = provenance_readout.get("counts") or {}
+    provenance_decision = provenance_readout.get("decision") or {}
+    repro_counts = provenance_reproducibility.get("counts") or {}
+    repro_decision = provenance_reproducibility.get("decision") or {}
+
+    direct_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=artifact_id,
+        source_artifacts={
+            "deployment_operator_route_class_readout": _source_path_record(
+                deployment_operator_route_class_readout_path
+            ),
+            "deployment_operator_route_class_provenance_readout": (
+                _source_path_record(
+                    deployment_operator_route_class_provenance_readout_path
+                )
+            ),
+            "deployment_operator_route_class_provenance_reproducibility_audit": (
+                _source_path_record(
+                    deployment_operator_route_class_provenance_reproducibility_audit_path
+                )
+            ),
+        },
+    )
+
+    provenance_rows = [
+        row
+        for row in provenance_readout.get("route_class_stage_source_rows", []) or []
+        if isinstance(row, dict)
+    ]
+    provenance_by_class_source = {
+        (
+            str(row.get("route_class") or ""),
+            str(row.get("stage_source_artifact_id") or ""),
+        ): row
+        for row in provenance_rows
+    }
+    operator_rows = [
+        row
+        for row in route_class_readout.get("operator_route_class_rows", []) or []
+        if isinstance(row, dict)
+    ]
+
+    row_safety_records: list[dict[str, Any]] = []
+    for row in sorted(
+        operator_rows,
+        key=lambda item: _entry_id_sort_key(str(item.get("entry_id") or "")),
+    ):
+        route_class = str(row.get("route_class") or "")
+        stage_source_artifact_id = str(row.get("stage_source_artifact_id") or "")
+        provenance_row = provenance_by_class_source.get(
+            (route_class, stage_source_artifact_id)
+        )
+        provenance_present = provenance_row is not None
+        lineage_covered = bool(
+            provenance_row.get("lineage_covered") if provenance_row else False
+        )
+        guardrail_clean = bool(
+            provenance_row.get("guardrail_clean") if provenance_row else False
+        )
+        stage_source_hashes_current = bool(
+            provenance_row.get("stage_source_hashes_current")
+            if provenance_row
+            else False
+        )
+        action = str(row.get("action") or "")
+        force_mechanism_label_now = bool(row.get("force_mechanism_label_now"))
+        used_for_rule_selection = bool(row.get("used_for_rule_selection"))
+        safe_to_abstain_or_route = (
+            action == "abstain_or_route_novel_oos"
+            and not force_mechanism_label_now
+            and not used_for_rule_selection
+            and provenance_present
+            and lineage_covered
+            and guardrail_clean
+            and stage_source_hashes_current
+        )
+        row_safety_records.append(
+            {
+                "entry_id": str(row.get("entry_id") or ""),
+                "route_class": route_class,
+                "route_stage": str(row.get("route_stage") or ""),
+                "stage_source_artifact_id": stage_source_artifact_id,
+                "allowed_operator_action": "abstain_or_route_novel_oos",
+                "observed_operator_action": action,
+                "safe_to_abstain_or_route": safe_to_abstain_or_route,
+                "mechanism_transfer_allowed": False,
+                "score_or_force_mechanism_label_allowed_now": False,
+                "threshold_change_allowed_now": False,
+                "provenance_present": provenance_present,
+                "lineage_covered": lineage_covered,
+                "guardrail_clean": guardrail_clean,
+                "stage_source_hashes_current": stage_source_hashes_current,
+                "force_mechanism_label_now": force_mechanism_label_now,
+                "used_for_rule_selection": used_for_rule_selection,
+                "transfer_safety_status": (
+                    "safe_to_abstain_or_route_novel_oos"
+                    if safe_to_abstain_or_route
+                    else "unsafe_or_incomplete_transfer_safety_record"
+                ),
+            }
+        )
+
+    records_by_class: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for record in row_safety_records:
+        records_by_class[str(record.get("route_class") or "")].append(record)
+
+    matrix_rows: list[dict[str, Any]] = []
+    for route_class, records in sorted(records_by_class.items()):
+        if not route_class:
+            continue
+        source_ids = sorted(
+            {
+                str(record.get("stage_source_artifact_id") or "")
+                for record in records
+                if record.get("stage_source_artifact_id")
+            }
+        )
+        class_provenance_rows = [
+            row
+            for row in provenance_rows
+            if str(row.get("route_class") or "") == route_class
+        ]
+        matrix_rows.append(
+            {
+                "route_class": route_class,
+                "operator_rows": len(records),
+                "allowed_operator_action": "abstain_or_route_novel_oos",
+                "mechanism_transfer_allowed": False,
+                "score_or_force_mechanism_label_allowed_now": False,
+                "threshold_change_allowed_now": False,
+                "safe_to_abstain_or_route_rows": len(
+                    [
+                        record
+                        for record in records
+                        if record.get("safe_to_abstain_or_route")
+                    ]
+                ),
+                "stage_source_links": len(class_provenance_rows),
+                "stage_source_links_lineage_covered": len(
+                    [
+                        row
+                        for row in class_provenance_rows
+                        if row.get("lineage_covered")
+                    ]
+                ),
+                "stage_source_links_guardrail_clean": len(
+                    [
+                        row
+                        for row in class_provenance_rows
+                        if row.get("guardrail_clean")
+                    ]
+                ),
+                "stage_source_links_hash_current": len(
+                    [
+                        row
+                        for row in class_provenance_rows
+                        if row.get("stage_source_hashes_current")
+                    ]
+                ),
+                "stage_source_artifact_ids": source_ids,
+                "route_stages": sorted(
+                    {
+                        str(record.get("route_stage") or "")
+                        for record in records
+                        if record.get("route_stage")
+                    }
+                ),
+                "entry_ids": [
+                    str(record.get("entry_id") or "")
+                    for record in sorted(
+                        records,
+                        key=lambda item: _entry_id_sort_key(
+                            str(item.get("entry_id") or "")
+                        ),
+                    )
+                ],
+                "transfer_policy": "do_not_transfer_mechanism_label",
+            }
+        )
+
+    route_class_counts = Counter(
+        str(record.get("route_class") or "")
+        for record in row_safety_records
+        if record.get("route_class")
+    )
+    route_class_count_mismatches = [
+        {
+            "route_class": route_class,
+            "matrix_rows": int(count),
+            "route_class_readout_rows": int(
+                (route_counts.get("route_class_counts") or {}).get(route_class)
+                or 0
+            ),
+        }
+        for route_class, count in sorted(route_class_counts.items())
+        if int(count)
+        != int((route_counts.get("route_class_counts") or {}).get(route_class) or 0)
+    ]
+    missing_row_provenance_records = [
+        record
+        for record in row_safety_records
+        if not record.get("provenance_present")
+        or not record.get("lineage_covered")
+        or not record.get("guardrail_clean")
+        or not record.get("stage_source_hashes_current")
+    ]
+    unsafe_action_records = [
+        record
+        for record in row_safety_records
+        if record.get("observed_operator_action") != "abstain_or_route_novel_oos"
+    ]
+    transfer_allowed_records = [
+        record
+        for record in row_safety_records
+        if record.get("mechanism_transfer_allowed")
+    ]
+    scoring_allowed_records = [
+        record
+        for record in row_safety_records
+        if record.get("score_or_force_mechanism_label_allowed_now")
+    ]
+    threshold_change_allowed_records = [
+        record
+        for record in row_safety_records
+        if record.get("threshold_change_allowed_now")
+    ]
+    forced_label_records = [
+        record
+        for record in row_safety_records
+        if record.get("force_mechanism_label_now")
+    ]
+    rule_selection_records = [
+        record
+        for record in row_safety_records
+        if record.get("used_for_rule_selection")
+    ]
+    safe_row_records = [
+        record
+        for record in row_safety_records
+        if record.get("safe_to_abstain_or_route")
+    ]
+
+    forbidden_guardrail_names = [
+        "candidate_rows_scored_now",
+        "coordinates_generated_now",
+        "coordinates_staged_now",
+        "provider_calls_performed",
+        "production_thresholds_changed",
+        "threshold_values_changed",
+        "threshold_selected_or_tuned_now",
+        "heldout_rows_used_for_training_or_threshold_tuning",
+        "heldout_rows_used_for_rule_selection",
+        "labels_source_ids_target_names_or_mechanism_text_used_as_features",
+        "experimental_pdb_metadata_used_as_deployment_input",
+        "labels_registries_ontologies_changed",
+        "imports_or_promotions_performed",
+    ]
+    forbidden_guardrail_hits = []
+    for source_name, artifact in [
+        ("route_class_readout", route_class_readout),
+        ("route_class_provenance_readout", provenance_readout),
+        (
+            "route_class_provenance_reproducibility_audit",
+            provenance_reproducibility,
+        ),
+    ]:
+        guardrails = artifact.get("guardrails") or {}
+        for guardrail_name in forbidden_guardrail_names:
+            if bool(guardrails.get(guardrail_name)):
+                forbidden_guardrail_hits.append(
+                    {
+                        "source": source_name,
+                        "guardrail": guardrail_name,
+                    }
+                )
+
+    transfer_safety_matrix_hash = _hash_json_payload(
+        {
+            "matrix_rows": matrix_rows,
+            "row_safety_records": row_safety_records,
+        }
+    )
+    route_class_counts_dict = dict(sorted(route_class_counts.items()))
+    source_hashes_current = (
+        bool(direct_source_rows)
+        and all(row["source_hash_current"] for row in direct_source_rows)
+    )
+    checks = {
+        "route_class_readout_passed": (
+            route_class_readout.get("status")
+            == "fold_augmented_lever3_deployment_operator_route_class_readout_passed"
+            and not route_class_readout.get("route_class_violations")
+            and bool(route_decision.get("deployment_operator_route_class_readout_ready"))
+        ),
+        "route_class_provenance_readout_passed": (
+            provenance_readout.get("status")
+            == "fold_augmented_lever3_deployment_operator_route_class_provenance_readout_passed"
+            and not provenance_readout.get("provenance_violations")
+            and bool(
+                provenance_decision.get(
+                    "deployment_operator_route_class_provenance_ready"
+                )
+            )
+        ),
+        "route_class_provenance_reproducibility_audit_passed": (
+            provenance_reproducibility.get("status")
+            == "fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_passed"
+            and not provenance_reproducibility.get("reproducibility_violations")
+            and bool(
+                repro_decision.get(
+                    "deployment_operator_route_class_provenance_reproducible"
+                )
+            )
+        ),
+        "direct_source_hashes_current": source_hashes_current,
+        "operator_row_count_matches_route_class_readout": (
+            len(row_safety_records) == int(route_counts.get("operator_action_rows") or 0)
+        ),
+        "all_operator_rows_have_transfer_safety_records": (
+            bool(row_safety_records)
+            and len(row_safety_records) == len(operator_rows)
+        ),
+        "all_operator_rows_abstain_or_route_novel_oos": (
+            bool(row_safety_records) and not unsafe_action_records
+        ),
+        "all_operator_rows_safe_to_abstain_or_route": (
+            bool(row_safety_records)
+            and len(safe_row_records) == len(row_safety_records)
+        ),
+        "no_operator_rows_allow_mechanism_transfer": not transfer_allowed_records,
+        "no_operator_rows_allow_scoring_or_forced_labels": (
+            not scoring_allowed_records and not forced_label_records
+        ),
+        "no_operator_rows_allow_threshold_change": (
+            not threshold_change_allowed_records
+        ),
+        "no_operator_rows_used_for_rule_selection": not rule_selection_records,
+        "all_operator_rows_have_clean_provenance": not missing_row_provenance_records,
+        "route_class_counts_match_readout": (
+            route_class_counts_dict == (route_counts.get("route_class_counts") or {})
+            and not route_class_count_mismatches
+        ),
+        "matrix_covers_all_route_classes": (
+            len(matrix_rows) == int(route_counts.get("route_classes_with_rows") or 0)
+            and len(matrix_rows)
+            == int(provenance_counts.get("route_classes_with_stage_sources") or 0)
+        ),
+        "matrix_stage_source_links_match_provenance": (
+            sum(int(row.get("stage_source_links") or 0) for row in matrix_rows)
+            == int(provenance_counts.get("route_class_stage_source_links") or 0)
+            == int(repro_counts.get("route_class_stage_source_links") or 0)
+        ),
+        "matrix_stage_sources_lineage_covered_guardrail_clean_hash_current": (
+            all(
+                int(row.get("stage_source_links") or 0)
+                == int(row.get("stage_source_links_lineage_covered") or 0)
+                == int(row.get("stage_source_links_guardrail_clean") or 0)
+                == int(row.get("stage_source_links_hash_current") or 0)
+                for row in matrix_rows
+            )
+        ),
+        "operating_point_metrics_match_sources": (
+            route_counts.get("calibration_in_scope_retained")
+            == provenance_counts.get("calibration_in_scope_retained")
+            == repro_counts.get("calibration_in_scope_retained")
+            and route_counts.get("calibration_in_scope_rows")
+            == provenance_counts.get("calibration_in_scope_rows")
+            == repro_counts.get("calibration_in_scope_rows")
+            and route_counts.get("train_cal_oos_abstained_or_routed")
+            == provenance_counts.get("train_cal_oos_abstained_or_routed")
+            == repro_counts.get("train_cal_oos_abstained_or_routed")
+            and route_counts.get("retained_residual_rows_after_all_counteraxes")
+            == provenance_counts.get("retained_residual_rows_after_all_counteraxes")
+        ),
+        "calibration_retention_stays_high_at_operating_point": (
+            route_counts.get("calibration_in_scope_retained") == 31
+            and route_counts.get("calibration_in_scope_rows") == 34
+        ),
+        "hard_confounded_rows_all_abstain_or_route": (
+            len(safe_row_records)
+            == int(route_counts.get("operator_action_rows") or 0)
+            and int(route_counts.get("operator_action_rows") or 0) > 0
+        ),
+        "train_cal_oos_abstention_stays_current": (
+            route_counts.get("train_cal_oos_abstained_or_routed") == 167
+            and route_counts.get("train_cal_oos_rows") == 204
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(route_decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                route_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+            and not bool(
+                repro_decision.get("fixed_threshold_scoring_closure_available_now")
+            )
+        ),
+        "predicted_source_free_evidence_sufficient_for_safe_abstention": (
+            bool(
+                route_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+                )
+            )
+            and bool(
+                provenance_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+                )
+            )
+            and bool(
+                repro_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+                )
+            )
+        ),
+        "no_forbidden_guardrail_hits_in_sources": not forbidden_guardrail_hits,
+    }
+    violations = sorted([name for name, passed in checks.items() if not passed])
+    matrix_ready = not violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_passed"
+            if matrix_ready
+            else "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_needs_more_work"
+        ),
+        "scope": (
+            "Operator transfer-safety matrix for the current Lever 3 "
+            "route-class/provenance chain. It converts route classes into "
+            "allowed deployment actions and verifies that every hard "
+            "confounded row remains abstain/route novel-OOS with mechanism "
+            "transfer, scoring, and threshold changes disallowed."
+        ),
+        "transfer_safety_checks": checks,
+        "transfer_safety_violations": violations,
+        "transfer_safety_matrix": {
+            "sha256": transfer_safety_matrix_hash,
+            "allowed_operator_action": "abstain_or_route_novel_oos",
+            "matrix_rows": matrix_rows,
+        },
+        "row_safety_records": row_safety_records,
+        "route_class_count_mismatches": route_class_count_mismatches,
+        "unsafe_action_records": unsafe_action_records,
+        "transfer_allowed_records": transfer_allowed_records,
+        "scoring_allowed_records": scoring_allowed_records,
+        "threshold_change_allowed_records": threshold_change_allowed_records,
+        "forced_label_records": forced_label_records,
+        "rule_selection_records": rule_selection_records,
+        "missing_row_provenance_records": missing_row_provenance_records,
+        "forbidden_guardrail_hits": forbidden_guardrail_hits,
+        "source_hash_audit_rows": direct_source_rows,
+        "counts": {
+            "transfer_safety_matrix_rows": len(matrix_rows),
+            "operator_action_rows": len(row_safety_records),
+            "operator_action_rows_abstain_or_route_novel_oos": len(
+                [
+                    record
+                    for record in row_safety_records
+                    if record.get("observed_operator_action")
+                    == "abstain_or_route_novel_oos"
+                ]
+            ),
+            "row_safety_records": len(row_safety_records),
+            "row_safety_records_safe_to_abstain_or_route": len(safe_row_records),
+            "mechanism_transfer_allowed_rows": len(transfer_allowed_records),
+            "score_or_force_mechanism_label_allowed_rows": len(
+                scoring_allowed_records
+            ),
+            "threshold_change_allowed_rows": len(
+                threshold_change_allowed_records
+            ),
+            "unsafe_action_rows": len(unsafe_action_records),
+            "forced_mechanism_label_rows": len(forced_label_records),
+            "rule_selection_rows": len(rule_selection_records),
+            "missing_or_unclean_row_provenance_records": len(
+                missing_row_provenance_records
+            ),
+            "route_classes_with_rows": len(matrix_rows),
+            "route_class_counts": route_class_counts_dict,
+            "route_class_count_mismatches": len(route_class_count_mismatches),
+            "route_class_stage_source_links": provenance_counts.get(
+                "route_class_stage_source_links"
+            ),
+            "route_class_stage_source_links_lineage_covered": (
+                provenance_counts.get(
+                    "route_class_stage_source_links_lineage_covered"
+                )
+            ),
+            "route_class_stage_source_links_guardrail_clean": (
+                provenance_counts.get(
+                    "route_class_stage_source_links_guardrail_clean"
+                )
+            ),
+            "route_class_stage_source_links_hash_current": (
+                provenance_counts.get(
+                    "route_class_stage_source_links_hash_current"
+                )
+            ),
+            "source_records_checked": len(direct_source_rows),
+            "source_records_hash_current": len(
+                [row for row in direct_source_rows if row["source_hash_current"]]
+            ),
+            "transfer_safety_violation_total": len(violations),
+            "forbidden_guardrail_hits": len(forbidden_guardrail_hits),
+            "calibration_in_scope_retained": route_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": route_counts.get(
+                "calibration_in_scope_rows"
+            ),
+            "train_cal_oos_abstained_or_routed": route_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": route_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": route_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+        },
+        "decision": {
+            "deployment_operator_transfer_safety_matrix_ready": matrix_ready,
+            "safe_abstention_route_remains_current": matrix_ready,
+            "mechanism_transfer_disallowed_for_all_rows": matrix_ready,
+            "deployable_transfer_safety_matrix_available": matrix_ready,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                matrix_ready
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "operator_action": (
+                "apply_transfer_safety_matrix_to_abstain_or_route_novel_oos"
+            ),
+            "exact_missing_evidence_for_scoring_closure": (
+                route_decision.get("exact_missing_evidence_for_scoring_closure")
+                or provenance_decision.get(
+                    "exact_missing_evidence_for_scoring_closure"
+                )
+                or repro_decision.get("exact_missing_evidence_for_scoring_closure")
+                or []
+            ),
+            "next_gate": (
+                "Use the transfer-safety matrix for operator abstain/route "
+                "decisions only; keep mechanism transfer and fixed-threshold "
+                "scoring closure fail-closed pending exact P07658 evidence."
+                if matrix_ready
+                else (
+                    "Do not apply the transfer-safety matrix until the listed "
+                    "violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_transfer_safety_matrix_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_route_class_readout": _source_path_record(
+                deployment_operator_route_class_readout_path
+            ),
+            "deployment_operator_route_class_provenance_readout": (
+                _source_path_record(
+                    deployment_operator_route_class_provenance_readout_path
+                )
+            ),
+            "deployment_operator_route_class_provenance_reproducibility_audit": (
+                _source_path_record(
+                    deployment_operator_route_class_provenance_reproducibility_audit_path
+                )
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 transfer-safety matrix is ready."
+                if matrix_ready
+                else "Lever 3 transfer-safety matrix needs repair."
+            ),
+            "result": (
+                f"{len(safe_row_records)}/{len(row_safety_records)} operator "
+                "rows are safe-to-abstain/route, with mechanism transfer "
+                f"allowed for {len(transfer_allowed_records)} rows across "
+                f"{len(matrix_rows)} route classes."
+            ),
+            "next_action": (
+                "Apply only the abstain/route novel-OOS action for rows in the matrix."
+                if matrix_ready
+                else "Resolve transfer-safety violations before operator use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Transfer-Safety Matrix Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Transfer-safety matrix ready: "
+        f"{decision['deployment_operator_transfer_safety_matrix_ready']}",
+        "- Mechanism transfer disallowed for all rows: "
+        f"{decision['mechanism_transfer_disallowed_for_all_rows']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Transfer-safety violations: {readout['transfer_safety_violations']}",
+        "",
+        "## Counts",
+        "",
+        "- Operator rows safe-to-abstain/route: "
+        f"{counts['row_safety_records_safe_to_abstain_or_route']}/"
+        f"{counts['row_safety_records']}",
+        "- Operator rows abstain/route novel-OOS: "
+        f"{counts['operator_action_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['operator_action_rows']}",
+        f"- Route classes with rows: {counts['route_classes_with_rows']}",
+        f"- Route class counts: {counts['route_class_counts']}",
+        "- Route-class stage-source links lineage-covered: "
+        f"{counts['route_class_stage_source_links_lineage_covered']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Route-class stage-source links guardrail-clean: "
+        f"{counts['route_class_stage_source_links_guardrail_clean']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Route-class stage-source links hash-current: "
+        f"{counts['route_class_stage_source_links_hash_current']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Direct source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        "- Calibration retention: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstain or route: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "- Retained residual rows after all counteraxes: "
+        f"{counts['retained_residual_rows_after_all_counteraxes']}",
+        "",
+        "## Transfer-Safety Matrix",
+        "",
+        "| route class | rows | allowed action | transfer allowed | stage links clean | entry ids |",
+        "| --- | ---: | --- | ---: | ---: | --- |",
+    ]
+    for row in readout.get("transfer_safety_matrix", {}).get("matrix_rows", []):
+        lines.append(
+            f"| {row['route_class']} | {row['operator_rows']} | "
+            f"{row['allowed_operator_action']} | "
+            f"{row['mechanism_transfer_allowed']} | "
+            f"{row['stage_source_links_guardrail_clean']}/"
+            f"{row['stage_source_links']} | "
+            f"{_lever3_route_class_markdown_cell(', '.join(row['entry_ids']))} |"
+        )
+    lines += [
+        "",
+        "## Row Safety Records",
+        "",
+        "| entry | route class | route stage | observed action | safe | transfer allowed | provenance clean |",
+        "| --- | --- | --- | --- | ---: | ---: | ---: |",
+    ]
+    for row in readout.get("row_safety_records", [])[:160]:
+        provenance_clean = (
+            bool(row.get("provenance_present"))
+            and bool(row.get("lineage_covered"))
+            and bool(row.get("guardrail_clean"))
+            and bool(row.get("stage_source_hashes_current"))
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['route_class']} | "
+            f"{row['route_stage']} | {row['observed_operator_action']} | "
+            f"{row['safe_to_abstain_or_route']} | "
+            f"{row['mechanism_transfer_allowed']} | {provenance_clean} |"
+        )
+    lines += [
+        "",
+        "## Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in readout.get("transfer_safety_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Operator action: {decision['operator_action']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing route-class, provenance, and provenance-reproducibility artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+    *,
+    deployment_operator_route_class_readout_path: Path,
+    deployment_operator_route_class_provenance_readout_path: Path,
+    deployment_operator_route_class_provenance_reproducibility_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_MATRIX_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+        deployment_operator_route_class_readout_path=(
+            deployment_operator_route_class_readout_path
+        ),
+        deployment_operator_route_class_provenance_readout_path=(
+            deployment_operator_route_class_provenance_readout_path
+        ),
+        deployment_operator_route_class_provenance_reproducibility_audit_path=(
+            deployment_operator_route_class_provenance_reproducibility_audit_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+    *,
+    deployment_operator_transfer_safety_matrix_readout_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_MATRIX_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    readout = _read_json(deployment_operator_transfer_safety_matrix_readout_path)
+    source_hash_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=readout.get("artifact_id"),
+        source_artifacts=readout.get("source_artifacts") or {},
+    )
+    source_artifacts = readout.get("source_artifacts") or {}
+    route_class_source = source_artifacts.get(
+        "deployment_operator_route_class_readout"
+    ) or {}
+    provenance_source = source_artifacts.get(
+        "deployment_operator_route_class_provenance_readout"
+    ) or {}
+    reproducibility_source = source_artifacts.get(
+        "deployment_operator_route_class_provenance_reproducibility_audit"
+    ) or {}
+    route_class_path_value = route_class_source.get("path")
+    provenance_path_value = provenance_source.get("path")
+    reproducibility_path_value = reproducibility_source.get("path")
+    rebuilt_readout: dict[str, Any] | None = None
+    rebuild_error = None
+    if (
+        route_class_path_value
+        and provenance_path_value
+        and reproducibility_path_value
+        and Path(route_class_path_value).exists()
+        and Path(provenance_path_value).exists()
+        and Path(reproducibility_path_value).exists()
+    ):
+        try:
+            rebuilt_readout = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+                deployment_operator_route_class_readout_path=Path(
+                    route_class_path_value
+                ),
+                deployment_operator_route_class_provenance_readout_path=Path(
+                    provenance_path_value
+                ),
+                deployment_operator_route_class_provenance_reproducibility_audit_path=Path(
+                    reproducibility_path_value
+                ),
+                artifact_id=str(
+                    readout.get("artifact_id")
+                    or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_MATRIX_READOUT_ID
+                ),
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        rebuild_error = "missing_operator_transfer_safety_matrix_source_artifacts"
+
+    normalized_readout = _normalize_lever3_closure_for_reproducibility(readout)
+    normalized_rebuilt = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_readout)
+        if rebuilt_readout is not None
+        else None
+    )
+    rebuild_matches = (
+        normalized_rebuilt == normalized_readout
+        if normalized_rebuilt is not None
+        else False
+    )
+    counts = readout.get("counts") or {}
+    decision = readout.get("decision") or {}
+    reproducibility_checks = {
+        "transfer_safety_matrix_readout_passed": (
+            readout.get("status")
+            == "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_passed"
+            and not readout.get("transfer_safety_violations")
+            and bool(
+                decision.get(
+                    "deployment_operator_transfer_safety_matrix_ready"
+                )
+            )
+        ),
+        "transfer_safety_matrix_source_hashes_current": (
+            bool(source_hash_rows)
+            and all(row["source_hash_current"] for row in source_hash_rows)
+        ),
+        "transfer_safety_matrix_rebuild_matches_stored_after_created_utc_normalization": (
+            rebuild_matches
+        ),
+        "transfer_safety_matrix_metrics_stable": (
+            rebuilt_readout is not None
+            and (rebuilt_readout.get("counts") or {}).get(
+                "row_safety_records_safe_to_abstain_or_route"
+            )
+            == counts.get("row_safety_records_safe_to_abstain_or_route")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "mechanism_transfer_allowed_rows"
+            )
+            == counts.get("mechanism_transfer_allowed_rows")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "route_class_counts"
+            )
+            == counts.get("route_class_counts")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "route_class_stage_source_links_hash_current"
+            )
+            == counts.get("route_class_stage_source_links_hash_current")
+        ),
+        "operating_point_metrics_stable": (
+            rebuilt_readout is not None
+            and (rebuilt_readout.get("counts") or {}).get(
+                "calibration_in_scope_retained"
+            )
+            == counts.get("calibration_in_scope_retained")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "train_cal_oos_abstained_or_routed"
+            )
+            == counts.get("train_cal_oos_abstained_or_routed")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "retained_residual_rows_after_all_counteraxes"
+            )
+            == counts.get("retained_residual_rows_after_all_counteraxes")
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+        "mechanism_transfer_remains_disallowed": (
+            counts.get("mechanism_transfer_allowed_rows") == 0
+            and bool(decision.get("mechanism_transfer_disallowed_for_all_rows"))
+            and not bool(decision.get("unsafe_forced_mechanism_transfer_allowed"))
+        ),
+    }
+    reproducibility_violations = sorted(
+        [
+            name
+            for name, passed in reproducibility_checks.items()
+            if not passed
+        ]
+    )
+    reproducibility_passed = not reproducibility_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_passed"
+            if reproducibility_passed
+            else "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_needs_more_work"
+        ),
+        "scope": (
+            "Reproducibility audit for the Lever 3 operator "
+            "transfer-safety matrix. It rebuilds the matrix from recorded "
+            "route-class, provenance, and provenance-reproducibility sources, "
+            "normalizes only created_utc, and checks source-hash and metric "
+            "stability."
+        ),
+        "reproducibility_checks": reproducibility_checks,
+        "reproducibility_violations": reproducibility_violations,
+        "operator_transfer_safety_matrix_artifact": {
+            "artifact_id": readout.get("artifact_id"),
+            "path": str(deployment_operator_transfer_safety_matrix_readout_path),
+            "stored_created_utc": readout.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_readout.get("created_utc")
+                if rebuilt_readout is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_readout),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt)
+                if normalized_rebuilt is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": rebuild_matches,
+            "rebuild_error": rebuild_error,
+        },
+        "source_hash_audit_rows": source_hash_rows,
+        "counts": {
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "rebuild_difference_count": int(not rebuild_matches),
+            "transfer_safety_matrix_rows": counts.get(
+                "transfer_safety_matrix_rows"
+            ),
+            "operator_action_rows": counts.get("operator_action_rows"),
+            "operator_action_rows_abstain_or_route_novel_oos": counts.get(
+                "operator_action_rows_abstain_or_route_novel_oos"
+            ),
+            "row_safety_records": counts.get("row_safety_records"),
+            "row_safety_records_safe_to_abstain_or_route": counts.get(
+                "row_safety_records_safe_to_abstain_or_route"
+            ),
+            "mechanism_transfer_allowed_rows": counts.get(
+                "mechanism_transfer_allowed_rows"
+            ),
+            "score_or_force_mechanism_label_allowed_rows": counts.get(
+                "score_or_force_mechanism_label_allowed_rows"
+            ),
+            "threshold_change_allowed_rows": counts.get(
+                "threshold_change_allowed_rows"
+            ),
+            "route_class_counts": counts.get("route_class_counts"),
+            "route_class_stage_source_links": counts.get(
+                "route_class_stage_source_links"
+            ),
+            "route_class_stage_source_links_lineage_covered": counts.get(
+                "route_class_stage_source_links_lineage_covered"
+            ),
+            "route_class_stage_source_links_guardrail_clean": counts.get(
+                "route_class_stage_source_links_guardrail_clean"
+            ),
+            "route_class_stage_source_links_hash_current": counts.get(
+                "route_class_stage_source_links_hash_current"
+            ),
+            "unsafe_action_rows": counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "rule_selection_rows": counts.get("rule_selection_rows"),
+            "calibration_in_scope_retained": counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "reproducibility_violation_total": len(reproducibility_violations),
+        },
+        "decision": {
+            "deployment_operator_transfer_safety_matrix_reproducible": (
+                reproducibility_passed
+            ),
+            "deployment_operator_transfer_safety_matrix_ready": (
+                reproducibility_passed
+                and bool(
+                    decision.get(
+                        "deployment_operator_transfer_safety_matrix_ready"
+                    )
+                )
+            ),
+            "safe_abstention_route_remains_current": reproducibility_passed,
+            "mechanism_transfer_disallowed_for_all_rows": reproducibility_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the reproducible transfer-safety matrix for "
+                "abstain/route operator decisions only; keep mechanism "
+                "transfer and fixed-threshold scoring closure fail-closed "
+                "pending exact P07658 evidence."
+                if reproducibility_passed
+                else (
+                    "Do not rely on the transfer-safety matrix until the "
+                    "listed reproducibility violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_transfer_safety_matrix_reproducibility_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_transfer_safety_matrix_readout": (
+                _source_path_record(
+                    deployment_operator_transfer_safety_matrix_readout_path
+                )
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 transfer-safety matrix is reproducible."
+                if reproducibility_passed
+                else "Lever 3 transfer-safety matrix reproducibility needs repair."
+            ),
+            "result": (
+                "Transfer-safety matrix rebuilds after created_utc "
+                f"normalization with {len(reproducibility_violations)} "
+                "reproducibility violations."
+            ),
+            "next_action": (
+                "Use the reproducible matrix only for abstain/route decisions."
+                if reproducibility_passed
+                else "Resolve reproducibility violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    matrix_artifact = audit["operator_transfer_safety_matrix_artifact"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Transfer-Safety Matrix Reproducibility Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Transfer-safety matrix reproducible: "
+        f"{decision['deployment_operator_transfer_safety_matrix_reproducible']}",
+        "- Transfer-safety matrix ready: "
+        f"{decision['deployment_operator_transfer_safety_matrix_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Reproducibility violations: {audit['reproducibility_violations']}",
+        "",
+        "## Rebuild",
+        "",
+        "- Normalized rebuild matches stored: "
+        f"{matrix_artifact['normalized_rebuild_matches_stored']}",
+        "- Stored normalized SHA-256: "
+        f"{matrix_artifact['stored_normalized_sha256']}",
+        "- Rebuilt normalized SHA-256: "
+        f"{matrix_artifact['rebuilt_normalized_sha256']}",
+        f"- Rebuild error: {matrix_artifact['rebuild_error']}",
+        "",
+        "## Counts",
+        "",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Rebuild difference count: {counts['rebuild_difference_count']}",
+        "- Operator rows safe-to-abstain/route: "
+        f"{counts['row_safety_records_safe_to_abstain_or_route']}/"
+        f"{counts['row_safety_records']}",
+        "- Mechanism-transfer-allowed rows: "
+        f"{counts['mechanism_transfer_allowed_rows']}",
+        "- Route-class stage-source links hash-current: "
+        f"{counts['route_class_stage_source_links_hash_current']}/"
+        f"{counts['route_class_stage_source_links']}",
+        f"- Route class counts: {counts['route_class_counts']}",
+        "",
+        "## Reproducibility Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("reproducibility_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing transfer-safety matrix readout and its recorded sources only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+    *,
+    deployment_operator_transfer_safety_matrix_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_MATRIX_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+        deployment_operator_transfer_safety_matrix_readout_path=(
+            deployment_operator_transfer_safety_matrix_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+    *,
+    deployment_operator_transfer_safety_matrix_readout_path: Path,
+    deployment_operator_transfer_safety_matrix_reproducibility_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_APPLICATION_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    matrix = _read_json(deployment_operator_transfer_safety_matrix_readout_path)
+    reproducibility = _read_json(
+        deployment_operator_transfer_safety_matrix_reproducibility_audit_path
+    )
+    matrix_counts = matrix.get("counts") or {}
+    matrix_decision = matrix.get("decision") or {}
+    repro_counts = reproducibility.get("counts") or {}
+    repro_decision = reproducibility.get("decision") or {}
+    direct_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=artifact_id,
+        source_artifacts={
+            "deployment_operator_transfer_safety_matrix_readout": (
+                _source_path_record(
+                    deployment_operator_transfer_safety_matrix_readout_path
+                )
+            ),
+            "deployment_operator_transfer_safety_matrix_reproducibility_audit": (
+                _source_path_record(
+                    deployment_operator_transfer_safety_matrix_reproducibility_audit_path
+                )
+            ),
+        },
+    )
+    reproducibility_matrix_source = (
+        (reproducibility.get("source_artifacts") or {}).get(
+            "deployment_operator_transfer_safety_matrix_readout"
+        )
+        or {}
+    )
+    recorded_matrix_path = reproducibility_matrix_source.get("path")
+    try:
+        matrix_path_matches_reproducibility_source = (
+            recorded_matrix_path is not None
+            and Path(recorded_matrix_path).resolve()
+            == Path(deployment_operator_transfer_safety_matrix_readout_path).resolve()
+        )
+    except OSError:
+        matrix_path_matches_reproducibility_source = False
+
+    application_payload = {
+        "matrix_artifact_id": matrix.get("artifact_id"),
+        "matrix_sha256": (matrix.get("transfer_safety_matrix") or {}).get(
+            "sha256"
+        ),
+        "allowed_operator_action": "abstain_or_route_novel_oos",
+        "operator_action": matrix_decision.get("operator_action"),
+        "route_class_counts": matrix_counts.get("route_class_counts"),
+        "row_safety_records_safe_to_abstain_or_route": matrix_counts.get(
+            "row_safety_records_safe_to_abstain_or_route"
+        ),
+        "mechanism_transfer_allowed_rows": matrix_counts.get(
+            "mechanism_transfer_allowed_rows"
+        ),
+    }
+    application_payload_sha256 = _hash_json_payload(application_payload)
+
+    forbidden_guardrail_hits = []
+    for source_name, artifact in [
+        ("transfer_safety_matrix_readout", matrix),
+        ("transfer_safety_matrix_reproducibility_audit", reproducibility),
+    ]:
+        guardrails = artifact.get("guardrails") or {}
+        for guardrail_name in [
+            "candidate_rows_scored_now",
+            "coordinates_generated_now",
+            "coordinates_staged_now",
+            "provider_calls_performed",
+            "production_thresholds_changed",
+            "threshold_values_changed",
+            "threshold_selected_or_tuned_now",
+            "heldout_rows_used_for_training_or_threshold_tuning",
+            "heldout_rows_used_for_rule_selection",
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features",
+            "experimental_pdb_metadata_used_as_deployment_input",
+            "labels_registries_ontologies_changed",
+            "imports_or_promotions_performed",
+        ]:
+            if bool(guardrails.get(guardrail_name)):
+                forbidden_guardrail_hits.append(
+                    {
+                        "source": source_name,
+                        "guardrail": guardrail_name,
+                    }
+                )
+
+    application_checks = {
+        "transfer_safety_matrix_readout_passed": (
+            matrix.get("status")
+            == "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout_passed"
+            and not matrix.get("transfer_safety_violations")
+            and bool(
+                matrix_decision.get(
+                    "deployment_operator_transfer_safety_matrix_ready"
+                )
+            )
+        ),
+        "transfer_safety_matrix_reproducibility_audit_passed": (
+            reproducibility.get("status")
+            == "fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_passed"
+            and not reproducibility.get("reproducibility_violations")
+            and bool(
+                repro_decision.get(
+                    "deployment_operator_transfer_safety_matrix_reproducible"
+                )
+            )
+        ),
+        "direct_source_hashes_current": (
+            bool(direct_source_rows)
+            and all(row["source_hash_current"] for row in direct_source_rows)
+        ),
+        "matrix_path_matches_reproducibility_source": (
+            matrix_path_matches_reproducibility_source
+        ),
+        "matrix_rebuild_matches_stored": (
+            bool(
+                (
+                    reproducibility.get(
+                        "operator_transfer_safety_matrix_artifact"
+                    )
+                    or {}
+                ).get("normalized_rebuild_matches_stored")
+            )
+            and int(repro_counts.get("rebuild_difference_count") or 0) == 0
+        ),
+        "all_operator_rows_safe_to_apply_abstain_route": (
+            matrix_counts.get("row_safety_records_safe_to_abstain_or_route")
+            == matrix_counts.get("row_safety_records")
+            == matrix_counts.get("operator_action_rows")
+            and int(matrix_counts.get("operator_action_rows") or 0) > 0
+        ),
+        "mechanism_transfer_disallowed_for_all_rows": (
+            matrix_counts.get("mechanism_transfer_allowed_rows") == 0
+            and repro_counts.get("mechanism_transfer_allowed_rows") == 0
+            and bool(matrix_decision.get("mechanism_transfer_disallowed_for_all_rows"))
+            and bool(repro_decision.get("mechanism_transfer_disallowed_for_all_rows"))
+        ),
+        "no_scoring_forced_label_or_threshold_actions": (
+            matrix_counts.get("score_or_force_mechanism_label_allowed_rows") == 0
+            and matrix_counts.get("threshold_change_allowed_rows") == 0
+            and matrix_counts.get("unsafe_action_rows") == 0
+            and matrix_counts.get("forced_mechanism_label_rows") == 0
+            and matrix_counts.get("rule_selection_rows") == 0
+            and not bool(
+                matrix_decision.get("score_or_force_mechanism_label_for_retained_rows_now")
+            )
+            and not bool(matrix_decision.get("apply_or_change_threshold_now"))
+        ),
+        "route_class_and_provenance_metrics_stable": (
+            matrix_counts.get("route_class_counts")
+            == repro_counts.get("route_class_counts")
+            and matrix_counts.get("route_class_stage_source_links")
+            == repro_counts.get("route_class_stage_source_links")
+            and matrix_counts.get("route_class_stage_source_links_hash_current")
+            == repro_counts.get("route_class_stage_source_links_hash_current")
+        ),
+        "operating_point_metrics_stable": (
+            matrix_counts.get("calibration_in_scope_retained")
+            == repro_counts.get("calibration_in_scope_retained")
+            == 31
+            and matrix_counts.get("calibration_in_scope_rows")
+            == repro_counts.get("calibration_in_scope_rows")
+            == 34
+            and matrix_counts.get("train_cal_oos_abstained_or_routed")
+            == repro_counts.get("train_cal_oos_abstained_or_routed")
+            == 167
+            and matrix_counts.get("train_cal_oos_rows")
+            == repro_counts.get("train_cal_oos_rows")
+            == 204
+            and matrix_counts.get("retained_residual_rows_after_all_counteraxes")
+            == repro_counts.get("retained_residual_rows_after_all_counteraxes")
+            == 0
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(matrix_decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(repro_decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                matrix_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+        "predicted_source_free_evidence_sufficient_for_safe_abstention": (
+            bool(
+                matrix_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+                )
+            )
+            and bool(
+                repro_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+                )
+            )
+        ),
+        "no_forbidden_guardrail_hits_in_sources": not forbidden_guardrail_hits,
+    }
+    application_violations = sorted(
+        [name for name, passed in application_checks.items() if not passed]
+    )
+    application_ready = not application_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_transfer_safety_application_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_passed"
+            if application_ready
+            else "fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_needs_more_work"
+        ),
+        "scope": (
+            "Application audit for the reproducible Lever 3 operator "
+            "transfer-safety matrix. It verifies the matrix source path, "
+            "source hashes, rebuild stability, safe abstain/route actions, "
+            "and fail-closed scoring behavior before operator use."
+        ),
+        "application_checks": application_checks,
+        "application_violations": application_violations,
+        "application_payload": application_payload,
+        "application_payload_sha256": application_payload_sha256,
+        "forbidden_guardrail_hits": forbidden_guardrail_hits,
+        "source_hash_audit_rows": direct_source_rows,
+        "counts": {
+            "source_records_checked": len(direct_source_rows),
+            "source_records_hash_current": len(
+                [row for row in direct_source_rows if row["source_hash_current"]]
+            ),
+            "application_operator_rows": matrix_counts.get(
+                "operator_action_rows"
+            ),
+            "application_operator_rows_safe_to_abstain_or_route": (
+                matrix_counts.get("row_safety_records_safe_to_abstain_or_route")
+            ),
+            "transfer_safety_matrix_rows": matrix_counts.get(
+                "transfer_safety_matrix_rows"
+            ),
+            "mechanism_transfer_allowed_rows": matrix_counts.get(
+                "mechanism_transfer_allowed_rows"
+            ),
+            "score_or_force_mechanism_label_allowed_rows": matrix_counts.get(
+                "score_or_force_mechanism_label_allowed_rows"
+            ),
+            "threshold_change_allowed_rows": matrix_counts.get(
+                "threshold_change_allowed_rows"
+            ),
+            "unsafe_action_rows": matrix_counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": matrix_counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "rule_selection_rows": matrix_counts.get("rule_selection_rows"),
+            "route_class_counts": matrix_counts.get("route_class_counts"),
+            "route_class_stage_source_links": matrix_counts.get(
+                "route_class_stage_source_links"
+            ),
+            "route_class_stage_source_links_hash_current": matrix_counts.get(
+                "route_class_stage_source_links_hash_current"
+            ),
+            "matrix_rebuild_difference_count": repro_counts.get(
+                "rebuild_difference_count"
+            ),
+            "calibration_in_scope_retained": matrix_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": matrix_counts.get(
+                "calibration_in_scope_rows"
+            ),
+            "train_cal_oos_abstained_or_routed": matrix_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": matrix_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": matrix_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "application_violation_total": len(application_violations),
+        },
+        "decision": {
+            "deployment_operator_transfer_safety_application_ready": (
+                application_ready
+            ),
+            "deployment_operator_transfer_safety_matrix_ready": application_ready,
+            "deployment_operator_transfer_safety_matrix_reproducible": (
+                application_ready
+            ),
+            "safe_abstention_route_remains_current": application_ready,
+            "mechanism_transfer_disallowed_for_all_rows": application_ready,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                application_ready
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "operator_action": (
+                "apply_reproducible_transfer_safety_matrix_for_abstain_route_only"
+            ),
+            "exact_missing_evidence_for_scoring_closure": (
+                matrix_decision.get("exact_missing_evidence_for_scoring_closure")
+                or repro_decision.get("exact_missing_evidence_for_scoring_closure")
+                or []
+            ),
+            "next_gate": (
+                "Apply the reproducible transfer-safety matrix only for "
+                "abstain/route novel-OOS decisions; keep mechanism transfer "
+                "and fixed-threshold scoring closure fail-closed pending "
+                "exact P07658 evidence."
+                if application_ready
+                else (
+                    "Do not apply the transfer-safety matrix until the listed "
+                    "application violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_transfer_safety_application_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_transfer_safety_matrix_readout": (
+                _source_path_record(
+                    deployment_operator_transfer_safety_matrix_readout_path
+                )
+            ),
+            "deployment_operator_transfer_safety_matrix_reproducibility_audit": (
+                _source_path_record(
+                    deployment_operator_transfer_safety_matrix_reproducibility_audit_path
+                )
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 transfer-safety application audit is ready."
+                if application_ready
+                else "Lever 3 transfer-safety application audit needs repair."
+            ),
+            "result": (
+                f"{matrix_counts.get('row_safety_records_safe_to_abstain_or_route')}/"
+                f"{matrix_counts.get('operator_action_rows')} operator rows "
+                "remain safe-to-abstain/route with mechanism transfer "
+                f"allowed for {matrix_counts.get('mechanism_transfer_allowed_rows')} rows."
+            ),
+            "next_action": (
+                "Use the reproducible transfer-safety matrix only for abstain/route."
+                if application_ready
+                else "Resolve application violations before operator use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Transfer-Safety Application Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Transfer-safety application ready: "
+        f"{decision['deployment_operator_transfer_safety_application_ready']}",
+        "- Transfer-safety matrix reproducible: "
+        f"{decision['deployment_operator_transfer_safety_matrix_reproducible']}",
+        "- Mechanism transfer disallowed for all rows: "
+        f"{decision['mechanism_transfer_disallowed_for_all_rows']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Application violations: {audit['application_violations']}",
+        "",
+        "## Counts",
+        "",
+        "- Application operator rows safe-to-abstain/route: "
+        f"{counts['application_operator_rows_safe_to_abstain_or_route']}/"
+        f"{counts['application_operator_rows']}",
+        f"- Transfer-safety matrix rows: {counts['transfer_safety_matrix_rows']}",
+        "- Mechanism-transfer-allowed rows: "
+        f"{counts['mechanism_transfer_allowed_rows']}",
+        "- Route-class stage-source links hash-current: "
+        f"{counts['route_class_stage_source_links_hash_current']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Direct source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Matrix rebuild difference count: {counts['matrix_rebuild_difference_count']}",
+        "- Calibration retention: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstain or route: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "- Retained residual rows after all counteraxes: "
+        f"{counts['retained_residual_rows_after_all_counteraxes']}",
+        f"- Route class counts: {counts['route_class_counts']}",
+        "",
+        "## Application Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("application_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Operator action: {decision['operator_action']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing transfer-safety matrix and reproducibility artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+    *,
+    deployment_operator_transfer_safety_matrix_readout_path: Path,
+    deployment_operator_transfer_safety_matrix_reproducibility_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_APPLICATION_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+        deployment_operator_transfer_safety_matrix_readout_path=(
+            deployment_operator_transfer_safety_matrix_readout_path
+        ),
+        deployment_operator_transfer_safety_matrix_reproducibility_audit_path=(
+            deployment_operator_transfer_safety_matrix_reproducibility_audit_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+    *,
+    deployment_operator_transfer_safety_application_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_APPLICATION_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = _read_json(deployment_operator_transfer_safety_application_audit_path)
+    source_hash_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=audit.get("artifact_id"),
+        source_artifacts=audit.get("source_artifacts") or {},
+    )
+    source_artifacts = audit.get("source_artifacts") or {}
+    matrix_source = source_artifacts.get(
+        "deployment_operator_transfer_safety_matrix_readout"
+    ) or {}
+    matrix_repro_source = source_artifacts.get(
+        "deployment_operator_transfer_safety_matrix_reproducibility_audit"
+    ) or {}
+    matrix_path_value = matrix_source.get("path")
+    matrix_repro_path_value = matrix_repro_source.get("path")
+    rebuilt_audit: dict[str, Any] | None = None
+    rebuild_error = None
+    if (
+        matrix_path_value
+        and matrix_repro_path_value
+        and Path(matrix_path_value).exists()
+        and Path(matrix_repro_path_value).exists()
+    ):
+        try:
+            rebuilt_audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+                deployment_operator_transfer_safety_matrix_readout_path=Path(
+                    matrix_path_value
+                ),
+                deployment_operator_transfer_safety_matrix_reproducibility_audit_path=Path(
+                    matrix_repro_path_value
+                ),
+                artifact_id=str(
+                    audit.get("artifact_id")
+                    or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_APPLICATION_AUDIT_ID
+                ),
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        rebuild_error = "missing_operator_transfer_safety_application_source_artifacts"
+
+    normalized_audit = _normalize_lever3_closure_for_reproducibility(audit)
+    normalized_rebuilt = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_audit)
+        if rebuilt_audit is not None
+        else None
+    )
+    rebuild_matches = (
+        normalized_rebuilt == normalized_audit
+        if normalized_rebuilt is not None
+        else False
+    )
+    counts = audit.get("counts") or {}
+    decision = audit.get("decision") or {}
+    reproducibility_checks = {
+        "transfer_safety_application_audit_passed": (
+            audit.get("status")
+            == "fold_augmented_lever3_deployment_operator_transfer_safety_application_audit_passed"
+            and not audit.get("application_violations")
+            and bool(
+                decision.get(
+                    "deployment_operator_transfer_safety_application_ready"
+                )
+            )
+        ),
+        "transfer_safety_application_source_hashes_current": (
+            bool(source_hash_rows)
+            and all(row["source_hash_current"] for row in source_hash_rows)
+        ),
+        "transfer_safety_application_rebuild_matches_stored_after_created_utc_normalization": (
+            rebuild_matches
+        ),
+        "transfer_safety_application_metrics_stable": (
+            rebuilt_audit is not None
+            and (rebuilt_audit.get("counts") or {}).get(
+                "application_operator_rows_safe_to_abstain_or_route"
+            )
+            == counts.get("application_operator_rows_safe_to_abstain_or_route")
+            and (rebuilt_audit.get("counts") or {}).get(
+                "mechanism_transfer_allowed_rows"
+            )
+            == counts.get("mechanism_transfer_allowed_rows")
+            and (rebuilt_audit.get("counts") or {}).get("route_class_counts")
+            == counts.get("route_class_counts")
+            and (rebuilt_audit.get("counts") or {}).get(
+                "matrix_rebuild_difference_count"
+            )
+            == counts.get("matrix_rebuild_difference_count")
+        ),
+        "operating_point_metrics_stable": (
+            rebuilt_audit is not None
+            and (rebuilt_audit.get("counts") or {}).get(
+                "calibration_in_scope_retained"
+            )
+            == counts.get("calibration_in_scope_retained")
+            and (rebuilt_audit.get("counts") or {}).get(
+                "train_cal_oos_abstained_or_routed"
+            )
+            == counts.get("train_cal_oos_abstained_or_routed")
+            and (rebuilt_audit.get("counts") or {}).get(
+                "retained_residual_rows_after_all_counteraxes"
+            )
+            == counts.get("retained_residual_rows_after_all_counteraxes")
+        ),
+        "mechanism_transfer_remains_disallowed": (
+            counts.get("mechanism_transfer_allowed_rows") == 0
+            and bool(decision.get("mechanism_transfer_disallowed_for_all_rows"))
+            and not bool(decision.get("unsafe_forced_mechanism_transfer_allowed"))
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+    }
+    reproducibility_violations = sorted(
+        [
+            name
+            for name, passed in reproducibility_checks.items()
+            if not passed
+        ]
+    )
+    reproducibility_passed = not reproducibility_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_passed"
+            if reproducibility_passed
+            else "fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_needs_more_work"
+        ),
+        "scope": (
+            "Reproducibility audit for the Lever 3 operator "
+            "transfer-safety application audit. It rebuilds the application "
+            "audit from recorded matrix and matrix-reproducibility sources, "
+            "normalizes only created_utc, and checks source-hash and metric "
+            "stability."
+        ),
+        "reproducibility_checks": reproducibility_checks,
+        "reproducibility_violations": reproducibility_violations,
+        "operator_transfer_safety_application_artifact": {
+            "artifact_id": audit.get("artifact_id"),
+            "path": str(deployment_operator_transfer_safety_application_audit_path),
+            "stored_created_utc": audit.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_audit.get("created_utc")
+                if rebuilt_audit is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_audit),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt)
+                if normalized_rebuilt is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": rebuild_matches,
+            "rebuild_error": rebuild_error,
+        },
+        "source_hash_audit_rows": source_hash_rows,
+        "counts": {
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "rebuild_difference_count": int(not rebuild_matches),
+            "application_operator_rows": counts.get("application_operator_rows"),
+            "application_operator_rows_safe_to_abstain_or_route": counts.get(
+                "application_operator_rows_safe_to_abstain_or_route"
+            ),
+            "transfer_safety_matrix_rows": counts.get(
+                "transfer_safety_matrix_rows"
+            ),
+            "mechanism_transfer_allowed_rows": counts.get(
+                "mechanism_transfer_allowed_rows"
+            ),
+            "score_or_force_mechanism_label_allowed_rows": counts.get(
+                "score_or_force_mechanism_label_allowed_rows"
+            ),
+            "threshold_change_allowed_rows": counts.get(
+                "threshold_change_allowed_rows"
+            ),
+            "route_class_counts": counts.get("route_class_counts"),
+            "route_class_stage_source_links": counts.get(
+                "route_class_stage_source_links"
+            ),
+            "route_class_stage_source_links_hash_current": counts.get(
+                "route_class_stage_source_links_hash_current"
+            ),
+            "matrix_rebuild_difference_count": counts.get(
+                "matrix_rebuild_difference_count"
+            ),
+            "unsafe_action_rows": counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "rule_selection_rows": counts.get("rule_selection_rows"),
+            "calibration_in_scope_retained": counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "reproducibility_violation_total": len(reproducibility_violations),
+        },
+        "decision": {
+            "deployment_operator_transfer_safety_application_reproducible": (
+                reproducibility_passed
+            ),
+            "deployment_operator_transfer_safety_application_ready": (
+                reproducibility_passed
+                and bool(
+                    decision.get(
+                        "deployment_operator_transfer_safety_application_ready"
+                    )
+                )
+            ),
+            "safe_abstention_route_remains_current": reproducibility_passed,
+            "mechanism_transfer_disallowed_for_all_rows": reproducibility_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the reproducible transfer-safety application audit only "
+                "for abstain/route operator decisions; keep mechanism "
+                "transfer and fixed-threshold scoring closure fail-closed "
+                "pending exact P07658 evidence."
+                if reproducibility_passed
+                else (
+                    "Do not rely on the transfer-safety application audit "
+                    "until the listed reproducibility violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_transfer_safety_application_reproducibility_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_transfer_safety_application_audit": (
+                _source_path_record(
+                    deployment_operator_transfer_safety_application_audit_path
+                )
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 transfer-safety application audit is reproducible."
+                if reproducibility_passed
+                else "Lever 3 transfer-safety application reproducibility needs repair."
+            ),
+            "result": (
+                "Transfer-safety application audit rebuilds after created_utc "
+                f"normalization with {len(reproducibility_violations)} "
+                "reproducibility violations."
+            ),
+            "next_action": (
+                "Use the reproducible application audit only for abstain/route decisions."
+                if reproducibility_passed
+                else "Resolve reproducibility violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    application_artifact = audit["operator_transfer_safety_application_artifact"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Transfer-Safety Application Reproducibility Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Transfer-safety application reproducible: "
+        f"{decision['deployment_operator_transfer_safety_application_reproducible']}",
+        "- Transfer-safety application ready: "
+        f"{decision['deployment_operator_transfer_safety_application_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Reproducibility violations: {audit['reproducibility_violations']}",
+        "",
+        "## Rebuild",
+        "",
+        "- Normalized rebuild matches stored: "
+        f"{application_artifact['normalized_rebuild_matches_stored']}",
+        "- Stored normalized SHA-256: "
+        f"{application_artifact['stored_normalized_sha256']}",
+        "- Rebuilt normalized SHA-256: "
+        f"{application_artifact['rebuilt_normalized_sha256']}",
+        f"- Rebuild error: {application_artifact['rebuild_error']}",
+        "",
+        "## Counts",
+        "",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Rebuild difference count: {counts['rebuild_difference_count']}",
+        "- Application operator rows safe-to-abstain/route: "
+        f"{counts['application_operator_rows_safe_to_abstain_or_route']}/"
+        f"{counts['application_operator_rows']}",
+        "- Mechanism-transfer-allowed rows: "
+        f"{counts['mechanism_transfer_allowed_rows']}",
+        f"- Matrix rebuild difference count: {counts['matrix_rebuild_difference_count']}",
+        f"- Route class counts: {counts['route_class_counts']}",
+        "",
+        "## Reproducibility Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("reproducibility_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing transfer-safety application audit and its recorded sources only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+    *,
+    deployment_operator_transfer_safety_application_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_TRANSFER_SAFETY_APPLICATION_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+        deployment_operator_transfer_safety_application_audit_path=(
+            deployment_operator_transfer_safety_application_audit_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_report(
                 audit
             ),
             encoding="utf-8",

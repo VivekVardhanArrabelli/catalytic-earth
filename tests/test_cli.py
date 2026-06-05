@@ -1221,6 +1221,122 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_deployment_operator_transfer_safety_matrix_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_matrix_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_readout",
+            args.deployment_operator_route_class_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_readout",
+            args.deployment_operator_route_class_provenance_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_reproducibility_audit",
+            args.deployment_operator_route_class_provenance_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_readout",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_matrix_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_readout",
+            args.deployment_operator_transfer_safety_matrix_readout,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_application_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_application_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_readout",
+            args.deployment_operator_transfer_safety_matrix_readout,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_matrix_reproducibility_audit",
+            args.deployment_operator_transfer_safety_matrix_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_application_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_transfer_safety_application_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "transfer_safety_application_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_application_audit",
+            args.deployment_operator_transfer_safety_application_audit,
+        )
+        self.assertIn(
+            "deployment_operator_transfer_safety_application_reproducibility_audit",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

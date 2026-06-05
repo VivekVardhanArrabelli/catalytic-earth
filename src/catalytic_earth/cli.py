@@ -187,6 +187,10 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit,
     write_fold_augmented_lever3_deployment_operator_route_class_provenance_readout,
     write_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit,
+    write_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -14489,6 +14493,136 @@ def cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_r
         f"{counts.get('source_records_hash_current')}/"
         f"{counts.get('source_records_checked')}, reproducible: "
         f"{decision.get('deployment_operator_route_class_provenance_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout(
+            deployment_operator_route_class_readout_path=Path(
+                args.deployment_operator_route_class_readout
+            ),
+            deployment_operator_route_class_provenance_readout_path=Path(
+                args.deployment_operator_route_class_provenance_readout
+            ),
+            deployment_operator_route_class_provenance_reproducibility_audit_path=Path(
+                args.deployment_operator_route_class_provenance_reproducibility_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "matrix readout to "
+        f"{args.out} (safe rows: "
+        f"{counts.get('row_safety_records_safe_to_abstain_or_route')}/"
+        f"{counts.get('row_safety_records')}, route classes: "
+        f"{counts.get('route_classes_with_rows')}, transfer allowed rows: "
+        f"{counts.get('mechanism_transfer_allowed_rows')}, ready: "
+        f"{decision.get('deployment_operator_transfer_safety_matrix_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit(
+            deployment_operator_transfer_safety_matrix_readout_path=Path(
+                args.deployment_operator_transfer_safety_matrix_readout
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "matrix reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_transfer_safety_matrix_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit(
+            deployment_operator_transfer_safety_matrix_readout_path=Path(
+                args.deployment_operator_transfer_safety_matrix_readout
+            ),
+            deployment_operator_transfer_safety_matrix_reproducibility_audit_path=Path(
+                args.deployment_operator_transfer_safety_matrix_reproducibility_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "application audit to "
+        f"{args.out} (safe rows: "
+        f"{counts.get('application_operator_rows_safe_to_abstain_or_route')}/"
+        f"{counts.get('application_operator_rows')}, rebuild differences: "
+        f"{counts.get('matrix_rebuild_difference_count')}, ready: "
+        f"{decision.get('deployment_operator_transfer_safety_application_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit(
+            deployment_operator_transfer_safety_application_audit_path=Path(
+                args.deployment_operator_transfer_safety_application_audit
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator transfer-safety "
+        "application reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_transfer_safety_application_reproducible')})"
     )
     return 0
 
@@ -34838,6 +34972,199 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_deployment_operator_route_class_provenance_reproducibility_audit.set_defaults(
         func=cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit
+    )
+
+    lever3_deployment_operator_transfer_safety_matrix_readout = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-readout"
+            ),
+            help=(
+                "convert current Lever 3 operator route classes into a "
+                "deployment transfer-safety matrix"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--deployment-operator-route-class-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--deployment-operator-route-class-provenance-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--deployment-operator-route-class-provenance-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_readout
+        )
+    )
+
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-matrix-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 operator transfer-safety "
+                "matrix from its recorded route-class/provenance sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--deployment-operator-transfer-safety-matrix-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_matrix_reproducibility_audit
+        )
+    )
+
+    lever3_deployment_operator_transfer_safety_application_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-audit"
+            ),
+            help=(
+                "verify the reproducible Lever 3 operator transfer-safety "
+                "matrix is ready for abstain/route-only application"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--deployment-operator-transfer-safety-matrix-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--deployment-operator-transfer-safety-matrix-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_matrix_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_audit
+        )
+    )
+
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "transfer-safety-application-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 transfer-safety application "
+                "audit from its recorded matrix sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--deployment-operator-transfer-safety-application-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "transfer_safety_application_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_transfer_safety_application_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_transfer_safety_application_reproducibility_audit
+        )
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(
