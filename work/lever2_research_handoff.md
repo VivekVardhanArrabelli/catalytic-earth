@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-05T06:33:08Z`
 - STARTED_AT_LOCAL: `2026-06-05T01:33:08-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T07:25:03Z`
-- ENDED_AT_LOCAL: `2026-06-05T02:25:03-0500 CDT`
-- ELAPSED_MINUTES: `51.92`
+- ENDED_AT_UTC: `2026-06-05T07:25:38Z`
+- ENDED_AT_LOCAL: `2026-06-05T02:25:38-0500 CDT`
+- ELAPSED_MINUTES: `52.50`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-05T06:33:08Z`
 - STARTED_LOCAL: `2026-06-05T01:33:08-0500 CDT`
-- ENDED_AT: `2026-06-05T07:25:03Z`
-- ENDED_LOCAL: `2026-06-05T02:25:03-0500 CDT`
-- ELAPSED_MINUTES: `51.92`
+- ENDED_AT: `2026-06-05T07:25:38Z`
+- ENDED_LOCAL: `2026-06-05T02:25:38-0500 CDT`
+- ELAPSED_MINUTES: `52.50`
 
 #### Intent
 
@@ -177,7 +177,10 @@ preserving the current 34-row primary retention gate.
   `708f76dae5c00ed52f0787ac8036e60bf4a2edac` is pushed to
   `origin/lever-2-research-track` and verified equal to local `HEAD` before
   this handoff-only status commit.
-- Pending final handoff sync commit/push verification.
+- Handoff status commit `5a984c3d0a0dde930820f989c78ad8a7d88b42f5` was pushed
+  to `origin/lever-2-research-track`. Fetch verification after that push showed
+  local `HEAD == origin/lever-2-research-track` at the same hash before this
+  final ledger edit.
 
 #### Exact next action
 
