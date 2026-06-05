@@ -747,6 +747,82 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_retained_pocket_chemistry_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-pocket-chemistry-"
+                "counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_"
+                "counteraxis_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.retained_channel_margin_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_pairwise_descriptor_counteraxis_readout",
+            args.retained_pairwise_descriptor_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_descriptor_rescue_readout",
+            args.retained_descriptor_rescue_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertEqual(args.max_all_train_cal_oos_rows_fired, 8)
+        self.assertIn(
+            "retained_pocket_chemistry_counteraxis_readout",
+            args.report,
+        )
+
+    def test_lever3_retained_geometry_mismatch_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-geometry-mismatch-"
+                "counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_"
+                "counteraxis_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "retained_pocket_chemistry_counteraxis_readout",
+            args.retained_pocket_chemistry_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.retained_channel_margin_counteraxis_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertEqual(args.min_design_same_family_rows_fired, 2)
+        self.assertEqual(args.min_all_train_cal_oos_rows_fired, 5)
+        self.assertEqual(args.max_all_train_cal_oos_rows_fired, 8)
+        self.assertIn(
+            "retained_geometry_mismatch_counteraxis_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

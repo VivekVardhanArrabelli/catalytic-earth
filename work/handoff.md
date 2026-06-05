@@ -3,16 +3,15 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T07:02:50Z`
-- STARTED_AT_LOCAL: `2026-06-05T02:02:50-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T07:52:56Z`
-- ENDED_AT_LOCAL: `2026-06-05T02:52:56-0500 CDT`
-- ELAPSED_MINUTES: `50.10`
-- Status: Run 50 wrap completed. Canonical
-  `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-05T07:02:50Z`. Lever 3 work is restricted to deployment-valid
-  fold/geometry novelty-gate readouts. Commit, push, sync verification, and
-  lock release are the remaining mechanical steps after this handoff update.
+- STARTED_AT_UTC: `2026-06-05T08:01:49Z`
+- STARTED_AT_LOCAL: `2026-06-05T03:01:55-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T08:52:07Z`
+- ENDED_AT_LOCAL: `2026-06-05T03:52:07-0500 CDT`
+- ELAPSED_MINUTES: `50.30`
+- Status: Run 51 validation complete; commit/push/sync verification follows
+  this handoff write. Canonical `.git/catalytic-earth-automation.lock` was
+  acquired before substantive work at `2026-06-05T08:01:49Z`. Lever 3 work was
+  restricted to deployment-valid fold/geometry novelty-gate readouts.
 
 ## Mission
 
@@ -63,6 +62,131 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 51
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T08:01:49Z`
+- STARTED_LOCAL: `2026-06-05T03:01:55-0500 CDT`
+- ENDED_AT: `2026-06-05T08:52:07Z`
+- ENDED_LOCAL: `2026-06-05T03:52:07-0500 CDT`
+- ELAPSED_MINUTES: `50.30`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T08:01:49Z`.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-retained-pocket-chemistry-counteraxis-readout`
+  with builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.md`.
+- Added
+  `build-fold-augmented-lever3-retained-geometry-mismatch-counteraxis-readout`
+  with builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.md`.
+- Added synthetic builder coverage, parser-default coverage, artifact-count
+  regression coverage, and source-artifact hash coverage for the new readouts.
+
+#### Measured results
+
+- Pocket-chemistry counteraxis selected
+  `chemistry_count.sulfur_count >= 9.0` from train/cal same-family OOS design
+  rows, with zero retained-calibration fires and an 8-row train/cal OOS breadth
+  cap. It newly routes `m_csa:468` and leaves `m_csa:308`.
+- Pocket-chemistry operating point keeps calibration retention at 31/34 and
+  keeps combined train/cal OOS abstention at 165/204 because the selected
+  train/cal OOS rows were already covered by prior counteraxes.
+- A bounded residual probe found no eligible single pocket-chemistry rule for
+  `m_csa:308`, so the run continued to a channel-geometry mismatch family.
+- Geometry-mismatch counteraxis selected
+  `geometry_top1_score <= 0.582200 AND combined_min_geometry_fold >= 0.578200`
+  from train/cal same-family OOS design rows, with zero retained-calibration
+  fires, at least 5 and at most 8 train/cal OOS rows fired, and no application
+  rows in selection.
+- The geometry-mismatch rule fires design rows `m_csa:104` and `m_csa:269`,
+  train/cal OOS rows `m_csa:104`, `m_csa:21`, `m_csa:308`, `m_csa:272`, and
+  `m_csa:269`, and newly routes the remaining retained row `m_csa:308`.
+- Retained residual rows after descriptor, channel-margin/fold, pocket
+  chemistry, and geometry-mismatch counteraxes are now 0. Calibration retention
+  remains 31/34. Combined train/cal OOS abstention rises from 165/204 to
+  167/204. The fixed threshold remains `0.44155`; fixed-threshold scoring
+  closure remains false pending the separate exact P07658 coordinate/provenance
+  route.
+- No blocker packet was produced.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training, rule selection, or threshold
+  tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- Both readouts compose existing deployment-valid source-free artifacts only;
+  they perform no provider calls, coordinate downloads, coordinate staging,
+  scoring, imports, or production-threshold changes.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1436 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- New focused tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_retained_geometry_mismatch_counteraxis_excludes_application_rows tests/test_cli.py::CliTests::test_lever3_retained_geometry_mismatch_counteraxis_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  4 passed, 31 subtests passed.
+- Affected suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  615 passed, 196 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1487 passed, 215 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1442 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3563 JSON files and 27 JSONL files parsed with
+  0 errors.
+- Normalized reproducibility check passed for the new geometry-mismatch CLI
+  artifact after normalizing `created_utc`.
+- Disk check remained above the guardrail: 20 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md` from the progress CLI.
+- Commit, push, `HEAD == origin/main` verification, and lock release remain the
+  final mechanical wrap steps after this handoff update.
+
+#### Exact next Lever 3 action
+
+Treat `m_csa:468` as newly routed by pocket sulfur-count chemistry and
+`m_csa:308` as newly routed by the geometry-mismatch counteraxis. The current
+Lever 3 retained-transfer operating point has zero residual retained rows,
+31/34 retained calibration in-scope rows, and 167/204 train/cal OOS rows
+abstained/routed using train/cal-selected source-free evidence only. Do not
+force mechanism labels, do not change threshold `0.44155`, and keep
+fixed-threshold scoring closure fail-closed until the separate exact P07658
+coordinate/provenance route exists.
 
 ### 2026-06-05 Lever 3 Forward Push Run 50
 

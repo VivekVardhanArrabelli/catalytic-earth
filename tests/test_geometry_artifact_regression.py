@@ -9575,6 +9575,248 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_retained_pocket_chemistry_"
+                "counteraxis_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_pocket_chemistry_"
+                "counteraxis_readout_partial_application"
+            ),
+        )
+        self.assertFalse(
+            readout["selection_policy"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertEqual(
+            readout["selection_policy"]["all_train_cal_oos_breadth_cap_rows"],
+            8,
+        )
+        self.assertEqual(
+            readout["selected_pocket_chemistry_counteraxis_rule"][
+                "feature_rule"
+            ],
+            "chemistry_count.sulfur_count >= 9.0",
+        )
+        self.assertEqual(
+            readout["selected_pocket_chemistry_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:422", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["selected_pocket_chemistry_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:468"],
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_calibration_in_scope_fired"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_design_same_family_rows_fired"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_all_train_cal_oos_rows_fired"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "new_pocket_chemistry_application_rows_fired_after_prior_counteraxes"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis"
+            ],
+            ["m_csa:468"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_remaining_after_pocket_chemistry_counteraxis"
+            ],
+            ["m_csa:308"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_pocket_chemistry_counteraxis"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "candidate_pocket_chemistry_rules_hitting_remaining_retained_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "remaining_retained_rows_with_any_candidate_pocket_chemistry_rule"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "combined_all_train_cal_oos_abstained_after_pocket_chemistry"
+            ],
+            165,
+        )
+        self.assertEqual(
+            readout["operating_point_after_pocket_chemistry"][
+                "calibration_in_scope_retained_after_pocket_chemistry"
+            ],
+            31,
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pocket_chemistry_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_retained_geometry_mismatch_"
+                "counteraxis_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_geometry_mismatch_"
+                "counteraxis_readout_closed"
+            ),
+        )
+        self.assertFalse(
+            readout["selection_policy"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertEqual(
+            readout["selection_policy"]["min_all_train_cal_oos_rows_fired"],
+            5,
+        )
+        self.assertEqual(
+            readout["selection_policy"]["max_all_train_cal_oos_rows_fired"],
+            8,
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"][
+                "feature_rule"
+            ],
+            (
+                "geometry_top1_score <= 0.582200 AND "
+                "combined_min_geometry_fold >= 0.578200"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:104", "m_csa:269"],
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"][
+                "all_train_cal_oos_entry_ids_fired"
+            ],
+            ["m_csa:104", "m_csa:21", "m_csa:308", "m_csa:272", "m_csa:269"],
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:308"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_rule_calibration_in_scope_retained_fired"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_design_same_family_rows_fired"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_all_train_cal_oos_rows_fired"],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "new_geometry_mismatch_application_rows_fired_after_pocket_chemistry"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis"
+            ],
+            ["m_csa:308"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_remaining_after_geometry_mismatch_counteraxis"
+            ],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_geometry_mismatch_counteraxis"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "combined_all_train_cal_oos_abstained_after_geometry_mismatch"
+            ],
+            167,
+        )
+        self.assertEqual(
+            readout["operating_point_after_geometry_mismatch"][
+                "calibration_in_scope_retained_after_geometry_mismatch"
+            ],
+            31,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "geometry_mismatch_counteraxis_ready_for_application_now"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -9703,6 +9945,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_retained_channel_margin_"
                 "counteraxis_readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_retained_pocket_chemistry_"
+                "counteraxis_readout_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_retained_geometry_mismatch_"
+                "counteraxis_readout_current702_20260605.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

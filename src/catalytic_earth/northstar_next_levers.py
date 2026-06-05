@@ -369,6 +369,12 @@ FOLD_AUGMENTED_LEVER3_RETAINED_PAIRWISE_DESCRIPTOR_COUNTERAXIS_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_RETAINED_CHANNEL_MARGIN_COUNTERAXIS_READOUT_ID = (
     "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_RETAINED_POCKET_CHEMISTRY_COUNTERAXIS_READOUT_ID = (
+    "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_RETAINED_GEOMETRY_MISMATCH_COUNTERAXIS_READOUT_ID = (
+    "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -49101,6 +49107,1715 @@ def write_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+LEVER3_POCKET_CHEMISTRY_COUNT_FEATURES: dict[str, tuple[str, ...]] = {
+    "acidic_count": ("ASP", "GLU"),
+    "aromatic_count": ("PHE", "TRP", "TYR"),
+    "basic_count": ("ARG", "HIS", "LYS"),
+    "charged_count": ("ARG", "ASP", "GLU", "HIS", "LYS"),
+    "sulfur_count": ("CYS", "MET"),
+}
+
+
+def _lever3_pocket_chemistry_feature_value(
+    row: dict[str, Any],
+    *,
+    feature_kind: str,
+    feature_name: str,
+) -> float | None:
+    if feature_kind == "descriptor":
+        return _lever3_pocket_feature_value(
+            row,
+            feature_kind="descriptor",
+            feature_name=feature_name,
+        )
+    if feature_kind != "chemistry_count":
+        return None
+    residue_counts = (row.get("pocket_context") or {}).get("residue_code_counts") or {}
+    residue_codes = LEVER3_POCKET_CHEMISTRY_COUNT_FEATURES.get(feature_name)
+    if not residue_codes:
+        return None
+    total = 0.0
+    for residue_code in residue_codes:
+        value = _parse_optional_float(residue_counts.get(residue_code, 0))
+        if value is not None:
+            total += value
+    return total
+
+
+def _lever3_pocket_chemistry_rule_fires(
+    row: dict[str, Any],
+    *,
+    feature_kind: str,
+    feature_name: str,
+    operator: str,
+    threshold: float,
+) -> bool:
+    value = _lever3_pocket_chemistry_feature_value(
+        row,
+        feature_kind=feature_kind,
+        feature_name=feature_name,
+    )
+    if value is None:
+        return False
+    if operator == "<=":
+        return value <= threshold
+    if operator == ">=":
+        return value >= threshold
+    return False
+
+
+def _lever3_pocket_chemistry_rule_record(
+    *,
+    feature_kind: str,
+    feature_name: str,
+    operator: str,
+    threshold: float,
+    calibration_rows: list[dict[str, Any]],
+    design_rows: list[dict[str, Any]],
+    all_oos_rows: list[dict[str, Any]],
+    application_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    rounded_threshold = round(float(threshold), 6)
+
+    def fires(row: dict[str, Any]) -> bool:
+        return _lever3_pocket_chemistry_rule_fires(
+            row,
+            feature_kind=feature_kind,
+            feature_name=feature_name,
+            operator=operator,
+            threshold=rounded_threshold,
+        )
+
+    calibration_fired = [
+        str(row["entry_id"]) for row in calibration_rows if fires(row)
+    ]
+    design_fired = [str(row["entry_id"]) for row in design_rows if fires(row)]
+    all_oos_fired = [str(row["entry_id"]) for row in all_oos_rows if fires(row)]
+    application_fired = [
+        str(row["entry_id"]) for row in application_rows if fires(row)
+    ]
+    return {
+        "rule_id": (
+            f"{feature_kind}:{feature_name}:{operator}:{rounded_threshold}"
+        ),
+        "feature_kind": feature_kind,
+        "feature_name": feature_name,
+        "operator": operator,
+        "threshold": rounded_threshold,
+        "feature_rule": (
+            f"{feature_kind}.{feature_name} {operator} {rounded_threshold}"
+        ),
+        "calibration_in_scope_entry_ids_fired": calibration_fired,
+        "calibration_in_scope_fired": len(calibration_fired),
+        "design_same_family_entry_ids_fired": design_fired,
+        "design_same_family_rows_fired": len(design_fired),
+        "all_train_cal_oos_entry_ids_fired": all_oos_fired,
+        "all_train_cal_oos_rows_fired": len(all_oos_fired),
+        "application_entry_ids_fired_after_selection": application_fired,
+        "application_rows_fired_after_selection": len(application_fired),
+        "retention_floor_met": len(calibration_fired) == 0,
+    }
+
+
+def _lever3_oos_ids_from_rule(rule: dict[str, Any] | None) -> set[str]:
+    if not isinstance(rule, dict):
+        return set()
+    return {
+        str(entry_id)
+        for entry_id in rule.get("all_train_cal_oos_entry_ids_fired", []) or []
+    }
+
+
+def build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout(
+    *,
+    retained_channel_margin_counteraxis_readout_path: Path,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    descriptor_present_counteraxis_preflight_path: Path,
+    retained_descriptor_rescue_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    max_all_train_cal_oos_rows_fired: int = 8,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_POCKET_CHEMISTRY_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    retained_channel = _read_json(retained_channel_margin_counteraxis_readout_path)
+    pairwise = _read_json(retained_pairwise_descriptor_counteraxis_readout_path)
+    cofactor = _read_json(cofactor_context_counteraxis_readout_path)
+    preflight = _read_json(descriptor_present_counteraxis_preflight_path)
+    rescue = _read_json(retained_descriptor_rescue_readout_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    atlas = _read_json(predicted_geometry_atlas_retrieval_path)
+    threshold_contract = _read_json(threshold_contract_path)
+    channel_veto = _read_json(channel_veto_readout_path)
+
+    feature_contract = preflight.get("allowed_source_free_feature_contract") or {}
+    descriptor_fields = [
+        str(field) for field in feature_contract.get("descriptor_fields") or []
+    ]
+    chemistry_count_fields = sorted(LEVER3_POCKET_CHEMISTRY_COUNT_FEATURES)
+    surface_rows = [
+        row
+        for row in (
+            (surface.get("predicted_geometry_candidate_retrieval") or {}).get(
+                "results"
+            )
+            or []
+        )
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and (row.get("pocket_context") or {}).get("descriptors")
+    ]
+    surface_by_entry = {str(row["entry_id"]): row for row in surface_rows}
+    atlas_rows = [
+        row
+        for row in atlas.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    atlas_by_entry = {str(row["entry_id"]): row for row in atlas_rows}
+    calibration_entry_ids = [
+        str(entry_id)
+        for entry_id in (
+            (threshold_contract.get("train_cal_partition") or {}).get(
+                "calibration_entry_ids"
+            )
+            or []
+        )
+    ]
+    calibration_rows = [
+        atlas_by_entry[entry_id]
+        for entry_id in calibration_entry_ids
+        if entry_id in atlas_by_entry
+        and (atlas_by_entry[entry_id].get("pocket_context") or {}).get(
+            "descriptors"
+        )
+    ]
+    calibration_rows_missing_descriptor = [
+        entry_id
+        for entry_id in calibration_entry_ids
+        if entry_id not in atlas_by_entry
+        or not (atlas_by_entry[entry_id].get("pocket_context") or {}).get(
+            "descriptors"
+        )
+    ]
+    same_family_proxy_ids = {
+        str(row["entry_id"])
+        for row in (
+            (channel_veto.get("proxy_axis_row_diagnostics") or {}).get(
+                "same_family_structural_proxy_rows"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    retained_channel_actions = [
+        row
+        for row in retained_channel.get("application_row_actions", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    application_ids = {str(row["entry_id"]) for row in retained_channel_actions}
+    prior_retained_ids = {
+        str(entry_id)
+        for entry_id in (
+            (retained_channel.get("decision") or {}).get(
+                "retained_rows_remaining_after_all_counteraxes"
+            )
+            or []
+        )
+    }
+
+    application_rows_by_entry: dict[str, dict[str, Any]] = {}
+    application_row_sources: dict[str, str] = {}
+    for row in preflight.get("descriptor_present_rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        application_rows_by_entry[entry_id] = surface_by_entry.get(
+            entry_id,
+            _lever3_descriptor_synthetic_application_row(row),
+        )
+        application_row_sources[entry_id] = "descriptor_present_preflight"
+    for row in rescue.get("recovered_descriptor_rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        application_rows_by_entry[entry_id] = surface_by_entry.get(
+            entry_id,
+            _lever3_descriptor_synthetic_application_row(row),
+        )
+        application_row_sources[entry_id] = "retained_descriptor_rescue"
+    application_rows = [
+        application_rows_by_entry[entry_id]
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+        if entry_id in application_rows_by_entry
+    ]
+    application_rows_missing_descriptor = [
+        entry_id
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+        if entry_id not in application_rows_by_entry
+    ]
+    design_ids = same_family_proxy_ids - application_ids
+    design_rows = [
+        surface_by_entry[entry_id]
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id in surface_by_entry
+    ]
+    design_rows_missing_descriptor = [
+        entry_id
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id not in surface_by_entry
+    ]
+
+    feature_specs = [
+        ("chemistry_count", feature_name)
+        for feature_name in chemistry_count_fields
+    ] + [("descriptor", feature_name) for feature_name in descriptor_fields]
+    candidate_rules: list[dict[str, Any]] = []
+    rules_evaluated = 0
+    for feature_kind, feature_name in feature_specs:
+        thresholds = sorted(
+            {
+                value
+                for value in (
+                    _lever3_pocket_chemistry_feature_value(
+                        row,
+                        feature_kind=feature_kind,
+                        feature_name=feature_name,
+                    )
+                    for row in design_rows
+                )
+                if value is not None
+            }
+        )
+        for threshold in thresholds:
+            for operator in ("<=", ">="):
+                rules_evaluated += 1
+                rule = _lever3_pocket_chemistry_rule_record(
+                    feature_kind=feature_kind,
+                    feature_name=feature_name,
+                    operator=operator,
+                    threshold=threshold,
+                    calibration_rows=calibration_rows,
+                    design_rows=design_rows,
+                    all_oos_rows=surface_rows,
+                    application_rows=application_rows,
+                )
+                if (
+                    rule["calibration_in_scope_fired"] == 0
+                    and rule["design_same_family_rows_fired"] > 0
+                    and rule["all_train_cal_oos_rows_fired"]
+                    <= max_all_train_cal_oos_rows_fired
+                ):
+                    candidate_rules.append(rule)
+    candidate_rules.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["feature_kind"]),
+            str(rule["feature_name"]),
+            str(rule["operator"]),
+            float(rule["threshold"]),
+        )
+    )
+    selected_rule = candidate_rules[0] if candidate_rules else None
+    selected_application_ids = (
+        set(selected_rule["application_entry_ids_fired_after_selection"])
+        if selected_rule
+        else set()
+    )
+    new_pocket_chemistry_application_ids = selected_application_ids & prior_retained_ids
+    retained_after_pocket_chemistry_ids = sorted(
+        prior_retained_ids - new_pocket_chemistry_application_ids,
+        key=_entry_id_sort_key,
+    )
+    remaining_retained_ids = set(retained_after_pocket_chemistry_ids)
+    remaining_retained_hit_rules = [
+        rule
+        for rule in candidate_rules
+        if remaining_retained_ids
+        & set(rule.get("application_entry_ids_fired_after_selection") or [])
+    ]
+    remaining_retained_hit_rules.sort(
+        key=lambda rule: (
+            -len(
+                remaining_retained_ids
+                & set(rule.get("application_entry_ids_fired_after_selection") or [])
+            ),
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+    remaining_retained_hit_ids: set[str] = set()
+    for rule in remaining_retained_hit_rules:
+        remaining_retained_hit_ids.update(
+            remaining_retained_ids
+            & set(rule.get("application_entry_ids_fired_after_selection") or [])
+        )
+
+    pairwise_prior_rule = pairwise.get("prior_descriptor_counteraxis_rule") or {}
+    pairwise_selected_rule = pairwise.get("selected_pairwise_counteraxis_rule") or {}
+    accepted_oos_ids = {
+        str(entry_id)
+        for entry_id in (
+            (
+                cofactor.get("bandpass_scout_operating_point") or {}
+            ).get("all_train_cal_oos_entry_ids_abstained")
+            or []
+        )
+    }
+    previous_oos_ids = set(accepted_oos_ids)
+    previous_oos_ids.update(_lever3_oos_ids_from_rule(pairwise_prior_rule))
+    previous_oos_ids.update(_lever3_oos_ids_from_rule(pairwise_selected_rule))
+    previous_oos_ids.update(
+        _lever3_oos_ids_from_rule(
+            retained_channel.get("selected_channel_margin_counteraxis_rule")
+        )
+    )
+    previous_oos_ids.update(
+        _lever3_oos_ids_from_rule(
+            retained_channel.get("selected_fold_tm_bandpass_counteraxis_rule")
+        )
+    )
+    previous_oos_ids.update(
+        _lever3_oos_ids_from_rule(
+            retained_channel.get("selected_fold_cofactor_pressure_counteraxis_rule")
+        )
+    )
+    pocket_chemistry_oos_ids = _lever3_oos_ids_from_rule(selected_rule)
+    new_pocket_chemistry_oos_ids = pocket_chemistry_oos_ids - previous_oos_ids
+    combined_after_pocket_chemistry_oos_ids = (
+        previous_oos_ids | pocket_chemistry_oos_ids
+    )
+
+    retained_channel_action_by_entry = {
+        str(row["entry_id"]): row for row in retained_channel_actions
+    }
+    application_row_actions = []
+    for entry_id in sorted(application_ids, key=_entry_id_sort_key):
+        prior_action = retained_channel_action_by_entry.get(entry_id, {})
+        source_row = application_rows_by_entry.get(entry_id, {})
+        prior_retained = entry_id in prior_retained_ids
+        rule_fires = entry_id in selected_application_ids
+        new_fire = entry_id in new_pocket_chemistry_application_ids
+        selected_feature_value = None
+        if selected_rule and source_row:
+            selected_feature_value = _lever3_pocket_chemistry_feature_value(
+                source_row,
+                feature_kind=str(selected_rule.get("feature_kind") or ""),
+                feature_name=str(selected_rule.get("feature_name") or ""),
+            )
+        if not prior_retained:
+            action_delta = "already_abstain_or_route_novel_oos_by_prior_counteraxis"
+        elif new_fire:
+            action_delta = "abstain_or_route_novel_oos_by_pocket_chemistry"
+        else:
+            action_delta = "retain_at_fixed_operating_point_not_scoring_closure"
+        application_row_actions.append(
+            {
+                "entry_id": entry_id,
+                "accession": prior_action.get("accession")
+                or source_row.get("accession"),
+                "descriptor_source": application_row_sources.get(entry_id),
+                "prior_action_delta": prior_action.get("deployment_action_delta"),
+                "retained_after_prior_counteraxes": prior_retained,
+                "selected_pocket_chemistry_counteraxis_fires_after_selection": (
+                    rule_fires
+                ),
+                "new_abstention_from_pocket_chemistry_counteraxis": new_fire,
+                "selected_feature_value": (
+                    round(float(selected_feature_value), 6)
+                    if selected_feature_value is not None
+                    else None
+                ),
+                "deployment_action_delta": action_delta,
+                "used_for_rule_selection": False,
+            }
+        )
+
+    selected_ready = bool(new_pocket_chemistry_application_ids)
+    status = (
+        "fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_closed"
+        if selected_ready and not retained_after_pocket_chemistry_ids
+        else (
+            "fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_partial_application"
+            if selected_ready
+            else "fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_no_new_application"
+        )
+    )
+    current_operating = retained_channel.get("operating_point_after_all_counteraxes") or {}
+    all_train_cal_oos_full_channel_rows = int(
+        current_operating.get("all_train_cal_oos_full_channel_rows")
+        or len(surface.get("candidate_row_scores", []) or [])
+        or 0
+    )
+    calibration_retained = int(
+        current_operating.get("calibration_in_scope_retained_after_counteraxes")
+        or 0
+    )
+    calibration_rows_total = int(
+        current_operating.get("calibration_in_scope_rows") or 0
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured retained pocket-chemistry counteraxis readout. "
+            "It derives source-free active-site chemistry class counts from "
+            "frozen pocket residue-code counts, combines them with existing "
+            "scalar pocket descriptors, selects one threshold rule on "
+            "train/cal same-family OOS design rows under a zero-calibration-fire "
+            "guard and an all-train/cal-OOS breadth cap, then applies the rule "
+            "to retained application rows only after selection. It changes no "
+            "thresholds, scores no rows, stages no coordinates, and uses no "
+            "heldout rows for selection or tuning."
+        ),
+        "selection_policy": {
+            "feature_source": (
+                "source-free predicted-pocket residue-code counts collapsed "
+                "into chemistry class counts plus frozen scalar pocket descriptors"
+            ),
+            "rule_family": (
+                "single_threshold_rule_over_pocket_chemistry_class_counts_or_"
+                "scalar_descriptors"
+            ),
+            "chemistry_count_features": chemistry_count_fields,
+            "descriptor_features": descriptor_fields,
+            "selection_rows": (
+                "train/cal same-family structural proxy OOS rows with pocket "
+                "descriptors, excluding every retained application row"
+            ),
+            "application_rows_excluded_from_selection": sorted(
+                application_ids, key=_entry_id_sort_key
+            ),
+            "calibration_guard": (
+                "candidate rule must fire zero retained calibration in-scope "
+                "rows with descriptor values"
+            ),
+            "all_train_cal_oos_breadth_cap_rows": max_all_train_cal_oos_rows_fired,
+            "selection_objective": (
+                "maximize design same-family OOS rows fired, then minimize "
+                "descriptor-covered train/cal OOS rows fired, then deterministic "
+                "feature/operator/threshold order"
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "threshold_grid_source": (
+                "unique train/cal design-row chemistry count and descriptor values"
+            ),
+        },
+        "selected_pocket_chemistry_counteraxis_rule": selected_rule,
+        "top_candidate_pocket_chemistry_rules": candidate_rules[:10],
+        "pocket_chemistry_family_residual_pressure": {
+            "feature_family": (
+                "source-free chemistry class counts plus frozen scalar pocket "
+                "descriptors"
+            ),
+            "all_train_cal_oos_breadth_cap_rows": max_all_train_cal_oos_rows_fired,
+            "eligible_single_rules_within_breadth_cap": len(candidate_rules),
+            "remaining_retained_hit_rules": [
+                {
+                    "feature_rule": rule["feature_rule"],
+                    "design_same_family_rows_fired": rule[
+                        "design_same_family_rows_fired"
+                    ],
+                    "all_train_cal_oos_rows_fired": rule[
+                        "all_train_cal_oos_rows_fired"
+                    ],
+                    "remaining_retained_entry_ids_fired": sorted(
+                        remaining_retained_ids
+                        & set(
+                            rule.get(
+                                "application_entry_ids_fired_after_selection"
+                            )
+                            or []
+                        ),
+                        key=_entry_id_sort_key,
+                    ),
+                }
+                for rule in remaining_retained_hit_rules[:10]
+            ],
+        },
+        "application_row_actions": application_row_actions,
+        "operating_point_after_pocket_chemistry": {
+            "baseline_threshold": current_operating.get("baseline_threshold"),
+            "calibration_in_scope_rows": calibration_rows_total,
+            "calibration_in_scope_retained_after_prior_counteraxes": (
+                calibration_retained
+            ),
+            "calibration_in_scope_retained_after_pocket_chemistry": (
+                calibration_retained
+            ),
+            "all_train_cal_oos_full_channel_rows": all_train_cal_oos_full_channel_rows,
+            "combined_all_train_cal_oos_abstained_before_pocket_chemistry": (
+                len(previous_oos_ids)
+            ),
+            "pocket_chemistry_counteraxis_all_train_cal_oos_fired": (
+                len(pocket_chemistry_oos_ids)
+            ),
+            "pocket_chemistry_counteraxis_new_train_cal_oos_abstentions": (
+                len(new_pocket_chemistry_oos_ids)
+            ),
+            "combined_all_train_cal_oos_abstained_after_pocket_chemistry": (
+                len(combined_after_pocket_chemistry_oos_ids)
+            ),
+            "combined_all_train_cal_oos_retained_after_pocket_chemistry": (
+                max(
+                    all_train_cal_oos_full_channel_rows
+                    - len(combined_after_pocket_chemistry_oos_ids),
+                    0,
+                )
+            ),
+            "production_threshold_change": False,
+        },
+        "counts": {
+            "calibration_in_scope_rows_expected": len(calibration_entry_ids),
+            "calibration_in_scope_descriptor_rows": len(calibration_rows),
+            "calibration_in_scope_descriptor_rows_missing": len(
+                calibration_rows_missing_descriptor
+            ),
+            "train_cal_oos_descriptor_rows": len(surface_rows),
+            "same_family_proxy_rows": len(same_family_proxy_ids),
+            "design_same_family_descriptor_rows": len(design_rows),
+            "design_same_family_rows_missing_descriptor": len(
+                design_rows_missing_descriptor
+            ),
+            "application_rows": len(application_ids),
+            "application_rows_with_pocket_descriptors": len(application_rows),
+            "application_rows_missing_pocket_descriptors": len(
+                application_rows_missing_descriptor
+            ),
+            "retained_application_rows_before_pocket_chemistry": len(
+                prior_retained_ids
+            ),
+            "pocket_chemistry_rules_evaluated": rules_evaluated,
+            "candidate_pocket_chemistry_rules_within_breadth_cap": len(
+                candidate_rules
+            ),
+            "selected_rule_calibration_in_scope_fired": (
+                int(selected_rule["calibration_in_scope_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_design_same_family_rows_fired": (
+                int(selected_rule["design_same_family_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_all_train_cal_oos_rows_fired": (
+                int(selected_rule["all_train_cal_oos_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_application_rows_fired_after_selection": (
+                len(selected_application_ids)
+            ),
+            "new_pocket_chemistry_application_rows_fired_after_prior_counteraxes": (
+                len(new_pocket_chemistry_application_ids)
+            ),
+            "retained_residual_rows_after_pocket_chemistry_counteraxis": len(
+                retained_after_pocket_chemistry_ids
+            ),
+            "candidate_pocket_chemistry_rules_hitting_remaining_retained_rows": (
+                len(remaining_retained_hit_rules)
+            ),
+            "remaining_retained_rows_with_any_candidate_pocket_chemistry_rule": (
+                len(remaining_retained_hit_ids)
+            ),
+            "selected_pocket_chemistry_new_train_cal_oos_abstentions": len(
+                new_pocket_chemistry_oos_ids
+            ),
+            "combined_all_train_cal_oos_abstained_after_pocket_chemistry": len(
+                combined_after_pocket_chemistry_oos_ids
+            ),
+        },
+        "missing_descriptor_entry_ids": {
+            "calibration_in_scope": calibration_rows_missing_descriptor,
+            "design_same_family": design_rows_missing_descriptor,
+            "application_rows": application_rows_missing_descriptor,
+        },
+        "decision": {
+            "pocket_chemistry_counteraxis_selected_now": selected_rule is not None,
+            "pocket_chemistry_counteraxis_ready_for_partial_application_now": (
+                selected_ready
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis": (
+                sorted(
+                    new_pocket_chemistry_application_ids,
+                    key=_entry_id_sort_key,
+                )
+            ),
+            "retained_rows_remaining_after_pocket_chemistry_counteraxis": (
+                retained_after_pocket_chemistry_ids
+            ),
+            "safe_abstention_routing_available_now": bool(
+                (retained_channel.get("decision") or {}).get(
+                    "safe_abstention_routing_available_now"
+                )
+            ),
+            "zero_residual_retained_transfer_risk_available_now": (
+                len(retained_after_pocket_chemistry_ids) == 0
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "current_pocket_chemistry_axis_exhausted_for_remaining_retained_rows": True,
+            "exact_remaining_evidence_for_zero_residual_risk": [
+                (
+                    "a train/cal-selected source-free pocket chemistry, metal, "
+                    "cofactor-geometry, or ligand-neighborhood counteraxis that "
+                    "fires m_csa:308 while preserving zero retained calibration "
+                    "fires"
+                ),
+                (
+                    "the existing P07658 full-length predicted coordinate and "
+                    "provenance route before fixed-threshold scoring closure"
+                ),
+            ],
+            "next_gate": (
+                "Treat the selected pocket sulfur-count rule as partial "
+                "fail-closed evidence for newly fired retained rows only. "
+                "Keep residual retained rows in the evidence queue; do not "
+                "change threshold 0.44155 or force a mechanism label."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "source_free_pocket_chemistry_features_only": True,
+            "rule_selected_on_train_cal_only": True,
+            "application_rows_used_for_rule_selection": False,
+            "application_row_outcomes_used_in_selection_objective": False,
+            "all_train_cal_oos_breadth_cap_applied": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "retained_channel_margin_counteraxis_readout": _source_path_record(
+                retained_channel_margin_counteraxis_readout_path
+            ),
+            "retained_pairwise_descriptor_counteraxis_readout": _source_path_record(
+                retained_pairwise_descriptor_counteraxis_readout_path
+            ),
+            "cofactor_context_counteraxis_readout": _source_path_record(
+                cofactor_context_counteraxis_readout_path
+            ),
+            "descriptor_present_counteraxis_preflight": _source_path_record(
+                descriptor_present_counteraxis_preflight_path
+            ),
+            "retained_descriptor_rescue_readout": _source_path_record(
+                retained_descriptor_rescue_readout_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "predicted_geometry_atlas_retrieval": _source_path_record(
+                predicted_geometry_atlas_retrieval_path
+            ),
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "channel_veto_readout": _source_path_record(channel_veto_readout_path),
+        },
+        "interpretation": {
+            "headline": (
+                "The pocket-chemistry counteraxis adds "
+                f"{len(new_pocket_chemistry_application_ids)} retained-row "
+                "abstention after descriptor, margin, fold-TM, and "
+                "fold/cofactor pressure counteraxes."
+            ),
+            "result": (
+                f"The selected rule is "
+                f"{selected_rule['feature_rule'] if selected_rule else 'none'}; "
+                f"it fires {len(new_pocket_chemistry_oos_ids)} new train/cal "
+                "OOS rows after prior counteraxes and leaves retained residual "
+                f"rows {retained_after_pocket_chemistry_ids}."
+            ),
+            "next_action": (
+                "Current pocket chemistry class-count evidence separates "
+                "m_csa:468 but not m_csa:308; design or acquire a richer "
+                "source-free metal/cofactor or ligand-neighborhood axis for "
+                "that remaining high-confidence lookalike."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    policy = readout["selection_policy"]
+    selected = readout.get("selected_pocket_chemistry_counteraxis_rule") or {}
+    operating = readout["operating_point_after_pocket_chemistry"]
+    lines = [
+        "# Fold-Augmented Lever 3 Retained Pocket-Chemistry Counteraxis Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Pocket-chemistry counteraxis selected now: "
+        f"{decision['pocket_chemistry_counteraxis_selected_now']}",
+        "- Ready for partial application now: "
+        f"{decision['pocket_chemistry_counteraxis_ready_for_partial_application_now']}",
+        "- Application rows used for rule selection: "
+        f"{decision['application_rows_used_for_rule_selection']}",
+        "",
+        "## Selection Policy",
+        "",
+        f"- Rule family: {policy['rule_family']}",
+        "- Chemistry count features: "
+        f"{policy['chemistry_count_features']}",
+        "- Descriptor features: "
+        f"{policy['descriptor_features']}",
+        "- All train/cal OOS breadth cap rows: "
+        f"{policy['all_train_cal_oos_breadth_cap_rows']}",
+        f"- Selection objective: {policy['selection_objective']}",
+        "",
+        "## Operating Point",
+        "",
+        "- Calibration retained before/after pocket chemistry: "
+        f"{operating['calibration_in_scope_retained_after_prior_counteraxes']}/"
+        f"{operating['calibration_in_scope_retained_after_pocket_chemistry']} "
+        f"of {operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained before/after pocket chemistry: "
+        f"{operating['combined_all_train_cal_oos_abstained_before_pocket_chemistry']}/"
+        f"{operating['combined_all_train_cal_oos_abstained_after_pocket_chemistry']} "
+        f"of {operating['all_train_cal_oos_full_channel_rows']}",
+        "- New train/cal OOS abstentions from pocket chemistry: "
+        f"{operating['pocket_chemistry_counteraxis_new_train_cal_oos_abstentions']}",
+        "- Production threshold change: "
+        f"{operating['production_threshold_change']}",
+        "",
+        "## Counts",
+        "",
+        "- Calibration descriptor rows: "
+        f"{counts['calibration_in_scope_descriptor_rows']}/"
+        f"{counts['calibration_in_scope_rows_expected']}",
+        "- Design same-family descriptor rows: "
+        f"{counts['design_same_family_descriptor_rows']}/"
+        f"{counts['same_family_proxy_rows']}",
+        "- Application rows with pocket descriptors: "
+        f"{counts['application_rows_with_pocket_descriptors']}/"
+        f"{counts['application_rows']}",
+        "- Rules evaluated / candidates within breadth cap: "
+        f"{counts['pocket_chemistry_rules_evaluated']}/"
+        f"{counts['candidate_pocket_chemistry_rules_within_breadth_cap']}",
+        "- New retained rows fired after prior counteraxes: "
+        f"{counts['new_pocket_chemistry_application_rows_fired_after_prior_counteraxes']}",
+        "- Retained residual rows after pocket chemistry: "
+        f"{counts['retained_residual_rows_after_pocket_chemistry_counteraxis']}",
+        "- Remaining retained rows with any eligible pocket-chemistry rule: "
+        f"{counts['remaining_retained_rows_with_any_candidate_pocket_chemistry_rule']}",
+        "",
+        "## Selected Rule",
+        "",
+        f"- Rule: {selected.get('feature_rule')}",
+        "- Calibration in-scope fired: "
+        f"{selected.get('calibration_in_scope_fired')}",
+        "- Design same-family rows fired: "
+        f"{selected.get('design_same_family_rows_fired')}",
+        "- All train/cal OOS descriptor rows fired: "
+        f"{selected.get('all_train_cal_oos_rows_fired')}",
+        "- Retained application rows fired after selection: "
+        f"{selected.get('application_entry_ids_fired_after_selection')}",
+        "",
+        "## Application Rows",
+        "",
+        "| row | retained after prior | chemistry fires | new chemistry | feature value | action delta |",
+        "| --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in readout.get("application_row_actions", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['retained_after_prior_counteraxes']} | "
+            f"{row['selected_pocket_chemistry_counteraxis_fires_after_selection']} | "
+            f"{row['new_abstention_from_pocket_chemistry_counteraxis']} | "
+            f"{row['selected_feature_value']} | "
+            f"{row['deployment_action_delta']} |"
+        )
+    lines += [
+        "",
+        "## Top Candidate Rules",
+        "",
+        "| rule | design fired | all OOS fired | application fired |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for rule in readout.get("top_candidate_pocket_chemistry_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['application_rows_fired_after_selection']} |"
+        )
+    residual_pressure = (
+        readout.get("pocket_chemistry_family_residual_pressure") or {}
+    )
+    lines += [
+        "",
+        "## Residual Pressure",
+        "",
+        "- Eligible single rules within breadth cap: "
+        f"{residual_pressure.get('eligible_single_rules_within_breadth_cap')}",
+        "- Candidate rules hitting remaining retained rows: "
+        f"{counts['candidate_pocket_chemistry_rules_hitting_remaining_retained_rows']}",
+        "",
+        "| rule | design fired | all OOS fired | remaining retained fired |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for rule in residual_pressure.get("remaining_retained_hit_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['remaining_retained_entry_ids_fired']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        "- Newly abstained retained rows: "
+        f"{decision['retained_rows_newly_abstained_by_pocket_chemistry_counteraxis']}",
+        "- Remaining retained rows after pocket chemistry: "
+        f"{decision['retained_rows_remaining_after_pocket_chemistry_counteraxis']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing source-free artifacts only; no coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout(
+    *,
+    retained_channel_margin_counteraxis_readout_path: Path,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    descriptor_present_counteraxis_preflight_path: Path,
+    retained_descriptor_rescue_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    max_all_train_cal_oos_rows_fired: int = 8,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_POCKET_CHEMISTRY_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout(
+        retained_channel_margin_counteraxis_readout_path=(
+            retained_channel_margin_counteraxis_readout_path
+        ),
+        retained_pairwise_descriptor_counteraxis_readout_path=(
+            retained_pairwise_descriptor_counteraxis_readout_path
+        ),
+        cofactor_context_counteraxis_readout_path=(
+            cofactor_context_counteraxis_readout_path
+        ),
+        descriptor_present_counteraxis_preflight_path=(
+            descriptor_present_counteraxis_preflight_path
+        ),
+        retained_descriptor_rescue_readout_path=(
+            retained_descriptor_rescue_readout_path
+        ),
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        predicted_geometry_atlas_retrieval_path=(
+            predicted_geometry_atlas_retrieval_path
+        ),
+        threshold_contract_path=threshold_contract_path,
+        channel_veto_readout_path=channel_veto_readout_path,
+        max_all_train_cal_oos_rows_fired=max_all_train_cal_oos_rows_fired,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
+    *,
+    retained_pocket_chemistry_counteraxis_readout_path: Path,
+    retained_channel_margin_counteraxis_readout_path: Path,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    min_design_same_family_rows_fired: int = 2,
+    min_all_train_cal_oos_rows_fired: int = 5,
+    max_all_train_cal_oos_rows_fired: int = 8,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_GEOMETRY_MISMATCH_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    pocket = _read_json(retained_pocket_chemistry_counteraxis_readout_path)
+    retained_channel = _read_json(retained_channel_margin_counteraxis_readout_path)
+    pairwise = _read_json(retained_pairwise_descriptor_counteraxis_readout_path)
+    cofactor = _read_json(cofactor_context_counteraxis_readout_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    threshold_contract = _read_json(threshold_contract_path)
+    channel_veto = _read_json(channel_veto_readout_path)
+
+    thresholds = _lever3_channel_thresholds_from_readout(channel_veto)
+    candidate_rows = [
+        row
+        for row in surface.get("candidate_row_scores", []) or []
+        if isinstance(row, dict)
+    ]
+    full_channel_rows = _lever3_full_channel_rows(
+        candidate_rows, thresholds=thresholds
+    )
+    full_channel_by_entry = {
+        str(row["entry_id"]): row for row in full_channel_rows if row.get("entry_id")
+    }
+    calibration_rows_all = [
+        row
+        for row in threshold_contract.get("calibration_row_scores", []) or []
+        if isinstance(row, dict)
+    ]
+    calibration_full_rows = _lever3_full_channel_rows(
+        calibration_rows_all, thresholds=thresholds
+    )
+    calibration_retained_rows = []
+    for row in calibration_full_rows:
+        primary_margin = _lever3_margin_feature_value(
+            row,
+            feature_name="primary_channel_margin",
+            thresholds=thresholds,
+            active_route_channels=sorted(thresholds),
+        )
+        if primary_margin is not None and primary_margin >= 0.0:
+            calibration_retained_rows.append(row)
+
+    pocket_actions = [
+        row
+        for row in pocket.get("application_row_actions", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    application_ids = {str(row["entry_id"]) for row in pocket_actions}
+    prior_retained_ids = set(
+        str(entry_id)
+        for entry_id in (
+            (pocket.get("decision") or {}).get(
+                "retained_rows_remaining_after_pocket_chemistry_counteraxis"
+            )
+            or []
+        )
+    )
+    application_rows = [
+        full_channel_by_entry[entry_id]
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+        if entry_id in full_channel_by_entry
+    ]
+    application_rows_missing_full_channels = [
+        entry_id
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+        if entry_id not in full_channel_by_entry
+    ]
+    same_family_proxy_ids = {
+        str(row["entry_id"])
+        for row in (
+            (channel_veto.get("proxy_axis_row_diagnostics") or {}).get(
+                "same_family_structural_proxy_rows"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    design_ids = same_family_proxy_ids - application_ids
+    design_rows = [
+        full_channel_by_entry[entry_id]
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id in full_channel_by_entry
+    ]
+    design_rows_missing_full_channels = [
+        entry_id
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id not in full_channel_by_entry
+    ]
+
+    low_channel = "geometry_top1_score"
+    high_channel = "combined_min_geometry_fold"
+    low_thresholds = sorted(
+        {
+            score
+            for score in (
+                _lever3_channel_score_value(row, channel_name=low_channel)
+                for row in design_rows
+            )
+            if score is not None
+        }
+    )
+    high_thresholds = sorted(
+        {
+            score
+            for score in (
+                _lever3_channel_score_value(row, channel_name=high_channel)
+                for row in design_rows
+            )
+            if score is not None
+        }
+    )
+    candidate_rules: list[dict[str, Any]] = []
+    rules_evaluated = 0
+    for low_upper_threshold in low_thresholds:
+        for high_lower_threshold in high_thresholds:
+            rules_evaluated += 1
+            rule = _lever3_two_channel_threshold_and_rule_record(
+                low_channel_name=low_channel,
+                low_upper_threshold=low_upper_threshold,
+                high_channel_name=high_channel,
+                high_lower_threshold=high_lower_threshold,
+                calibration_rows=calibration_retained_rows,
+                design_rows=design_rows,
+                all_oos_rows=full_channel_rows,
+                application_rows=application_rows,
+            )
+            if (
+                rule["calibration_in_scope_retained_fired"] == 0
+                and rule["design_same_family_rows_fired"]
+                >= min_design_same_family_rows_fired
+                and rule["all_train_cal_oos_rows_fired"]
+                >= min_all_train_cal_oos_rows_fired
+                and rule["all_train_cal_oos_rows_fired"]
+                <= max_all_train_cal_oos_rows_fired
+            ):
+                candidate_rules.append(rule)
+    candidate_rules.sort(
+        key=lambda rule: (
+            -float(rule["high_lower_threshold"]),
+            float(rule["low_upper_threshold"]),
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+    selected_rule = candidate_rules[0] if candidate_rules else None
+    selected_application_ids = (
+        set(selected_rule["application_entry_ids_fired_after_selection"])
+        if selected_rule
+        else set()
+    )
+    new_geometry_mismatch_application_ids = selected_application_ids & prior_retained_ids
+    retained_after_geometry_mismatch_ids = sorted(
+        prior_retained_ids - new_geometry_mismatch_application_ids,
+        key=_entry_id_sort_key,
+    )
+
+    pairwise_prior_rule = pairwise.get("prior_descriptor_counteraxis_rule") or {}
+    pairwise_selected_rule = pairwise.get("selected_pairwise_counteraxis_rule") or {}
+    accepted_oos_ids = {
+        str(entry_id)
+        for entry_id in (
+            (
+                cofactor.get("bandpass_scout_operating_point") or {}
+            ).get("all_train_cal_oos_entry_ids_abstained")
+            or []
+        )
+    }
+    previous_oos_ids = set(accepted_oos_ids)
+    previous_oos_ids.update(_lever3_oos_ids_from_rule(pairwise_prior_rule))
+    previous_oos_ids.update(_lever3_oos_ids_from_rule(pairwise_selected_rule))
+    previous_oos_ids.update(
+        _lever3_oos_ids_from_rule(
+            retained_channel.get("selected_channel_margin_counteraxis_rule")
+        )
+    )
+    previous_oos_ids.update(
+        _lever3_oos_ids_from_rule(
+            retained_channel.get("selected_fold_tm_bandpass_counteraxis_rule")
+        )
+    )
+    previous_oos_ids.update(
+        _lever3_oos_ids_from_rule(
+            retained_channel.get("selected_fold_cofactor_pressure_counteraxis_rule")
+        )
+    )
+    previous_oos_ids.update(
+        _lever3_oos_ids_from_rule(
+            pocket.get("selected_pocket_chemistry_counteraxis_rule")
+        )
+    )
+    geometry_mismatch_oos_ids = _lever3_oos_ids_from_rule(selected_rule)
+    new_geometry_mismatch_oos_ids = geometry_mismatch_oos_ids - previous_oos_ids
+    combined_after_geometry_mismatch_oos_ids = (
+        previous_oos_ids | geometry_mismatch_oos_ids
+    )
+
+    pocket_action_by_entry = {
+        str(row["entry_id"]): row for row in pocket_actions
+    }
+    application_row_actions = []
+    for entry_id in sorted(application_ids, key=_entry_id_sort_key):
+        pocket_action = pocket_action_by_entry.get(entry_id, {})
+        channel_row = full_channel_by_entry.get(entry_id, {})
+        low_score = _lever3_channel_score_value(
+            channel_row, channel_name=low_channel
+        )
+        high_score = _lever3_channel_score_value(
+            channel_row, channel_name=high_channel
+        )
+        prior_retained = entry_id in prior_retained_ids
+        rule_fires = entry_id in selected_application_ids
+        new_fire = entry_id in new_geometry_mismatch_application_ids
+        if not prior_retained:
+            action_delta = (
+                "already_abstain_or_route_novel_oos_by_prior_counteraxis"
+            )
+        elif new_fire:
+            action_delta = (
+                "abstain_or_route_novel_oos_by_channel_geometry_mismatch"
+            )
+        else:
+            action_delta = "retain_at_fixed_operating_point_not_scoring_closure"
+        application_row_actions.append(
+            {
+                "entry_id": entry_id,
+                "accession": pocket_action.get("accession")
+                or channel_row.get("accession"),
+                "prior_action_delta": pocket_action.get(
+                    "deployment_action_delta"
+                ),
+                "retained_after_pocket_chemistry_counteraxis": prior_retained,
+                "selected_geometry_mismatch_counteraxis_fires_after_selection": (
+                    rule_fires
+                ),
+                "new_abstention_from_geometry_mismatch_counteraxis": new_fire,
+                "geometry_top1_score": (
+                    round(low_score, 6) if low_score is not None else None
+                ),
+                "combined_min_geometry_fold": (
+                    round(high_score, 6) if high_score is not None else None
+                ),
+                "deployment_action_delta": action_delta,
+                "used_for_rule_selection": False,
+            }
+        )
+
+    current_operating = (
+        pocket.get("operating_point_after_pocket_chemistry") or {}
+    )
+    all_train_cal_oos_full_channel_rows = int(
+        current_operating.get("all_train_cal_oos_full_channel_rows")
+        or len(full_channel_rows)
+        or 0
+    )
+    calibration_retained = int(
+        current_operating.get(
+            "calibration_in_scope_retained_after_pocket_chemistry"
+        )
+        or 0
+    )
+    calibration_rows_total = int(
+        current_operating.get("calibration_in_scope_rows") or 0
+    )
+    selected_ready = bool(new_geometry_mismatch_application_ids)
+    status = (
+        "fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_closed"
+        if selected_ready and not retained_after_geometry_mismatch_ids
+        else (
+            "fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_partial_application"
+            if selected_ready
+            else "fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_no_new_application"
+        )
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured retained channel-geometry mismatch counteraxis "
+            "readout. It selects a two-threshold source-free channel rule over "
+            "frozen train/cal predicted-geometry scores: low top-1 active-site "
+            "geometry score with high combined minimum geometry/fold score. "
+            "Selection uses train/cal same-family OOS design rows only under "
+            "zero retained-calibration fires and bounded train/cal OOS support, "
+            "then applies the selected rule to retained application rows only "
+            "after selection. It changes no thresholds, scores no rows, stages "
+            "no coordinates, and uses no heldout rows."
+        ),
+        "selection_policy": {
+            "feature_source": (
+                "source-free frozen predicted-geometry channel scores from the "
+                "train/cal OOS surface"
+            ),
+            "rule_family": (
+                "geometry_top1_score_less_equal_and_"
+                "combined_min_geometry_fold_greater_equal"
+            ),
+            "low_channel": low_channel,
+            "high_channel": high_channel,
+            "selection_rows": (
+                "train/cal same-family structural proxy OOS design rows with "
+                "full channel scores, excluding every retained application row"
+            ),
+            "application_rows_excluded_from_selection": sorted(
+                application_ids, key=_entry_id_sort_key
+            ),
+            "calibration_guard": (
+                "candidate rule must fire zero retained calibration in-scope "
+                "rows with full channel scores"
+            ),
+            "min_design_same_family_rows_fired": min_design_same_family_rows_fired,
+            "min_all_train_cal_oos_rows_fired": (
+                min_all_train_cal_oos_rows_fired
+            ),
+            "max_all_train_cal_oos_rows_fired": (
+                max_all_train_cal_oos_rows_fired
+            ),
+            "selection_objective": (
+                "maximize high-channel lower threshold, then minimize "
+                "low-channel upper threshold, then maximize design support, "
+                "then minimize train/cal OOS breadth"
+            ),
+            "threshold_grid_source": (
+                "unique train/cal design-row channel-score values"
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "application_row_outcomes_used_in_selection_objective": False,
+        },
+        "selected_geometry_mismatch_counteraxis_rule": selected_rule,
+        "top_candidate_geometry_mismatch_rules": candidate_rules[:10],
+        "application_row_actions": application_row_actions,
+        "operating_point_after_geometry_mismatch": {
+            "baseline_threshold": current_operating.get("baseline_threshold"),
+            "calibration_in_scope_rows": calibration_rows_total,
+            "calibration_in_scope_retained_after_pocket_chemistry": (
+                calibration_retained
+            ),
+            "calibration_in_scope_retained_after_geometry_mismatch": (
+                calibration_retained
+            ),
+            "all_train_cal_oos_full_channel_rows": (
+                all_train_cal_oos_full_channel_rows
+            ),
+            "combined_all_train_cal_oos_abstained_before_geometry_mismatch": (
+                len(previous_oos_ids)
+            ),
+            "geometry_mismatch_counteraxis_all_train_cal_oos_fired": (
+                len(geometry_mismatch_oos_ids)
+            ),
+            "geometry_mismatch_counteraxis_new_train_cal_oos_abstentions": (
+                len(new_geometry_mismatch_oos_ids)
+            ),
+            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": (
+                len(combined_after_geometry_mismatch_oos_ids)
+            ),
+            "combined_all_train_cal_oos_retained_after_geometry_mismatch": (
+                max(
+                    all_train_cal_oos_full_channel_rows
+                    - len(combined_after_geometry_mismatch_oos_ids),
+                    0,
+                )
+            ),
+            "production_threshold_change": False,
+        },
+        "counts": {
+            "calibration_in_scope_full_channel_rows": len(
+                calibration_full_rows
+            ),
+            "calibration_in_scope_retained_full_channel_rows": len(
+                calibration_retained_rows
+            ),
+            "train_cal_oos_full_channel_rows": len(full_channel_rows),
+            "same_family_proxy_rows": len(same_family_proxy_ids),
+            "design_same_family_full_channel_rows": len(design_rows),
+            "design_same_family_rows_missing_full_channels": len(
+                design_rows_missing_full_channels
+            ),
+            "application_rows": len(application_ids),
+            "application_rows_with_full_channels": len(application_rows),
+            "application_rows_missing_full_channels": len(
+                application_rows_missing_full_channels
+            ),
+            "retained_application_rows_before_geometry_mismatch": len(
+                prior_retained_ids
+            ),
+            "geometry_mismatch_rules_evaluated": rules_evaluated,
+            "candidate_geometry_mismatch_rules_within_support_bounds": len(
+                candidate_rules
+            ),
+            "selected_rule_calibration_in_scope_retained_fired": (
+                int(selected_rule["calibration_in_scope_retained_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_design_same_family_rows_fired": (
+                int(selected_rule["design_same_family_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_all_train_cal_oos_rows_fired": (
+                int(selected_rule["all_train_cal_oos_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_application_rows_fired_after_selection": (
+                len(selected_application_ids)
+            ),
+            "new_geometry_mismatch_application_rows_fired_after_pocket_chemistry": (
+                len(new_geometry_mismatch_application_ids)
+            ),
+            "retained_residual_rows_after_geometry_mismatch_counteraxis": len(
+                retained_after_geometry_mismatch_ids
+            ),
+            "selected_geometry_mismatch_new_train_cal_oos_abstentions": len(
+                new_geometry_mismatch_oos_ids
+            ),
+            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": len(
+                combined_after_geometry_mismatch_oos_ids
+            ),
+        },
+        "missing_full_channel_entry_ids": {
+            "design_same_family": design_rows_missing_full_channels,
+            "application_rows": application_rows_missing_full_channels,
+        },
+        "decision": {
+            "geometry_mismatch_counteraxis_selected_now": selected_rule is not None,
+            "geometry_mismatch_counteraxis_ready_for_application_now": selected_ready,
+            "application_rows_used_for_rule_selection": False,
+            "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis": (
+                sorted(
+                    new_geometry_mismatch_application_ids,
+                    key=_entry_id_sort_key,
+                )
+            ),
+            "retained_rows_remaining_after_geometry_mismatch_counteraxis": (
+                retained_after_geometry_mismatch_ids
+            ),
+            "safe_abstention_routing_available_now": bool(
+                (pocket.get("decision") or {}).get(
+                    "safe_abstention_routing_available_now"
+                )
+            ),
+            "zero_residual_retained_transfer_risk_available_now": (
+                len(retained_after_geometry_mismatch_ids) == 0
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Treat the selected geometry-mismatch rule as fail-closed "
+                "evidence for newly fired retained rows. Do not change "
+                "threshold 0.44155 or force a mechanism label; fixed-threshold "
+                "scoring closure still requires the separate exact P07658 "
+                "coordinate/provenance route."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "source_free_channel_geometry_features_only": True,
+            "rule_selected_on_train_cal_only": True,
+            "application_rows_used_for_rule_selection": False,
+            "application_row_outcomes_used_in_selection_objective": False,
+            "train_cal_oos_support_floor_applied": True,
+            "all_train_cal_oos_breadth_cap_applied": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "retained_pocket_chemistry_counteraxis_readout": _source_path_record(
+                retained_pocket_chemistry_counteraxis_readout_path
+            ),
+            "retained_channel_margin_counteraxis_readout": _source_path_record(
+                retained_channel_margin_counteraxis_readout_path
+            ),
+            "retained_pairwise_descriptor_counteraxis_readout": _source_path_record(
+                retained_pairwise_descriptor_counteraxis_readout_path
+            ),
+            "cofactor_context_counteraxis_readout": _source_path_record(
+                cofactor_context_counteraxis_readout_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "channel_veto_readout": _source_path_record(channel_veto_readout_path),
+        },
+        "interpretation": {
+            "headline": (
+                "The channel-geometry mismatch counteraxis adds "
+                f"{len(new_geometry_mismatch_application_ids)} retained-row "
+                "abstention after pocket chemistry."
+            ),
+            "result": (
+                f"The selected rule is "
+                f"{selected_rule['feature_rule'] if selected_rule else 'none'}; "
+                "retained residual rows after this stage are "
+                f"{retained_after_geometry_mismatch_ids}."
+            ),
+            "next_action": (
+                "Use this readout as the current Lever 3 zero-residual "
+                "retained-transfer operating point, while keeping scoring "
+                "closure fail-closed until exact P07658 coordinate provenance "
+                "exists."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    policy = readout["selection_policy"]
+    selected = readout.get("selected_geometry_mismatch_counteraxis_rule") or {}
+    operating = readout["operating_point_after_geometry_mismatch"]
+    lines = [
+        "# Fold-Augmented Lever 3 Retained Geometry-Mismatch Counteraxis Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Geometry-mismatch counteraxis selected now: "
+        f"{decision['geometry_mismatch_counteraxis_selected_now']}",
+        "- Ready for application now: "
+        f"{decision['geometry_mismatch_counteraxis_ready_for_application_now']}",
+        "- Application rows used for rule selection: "
+        f"{decision['application_rows_used_for_rule_selection']}",
+        "",
+        "## Selection Policy",
+        "",
+        f"- Rule family: {policy['rule_family']}",
+        f"- Low channel: {policy['low_channel']}",
+        f"- High channel: {policy['high_channel']}",
+        "- Minimum design same-family rows fired: "
+        f"{policy['min_design_same_family_rows_fired']}",
+        "- Train/cal OOS support floor/cap: "
+        f"{policy['min_all_train_cal_oos_rows_fired']}/"
+        f"{policy['max_all_train_cal_oos_rows_fired']}",
+        f"- Selection objective: {policy['selection_objective']}",
+        "",
+        "## Operating Point",
+        "",
+        "- Calibration retained before/after geometry mismatch: "
+        f"{operating['calibration_in_scope_retained_after_pocket_chemistry']}/"
+        f"{operating['calibration_in_scope_retained_after_geometry_mismatch']} "
+        f"of {operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained before/after geometry mismatch: "
+        f"{operating['combined_all_train_cal_oos_abstained_before_geometry_mismatch']}/"
+        f"{operating['combined_all_train_cal_oos_abstained_after_geometry_mismatch']} "
+        f"of {operating['all_train_cal_oos_full_channel_rows']}",
+        "- New train/cal OOS abstentions from geometry mismatch: "
+        f"{operating['geometry_mismatch_counteraxis_new_train_cal_oos_abstentions']}",
+        "- Production threshold change: "
+        f"{operating['production_threshold_change']}",
+        "",
+        "## Counts",
+        "",
+        "- Design same-family full-channel rows: "
+        f"{counts['design_same_family_full_channel_rows']}/"
+        f"{counts['same_family_proxy_rows']}",
+        "- Application rows with full channels: "
+        f"{counts['application_rows_with_full_channels']}/"
+        f"{counts['application_rows']}",
+        "- Rules evaluated / candidates within support bounds: "
+        f"{counts['geometry_mismatch_rules_evaluated']}/"
+        f"{counts['candidate_geometry_mismatch_rules_within_support_bounds']}",
+        "- New retained rows fired after pocket chemistry: "
+        f"{counts['new_geometry_mismatch_application_rows_fired_after_pocket_chemistry']}",
+        "- Retained residual rows after geometry mismatch: "
+        f"{counts['retained_residual_rows_after_geometry_mismatch_counteraxis']}",
+        "",
+        "## Selected Rule",
+        "",
+        f"- Rule: {selected.get('feature_rule')}",
+        "- Calibration retained in-scope fired: "
+        f"{selected.get('calibration_in_scope_retained_fired')}",
+        "- Design same-family rows fired: "
+        f"{selected.get('design_same_family_rows_fired')}",
+        "- All train/cal OOS rows fired: "
+        f"{selected.get('all_train_cal_oos_rows_fired')}",
+        "- Retained application rows fired after selection: "
+        f"{selected.get('application_entry_ids_fired_after_selection')}",
+        "",
+        "## Application Rows",
+        "",
+        "| row | retained after pocket | mismatch fires | new mismatch | geometry top1 | combined min geometry/fold | action delta |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in readout.get("application_row_actions", []):
+        lines.append(
+            f"| {row['entry_id']} | "
+            f"{row['retained_after_pocket_chemistry_counteraxis']} | "
+            f"{row['selected_geometry_mismatch_counteraxis_fires_after_selection']} | "
+            f"{row['new_abstention_from_geometry_mismatch_counteraxis']} | "
+            f"{row['geometry_top1_score']} | "
+            f"{row['combined_min_geometry_fold']} | "
+            f"{row['deployment_action_delta']} |"
+        )
+    lines += [
+        "",
+        "## Top Candidate Rules",
+        "",
+        "| rule | design fired | all OOS fired | application fired |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for rule in readout.get("top_candidate_geometry_mismatch_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['application_rows_fired_after_selection']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        "- Newly abstained retained rows: "
+        f"{decision['retained_rows_newly_abstained_by_geometry_mismatch_counteraxis']}",
+        "- Remaining retained rows after geometry mismatch: "
+        f"{decision['retained_rows_remaining_after_geometry_mismatch_counteraxis']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing source-free artifacts only; no coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
+    *,
+    retained_pocket_chemistry_counteraxis_readout_path: Path,
+    retained_channel_margin_counteraxis_readout_path: Path,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    min_design_same_family_rows_fired: int = 2,
+    min_all_train_cal_oos_rows_fired: int = 5,
+    max_all_train_cal_oos_rows_fired: int = 8,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_GEOMETRY_MISMATCH_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
+        retained_pocket_chemistry_counteraxis_readout_path=(
+            retained_pocket_chemistry_counteraxis_readout_path
+        ),
+        retained_channel_margin_counteraxis_readout_path=(
+            retained_channel_margin_counteraxis_readout_path
+        ),
+        retained_pairwise_descriptor_counteraxis_readout_path=(
+            retained_pairwise_descriptor_counteraxis_readout_path
+        ),
+        cofactor_context_counteraxis_readout_path=(
+            cofactor_context_counteraxis_readout_path
+        ),
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        threshold_contract_path=threshold_contract_path,
+        channel_veto_readout_path=channel_veto_readout_path,
+        min_design_same_family_rows_fired=min_design_same_family_rows_fired,
+        min_all_train_cal_oos_rows_fired=min_all_train_cal_oos_rows_fired,
+        max_all_train_cal_oos_rows_fired=max_all_train_cal_oos_rows_fired,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_report(
                 readout
             ),
             encoding="utf-8",

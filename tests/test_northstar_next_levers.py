@@ -87,6 +87,8 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_retained_descriptor_rescue_readout,
     build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout,
     build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout,
+    build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout,
+    build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -7181,6 +7183,518 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(
             readout["guardrails"]["source_free_score_margin_features_only"]
         )
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_retained_pocket_chemistry_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def pocket_row(
+            entry_id: str,
+            *,
+            sulfur: int,
+            accession: str | None = None,
+        ) -> dict[str, Any]:
+            return {
+                "entry_id": entry_id,
+                "accession": accession or entry_id.upper(),
+                "pocket_context": {
+                    "descriptors": {"hydrophobic_fraction": 0.5},
+                    "residue_code_counts": {
+                        "CYS": sulfur,
+                        "MET": 0,
+                        "ASP": 0,
+                        "GLU": 0,
+                        "ARG": 0,
+                        "HIS": 0,
+                        "LYS": 0,
+                        "PHE": 0,
+                        "TRP": 0,
+                        "TYR": 0,
+                    },
+                },
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            retained_channel_path = root / "retained_channel.json"
+            pairwise_path = root / "pairwise.json"
+            cofactor_path = root / "cofactor.json"
+            preflight_path = root / "preflight.json"
+            rescue_path = root / "rescue.json"
+            surface_path = root / "surface.json"
+            atlas_path = root / "atlas.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+
+            retained_channel_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "retained_rows_remaining_after_all_counteraxes": [
+                                "m_csa:2",
+                                "m_csa:3",
+                            ],
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "deployment_action_delta": (
+                                    "already_abstain_or_route_novel_oos_by_descriptor_rule"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "deployment_action_delta": (
+                                    "retain_at_fixed_operating_point_not_scoring_closure"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "deployment_action_delta": (
+                                    "retain_at_fixed_operating_point_not_scoring_closure"
+                                ),
+                            },
+                        ],
+                        "operating_point_after_all_counteraxes": {
+                            "baseline_threshold": 0.5,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained_after_counteraxes": 2,
+                            "all_train_cal_oos_full_channel_rows": 6,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "prior_descriptor_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "selected_pairwise_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "bandpass_scout_operating_point": {
+                            "all_train_cal_oos_entry_ids_abstained": ["m_csa:0"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_source_free_feature_contract": {
+                            "descriptor_fields": [],
+                            "residue_code_count_fields": [],
+                        },
+                        "descriptor_present_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "descriptor_values": {},
+                                "residue_code_counts": {"CYS": 0, "MET": 0},
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rescue_path.write_text(
+                json.dumps(
+                    {
+                        "recovered_descriptor_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "descriptor_values": {},
+                                "residue_code_counts": {"CYS": 9, "MET": 0},
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "descriptor_values": {},
+                                "residue_code_counts": {"CYS": 0, "MET": 0},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {"entry_id": f"m_csa:{index}"}
+                            for index in range(6)
+                        ],
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                pocket_row("m_csa:10", sulfur=9),
+                                pocket_row("m_csa:11", sulfur=10),
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            atlas_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            pocket_row("cal:1", sulfur=0),
+                            pocket_row("cal:2", sulfur=1),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "train_cal_partition": {
+                            "calibration_entry_ids": ["cal:1", "cal:2"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:10"},
+                                {"entry_id": "m_csa:11"},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout(
+                retained_channel_margin_counteraxis_readout_path=(
+                    retained_channel_path
+                ),
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                descriptor_present_counteraxis_preflight_path=preflight_path,
+                retained_descriptor_rescue_readout_path=rescue_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                predicted_geometry_atlas_retrieval_path=atlas_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                artifact_id="custom_pocket_chemistry_counteraxis",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_pocket_chemistry_counteraxis")
+        self.assertEqual(
+            readout["selected_pocket_chemistry_counteraxis_rule"]["feature_rule"],
+            "chemistry_count.sulfur_count >= 9.0",
+        )
+        self.assertEqual(
+            readout["selected_pocket_chemistry_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:10", "m_csa:11"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis"
+            ],
+            ["m_csa:2"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_remaining_after_pocket_chemistry_counteraxis"
+            ],
+            ["m_csa:3"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_pocket_chemistry_new_train_cal_oos_abstentions"
+            ],
+            2,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_retained_geometry_mismatch_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def score_row(
+            entry_id: str,
+            *,
+            geometry_top1: float,
+            combined_min: float,
+            primary: float = 0.7,
+            accession: str | None = None,
+        ) -> dict[str, Any]:
+            row: dict[str, Any] = {
+                "entry_id": entry_id,
+                "channel_scores": {
+                    "combined_mean_geometry_fold": primary,
+                    "combined_min_geometry_fold": combined_min,
+                    "geometry_top1_score": geometry_top1,
+                },
+            }
+            if accession is not None:
+                row["accession"] = accession
+            return row
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pocket_path = root / "pocket.json"
+            retained_channel_path = root / "retained_channel.json"
+            pairwise_path = root / "pairwise.json"
+            cofactor_path = root / "cofactor.json"
+            surface_path = root / "surface.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+
+            pocket_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "retained_rows_remaining_after_pocket_chemistry_counteraxis": [
+                                "m_csa:2"
+                            ],
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "selected_pocket_chemistry_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:3"]
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "deployment_action_delta": (
+                                    "already_abstain_or_route_novel_oos_by_prior_counteraxis"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "deployment_action_delta": (
+                                    "retain_at_fixed_operating_point_not_scoring_closure"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "deployment_action_delta": (
+                                    "abstain_or_route_novel_oos_by_pocket_chemistry"
+                                ),
+                            },
+                        ],
+                        "operating_point_after_pocket_chemistry": {
+                            "baseline_threshold": 0.5,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained_after_pocket_chemistry": 2,
+                            "all_train_cal_oos_full_channel_rows": 8,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            retained_channel_path.write_text(
+                json.dumps(
+                    {
+                        "selected_channel_margin_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "selected_fold_tm_bandpass_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                        "selected_fold_cofactor_pressure_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "prior_descriptor_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                        "selected_pairwise_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": []
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "bandpass_scout_operating_point": {
+                            "all_train_cal_oos_entry_ids_abstained": []
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            score_row(
+                                "m_csa:1",
+                                geometry_top1=0.9,
+                                combined_min=0.2,
+                                accession="A1",
+                            ),
+                            score_row(
+                                "m_csa:2",
+                                geometry_top1=0.5788,
+                                combined_min=0.5788,
+                                accession="A2",
+                            ),
+                            score_row(
+                                "m_csa:3",
+                                geometry_top1=0.9,
+                                combined_min=0.2,
+                                accession="A3",
+                            ),
+                            score_row("m_csa:10", geometry_top1=0.5822, combined_min=0.5782),
+                            score_row("m_csa:11", geometry_top1=0.59, combined_min=0.59),
+                            score_row("m_csa:12", geometry_top1=0.7, combined_min=0.7),
+                            score_row("m_csa:13", geometry_top1=0.58, combined_min=0.58),
+                            score_row("m_csa:20", geometry_top1=0.579, combined_min=0.579),
+                            score_row("m_csa:21", geometry_top1=0.581, combined_min=0.579),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            score_row("cal:1", geometry_top1=0.9, combined_min=0.9),
+                            score_row("cal:2", geometry_top1=0.8, combined_min=0.8),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "channel_readouts": [
+                            {
+                                "channels": ["combined_mean_geometry_fold"],
+                                "thresholds": {
+                                    "combined_mean_geometry_fold": 0.5
+                                },
+                            },
+                            {
+                                "channels": ["combined_min_geometry_fold"],
+                                "thresholds": {
+                                    "combined_min_geometry_fold": 0.5
+                                },
+                            },
+                            {
+                                "channels": ["geometry_top1_score"],
+                                "thresholds": {"geometry_top1_score": 0.5},
+                            },
+                        ],
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:10"},
+                                {"entry_id": "m_csa:11"},
+                                {"entry_id": "m_csa:12"},
+                                {"entry_id": "m_csa:13"},
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
+                retained_pocket_chemistry_counteraxis_readout_path=pocket_path,
+                retained_channel_margin_counteraxis_readout_path=(
+                    retained_channel_path
+                ),
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                artifact_id="custom_geometry_mismatch_counteraxis",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "custom_geometry_mismatch_counteraxis"
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"]["feature_rule"],
+            (
+                "geometry_top1_score <= 0.582200 AND "
+                "combined_min_geometry_fold >= 0.578200"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_geometry_mismatch_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:10", "m_csa:13"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis"
+            ],
+            ["m_csa:2"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_remaining_after_geometry_mismatch_counteraxis"
+            ],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_geometry_mismatch_new_train_cal_oos_abstentions"
+            ],
+            5,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
         self.assertFalse(
             readout["guardrails"]["heldout_rows_used_for_rule_selection"]
         )
