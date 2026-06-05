@@ -865,6 +865,62 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_closure_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-closure-"
+                "reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_closure_"
+                "reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_closure_readout",
+            args.operating_point_closure_readout,
+        )
+        self.assertIn(
+            "closure_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_operating_point_application_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-operating-point-"
+                "application-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_operating_point_"
+                "application_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_closure_readout",
+            args.operating_point_closure_readout,
+        )
+        self.assertIn(
+            "closure_reproducibility_audit",
+            args.closure_reproducibility_audit,
+        )
+        self.assertIn(
+            "operating_point_application_audit",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

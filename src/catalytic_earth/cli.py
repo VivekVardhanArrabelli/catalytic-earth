@@ -174,6 +174,8 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout,
     write_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout,
     write_fold_augmented_lever3_operating_point_closure_readout,
+    write_fold_augmented_lever3_closure_reproducibility_audit,
+    write_fold_augmented_lever3_operating_point_application_audit,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -14093,6 +14095,63 @@ def cmd_build_fold_augmented_lever3_operating_point_closure_readout(
         f"{counts.get('train_cal_oos_abstained_or_routed')}/"
         f"{counts.get('train_cal_oos_rows')}, safe route: "
         f"{decision.get('deployment_valid_safe_abstention_route_available_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_closure_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_closure_reproducibility_audit(
+        operating_point_closure_readout_path=Path(
+            args.operating_point_closure_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 closure reproducibility audit to "
+        f"{args.out} (direct hashes current: "
+        f"{counts.get('direct_source_records_hash_current')}/"
+        f"{counts.get('direct_source_records_checked')}, rebuild differences: "
+        f"{counts.get('closure_rebuild_difference_count')}, safe route current: "
+        f"{decision.get('safe_abstention_route_remains_current')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_operating_point_application_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_operating_point_application_audit(
+        operating_point_closure_readout_path=Path(
+            args.operating_point_closure_readout
+        ),
+        closure_reproducibility_audit_path=Path(
+            args.closure_reproducibility_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 operating-point application audit to "
+        f"{args.out} (application rows: "
+        f"{counts.get('application_rows_abstain_or_route_novel_oos')}/"
+        f"{counts.get('application_rows')}, forced labels: "
+        f"{counts.get('forced_mechanism_label_rows')}, ready: "
+        f"{decision.get('operating_point_application_contract_ready')})"
     )
     return 0
 
@@ -33899,6 +33958,85 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_operating_point_closure_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_operating_point_closure_readout
+    )
+
+    lever3_closure_reproducibility_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-closure-reproducibility-audit",
+        help=(
+            "audit the current Lever 3 operating-point closure readout for "
+            "source-hash currency and deterministic rebuild reproducibility"
+        ),
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--operating-point-closure-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.json"
+        ),
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_closure_reproducibility_"
+            "audit_current702_20260605.json"
+        ),
+    )
+    lever3_closure_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_closure_reproducibility_"
+            "audit_current702_20260605.md"
+        ),
+    )
+    lever3_closure_reproducibility_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_closure_reproducibility_audit
+    )
+
+    lever3_operating_point_application_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-operating-point-application-audit",
+        help=(
+            "audit the row-level application contract for the current Lever 3 "
+            "abstain/route operating point"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--operating-point-closure-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--closure-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_closure_reproducibility_"
+            "audit_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_"
+            "application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_application_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_operating_point_"
+            "application_audit_current702_20260605.md"
+        ),
+    )
+    lever3_operating_point_application_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_operating_point_application_audit
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

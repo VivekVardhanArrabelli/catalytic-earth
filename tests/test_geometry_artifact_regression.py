@@ -9926,6 +9926,125 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(readout["guardrails"]["threshold_values_changed"])
 
+    def test_fold_augmented_lever3_closure_reproducibility_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_closure_reproducibility_"
+                "audit_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_closure_reproducibility_audit_passed",
+        )
+        self.assertEqual(audit["audit_violations"], [])
+        self.assertTrue(
+            audit["decision"][
+                "deployment_valid_reproducible_operating_point_readout_available"
+            ]
+        )
+        self.assertTrue(audit["decision"]["safe_abstention_route_remains_current"])
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertTrue(audit["closure_artifact"]["normalized_rebuild_matches_stored"])
+        self.assertEqual(audit["counts"]["direct_source_records_checked"], 5)
+        self.assertEqual(audit["counts"]["direct_source_records_hash_current"], 5)
+        self.assertEqual(audit["counts"]["nested_source_records_checked"], 34)
+        self.assertEqual(audit["counts"]["nested_source_records_hash_current"], 34)
+        self.assertEqual(audit["counts"]["closure_rebuild_difference_count"], 0)
+        self.assertEqual(
+            audit["counts"]["retained_residual_rows_after_all_counteraxes"], 0
+        )
+        self.assertEqual(audit["counts"]["residual_rows_without_final_route"], 0)
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(
+            audit["counts"]["unsafe_non_abstain_residual_action_rows"], 0
+        )
+        self.assertEqual(audit["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(audit["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(audit["counts"]["train_cal_oos_abstained_or_routed"], 167)
+        self.assertEqual(audit["counts"]["train_cal_oos_rows"], 204)
+        self.assertTrue(
+            audit["closure_checks"][
+                "closure_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertTrue(audit["closure_checks"]["closure_source_hashes_current"])
+        self.assertTrue(audit["closure_checks"]["nested_source_hashes_current"])
+        self.assertTrue(audit["closure_checks"]["no_forced_mechanism_labels"])
+        self.assertTrue(
+            audit["closure_checks"]["fixed_threshold_scoring_closure_remains_fail_closed"]
+        )
+        self.assertTrue(audit["guardrails"]["measured_readout"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(audit["guardrails"]["threshold_values_changed"])
+
+    def test_fold_augmented_lever3_operating_point_application_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_operating_point_application_"
+                "audit_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_operating_point_application_audit_passed",
+        )
+        self.assertEqual(audit["application_violations"], [])
+        self.assertTrue(
+            audit["decision"]["operating_point_application_contract_ready"]
+        )
+        self.assertTrue(audit["decision"]["safe_abstention_route_remains_current"])
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(audit["counts"]["application_rows"], 21)
+        self.assertEqual(
+            audit["counts"]["application_rows_abstain_or_route_novel_oos"], 21
+        )
+        self.assertEqual(audit["counts"]["application_rows_with_stage_source"], 21)
+        self.assertEqual(audit["counts"]["application_stage_count_mismatches"], 0)
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(
+            audit["counts"]["unsafe_non_abstain_residual_action_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["retained_residual_rows_after_all_counteraxes"], 0
+        )
+        self.assertEqual(audit["counts"]["residual_rows_without_final_route"], 0)
+        self.assertEqual(audit["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(audit["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(audit["counts"]["train_cal_oos_abstained_or_routed"], 167)
+        self.assertEqual(audit["counts"]["train_cal_oos_rows"], 204)
+        self.assertEqual(
+            [row["observed_rows"] for row in audit["route_stage_count_rows"]],
+            [10, 1, 1, 2, 4, 1, 1, 1],
+        )
+        self.assertTrue(
+            audit["application_checks"]["closure_reproducibility_audit_passed"]
+        )
+        self.assertTrue(audit["application_checks"]["closure_source_hashes_current"])
+        self.assertTrue(
+            audit["application_checks"][
+                "all_application_rows_abstain_or_route_novel_oos"
+            ]
+        )
+        self.assertTrue(audit["application_checks"]["no_forced_mechanism_labels"])
+        self.assertTrue(audit["guardrails"]["measured_readout"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(audit["guardrails"]["threshold_values_changed"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -10066,6 +10185,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_operating_point_closure_"
                 "readout_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_closure_reproducibility_"
+                "audit_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_operating_point_application_"
+                "audit_current702_20260605.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

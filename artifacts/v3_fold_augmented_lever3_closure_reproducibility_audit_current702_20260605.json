@@ -1,0 +1,522 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_closure_reproducibility_audit_current702_20260605",
+  "audit_violations": [],
+  "closure_artifact": {
+    "artifact_id": "v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605",
+    "missing_required_source_artifacts": [],
+    "normalized_rebuild_matches_stored": true,
+    "path": "artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json",
+    "rebuild_error": null,
+    "rebuilt_created_utc": "2026-06-05T10:10:38Z",
+    "rebuilt_normalized_sha256": "764bd8314cec1505e1733491d18826e6b2c7c48dbd0ecf837f02a40a922c8a14",
+    "stored_created_utc": "2026-06-05T09:16:25Z",
+    "stored_normalized_sha256": "764bd8314cec1505e1733491d18826e6b2c7c48dbd0ecf837f02a40a922c8a14"
+  },
+  "closure_checks": {
+    "all_hard_residual_rows_routed": true,
+    "calibration_retention_above_90_percent": true,
+    "closure_guardrail_checks_pass": true,
+    "closure_guardrail_violations_absent": true,
+    "closure_rebuild_matches_stored_after_created_utc_normalization": true,
+    "closure_source_hashes_current": true,
+    "closure_source_status_checks_pass": true,
+    "closure_status_closed": true,
+    "fixed_threshold_scoring_closure_remains_fail_closed": true,
+    "nested_source_hashes_current": true,
+    "no_coordinate_generation_or_staging": true,
+    "no_forbidden_predictive_feature_flags": true,
+    "no_forced_mechanism_labels": true,
+    "no_heldout_or_metadata_shortcuts": true,
+    "no_label_registry_ontology_or_import_changes": true,
+    "no_row_scoring_or_provider_calls": true,
+    "residual_application_rows_not_rule_selection": true,
+    "threshold_unchanged": true,
+    "train_cal_oos_abstention_operating_point_present": true,
+    "zero_residual_retained_rows": true
+  },
+  "counts": {
+    "audit_violation_total": 0,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "closure_guardrail_violation_total": 0,
+    "closure_rebuild_difference_count": 0,
+    "direct_source_records_checked": 5,
+    "direct_source_records_hash_current": 5,
+    "forced_mechanism_label_rows": 0,
+    "missing_required_source_artifact_count": 0,
+    "nested_source_records_checked": 34,
+    "nested_source_records_hash_current": 34,
+    "residual_rows_entering_closure": 21,
+    "residual_rows_used_for_rule_selection": 0,
+    "residual_rows_without_final_route": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_rows": 204,
+    "unsafe_non_abstain_residual_action_rows": 0
+  },
+  "created_utc": "2026-06-05T10:10:38Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_valid_reproducible_operating_point_readout_available": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Keep using the closure readout as the current Lever 3 abstain/route operating point; do not change threshold 0.44155 or force mechanism labels. Fixed-threshold scoring closure remains a separate exact P07658 coordinate/provenance preflight task.",
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "true_in_scope_retention_floor_met": true,
+    "unsafe_forced_mechanism_transfer_allowed": false,
+    "zero_residual_retained_transfer_risk_available_now": true
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "source_free_counteraxis_artifacts_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 closure is reproducible and source-hash current.",
+    "next_action": "Use the closure as the current deployment-valid abstain/route readout; keep fixed-threshold scoring fail-closed pending the separate exact P07658 coordinate/provenance route.",
+    "result": "The stored closure rebuilds with only created_utc normalized, keeps 31/34 calibration in-scope rows, routes 167/204 train/cal OOS rows, and leaves 0 retained hard residual rows."
+  },
+  "nested_source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "source_hash_current": true,
+      "source_key": "cofactor_context_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "f623506f959746bfd087af6dd1c11a4f64fb59d42269395249db2847171b71b7",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "f623506f959746bfd087af6dd1c11a4f64fb59d42269395249db2847171b71b7",
+      "source_hash_current": true,
+      "source_key": "confounded_safe_abstention_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "857479dd0549a7b5fd266c13fdb87497ed82dc0fe345c197dad80af1c783e4e6",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "857479dd0549a7b5fd266c13fdb87497ed82dc0fe345c197dad80af1c783e4e6",
+      "source_hash_current": true,
+      "source_key": "residual_safety_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "bfbf332a71e4d86864717805af679afd1606be304ecb8daaa0dacc898861de18",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_action_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "bfbf332a71e4d86864717805af679afd1606be304ecb8daaa0dacc898861de18",
+      "source_hash_current": true,
+      "source_key": "same_family_bandpass_counteraxis_contract"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "source_hash_current": true,
+      "source_key": "channel_veto_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "source_hash_current": true,
+      "source_key": "cofactor_context_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "recorded_exists": true,
+      "recorded_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "source_hash_current": true,
+      "source_key": "latest_train_cal_oos_surface"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "857479dd0549a7b5fd266c13fdb87497ed82dc0fe345c197dad80af1c783e4e6",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_residual_safety_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "857479dd0549a7b5fd266c13fdb87497ed82dc0fe345c197dad80af1c783e4e6",
+      "source_hash_current": true,
+      "source_key": "residual_safety_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "source_hash_current": true,
+      "source_key": "retained_pairwise_descriptor_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "recorded_exists": true,
+      "recorded_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "source_hash_current": true,
+      "source_key": "threshold_contract"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "source_hash_current": true,
+      "source_key": "channel_veto_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "source_hash_current": true,
+      "source_key": "cofactor_context_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "recorded_exists": true,
+      "recorded_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "source_hash_current": true,
+      "source_key": "latest_train_cal_oos_surface"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a",
+      "source_hash_current": true,
+      "source_key": "retained_channel_margin_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "source_hash_current": true,
+      "source_key": "retained_pairwise_descriptor_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "5af607552a6b4902307e250eaddff6097ddb2a844edfc03a92913b3e966628f8",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "5af607552a6b4902307e250eaddff6097ddb2a844edfc03a92913b3e966628f8",
+      "source_hash_current": true,
+      "source_key": "retained_pocket_chemistry_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "recorded_exists": true,
+      "recorded_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "source_hash_current": true,
+      "source_key": "threshold_contract"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "source_hash_current": true,
+      "source_key": "channel_veto_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "0e1e84fc1c80523a73b6d7d9a52d76c08a978f2acfa16f12e1abed9d860742a1",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "0e1e84fc1c80523a73b6d7d9a52d76c08a978f2acfa16f12e1abed9d860742a1",
+      "source_hash_current": true,
+      "source_key": "descriptor_generalization_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "04cf7fe0886a101f32b1103b3671f4e71d2519e18e82d28eb65f5b6dfc27fefe",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "04cf7fe0886a101f32b1103b3671f4e71d2519e18e82d28eb65f5b6dfc27fefe",
+      "source_hash_current": true,
+      "source_key": "descriptor_present_counteraxis_preflight"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "recorded_exists": true,
+      "recorded_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "source_hash_current": true,
+      "source_key": "latest_train_cal_oos_surface"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "recorded_exists": true,
+      "recorded_sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6",
+      "source_hash_current": true,
+      "source_key": "predicted_geometry_atlas_retrieval"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "ca3b9bbba54ab3acb875aac022a0883b99bf3484f4df29fef2a6050c43377b3d",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "ca3b9bbba54ab3acb875aac022a0883b99bf3484f4df29fef2a6050c43377b3d",
+      "source_hash_current": true,
+      "source_key": "retained_descriptor_rescue_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "f706a0cba7dd108cdd4f545408075f5238d04f0b85c7b2dbbd01a66a73c484b3",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "f706a0cba7dd108cdd4f545408075f5238d04f0b85c7b2dbbd01a66a73c484b3",
+      "source_hash_current": true,
+      "source_key": "retained_residual_risk_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604",
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "recorded_exists": true,
+      "recorded_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "source_hash_current": true,
+      "source_key": "threshold_contract"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_channel_veto_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "de79137ed8835def1e571f87eadba8892e96bebd8a02dab7c674d48e192961be",
+      "source_hash_current": true,
+      "source_key": "channel_veto_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_cofactor_context_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "11e8d0e9d6035296fc17e18398ad5552d07b03c40d79e0bdc200fc4ed4deb072",
+      "source_hash_current": true,
+      "source_key": "cofactor_context_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "04cf7fe0886a101f32b1103b3671f4e71d2519e18e82d28eb65f5b6dfc27fefe",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "04cf7fe0886a101f32b1103b3671f4e71d2519e18e82d28eb65f5b6dfc27fefe",
+      "source_hash_current": true,
+      "source_key": "descriptor_present_counteraxis_preflight"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_followup_protein_only_fold_topology_residual_extended_train_cal_oos_surface_current702_20260603.json",
+      "recorded_exists": true,
+      "recorded_sha256": "808c68f8824237ebf9fb5020784e169c1a316ee87400b5952b84a126848a2c20",
+      "source_hash_current": true,
+      "source_key": "latest_train_cal_oos_surface"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "recorded_exists": true,
+      "recorded_sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6",
+      "source_hash_current": true,
+      "source_key": "predicted_geometry_atlas_retrieval"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a",
+      "source_hash_current": true,
+      "source_key": "retained_channel_margin_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "ca3b9bbba54ab3acb875aac022a0883b99bf3484f4df29fef2a6050c43377b3d",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "ca3b9bbba54ab3acb875aac022a0883b99bf3484f4df29fef2a6050c43377b3d",
+      "source_hash_current": true,
+      "source_key": "retained_descriptor_rescue_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "source_hash_current": true,
+      "source_key": "retained_pairwise_descriptor_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "parent_artifact_id": "v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "recorded_exists": true,
+      "recorded_sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73",
+      "source_hash_current": true,
+      "source_key": "threshold_contract"
+    }
+  ],
+  "operating_point": {
+    "baseline_threshold": 0.44155,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "calibration_retention_fraction": 0.911765,
+    "residual_rows_without_final_route": 0,
+    "retained_residual_rows_after_all_counteraxes": 0,
+    "route_id": "fixed_baseline_plus_accepted_counteraxes_plus_descriptor_plus_channel_margin_fold_pressure_plus_pocket_chemistry_plus_geometry_mismatch",
+    "threshold_or_value_changed_now": false,
+    "threshold_selection_source": "train_calibration_only",
+    "train_cal_oos_abstained_or_routed": 167,
+    "train_cal_oos_abstention_fraction": 0.818627,
+    "train_cal_oos_rows": 204
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_closure_reproducibility_audit",
+  "scope": "Deployment-valid reproducibility and source-hash audit for the Lever 3 operating-point closure readout. It rebuilds the closure from its recorded source artifacts, normalizes only created_utc, and checks that the current abstain/route operating point remains hash-current, guardrail-clean, and safe against forced mechanism transfer without selecting rules or changing thresholds.",
+  "source_artifacts": {
+    "operating_point_closure_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json",
+      "sha256": "c3be45451e7716b501aa0b89ee4159f1ed1a333c71da25b2f9ce340f49837d2e"
+    }
+  },
+  "source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "5d26a2960780c3037e0922015ca10a0beeb894cc512daf48cd65ad73a87607e0",
+      "parent_artifact_id": "v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_action_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "5d26a2960780c3037e0922015ca10a0beeb894cc512daf48cd65ad73a87607e0",
+      "source_hash_current": true,
+      "source_key": "deployment_action_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a",
+      "parent_artifact_id": "v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "596186a545349861a469994d813f82298347a050a2f5343737ef00c10234a89a",
+      "source_hash_current": true,
+      "source_key": "retained_channel_margin_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "164a61a901880aa869ebf6ffd71f5b83847220ee61bfd42ca0ea9779533eff75",
+      "parent_artifact_id": "v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "164a61a901880aa869ebf6ffd71f5b83847220ee61bfd42ca0ea9779533eff75",
+      "source_hash_current": true,
+      "source_key": "retained_geometry_mismatch_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "parent_artifact_id": "v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json",
+      "recorded_exists": true,
+      "recorded_sha256": "d7453eb4424df00e6edf483d22b3de47fc6a98d32e9dd187ca88a0192bad789a",
+      "source_hash_current": true,
+      "source_key": "retained_pairwise_descriptor_counteraxis_readout"
+    },
+    {
+      "actual_exists": true,
+      "actual_sha256": "5af607552a6b4902307e250eaddff6097ddb2a844edfc03a92913b3e966628f8",
+      "parent_artifact_id": "v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "5af607552a6b4902307e250eaddff6097ddb2a844edfc03a92913b3e966628f8",
+      "source_hash_current": true,
+      "source_key": "retained_pocket_chemistry_counteraxis_readout"
+    }
+  ],
+  "status": "fold_augmented_lever3_closure_reproducibility_audit_passed"
+}
