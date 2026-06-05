@@ -294,6 +294,37 @@ class CliTests(unittest.TestCase):
             args.null_seed, "lever2_primary_controlled_event_axis_null_v0"
         )
 
+    def test_lever2_event_motif_interaction_null_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-lever2-event-motif-interaction-null-readout"]
+        )
+
+        self.assertIn(
+            "lever2_event_motif_interaction_null_readout",
+            args.out,
+        )
+        self.assertIn(
+            "best_token_followup_pair_no_template_rerun",
+            args.mechanism_no_template_rerun,
+        )
+        self.assertIn("train_cal_feature_sidecar", args.train_cal_feature_sidecar)
+        self.assertIn(
+            "lever2_current_extended_oos_mechanism_overlap_readout",
+            args.current_extended_oos_mechanism_overlap_readout,
+        )
+        self.assertIn(
+            "lever2_source_free_partial_surface_current_split_portability",
+            args.partial_surface_current_split_portability_readout,
+        )
+        self.assertEqual(args.min_primary_retain, 1.0)
+        self.assertEqual(
+            args.baseline_axis_id, "source_free_projected_proton_role_subset"
+        )
+        self.assertEqual(args.null_permutations, 128)
+        self.assertEqual(args.null_seed, "lever2_event_motif_interaction_null_v0")
+
     def test_lever2_event_axis_signature_exclusion_sensitivity_parser_defaults(
         self,
     ) -> None:

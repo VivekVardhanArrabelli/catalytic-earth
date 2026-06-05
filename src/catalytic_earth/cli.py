@@ -51,6 +51,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_event_axis_primary_safe_frontier_readout,
     write_lever2_event_axis_signature_exclusion_sensitivity_readout,
     write_lever2_event_axis_signature_excluded_frontier_readout,
+    write_lever2_event_motif_interaction_null_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_partial_surface_current_split_portability_readout,
@@ -13935,6 +13936,45 @@ def cmd_build_lever2_event_axis_primary_controlled_null_readout(
         f"null p95: {counts.get('null_max_marginal_catches_p95')}, "
         f"supported: "
         f"{decision.get('null_control_supports_genuinely_new_axis_signal')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_event_motif_interaction_null_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_event_motif_interaction_null_readout(
+        mechanism_no_template_rerun_path=Path(args.mechanism_no_template_rerun),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        current_extended_oos_mechanism_overlap_readout_path=Path(
+            args.current_extended_oos_mechanism_overlap_readout
+        ),
+        current_in_scope_threshold_contract_path=Path(
+            args.current_in_scope_threshold_contract
+        ),
+        partial_surface_current_split_portability_readout_path=Path(
+            args.partial_surface_current_split_portability_readout
+        ),
+        min_primary_retain=args.min_primary_retain,
+        baseline_axis_id=args.baseline_axis_id,
+        null_permutations=args.null_permutations,
+        null_seed=args.null_seed,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote Lever 2 event-motif interaction null readout to "
+        f"{args.out} (best motif: {decision.get('best_new_motif_axis_id')}, "
+        f"observed marginal: "
+        f"{counts.get('best_event_motif_marginal_current_retained_oos_catches')}, "
+        f"null p95: {counts.get('null_max_marginal_catches_p95')}, "
+        f"supported: {decision.get('null_control_supports_event_motif_signal')})"
     )
     return 0
 
@@ -33101,6 +33141,83 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_event_axis_primary_controlled_null_readout.set_defaults(
         func=cmd_build_lever2_event_axis_primary_controlled_null_readout
+    )
+
+    lever2_event_motif_interaction_null_readout = subparsers.add_parser(
+        "build-lever2-event-motif-interaction-null-readout",
+        help=(
+            "write a train/cal Lever 2 null-control readout for coupled "
+            "event-motif interaction features"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--mechanism-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--current-extended-oos-mechanism-overlap-readout",
+        default=(
+            "artifacts/v3_lever2_current_extended_oos_mechanism_overlap_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--current-in-scope-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--partial-surface-current-split-portability-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_partial_surface_current_split_"
+            "portability_readout_current702_20260604.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--min-primary-retain", type=float, default=1.0
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--baseline-axis-id",
+        default="source_free_projected_proton_role_subset",
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--null-permutations", type=int, default=128
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--null-seed", default="lever2_event_motif_interaction_null_v0"
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_event_motif_interaction_null_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_event_motif_interaction_null_readout_current702_20260604.md"
+        ),
+    )
+    lever2_event_motif_interaction_null_readout.set_defaults(
+        func=cmd_build_lever2_event_motif_interaction_null_readout
     )
 
     lever2_event_axis_signature_excluded_frontier_readout = subparsers.add_parser(

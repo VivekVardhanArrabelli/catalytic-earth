@@ -52,6 +52,9 @@ DEFAULT_EVENT_AXIS_SIGNATURE_EXCLUSION_SENSITIVITY_ARTIFACT_ID = (
 DEFAULT_EVENT_AXIS_PRIMARY_CONTROLLED_NULL_ARTIFACT_ID = (
     "v3_lever2_event_axis_primary_controlled_null_readout_current702_20260604"
 )
+DEFAULT_EVENT_MOTIF_INTERACTION_NULL_ARTIFACT_ID = (
+    "v3_lever2_event_motif_interaction_null_readout_current702_20260604"
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -387,6 +390,93 @@ def _event_axis_frontier_definitions() -> list[dict[str, Any]]:
                 "multi_event_mechanism_flag",
             ],
             "description": "combined priority event surface",
+        },
+    ]
+
+
+def _event_motif_augmented_features(features: dict[str, Any]) -> dict[str, Any]:
+    augmented = dict(features or {})
+    has_bond = bool(augmented.get("has_bond_change_event"))
+    has_proton = bool(augmented.get("has_proton_transfer_event"))
+    has_electron = bool(augmented.get("has_electron_transfer_event"))
+    bond_count = _feature_numeric_value(augmented, "bond_change_event_count")
+    proton_count = _feature_numeric_value(augmented, "proton_transfer_count")
+    electron_count = _feature_numeric_value(augmented, "electron_transfer_count")
+    event_count = _feature_numeric_value(augmented, "event_count")
+    multi_event = bool(augmented.get("multi_event_mechanism_flag")) or event_count > 1
+    event_axis_richness = int(has_bond) + int(has_proton) + int(has_electron)
+    augmented.update(
+        {
+            "motif_bond_and_proton": has_bond and has_proton,
+            "motif_bond_and_electron": has_bond and has_electron,
+            "motif_proton_and_electron": has_proton and has_electron,
+            "motif_all_three_event_axes": has_bond and has_proton and has_electron,
+            "motif_multi_event_with_bond": multi_event and has_bond,
+            "motif_multi_event_with_electron": multi_event and has_electron,
+            "motif_bond_proton_count_product": bond_count * proton_count,
+            "motif_bond_electron_count_product": bond_count * electron_count,
+            "motif_proton_electron_count_product": proton_count * electron_count,
+            "motif_event_axis_richness": event_axis_richness,
+        }
+    )
+    return augmented
+
+
+def _event_motif_interaction_definitions() -> list[dict[str, Any]]:
+    return [
+        {
+            "axis_id": "bond_proton_coupling",
+            "source_free_status": "requires_multi_axis_source_free_materialization",
+            "feature_fields": [
+                "motif_bond_and_proton",
+                "motif_bond_proton_count_product",
+            ],
+            "description": "bond-change and proton-transfer coupled event motif",
+        },
+        {
+            "axis_id": "bond_electron_coupling",
+            "source_free_status": "requires_multi_axis_source_free_materialization",
+            "feature_fields": [
+                "motif_bond_and_electron",
+                "motif_bond_electron_count_product",
+            ],
+            "description": "bond-change and electron-transfer coupled event motif",
+        },
+        {
+            "axis_id": "proton_electron_coupling",
+            "source_free_status": "requires_multi_axis_source_free_materialization",
+            "feature_fields": [
+                "motif_proton_and_electron",
+                "motif_proton_electron_count_product",
+            ],
+            "description": "proton-transfer and electron-transfer coupled event motif",
+        },
+        {
+            "axis_id": "all_three_event_coupling",
+            "source_free_status": "requires_multi_axis_source_free_materialization",
+            "feature_fields": [
+                "motif_all_three_event_axes",
+                "motif_event_axis_richness",
+            ],
+            "description": "bond/proton/electron tri-axis event motif",
+        },
+        {
+            "axis_id": "multi_event_bond_topology",
+            "source_free_status": "requires_multi_axis_source_free_materialization",
+            "feature_fields": [
+                "motif_multi_event_with_bond",
+                "motif_event_axis_richness",
+            ],
+            "description": "multi-event topology with bond-change evidence",
+        },
+        {
+            "axis_id": "multi_event_electron_topology",
+            "source_free_status": "requires_multi_axis_source_free_materialization",
+            "feature_fields": [
+                "motif_multi_event_with_electron",
+                "motif_event_axis_richness",
+            ],
+            "description": "multi-event topology with electron-transfer evidence",
         },
     ]
 
@@ -7769,6 +7859,777 @@ def build_lever2_event_axis_primary_controlled_null_readout(
     }
 
 
+def build_lever2_event_motif_interaction_null_readout(
+    *,
+    mechanism_no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    current_extended_oos_mechanism_overlap_readout_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    min_primary_retain: float = 1.0,
+    baseline_axis_id: str = "source_free_projected_proton_role_subset",
+    null_permutations: int = 128,
+    null_seed: str = "lever2_event_motif_interaction_null_v0",
+    artifact_id: str = DEFAULT_EVENT_MOTIF_INTERACTION_NULL_ARTIFACT_ID,
+) -> dict[str, Any]:
+    if null_permutations <= 0:
+        raise ValueError("null_permutations must be positive")
+
+    mechanism = _read_json(mechanism_no_template_rerun_path)
+    feature_sidecar = _read_json(train_cal_feature_sidecar_path)
+    current_overlap = _read_json(current_extended_oos_mechanism_overlap_readout_path)
+    current_primary_contract = _read_json(current_in_scope_threshold_contract_path)
+    partial_surface = (
+        _read_json(partial_surface_current_split_portability_readout_path)
+        if partial_surface_current_split_portability_readout_path is not None
+        and Path(partial_surface_current_split_portability_readout_path).exists()
+        else None
+    )
+
+    feature_rows = _feature_rows_by_id(feature_sidecar)
+    source_features_by_id = {
+        entry_id: _event_motif_augmented_features(
+            row.get("row_specific_event_features") or {}
+        )
+        for entry_id, row in feature_rows.items()
+    }
+    calibration_rows: list[dict[str, Any]] = []
+    for row in (mechanism.get("scored_rows") or {}).get("calibration") or []:
+        entry_id = str(row.get("entry_id") or "")
+        if not entry_id or entry_id not in source_features_by_id:
+            continue
+        calibration_rows.append(
+            {
+                "entry_id": entry_id,
+                "is_primary": bool(row.get("is_primary")),
+                "features": source_features_by_id[entry_id],
+            }
+        )
+    primary_control_rows = [row for row in calibration_rows if row["is_primary"]]
+    current_rows = [
+        row
+        for row in (current_overlap.get("row_readouts") or {}).get(
+            "current_extended_oos_overlap_rows"
+        )
+        or []
+        if isinstance(row, dict) and row.get("entry_id") in source_features_by_id
+    ]
+    current_retained_rows = [
+        row for row in current_rows if not row.get("current_surface_abstains")
+    ]
+    current_abstained_rows = [
+        row for row in current_rows if row.get("current_surface_abstains")
+    ]
+    current_primary_rows = _fold_rows_by_id(
+        current_primary_contract.get("calibration_row_scores") or []
+    )
+    calibration_feature_ids = {
+        entry_id
+        for entry_id, row in feature_rows.items()
+        if row.get("assigned_embedding_split") == "calibration"
+    }
+    train_feature_ids = {
+        entry_id
+        for entry_id, row in feature_rows.items()
+        if row.get("assigned_embedding_split") == "train"
+    }
+    valid_current_primary_overlap = sorted(
+        set(current_primary_rows) & calibration_feature_ids, key=_entry_sort_key
+    )
+    current_primary_train_target_overlap = sorted(
+        set(current_primary_rows) & train_feature_ids, key=_entry_sort_key
+    )
+
+    axes_by_id = {
+        str(axis["axis_id"]): axis for axis in _event_axis_frontier_definitions()
+    }
+    if baseline_axis_id not in axes_by_id:
+        raise ValueError(f"unknown baseline event axis: {baseline_axis_id}")
+    baseline_fields = list(axes_by_id[baseline_axis_id]["feature_fields"])
+    motif_axes = _event_motif_interaction_definitions()
+    feature_universe_ids = sorted(
+        {
+            row["entry_id"]
+            for row in calibration_rows
+            if row["entry_id"] in source_features_by_id
+        }
+        | {
+            str(row["entry_id"])
+            for row in current_rows
+            if str(row["entry_id"]) in source_features_by_id
+        },
+        key=_entry_sort_key,
+    )
+
+    def _selection_rows_for(entry_id: str) -> list[dict[str, Any]]:
+        return [row for row in calibration_rows if row["entry_id"] != entry_id]
+
+    baseline_row_readouts: list[dict[str, Any]] = []
+    for row in current_rows:
+        entry_id = str(row["entry_id"])
+        features = source_features_by_id[entry_id]
+        current_surface_abstains = bool(row.get("current_surface_abstains"))
+        try:
+            rule = _select_primary_controlled_axis_rule(
+                _selection_rows_for(entry_id),
+                primary_control_rows,
+                baseline_fields,
+                min_primary_retain=min_primary_retain,
+            )
+            baseline_score = round(_axis_score(features, baseline_fields), 8)
+            baseline_abstains = _axis_rule_abstains(
+                baseline_score,
+                direction=str(rule["direction"]),
+                threshold=float(rule["threshold"]),
+            )
+            selection_error = None
+        except ValueError as exc:
+            rule = None
+            baseline_score = round(_axis_score(features, baseline_fields), 8)
+            baseline_abstains = False
+            selection_error = str(exc)
+        baseline_row_readouts.append(
+            {
+                "entry_id": entry_id,
+                "current_surface_score": row.get("current_surface_score"),
+                "current_surface_abstains": current_surface_abstains,
+                "baseline_rule_evaluable": rule is not None,
+                "selection_error": selection_error,
+                "baseline_axis_score": baseline_score,
+                "selected_rule": rule,
+                "baseline_axis_abstains": baseline_abstains,
+                "current_retained_caught_by_baseline": bool(
+                    baseline_abstains and not current_surface_abstains
+                ),
+            }
+        )
+    baseline_by_entry = {row["entry_id"]: row for row in baseline_row_readouts}
+    baseline_caught_ids = [
+        row["entry_id"]
+        for row in baseline_row_readouts
+        if row["current_retained_caught_by_baseline"]
+    ]
+
+    def _score_projection_plus_axis(
+        *,
+        axis: dict[str, Any],
+        mapping: dict[str, str] | None = None,
+    ) -> dict[str, Any]:
+        axis_id = str(axis["axis_id"])
+        added_fields = list(axis["feature_fields"])
+
+        def _with_added_field_mapping(row: dict[str, Any]) -> dict[str, Any]:
+            if mapping is None:
+                return row
+            source_id = mapping.get(row["entry_id"], row["entry_id"])
+            return {
+                **row,
+                "features": _features_with_axis_fields_from_source(
+                    row["features"],
+                    source_features_by_id.get(source_id, {}),
+                    added_fields,
+                ),
+            }
+
+        mapped_primary_control_rows = [
+            _with_added_field_mapping(row) for row in primary_control_rows
+        ]
+        row_readouts: list[dict[str, Any]] = []
+        for row in current_rows:
+            entry_id = str(row["entry_id"])
+            target_features = source_features_by_id[entry_id]
+            if mapping is not None:
+                source_id = mapping.get(entry_id, entry_id)
+                target_features = _features_with_axis_fields_from_source(
+                    target_features,
+                    source_features_by_id.get(source_id, {}),
+                    added_fields,
+                )
+            else:
+                source_id = entry_id
+            mapped_selection_rows = [
+                _with_added_field_mapping(cal_row)
+                for cal_row in _selection_rows_for(entry_id)
+            ]
+            current_surface_abstains = bool(row.get("current_surface_abstains"))
+            baseline_only_catch = bool(
+                baseline_by_entry.get(entry_id, {}).get(
+                    "current_retained_caught_by_baseline"
+                )
+            )
+            try:
+                pair_rule = _select_primary_controlled_axis_pair_rule(
+                    mapped_selection_rows,
+                    mapped_primary_control_rows,
+                    baseline_fields,
+                    added_fields,
+                    min_primary_retain=min_primary_retain,
+                )
+                baseline_score = round(_axis_score(target_features, baseline_fields), 8)
+                added_score = round(_axis_score(target_features, added_fields), 8)
+                pair_baseline_abstains = _axis_rule_abstains(
+                    baseline_score,
+                    direction=str(pair_rule["baseline_rule"]["direction"]),
+                    threshold=float(pair_rule["baseline_rule"]["threshold"]),
+                )
+                added_abstains = _axis_rule_abstains(
+                    added_score,
+                    direction=str(pair_rule["added_rule"]["direction"]),
+                    threshold=float(pair_rule["added_rule"]["threshold"]),
+                )
+                pair_abstains = bool(pair_baseline_abstains or added_abstains)
+                pair_error = None
+            except ValueError as exc:
+                pair_rule = None
+                baseline_score = round(_axis_score(target_features, baseline_fields), 8)
+                added_score = round(_axis_score(target_features, added_fields), 8)
+                pair_baseline_abstains = False
+                added_abstains = False
+                pair_abstains = False
+                pair_error = str(exc)
+            pair_current_retained_catch = bool(
+                pair_abstains and not current_surface_abstains
+            )
+            row_readouts.append(
+                {
+                    "entry_id": entry_id,
+                    "source_entry_id_for_added_axis": source_id,
+                    "current_surface_score": row.get("current_surface_score"),
+                    "current_surface_abstains": current_surface_abstains,
+                    "pair_rule_evaluable": pair_rule is not None,
+                    "selection_error": pair_error,
+                    "baseline_axis_score": baseline_score,
+                    "added_axis_score": added_score,
+                    "baseline_only_abstains": baseline_by_entry.get(
+                        entry_id, {}
+                    ).get("baseline_axis_abstains"),
+                    "pair_baseline_axis_abstains": pair_baseline_abstains,
+                    "added_axis_abstains": added_abstains,
+                    "projection_plus_motif_abstains": pair_abstains,
+                    "current_retained_caught_by_projected_subset": (
+                        baseline_only_catch
+                    ),
+                    "current_retained_caught_by_projection_plus_motif": (
+                        pair_current_retained_catch
+                    ),
+                    "current_retained_caught_beyond_projected_subset": bool(
+                        pair_current_retained_catch and not baseline_only_catch
+                    ),
+                    "union_or_gate_abstains": bool(
+                        current_surface_abstains or pair_abstains
+                    ),
+                    "selected_pair_rule": pair_rule,
+                }
+            )
+        evaluable_rows = [row for row in row_readouts if row["pair_rule_evaluable"]]
+        baseline_caught = [
+            row
+            for row in evaluable_rows
+            if row["current_retained_caught_by_projected_subset"]
+        ]
+        motif_caught = [
+            row
+            for row in evaluable_rows
+            if row["current_retained_caught_by_projection_plus_motif"]
+        ]
+        marginal_caught = [
+            row
+            for row in evaluable_rows
+            if row["current_retained_caught_beyond_projected_subset"]
+        ]
+        current_abstained = sum(
+            1 for row in evaluable_rows if row["current_surface_abstains"]
+        )
+        union_abstained = sum(
+            1 for row in evaluable_rows if row["union_or_gate_abstains"]
+        )
+        return {
+            "projection_plus_motif_id": f"{baseline_axis_id}+{axis_id}",
+            "baseline_axis_id": baseline_axis_id,
+            "added_motif_axis_id": axis_id,
+            "source_free_status": axis["source_free_status"],
+            "description": axis["description"],
+            "feature_fields": sorted(set(baseline_fields) | set(added_fields)),
+            "added_feature_fields": added_fields,
+            "primary_controlled_selection": {
+                "target_rows": len(row_readouts),
+                "evaluable_rows": len(evaluable_rows),
+                "unevaluable_rows": len(row_readouts) - len(evaluable_rows),
+                "min_primary_retain": min_primary_retain,
+                "primary_control_rows": len(primary_control_rows),
+            },
+            "current_extended_overlap": {
+                "row_count": len(evaluable_rows),
+                "current_surface_abstained_rows": current_abstained,
+                "current_surface_retained_rows": sum(
+                    1 for row in evaluable_rows if not row["current_surface_abstains"]
+                ),
+                "projected_subset_current_retained_oos_catches": len(
+                    baseline_caught
+                ),
+                "projection_plus_motif_current_retained_oos_catches": len(
+                    motif_caught
+                ),
+                "marginal_current_retained_oos_catches_beyond_projected_subset": len(
+                    marginal_caught
+                ),
+                "union_or_gate_abstained_rows": union_abstained,
+                "union_or_gate_abstain_recall": _recall(
+                    union_abstained, len(evaluable_rows)
+                ),
+                "projected_subset_caught_entry_ids": [
+                    row["entry_id"] for row in baseline_caught
+                ],
+                "projection_plus_motif_caught_entry_ids": [
+                    row["entry_id"] for row in motif_caught
+                ],
+                "marginal_caught_entry_ids": [
+                    row["entry_id"] for row in marginal_caught
+                ],
+            },
+            "row_readouts": row_readouts,
+        }
+
+    observed_motif_rows = [
+        _score_projection_plus_axis(axis=axis) for axis in motif_axes
+    ]
+
+    def _motif_sort_key(row: dict[str, Any]) -> tuple[int, int, str]:
+        overlap = row["current_extended_overlap"]
+        return (
+            int(overlap["marginal_current_retained_oos_catches_beyond_projected_subset"]),
+            int(overlap["projection_plus_motif_current_retained_oos_catches"]),
+            str(row["projection_plus_motif_id"]),
+        )
+
+    best_motif = sorted(observed_motif_rows, key=_motif_sort_key, reverse=True)[0]
+    best_overlap = best_motif["current_extended_overlap"]
+    observed_marginal = int(
+        best_overlap["marginal_current_retained_oos_catches_beyond_projected_subset"]
+    )
+    observed_total = int(best_overlap["projection_plus_motif_current_retained_oos_catches"])
+
+    null_permutation_rows: list[dict[str, Any]] = []
+    for permutation_index in range(null_permutations):
+        axis_rows: list[dict[str, Any]] = []
+        for axis in motif_axes:
+            mapping = _deterministic_null_mapping(
+                feature_universe_ids,
+                seed=f"{null_seed}:{axis['axis_id']}:{permutation_index}",
+            )
+            scored = _score_projection_plus_axis(axis=axis, mapping=mapping)
+            axis_rows.append(
+                {
+                    "axis_id": axis["axis_id"],
+                    "projection_plus_motif_id": scored["projection_plus_motif_id"],
+                    "projection_plus_motif_current_retained_oos_catches": scored[
+                        "current_extended_overlap"
+                    ]["projection_plus_motif_current_retained_oos_catches"],
+                    "marginal_current_retained_oos_catches_beyond_projected_subset": scored[
+                        "current_extended_overlap"
+                    ][
+                        "marginal_current_retained_oos_catches_beyond_projected_subset"
+                    ],
+                    "marginal_caught_entry_ids": scored["current_extended_overlap"][
+                        "marginal_caught_entry_ids"
+                    ],
+                }
+            )
+        best_null_axis = sorted(
+            axis_rows,
+            key=lambda row: (
+                int(
+                    row[
+                        "marginal_current_retained_oos_catches_beyond_projected_subset"
+                    ]
+                ),
+                int(row["projection_plus_motif_current_retained_oos_catches"]),
+                str(row["projection_plus_motif_id"]),
+            ),
+            reverse=True,
+        )[0]
+        null_permutation_rows.append(
+            {
+                "permutation_index": permutation_index,
+                "best_null_axis": best_null_axis,
+                "axis_rows": axis_rows,
+            }
+        )
+    null_max_marginals = [
+        int(
+            row["best_null_axis"][
+                "marginal_current_retained_oos_catches_beyond_projected_subset"
+            ]
+        )
+        for row in null_permutation_rows
+    ]
+    null_ge_observed = sum(
+        1 for value in null_max_marginals if value >= observed_marginal
+    )
+    empirical_p_value = round(
+        (null_ge_observed + 1) / (len(null_max_marginals) + 1), 6
+    )
+    null_marginal_q95 = _empirical_quantile(null_max_marginals, 0.95)
+    observed_exceeds_null_95 = bool(
+        null_marginal_q95 is not None and observed_marginal > null_marginal_q95
+    )
+    null_top_rows = sorted(
+        null_permutation_rows,
+        key=lambda row: (
+            int(
+                row["best_null_axis"][
+                    "marginal_current_retained_oos_catches_beyond_projected_subset"
+                ]
+            ),
+            int(
+                row["best_null_axis"][
+                    "projection_plus_motif_current_retained_oos_catches"
+                ]
+            ),
+            str(row["best_null_axis"]["projection_plus_motif_id"]),
+        ),
+        reverse=True,
+    )[:10]
+
+    partial_counts = (partial_surface or {}).get("counts") or {}
+    partial_missing_rows = (partial_surface or {}).get("missing_evidence_rows") or {}
+    missing_primary_source_free_rows = [
+        row
+        for row in (
+            partial_missing_rows.get(
+                "current_primary_rows_requiring_source_free_partial_surface"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    missing_retained_source_free_rows = [
+        row
+        for row in (
+            partial_missing_rows.get(
+                "current_retained_oos_rows_requiring_source_free_partial_surface"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    missing_current_primary_source_free = int(
+        partial_counts.get(
+            "missing_current_primary_source_free_partial_surface_rows",
+            len(current_primary_rows) - len(valid_current_primary_overlap),
+        )
+        or 0
+    )
+    missing_current_retained_source_free = int(
+        partial_counts.get(
+            "missing_current_retained_oos_source_free_partial_surface_rows",
+            len(current_retained_rows),
+        )
+        or 0
+    )
+    source_free_current_split_measurable = (
+        missing_current_primary_source_free == 0
+        and missing_current_retained_source_free == 0
+    )
+    motif_signal = observed_marginal > 0
+    result_class = (
+        "research_only_null_controlled_event_motif_signal_source_free_gap"
+        if motif_signal and observed_exceeds_null_95
+        else (
+            "research_only_event_motif_weak_marginal_not_distinguishable_from_null"
+            if motif_signal
+            else "research_only_event_motif_interaction_negative"
+        )
+    )
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": f"{SCHEMA_VERSION}.event_motif_interaction_null_readout.v0",
+        "created_utc": _utc_now_iso(),
+        "status": f"lever2_event_motif_interaction_null_readout_{result_class}",
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal readout testing whether coupled event-motif "
+            "features add signal beyond the projected event-axis subset under "
+            "the same primary-control and leave-target-out discipline. Motif "
+            "fields are derived from source-free-deployable event primitives "
+            "but are evaluated here only on train/cal M-CSA feature rows. No "
+            "heldout rows are scored or tuned."
+        ),
+        "fixed_operating_points": {
+            "current_surface": (
+                current_overlap.get("fixed_operating_points") or {}
+            ).get("current_surface")
+            or {},
+            "axis_selection": {
+                "baseline_axis_id": baseline_axis_id,
+                "min_primary_retain": min_primary_retain,
+                "null_seed": null_seed,
+                "null_permutations": null_permutations,
+                "null_assignment": (
+                    "deterministic SHA256 permutation of derived motif fields "
+                    "across train/cal feature rows"
+                ),
+            },
+        },
+        "measured_readout": {
+            "baseline_projected_subset_axis": {
+                "axis_id": baseline_axis_id,
+                "current_extended_overlap": {
+                    "row_count": len(baseline_row_readouts),
+                    "current_retained_oos_caught_by_baseline": len(
+                        baseline_caught_ids
+                    ),
+                    "current_retained_caught_entry_ids": baseline_caught_ids,
+                },
+            },
+            "projection_plus_motif_rows": [
+                {key: value for key, value in row.items() if key != "row_readouts"}
+                for row in observed_motif_rows
+            ],
+            "best_projection_plus_motif": {
+                key: value for key, value in best_motif.items() if key != "row_readouts"
+            },
+            "null_distribution": {
+                "permutations": null_permutations,
+                "motif_axes_evaluated_per_permutation": len(motif_axes),
+                "max_marginal_catches_by_permutation": null_max_marginals,
+                "summary": {
+                    "min": min(null_max_marginals) if null_max_marginals else None,
+                    "median": _empirical_quantile(null_max_marginals, 0.5),
+                    "p90": _empirical_quantile(null_max_marginals, 0.9),
+                    "p95": null_marginal_q95,
+                    "max": max(null_max_marginals) if null_max_marginals else None,
+                    "null_ge_observed_permutations": null_ge_observed,
+                    "empirical_p_value_greater_equal_observed": empirical_p_value,
+                },
+            },
+            "top_null_permutations": null_top_rows,
+        },
+        "row_readouts": {
+            "current_extended_overlap_by_baseline_projected_subset": (
+                baseline_row_readouts
+            ),
+            "current_extended_overlap_by_projection_plus_motif": {
+                row["projection_plus_motif_id"]: row["row_readouts"]
+                for row in observed_motif_rows
+            },
+        },
+        "missing_evidence": [
+            {
+                "gap_id": "current_primary_source_free_event_motif_rows",
+                "required_rows": len(current_primary_rows),
+                "valid_overlap_rows_now": len(valid_current_primary_overlap),
+                "missing_rows_now": missing_current_primary_source_free,
+                "why_it_matters": (
+                    "The current primary retention gate must be measured on "
+                    "source-free event-motif features before any promotable "
+                    "Lever 2 operating-point claim."
+                ),
+            },
+            {
+                "gap_id": "current_retained_oos_source_free_event_motif_rows",
+                "required_rows": int(
+                    partial_counts.get("current_retained_oos_rows")
+                    or len(current_retained_rows)
+                ),
+                "valid_overlap_rows_now": (
+                    int(
+                        partial_counts.get(
+                            "union_current_retained_oos_overlap_rows", 0
+                        )
+                        or 0
+                    )
+                    if partial_surface is not None
+                    else len(current_retained_rows)
+                ),
+                "missing_rows_now": missing_current_retained_source_free,
+                "why_it_matters": (
+                    "These geometry/fold-retained OOS rows are where "
+                    "source-free mechanism motifs would need to add abstention "
+                    "value beyond the current surface."
+                ),
+            },
+            {
+                "gap_id": "best_event_motif_source_free_fields",
+                "required_rows": len(best_motif["added_feature_fields"]),
+                "valid_overlap_rows_now": 0,
+                "missing_rows_now": len(best_motif["added_feature_fields"]),
+                "why_it_matters": (
+                    "The best motif fields are derived research features here; "
+                    "they must be materialized from source-free event evidence "
+                    "on the current split before deployment use."
+                ),
+            },
+        ],
+        "missing_evidence_rows": {
+            "current_primary_rows_requiring_source_free_event_motif": (
+                missing_primary_source_free_rows
+            ),
+            "current_retained_oos_rows_requiring_source_free_event_motif": (
+                missing_retained_source_free_rows
+            ),
+            "best_event_motif_marginal_rows": [
+                row
+                for row in best_motif["row_readouts"]
+                if row["current_retained_caught_beyond_projected_subset"]
+            ],
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "motif_surfaces_evaluated": len(motif_axes),
+            "calibration_rows": len(calibration_rows),
+            "calibration_primary_rows": len(primary_control_rows),
+            "calibration_oos_rows": sum(
+                1 for row in calibration_rows if not row["is_primary"]
+            ),
+            "current_extended_oos_overlap_rows": len(current_rows),
+            "current_extended_current_retained_overlap_rows": len(
+                current_retained_rows
+            ),
+            "current_extended_current_abstained_overlap_rows": len(
+                current_abstained_rows
+            ),
+            "current_primary_rows": len(current_primary_rows),
+            "valid_current_primary_calibration_feature_overlap_rows": len(
+                valid_current_primary_overlap
+            ),
+            "current_primary_rows_excluded_as_mechanism_train_targets": len(
+                current_primary_train_target_overlap
+            ),
+            "baseline_projected_subset_current_retained_oos_catches": len(
+                baseline_caught_ids
+            ),
+            "best_event_motif_current_retained_oos_catches": observed_total,
+            "best_event_motif_marginal_current_retained_oos_catches": (
+                observed_marginal
+            ),
+            "null_permutations": null_permutations,
+            "null_motif_axes_evaluated": len(motif_axes),
+            "null_max_marginal_catches_min": (
+                min(null_max_marginals) if null_max_marginals else None
+            ),
+            "null_max_marginal_catches_median": _empirical_quantile(
+                null_max_marginals, 0.5
+            ),
+            "null_max_marginal_catches_p90": _empirical_quantile(
+                null_max_marginals, 0.9
+            ),
+            "null_max_marginal_catches_p95": null_marginal_q95,
+            "null_max_marginal_catches_max": (
+                max(null_max_marginals) if null_max_marginals else None
+            ),
+            "null_permutations_ge_observed_marginal": null_ge_observed,
+            "missing_current_primary_source_free_event_motif_rows": (
+                missing_current_primary_source_free
+            ),
+            "missing_current_retained_oos_source_free_event_motif_rows": (
+                missing_current_retained_source_free
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "best_event_motif_axis_id": best_motif["projection_plus_motif_id"],
+            "best_new_motif_axis_id": best_motif["added_motif_axis_id"],
+            "event_motif_adds_beyond_projected_subset": motif_signal,
+            "observed_marginal_exceeds_empirical_null_p95": observed_exceeds_null_95,
+            "empirical_p_value_greater_equal_observed": empirical_p_value,
+            "null_control_supports_event_motif_signal": bool(
+                motif_signal and observed_exceeds_null_95
+            ),
+            "null_controlled_result_is_negative": not bool(
+                motif_signal and observed_exceeds_null_95
+            ),
+            "adds_local_overlap_value_beyond_current_surface": motif_signal,
+            "adds_operating_point_value_beyond_current_surface": False,
+            "source_free_current_split_operating_point_measurable": (
+                source_free_current_split_measurable
+            ),
+            "valid_integrated_operating_point_measurable": False,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not bool(motif_signal and observed_exceeds_null_95),
+            "apply_or_promote_now": False,
+            "next_gate": (
+                "Do not promote event-motif interactions from this result. "
+                "If source-free current-split event rows are materialized, "
+                "rerun this motif-null readout and require marginal catches "
+                "above the empirical null p95 before heldout or deployment work."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "labels_used_only_for_train_cal_metric_accounting": True,
+            "entry_ids_used_only_for_split_overlap_accounting": True,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "target_oos_rows_excluded_from_their_own_axis_rule_selection": True,
+            "primary_labels_used_only_for_retention_control": True,
+            "null_control_randomizes_added_motif_feature_assignments_only": True,
+            "null_control_preserves_current_surface_and_split_rows": True,
+            "threshold_selected_or_tuned": True,
+            "threshold_selection_rows": (
+                "calibration_only_leave_one_oos_row_out_with_all_primary_controls"
+            ),
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "mechanism_no_template_rerun": _source_path_record(
+                mechanism_no_template_rerun_path
+            ),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+            "current_extended_oos_mechanism_overlap_readout": _source_path_record(
+                current_extended_oos_mechanism_overlap_readout_path
+            ),
+            "current_in_scope_threshold_contract": _source_path_record(
+                current_in_scope_threshold_contract_path
+            ),
+            "partial_surface_current_split_portability_readout": (
+                _source_path_record(partial_surface_current_split_portability_readout_path)
+                if partial_surface_current_split_portability_readout_path is not None
+                else {"exists": False, "path": None, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"Best event motif {best_motif['projection_plus_motif_id']} "
+                f"catches {observed_total}/{len(current_retained_rows)} "
+                "current-retained overlap rows with "
+                f"{observed_marginal} marginal "
+                f"{'catch' if observed_marginal == 1 else 'catches'}; "
+                f"motif-null p95 is {null_marginal_q95}."
+            ),
+            "result": (
+                "Research-only null-controlled motif signal: the best coupled "
+                "event motif exceeds the deterministic motif null p95, but "
+                "source-free current-split rows are still missing."
+                if motif_signal and observed_exceeds_null_95
+                else (
+                    "Measured research-only negative: coupled event-motif "
+                    "features do not produce marginal current-retained OOS "
+                    "signal distinguishable from deterministic motif-field "
+                    "assignment nulls."
+                )
+            ),
+            "next_action": (
+                "Do not spend Lever 2 effort on event-motif interactions until "
+                "source-free current-split event rows exist; then rerun this "
+                "motif-null readout before any heldout or deployment claim."
+            ),
+        },
+    }
+
+
 def build_lever2_source_free_partial_surface_current_split_portability_readout(
     *,
     current_measured_readout_path: Path,
@@ -9908,6 +10769,134 @@ def render_lever2_event_axis_primary_controlled_null_readout_report(
     return "\n".join(lines) + "\n"
 
 
+def render_lever2_event_motif_interaction_null_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    best = measured["best_projection_plus_motif"]
+    best_overlap = best["current_extended_overlap"]
+    null_summary = measured["null_distribution"]["summary"]
+    marginal = int(
+        best_overlap["marginal_current_retained_oos_catches_beyond_projected_subset"]
+    )
+    marginal_label = "catch" if marginal == 1 else "catches"
+    lines = [
+        "# Lever 2 Event-Motif Interaction Null Readout",
+        "",
+        f"- Artifact: `{readout['artifact_id']}`",
+        f"- Status: `{readout['status']}`",
+        f"- Created UTC: `{readout['created_utc']}`",
+        "",
+        "## Measured Result",
+        "",
+        (
+            "- Baseline projected subset catches "
+            f"{counts['baseline_projected_subset_current_retained_oos_catches']}/"
+            f"{counts['current_extended_current_retained_overlap_rows']} "
+            "current-retained overlap rows."
+        ),
+        (
+            "- Best motif surface: "
+            f"`{best['projection_plus_motif_id']}` catches "
+            f"{best_overlap['projection_plus_motif_current_retained_oos_catches']}/"
+            f"{counts['current_extended_current_retained_overlap_rows']} rows, "
+            f"with {marginal} marginal {marginal_label} beyond the projected subset."
+        ),
+        (
+            "- Motif null over "
+            f"{counts['null_permutations']} permutations and "
+            f"{counts['null_motif_axes_evaluated']} motif axes: p95 "
+            f"{null_summary['p95']}, max {null_summary['max']}, empirical "
+            f"p-value {null_summary['empirical_p_value_greater_equal_observed']}."
+        ),
+        "",
+        "## Motif Frontier",
+        "",
+        "| motif axis | retained OOS caught | marginal caught | marginal rows |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for row in sorted(
+        measured["projection_plus_motif_rows"],
+        key=lambda item: (
+            item["current_extended_overlap"][
+                "marginal_current_retained_oos_catches_beyond_projected_subset"
+            ],
+            item["current_extended_overlap"][
+                "projection_plus_motif_current_retained_oos_catches"
+            ],
+            item["projection_plus_motif_id"],
+        ),
+        reverse=True,
+    ):
+        overlap = row["current_extended_overlap"]
+        lines.append(
+            f"| {row['added_motif_axis_id']} | "
+            f"{overlap['projection_plus_motif_current_retained_oos_catches']}/"
+            f"{overlap['current_surface_retained_rows']} | "
+            f"{overlap['marginal_current_retained_oos_catches_beyond_projected_subset']} | "
+            f"{', '.join(overlap['marginal_caught_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Top Null Permutations",
+        "",
+        "| permutation | best null motif | total catches | marginal catches | marginal rows |",
+        "| ---: | --- | ---: | ---: | --- |",
+    ]
+    for row in measured["top_null_permutations"]:
+        axis = row["best_null_axis"]
+        lines.append(
+            f"| {row['permutation_index']} | {axis['projection_plus_motif_id']} | "
+            f"{axis['projection_plus_motif_current_retained_oos_catches']} | "
+            f"{axis['marginal_current_retained_oos_catches_beyond_projected_subset']} | "
+            f"{', '.join(axis['marginal_caught_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Missing Evidence",
+        "",
+        "| gap | required | valid now | missing now | why it matters |",
+        "| --- | ---: | ---: | ---: | --- |",
+    ]
+    for gap in readout["missing_evidence"]:
+        lines.append(
+            f"| {gap['gap_id']} | {gap['required_rows']} | "
+            f"{gap['valid_overlap_rows_now']} | {gap['missing_rows_now']} | "
+            f"{gap['why_it_matters']} |"
+        )
+    marginal_rows = readout["missing_evidence_rows"]["best_event_motif_marginal_rows"]
+    lines += [
+        "",
+        "- Best motif marginal rows: "
+        f"{', '.join(row['entry_id'] for row in marginal_rows) or 'none'}",
+        "",
+        "## Decision",
+        "",
+        f"- Best event motif: `{decision['best_event_motif_axis_id']}`",
+        "- Event motif adds beyond projected subset: "
+        f"{decision['event_motif_adds_beyond_projected_subset']}",
+        "- Observed marginal exceeds motif-null p95: "
+        f"{decision['observed_marginal_exceeds_empirical_null_p95']}",
+        "- Null control supports event-motif signal: "
+        f"{decision['null_control_supports_event_motif_signal']}",
+        "- Adds operating-point value beyond current surface: "
+        f"{decision['adds_operating_point_value_beyond_current_surface']}",
+        f"- Deployable now: {decision['deployable_now']}",
+        f"- Research-only: {decision['research_only']}",
+        f"- Negative: {decision['negative']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def write_lever2_mechanism_feature_incremental_readout(
     *,
     mechanism_no_template_rerun_path: Path,
@@ -10260,6 +11249,53 @@ def write_lever2_event_axis_primary_controlled_null_readout(
             render_lever2_event_axis_primary_controlled_null_readout_report(
                 readout
             ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def write_lever2_event_motif_interaction_null_readout(
+    *,
+    mechanism_no_template_rerun_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    current_extended_oos_mechanism_overlap_readout_path: Path,
+    current_in_scope_threshold_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    partial_surface_current_split_portability_readout_path: Path | None = None,
+    min_primary_retain: float = 1.0,
+    baseline_axis_id: str = "source_free_projected_proton_role_subset",
+    null_permutations: int = 128,
+    null_seed: str = "lever2_event_motif_interaction_null_v0",
+    artifact_id: str = DEFAULT_EVENT_MOTIF_INTERACTION_NULL_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_event_motif_interaction_null_readout(
+        mechanism_no_template_rerun_path=mechanism_no_template_rerun_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        current_extended_oos_mechanism_overlap_readout_path=(
+            current_extended_oos_mechanism_overlap_readout_path
+        ),
+        current_in_scope_threshold_contract_path=(
+            current_in_scope_threshold_contract_path
+        ),
+        partial_surface_current_split_portability_readout_path=(
+            partial_surface_current_split_portability_readout_path
+        ),
+        min_primary_retain=min_primary_retain,
+        baseline_axis_id=baseline_axis_id,
+        null_permutations=null_permutations,
+        null_seed=null_seed,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_lever2_event_motif_interaction_null_readout_report(readout),
             encoding="utf-8",
         )
     return readout

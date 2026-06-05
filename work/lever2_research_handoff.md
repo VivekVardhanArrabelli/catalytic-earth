@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-04T23:33:05Z`
-- STARTED_AT_LOCAL: `2026-06-04T18:33:05-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T00:28:35Z`
-- ENDED_AT_LOCAL: `2026-06-04T19:28:35-0500 CDT`
-- ELAPSED_MINUTES: `55.50`
+- STARTED_AT_UTC: `2026-06-05T00:31:33Z`
+- STARTED_AT_LOCAL: `2026-06-04T19:31:33-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T01:27:10Z`
+- ENDED_AT_LOCAL: `2026-06-04T20:27:10-0500 CDT`
+- ELAPSED_MINUTES: `55.62`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,148 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 11
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T00:31:33Z`
+- STARTED_LOCAL: `2026-06-04T19:31:33-0500 CDT`
+- ENDED_AT: `2026-06-05T01:27:10Z`
+- ENDED_LOCAL: `2026-06-04T20:27:10-0500 CDT`
+- ELAPSED_MINUTES: `55.62`
+
+#### Intent
+
+Continue Lever 2 mechanism-representation research only. Start from current
+`origin/main`, keep all work on `lever-2-research-track`, and run another
+measured train/cal readout that does not repeat the settled current-surface
+embedding negative.
+
+#### Work log
+
+- Started in detached automation worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/a14d/catalytic-earth`; found
+  the existing dedicated Lever 2 branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` and
+  continued there for all branch work.
+- Initial disk free space was below the 10 GiB guardrail at about 9.9 GiB.
+  Removed the clean stale detached worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/d8db/catalytic-earth`,
+  restoring free space to about 13 GiB before substantive branch work.
+- Fetched `origin` and rebased `lever-2-research-track` onto current
+  `origin/main` `f599ef4126e8f86aaf415093f56f979c554d81ce`.
+  Resolved the expected `src/catalytic_earth/cli.py` conflict by preserving
+  both the latest Lever 3 deployment-input audit command family and the Lever 2
+  mechanism command family.
+- Added a measured event-motif interaction null-control readout:
+  `build-lever2-event-motif-interaction-null-readout`. It derives coupled
+  motif fields from row-specific event primitives such as bond+proton,
+  bond+electron, all-three event axes, and multi-event topology, then tests
+  projected-subset-plus-motif surfaces under the same leave-target-out,
+  primary-control rule-selection discipline used by the prior Lever 2 event
+  readouts.
+- Generated committed default and alternate-seed measured artifacts/reports:
+  `artifacts/v3_lever2_event_motif_interaction_null_readout_current702_20260604.json`,
+  `work/lever2_event_motif_interaction_null_readout_current702_20260604.md`,
+  `artifacts/v3_lever2_event_motif_interaction_null_altseed_readout_current702_20260604.json`,
+  and
+  `work/lever2_event_motif_interaction_null_altseed_readout_current702_20260604.md`.
+- Added parser and artifact-regression coverage for the motif-null command and
+  both generated readouts.
+- Ran disposable follow-up probes that were not committed: an all-interaction
+  motif union probe, an event-axis-richness-only probe, a completed
+  256-permutation motif-null probe in `/tmp`, and optional 8192/2048
+  high-permutation probes stopped during wrap because the committed artifacts
+  and completed 256-probe had already preserved the negative decision.
+
+#### Measured results
+
+- Default motif-null result:
+  `research_only_event_motif_weak_marginal_not_distinguishable_from_null`.
+  Baseline projected subset catches 5/13 current-retained overlap rows. The
+  best coupled motif surface is
+  `source_free_projected_proton_role_subset+multi_event_bond_topology`, catching
+  6/13 current-retained overlap rows with 1 marginal catch (`m_csa:256`).
+- The default deterministic motif null over 128 permutations and 6 motif axes
+  has max-marginal min/median/p90/p95/max = 1/3/5/6/7. All 128/128
+  permutations meet or exceed the observed 1 marginal catch; empirical p-value
+  is `1.0`.
+- Alternate seed agrees: observed marginal remains 1, null p95 is 6, null max
+  is 8, and 127/128 permutations meet or exceed observed
+  (`p=0.992248`).
+- A completed temporary 256-permutation probe also agrees: null p95/max = 5/8,
+  256/256 permutations meet or exceed observed, and p-value is `1.0`.
+- Disposable combined-surface probes did not rescue the route:
+  all event-motif interaction fields caught 5/13 current-retained overlap rows
+  with 0 marginal catches, and event-axis richness alone also caught 5/13 with
+  0 marginal catches.
+- Classification: measured research-only negative for event-motif interaction
+  features. The route does not add null-controlled operating-point value beyond
+  the current geometry/fold/projected-subset surface.
+- Deployability: not deployable. The current split still has 0/34 current
+  primary rows and 0/132 current-retained OOS rows with source-free
+  event-motif rows, so no integrated operating-point claim or Lever 2 promotion
+  is supported.
+
+#### Guardrails
+
+- Worked only on Lever 2 research.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  splits, model weights, deployment gates, or heldout rows changed.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  or source provenance were used as predictive features.
+- Entry IDs were used only for split/overlap accounting, deterministic null
+  assignment bookkeeping, row diagnostics, and missing-evidence accounting.
+- M-CSA row-specific mechanism features remain train/cal-only research
+  evidence; no source-free current-split rows were materialized or promoted.
+
+#### Validation
+
+- Generated default motif-null readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-motif-interaction-null-readout`.
+- Generated alternate-seed motif-null readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-event-motif-interaction-null-readout --null-seed lever2_event_motif_interaction_null_altseed_v0 --artifact-id v3_lever2_event_motif_interaction_null_altseed_readout_current702_20260604 --out artifacts/v3_lever2_event_motif_interaction_null_altseed_readout_current702_20260604.json --report work/lever2_event_motif_interaction_null_altseed_readout_current702_20260604.md`.
+- Focused parser/artifact tests passed:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_event_motif_interaction_null_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_motif_interaction_null_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_event_motif_interaction_null_altseed_readout_counts -q`:
+  3 passed.
+- Broader touched Lever 2/CLI/artifact slice passed:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  423 passed, 186 subtests passed.
+- Full pytest passed:
+  `PYTHONPATH=src python -m pytest -q`: 1492 passed, 1 existing sklearn/SciPy
+  deprecation warning, 205 subtests passed.
+- Full unittest discovery passed:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1447 tests OK, with
+  the same existing warning.
+- `python -m py_compile src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_geometry_artifact_regression.py`
+  passed.
+- `PYTHONPATH=src python -m compileall -q src tests` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed: 12 source
+  records, 8 mechanism fingerprints, 15 ontology families, and 702 curated
+  labels.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`
+  passed: 2 passed.
+- `git diff --check` passed.
+- Repo JSON/JSONL parse sweep passed: 3568 JSON files and 27 JSONL files
+  parsed with 0 errors.
+- New motif-null artifact `source_artifacts` hashes checked: 10 checked across
+  2 artifacts, 0 stale.
+- Disk stayed above the 10 GiB guardrail after cleanup and through wrap, ending
+  around 14 GiB free.
+
+#### Commit/push status
+
+- Pending final commit/push verification after this handoff update.
+
+#### Exact next action
+
+- Do not promote Lever 2 event-motif interactions. If source-free current-split
+  event rows are materialized later, rerun the event-motif null readout and
+  require marginal catches above the empirical null p95 before any heldout or
+  deployment claim. Otherwise prioritize acquiring source-free mechanism/event
+  evidence for the 34 current primary rows and 132 current-retained OOS rows
+  before more event-surface modeling.
 
 ### 2026-06-04 Lever 2 Research Run 10
 

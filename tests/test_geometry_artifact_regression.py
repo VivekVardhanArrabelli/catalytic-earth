@@ -19295,6 +19295,151 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(readout["decision"]["negative"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_event_motif_interaction_null_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_motif_interaction_null_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "lever2_event_motif_interaction_null_readout_"
+            "research_only_event_motif_weak_marginal_not_distinguishable_from_null",
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_event_motif_weak_marginal_not_distinguishable_from_null",
+        )
+        self.assertEqual(readout["counts"]["motif_surfaces_evaluated"], 6)
+        self.assertEqual(readout["counts"]["calibration_rows"], 32)
+        self.assertEqual(readout["counts"]["calibration_primary_rows"], 4)
+        self.assertEqual(readout["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(readout["counts"]["current_extended_oos_overlap_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["current_extended_current_retained_overlap_rows"],
+            13,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "baseline_projected_subset_current_retained_oos_catches"
+            ],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"]["best_event_motif_current_retained_oos_catches"],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_event_motif_marginal_current_retained_oos_catches"
+            ],
+            1,
+        )
+        self.assertEqual(readout["counts"]["null_permutations"], 128)
+        self.assertEqual(readout["counts"]["null_motif_axes_evaluated"], 6)
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_p95"], 6)
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_max"], 7)
+        self.assertEqual(
+            readout["counts"]["null_permutations_ge_observed_marginal"], 128
+        )
+        self.assertEqual(
+            readout["counts"]["missing_current_primary_source_free_event_motif_rows"],
+            34,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "missing_current_retained_oos_source_free_event_motif_rows"
+            ],
+            132,
+        )
+        self.assertEqual(
+            readout["decision"]["best_event_motif_axis_id"],
+            "source_free_projected_proton_role_subset+multi_event_bond_topology",
+        )
+        self.assertEqual(
+            readout["decision"]["best_new_motif_axis_id"],
+            "multi_event_bond_topology",
+        )
+        self.assertTrue(readout["decision"]["event_motif_adds_beyond_projected_subset"])
+        self.assertFalse(
+            readout["decision"]["observed_marginal_exceeds_empirical_null_p95"]
+        )
+        self.assertFalse(
+            readout["decision"]["null_control_supports_event_motif_signal"]
+        )
+        self.assertTrue(readout["decision"]["negative"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(
+            readout["decision"]["adds_operating_point_value_beyond_current_surface"]
+        )
+        best = readout["measured_readout"]["best_projection_plus_motif"]
+        self.assertEqual(
+            best["current_extended_overlap"]["marginal_caught_entry_ids"],
+            ["m_csa:256"],
+        )
+        marginal_rows = readout["missing_evidence_rows"][
+            "best_event_motif_marginal_rows"
+        ]
+        self.assertEqual([row["entry_id"] for row in marginal_rows], ["m_csa:256"])
+        self.assertTrue(
+            readout["guardrails"][
+                "null_control_randomizes_added_motif_feature_assignments_only"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_event_motif_interaction_null_altseed_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_event_motif_interaction_null_altseed_readout_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_event_motif_weak_marginal_not_distinguishable_from_null",
+        )
+        self.assertEqual(
+            readout["fixed_operating_points"]["axis_selection"]["null_seed"],
+            "lever2_event_motif_interaction_null_altseed_v0",
+        )
+        self.assertEqual(
+            readout["decision"]["best_event_motif_axis_id"],
+            "source_free_projected_proton_role_subset+multi_event_bond_topology",
+        )
+        self.assertEqual(
+            readout["counts"]["best_event_motif_current_retained_oos_catches"],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "best_event_motif_marginal_current_retained_oos_catches"
+            ],
+            1,
+        )
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_p95"], 6)
+        self.assertEqual(readout["counts"]["null_max_marginal_catches_max"], 8)
+        self.assertEqual(
+            readout["counts"]["null_permutations_ge_observed_marginal"], 127
+        )
+        self.assertFalse(
+            readout["decision"]["null_control_supports_event_motif_signal"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(readout["decision"]["negative"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_event_axis_signature_excluded_frontier_readout_counts(
         self,
     ) -> None:
