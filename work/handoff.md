@@ -3,17 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T16:03:25Z`
-- STARTED_AT_LOCAL: `2026-06-05T11:03:25-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T16:06:44Z`
-- ENDED_AT_LOCAL: `2026-06-05T11:06:44-0500 CDT`
-- ELAPSED_MINUTES: `3.32`
-- Status: Run 59 final Lever 3 stop/sync verification complete. Canonical
+- STARTED_AT_UTC: `2026-06-05T17:02:39Z`
+- STARTED_AT_LOCAL: `2026-06-05T12:02:39-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T17:05:38Z`
+- ENDED_AT_LOCAL: `2026-06-05T12:05:38-0500 CDT`
+- ELAPSED_MINUTES: `2.98`
+- Status: Run 60 final Lever 3 stop/sync verification complete. Canonical
   `.git/catalytic-earth-automation.lock` was acquired before substantive work
-  at `2026-06-05T16:03:16Z`. The reusable Lever 3 gate/final P07658 closure
-  artifact was already committed and pushed at `d40e34a7`; this run verified
-  the pushed stop state, updated the handoff/progress/status ledger, and made
-  no current-family counteraxis, threshold, scoring, label, registry, ontology,
+  at `2026-06-05T17:02:19Z`. The reusable Lever 3 gate/final P07658 closure
+  artifact was already committed and pushed; this run verified the pushed stop
+  state, updated the handoff/progress/status ledger, and made no
+  current-family counteraxis, threshold, scoring, label, registry, ontology,
   import, split, provider, or coordinate changes.
 
 ## Mission
@@ -65,6 +65,117 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 60
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T17:02:39Z`
+- STARTED_LOCAL: `2026-06-05T12:02:39-0500 CDT`
+- ENDED_AT: `2026-06-05T17:05:38Z`
+- ENDED_LOCAL: `2026-06-05T12:05:38-0500 CDT`
+- ELAPSED_MINUTES: `2.98`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T17:02:19Z`.
+
+#### Current objective
+
+Final Lever 3 stop-state verification only: confirm the reusable gate,
+P07658 closure status, safe abstain/route operator contract, and pushed
+sync state remain current without producing new blocker packets or continuing
+current-family optimization.
+
+#### Run notes
+
+- Initial state from automation memory and handoff: Run 58 produced the final
+  reusable Lever 3 gate/P07658 stop-readiness artifact and Run 59 verified it
+  was pushed and synced.
+- Verified the already-pushed finalization artifacts:
+  `artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md`.
+- No new finalization artifact or blocker packet was needed: the pushed artifact
+  already documents the reusable Lever 3 gate, family-specific/non-universal
+  parts, new-family pass-through instructions, evidence required before
+  mechanism transfer, P07658 closure status, and explicit stop condition.
+- Rechecked the P07658 local evidence mechanically: the frozen FASTA remains
+  715 aa with U140 preserved and sequence SHA-256
+  `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa`;
+  the preferred coordinate path and filled provenance remain absent.
+- Rechecked the current environment without exposing secret values: no HF,
+  NVIDIA, BioLM, OpenAI, or equivalent provider credential and no local
+  ESM/OpenFold/ColabFold/AlphaFold/BioPython/Biotite runtime or executable
+  route was present. No provider call or equivalent no-credential retry was
+  performed.
+
+#### Final Lever 3 status
+
+- Lever 3 stop condition reached and remains current.
+- Safe abstain/route operator contract is reproducible and current.
+- Current hard-confounded rows are safely routed, not force-labeled:
+  21/21 hard residual operator rows are `abstain_or_route_novel_oos`.
+- Mechanism transfer allowed rows: 0.
+- Score/force mechanism-label allowed rows: 0.
+- Retained residual rows after all current counteraxes: 0.
+- Calibration retention remains 31/34 in-scope rows; train/cal OOS
+  abstain/route remains 167/204.
+- Threshold `0.44155` remains unchanged.
+
+#### P07658 status
+
+- P07658 is not fully accepted or scored.
+- P07658 remains fail-closed as `abstain_or_route_novel_oos`.
+- Fixed-threshold scoring closure is blocked only by the exact
+  coordinate/provenance requirement:
+  exact full-length P07658 predicted coordinate for the frozen 715-aa sequence,
+  filled provider/model/version/path/checksum provenance, input sequence hash,
+  explicit U140 handling, and passing P07658 acceptance preflight before any
+  scoring rerun.
+
+#### Guardrails
+
+- Work was restricted to Lever 3 finalization/stop verification.
+- No blocker packet was produced.
+- No current-family counteraxis hunting, threshold work, labels, registries,
+  ontologies, imports, heldout splits, production scoring, row scoring,
+  coordinate staging, provider calls, source decisions, or model fitting
+  changed.
+- No heldout rows were used for training, rule selection, or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata were used as predictive features.
+
+#### Validation
+
+- Finalization JSON parsed with `python -m json.tool`.
+- Finalization source-hash check passed: 8/8 recorded source artifacts exist
+  and match SHA-256.
+- Targeted P07658 coordinate scan found 0 exact coordinate candidates matching
+  P07658, m_csa:562, or the frozen sequence hash.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1495 tests passed
+  with the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Disk check remained above the guardrail: 12 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured Run 60 progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md`.
+- Commit/push result: this Run 60 ledger update is committed and pushed to
+  `main` before lock release; `HEAD == origin/main` is verified in wrap. If
+  this handoff section is present on `main`, the wrap sync completed.
+
+#### Exact stop condition
+
+Lever 3 stop condition reached. Stop current-family Lever 3 work now: no more
+current-family optimization, counteraxis hunting, threshold work, or forced
+mechanism transfer. Resume only if a new frozen family panel enters Lever 4/
+family expansion through this reusable gate, or if exact full-length P07658
+coordinate/provenance arrives and passes acceptance preflight.
 
 ### 2026-06-05 Lever 3 Forward Push Run 59
 
