@@ -163,6 +163,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_p07658_credential_route_preflight,
     write_fold_augmented_lever3_p07658_local_input_inventory_audit,
     write_fold_augmented_lever3_p07658_sequence_compatibility_readout,
+    write_fold_augmented_lever3_confounded_safe_abstention_readout,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13659,6 +13660,38 @@ def cmd_build_fold_augmented_lever3_p07658_sequence_compatibility_readout(
         f"{decision.get('p07658_sequence_contract_valid')}, compatible routes: "
         f"{counts.get('accepted_sequence_policy_rows_ready_now')}, rerun ready: "
         f"{decision.get('fixed_threshold_audit_ready_to_rerun_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_confounded_safe_abstention_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_confounded_safe_abstention_readout(
+        operating_point_deployment_readout_path=Path(
+            args.operating_point_deployment_readout
+        ),
+        p07658_sequence_compatibility_readout_path=Path(
+            args.p07658_sequence_compatibility_readout
+        ),
+        deployment_input_gap_audit_path=Path(args.deployment_input_gap_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 confounded-safe abstention readout to "
+        f"{args.out} (safe route: "
+        f"{decision.get('current_evidence_sufficient_for_safe_abstention_routing')}, "
+        "scoring closure: "
+        f"{decision.get('current_evidence_sufficient_for_fixed_threshold_scoring_closure')}, "
+        "P07658 forced abstentions: "
+        f"{counts.get('p07658_forced_abstention_rows')})"
     )
     return 0
 
@@ -32703,6 +32736,56 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_p07658_sequence_compatibility_readout.set_defaults(
         func=cmd_build_fold_augmented_lever3_p07658_sequence_compatibility_readout
+    )
+
+    lever3_confounded_safe_abstention_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-confounded-safe-abstention-readout",
+        help=(
+            "compose the Lever 3 operating point and P07658 all-or-abstain "
+            "gate into a measured fail-closed deployment readout"
+        ),
+    )
+    lever3_confounded_safe_abstention_readout.add_argument(
+        "--operating-point-deployment-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_"
+            "deployment_readout_current702_20260604.json"
+        ),
+    )
+    lever3_confounded_safe_abstention_readout.add_argument(
+        "--p07658-sequence-compatibility-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_sequence_"
+            "compatibility_readout_current702_20260604.json"
+        ),
+    )
+    lever3_confounded_safe_abstention_readout.add_argument(
+        "--deployment-input-gap-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_input_gap_audit_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_confounded_safe_abstention_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_confounded_safe_abstention_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_confounded_safe_"
+            "abstention_readout_current702_20260604.json"
+        ),
+    )
+    lever3_confounded_safe_abstention_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_confounded_safe_abstention_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever3_confounded_safe_abstention_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_confounded_safe_abstention_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

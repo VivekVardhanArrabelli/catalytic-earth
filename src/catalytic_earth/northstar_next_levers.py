@@ -345,6 +345,9 @@ FOLD_AUGMENTED_LEVER3_P07658_LOCAL_INPUT_INVENTORY_AUDIT_ID = (
 FOLD_AUGMENTED_LEVER3_P07658_SEQUENCE_COMPATIBILITY_READOUT_ID = (
     "v3_fold_augmented_lever3_p07658_sequence_compatibility_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_CONFOUNDED_SAFE_ABSTENTION_READOUT_ID = (
+    "v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -43542,6 +43545,473 @@ def write_fold_augmented_lever3_p07658_sequence_compatibility_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_p07658_sequence_compatibility_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_confounded_safe_abstention_readout(
+    *,
+    operating_point_deployment_readout_path: Path,
+    p07658_sequence_compatibility_readout_path: Path,
+    deployment_input_gap_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_CONFOUNDED_SAFE_ABSTENTION_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    operating = _read_json(operating_point_deployment_readout_path)
+    sequence = _read_json(p07658_sequence_compatibility_readout_path)
+    gap = _read_json(deployment_input_gap_audit_path)
+
+    op_counts = operating.get("counts") or {}
+    op_decision = operating.get("decision") or {}
+    op_point = operating.get("operating_point") or {}
+    seq_counts = sequence.get("counts") or {}
+    seq_decision = sequence.get("decision") or {}
+    gap_counts = gap.get("counts") or {}
+    gap_decision = gap.get("decision") or {}
+
+    critical_violation_total = sum(
+        int((artifact.get("counts") or {}).get("critical_violation_total") or 0)
+        for artifact in (operating, sequence, gap)
+    )
+    operating_readout_available = bool(
+        op_decision.get("deployment_valid_operating_point_readout_available")
+    )
+    hard_confounded_ready = bool(
+        op_decision.get("hard_confounded_residuals_closed_at_operating_point")
+        or op_decision.get("operating_point_usable_for_hard_confounded_train_cal_routing")
+    )
+    retention_floor_met = bool(
+        op_decision.get("true_in_scope_retention_floor_met")
+        or op_point.get("calibration_retention_floor_met")
+    )
+    sequence_contract_valid = bool(
+        seq_decision.get("p07658_sequence_contract_valid")
+    )
+    fixed_threshold_scoring_closure = bool(
+        op_decision.get("current_evidence_sufficient_for_deployment_closure")
+        and seq_decision.get("current_evidence_sufficient_for_deployment_closure")
+        and gap_decision.get("current_evidence_sufficient_for_deployment_closure")
+        and critical_violation_total == 0
+    )
+    all_or_abstain_action = str(
+        seq_decision.get("p07658_all_or_abstain_gate_action_now") or ""
+    )
+    p07658_forced_abstention_required = bool(
+        not fixed_threshold_scoring_closure
+        and sequence_contract_valid
+        and (
+            all_or_abstain_action.startswith("abstain_or_route")
+            or bool(seq_decision.get("missing_coordinate_abstention_safe_but_not_closure"))
+        )
+    )
+    safe_abstention_routing_available = bool(
+        operating_readout_available
+        and hard_confounded_ready
+        and retention_floor_met
+        and sequence_contract_valid
+        and p07658_forced_abstention_required
+        and critical_violation_total == 0
+    )
+    deployment_policy_rows = [
+        {
+            "policy_id": "accepted_complete_coordinate_provenance_rows",
+            "deployment_action": "score_with_fixed_threshold_and_counteraxis_contracts",
+            "available_now": fixed_threshold_scoring_closure,
+            "allowed_now": fixed_threshold_scoring_closure,
+            "reason": (
+                "Only rows with accepted predicted-coordinate provenance may be "
+                "scored by the fixed 0.44155 operating point."
+            ),
+        },
+        {
+            "policy_id": "missing_p07658_coordinate_or_provenance",
+            "deployment_action": "abstain_or_route_novel_oos",
+            "available_now": p07658_forced_abstention_required,
+            "allowed_now": p07658_forced_abstention_required,
+            "reason": (
+                "The exact P07658 sequence contract is valid, but no accepted "
+                "full-length coordinate/provenance exists; the safe action is "
+                "not to force a mechanism transfer."
+            ),
+        },
+        {
+            "policy_id": "mutated_truncated_or_experimental_pdb_shortcut",
+            "deployment_action": "reject_as_deployment_closure_input",
+            "available_now": False,
+            "allowed_now": False,
+            "reason": (
+                "Mutation, truncation, split prediction, and experimental-PDB "
+                "shortcuts are rejected by the sequence compatibility readout."
+            ),
+        },
+    ]
+    exact_missing_evidence = [
+        str(item)
+        for item in seq_decision.get("exact_missing_evidence_needed") or []
+        if str(item)
+    ]
+    if not exact_missing_evidence:
+        exact_missing_evidence = [
+            str(item)
+            for item in op_decision.get("remaining_missing_evidence") or []
+            if str(item)
+        ]
+    status = (
+        "fold_augmented_lever3_confounded_safe_abstention_readout_ready_for_fixed_threshold_rerun"
+        if fixed_threshold_scoring_closure
+        else (
+            "fold_augmented_lever3_confounded_safe_abstention_readout_ready_fail_closed_p07658"
+            if safe_abstention_routing_available
+            else "fold_augmented_lever3_confounded_safe_abstention_readout_blocked"
+        )
+    )
+    calibration_rows = int(op_counts.get("calibration_in_scope_rows") or 0)
+    calibration_retained = int(op_counts.get("calibration_in_scope_retained") or 0)
+    train_cal_oos_rows = int(op_counts.get("all_train_cal_oos_rows") or 0)
+    train_cal_oos_abstained = int(op_counts.get("all_train_cal_oos_abstained") or 0)
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_confounded_safe_abstention_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured confounded-safe abstention readout. It composes "
+            "the accepted fixed-threshold operating-point readout, the P07658 "
+            "sequence-compatibility all-or-abstain gate, and the deployment "
+            "input gap audit. It reports the safe deployment action when "
+            "P07658 lacks accepted predicted-coordinate provenance without "
+            "scoring rows, staging coordinates, changing threshold 0.44155, or "
+            "using heldout rows for threshold selection."
+        ),
+        "deployment_policy_rows": deployment_policy_rows,
+        "operating_point": {
+            "route_id": op_point.get("route_id"),
+            "baseline_threshold": op_point.get("baseline_threshold"),
+            "threshold_selection_source": op_point.get(
+                "threshold_selection_source", "train_calibration_only"
+            ),
+            "threshold_or_value_changed_now": False,
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_in_scope_retained": calibration_retained,
+            "calibration_retention_floor_rows": int(
+                op_counts.get("calibration_retention_floor_rows") or 0
+            ),
+            "calibration_retention_floor_met": retention_floor_met,
+            "all_train_cal_oos_rows": train_cal_oos_rows,
+            "all_train_cal_oos_abstained": train_cal_oos_abstained,
+            "hard_confounded_residuals_closed_at_operating_point": (
+                hard_confounded_ready
+            ),
+        },
+        "p07658_fail_closed_gate": {
+            "sequence_contract_valid": sequence_contract_valid,
+            "all_or_abstain_action_now": all_or_abstain_action,
+            "required_acceptance_gates_failed": int(
+                seq_counts.get("required_acceptance_gates_failed") or 0
+            ),
+            "failed_gate_ids": seq_decision.get(
+                "required_acceptance_gate_ids_failed", []
+            ),
+            "forced_abstention_required_now": p07658_forced_abstention_required,
+            "coordinates_generated_now": int(
+                seq_counts.get("coordinates_generated_now") or 0
+            ),
+            "coordinates_staged_now": int(
+                seq_counts.get("coordinates_staged_now") or 0
+            ),
+            "rows_scored_now": int(seq_counts.get("rows_scored_now") or 0),
+            "local_coordinate_candidate_files": int(
+                seq_counts.get("local_coordinate_candidate_files") or 0
+            ),
+            "local_filled_provenance_candidate_files": int(
+                seq_counts.get("local_filled_provenance_candidate_files") or 0
+            ),
+        },
+        "counts": {
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_in_scope_retained": calibration_retained,
+            "calibration_retention_floor_rows": int(
+                op_counts.get("calibration_retention_floor_rows") or 0
+            ),
+            "all_train_cal_oos_rows": train_cal_oos_rows,
+            "all_train_cal_oos_abstained": train_cal_oos_abstained,
+            "strict_high_cofactor_proxy_rows": int(
+                op_counts.get("strict_high_cofactor_proxy_rows") or 0
+            ),
+            "strict_high_cofactor_proxy_abstained": int(
+                op_counts.get("strict_high_cofactor_proxy_abstained") or 0
+            ),
+            "strict_same_family_proxy_rows": int(
+                op_counts.get("strict_same_family_proxy_rows") or 0
+            ),
+            "strict_same_family_proxy_abstained": int(
+                op_counts.get("strict_same_family_proxy_abstained") or 0
+            ),
+            "same_family_shortfall_after_contract": int(
+                op_counts.get("same_family_shortfall_after_contract") or 0
+            ),
+            "p07658_required_acceptance_gates_failed": int(
+                seq_counts.get("required_acceptance_gates_failed") or 0
+            ),
+            "p07658_forced_abstention_rows": int(
+                p07658_forced_abstention_required
+            ),
+            "p07658_unsafe_shortcut_policy_rows_rejected": int(
+                seq_counts.get("rejected_shortcut_policy_rows") or 0
+            ),
+            "p07658_local_coordinate_candidate_files": int(
+                seq_counts.get("local_coordinate_candidate_files") or 0
+            ),
+            "p07658_local_filled_provenance_candidate_files": int(
+                seq_counts.get("local_filled_provenance_candidate_files") or 0
+            ),
+            "deployment_input_gates_total": int(
+                gap_counts.get("input_gates_total") or 0
+            ),
+            "deployment_input_gates_satisfied": int(
+                gap_counts.get("input_gates_satisfied") or 0
+            ),
+            "deployment_input_gates_missing": int(
+                gap_counts.get("input_gates_missing") or 0
+            ),
+            "coordinates_generated_now": int(
+                seq_counts.get("coordinates_generated_now") or 0
+            ),
+            "coordinates_staged_now": int(
+                seq_counts.get("coordinates_staged_now") or 0
+            ),
+            "rows_scored_now": int(seq_counts.get("rows_scored_now") or 0),
+            "critical_violation_total": critical_violation_total,
+        },
+        "decision": {
+            "deployment_valid_measured_readout_available": (
+                operating_readout_available
+            ),
+            "hard_confounded_train_cal_routing_ready": hard_confounded_ready,
+            "true_in_scope_retention_floor_met": retention_floor_met,
+            "fail_closed_abstention_contract_available": (
+                safe_abstention_routing_available
+            ),
+            "current_evidence_sufficient_for_safe_abstention_routing": (
+                safe_abstention_routing_available
+            ),
+            "current_evidence_sufficient_for_fixed_threshold_scoring_closure": (
+                fixed_threshold_scoring_closure
+            ),
+            "fixed_threshold_audit_ready_to_rerun_now": (
+                fixed_threshold_scoring_closure
+            ),
+            "apply_or_change_threshold_now": False,
+            "p07658_route_if_incomplete_now": (
+                "abstain_or_route_novel_oos"
+                if p07658_forced_abstention_required
+                else "no_safe_route_available"
+            ),
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_rows_with_missing_coordinate_or_provenance_now": False,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                safe_abstention_routing_available
+            ),
+            "predicted_structure_source_free_evidence_enough_for_scoring_closure": (
+                fixed_threshold_scoring_closure
+            ),
+            "exact_missing_evidence_for_scoring_closure": exact_missing_evidence,
+            "smallest_next_experiment": (
+                gap_decision.get("smallest_next_experiment")
+                or seq_decision.get("next_gate")
+            ),
+            "next_gate": (
+                "Run exactly one credentialed or local full-length P07658 "
+                "prediction route, fill provenance, and rerun acceptance "
+                "preflight before any fixed-threshold scoring rerun."
+                if not fixed_threshold_scoring_closure
+                else "Run fixed-threshold surface rerun with threshold 0.44155 unchanged."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "score_rows_with_missing_coordinate_or_provenance_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "operating_point_deployment_readout": _source_path_record(
+                operating_point_deployment_readout_path
+            ),
+            "p07658_sequence_compatibility_readout": _source_path_record(
+                p07658_sequence_compatibility_readout_path
+            ),
+            "deployment_input_gap_audit": _source_path_record(
+                deployment_input_gap_audit_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 is deployment-safe as an abstention router for the "
+                "remaining P07658 gap, but not ready for fixed-threshold scoring "
+                "closure."
+                if safe_abstention_routing_available
+                and not fixed_threshold_scoring_closure
+                else "Lever 3 is ready for fixed-threshold scoring rerun."
+                if fixed_threshold_scoring_closure
+                else "Lever 3 abstention routing evidence is incomplete."
+            ),
+            "result": (
+                f"Retains {calibration_retained}/{calibration_rows} calibration "
+                f"in-scope rows, abstains {train_cal_oos_abstained}/"
+                f"{train_cal_oos_rows} train/cal OOS rows, and forces "
+                f"{int(p07658_forced_abstention_required)} incomplete P07658 "
+                "row to abstain instead of forcing a mechanism transfer."
+            ),
+            "next_action": (
+                "Use the fail-closed route for incomplete P07658 inputs now; "
+                "for scoring closure, provision one exact full-length predictor "
+                "route and rerun acceptance preflight with provenance."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_confounded_safe_abstention_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    operating = readout["operating_point"]
+    p07658 = readout["p07658_fail_closed_gate"]
+    lines = [
+        "# Fold-Augmented Lever 3 Confounded-Safe Abstention Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Safe abstention routing available: "
+        f"{decision['current_evidence_sufficient_for_safe_abstention_routing']}",
+        "- Fixed-threshold scoring closure available: "
+        f"{decision['current_evidence_sufficient_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{operating['all_train_cal_oos_abstained']}/"
+        f"{operating['all_train_cal_oos_rows']}",
+        "- Hard-confounded residuals closed: "
+        f"{operating['hard_confounded_residuals_closed_at_operating_point']}",
+        "",
+        "## P07658 Fail-Closed Gate",
+        "",
+        f"- Sequence contract valid: {p07658['sequence_contract_valid']}",
+        f"- All-or-abstain action: {p07658['all_or_abstain_action_now']}",
+        "- Required acceptance gates failed: "
+        f"{p07658['required_acceptance_gates_failed']}",
+        f"- Failed gate IDs: {p07658['failed_gate_ids']}",
+        "- Forced abstention required now: "
+        f"{p07658['forced_abstention_required_now']}",
+        "",
+        "## Deployment Policy",
+        "",
+        "| policy | action | available now | allowed now | reason |",
+        "| --- | --- | ---: | ---: | --- |",
+    ]
+    for row in readout.get("deployment_policy_rows", []):
+        lines.append(
+            f"| {row['policy_id']} | {row['deployment_action']} | "
+            f"{row['available_now']} | {row['allowed_now']} | {row['reason']} |"
+        )
+    lines += [
+        "",
+        "## Counts",
+        "",
+        f"- Strict high-cofactor proxy abstained: {counts['strict_high_cofactor_proxy_abstained']}/{counts['strict_high_cofactor_proxy_rows']}",
+        f"- Strict same-family proxy abstained: {counts['strict_same_family_proxy_abstained']}/{counts['strict_same_family_proxy_rows']}",
+        f"- P07658 forced abstention rows: {counts['p07658_forced_abstention_rows']}",
+        f"- P07658 unsafe shortcut policy rows rejected: {counts['p07658_unsafe_shortcut_policy_rows_rejected']}",
+        f"- Deployment input gates satisfied: {counts['deployment_input_gates_satisfied']}/{counts['deployment_input_gates_total']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_scoring_closure']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_confounded_safe_abstention_readout(
+    *,
+    operating_point_deployment_readout_path: Path,
+    p07658_sequence_compatibility_readout_path: Path,
+    deployment_input_gap_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_CONFOUNDED_SAFE_ABSTENTION_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_confounded_safe_abstention_readout(
+        operating_point_deployment_readout_path=(
+            operating_point_deployment_readout_path
+        ),
+        p07658_sequence_compatibility_readout_path=(
+            p07658_sequence_compatibility_readout_path
+        ),
+        deployment_input_gap_audit_path=deployment_input_gap_audit_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_confounded_safe_abstention_readout_report(
                 readout
             ),
             encoding="utf-8",

@@ -3,16 +3,14 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T01:02:11Z`
-- STARTED_AT_LOCAL: `2026-06-04T20:02:11-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T01:33:24Z`
-- ENDED_AT_LOCAL: `2026-06-04T20:33:24-0500 CDT`
-- ELAPSED_MINUTES: `31.22`
-- Status: Run 44 complete. Implementation commit
-  `31b6928f4c455904bd6c14469226e958d6604020` was pushed to `origin/main` and
-  verified before this final handoff-result update. Canonical
+- STARTED_AT_UTC: `2026-06-05T02:02:51Z`
+- STARTED_AT_LOCAL: `2026-06-04T21:02:51-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T02:26:48Z`
+- ENDED_AT_LOCAL: `2026-06-04T21:26:48-0500 CDT`
+- ELAPSED_MINUTES: `23.95`
+- Status: Run 45 complete. Commit/push verification pending. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-05T01:02:11Z`. Work was restricted to Lever 3.
+  `2026-06-05T02:02:51Z`. Work was restricted to Lever 3.
 
 ## Mission
 
@@ -63,6 +61,125 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 45
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T02:02:51Z`
+- STARTED_LOCAL: `2026-06-04T21:02:51-0500 CDT`
+- ENDED_AT: `2026-06-05T02:26:48Z`
+- ENDED_LOCAL: `2026-06-04T21:26:48-0500 CDT`
+- ELAPSED_MINUTES: `23.95`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T02:02:51Z`. A fallback `work/.locks` lock was also created
+  before the canonical lock was reacquired and was removed during wrap-up.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-confounded-safe-abstention-readout` with
+  builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_confounded_safe_abstention_readout_current702_20260604.md`.
+- Added synthetic positive and invalid-sequence builder coverage, parser
+  coverage, artifact-count regression coverage, and source-artifact hash
+  regression coverage for the new readout.
+- Appended the measured progress-log entry and regenerated `work/status.md`.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; no production threshold,
+  labels, registries, ontologies, imports, heldout splits, row scoring,
+  coordinate staging, model fitting, source decisions, secret values, or
+  experimental-PDB deployment shortcuts changed.
+- The accepted operating point is unchanged and deployment-valid for
+  train/cal hard-confounded routing: 31/34 calibration in-scope rows retained
+  and 105/204 train/cal OOS rows abstained.
+- The new fail-closed readout reports
+  `current_evidence_sufficient_for_safe_abstention_routing=true` and
+  `current_evidence_sufficient_for_fixed_threshold_scoring_closure=false`.
+- P07658 is forced to `abstain_or_route_novel_oos` while its coordinate or
+  provenance is incomplete: 1 forced abstention row, 4 required acceptance
+  gates failed, 0 local coordinate candidates, and 0 filled provenance
+  candidates.
+- Unsafe mechanism transfer remains disallowed:
+  `unsafe_forced_mechanism_transfer_allowed=false` and
+  `score_rows_with_missing_coordinate_or_provenance_now=false`.
+- The exact missing evidence for scoring closure is unchanged and now explicit
+  in the safe-abstention readout: one credentialed provider route or local
+  predictor accepting the exact 715-aa P07658 FASTA, returned full-length
+  coordinate file, filled provider/model/version/path/checksum plus sequence
+  hash and U140-handling provenance, and a passing P07658 acceptance preflight.
+- Reproducibility check passed: regenerating the new CLI output to a temporary
+  path matched the committed JSON after normalizing `created_utc`.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, or experimental-PDB
+  deployment shortcuts changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new readout composes existing artifacts only; it performs no provider
+  calls, coordinate downloads, coordinate staging, scoring, or threshold
+  selection.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1411 passed.
+- Focused new readout tests after generation:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_confounded_safe_abstention_readout_routes_p07658_gap tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_confounded_safe_abstention_requires_valid_sequence_contract tests/test_cli.py::CliTests::test_lever3_confounded_safe_abstention_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_confounded_safe_abstention_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  5 passed, 22 subtests passed.
+- Affected file suites after final edits:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  588 passed, 187 subtests passed.
+- Full pytest after final edits:
+  `PYTHONPATH=src python -m pytest -q`: 1460 passed, 206 subtests passed, with
+  the existing sklearn/SciPy warning.
+- Full unittest discovery after final edits:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1415 passed.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3554 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  3 passed, 22 subtests passed.
+- New artifact guardrail audit script: 0 violations.
+- Disk check remained above the guardrail: about 13 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md`.
+- Commit and push are pending this handoff update.
+
+#### Exact next Lever 3 action
+
+Use the fail-closed `abstain_or_route_novel_oos` policy for incomplete P07658
+deployment inputs now. For fixed-threshold scoring closure, stop
+route-equivalent no-credential retries and provision exactly one credentialed
+provider route (`HF_TOKEN`, `NVIDIA_API_KEY`, or `BIOLM_API_KEY`) or one local
+full-length predictor runtime that accepts the frozen 715-aa P07658 sequence
+with U140 preserved or explicitly documented. Write provider/model/version/path/
+checksum, sequence-hash, and U140 provenance, rerun
+`build-fold-augmented-p07658-prediction-acceptance-preflight`, and only if all
+required acceptance checks pass rerun the fixed-threshold surface with
+threshold `0.44155` unchanged.
 
 ### 2026-06-04 Lever 3 Forward Push Run 44
 

@@ -8746,6 +8746,92 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_confounded_safe_abstention_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_confounded_safe_abstention_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_confounded_safe_abstention_readout_"
+                "ready_fail_closed_p07658"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "score_rows_with_missing_coordinate_or_provenance_now"
+            ]
+        )
+        self.assertEqual(readout["operating_point"]["baseline_threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_rows"], 204)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_proxy_rows"], 4)
+        self.assertEqual(readout["counts"]["strict_high_cofactor_proxy_abstained"], 1)
+        self.assertEqual(readout["counts"]["strict_same_family_proxy_rows"], 59)
+        self.assertEqual(readout["counts"]["strict_same_family_proxy_abstained"], 26)
+        self.assertEqual(readout["counts"]["same_family_shortfall_after_contract"], 0)
+        self.assertEqual(readout["counts"]["p07658_required_acceptance_gates_failed"], 4)
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 1)
+        self.assertEqual(
+            readout["counts"]["p07658_unsafe_shortcut_policy_rows_rejected"], 3
+        )
+        self.assertEqual(readout["counts"]["p07658_local_coordinate_candidate_files"], 0)
+        self.assertEqual(
+            readout["counts"]["p07658_local_filled_provenance_candidate_files"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["deployment_input_gates_total"], 6)
+        self.assertEqual(readout["counts"]["deployment_input_gates_satisfied"], 2)
+        self.assertEqual(readout["counts"]["deployment_input_gates_missing"], 4)
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            readout["decision"]["p07658_route_if_incomplete_now"],
+            "abstain_or_route_novel_oos",
+        )
+        self.assertTrue(
+            readout["decision"][
+                "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "predicted_structure_source_free_evidence_enough_for_scoring_closure"
+            ]
+        )
+        self.assertIn(
+            (
+                "one credentialed provider route or local predictor that accepts "
+                "the exact 715-aa P07658 FASTA"
+            ),
+            readout["decision"]["exact_missing_evidence_for_scoring_closure"],
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -8842,6 +8928,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_p07658_sequence_"
                 "compatibility_readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_confounded_safe_abstention_"
+                "readout_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

@@ -78,6 +78,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_p07658_credential_route_preflight,
     build_fold_augmented_lever3_p07658_local_input_inventory_audit,
     build_fold_augmented_lever3_p07658_sequence_compatibility_readout,
+    build_fold_augmented_lever3_confounded_safe_abstention_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -5760,6 +5761,242 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(readout["counts"]["local_coordinate_candidate_files"], 0)
         self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
+    def test_lever3_confounded_safe_abstention_readout_routes_p07658_gap(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            sequence_path = root / "sequence.json"
+            gap_path = root / "gap.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {
+                            "route_id": (
+                                "fixed_baseline_plus_counteraxis_contracts"
+                            ),
+                            "baseline_threshold": 0.44155,
+                            "threshold_selection_source": "train_calibration_only",
+                            "calibration_retention_floor_met": True,
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "calibration_retention_floor_rows": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "strict_high_cofactor_proxy_rows": 4,
+                            "strict_high_cofactor_proxy_abstained": 1,
+                            "strict_same_family_proxy_rows": 59,
+                            "strict_same_family_proxy_abstained": 26,
+                            "same_family_shortfall_after_contract": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "hard_confounded_residuals_closed_at_operating_point": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sequence_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "required_acceptance_gates_failed": 4,
+                            "rejected_shortcut_policy_rows": 3,
+                            "local_coordinate_candidate_files": 0,
+                            "local_filled_provenance_candidate_files": 0,
+                            "coordinates_generated_now": 0,
+                            "coordinates_staged_now": 0,
+                            "rows_scored_now": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_sequence_contract_valid": True,
+                            "missing_coordinate_abstention_safe_but_not_closure": True,
+                            "p07658_all_or_abstain_gate_action_now": (
+                                "abstain_or_route_novel_oos_until_"
+                                "coordinate_provenance_exists"
+                            ),
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                            "required_acceptance_gate_ids_failed": [
+                                "credentialed_or_local_exact_prediction_route_available",
+                                "preferred_full_length_coordinate_present",
+                            ],
+                            "exact_missing_evidence_needed": [
+                                "one credentialed provider route",
+                                "returned full-length coordinate file",
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gap_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "input_gates_total": 6,
+                            "input_gates_satisfied": 2,
+                            "input_gates_missing": 4,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                            "smallest_next_experiment": (
+                                "Provision exactly one credentialed route."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_confounded_safe_abstention_readout(
+                operating_point_deployment_readout_path=operating_path,
+                p07658_sequence_compatibility_readout_path=sequence_path,
+                deployment_input_gap_audit_path=gap_path,
+                artifact_id="custom_confounded_safe_abstention",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_confounded_safe_abstention")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_confounded_safe_abstention_readout_"
+                "ready_fail_closed_p07658"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_fixed_threshold_scoring_closure"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["all_train_cal_oos_abstained"], 105)
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 1)
+        self.assertEqual(
+            readout["decision"]["p07658_route_if_incomplete_now"],
+            "abstain_or_route_novel_oos",
+        )
+        self.assertEqual(
+            readout["decision"]["exact_missing_evidence_for_scoring_closure"],
+            [
+                "one credentialed provider route",
+                "returned full-length coordinate file",
+            ],
+        )
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(readout["guardrails"]["coordinates_staged_now"])
+
+    def test_lever3_confounded_safe_abstention_requires_valid_sequence_contract(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            sequence_path = root / "sequence.json"
+            gap_path = root / "gap.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "operating_point": {
+                            "baseline_threshold": 0.44155,
+                            "calibration_retention_floor_met": True,
+                        },
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "hard_confounded_residuals_closed_at_operating_point": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sequence_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "required_acceptance_gates_failed": 5,
+                            "rejected_shortcut_policy_rows": 3,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_sequence_contract_valid": False,
+                            "missing_coordinate_abstention_safe_but_not_closure": True,
+                            "p07658_all_or_abstain_gate_action_now": (
+                                "abstain_or_route_novel_oos_until_"
+                                "coordinate_provenance_exists"
+                            ),
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gap_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "input_gates_total": 6,
+                            "input_gates_satisfied": 1,
+                            "input_gates_missing": 5,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "current_evidence_sufficient_for_deployment_closure": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_confounded_safe_abstention_readout(
+                operating_point_deployment_readout_path=operating_path,
+                p07658_sequence_compatibility_readout_path=sequence_path,
+                deployment_input_gap_audit_path=gap_path,
+                artifact_id="custom_confounded_safe_abstention_invalid_sequence",
+            )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_confounded_safe_abstention_readout_blocked",
+        )
+        self.assertFalse(
+            readout["decision"][
+                "current_evidence_sufficient_for_safe_abstention_routing"
+            ]
+        )
+        self.assertEqual(readout["counts"]["p07658_forced_abstention_rows"], 0)
+        self.assertEqual(
+            readout["decision"]["p07658_route_if_incomplete_now"],
+            "no_safe_route_available",
+        )
+        self.assertFalse(
+            readout["decision"]["unsafe_forced_mechanism_transfer_allowed"]
+        )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

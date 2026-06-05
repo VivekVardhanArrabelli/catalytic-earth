@@ -464,6 +464,40 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_confounded_safe_abstention_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-confounded-safe-"
+                "abstention-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_confounded_safe_"
+                "abstention_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_deployment_readout",
+            args.operating_point_deployment_readout,
+        )
+        self.assertIn(
+            "p07658_sequence_compatibility_readout",
+            args.p07658_sequence_compatibility_readout,
+        )
+        self.assertIn(
+            "lever3_deployment_input_gap_audit",
+            args.deployment_input_gap_audit,
+        )
+        self.assertIn(
+            "lever3_confounded_safe_abstention_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:
