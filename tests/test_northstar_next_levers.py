@@ -69,12 +69,14 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_channel_veto_readout,
     build_fold_augmented_lever3_cofactor_context_counteraxis_readout,
     build_fold_augmented_lever3_current_measured_readout,
+    build_fold_augmented_lever3_deployment_input_gap_audit,
     build_fold_augmented_lever3_dispatch_readiness_summary,
     build_fold_augmented_lever3_evidence_sufficiency_readout,
     build_fold_augmented_lever3_minimum_next_experiment_queue,
     build_fold_augmented_lever3_operating_point_deployment_readout,
     build_fold_augmented_lever3_p07658_exact_route_attempt_readout,
     build_fold_augmented_lever3_p07658_credential_route_preflight,
+    build_fold_augmented_lever3_p07658_local_input_inventory_audit,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -5382,6 +5384,234 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(preflight["counts"]["coordinates_generated_now"], 0)
         self.assertEqual(preflight["counts"]["coordinates_staged_now"], 0)
         self.assertEqual(preflight["counts"]["rows_scored_now"], 0)
+
+    def test_lever3_deployment_input_gap_audit_isolates_p07658_inputs(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            operating_path = root / "operating.json"
+            credential_path = root / "credential.json"
+            acceptance_path = root / "acceptance.json"
+            dispatch_path = root / "dispatch.json"
+            operating_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "calibration_in_scope_rows": 34,
+                            "calibration_in_scope_retained": 31,
+                            "all_train_cal_oos_rows": 204,
+                            "all_train_cal_oos_abstained": 105,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "deployment_valid_operating_point_readout_available": True,
+                            "hard_confounded_residuals_closed_at_operating_point": True,
+                            "true_in_scope_retention_floor_met": True,
+                            "p07658_coordinate_gap_cleared_now": False,
+                            "current_evidence_sufficient_for_deployment_closure": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            credential_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "credential_provider_routes_checked": 3,
+                            "provider_routes_with_credentials": 0,
+                            "local_predictor_modules_checked": 6,
+                            "local_predictor_modules_present": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "credentialed_or_local_exact_route_available_now": False,
+                            "smallest_next_experiment": (
+                                "Provision exactly one credentialed provider "
+                                "route or one local predictor runtime."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            acceptance_path.write_text(
+                json.dumps(
+                    {
+                        "acceptance_check_results": [
+                            {
+                                "check_id": "coordinate_file_exists",
+                                "required": True,
+                                "passed": False,
+                            },
+                            {
+                                "check_id": "row_not_scored_until_coordinate_staged",
+                                "required": True,
+                                "passed": True,
+                            },
+                        ],
+                        "counts": {
+                            "acceptance_checks_total": 2,
+                            "acceptance_checks_passed": 1,
+                            "acceptance_checks_failed": 1,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "p07658_acceptance_preflight_passes_now": False,
+                            "p07658_coordinate_blocker_cleared_now": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "dispatch_inputs_present": 4,
+                            "dispatch_inputs_total": 4,
+                            "provider_routes_returning_coordinate_now": 0,
+                            "candidate_coordinate_exists": 0,
+                            "candidate_provenance_exists": 0,
+                            "critical_violation_total": 0,
+                        },
+                        "decision": {
+                            "dispatch_packet_ready_for_provider_run": True,
+                            "provider_or_local_runtime_returns_coordinate_now": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_lever3_deployment_input_gap_audit(
+                operating_point_deployment_readout_path=operating_path,
+                p07658_credential_route_preflight_path=credential_path,
+                p07658_prediction_acceptance_preflight_path=acceptance_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                artifact_id="custom_deployment_input_gap",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_deployment_input_gap")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_input_gap_audit_ready_p07658_inputs_only",
+        )
+        self.assertTrue(
+            audit["decision"][
+                "operating_point_usable_for_hard_confounded_train_cal_routing"
+            ]
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_input_gap_isolated_to_p07658"]
+        )
+        self.assertFalse(
+            audit["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertTrue(
+            audit["decision"]["route_equivalent_no_credential_retries_should_stop"]
+        )
+        self.assertEqual(audit["counts"]["input_gates_total"], 6)
+        self.assertEqual(audit["counts"]["input_gates_satisfied"], 2)
+        self.assertEqual(audit["counts"]["input_gates_missing"], 4)
+        self.assertEqual(audit["counts"]["acceptance_checks_failed"], 1)
+        self.assertEqual(audit["counts"]["required_acceptance_checks_failed"], 1)
+        self.assertEqual(audit["counts"]["provider_routes_with_credentials"], 0)
+        self.assertEqual(audit["counts"]["local_predictor_modules_present"], 0)
+        self.assertIn(
+            "p07658_exact_prediction_route",
+            audit["decision"]["missing_input_gate_ids"],
+        )
+        self.assertIn(
+            "coordinate_file_exists",
+            audit["acceptance_failure_check_ids"],
+        )
+
+    def test_lever3_p07658_local_input_inventory_audit_finds_no_coordinate(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            artifacts_root = root / "artifacts"
+            work_root = root / "work"
+            artifacts_root.mkdir()
+            work_root.mkdir()
+            gap_path = root / "gap.json"
+            dispatch_path = root / "dispatch.json"
+            fasta_path = work_root / "fold_augmented_p07658_input.fasta"
+            template_path = artifacts_root / "p07658_prediction_provenance_template.json"
+            coordinate_path = artifacts_root / "p07658_full_length.cif"
+            filled_provenance_path = artifacts_root / "p07658_provenance_filled.json"
+            fasta_path.write_text(">p07658\nUUU\n", encoding="utf-8")
+            template_path.write_text(
+                json.dumps({"provider": "FILL_ME"}),
+                encoding="utf-8",
+            )
+            gap_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "decision": {
+                            "deployment_input_gap_isolated_to_p07658": True,
+                            "route_equivalent_no_credential_retries_should_stop": True,
+                            "smallest_next_experiment": (
+                                "Provision exactly one credentialed route."
+                            ),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            dispatch_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "operator_fill_targets": {
+                            "preferred_coordinate_path": str(coordinate_path),
+                            "filled_provenance_path": str(filled_provenance_path),
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_lever3_p07658_local_input_inventory_audit(
+                deployment_input_gap_audit_path=gap_path,
+                p07658_prediction_dispatch_packet_path=dispatch_path,
+                search_roots=[artifacts_root, work_root],
+                artifact_id="custom_p07658_local_inventory",
+            )
+
+        self.assertEqual(audit["artifact_id"], "custom_p07658_local_inventory")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_p07658_local_input_inventory_audit_"
+                "no_local_candidate"
+            ),
+        )
+        self.assertEqual(audit["counts"]["search_roots_checked"], 2)
+        self.assertEqual(audit["counts"]["p07658_matched_files"], 2)
+        self.assertEqual(audit["counts"]["coordinate_candidate_files"], 0)
+        self.assertEqual(audit["counts"]["filled_provenance_candidate_files"], 0)
+        self.assertEqual(audit["counts"]["provenance_template_files"], 1)
+        self.assertEqual(audit["counts"]["dispatch_fasta_files"], 1)
+        self.assertEqual(
+            audit["counts"]["acceptance_preflight_ready_from_local_inventory"], 0
+        )
+        self.assertFalse(
+            audit["decision"]["acceptance_preflight_ready_from_local_inventory"]
+        )
+        self.assertFalse(audit["decision"]["local_inventory_clears_p07658_gap_now"])
+        self.assertTrue(
+            audit["decision"]["route_equivalent_no_credential_retries_should_stop"]
+        )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

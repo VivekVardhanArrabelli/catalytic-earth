@@ -3,19 +3,18 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-04T23:02:37Z`
-- STARTED_AT_LOCAL: `2026-06-04T18:02:37-0500 CDT`
-- ENDED_AT_UTC: `2026-06-04T23:22:24Z`
-- ENDED_AT_LOCAL: `2026-06-04T18:22:24-0500 CDT`
-- ELAPSED_MINUTES: `19.78`
-- Status: Run 42 complete. Canonical
+- STARTED_AT_UTC: `2026-06-05T00:03:41Z`
+- STARTED_AT_LOCAL: `2026-06-04T19:03:41-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T00:24:55Z`
+- ENDED_AT_LOCAL: `2026-06-04T19:24:55-0500 CDT`
+- ELAPSED_MINUTES: `21.23`
+- Status: Run 43 wrap-up pending. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-04T23:02:37Z`. Work was restricted to Lever 3 and produced
-  measured operating-point and credential-route preflight readouts. No blocker
-  packet was produced. No coordinate was staged, no row was scored, no
-  threshold changed, and no secret values were recorded. Implementation commit
-  `8f667037ea3402138f916d162165c7058789a684` was pushed to `origin/main` and
-  `HEAD == origin/main` was verified before lock release.
+  `2026-06-05T00:03:41Z`. Work was restricted to Lever 3 and produced
+  measured deployment-input gap and local P07658 input inventory readouts. No
+  blocker packet was produced. No coordinate was staged, no row was scored, no
+  threshold changed, and no secret values were recorded. Commit/push
+  verification is pending wrap-up.
 
 ## Mission
 
@@ -66,6 +65,127 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-04 Lever 3 Forward Push Run 43
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T00:03:41Z`
+- STARTED_LOCAL: `2026-06-04T19:03:41-0500 CDT`
+- ENDED_AT: `2026-06-05T00:24:55Z`
+- ENDED_LOCAL: `2026-06-04T19:24:55-0500 CDT`
+- ELAPSED_MINUTES: `21.23`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T00:03:41Z`. A fallback `work/automation.lock.d` lock was also
+  created before the canonical lock was found and was removed during wrap-up.
+
+#### What changed
+
+- Added `build-fold-augmented-lever3-deployment-input-gap-audit` and
+  `build-fold-augmented-lever3-p07658-local-input-inventory-audit` with
+  builders/writers/report renderers in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_deployment_input_gap_audit_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_deployment_input_gap_audit_current702_20260604.md`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_p07658_local_input_inventory_audit_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_p07658_local_input_inventory_audit_current702_20260604.md`.
+- Refreshed
+  `artifacts/v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.json`
+  and its report against the current runtime.
+- Added parser, synthetic builder, artifact-count, and source-hash regression
+  coverage for both new Lever 3 readouts.
+- Appended the measured progress-log entry and regenerated `work/status.md`.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; no production threshold,
+  labels, registries, ontologies, imports, heldout splits, scoring, coordinate
+  staging, model fitting, source decisions, or secret values changed.
+- Deployment-input gap audit is available and measured: 2/6 input gates are
+  satisfied and 4/6 remain missing.
+- The operating-point evidence remains deployment-valid for hard-confounded
+  train/cal routing: 31/34 calibration in-scope rows retained and 105/204
+  train/cal OOS rows abstained.
+- The remaining deployment closure gap is isolated to P07658 input
+  provenance: no credentialed/local exact prediction route, no candidate
+  coordinate file, no filled provenance packet, and 1/8 acceptance checks
+  passing.
+- Refreshed credential preflight again found 0/3 credentialed provider routes
+  and 0/6 local predictor modules available; `torch` remains informational
+  only.
+- Local input inventory scanned 8,027 files under bounded repo roots, matched
+  36 P07658 files, and found 0 coordinate candidates plus 0 filled provenance
+  candidates. The repo contains dispatch/report/template P07658 files only:
+  2 provenance-template files and 1 dispatch FASTA.
+- Route-equivalent no-credential retries should stop until exactly one
+  credentialed provider route or one local full-length predictor runtime is
+  available.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, or experimental-PDB
+  deployment shortcuts changed.
+- No heldout M-CSA rows were used for training or threshold tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The credential preflight records env-var presence only, not token values.
+- The local inventory audit records bounded workspace file presence and
+  checksums only; it does not treat reports/templates as deployment evidence.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1402 passed.
+- Focused new readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever3_deployment_input_gap_audit_parser_defaults tests/test_cli.py::CliTests::test_lever3_p07658_local_input_inventory_audit_parser_defaults tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_deployment_input_gap_audit_isolates_p07658_inputs tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_p07658_local_input_inventory_audit_finds_no_coordinate tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_deployment_input_gap_audit_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_p07658_local_input_inventory_audit_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  7 passed, 20 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  581 passed, 185 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1453 passed, 204 subtests passed, with
+  the existing sklearn/SciPy warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1408 passed.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- Repo JSON/JSONL parse sweep: 3552 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Disk check remained above the guardrail: about 13 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended a measured progress-log entry and regenerated `work/status.md`.
+- Commit/push verification is pending wrap-up.
+
+#### Exact next Lever 3 action
+
+Stop route-equivalent no-credential retries. Provision exactly one
+credentialed provider route (`HF_TOKEN`, `NVIDIA_API_KEY`, or `BIOLM_API_KEY`)
+or install exactly one local full-length predictor runtime that accepts the
+frozen 715-residue P07658 sequence with U140 preserved or explicitly
+documented. Write provider/model/version/path/checksum/sequence-hash/U140
+provenance, rerun
+`build-fold-augmented-p07658-prediction-acceptance-preflight`, and only if all
+required acceptance checks pass rerun the fixed-threshold surface with
+threshold `0.44155` unchanged and the accepted cofactor-context plus
+same-family bandpass counteraxis contracts.
 
 ### 2026-06-04 Lever 3 Forward Push Run 42
 

@@ -1,0 +1,159 @@
+{
+  "acceptance_failure_check_ids": [
+    "coordinate_file_exists",
+    "coordinate_sha256_recorded",
+    "provider_model_version_recorded",
+    "input_sequence_sha256_matches_manifest",
+    "sequence_length_is_715",
+    "selenocysteine_handling_documented",
+    "experimental_pdb_metadata_not_used_as_deployment_input"
+  ],
+  "artifact_id": "v3_fold_augmented_lever3_deployment_input_gap_audit_current702_20260604",
+  "counts": {
+    "acceptance_checks_failed": 7,
+    "acceptance_checks_passed": 1,
+    "acceptance_checks_total": 8,
+    "candidate_coordinate_exists": 0,
+    "candidate_provenance_exists": 0,
+    "coordinates_generated_now": 0,
+    "coordinates_staged_now": 0,
+    "credential_provider_routes_checked": 3,
+    "critical_violation_total": 0,
+    "dispatch_inputs_present": 4,
+    "dispatch_inputs_total": 4,
+    "input_gates_missing": 4,
+    "input_gates_satisfied": 2,
+    "input_gates_total": 6,
+    "local_predictor_modules_checked": 6,
+    "local_predictor_modules_present": 0,
+    "p07658_unresolved_evidence_families": 1,
+    "provider_routes_returning_coordinate_now": 0,
+    "provider_routes_with_credentials": 0,
+    "required_acceptance_checks_failed": 7,
+    "rows_scored_now": 0
+  },
+  "created_utc": "2026-06-05T00:11:42Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "credentialed_or_local_exact_route_available_now": false,
+    "current_evidence_sufficient_for_deployment_closure": false,
+    "deployment_input_gap_isolated_to_p07658": true,
+    "deployment_valid_operating_point_readout_available": true,
+    "exact_missing_evidence_needed": [
+      "one credentialed provider route or one local full-length predictor runtime",
+      "exact full-length P07658 predicted coordinate file",
+      "provider/model/version/path/checksum, sequence-hash, and U140 provenance",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_audit_ready_to_rerun_now": false,
+    "missing_input_gate_ids": [
+      "p07658_exact_prediction_route",
+      "p07658_candidate_coordinate_file",
+      "p07658_candidate_prediction_provenance",
+      "p07658_acceptance_preflight"
+    ],
+    "next_gate": "Provision one credentialed/local exact P07658 route, write coordinate/provenance, and rerun acceptance preflight.",
+    "operating_point_usable_for_hard_confounded_train_cal_routing": true,
+    "p07658_acceptance_preflight_passes_now": false,
+    "p07658_coordinate_gap_cleared_now": false,
+    "route_equivalent_no_credential_retries_should_stop": true,
+    "smallest_next_experiment": "Provision exactly one credentialed provider route (HF_TOKEN, NVIDIA_API_KEY, or BIOLM_API_KEY) or install one local predictor runtime that can handle the frozen 715-aa P07658 sequence with U140 provenance."
+  },
+  "guardrails": {
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinate_downloaded_or_staged_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "production_thresholds_changed": false,
+    "secret_values_recorded": false,
+    "source_free_numeric_and_route_presence_evidence_only": true,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 operating-point evidence is deployment-valid for hard-confounded train/cal routing; full closure is isolated to P07658 input provenance.",
+    "next_action": "Stop no-credential route-equivalent retries and perform the single credentialed/local P07658 prediction experiment named by the dispatch packet.",
+    "result": "2/6 deployment input gates are satisfied; 1/8 P07658 acceptance checks pass.",
+    "why_not_deployment_closed": "P07658 lacks an available exact prediction route, returned coordinate file, filled provenance, and passing acceptance preflight."
+  },
+  "operating_point_context": {
+    "all_train_cal_oos_abstained": 105,
+    "all_train_cal_oos_rows": 204,
+    "calibration_in_scope_retained": 31,
+    "calibration_in_scope_rows": 34,
+    "deployment_valid_operating_point_readout_available": true,
+    "hard_confounded_residuals_closed_at_operating_point": true,
+    "true_in_scope_retention_floor_met": true
+  },
+  "p07658_input_gates": [
+    {
+      "evidence": "31/34 calibration in-scope retained and 105/204 train/cal OOS abstained.",
+      "gate_id": "lever3_operating_point_counteraxis_contracts",
+      "next_action_if_missing": "",
+      "satisfied_now": true
+    },
+    {
+      "evidence": "4/4 dispatch inputs present.",
+      "gate_id": "p07658_dispatch_inputs",
+      "next_action_if_missing": "",
+      "satisfied_now": true
+    },
+    {
+      "evidence": "0/3 credentialed provider routes, 0/6 local predictor modules, and 0 routes returning coordinates now.",
+      "gate_id": "p07658_exact_prediction_route",
+      "next_action_if_missing": "Provision exactly one credentialed provider route or install one local full-length predictor runtime for the frozen P07658 sequence.",
+      "satisfied_now": false
+    },
+    {
+      "evidence": "Candidate coordinate exists: False.",
+      "gate_id": "p07658_candidate_coordinate_file",
+      "next_action_if_missing": "Write the exact full-length predicted mmCIF to the dispatch preferred coordinate path.",
+      "satisfied_now": false
+    },
+    {
+      "evidence": "Candidate provenance exists: False.",
+      "gate_id": "p07658_candidate_prediction_provenance",
+      "next_action_if_missing": "Fill provider/model/version/path/checksum, input sequence hash, and U140 handling provenance.",
+      "satisfied_now": false
+    },
+    {
+      "evidence": "1/8 acceptance checks passed.",
+      "gate_id": "p07658_acceptance_preflight",
+      "next_action_if_missing": "Rerun the acceptance preflight after coordinate and provenance exist.",
+      "satisfied_now": false
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_input_gap_audit",
+  "scope": "Lever 3 measured deployment-input gap audit. It separates the accepted operating-point evidence from the remaining P07658 predicted-coordinate input gates, uses only existing source-free readouts and preflights, and does not score rows or create coordinates.",
+  "source_artifacts": {
+    "operating_point_deployment_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_operating_point_deployment_readout_current702_20260604.json",
+      "sha256": "0d6e0d9f92b22fa71a53536b9ec5ba16828774b8da238ba1751098a7abbb0704"
+    },
+    "p07658_credential_route_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604.json",
+      "sha256": "c8301c0a1e6e6098660d97ab6e54f63cc4ad9adc2352d837b15b9374848e75ab"
+    },
+    "p07658_prediction_acceptance_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_acceptance_preflight_current702_20260604.json",
+      "sha256": "3e0433dbea445404d5005e025afc06f542cddfd952626c7d7491d73d3b9e4abe"
+    },
+    "p07658_prediction_dispatch_packet": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_current702_20260604.json",
+      "sha256": "53e9fefb136970d09484a34c4e805f9247bb0622b07c550916657145d8d687e2"
+    }
+  },
+  "status": "fold_augmented_lever3_deployment_input_gap_audit_ready_p07658_inputs_only"
+}

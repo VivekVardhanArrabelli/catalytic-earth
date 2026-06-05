@@ -355,6 +355,69 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_deployment_input_gap_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-deployment-input-gap-audit"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_input_gap_"
+                "audit_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_deployment_readout",
+            args.operating_point_deployment_readout,
+        )
+        self.assertIn(
+            "p07658_credential_route_preflight",
+            args.p07658_credential_route_preflight,
+        )
+        self.assertIn(
+            "p07658_prediction_acceptance_preflight",
+            args.p07658_prediction_acceptance_preflight,
+        )
+        self.assertIn(
+            "p07658_prediction_dispatch_packet",
+            args.p07658_prediction_dispatch_packet,
+        )
+        self.assertIn(
+            "lever3_deployment_input_gap_audit",
+            args.report,
+        )
+
+    def test_lever3_p07658_local_input_inventory_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            ["build-fold-augmented-lever3-p07658-local-input-inventory-audit"]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_p07658_local_input_"
+                "inventory_audit_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_deployment_input_gap_audit",
+            args.deployment_input_gap_audit,
+        )
+        self.assertIn(
+            "p07658_prediction_dispatch_packet",
+            args.p07658_prediction_dispatch_packet,
+        )
+        self.assertEqual(args.search_root, ["artifacts", "work"])
+        self.assertIn(
+            "p07658_local_input_inventory_audit",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

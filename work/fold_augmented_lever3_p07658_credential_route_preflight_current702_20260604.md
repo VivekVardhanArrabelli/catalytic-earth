@@ -1,6 +1,6 @@
 # Fold-Augmented Lever 3 P07658 Credential-Route Preflight - current702
 
-Run: 2026-06-04T23:17:23Z
+Run: 2026-06-05T00:11:42Z
 
 Lever 3 measured preflight for the next exact P07658 prediction experiment. It checks whether this runtime has a credentialed provider route or local full-length predictor module available, records only env-var presence, and generates no coordinates.
 
@@ -43,7 +43,7 @@ Lever 3 measured preflight for the next exact P07658 prediction experiment. It c
 - Provider routes with credentials: 0/3
 - Local predictor modules present: 0/6
 - Torch available: 1
-- Disk free GiB: 15.19
+- Disk free GiB: 13.39
 - Disk guardrail above 10 GiB: True
 
 ## Decision

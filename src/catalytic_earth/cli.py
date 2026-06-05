@@ -155,11 +155,13 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_cofactor_context_counteraxis_readout,
     write_fold_augmented_lever3_current_measured_readout,
     write_fold_augmented_lever3_dispatch_readiness_summary,
+    write_fold_augmented_lever3_deployment_input_gap_audit,
     write_fold_augmented_lever3_evidence_sufficiency_readout,
     write_fold_augmented_lever3_minimum_next_experiment_queue,
     write_fold_augmented_lever3_operating_point_deployment_readout,
     write_fold_augmented_lever3_p07658_exact_route_attempt_readout,
     write_fold_augmented_lever3_p07658_credential_route_preflight,
+    write_fold_augmented_lever3_p07658_local_input_inventory_audit,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13555,6 +13557,72 @@ def cmd_build_fold_augmented_lever3_p07658_credential_route_preflight(
         f"{counts.get('local_predictor_modules_present')}/"
         f"{counts.get('local_predictor_modules_checked')}, ready: "
         f"{decision.get('ready_to_run_exact_p07658_prediction_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_input_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_input_gap_audit(
+        operating_point_deployment_readout_path=Path(
+            args.operating_point_deployment_readout
+        ),
+        p07658_credential_route_preflight_path=Path(
+            args.p07658_credential_route_preflight
+        ),
+        p07658_prediction_acceptance_preflight_path=Path(
+            args.p07658_prediction_acceptance_preflight
+        ),
+        p07658_prediction_dispatch_packet_path=Path(
+            args.p07658_prediction_dispatch_packet
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment input gap audit to "
+        f"{args.out} (input gates: "
+        f"{counts.get('input_gates_satisfied')}/"
+        f"{counts.get('input_gates_total')}, isolated to P07658: "
+        f"{decision.get('deployment_input_gap_isolated_to_p07658')}, "
+        "rerun ready: "
+        f"{decision.get('fixed_threshold_audit_ready_to_rerun_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_p07658_local_input_inventory_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    search_roots = [Path(value) for value in (args.search_root or [])]
+    audit = write_fold_augmented_lever3_p07658_local_input_inventory_audit(
+        deployment_input_gap_audit_path=Path(args.deployment_input_gap_audit),
+        p07658_prediction_dispatch_packet_path=Path(
+            args.p07658_prediction_dispatch_packet
+        ),
+        search_roots=search_roots,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 P07658 local input inventory audit to "
+        f"{args.out} (coordinate candidates: "
+        f"{counts.get('coordinate_candidate_files')}, filled provenance: "
+        f"{counts.get('filled_provenance_candidate_files')}, preflight-ready: "
+        f"{decision.get('acceptance_preflight_ready_from_local_inventory')})"
     )
     return 0
 
@@ -32423,6 +32491,111 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_p07658_credential_route_preflight.set_defaults(
         func=cmd_build_fold_augmented_lever3_p07658_credential_route_preflight
+    )
+
+    lever3_deployment_input_gap_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-input-gap-audit",
+        help=(
+            "audit which deployment input gates remain after the accepted "
+            "Lever 3 operating point and P07658 route preflights"
+        ),
+    )
+    lever3_deployment_input_gap_audit.add_argument(
+        "--operating-point-deployment-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_deployment_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_deployment_input_gap_audit.add_argument(
+        "--p07658-credential-route-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_credential_route_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    lever3_deployment_input_gap_audit.add_argument(
+        "--p07658-prediction-acceptance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_acceptance_"
+            "preflight_current702_20260604.json"
+        ),
+    )
+    lever3_deployment_input_gap_audit.add_argument(
+        "--p07658-prediction-dispatch-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_deployment_input_gap_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_input_gap_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_input_gap_audit_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_deployment_input_gap_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_input_gap_audit_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_deployment_input_gap_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_input_gap_audit
+    )
+
+    lever3_p07658_local_input_inventory_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-p07658-local-input-inventory-audit",
+        help=(
+            "scan bounded repo roots for local P07658 coordinate/provenance "
+            "candidates after the deployment input gap audit"
+        ),
+    )
+    lever3_p07658_local_input_inventory_audit.add_argument(
+        "--deployment-input-gap-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_input_gap_audit_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_p07658_local_input_inventory_audit.add_argument(
+        "--p07658-prediction-dispatch-packet",
+        default=(
+            "artifacts/v3_fold_augmented_p07658_prediction_dispatch_packet_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_p07658_local_input_inventory_audit.add_argument(
+        "--search-root",
+        action="append",
+        default=["artifacts", "work"],
+    )
+    lever3_p07658_local_input_inventory_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_p07658_local_input_inventory_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_p07658_local_input_inventory_"
+            "audit_current702_20260604.json"
+        ),
+    )
+    lever3_p07658_local_input_inventory_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_p07658_local_input_inventory_audit_"
+            "current702_20260604.md"
+        ),
+    )
+    lever3_p07658_local_input_inventory_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_p07658_local_input_inventory_audit
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

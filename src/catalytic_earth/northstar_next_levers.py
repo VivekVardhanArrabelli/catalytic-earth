@@ -336,6 +336,12 @@ FOLD_AUGMENTED_LEVER3_OPERATING_POINT_DEPLOYMENT_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_P07658_CREDENTIAL_ROUTE_PREFLIGHT_ID = (
     "v3_fold_augmented_lever3_p07658_credential_route_preflight_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_INPUT_GAP_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_input_gap_audit_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_P07658_LOCAL_INPUT_INVENTORY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_p07658_local_input_inventory_audit_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -42034,6 +42040,855 @@ def write_fold_augmented_lever3_p07658_credential_route_preflight(
             encoding="utf-8",
         )
     return readout
+
+
+def build_fold_augmented_lever3_deployment_input_gap_audit(
+    *,
+    operating_point_deployment_readout_path: Path,
+    p07658_credential_route_preflight_path: Path,
+    p07658_prediction_acceptance_preflight_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_DEPLOYMENT_INPUT_GAP_AUDIT_ID,
+) -> dict[str, Any]:
+    operating = _read_json(operating_point_deployment_readout_path)
+    credential = _read_json(p07658_credential_route_preflight_path)
+    acceptance = _read_json(p07658_prediction_acceptance_preflight_path)
+    dispatch = _read_json(p07658_prediction_dispatch_packet_path)
+
+    operating_counts = operating.get("counts") or {}
+    operating_decision = operating.get("decision") or {}
+    credential_counts = credential.get("counts") or {}
+    credential_decision = credential.get("decision") or {}
+    acceptance_counts = acceptance.get("counts") or {}
+    acceptance_decision = acceptance.get("decision") or {}
+    dispatch_counts = dispatch.get("counts") or {}
+    dispatch_decision = dispatch.get("decision") or {}
+
+    operating_point_ready = bool(
+        operating_decision.get("deployment_valid_operating_point_readout_available")
+    )
+    hard_confounded_closed = bool(
+        operating_decision.get("hard_confounded_residuals_closed_at_operating_point")
+    )
+    retention_floor_met = bool(
+        operating_decision.get("true_in_scope_retention_floor_met")
+    )
+    p07658_gap_cleared = bool(
+        operating_decision.get("p07658_coordinate_gap_cleared_now")
+        or acceptance_decision.get("p07658_coordinate_blocker_cleared_now")
+    )
+    credentialed_or_local_route_available = bool(
+        credential_decision.get("credentialed_or_local_exact_route_available_now")
+        or dispatch_decision.get("provider_or_local_runtime_returns_coordinate_now")
+    )
+    dispatch_inputs_ready = bool(
+        dispatch_decision.get("dispatch_packet_ready_for_provider_run")
+        and int(dispatch_counts.get("dispatch_inputs_present") or 0)
+        == int(dispatch_counts.get("dispatch_inputs_total") or 0)
+    )
+    candidate_coordinate_exists = bool(
+        acceptance_counts.get("candidate_coordinate_exists")
+        or dispatch_counts.get("candidate_coordinate_exists")
+    )
+    candidate_provenance_exists = bool(
+        acceptance_counts.get("candidate_provenance_exists")
+        or dispatch_counts.get("candidate_provenance_exists")
+    )
+    acceptance_preflight_passes = bool(
+        acceptance_decision.get("p07658_acceptance_preflight_passes_now")
+    )
+    deployment_closed = bool(
+        operating_decision.get("current_evidence_sufficient_for_deployment_closure")
+        and acceptance_preflight_passes
+        and p07658_gap_cleared
+    )
+    critical_violation_total = sum(
+        int((artifact.get("counts") or {}).get("critical_violation_total") or 0)
+        for artifact in (operating, credential, acceptance, dispatch)
+    )
+    operating_point_usable_now = bool(
+        operating_point_ready
+        and hard_confounded_closed
+        and retention_floor_met
+        and critical_violation_total == 0
+    )
+
+    def _gate(
+        gate_id: str,
+        *,
+        satisfied: bool,
+        evidence: str,
+        next_action: str,
+    ) -> dict[str, Any]:
+        return {
+            "gate_id": gate_id,
+            "satisfied_now": bool(satisfied),
+            "evidence": evidence,
+            "next_action_if_missing": "" if satisfied else next_action,
+        }
+
+    input_gates = [
+        _gate(
+            "lever3_operating_point_counteraxis_contracts",
+            satisfied=operating_point_usable_now,
+            evidence=(
+                f"{int(operating_counts.get('calibration_in_scope_retained') or 0)}/"
+                f"{int(operating_counts.get('calibration_in_scope_rows') or 0)} "
+                "calibration in-scope retained and "
+                f"{int(operating_counts.get('all_train_cal_oos_abstained') or 0)}/"
+                f"{int(operating_counts.get('all_train_cal_oos_rows') or 0)} "
+                "train/cal OOS abstained."
+            ),
+            next_action=(
+                "Repair the accepted cofactor-context or same-family bandpass "
+                "contracts before rerun."
+            ),
+        ),
+        _gate(
+            "p07658_dispatch_inputs",
+            satisfied=dispatch_inputs_ready,
+            evidence=(
+                f"{int(dispatch_counts.get('dispatch_inputs_present') or 0)}/"
+                f"{int(dispatch_counts.get('dispatch_inputs_total') or 0)} "
+                "dispatch inputs present."
+            ),
+            next_action=(
+                "Restore the frozen FASTA, provenance template, request "
+                "manifest, and acceptance preflight inputs."
+            ),
+        ),
+        _gate(
+            "p07658_exact_prediction_route",
+            satisfied=credentialed_or_local_route_available,
+            evidence=(
+                f"{int(credential_counts.get('provider_routes_with_credentials') or 0)}/"
+                f"{int(credential_counts.get('credential_provider_routes_checked') or 0)} "
+                "credentialed provider routes, "
+                f"{int(credential_counts.get('local_predictor_modules_present') or 0)}/"
+                f"{int(credential_counts.get('local_predictor_modules_checked') or 0)} "
+                "local predictor modules, and "
+                f"{int(dispatch_counts.get('provider_routes_returning_coordinate_now') or 0)} "
+                "routes returning coordinates now."
+            ),
+            next_action=(
+                "Provision exactly one credentialed provider route or install "
+                "one local full-length predictor runtime for the frozen P07658 "
+                "sequence."
+            ),
+        ),
+        _gate(
+            "p07658_candidate_coordinate_file",
+            satisfied=candidate_coordinate_exists,
+            evidence=(
+                "Candidate coordinate exists: "
+                f"{candidate_coordinate_exists}."
+            ),
+            next_action=(
+                "Write the exact full-length predicted mmCIF to the dispatch "
+                "preferred coordinate path."
+            ),
+        ),
+        _gate(
+            "p07658_candidate_prediction_provenance",
+            satisfied=candidate_provenance_exists,
+            evidence=(
+                "Candidate provenance exists: "
+                f"{candidate_provenance_exists}."
+            ),
+            next_action=(
+                "Fill provider/model/version/path/checksum, input sequence "
+                "hash, and U140 handling provenance."
+            ),
+        ),
+        _gate(
+            "p07658_acceptance_preflight",
+            satisfied=acceptance_preflight_passes,
+            evidence=(
+                f"{int(acceptance_counts.get('acceptance_checks_passed') or 0)}/"
+                f"{int(acceptance_counts.get('acceptance_checks_total') or 0)} "
+                "acceptance checks passed."
+            ),
+            next_action=(
+                "Rerun the acceptance preflight after coordinate and provenance "
+                "exist."
+            ),
+        ),
+    ]
+    missing_gates = [row for row in input_gates if not row["satisfied_now"]]
+    acceptance_failure_check_ids = [
+        str(row.get("check_id"))
+        for row in acceptance.get("acceptance_check_results", [])
+        if isinstance(row, dict) and not row.get("passed")
+    ]
+    required_acceptance_failures = sum(
+        1
+        for row in acceptance.get("acceptance_check_results", [])
+        if isinstance(row, dict) and row.get("required") and not row.get("passed")
+    )
+    isolated_to_p07658_inputs = bool(
+        operating_point_usable_now
+        and dispatch_inputs_ready
+        and not acceptance_preflight_passes
+        and not p07658_gap_cleared
+    )
+    stop_no_credential_retries = bool(
+        isolated_to_p07658_inputs
+        and not credentialed_or_local_route_available
+        and int(dispatch_counts.get("provider_routes_returning_coordinate_now") or 0)
+        == 0
+    )
+
+    exact_missing_evidence_needed: list[str] = []
+    if not credentialed_or_local_route_available and not deployment_closed:
+        exact_missing_evidence_needed.append(
+            "one credentialed provider route or one local full-length predictor runtime"
+        )
+    if not candidate_coordinate_exists and not deployment_closed:
+        exact_missing_evidence_needed.append(
+            "exact full-length P07658 predicted coordinate file"
+        )
+    if not candidate_provenance_exists and not deployment_closed:
+        exact_missing_evidence_needed.append(
+            "provider/model/version/path/checksum, sequence-hash, and U140 provenance"
+        )
+    if not acceptance_preflight_passes and not deployment_closed:
+        exact_missing_evidence_needed.append(
+            "P07658 acceptance preflight with all required checks passing"
+        )
+
+    status = (
+        "fold_augmented_lever3_deployment_input_gap_audit_ready_for_rerun"
+        if deployment_closed
+        else "fold_augmented_lever3_deployment_input_gap_audit_ready_p07658_inputs_only"
+        if isolated_to_p07658_inputs
+        else "fold_augmented_lever3_deployment_input_gap_audit_blocked"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_input_gap_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured deployment-input gap audit. It separates the "
+            "accepted operating-point evidence from the remaining P07658 "
+            "predicted-coordinate input gates, uses only existing source-free "
+            "readouts and preflights, and does not score rows or create "
+            "coordinates."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "source_free_numeric_and_route_presence_evidence_only": True,
+            "secret_values_recorded": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "coordinate_downloaded_or_staged_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "operating_point_context": {
+            "deployment_valid_operating_point_readout_available": operating_point_ready,
+            "hard_confounded_residuals_closed_at_operating_point": hard_confounded_closed,
+            "true_in_scope_retention_floor_met": retention_floor_met,
+            "calibration_in_scope_retained": int(
+                operating_counts.get("calibration_in_scope_retained") or 0
+            ),
+            "calibration_in_scope_rows": int(
+                operating_counts.get("calibration_in_scope_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                operating_counts.get("all_train_cal_oos_abstained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                operating_counts.get("all_train_cal_oos_rows") or 0
+            ),
+        },
+        "p07658_input_gates": input_gates,
+        "acceptance_failure_check_ids": acceptance_failure_check_ids,
+        "counts": {
+            "input_gates_total": len(input_gates),
+            "input_gates_satisfied": len(input_gates) - len(missing_gates),
+            "input_gates_missing": len(missing_gates),
+            "p07658_unresolved_evidence_families": int(
+                bool(exact_missing_evidence_needed)
+            ),
+            "acceptance_checks_total": int(
+                acceptance_counts.get("acceptance_checks_total") or 0
+            ),
+            "acceptance_checks_passed": int(
+                acceptance_counts.get("acceptance_checks_passed") or 0
+            ),
+            "acceptance_checks_failed": int(
+                acceptance_counts.get("acceptance_checks_failed") or 0
+            ),
+            "required_acceptance_checks_failed": required_acceptance_failures,
+            "candidate_coordinate_exists": int(candidate_coordinate_exists),
+            "candidate_provenance_exists": int(candidate_provenance_exists),
+            "credential_provider_routes_checked": int(
+                credential_counts.get("credential_provider_routes_checked") or 0
+            ),
+            "provider_routes_with_credentials": int(
+                credential_counts.get("provider_routes_with_credentials") or 0
+            ),
+            "local_predictor_modules_checked": int(
+                credential_counts.get("local_predictor_modules_checked") or 0
+            ),
+            "local_predictor_modules_present": int(
+                credential_counts.get("local_predictor_modules_present") or 0
+            ),
+            "dispatch_inputs_present": int(
+                dispatch_counts.get("dispatch_inputs_present") or 0
+            ),
+            "dispatch_inputs_total": int(
+                dispatch_counts.get("dispatch_inputs_total") or 0
+            ),
+            "provider_routes_returning_coordinate_now": int(
+                dispatch_counts.get("provider_routes_returning_coordinate_now") or 0
+            ),
+            "coordinates_generated_now": 0,
+            "coordinates_staged_now": 0,
+            "rows_scored_now": 0,
+            "critical_violation_total": critical_violation_total,
+        },
+        "decision": {
+            "deployment_valid_operating_point_readout_available": operating_point_ready,
+            "operating_point_usable_for_hard_confounded_train_cal_routing": (
+                operating_point_usable_now
+            ),
+            "deployment_input_gap_isolated_to_p07658": isolated_to_p07658_inputs,
+            "credentialed_or_local_exact_route_available_now": (
+                credentialed_or_local_route_available
+            ),
+            "p07658_acceptance_preflight_passes_now": acceptance_preflight_passes,
+            "p07658_coordinate_gap_cleared_now": p07658_gap_cleared,
+            "current_evidence_sufficient_for_deployment_closure": deployment_closed,
+            "fixed_threshold_audit_ready_to_rerun_now": deployment_closed,
+            "route_equivalent_no_credential_retries_should_stop": (
+                stop_no_credential_retries
+            ),
+            "apply_or_change_threshold_now": False,
+            "missing_input_gate_ids": [
+                str(row["gate_id"]) for row in missing_gates
+            ],
+            "exact_missing_evidence_needed": exact_missing_evidence_needed,
+            "smallest_next_experiment": (
+                credential_decision.get("smallest_next_experiment")
+                or dispatch_decision.get("smallest_next_experiment")
+                or acceptance_decision.get("smallest_next_experiment")
+            ),
+            "next_gate": (
+                "Run fixed-threshold surface rerun with threshold 0.44155 unchanged."
+                if deployment_closed
+                else (
+                    "Provision one credentialed/local exact P07658 route, "
+                    "write coordinate/provenance, and rerun acceptance preflight."
+                )
+            ),
+        },
+        "source_artifacts": {
+            "operating_point_deployment_readout": _source_path_record(
+                operating_point_deployment_readout_path
+            ),
+            "p07658_credential_route_preflight": _source_path_record(
+                p07658_credential_route_preflight_path
+            ),
+            "p07658_prediction_acceptance_preflight": _source_path_record(
+                p07658_prediction_acceptance_preflight_path
+            ),
+            "p07658_prediction_dispatch_packet": _source_path_record(
+                p07658_prediction_dispatch_packet_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 operating-point evidence is deployment-valid for "
+                "hard-confounded train/cal routing; full closure is isolated "
+                "to P07658 input provenance."
+                if isolated_to_p07658_inputs
+                else "Lever 3 deployment input evidence is not yet isolated."
+            ),
+            "result": (
+                f"{len(input_gates) - len(missing_gates)}/{len(input_gates)} "
+                "deployment input gates are satisfied; "
+                f"{int(acceptance_counts.get('acceptance_checks_passed') or 0)}/"
+                f"{int(acceptance_counts.get('acceptance_checks_total') or 0)} "
+                "P07658 acceptance checks pass."
+            ),
+            "why_not_deployment_closed": (
+                "P07658 lacks an available exact prediction route, returned "
+                "coordinate file, filled provenance, and passing acceptance "
+                "preflight."
+                if not deployment_closed
+                else "Deployment input closure is available."
+            ),
+            "next_action": (
+                "Stop no-credential route-equivalent retries and perform the "
+                "single credentialed/local P07658 prediction experiment named "
+                "by the dispatch packet."
+                if stop_no_credential_retries
+                else "Clear the missing input gates before any fixed-threshold rerun."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_input_gap_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    context = audit["operating_point_context"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Input Gap Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Operating point usable for hard-confounded train/cal routing: "
+        f"{decision['operating_point_usable_for_hard_confounded_train_cal_routing']}",
+        "- Deployment input gap isolated to P07658: "
+        f"{decision['deployment_input_gap_isolated_to_p07658']}",
+        "- Fixed-threshold audit ready to rerun now: "
+        f"{decision['fixed_threshold_audit_ready_to_rerun_now']}",
+        "",
+        "## Operating Point",
+        "",
+        "- Calibration retained: "
+        f"{context['calibration_in_scope_retained']}/"
+        f"{context['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained: "
+        f"{context['all_train_cal_oos_abstained']}/"
+        f"{context['all_train_cal_oos_rows']}",
+        "- Hard-confounded residuals closed: "
+        f"{context['hard_confounded_residuals_closed_at_operating_point']}",
+        "",
+        "## P07658 Input Gates",
+        "",
+        "| gate | satisfied | evidence |",
+        "| --- | ---: | --- |",
+    ]
+    for row in audit.get("p07658_input_gates", []):
+        lines.append(
+            f"| {row['gate_id']} | {row['satisfied_now']} | "
+            f"{row['evidence']} |"
+        )
+    lines += [
+        "",
+        "## Counts",
+        "",
+        f"- Input gates satisfied: {counts['input_gates_satisfied']}/{counts['input_gates_total']}",
+        f"- Acceptance checks passed: {counts['acceptance_checks_passed']}/{counts['acceptance_checks_total']}",
+        f"- Credentialed provider routes: {counts['provider_routes_with_credentials']}/{counts['credential_provider_routes_checked']}",
+        f"- Local predictor modules present: {counts['local_predictor_modules_present']}/{counts['local_predictor_modules_checked']}",
+        f"- Provider routes returning coordinates now: {counts['provider_routes_returning_coordinate_now']}",
+        "",
+        "## Decision",
+        "",
+        "- Route-equivalent no-credential retries should stop: "
+        f"{decision['route_equivalent_no_credential_retries_should_stop']}",
+        "- Missing input gates: "
+        f"{decision['missing_input_gate_ids']}",
+        "- Exact missing evidence needed: "
+        f"{decision['exact_missing_evidence_needed']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, or secret values changed.",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['why_not_deployment_closed']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_input_gap_audit(
+    *,
+    operating_point_deployment_readout_path: Path,
+    p07658_credential_route_preflight_path: Path,
+    p07658_prediction_acceptance_preflight_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_DEPLOYMENT_INPUT_GAP_AUDIT_ID,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_input_gap_audit(
+        operating_point_deployment_readout_path=operating_point_deployment_readout_path,
+        p07658_credential_route_preflight_path=p07658_credential_route_preflight_path,
+        p07658_prediction_acceptance_preflight_path=(
+            p07658_prediction_acceptance_preflight_path
+        ),
+        p07658_prediction_dispatch_packet_path=p07658_prediction_dispatch_packet_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_input_gap_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_p07658_local_input_inventory_audit(
+    *,
+    deployment_input_gap_audit_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    search_roots: list[Path] | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_LOCAL_INPUT_INVENTORY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    gap_audit = _read_json(deployment_input_gap_audit_path)
+    dispatch = _read_json(p07658_prediction_dispatch_packet_path)
+    if search_roots is None:
+        search_roots = [Path("artifacts"), Path("work")]
+
+    coordinate_suffixes = {".cif", ".bcif", ".pdb", ".ent", ".mmcif"}
+    fasta_suffixes = {".fa", ".fasta", ".faa"}
+    inventory_rows: list[dict[str, Any]] = []
+    search_root_rows: list[dict[str, Any]] = []
+    for root in search_roots:
+        root = Path(root)
+        files_scanned = 0
+        matched_files = 0
+        if root.exists():
+            for path in sorted(root.rglob("*")):
+                if not path.is_file():
+                    continue
+                lower_path = str(path).lower()
+                if "p07658_local_input_inventory_audit" in lower_path:
+                    continue
+                files_scanned += 1
+                if "p07658" not in lower_path and "07658" not in lower_path:
+                    continue
+                matched_files += 1
+                suffix = path.suffix.lower()
+                if suffix in coordinate_suffixes:
+                    kind = "coordinate_candidate"
+                elif "provenance_filled" in lower_path:
+                    kind = "filled_provenance_candidate"
+                elif "provenance_template" in lower_path:
+                    kind = "provenance_template"
+                elif suffix in fasta_suffixes:
+                    kind = "dispatch_fasta"
+                elif suffix == ".json":
+                    kind = "readout_or_probe_json"
+                elif suffix == ".md":
+                    kind = "human_report"
+                else:
+                    kind = "other_p07658_file"
+                inventory_rows.append(
+                    {
+                        "path": str(path),
+                        "kind": kind,
+                        "suffix": suffix,
+                        "size_bytes": path.stat().st_size,
+                        "sha256": _sha256(path),
+                    }
+                )
+        search_root_rows.append(
+            {
+                "path": str(root),
+                "exists": root.exists(),
+                "files_scanned": files_scanned,
+                "p07658_matched_files": matched_files,
+            }
+        )
+
+    operator_targets = dispatch.get("operator_fill_targets") or {}
+    preferred_coordinate_path = Path(
+        operator_targets.get("preferred_coordinate_path") or ""
+    )
+    filled_provenance_path = Path(
+        operator_targets.get("filled_provenance_path") or ""
+    )
+    preferred_coordinate_exists = bool(
+        str(preferred_coordinate_path) and preferred_coordinate_path.exists()
+    )
+    filled_provenance_exists = bool(
+        str(filled_provenance_path) and filled_provenance_path.exists()
+    )
+    coordinate_rows = [
+        row for row in inventory_rows if row["kind"] == "coordinate_candidate"
+    ]
+    filled_provenance_rows = [
+        row
+        for row in inventory_rows
+        if row["kind"] == "filled_provenance_candidate"
+    ]
+    provenance_template_rows = [
+        row for row in inventory_rows if row["kind"] == "provenance_template"
+    ]
+    dispatch_fasta_rows = [
+        row for row in inventory_rows if row["kind"] == "dispatch_fasta"
+    ]
+    acceptance_ready_from_inventory = bool(
+        preferred_coordinate_exists and filled_provenance_exists
+    )
+    gap_decision = gap_audit.get("decision") or {}
+    critical_violation_total = sum(
+        int((artifact.get("counts") or {}).get("critical_violation_total") or 0)
+        for artifact in (gap_audit, dispatch)
+    )
+    status = (
+        "fold_augmented_lever3_p07658_local_input_inventory_audit_ready_for_preflight"
+        if acceptance_ready_from_inventory
+        else "fold_augmented_lever3_p07658_local_input_inventory_audit_no_local_candidate"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}."
+            "fold_augmented_lever3_p07658_local_input_inventory_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured local inventory audit for the remaining P07658 "
+            "deployment input gap. It scans bounded repo roots for P07658 "
+            "coordinate/provenance candidates, records checksums, and does not "
+            "stage coordinates or score rows."
+        ),
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "local_inventory_only": True,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "coordinate_downloaded_or_staged_now": False,
+            "secret_values_recorded": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "search_roots": search_root_rows,
+        "p07658_inventory_rows": inventory_rows,
+        "operator_fill_targets": {
+            "preferred_coordinate_path": str(preferred_coordinate_path),
+            "preferred_coordinate_path_exists": preferred_coordinate_exists,
+            "filled_provenance_path": str(filled_provenance_path),
+            "filled_provenance_path_exists": filled_provenance_exists,
+        },
+        "counts": {
+            "search_roots_checked": len(search_root_rows),
+            "search_roots_existing": sum(
+                1 for row in search_root_rows if row["exists"]
+            ),
+            "files_scanned": sum(
+                int(row["files_scanned"]) for row in search_root_rows
+            ),
+            "p07658_matched_files": len(inventory_rows),
+            "coordinate_candidate_files": len(coordinate_rows),
+            "filled_provenance_candidate_files": len(filled_provenance_rows),
+            "provenance_template_files": len(provenance_template_rows),
+            "dispatch_fasta_files": len(dispatch_fasta_rows),
+            "preferred_coordinate_path_exists": int(preferred_coordinate_exists),
+            "filled_provenance_path_exists": int(filled_provenance_exists),
+            "acceptance_preflight_ready_from_local_inventory": int(
+                acceptance_ready_from_inventory
+            ),
+            "coordinates_generated_now": 0,
+            "coordinates_staged_now": 0,
+            "rows_scored_now": 0,
+            "critical_violation_total": critical_violation_total,
+        },
+        "decision": {
+            "deployment_input_gap_isolated_to_p07658": bool(
+                gap_decision.get("deployment_input_gap_isolated_to_p07658")
+            ),
+            "local_inventory_clears_p07658_gap_now": False,
+            "acceptance_preflight_ready_from_local_inventory": (
+                acceptance_ready_from_inventory
+            ),
+            "fixed_threshold_audit_ready_to_rerun_now": False,
+            "route_equivalent_no_credential_retries_should_stop": bool(
+                gap_decision.get("route_equivalent_no_credential_retries_should_stop")
+            ),
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_needed": (
+                [
+                    "local exact full-length P07658 coordinate file",
+                    "filled provider/model/version/path/checksum and U140 provenance",
+                ]
+                if not acceptance_ready_from_inventory
+                else [
+                    "rerun P07658 acceptance preflight before any fixed-threshold scoring"
+                ]
+            ),
+            "smallest_next_experiment": gap_decision.get(
+                "smallest_next_experiment"
+            ),
+            "next_gate": (
+                "Rerun P07658 acceptance preflight if the preferred coordinate "
+                "and filled provenance files are added locally; otherwise "
+                "provision the credentialed/local exact prediction route first."
+            ),
+        },
+        "source_artifacts": {
+            "deployment_input_gap_audit": _source_path_record(
+                deployment_input_gap_audit_path
+            ),
+            "p07658_prediction_dispatch_packet": _source_path_record(
+                p07658_prediction_dispatch_packet_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "No local P07658 coordinate/provenance candidate is present in "
+                "the bounded repo inventory."
+                if not acceptance_ready_from_inventory
+                else "Local P07658 coordinate/provenance files are present for acceptance preflight."
+            ),
+            "result": (
+                f"{len(coordinate_rows)} coordinate-like P07658 files and "
+                f"{len(filled_provenance_rows)} filled provenance files were "
+                f"found across {sum(int(row['files_scanned']) for row in search_root_rows)} files."
+            ),
+            "next_action": (
+                "Continue with the credentialed/local predictor experiment; "
+                "the repo currently contains only dispatch/report/template "
+                "P07658 files, not a coordinate candidate."
+                if not acceptance_ready_from_inventory
+                else "Rerun the acceptance preflight against the local files."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_p07658_local_input_inventory_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 P07658 Local Input Inventory Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Local inventory clears P07658 gap now: "
+        f"{decision['local_inventory_clears_p07658_gap_now']}",
+        "- Acceptance preflight ready from local inventory: "
+        f"{decision['acceptance_preflight_ready_from_local_inventory']}",
+        "",
+        "## Counts",
+        "",
+        f"- Files scanned: {counts['files_scanned']}",
+        f"- P07658 matched files: {counts['p07658_matched_files']}",
+        f"- Coordinate candidates: {counts['coordinate_candidate_files']}",
+        f"- Filled provenance candidates: {counts['filled_provenance_candidate_files']}",
+        f"- Provenance templates: {counts['provenance_template_files']}",
+        f"- Dispatch FASTA files: {counts['dispatch_fasta_files']}",
+        "",
+        "## Operator Targets",
+        "",
+        "- Preferred coordinate path exists: "
+        f"{audit['operator_fill_targets']['preferred_coordinate_path_exists']}",
+        "- Filled provenance path exists: "
+        f"{audit['operator_fill_targets']['filled_provenance_path_exists']}",
+        "",
+        "## Inventory Rows",
+        "",
+        "| kind | path | size |",
+        "| --- | --- | ---: |",
+    ]
+    for row in audit.get("p07658_inventory_rows", []):
+        lines.append(f"| {row['kind']} | {row['path']} | {row['size_bytes']} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Route-equivalent no-credential retries should stop: "
+        f"{decision['route_equivalent_no_credential_retries_should_stop']}",
+        "- Exact missing evidence needed: "
+        f"{decision['exact_missing_evidence_needed']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Local inventory only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, or secret values changed.",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_p07658_local_input_inventory_audit(
+    *,
+    deployment_input_gap_audit_path: Path,
+    p07658_prediction_dispatch_packet_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    search_roots: list[Path] | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_P07658_LOCAL_INPUT_INVENTORY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_p07658_local_input_inventory_audit(
+        deployment_input_gap_audit_path=deployment_input_gap_audit_path,
+        p07658_prediction_dispatch_packet_path=p07658_prediction_dispatch_packet_path,
+        search_roots=search_roots,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_p07658_local_input_inventory_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
 
 
 def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(

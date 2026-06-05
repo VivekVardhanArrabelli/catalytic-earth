@@ -8533,6 +8533,126 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(preflight["counts"]["critical_violation_total"], 0)
         self.assertFalse(preflight["guardrails"]["secret_values_recorded"])
 
+    def test_fold_augmented_lever3_deployment_input_gap_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_input_gap_audit_"
+                "current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_input_gap_audit_"
+                "ready_p07658_inputs_only"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"][
+                "operating_point_usable_for_hard_confounded_train_cal_routing"
+            ]
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_input_gap_isolated_to_p07658"]
+        )
+        self.assertFalse(
+            audit["decision"]["current_evidence_sufficient_for_deployment_closure"]
+        )
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertTrue(
+            audit["decision"]["route_equivalent_no_credential_retries_should_stop"]
+        )
+        self.assertEqual(audit["counts"]["input_gates_total"], 6)
+        self.assertEqual(audit["counts"]["input_gates_satisfied"], 2)
+        self.assertEqual(audit["counts"]["input_gates_missing"], 4)
+        self.assertEqual(audit["counts"]["p07658_unresolved_evidence_families"], 1)
+        self.assertEqual(audit["counts"]["acceptance_checks_total"], 8)
+        self.assertEqual(audit["counts"]["acceptance_checks_passed"], 1)
+        self.assertEqual(audit["counts"]["acceptance_checks_failed"], 7)
+        self.assertEqual(audit["counts"]["required_acceptance_checks_failed"], 7)
+        self.assertEqual(audit["counts"]["credential_provider_routes_checked"], 3)
+        self.assertEqual(audit["counts"]["provider_routes_with_credentials"], 0)
+        self.assertEqual(audit["counts"]["local_predictor_modules_checked"], 6)
+        self.assertEqual(audit["counts"]["local_predictor_modules_present"], 0)
+        self.assertEqual(audit["counts"]["dispatch_inputs_present"], 4)
+        self.assertEqual(audit["counts"]["dispatch_inputs_total"], 4)
+        self.assertEqual(
+            audit["counts"]["provider_routes_returning_coordinate_now"], 0
+        )
+        self.assertEqual(audit["counts"]["candidate_coordinate_exists"], 0)
+        self.assertEqual(audit["counts"]["candidate_provenance_exists"], 0)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertIn(
+            "p07658_exact_prediction_route",
+            audit["decision"]["missing_input_gate_ids"],
+        )
+        self.assertIn(
+            "selenocysteine_handling_documented",
+            audit["acceptance_failure_check_ids"],
+        )
+        self.assertFalse(audit["guardrails"]["blocker_packet"])
+        self.assertFalse(audit["guardrails"]["coordinates_generated_now"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+
+    def test_fold_augmented_lever3_p07658_local_input_inventory_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_p07658_local_input_inventory_"
+                "audit_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_p07658_local_input_inventory_audit_"
+                "no_local_candidate"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_input_gap_isolated_to_p07658"]
+        )
+        self.assertFalse(
+            audit["decision"]["local_inventory_clears_p07658_gap_now"]
+        )
+        self.assertFalse(
+            audit["decision"]["acceptance_preflight_ready_from_local_inventory"]
+        )
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_audit_ready_to_rerun_now"]
+        )
+        self.assertTrue(
+            audit["decision"]["route_equivalent_no_credential_retries_should_stop"]
+        )
+        self.assertEqual(audit["counts"]["search_roots_checked"], 2)
+        self.assertEqual(audit["counts"]["search_roots_existing"], 2)
+        self.assertEqual(audit["counts"]["files_scanned"], 8027)
+        self.assertEqual(audit["counts"]["p07658_matched_files"], 36)
+        self.assertEqual(audit["counts"]["coordinate_candidate_files"], 0)
+        self.assertEqual(audit["counts"]["filled_provenance_candidate_files"], 0)
+        self.assertEqual(audit["counts"]["provenance_template_files"], 2)
+        self.assertEqual(audit["counts"]["dispatch_fasta_files"], 1)
+        self.assertEqual(audit["counts"]["preferred_coordinate_path_exists"], 0)
+        self.assertEqual(audit["counts"]["filled_provenance_path_exists"], 0)
+        self.assertEqual(
+            audit["counts"]["acceptance_preflight_ready_from_local_inventory"], 0
+        )
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertFalse(audit["guardrails"]["blocker_packet"])
+        self.assertFalse(audit["guardrails"]["coordinates_staged_now"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -8617,6 +8737,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_p07658_credential_route_"
                 "preflight_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_input_gap_audit_"
+                "current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_p07658_local_input_inventory_"
+                "audit_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):
