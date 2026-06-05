@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 373
-- Measured elapsed time: 11409.9 minutes (190.17 hours)
+- Entries: 374
+- Measured elapsed time: 11413.4 minutes (190.22 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 1242.4 measured minutes (20.71 hours)
+- northstar-lever3: 1246.0 measured minutes (20.77 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3901
-- Evidence references logged: 3229
+- Artifact references logged: 3905
+- Evidence references logged: 3234
 
 ## Recent Entries
-
-### 2026-06-05T11:52:16.895985+00:00 - northstar-lever3
-
-- Task: Lever 3 deployment contract readiness lineage and reproducibility audits
-- Time mode: measured
-- Measured minutes: 50.267
-- Started: 2026-06-05T11:01:45Z
-- Ended: 2026-06-05T11:52:01Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: deployment contract readiness passed with 21 of 21 hard residual rows abstain route novel OOS, threshold 0.44155 locked and 31 of 34 calibration rows retained, 167 of 204 train cal OOS rows abstained or routed, lineage audit passed with 9 artifacts checked and 43 of 43 source hashes current, reproducibility audit rebuilt readiness and lineage artifacts with 0 normalized rebuild differences, focused tests 10 passed and 37 subtests, affected suite 633 passed and 202 subtests, full pytest 1505 passed and 221 subtests with existing sklearn warning, unittest discovery 1460 passed, validate compileall diff-check JSON parse CLI smoke and disk checks passed
-- Notes: Measured readout artifacts first; no blocker packet produced; fixed threshold 0.44155 unchanged; fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance.
 
 ### 2026-06-05T12:29:58.962873+00:00 - northstar-lever3
 
@@ -121,6 +110,17 @@ Generated from `work/progress_log.jsonl`.
 - Measured minutes: 3.417
 - Started: 2026-06-05T18:02:58Z
 - Ended: 2026-06-05T18:06:23Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
+- Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
+- Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
+
+### 2026-06-05T19:06:13.363198+00:00 - northstar-lever3
+
+- Task: Lever 3 finalization stop verification
+- Time mode: measured
+- Measured minutes: 3.517
+- Started: 2026-06-05T19:02:42Z
+- Ended: 2026-06-05T19:06:13Z
 - Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
 - Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
 - Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
@@ -633,3 +633,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T15:08:04.783030+00:00: Lever 3 finalization only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
 - 2026-06-05T16:06:56.986922+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
 - 2026-06-05T17:06:58.568415+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
+- 2026-06-05T19:06:13.363198+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.

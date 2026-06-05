@@ -3,18 +3,18 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T18:02:58Z`
-- STARTED_AT_LOCAL: `2026-06-05T13:02:58-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T18:06:23Z`
-- ENDED_AT_LOCAL: `2026-06-05T13:06:23-0500 CDT`
-- ELAPSED_MINUTES: `3.42`
-- Status: Run 61 final Lever 3 stop/sync verification complete. Canonical
+- STARTED_AT_UTC: `2026-06-05T19:02:42Z`
+- STARTED_AT_LOCAL: `2026-06-05T14:02:42-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T19:06:13Z`
+- ENDED_AT_LOCAL: `2026-06-05T14:06:13-0500 CDT`
+- ELAPSED_MINUTES: `3.517`
+- Status: Run 62 final Lever 3 stop/sync verification complete. Canonical
   `.git/catalytic-earth-automation.lock` was acquired before substantive work
-  at `2026-06-05T18:02:46Z`. The reusable Lever 3 gate/final P07658 closure
+  at `2026-06-05T19:02:42Z`. The reusable Lever 3 gate/final P07658 closure
   artifact was already committed and pushed; this run verified the pushed stop
   state, updated the handoff/progress/status/memory ledger, and made no
   current-family counteraxis, threshold, scoring, label, registry, ontology,
-  import, split, provider, or coordinate changes.
+  import, split, provider, coordinate, or P07658 no-credential retry changes.
 
 ## Mission
 
@@ -65,6 +65,107 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 62
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T19:02:42Z`
+- STARTED_LOCAL: `2026-06-05T14:02:42-0500 CDT`
+- ENDED_AT: `2026-06-05T19:06:13Z`
+- ENDED_LOCAL: `2026-06-05T14:06:13-0500 CDT`
+- ELAPSED_MINUTES: `3.517`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T19:02:42Z`.
+
+#### Current objective
+
+Final Lever 3 stop-state verification only: confirm the reusable gate,
+P07658 closure status, safe abstain/route operator contract, and pushed sync
+state remain current without producing new blocker packets or continuing
+current-family optimization.
+
+#### Run notes
+
+- Initial state from `work/handoff.md`: Run 58 produced
+  `artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md`;
+  Runs 59-61 verified the artifact was pushed and still current.
+- Re-verified that the finalization artifact/report already satisfies the
+  Lever 3 done-bar: reusable family-expansion gate documented, safe abstain/route
+  operator contract current and reproducible, hard-confounded rows routed rather
+  than force-labeled, P07658 explicitly fail-closed, and no further current-family
+  Lever 3 optimization allowed without new data.
+- No new finalization artifact or blocker packet was produced because the
+  pushed finalization report is already the stop/readiness artifact.
+- Rechecked P07658 mechanically: frozen FASTA remains 715 aa with U140 preserved,
+  sequence SHA-256
+  `3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa`,
+  FASTA file SHA-256
+  `c85b09c0de2c63e644481d8ada0eb242e439b720c70a73f2b5964b4b5875a081`, and
+  zero local `P07658` coordinate candidates with coordinate extensions.
+- Rechecked the current environment without exposing secret values: no HF,
+  NVIDIA, BioLM, OpenAI, or equivalent provider credential and no local
+  ESMFold/ColabFold/AlphaFold/Foldseek executable route was present. No provider
+  calls or equivalent no-credential retries were performed.
+
+#### Final Lever 3 status
+
+- Lever 3 stop condition reached and remains current.
+- Safe abstain/route operator contract is reproducible and current.
+- Current hard-confounded rows are safely routed, not force-labeled:
+  21/21 hard residual operator rows are `abstain_or_route_novel_oos`.
+- Mechanism transfer allowed rows: 0.
+- Score/force mechanism-label allowed rows: 0.
+- Retained residual rows after all current counteraxes: 0.
+- Calibration retention remains 31/34 in-scope rows; train/cal OOS
+  abstain/route remains 167/204.
+- Threshold `0.44155` remains unchanged.
+
+#### P07658 status
+
+- P07658 is not fully accepted or scored.
+- P07658 remains fail-closed as `abstain_or_route_novel_oos`.
+- Fixed-threshold scoring closure is blocked only by the exact
+  coordinate/provenance requirement:
+  exact full-length P07658 predicted coordinate for the frozen 715-aa sequence,
+  filled provider/model/version/path/checksum provenance, input sequence hash,
+  explicit U140 handling, and passing P07658 acceptance preflight before any
+  scoring rerun.
+
+#### Validation
+
+- `python -m json.tool` parsed the final stop-readiness JSON and operator
+  transfer-safety application reproducibility JSON.
+- Focused artifact regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'finalization_stop_readiness or transfer_safety_application_reproducibility_audit' -q`:
+  1 passed, 281 deselected.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, 702 labels.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`: 2
+  passed.
+- `PYTHONPATH=src python -m unittest discover -s tests`: 1495 tests passed with
+  the existing sklearn/SciPy deprecation warning.
+- `git diff --check` passed.
+
+#### Commit/push result
+
+- Final wrap commit contains only this handoff/progress/status verification
+  update. Automation memory was updated under the external Codex automation
+  memory directory.
+- Final wrap commit is pushed to `origin/main`; `HEAD == origin/main` is verified
+  before lock release.
+
+#### Stop condition
+
+Lever 3 stop condition reached. Stop current-family Lever 3 work now. Resume
+only when either a new frozen family panel must pass through the reusable gate,
+or an exact full-length P07658 predicted coordinate plus filled provenance
+arrives and passes the acceptance preflight.
 
 ### 2026-06-05 Lever 3 Forward Push Run 61
 
