@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 374
-- Measured elapsed time: 11413.4 minutes (190.22 hours)
+- Entries: 375
+- Measured elapsed time: 11417.0 minutes (190.28 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 1246.0 measured minutes (20.77 hours)
+- northstar-lever3: 1249.5 measured minutes (20.83 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3905
-- Evidence references logged: 3234
+- Artifact references logged: 3909
+- Evidence references logged: 3239
 
 ## Recent Entries
-
-### 2026-06-05T12:29:58.962873+00:00 - northstar-lever3
-
-- Task: Lever 3 operator manifest and stage provenance deployment readouts
-- Time mode: measured
-- Measured minutes: 27.433
-- Started: 2026-06-05T12:02:13Z
-- Ended: 2026-06-05T12:29:39Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_manifest_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_stage_provenance_audit_current702_20260605.md, artifacts/v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.json, work/fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: operator manifest audit passed with 21 of 21 hard residual rows abstain route novel OOS and zero forbidden fields, operator manifest reproducibility audit rebuilt with zero normalized differences, stage provenance audit covered 5 of 5 manifest stage source artifacts in clean lineage, stage provenance reproducibility audit rebuilt with zero normalized differences, calibration retention stayed 31 of 34 and train cal OOS abstention stayed 167 of 204, focused tests 13 passed and 41 subtests passed, affected suite 645 passed and 206 subtests passed, full pytest 1517 passed and 225 subtests passed with existing sklearn warning, unittest discovery 1472 passed, validate compileall diff-check JSON parse CLI smoke guardrail audit and disk checks passed
-- Notes: Measured readouts first; no blocker packet produced; fixed threshold 0.44155 unchanged; fixed-threshold scoring closure remains fail-closed pending exact P07658 coordinate provenance. Actual elapsed is below the planned wall-clock window because the bounded implementation and validation completed early.
 
 ### 2026-06-05T13:51:57.851542+00:00 - northstar-lever3
 
@@ -121,6 +110,17 @@ Generated from `work/progress_log.jsonl`.
 - Measured minutes: 3.517
 - Started: 2026-06-05T19:02:42Z
 - Ended: 2026-06-05T19:06:13Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
+- Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
+- Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
+
+### 2026-06-05T20:05:21.984184+00:00 - northstar-lever3
+
+- Task: Lever 3 finalization stop verification
+- Time mode: measured
+- Measured minutes: 3.583
+- Started: 2026-06-05T20:01:25Z
+- Ended: 2026-06-05T20:05:00Z
 - Artifacts: artifacts/v3_fold_augmented_lever3_finalization_stop_readiness_current702_20260605.json, work/fold_augmented_lever3_finalization_stop_readiness_current702_20260605.md, work/handoff.md, work/status.md
 - Evidence: finalization artifact already pushed and still satisfies reusable Lever 3 gate, P07658 FASTA 715 aa with U140 preserved and expected sequence SHA, no P07658 coordinate candidate or filled provenance found, no provider credentials or local predictor executable route present, JSON parse focused artifact regression validate doc-reference unittest discovery and diff check passed
 - Notes: Lever 3 stop condition remains reached; P07658 remains fail-closed only on exact coordinate/provenance plus acceptance preflight.
@@ -634,3 +634,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T16:06:56.986922+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
 - 2026-06-05T17:06:58.568415+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls or source decisions changed.
 - 2026-06-05T19:06:13.363198+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
+- 2026-06-05T20:05:21.984184+00:00: Lever 3 finalization verification only; no current-family counteraxis hunting labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting provider calls source decisions or P07658 no-credential retries changed.
