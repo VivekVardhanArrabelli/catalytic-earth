@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-05T10:32:36Z`
 - STARTED_AT_LOCAL: `2026-06-05T05:32:36-0500 CDT`
-- ENDED_AT_UTC: `in_progress`
-- ENDED_AT_LOCAL: `in_progress`
-- ELAPSED_MINUTES: `in_progress`
+- ENDED_AT_UTC: `2026-06-05T11:27:46Z`
+- ENDED_AT_LOCAL: `2026-06-05T06:27:46-0500 CDT`
+- ELAPSED_MINUTES: `55.2`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-05T10:32:36Z`
 - STARTED_LOCAL: `2026-06-05T05:32:36-0500 CDT`
-- ENDED_AT: `in_progress`
-- ENDED_LOCAL: `in_progress`
-- ELAPSED_MINUTES: `in_progress`
+- ENDED_AT: `2026-06-05T11:27:46Z`
+- ENDED_LOCAL: `2026-06-05T06:27:46-0500 CDT`
+- ELAPSED_MINUTES: `55.2`
 
 #### Intent
 
@@ -155,7 +155,16 @@ labels, registries, imports, production thresholds, or heldout splits.
 
 #### Commit/push status
 
-- Pending final wrap-up.
+- Primary research commit
+  `0a9635ea0e7359fe5b610189f2db90dbfd9cc910`
+  (`Add Lever 2 electron-flow support readouts`) was pushed to
+  `origin/lever-2-research-track`.
+- Sync verification after that push matched local `HEAD` and
+  `origin/lever-2-research-track` at
+  `0a9635ea0e7359fe5b610189f2db90dbfd9cc910`.
+- This final ledger/status update is the only post-verification repo change and
+  will be committed, pushed, and verified as the wrap-up commit immediately
+  after the handoff edit.
 
 #### Exact next action
 
