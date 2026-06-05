@@ -18521,6 +18521,113 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(readout["decision"]["research_only"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_coordinate_proxy_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_coordinate_proxy_"
+                "readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_coordinate_proxy_readout_"
+                "research_only_coordinate_proxy_smoke_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_coordinate_proxy_smoke_signal",
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_rows"], 35)
+        self.assertEqual(readout["counts"]["smoke_tranche_coordinate_rows"], 35)
+        self.assertEqual(
+            readout["counts"]["smoke_tranche_missing_geometry_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_generic_redox_primary_positive_rows"], 10
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_generic_redox_retained_oos_positive_rows"],
+            1,
+        )
+        self.assertEqual(readout["counts"]["smoke_pqq_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["smoke_pqq_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["full_retained_current_split_rows"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["full_retained_current_split_coordinate_rows"], 72
+        )
+        self.assertEqual(
+            readout["counts"]["full_retained_current_split_missing_geometry_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_retained_current_split_missing_coordinate_entry_ids"
+            ],
+            ["m_csa:531", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            readout["counts"]["full_retained_current_split_gap_cif_probe_rows"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_retained_current_split_gap_cif_probe_sidecar_rows"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_retained_current_split_gap_cif_probe_pqq_positive_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_retained_current_split_pqq_inventory_complete_rows"
+            ],
+            74,
+        )
+        self.assertEqual(readout["counts"]["full_pqq_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["full_pqq_retained_oos_positive_rows"], 1
+        )
+        self.assertTrue(
+            readout["decision"][
+                "full_retained_current_split_pqq_inventory_complete_now"
+            ]
+        )
+        supplemental_sources = readout["source_artifacts"][
+            "supplemental_coordinate_gap_cifs"
+        ]
+        self.assertTrue(supplemental_sources["m_csa:531"]["exists"])
+        self.assertTrue(supplemental_sources["uniprot:Q3LXA3"]["exists"])
+        self.assertTrue(
+            readout["decision"]["coordinate_proxy_smoke_tranche_measurable_now"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "generic_redox_contact_smoke_preserves_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pqq_coordinate_subfield_smoke_adds_incremental_oos_abstention"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
     def test_lever2_source_free_axis_acquisition_ranking_readout_current_counts(
         self,
     ) -> None:

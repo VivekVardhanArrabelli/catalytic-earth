@@ -17,6 +17,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .structure import parse_atom_site_loop, structure_ligand_inventory_from_atoms
+
 SCHEMA_VERSION = "lever2_mechanism_feature_incremental_readout.v0"
 DEFAULT_ARTIFACT_ID = (
     "v3_lever2_mechanism_feature_incremental_readout_current702_20260604"
@@ -32,6 +34,19 @@ DEFAULT_ELECTRON_FLOW_SMOKE_TRANCHE_SCAN_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_smoke_tranche_evidence_scan_"
     "current702_20260604"
 )
+DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_coordinate_proxy_readout_"
+    "current702_20260604"
+)
+DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
+    "m_csa:531": (
+        "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
+    ),
+    "uniprot:Q3LXA3": (
+        "artifacts/v3_external_hard_negative_next_candidate_structural_"
+        "coordinates_1025/afdb_Q3LXA3.cif"
+    ),
+}
 DEFAULT_SOURCE_FREE_AXIS_ACQUISITION_RANKING_ARTIFACT_ID = (
     "v3_lever2_source_free_mechanism_axis_acquisition_ranking_readout_"
     "current702_20260604"
@@ -67,6 +82,31 @@ DEFAULT_EVENT_AXIS_PRIMARY_CONTROLLED_NULL_ARTIFACT_ID = (
 DEFAULT_EVENT_MOTIF_INTERACTION_NULL_ARTIFACT_ID = (
     "v3_lever2_event_motif_interaction_null_readout_current702_20260604"
 )
+COORDINATE_REDOX_LIGAND_CODES = {
+    "B12",
+    "CNC",
+    "COB",
+    "FAD",
+    "FES",
+    "FMN",
+    "FS4",
+    "HEA",
+    "HEB",
+    "HEC",
+    "HEM",
+    "HEO",
+    "NAD",
+    "NADH",
+    "NADP",
+    "NAP",
+    "NPH",
+    "PQQ",
+    "RBF",
+    "SF4",
+}
+COORDINATE_QUINONE_REDOX_LIGAND_CODES = {"PQQ"}
+COORDINATE_ELECTRON_PATH_RESIDUE_CODES = {"CYS", "HIS", "PHE", "TRP", "TYR"}
+COORDINATE_ELECTRON_PATH_CUTOFF_ANGSTROM = 5.0
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -104,6 +144,13 @@ def _entry_sort_key(entry_id: str) -> tuple[int, str]:
         if suffix.isdigit():
             return (0, f"{int(suffix):08d}")
     return (1, entry_id)
+
+
+def _entry_ids(rows: list[dict[str, Any]]) -> list[str]:
+    return sorted(
+        [str(row.get("entry_id")) for row in rows if row.get("entry_id")],
+        key=_entry_sort_key,
+    )
 
 
 def _stable_hash_text(*parts: object) -> str:
@@ -3746,6 +3793,891 @@ def build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
             ),
         },
     }
+
+
+def _geometry_feature_rows_by_entry(
+    geometry_features: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    rows = geometry_features.get("entries") or geometry_features.get("results") or []
+    return {
+        str(row.get("entry_id")): row
+        for row in rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _uppercase_residue_code(value: object) -> str:
+    return str(value or "").upper()[:3]
+
+
+def _unavailable_coordinate_electron_flow_features(
+    *,
+    entry_id: str,
+    geometry_status: str,
+    pdb_id: object | None = None,
+) -> dict[str, Any]:
+    features: dict[str, Any] = {
+        "entry_id": entry_id,
+        "geometry_status": geometry_status,
+        "source_free_coordinate_features_available": False,
+        "proximal_redox_ligand_codes": [],
+        "proximal_quinone_redox_ligand_codes": [],
+        "electron_path_residue_count": 0,
+        "active_site_electron_path_residue_count": 0,
+        "has_coordinate_redox_electron_flow_event": False,
+        "coordinate_redox_electron_flow_count": 0,
+        "has_coordinate_quinone_pqq_redox_event": False,
+        "coordinate_quinone_pqq_redox_count": 0,
+    }
+    if pdb_id:
+        features["pdb_id_for_diagnostics_only"] = pdb_id
+    return features
+
+
+def _source_free_coordinate_electron_flow_features(
+    *,
+    entry_id: str,
+    geometry_row: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if geometry_row is None:
+        return _unavailable_coordinate_electron_flow_features(
+            entry_id=entry_id,
+            geometry_status="missing_geometry_row",
+        )
+    geometry_status = str(geometry_row.get("status") or "unknown_geometry_status")
+    if geometry_status != "ok":
+        return _unavailable_coordinate_electron_flow_features(
+            entry_id=entry_id,
+            geometry_status=geometry_status,
+            pdb_id=geometry_row.get("pdb_id"),
+        )
+    ligand_context = geometry_row.get("ligand_context") or {}
+    proximal_codes = {
+        str(code).upper()
+        for code in ligand_context.get("ligand_codes") or []
+        if code
+    }
+    proximal_redox_codes = sorted(proximal_codes & COORDINATE_REDOX_LIGAND_CODES)
+    proximal_pqq_codes = sorted(
+        proximal_codes & COORDINATE_QUINONE_REDOX_LIGAND_CODES
+    )
+    nearby_sites = (geometry_row.get("pocket_context") or {}).get(
+        "nearby_residue_sites"
+    ) or []
+    electron_path_sites = []
+    for site in nearby_sites:
+        if not isinstance(site, dict):
+            continue
+        try:
+            min_distance = float(site.get("min_distance_to_active_site"))
+        except (TypeError, ValueError):
+            continue
+        if min_distance > COORDINATE_ELECTRON_PATH_CUTOFF_ANGSTROM:
+            continue
+        if _uppercase_residue_code(site.get("code")) not in (
+            COORDINATE_ELECTRON_PATH_RESIDUE_CODES
+        ):
+            continue
+        electron_path_sites.append(
+            {
+                "code": _uppercase_residue_code(site.get("code")),
+                "chain_name": site.get("chain_name"),
+                "resid": site.get("resid"),
+                "min_distance_to_active_site": round(min_distance, 3),
+            }
+        )
+    active_site_path_residues = [
+        {
+            "code": _uppercase_residue_code(residue.get("code")),
+            "chain_name": residue.get("chain_name"),
+            "resid": residue.get("resid"),
+        }
+        for residue in geometry_row.get("residues") or []
+        if isinstance(residue, dict)
+        and _uppercase_residue_code(residue.get("code"))
+        in COORDINATE_ELECTRON_PATH_RESIDUE_CODES
+    ]
+    has_generic = bool(
+        proximal_redox_codes and (electron_path_sites or active_site_path_residues)
+    )
+    generic_count = (
+        len(proximal_redox_codes)
+        + len(electron_path_sites)
+        + len(active_site_path_residues)
+        if has_generic
+        else 0
+    )
+    has_pqq = bool(proximal_pqq_codes)
+    return {
+        "entry_id": entry_id,
+        "geometry_status": geometry_status,
+        "source_free_coordinate_features_available": True,
+        "pdb_id_for_diagnostics_only": geometry_row.get("pdb_id"),
+        "proximal_redox_ligand_codes": proximal_redox_codes,
+        "proximal_quinone_redox_ligand_codes": proximal_pqq_codes,
+        "electron_path_residue_count": len(electron_path_sites),
+        "active_site_electron_path_residue_count": len(active_site_path_residues),
+        "electron_path_residue_examples": electron_path_sites[:8],
+        "active_site_electron_path_residue_examples": active_site_path_residues[:8],
+        "has_coordinate_redox_electron_flow_event": has_generic,
+        "coordinate_redox_electron_flow_count": generic_count,
+        "has_coordinate_quinone_pqq_redox_event": has_pqq,
+        "coordinate_quinone_pqq_redox_count": 1 if has_pqq else 0,
+    }
+
+
+def _coordinate_proxy_tranche_rows(
+    *,
+    tranche: dict[str, Any],
+    geometry_by_entry: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    rows = []
+    for role, key in (
+        ("current_retained_oos", "retained_oos_entry_ids"),
+        ("current_primary_retention_gate", "primary_entry_ids"),
+    ):
+        for entry_id in tranche.get(key, []) or []:
+            entry_id = str(entry_id)
+            features = _source_free_coordinate_electron_flow_features(
+                entry_id=entry_id,
+                geometry_row=geometry_by_entry.get(entry_id),
+            )
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "tranche_role": role,
+                    "coordinate_proxy_event_features": {
+                        "has_electron_transfer_event": features[
+                            "has_coordinate_redox_electron_flow_event"
+                        ],
+                        "electron_transfer_count": features[
+                            "coordinate_redox_electron_flow_count"
+                        ],
+                    },
+                    "coordinate_proxy_pqq_event_features": {
+                        "has_electron_transfer_event": features[
+                            "has_coordinate_quinone_pqq_redox_event"
+                        ],
+                        "electron_transfer_count": features[
+                            "coordinate_quinone_pqq_redox_count"
+                        ],
+                    },
+                    "coordinate_evidence": features,
+                }
+            )
+    return rows
+
+
+def _coordinate_proxy_variant_readout(
+    rows: list[dict[str, Any]],
+    *,
+    variant_id: str,
+    field: str,
+) -> dict[str, Any]:
+    primary_rows = [
+        row for row in rows if row["tranche_role"] == "current_primary_retention_gate"
+    ]
+    retained_oos_rows = [
+        row for row in rows if row["tranche_role"] == "current_retained_oos"
+    ]
+    positive_rows = [
+        row for row in rows if row["coordinate_evidence"].get(field)
+    ]
+    primary_positive_rows = [
+        row for row in primary_rows if row["coordinate_evidence"].get(field)
+    ]
+    retained_oos_positive_rows = [
+        row for row in retained_oos_rows if row["coordinate_evidence"].get(field)
+    ]
+    return {
+        "variant_id": variant_id,
+        "positive_field": field,
+        "primary_positive_rows": len(primary_positive_rows),
+        "retained_oos_positive_rows": len(retained_oos_positive_rows),
+        "primary_positive_entry_ids": _entry_ids(primary_positive_rows),
+        "retained_oos_positive_entry_ids": _entry_ids(retained_oos_positive_rows),
+        "primary_retain_recall_if_abstain_positive": _recall(
+            len(primary_rows) - len(primary_positive_rows), len(primary_rows)
+        ),
+        "retained_oos_abstain_recall_if_abstain_positive": _recall(
+            len(retained_oos_positive_rows), len(retained_oos_rows)
+        ),
+        "adds_incremental_oos_at_primary_retain_1": bool(
+            retained_oos_positive_rows and not primary_positive_rows
+        ),
+        "positive_rows": len(positive_rows),
+    }
+
+
+def _coordinate_count_primary_safe_threshold_readout(
+    rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    primary_rows = [
+        row for row in rows if row["tranche_role"] == "current_primary_retention_gate"
+    ]
+    retained_oos_rows = [
+        row for row in rows if row["tranche_role"] == "current_retained_oos"
+    ]
+    max_primary_count = max(
+        (
+            int(
+                row["coordinate_evidence"].get(
+                    "coordinate_redox_electron_flow_count"
+                )
+                or 0
+            )
+            for row in primary_rows
+        ),
+        default=0,
+    )
+    threshold = max_primary_count + 1
+    retained_oos_caught = [
+        row
+        for row in retained_oos_rows
+        if int(
+            row["coordinate_evidence"].get("coordinate_redox_electron_flow_count")
+            or 0
+        )
+        >= threshold
+    ]
+    return {
+        "variant_id": "coordinate_redox_contact_primary_safe_count_threshold",
+        "primary_safe_integer_threshold": threshold,
+        "max_primary_coordinate_redox_electron_flow_count": max_primary_count,
+        "primary_positive_rows": 0,
+        "retained_oos_positive_rows": len(retained_oos_caught),
+        "retained_oos_positive_entry_ids": _entry_ids(retained_oos_caught),
+        "primary_retain_recall_if_abstain_positive": 1.0
+        if primary_rows
+        else None,
+        "retained_oos_abstain_recall_if_abstain_positive": _recall(
+            len(retained_oos_caught), len(retained_oos_rows)
+        ),
+        "adds_incremental_oos_at_primary_retain_1": bool(retained_oos_caught),
+    }
+
+
+def _coordinate_proxy_tranche_readout(
+    *,
+    tranche_id: str,
+    tranche: dict[str, Any],
+    geometry_by_entry: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    rows = _coordinate_proxy_tranche_rows(
+        tranche=tranche,
+        geometry_by_entry=geometry_by_entry,
+    )
+    geometry_ready_rows = [
+        row
+        for row in rows
+        if row["coordinate_evidence"].get("source_free_coordinate_features_available")
+    ]
+    missing_rows = [
+        row
+        for row in rows
+        if not row["coordinate_evidence"].get(
+            "source_free_coordinate_features_available"
+        )
+    ]
+    coordinate_status_counts: dict[str, int] = {}
+    for row in rows:
+        status = str(row["coordinate_evidence"].get("geometry_status") or "unknown")
+        coordinate_status_counts[status] = coordinate_status_counts.get(status, 0) + 1
+    generic = _coordinate_proxy_variant_readout(
+        rows,
+        variant_id="coordinate_redox_contact_binary",
+        field="has_coordinate_redox_electron_flow_event",
+    )
+    pqq = _coordinate_proxy_variant_readout(
+        rows,
+        variant_id="coordinate_quinone_pqq_redox_binary",
+        field="has_coordinate_quinone_pqq_redox_event",
+    )
+    count_threshold = _coordinate_count_primary_safe_threshold_readout(rows)
+    return {
+        "tranche_id": tranche_id,
+        "source_tranche": tranche,
+        "rows": rows,
+        "variant_readouts": {
+            "coordinate_redox_contact_binary": generic,
+            "coordinate_quinone_pqq_redox_binary": pqq,
+            "coordinate_redox_contact_primary_safe_count_threshold": (
+                count_threshold
+            ),
+        },
+        "counts": {
+            "rows": len(rows),
+            "retained_oos_rows": sum(
+                1 for row in rows if row["tranche_role"] == "current_retained_oos"
+            ),
+            "primary_rows": sum(
+                1
+                for row in rows
+                if row["tranche_role"] == "current_primary_retention_gate"
+            ),
+            "source_free_coordinate_features_available_rows": len(
+                geometry_ready_rows
+            ),
+            "missing_geometry_rows": len(rows) - len(geometry_ready_rows),
+            "coordinate_redox_contact_positive_rows": generic["positive_rows"],
+            "coordinate_pqq_positive_rows": pqq["positive_rows"],
+            "coordinate_feature_status_counts": dict(
+                sorted(coordinate_status_counts.items())
+            ),
+            "missing_coordinate_feature_entry_ids": _entry_ids(missing_rows),
+        },
+        "coordinate_feature_gaps": [
+            {
+                "entry_id": row["entry_id"],
+                "tranche_role": row["tranche_role"],
+                "geometry_status": row["coordinate_evidence"].get(
+                    "geometry_status"
+                ),
+                "pdb_id_for_diagnostics_only": row["coordinate_evidence"].get(
+                    "pdb_id_for_diagnostics_only"
+                ),
+            }
+            for row in missing_rows
+        ],
+    }
+
+
+def _coordinate_gap_cif_probe(
+    *,
+    gaps: list[dict[str, Any]],
+    supplemental_coordinate_cif_paths: dict[str, Path],
+) -> dict[str, Any]:
+    rows: list[dict[str, Any]] = []
+    for gap in gaps:
+        entry_id = str(gap.get("entry_id") or "")
+        path = supplemental_coordinate_cif_paths.get(entry_id)
+        if path is None:
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "tranche_role": gap.get("tranche_role"),
+                    "geometry_status": gap.get("geometry_status"),
+                    "sidecar_available": False,
+                    "sidecar_status": "missing_sidecar_path_mapping",
+                    "structure_ligand_codes": [],
+                    "structure_redox_ligand_codes": [],
+                    "structure_quinone_redox_ligand_codes": [],
+                }
+            )
+            continue
+        if not path.exists():
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "tranche_role": gap.get("tranche_role"),
+                    "geometry_status": gap.get("geometry_status"),
+                    "sidecar_available": False,
+                    "sidecar_status": "sidecar_path_not_found",
+                    "coordinate_path": str(path),
+                    "structure_ligand_codes": [],
+                    "structure_redox_ligand_codes": [],
+                    "structure_quinone_redox_ligand_codes": [],
+                }
+            )
+            continue
+        try:
+            atoms = parse_atom_site_loop(path.read_text(encoding="utf-8"))
+            inventory = structure_ligand_inventory_from_atoms(atoms)
+        except Exception as exc:  # source-free sidecar parse failures are evidence
+            rows.append(
+                {
+                    "entry_id": entry_id,
+                    "tranche_role": gap.get("tranche_role"),
+                    "geometry_status": gap.get("geometry_status"),
+                    "sidecar_available": False,
+                    "sidecar_status": "sidecar_parse_failed",
+                    "coordinate_path": str(path),
+                    "error": str(exc),
+                    "structure_ligand_codes": [],
+                    "structure_redox_ligand_codes": [],
+                    "structure_quinone_redox_ligand_codes": [],
+                }
+            )
+            continue
+        ligand_codes = sorted(str(code).upper() for code in inventory["ligand_codes"])
+        redox_codes = sorted(set(ligand_codes) & COORDINATE_REDOX_LIGAND_CODES)
+        pqq_codes = sorted(
+            set(ligand_codes) & COORDINATE_QUINONE_REDOX_LIGAND_CODES
+        )
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "tranche_role": gap.get("tranche_role"),
+                "geometry_status": gap.get("geometry_status"),
+                "sidecar_available": True,
+                "sidecar_status": "ok",
+                "coordinate_path": str(path),
+                "atom_site_rows": len(atoms),
+                "structure_ligand_codes": ligand_codes,
+                "structure_redox_ligand_codes": redox_codes,
+                "structure_quinone_redox_ligand_codes": pqq_codes,
+                "has_structure_redox_ligand_inventory_event": bool(redox_codes),
+                "has_structure_quinone_pqq_inventory_event": bool(pqq_codes),
+            }
+        )
+    available_rows = [row for row in rows if row.get("sidecar_available")]
+    redox_positive_rows = [
+        row for row in rows if row.get("structure_redox_ligand_codes")
+    ]
+    pqq_positive_rows = [
+        row for row in rows if row.get("structure_quinone_redox_ligand_codes")
+    ]
+    return {
+        "scope": (
+            "Supplemental source-free ligand-inventory scan of committed local "
+            "CIF sidecars for full-tranche rows whose geometry readout was not "
+            "ok. It can close absent-PQQ inventory as negative evidence, but it "
+            "does not infer active-site proximity or promote a primitive "
+            "electron-flow axis."
+        ),
+        "rows": rows,
+        "counts": {
+            "gap_rows": len(gaps),
+            "sidecar_available_rows": len(available_rows),
+            "sidecar_unavailable_rows": len(rows) - len(available_rows),
+            "redox_ligand_inventory_positive_rows": len(redox_positive_rows),
+            "quinone_pqq_inventory_positive_rows": len(pqq_positive_rows),
+            "inventory_negative_gap_rows": (
+                len(available_rows) - len(redox_positive_rows)
+            ),
+            "pqq_inventory_negative_gap_rows": (
+                len(available_rows) - len(pqq_positive_rows)
+            ),
+        },
+        "decision": {
+            "all_gap_rows_have_parseable_sidecar_inventory": (
+                bool(gaps) and len(available_rows) == len(gaps)
+            ),
+            "pqq_inventory_closes_all_gap_rows_as_negative": (
+                bool(gaps)
+                and len(available_rows) == len(gaps)
+                and not pqq_positive_rows
+            ),
+            "redox_inventory_closes_all_gap_rows_as_negative": (
+                bool(gaps)
+                and len(available_rows) == len(gaps)
+                and not redox_positive_rows
+            ),
+            "sidecar_inventory_is_proximity_readout": False,
+            "approved_direct_electron_flow_axis_materialized": False,
+        },
+    }
+
+
+def build_lever2_source_free_electron_flow_coordinate_proxy_readout(
+    *,
+    electron_flow_acquisition_ceiling_readout_path: Path,
+    geometry_features_path: Path,
+    supplemental_coordinate_cif_paths: dict[str, Path] | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_READOUT_ARTIFACT_ID,
+) -> dict[str, Any]:
+    acquisition = _read_json(electron_flow_acquisition_ceiling_readout_path)
+    geometry = _read_json(geometry_features_path)
+    geometry_by_entry = _geometry_feature_rows_by_entry(geometry)
+    measured = acquisition.get("measured_readout") or {}
+    smoke = measured.get("smallest_source_free_smoke_tranche") or {}
+    full = measured.get("full_retained_oos_current_split_tranche") or {}
+    smoke_readout = _coordinate_proxy_tranche_readout(
+        tranche_id="smallest_source_free_smoke_tranche",
+        tranche=smoke,
+        geometry_by_entry=geometry_by_entry,
+    )
+    full_readout = _coordinate_proxy_tranche_readout(
+        tranche_id="full_retained_oos_current_split_tranche",
+        tranche=full,
+        geometry_by_entry=geometry_by_entry,
+    )
+    if supplemental_coordinate_cif_paths is None:
+        supplemental_coordinate_cif_paths = {
+            entry_id: Path(path)
+            for entry_id, path in (
+                DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS.items()
+            )
+        }
+    full_gap_probe = _coordinate_gap_cif_probe(
+        gaps=full_readout["coordinate_feature_gaps"],
+        supplemental_coordinate_cif_paths=supplemental_coordinate_cif_paths,
+    )
+    smoke_pqq = smoke_readout["variant_readouts"][
+        "coordinate_quinone_pqq_redox_binary"
+    ]
+    smoke_generic = smoke_readout["variant_readouts"][
+        "coordinate_redox_contact_binary"
+    ]
+    full_pqq = full_readout["variant_readouts"][
+        "coordinate_quinone_pqq_redox_binary"
+    ]
+    train_cal_delta = (acquisition.get("counts") or {}).get(
+        "train_cal_electron_flow_oos_recall_delta"
+    )
+    smoke_proxy_measurable = (
+        smoke_readout["counts"]["rows"]
+        == smoke_readout["counts"]["source_free_coordinate_features_available_rows"]
+    )
+    smoke_proxy_signal = bool(
+        smoke_proxy_measurable
+        and smoke_pqq["adds_incremental_oos_at_primary_retain_1"]
+    )
+    result_class = (
+        "research_only_coordinate_proxy_smoke_signal"
+        if smoke_proxy_signal
+        else "research_only_coordinate_proxy_no_smoke_signal"
+    )
+    status = (
+        "lever2_source_free_electron_flow_coordinate_proxy_readout_"
+        f"{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_coordinate_proxy_"
+            "readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined measured readout for coordinate-only "
+            "electron-flow proxy fields on the 35-row smoke tranche and the "
+            "74-row retained-OOS current-split tranche. It uses local geometry "
+            "ligand codes and active-site/pocket residue contacts only; it does "
+            "not use mechanism text, labels, EC/Rhea IDs, accessions, source IDs, "
+            "target names, heldout rows, or threshold tuning."
+        ),
+        "measured_readout": {
+            "train_cal_electron_flow_oos_recall_delta": train_cal_delta,
+            "coordinate_proxy_contract": {
+                "generic_redox_contact_proxy": (
+                    "Proximal redox ligand code plus aromatic/HIS/CYS "
+                    "active-site or pocket contact within 5.0 A."
+                ),
+                "quinone_pqq_redox_subfield": (
+                    "Proximal PQQ ligand code from the coordinate ligand "
+                    "context. This is measured separately because it is a "
+                    "narrow redox-cofactor subfield, not a reviewed primitive "
+                    "electron-transfer event axis."
+                ),
+                "field_mapping": {
+                    "has_electron_transfer_event": (
+                        "coordinate proxy boolean for the selected variant"
+                    ),
+                    "electron_transfer_count": (
+                        "coordinate redox contact count for the generic "
+                        "variant or 1/0 for the PQQ subfield"
+                    ),
+                },
+            },
+            "smallest_source_free_smoke_tranche": smoke_readout,
+            "full_retained_oos_current_split_tranche": full_readout,
+            "full_retained_oos_current_split_gap_cif_probe": full_gap_probe,
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "smoke_tranche_rows": smoke_readout["counts"]["rows"],
+            "smoke_tranche_coordinate_rows": smoke_readout["counts"][
+                "source_free_coordinate_features_available_rows"
+            ],
+            "smoke_tranche_missing_geometry_rows": smoke_readout["counts"][
+                "missing_geometry_rows"
+            ],
+            "smoke_generic_redox_primary_positive_rows": smoke_generic[
+                "primary_positive_rows"
+            ],
+            "smoke_generic_redox_retained_oos_positive_rows": smoke_generic[
+                "retained_oos_positive_rows"
+            ],
+            "smoke_pqq_primary_positive_rows": smoke_pqq[
+                "primary_positive_rows"
+            ],
+            "smoke_pqq_retained_oos_positive_rows": smoke_pqq[
+                "retained_oos_positive_rows"
+            ],
+            "full_retained_current_split_rows": full_readout["counts"]["rows"],
+            "full_retained_current_split_coordinate_rows": full_readout[
+                "counts"
+            ]["source_free_coordinate_features_available_rows"],
+            "full_retained_current_split_missing_geometry_rows": full_readout[
+                "counts"
+            ]["missing_geometry_rows"],
+            "full_retained_current_split_missing_coordinate_entry_ids": (
+                full_readout["counts"]["missing_coordinate_feature_entry_ids"]
+            ),
+            "full_retained_current_split_gap_cif_probe_rows": (
+                full_gap_probe["counts"]["gap_rows"]
+            ),
+            "full_retained_current_split_gap_cif_probe_sidecar_rows": (
+                full_gap_probe["counts"]["sidecar_available_rows"]
+            ),
+            "full_retained_current_split_gap_cif_probe_redox_positive_rows": (
+                full_gap_probe["counts"]["redox_ligand_inventory_positive_rows"]
+            ),
+            "full_retained_current_split_gap_cif_probe_pqq_positive_rows": (
+                full_gap_probe["counts"]["quinone_pqq_inventory_positive_rows"]
+            ),
+            "full_retained_current_split_pqq_inventory_complete_rows": (
+                full_readout["counts"]["source_free_coordinate_features_available_rows"]
+                + full_gap_probe["counts"]["sidecar_available_rows"]
+            ),
+            "full_pqq_retained_oos_positive_rows": full_pqq[
+                "retained_oos_positive_rows"
+            ],
+            "full_pqq_primary_positive_rows": full_pqq["primary_positive_rows"],
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "coordinate_proxy_smoke_tranche_measurable_now": smoke_proxy_measurable,
+            "generic_redox_contact_smoke_preserves_primary_retention": (
+                smoke_generic["primary_positive_rows"] == 0
+            ),
+            "generic_redox_contact_smoke_adds_incremental_oos_abstention": (
+                smoke_generic["adds_incremental_oos_at_primary_retain_1"]
+            ),
+            "pqq_coordinate_subfield_smoke_preserves_primary_retention": (
+                smoke_pqq["primary_positive_rows"] == 0
+            ),
+            "pqq_coordinate_subfield_smoke_adds_incremental_oos_abstention": (
+                smoke_pqq["adds_incremental_oos_at_primary_retain_1"]
+            ),
+            "full_retained_current_split_pqq_incremental_rows": full_pqq[
+                "retained_oos_positive_rows"
+            ],
+            "full_retained_current_split_pqq_inventory_complete_now": (
+                full_gap_probe["decision"][
+                    "pqq_inventory_closes_all_gap_rows_as_negative"
+                ]
+            ),
+            "adds_operating_point_value_beyond_current_surface": smoke_proxy_signal,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": False,
+            "apply_or_promote_now": False,
+            "promotion_gate": (
+                "Treat the PQQ smoke signal as a coordinate-only electron-flow "
+                "proxy until the source-free electron-flow primitive axis is "
+                "explicitly reviewed and materialized for the full retained-OOS "
+                "current split."
+            ),
+            "next_gate": (
+                "Materialize an approved source-free electron-flow axis from "
+                "coordinate redox evidence for all 74 retained-OOS current-split "
+                "rows, including the missing geometry rows, then rerun fixed "
+                "train/cal readouts without heldout scoring."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "ligand_codes_used_as_source_free_coordinate_features": True,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "coordinate_proxy_fields_materialized_by_this_artifact": True,
+            "supplemental_cif_gap_inventory_fields_materialized": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "electron_flow_acquisition_ceiling_readout": _source_path_record(
+                electron_flow_acquisition_ceiling_readout_path
+            ),
+            "geometry_features": _source_path_record(geometry_features_path),
+            "supplemental_coordinate_gap_cifs": {
+                entry_id: _source_path_record(path)
+                for entry_id, path in sorted(
+                    supplemental_coordinate_cif_paths.items()
+                )
+            },
+        },
+        "interpretation": {
+            "result": (
+                "Coordinate-only PQQ redox evidence catches the smoke retained "
+                "OOS row while preserving all primary rows, but the generic "
+                "redox-contact proxy does not preserve primary retention at a "
+                "binary operating point. The signal is research-only until the "
+                "primitive source-free electron-flow axis is explicitly "
+                "materialized and reviewed."
+            ),
+            "next_action": (
+                "Expand this coordinate-electron-flow materialization toward "
+                "the full 74-row retained-OOS current split and resolve whether "
+                "PQQ/quinone redox evidence is an approved primitive "
+                "electron-flow subaxis or only a narrow ligand proxy."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_coordinate_proxy_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    smoke = readout["measured_readout"]["smallest_source_free_smoke_tranche"]
+    full = readout["measured_readout"]["full_retained_oos_current_split_tranche"]
+    full_gap_probe = readout["measured_readout"][
+        "full_retained_oos_current_split_gap_cif_probe"
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Coordinate Proxy Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Train/cal electron-flow OOS recall delta: "
+        f"{readout['measured_readout']['train_cal_electron_flow_oos_recall_delta']}",
+        "- Smoke coordinate rows ready: "
+        f"{counts['smoke_tranche_coordinate_rows']}/{counts['smoke_tranche_rows']}",
+        "- Smoke generic redox positives primary/OOS: "
+        f"{counts['smoke_generic_redox_primary_positive_rows']}/"
+        f"{counts['smoke_generic_redox_retained_oos_positive_rows']}",
+        "- Smoke PQQ positives primary/OOS: "
+        f"{counts['smoke_pqq_primary_positive_rows']}/"
+        f"{counts['smoke_pqq_retained_oos_positive_rows']}",
+        "- Full coordinate rows ready: "
+        f"{counts['full_retained_current_split_coordinate_rows']}/"
+        f"{counts['full_retained_current_split_rows']}",
+        "- Full PQQ inventory rows covered after CIF gap probe: "
+        f"{counts['full_retained_current_split_pqq_inventory_complete_rows']}/"
+        f"{counts['full_retained_current_split_rows']}",
+        "- Full-tranche PQQ positives primary/OOS: "
+        f"{counts['full_pqq_primary_positive_rows']}/"
+        f"{counts['full_pqq_retained_oos_positive_rows']}",
+        "- Full gap CIF probe PQQ positives: "
+        f"{counts['full_retained_current_split_gap_cif_probe_pqq_positive_rows']}",
+        "",
+        "## Variant Readouts",
+        "",
+        "| tranche | variant | primary positives | retained-OOS positives | primary retain | OOS recall |",
+        "| --- | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for tranche_name, tranche in (
+        ("smoke", smoke),
+        ("full_retained_current_split", full),
+    ):
+        for variant in tranche["variant_readouts"].values():
+            lines.append(
+                f"| {tranche_name} | {variant['variant_id']} | "
+                f"{variant['primary_positive_rows']} | "
+                f"{variant['retained_oos_positive_rows']} | "
+                f"{variant['primary_retain_recall_if_abstain_positive']} | "
+                f"{variant['retained_oos_abstain_recall_if_abstain_positive']} |"
+            )
+    lines += [
+        "",
+        "## Smoke Rows",
+        "",
+        "| row | role | redox ligands | PQQ | generic count |",
+        "| --- | --- | --- | ---: | ---: |",
+    ]
+    for row in smoke["rows"]:
+        evidence = row["coordinate_evidence"]
+        lines.append(
+            f"| {row['entry_id']} | {row['tranche_role']} | "
+            f"{', '.join(evidence['proximal_redox_ligand_codes']) or 'none'} | "
+            f"{evidence['has_coordinate_quinone_pqq_redox_event']} | "
+            f"{evidence['coordinate_redox_electron_flow_count']} |"
+        )
+    lines += [
+        "",
+        "## Full-Tranche Coordinate Gaps",
+        "",
+        "| row | role | geometry status | diagnostic PDB |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in full["coordinate_feature_gaps"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['tranche_role']} | "
+            f"{row['geometry_status']} | "
+            f"{row.get('pdb_id_for_diagnostics_only') or 'none'} |"
+        )
+    if not full["coordinate_feature_gaps"]:
+        lines.append("| none | none | none | none |")
+    lines += [
+        "",
+        "## Full-Tranche Gap CIF Probe",
+        "",
+        full_gap_probe["scope"],
+        "",
+        "| row | sidecar status | structure ligands | redox ligands | PQQ |",
+        "| --- | --- | --- | --- | ---: |",
+    ]
+    for row in full_gap_probe["rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['sidecar_status']} | "
+            f"{', '.join(row['structure_ligand_codes']) or 'none'} | "
+            f"{', '.join(row['structure_redox_ligand_codes']) or 'none'} | "
+            f"{bool(row['structure_quinone_redox_ligand_codes'])} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Coordinate proxy smoke measurable now: "
+        f"{decision['coordinate_proxy_smoke_tranche_measurable_now']}",
+        "- PQQ coordinate subfield adds smoke OOS abstention at primary retain 1.0: "
+        f"{decision['pqq_coordinate_subfield_smoke_adds_incremental_oos_abstention']}",
+        "- Deployable now: False",
+        f"- Promotion gate: {decision['promotion_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_coordinate_proxy_readout(
+    *,
+    electron_flow_acquisition_ceiling_readout_path: Path,
+    geometry_features_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    supplemental_coordinate_cif_paths: dict[str, Path] | None = None,
+    artifact_id: str = DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_READOUT_ARTIFACT_ID,
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_coordinate_proxy_readout(
+        electron_flow_acquisition_ceiling_readout_path=(
+            electron_flow_acquisition_ceiling_readout_path
+        ),
+        geometry_features_path=geometry_features_path,
+        supplemental_coordinate_cif_paths=supplemental_coordinate_cif_paths,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_coordinate_proxy_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
 
 
 def build_lever2_source_free_mechanism_axis_acquisition_ranking_readout(

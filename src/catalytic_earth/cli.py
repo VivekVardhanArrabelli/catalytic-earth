@@ -54,6 +54,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_event_motif_interaction_null_readout,
     write_lever2_mechanism_feature_incremental_readout,
     write_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    write_lever2_source_free_electron_flow_coordinate_proxy_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     write_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
@@ -13782,6 +13783,47 @@ def cmd_build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan(
         f"{counts.get('complete_source_free_electron_flow_rows')}/"
         f"{counts.get('smoke_tranche_rows')}, result: "
         f"{readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_coordinate_proxy_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_gap_cif", None):
+        coordinate_gap_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_gap_cif:
+            if "=" not in item:
+                raise ValueError(
+                    "--coordinate-gap-cif values must use ENTRY_ID=PATH"
+                )
+            entry_id, path = item.split("=", 1)
+            coordinate_gap_cif_paths[entry_id] = Path(path)
+        writer_kwargs["supplemental_coordinate_cif_paths"] = (
+            coordinate_gap_cif_paths
+        )
+    readout = write_lever2_source_free_electron_flow_coordinate_proxy_readout(
+        electron_flow_acquisition_ceiling_readout_path=Path(
+            args.electron_flow_acquisition_ceiling_readout
+        ),
+        geometry_features_path=Path(args.geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow coordinate-proxy readout "
+        f"to {args.out} (smoke PQQ primary/OOS positives: "
+        f"{counts.get('smoke_pqq_primary_positive_rows')}/"
+        f"{counts.get('smoke_pqq_retained_oos_positive_rows')}, "
+        "full PQQ primary/OOS positives: "
+        f"{counts.get('full_pqq_primary_positive_rows')}/"
+        f"{counts.get('full_pqq_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
     )
     return 0
 
@@ -32904,6 +32946,55 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever2_electron_flow_smoke_tranche_scan.set_defaults(
         func=cmd_build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan
+    )
+
+    lever2_electron_flow_coordinate_proxy_readout = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-coordinate-proxy-readout",
+        help=(
+            "measure coordinate-only redox/electron-flow proxy fields on the "
+            "smoke tranche and retained-OOS current split"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--electron-flow-acquisition-ceiling-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_acquisition_"
+            "ceiling_readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--coordinate-gap-cif",
+        action="append",
+        default=None,
+        help=(
+            "supplemental committed CIF sidecar for full-tranche coordinate "
+            "gap inventory scans, as ENTRY_ID=PATH; omit to use the current "
+            "readout's default gap sidecars"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_coordinate_proxy_"
+            "readout_current702_20260604.md"
+        ),
+    )
+    lever2_electron_flow_coordinate_proxy_readout.set_defaults(
+        func=cmd_build_lever2_source_free_electron_flow_coordinate_proxy_readout
     )
 
     lever2_axis_acquisition_ranking_readout = subparsers.add_parser(

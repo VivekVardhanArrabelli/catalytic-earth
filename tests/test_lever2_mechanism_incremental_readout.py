@@ -16,6 +16,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_event_axis_signature_excluded_frontier_readout,
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
+    build_lever2_source_free_electron_flow_coordinate_proxy_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
     build_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
@@ -2514,6 +2515,159 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             readout["counts"]["rows_missing_required_electron_flow_fields"], 2
         )
         self.assertFalse(readout["decision"]["smoke_tranche_measurable_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+
+    def test_electron_flow_coordinate_proxy_tracks_pqq_smoke_signal(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acquisition_path = root / "acquisition.json"
+            geometry_path = root / "geometry.json"
+            gap_cif_path = root / "gap.cif"
+            acquisition_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "train_cal_electron_flow_oos_recall_delta": 0.142857
+                        },
+                        "measured_readout": {
+                            "smallest_source_free_smoke_tranche": {
+                                "retained_oos_entry_ids": ["m_csa:10"],
+                                "primary_entry_ids": ["m_csa:20", "m_csa:30"],
+                            },
+                            "full_retained_oos_current_split_tranche": {
+                                "retained_oos_entry_ids": ["m_csa:10", "m_csa:40"],
+                                "primary_entry_ids": ["m_csa:20", "m_csa:30"],
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry_path.write_text(
+                json.dumps(
+                    {
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "status": "ok",
+                                "pdb_id": "1AAA",
+                                "ligand_context": {"ligand_codes": ["PQQ"]},
+                                "residues": [{"code": "His", "resid": 1}],
+                                "pocket_context": {
+                                    "nearby_residue_sites": [
+                                        {
+                                            "code": "TYR",
+                                            "chain_name": "A",
+                                            "resid": "2",
+                                            "min_distance_to_active_site": 3.0,
+                                        }
+                                    ]
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:20",
+                                "status": "ok",
+                                "pdb_id": "2BBB",
+                                "ligand_context": {"ligand_codes": ["FAD"]},
+                                "residues": [{"code": "Tyr", "resid": 3}],
+                                "pocket_context": {"nearby_residue_sites": []},
+                            },
+                            {
+                                "entry_id": "m_csa:30",
+                                "status": "ok",
+                                "pdb_id": "3CCC",
+                                "ligand_context": {"ligand_codes": []},
+                                "residues": [],
+                                "pocket_context": {"nearby_residue_sites": []},
+                            },
+                            {
+                                "entry_id": "m_csa:40",
+                                "status": "insufficient_resolved_residues",
+                                "pdb_id": "4DDD",
+                                "ligand_context": {"ligand_codes": ["PQQ"]},
+                                "residues": [{"code": "Cys", "resid": 4}],
+                                "pocket_context": {"nearby_residue_sites": []},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gap_cif_path.write_text(
+                "\n".join(
+                    [
+                        "data_gap",
+                        "loop_",
+                        "_atom_site.group_PDB",
+                        "_atom_site.id",
+                        "_atom_site.type_symbol",
+                        "_atom_site.label_atom_id",
+                        "_atom_site.label_comp_id",
+                        "_atom_site.label_asym_id",
+                        "_atom_site.label_seq_id",
+                        "_atom_site.Cartn_x",
+                        "_atom_site.Cartn_y",
+                        "_atom_site.Cartn_z",
+                        "_atom_site.auth_atom_id",
+                        "_atom_site.auth_comp_id",
+                        "_atom_site.auth_asym_id",
+                        "_atom_site.auth_seq_id",
+                        "HETATM 1 C C1 NAD A 1 0 0 0 C1 NAD A 1",
+                        "#",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_coordinate_proxy_readout(
+                electron_flow_acquisition_ceiling_readout_path=acquisition_path,
+                geometry_features_path=geometry_path,
+                supplemental_coordinate_cif_paths={"m_csa:40": gap_cif_path},
+                artifact_id="test_coordinate_proxy",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_coordinate_proxy")
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_coordinate_proxy_smoke_signal",
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_coordinate_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["smoke_generic_redox_primary_positive_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_pqq_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_pqq_retained_oos_positive_rows"], 1
+        )
+        full = readout["measured_readout"][
+            "full_retained_oos_current_split_tranche"
+        ]
+        self.assertEqual(
+            full["counts"]["missing_coordinate_feature_entry_ids"], ["m_csa:40"]
+        )
+        self.assertEqual(
+            full["variant_readouts"]["coordinate_quinone_pqq_redox_binary"][
+                "retained_oos_positive_rows"
+            ],
+            1,
+        )
+        gap_probe = readout["measured_readout"][
+            "full_retained_oos_current_split_gap_cif_probe"
+        ]
+        self.assertEqual(gap_probe["counts"]["sidecar_available_rows"], 1)
+        self.assertEqual(
+            gap_probe["counts"]["redox_ligand_inventory_positive_rows"], 1
+        )
+        self.assertEqual(
+            gap_probe["counts"]["quinone_pqq_inventory_positive_rows"], 0
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pqq_coordinate_subfield_smoke_adds_incremental_oos_abstention"
+            ]
+        )
         self.assertFalse(readout["decision"]["deployable_now"])
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(

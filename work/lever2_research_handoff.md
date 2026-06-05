@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T02:31:31Z`
-- STARTED_AT_LOCAL: `2026-06-04T21:31:31-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T03:26:38Z`
-- ENDED_AT_LOCAL: `2026-06-04T22:26:38-0500 CDT`
-- ELAPSED_MINUTES: `55.12`
+- STARTED_AT_UTC: `2026-06-05T03:31:31Z`
+- STARTED_AT_LOCAL: `2026-06-04T22:31:31-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T04:26:54Z`
+- ENDED_AT_LOCAL: `2026-06-04T23:26:54-0500 CDT`
+- ELAPSED_MINUTES: `55.38`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,160 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-04 Lever 2 Research Run 14
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T03:31:31Z`
+- STARTED_LOCAL: `2026-06-04T22:31:31-0500 CDT`
+- ENDED_AT: `2026-06-05T04:26:54Z`
+- ENDED_LOCAL: `2026-06-04T23:26:54-0500 CDT`
+- ELAPSED_MINUTES: `55.38`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured 35-row smoke-tranche evidence gap and attempt to make
+direct source-free electron-flow fields measurable before considering any
+blocker artifact.
+
+#### Work log
+
+- Continued in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from the active Lever 3 worktree. Confirmed
+  `origin/main` was already an ancestor of the branch and kept the work off
+  `main`.
+- Disk started close to the guardrail. Removed clean stale detached worktrees
+  only, raising free space from about 10 GiB to about 21 GiB before substantive
+  work.
+- Added
+  `build-lever2-source-free-electron-flow-coordinate-proxy-readout`. The readout
+  consumes the electron-flow acquisition ceiling and
+  `artifacts/v3_geometry_features_1025.json`, then measures coordinate-only
+  redox/electron-flow proxy fields on the 35-row smoke tranche and the 74-row
+  retained-OOS current-split tranche.
+- Materialized two coordinate proxy variants for measurement only:
+  `coordinate_redox_contact_binary` (proximal redox ligand code plus
+  aromatic/HIS/CYS active-site or pocket residue contact within 5.0 A) and
+  `coordinate_quinone_pqq_redox_binary` (proximal PQQ ligand code, tracked as a
+  narrow redox-cofactor subfield rather than an approved primitive
+  electron-flow axis). Also measured a primary-safe count threshold as a
+  control.
+- Hardened the proxy so non-`ok` geometry rows cannot contribute positive
+  coordinate-proxy fields. Such rows are carried as explicit coordinate-feature
+  gaps instead.
+- Expanded toward the 74-row retained-OOS current split with a supplemental
+  source-free CIF ligand-inventory probe for the two coordinate gaps:
+  `m_csa:531` via `artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif` and
+  `uniprot:Q3LXA3` via
+  `artifacts/v3_external_hard_negative_next_candidate_structural_coordinates_1025/afdb_Q3LXA3.cif`.
+  This probe closes absent-PQQ inventory as negative evidence only; it does not
+  infer active-site proximity and does not promote a primitive electron-flow
+  axis.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_coordinate_proxy_readout_current702_20260604.json`
+  and
+  `work/lever2_source_free_electron_flow_coordinate_proxy_readout_current702_20260604.md`.
+- Added CLI parser coverage, synthetic builder coverage for the PQQ smoke signal
+  plus non-`ok` geometry handling, and artifact-count regression coverage.
+
+#### Measured results
+
+- Coordinate proxy readout status:
+  `lever2_source_free_electron_flow_coordinate_proxy_readout_research_only_coordinate_proxy_smoke_signal`.
+  Result class: `research_only_coordinate_proxy_smoke_signal`.
+- Smoke tranche coverage is now measurable with source-free coordinate fields:
+  35/35 rows have `ok` coordinate features; 0/35 are missing geometry.
+- Generic coordinate redox contact is not usable at the smoke operating point:
+  10 primary rows and 1 retained-OOS row are positive, so primary retain recall
+  would drop to 0.705882.
+- PQQ coordinate subfield preserves primary retention and adds smoke OOS
+  abstention: 0 primary positives and 1/1 retained-OOS positive (`m_csa:104`),
+  primary retain recall 1.0, smoke retained-OOS abstain recall 1.0.
+- Full retained-OOS current-split tranche: 72/74 rows have `ok` coordinate
+  geometry and two retained-OOS rows are coordinate-feature gaps:
+  `m_csa:531` (`insufficient_resolved_residues`, diagnostic PDB `1XVT`) and
+  `uniprot:Q3LXA3` (`missing_geometry_row`).
+- Supplemental gap CIF probe parsed both gap sidecars. `m_csa:531` had
+  structure ligand inventory `COA, MSE`; `uniprot:Q3LXA3` had no non-water
+  ligand inventory. Neither gap row had configured redox or PQQ ligand codes,
+  so full-tranche PQQ inventory coverage is 74/74.
+- Full retained-OOS current-split PQQ readout remains sparse but primary-safe:
+  0 primary positives and 1 retained-OOS positive, OOS abstain recall 0.025.
+  The generic primary-safe count threshold caught 2 retained-OOS rows at
+  primary retain recall 1.0, but it did not catch the smoke row and is not the
+  promoted signal.
+- Classification: measured source-free coordinate proxy signal exists and adds
+  operating-point value on the smoke tranche beyond the current retained-OOS
+  surface, but it remains research-only. It is not deployable because the
+  coordinate PQQ subfield has not been reviewed/materialized as an approved
+  primitive source-free electron-flow axis.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, or heldout splits changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  or provenance were used as predictive features. Entry IDs and coordinate paths
+  were used only for tranche accounting, gap accounting, and source-artifact
+  lookup.
+- The CIF gap probe used only committed local mmCIF atom-site ligand inventory
+  for the two explicit full-tranche gaps. It did not infer proximity, tune a
+  threshold, or approve a direct electron-flow axis.
+- `critical_violation_total=0`; `deployable_now=false`;
+  `approved_direct_electron_flow_axis_materialized_by_this_artifact=false`.
+
+#### Validation
+
+- Generated coordinate proxy readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-coordinate-proxy-readout`.
+- Focused parser/builder/artifact tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_coordinate_proxy_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_coordinate_proxy_tracks_pqq_smoke_signal tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_coordinate_proxy_readout_current_counts -q`:
+  3 passed.
+- Broader touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  439 passed, 188 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1511 passed, 207 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1466 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3574 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact guardrail/source-record audit passed: both supplemental CIF
+  source records exist; heldout scoring is false; production thresholds are
+  unchanged; model weights were not fit/refit; direct electron-flow axis
+  materialization remains false.
+- Artifact regeneration comparison passed after normalizing `created_utc`.
+- `git diff --check`: passed.
+- Disk remained above the guardrail at about 21 GiB free.
+
+#### Commit/push status
+
+- Pending final wrap-up commit and push for this run.
+
+#### Exact next action
+
+Review whether the PQQ/quinone coordinate subfield can be promoted from
+coordinate-only proxy to an approved primitive source-free electron-flow axis.
+If yes, materialize the approved axis for all 74 retained-OOS current-split
+rows using the current coordinate/CIF evidence and rerun fixed train/cal
+readouts without heldout scoring. If no, define the smallest source-free
+electron-flow primitive that distinguishes direct electron-transfer evidence
+from generic redox ligand inventory, starting with `m_csa:104` and the current
+34 primary retention-gate rows.
 
 ### 2026-06-04 Lever 2 Research Run 13
 
