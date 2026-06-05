@@ -592,6 +592,87 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_descriptor_generalization_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-descriptor-generalization-"
+                "counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_descriptor_generalization_"
+                "counteraxis_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "descriptor_present_counteraxis_preflight",
+            args.descriptor_present_counteraxis_preflight,
+        )
+        self.assertIn(
+            "lever3_retained_residual_risk_readout",
+            args.retained_residual_risk_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertIn(
+            "predicted_geometry_in_distribution_atlas_retrieval",
+            args.predicted_geometry_atlas_retrieval,
+        )
+        self.assertIn(
+            "abstention_threshold_contract",
+            args.threshold_contract,
+        )
+        self.assertIn(
+            "lever3_channel_veto_readout",
+            args.channel_veto_readout,
+        )
+        self.assertIn(
+            "descriptor_generalization_counteraxis_readout",
+            args.report,
+        )
+
+    def test_lever3_retained_descriptor_rescue_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-descriptor-"
+                "rescue-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_descriptor_"
+                "rescue_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_retained_residual_risk_readout",
+            args.retained_residual_risk_readout,
+        )
+        self.assertIn(
+            "descriptor_generalization_counteraxis_readout",
+            args.descriptor_generalization_counteraxis_readout,
+        )
+        self.assertGreaterEqual(len(args.descriptor_source_artifact), 4)
+        self.assertIn(
+            "train_cal_scored_extension_tranche2",
+            args.descriptor_source_artifact[0],
+        )
+        self.assertIn(
+            "retained_descriptor_rescue_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

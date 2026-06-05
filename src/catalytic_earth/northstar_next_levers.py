@@ -357,6 +357,12 @@ FOLD_AUGMENTED_LEVER3_RETAINED_RESIDUAL_RISK_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_DESCRIPTOR_PRESENT_COUNTERAXIS_PREFLIGHT_ID = (
     "v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_DESCRIPTOR_GENERALIZATION_COUNTERAXIS_READOUT_ID = (
+    "v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604"
+)
+FOLD_AUGMENTED_LEVER3_RETAINED_DESCRIPTOR_RESCUE_READOUT_ID = (
+    "v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -45386,6 +45392,1043 @@ def write_fold_augmented_lever3_descriptor_present_counteraxis_preflight(
             encoding="utf-8",
         )
     return preflight
+
+
+def _lever3_pocket_feature_value(
+    row: dict[str, Any],
+    *,
+    feature_kind: str,
+    feature_name: str,
+) -> float | None:
+    pocket = row.get("pocket_context") or {}
+    if feature_kind == "descriptor":
+        raw_value = (pocket.get("descriptors") or {}).get(feature_name)
+    elif feature_kind == "residue_count":
+        raw_value = (pocket.get("residue_code_counts") or {}).get(feature_name, 0)
+    else:
+        return None
+    return _parse_optional_float(raw_value)
+
+
+def _lever3_descriptor_rule_fires(
+    row: dict[str, Any],
+    *,
+    feature_kind: str,
+    feature_name: str,
+    operator: str,
+    threshold: float,
+) -> bool:
+    value = _lever3_pocket_feature_value(
+        row,
+        feature_kind=feature_kind,
+        feature_name=feature_name,
+    )
+    if value is None:
+        return False
+    if operator == "<=":
+        return value <= threshold
+    if operator == ">=":
+        return value >= threshold
+    return False
+
+
+def _lever3_descriptor_rule_record(
+    *,
+    feature_kind: str,
+    feature_name: str,
+    operator: str,
+    threshold: float,
+    calibration_rows: list[dict[str, Any]],
+    design_rows: list[dict[str, Any]],
+    all_oos_rows: list[dict[str, Any]],
+    application_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    calibration_fired = [
+        str(row["entry_id"])
+        for row in calibration_rows
+        if _lever3_descriptor_rule_fires(
+            row,
+            feature_kind=feature_kind,
+            feature_name=feature_name,
+            operator=operator,
+            threshold=threshold,
+        )
+    ]
+    design_fired = [
+        str(row["entry_id"])
+        for row in design_rows
+        if _lever3_descriptor_rule_fires(
+            row,
+            feature_kind=feature_kind,
+            feature_name=feature_name,
+            operator=operator,
+            threshold=threshold,
+        )
+    ]
+    all_oos_fired = [
+        str(row["entry_id"])
+        for row in all_oos_rows
+        if _lever3_descriptor_rule_fires(
+            row,
+            feature_kind=feature_kind,
+            feature_name=feature_name,
+            operator=operator,
+            threshold=threshold,
+        )
+    ]
+    application_fired = [
+        str(row["entry_id"])
+        for row in application_rows
+        if _lever3_descriptor_rule_fires(
+            row,
+            feature_kind=feature_kind,
+            feature_name=feature_name,
+            operator=operator,
+            threshold=threshold,
+        )
+    ]
+    return {
+        "rule_id": (
+            f"{feature_kind}:{feature_name}:{operator}:"
+            f"{round(float(threshold), 6)}"
+        ),
+        "feature_kind": feature_kind,
+        "feature_name": feature_name,
+        "operator": operator,
+        "threshold": round(float(threshold), 6),
+        "feature_rule": f"{feature_kind}.{feature_name} {operator} {round(float(threshold), 6)}",
+        "calibration_in_scope_entry_ids_fired": calibration_fired,
+        "calibration_in_scope_fired": len(calibration_fired),
+        "design_same_family_entry_ids_fired": design_fired,
+        "design_same_family_rows_fired": len(design_fired),
+        "all_train_cal_oos_entry_ids_fired": all_oos_fired,
+        "all_train_cal_oos_rows_fired": len(all_oos_fired),
+        "application_entry_ids_fired_after_selection": application_fired,
+        "application_rows_fired_after_selection": len(application_fired),
+        "retention_floor_met": len(calibration_fired) == 0,
+    }
+
+
+def build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout(
+    *,
+    descriptor_present_counteraxis_preflight_path: Path,
+    retained_residual_risk_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DESCRIPTOR_GENERALIZATION_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    preflight = _read_json(descriptor_present_counteraxis_preflight_path)
+    risk = _read_json(retained_residual_risk_readout_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    atlas = _read_json(predicted_geometry_atlas_retrieval_path)
+    threshold_contract = _read_json(threshold_contract_path)
+    channel_veto = _read_json(channel_veto_readout_path)
+    feature_contract = preflight.get("allowed_source_free_feature_contract") or {}
+    descriptor_fields = [str(field) for field in feature_contract.get("descriptor_fields") or []]
+    residue_count_fields = [
+        str(field) for field in feature_contract.get("residue_code_count_fields") or []
+    ]
+    application_ids = {
+        str(row["entry_id"])
+        for row in preflight.get("descriptor_present_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    surface_rows = [
+        row
+        for row in (
+            (surface.get("predicted_geometry_candidate_retrieval") or {}).get(
+                "results"
+            )
+            or []
+        )
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and (row.get("pocket_context") or {}).get("descriptors")
+    ]
+    surface_by_entry = {str(row["entry_id"]): row for row in surface_rows}
+    atlas_rows = [
+        row
+        for row in atlas.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    atlas_by_entry = {str(row["entry_id"]): row for row in atlas_rows}
+    calibration_entry_ids = [
+        str(entry_id)
+        for entry_id in (
+            (threshold_contract.get("train_cal_partition") or {}).get(
+                "calibration_entry_ids"
+            )
+            or []
+        )
+    ]
+    calibration_rows = [
+        atlas_by_entry[entry_id]
+        for entry_id in calibration_entry_ids
+        if entry_id in atlas_by_entry
+        and (atlas_by_entry[entry_id].get("pocket_context") or {}).get("descriptors")
+    ]
+    calibration_rows_missing_descriptor = [
+        entry_id
+        for entry_id in calibration_entry_ids
+        if entry_id not in atlas_by_entry
+        or not (atlas_by_entry[entry_id].get("pocket_context") or {}).get(
+            "descriptors"
+        )
+    ]
+    same_family_proxy_ids = {
+        str(row["entry_id"])
+        for row in (
+            (channel_veto.get("proxy_axis_row_diagnostics") or {}).get(
+                "same_family_structural_proxy_rows"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    design_rows = [
+        surface_by_entry[entry_id]
+        for entry_id in sorted(
+            same_family_proxy_ids - application_ids,
+            key=_entry_id_sort_key,
+        )
+        if entry_id in surface_by_entry
+    ]
+    design_rows_missing_descriptor = [
+        entry_id
+        for entry_id in sorted(
+            same_family_proxy_ids - application_ids,
+            key=_entry_id_sort_key,
+        )
+        if entry_id not in surface_by_entry
+    ]
+    application_rows = [
+        surface_by_entry[entry_id]
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+        if entry_id in surface_by_entry
+    ]
+    application_rows_missing_descriptor = [
+        entry_id
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+        if entry_id not in surface_by_entry
+    ]
+    candidate_rules: list[dict[str, Any]] = []
+    feature_specs = [
+        ("descriptor", feature_name) for feature_name in descriptor_fields
+    ] + [("residue_count", feature_name) for feature_name in residue_count_fields]
+    for feature_kind, feature_name in feature_specs:
+        thresholds = sorted(
+            {
+                value
+                for value in (
+                    _lever3_pocket_feature_value(
+                        row,
+                        feature_kind=feature_kind,
+                        feature_name=feature_name,
+                    )
+                    for row in design_rows
+                )
+                if value is not None
+            }
+        )
+        for threshold in thresholds:
+            for operator in ("<=", ">="):
+                rule = _lever3_descriptor_rule_record(
+                    feature_kind=feature_kind,
+                    feature_name=feature_name,
+                    operator=operator,
+                    threshold=threshold,
+                    calibration_rows=calibration_rows,
+                    design_rows=design_rows,
+                    all_oos_rows=surface_rows,
+                    application_rows=application_rows,
+                )
+                if (
+                    rule["calibration_in_scope_fired"] == 0
+                    and rule["design_same_family_rows_fired"] > 0
+                ):
+                    candidate_rules.append(rule)
+    candidate_rules.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["feature_kind"]),
+            str(rule["feature_name"]),
+            str(rule["operator"]),
+            float(rule["threshold"]),
+        )
+    )
+    selected_rule = candidate_rules[0] if candidate_rules else None
+    selected_application_ids = (
+        list(selected_rule["application_entry_ids_fired_after_selection"])
+        if selected_rule
+        else []
+    )
+    application_rows_by_id = {str(row["entry_id"]): row for row in application_rows}
+    application_row_actions = []
+    for entry_id in sorted(application_ids, key=_entry_id_sort_key):
+        source_row = application_rows_by_id.get(entry_id, {})
+        fired = entry_id in selected_application_ids
+        application_row_actions.append(
+            {
+                "entry_id": entry_id,
+                "accession": source_row.get("accession"),
+                "descriptor_values_present": bool(source_row),
+                "selected_counteraxis_fires_after_train_cal_selection": fired,
+                "deployment_action_delta": (
+                    "abstain_or_route_novel_oos"
+                    if fired
+                    else "retain_at_fixed_operating_point_not_scoring_closure"
+                ),
+                "used_for_rule_selection": False,
+            }
+        )
+    retained_count = int((risk.get("counts") or {}).get("retained_residual_rows") or 0)
+    descriptor_application_count = len(application_rows)
+    descriptor_application_fired = len(selected_application_ids)
+    retained_after_descriptor = max(retained_count - descriptor_application_fired, 0)
+    selected_counteraxis_ready = bool(
+        selected_rule
+        and selected_rule["calibration_in_scope_fired"] == 0
+        and descriptor_application_fired > 0
+    )
+    status = (
+        "fold_augmented_lever3_descriptor_generalization_counteraxis_readout_partial_application"
+        if selected_counteraxis_ready
+        else "fold_augmented_lever3_descriptor_generalization_counteraxis_readout_no_application"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_descriptor_generalization_counteraxis_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured descriptor-generalization counteraxis readout. "
+            "It selects a source-free pocket descriptor/count rule on "
+            "train/cal same-family OOS design rows while explicitly excluding "
+            "the retained descriptor-present application rows, then applies "
+            "the selected rule to those excluded rows. It changes no "
+            "thresholds, scores no new rows, stages no coordinates, and uses "
+            "no heldout rows for selection or threshold tuning."
+        ),
+        "selection_policy": {
+            "feature_source": (
+                "source-free pocket descriptors and residue-code counts from "
+                "the frozen descriptor-present contract"
+            ),
+            "selection_rows": (
+                "train/cal same-family structural proxy OOS rows with pocket "
+                "descriptors, excluding retained descriptor-present rows"
+            ),
+            "application_rows_excluded_from_selection": sorted(
+                application_ids,
+                key=_entry_id_sort_key,
+            ),
+            "calibration_guard": (
+                "candidate rule must fire zero calibration in-scope rows with "
+                "descriptor values"
+            ),
+            "selection_objective": (
+                "maximize design same-family OOS rows fired, then minimize all "
+                "train/cal OOS descriptor rows fired, then deterministic rule order"
+            ),
+            "threshold_grid_source": "unique train/cal design-row feature values",
+        },
+        "counts": {
+            "calibration_in_scope_rows_expected": len(calibration_entry_ids),
+            "calibration_in_scope_descriptor_rows": len(calibration_rows),
+            "calibration_in_scope_descriptor_rows_missing": len(
+                calibration_rows_missing_descriptor
+            ),
+            "train_cal_oos_descriptor_rows": len(surface_rows),
+            "same_family_proxy_rows": len(same_family_proxy_ids),
+            "design_same_family_descriptor_rows": len(design_rows),
+            "design_same_family_rows_missing_descriptor": len(
+                design_rows_missing_descriptor
+            ),
+            "retained_descriptor_present_application_rows": (
+                descriptor_application_count
+            ),
+            "retained_descriptor_present_rows_missing_descriptor": len(
+                application_rows_missing_descriptor
+            ),
+            "candidate_rules_checked": len(candidate_rules),
+            "top_candidate_rules_reported": min(10, len(candidate_rules)),
+            "selected_rule_calibration_in_scope_fired": (
+                int(selected_rule["calibration_in_scope_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_design_same_family_rows_fired": (
+                int(selected_rule["design_same_family_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_all_train_cal_oos_rows_fired": (
+                int(selected_rule["all_train_cal_oos_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_application_rows_fired_after_selection": (
+                descriptor_application_fired
+            ),
+            "retained_residual_rows_before_descriptor_counteraxis": retained_count,
+            "retained_residual_rows_after_descriptor_counteraxis": (
+                retained_after_descriptor
+            ),
+            "retained_residual_rows_reduced_by_descriptor_counteraxis": (
+                descriptor_application_fired
+            ),
+            "retained_residual_rows_missing_pocket_descriptor": int(
+                (risk.get("counts") or {}).get(
+                    "retained_residual_rows_missing_pocket_descriptor"
+                )
+                or 0
+            ),
+            "calibration_in_scope_rows": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_abstained") or 0
+            ),
+        },
+        "selected_counteraxis_rule": selected_rule,
+        "top_candidate_rules": candidate_rules[:10],
+        "application_row_actions": application_row_actions,
+        "missing_descriptor_entry_ids": {
+            "calibration_in_scope": calibration_rows_missing_descriptor,
+            "design_same_family": design_rows_missing_descriptor,
+            "application_rows": application_rows_missing_descriptor,
+        },
+        "decision": {
+            "descriptor_counteraxis_selected_now": selected_rule is not None,
+            "descriptor_counteraxis_ready_for_partial_application_now": (
+                selected_counteraxis_ready
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "retained_descriptor_present_rows_abstained_by_selected_rule": (
+                descriptor_application_fired
+            ),
+            "safe_abstention_routing_available_now": bool(
+                (risk.get("decision") or {}).get(
+                    "safe_abstention_routing_available_now"
+                )
+            ),
+            "zero_residual_retained_transfer_risk_available_now": False,
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_remaining_evidence_for_zero_residual_risk": [
+                (
+                    "source-free pocket descriptor acquisition for retained "
+                    "same-family rows still missing descriptors"
+                ),
+                (
+                    "a train/cal-selected source-free descriptor or chemistry "
+                    "counteraxis that fires m_csa:52 while preserving "
+                    "calibration in-scope retention"
+                ),
+            ],
+            "next_gate": (
+                "Apply the descriptor counteraxis only as partial abstention "
+                "evidence for fired retained rows; keep m_csa:52 and the "
+                "descriptor-missing retained rows fail-open to the evidence "
+                "queue, not scoring closure."
+                if selected_counteraxis_ready
+                else (
+                    "No descriptor rule generalizes to the retained rows under "
+                    "the zero-calibration-fire guard; acquire more "
+                    "source-free descriptor evidence or design a chemistry "
+                    "counteraxis on train/cal only."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "rule_selected_on_train_cal_only": True,
+            "application_rows_used_for_rule_selection": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "descriptor_present_counteraxis_preflight": _source_path_record(
+                descriptor_present_counteraxis_preflight_path
+            ),
+            "retained_residual_risk_readout": _source_path_record(
+                retained_residual_risk_readout_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "predicted_geometry_atlas_retrieval": _source_path_record(
+                predicted_geometry_atlas_retrieval_path
+            ),
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "channel_veto_readout": _source_path_record(channel_veto_readout_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"The descriptor counteraxis abstains "
+                f"{descriptor_application_fired}/{descriptor_application_count} "
+                "descriptor-present retained residual rows after train/cal-only selection."
+            ),
+            "result": (
+                "The selected rule is "
+                f"{selected_rule['feature_rule'] if selected_rule else 'none'}; "
+                f"retained residual rows fall from {retained_count} to "
+                f"{retained_after_descriptor}, but zero residual risk is not closed."
+            ),
+            "next_action": (
+                "Treat this as partial fail-closed evidence and continue with "
+                "source-free descriptor acquisition for the missing rows plus a "
+                "separate m_csa:52 counteraxis search."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    selected = readout.get("selected_counteraxis_rule") or {}
+    lines = [
+        "# Fold-Augmented Lever 3 Descriptor Generalization Counteraxis Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Descriptor counteraxis selected now: "
+        f"{decision['descriptor_counteraxis_selected_now']}",
+        "- Ready for partial application now: "
+        f"{decision['descriptor_counteraxis_ready_for_partial_application_now']}",
+        "- Application rows used for rule selection: "
+        f"{decision['application_rows_used_for_rule_selection']}",
+        "",
+        "## Counts",
+        "",
+        "- Calibration descriptor rows: "
+        f"{counts['calibration_in_scope_descriptor_rows']}/"
+        f"{counts['calibration_in_scope_rows_expected']}",
+        "- Design same-family descriptor rows: "
+        f"{counts['design_same_family_descriptor_rows']}/"
+        f"{counts['same_family_proxy_rows']}",
+        "- Application rows fired after selection: "
+        f"{counts['selected_rule_application_rows_fired_after_selection']}/"
+        f"{counts['retained_descriptor_present_application_rows']}",
+        "- Retained residual rows before/after descriptor counteraxis: "
+        f"{counts['retained_residual_rows_before_descriptor_counteraxis']}/"
+        f"{counts['retained_residual_rows_after_descriptor_counteraxis']}",
+        "",
+        "## Selected Rule",
+        "",
+        f"- Rule: {selected.get('feature_rule')}",
+        "- Calibration in-scope fired: "
+        f"{selected.get('calibration_in_scope_fired')}",
+        "- Design same-family rows fired: "
+        f"{selected.get('design_same_family_rows_fired')}",
+        "- All train/cal OOS descriptor rows fired: "
+        f"{selected.get('all_train_cal_oos_rows_fired')}",
+        "",
+        "## Application Rows",
+        "",
+        "| row | action delta | selected rule fires | used for selection |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in readout.get("application_row_actions", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['deployment_action_delta']} | "
+            f"{row['selected_counteraxis_fires_after_train_cal_selection']} | "
+            f"{row['used_for_rule_selection']} |"
+        )
+    lines += [
+        "",
+        "## Top Candidate Rules",
+        "",
+        "| rule | design fired | all OOS fired | application fired |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for rule in readout.get("top_candidate_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['application_rows_fired_after_selection']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        "- Remaining evidence: "
+        f"{decision['exact_remaining_evidence_for_zero_residual_risk']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_descriptor_generalization_counteraxis_readout(
+    *,
+    descriptor_present_counteraxis_preflight_path: Path,
+    retained_residual_risk_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DESCRIPTOR_GENERALIZATION_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout(
+        descriptor_present_counteraxis_preflight_path=(
+            descriptor_present_counteraxis_preflight_path
+        ),
+        retained_residual_risk_readout_path=retained_residual_risk_readout_path,
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        predicted_geometry_atlas_retrieval_path=predicted_geometry_atlas_retrieval_path,
+        threshold_contract_path=threshold_contract_path,
+        channel_veto_readout_path=channel_veto_readout_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_descriptor_rows_from_source_artifact(
+    source_path: Path,
+) -> dict[str, dict[str, Any]]:
+    payload = _read_json(source_path)
+    rows = (
+        (payload.get("predicted_geometry_candidate_retrieval") or {}).get("results")
+        or []
+    )
+    return {
+        str(row["entry_id"]): row
+        for row in rows
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and (row.get("pocket_context") or {}).get("descriptors")
+    }
+
+
+def build_fold_augmented_lever3_retained_descriptor_rescue_readout(
+    *,
+    retained_residual_risk_readout_path: Path,
+    descriptor_generalization_counteraxis_readout_path: Path,
+    descriptor_source_artifact_paths: list[Path],
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_DESCRIPTOR_RESCUE_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    risk = _read_json(retained_residual_risk_readout_path)
+    generalization = _read_json(descriptor_generalization_counteraxis_readout_path)
+    selected_rule = generalization.get("selected_counteraxis_rule") or {}
+    missing_rows = [
+        row
+        for row in risk.get("retained_residual_risk_rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("same_family_pocket_descriptor_status")
+        == "pocket_descriptor_missing"
+    ]
+    source_rows_by_entry: dict[str, tuple[Path, dict[str, Any]]] = {}
+    source_row_counts: dict[str, int] = {}
+    for source_path in descriptor_source_artifact_paths:
+        rows_by_entry = _lever3_descriptor_rows_from_source_artifact(source_path)
+        source_row_counts[str(source_path)] = len(rows_by_entry)
+        for entry_id in sorted(rows_by_entry, key=_entry_id_sort_key):
+            source_rows_by_entry.setdefault(
+                entry_id,
+                (source_path, rows_by_entry[entry_id]),
+            )
+    recovered_rows: list[dict[str, Any]] = []
+    unrecovered_rows: list[dict[str, Any]] = []
+    selected_rule_recovered_fired_ids: list[str] = []
+    for retained in sorted(
+        missing_rows,
+        key=lambda row: (
+            int(row.get("rank") or 9999),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+    ):
+        entry_id = str(retained["entry_id"])
+        source_record = source_rows_by_entry.get(entry_id)
+        if source_record is None:
+            unrecovered_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "accession": retained.get("accession"),
+                    "reason": "no_existing_source_free_descriptor_row_found",
+                }
+            )
+            continue
+        source_path, row = source_record
+        pocket = row.get("pocket_context") or {}
+        descriptors = pocket.get("descriptors") or {}
+        residue_counts = pocket.get("residue_code_counts") or {}
+        selected_fires = False
+        if selected_rule:
+            selected_fires = _lever3_descriptor_rule_fires(
+                row,
+                feature_kind=str(selected_rule.get("feature_kind") or ""),
+                feature_name=str(selected_rule.get("feature_name") or ""),
+                operator=str(selected_rule.get("operator") or ""),
+                threshold=float(selected_rule.get("threshold") or 0.0),
+            )
+        if selected_fires:
+            selected_rule_recovered_fired_ids.append(entry_id)
+        recovered_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": retained.get("accession") or row.get("accession"),
+                "rank": retained.get("rank"),
+                "source_artifact": str(source_path),
+                "descriptor_values": {
+                    str(key): descriptors[key] for key in sorted(descriptors)
+                },
+                "residue_code_counts": {
+                    str(key): residue_counts[key] for key in sorted(residue_counts)
+                },
+                "selected_descriptor_counteraxis_fires": selected_fires,
+                "deployment_action_delta": (
+                    "abstain_or_route_novel_oos"
+                    if selected_fires
+                    else "retain_at_fixed_operating_point_not_scoring_closure"
+                ),
+            }
+        )
+    existing_descriptor_present = int(
+        (risk.get("counts") or {}).get(
+            "retained_residual_rows_with_pocket_descriptor"
+        )
+        or 0
+    )
+    retained_before = int(
+        (risk.get("counts") or {}).get("retained_residual_rows") or 0
+    )
+    already_fired = int(
+        (generalization.get("counts") or {}).get(
+            "selected_rule_application_rows_fired_after_selection"
+        )
+        or 0
+    )
+    retained_after = max(
+        retained_before - already_fired - len(selected_rule_recovered_fired_ids),
+        0,
+    )
+    descriptor_gap_cleared = bool(missing_rows and not unrecovered_rows)
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_retained_descriptor_rescue_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_retained_descriptor_rescue_readout_all_recovered"
+            if descriptor_gap_cleared
+            else "fold_augmented_lever3_retained_descriptor_rescue_readout_partial"
+        ),
+        "scope": (
+            "Lever 3 measured readout for retained same-family rows previously "
+            "marked pocket-descriptor-missing. It inventories existing "
+            "source-free predicted-geometry artifacts, recovers any pocket "
+            "descriptor values already present, and applies the selected "
+            "descriptor counteraxis from the generalization readout without "
+            "selecting a new rule, changing thresholds, scoring rows, staging "
+            "coordinates, or using heldout rows for tuning."
+        ),
+        "selected_descriptor_counteraxis_rule": selected_rule,
+        "counts": {
+            "retained_residual_rows": retained_before,
+            "previously_descriptor_present_rows": existing_descriptor_present,
+            "previously_descriptor_missing_rows": len(missing_rows),
+            "recovered_descriptor_rows": len(recovered_rows),
+            "unrecovered_descriptor_rows": len(unrecovered_rows),
+            "retained_rows_with_descriptor_after_rescue": (
+                existing_descriptor_present + len(recovered_rows)
+            ),
+            "descriptor_source_artifacts_checked": len(descriptor_source_artifact_paths),
+            "selected_rule_previously_descriptor_present_rows_fired": already_fired,
+            "selected_rule_recovered_rows_fired": len(
+                selected_rule_recovered_fired_ids
+            ),
+            "selected_rule_total_retained_rows_fired": (
+                already_fired + len(selected_rule_recovered_fired_ids)
+            ),
+            "retained_residual_rows_after_selected_descriptor_counteraxis": (
+                retained_after
+            ),
+            "calibration_in_scope_rows": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_abstained") or 0
+            ),
+        },
+        "descriptor_source_row_counts": dict(sorted(source_row_counts.items())),
+        "recovered_descriptor_rows": recovered_rows,
+        "unrecovered_descriptor_rows": unrecovered_rows,
+        "decision": {
+            "descriptor_missing_gap_cleared_by_existing_artifacts": (
+                descriptor_gap_cleared
+            ),
+            "new_counteraxis_selected_now": False,
+            "selected_descriptor_counteraxis_applied_without_retuning": True,
+            "safe_abstention_routing_available_now": bool(
+                (risk.get("decision") or {}).get(
+                    "safe_abstention_routing_available_now"
+                )
+            ),
+            "zero_residual_retained_transfer_risk_available_now": False,
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_remaining_evidence_for_zero_residual_risk": [
+                (
+                    "a train/cal-selected source-free descriptor or chemistry "
+                    "counteraxis that fires the 10 retained residual rows not "
+                    "covered by the selected LEU-count rule while preserving "
+                    "calibration in-scope retention"
+                )
+            ],
+            "next_gate": (
+                "The descriptor acquisition gap is cleared from existing "
+                "source-free artifacts; next design a separate train/cal-only "
+                "counteraxis for the 10 still-retained descriptor-present rows, "
+                "especially m_csa:52, without retuning on those rows."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "new_counteraxis_selected_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "retained_residual_risk_readout": _source_path_record(
+                retained_residual_risk_readout_path
+            ),
+            "descriptor_generalization_counteraxis_readout": _source_path_record(
+                descriptor_generalization_counteraxis_readout_path
+            ),
+            **{
+                f"descriptor_source_{index}": _source_path_record(path)
+                for index, path in enumerate(
+                    descriptor_source_artifact_paths,
+                    start=1,
+                )
+            },
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(recovered_rows)}/{len(missing_rows)} previously "
+                "descriptor-missing retained rows have source-free descriptors "
+                "in existing artifacts."
+            ),
+            "result": (
+                f"The selected LEU-count counteraxis fires "
+                f"{len(selected_rule_recovered_fired_ids)} recovered rows, so "
+                f"the retained residual count remains {retained_after} after "
+                "the prior m_csa:25 abstention."
+            ),
+            "next_action": (
+                "Use the recovered descriptor surface for a new train/cal-only "
+                "counteraxis design; do not claim zero residual risk from the "
+                "current LEU-count rule."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_retained_descriptor_rescue_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    selected = readout.get("selected_descriptor_counteraxis_rule") or {}
+    lines = [
+        "# Fold-Augmented Lever 3 Retained Descriptor Rescue Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Descriptor missing gap cleared by existing artifacts: "
+        f"{decision['descriptor_missing_gap_cleared_by_existing_artifacts']}",
+        "- New counteraxis selected now: "
+        f"{decision['new_counteraxis_selected_now']}",
+        "",
+        "## Counts",
+        "",
+        "- Previously descriptor-missing rows recovered: "
+        f"{counts['recovered_descriptor_rows']}/"
+        f"{counts['previously_descriptor_missing_rows']}",
+        "- Retained rows with descriptors after rescue: "
+        f"{counts['retained_rows_with_descriptor_after_rescue']}/"
+        f"{counts['retained_residual_rows']}",
+        "- Selected rule recovered rows fired: "
+        f"{counts['selected_rule_recovered_rows_fired']}",
+        "- Retained residual rows after selected descriptor counteraxis: "
+        f"{counts['retained_residual_rows_after_selected_descriptor_counteraxis']}",
+        "",
+        "## Selected Rule",
+        "",
+        f"- Rule: {selected.get('feature_rule')}",
+        "",
+        "## Recovered Rows",
+        "",
+        "| row | source | selected rule fires | action delta |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in readout.get("recovered_descriptor_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['source_artifact']} | "
+            f"{row['selected_descriptor_counteraxis_fires']} | "
+            f"{row['deployment_action_delta']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing artifacts only; no coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_retained_descriptor_rescue_readout(
+    *,
+    retained_residual_risk_readout_path: Path,
+    descriptor_generalization_counteraxis_readout_path: Path,
+    descriptor_source_artifact_paths: list[Path],
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_DESCRIPTOR_RESCUE_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_retained_descriptor_rescue_readout(
+        retained_residual_risk_readout_path=retained_residual_risk_readout_path,
+        descriptor_generalization_counteraxis_readout_path=(
+            descriptor_generalization_counteraxis_readout_path
+        ),
+        descriptor_source_artifact_paths=descriptor_source_artifact_paths,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_retained_descriptor_rescue_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
 
 
 def build_fold_augmented_confounded_proxy_train_cal_scoring_tranche_plan(

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 359
-- Measured elapsed time: 10988.2 minutes (183.14 hours)
+- Entries: 360
+- Measured elapsed time: 11009.5 minutes (183.49 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 820.8 measured minutes (13.68 hours)
+- northstar-lever3: 842.0 measured minutes (14.03 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3767
-- Evidence references logged: 3103
+- Artifact references logged: 3778
+- Evidence references logged: 3117
 
 ## Recent Entries
-
-### 2026-06-04T21:37:20.235148+00:00 - northstar-lever3
-
-- Task: Lever 3 same-family bandpass contract and post-bandpass P07658 gate
-- Time mode: measured
-- Measured minutes: 32.95
-- Started: 2026-06-04T21:03:53Z
-- Ended: 2026-06-04T21:36:50Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.json, work/fold_augmented_lever3_same_family_bandpass_counteraxis_contract_current702_20260604.md, artifacts/v3_fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.json, work/fold_augmented_lever3_post_bandpass_deployment_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_p07658_public_route_refresh_after_bandpass_current702_20260604.json, work/fold_augmented_lever3_post_bandpass_p07658_live_probe_current702_20260604.md, artifacts/v3_fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.json, work/fold_augmented_lever3_p07658_local_runtime_refresh_after_bandpass_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_northstar_next_levers.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: same-family bandpass counteraxis contract accepted with 31 of 34 calibration retained and 9 of 9 required same-family residual rows fired, post-bandpass operating point abstained 105 of 204 train/cal OOS rows with counteraxis contracts ready, P07658 remains deployment closure gap with acceptance preflight 7 failed checks and 0 coordinate/provenance, public refresh found AlphaFold API P07658 404 and 3D-Beacons 5 experimental rows and RCSB computed-model search HTTP 204, local runtime refresh found 0 of 8 predictor commands and 0 module hits across 3 conda interpreters, affected suite 566 passed and 179 subtests, full pytest 1438 passed and 198 subtests with existing sklearn warning, unittest discovery 1393 passed, validate 702 labels compileall diff-check JSON parse and docs-reference passed, disk remained above 10 GiB
-- Notes: Measured readout artifacts first; no blocker packet produced. Public and local P07658 refreshes were no-staging evidence checks.
 
 ### 2026-06-04T22:26:32.470910+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.json, work/fold_augmented_lever3_retained_residual_risk_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.json, work/fold_augmented_lever3_descriptor_present_counteraxis_preflight_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: retained residual risk readout keeps safe abstention routing true and fixed-threshold closure false, 11 residual same-family rows remain retained after accepted counteraxes, 2 retained rows have pocket descriptors and 9 need source-free descriptor acquisition, descriptor-present preflight freezes 8 numeric descriptor fields and 20 residue-code count fields for m_csa:25 and m_csa:52, no counteraxis selected or threshold changed, focused tests 7 passed 25 subtests, affected suite 597 passed 190 subtests, full pytest 1469 passed 209 subtests with existing sklearn warning, unittest discovery 1424 passed, validate compileall diff-check JSON parse doc/source-hash and normalized reproducibility checks passed
 - Notes: Measured readouts first; no blocker packet produced; threshold 0.44155 unchanged.
+
+### 2026-06-05T05:24:07.185327+00:00 - northstar-lever3
+
+- Task: Lever 3 descriptor generalization counteraxis and retained descriptor rescue readouts
+- Time mode: measured
+- Measured minutes: 21.233
+- Started: 2026-06-05T05:02:36Z
+- Ended: 2026-06-05T05:23:50Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.json, work/fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json, work/fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: descriptor-generalization counteraxis selected residue_count.LEU<=1.0 on train/cal design rows with zero calibration fires, excluded retained application rows were not used for rule selection, selected descriptor rule abstains m_csa:25 and leaves m_csa:52 retained, retained residual rows fall from 11 to 10 but zero residual retained-transfer risk remains false, retained descriptor rescue recovered 9 of 9 previously descriptor-missing rows from existing source-free artifacts, retained rows with descriptor evidence are now 11 of 11, selected LEU-count rule fires 0 recovered rows, full pytest 1475 passed 211 subtests with existing sklearn warning, unittest discovery 1430 passed, affected suite 603 passed 192 subtests, validate passed 702 labels, JSON parse 3559 JSON and 27 JSONL zero errors, normalized reproducibility passed for both new CLI artifacts, disk remained above 10 GiB
+- Notes: Measured readout artifacts first; no blocker packet produced; fixed threshold 0.44155 unchanged.
 
 ## Expectation Updates
 
@@ -620,3 +620,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T01:33:57.855493+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
 - 2026-06-05T02:27:05.027678+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
 - 2026-06-05T03:33:38.753039+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
+- 2026-06-05T05:24:07.185327+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values provider calls or experimental-PDB deployment shortcuts changed.

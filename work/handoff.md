@@ -3,16 +3,16 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T04:01:15Z`
-- STARTED_AT_LOCAL: `2026-06-04T23:01:15-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T04:21:22Z`
-- ENDED_AT_LOCAL: `2026-06-04T23:21:22-0500 CDT`
-- ELAPSED_MINUTES: `20.13`
-- Status: Run 47 wrap-up. Canonical
+- STARTED_AT_UTC: `2026-06-05T05:02:36Z`
+- STARTED_AT_LOCAL: `2026-06-05T00:02:36-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T05:23:50Z`
+- ENDED_AT_LOCAL: `2026-06-05T00:23:50-0500 CDT`
+- ELAPSED_MINUTES: `21.23`
+- Status: Run 48 wrap-up. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-05T04:01:15Z`. Lever 3 retained-residual risk and descriptor-input
-  preflight readouts are validated. Actual elapsed time is shorter than the
-  requested 55-minute work block; the progress ledger records the measured
+  `2026-06-05T05:02:36Z`. Lever 3 descriptor-generalization and retained
+  descriptor-rescue readouts are validated. Actual elapsed time is shorter than
+  the requested 55-minute work block; the progress ledger records the measured
   duration rather than inflating it.
 
 ## Mission
@@ -64,6 +64,138 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 48
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T05:02:36Z`
+- STARTED_LOCAL: `2026-06-05T00:02:36-0500 CDT`
+- ENDED_AT: `2026-06-05T05:23:50Z`
+- ENDED_LOCAL: `2026-06-05T00:23:50-0500 CDT`
+- ELAPSED_MINUTES: `21.23`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T05:02:36Z`.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-descriptor-generalization-counteraxis-readout`
+  with builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.md`.
+- Added
+  `build-fold-augmented-lever3-retained-descriptor-rescue-readout` with
+  builder/writer/report renderer and CLI wiring.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.md`.
+- Added synthetic builder coverage, parser-default coverage, artifact-count
+  regression coverage, and source-artifact hash coverage for both new outputs.
+- Appended the measured progress-log entry and regenerated `work/status.md`.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; threshold selection remains
+  train/cal only.
+- Descriptor-generalization selected `residue_count.LEU <= 1.0` on train/cal
+  same-family design rows while excluding retained application rows from rule
+  selection.
+- The selected descriptor rule fires zero calibration in-scope rows, fires
+  3/14 design same-family descriptor rows, fires 7/71 train/cal OOS descriptor
+  rows, and fires 1/2 excluded descriptor-present retained rows.
+- The newly safe retained row is `m_csa:25`; `m_csa:52` remains retained at the
+  fixed operating point and must not receive a forced mechanism label.
+- Retained residual rows fall from 11 to 10 after the selected descriptor
+  counteraxis. Zero residual retained-transfer risk is still not ready.
+- Retained descriptor rescue recovered 9/9 previously descriptor-missing
+  retained rows from existing source-free scored-extension artifacts, so all
+  11 retained residual rows now have descriptor evidence available.
+- The selected LEU-count rule fires 0/9 recovered rows. The exact remaining
+  evidence is a separate train/cal-selected source-free descriptor or chemistry
+  counteraxis for the 10 still-retained descriptor-present rows, especially
+  `m_csa:52`, plus the existing P07658 coordinate/provenance requirement for
+  fixed-threshold scoring closure.
+- A diagnostic pair-rule pressure probe during the run found an OR candidate
+  (`ASN >= 8` or `LEU <= 1`) that would fire `m_csa:84` as well as `m_csa:25`,
+  but it was not selected because doing so would require a pre-registered
+  breadth cap/selection objective; do not treat this as accepted evidence.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training, rule selection, or threshold
+  tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new readouts compose existing deployment-valid artifacts only; they
+  perform no provider calls, coordinate downloads, coordinate staging, scoring,
+  imports, or production-threshold changes.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1424 passed.
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_descriptor_generalization_counteraxis_excludes_application_rows tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_retained_descriptor_rescue_recovers_existing_rows tests/test_cli.py::CliTests::test_lever3_descriptor_generalization_counteraxis_readout_parser_defaults tests/test_cli.py::CliTests::test_lever3_retained_descriptor_rescue_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_retained_descriptor_rescue_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  7 passed, 27 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  603 passed, 192 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1475 passed, 211 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1430 passed.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3559 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  3 passed, 27 subtests passed.
+- Normalized reproducibility checks passed for both new CLI artifacts after
+  normalizing `created_utc`.
+- Disk check remained above the guardrail: about 17 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md`.
+- Documentation checked (`README.md`, `work/scope.md`, `work/status.md`,
+  `work/handoff.md`); no broader doc changes needed for this Lever 3-only
+  readout update.
+- Commit, push, `HEAD == origin/main` verification, and lock release are the
+  remaining mechanical wrap steps after this handoff edit.
+
+#### Exact next Lever 3 action
+
+Use the descriptor-generalization readout as partial fail-closed evidence:
+`m_csa:25` can be routed `abstain_or_route_novel_oos` under the selected
+train/cal-only `LEU <= 1` counteraxis, while `m_csa:52` and the nine recovered
+descriptor rows remain retained evidence-queue rows. Next, pre-register a
+descriptor/chemistry counteraxis selection objective for the all-descriptor
+retained surface that does not tune on those retained rows. A bounded candidate
+is a pairwise-OR descriptor rule family with an explicit all-train/cal-OOS
+breadth cap; only after that objective is frozen should the `ASN >= 8 OR
+LEU <= 1` diagnostic candidate be adjudicated. Keep threshold `0.44155`
+unchanged. For fixed-threshold scoring closure, P07658 still needs exactly one
+credentialed provider route or local full-length predictor runtime with full
+coordinate/provenance, then the P07658 acceptance preflight.
 
 ### 2026-06-04 Lever 3 Forward Push Run 47
 

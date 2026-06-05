@@ -9085,6 +9085,162 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(preflight["guardrails"]["blocker_packet"])
         self.assertFalse(preflight["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_descriptor_generalization_"
+                "counteraxis_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_descriptor_generalization_"
+                "counteraxis_readout_partial_application"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"]["feature_rule"],
+            "residue_count.LEU <= 1.0",
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"]["design_same_family_entry_ids_fired"],
+            ["m_csa:104", "m_csa:244", "m_csa:646"],
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:25"],
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_descriptor_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["calibration_in_scope_descriptor_rows_missing"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["design_same_family_descriptor_rows"], 14)
+        self.assertEqual(
+            readout["counts"]["design_same_family_rows_missing_descriptor"],
+            43,
+        )
+        self.assertEqual(readout["counts"]["candidate_rules_checked"], 16)
+        self.assertEqual(
+            readout["counts"]["selected_rule_calibration_in_scope_fired"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_design_same_family_rows_fired"],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_all_train_cal_oos_rows_fired"],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_rule_application_rows_fired_after_selection"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_before_descriptor_counteraxis"
+            ],
+            11,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_descriptor_counteraxis"
+            ],
+            10,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "descriptor_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_used_for_rule_selection"])
+
+    def test_fold_augmented_lever3_retained_descriptor_rescue_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_retained_descriptor_"
+                "rescue_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_retained_descriptor_rescue_readout_all_recovered",
+        )
+        self.assertEqual(readout["counts"]["previously_descriptor_missing_rows"], 9)
+        self.assertEqual(readout["counts"]["recovered_descriptor_rows"], 9)
+        self.assertEqual(readout["counts"]["unrecovered_descriptor_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["retained_rows_with_descriptor_after_rescue"],
+            11,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_recovered_rows_fired"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_total_retained_rows_fired"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_selected_descriptor_counteraxis"
+            ],
+            10,
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in readout["recovered_descriptor_rows"]],
+            [
+                "m_csa:229",
+                "m_csa:89",
+                "m_csa:74",
+                "m_csa:256",
+                "m_csa:638",
+                "m_csa:190",
+                "m_csa:84",
+                "m_csa:468",
+                "m_csa:308",
+            ],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "descriptor_missing_gap_cleared_by_existing_artifacts"
+            ]
+        )
+        self.assertFalse(readout["decision"]["new_counteraxis_selected_now"])
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertTrue(readout["guardrails"]["existing_artifacts_only"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -9197,6 +9353,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_descriptor_present_"
                 "counteraxis_preflight_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_descriptor_generalization_"
+                "counteraxis_readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_retained_descriptor_"
+                "rescue_readout_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

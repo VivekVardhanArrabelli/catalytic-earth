@@ -5,6 +5,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 
 from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
@@ -82,6 +83,8 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_deployment_action_readout,
     build_fold_augmented_lever3_retained_residual_risk_readout,
     build_fold_augmented_lever3_descriptor_present_counteraxis_preflight,
+    build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout,
+    build_fold_augmented_lever3_retained_descriptor_rescue_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -6411,6 +6414,315 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 "heldout_rows_used_for_training_or_threshold_tuning"
             ]
         )
+
+    def test_lever3_descriptor_generalization_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def pocket(leu_count: int, hydrophobic: float = 0.4) -> dict[str, Any]:
+            return {
+                "pocket_context": {
+                    "descriptors": {"hydrophobic_fraction": hydrophobic},
+                    "residue_code_counts": {"LEU": leu_count},
+                }
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight_path = root / "preflight.json"
+            risk_path = root / "risk.json"
+            surface_path = root / "surface.json"
+            atlas_path = root / "atlas.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_source_free_feature_contract": {
+                            "descriptor_fields": ["hydrophobic_fraction"],
+                            "residue_code_count_fields": ["LEU"],
+                        },
+                        "descriptor_present_rows": [
+                            {"entry_id": "m_csa:1", "accession": "A1"},
+                            {"entry_id": "m_csa:2", "accession": "A2"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows": 4,
+                            "retained_residual_rows_missing_pocket_descriptor": 2,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 5,
+                            "all_train_cal_oos_abstained": 1,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    **pocket(1),
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    **pocket(4),
+                                },
+                                {"entry_id": "m_csa:3", **pocket(0)},
+                                {"entry_id": "m_csa:4", **pocket(1)},
+                                {"entry_id": "m_csa:5", **pocket(3)},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            atlas_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {"entry_id": "m_csa:10", **pocket(2)},
+                            {"entry_id": "m_csa:11", **pocket(3)},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "train_cal_partition": {
+                            "calibration_entry_ids": ["m_csa:10", "m_csa:11"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                                {"entry_id": "m_csa:5"},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = (
+                build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout(
+                    descriptor_present_counteraxis_preflight_path=preflight_path,
+                    retained_residual_risk_readout_path=risk_path,
+                    latest_train_cal_oos_surface_path=surface_path,
+                    predicted_geometry_atlas_retrieval_path=atlas_path,
+                    threshold_contract_path=threshold_path,
+                    channel_veto_readout_path=channel_path,
+                    artifact_id="custom_descriptor_generalization",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_descriptor_generalization")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_descriptor_generalization_"
+                "counteraxis_readout_partial_application"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"]["feature_rule"],
+            "residue_count.LEU <= 1.0",
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:3", "m_csa:4"],
+        )
+        self.assertEqual(
+            readout["selected_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:1"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_descriptor_counteraxis"
+            ],
+            3,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "descriptor_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(
+            readout["guardrails"][
+                "heldout_rows_used_for_training_or_threshold_tuning"
+            ]
+        )
+
+    def test_lever3_retained_descriptor_rescue_recovers_existing_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            risk_path = root / "risk.json"
+            generalization_path = root / "generalization.json"
+            source_path = root / "source.json"
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows": 3,
+                            "retained_residual_rows_with_pocket_descriptor": 1,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 5,
+                            "all_train_cal_oos_abstained": 1,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                        "retained_residual_risk_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_missing"
+                                ),
+                            },
+                            {
+                                "rank": 2,
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "same_family_pocket_descriptor_status": (
+                                    "pocket_descriptor_missing"
+                                ),
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            generalization_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "selected_rule_application_rows_fired_after_selection": 1
+                        },
+                        "selected_counteraxis_rule": {
+                            "feature_kind": "residue_count",
+                            "feature_name": "LEU",
+                            "operator": "<=",
+                            "threshold": 1.0,
+                            "feature_rule": "residue_count.LEU <= 1.0",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    "pocket_context": {
+                                        "descriptors": {
+                                            "hydrophobic_fraction": 0.3
+                                        },
+                                        "residue_code_counts": {"LEU": 1},
+                                    },
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    "pocket_context": {
+                                        "descriptors": {
+                                            "hydrophobic_fraction": 0.4
+                                        },
+                                        "residue_code_counts": {"LEU": 4},
+                                    },
+                                },
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_descriptor_rescue_readout(
+                retained_residual_risk_readout_path=risk_path,
+                descriptor_generalization_counteraxis_readout_path=generalization_path,
+                descriptor_source_artifact_paths=[source_path],
+                artifact_id="custom_descriptor_rescue",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_descriptor_rescue")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_descriptor_rescue_"
+                "readout_all_recovered"
+            ),
+        )
+        self.assertEqual(readout["counts"]["recovered_descriptor_rows"], 2)
+        self.assertEqual(readout["counts"]["unrecovered_descriptor_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["retained_rows_with_descriptor_after_rescue"],
+            3,
+        )
+        self.assertEqual(readout["counts"]["selected_rule_recovered_rows_fired"], 1)
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_selected_descriptor_counteraxis"
+            ],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "descriptor_missing_gap_cleared_by_existing_artifacts"
+            ]
+        )
+        self.assertFalse(readout["decision"]["new_counteraxis_selected_now"])
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertTrue(readout["guardrails"]["existing_artifacts_only"])
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,
