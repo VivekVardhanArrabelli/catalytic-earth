@@ -366,6 +366,9 @@ FOLD_AUGMENTED_LEVER3_RETAINED_DESCRIPTOR_RESCUE_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_RETAINED_PAIRWISE_DESCRIPTOR_COUNTERAXIS_READOUT_ID = (
     "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_RETAINED_CHANNEL_MARGIN_COUNTERAXIS_READOUT_ID = (
+    "v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -47414,6 +47417,1690 @@ def write_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_channel_thresholds_from_readout(
+    channel_veto_readout: dict[str, Any],
+) -> dict[str, float]:
+    thresholds: dict[str, float] = {}
+    for readout in channel_veto_readout.get("channel_readouts", []) or []:
+        if not isinstance(readout, dict):
+            continue
+        channels = readout.get("channels") or []
+        if len(channels) != 1:
+            continue
+        channel = str(channels[0])
+        threshold = (readout.get("thresholds") or {}).get(channel)
+        parsed = _parse_optional_float(threshold)
+        if parsed is not None:
+            thresholds[channel] = parsed
+    return thresholds
+
+
+def _lever3_full_channel_rows(
+    rows: list[dict[str, Any]],
+    *,
+    thresholds: dict[str, float],
+) -> list[dict[str, Any]]:
+    full_rows: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        channel_scores = row.get("channel_scores") or {}
+        if all(
+            _parse_optional_float(channel_scores.get(channel)) is not None
+            for channel in thresholds
+        ):
+            full_rows.append(row)
+    return full_rows
+
+
+def _lever3_channel_margins(
+    row: dict[str, Any],
+    *,
+    thresholds: dict[str, float],
+) -> dict[str, float]:
+    channel_scores = row.get("channel_scores") or {}
+    margins: dict[str, float] = {}
+    for channel, threshold in thresholds.items():
+        score = _parse_optional_float(channel_scores.get(channel))
+        if score is not None:
+            margins[channel] = round(score - threshold, 9)
+    return margins
+
+
+def _lever3_margin_feature_value(
+    row: dict[str, Any],
+    *,
+    feature_name: str,
+    thresholds: dict[str, float],
+    active_route_channels: list[str],
+) -> float | None:
+    margins = _lever3_channel_margins(row, thresholds=thresholds)
+    if feature_name == "primary_channel_margin":
+        return margins.get("combined_mean_geometry_fold")
+    if feature_name == "active_route_min_positive_margin":
+        values = [
+            margin
+            for channel, margin in margins.items()
+            if channel in set(active_route_channels) and margin >= 0.0
+        ]
+        return min(values) if values else None
+    return None
+
+
+def _lever3_margin_rule_fires(
+    row: dict[str, Any],
+    *,
+    feature_name: str,
+    threshold: float,
+    thresholds: dict[str, float],
+    active_route_channels: list[str],
+) -> bool:
+    value = _lever3_margin_feature_value(
+        row,
+        feature_name=feature_name,
+        thresholds=thresholds,
+        active_route_channels=active_route_channels,
+    )
+    return value is not None and value > 0.0 and value <= threshold
+
+
+def _lever3_margin_rule_record(
+    *,
+    feature_name: str,
+    threshold: float,
+    calibration_rows: list[dict[str, Any]],
+    design_rows: list[dict[str, Any]],
+    all_oos_rows: list[dict[str, Any]],
+    application_rows: list[dict[str, Any]],
+    thresholds: dict[str, float],
+    active_route_channels: list[str],
+) -> dict[str, Any]:
+    rounded_threshold = round(threshold, 6)
+
+    def fires(row: dict[str, Any]) -> bool:
+        return _lever3_margin_rule_fires(
+            row,
+            feature_name=feature_name,
+            threshold=rounded_threshold,
+            thresholds=thresholds,
+            active_route_channels=active_route_channels,
+        )
+
+    calibration_fired = [
+        str(row["entry_id"]) for row in calibration_rows if fires(row)
+    ]
+    design_fired = [str(row["entry_id"]) for row in design_rows if fires(row)]
+    all_oos_fired = [str(row["entry_id"]) for row in all_oos_rows if fires(row)]
+    application_fired = [
+        str(row["entry_id"]) for row in application_rows if fires(row)
+    ]
+    return {
+        "rule_id": f"{feature_name}<={rounded_threshold:.6f}",
+        "feature_name": feature_name,
+        "operator": "strict_positive_less_equal",
+        "threshold": rounded_threshold,
+        "feature_rule": f"{feature_name} in (0, {rounded_threshold:.6f}]",
+        "calibration_in_scope_entry_ids_fired": calibration_fired,
+        "calibration_in_scope_retained_fired": len(calibration_fired),
+        "design_same_family_entry_ids_fired": design_fired,
+        "design_same_family_rows_fired": len(design_fired),
+        "all_train_cal_oos_entry_ids_fired": all_oos_fired,
+        "all_train_cal_oos_rows_fired": len(all_oos_fired),
+        "application_entry_ids_fired_after_selection": application_fired,
+        "application_rows_fired_after_selection": len(application_fired),
+        "retention_floor_met": len(calibration_fired) == 0,
+    }
+
+
+def _lever3_margin_pair_rule_record(
+    *,
+    component_a: dict[str, Any],
+    component_b: dict[str, Any],
+    calibration_rows: list[dict[str, Any]],
+    design_rows: list[dict[str, Any]],
+    all_oos_rows: list[dict[str, Any]],
+    application_rows: list[dict[str, Any]],
+    thresholds: dict[str, float],
+    active_route_channels: list[str],
+) -> dict[str, Any]:
+    components = sorted(
+        [component_a, component_b],
+        key=lambda rule: str(rule.get("rule_id") or ""),
+    )
+
+    def fires(row: dict[str, Any]) -> bool:
+        return any(
+            _lever3_margin_rule_fires(
+                row,
+                feature_name=str(component.get("feature_name") or ""),
+                threshold=float(component.get("threshold") or 0.0),
+                thresholds=thresholds,
+                active_route_channels=active_route_channels,
+            )
+            for component in components
+        )
+
+    calibration_fired = [
+        str(row["entry_id"]) for row in calibration_rows if fires(row)
+    ]
+    design_fired = [str(row["entry_id"]) for row in design_rows if fires(row)]
+    all_oos_fired = [str(row["entry_id"]) for row in all_oos_rows if fires(row)]
+    application_fired = [
+        str(row["entry_id"]) for row in application_rows if fires(row)
+    ]
+    component_rules = [str(rule.get("feature_rule") or "") for rule in components]
+    return {
+        "rule_id": " OR ".join(str(rule.get("rule_id") or "") for rule in components),
+        "feature_rule": " OR ".join(component_rules),
+        "component_rules": [
+            {
+                "rule_id": str(rule.get("rule_id") or ""),
+                "feature_name": str(rule.get("feature_name") or ""),
+                "operator": str(rule.get("operator") or ""),
+                "threshold": rule.get("threshold"),
+                "feature_rule": str(rule.get("feature_rule") or ""),
+                "design_same_family_rows_fired": int(
+                    rule.get("design_same_family_rows_fired") or 0
+                ),
+            }
+            for rule in components
+        ],
+        "component_design_same_family_rows_total": sum(
+            int(rule.get("design_same_family_rows_fired") or 0)
+            for rule in components
+        ),
+        "calibration_in_scope_entry_ids_fired": calibration_fired,
+        "calibration_in_scope_retained_fired": len(calibration_fired),
+        "design_same_family_entry_ids_fired": design_fired,
+        "design_same_family_rows_fired": len(design_fired),
+        "all_train_cal_oos_entry_ids_fired": all_oos_fired,
+        "all_train_cal_oos_rows_fired": len(all_oos_fired),
+        "application_entry_ids_fired_after_selection": application_fired,
+        "application_rows_fired_after_selection": len(application_fired),
+        "retention_floor_met": len(calibration_fired) == 0,
+    }
+
+
+def _lever3_channel_score_value(
+    row: dict[str, Any],
+    *,
+    channel_name: str,
+) -> float | None:
+    return _parse_optional_float((row.get("channel_scores") or {}).get(channel_name))
+
+
+def _lever3_channel_score_bandpass_rule_record(
+    *,
+    channel_name: str,
+    lower_threshold: float,
+    upper_threshold: float,
+    calibration_rows: list[dict[str, Any]],
+    design_rows: list[dict[str, Any]],
+    all_oos_rows: list[dict[str, Any]],
+    application_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    lower = round(lower_threshold, 6)
+    upper = round(upper_threshold, 6)
+
+    def fires(row: dict[str, Any]) -> bool:
+        score = _lever3_channel_score_value(row, channel_name=channel_name)
+        return score is not None and lower <= score <= upper
+
+    calibration_fired = [
+        str(row["entry_id"]) for row in calibration_rows if fires(row)
+    ]
+    design_fired = [str(row["entry_id"]) for row in design_rows if fires(row)]
+    all_oos_fired = [str(row["entry_id"]) for row in all_oos_rows if fires(row)]
+    application_fired = [
+        str(row["entry_id"]) for row in application_rows if fires(row)
+    ]
+    return {
+        "rule_id": (
+            f"{lower:.6f}<={channel_name}<={upper:.6f}"
+        ),
+        "feature_name": channel_name,
+        "operator": "closed_interval_bandpass",
+        "lower_threshold": lower,
+        "upper_threshold": upper,
+        "feature_rule": (
+            f"{channel_name} in [{lower:.6f}, {upper:.6f}]"
+        ),
+        "calibration_in_scope_entry_ids_fired": calibration_fired,
+        "calibration_in_scope_retained_fired": len(calibration_fired),
+        "design_same_family_entry_ids_fired": design_fired,
+        "design_same_family_rows_fired": len(design_fired),
+        "all_train_cal_oos_entry_ids_fired": all_oos_fired,
+        "all_train_cal_oos_rows_fired": len(all_oos_fired),
+        "application_entry_ids_fired_after_selection": application_fired,
+        "application_rows_fired_after_selection": len(application_fired),
+        "retention_floor_met": len(calibration_fired) == 0,
+    }
+
+
+def _lever3_two_channel_threshold_and_rule_record(
+    *,
+    low_channel_name: str,
+    low_upper_threshold: float,
+    high_channel_name: str,
+    high_lower_threshold: float,
+    calibration_rows: list[dict[str, Any]],
+    design_rows: list[dict[str, Any]],
+    all_oos_rows: list[dict[str, Any]],
+    application_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    low_upper = round(low_upper_threshold, 6)
+    high_lower = round(high_lower_threshold, 6)
+
+    def fires(row: dict[str, Any]) -> bool:
+        low_score = _lever3_channel_score_value(
+            row, channel_name=low_channel_name
+        )
+        high_score = _lever3_channel_score_value(
+            row, channel_name=high_channel_name
+        )
+        return (
+            low_score is not None
+            and high_score is not None
+            and low_score <= low_upper
+            and high_score >= high_lower
+        )
+
+    calibration_fired = [
+        str(row["entry_id"]) for row in calibration_rows if fires(row)
+    ]
+    design_fired = [str(row["entry_id"]) for row in design_rows if fires(row)]
+    all_oos_fired = [str(row["entry_id"]) for row in all_oos_rows if fires(row)]
+    application_fired = [
+        str(row["entry_id"]) for row in application_rows if fires(row)
+    ]
+    return {
+        "rule_id": (
+            f"{low_channel_name}<={low_upper:.6f} AND "
+            f"{high_channel_name}>={high_lower:.6f}"
+        ),
+        "feature_names": [low_channel_name, high_channel_name],
+        "operator": "low_channel_less_equal_and_high_channel_greater_equal",
+        "low_channel_name": low_channel_name,
+        "low_upper_threshold": low_upper,
+        "high_channel_name": high_channel_name,
+        "high_lower_threshold": high_lower,
+        "feature_rule": (
+            f"{low_channel_name} <= {low_upper:.6f} AND "
+            f"{high_channel_name} >= {high_lower:.6f}"
+        ),
+        "calibration_in_scope_entry_ids_fired": calibration_fired,
+        "calibration_in_scope_retained_fired": len(calibration_fired),
+        "design_same_family_entry_ids_fired": design_fired,
+        "design_same_family_rows_fired": len(design_fired),
+        "all_train_cal_oos_entry_ids_fired": all_oos_fired,
+        "all_train_cal_oos_rows_fired": len(all_oos_fired),
+        "application_entry_ids_fired_after_selection": application_fired,
+        "application_rows_fired_after_selection": len(application_fired),
+        "retention_floor_met": len(calibration_fired) == 0,
+    }
+
+
+def build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+    *,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    residual_safety_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    max_all_train_cal_oos_rows_fired: int = 50,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_CHANNEL_MARGIN_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    pairwise = _read_json(retained_pairwise_descriptor_counteraxis_readout_path)
+    residual = _read_json(residual_safety_readout_path)
+    cofactor = _read_json(cofactor_context_counteraxis_readout_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    threshold_contract = _read_json(threshold_contract_path)
+    channel_veto = _read_json(channel_veto_readout_path)
+
+    thresholds = _lever3_channel_thresholds_from_readout(channel_veto)
+    active_route_channels = [
+        str(channel)
+        for channel in (
+            (residual.get("fixed_operating_point") or {}).get(
+                "best_current_route_channels"
+            )
+            or []
+        )
+    ]
+    if not active_route_channels:
+        active_route_channels = sorted(thresholds)
+    candidate_rows = [
+        row
+        for row in surface.get("candidate_row_scores", []) or []
+        if isinstance(row, dict)
+    ]
+    full_channel_rows = _lever3_full_channel_rows(
+        candidate_rows, thresholds=thresholds
+    )
+    full_channel_by_entry = {
+        str(row["entry_id"]): row for row in full_channel_rows if row.get("entry_id")
+    }
+    calibration_rows_all = [
+        row
+        for row in threshold_contract.get("calibration_row_scores", []) or []
+        if isinstance(row, dict)
+    ]
+    calibration_full_rows = _lever3_full_channel_rows(
+        calibration_rows_all, thresholds=thresholds
+    )
+    calibration_retained_rows = []
+    for row in calibration_full_rows:
+        primary_margin = _lever3_margin_feature_value(
+            row,
+            feature_name="primary_channel_margin",
+            thresholds=thresholds,
+            active_route_channels=active_route_channels,
+        )
+        if primary_margin is not None and primary_margin >= 0.0:
+            calibration_retained_rows.append(row)
+    same_family_proxy_ids = {
+        str(row["entry_id"])
+        for row in (
+            (channel_veto.get("proxy_axis_row_diagnostics") or {}).get(
+                "same_family_structural_proxy_rows"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    application_actions_from_pairwise = [
+        row
+        for row in pairwise.get("application_row_actions", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    application_ids = {str(row["entry_id"]) for row in application_actions_from_pairwise}
+    descriptor_routed_ids = {
+        str(row["entry_id"])
+        for row in application_actions_from_pairwise
+        if row.get("prior_descriptor_counteraxis_fires")
+        or row.get("selected_pairwise_counteraxis_fires_after_selection")
+    }
+    retained_before_margin_ids = sorted(
+        application_ids - descriptor_routed_ids, key=_entry_id_sort_key
+    )
+    application_rows = [
+        full_channel_by_entry[entry_id]
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+        if entry_id in full_channel_by_entry
+    ]
+    design_ids = same_family_proxy_ids - application_ids
+    design_rows = [
+        full_channel_by_entry[entry_id]
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id in full_channel_by_entry
+    ]
+    design_rows_missing_full_channels = [
+        entry_id
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id not in full_channel_by_entry
+    ]
+
+    feature_names = [
+        "primary_channel_margin",
+        "active_route_min_positive_margin",
+    ]
+    atom_rules: list[dict[str, Any]] = []
+    for feature_name in feature_names:
+        feature_thresholds = sorted(
+            {
+                value
+                for value in (
+                    _lever3_margin_feature_value(
+                        row,
+                        feature_name=feature_name,
+                        thresholds=thresholds,
+                        active_route_channels=active_route_channels,
+                    )
+                    for row in design_rows
+                )
+                if value is not None and value > 0.0
+            }
+        )
+        for threshold in feature_thresholds:
+            rule = _lever3_margin_rule_record(
+                feature_name=feature_name,
+                threshold=threshold,
+                calibration_rows=calibration_retained_rows,
+                design_rows=design_rows,
+                all_oos_rows=full_channel_rows,
+                application_rows=application_rows,
+                thresholds=thresholds,
+                active_route_channels=active_route_channels,
+            )
+            if (
+                rule["calibration_in_scope_retained_fired"] == 0
+                and rule["design_same_family_rows_fired"] > 0
+            ):
+                atom_rules.append(rule)
+    atom_rules.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+
+    pair_rules_evaluated = 0
+    candidate_pair_rules: list[dict[str, Any]] = []
+    for component_a, component_b in itertools.combinations_with_replacement(
+        atom_rules, 2
+    ):
+        pair_rules_evaluated += 1
+        pair_rule = _lever3_margin_pair_rule_record(
+            component_a=component_a,
+            component_b=component_b,
+            calibration_rows=calibration_retained_rows,
+            design_rows=design_rows,
+            all_oos_rows=full_channel_rows,
+            application_rows=application_rows,
+            thresholds=thresholds,
+            active_route_channels=active_route_channels,
+        )
+        if (
+            pair_rule["calibration_in_scope_retained_fired"] == 0
+            and pair_rule["design_same_family_rows_fired"] > 0
+            and pair_rule["all_train_cal_oos_rows_fired"]
+            <= max_all_train_cal_oos_rows_fired
+        ):
+            candidate_pair_rules.append(pair_rule)
+    candidate_pair_rules.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            -int(rule["component_design_same_family_rows_total"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+    selected_rule = candidate_pair_rules[0] if candidate_pair_rules else None
+    selected_application_ids = (
+        set(selected_rule["application_entry_ids_fired_after_selection"])
+        if selected_rule
+        else set()
+    )
+    new_margin_application_ids = selected_application_ids & set(
+        retained_before_margin_ids
+    )
+    retained_after_margin_ids = sorted(
+        set(retained_before_margin_ids) - new_margin_application_ids,
+        key=_entry_id_sort_key,
+    )
+    pairwise_counts = pairwise.get("counts") or {}
+    retained_before_margin_count = int(
+        pairwise_counts.get("retained_residual_rows_after_pairwise_counteraxis")
+        or len(retained_before_margin_ids)
+    )
+    retained_after_margin_count = max(
+        retained_before_margin_count - len(new_margin_application_ids), 0
+    )
+
+    fold_tm_channel = "fold_nearest_atlas_tm_score"
+    fold_tm_bandpass_candidates: list[dict[str, Any]] = []
+    fold_tm_bandpass_rules_evaluated = 0
+    if fold_tm_channel in thresholds:
+        fold_tm_thresholds = sorted(
+            {
+                score
+                for score in (
+                    _lever3_channel_score_value(
+                        row, channel_name=fold_tm_channel
+                    )
+                    for row in design_rows
+                )
+                if score is not None
+            }
+        )
+        for lower_threshold in fold_tm_thresholds:
+            for upper_threshold in fold_tm_thresholds:
+                if lower_threshold > upper_threshold:
+                    continue
+                fold_tm_bandpass_rules_evaluated += 1
+                rule = _lever3_channel_score_bandpass_rule_record(
+                    channel_name=fold_tm_channel,
+                    lower_threshold=lower_threshold,
+                    upper_threshold=upper_threshold,
+                    calibration_rows=calibration_retained_rows,
+                    design_rows=design_rows,
+                    all_oos_rows=full_channel_rows,
+                    application_rows=application_rows,
+                )
+                if (
+                    rule["calibration_in_scope_retained_fired"] == 0
+                    and rule["design_same_family_rows_fired"] > 0
+                    and rule["all_train_cal_oos_rows_fired"]
+                    <= max_all_train_cal_oos_rows_fired
+                ):
+                    fold_tm_bandpass_candidates.append(rule)
+    fold_tm_bandpass_candidates.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            -int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+    selected_fold_tm_bandpass_rule = (
+        fold_tm_bandpass_candidates[0] if fold_tm_bandpass_candidates else None
+    )
+    selected_fold_tm_bandpass_application_ids = (
+        set(
+            selected_fold_tm_bandpass_rule[
+                "application_entry_ids_fired_after_selection"
+            ]
+        )
+        if selected_fold_tm_bandpass_rule
+        else set()
+    )
+    new_fold_tm_bandpass_application_ids = (
+        selected_fold_tm_bandpass_application_ids & set(retained_after_margin_ids)
+    )
+    retained_after_fold_tm_bandpass_ids = sorted(
+        set(retained_after_margin_ids) - new_fold_tm_bandpass_application_ids,
+        key=_entry_id_sort_key,
+    )
+    retained_after_fold_tm_bandpass_count = len(retained_after_fold_tm_bandpass_ids)
+    pressure_low_channel = "combined_mean_geometry_cofactor_fold"
+    pressure_high_channel = "fold_nearest_atlas_tm_score"
+    fold_cofactor_pressure_candidates: list[dict[str, Any]] = []
+    fold_cofactor_pressure_rules_evaluated = 0
+    if pressure_low_channel in thresholds and pressure_high_channel in thresholds:
+        pressure_high_floor = (
+            selected_fold_tm_bandpass_rule.get("lower_threshold")
+            if selected_fold_tm_bandpass_rule
+            else None
+        )
+        low_thresholds = sorted(
+            {
+                score
+                for score in (
+                    _lever3_channel_score_value(
+                        row, channel_name=pressure_low_channel
+                    )
+                    for row in design_rows
+                )
+                if score is not None
+            }
+        )
+        high_thresholds = sorted(
+            {
+                score
+                for score in (
+                    _lever3_channel_score_value(
+                        row, channel_name=pressure_high_channel
+                    )
+                    for row in design_rows
+                )
+                if score is not None
+            }
+        )
+        for low_upper_threshold in low_thresholds:
+            for high_lower_threshold in high_thresholds:
+                if (
+                    pressure_high_floor is not None
+                    and high_lower_threshold < float(pressure_high_floor)
+                ):
+                    continue
+                fold_cofactor_pressure_rules_evaluated += 1
+                rule = _lever3_two_channel_threshold_and_rule_record(
+                    low_channel_name=pressure_low_channel,
+                    low_upper_threshold=low_upper_threshold,
+                    high_channel_name=pressure_high_channel,
+                    high_lower_threshold=high_lower_threshold,
+                    calibration_rows=calibration_retained_rows,
+                    design_rows=design_rows,
+                    all_oos_rows=full_channel_rows,
+                    application_rows=application_rows,
+                )
+                if (
+                    rule["calibration_in_scope_retained_fired"] == 0
+                    and rule["design_same_family_rows_fired"] > 0
+                    and rule["all_train_cal_oos_rows_fired"]
+                    <= max_all_train_cal_oos_rows_fired
+                ):
+                    fold_cofactor_pressure_candidates.append(rule)
+    fold_cofactor_pressure_candidates.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            -int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+    selected_fold_cofactor_pressure_rule = (
+        fold_cofactor_pressure_candidates[0]
+        if fold_cofactor_pressure_candidates
+        else None
+    )
+    selected_fold_cofactor_pressure_application_ids = (
+        set(
+            selected_fold_cofactor_pressure_rule[
+                "application_entry_ids_fired_after_selection"
+            ]
+        )
+        if selected_fold_cofactor_pressure_rule
+        else set()
+    )
+    new_fold_cofactor_pressure_application_ids = (
+        selected_fold_cofactor_pressure_application_ids
+        & set(retained_after_fold_tm_bandpass_ids)
+    )
+    retained_after_fold_cofactor_pressure_ids = sorted(
+        set(retained_after_fold_tm_bandpass_ids)
+        - new_fold_cofactor_pressure_application_ids,
+        key=_entry_id_sort_key,
+    )
+    retained_after_fold_cofactor_pressure_count = len(
+        retained_after_fold_cofactor_pressure_ids
+    )
+
+    pairwise_prior_rule = pairwise.get("prior_descriptor_counteraxis_rule") or {}
+    pairwise_selected_rule = pairwise.get("selected_pairwise_counteraxis_rule") or {}
+    descriptor_oos_ids = set(
+        str(entry_id)
+        for entry_id in pairwise_prior_rule.get(
+            "all_train_cal_oos_entry_ids_fired", []
+        )
+    )
+    descriptor_oos_ids.update(
+        str(entry_id)
+        for entry_id in pairwise_selected_rule.get(
+            "all_train_cal_oos_entry_ids_fired", []
+        )
+    )
+    accepted_oos_ids = set(
+        str(entry_id)
+        for entry_id in (
+            (
+                cofactor.get("bandpass_scout_operating_point") or {}
+            ).get("all_train_cal_oos_entry_ids_abstained")
+            or []
+        )
+    )
+    margin_oos_ids = (
+        set(selected_rule["all_train_cal_oos_entry_ids_fired"])
+        if selected_rule
+        else set()
+    )
+    descriptor_plus_accepted_oos_ids = accepted_oos_ids | descriptor_oos_ids
+    combined_oos_ids = descriptor_plus_accepted_oos_ids | margin_oos_ids
+    margin_new_oos_ids = margin_oos_ids - descriptor_plus_accepted_oos_ids
+    fold_tm_bandpass_oos_ids = (
+        set(selected_fold_tm_bandpass_rule["all_train_cal_oos_entry_ids_fired"])
+        if selected_fold_tm_bandpass_rule
+        else set()
+    )
+    fold_tm_bandpass_new_oos_ids = fold_tm_bandpass_oos_ids - combined_oos_ids
+    combined_after_fold_tm_bandpass_oos_ids = (
+        combined_oos_ids | fold_tm_bandpass_oos_ids
+    )
+    fold_cofactor_pressure_oos_ids = (
+        set(
+            selected_fold_cofactor_pressure_rule[
+                "all_train_cal_oos_entry_ids_fired"
+            ]
+        )
+        if selected_fold_cofactor_pressure_rule
+        else set()
+    )
+    fold_cofactor_pressure_new_oos_ids = (
+        fold_cofactor_pressure_oos_ids - combined_after_fold_tm_bandpass_oos_ids
+    )
+    combined_after_fold_cofactor_pressure_oos_ids = (
+        combined_after_fold_tm_bandpass_oos_ids | fold_cofactor_pressure_oos_ids
+    )
+
+    pairwise_action_by_entry = {
+        str(row["entry_id"]): row for row in application_actions_from_pairwise
+    }
+    application_row_actions = []
+    for entry_id in sorted(application_ids, key=_entry_id_sort_key):
+        pairwise_action = pairwise_action_by_entry.get(entry_id, {})
+        channel_row = full_channel_by_entry.get(entry_id, {})
+        primary_margin = _lever3_margin_feature_value(
+            channel_row,
+            feature_name="primary_channel_margin",
+            thresholds=thresholds,
+            active_route_channels=active_route_channels,
+        )
+        active_margin = _lever3_margin_feature_value(
+            channel_row,
+            feature_name="active_route_min_positive_margin",
+            thresholds=thresholds,
+            active_route_channels=active_route_channels,
+        )
+        fold_tm_score = _lever3_channel_score_value(
+            channel_row, channel_name=fold_tm_channel
+        )
+        descriptor_routed = entry_id in descriptor_routed_ids
+        margin_fires = entry_id in selected_application_ids
+        bandpass_fires = entry_id in selected_fold_tm_bandpass_application_ids
+        pressure_fires = entry_id in selected_fold_cofactor_pressure_application_ids
+        new_margin_fire = entry_id in new_margin_application_ids
+        new_bandpass_fire = entry_id in new_fold_tm_bandpass_application_ids
+        new_pressure_fire = entry_id in new_fold_cofactor_pressure_application_ids
+        if descriptor_routed:
+            action_delta = "already_abstain_or_route_novel_oos_by_descriptor_rule"
+        elif new_margin_fire:
+            action_delta = "abstain_or_route_novel_oos_by_channel_margin"
+        elif new_bandpass_fire:
+            action_delta = "abstain_or_route_novel_oos_by_fold_tm_bandpass"
+        elif new_pressure_fire:
+            action_delta = "abstain_or_route_novel_oos_by_fold_cofactor_pressure"
+        else:
+            action_delta = "retain_at_fixed_operating_point_not_scoring_closure"
+        application_row_actions.append(
+            {
+                "entry_id": entry_id,
+                "accession": pairwise_action.get("accession")
+                or channel_row.get("accession"),
+                "descriptor_routed_before_margin": descriptor_routed,
+                "selected_margin_counteraxis_fires_after_selection": margin_fires,
+                "new_abstention_from_margin_counteraxis": new_margin_fire,
+                "selected_fold_tm_bandpass_counteraxis_fires_after_selection": (
+                    bandpass_fires
+                ),
+                "new_abstention_from_fold_tm_bandpass_counteraxis": (
+                    new_bandpass_fire
+                ),
+                "selected_fold_cofactor_pressure_counteraxis_fires_after_selection": (
+                    pressure_fires
+                ),
+                "new_abstention_from_fold_cofactor_pressure_counteraxis": (
+                    new_pressure_fire
+                ),
+                "primary_channel_margin": (
+                    round(primary_margin, 6) if primary_margin is not None else None
+                ),
+                "active_route_min_positive_margin": (
+                    round(active_margin, 6) if active_margin is not None else None
+                ),
+                "fold_nearest_atlas_tm_score": (
+                    round(fold_tm_score, 6) if fold_tm_score is not None else None
+                ),
+                "deployment_action_delta": action_delta,
+                "used_for_rule_selection": False,
+            }
+        )
+
+    new_counteraxis_application_ids = (
+        new_margin_application_ids
+        | new_fold_tm_bandpass_application_ids
+        | new_fold_cofactor_pressure_application_ids
+    )
+    selected_ready = bool(new_counteraxis_application_ids)
+    status = (
+        "fold_augmented_lever3_retained_channel_margin_counteraxis_readout_closed"
+        if selected_ready and retained_after_fold_cofactor_pressure_count == 0
+        else (
+            "fold_augmented_lever3_retained_channel_margin_counteraxis_readout_partial_application"
+            if selected_ready
+            else "fold_augmented_lever3_retained_channel_margin_counteraxis_readout_no_new_application"
+        )
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_retained_channel_margin_counteraxis_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured retained channel-margin counteraxis readout. "
+            "It selects a strict-positive score-margin buffer over frozen "
+            "train/cal source-free channel scores and then selects a "
+            "fold-nearest-atlas TM midband over the same frozen channel "
+            "surface, followed by a high-fold/low-geometry-cofactor pressure "
+            "rule. All stages exclude retained application rows from "
+            "rule selection and apply the selected rules only after "
+            "selection. It changes no thresholds, scores no new rows, "
+            "stages no coordinates, and uses no heldout rows."
+        ),
+        "selection_policy": {
+            "feature_source": (
+                "source-free predicted-geometry/fold/cofactor score margins "
+                "against frozen train/cal-selected channel thresholds, plus "
+                "the frozen fold-nearest-atlas TM score channel"
+            ),
+            "rule_family": (
+                "pairwise_or_of_strict_positive_channel_margin_buffer_rules "
+                "followed by fold_tm_closed_interval_bandpass_rules and "
+                "fold_cofactor_pressure_two_channel_rules"
+            ),
+            "candidate_features": feature_names,
+            "fold_tm_bandpass_feature": fold_tm_channel,
+            "fold_cofactor_pressure_features": [
+                pressure_low_channel,
+                pressure_high_channel,
+            ],
+            "active_route_channels": active_route_channels,
+            "channel_thresholds": thresholds,
+            "selection_rows": (
+                "full-channel train/cal same-family structural proxy OOS rows, "
+                "excluding every retained application row"
+            ),
+            "application_rows_excluded_from_selection": sorted(
+                application_ids, key=_entry_id_sort_key
+            ),
+            "calibration_guard": (
+                "candidate OR rule must fire zero calibration in-scope rows "
+                "that are retained at the fixed primary-channel threshold"
+            ),
+            "strict_positive_margin_lower_bound_open": True,
+            "zero_margin_threshold_anchor_reclassified": False,
+            "all_train_cal_oos_breadth_cap_rows": max_all_train_cal_oos_rows_fired,
+            "margin_selection_objective": (
+                "maximize design same-family OOS rows fired, then maximize "
+                "component design-row support, then minimize all train/cal OOS "
+                "full-channel rows fired, then deterministic rule id"
+            ),
+            "fold_tm_bandpass_selection_objective": (
+                "within the fold-nearest-atlas TM bandpass family, maximize "
+                "design same-family OOS rows fired, then maximize train/cal "
+                "OOS pressure under the breadth cap, then deterministic rule id"
+            ),
+            "fold_cofactor_pressure_selection_objective": (
+                "within the low combined geometry/cofactor plus high fold-TM "
+                "pressure family at or above the selected fold-TM bandpass "
+                "lower bound, maximize design same-family OOS rows fired, then "
+                "maximize train/cal OOS pressure under the breadth cap, then "
+                "deterministic rule id"
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "threshold_grid_source": (
+                "unique positive train/cal design-row margins for the margin "
+                "stage; unique train/cal design-row fold TM scores for the "
+                "bandpass stage; unique train/cal design-row score pairs for "
+                "the fold/cofactor-pressure stage"
+            ),
+        },
+        "selected_channel_margin_counteraxis_rule": selected_rule,
+        "selected_fold_tm_bandpass_counteraxis_rule": (
+            selected_fold_tm_bandpass_rule
+        ),
+        "selected_fold_cofactor_pressure_counteraxis_rule": (
+            selected_fold_cofactor_pressure_rule
+        ),
+        "top_candidate_margin_pair_rules": candidate_pair_rules[:10],
+        "top_candidate_fold_tm_bandpass_rules": fold_tm_bandpass_candidates[:10],
+        "top_candidate_fold_cofactor_pressure_rules": (
+            fold_cofactor_pressure_candidates[:10]
+        ),
+        "application_row_actions": application_row_actions,
+        "operating_point_after_margin": {
+            "baseline_threshold": (
+                (residual.get("fixed_operating_point") or {}).get(
+                    "baseline_threshold"
+                )
+                or (pairwise.get("counts") or {}).get("baseline_threshold")
+            ),
+            "calibration_in_scope_rows": len(calibration_full_rows),
+            "calibration_in_scope_retained_before_margin": len(
+                calibration_retained_rows
+            ),
+            "calibration_in_scope_retained_after_margin": (
+                len(calibration_retained_rows)
+                - (
+                    int(selected_rule["calibration_in_scope_retained_fired"])
+                    if selected_rule
+                    else 0
+                )
+            ),
+            "all_train_cal_oos_full_channel_rows": len(full_channel_rows),
+            "accepted_counteraxis_all_train_cal_oos_abstained": len(
+                accepted_oos_ids
+            ),
+            "descriptor_counteraxis_all_train_cal_oos_fired": len(
+                descriptor_oos_ids
+            ),
+            "descriptor_plus_accepted_all_train_cal_oos_abstained": len(
+                descriptor_plus_accepted_oos_ids
+            ),
+            "margin_counteraxis_all_train_cal_oos_fired": len(margin_oos_ids),
+            "margin_counteraxis_new_train_cal_oos_abstentions": len(
+                margin_new_oos_ids
+            ),
+            "combined_all_train_cal_oos_abstained_after_margin": len(
+                combined_oos_ids
+            ),
+            "combined_all_train_cal_oos_retained_after_margin": (
+                len(full_channel_rows) - len(combined_oos_ids)
+            ),
+            "production_threshold_change": False,
+        },
+        "operating_point_after_margin_and_fold_tm_bandpass": {
+            "baseline_threshold": (
+                (residual.get("fixed_operating_point") or {}).get(
+                    "baseline_threshold"
+                )
+                or (pairwise.get("counts") or {}).get("baseline_threshold")
+            ),
+            "calibration_in_scope_rows": len(calibration_full_rows),
+            "calibration_in_scope_retained_before_counteraxes": len(
+                calibration_retained_rows
+            ),
+            "calibration_in_scope_retained_after_counteraxes": (
+                len(calibration_retained_rows)
+                - (
+                    int(selected_rule["calibration_in_scope_retained_fired"])
+                    if selected_rule
+                    else 0
+                )
+                - (
+                    int(
+                        selected_fold_tm_bandpass_rule[
+                            "calibration_in_scope_retained_fired"
+                        ]
+                    )
+                    if selected_fold_tm_bandpass_rule
+                    else 0
+                )
+            ),
+            "all_train_cal_oos_full_channel_rows": len(full_channel_rows),
+            "accepted_counteraxis_all_train_cal_oos_abstained": len(
+                accepted_oos_ids
+            ),
+            "descriptor_counteraxis_all_train_cal_oos_fired": len(
+                descriptor_oos_ids
+            ),
+            "margin_counteraxis_all_train_cal_oos_fired": len(margin_oos_ids),
+            "fold_tm_bandpass_counteraxis_all_train_cal_oos_fired": len(
+                fold_tm_bandpass_oos_ids
+            ),
+            "fold_tm_bandpass_counteraxis_new_train_cal_oos_abstentions": len(
+                fold_tm_bandpass_new_oos_ids
+            ),
+            "combined_all_train_cal_oos_abstained_after_margin": len(
+                combined_oos_ids
+            ),
+            "combined_all_train_cal_oos_abstained_after_margin_and_fold_tm_bandpass": (
+                len(combined_after_fold_tm_bandpass_oos_ids)
+            ),
+            "combined_all_train_cal_oos_retained_after_margin_and_fold_tm_bandpass": (
+                len(full_channel_rows) - len(combined_after_fold_tm_bandpass_oos_ids)
+            ),
+            "production_threshold_change": False,
+        },
+        "operating_point_after_all_counteraxes": {
+            "baseline_threshold": (
+                (residual.get("fixed_operating_point") or {}).get(
+                    "baseline_threshold"
+                )
+                or (pairwise.get("counts") or {}).get("baseline_threshold")
+            ),
+            "calibration_in_scope_rows": len(calibration_full_rows),
+            "calibration_in_scope_retained_before_counteraxes": len(
+                calibration_retained_rows
+            ),
+            "calibration_in_scope_retained_after_counteraxes": (
+                len(calibration_retained_rows)
+                - (
+                    int(selected_rule["calibration_in_scope_retained_fired"])
+                    if selected_rule
+                    else 0
+                )
+                - (
+                    int(
+                        selected_fold_tm_bandpass_rule[
+                            "calibration_in_scope_retained_fired"
+                        ]
+                    )
+                    if selected_fold_tm_bandpass_rule
+                    else 0
+                )
+                - (
+                    int(
+                        selected_fold_cofactor_pressure_rule[
+                            "calibration_in_scope_retained_fired"
+                        ]
+                    )
+                    if selected_fold_cofactor_pressure_rule
+                    else 0
+                )
+            ),
+            "all_train_cal_oos_full_channel_rows": len(full_channel_rows),
+            "accepted_counteraxis_all_train_cal_oos_abstained": len(
+                accepted_oos_ids
+            ),
+            "descriptor_counteraxis_all_train_cal_oos_fired": len(
+                descriptor_oos_ids
+            ),
+            "margin_counteraxis_all_train_cal_oos_fired": len(margin_oos_ids),
+            "fold_tm_bandpass_counteraxis_all_train_cal_oos_fired": len(
+                fold_tm_bandpass_oos_ids
+            ),
+            "fold_cofactor_pressure_counteraxis_all_train_cal_oos_fired": len(
+                fold_cofactor_pressure_oos_ids
+            ),
+            "fold_cofactor_pressure_counteraxis_new_train_cal_oos_abstentions": (
+                len(fold_cofactor_pressure_new_oos_ids)
+            ),
+            "combined_all_train_cal_oos_abstained_after_all_counteraxes": len(
+                combined_after_fold_cofactor_pressure_oos_ids
+            ),
+            "combined_all_train_cal_oos_retained_after_all_counteraxes": (
+                len(full_channel_rows)
+                - len(combined_after_fold_cofactor_pressure_oos_ids)
+            ),
+            "production_threshold_change": False,
+        },
+        "missing_full_channel_entry_ids": [
+            str(row.get("entry_id"))
+            for row in candidate_rows
+            if row.get("entry_id")
+            and str(row.get("entry_id")) not in full_channel_by_entry
+        ],
+        "missing_design_full_channel_entry_ids": design_rows_missing_full_channels,
+        "counts": {
+            "calibration_in_scope_rows": len(calibration_full_rows),
+            "calibration_in_scope_retained_before_margin": len(
+                calibration_retained_rows
+            ),
+            "calibration_in_scope_retained_after_margin": (
+                len(calibration_retained_rows)
+                - (
+                    int(selected_rule["calibration_in_scope_retained_fired"])
+                    if selected_rule
+                    else 0
+                )
+            ),
+            "train_cal_oos_full_channel_rows": len(full_channel_rows),
+            "same_family_proxy_rows": len(same_family_proxy_ids),
+            "design_same_family_full_channel_rows": len(design_rows),
+            "design_same_family_rows_missing_full_channels": len(
+                design_rows_missing_full_channels
+            ),
+            "retained_application_rows": len(application_rows),
+            "retained_residual_rows_before_margin_counteraxis": (
+                retained_before_margin_count
+            ),
+            "retained_residual_rows_after_margin_counteraxis": (
+                retained_after_margin_count
+            ),
+            "retained_residual_rows_after_margin_and_fold_tm_bandpass_counteraxis": (
+                retained_after_fold_tm_bandpass_count
+            ),
+            "retained_residual_rows_after_all_counteraxes": (
+                retained_after_fold_cofactor_pressure_count
+            ),
+            "margin_atom_rules_checked": len(atom_rules),
+            "margin_pair_rules_evaluated": pair_rules_evaluated,
+            "candidate_margin_pair_rules_within_breadth_cap": len(
+                candidate_pair_rules
+            ),
+            "fold_tm_bandpass_rules_evaluated": fold_tm_bandpass_rules_evaluated,
+            "candidate_fold_tm_bandpass_rules_within_breadth_cap": len(
+                fold_tm_bandpass_candidates
+            ),
+            "fold_cofactor_pressure_rules_evaluated": (
+                fold_cofactor_pressure_rules_evaluated
+            ),
+            "candidate_fold_cofactor_pressure_rules_within_breadth_cap": len(
+                fold_cofactor_pressure_candidates
+            ),
+            "selected_rule_calibration_in_scope_retained_fired": (
+                int(selected_rule["calibration_in_scope_retained_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_design_same_family_rows_fired": (
+                int(selected_rule["design_same_family_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_component_design_same_family_rows_total": (
+                int(selected_rule["component_design_same_family_rows_total"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_all_train_cal_oos_rows_fired": (
+                int(selected_rule["all_train_cal_oos_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_application_rows_fired_after_selection": len(
+                selected_application_ids
+            ),
+            "selected_fold_tm_bandpass_rule_calibration_in_scope_retained_fired": (
+                int(
+                    selected_fold_tm_bandpass_rule[
+                        "calibration_in_scope_retained_fired"
+                    ]
+                )
+                if selected_fold_tm_bandpass_rule
+                else None
+            ),
+            "selected_fold_tm_bandpass_rule_design_same_family_rows_fired": (
+                int(
+                    selected_fold_tm_bandpass_rule[
+                        "design_same_family_rows_fired"
+                    ]
+                )
+                if selected_fold_tm_bandpass_rule
+                else None
+            ),
+            "selected_fold_tm_bandpass_rule_all_train_cal_oos_rows_fired": (
+                int(
+                    selected_fold_tm_bandpass_rule[
+                        "all_train_cal_oos_rows_fired"
+                    ]
+                )
+                if selected_fold_tm_bandpass_rule
+                else None
+            ),
+            "selected_fold_tm_bandpass_rule_application_rows_fired_after_selection": len(
+                selected_fold_tm_bandpass_application_ids
+            ),
+            "selected_fold_cofactor_pressure_rule_calibration_in_scope_retained_fired": (
+                int(
+                    selected_fold_cofactor_pressure_rule[
+                        "calibration_in_scope_retained_fired"
+                    ]
+                )
+                if selected_fold_cofactor_pressure_rule
+                else None
+            ),
+            "selected_fold_cofactor_pressure_rule_design_same_family_rows_fired": (
+                int(
+                    selected_fold_cofactor_pressure_rule[
+                        "design_same_family_rows_fired"
+                    ]
+                )
+                if selected_fold_cofactor_pressure_rule
+                else None
+            ),
+            "selected_fold_cofactor_pressure_rule_all_train_cal_oos_rows_fired": (
+                int(
+                    selected_fold_cofactor_pressure_rule[
+                        "all_train_cal_oos_rows_fired"
+                    ]
+                )
+                if selected_fold_cofactor_pressure_rule
+                else None
+            ),
+            "selected_fold_cofactor_pressure_rule_application_rows_fired_after_selection": len(
+                selected_fold_cofactor_pressure_application_ids
+            ),
+            "new_margin_application_rows_fired_after_descriptor_rules": len(
+                new_margin_application_ids
+            ),
+            "new_fold_tm_bandpass_application_rows_fired_after_margin": len(
+                new_fold_tm_bandpass_application_ids
+            ),
+            "new_fold_cofactor_pressure_application_rows_fired_after_fold_tm_bandpass": len(
+                new_fold_cofactor_pressure_application_ids
+            ),
+            "new_counteraxis_application_rows_fired_after_descriptor_rules": len(
+                new_counteraxis_application_ids
+            ),
+            "accepted_counteraxis_all_train_cal_oos_abstained": len(
+                accepted_oos_ids
+            ),
+            "descriptor_counteraxis_all_train_cal_oos_fired": len(
+                descriptor_oos_ids
+            ),
+            "descriptor_plus_accepted_all_train_cal_oos_abstained": len(
+                descriptor_plus_accepted_oos_ids
+            ),
+            "selected_margin_new_train_cal_oos_abstentions": len(
+                margin_new_oos_ids
+            ),
+            "selected_fold_tm_bandpass_new_train_cal_oos_abstentions": len(
+                fold_tm_bandpass_new_oos_ids
+            ),
+            "selected_fold_cofactor_pressure_new_train_cal_oos_abstentions": len(
+                fold_cofactor_pressure_new_oos_ids
+            ),
+            "combined_all_train_cal_oos_abstained_after_margin": len(
+                combined_oos_ids
+            ),
+            "combined_all_train_cal_oos_retained_after_margin": (
+                len(full_channel_rows) - len(combined_oos_ids)
+            ),
+            "combined_all_train_cal_oos_abstained_after_margin_and_fold_tm_bandpass": (
+                len(combined_after_fold_tm_bandpass_oos_ids)
+            ),
+            "combined_all_train_cal_oos_retained_after_margin_and_fold_tm_bandpass": (
+                len(full_channel_rows) - len(combined_after_fold_tm_bandpass_oos_ids)
+            ),
+            "combined_all_train_cal_oos_abstained_after_all_counteraxes": len(
+                combined_after_fold_cofactor_pressure_oos_ids
+            ),
+            "combined_all_train_cal_oos_retained_after_all_counteraxes": (
+                len(full_channel_rows)
+                - len(combined_after_fold_cofactor_pressure_oos_ids)
+            ),
+        },
+        "decision": {
+            "channel_margin_counteraxis_selected_now": selected_rule is not None,
+            "fold_tm_bandpass_counteraxis_selected_now": (
+                selected_fold_tm_bandpass_rule is not None
+            ),
+            "fold_cofactor_pressure_counteraxis_selected_now": (
+                selected_fold_cofactor_pressure_rule is not None
+            ),
+            "channel_margin_counteraxis_ready_for_partial_application_now": (
+                selected_ready
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "retained_rows_newly_abstained_by_margin_counteraxis": sorted(
+                new_margin_application_ids, key=_entry_id_sort_key
+            ),
+            "retained_rows_remaining_after_margin_counteraxis": (
+                retained_after_margin_ids
+            ),
+            "retained_rows_newly_abstained_by_fold_tm_bandpass_counteraxis": (
+                sorted(
+                    new_fold_tm_bandpass_application_ids,
+                    key=_entry_id_sort_key,
+                )
+            ),
+            "retained_rows_newly_abstained_by_all_counteraxes": sorted(
+                new_counteraxis_application_ids, key=_entry_id_sort_key
+            ),
+            "retained_rows_remaining_after_margin_and_fold_tm_bandpass_counteraxis": (
+                retained_after_fold_tm_bandpass_ids
+            ),
+            "retained_rows_newly_abstained_by_fold_cofactor_pressure_counteraxis": (
+                sorted(
+                    new_fold_cofactor_pressure_application_ids,
+                    key=_entry_id_sort_key,
+                )
+            ),
+            "retained_rows_remaining_after_all_counteraxes": (
+                retained_after_fold_cofactor_pressure_ids
+            ),
+            "safe_abstention_routing_available_now": bool(
+                (pairwise.get("decision") or {}).get(
+                    "safe_abstention_routing_available_now"
+                )
+            ),
+            "zero_residual_retained_transfer_risk_available_now": (
+                retained_after_fold_cofactor_pressure_count == 0
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "current_margin_axis_exhausted_for_remaining_retained_rows": True,
+            "exact_remaining_evidence_for_zero_residual_risk": [
+                (
+                    "additional train/cal-selected source-free chemistry or "
+                    "evidence counteraxes for retained rows not fired by "
+                    "descriptor rules, the channel-margin buffer, or the "
+                    "fold-TM midband/fold-cofactor pressure rules"
+                ),
+                (
+                    "the existing P07658 full-length predicted coordinate and "
+                    "provenance route before fixed-threshold scoring closure"
+                ),
+            ],
+            "next_gate": (
+                "Treat the selected strict-positive channel-margin and "
+                "fold-TM midband/fold-cofactor pressure rules as partial "
+                "fail-closed evidence for newly fired retained rows only. "
+                "Continue designing source-free chemistry/evidence axes for "
+                "the remaining retained rows; do not change threshold 0.44155 "
+                "or force a mechanism label."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "source_free_score_margin_features_only": True,
+            "source_free_channel_score_or_margin_features_only": True,
+            "rule_selected_on_train_cal_only": True,
+            "application_rows_used_for_rule_selection": False,
+            "application_row_outcomes_used_in_selection_objective": False,
+            "all_train_cal_oos_breadth_cap_applied": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "retained_pairwise_descriptor_counteraxis_readout": _source_path_record(
+                retained_pairwise_descriptor_counteraxis_readout_path
+            ),
+            "residual_safety_readout": _source_path_record(
+                residual_safety_readout_path
+            ),
+            "cofactor_context_counteraxis_readout": _source_path_record(
+                cofactor_context_counteraxis_readout_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "channel_veto_readout": _source_path_record(channel_veto_readout_path),
+        },
+        "interpretation": {
+            "headline": (
+                "The channel-margin, fold-TM bandpass, and fold/cofactor "
+                "pressure counteraxes add "
+                f"{len(new_counteraxis_application_ids)} retained-row "
+                "abstentions after descriptor counteraxes."
+            ),
+            "result": (
+                f"The selected margin rule is "
+                f"{selected_rule['feature_rule'] if selected_rule else 'none'}; "
+                f"the selected fold-TM bandpass is "
+                f"{selected_fold_tm_bandpass_rule['feature_rule'] if selected_fold_tm_bandpass_rule else 'none'}; "
+                f"the selected fold/cofactor pressure rule is "
+                f"{selected_fold_cofactor_pressure_rule['feature_rule'] if selected_fold_cofactor_pressure_rule else 'none'}; "
+                f"retained residual rows fall from {retained_before_margin_count} "
+                f"to {retained_after_fold_cofactor_pressure_count}, while "
+                f"calibration retention stays {len(calibration_retained_rows)}/"
+                f"{len(calibration_full_rows)}."
+            ),
+            "next_action": (
+                "Keep the remaining retained rows in the evidence queue and "
+                "search for another source-free chemistry/evidence axis "
+                "selected only on train/cal rows."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    policy = readout["selection_policy"]
+    selected = readout.get("selected_channel_margin_counteraxis_rule") or {}
+    selected_bandpass = (
+        readout.get("selected_fold_tm_bandpass_counteraxis_rule") or {}
+    )
+    selected_pressure = (
+        readout.get("selected_fold_cofactor_pressure_counteraxis_rule") or {}
+    )
+    operating = readout["operating_point_after_margin"]
+    operating_combined = readout[
+        "operating_point_after_margin_and_fold_tm_bandpass"
+    ]
+    operating_all = readout["operating_point_after_all_counteraxes"]
+    lines = [
+        "# Fold-Augmented Lever 3 Retained Channel-Margin Counteraxis Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Channel-margin counteraxis selected now: "
+        f"{decision['channel_margin_counteraxis_selected_now']}",
+        "- Fold-TM bandpass counteraxis selected now: "
+        f"{decision['fold_tm_bandpass_counteraxis_selected_now']}",
+        "- Fold/cofactor pressure counteraxis selected now: "
+        f"{decision['fold_cofactor_pressure_counteraxis_selected_now']}",
+        "- Ready for partial application now: "
+        f"{decision['channel_margin_counteraxis_ready_for_partial_application_now']}",
+        "- Application rows used for rule selection: "
+        f"{decision['application_rows_used_for_rule_selection']}",
+        "",
+        "## Selection Policy",
+        "",
+        f"- Rule family: {policy['rule_family']}",
+        "- Candidate features: "
+        f"{policy['candidate_features']}",
+        "- Fold-TM bandpass feature: "
+        f"{policy['fold_tm_bandpass_feature']}",
+        "- Fold/cofactor pressure features: "
+        f"{policy['fold_cofactor_pressure_features']}",
+        "- Active route channels: "
+        f"{policy['active_route_channels']}",
+        "- Strict-positive lower bound open: "
+        f"{policy['strict_positive_margin_lower_bound_open']}",
+        "- All train/cal OOS breadth cap rows: "
+        f"{policy['all_train_cal_oos_breadth_cap_rows']}",
+        f"- Margin selection objective: {policy['margin_selection_objective']}",
+        "- Fold-TM bandpass selection objective: "
+        f"{policy['fold_tm_bandpass_selection_objective']}",
+        "- Fold/cofactor pressure selection objective: "
+        f"{policy['fold_cofactor_pressure_selection_objective']}",
+        "",
+        "## Operating Point",
+        "",
+        "- Calibration retained before/after margin: "
+        f"{operating['calibration_in_scope_retained_before_margin']}/"
+        f"{operating['calibration_in_scope_retained_after_margin']} "
+        f"of {operating['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained after accepted counteraxes / descriptors / margin: "
+        f"{operating['accepted_counteraxis_all_train_cal_oos_abstained']}/"
+        f"{operating['descriptor_plus_accepted_all_train_cal_oos_abstained']}/"
+        f"{operating['combined_all_train_cal_oos_abstained_after_margin']} "
+        f"of {operating['all_train_cal_oos_full_channel_rows']}",
+        "- Train/cal OOS abstained after margin+fold-TM bandpass: "
+        f"{operating_combined['combined_all_train_cal_oos_abstained_after_margin_and_fold_tm_bandpass']} "
+        f"of {operating_combined['all_train_cal_oos_full_channel_rows']}",
+        "- Train/cal OOS abstained after all counteraxes: "
+        f"{operating_all['combined_all_train_cal_oos_abstained_after_all_counteraxes']} "
+        f"of {operating_all['all_train_cal_oos_full_channel_rows']}",
+        "- Production threshold change: "
+        f"{operating['production_threshold_change']}",
+        "",
+        "## Counts",
+        "",
+        "- Design same-family full-channel rows: "
+        f"{counts['design_same_family_full_channel_rows']}/"
+        f"{counts['same_family_proxy_rows']}",
+        "- Atom/pair rules checked: "
+        f"{counts['margin_atom_rules_checked']}/"
+        f"{counts['margin_pair_rules_evaluated']}",
+        "- Candidate pair rules within breadth cap: "
+        f"{counts['candidate_margin_pair_rules_within_breadth_cap']}",
+        "- Fold-TM bandpass rules evaluated / within breadth cap: "
+        f"{counts['fold_tm_bandpass_rules_evaluated']}/"
+        f"{counts['candidate_fold_tm_bandpass_rules_within_breadth_cap']}",
+        "- Fold/cofactor pressure rules evaluated / within breadth cap: "
+        f"{counts['fold_cofactor_pressure_rules_evaluated']}/"
+        f"{counts['candidate_fold_cofactor_pressure_rules_within_breadth_cap']}",
+        "- New retained rows fired after descriptor rules: "
+        f"{counts['new_counteraxis_application_rows_fired_after_descriptor_rules']}",
+        "- Retained residual rows before/after margin/after fold-TM bandpass/after all: "
+        f"{counts['retained_residual_rows_before_margin_counteraxis']}/"
+        f"{counts['retained_residual_rows_after_margin_counteraxis']}/"
+        f"{counts['retained_residual_rows_after_margin_and_fold_tm_bandpass_counteraxis']}/"
+        f"{counts['retained_residual_rows_after_all_counteraxes']}",
+        "- New train/cal OOS abstentions from margin: "
+        f"{counts['selected_margin_new_train_cal_oos_abstentions']}",
+        "- New train/cal OOS abstentions from fold-TM bandpass: "
+        f"{counts['selected_fold_tm_bandpass_new_train_cal_oos_abstentions']}",
+        "- New train/cal OOS abstentions from fold/cofactor pressure: "
+        f"{counts['selected_fold_cofactor_pressure_new_train_cal_oos_abstentions']}",
+        "",
+        "## Selected Margin Rule",
+        "",
+        f"- Rule: {selected.get('feature_rule')}",
+        "- Calibration retained in-scope fired: "
+        f"{selected.get('calibration_in_scope_retained_fired')}",
+        "- Design same-family rows fired: "
+        f"{selected.get('design_same_family_rows_fired')}",
+        "- Component design support total: "
+        f"{selected.get('component_design_same_family_rows_total')}",
+        "- All train/cal OOS rows fired: "
+        f"{selected.get('all_train_cal_oos_rows_fired')}",
+        "- Retained application rows fired after selection: "
+        f"{selected.get('application_entry_ids_fired_after_selection')}",
+        "",
+        "## Selected Fold-TM Bandpass Rule",
+        "",
+        f"- Rule: {selected_bandpass.get('feature_rule')}",
+        "- Calibration retained in-scope fired: "
+        f"{selected_bandpass.get('calibration_in_scope_retained_fired')}",
+        "- Design same-family rows fired: "
+        f"{selected_bandpass.get('design_same_family_rows_fired')}",
+        "- All train/cal OOS rows fired: "
+        f"{selected_bandpass.get('all_train_cal_oos_rows_fired')}",
+        "- Retained application rows fired after selection: "
+        f"{selected_bandpass.get('application_entry_ids_fired_after_selection')}",
+        "",
+        "## Selected Fold/Cofactor Pressure Rule",
+        "",
+        f"- Rule: {selected_pressure.get('feature_rule')}",
+        "- Calibration retained in-scope fired: "
+        f"{selected_pressure.get('calibration_in_scope_retained_fired')}",
+        "- Design same-family rows fired: "
+        f"{selected_pressure.get('design_same_family_rows_fired')}",
+        "- All train/cal OOS rows fired: "
+        f"{selected_pressure.get('all_train_cal_oos_rows_fired')}",
+        "- Retained application rows fired after selection: "
+        f"{selected_pressure.get('application_entry_ids_fired_after_selection')}",
+        "",
+        "## Application Rows",
+        "",
+        "| row | descriptor routed | margin fires | fold bandpass fires | pressure fires | new margin | new fold bandpass | new pressure | primary margin | active-route margin | fold TM | action delta |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in readout.get("application_row_actions", []):
+        lines.append(
+            f"| {row['entry_id']} | {row['descriptor_routed_before_margin']} | "
+            f"{row['selected_margin_counteraxis_fires_after_selection']} | "
+            f"{row['selected_fold_tm_bandpass_counteraxis_fires_after_selection']} | "
+            f"{row['selected_fold_cofactor_pressure_counteraxis_fires_after_selection']} | "
+            f"{row['new_abstention_from_margin_counteraxis']} | "
+            f"{row['new_abstention_from_fold_tm_bandpass_counteraxis']} | "
+            f"{row['new_abstention_from_fold_cofactor_pressure_counteraxis']} | "
+            f"{row['primary_channel_margin']} | "
+            f"{row['active_route_min_positive_margin']} | "
+            f"{row['fold_nearest_atlas_tm_score']} | "
+            f"{row['deployment_action_delta']} |"
+        )
+    lines += [
+        "",
+        "## Top Candidate Margin Pair Rules",
+        "",
+        "| rule | design fired | component support | all OOS fired | application fired |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for rule in readout.get("top_candidate_margin_pair_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['component_design_same_family_rows_total']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['application_rows_fired_after_selection']} |"
+        )
+    lines += [
+        "",
+        "## Top Candidate Fold-TM Bandpass Rules",
+        "",
+        "| rule | design fired | all OOS fired | application fired |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for rule in readout.get("top_candidate_fold_tm_bandpass_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['application_rows_fired_after_selection']} |"
+        )
+    lines += [
+        "",
+        "## Top Candidate Fold/Cofactor Pressure Rules",
+        "",
+        "| rule | design fired | all OOS fired | application fired |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for rule in readout.get("top_candidate_fold_cofactor_pressure_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['application_rows_fired_after_selection']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        "- Newly abstained retained rows: "
+        f"{decision['retained_rows_newly_abstained_by_all_counteraxes']}",
+        "- Remaining retained rows after all counteraxes: "
+        f"{decision['retained_rows_remaining_after_all_counteraxes']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing artifacts only; no coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+    *,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    residual_safety_readout_path: Path,
+    cofactor_context_counteraxis_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    max_all_train_cal_oos_rows_fired: int = 50,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_CHANNEL_MARGIN_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+        retained_pairwise_descriptor_counteraxis_readout_path=(
+            retained_pairwise_descriptor_counteraxis_readout_path
+        ),
+        residual_safety_readout_path=residual_safety_readout_path,
+        cofactor_context_counteraxis_readout_path=(
+            cofactor_context_counteraxis_readout_path
+        ),
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        threshold_contract_path=threshold_contract_path,
+        channel_veto_readout_path=channel_veto_readout_path,
+        max_all_train_cal_oos_rows_fired=max_all_train_cal_oos_rows_fired,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_report(
                 readout
             ),
             encoding="utf-8",

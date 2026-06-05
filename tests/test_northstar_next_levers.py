@@ -86,6 +86,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout,
     build_fold_augmented_lever3_retained_descriptor_rescue_readout,
     build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout,
+    build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -6950,6 +6951,236 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ]
         )
         self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_retained_channel_margin_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def score_row(
+            entry_id: str,
+            *,
+            primary: float,
+            cofactor: float,
+        ) -> dict[str, Any]:
+            return {
+                "entry_id": entry_id,
+                "channel_scores": {
+                    "combined_mean_geometry_fold": primary,
+                    "cofactor_max_score": cofactor,
+                },
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pairwise_path = root / "pairwise.json"
+            residual_path = root / "residual.json"
+            cofactor_path = root / "cofactor.json"
+            surface_path = root / "surface.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows_after_pairwise_counteraxis": 3
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True
+                        },
+                        "prior_descriptor_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "selected_pairwise_counteraxis_rule": {
+                            "all_train_cal_oos_entry_ids_fired": ["m_csa:1"]
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "prior_descriptor_counteraxis_fires": True,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "prior_descriptor_counteraxis_fires": False,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "prior_descriptor_counteraxis_fires": False,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "accession": "A4",
+                                "prior_descriptor_counteraxis_fires": False,
+                                "selected_pairwise_counteraxis_fires_after_selection": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            residual_path.write_text(
+                json.dumps(
+                    {
+                        "fixed_operating_point": {
+                            "baseline_threshold": 0.5,
+                            "best_current_route_channels": [
+                                "combined_mean_geometry_fold",
+                                "cofactor_max_score",
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_path.write_text(
+                json.dumps(
+                    {
+                        "bandpass_scout_operating_point": {
+                            "all_train_cal_oos_entry_ids_abstained": ["m_csa:0"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            score_row("m_csa:0", primary=0.4, cofactor=0.2),
+                            score_row("m_csa:1", primary=0.7, cofactor=0.2),
+                            score_row("m_csa:2", primary=0.511, cofactor=0.2),
+                            score_row("m_csa:3", primary=0.7, cofactor=0.103),
+                            score_row("m_csa:4", primary=0.57, cofactor=0.2),
+                            score_row("m_csa:10", primary=0.51, cofactor=0.2),
+                            score_row("m_csa:11", primary=0.7, cofactor=0.105),
+                            score_row("m_csa:12", primary=0.512, cofactor=0.2),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            score_row("cal:anchor", primary=0.5, cofactor=0.2),
+                            score_row("cal:retained", primary=0.53, cofactor=0.2),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "channel_readouts": [
+                            {
+                                "channels": ["combined_mean_geometry_fold"],
+                                "thresholds": {
+                                    "combined_mean_geometry_fold": 0.5
+                                },
+                            },
+                            {
+                                "channels": ["cofactor_max_score"],
+                                "thresholds": {"cofactor_max_score": 0.1},
+                            },
+                        ],
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                                {"entry_id": "m_csa:10"},
+                                {"entry_id": "m_csa:11"},
+                                {"entry_id": "m_csa:12"},
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                residual_safety_readout_path=residual_path,
+                cofactor_context_counteraxis_readout_path=cofactor_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                max_all_train_cal_oos_rows_fired=10,
+                artifact_id="custom_channel_margin_counteraxis",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_channel_margin_counteraxis")
+        self.assertEqual(
+            readout["selected_channel_margin_counteraxis_rule"]["feature_rule"],
+            (
+                "active_route_min_positive_margin in (0, 0.012000] OR "
+                "active_route_min_positive_margin in (0, 0.012000]"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_channel_margin_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:10", "m_csa:11", "m_csa:12"],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_margin_counteraxis"
+            ],
+            ["m_csa:2", "m_csa:3"],
+        )
+        self.assertEqual(
+            readout["decision"]["retained_rows_remaining_after_margin_counteraxis"],
+            ["m_csa:4"],
+        )
+        self.assertEqual(
+            readout["counts"]["calibration_in_scope_retained_before_margin"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["calibration_in_scope_retained_after_margin"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_margin_counteraxis"],
+            1,
+        )
+        self.assertIsNone(readout["selected_fold_tm_bandpass_counteraxis_rule"])
+        self.assertIsNone(
+            readout["selected_fold_cofactor_pressure_counteraxis_rule"]
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_margin_and_fold_tm_bandpass_counteraxis"
+            ],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            1,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(
+            readout["selection_policy"]["strict_positive_margin_lower_bound_open"]
+        )
+        self.assertFalse(
+            readout["selection_policy"]["zero_margin_threshold_anchor_reclassified"]
+        )
+        self.assertTrue(
+            readout["guardrails"]["source_free_score_margin_features_only"]
+        )
         self.assertFalse(
             readout["guardrails"]["heldout_rows_used_for_rule_selection"]
         )

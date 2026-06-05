@@ -170,6 +170,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_descriptor_generalization_counteraxis_readout,
     write_fold_augmented_lever3_retained_descriptor_rescue_readout,
     write_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout,
+    write_fold_augmented_lever3_retained_channel_margin_counteraxis_readout,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -13903,6 +13904,48 @@ def cmd_build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_rea
         f"{counts.get('retained_residual_rows_after_pairwise_counteraxis')}, "
         "partial ready: "
         f"{decision.get('pairwise_descriptor_counteraxis_ready_for_partial_application_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = (
+        write_fold_augmented_lever3_retained_channel_margin_counteraxis_readout(
+            retained_pairwise_descriptor_counteraxis_readout_path=Path(
+                args.retained_pairwise_descriptor_counteraxis_readout
+            ),
+            residual_safety_readout_path=Path(args.residual_safety_readout),
+            cofactor_context_counteraxis_readout_path=Path(
+                args.cofactor_context_counteraxis_readout
+            ),
+            latest_train_cal_oos_surface_path=Path(
+                args.latest_train_cal_oos_surface
+            ),
+            threshold_contract_path=Path(args.threshold_contract),
+            channel_veto_readout_path=Path(args.channel_veto_readout),
+            max_all_train_cal_oos_rows_fired=(
+                args.max_all_train_cal_oos_rows_fired
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 retained channel-margin "
+        f"counteraxis readout to {args.out} (new application fired: "
+        f"{counts.get('new_counteraxis_application_rows_fired_after_descriptor_rules')}, "
+        "retained after all counteraxes: "
+        f"{counts.get('retained_residual_rows_after_all_counteraxes')}, "
+        "partial ready: "
+        f"{decision.get('channel_margin_counteraxis_ready_for_partial_application_now')})"
     )
     return 0
 
@@ -33367,6 +33410,85 @@ def build_parser() -> argparse.ArgumentParser:
     lever3_retained_pairwise_descriptor_counteraxis_readout.set_defaults(
         func=(
             cmd_build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout
+        )
+    )
+
+    lever3_retained_channel_margin_counteraxis_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-retained-channel-margin-counteraxis-readout",
+        help=(
+            "select a train/cal-only strict-positive score-margin counteraxis "
+            "and measure retained-row application after descriptor rules"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--retained-pairwise-descriptor-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+            "descriptor_counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--residual-safety-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_residual_safety_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--cofactor-context-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_cofactor_context_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--latest-train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_proxy_train_cal_post_"
+            "followup_protein_only_fold_topology_residual_extended_train_cal_"
+            "oos_surface_current702_20260603.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--channel-veto-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_channel_veto_readout_"
+            "current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--max-all-train-cal-oos-rows-fired",
+        type=int,
+        default=50,
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.md"
+        ),
+    )
+    lever3_retained_channel_margin_counteraxis_readout.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout
         )
     )
 

@@ -3,17 +3,16 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T06:02:25Z`
-- STARTED_AT_LOCAL: `2026-06-05T01:02:25-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T06:24:36Z`
-- ENDED_AT_LOCAL: `2026-06-05T01:24:36-0500 CDT`
-- ELAPSED_MINUTES: `22.18`
-- Status: Run 49 wrap-up. Canonical
+- STARTED_AT_UTC: `2026-06-05T07:02:50Z`
+- STARTED_AT_LOCAL: `2026-06-05T02:02:50-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T07:52:56Z`
+- ENDED_AT_LOCAL: `2026-06-05T02:52:56-0500 CDT`
+- ELAPSED_MINUTES: `50.10`
+- Status: Run 50 wrap completed. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-05T06:02:25Z`. Lever 3 retained pairwise descriptor counteraxis
-  readout is validated. Actual elapsed time is shorter than the requested
-  55-minute work block; the progress ledger records the measured duration
-  rather than inflating it.
+  `2026-06-05T07:02:50Z`. Lever 3 work is restricted to deployment-valid
+  fold/geometry novelty-gate readouts. Commit, push, sync verification, and
+  lock release are the remaining mechanical steps after this handoff update.
 
 ## Mission
 
@@ -64,6 +63,128 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 50
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T07:02:50Z`
+- STARTED_LOCAL: `2026-06-05T02:02:50-0500 CDT`
+- ENDED_AT: `2026-06-05T07:52:56Z`
+- ENDED_LOCAL: `2026-06-05T02:52:56-0500 CDT`
+- ELAPSED_MINUTES: `50.10`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T07:02:50Z`.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-retained-channel-margin-counteraxis-readout`
+  with builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_retained_channel_margin_counteraxis_readout_current702_20260604.md`.
+- Added synthetic builder coverage, parser-default coverage, artifact-count
+  regression coverage, and source-artifact hash coverage for the new readout.
+
+#### Measured results
+
+- The readout composes three train/cal-selected source-free counteraxis stages
+  after the retained pairwise descriptor counteraxis: a strict-positive channel
+  margin rule, a fold-nearest-atlas TM midband, and a high-fold/low
+  geometry-cofactor pressure rule.
+- Selected margin rule:
+  `active_route_min_positive_margin in (0, 0.004750] OR primary_channel_margin in (0, 0.018650]`.
+  It fires 0 retained calibration rows, 10 train/cal same-family design rows,
+  44 train/cal OOS rows, and newly routes `m_csa:89` and `m_csa:229`.
+- Selected fold-TM bandpass:
+  `fold_nearest_atlas_tm_score in [0.577600, 0.685700]`. It fires 0 retained
+  calibration rows, 17 train/cal same-family design rows, 50 train/cal OOS
+  rows, and newly routes `m_csa:52`, `m_csa:74`, `m_csa:190`, and `m_csa:256`.
+- Selected fold/cofactor pressure rule:
+  `combined_mean_geometry_cofactor_fold <= 0.413589 AND fold_nearest_atlas_tm_score >= 0.577600`.
+  It fires 0 retained calibration rows, 16 train/cal same-family design rows,
+  47 train/cal OOS rows, and newly routes `m_csa:638`.
+- Retained residual rows after descriptor rules fell from 9 to 2 after all
+  three counteraxes. Newly routed retained rows are `m_csa:52`, `m_csa:74`,
+  `m_csa:89`, `m_csa:190`, `m_csa:229`, `m_csa:256`, and `m_csa:638`.
+  Remaining retained rows are `m_csa:308` and `m_csa:468`.
+- Calibration retention remains 31/34. Train/cal OOS abstention rises from
+  110 after descriptor+accepted counteraxes to 165/204 after all new
+  counteraxes. The fixed threshold remains `0.44155`; no scoring closure or
+  forced mechanism label is allowed for the two residual rows.
+- A post-readout bounded residual probe found no valid single source-free
+  channel/top-1 rule that hits `m_csa:308` or `m_csa:468` while preserving the
+  retained-calibration guard. Current scalar source-free summaries still make
+  both look like high-confidence metal-dependent-hydrolase transfers, so the
+  next evidence needs richer pocket chemistry/metal/cofactor geometry or an
+  equivalent train/cal-selected source-free axis.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training, rule selection, or threshold
+  tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The readout composes existing deployment-valid artifacts only; it performs no
+  provider calls, coordinate downloads, coordinate staging, scoring, imports,
+  or production-threshold changes.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1433 passed.
+- Focused final readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_retained_channel_margin_counteraxis_excludes_application_rows tests/test_cli.py::CliTests::test_lever3_retained_channel_margin_counteraxis_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  4 passed, 29 subtests passed.
+- Affected suites after the margin+fold-bandpass stage:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  609 passed, 194 subtests passed.
+- Final full pytest after the pressure stage:
+  `PYTHONPATH=src python -m pytest -q`: 1481 passed, 213 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1436 passed.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3561 JSON files and 27 JSONL files parsed with
+  0 errors.
+- Normalized reproducibility check passed for the new CLI artifact after
+  normalizing `created_utc`.
+- Disk check remained above the guardrail: about 13 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md` from the progress CLI.
+- Commit, push, `HEAD == origin/main` verification, and lock release are the
+  remaining mechanical wrap steps after the progress/status update.
+
+#### Exact next Lever 3 action
+
+Treat `m_csa:52`, `m_csa:74`, `m_csa:89`, `m_csa:190`, `m_csa:229`,
+`m_csa:256`, and `m_csa:638` as newly safe to
+`abstain_or_route_novel_oos` under the selected train/cal-only channel-margin,
+fold-TM bandpass, and fold/cofactor pressure counteraxes. Do not force
+mechanism labels for `m_csa:308` or `m_csa:468`. The next Lever 3 attempt
+should build a train/cal-selected source-free active-site chemistry/metal or
+cofactor-geometry counteraxis for those two high-confidence lookalikes, because
+current scalar channel/top-1/fold evidence does not separate them without
+firing retained calibration rows. Keep threshold `0.44155` unchanged.
 
 ### 2026-06-05 Lever 3 Forward Push Run 49
 

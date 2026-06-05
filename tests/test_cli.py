@@ -708,6 +708,45 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_retained_channel_margin_counteraxis_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-retained-channel-margin-"
+                "counteraxis-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+                "counteraxis_readout_current702_20260604.json"
+            ),
+        )
+        self.assertIn(
+            "retained_pairwise_descriptor_counteraxis_readout",
+            args.retained_pairwise_descriptor_counteraxis_readout,
+        )
+        self.assertIn(
+            "lever3_residual_safety_readout",
+            args.residual_safety_readout,
+        )
+        self.assertIn(
+            "lever3_cofactor_context_counteraxis_readout",
+            args.cofactor_context_counteraxis_readout,
+        )
+        self.assertIn(
+            "post_followup_protein_only_fold_topology_residual_extended_train_cal",
+            args.latest_train_cal_oos_surface,
+        )
+        self.assertEqual(args.max_all_train_cal_oos_rows_fired, 50)
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

@@ -9354,6 +9354,227 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_retained_channel_margin_counteraxis_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_retained_channel_margin_"
+                "counteraxis_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_channel_margin_"
+                "counteraxis_readout_partial_application"
+            ),
+        )
+        self.assertEqual(
+            readout["selection_policy"]["all_train_cal_oos_breadth_cap_rows"],
+            50,
+        )
+        self.assertFalse(
+            readout["selection_policy"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertEqual(
+            readout["selected_channel_margin_counteraxis_rule"]["feature_rule"],
+            (
+                "active_route_min_positive_margin in (0, 0.004750] OR "
+                "primary_channel_margin in (0, 0.018650]"
+            ),
+        )
+        self.assertEqual(
+            readout["selected_channel_margin_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            [
+                "m_csa:91",
+                "m_csa:105",
+                "m_csa:119",
+                "m_csa:223",
+                "m_csa:234",
+                "m_csa:253",
+                "m_csa:280",
+                "m_csa:322",
+                "m_csa:498",
+                "m_csa:621",
+            ],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_margin_counteraxis"
+            ],
+            ["m_csa:89", "m_csa:229"],
+        )
+        self.assertEqual(
+            readout["decision"]["retained_rows_remaining_after_margin_counteraxis"],
+            [
+                "m_csa:52",
+                "m_csa:74",
+                "m_csa:190",
+                "m_csa:256",
+                "m_csa:308",
+                "m_csa:468",
+                "m_csa:638",
+            ],
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_calibration_in_scope_retained_fired"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["calibration_in_scope_retained_after_margin"],
+            31,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_all_train_cal_oos_rows_fired"],
+            44,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_margin_new_train_cal_oos_abstentions"],
+            28,
+        )
+        self.assertEqual(
+            readout["counts"]["combined_all_train_cal_oos_abstained_after_margin"],
+            138,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_before_margin_counteraxis"],
+            9,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_margin_counteraxis"],
+            7,
+        )
+        self.assertEqual(
+            readout["selected_fold_tm_bandpass_counteraxis_rule"][
+                "feature_rule"
+            ],
+            "fold_nearest_atlas_tm_score in [0.577600, 0.685700]",
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fold_tm_bandpass_rule_calibration_in_scope_retained_fired"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fold_tm_bandpass_rule_design_same_family_rows_fired"
+            ],
+            17,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fold_tm_bandpass_rule_all_train_cal_oos_rows_fired"
+            ],
+            50,
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_fold_tm_bandpass_counteraxis"
+            ],
+            ["m_csa:52", "m_csa:74", "m_csa:190", "m_csa:256"],
+        )
+        self.assertEqual(
+            readout["decision"]["retained_rows_newly_abstained_by_all_counteraxes"],
+            [
+                "m_csa:52",
+                "m_csa:74",
+                "m_csa:89",
+                "m_csa:190",
+                "m_csa:229",
+                "m_csa:256",
+                "m_csa:638",
+            ],
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_remaining_after_margin_and_fold_tm_bandpass_counteraxis"
+            ],
+            ["m_csa:308", "m_csa:468", "m_csa:638"],
+        )
+        self.assertEqual(
+            readout["selected_fold_cofactor_pressure_counteraxis_rule"][
+                "feature_rule"
+            ],
+            (
+                "combined_mean_geometry_cofactor_fold <= 0.413589 AND "
+                "fold_nearest_atlas_tm_score >= 0.577600"
+            ),
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fold_cofactor_pressure_rule_calibration_in_scope_retained_fired"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fold_cofactor_pressure_rule_design_same_family_rows_fired"
+            ],
+            16,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "selected_fold_cofactor_pressure_rule_all_train_cal_oos_rows_fired"
+            ],
+            47,
+        )
+        self.assertEqual(
+            readout["decision"][
+                "retained_rows_newly_abstained_by_fold_cofactor_pressure_counteraxis"
+            ],
+            ["m_csa:638"],
+        )
+        self.assertEqual(
+            readout["decision"]["retained_rows_remaining_after_all_counteraxes"],
+            ["m_csa:308", "m_csa:468"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "retained_residual_rows_after_margin_and_fold_tm_bandpass_counteraxis"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "combined_all_train_cal_oos_abstained_after_margin_and_fold_tm_bandpass"
+            ],
+            161,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "combined_all_train_cal_oos_abstained_after_all_counteraxes"
+            ],
+            165,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "channel_margin_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertTrue(
+            readout["guardrails"]["source_free_score_margin_features_only"]
+        )
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -9478,6 +9699,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_retained_pairwise_"
                 "descriptor_counteraxis_readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_retained_channel_margin_"
+                "counteraxis_readout_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):
