@@ -99,6 +99,10 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit,
     build_fold_augmented_lever3_deployment_stage_provenance_audit,
     build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_route_class_readout,
+    build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit,
+    build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout,
+    build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -9669,6 +9673,625 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertIn(
             "stage_provenance_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_readout_classifies_manifest(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            stage_path = root / "stage_repro.json"
+            manifest_path = root / "manifest.json"
+            stage_repro = {
+                "artifact_id": "stage_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "manifest_action_rows": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_stage_provenance_reproducible": True,
+                    "deployment_stage_provenance_clean": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+            }
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "counts": {
+                    "operator_manifest_rows": 2,
+                    "forbidden_manifest_field_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "accepted_cofactor_or_same_family_bandpass",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "route_stage": "geometry_mismatch_counteraxis",
+                            "stage_source_artifact_id": "artifact_b",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        },
+                    ]
+                },
+            }
+            stage_path.write_text(
+                json.dumps(stage_repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = build_fold_augmented_lever3_deployment_operator_route_class_readout(
+                deployment_stage_provenance_reproducibility_audit_path=stage_path,
+                deployment_operator_manifest_audit_path=manifest_path,
+                artifact_id="route_class",
+            )
+
+            manifest["operator_manifest"]["action_rows"][0][
+                "route_stage"
+            ] = "new_unreviewed_stage"
+            manifest["operator_manifest"]["action_rows"][0]["action"] = "force_label"
+            manifest["operator_manifest"]["action_rows"][0][
+                "force_mechanism_label_now"
+            ] = True
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_operator_route_class_readout(
+                    deployment_stage_provenance_reproducibility_audit_path=stage_path,
+                    deployment_operator_manifest_audit_path=manifest_path,
+                    artifact_id="route_class_blocked",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "route_class")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_deployment_operator_route_class_readout_passed",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_operator_route_class_readout_ready"]
+        )
+        self.assertEqual(readout["counts"]["operator_action_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["operator_action_rows_abstain_or_route_novel_oos"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_counts"],
+            {
+                "cofactor_or_same_family_confound": 1,
+                "pocket_geometry_confound": 1,
+            },
+        )
+        self.assertEqual(readout["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(readout["counts"]["unclassified_route_stage_rows"], 0)
+        self.assertEqual(readout["route_class_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "readout_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["route_class_checks"][
+                "all_manifest_rows_abstain_or_route_novel_oos"
+            ]
+        )
+        self.assertFalse(blocked["route_class_checks"]["all_manifest_rows_classified"])
+        self.assertFalse(blocked["route_class_checks"]["no_forced_mechanism_labels"])
+        self.assertIn(
+            "all_manifest_rows_classified",
+            blocked["route_class_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            stage_path = root / "stage_repro.json"
+            manifest_path = root / "manifest.json"
+            route_class_path = root / "route_class.json"
+            stage_repro = {
+                "artifact_id": "stage_repro",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_"
+                    "reproducibility_audit_passed"
+                ),
+                "reproducibility_violations": [],
+                "counts": {
+                    "manifest_action_rows": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "decision": {
+                    "deployment_stage_provenance_reproducible": True,
+                    "deployment_stage_provenance_clean": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+            }
+            manifest = {
+                "artifact_id": "manifest",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+                ),
+                "operator_manifest_violations": [],
+                "counts": {
+                    "operator_manifest_rows": 1,
+                    "forbidden_manifest_field_rows": 0,
+                    "unexpected_manifest_field_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_manifest_ready": True,
+                },
+                "operator_manifest": {
+                    "action_rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "route_stage": "pocket_chemistry_counteraxis",
+                            "stage_source_artifact_id": "artifact_a",
+                            "action": "abstain_or_route_novel_oos",
+                            "force_mechanism_label_now": False,
+                            "used_for_rule_selection": False,
+                        }
+                    ]
+                },
+            }
+            stage_path.write_text(
+                json.dumps(stage_repro, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = build_fold_augmented_lever3_deployment_operator_route_class_readout(
+                deployment_stage_provenance_reproducibility_audit_path=stage_path,
+                deployment_operator_manifest_audit_path=manifest_path,
+                artifact_id="route_class",
+            )
+            route_class_path.write_text(
+                json.dumps(readout, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    artifact_id="route_class_repro",
+                )
+            )
+
+            manifest["operator_manifest"]["action_rows"][0][
+                "route_stage"
+            ] = "fold_tm_bandpass_counteraxis"
+            manifest_path.write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    artifact_id="route_class_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "route_class_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_operator_route_class_reproducible"]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_route_class_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "operator_route_class_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_requires_clean_stage_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            stage_path = root / "stage.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 2,
+                    "operator_action_rows_abstain_or_route_novel_oos": 2,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "rule_selection_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "cofactor_or_same_family_confound",
+                        "route_stage": "accepted_cofactor_or_same_family_bandpass",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "route_class": "pocket_geometry_confound",
+                        "route_stage": "geometry_mismatch_counteraxis",
+                        "stage_source_artifact_id": "artifact_b",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                ],
+            }
+            stage = {
+                "artifact_id": "stage",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+                ),
+                "stage_provenance_violations": [],
+                "counts": {
+                    "unique_stage_source_artifacts": 2,
+                    "stage_source_artifacts_guardrail_clean": 2,
+                    "lineage_source_records_checked": 4,
+                    "lineage_source_records_hash_current": 4,
+                },
+                "decision": {
+                    "deployment_stage_provenance_clean": True,
+                },
+                "stage_source_rows": [
+                    {
+                        "stage_source_artifact_id": "artifact_a",
+                        "lineage_covered": True,
+                        "lineage_depth": 1,
+                        "lineage_path": "artifact_a.json",
+                        "lineage_status": "passed",
+                        "guardrail_violations": [],
+                        "source_records_checked": 2,
+                        "source_records_hash_current": 2,
+                    },
+                    {
+                        "stage_source_artifact_id": "artifact_b",
+                        "lineage_covered": True,
+                        "lineage_depth": 1,
+                        "lineage_path": "artifact_b.json",
+                        "lineage_status": "passed",
+                        "guardrail_violations": [],
+                        "source_records_checked": 2,
+                        "source_records_hash_current": 2,
+                    },
+                ],
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readout = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="route_class_provenance",
+                )
+            )
+
+            stage["stage_source_rows"][1]["lineage_covered"] = False
+            stage["stage_source_rows"][1]["guardrail_violations"] = [
+                "candidate_rows_scored_now"
+            ]
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="route_class_provenance_blocked",
+                )
+            )
+
+        self.assertEqual(readout["artifact_id"], "route_class_provenance")
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_readout_passed"
+            ),
+        )
+        self.assertTrue(
+            readout["decision"][
+                "deployment_operator_route_class_provenance_ready"
+            ]
+        )
+        self.assertEqual(readout["counts"]["route_class_stage_source_links"], 2)
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_lineage_covered"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_guardrail_clean"],
+            2,
+        )
+        self.assertEqual(readout["provenance_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_readout_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            blocked["provenance_checks"][
+                "all_route_class_stage_sources_lineage_covered"
+            ]
+        )
+        self.assertFalse(
+            blocked["provenance_checks"][
+                "all_route_class_stage_sources_guardrail_clean"
+            ]
+        )
+        self.assertIn(
+            "all_route_class_stage_sources_lineage_covered",
+            blocked["provenance_violations"],
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            route_class_path = root / "route_class.json"
+            stage_path = root / "stage.json"
+            provenance_path = root / "provenance.json"
+            route_class = {
+                "artifact_id": "route_class",
+                "status": (
+                    "fold_augmented_lever3_deployment_operator_route_class_"
+                    "readout_passed"
+                ),
+                "route_class_violations": [],
+                "counts": {
+                    "operator_action_rows": 1,
+                    "operator_action_rows_abstain_or_route_novel_oos": 1,
+                    "calibration_in_scope_retained": 31,
+                    "calibration_in_scope_rows": 34,
+                    "train_cal_oos_abstained_or_routed": 167,
+                    "train_cal_oos_rows": 204,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "unsafe_action_rows": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "rule_selection_rows": 0,
+                },
+                "decision": {
+                    "deployment_operator_route_class_readout_ready": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "operator_route_class_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "route_class": "pocket_chemistry_confound",
+                        "route_stage": "pocket_chemistry_counteraxis",
+                        "stage_source_artifact_id": "artifact_a",
+                        "action": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+            }
+            stage = {
+                "artifact_id": "stage",
+                "status": (
+                    "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+                ),
+                "stage_provenance_violations": [],
+                "counts": {
+                    "unique_stage_source_artifacts": 1,
+                    "stage_source_artifacts_guardrail_clean": 1,
+                    "lineage_source_records_checked": 2,
+                    "lineage_source_records_hash_current": 2,
+                },
+                "decision": {
+                    "deployment_stage_provenance_clean": True,
+                },
+                "stage_source_rows": [
+                    {
+                        "stage_source_artifact_id": "artifact_a",
+                        "lineage_covered": True,
+                        "lineage_depth": 1,
+                        "lineage_path": "artifact_a.json",
+                        "lineage_status": "passed",
+                        "guardrail_violations": [],
+                        "source_records_checked": 2,
+                        "source_records_hash_current": 2,
+                    }
+                ],
+            }
+            route_class_path.write_text(
+                json.dumps(route_class, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            provenance = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+                    deployment_operator_route_class_readout_path=route_class_path,
+                    deployment_stage_provenance_audit_path=stage_path,
+                    artifact_id="provenance",
+                )
+            )
+            provenance_path.write_text(
+                json.dumps(provenance, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+                    deployment_operator_route_class_provenance_readout_path=(
+                        provenance_path
+                    ),
+                    artifact_id="provenance_repro",
+                )
+            )
+
+            stage["stage_source_rows"][0]["source_records_hash_current"] = 1
+            stage_path.write_text(
+                json.dumps(stage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+                    deployment_operator_route_class_provenance_readout_path=(
+                        provenance_path
+                    ),
+                    artifact_id="provenance_repro_stale",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "provenance_repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_route_class_provenance_reproducible"
+            ]
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["operator_route_class_provenance_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_provenance_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "operator_route_class_provenance_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "operator_route_class_provenance_rebuild_matches_stored_after_created_utc_normalization",
             stale_audit["reproducibility_violations"],
         )
 

@@ -1112,6 +1112,115 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_deployment_operator_route_class_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_stage_provenance_reproducibility_audit",
+            args.deployment_stage_provenance_reproducibility_audit,
+        )
+        self.assertIn(
+            "deployment_operator_manifest_audit",
+            args.deployment_operator_manifest_audit,
+        )
+        self.assertIn("deployment_operator_route_class_readout", args.report)
+
+    def test_lever3_deployment_operator_route_class_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_readout",
+            args.deployment_operator_route_class_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_reproducibility_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_readout",
+            args.deployment_operator_route_class_readout,
+        )
+        self.assertIn(
+            "deployment_stage_provenance_audit",
+            args.deployment_stage_provenance_audit,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_readout",
+            args.report,
+        )
+
+    def test_lever3_deployment_operator_route_class_provenance_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_readout",
+            args.deployment_operator_route_class_provenance_readout,
+        )
+        self.assertIn(
+            "deployment_operator_route_class_provenance_reproducibility_audit",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

@@ -183,6 +183,10 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_deployment_operator_manifest_reproducibility_audit,
     write_fold_augmented_lever3_deployment_stage_provenance_audit,
     write_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_route_class_readout,
+    write_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit,
+    write_fold_augmented_lever3_deployment_operator_route_class_provenance_readout,
+    write_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -14363,6 +14367,128 @@ def cmd_build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_
         f"{counts.get('source_records_hash_current')}/"
         f"{counts.get('source_records_checked')}, reproducible: "
         f"{decision.get('deployment_stage_provenance_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_deployment_operator_route_class_readout(
+        deployment_stage_provenance_reproducibility_audit_path=Path(
+            args.deployment_stage_provenance_reproducibility_audit
+        ),
+        deployment_operator_manifest_audit_path=Path(
+            args.deployment_operator_manifest_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class readout to "
+        f"{args.out} (operator rows: "
+        f"{counts.get('operator_action_rows_abstain_or_route_novel_oos')}/"
+        f"{counts.get('operator_action_rows')}, route classes: "
+        f"{counts.get('route_classes_with_rows')}, ready: "
+        f"{decision.get('deployment_operator_route_class_readout_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+            deployment_operator_route_class_readout_path=Path(
+                args.deployment_operator_route_class_readout
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class "
+        "reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_route_class_reproducible')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+        deployment_operator_route_class_readout_path=Path(
+            args.deployment_operator_route_class_readout
+        ),
+        deployment_stage_provenance_audit_path=Path(
+            args.deployment_stage_provenance_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class "
+        "provenance readout to "
+        f"{args.out} (stage-source links covered: "
+        f"{counts.get('route_class_stage_source_links_lineage_covered')}/"
+        f"{counts.get('route_class_stage_source_links')}, guardrail clean: "
+        f"{counts.get('route_class_stage_source_links_guardrail_clean')}/"
+        f"{counts.get('route_class_stage_source_links')}, ready: "
+        f"{decision.get('deployment_operator_route_class_provenance_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = (
+        write_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+            deployment_operator_route_class_provenance_readout_path=Path(
+                args.deployment_operator_route_class_provenance_readout
+            ),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            **writer_kwargs,
+        )
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment operator route-class "
+        "provenance reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, reproducible: "
+        f"{decision.get('deployment_operator_route_class_provenance_reproducible')})"
     )
     return 0
 
@@ -34537,6 +34663,181 @@ def build_parser() -> argparse.ArgumentParser:
         func=(
             cmd_build_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit
         )
+    )
+
+    lever3_deployment_operator_route_class_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-operator-route-class-readout",
+        help=(
+            "classify current Lever 3 operator manifest actions by "
+            "deployment confounder route class"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--deployment-stage-provenance-reproducibility-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+            "provenance_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--deployment-operator-manifest-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "manifest_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_operator_route_class_readout
+    )
+
+    lever3_deployment_operator_route_class_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 operator route-class readout "
+                "from its recorded sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--deployment-operator-route-class-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit
+        )
+    )
+
+    lever3_deployment_operator_route_class_provenance_readout = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-readout"
+            ),
+            help=(
+                "audit clean stage-source provenance for each current Lever 3 "
+                "operator route class"
+            ),
+        )
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--deployment-operator-route-class-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--deployment-stage-provenance-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_stage_"
+            "provenance_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout
+    )
+
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit = (
+        subparsers.add_parser(
+            (
+                "build-fold-augmented-lever3-deployment-operator-"
+                "route-class-provenance-reproducibility-audit"
+            ),
+            help=(
+                "rebuild the current Lever 3 operator route-class provenance "
+                "readout from its recorded sources"
+            ),
+        )
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--deployment-operator-route-class-provenance-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_readout_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_operator_"
+            "route_class_provenance_reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_operator_route_class_provenance_reproducibility_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

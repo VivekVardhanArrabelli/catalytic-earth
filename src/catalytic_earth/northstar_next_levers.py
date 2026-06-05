@@ -405,6 +405,18 @@ FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_AUDIT_ID = (
 FOLD_AUGMENTED_LEVER3_DEPLOYMENT_STAGE_PROVENANCE_REPRODUCIBILITY_AUDIT_ID = (
     "v3_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_current702_20260605"
 )
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_READOUT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_route_class_readout_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_REPRODUCIBILITY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_READOUT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_route_class_provenance_readout_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_REPRODUCIBILITY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_current702_20260605"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -56185,6 +56197,1737 @@ def write_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audi
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _lever3_deployment_route_confounder_class(route_stage: str) -> str:
+    if route_stage in {
+        "accepted_cofactor_or_same_family_bandpass",
+        "fold_cofactor_pressure_counteraxis",
+    }:
+        return "cofactor_or_same_family_confound"
+    if route_stage == "fold_tm_bandpass_counteraxis":
+        return "fold_similarity_confound"
+    if route_stage in {
+        "channel_margin_counteraxis",
+        "geometry_mismatch_counteraxis",
+    }:
+        return "pocket_geometry_confound"
+    if route_stage == "pocket_chemistry_counteraxis":
+        return "pocket_chemistry_confound"
+    if route_stage in {
+        "descriptor_generalization_counteraxis",
+        "pairwise_descriptor_counteraxis",
+    }:
+        return "protein_descriptor_counteraxis"
+    return "unclassified_route_stage"
+
+
+def _lever3_route_class_markdown_cell(value: object) -> str:
+    return str(value).replace("|", "\\|").replace("\n", " ")
+
+
+def build_fold_augmented_lever3_deployment_operator_route_class_readout(
+    *,
+    deployment_stage_provenance_reproducibility_audit_path: Path,
+    deployment_operator_manifest_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    stage_repro = _read_json(deployment_stage_provenance_reproducibility_audit_path)
+    manifest = _read_json(deployment_operator_manifest_audit_path)
+    stage_counts = stage_repro.get("counts") or {}
+    stage_decision = stage_repro.get("decision") or {}
+    manifest_counts = manifest.get("counts") or {}
+    manifest_decision = manifest.get("decision") or {}
+    manifest_payload = manifest.get("operator_manifest") or {}
+    action_rows = [
+        row
+        for row in manifest_payload.get("action_rows", []) or []
+        if isinstance(row, dict)
+    ]
+    source_artifacts = {
+        "deployment_stage_provenance_reproducibility_audit": _source_path_record(
+            deployment_stage_provenance_reproducibility_audit_path
+        ),
+        "deployment_operator_manifest_audit": _source_path_record(
+            deployment_operator_manifest_audit_path
+        ),
+    }
+    source_hash_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=artifact_id,
+        source_artifacts=source_artifacts,
+    )
+
+    classification_rows: list[dict[str, Any]] = []
+    route_class_to_rows: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    route_stage_counts: Counter[str] = Counter()
+    route_class_counts: Counter[str] = Counter()
+    unsafe_action_rows = 0
+    forced_mechanism_label_rows = 0
+    rule_selection_rows = 0
+    unclassified_route_stage_rows = 0
+    missing_entry_id_rows = 0
+    missing_stage_source_rows = 0
+    for row in sorted(
+        action_rows, key=lambda item: _entry_id_sort_key(str(item.get("entry_id")))
+    ):
+        entry_id = str(row.get("entry_id") or "")
+        route_stage = str(row.get("route_stage") or "")
+        route_class = _lever3_deployment_route_confounder_class(route_stage)
+        action = str(row.get("action") or "")
+        classified_row = {
+            "entry_id": entry_id,
+            "route_class": route_class,
+            "route_stage": route_stage,
+            "stage_source_artifact_id": row.get("stage_source_artifact_id"),
+            "action": action,
+            "force_mechanism_label_now": bool(
+                row.get("force_mechanism_label_now")
+            ),
+            "used_for_rule_selection": bool(row.get("used_for_rule_selection")),
+        }
+        classification_rows.append(classified_row)
+        route_class_to_rows[route_class].append(classified_row)
+        route_stage_counts[route_stage] += 1
+        route_class_counts[route_class] += 1
+        if not entry_id:
+            missing_entry_id_rows += 1
+        if not row.get("stage_source_artifact_id"):
+            missing_stage_source_rows += 1
+        if route_class == "unclassified_route_stage":
+            unclassified_route_stage_rows += 1
+        if action != "abstain_or_route_novel_oos":
+            unsafe_action_rows += 1
+        if classified_row["force_mechanism_label_now"]:
+            forced_mechanism_label_rows += 1
+        if classified_row["used_for_rule_selection"]:
+            rule_selection_rows += 1
+
+    route_class_rows = []
+    for route_class, rows in sorted(route_class_to_rows.items()):
+        route_class_rows.append(
+            {
+                "route_class": route_class,
+                "rows": len(rows),
+                "route_stages": sorted(
+                    {str(row.get("route_stage")) for row in rows if row.get("route_stage")}
+                ),
+                "stage_source_artifact_ids": sorted(
+                    {
+                        str(row.get("stage_source_artifact_id"))
+                        for row in rows
+                        if row.get("stage_source_artifact_id")
+                    }
+                ),
+                "entry_ids": sorted(
+                    [str(row.get("entry_id")) for row in rows if row.get("entry_id")],
+                    key=_entry_id_sort_key,
+                ),
+            }
+        )
+
+    stage_manifest_rows = int(stage_counts.get("manifest_action_rows") or 0)
+    manifest_action_rows = int(manifest_counts.get("operator_manifest_rows") or 0)
+    source_hashes_current = bool(source_hash_rows) and all(
+        row["source_hash_current"] for row in source_hash_rows
+    )
+    route_class_checks = {
+        "stage_provenance_reproducibility_audit_passed": (
+            stage_repro.get("status")
+            == "fold_augmented_lever3_deployment_stage_provenance_reproducibility_audit_passed"
+            and not stage_repro.get("reproducibility_violations")
+            and bool(stage_decision.get("deployment_stage_provenance_reproducible"))
+            and bool(stage_decision.get("deployment_stage_provenance_clean"))
+        ),
+        "deployment_operator_manifest_audit_passed": (
+            manifest.get("status")
+            == "fold_augmented_lever3_deployment_operator_manifest_audit_passed"
+            and not manifest.get("operator_manifest_violations")
+            and bool(manifest_decision.get("deployment_operator_manifest_ready"))
+        ),
+        "direct_source_hashes_current": source_hashes_current,
+        "manifest_row_count_matches_stage_provenance": (
+            len(action_rows) == stage_manifest_rows == manifest_action_rows
+        ),
+        "all_manifest_rows_classified": (
+            bool(action_rows) and unclassified_route_stage_rows == 0
+        ),
+        "all_manifest_rows_abstain_or_route_novel_oos": (
+            bool(action_rows) and unsafe_action_rows == 0
+        ),
+        "no_forced_mechanism_labels": forced_mechanism_label_rows == 0,
+        "no_rule_selection_rows": rule_selection_rows == 0,
+        "all_rows_have_entry_id": missing_entry_id_rows == 0,
+        "all_rows_have_stage_source": missing_stage_source_rows == 0,
+        "operator_manifest_has_no_forbidden_fields": (
+            int(manifest_counts.get("forbidden_manifest_field_rows") or 0) == 0
+            and int(manifest_counts.get("unexpected_manifest_field_rows") or 0) == 0
+        ),
+        "operating_point_metrics_available": (
+            stage_counts.get("calibration_in_scope_retained") is not None
+            and stage_counts.get("calibration_in_scope_rows") is not None
+            and stage_counts.get("train_cal_oos_abstained_or_routed") is not None
+            and stage_counts.get("train_cal_oos_rows") is not None
+        ),
+        "zero_retained_residual_rows_after_all_counteraxes": (
+            stage_counts.get("retained_residual_rows_after_all_counteraxes")
+            is not None
+            and int(stage_counts.get("retained_residual_rows_after_all_counteraxes"))
+            == 0
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(stage_decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                stage_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+        "safe_abstention_evidence_sufficient": bool(
+            stage_decision.get(
+                "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+            )
+        ),
+    }
+    route_class_violations = sorted(
+        [name for name, passed in route_class_checks.items() if not passed]
+    )
+    route_class_ready = not route_class_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_route_class_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_route_class_readout_passed"
+            if route_class_ready
+            else "fold_augmented_lever3_deployment_operator_route_class_readout_needs_more_work"
+        ),
+        "scope": (
+            "Operator-facing route-class readout for the current Lever 3 "
+            "abstain/route manifest. It classifies already-approved hard "
+            "confounded OOS operator actions by confounder class and verifies "
+            "that the action surface remains source-current, guardrail-clean, "
+            "threshold-unchanged, and fail-closed for fixed-threshold scoring."
+        ),
+        "route_class_checks": route_class_checks,
+        "route_class_violations": route_class_violations,
+        "source_hash_audit_rows": source_hash_rows,
+        "route_class_rows": route_class_rows,
+        "operator_route_class_rows": classification_rows,
+        "counts": {
+            "operator_action_rows": len(action_rows),
+            "operator_action_rows_abstain_or_route_novel_oos": (
+                len(action_rows) - unsafe_action_rows
+            ),
+            "route_classes_with_rows": len(route_class_rows),
+            "route_class_counts": dict(sorted(route_class_counts.items())),
+            "route_stage_counts": dict(sorted(route_stage_counts.items())),
+            "unclassified_route_stage_rows": unclassified_route_stage_rows,
+            "unsafe_action_rows": unsafe_action_rows,
+            "forced_mechanism_label_rows": forced_mechanism_label_rows,
+            "rule_selection_rows": rule_selection_rows,
+            "missing_entry_id_rows": missing_entry_id_rows,
+            "missing_stage_source_rows": missing_stage_source_rows,
+            "forbidden_manifest_field_rows": int(
+                manifest_counts.get("forbidden_manifest_field_rows") or 0
+            ),
+            "unexpected_manifest_field_rows": int(
+                manifest_counts.get("unexpected_manifest_field_rows") or 0
+            ),
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "stage_provenance_manifest_action_rows": stage_manifest_rows,
+            "manifest_operator_action_rows": manifest_action_rows,
+            "calibration_in_scope_retained": stage_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": stage_counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": stage_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": stage_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": stage_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "route_class_violation_total": len(route_class_violations),
+        },
+        "decision": {
+            "deployment_operator_route_class_readout_ready": route_class_ready,
+            "deployable_abstain_route_action_classes_available": route_class_ready,
+            "safe_abstention_route_remains_current": route_class_ready,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                route_class_ready
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "operator_action": (
+                "use_route_classified_manifest_rows_to_abstain_or_route_novel_oos"
+            ),
+            "exact_missing_evidence_for_scoring_closure": stage_decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use this route-class readout as the operator-facing "
+                "explanation layer for abstain/route actions only; keep "
+                "fixed-threshold scoring closure fail-closed pending exact "
+                "P07658 coordinate/provenance evidence."
+                if route_class_ready
+                else (
+                    "Do not use route-class explanations until the listed "
+                    "violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_route_classification_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": source_artifacts,
+        "interpretation": {
+            "headline": (
+                "Lever 3 operator route classes are ready."
+                if route_class_ready
+                else "Lever 3 operator route classes need repair."
+            ),
+            "result": (
+                f"{len(action_rows) - unsafe_action_rows}/{len(action_rows)} "
+                "operator rows abstain or route novel/OOS across "
+                f"{len(route_class_rows)} confounder classes, with "
+                f"{stage_counts.get('calibration_in_scope_retained')}/"
+                f"{stage_counts.get('calibration_in_scope_rows')} calibration "
+                "in-scope rows retained and "
+                f"{stage_counts.get('train_cal_oos_abstained_or_routed')}/"
+                f"{stage_counts.get('train_cal_oos_rows')} train/cal OOS rows "
+                "abstained or routed."
+            ),
+            "next_action": (
+                "Use the route-classified manifest for abstain/route "
+                "explanations only; do not score or force mechanism labels."
+                if route_class_ready
+                else "Resolve route-class violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_route_class_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Route-Class Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Route-class readout ready: "
+        f"{decision['deployment_operator_route_class_readout_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Route-class violations: {readout['route_class_violations']}",
+        "",
+        "## Counts",
+        "",
+        "- Operator rows abstain/route: "
+        f"{counts['operator_action_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['operator_action_rows']}",
+        f"- Route classes with rows: {counts['route_classes_with_rows']}",
+        f"- Route class counts: {counts['route_class_counts']}",
+        f"- Route stage counts: {counts['route_stage_counts']}",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained or routed: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "- Retained residual rows after all counteraxes: "
+        f"{counts['retained_residual_rows_after_all_counteraxes']}",
+        "",
+        "## Route Classes",
+        "",
+        "| route class | rows | route stages | entry ids |",
+        "| --- | ---: | --- | --- |",
+    ]
+    for row in readout.get("route_class_rows", []):
+        lines.append(
+            f"| {row['route_class']} | {row['rows']} | "
+            f"{_lever3_route_class_markdown_cell(', '.join(row['route_stages']))} | "
+            f"{_lever3_route_class_markdown_cell(', '.join(row['entry_ids']))} |"
+        )
+    lines += [
+        "",
+        "## Operator Rows",
+        "",
+        "| row | route class | route stage | action | source artifact |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in readout.get("operator_route_class_rows", [])[:160]:
+        lines.append(
+            f"| {row['entry_id']} | {row['route_class']} | "
+            f"{row['route_stage']} | {row['action']} | "
+            f"{row['stage_source_artifact_id']} |"
+        )
+    lines += [
+        "",
+        "## Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in readout.get("route_class_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing stage-provenance and operator-manifest artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_route_class_readout(
+    *,
+    deployment_stage_provenance_reproducibility_audit_path: Path,
+    deployment_operator_manifest_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_deployment_operator_route_class_readout(
+        deployment_stage_provenance_reproducibility_audit_path=(
+            deployment_stage_provenance_reproducibility_audit_path
+        ),
+        deployment_operator_manifest_audit_path=deployment_operator_manifest_audit_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_route_class_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+    *,
+    deployment_operator_route_class_readout_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    readout = _read_json(deployment_operator_route_class_readout_path)
+    source_hash_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=readout.get("artifact_id"),
+        source_artifacts=readout.get("source_artifacts") or {},
+    )
+    source_artifacts = readout.get("source_artifacts") or {}
+    stage_source = (
+        source_artifacts.get("deployment_stage_provenance_reproducibility_audit")
+        or {}
+    )
+    manifest_source = source_artifacts.get("deployment_operator_manifest_audit") or {}
+    stage_path_value = stage_source.get("path")
+    manifest_path_value = manifest_source.get("path")
+    rebuilt_readout: dict[str, Any] | None = None
+    rebuild_error = None
+    if (
+        stage_path_value
+        and manifest_path_value
+        and Path(stage_path_value).exists()
+        and Path(manifest_path_value).exists()
+    ):
+        try:
+            rebuilt_readout = (
+                build_fold_augmented_lever3_deployment_operator_route_class_readout(
+                    deployment_stage_provenance_reproducibility_audit_path=Path(
+                        stage_path_value
+                    ),
+                    deployment_operator_manifest_audit_path=Path(
+                        manifest_path_value
+                    ),
+                    artifact_id=str(
+                        readout.get("artifact_id")
+                        or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_READOUT_ID
+                    ),
+                )
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        rebuild_error = "missing_operator_route_class_source_artifacts"
+
+    normalized_readout = _normalize_lever3_closure_for_reproducibility(readout)
+    normalized_rebuilt = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_readout)
+        if rebuilt_readout is not None
+        else None
+    )
+    rebuild_matches = (
+        normalized_rebuilt == normalized_readout
+        if normalized_rebuilt is not None
+        else False
+    )
+    counts = readout.get("counts") or {}
+    decision = readout.get("decision") or {}
+    reproducibility_checks = {
+        "operator_route_class_readout_passed": (
+            readout.get("status")
+            == "fold_augmented_lever3_deployment_operator_route_class_readout_passed"
+            and not readout.get("route_class_violations")
+            and bool(
+                decision.get("deployment_operator_route_class_readout_ready")
+            )
+        ),
+        "operator_route_class_source_hashes_current": (
+            bool(source_hash_rows)
+            and all(row["source_hash_current"] for row in source_hash_rows)
+        ),
+        "operator_route_class_rebuild_matches_stored_after_created_utc_normalization": (
+            rebuild_matches
+        ),
+        "route_class_metrics_stable": (
+            rebuilt_readout is not None
+            and (rebuilt_readout.get("counts") or {}).get("route_class_counts")
+            == counts.get("route_class_counts")
+            and (rebuilt_readout.get("counts") or {}).get("route_stage_counts")
+            == counts.get("route_stage_counts")
+            and (rebuilt_readout.get("counts") or {}).get("operator_action_rows")
+            == counts.get("operator_action_rows")
+        ),
+        "operating_point_metrics_stable": (
+            rebuilt_readout is not None
+            and (rebuilt_readout.get("counts") or {}).get(
+                "operator_action_rows_abstain_or_route_novel_oos"
+            )
+            == counts.get("operator_action_rows_abstain_or_route_novel_oos")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "calibration_in_scope_retained"
+            )
+            == counts.get("calibration_in_scope_retained")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "train_cal_oos_abstained_or_routed"
+            )
+            == counts.get("train_cal_oos_abstained_or_routed")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "retained_residual_rows_after_all_counteraxes"
+            )
+            == counts.get("retained_residual_rows_after_all_counteraxes")
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+    }
+    reproducibility_violations = sorted(
+        [
+            name
+            for name, passed in reproducibility_checks.items()
+            if not passed
+        ]
+    )
+    reproducibility_passed = not reproducibility_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_passed"
+            if reproducibility_passed
+            else "fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_needs_more_work"
+        ),
+        "scope": (
+            "Reproducibility audit for the Lever 3 operator route-class "
+            "readout. It rebuilds the route-class readout from recorded "
+            "stage-provenance and operator-manifest sources, normalizes only "
+            "created_utc, and checks source-hash and metric stability."
+        ),
+        "reproducibility_checks": reproducibility_checks,
+        "reproducibility_violations": reproducibility_violations,
+        "operator_route_class_artifact": {
+            "artifact_id": readout.get("artifact_id"),
+            "path": str(deployment_operator_route_class_readout_path),
+            "stored_created_utc": readout.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_readout.get("created_utc")
+                if rebuilt_readout is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_readout),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt)
+                if normalized_rebuilt is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": rebuild_matches,
+            "rebuild_error": rebuild_error,
+        },
+        "source_hash_audit_rows": source_hash_rows,
+        "counts": {
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "rebuild_difference_count": int(not rebuild_matches),
+            "operator_action_rows": counts.get("operator_action_rows"),
+            "operator_action_rows_abstain_or_route_novel_oos": counts.get(
+                "operator_action_rows_abstain_or_route_novel_oos"
+            ),
+            "route_classes_with_rows": counts.get("route_classes_with_rows"),
+            "route_class_counts": counts.get("route_class_counts"),
+            "route_stage_counts": counts.get("route_stage_counts"),
+            "unclassified_route_stage_rows": counts.get(
+                "unclassified_route_stage_rows"
+            ),
+            "unsafe_action_rows": counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "rule_selection_rows": counts.get("rule_selection_rows"),
+            "calibration_in_scope_retained": counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "reproducibility_violation_total": len(reproducibility_violations),
+        },
+        "decision": {
+            "deployment_operator_route_class_reproducible": reproducibility_passed,
+            "deployment_operator_route_class_readout_ready": (
+                reproducibility_passed
+                and bool(
+                    decision.get("deployment_operator_route_class_readout_ready")
+                )
+            ),
+            "safe_abstention_route_remains_current": reproducibility_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the reproducible route-class readout for operator "
+                "abstain/route explanations only; keep fixed-threshold "
+                "scoring closure fail-closed pending exact P07658 evidence."
+                if reproducibility_passed
+                else (
+                    "Do not rely on route-class explanations until the listed "
+                    "reproducibility violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_route_class_reproducibility_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_route_class_readout": _source_path_record(
+                deployment_operator_route_class_readout_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 route-class readout is reproducible."
+                if reproducibility_passed
+                else "Lever 3 route-class reproducibility needs repair."
+            ),
+            "result": (
+                "Route-class readout rebuilds after created_utc normalization "
+                f"with {len(reproducibility_violations)} reproducibility "
+                "violations."
+            ),
+            "next_action": (
+                "Use route-class explanations only for abstain/route actions."
+                if reproducibility_passed
+                else "Resolve reproducibility violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    route_class_artifact = audit["operator_route_class_artifact"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Route-Class Reproducibility Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Route-class readout reproducible: "
+        f"{decision['deployment_operator_route_class_reproducible']}",
+        "- Route-class readout ready: "
+        f"{decision['deployment_operator_route_class_readout_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Reproducibility violations: {audit['reproducibility_violations']}",
+        "",
+        "## Rebuild",
+        "",
+        "- Normalized rebuild matches stored: "
+        f"{route_class_artifact['normalized_rebuild_matches_stored']}",
+        "- Stored normalized SHA-256: "
+        f"{route_class_artifact['stored_normalized_sha256']}",
+        "- Rebuilt normalized SHA-256: "
+        f"{route_class_artifact['rebuilt_normalized_sha256']}",
+        f"- Rebuild error: {route_class_artifact['rebuild_error']}",
+        "",
+        "## Counts",
+        "",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Rebuild difference count: {counts['rebuild_difference_count']}",
+        "- Operator rows abstain/route: "
+        f"{counts['operator_action_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['operator_action_rows']}",
+        f"- Route classes with rows: {counts['route_classes_with_rows']}",
+        f"- Route class counts: {counts['route_class_counts']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained or routed: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "",
+        "## Reproducibility Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("reproducibility_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing route-class readout and its recorded sources only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+    *,
+    deployment_operator_route_class_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = (
+        build_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit(
+            deployment_operator_route_class_readout_path=(
+                deployment_operator_route_class_readout_path
+            ),
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+    *,
+    deployment_operator_route_class_readout_path: Path,
+    deployment_stage_provenance_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    route_class_readout = _read_json(deployment_operator_route_class_readout_path)
+    stage_provenance = _read_json(deployment_stage_provenance_audit_path)
+    route_counts = route_class_readout.get("counts") or {}
+    route_decision = route_class_readout.get("decision") or {}
+    stage_counts = stage_provenance.get("counts") or {}
+    stage_decision = stage_provenance.get("decision") or {}
+    source_artifacts = {
+        "deployment_operator_route_class_readout": _source_path_record(
+            deployment_operator_route_class_readout_path
+        ),
+        "deployment_stage_provenance_audit": _source_path_record(
+            deployment_stage_provenance_audit_path
+        ),
+    }
+    source_hash_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=artifact_id,
+        source_artifacts=source_artifacts,
+    )
+    stage_source_by_id = {
+        str(row.get("stage_source_artifact_id")): row
+        for row in stage_provenance.get("stage_source_rows", []) or []
+        if isinstance(row, dict) and row.get("stage_source_artifact_id")
+    }
+    class_rows = [
+        row
+        for row in route_class_readout.get("operator_route_class_rows", []) or []
+        if isinstance(row, dict)
+    ]
+    grouped: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in class_rows:
+        route_class = str(row.get("route_class") or "")
+        stage_source_artifact_id = str(row.get("stage_source_artifact_id") or "")
+        grouped[(route_class, stage_source_artifact_id)].append(row)
+
+    provenance_rows: list[dict[str, Any]] = []
+    missing_stage_source_rows = 0
+    uncovered_stage_source_rows = 0
+    guardrail_violation_stage_source_rows = 0
+    stale_stage_source_hash_rows = 0
+    for (route_class, stage_source_artifact_id), rows in sorted(grouped.items()):
+        stage_row = stage_source_by_id.get(stage_source_artifact_id)
+        stage_source_present = stage_row is not None
+        lineage_covered = bool(stage_row and stage_row.get("lineage_covered"))
+        guardrail_violations = (
+            stage_row.get("guardrail_violations") if stage_row else []
+        ) or []
+        source_records_checked = int(
+            stage_row.get("source_records_checked") if stage_row else 0
+        )
+        source_records_hash_current = int(
+            stage_row.get("source_records_hash_current") if stage_row else 0
+        )
+        source_hashes_current = (
+            source_records_checked > 0
+            and source_records_hash_current == source_records_checked
+        )
+        if not stage_source_present:
+            missing_stage_source_rows += 1
+        if not lineage_covered:
+            uncovered_stage_source_rows += 1
+        if guardrail_violations:
+            guardrail_violation_stage_source_rows += 1
+        if not source_hashes_current:
+            stale_stage_source_hash_rows += 1
+        provenance_rows.append(
+            {
+                "route_class": route_class,
+                "stage_source_artifact_id": stage_source_artifact_id,
+                "operator_rows": len(rows),
+                "entry_ids": sorted(
+                    [str(row.get("entry_id")) for row in rows if row.get("entry_id")],
+                    key=_entry_id_sort_key,
+                ),
+                "route_stages": sorted(
+                    {
+                        str(row.get("route_stage"))
+                        for row in rows
+                        if row.get("route_stage")
+                    }
+                ),
+                "stage_source_present": stage_source_present,
+                "lineage_covered": lineage_covered,
+                "lineage_depth": stage_row.get("lineage_depth") if stage_row else None,
+                "lineage_path": stage_row.get("lineage_path") if stage_row else None,
+                "lineage_status": stage_row.get("lineage_status") if stage_row else None,
+                "guardrail_clean": not guardrail_violations,
+                "guardrail_violations": guardrail_violations,
+                "stage_source_records_checked": source_records_checked,
+                "stage_source_records_hash_current": source_records_hash_current,
+                "stage_source_hashes_current": source_hashes_current,
+            }
+        )
+
+    direct_source_hashes_current = bool(source_hash_rows) and all(
+        row["source_hash_current"] for row in source_hash_rows
+    )
+    provenance_checks = {
+        "route_class_readout_passed": (
+            route_class_readout.get("status")
+            == "fold_augmented_lever3_deployment_operator_route_class_readout_passed"
+            and not route_class_readout.get("route_class_violations")
+            and bool(
+                route_decision.get("deployment_operator_route_class_readout_ready")
+            )
+        ),
+        "stage_provenance_audit_passed": (
+            stage_provenance.get("status")
+            == "fold_augmented_lever3_deployment_stage_provenance_audit_passed"
+            and not stage_provenance.get("stage_provenance_violations")
+            and bool(stage_decision.get("deployment_stage_provenance_clean"))
+        ),
+        "direct_source_hashes_current": direct_source_hashes_current,
+        "all_route_class_stage_sources_present": (
+            bool(provenance_rows) and missing_stage_source_rows == 0
+        ),
+        "all_route_class_stage_sources_lineage_covered": (
+            bool(provenance_rows) and uncovered_stage_source_rows == 0
+        ),
+        "all_route_class_stage_sources_guardrail_clean": (
+            bool(provenance_rows) and guardrail_violation_stage_source_rows == 0
+        ),
+        "all_route_class_stage_source_hashes_current": (
+            bool(provenance_rows) and stale_stage_source_hash_rows == 0
+        ),
+        "route_class_counts_match_readout": (
+            sum(row["operator_rows"] for row in provenance_rows)
+            == int(route_counts.get("operator_action_rows") or 0)
+        ),
+        "stage_source_counts_match_stage_provenance": (
+            len({row["stage_source_artifact_id"] for row in provenance_rows})
+            == int(stage_counts.get("unique_stage_source_artifacts") or 0)
+        ),
+        "safe_operator_actions_remain_current": (
+            int(route_counts.get("unsafe_action_rows") or 0) == 0
+            and int(route_counts.get("forced_mechanism_label_rows") or 0) == 0
+            and int(route_counts.get("rule_selection_rows") or 0) == 0
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(route_decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                route_decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+    }
+    provenance_violations = sorted(
+        [name for name, passed in provenance_checks.items() if not passed]
+    )
+    provenance_ready = not provenance_violations
+    class_source_counts = Counter(
+        str(row.get("route_class")) for row in provenance_rows
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_route_class_provenance_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_route_class_provenance_readout_passed"
+            if provenance_ready
+            else "fold_augmented_lever3_deployment_operator_route_class_provenance_readout_needs_more_work"
+        ),
+        "scope": (
+            "Class-level provenance readout for the current Lever 3 operator "
+            "route-class table. It verifies that every route-class/stage-source "
+            "link is present in clean stage provenance, lineage-covered, "
+            "source-hash current, guardrail-clean, and still fail-closed for "
+            "fixed-threshold scoring."
+        ),
+        "provenance_checks": provenance_checks,
+        "provenance_violations": provenance_violations,
+        "source_hash_audit_rows": source_hash_rows,
+        "route_class_stage_source_rows": provenance_rows,
+        "counts": {
+            "route_class_stage_source_links": len(provenance_rows),
+            "route_classes_with_stage_sources": len(class_source_counts),
+            "route_class_stage_source_counts": dict(
+                sorted(class_source_counts.items())
+            ),
+            "operator_action_rows": route_counts.get("operator_action_rows"),
+            "operator_action_rows_abstain_or_route_novel_oos": route_counts.get(
+                "operator_action_rows_abstain_or_route_novel_oos"
+            ),
+            "unique_stage_source_artifacts": len(
+                {row["stage_source_artifact_id"] for row in provenance_rows}
+            ),
+            "route_class_stage_source_links_present": (
+                len(provenance_rows) - missing_stage_source_rows
+            ),
+            "route_class_stage_source_links_lineage_covered": (
+                len(provenance_rows) - uncovered_stage_source_rows
+            ),
+            "route_class_stage_source_links_guardrail_clean": (
+                len(provenance_rows) - guardrail_violation_stage_source_rows
+            ),
+            "route_class_stage_source_links_hash_current": (
+                len(provenance_rows) - stale_stage_source_hash_rows
+            ),
+            "missing_stage_source_rows": missing_stage_source_rows,
+            "uncovered_stage_source_rows": uncovered_stage_source_rows,
+            "guardrail_violation_stage_source_rows": (
+                guardrail_violation_stage_source_rows
+            ),
+            "stale_stage_source_hash_rows": stale_stage_source_hash_rows,
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "stage_provenance_unique_stage_source_artifacts": stage_counts.get(
+                "unique_stage_source_artifacts"
+            ),
+            "stage_provenance_stage_sources_guardrail_clean": stage_counts.get(
+                "stage_source_artifacts_guardrail_clean"
+            ),
+            "stage_provenance_lineage_source_records_checked": stage_counts.get(
+                "lineage_source_records_checked"
+            ),
+            "stage_provenance_lineage_source_records_hash_current": (
+                stage_counts.get("lineage_source_records_hash_current")
+            ),
+            "calibration_in_scope_retained": route_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": route_counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": route_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": route_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": route_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "unsafe_action_rows": route_counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": route_counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "rule_selection_rows": route_counts.get("rule_selection_rows"),
+            "provenance_violation_total": len(provenance_violations),
+        },
+        "decision": {
+            "deployment_operator_route_class_provenance_ready": provenance_ready,
+            "safe_abstention_route_remains_current": provenance_ready,
+            "operator_route_classes_have_clean_stage_provenance": provenance_ready,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                provenance_ready
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": route_decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use route-class provenance as the class-level audit trail for "
+                "abstain/route explanations only; keep fixed-threshold scoring "
+                "closure fail-closed pending exact P07658 evidence."
+                if provenance_ready
+                else (
+                    "Do not rely on route-class provenance until the listed "
+                    "violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_route_class_provenance_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": source_artifacts,
+        "interpretation": {
+            "headline": (
+                "Lever 3 route-class provenance is clean."
+                if provenance_ready
+                else "Lever 3 route-class provenance needs repair."
+            ),
+            "result": (
+                f"{len(provenance_rows) - uncovered_stage_source_rows}/"
+                f"{len(provenance_rows)} route-class stage-source links are "
+                "lineage-covered and "
+                f"{len(provenance_rows) - guardrail_violation_stage_source_rows}/"
+                f"{len(provenance_rows)} are guardrail-clean."
+            ),
+            "next_action": (
+                "Use the class-level provenance readout for abstain/route "
+                "explanations only; do not score or force mechanism labels."
+                if provenance_ready
+                else "Resolve provenance violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_route_class_provenance_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Route-Class Provenance Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Route-class provenance ready: "
+        f"{decision['deployment_operator_route_class_provenance_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Provenance violations: {readout['provenance_violations']}",
+        "",
+        "## Counts",
+        "",
+        "- Route-class stage-source links present: "
+        f"{counts['route_class_stage_source_links_present']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Route-class stage-source links lineage-covered: "
+        f"{counts['route_class_stage_source_links_lineage_covered']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Route-class stage-source links guardrail-clean: "
+        f"{counts['route_class_stage_source_links_guardrail_clean']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Route-class stage-source links hash-current: "
+        f"{counts['route_class_stage_source_links_hash_current']}/"
+        f"{counts['route_class_stage_source_links']}",
+        f"- Route-class stage-source counts: {counts['route_class_stage_source_counts']}",
+        "- Operator rows abstain/route: "
+        f"{counts['operator_action_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['operator_action_rows']}",
+        "- Calibration retained: "
+        f"{counts['calibration_in_scope_retained']}/"
+        f"{counts['calibration_in_scope_rows']}",
+        "- Train/cal OOS abstained or routed: "
+        f"{counts['train_cal_oos_abstained_or_routed']}/"
+        f"{counts['train_cal_oos_rows']}",
+        "",
+        "## Route-Class Stage Sources",
+        "",
+        "| route class | source artifact | rows | lineage | clean | hashes | entry ids |",
+        "| --- | --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in readout.get("route_class_stage_source_rows", []):
+        lines.append(
+            f"| {row['route_class']} | {row['stage_source_artifact_id']} | "
+            f"{row['operator_rows']} | {row['lineage_covered']} | "
+            f"{row['guardrail_clean']} | {row['stage_source_hashes_current']} | "
+            f"{_lever3_route_class_markdown_cell(', '.join(row['entry_ids']))} |"
+        )
+    lines += [
+        "",
+        "## Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in readout.get("provenance_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing route-class and stage-provenance artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+    *,
+    deployment_operator_route_class_readout_path: Path,
+    deployment_stage_provenance_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = (
+        build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+            deployment_operator_route_class_readout_path=(
+                deployment_operator_route_class_readout_path
+            ),
+            deployment_stage_provenance_audit_path=deployment_stage_provenance_audit_path,
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_route_class_provenance_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+    *,
+    deployment_operator_route_class_provenance_readout_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    readout = _read_json(deployment_operator_route_class_provenance_readout_path)
+    source_hash_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=readout.get("artifact_id"),
+        source_artifacts=readout.get("source_artifacts") or {},
+    )
+    source_artifacts = readout.get("source_artifacts") or {}
+    route_class_source = source_artifacts.get(
+        "deployment_operator_route_class_readout"
+    ) or {}
+    stage_source = source_artifacts.get("deployment_stage_provenance_audit") or {}
+    route_class_path_value = route_class_source.get("path")
+    stage_path_value = stage_source.get("path")
+    rebuilt_readout: dict[str, Any] | None = None
+    rebuild_error = None
+    if (
+        route_class_path_value
+        and stage_path_value
+        and Path(route_class_path_value).exists()
+        and Path(stage_path_value).exists()
+    ):
+        try:
+            rebuilt_readout = build_fold_augmented_lever3_deployment_operator_route_class_provenance_readout(
+                deployment_operator_route_class_readout_path=Path(
+                    route_class_path_value
+                ),
+                deployment_stage_provenance_audit_path=Path(stage_path_value),
+                artifact_id=str(
+                    readout.get("artifact_id")
+                    or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_READOUT_ID
+                ),
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        rebuild_error = "missing_operator_route_class_provenance_source_artifacts"
+
+    normalized_readout = _normalize_lever3_closure_for_reproducibility(readout)
+    normalized_rebuilt = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_readout)
+        if rebuilt_readout is not None
+        else None
+    )
+    rebuild_matches = (
+        normalized_rebuilt == normalized_readout
+        if normalized_rebuilt is not None
+        else False
+    )
+    counts = readout.get("counts") or {}
+    decision = readout.get("decision") or {}
+    reproducibility_checks = {
+        "operator_route_class_provenance_readout_passed": (
+            readout.get("status")
+            == "fold_augmented_lever3_deployment_operator_route_class_provenance_readout_passed"
+            and not readout.get("provenance_violations")
+            and bool(
+                decision.get("deployment_operator_route_class_provenance_ready")
+            )
+        ),
+        "operator_route_class_provenance_source_hashes_current": (
+            bool(source_hash_rows)
+            and all(row["source_hash_current"] for row in source_hash_rows)
+        ),
+        "operator_route_class_provenance_rebuild_matches_stored_after_created_utc_normalization": (
+            rebuild_matches
+        ),
+        "route_class_provenance_metrics_stable": (
+            rebuilt_readout is not None
+            and (rebuilt_readout.get("counts") or {}).get(
+                "route_class_stage_source_links"
+            )
+            == counts.get("route_class_stage_source_links")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "route_class_stage_source_counts"
+            )
+            == counts.get("route_class_stage_source_counts")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "route_class_stage_source_links_lineage_covered"
+            )
+            == counts.get("route_class_stage_source_links_lineage_covered")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "route_class_stage_source_links_guardrail_clean"
+            )
+            == counts.get("route_class_stage_source_links_guardrail_clean")
+        ),
+        "operating_point_metrics_stable": (
+            rebuilt_readout is not None
+            and (rebuilt_readout.get("counts") or {}).get(
+                "operator_action_rows_abstain_or_route_novel_oos"
+            )
+            == counts.get("operator_action_rows_abstain_or_route_novel_oos")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "calibration_in_scope_retained"
+            )
+            == counts.get("calibration_in_scope_retained")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "train_cal_oos_abstained_or_routed"
+            )
+            == counts.get("train_cal_oos_abstained_or_routed")
+            and (rebuilt_readout.get("counts") or {}).get(
+                "retained_residual_rows_after_all_counteraxes"
+            )
+            == counts.get("retained_residual_rows_after_all_counteraxes")
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+    }
+    reproducibility_violations = sorted(
+        [
+            name
+            for name, passed in reproducibility_checks.items()
+            if not passed
+        ]
+    )
+    reproducibility_passed = not reproducibility_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_passed"
+            if reproducibility_passed
+            else "fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_needs_more_work"
+        ),
+        "scope": (
+            "Reproducibility audit for the Lever 3 operator route-class "
+            "provenance readout. It rebuilds the class-level provenance "
+            "readout from recorded route-class and stage-provenance sources, "
+            "normalizes only created_utc, and checks source-hash and metric "
+            "stability."
+        ),
+        "reproducibility_checks": reproducibility_checks,
+        "reproducibility_violations": reproducibility_violations,
+        "operator_route_class_provenance_artifact": {
+            "artifact_id": readout.get("artifact_id"),
+            "path": str(deployment_operator_route_class_provenance_readout_path),
+            "stored_created_utc": readout.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_readout.get("created_utc")
+                if rebuilt_readout is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_readout),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt)
+                if normalized_rebuilt is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": rebuild_matches,
+            "rebuild_error": rebuild_error,
+        },
+        "source_hash_audit_rows": source_hash_rows,
+        "counts": {
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "rebuild_difference_count": int(not rebuild_matches),
+            "route_class_stage_source_links": counts.get(
+                "route_class_stage_source_links"
+            ),
+            "route_classes_with_stage_sources": counts.get(
+                "route_classes_with_stage_sources"
+            ),
+            "unique_stage_source_artifacts": counts.get(
+                "unique_stage_source_artifacts"
+            ),
+            "route_class_stage_source_counts": counts.get(
+                "route_class_stage_source_counts"
+            ),
+            "route_class_stage_source_links_lineage_covered": counts.get(
+                "route_class_stage_source_links_lineage_covered"
+            ),
+            "route_class_stage_source_links_guardrail_clean": counts.get(
+                "route_class_stage_source_links_guardrail_clean"
+            ),
+            "route_class_stage_source_links_hash_current": counts.get(
+                "route_class_stage_source_links_hash_current"
+            ),
+            "operator_action_rows": counts.get("operator_action_rows"),
+            "operator_action_rows_abstain_or_route_novel_oos": counts.get(
+                "operator_action_rows_abstain_or_route_novel_oos"
+            ),
+            "unsafe_action_rows": counts.get("unsafe_action_rows"),
+            "forced_mechanism_label_rows": counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "rule_selection_rows": counts.get("rule_selection_rows"),
+            "calibration_in_scope_retained": counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": counts.get("calibration_in_scope_rows"),
+            "train_cal_oos_abstained_or_routed": counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "reproducibility_violation_total": len(reproducibility_violations),
+        },
+        "decision": {
+            "deployment_operator_route_class_provenance_reproducible": (
+                reproducibility_passed
+            ),
+            "deployment_operator_route_class_provenance_ready": (
+                reproducibility_passed
+                and bool(
+                    decision.get("deployment_operator_route_class_provenance_ready")
+                )
+            ),
+            "safe_abstention_route_remains_current": reproducibility_passed,
+            "operator_route_classes_have_clean_stage_provenance": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the reproducible class-level provenance audit trail for "
+                "abstain/route explanations only; keep fixed-threshold scoring "
+                "closure fail-closed pending exact P07658 evidence."
+                if reproducibility_passed
+                else (
+                    "Do not rely on class-level provenance until the listed "
+                    "reproducibility violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "operator_route_class_provenance_reproducibility_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_operator_route_class_provenance_readout": (
+                _source_path_record(
+                    deployment_operator_route_class_provenance_readout_path
+                )
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 route-class provenance is reproducible."
+                if reproducibility_passed
+                else "Lever 3 route-class provenance reproducibility needs repair."
+            ),
+            "result": (
+                "Route-class provenance readout rebuilds after created_utc "
+                f"normalization with {len(reproducibility_violations)} "
+                "reproducibility violations."
+            ),
+            "next_action": (
+                "Use reproducible class-level provenance only for abstain/route explanations."
+                if reproducibility_passed
+                else "Resolve reproducibility violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    provenance_artifact = audit["operator_route_class_provenance_artifact"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Operator Route-Class Provenance Reproducibility Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Route-class provenance reproducible: "
+        f"{decision['deployment_operator_route_class_provenance_reproducible']}",
+        "- Route-class provenance ready: "
+        f"{decision['deployment_operator_route_class_provenance_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Reproducibility violations: {audit['reproducibility_violations']}",
+        "",
+        "## Rebuild",
+        "",
+        "- Normalized rebuild matches stored: "
+        f"{provenance_artifact['normalized_rebuild_matches_stored']}",
+        "- Stored normalized SHA-256: "
+        f"{provenance_artifact['stored_normalized_sha256']}",
+        "- Rebuilt normalized SHA-256: "
+        f"{provenance_artifact['rebuilt_normalized_sha256']}",
+        f"- Rebuild error: {provenance_artifact['rebuild_error']}",
+        "",
+        "## Counts",
+        "",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Rebuild difference count: {counts['rebuild_difference_count']}",
+        "- Route-class stage-source links lineage-covered: "
+        f"{counts['route_class_stage_source_links_lineage_covered']}/"
+        f"{counts['route_class_stage_source_links']}",
+        "- Route-class stage-source links guardrail-clean: "
+        f"{counts['route_class_stage_source_links_guardrail_clean']}/"
+        f"{counts['route_class_stage_source_links']}",
+        f"- Route-class stage-source counts: {counts['route_class_stage_source_counts']}",
+        "- Operator rows abstain/route: "
+        f"{counts['operator_action_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['operator_action_rows']}",
+        "",
+        "## Reproducibility Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("reproducibility_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing route-class provenance readout and its recorded sources only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+    *,
+    deployment_operator_route_class_provenance_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_OPERATOR_ROUTE_CLASS_PROVENANCE_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit(
+        deployment_operator_route_class_provenance_readout_path=(
+            deployment_operator_route_class_provenance_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_report(
                 audit
             ),
             encoding="utf-8",

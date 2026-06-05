@@ -10607,6 +10607,375 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(audit["guardrails"]["threshold_values_changed"])
 
+    def test_fold_augmented_lever3_deployment_operator_route_class_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_deployment_operator_route_class_readout_passed",
+        )
+        self.assertEqual(readout["route_class_violations"], [])
+        self.assertTrue(
+            readout["decision"][
+                "deployment_operator_route_class_readout_ready"
+            ]
+        )
+        self.assertTrue(readout["decision"]["safe_abstention_route_remains_current"])
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(readout["counts"]["operator_action_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["operator_action_rows_abstain_or_route_novel_oos"],
+            21,
+        )
+        self.assertEqual(readout["counts"]["route_classes_with_rows"], 5)
+        self.assertEqual(
+            readout["counts"]["route_class_counts"],
+            {
+                "cofactor_or_same_family_confound": 11,
+                "fold_similarity_confound": 4,
+                "pocket_chemistry_confound": 1,
+                "pocket_geometry_confound": 3,
+                "protein_descriptor_counteraxis": 2,
+            },
+        )
+        self.assertEqual(readout["counts"]["unclassified_route_stage_rows"], 0)
+        self.assertEqual(readout["counts"]["unsafe_action_rows"], 0)
+        self.assertEqual(readout["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(readout["counts"]["rule_selection_rows"], 0)
+        self.assertEqual(readout["counts"]["source_records_checked"], 2)
+        self.assertEqual(readout["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["train_cal_oos_abstained_or_routed"], 167
+        )
+        self.assertEqual(readout["counts"]["train_cal_oos_rows"], 204)
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertTrue(
+            readout["route_class_checks"][
+                "stage_provenance_reproducibility_audit_passed"
+            ]
+        )
+        self.assertTrue(
+            readout["route_class_checks"][
+                "deployment_operator_manifest_audit_passed"
+            ]
+        )
+        self.assertTrue(
+            readout["route_class_checks"]["all_manifest_rows_classified"]
+        )
+        self.assertTrue(readout["guardrails"]["measured_readout"])
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(readout["guardrails"]["threshold_values_changed"])
+
+    def test_fold_augmented_lever3_deployment_operator_route_class_reproducibility_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_reproducibility_audit_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+        self.assertTrue(
+            audit["decision"]["deployment_operator_route_class_reproducible"]
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_operator_route_class_readout_ready"]
+        )
+        self.assertTrue(audit["decision"]["safe_abstention_route_remains_current"])
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(audit["counts"]["source_records_checked"], 2)
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertEqual(audit["counts"]["operator_action_rows"], 21)
+        self.assertEqual(
+            audit["counts"]["operator_action_rows_abstain_or_route_novel_oos"],
+            21,
+        )
+        self.assertEqual(audit["counts"]["route_classes_with_rows"], 5)
+        self.assertEqual(
+            audit["counts"]["route_class_counts"],
+            {
+                "cofactor_or_same_family_confound": 11,
+                "fold_similarity_confound": 4,
+                "pocket_chemistry_confound": 1,
+                "pocket_geometry_confound": 3,
+                "protein_descriptor_counteraxis": 2,
+            },
+        )
+        self.assertEqual(audit["counts"]["unsafe_action_rows"], 0)
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(audit["counts"]["rule_selection_rows"], 0)
+        self.assertEqual(audit["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(audit["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(
+            audit["counts"]["train_cal_oos_abstained_or_routed"], 167
+        )
+        self.assertEqual(audit["counts"]["train_cal_oos_rows"], 204)
+        self.assertEqual(
+            audit["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertEqual(audit["counts"]["reproducibility_violation_total"], 0)
+        self.assertTrue(
+            audit["operator_route_class_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertTrue(
+            audit["reproducibility_checks"][
+                "operator_route_class_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertTrue(
+            audit["reproducibility_checks"]["route_class_metrics_stable"]
+        )
+        self.assertTrue(audit["guardrails"]["measured_readout"])
+        self.assertFalse(audit["guardrails"]["blocker_packet"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(audit["guardrails"]["threshold_values_changed"])
+
+    def test_fold_augmented_lever3_deployment_operator_route_class_provenance_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_readout_passed"
+            ),
+        )
+        self.assertEqual(readout["provenance_violations"], [])
+        self.assertTrue(
+            readout["decision"][
+                "deployment_operator_route_class_provenance_ready"
+            ]
+        )
+        self.assertTrue(readout["decision"]["safe_abstention_route_remains_current"])
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(readout["counts"]["route_class_stage_source_links"], 7)
+        self.assertEqual(readout["counts"]["route_classes_with_stage_sources"], 5)
+        self.assertEqual(readout["counts"]["unique_stage_source_artifacts"], 5)
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_counts"],
+            {
+                "cofactor_or_same_family_confound": 2,
+                "fold_similarity_confound": 1,
+                "pocket_chemistry_confound": 1,
+                "pocket_geometry_confound": 2,
+                "protein_descriptor_counteraxis": 1,
+            },
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_present"], 7
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_lineage_covered"],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_guardrail_clean"],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"]["route_class_stage_source_links_hash_current"],
+            7,
+        )
+        self.assertEqual(readout["counts"]["source_records_checked"], 2)
+        self.assertEqual(readout["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(
+            readout["counts"]["stage_provenance_unique_stage_source_artifacts"],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"]["stage_provenance_stage_sources_guardrail_clean"],
+            5,
+        )
+        self.assertEqual(
+            readout["counts"]["stage_provenance_lineage_source_records_checked"],
+            43,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "stage_provenance_lineage_source_records_hash_current"
+            ],
+            43,
+        )
+        self.assertEqual(readout["counts"]["operator_action_rows"], 21)
+        self.assertEqual(
+            readout["counts"]["operator_action_rows_abstain_or_route_novel_oos"],
+            21,
+        )
+        self.assertEqual(readout["counts"]["unsafe_action_rows"], 0)
+        self.assertEqual(readout["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(readout["counts"]["rule_selection_rows"], 0)
+        self.assertEqual(readout["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["train_cal_oos_abstained_or_routed"], 167
+        )
+        self.assertEqual(readout["counts"]["train_cal_oos_rows"], 204)
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["provenance_violation_total"], 0)
+        self.assertTrue(
+            readout["provenance_checks"][
+                "all_route_class_stage_sources_lineage_covered"
+            ]
+        )
+        self.assertTrue(
+            readout["provenance_checks"][
+                "all_route_class_stage_sources_guardrail_clean"
+            ]
+        )
+        self.assertTrue(readout["guardrails"]["measured_readout"])
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(readout["guardrails"]["threshold_values_changed"])
+
+    def test_fold_augmented_lever3_deployment_operator_route_class_provenance_reproducibility_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_reproducibility_audit_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_operator_route_class_"
+                "provenance_reproducibility_audit_passed"
+            ),
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_route_class_provenance_reproducible"
+            ]
+        )
+        self.assertTrue(
+            audit["decision"][
+                "deployment_operator_route_class_provenance_ready"
+            ]
+        )
+        self.assertTrue(audit["decision"]["safe_abstention_route_remains_current"])
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(audit["counts"]["source_records_checked"], 2)
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertEqual(audit["counts"]["route_class_stage_source_links"], 7)
+        self.assertEqual(audit["counts"]["route_classes_with_stage_sources"], 5)
+        self.assertEqual(audit["counts"]["unique_stage_source_artifacts"], 5)
+        self.assertEqual(
+            audit["counts"]["route_class_stage_source_counts"],
+            {
+                "cofactor_or_same_family_confound": 2,
+                "fold_similarity_confound": 1,
+                "pocket_chemistry_confound": 1,
+                "pocket_geometry_confound": 2,
+                "protein_descriptor_counteraxis": 1,
+            },
+        )
+        self.assertEqual(
+            audit["counts"]["route_class_stage_source_links_lineage_covered"],
+            7,
+        )
+        self.assertEqual(
+            audit["counts"]["route_class_stage_source_links_guardrail_clean"],
+            7,
+        )
+        self.assertEqual(
+            audit["counts"]["route_class_stage_source_links_hash_current"],
+            7,
+        )
+        self.assertEqual(audit["counts"]["operator_action_rows"], 21)
+        self.assertEqual(
+            audit["counts"]["operator_action_rows_abstain_or_route_novel_oos"],
+            21,
+        )
+        self.assertEqual(audit["counts"]["unsafe_action_rows"], 0)
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(audit["counts"]["rule_selection_rows"], 0)
+        self.assertEqual(audit["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(audit["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(
+            audit["counts"]["train_cal_oos_abstained_or_routed"], 167
+        )
+        self.assertEqual(audit["counts"]["train_cal_oos_rows"], 204)
+        self.assertEqual(
+            audit["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertEqual(audit["counts"]["reproducibility_violation_total"], 0)
+        self.assertTrue(
+            audit["operator_route_class_provenance_artifact"][
+                "normalized_rebuild_matches_stored"
+            ]
+        )
+        self.assertTrue(
+            audit["reproducibility_checks"][
+                "operator_route_class_provenance_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertTrue(
+            audit["reproducibility_checks"][
+                "route_class_provenance_metrics_stable"
+            ]
+        )
+        self.assertTrue(audit["guardrails"]["measured_readout"])
+        self.assertFalse(audit["guardrails"]["blocker_packet"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(audit["guardrails"]["threshold_values_changed"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -10783,6 +11152,22 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_deployment_stage_"
                 "provenance_reproducibility_audit_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_readout_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_reproducibility_audit_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_readout_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_operator_"
+                "route_class_provenance_reproducibility_audit_current702_20260605.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):
