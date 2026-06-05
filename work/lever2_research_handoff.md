@@ -155,11 +155,19 @@ toward train/cal-supported direct electron-flow operating-point value.
 
 #### Commit/push status
 
-- Primary research commit/push pending after this handoff update.
+- Primary research commit
+  `36580260cf9c148bfa1ab54c2a8e45dbce31ec36`
+  (`Add Lever 2 electron-flow candidate bundle readout`) was pushed to
+  `origin/lever-2-research-track`.
+- Fetch/sync verification after the primary push matched local `HEAD` and
+  `origin/lever-2-research-track` at
+  `36580260cf9c148bfa1ab54c2a8e45dbce31ec36`.
 - Actual elapsed time was `49.18` minutes from recorded start to final
   timestamp, shorter than the requested 55-minute work block but substantially
   longer than the prior short run. The ledger records measured time rather than
   inflating it.
+- This final handoff status update is being committed and pushed separately as
+  a handoff-only wrap-up change.
 
 #### Exact next action
 
