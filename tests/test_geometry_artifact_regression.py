@@ -21409,6 +21409,212 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ]
         )
 
+    def test_lever2_electron_flow_approval_import_smoke_materialization_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_approval_import_"
+                "smoke_materialization_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_approval_import_smoke_"
+                "materialization_readout_research_only_collision_safe_"
+                "namespaced_smoke_materialization_gate_positive_pending_"
+                "protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            (
+                "research_only_collision_safe_namespaced_smoke_materialization_"
+                "gate_positive_pending_protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["counts"]["existing_approved_sidecar_rows_before"], 43
+        )
+        self.assertEqual(
+            readout["counts"]["simulated_approved_sidecar_rows_after_smoke"], 77
+        )
+        self.assertEqual(readout["counts"]["smoke_materialization_new_rows"], 34)
+        self.assertEqual(
+            readout["counts"]["smoke_materialization_updated_existing_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_materialization_existing_direct_feature_key_conflicts"],
+            2,
+        )
+        self.assertEqual(readout["counts"]["generic_direct_field_conflict_total"], 2)
+        self.assertEqual(
+            readout["counts"][
+                "namespaced_smoke_materialization_existing_direct_feature_key_conflicts"
+            ],
+            0,
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(readout["counts"]["approved_sidecar_only_smoke_rows"], 35)
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_only_smoke_complete_direct_component_rows"
+            ],
+            35,
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_only_smoke_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_only_smoke_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104"],
+        )
+        self.assertTrue(
+            readout["counts"][
+                "approved_sidecar_only_smoke_gate_matches_prior_smoke_review"
+            ]
+        )
+        self.assertEqual(
+            readout["counts"]["collision_safe_namespaced_smoke_rows"], 35
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_smoke_complete_direct_component_rows"
+            ],
+            35,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_smoke_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_smoke_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(
+            readout["counts"]["remaining_current_split_rows_after_smoke"], 39
+        )
+        self.assertEqual(
+            readout["counts"]["remaining_complete_direct_component_rows_after_smoke"],
+            39,
+        )
+        self.assertEqual(
+            readout["counts"]["remaining_positive_entry_ids_after_smoke"],
+            ["m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["full_74row_incremental_oos_abstain_recall_vs_current_geometry_fold"],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["collision_safe_namespaced_full_74row_rows"],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_full_74row_complete_direct_component_rows"
+            ],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_full_74row_primary_positive_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_full_74row_primary_retain_recall"
+            ],
+            1.0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_full_74row_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_full_74row_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_full_74row_union_or_gate_oos_abstain_recall"
+            ],
+            0.506667,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "collision_safe_namespaced_full_74row_existing_direct_feature_key_conflicts"
+            ],
+            0,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "generic_direct_field_import_has_existing_sidecar_collisions"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "collision_safe_namespaced_smoke_materialization_ready_for_protected_import"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["smoke_materialization_ready_for_protected_import"]
+        )
+        self.assertTrue(
+            readout["decision"]["full_74row_expansion_ready_after_smoke_passes"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "collision_safe_namespaced_full_74row_gate_complete"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "collision_safe_namespaced_full_74row_gate_preserves_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "collision_safe_namespaced_full_74row_gate_adds_current_retained_oos_abstention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "collision_safe_namespaced_full_74row_gate_has_no_direct_feature_conflicts"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_after_smoke_materialization"
+            ]
+        )
+        self.assertFalse(readout["decision"]["protected_surfaces_modified"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(
+            readout["source_artifacts"]["approval_import_smoke_review_readout"][
+                "exists"
+            ]
+        )
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

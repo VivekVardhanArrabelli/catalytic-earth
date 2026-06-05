@@ -111,6 +111,10 @@ DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_SMOKE_REVIEW_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_approval_import_smoke_review_"
     "readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_approval_import_smoke_"
+    "materialization_readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -5887,6 +5891,116 @@ def _pqq_sidecar_gate_readout(
             "field is positive; retain a primary row unless that same field "
             "is positive. No threshold is selected or tuned by this readout."
         ),
+        "rows": len(sidecar_rows),
+        "complete_rows": len(complete_rows),
+        "incomplete_rows": len(sidecar_rows) - len(complete_rows),
+        "primary_rows": len(primary_rows),
+        "retained_oos_rows": len(retained_oos_rows),
+        "primary_positive_rows": len(primary_positive_rows),
+        "retained_oos_positive_rows": len(retained_oos_positive_rows),
+        "primary_positive_entry_ids": _entry_ids(primary_positive_rows),
+        "retained_oos_positive_entry_ids": _entry_ids(
+            retained_oos_positive_rows
+        ),
+        "primary_retain_recall_if_abstain_positive": primary_retain,
+        "retained_oos_abstain_recall_if_abstain_positive": retained_oos_recall,
+        "operating_point_measurable_now": complete_now,
+        "preserves_primary_retention": bool(
+            complete_now and not primary_positive_rows and primary_rows
+        ),
+        "adds_incremental_oos_abstention": bool(
+            complete_now and retained_oos_positive_rows
+        ),
+        "current_geometry_fold_oos_rows": split_oos_rows,
+        "baseline_current_geometry_fold_abstained_oos_rows": (
+            baseline_current_abstained_oos_rows
+        ),
+        "union_or_gate_oos_abstained_rows": union_oos_abstained_rows,
+        "union_or_gate_oos_abstain_recall": union_oos_abstain_recall,
+        "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+            incremental_oos_abstain_recall_vs_current_geometry_fold
+        ),
+    }
+
+
+def _electron_flow_event_gate_readout(
+    sidecar_rows: list[dict[str, Any]],
+    *,
+    gate_id: str,
+    feature_fields: list[str],
+    gate_rule: str,
+    event_flag_field: str,
+    split_oos_rows: int | None = None,
+    baseline_retained_oos_rows: int | None = None,
+) -> dict[str, Any]:
+    primary_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("current_split_role") == "current_primary_retention_gate"
+    ]
+    retained_oos_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("current_split_role") == "current_retained_oos"
+    ]
+    complete_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("source_free_electron_flow_field_complete")
+    ]
+    positive_rows = [
+        row
+        for row in sidecar_rows
+        if (row.get("row_specific_event_features") or {}).get(event_flag_field)
+    ]
+    primary_positive_rows = [
+        row for row in primary_rows if row in positive_rows
+    ]
+    retained_oos_positive_rows = [
+        row for row in retained_oos_rows if row in positive_rows
+    ]
+    complete_now = len(complete_rows) == len(sidecar_rows)
+    primary_retain = _recall(
+        len(primary_rows) - len(primary_positive_rows),
+        len(primary_rows),
+    )
+    retained_oos_recall = _recall(
+        len(retained_oos_positive_rows),
+        len(retained_oos_rows),
+    )
+    baseline_current_abstained_oos_rows = None
+    union_oos_abstained_rows = None
+    union_oos_abstain_recall = None
+    incremental_oos_abstain_recall_vs_current_geometry_fold = None
+    retained_oos_denominator = (
+        baseline_retained_oos_rows
+        if baseline_retained_oos_rows is not None
+        else len(retained_oos_rows)
+    )
+    if (
+        split_oos_rows is not None
+        and split_oos_rows >= retained_oos_denominator
+    ):
+        baseline_current_abstained_oos_rows = (
+            split_oos_rows - retained_oos_denominator
+        )
+        union_oos_abstained_rows = (
+            baseline_current_abstained_oos_rows
+            + len(retained_oos_positive_rows)
+        )
+        union_oos_abstain_recall = _recall(
+            union_oos_abstained_rows,
+            split_oos_rows,
+        )
+        incremental_oos_abstain_recall_vs_current_geometry_fold = _recall(
+            len(retained_oos_positive_rows),
+            split_oos_rows,
+        )
+    return {
+        "gate_id": gate_id,
+        "feature_fields": feature_fields,
+        "event_flag_field": event_flag_field,
+        "gate_rule": gate_rule,
         "rows": len(sidecar_rows),
         "complete_rows": len(complete_rows),
         "incomplete_rows": len(sidecar_rows) - len(complete_rows),
@@ -19335,6 +19449,1156 @@ def write_lever2_source_free_electron_flow_approval_import_smoke_review_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_approval_import_smoke_review_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout(
+    *,
+    approval_import_smoke_review_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    smoke_review = _read_json(approval_import_smoke_review_readout_path)
+    approved_sidecar = _read_json(train_cal_feature_sidecar_path)
+    review_contract = smoke_review.get("review_contract") or {}
+    feature_fields = list(
+        review_contract.get("feature_fields")
+        or [
+            "has_electron_transfer_event",
+            "electron_transfer_count",
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+            "has_source_free_nad_family_donor_acceptor_distance",
+            "source_free_nad_family_donor_acceptor_distance_count",
+            "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+            "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+        ]
+    )
+    namespaced_feature_fields = [
+        "has_source_free_direct_electron_transfer_event",
+        "source_free_direct_electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+    ]
+    source_feature_rows = smoke_review.get("feature_rows") or {}
+    smoke_rows = [
+        row
+        for row in source_feature_rows.get("smoke_tranche", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    full_current_rows = [
+        row
+        for row in source_feature_rows.get("full_current_split", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_rows = [
+        row
+        for row in approved_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_by_id = {str(row["entry_id"]): row for row in approved_rows}
+    smoke_entry_ids = {str(row["entry_id"]) for row in smoke_rows}
+    existing_smoke_rows = [
+        str(row["entry_id"]) for row in smoke_rows if str(row["entry_id"]) in approved_by_id
+    ]
+    new_smoke_rows = [
+        str(row["entry_id"]) for row in smoke_rows if str(row["entry_id"]) not in approved_by_id
+    ]
+    direct_feature_conflicts: list[dict[str, Any]] = []
+    direct_existing_keys_added = 0
+    direct_existing_keys_already_matching = 0
+    direct_existing_keys_conflicting = 0
+    materialized_smoke_rows: list[dict[str, Any]] = []
+    namespaced_feature_conflicts: list[dict[str, Any]] = []
+    namespaced_existing_keys_added = 0
+    namespaced_existing_keys_already_matching = 0
+    namespaced_existing_keys_conflicting = 0
+    namespaced_materialized_smoke_rows: list[dict[str, Any]] = []
+    for source_row in smoke_rows:
+        entry_id = str(source_row["entry_id"])
+        base_row = approved_by_id.get(entry_id) or {}
+        base_features = dict(base_row.get("row_specific_event_features") or {})
+        source_features = source_row.get("row_specific_event_features") or {}
+        direct_features = {
+            field: source_features[field]
+            for field in feature_fields
+            if field in source_features
+        }
+        namespaced_features = {
+            "has_source_free_direct_electron_transfer_event": source_features.get(
+                "has_electron_transfer_event"
+            ),
+            "source_free_direct_electron_transfer_count": source_features.get(
+                "electron_transfer_count"
+            ),
+        }
+        namespaced_features.update(
+            {
+                field: source_features[field]
+                for field in namespaced_feature_fields[2:]
+                if field in source_features
+            }
+        )
+        if base_row:
+            for field, value in direct_features.items():
+                if field not in base_features:
+                    direct_existing_keys_added += 1
+                elif base_features[field] == value:
+                    direct_existing_keys_already_matching += 1
+                else:
+                    direct_existing_keys_conflicting += 1
+                    direct_feature_conflicts.append(
+                        {
+                            "entry_id": entry_id,
+                            "feature_key": field,
+                            "existing_value": base_features[field],
+                            "candidate_value": value,
+                        }
+                    )
+            for field, value in namespaced_features.items():
+                if field not in base_features:
+                    namespaced_existing_keys_added += 1
+                elif base_features[field] == value:
+                    namespaced_existing_keys_already_matching += 1
+                else:
+                    namespaced_existing_keys_conflicting += 1
+                    namespaced_feature_conflicts.append(
+                        {
+                            "entry_id": entry_id,
+                            "feature_key": field,
+                            "existing_value": base_features[field],
+                            "candidate_value": value,
+                        }
+                    )
+        materialized_smoke_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": source_row.get(
+                    "assigned_embedding_split"
+                )
+                or base_row.get("assigned_embedding_split"),
+                "candidate_bundle_role": source_row.get("candidate_bundle_role"),
+                "current_split_role": source_row.get("current_split_role"),
+                "existing_approved_sidecar_row_before_smoke": bool(base_row),
+                "source_free_electron_flow_field_complete": (
+                    _direct_electron_flow_row_complete(
+                        source_row,
+                        feature_fields=feature_fields,
+                    )
+                ),
+                "row_specific_event_features": direct_features,
+                "simulated_smoke_materialization": {
+                    "protected_surface_written": False,
+                    "would_add_new_approved_sidecar_row": not bool(base_row),
+                    "would_update_existing_approved_sidecar_row": bool(base_row),
+                    "direct_component_fields_from_smoke_review": sorted(
+                        direct_features
+                    ),
+                },
+                "feature_guardrails": {
+                    "mechanism_text_excluded_from_features": True,
+                    "ec_rhea_ids_excluded_from_features": True,
+                    "labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "accessions_excluded_from_features": True,
+                    "pdb_ids_or_coordinate_paths_excluded_from_features": True,
+                    "heldout_row": False,
+                    "approved_sidecar_write_simulated_only": True,
+                },
+            }
+        )
+        namespaced_materialized_smoke_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": source_row.get(
+                    "assigned_embedding_split"
+                )
+                or base_row.get("assigned_embedding_split"),
+                "candidate_bundle_role": source_row.get("candidate_bundle_role"),
+                "current_split_role": source_row.get("current_split_role"),
+                "existing_approved_sidecar_row_before_smoke": bool(base_row),
+                "source_free_electron_flow_field_complete": bool(
+                    all(
+                        field in namespaced_features
+                        for field in namespaced_feature_fields
+                    )
+                ),
+                "row_specific_event_features": namespaced_features,
+                "simulated_smoke_materialization": {
+                    "protected_surface_written": False,
+                    "would_add_new_approved_sidecar_row": not bool(base_row),
+                    "would_update_existing_approved_sidecar_row": bool(base_row),
+                    "collision_safe_namespaced_direct_event_fields": True,
+                    "direct_component_fields_from_smoke_review": sorted(
+                        namespaced_features
+                    ),
+                },
+                "feature_guardrails": {
+                    "mechanism_text_excluded_from_features": True,
+                    "ec_rhea_ids_excluded_from_features": True,
+                    "labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "accessions_excluded_from_features": True,
+                    "pdb_ids_or_coordinate_paths_excluded_from_features": True,
+                    "heldout_row": False,
+                    "approved_sidecar_write_simulated_only": True,
+                    "generic_event_fields_not_overwritten": True,
+                },
+            }
+        )
+    materialized_smoke_rows = sorted(
+        materialized_smoke_rows,
+        key=lambda row: _entry_sort_key(str(row["entry_id"])),
+    )
+    namespaced_materialized_smoke_rows = sorted(
+        namespaced_materialized_smoke_rows,
+        key=lambda row: _entry_sort_key(str(row["entry_id"])),
+    )
+    prior_smoke = (
+        (smoke_review.get("measured_readout") or {})
+        .get("smallest_smoke_tranche", {})
+        .get("fixed_gate_readout", {})
+    )
+    split_oos_rows = prior_smoke.get("current_geometry_fold_oos_rows")
+    if split_oos_rows is not None:
+        try:
+            split_oos_rows = int(split_oos_rows)
+        except (TypeError, ValueError):
+            split_oos_rows = None
+    materialized_gate = _donor_acceptor_gate_readout(
+        materialized_smoke_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_approved_sidecar_shaped_smoke_materialization_gate",
+        feature_fields=feature_fields,
+        gate_rule=(
+            "In-memory approved-sidecar-shaped smoke gate: after the proposed "
+            "35-row protected import, abstain a currently retained OOS row "
+            "only when the approved direct source-free PQQ/NAD/Fe-S "
+            "electron-flow fields are complete and positive. Primary rows "
+            "retain unless the same direct field surface is positive. No "
+            "threshold is selected or tuned."
+        ),
+    )
+    full_current_retained_oos_rows = [
+        row
+        for row in full_current_rows
+        if row.get("current_split_role") == "current_retained_oos"
+    ]
+    if (
+        split_oos_rows is not None
+        and split_oos_rows >= len(full_current_retained_oos_rows)
+    ):
+        baseline_abstained = split_oos_rows - len(full_current_retained_oos_rows)
+        union_abstained = (
+            baseline_abstained
+            + materialized_gate["retained_oos_positive_rows"]
+        )
+        materialized_gate["baseline_current_geometry_fold_abstained_oos_rows"] = (
+            baseline_abstained
+        )
+        materialized_gate["union_or_gate_oos_abstained_rows"] = union_abstained
+        materialized_gate["union_or_gate_oos_abstain_recall"] = _recall(
+            union_abstained,
+            split_oos_rows,
+        )
+    namespaced_materialized_gate = _electron_flow_event_gate_readout(
+        namespaced_materialized_smoke_rows,
+        split_oos_rows=split_oos_rows,
+        baseline_retained_oos_rows=len(full_current_retained_oos_rows),
+        gate_id=(
+            "fixed_binary_collision_safe_namespaced_approved_sidecar_"
+            "smoke_materialization_gate"
+        ),
+        feature_fields=namespaced_feature_fields,
+        event_flag_field="has_source_free_direct_electron_transfer_event",
+        gate_rule=(
+            "Collision-safe in-memory approved-sidecar-shaped smoke gate: "
+            "after the proposed 35-row protected import, abstain a currently "
+            "retained OOS row only when the namespaced direct source-free "
+            "electron-transfer event field is complete and positive. Primary "
+            "rows retain unless that same namespaced field is positive. No "
+            "existing generic electron-transfer fields are overwritten, and "
+            "no threshold is selected or tuned."
+        ),
+    )
+    comparable_gate_keys = [
+        "rows",
+        "complete_rows",
+        "primary_rows",
+        "retained_oos_rows",
+        "primary_positive_rows",
+        "retained_oos_positive_rows",
+        "primary_positive_entry_ids",
+        "retained_oos_positive_entry_ids",
+        "primary_retain_recall_if_abstain_positive",
+        "incremental_oos_abstain_recall_vs_current_geometry_fold",
+        "union_or_gate_oos_abstain_recall",
+    ]
+    materialized_gate_matches_prior = bool(
+        prior_smoke
+        and all(
+            materialized_gate.get(key) == prior_smoke.get(key)
+            for key in comparable_gate_keys
+        )
+    )
+    namespaced_gate_matches_prior = bool(
+        prior_smoke
+        and all(
+            namespaced_materialized_gate.get(key) == prior_smoke.get(key)
+            for key in comparable_gate_keys
+        )
+    )
+    remaining_full_rows = [
+        row
+        for row in full_current_rows
+        if str(row.get("entry_id")) not in smoke_entry_ids
+    ]
+    post_smoke_sidecar_ids = set(approved_by_id) | set(new_smoke_rows)
+    remaining_new_rows = [
+        str(row["entry_id"])
+        for row in remaining_full_rows
+        if str(row["entry_id"]) not in post_smoke_sidecar_ids
+    ]
+    remaining_update_rows = [
+        str(row["entry_id"])
+        for row in remaining_full_rows
+        if str(row["entry_id"]) in post_smoke_sidecar_ids
+    ]
+    remaining_complete_rows = [
+        row
+        for row in remaining_full_rows
+        if _direct_electron_flow_row_complete(
+            row,
+            feature_fields=feature_fields,
+        )
+    ]
+    remaining_positive_rows = [
+        {
+            "entry_id": str(row["entry_id"]),
+            "current_split_role": row.get("current_split_role"),
+            "direct_components_positive": _direct_electron_flow_component_labels(
+                row
+            ),
+            "electron_transfer_count": (
+                (row.get("row_specific_event_features") or {}).get(
+                    "electron_transfer_count"
+                )
+            ),
+        }
+        for row in remaining_full_rows
+        if (row.get("row_specific_event_features") or {}).get(
+            "has_electron_transfer_event"
+        )
+    ]
+    namespaced_full_feature_conflicts: list[dict[str, Any]] = []
+    namespaced_full_existing_keys_added = 0
+    namespaced_full_existing_keys_already_matching = 0
+    namespaced_full_existing_keys_conflicting = 0
+    namespaced_full_rows: list[dict[str, Any]] = []
+    for source_row in full_current_rows:
+        entry_id = str(source_row["entry_id"])
+        base_row = approved_by_id.get(entry_id) or {}
+        base_features = dict(base_row.get("row_specific_event_features") or {})
+        source_features = source_row.get("row_specific_event_features") or {}
+        namespaced_features = {
+            "has_source_free_direct_electron_transfer_event": source_features.get(
+                "has_electron_transfer_event"
+            ),
+            "source_free_direct_electron_transfer_count": source_features.get(
+                "electron_transfer_count"
+            ),
+        }
+        namespaced_features.update(
+            {
+                field: source_features[field]
+                for field in namespaced_feature_fields[2:]
+                if field in source_features
+            }
+        )
+        if base_row:
+            for field, value in namespaced_features.items():
+                if field not in base_features:
+                    namespaced_full_existing_keys_added += 1
+                elif base_features[field] == value:
+                    namespaced_full_existing_keys_already_matching += 1
+                else:
+                    namespaced_full_existing_keys_conflicting += 1
+                    namespaced_full_feature_conflicts.append(
+                        {
+                            "entry_id": entry_id,
+                            "feature_key": field,
+                            "existing_value": base_features[field],
+                            "candidate_value": value,
+                        }
+                    )
+        namespaced_full_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": source_row.get(
+                    "assigned_embedding_split"
+                )
+                or base_row.get("assigned_embedding_split"),
+                "candidate_bundle_role": source_row.get("candidate_bundle_role"),
+                "current_split_role": source_row.get("current_split_role"),
+                "existing_approved_sidecar_row_before_expansion": bool(base_row),
+                "source_free_electron_flow_field_complete": bool(
+                    all(
+                        field in namespaced_features
+                        for field in namespaced_feature_fields
+                    )
+                ),
+                "row_specific_event_features": namespaced_features,
+                "simulated_full_materialization": {
+                    "protected_surface_written": False,
+                    "would_add_new_approved_sidecar_row": not bool(base_row),
+                    "would_update_existing_approved_sidecar_row": bool(base_row),
+                    "collision_safe_namespaced_direct_event_fields": True,
+                },
+                "feature_guardrails": {
+                    "mechanism_text_excluded_from_features": True,
+                    "ec_rhea_ids_excluded_from_features": True,
+                    "labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "accessions_excluded_from_features": True,
+                    "pdb_ids_or_coordinate_paths_excluded_from_features": True,
+                    "heldout_row": False,
+                    "approved_sidecar_write_simulated_only": True,
+                    "generic_event_fields_not_overwritten": True,
+                },
+            }
+        )
+    namespaced_full_rows = sorted(
+        namespaced_full_rows,
+        key=lambda row: _entry_sort_key(str(row["entry_id"])),
+    )
+    namespaced_full_gate = _electron_flow_event_gate_readout(
+        namespaced_full_rows,
+        split_oos_rows=split_oos_rows,
+        baseline_retained_oos_rows=len(full_current_retained_oos_rows),
+        gate_id=(
+            "fixed_binary_collision_safe_namespaced_full_74row_current_split_"
+            "materialization_gate"
+        ),
+        feature_fields=namespaced_feature_fields,
+        event_flag_field="has_source_free_direct_electron_transfer_event",
+        gate_rule=(
+            "Collision-safe in-memory full current-split gate: after smoke "
+            "passes, expand the same namespaced direct source-free "
+            "electron-transfer event fields to all 74 current-split rows. "
+            "A currently retained OOS row abstains when the namespaced direct "
+            "event field is complete and positive; primary rows retain unless "
+            "that same field is positive. No existing generic electron-"
+            "transfer fields are overwritten, and no threshold is selected or "
+            "tuned."
+        ),
+    )
+    full_gate = (
+        (smoke_review.get("measured_readout") or {})
+        .get("full_74row_current_split_expansion", {})
+        .get("fixed_gate_readout", {})
+    )
+    forbidden_hits = _feature_row_exact_forbidden_key_hits(
+        materialized_smoke_rows
+    )
+    namespaced_forbidden_hits = _feature_row_exact_forbidden_key_hits(
+        namespaced_materialized_smoke_rows
+    )
+    namespaced_full_forbidden_hits = _feature_row_exact_forbidden_key_hits(
+        namespaced_full_rows
+    )
+    materialization_positive = bool(
+        materialized_gate["operating_point_measurable_now"]
+        and materialized_gate["preserves_primary_retention"]
+        and "m_csa:104"
+        in materialized_gate["retained_oos_positive_entry_ids"]
+        and materialized_gate_matches_prior
+        and not forbidden_hits
+        and not direct_feature_conflicts
+    )
+    namespaced_materialization_positive = bool(
+        namespaced_materialized_gate["operating_point_measurable_now"]
+        and namespaced_materialized_gate["preserves_primary_retention"]
+        and "m_csa:104"
+        in namespaced_materialized_gate["retained_oos_positive_entry_ids"]
+        and namespaced_gate_matches_prior
+        and not namespaced_forbidden_hits
+        and not namespaced_feature_conflicts
+    )
+    full_expansion_ready = bool(
+        (materialization_positive or namespaced_materialization_positive)
+        and len(remaining_complete_rows) == len(remaining_full_rows)
+        and remaining_full_rows
+        and full_gate.get("preserves_primary_retention")
+        and full_gate.get("adds_incremental_oos_abstention")
+        and namespaced_full_gate["operating_point_measurable_now"]
+        and namespaced_full_gate["preserves_primary_retention"]
+        and namespaced_full_gate["adds_incremental_oos_abstention"]
+        and not namespaced_full_forbidden_hits
+        and not namespaced_full_feature_conflicts
+    )
+    result_class = (
+        "research_only_collision_safe_namespaced_smoke_materialization_gate_positive_pending_protected_import"
+        if (
+            namespaced_materialization_positive
+            and full_expansion_ready
+            and direct_feature_conflicts
+        )
+        else "research_only_approved_sidecar_shaped_smoke_materialization_gate_positive_pending_protected_import"
+        if materialization_positive and full_expansion_ready
+        else (
+            "research_only_approved_sidecar_shaped_smoke_materialization_positive_expansion_not_ready"
+            if materialization_positive or namespaced_materialization_positive
+            else "research_only_approved_sidecar_shaped_smoke_materialization_incomplete_or_negative"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_approval_import_smoke_"
+        f"materialization_readout_{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_approval_import_"
+            "smoke_materialization_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured readout for the approved-sidecar-shaped smoke "
+            "materialization route. It consumes the prior smoke-review "
+            "readout plus the current approved train/cal feature sidecar, "
+            "simulates the 35-row protected smoke import in memory, and "
+            "reruns the fixed approved-sidecar-only gate using only direct "
+            "source-free electron-flow fields. It does not write approved "
+            "sidecars, imports, labels, registries, ontologies, production "
+            "thresholds, model weights, or heldout splits."
+        ),
+        "materialization_contract": {
+            "contract_id": (
+                "source_free_pqq_nad_fe_s_direct_electron_flow_smoke_"
+                "approved_sidecar_materialization"
+            ),
+            "contract_status": (
+                "research_only_in_memory_approved_sidecar_shape_not_imported"
+            ),
+            "source_review_contract": review_contract.get("review_id"),
+            "axis_id": review_contract.get(
+                "axis_id", "source_free_pqq_nad_fe_s_direct_electron_flow"
+            ),
+            "feature_fields": feature_fields,
+            "collision_safe_namespaced_feature_fields": namespaced_feature_fields,
+            "gate_uses_only_direct_electron_flow_fields": True,
+            "selected_protected_import_route": (
+                "collision_safe_namespaced_direct_event_fields"
+                if direct_feature_conflicts
+                else "direct_event_fields_without_existing_sidecar_collision"
+            ),
+            "protected_surface_written": False,
+        },
+        "measured_readout": {
+            "approved_sidecar_delta_before_write": {
+                "existing_approved_sidecar_rows_before": len(approved_rows),
+                "simulated_approved_sidecar_rows_after_smoke": (
+                    len(approved_rows) + len(new_smoke_rows)
+                ),
+                "smoke_rows_new_to_approved_sidecar_entry_ids": sorted(
+                    new_smoke_rows,
+                    key=_entry_sort_key,
+                ),
+                "smoke_rows_updating_existing_approved_sidecar_entry_ids": sorted(
+                    existing_smoke_rows,
+                    key=_entry_sort_key,
+                ),
+                "existing_row_direct_feature_keys_added": direct_existing_keys_added,
+                "existing_row_direct_feature_keys_already_matching": (
+                    direct_existing_keys_already_matching
+                ),
+                "existing_row_direct_feature_key_conflicts": (
+                    direct_existing_keys_conflicting
+                ),
+                "direct_feature_conflicts": direct_feature_conflicts,
+                "namespaced_existing_row_direct_feature_keys_added": (
+                    namespaced_existing_keys_added
+                ),
+                "namespaced_existing_row_direct_feature_keys_already_matching": (
+                    namespaced_existing_keys_already_matching
+                ),
+                "namespaced_existing_row_direct_feature_key_conflicts": (
+                    namespaced_existing_keys_conflicting
+                ),
+                "namespaced_direct_feature_conflicts": (
+                    namespaced_feature_conflicts
+                ),
+            },
+            "approved_sidecar_only_smoke_gate": {
+                "materialized_feature_rows": materialized_smoke_rows,
+                "fixed_gate_readout": materialized_gate,
+                "matches_prior_smoke_review_gate": materialized_gate_matches_prior,
+                "forbidden_feature_key_hits": forbidden_hits,
+            },
+            "collision_safe_namespaced_smoke_gate": {
+                "materialized_feature_rows": namespaced_materialized_smoke_rows,
+                "fixed_gate_readout": namespaced_materialized_gate,
+                "matches_prior_smoke_review_gate": namespaced_gate_matches_prior,
+                "forbidden_feature_key_hits": namespaced_forbidden_hits,
+            },
+            "remaining_full_expansion_after_smoke": {
+                "remaining_entry_ids": _entry_ids(remaining_full_rows),
+                "remaining_complete_direct_component_rows": len(
+                    remaining_complete_rows
+                ),
+                "remaining_positive_rows": sorted(
+                    remaining_positive_rows,
+                    key=lambda row: _entry_sort_key(row["entry_id"]),
+                ),
+                "remaining_rows_new_to_approved_sidecar_entry_ids": sorted(
+                    remaining_new_rows,
+                    key=_entry_sort_key,
+                ),
+                "remaining_rows_updating_existing_approved_sidecar_entry_ids": sorted(
+                    remaining_update_rows,
+                    key=_entry_sort_key,
+                ),
+                "prior_full_74row_gate_readout": full_gate,
+            },
+            "collision_safe_namespaced_full_74row_expansion_gate": {
+                "materialized_feature_rows": namespaced_full_rows,
+                "fixed_gate_readout": namespaced_full_gate,
+                "forbidden_feature_key_hits": namespaced_full_forbidden_hits,
+                "namespaced_direct_feature_conflicts": (
+                    namespaced_full_feature_conflicts
+                ),
+                "existing_row_direct_feature_keys_added": (
+                    namespaced_full_existing_keys_added
+                ),
+                "existing_row_direct_feature_keys_already_matching": (
+                    namespaced_full_existing_keys_already_matching
+                ),
+                "existing_row_direct_feature_key_conflicts": (
+                    namespaced_full_existing_keys_conflicting
+                ),
+            },
+        },
+        "counts": {
+            "critical_violation_total": len(namespaced_forbidden_hits)
+            + len(namespaced_feature_conflicts)
+            + len(namespaced_full_forbidden_hits)
+            + len(namespaced_full_feature_conflicts),
+            "generic_direct_field_conflict_total": len(direct_feature_conflicts),
+            "existing_approved_sidecar_rows_before": len(approved_rows),
+            "simulated_approved_sidecar_rows_after_smoke": (
+                len(approved_rows) + len(new_smoke_rows)
+            ),
+            "smoke_materialization_tranche_rows": len(smoke_rows),
+            "smoke_materialization_new_rows": len(new_smoke_rows),
+            "smoke_materialization_updated_existing_rows": len(
+                existing_smoke_rows
+            ),
+            "smoke_materialization_existing_direct_feature_keys_added": (
+                direct_existing_keys_added
+            ),
+            "smoke_materialization_existing_direct_feature_keys_already_matching": (
+                direct_existing_keys_already_matching
+            ),
+            "smoke_materialization_existing_direct_feature_key_conflicts": (
+                direct_existing_keys_conflicting
+            ),
+            "namespaced_smoke_materialization_existing_direct_feature_keys_added": (
+                namespaced_existing_keys_added
+            ),
+            "namespaced_smoke_materialization_existing_direct_feature_keys_already_matching": (
+                namespaced_existing_keys_already_matching
+            ),
+            "namespaced_smoke_materialization_existing_direct_feature_key_conflicts": (
+                namespaced_existing_keys_conflicting
+            ),
+            "approved_sidecar_only_smoke_rows": materialized_gate["rows"],
+            "approved_sidecar_only_smoke_complete_direct_component_rows": (
+                materialized_gate["complete_rows"]
+            ),
+            "approved_sidecar_only_smoke_primary_rows": materialized_gate[
+                "primary_rows"
+            ],
+            "approved_sidecar_only_smoke_retained_oos_rows": materialized_gate[
+                "retained_oos_rows"
+            ],
+            "approved_sidecar_only_smoke_primary_positive_rows": materialized_gate[
+                "primary_positive_rows"
+            ],
+            "approved_sidecar_only_smoke_primary_retain_recall": materialized_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "approved_sidecar_only_smoke_retained_oos_positive_rows": (
+                materialized_gate["retained_oos_positive_rows"]
+            ),
+            "approved_sidecar_only_smoke_retained_oos_positive_entry_ids": (
+                materialized_gate["retained_oos_positive_entry_ids"]
+            ),
+            "approved_sidecar_only_smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                materialized_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "approved_sidecar_only_smoke_union_or_gate_oos_abstain_recall": (
+                materialized_gate["union_or_gate_oos_abstain_recall"]
+            ),
+            "approved_sidecar_only_smoke_gate_matches_prior_smoke_review": (
+                materialized_gate_matches_prior
+            ),
+            "collision_safe_namespaced_smoke_rows": (
+                namespaced_materialized_gate["rows"]
+            ),
+            "collision_safe_namespaced_smoke_complete_direct_component_rows": (
+                namespaced_materialized_gate["complete_rows"]
+            ),
+            "collision_safe_namespaced_smoke_primary_positive_rows": (
+                namespaced_materialized_gate["primary_positive_rows"]
+            ),
+            "collision_safe_namespaced_smoke_primary_retain_recall": (
+                namespaced_materialized_gate[
+                    "primary_retain_recall_if_abstain_positive"
+                ]
+            ),
+            "collision_safe_namespaced_smoke_retained_oos_positive_rows": (
+                namespaced_materialized_gate["retained_oos_positive_rows"]
+            ),
+            "collision_safe_namespaced_smoke_retained_oos_positive_entry_ids": (
+                namespaced_materialized_gate["retained_oos_positive_entry_ids"]
+            ),
+            "collision_safe_namespaced_smoke_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                namespaced_materialized_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "collision_safe_namespaced_smoke_union_or_gate_oos_abstain_recall": (
+                namespaced_materialized_gate["union_or_gate_oos_abstain_recall"]
+            ),
+            "collision_safe_namespaced_smoke_gate_matches_prior_smoke_review": (
+                namespaced_gate_matches_prior
+            ),
+            "remaining_current_split_rows_after_smoke": len(remaining_full_rows),
+            "remaining_current_retained_oos_rows_after_smoke": sum(
+                1
+                for row in remaining_full_rows
+                if row.get("current_split_role") == "current_retained_oos"
+            ),
+            "remaining_complete_direct_component_rows_after_smoke": len(
+                remaining_complete_rows
+            ),
+            "remaining_positive_rows_after_smoke": len(remaining_positive_rows),
+            "remaining_positive_entry_ids_after_smoke": [
+                row["entry_id"]
+                for row in sorted(
+                    remaining_positive_rows,
+                    key=lambda item: _entry_sort_key(item["entry_id"]),
+                )
+            ],
+            "remaining_rows_new_to_approved_sidecar_after_smoke": len(
+                remaining_new_rows
+            ),
+            "remaining_rows_updating_existing_approved_sidecar_after_smoke": len(
+                remaining_update_rows
+            ),
+            "full_74row_current_split_rows": (
+                (smoke_review.get("counts") or {}).get("full_current_split_rows")
+            ),
+            "full_74row_current_retained_oos_positive_entry_ids": (
+                (smoke_review.get("counts") or {}).get(
+                    "full_current_retained_oos_positive_entry_ids"
+                )
+            ),
+            "full_74row_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                (smoke_review.get("counts") or {}).get(
+                    "full_incremental_oos_abstain_recall_vs_current_geometry_fold"
+                )
+            ),
+            "collision_safe_namespaced_full_74row_rows": (
+                namespaced_full_gate["rows"]
+            ),
+            "collision_safe_namespaced_full_74row_complete_direct_component_rows": (
+                namespaced_full_gate["complete_rows"]
+            ),
+            "collision_safe_namespaced_full_74row_primary_rows": (
+                namespaced_full_gate["primary_rows"]
+            ),
+            "collision_safe_namespaced_full_74row_retained_oos_rows": (
+                namespaced_full_gate["retained_oos_rows"]
+            ),
+            "collision_safe_namespaced_full_74row_primary_positive_rows": (
+                namespaced_full_gate["primary_positive_rows"]
+            ),
+            "collision_safe_namespaced_full_74row_primary_retain_recall": (
+                namespaced_full_gate[
+                    "primary_retain_recall_if_abstain_positive"
+                ]
+            ),
+            "collision_safe_namespaced_full_74row_retained_oos_positive_rows": (
+                namespaced_full_gate["retained_oos_positive_rows"]
+            ),
+            "collision_safe_namespaced_full_74row_retained_oos_positive_entry_ids": (
+                namespaced_full_gate["retained_oos_positive_entry_ids"]
+            ),
+            "collision_safe_namespaced_full_74row_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                namespaced_full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "collision_safe_namespaced_full_74row_union_or_gate_oos_abstain_recall": (
+                namespaced_full_gate["union_or_gate_oos_abstain_recall"]
+            ),
+            "collision_safe_namespaced_full_74row_existing_direct_feature_key_conflicts": (
+                namespaced_full_existing_keys_conflicting
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "approved_sidecar_shaped_smoke_materialization_measured": True,
+            "approved_sidecar_only_smoke_gate_matches_prior_smoke_review": (
+                materialized_gate_matches_prior
+            ),
+            "approved_sidecar_only_smoke_gate_complete": (
+                materialized_gate["operating_point_measurable_now"]
+            ),
+            "approved_sidecar_only_smoke_gate_preserves_primary_retention": (
+                materialized_gate["preserves_primary_retention"]
+            ),
+            "approved_sidecar_only_smoke_gate_adds_m_csa104_retained_oos_abstention": (
+                "m_csa:104"
+                in materialized_gate["retained_oos_positive_entry_ids"]
+            ),
+            "generic_direct_field_import_has_existing_sidecar_collisions": bool(
+                direct_feature_conflicts
+            ),
+            "smoke_materialization_has_no_direct_feature_conflicts": (
+                not direct_feature_conflicts
+            ),
+            "collision_safe_namespaced_smoke_gate_matches_prior_smoke_review": (
+                namespaced_gate_matches_prior
+            ),
+            "collision_safe_namespaced_smoke_gate_complete": (
+                namespaced_materialized_gate["operating_point_measurable_now"]
+            ),
+            "collision_safe_namespaced_smoke_gate_preserves_primary_retention": (
+                namespaced_materialized_gate["preserves_primary_retention"]
+            ),
+            "collision_safe_namespaced_smoke_gate_adds_m_csa104_retained_oos_abstention": (
+                "m_csa:104"
+                in namespaced_materialized_gate[
+                    "retained_oos_positive_entry_ids"
+                ]
+            ),
+            "collision_safe_namespaced_smoke_materialization_has_no_direct_feature_conflicts": (
+                not namespaced_feature_conflicts
+            ),
+            "collision_safe_namespaced_smoke_materialization_ready_for_protected_import": (
+                namespaced_materialization_positive
+            ),
+            "smoke_materialization_ready_for_protected_import": (
+                materialization_positive or namespaced_materialization_positive
+            ),
+            "full_74row_expansion_ready_after_smoke_passes": full_expansion_ready,
+            "collision_safe_namespaced_full_74row_gate_complete": (
+                namespaced_full_gate["operating_point_measurable_now"]
+            ),
+            "collision_safe_namespaced_full_74row_gate_preserves_primary_retention": (
+                namespaced_full_gate["preserves_primary_retention"]
+            ),
+            "collision_safe_namespaced_full_74row_gate_adds_current_retained_oos_abstention": (
+                namespaced_full_gate["adds_incremental_oos_abstention"]
+            ),
+            "collision_safe_namespaced_full_74row_gate_has_no_direct_feature_conflicts": (
+                not namespaced_full_feature_conflicts
+            ),
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_after_smoke_materialization": (
+                (materialization_positive or namespaced_materialization_positive)
+                and full_expansion_ready
+            ),
+            "protected_surfaces_modified": False,
+            "train_cal_supported_now": False,
+            "would_be_train_cal_supported_after_protected_smoke_import": (
+                materialization_positive or namespaced_materialization_positive
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "apply_or_promote_now": False,
+            "negative": not (
+                (materialization_positive or namespaced_materialization_positive)
+                and full_expansion_ready
+            ),
+            "remaining_gap": (
+                "Execute the protected approval/import write for only the "
+                "35-row smoke tranche using collision-safe namespaced direct "
+                "electron-transfer event fields, or explicitly approve "
+                "overwriting the existing generic electron-transfer fields on "
+                "m_csa:102; then rerun this same approved-sidecar-only gate "
+                "against the written sidecar before expanding the remaining "
+                "39 current-split rows."
+            ),
+            "smallest_next_experiment": (
+                "Protected-write only the 35-row smoke tranche into the "
+                "approved train/cal feature sidecar with "
+                "has_source_free_direct_electron_transfer_event and "
+                "source_free_direct_electron_transfer_count as the collision-"
+                "safe direct event fields, verify primary retain recall 1.0 "
+                "and m_csa:104 abstention, then materialize the remaining 39 "
+                "current-split rows."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "gate_uses_only_direct_source_free_electron_flow_fields": True,
+            "selected_route_avoids_overwriting_existing_generic_event_fields": (
+                True
+            ),
+            "approved_sidecar_written": False,
+            "candidate_feature_rows_imported_or_promoted": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "approval_import_smoke_review_readout": _source_path_record(
+                approval_import_smoke_review_readout_path
+            ),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The collision-safe namespaced approved-sidecar-shaped 35-row "
+                "smoke materialization exactly reproduces the prior smoke gate "
+                "from direct source-free electron-flow fields without "
+                "overwriting existing generic electron-transfer fields, "
+                "preserves all current primary rows, and abstains m_csa:104."
+                if namespaced_materialization_positive
+                else (
+                "The in-memory approved-sidecar-shaped 35-row smoke "
+                "materialization exactly reproduces the prior smoke gate from "
+                "direct source-free electron-flow fields, preserves all "
+                "current primary rows, and abstains m_csa:104."
+                if materialization_positive
+                else (
+                    "The in-memory approved-sidecar-shaped smoke materialization "
+                    "does not yet exactly reproduce a primary-safe m_csa:104 "
+                    "electron-flow gate."
+                )
+                )
+            ),
+            "next_action": (
+                "The remaining step is protected approval/import execution for "
+                "the 35-row smoke tranche with the collision-safe namespaced "
+                "direct event fields; after that written-sidecar gate passes, "
+                "the remaining 39 current-split rows carry complete direct "
+                "fields for the 74-row expansion."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_approval_import_smoke_materialization_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    measured = readout["measured_readout"]
+    gate = measured["approved_sidecar_only_smoke_gate"]["fixed_gate_readout"]
+    namespaced_gate = measured["collision_safe_namespaced_smoke_gate"][
+        "fixed_gate_readout"
+    ]
+    full_namespaced_gate = measured[
+        "collision_safe_namespaced_full_74row_expansion_gate"
+    ]["fixed_gate_readout"]
+    remaining = measured["remaining_full_expansion_after_smoke"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Approval Import Smoke Materialization Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Existing approved sidecar rows before smoke: "
+        f"{counts['existing_approved_sidecar_rows_before']}",
+        "- Simulated approved sidecar rows after smoke: "
+        f"{counts['simulated_approved_sidecar_rows_after_smoke']}",
+        "- Smoke add/update rows: "
+        f"{counts['smoke_materialization_new_rows']}/"
+        f"{counts['smoke_materialization_updated_existing_rows']}",
+        "- Approved-sidecar-only smoke complete rows: "
+        f"{counts['approved_sidecar_only_smoke_complete_direct_component_rows']}/"
+        f"{counts['approved_sidecar_only_smoke_rows']}",
+        "- Approved-sidecar-only smoke primary/OOS positives: "
+        f"{counts['approved_sidecar_only_smoke_primary_positive_rows']}/"
+        f"{counts['approved_sidecar_only_smoke_retained_oos_positive_rows']}",
+        "- Approved-sidecar-only smoke primary retain recall: "
+        f"{counts['approved_sidecar_only_smoke_primary_retain_recall']}",
+        "- Approved-sidecar-only smoke incremental OOS recall vs current geometry/fold: "
+        f"{counts['approved_sidecar_only_smoke_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Remaining expansion rows after smoke: "
+        f"{counts['remaining_complete_direct_component_rows_after_smoke']}/"
+        f"{counts['remaining_current_split_rows_after_smoke']}",
+        "- Forbidden/conflict hits: "
+        f"{counts['critical_violation_total']}",
+        "- Generic direct-field conflicts avoided by namespaced route: "
+        f"{counts['generic_direct_field_conflict_total']}",
+        "",
+        "## Approved-Sidecar-Only Smoke Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall | matches prior smoke |",
+        "| ---: | ---: | ---: | --- | ---: | --- |",
+        f"| {gate['complete_rows']}/{gate['rows']} | "
+        f"{gate['primary_positive_rows']} | "
+        f"{gate['retained_oos_positive_rows']} | "
+        f"{', '.join(gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{gate['union_or_gate_oos_abstain_recall']} | "
+        f"{counts['approved_sidecar_only_smoke_gate_matches_prior_smoke_review']} |",
+        "",
+        "## Collision-Safe Namespaced Smoke Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall | matches prior smoke |",
+        "| ---: | ---: | ---: | --- | ---: | --- |",
+        f"| {namespaced_gate['complete_rows']}/{namespaced_gate['rows']} | "
+        f"{namespaced_gate['primary_positive_rows']} | "
+        f"{namespaced_gate['retained_oos_positive_rows']} | "
+        f"{', '.join(namespaced_gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{namespaced_gate['union_or_gate_oos_abstain_recall']} | "
+        f"{counts['collision_safe_namespaced_smoke_gate_matches_prior_smoke_review']} |",
+        "",
+        "## Collision-Safe Full 74-Row Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall |",
+        "| ---: | ---: | ---: | --- | ---: |",
+        f"| {full_namespaced_gate['complete_rows']}/{full_namespaced_gate['rows']} | "
+        f"{full_namespaced_gate['primary_positive_rows']} | "
+        f"{full_namespaced_gate['retained_oos_positive_rows']} | "
+        f"{', '.join(full_namespaced_gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{full_namespaced_gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Remaining Expansion",
+        "",
+        "- Remaining rows new to approved sidecar after smoke: "
+        f"{counts['remaining_rows_new_to_approved_sidecar_after_smoke']}",
+        "- Remaining rows updating existing approved sidecar after smoke: "
+        f"{counts['remaining_rows_updating_existing_approved_sidecar_after_smoke']}",
+        "- Remaining retained-OOS positives after smoke: "
+        f"{', '.join(counts['remaining_positive_entry_ids_after_smoke']) or 'none'}",
+        "- Full 74-row incremental OOS recall vs current geometry/fold: "
+        f"{counts['full_74row_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "",
+        "| remaining row | role | components | electron-transfer count |",
+        "| --- | --- | --- | ---: |",
+    ]
+    for row in remaining["remaining_positive_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('current_split_role')} | "
+            f"{', '.join(row.get('direct_components_positive') or []) or 'none'} | "
+            f"{row.get('electron_transfer_count')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Approved-sidecar-shaped smoke materialization measured: "
+        f"{decision['approved_sidecar_shaped_smoke_materialization_measured']}",
+        "- Approved-sidecar-only smoke gate matches prior smoke review: "
+        f"{decision['approved_sidecar_only_smoke_gate_matches_prior_smoke_review']}",
+        "- Approved-sidecar-only smoke preserves primary retention: "
+        f"{decision['approved_sidecar_only_smoke_gate_preserves_primary_retention']}",
+        "- Approved-sidecar-only smoke catches m_csa:104: "
+        f"{decision['approved_sidecar_only_smoke_gate_adds_m_csa104_retained_oos_abstention']}",
+        "- Smoke materialization has no direct feature conflicts: "
+        f"{decision['smoke_materialization_has_no_direct_feature_conflicts']}",
+        "- Generic direct-field import has existing sidecar collisions: "
+        f"{decision['generic_direct_field_import_has_existing_sidecar_collisions']}",
+        "- Collision-safe namespaced smoke gate preserves primary retention: "
+        f"{decision['collision_safe_namespaced_smoke_gate_preserves_primary_retention']}",
+        "- Collision-safe namespaced smoke catches m_csa:104: "
+        f"{decision['collision_safe_namespaced_smoke_gate_adds_m_csa104_retained_oos_abstention']}",
+        "- Collision-safe namespaced route ready for protected import: "
+        f"{decision['collision_safe_namespaced_smoke_materialization_ready_for_protected_import']}",
+        "- Full 74-row expansion ready after smoke passes: "
+        f"{decision['full_74row_expansion_ready_after_smoke_passes']}",
+        "- Collision-safe full 74-row gate preserves primary retention: "
+        f"{decision['collision_safe_namespaced_full_74row_gate_preserves_primary_retention']}",
+        "- Collision-safe full 74-row gate catches retained OOS: "
+        f"{decision['collision_safe_namespaced_full_74row_gate_adds_current_retained_oos_abstention']}",
+        "- Collision-safe full 74-row gate has no direct feature conflicts: "
+        f"{decision['collision_safe_namespaced_full_74row_gate_has_no_direct_feature_conflicts']}",
+        "- Direct electron-flow adds value after smoke materialization: "
+        f"{decision['direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_after_smoke_materialization']}",
+        "- Protected surfaces modified: False",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout(
+    *,
+    approval_import_smoke_review_readout_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_APPROVAL_IMPORT_SMOKE_MATERIALIZATION_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = (
+        build_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout(
+            approval_import_smoke_review_readout_path=(
+                approval_import_smoke_review_readout_path
+            ),
+            train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+            artifact_id=artifact_id,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_approval_import_smoke_materialization_report(
                 readout
             ),
             encoding="utf-8",

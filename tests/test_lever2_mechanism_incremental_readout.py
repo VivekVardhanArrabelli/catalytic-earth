@@ -17,6 +17,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     build_lever2_source_free_electron_flow_approval_import_dry_run_readout,
+    build_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout,
     build_lever2_source_free_electron_flow_approval_import_smoke_review_readout,
     build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout,
     build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
@@ -6472,6 +6473,225 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
                 "exists"
             ]
         )
+
+    def test_electron_flow_approval_import_smoke_materialization_readout(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            smoke_review_path = root / "smoke_review.json"
+            sidecar_path = root / "sidecar.json"
+
+            def features(
+                *,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "has_electron_transfer_event": bool(pqq or nad or fe_s),
+                    "electron_transfer_count": pqq + nad + fe_s,
+                    "has_source_free_pqq_donor_acceptor_contact": pqq > 0,
+                    "source_free_pqq_donor_acceptor_contact_count": pqq,
+                    "has_source_free_nad_family_donor_acceptor_distance": nad > 0,
+                    "source_free_nad_family_donor_acceptor_distance_count": nad,
+                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": fe_s > 0,
+                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": fe_s,
+                }
+
+            def row(
+                entry_id: str,
+                role: str,
+                *,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "calibration",
+                    "candidate_bundle_role": "current_split_operating_point_row",
+                    "current_split_role": role,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": features(
+                        pqq=pqq, nad=nad, fe_s=fe_s
+                    ),
+                }
+
+            feature_fields = [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_pqq_donor_acceptor_contact",
+                "source_free_pqq_donor_acceptor_contact_count",
+                "has_source_free_nad_family_donor_acceptor_distance",
+                "source_free_nad_family_donor_acceptor_distance_count",
+                "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+                "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+            ]
+            smoke_rows = [
+                row("m_csa:1", "current_primary_retention_gate"),
+                row("m_csa:2", "current_primary_retention_gate"),
+                row("m_csa:104", "current_retained_oos", pqq=1),
+            ]
+            full_rows = [
+                *smoke_rows,
+                row("m_csa:119", "current_retained_oos", fe_s=1),
+                row("m_csa:464", "current_retained_oos", nad=1),
+            ]
+            smoke_review_path.write_text(
+                json.dumps(
+                    {
+                        "review_contract": {
+                            "review_id": "smoke_review",
+                            "axis_id": "source_free_electron_flow",
+                            "feature_fields": feature_fields,
+                        },
+                        "feature_rows": {
+                            "smoke_tranche": smoke_rows,
+                            "full_current_split": full_rows,
+                        },
+                        "measured_readout": {
+                            "smallest_smoke_tranche": {
+                                "fixed_gate_readout": {
+                                    "rows": 3,
+                                    "complete_rows": 3,
+                                    "primary_rows": 2,
+                                    "retained_oos_rows": 1,
+                                    "primary_positive_rows": 0,
+                                    "retained_oos_positive_rows": 1,
+                                    "primary_positive_entry_ids": [],
+                                    "retained_oos_positive_entry_ids": [
+                                        "m_csa:104"
+                                    ],
+                                    "primary_retain_recall_if_abstain_positive": 1.0,
+                                    "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.2,
+                                    "union_or_gate_oos_abstain_recall": 0.6,
+                                    "current_geometry_fold_oos_rows": 5,
+                                }
+                            },
+                            "full_74row_current_split_expansion": {
+                                "fixed_gate_readout": {
+                                    "preserves_primary_retention": True,
+                                    "adds_incremental_oos_abstention": True,
+                                }
+                            },
+                        },
+                        "counts": {
+                            "full_current_split_rows": 5,
+                            "full_current_retained_oos_positive_entry_ids": [
+                                "m_csa:104",
+                                "m_csa:119",
+                                "m_csa:464",
+                            ],
+                            "full_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.6,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "calibration",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": False,
+                                    "electron_transfer_count": 0,
+                                    "has_bond_change_event": True,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:999",
+                                "assigned_embedding_split": "train",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": False,
+                                    "electron_transfer_count": 0,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_approval_import_smoke_materialization_readout(
+                approval_import_smoke_review_readout_path=smoke_review_path,
+                train_cal_feature_sidecar_path=sidecar_path,
+                artifact_id="test_smoke_materialization",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_smoke_materialization")
+        self.assertEqual(
+            readout["result_class"],
+            (
+                "research_only_approved_sidecar_shaped_smoke_materialization_"
+                "gate_positive_pending_protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["counts"]["existing_approved_sidecar_rows_before"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["simulated_approved_sidecar_rows_after_smoke"], 4
+        )
+        self.assertEqual(readout["counts"]["smoke_materialization_new_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["smoke_materialization_updated_existing_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_materialization_existing_direct_feature_keys_added"
+            ],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_materialization_existing_direct_feature_keys_already_matching"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_materialization_existing_direct_feature_key_conflicts"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_only_smoke_complete_direct_component_rows"
+            ],
+            3,
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_only_smoke_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_only_smoke_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104"],
+        )
+        self.assertTrue(
+            readout["counts"][
+                "approved_sidecar_only_smoke_gate_matches_prior_smoke_review"
+            ]
+        )
+        self.assertEqual(
+            readout["counts"]["remaining_current_split_rows_after_smoke"], 2
+        )
+        self.assertEqual(
+            readout["counts"]["remaining_positive_entry_ids_after_smoke"],
+            ["m_csa:119", "m_csa:464"],
+        )
+        self.assertTrue(
+            readout["decision"]["smoke_materialization_ready_for_protected_import"]
+        )
+        self.assertTrue(
+            readout["decision"]["full_74row_expansion_ready_after_smoke_passes"]
+        )
+        self.assertFalse(readout["decision"]["protected_surfaces_modified"])
+        self.assertFalse(readout["decision"]["deployable_now"])
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,
