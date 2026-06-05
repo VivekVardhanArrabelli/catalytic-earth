@@ -19,6 +19,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
     build_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     build_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
+    build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     build_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     build_lever2_source_free_electron_flow_split_alignment_readout,
@@ -3494,6 +3495,185 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             ]
         )
         self.assertFalse(readout["decision"]["deployable_now"])
+
+    def test_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            donor_acceptor_path = root / "donor_acceptor.json"
+
+            def sidecar_row(
+                entry_id: str,
+                role: str,
+                positive: bool,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "calibration",
+                    "current_split_role": role,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": positive,
+                        "electron_transfer_count": 1 if positive else 0,
+                        "has_source_free_pqq_donor_acceptor_contact": positive,
+                        "source_free_pqq_donor_acceptor_contact_count": (
+                            1 if positive else 0
+                        ),
+                    },
+                    "pqq_donor_acceptor_evidence": {
+                        "field_status": "ok",
+                        "geometry_status": "ok",
+                        "coordinate_path": "artifacts/pdb_1AAA.cif",
+                        "pqq_donor_acceptor_atom_names": ["O4", "O5"],
+                        "donor_acceptor_active_atom_elements": ["N", "O", "S"],
+                        "pqq_donor_acceptor_contact_cutoff_angstrom": 3.2,
+                        "min_pqq_donor_acceptor_distance_to_active_site_atom": (
+                            2.8 if positive else None
+                        ),
+                        "missing_source_free_evidence": [],
+                    },
+                }
+
+            donor_acceptor_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "current_geometry_fold_oos_rows": 4,
+                            "full_current_split_rows": 4,
+                            "full_complete_pqq_donor_acceptor_rows": 4,
+                            "full_pqq_donor_acceptor_primary_positive_rows": 0,
+                            "full_pqq_donor_acceptor_retained_oos_positive_rows": 1,
+                        },
+                        "measured_readout": {
+                            "projection_context": {
+                                "split_alignment_context": {
+                                    "current_geometry_fold_calibration_oos_rows": 4
+                                }
+                            },
+                            "smallest_source_free_smoke_tranche": {
+                                "pqq_donor_acceptor_sidecar_rows": [
+                                    sidecar_row(
+                                        "m_csa:10",
+                                        "current_retained_oos",
+                                        True,
+                                    ),
+                                    sidecar_row(
+                                        "m_csa:20",
+                                        "current_primary_retention_gate",
+                                        False,
+                                    ),
+                                ]
+                            },
+                            "full_retained_oos_current_split_tranche": {
+                                "pqq_donor_acceptor_sidecar_rows": [
+                                    sidecar_row(
+                                        "m_csa:10",
+                                        "current_retained_oos",
+                                        True,
+                                    ),
+                                    sidecar_row(
+                                        "m_csa:11",
+                                        "current_retained_oos",
+                                        False,
+                                    ),
+                                    sidecar_row(
+                                        "m_csa:20",
+                                        "current_primary_retention_gate",
+                                        False,
+                                    ),
+                                    sidecar_row(
+                                        "m_csa:21",
+                                        "current_primary_retention_gate",
+                                        False,
+                                    ),
+                                ]
+                            },
+                            "projection_model_donor_acceptor_row_scout": {
+                                "pqq_positive_rows": 0,
+                                "broad_positive_rows": 2,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+                donor_acceptor_readout_path=donor_acceptor_path,
+                artifact_id="test_pqq_donor_acceptor_current_split_feature_sidecar",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"],
+            "test_pqq_donor_acceptor_current_split_feature_sidecar",
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_materialized_feature_sidecar_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["materialized_feature_rows"], 4)
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_complete_rows"],
+            4,
+        )
+        self.assertEqual(readout["counts"]["current_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.25,
+        )
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
+        self.assertEqual(
+            readout["counts"]["non_pqq_family_exclusion_candidates_checked"], 7
+        )
+        self.assertEqual(
+            readout["counts"][
+                "primary_safe_non_pqq_family_exclusion_candidates_with_retained_oos_signal"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "relaxed_non_pqq_distance_cutoff_scout_rows_with_primary_safe_retained_oos_signal"
+            ],
+            0,
+        )
+        feature_row = readout["feature_rows"][0]
+        self.assertEqual(
+            sorted(feature_row["row_specific_event_features"]),
+            [
+                "electron_transfer_count",
+                "has_electron_transfer_event",
+                "has_source_free_pqq_donor_acceptor_contact",
+                "source_free_pqq_donor_acceptor_contact_count",
+            ],
+        )
+        self.assertTrue(
+            readout["decision"][
+                "standalone_current_split_feature_sidecar_materialized"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pqq_donor_acceptor_feature_rows_add_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(
+            readout["decision"][
+                "non_pqq_family_exclusion_scout_adds_primary_safe_retained_oos_signal"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "relaxed_non_pqq_distance_scout_finds_primary_safe_signal"
+            ]
+        )
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

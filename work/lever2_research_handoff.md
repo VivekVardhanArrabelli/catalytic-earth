@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T06:33:08Z`
-- STARTED_AT_LOCAL: `2026-06-05T01:33:08-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T07:29:09Z`
-- ENDED_AT_LOCAL: `2026-06-05T02:29:09-0500 CDT`
-- ELAPSED_MINUTES: `56.02`
+- STARTED_AT_UTC: `2026-06-05T07:32:31Z`
+- STARTED_AT_LOCAL: `2026-06-05T02:32:31-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T08:28:22Z`
+- ENDED_AT_LOCAL: `2026-06-05T03:28:22-0500 CDT`
+- ELAPSED_MINUTES: `55.85`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,156 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 18
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T07:32:31Z`
+- STARTED_LOCAL: `2026-06-05T02:32:31-0500 CDT`
+- ENDED_AT: `2026-06-05T08:28:22Z`
+- ENDED_LOCAL: `2026-06-05T03:28:22-0500 CDT`
+- ELAPSED_MINUTES: `55.85`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured direct source-free PQQ donor/acceptor result and close
+the remaining current-split feature-row materialization gap without approving,
+importing, or promoting the primitive.
+
+#### Work log
+
+- Continued in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial automation checkout was detached and disk was below the 10 GiB
+  guardrail at 9.5 GiB free. Removed one clean stale detached worktree,
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/2e22/catalytic-earth`,
+  restoring disk to 13 GiB free before substantive work. Wrap-up disk check
+  showed 12 GiB free.
+- Added
+  `build-lever2-source-free-electron-flow-pqq-donor-acceptor-current-split-feature-sidecar-readout`.
+  The readout consumes the measured donor/acceptor contact artifact, emits
+  standalone normal-shaped `feature_rows` for the 34 current primary rows and
+  40 current-retained OOS rows, and remeasures the fixed operating point from
+  `row_specific_event_features` instead of from the nested PQQ audit rows.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout_current702_20260605.md`.
+- Added a fixed non-PQQ family-exclusion scout over the same measured broad
+  donor/acceptor rows, then added a relaxed-distance scout so the next non-PQQ
+  route has concrete row/cutoff evidence rather than another broad blocker.
+
+#### Measured results
+
+- Main sidecar readout status:
+  `lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout_research_only_materialized_feature_sidecar_operating_point_signal`.
+  Result class:
+  `research_only_materialized_feature_sidecar_operating_point_signal`.
+- Standalone source-free current-split feature rows are now materialized:
+  74/74 rows complete, with four row feature fields:
+  `has_electron_transfer_event`, `electron_transfer_count`,
+  `has_source_free_pqq_donor_acceptor_contact`, and
+  `source_free_pqq_donor_acceptor_contact_count`.
+- Fixed feature-sidecar operating point preserves primary retention:
+  0/34 current primary positives, primary retain recall 1.0. It catches 1/40
+  current-retained OOS rows (`m_csa:104`), retained-OOS abstain recall 0.025,
+  incremental OOS recall 0.013333 beyond current geometry/fold OOS, and union
+  OOS recall 0.48.
+- The positive direct source-free feature row is still `m_csa:104`, supported
+  by committed local `artifacts/v3_foldseek_coordinates_1000/pdb_1C9U.cif`
+  where PQQ `O5` contacts `ARG 228 NH1` at 2.768 A.
+- Exact row-feature-key guardrail found 0 forbidden keys inside
+  `row_specific_event_features`; source records were present; critical
+  violation total is 0.
+- Fixed non-PQQ family-exclusion scout is negative at the 3.2 A
+  donor/acceptor contact contract: non-PQQ all-redox leaks into 6 current
+  primary rows and catches 0 retained-OOS rows; excluding heme/flavin ligation
+  preserves primary retention but catches 0 retained-OOS rows. PQQ-only remains
+  the only fixed-contact primary-safe retained-OOS signal.
+- Relaxed-distance scout is positive only as scout evidence, not as an approved
+  primitive: non-PQQ excluding heme/flavin at 8/12/25 A catches `m_csa:464`
+  and `m_csa:119` with 0 current primary positives; NAD-only catches
+  `m_csa:464`; Fe-S-only catches `m_csa:119`. Existing train/cal projection
+  rows also have NAD/non-PQQ excluding-heme/flavin positives (`m_csa:59` at
+  2.884 A and `m_csa:256` at 4.714 A), with `m_csa:256` already noted as a
+  marginal electron-flow row in the signature-exclusion readout.
+- Classification: the missing current-split source-free feature-row blocker is
+  closed for the narrow PQQ donor/acceptor primitive, and the measured readout
+  adds operating-point signal while preserving primary retention. The result
+  remains research-only because the PQQ donor/acceptor primitive is still
+  unapproved/unimported and has no positive PQQ train/cal projection rows. The
+  relaxed non-PQQ distance signal is only a next-experiment scout, not a fixed
+  donor/acceptor primitive.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  PDB IDs, or coordinate paths were used as predictive feature values. Entry IDs
+  and coordinate paths appear only outside `row_specific_event_features` for
+  tranche/source-evidence accounting.
+- The fixed feature sidecar uses only the already-measured source-free PQQ
+  donor/acceptor contact fields and a fixed operating gate. Relaxed non-PQQ
+  cutoffs are explicitly scout-only and not selected, tuned, or promoted.
+
+#### Validation
+
+- Generated sidecar readout:
+  `PYTHONPATH=src python -m catalytic_earth.cli build-lever2-source-free-electron-flow-pqq-donor-acceptor-current-split-feature-sidecar-readout`.
+- Focused parser/builder tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout -q`:
+  2 passed.
+- New artifact regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout_current_counts -q`:
+  1 passed.
+- Touched-file slice after final scout edit:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  464 passed, 193 subtests passed.
+- Full pytest after final scout edit:
+  `PYTHONPATH=src python -m pytest -q`: 1541 passed, 212 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery after final scout edit:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1496 tests OK, with
+  the same existing warning.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3584 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact exact source/feature guardrail audit passed: 74 feature rows,
+  0 exact forbidden row-feature keys, 0 missing source records, and
+  `critical_violation_total=0`.
+- New artifact regeneration comparison passed after normalizing `created_utc`.
+- `git diff --check`: passed.
+
+#### Commit/push status
+
+- Pending at this ledger edit: commit and push the implementation, generated
+  artifact/report, and handoff update to `origin/lever-2-research-track`, then
+  fetch-verify local `HEAD == origin/lever-2-research-track`.
+
+#### Exact next action
+
+- Do not promote yet. The next Lever 2 electron-flow experiment should
+  formalize a train/cal-disciplined relaxed non-PQQ distance primitive only if
+  the contract can be predeclared without OOS tuning: start with NAD-family
+  and Fe-S/iron-family source-free redox-center distance scouts excluding
+  heme/flavin generic ligation, use existing projection positives
+  `m_csa:59`/`m_csa:256` as train/cal support, and remeasure the 34-primary +
+  40 retained-OOS current split with the fixed 8 A scout cutoff reported here.
+  If that contract is rejected as too broad, the narrow PQQ donor/acceptor
+  sidecar remains the only current primary-safe direct electron-flow feature.
 
 ### 2026-06-05 Lever 2 Research Run 17
 

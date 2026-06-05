@@ -272,6 +272,27 @@ class CliTests(unittest.TestCase):
             args.projection_readout,
         )
 
+    def test_lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-pqq-donor-"
+                    "acceptor-current-split-feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_donor_acceptor_contact_readout",
+            args.donor_acceptor_readout,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

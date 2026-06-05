@@ -57,6 +57,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
+    write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
     write_lever2_source_free_electron_flow_split_alignment_readout,
@@ -13962,6 +13963,33 @@ def cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readou
         "primary/OOS positives: "
         f"{counts.get('full_current_split_primary_positive_rows')}/"
         f"{counts.get('full_current_split_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+        donor_acceptor_readout_path=Path(args.donor_acceptor_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow PQQ donor/acceptor "
+        f"current-split feature sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -33355,6 +33383,49 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_pqq_donor_acceptor_contact_readout.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout
+        )
+    )
+
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-pqq-donor-acceptor-"
+                "current-split-feature-sidecar-readout"
+            ),
+            help=(
+                "emit standalone source-free current-split feature rows for "
+                "the measured PQQ donor/acceptor electron-flow primitive and "
+                "remeasure the fixed operating point"
+            ),
+        )
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--donor-acceptor-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_donor_acceptor_"
+            "contact_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "current_split_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_pqq_donor_acceptor_"
+            "current_split_feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout
         )
     )
 

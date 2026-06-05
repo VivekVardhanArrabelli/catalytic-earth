@@ -59,6 +59,10 @@ DEFAULT_ELECTRON_FLOW_DONOR_ACCEPTOR_CONTACT_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_donor_acceptor_contact_readout_"
     "current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_PQQ_DONOR_ACCEPTOR_CURRENT_SPLIT_FEATURE_SIDECAR_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_"
+    "feature_sidecar_readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -9114,6 +9118,988 @@ def write_lever2_source_free_electron_flow_donor_acceptor_contact_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_donor_acceptor_contact_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _pqq_donor_acceptor_feature_sidecar_rows_from_readout_tranche(
+    tranche: dict[str, Any],
+) -> list[dict[str, Any]]:
+    rows = (
+        tranche.get("pqq_donor_acceptor_sidecar_rows")
+        or tranche.get("sidecar_rows")
+        or []
+    )
+    feature_rows: list[dict[str, Any]] = []
+    for row in rows:
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        complete = bool(row.get("source_free_electron_flow_field_complete"))
+        source_features = row.get("row_specific_event_features") or {}
+        contact_count = (
+            int(source_features.get("electron_transfer_count") or 0)
+            if complete
+            else None
+        )
+        contact_positive = bool(
+            complete and source_features.get("has_electron_transfer_event")
+        )
+        evidence = row.get("pqq_donor_acceptor_evidence") or {}
+        feature_rows.append(
+            {
+                "entry_id": str(row["entry_id"]),
+                "assigned_embedding_split": (
+                    row.get("assigned_embedding_split") or "calibration"
+                ),
+                "current_split_role": row.get("current_split_role"),
+                "source_free_electron_flow_field_complete": complete,
+                "row_specific_event_features": {
+                    "has_electron_transfer_event": (
+                        contact_positive if complete else None
+                    ),
+                    "electron_transfer_count": contact_count,
+                    "has_source_free_pqq_donor_acceptor_contact": (
+                        contact_positive if complete else None
+                    ),
+                    "source_free_pqq_donor_acceptor_contact_count": (
+                        contact_count
+                    ),
+                },
+                "pqq_donor_acceptor_evidence": {
+                    "field_status": evidence.get("field_status"),
+                    "geometry_status": evidence.get("geometry_status"),
+                    "coordinate_path": evidence.get("coordinate_path"),
+                    "pqq_donor_acceptor_atom_names": evidence.get(
+                        "pqq_donor_acceptor_atom_names", []
+                    ),
+                    "donor_acceptor_active_atom_elements": evidence.get(
+                        "donor_acceptor_active_atom_elements", []
+                    ),
+                    "pqq_donor_acceptor_contact_cutoff_angstrom": (
+                        evidence.get("pqq_donor_acceptor_contact_cutoff_angstrom")
+                    ),
+                    "min_pqq_donor_acceptor_distance_to_active_site_atom": (
+                        evidence.get(
+                            "min_pqq_donor_acceptor_distance_to_active_site_atom"
+                        )
+                    ),
+                    "contact_count": contact_count,
+                    "missing_source_free_evidence": evidence.get(
+                        "missing_source_free_evidence", []
+                    ),
+                },
+                "feature_guardrails": {
+                    "mechanism_text_excluded_from_features": True,
+                    "ec_rhea_ids_excluded_from_features": True,
+                    "labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "accessions_excluded_from_features": True,
+                    "pdb_ids_and_coordinate_paths_excluded_from_features": True,
+                    "heldout_row": False,
+                    "fixed_atom_contact_cutoff_used": True,
+                    "fixed_atom_type_chemistry_used": True,
+                },
+            }
+        )
+    return sorted(feature_rows, key=lambda row: _entry_sort_key(row["entry_id"]))
+
+
+def _feature_row_exact_forbidden_key_hits(
+    feature_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    forbidden_keys = {
+        "accession",
+        "coordinate_path",
+        "ec",
+        "ec_id",
+        "fingerprint_id",
+        "label",
+        "label_type",
+        "mechanism_text",
+        "pdb_id",
+        "rhea",
+        "rhea_id",
+        "source_id",
+        "target_name",
+    }
+    hits: list[dict[str, Any]] = []
+    for row in feature_rows:
+        features = row.get("row_specific_event_features") or {}
+        for key in sorted(set(features) & forbidden_keys):
+            hits.append({"entry_id": row.get("entry_id"), "feature_key": key})
+    return hits
+
+
+def _split_oos_rows_from_projection_context_or_counts(
+    projection_context: dict[str, Any],
+    counts: dict[str, Any],
+) -> int | None:
+    split_context = projection_context.get("split_alignment_context") or {}
+    value = split_context.get("current_geometry_fold_calibration_oos_rows")
+    if value is None:
+        value = counts.get("current_geometry_fold_oos_rows")
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _broad_donor_acceptor_contact_instances_for_families(
+    row: dict[str, Any],
+    *,
+    included_families: set[str],
+) -> list[dict[str, Any]]:
+    contact_instances: list[dict[str, Any]] = []
+    for instance in row.get("broad_redox_center_donor_acceptor_instances") or []:
+        if not isinstance(instance, dict) or not instance.get(
+            "has_donor_acceptor_contact"
+        ):
+            continue
+        family = _reported_redox_donor_acceptor_family(
+            instance.get("ligand_code")
+        )
+        if family in included_families:
+            contact_instances.append(instance)
+    return contact_instances
+
+
+def _non_pqq_donor_acceptor_family_exclusion_scout(
+    *,
+    full_source: dict[str, Any],
+    split_oos_rows: int | None,
+) -> dict[str, Any]:
+    broad_rows = (
+        (full_source.get("broad_redox_center_donor_acceptor_control") or {}).get(
+            "rows"
+        )
+        or []
+    )
+    candidate_family_sets = {
+        "pqq_only_control": {"pqq"},
+        "non_pqq_all_redox": {
+            "flavin",
+            "heme",
+            "iron_sulfur_or_iron",
+            "nad",
+            "other",
+        },
+        "non_pqq_excluding_heme_and_flavin_ligation": {
+            "iron_sulfur_or_iron",
+            "nad",
+            "other",
+        },
+        "flavin_only": {"flavin"},
+        "heme_only": {"heme"},
+        "nad_family_only": {"nad"},
+        "pqq_plus_non_pqq_excluding_heme_and_flavin_ligation": {
+            "iron_sulfur_or_iron",
+            "nad",
+            "other",
+            "pqq",
+        },
+    }
+    candidate_readouts: list[dict[str, Any]] = []
+    for candidate_id, families in candidate_family_sets.items():
+        sidecar_rows: list[dict[str, Any]] = []
+        for row in broad_rows:
+            if not isinstance(row, dict) or not row.get("entry_id"):
+                continue
+            complete = bool(
+                row.get(
+                    "source_free_broad_redox_center_donor_acceptor_field_complete"
+                )
+            )
+            contact_instances = (
+                _broad_donor_acceptor_contact_instances_for_families(
+                    row,
+                    included_families=families,
+                )
+                if complete
+                else []
+            )
+            contact_count = len(contact_instances) if complete else None
+            contact_positive = bool(complete and contact_instances)
+            sidecar_rows.append(
+                {
+                    "entry_id": str(row["entry_id"]),
+                    "current_split_role": row.get("tranche_role"),
+                    "source_free_electron_flow_field_complete": complete,
+                    "row_specific_event_features": {
+                        "has_electron_transfer_event": (
+                            contact_positive if complete else None
+                        ),
+                        "electron_transfer_count": contact_count,
+                        "has_source_free_family_redox_center_donor_acceptor_contact": (
+                            contact_positive if complete else None
+                        ),
+                        "source_free_family_redox_center_donor_acceptor_contact_count": (
+                            contact_count
+                        ),
+                    },
+                    "included_contact_families": sorted(families),
+                    "family_contact_examples": contact_instances[:3],
+                }
+            )
+        gate = _donor_acceptor_gate_readout(
+            sidecar_rows,
+            split_oos_rows=split_oos_rows,
+            gate_id=f"fixed_binary_{candidate_id}_donor_acceptor_family_exclusion_scout",
+            feature_fields=[
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_family_redox_center_donor_acceptor_contact",
+                "source_free_family_redox_center_donor_acceptor_contact_count",
+            ],
+            gate_rule=(
+                "Scout-only predeclared family-filtered donor/acceptor gate "
+                "over measured broad redox-center contact rows. No threshold is "
+                "selected or tuned."
+            ),
+        )
+        candidate_readouts.append(
+            {
+                "candidate_id": candidate_id,
+                "included_families": sorted(families),
+                "predeclared_exclusion_note": (
+                    "excludes heme/flavin generic active-site ligation controls"
+                    if "excluding_heme_and_flavin" in candidate_id
+                    else None
+                ),
+                "fixed_gate_readout": gate,
+            }
+        )
+    distance_scout_family_sets = {
+        "non_pqq_excluding_heme_and_flavin_ligation": {
+            "iron_sulfur_or_iron",
+            "nad",
+            "other",
+        },
+        "nad_family_only": {"nad"},
+        "iron_sulfur_or_iron_only": {"iron_sulfur_or_iron"},
+        "flavin_only": {"flavin"},
+        "heme_only": {"heme"},
+    }
+
+    def _min_family_distance(
+        row: dict[str, Any],
+        *,
+        included_families: set[str],
+    ) -> float | None:
+        distances: list[float] = []
+        for instance in row.get("broad_redox_center_donor_acceptor_instances") or []:
+            if not isinstance(instance, dict):
+                continue
+            family = _reported_redox_donor_acceptor_family(
+                instance.get("ligand_code")
+            )
+            if family not in included_families:
+                continue
+            try:
+                distances.append(
+                    float(
+                        instance.get(
+                            "min_distance_to_active_site_donor_acceptor_atom"
+                        )
+                    )
+                )
+            except (TypeError, ValueError):
+                continue
+        return min(distances) if distances else None
+
+    distance_cutoff_readouts: list[dict[str, Any]] = []
+    for candidate_id, families in distance_scout_family_sets.items():
+        for cutoff in PQQ_DONOR_ACCEPTOR_THRESHOLD_SCOUT_CUTOFFS:
+            primary_rows: list[dict[str, Any]] = []
+            retained_oos_rows: list[dict[str, Any]] = []
+            for row in broad_rows:
+                if not isinstance(row, dict) or not row.get("entry_id"):
+                    continue
+                if not row.get(
+                    "source_free_broad_redox_center_donor_acceptor_field_complete"
+                ):
+                    continue
+                distance = _min_family_distance(
+                    row,
+                    included_families=families,
+                )
+                if distance is None or distance > cutoff:
+                    continue
+                record = {
+                    "entry_id": str(row["entry_id"]),
+                    "current_split_role": row.get("tranche_role"),
+                    "min_family_distance_angstrom": round(distance, 3),
+                }
+                if row.get("tranche_role") == "current_primary_retention_gate":
+                    primary_rows.append(record)
+                elif row.get("tranche_role") == "current_retained_oos":
+                    retained_oos_rows.append(record)
+            distance_cutoff_readouts.append(
+                {
+                    "candidate_id": candidate_id,
+                    "included_families": sorted(families),
+                    "cutoff_angstrom": cutoff,
+                    "primary_positive_rows": len(primary_rows),
+                    "retained_oos_positive_rows": len(retained_oos_rows),
+                    "primary_positive_entry_ids": [
+                        row["entry_id"] for row in primary_rows
+                    ],
+                    "retained_oos_positive_entry_ids": [
+                        row["entry_id"] for row in retained_oos_rows
+                    ],
+                    "positive_distance_examples": (
+                        primary_rows + retained_oos_rows
+                    )[:6],
+                }
+            )
+    primary_safe_relaxed_non_pqq = [
+        row
+        for row in distance_cutoff_readouts
+        if (
+            row["candidate_id"].startswith("non_pqq")
+            or row["candidate_id"] in {"nad_family_only", "iron_sulfur_or_iron_only"}
+        )
+        and row["cutoff_angstrom"] > PQQ_DONOR_ACCEPTOR_CONTACT_CUTOFF_ANGSTROM
+        and row["primary_positive_rows"] == 0
+        and row["retained_oos_positive_rows"] > 0
+    ]
+    primary_safe_non_pqq = [
+        candidate
+        for candidate in candidate_readouts
+        if candidate["candidate_id"].startswith("non_pqq")
+        and candidate["fixed_gate_readout"]["preserves_primary_retention"]
+    ]
+    primary_safe_non_pqq_with_oos = [
+        candidate
+        for candidate in primary_safe_non_pqq
+        if candidate["fixed_gate_readout"]["retained_oos_positive_rows"]
+    ]
+    best_non_pqq = max(
+        [
+            candidate
+            for candidate in candidate_readouts
+            if candidate["candidate_id"].startswith("non_pqq")
+        ],
+        key=lambda candidate: (
+            candidate["fixed_gate_readout"]["retained_oos_positive_rows"],
+            -candidate["fixed_gate_readout"]["primary_positive_rows"],
+        ),
+        default=None,
+    )
+    return {
+        "available": True,
+        "scout_only_not_threshold_selection": True,
+        "candidate_readouts": candidate_readouts,
+        "primary_safe_non_pqq_candidate_ids": [
+            candidate["candidate_id"] for candidate in primary_safe_non_pqq
+        ],
+        "primary_safe_non_pqq_candidate_ids_with_retained_oos_signal": [
+            candidate["candidate_id"] for candidate in primary_safe_non_pqq_with_oos
+        ],
+        "relaxed_distance_cutoff_scout": {
+            "scout_only_not_threshold_selection": True,
+            "fixed_contact_cutoff_angstrom": (
+                PQQ_DONOR_ACCEPTOR_CONTACT_CUTOFF_ANGSTROM
+            ),
+            "cutoffs_checked_angstrom": list(
+                PQQ_DONOR_ACCEPTOR_THRESHOLD_SCOUT_CUTOFFS
+            ),
+            "candidate_readouts": distance_cutoff_readouts,
+            "primary_safe_relaxed_non_pqq_cutoffs_with_retained_oos_signal": (
+                primary_safe_relaxed_non_pqq
+            ),
+            "primary_safe_relaxed_non_pqq_cutoff_signal_rows": len(
+                primary_safe_relaxed_non_pqq
+            ),
+            "interpretation": (
+                "Relaxed non-PQQ distance cutoffs can recover NAD/Fe-S "
+                "retained-OOS rows while excluding the measured heme/flavin "
+                "primary leaks, but this is scout-only distance expansion and "
+                "not the fixed 3.2 A donor/acceptor contact primitive."
+            )
+            if primary_safe_relaxed_non_pqq
+            else (
+                "Relaxed non-PQQ distance cutoffs did not find a primary-safe "
+                "retained-OOS signal."
+            ),
+        },
+        "best_non_pqq_candidate_id": (
+            best_non_pqq["candidate_id"] if best_non_pqq is not None else None
+        ),
+        "non_pqq_candidate_adds_primary_safe_retained_oos_signal": bool(
+            primary_safe_non_pqq_with_oos
+        ),
+        "interpretation": (
+            "No predeclared non-PQQ donor/acceptor family filter adds a "
+            "primary-safe current-retained OOS catch. Heme/flavin contacts are "
+            "the measured primary leaks, and excluding them leaves no non-PQQ "
+            "retained-OOS positives."
+        ),
+    }
+
+
+def build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+    *,
+    donor_acceptor_readout_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PQQ_DONOR_ACCEPTOR_CURRENT_SPLIT_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    donor_acceptor = _read_json(donor_acceptor_readout_path)
+    measured = donor_acceptor.get("measured_readout") or {}
+    source_counts = donor_acceptor.get("counts") or {}
+    projection_context = measured.get("projection_context") or {}
+    split_oos_rows = _split_oos_rows_from_projection_context_or_counts(
+        projection_context,
+        source_counts,
+    )
+    smoke_source = measured.get("smallest_source_free_smoke_tranche") or {}
+    full_source = (
+        measured.get("full_retained_oos_current_split_tranche") or {}
+    )
+    smoke_feature_rows = _pqq_donor_acceptor_feature_sidecar_rows_from_readout_tranche(
+        smoke_source
+    )
+    feature_rows = _pqq_donor_acceptor_feature_sidecar_rows_from_readout_tranche(
+        full_source
+    )
+    smoke_gate = _donor_acceptor_gate_readout(
+        smoke_feature_rows,
+        gate_id=(
+            "fixed_binary_pqq_donor_acceptor_current_split_feature_sidecar_smoke"
+        ),
+        feature_fields=[
+            "has_electron_transfer_event",
+            "electron_transfer_count",
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+        ],
+        gate_rule=(
+            "Use only the standalone source-free feature rows materialized from "
+            "the fixed PQQ donor/acceptor primitive. A positive direct "
+            "electron-flow event abstains; complete negatives retain."
+        ),
+    )
+    full_gate = _donor_acceptor_gate_readout(
+        feature_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id=(
+            "fixed_binary_pqq_donor_acceptor_current_split_feature_sidecar_or_current_surface"
+        ),
+        feature_fields=[
+            "has_electron_transfer_event",
+            "electron_transfer_count",
+            "has_source_free_pqq_donor_acceptor_contact",
+            "source_free_pqq_donor_acceptor_contact_count",
+        ],
+        gate_rule=(
+            "At the current operating point, abstain a currently retained OOS "
+            "row when the standalone source-free PQQ O4/O5-to-active-site "
+            "N/O/S donor/acceptor feature row is positive; retain a primary "
+            "row unless that same complete feature row is positive. No "
+            "threshold is selected or tuned by this readout."
+        ),
+    )
+    forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(
+        feature_rows
+    )
+    complete_sidecar = bool(
+        full_gate["rows"] and full_gate["complete_rows"] == full_gate["rows"]
+    )
+    measured_positive = bool(
+        full_gate["operating_point_measurable_now"]
+        and full_gate["preserves_primary_retention"]
+        and full_gate["adds_incremental_oos_abstention"]
+    )
+    result_class = (
+        "research_only_materialized_feature_sidecar_operating_point_signal"
+        if measured_positive and not forbidden_feature_key_hits
+        else "research_only_materialized_feature_sidecar_incomplete_or_negative"
+    )
+    status = (
+        "lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_"
+        f"feature_sidecar_readout_{result_class}"
+    )
+    projection_scout = measured.get("projection_model_donor_acceptor_row_scout") or {}
+    missing_feature_rows = [
+        {
+            "entry_id": row["entry_id"],
+            "current_split_role": row.get("current_split_role"),
+            "missing_source_free_evidence": (
+                (row.get("pqq_donor_acceptor_evidence") or {}).get(
+                    "missing_source_free_evidence", []
+                )
+            ),
+        }
+        for row in feature_rows
+        if not row.get("source_free_electron_flow_field_complete")
+    ]
+    non_pqq_family_exclusion_scout = (
+        _non_pqq_donor_acceptor_family_exclusion_scout(
+            full_source=full_source,
+            split_oos_rows=split_oos_rows,
+        )
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_pqq_donor_acceptor_"
+            "current_split_feature_sidecar_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined source-free feature-sidecar "
+            "materialization readout for the direct PQQ donor/acceptor "
+            "electron-flow primitive on the current split. It consumes the "
+            "measured donor/acceptor artifact, emits standalone normal-shaped "
+            "row_specific_event_features for the 34 current primary rows and "
+            "40 current-retained OOS rows, then remeasures the fixed operating "
+            "point from those feature rows. It does not train, tune thresholds, "
+            "read heldout, edit registries, or promote imports."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": "source_free_pqq_donor_acceptor_current_split_feature_sidecar",
+            "axis_id": "source_free_pqq_donor_acceptor_contact",
+            "contract_status": "research_only_unapproved_unimported",
+            "row_scope": (
+                "current train/cal calibration split: 34 primary retention-gate "
+                "rows plus 40 current-retained OOS rows"
+            ),
+            "feature_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_pqq_donor_acceptor_contact",
+                "source_free_pqq_donor_acceptor_contact_count",
+            ],
+            "direct_electron_flow_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "allowed_source_free_inputs": [
+                "committed donor_acceptor_readout feature rows",
+                "fixed PQQ O4/O5 atom names",
+                "fixed active-site N/O/S atom elements",
+                "fixed 3.2 angstrom atom-contact cutoff",
+                "committed local CIF atom-site evidence",
+            ],
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "feature_rows": feature_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "current_split_role",
+            "assigned_embedding_split",
+            "pqq_donor_acceptor_evidence",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "projection_context": projection_context,
+            "smallest_source_free_smoke_tranche": {
+                "feature_rows": smoke_feature_rows,
+                "fixed_gate_readout": smoke_gate,
+            },
+            "full_retained_oos_current_split_tranche": {
+                "feature_rows": feature_rows,
+                "fixed_gate_readout": full_gate,
+            },
+            "projection_model_donor_acceptor_row_scout": projection_scout,
+            "non_pqq_donor_acceptor_family_exclusion_scout": (
+                non_pqq_family_exclusion_scout
+            ),
+            "missing_feature_rows": missing_feature_rows,
+            "forbidden_feature_key_hits": forbidden_feature_key_hits,
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_feature_key_hits),
+            "materialized_feature_rows": len(feature_rows),
+            "source_free_electron_flow_feature_complete_rows": full_gate[
+                "complete_rows"
+            ],
+            "source_free_electron_flow_feature_incomplete_rows": full_gate[
+                "incomplete_rows"
+            ],
+            "current_primary_rows": full_gate["primary_rows"],
+            "current_retained_oos_rows": full_gate["retained_oos_rows"],
+            "current_primary_positive_rows": full_gate[
+                "primary_positive_rows"
+            ],
+            "current_retained_oos_positive_rows": full_gate[
+                "retained_oos_positive_rows"
+            ],
+            "current_primary_retain_recall": full_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "current_retained_oos_abstain_recall": full_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "current_geometry_fold_oos_rows": full_gate[
+                "current_geometry_fold_oos_rows"
+            ],
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                full_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "union_or_gate_oos_abstain_recall": full_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "smoke_feature_rows": len(smoke_feature_rows),
+            "smoke_complete_feature_rows": smoke_gate["complete_rows"],
+            "smoke_primary_positive_rows": smoke_gate["primary_positive_rows"],
+            "smoke_retained_oos_positive_rows": smoke_gate[
+                "retained_oos_positive_rows"
+            ],
+            "direct_feature_fields": 2,
+            "supporting_feature_fields": 2,
+            "total_feature_fields": 4,
+            "forbidden_row_feature_key_hits": len(forbidden_feature_key_hits),
+            "projection_row_scout_pqq_positive_rows": projection_scout.get(
+                "pqq_positive_rows"
+            ),
+            "projection_row_scout_broad_positive_rows": projection_scout.get(
+                "broad_positive_rows"
+            ),
+            "source_donor_acceptor_full_rows": source_counts.get(
+                "full_current_split_rows"
+            ),
+            "source_donor_acceptor_full_complete_rows": source_counts.get(
+                "full_complete_pqq_donor_acceptor_rows"
+            ),
+            "source_donor_acceptor_primary_positive_rows": source_counts.get(
+                "full_pqq_donor_acceptor_primary_positive_rows"
+            ),
+            "source_donor_acceptor_retained_oos_positive_rows": source_counts.get(
+                "full_pqq_donor_acceptor_retained_oos_positive_rows"
+            ),
+            "non_pqq_family_exclusion_candidates_checked": len(
+                non_pqq_family_exclusion_scout["candidate_readouts"]
+            ),
+            "primary_safe_non_pqq_family_exclusion_candidates": len(
+                non_pqq_family_exclusion_scout[
+                    "primary_safe_non_pqq_candidate_ids"
+                ]
+            ),
+            "primary_safe_non_pqq_family_exclusion_candidates_with_retained_oos_signal": len(
+                non_pqq_family_exclusion_scout[
+                    "primary_safe_non_pqq_candidate_ids_with_retained_oos_signal"
+                ]
+            ),
+            "relaxed_non_pqq_distance_cutoff_scout_rows_with_primary_safe_retained_oos_signal": (
+                non_pqq_family_exclusion_scout["relaxed_distance_cutoff_scout"][
+                    "primary_safe_relaxed_non_pqq_cutoff_signal_rows"
+                ]
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "standalone_current_split_feature_sidecar_materialized": True,
+            "current_split_feature_sidecar_complete": complete_sidecar,
+            "source_free_current_split_rows_missing_now": full_gate[
+                "incomplete_rows"
+            ],
+            "pqq_donor_acceptor_feature_rows_preserve_primary_retention": (
+                full_gate["preserves_primary_retention"]
+            ),
+            "pqq_donor_acceptor_feature_rows_add_current_retained_oos_abstention": (
+                full_gate["adds_incremental_oos_abstention"]
+            ),
+            "pqq_donor_acceptor_feature_rows_add_operating_point_value_beyond_current_geometry_fold": (
+                measured_positive
+            ),
+            "normal_shaped_row_specific_feature_sidecar_emitted": True,
+            "forbidden_fields_absent_from_row_specific_event_features": (
+                not forbidden_feature_key_hits
+            ),
+            "pqq_projection_rows_have_positive_train_cal_signal": bool(
+                projection_scout.get("pqq_positive_rows")
+            ),
+            "broad_projection_rows_have_positive_train_cal_signal": bool(
+                projection_scout.get("broad_positive_rows")
+            ),
+            "non_pqq_family_exclusion_scout_adds_primary_safe_retained_oos_signal": (
+                non_pqq_family_exclusion_scout[
+                    "non_pqq_candidate_adds_primary_safe_retained_oos_signal"
+                ]
+            ),
+            "relaxed_non_pqq_distance_scout_finds_primary_safe_signal": bool(
+                non_pqq_family_exclusion_scout["relaxed_distance_cutoff_scout"][
+                    "primary_safe_relaxed_non_pqq_cutoffs_with_retained_oos_signal"
+                ]
+            ),
+            "relaxed_non_pqq_distance_scout_not_promotable_reason": (
+                "The relaxed-distance non-PQQ signal is scout-only: the fixed "
+                "donor/acceptor operating primitive remains 3.2 A, and no "
+                "family-specific relaxed cutoff has been predeclared, approved, "
+                "or checked through a model-style train/cal projection contract."
+            ),
+            "source_free_pqq_donor_acceptor_contract_approved": False,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not measured_positive,
+            "apply_or_promote_now": False,
+            "remaining_deployability_gap": (
+                "The current-split source-free feature sidecar rows are now "
+                "materialized and primary-safe for the fixed PQQ donor/acceptor "
+                "primitive, but the primitive contract remains unapproved and "
+                "unimported. It also has no positive PQQ train/cal projection "
+                "rows, so a model-style train/cal rerun would not reproduce the "
+                "prior electron-flow projection ceiling."
+            ),
+            "smallest_next_experiment": (
+                "Either approve this narrow PQQ donor/acceptor primitive as an "
+                "explicit source-free electron-flow subaxis, or test a minimal "
+                "non-PQQ donor/acceptor atomset with a predeclared exclusion for "
+                "generic heme/flavin ligation that caused primary leakage."
+            ),
+            "non_pqq_family_exclusion_result": non_pqq_family_exclusion_scout[
+                "interpretation"
+            ],
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "donor_acceptor_contact_readout": _source_path_record(
+                donor_acceptor_readout_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The standalone current-split source-free feature sidecar is "
+                f"complete on {full_gate['complete_rows']}/{full_gate['rows']} "
+                "rows, preserves all current primary rows, and catches "
+                f"{full_gate['retained_oos_positive_rows']}/"
+                f"{full_gate['retained_oos_rows']} current-retained OOS rows "
+                "from normal-shaped row_specific_event_features."
+            )
+            if measured_positive
+            else (
+                "The standalone current-split source-free feature sidecar does "
+                "not yet provide a complete primary-safe incremental OOS signal."
+            ),
+            "next_action": (
+                "Treat the missing current-split-row blocker as closed for the "
+                "narrow PQQ donor/acceptor primitive, but keep the route "
+                "research-only until the primitive contract is explicitly "
+                "approved or replaced by a primary-safe non-PQQ electron-flow "
+                "primitive."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    full_gate = readout["measured_readout"][
+        "full_retained_oos_current_split_tranche"
+    ]["fixed_gate_readout"]
+    non_pqq_scout = readout["measured_readout"][
+        "non_pqq_donor_acceptor_family_exclusion_scout"
+    ]
+    relaxed_distance_scout = non_pqq_scout["relaxed_distance_cutoff_scout"]
+    positive_rows = [
+        row
+        for row in readout["feature_rows"]
+        if (
+            row.get("row_specific_event_features") or {}
+        ).get("has_electron_transfer_event")
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow PQQ Donor/Acceptor Current-Split Feature Sidecar Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Materialized feature rows complete: "
+        f"{counts['source_free_electron_flow_feature_complete_rows']}/"
+        f"{counts['materialized_feature_rows']}",
+        "- Current primary/OOS positives: "
+        f"{counts['current_primary_positive_rows']}/"
+        f"{counts['current_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['current_primary_retain_recall']}",
+        "- Retained-OOS abstain recall: "
+        f"{counts['current_retained_oos_abstain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold OOS: "
+        f"{counts['incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Forbidden row-feature key hits: "
+        f"{counts['forbidden_row_feature_key_hits']}",
+        "- Primary-safe non-PQQ family-exclusion candidates with retained-OOS signal: "
+        f"{counts['primary_safe_non_pqq_family_exclusion_candidates_with_retained_oos_signal']}",
+        "- Relaxed non-PQQ distance cutoff scout rows with primary-safe retained-OOS signal: "
+        f"{counts['relaxed_non_pqq_distance_cutoff_scout_rows_with_primary_safe_retained_oos_signal']}",
+        "",
+        "## Fixed Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | primary retain | retained-OOS recall | union OOS recall |",
+        "| ---: | ---: | ---: | ---: | ---: | ---: |",
+        f"| {full_gate['complete_rows']}/{full_gate['rows']} | "
+        f"{full_gate['primary_positive_rows']} | "
+        f"{full_gate['retained_oos_positive_rows']} | "
+        f"{full_gate['primary_retain_recall_if_abstain_positive']} | "
+        f"{full_gate['retained_oos_abstain_recall_if_abstain_positive']} | "
+        f"{full_gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Positive Feature Rows",
+        "",
+        "| row | role | electron transfer count | coordinate evidence |",
+        "| --- | --- | ---: | --- |",
+    ]
+    if not positive_rows:
+        lines.append("| none | none | 0 | none |")
+    for row in positive_rows:
+        evidence = row.get("pqq_donor_acceptor_evidence") or {}
+        features = row.get("row_specific_event_features") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row.get('current_split_role')} | "
+            f"{features.get('electron_transfer_count')} | "
+        f"{evidence.get('coordinate_path') or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Non-PQQ Family-Exclusion Scout",
+        "",
+        "| candidate | families | primary positives | retained-OOS positives | primary retain | retained-OOS rows |",
+        "| --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for candidate in non_pqq_scout["candidate_readouts"]:
+        gate = candidate["fixed_gate_readout"]
+        lines.append(
+            f"| {candidate['candidate_id']} | "
+            f"{', '.join(candidate['included_families'])} | "
+            f"{gate['primary_positive_rows']} | "
+            f"{gate['retained_oos_positive_rows']} | "
+            f"{gate['primary_retain_recall_if_abstain_positive']} | "
+            f"{', '.join(gate['retained_oos_positive_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        f"- {non_pqq_scout['interpretation']}",
+        "",
+        "## Relaxed Non-PQQ Distance Scout",
+        "",
+        "Scout only; the fixed donor/acceptor primitive above remains 3.2 A.",
+        "",
+        "| candidate | cutoff | primary positives | retained-OOS positives | retained-OOS rows |",
+        "| --- | ---: | ---: | ---: | --- |",
+    ]
+    relaxed_signal_rows = relaxed_distance_scout[
+        "primary_safe_relaxed_non_pqq_cutoffs_with_retained_oos_signal"
+    ]
+    if not relaxed_signal_rows:
+        lines.append("| none | 0 | 0 | 0 | none |")
+    for row in relaxed_signal_rows:
+        lines.append(
+            f"| {row['candidate_id']} | {row['cutoff_angstrom']} | "
+            f"{row['primary_positive_rows']} | "
+            f"{row['retained_oos_positive_rows']} | "
+            f"{', '.join(row['retained_oos_positive_entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        f"- {relaxed_distance_scout['interpretation']}",
+        "",
+        "## Decision",
+        "",
+        "- Standalone sidecar materialized: "
+        f"{decision['standalone_current_split_feature_sidecar_materialized']}",
+        "- Current-split sidecar complete: "
+        f"{decision['current_split_feature_sidecar_complete']}",
+        "- Preserves primary retention: "
+        f"{decision['pqq_donor_acceptor_feature_rows_preserve_primary_retention']}",
+        "- Adds value beyond current geometry/fold: "
+        f"{decision['pqq_donor_acceptor_feature_rows_add_operating_point_value_beyond_current_geometry_fold']}",
+        "- PQQ projection rows have positive train/cal signal: "
+        f"{decision['pqq_projection_rows_have_positive_train_cal_signal']}",
+        "- Non-PQQ family-exclusion scout adds primary-safe retained-OOS signal: "
+        f"{decision['non_pqq_family_exclusion_scout_adds_primary_safe_retained_oos_signal']}",
+        "- Relaxed non-PQQ distance scout finds primary-safe signal: "
+        f"{decision['relaxed_non_pqq_distance_scout_finds_primary_safe_signal']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_deployability_gap']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+    *,
+    donor_acceptor_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PQQ_DONOR_ACCEPTOR_CURRENT_SPLIT_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout(
+        donor_acceptor_readout_path=donor_acceptor_readout_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_report(
                 readout
             ),
             encoding="utf-8",
