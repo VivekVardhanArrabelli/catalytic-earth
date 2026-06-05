@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T11:32:43Z`
-- STARTED_AT_LOCAL: `2026-06-05T06:32:43-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T12:26:07Z`
-- ENDED_AT_LOCAL: `2026-06-05T07:26:07-0500 CDT`
-- ELAPSED_MINUTES: `53.4`
+- STARTED_AT_UTC: `2026-06-05T12:34:49Z`
+- STARTED_AT_LOCAL: `2026-06-05T07:34:49-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T13:29:54Z`
+- ENDED_AT_LOCAL: `2026-06-05T08:29:54-0500 CDT`
+- ELAPSED_MINUTES: `55.1`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,173 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 22
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T12:34:49Z`
+- STARTED_LOCAL: `2026-06-05T07:34:49-0500 CDT`
+- ENDED_AT: `2026-06-05T13:29:54Z`
+- ENDED_LOCAL: `2026-06-05T08:29:54-0500 CDT`
+- ELAPSED_MINUTES: `55.1`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured projection-backed `PQQ + NAD-family` supported route
+and approval-qualified Fe-S/iron union, then attempt the next source-free
+electron-flow measured readout that can test incremental operating-point value
+without labels, registry edits, threshold changes, heldout tuning, or Lever 3
+work.
+
+#### Work log
+
+- Run opened in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- The automation initially started in a clean detached duplicate checkout
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/c6ec/catalytic-earth` with
+  disk at 9.0 GiB free, below the 10 GiB guardrail. That duplicate checkout had
+  no branch and no local changes, so it was removed with `git worktree remove`
+  after switching all substantive work to the Lever 2 branch worktree. Disk
+  then returned to 12 GiB free.
+- Added
+  `build-lever2-source-free-electron-flow-iron-sulfur-tiny-tranche-approval-readiness-readout`.
+  This consumes the measured Fe-S/iron projection-support readout, the
+  approval-qualified Fe-S union readout, the review-only Fe-S locus sidecar,
+  the train/cal input manifest, the current train/cal feature sidecar, and the
+  active-site role-graph sidecar.
+- The readout measures whether the smallest Fe-S support tranche can make the
+  current-split Fe-S OOS catch consumable without editing imports, labels,
+  registries, ontologies, production thresholds, heldout splits, or predictive
+  gates.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout_current702_20260605.md`.
+- Expanded the smoke tranche accounting from the 3-row tiny support set to the
+  12-row non-current Fe-S support set so the next approval tranche has both the
+  smallest route and a larger source-free positive fallback.
+- Added accession-position counts from the role-graph sidecar so the
+  `m_csa:443` minimal-bundle gap is explicit in the artifact/report rather
+  than only described as a generic role-graph failure.
+- No blocker packet was written; the run produced a measured electron-flow
+  readout first and continued through expanded-tranche and role-graph evidence
+  checks.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout_research_only_tiny_tranche_source_free_positive_partial_bundle_ready_pending_predictive_gate`.
+  Result class:
+  `research_only_tiny_tranche_source_free_positive_partial_bundle_ready_pending_predictive_gate`.
+- Tiny Fe-S support tranche: 3/3 rows are source-free complete and positive
+  (`m_csa:443`, `m_csa:127`, `m_csa:281`), all 3 are nonheldout
+  in-distribution rows, and 0/3 are currently `predictive_use_allowed` or
+  present in the approved current train/cal feature sidecar.
+- Tiny-tranche bundle readiness: 2/3 rows are minimal-bundle ready and
+  accession-compatible (`m_csa:127`, `m_csa:281`). `m_csa:443` is blocked by
+  `minimal_train_cal_feature_bundle_ready=false` and
+  `accession_compatible_sequence_positions=false`; its role graph has accession
+  `P13063` but sequence-position evidence split across `P13063:12` and
+  `P13065:7`.
+- Expanded non-current Fe-S tranche: 12/12 rows are source-free positive, and
+  8/12 are bundle-ready/accession-compatible:
+  `m_csa:127`, `m_csa:281`, `m_csa:130`, `m_csa:398`, `m_csa:358`,
+  `m_csa:108`, `m_csa:562`, and `m_csa:276`. The expanded rows blocked by
+  minimal-bundle/accession evidence are `m_csa:443`, `m_csa:208`,
+  `m_csa:123`, and `m_csa:212`.
+- Approval-qualified current-split context is unchanged but now has a precise
+  support-readiness gate: supported-now `PQQ + NAD-family` catches 2
+  current-retained OOS rows (`m_csa:104`, `m_csa:464`), while the
+  approval-qualified `PQQ + NAD + Fe-S/iron` union catches 3
+  current-retained OOS rows (`m_csa:104`, `m_csa:119`, `m_csa:464`) with 0
+  current-primary positives and primary retain recall `1.0`.
+- Fe-S/iron adds exactly 1 current-retained OOS row beyond supported PQQ+NAD:
+  `m_csa:119`. The incremental OOS abstain-recall delta beyond PQQ+NAD is
+  `0.013333` on the current geometry/fold OOS denominator.
+- Decision: `m_csa:119` can join the supported route after the bundle-ready
+  source-free Fe-S support subset is approved/imported, but train/cal support
+  and deployment remain false now because the support rows have not been
+  approved for predictive use or imported into the train/cal feature sidecar.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- Tiny and expanded Fe-S support rows were used only for train/cal/nonheldout
+  support-readiness accounting; none were promoted or made predictive.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  PDB IDs, coordinate paths, or provenance were used as predictive feature
+  values. Accessions and coordinate/provenance fields appear only outside
+  `row_specific_event_features` as source-evidence accounting.
+- The new readout remains research-only. No threshold was selected, tuned, or
+  promoted by this run.
+- Disk guardrail recovered from the initial detached-worktree low-disk state
+  and ended at 12 GiB free.
+
+#### Validation
+
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_parser_defaults tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_readout tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_iron_sulfur_tiny_tranche_approval_readiness_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  482 passed, 193 subtests passed.
+- Compile check: `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  mechanism labels validated.
+- `git diff --check`: passed.
+- Full pytest: `PYTHONPATH=src python -m pytest -q`: 1559 passed, 212
+  subtests passed, with the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1514 tests OK,
+  with the same existing warning.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3590 JSON files and 27 JSONL files
+  parsed with 0 errors.
+- New artifact source hash audit passed for all 6 source artifacts, including
+  the role-graph sidecar.
+- New artifact regeneration/source audit passed after normalizing
+  `created_utc`.
+- New artifact forbidden predictive-key audit found 0 hits inside
+  `row_specific_event_features`.
+- Scope audit found 8 expected changed paths and 0 protected-surface path
+  changes.
+
+#### Commit/push status
+
+- Primary research commit
+  `96abbfb2f4eab0523f2dafbddebc48592f25cb18`
+  (`Add Lever 2 Fe-S approval readiness readout`) was pushed to
+  `origin/lever-2-research-track`.
+- Fetch/sync verification after the push matched local `HEAD` and
+  `origin/lever-2-research-track` at
+  `96abbfb2f4eab0523f2dafbddebc48592f25cb18`.
+- This final handoff status update is being committed and pushed separately as
+  a handoff-only wrap-up change.
+
+#### Exact next action
+
+- Smallest next electron-flow experiment: approve/import the bundle-ready
+  source-free Fe-S support subset `m_csa:127` and `m_csa:281` with
+  `predictive_use_allowed=true` and explicit train/cal split assignment, then
+  rerun the fixed approval-qualified `PQQ + NAD + Fe-S/iron` union without any
+  threshold changes or heldout use.
+- If the approval contract requires the original 3-row tiny tranche, first
+  repair `m_csa:443` by resolving the mixed role-graph sequence-position
+  accession evidence (`P13063:12`, `P13065:7`) into accession-compatible
+  source-free positions, then import all three tiny rows.
+- If a broader support pool is required before approval, use the expanded
+  8-row bundle-ready subset:
+  `m_csa:127`, `m_csa:281`, `m_csa:130`, `m_csa:398`, `m_csa:358`,
+  `m_csa:108`, `m_csa:562`, and `m_csa:276`.
 
 ### 2026-06-05 Lever 2 Research Run 21
 
