@@ -6,9 +6,9 @@
 - Branch: `lever-2-research-track`
 - STARTED_AT_UTC: `2026-06-05T01:33:02Z`
 - STARTED_AT_LOCAL: `2026-06-04T20:33:02-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T01:57:40Z`
-- ENDED_AT_LOCAL: `2026-06-04T20:57:40-0500 CDT`
-- ELAPSED_MINUTES: `24.63`
+- ENDED_AT_UTC: `2026-06-05T02:00:18Z`
+- ENDED_AT_LOCAL: `2026-06-04T21:00:18-0500 CDT`
+- ELAPSED_MINUTES: `27.27`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -23,9 +23,9 @@
 
 - STARTED_AT: `2026-06-05T01:33:02Z`
 - STARTED_LOCAL: `2026-06-04T20:33:02-0500 CDT`
-- ENDED_AT: `2026-06-05T01:57:40Z`
-- ENDED_LOCAL: `2026-06-04T20:57:40-0500 CDT`
-- ELAPSED_MINUTES: `24.63`
+- ENDED_AT: `2026-06-05T02:00:18Z`
+- ENDED_LOCAL: `2026-06-04T21:00:18-0500 CDT`
+- ELAPSED_MINUTES: `27.27`
 
 #### Intent
 
@@ -158,8 +158,14 @@ support one.
 
 #### Commit/push status
 
-- Pending at handoff-write time; this run will commit and push the touched
-  code, generated readouts, and this handoff on `lever-2-research-track`.
+- Implementation/readout commit
+  `32e5f8dd80369ae629183789eaae2c948b090fd9` was pushed to
+  `origin/lever-2-research-track`.
+- After `git fetch origin lever-2-research-track`, local `HEAD` matched
+  `origin/lever-2-research-track` at
+  `32e5f8dd80369ae629183789eaae2c948b090fd9`; this final handoff-status
+  update is committed and pushed as a follow-up bookkeeping commit, with the
+  final branch hash recorded in automation memory and the final response.
 
 #### Exact next action
 
