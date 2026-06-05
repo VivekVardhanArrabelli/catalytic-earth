@@ -17,6 +17,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_mechanism_feature_incremental_readout,
     build_lever2_source_free_electron_flow_acquisition_ceiling_readout,
     build_lever2_source_free_electron_flow_approval_import_dry_run_readout,
+    build_lever2_source_free_electron_flow_approval_import_smoke_review_readout,
     build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout,
     build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_coordinate_proxy_readout,
@@ -6291,6 +6292,186 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["protected_surfaces_modified"])
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+
+    def test_electron_flow_approval_import_smoke_review_readout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            dry_run_path = root / "dry_run.json"
+
+            def features(
+                *,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "has_electron_transfer_event": bool(pqq or nad or fe_s),
+                    "electron_transfer_count": pqq + nad + fe_s,
+                    "has_source_free_pqq_donor_acceptor_contact": pqq > 0,
+                    "source_free_pqq_donor_acceptor_contact_count": pqq,
+                    "has_source_free_nad_family_donor_acceptor_distance": nad > 0,
+                    "source_free_nad_family_donor_acceptor_distance_count": nad,
+                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": fe_s > 0,
+                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": fe_s,
+                }
+
+            def row(
+                entry_id: str,
+                role: str,
+                *,
+                existing: bool = False,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": "calibration",
+                    "candidate_bundle_role": "current_split_operating_point_row",
+                    "current_split_role": role,
+                    "existing_approved_sidecar_row": existing,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": features(
+                        pqq=pqq, nad=nad, fe_s=fe_s
+                    ),
+                }
+
+            dry_run_path.write_text(
+                json.dumps(
+                    {
+                        "status": "dry_run_status",
+                        "result_class": "dry_run_positive",
+                        "dry_run_feature_sidecar": {
+                            "sidecar_id": "dry_run_sidecar",
+                            "axis_id": "source_free_electron_flow",
+                            "feature_fields": [
+                                "has_electron_transfer_event",
+                                "electron_transfer_count",
+                                "has_source_free_pqq_donor_acceptor_contact",
+                                "source_free_pqq_donor_acceptor_contact_count",
+                                "has_source_free_nad_family_donor_acceptor_distance",
+                                "source_free_nad_family_donor_acceptor_distance_count",
+                                "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+                                "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+                            ],
+                            "feature_rows": [
+                                row(
+                                    "m_csa:1",
+                                    "current_primary_retention_gate",
+                                ),
+                                row(
+                                    "m_csa:2",
+                                    "current_primary_retention_gate",
+                                    existing=True,
+                                ),
+                                row(
+                                    "m_csa:104",
+                                    "current_retained_oos",
+                                    pqq=1,
+                                ),
+                                row(
+                                    "m_csa:119",
+                                    "current_retained_oos",
+                                    fe_s=1,
+                                ),
+                                row(
+                                    "m_csa:464",
+                                    "current_retained_oos",
+                                    nad=1,
+                                ),
+                            ],
+                        },
+                        "measured_readout": {
+                            "fixed_operating_point_after_dry_run": {
+                                "current_geometry_fold_oos_rows": 5
+                            },
+                            "component_ablation_after_dry_run": [],
+                        },
+                        "counts": {
+                            "dry_run_import_rows": 5,
+                            "dry_run_current_split_rows": 5,
+                            "dry_run_support_rows": 0,
+                            "dry_run_rows_new_to_approved_sidecar": 4,
+                            "dry_run_rows_updating_existing_approved_sidecar_rows": 1,
+                            "dry_run_current_retained_oos_positive_entry_ids": [
+                                "m_csa:104",
+                                "m_csa:119",
+                                "m_csa:464",
+                            ],
+                            "dry_run_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.6,
+                        },
+                        "decision": {
+                            "smallest_next_experiment": "approve/import"
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_approval_import_smoke_review_readout(
+                approval_import_dry_run_readout_path=dry_run_path,
+                artifact_id="test_smoke_review",
+            )
+
+        self.assertEqual(readout["artifact_id"], "test_smoke_review")
+        self.assertEqual(
+            readout["result_class"],
+            (
+                "research_only_smoke_review_positive_full_expansion_positive_"
+                "pending_protected_import"
+            ),
+        )
+        self.assertEqual(readout["counts"]["smoke_tranche_rows"], 3)
+        self.assertEqual(readout["counts"]["smoke_current_primary_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["smoke_complete_direct_component_rows"], 3
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_current_primary_positive_rows"], 0
+        )
+        self.assertEqual(
+            readout["counts"]["smoke_retained_oos_positive_entry_ids"],
+            ["m_csa:104"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "smoke_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.2,
+        )
+        self.assertEqual(readout["counts"]["full_current_split_rows"], 5)
+        self.assertEqual(
+            readout["counts"]["full_current_retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "full_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.6,
+        )
+        self.assertEqual(readout["counts"]["smoke_rows_new_to_approved_sidecar"], 2)
+        self.assertEqual(
+            readout["counts"]["smoke_rows_updating_existing_approved_sidecar_rows"],
+            1,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "smoke_tranche_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "full_74row_expansion_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertFalse(readout["decision"]["protected_surfaces_modified"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertTrue(
+            readout["source_artifacts"]["approval_import_dry_run_readout"][
+                "exists"
+            ]
+        )
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,

@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T17:32:54Z`
-- STARTED_AT_LOCAL: `2026-06-05T12:32:54-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T18:21:54Z`
-- ENDED_AT_LOCAL: `2026-06-05T13:21:54-0500 CDT`
-- ELAPSED_MINUTES: `49.02`
+- STARTED_AT_UTC: `2026-06-05T18:33:11Z`
+- STARTED_AT_LOCAL: `2026-06-05T13:33:11-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T19:23:59Z`
+- ENDED_AT_LOCAL: `2026-06-05T14:23:59-0500 CDT`
+- ELAPSED_MINUTES: `50.80`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,153 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 28
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T18:33:11Z`
+- STARTED_LOCAL: `2026-06-05T13:33:11-0500 CDT`
+- ENDED_AT: `2026-06-05T19:23:59Z`
+- ENDED_LOCAL: `2026-06-05T14:23:59-0500 CDT`
+- ELAPSED_MINUTES: `50.80`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the source-free electron-flow approval/import dry-run readout and
+try the next measured route toward deployable train/cal signal: preserve the
+current fixed operating point and primary retention while testing whether the
+direct source-free component fields can be audited against the protected
+approved-sidecar shape and smoke tranche before any protected import is
+requested.
+
+#### Work log
+
+- Run opened from automation checkout
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/95ac/catalytic-earth`, which
+  was a clean detached duplicate and not the dedicated Lever 2 branch
+  worktree.
+- Switched substantive work to the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial disk was below the 10 GiB guardrail at 8.4 GiB free. The clean
+  detached duplicate checkout was removed with `git worktree remove`,
+  restoring disk to 12 GiB free before research writes continued.
+- Added
+  `build-lever2-source-free-electron-flow-approval-import-smoke-review-readout`.
+  This consumes the committed approval/import dry-run artifact, filters the
+  dry-run feature payload down to the eight direct source-free electron-flow
+  fields only, isolates the smallest requested smoke tranche
+  (`m_csa:104` plus the 34 current primary retention-gate rows), then measures
+  both that 35-row smoke tranche and the full 74-row current split without
+  writing approved sidecars, imports, predictive-use flags, production
+  thresholds, labels, registries, ontologies, or heldout splits.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_approval_import_smoke_review_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_approval_import_smoke_review_readout_current702_20260605.md`.
+  SHA-256:
+  `aa6016d9ae3e19a0f854729c18249c9911c09187bbf9498fc7f06e219db67ab4`
+  for the JSON and
+  `9d94c0ff27f3d0f752a1a9e6efee2602ae328a62f4d506a840667c068c7c0aba`
+  for the Markdown report.
+
+#### Measured results
+
+- Status:
+  `lever2_source_free_electron_flow_approval_import_smoke_review_readout_research_only_smoke_review_positive_full_expansion_positive_pending_protected_import`.
+  Result class:
+  `research_only_smoke_review_positive_full_expansion_positive_pending_protected_import`.
+- Smallest smoke tranche: 35/35 direct component rows complete, 34 current
+  primary rows, 0 current-primary positives, primary retain recall `1.0`, and
+  `m_csa:104` abstained as the only retained-OOS row. Incremental OOS abstain
+  recall vs the current geometry/fold denominator is `0.013333`; union OOS
+  recall is `0.48`.
+- Full current-split expansion: 74/74 direct component rows complete, 34
+  current primary rows, 40 current-retained OOS rows, 0 current-primary
+  positives, primary retain recall `1.0`, and 3 retained-OOS positives:
+  `m_csa:104`, `m_csa:119`, and `m_csa:464`. Incremental OOS abstain recall
+  vs the current geometry/fold denominator is `0.04`; union OOS recall is
+  `0.506667`.
+- Import/review delta: the 35-row smoke tranche would add 34 rows new to the
+  approved sidecar and update 1 existing row. The full 74-row expansion would
+  add 73 current-split rows and update 1 existing current-split row; the full
+  dry-run import set remains 78 rows, including 4 support rows.
+- Interpretation: direct source-free electron-flow fields are now measured on
+  the requested smallest smoke tranche and on the full current split while
+  preserving primary retention. The remaining gap is protected approval/import,
+  not missing source-free evidence or operating-point failure.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever
+  3 files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names,
+  accessions, PDB IDs, coordinate paths, or provenance were used as predictive
+  feature values. Entry IDs are used only for tranche membership and missing
+  evidence accounting.
+- The new smoke-review artifact filters row-specific payloads to the eight
+  direct electron-flow fields only:
+  `has_electron_transfer_event`, `electron_transfer_count`,
+  `has_source_free_pqq_donor_acceptor_contact`,
+  `source_free_pqq_donor_acceptor_contact_count`,
+  `has_source_free_nad_family_donor_acceptor_distance`,
+  `source_free_nad_family_donor_acceptor_distance_count`,
+  `has_source_free_iron_sulfur_or_iron_donor_acceptor_distance`, and
+  `source_free_iron_sulfur_or_iron_donor_acceptor_distance_count`.
+- The readout remains research-only and does not approve, import, promote,
+  write approved sidecars, or set `predictive_use_allowed=true`.
+- Final pre-handoff disk check showed 11 GiB free, above the 10 GiB guardrail.
+
+#### Validation
+
+- Focused new tests:
+  `PYTHONPATH=src python -m pytest tests/test_lever2_mechanism_incremental_readout.py::Lever2MechanismIncrementalReadoutTests::test_electron_flow_approval_import_smoke_review_readout tests/test_cli.py::CliTests::test_lever2_electron_flow_approval_import_smoke_review_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_lever2_electron_flow_approval_import_smoke_review_current_counts -q`:
+  3 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  501 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1578 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests -q`: 1533 tests OK,
+  with the same existing warning.
+- Hash-seed stability: `PYTHONHASHSEED=1` through `PYTHONHASHSEED=16` full
+  pytest and full unittest discovery all passed with the same existing warning
+  where applicable.
+- `PYTHONPATH=src python -m compileall -q src tests`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 mechanism ontology families, and 702 curated
+  labels validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- `git diff --check`: passed.
+- New artifact audit passed: normalized regeneration matched after deleting
+  `created_utc`; source hash for the dry-run input matched
+  `a7e9175362479df408e624e2bcd20bf90a2cfd63112af65d374d3513e6666276`;
+  feature rows contained only the eight direct electron-flow keys; row-specific
+  feature values contained no entry IDs, accessions, PDB/coordinate/path
+  strings, mechanism text, labels, EC/Rhea tokens, source IDs, or target tokens;
+  protected-surface flags remained false.
+
+#### Commit/push status
+
+- Commit and push completed in this wrap-up; branch sync verified before
+  returning.
+
+#### Exact next action
+
+- Protected materialization/review of only the 35-row smoke tranche:
+  approve the direct source-free PQQ/NAD/Fe-S component-field contract for
+  train/cal use, materialize `m_csa:104` plus the 34 current primary
+  retention-gate rows into the approved train/cal feature sidecar, rerun the
+  approved-sidecar-only smoke gate unchanged, and expand to the remaining
+  current-split rows only if primary retain recall remains `1.0`.
 
 ### 2026-06-05 Lever 2 Research Run 27
 

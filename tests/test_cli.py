@@ -619,6 +619,27 @@ class CliTests(unittest.TestCase):
             args.train_cal_input_manifest,
         )
 
+    def test_lever2_electron_flow_approval_import_smoke_review_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-approval-import-"
+                    "smoke-review-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_smoke_review_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_approval_import_dry_run_readout",
+            args.approval_import_dry_run_readout,
+        )
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:
