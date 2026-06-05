@@ -19714,6 +19714,271 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(readout["decision"]["deployable_now"])
         self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
 
+    def test_lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_projection_backed_pqq_"
+                "nad_feature_sidecar_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_projection_backed_pqq_nad_"
+                "feature_sidecar_readout_research_only_projection_backed_pqq_nad_operating_point_signal"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_projection_backed_pqq_nad_operating_point_signal",
+        )
+        self.assertEqual(readout["counts"]["materialized_feature_rows"], 74)
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_complete_rows"],
+            74,
+        )
+        self.assertEqual(
+            readout["counts"]["source_free_electron_flow_feature_incomplete_rows"],
+            0,
+        )
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["current_retained_oos_rows"], 40)
+        self.assertEqual(readout["counts"]["current_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_positive_rows"], 2
+        )
+        self.assertEqual(readout["counts"]["current_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_abstain_recall"], 0.05
+        )
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.026667,
+        )
+        self.assertEqual(
+            readout["counts"]["union_or_gate_oos_abstain_recall"], 0.493333
+        )
+        self.assertEqual(
+            readout["counts"]["combined_projection_positive_entry_ids"],
+            ["m_csa:59", "m_csa:256"],
+        )
+        self.assertEqual(readout["counts"]["combined_projection_positive_rows"], 2)
+        self.assertEqual(
+            readout["counts"]["unsupported_relaxed_non_pqq_positive_rows"], 1
+        )
+        self.assertEqual(readout["counts"]["forbidden_row_feature_key_hits"], 0)
+        positive_rows = readout["measured_readout"]["positive_feature_rows"]
+        self.assertEqual(
+            [row["entry_id"] for row in positive_rows],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["measured_readout"][
+                "full_retained_oos_current_split_tranche"
+            ]["fixed_gate_readout"]["retained_oos_positive_entry_ids"],
+            ["m_csa:104", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["measured_readout"][
+                "unsupported_relaxed_non_pqq_positive_rows"
+            ],
+            [
+                {
+                    "entry_id": "m_csa:119",
+                    "current_split_role": "current_retained_oos",
+                    "unsupported_families": ["iron_sulfur_or_iron"],
+                }
+            ],
+        )
+        feature_text = json.dumps(
+            [row["row_specific_event_features"] for row in readout["feature_rows"]]
+        )
+        self.assertNotIn("coordinate_path", feature_text)
+        self.assertTrue(
+            readout["decision"][
+                "projection_backed_pqq_nad_preserves_primary_retention"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "projection_backed_pqq_nad_adds_operating_point_value_beyond_current_geometry_fold"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["projection_rows_support_pqq_nad_contract"]
+        )
+        self.assertTrue(
+            readout["decision"]["unsupported_iron_sulfur_positive_excluded"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+
+    def test_lever2_electron_flow_iron_sulfur_projection_support_readout_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_iron_sulfur_projection_"
+                "support_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_iron_sulfur_projection_support_"
+                "readout_research_only_iron_sulfur_current_split_signal_tiny_materialization_support_gap"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_iron_sulfur_current_split_signal_tiny_materialization_support_gap",
+        )
+        self.assertEqual(readout["counts"]["current_primary_rows"], 34)
+        self.assertEqual(readout["counts"]["current_retained_oos_rows"], 40)
+        self.assertEqual(readout["counts"]["current_primary_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_positive_rows"], 1
+        )
+        self.assertEqual(readout["counts"]["current_primary_retain_recall"], 1.0)
+        self.assertEqual(
+            readout["counts"]["current_retained_oos_abstain_recall"], 0.025
+        )
+        self.assertEqual(
+            readout["counts"][
+                "incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.013333,
+        )
+        self.assertEqual(readout["counts"]["projection_rows"], 43)
+        self.assertEqual(readout["counts"]["projection_complete_rows"], 43)
+        self.assertEqual(readout["counts"]["projection_positive_rows"], 0)
+        self.assertEqual(
+            readout["counts"]["review_only_locus_rows"], 702
+        )
+        self.assertEqual(
+            readout["counts"][
+                "review_only_heldout_rows_excluded_from_support_scan"
+            ],
+            140,
+        )
+        self.assertEqual(
+            readout["counts"]["review_only_nonheldout_rows_scanned"], 562
+        )
+        self.assertEqual(
+            readout["counts"]["review_only_nonheldout_proximal_rows"], 13
+        )
+        self.assertEqual(
+            readout["counts"][
+                "review_only_nonheldout_proximal_rows_outside_current_split"
+            ],
+            12,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "review_only_nonheldout_proximal_predictive_use_allowed_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["smallest_noncurrent_projection_tranche_rows"], 3
+        )
+        self.assertTrue(
+            readout["counts"]["tiny_projection_materialization_available"]
+        )
+        self.assertEqual(readout["counts"]["tiny_projection_candidate_rows"], 3)
+        self.assertEqual(readout["counts"]["tiny_projection_complete_rows"], 3)
+        self.assertEqual(readout["counts"]["tiny_projection_positive_rows"], 3)
+        self.assertEqual(
+            readout["counts"]["tiny_projection_positive_entry_ids"],
+            ["m_csa:127", "m_csa:281", "m_csa:443"],
+        )
+        self.assertEqual(readout["counts"]["expanded_projection_candidate_rows"], 12)
+        self.assertEqual(readout["counts"]["expanded_projection_complete_rows"], 12)
+        self.assertEqual(readout["counts"]["expanded_projection_positive_rows"], 12)
+        self.assertEqual(
+            readout["counts"]["expanded_projection_positive_entry_ids"],
+            [
+                "m_csa:108",
+                "m_csa:123",
+                "m_csa:127",
+                "m_csa:130",
+                "m_csa:208",
+                "m_csa:212",
+                "m_csa:276",
+                "m_csa:281",
+                "m_csa:358",
+                "m_csa:398",
+                "m_csa:443",
+                "m_csa:562",
+            ],
+        )
+        gate = readout["measured_readout"][
+            "current_split_iron_sulfur_or_iron_family_gate"
+        ]
+        self.assertEqual(gate["retained_oos_positive_entry_ids"], ["m_csa:119"])
+        projection = readout["measured_readout"][
+            "existing_train_cal_projection_attempt"
+        ]
+        self.assertEqual(projection["positive_entry_ids"], [])
+        support_scan = readout["measured_readout"][
+            "review_only_iron_sulfur_locus_support_scan"
+        ]
+        self.assertEqual(
+            support_scan["smallest_noncurrent_projection_tranche_entry_ids"],
+            ["m_csa:443", "m_csa:127", "m_csa:281"],
+        )
+        tiny = readout["measured_readout"][
+            "tiny_iron_sulfur_projection_materialization_attempt"
+        ]
+        self.assertEqual(tiny["positive_rows"], 3)
+        self.assertEqual(
+            tiny["positive_entry_ids"], ["m_csa:127", "m_csa:281", "m_csa:443"]
+        )
+        expanded = readout["measured_readout"][
+            "expanded_iron_sulfur_projection_materialization_attempt"
+        ]
+        self.assertEqual(expanded["positive_rows"], 12)
+        self.assertFalse(
+            readout["decision"][
+                "existing_projection_rows_support_iron_sulfur_contract"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "review_only_source_free_iron_sulfur_evidence_exists_outside_current_split"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "review_only_source_free_iron_sulfur_evidence_consumable_now"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"]["tiny_projection_materialization_attempt_positive"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "tiny_projection_materialization_consumable_as_train_cal_support_now"
+            ]
+        )
+        self.assertFalse(readout["decision"]["train_cal_supported_now"])
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+        self.assertTrue(
+            readout["guardrails"]["heldout_rows_excluded_from_support_scan"]
+        )
+        self.assertTrue(readout["source_artifacts"]["geometry_features"]["exists"])
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

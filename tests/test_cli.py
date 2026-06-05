@@ -344,6 +344,54 @@ class CliTests(unittest.TestCase):
             args.relaxed_non_pqq_feature_sidecar_readout,
         )
 
+    def test_lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-projection-backed-"
+                    "pqq-nad-feature-sidecar-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout",
+            args.combined_direct_feature_sidecar_readout,
+        )
+
+    def test_lever2_electron_flow_iron_sulfur_projection_support_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                (
+                    "build-lever2-source-free-electron-flow-iron-sulfur-"
+                    "projection-support-readout"
+                )
+            ]
+        )
+
+        self.assertIn(
+            "lever2_source_free_electron_flow_iron_sulfur_projection_support_readout",
+            args.out,
+        )
+        self.assertIn(
+            "lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout",
+            args.relaxed_non_pqq_feature_sidecar_readout,
+        )
+        self.assertIn(
+            "mechanism_feature_iron_sulfur_locus_sidecar",
+            args.iron_sulfur_locus_sidecar,
+        )
+        self.assertIn("v3_geometry_features_1025", args.geometry_features)
+        self.assertIsNone(args.coordinate_cif)
+
     def test_lever2_source_free_axis_acquisition_ranking_parser_defaults(
         self,
     ) -> None:

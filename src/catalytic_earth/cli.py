@@ -57,10 +57,12 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_coordinate_proxy_readout,
     write_lever2_source_free_electron_flow_donor_acceptor_contact_readout,
+    write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout,
     write_lever2_source_free_electron_flow_pqq_current_split_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_current_split_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_pqq_donor_acceptor_contact_readout,
     write_lever2_source_free_electron_flow_pqq_primitive_axis_audit,
+    write_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
@@ -14063,6 +14065,77 @@ def cmd_build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_r
         "primary/OOS positives: "
         f"{counts.get('current_primary_positive_rows')}/"
         f"{counts.get('current_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout(
+        combined_direct_feature_sidecar_readout_path=Path(
+            args.combined_direct_feature_sidecar_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow projection-backed PQQ+NAD "
+        f"feature sidecar readout to {args.out} "
+        f"(feature rows: {counts.get('materialized_feature_rows')}, "
+        "complete rows: "
+        f"{counts.get('source_free_electron_flow_feature_complete_rows')}, "
+        "primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    if getattr(args, "coordinate_cif", None):
+        coordinate_cif_paths: dict[str, Path] = {}
+        for item in args.coordinate_cif:
+            if "=" not in item:
+                raise ValueError("--coordinate-cif values must use ENTRY_ID=PATH")
+            entry_id, path = item.split("=", 1)
+            coordinate_cif_paths[entry_id] = Path(path)
+        writer_kwargs["coordinate_cif_paths"] = coordinate_cif_paths
+    readout = write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout(
+        relaxed_non_pqq_feature_sidecar_readout_path=Path(
+            args.relaxed_non_pqq_feature_sidecar_readout
+        ),
+        iron_sulfur_locus_sidecar_path=Path(args.iron_sulfur_locus_sidecar),
+        geometry_features_path=Path(args.geometry_features),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow Fe-S/iron projection "
+        f"support readout to {args.out} "
+        "current primary/OOS positives: "
+        f"{counts.get('current_primary_positive_rows')}/"
+        f"{counts.get('current_retained_oos_positive_rows')}, "
+        "projection positives: "
+        f"{counts.get('projection_positive_rows')}, "
+        "tiny materialization positives: "
+        f"{counts.get('tiny_projection_positive_rows')}, "
+        "review-only noncurrent proximal rows: "
+        f"{counts.get('review_only_nonheldout_proximal_rows_outside_current_split')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -33611,6 +33684,111 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_combined_direct_feature_sidecar.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_combined_direct_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-projection-backed-"
+                "pqq-nad-feature-sidecar-readout"
+            ),
+            help=(
+                "emit the projection-backed PQQ plus NAD-family direct "
+                "electron-flow sidecar and remeasure the current split"
+            ),
+        )
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--combined-direct-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_combined_direct_"
+            "feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_projection_backed_pqq_nad_"
+            "feature_sidecar_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_projection_backed_pqq_nad_feature_sidecar.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout
+        )
+    )
+
+    lever2_electron_flow_iron_sulfur_projection_support = (
+        subparsers.add_parser(
+            (
+                "build-lever2-source-free-electron-flow-iron-sulfur-"
+                "projection-support-readout"
+            ),
+            help=(
+                "measure whether the Fe-S/iron electron-flow family split has "
+                "existing train/cal projection support or only review-only "
+                "source-free evidence"
+            ),
+        )
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--relaxed-non-pqq-feature-sidecar-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_relaxed_non_pqq_"
+            "donor_acceptor_feature_sidecar_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--iron-sulfur-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--coordinate-cif",
+        action="append",
+        default=None,
+        help=(
+            "optional committed CIF sidecar override for tiny Fe-S/iron "
+            "projection atom checks, as ENTRY_ID=PATH"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_"
+            "projection_support_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_iron_sulfur_projection_"
+            "support_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_iron_sulfur_projection_support.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout
         )
     )
 

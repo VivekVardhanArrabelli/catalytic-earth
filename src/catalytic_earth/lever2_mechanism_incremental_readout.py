@@ -71,6 +71,14 @@ DEFAULT_ELECTRON_FLOW_COMBINED_DIRECT_FEATURE_SIDECAR_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_combined_direct_feature_sidecar_"
     "readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_PROJECTION_BACKED_PQQ_NAD_FEATURE_SIDECAR_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_projection_backed_pqq_nad_"
+    "feature_sidecar_readout_current702_20260605"
+)
+DEFAULT_ELECTRON_FLOW_IRON_SULFUR_PROJECTION_SUPPORT_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_iron_sulfur_projection_support_"
+    "readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -11457,6 +11465,1158 @@ def write_lever2_source_free_electron_flow_combined_direct_feature_sidecar_reado
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_combined_direct_feature_sidecar_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def build_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout(
+    *,
+    combined_direct_feature_sidecar_readout_path: Path,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PROJECTION_BACKED_PQQ_NAD_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    combined_readout = _read_json(combined_direct_feature_sidecar_readout_path)
+    combined_measured = combined_readout.get("measured_readout") or {}
+    projection_backed = (
+        combined_measured.get("projection_backed_pqq_plus_nad_family_subunion")
+        or {}
+    )
+    feature_rows = projection_backed.get("feature_rows") or []
+    fixed_gate = projection_backed.get("fixed_gate_readout") or {}
+    projection_summary = combined_measured.get("projection_support_summary") or {}
+    unsupported_rows = (
+        projection_backed.get("unsupported_relaxed_non_pqq_positive_rows") or []
+    )
+    forbidden_feature_key_hits = _feature_row_exact_forbidden_key_hits(feature_rows)
+    complete_sidecar = bool(
+        fixed_gate.get("rows")
+        and fixed_gate.get("complete_rows") == fixed_gate.get("rows")
+    )
+    measured_positive = bool(
+        fixed_gate.get("operating_point_measurable_now")
+        and fixed_gate.get("preserves_primary_retention")
+        and fixed_gate.get("adds_incremental_oos_abstention")
+        and not forbidden_feature_key_hits
+    )
+    projection_support = bool(
+        projection_summary.get("train_cal_supports_combined_contract")
+    )
+    supported_positive = bool(measured_positive and projection_support)
+    result_class = (
+        "research_only_projection_backed_pqq_nad_operating_point_signal"
+        if supported_positive
+        else (
+            "research_only_projection_backed_pqq_nad_current_split_signal_no_projection_support"
+            if measured_positive
+            else "research_only_projection_backed_pqq_nad_incomplete_or_negative"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_projection_backed_pqq_nad_"
+        f"feature_sidecar_readout_{result_class}"
+    )
+    positive_rows = [
+        row
+        for row in feature_rows
+        if (
+            row.get("row_specific_event_features") or {}
+        ).get("has_electron_transfer_event")
+    ]
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_projection_backed_"
+            "pqq_nad_feature_sidecar_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined source-free feature-sidecar readout "
+            "for the projection-backed direct electron-flow route: fixed PQQ "
+            "donor/acceptor contact plus fixed 8 A NAD-family donor/acceptor "
+            "distance. It consumes the measured combined direct readout, emits "
+            "normal-shaped row_specific_event_features, excludes the unsupported "
+            "Fe-S/iron current-split positive, and does not train, tune "
+            "thresholds, read heldout, import features, or promote a primitive."
+        ),
+        "feature_sidecar_contract": {
+            "sidecar_id": (
+                "source_free_projection_backed_pqq_nad_direct_electron_flow_"
+                "current_split_feature_sidecar"
+            ),
+            "axis_id": "source_free_projection_backed_pqq_plus_nad_direct_electron_flow",
+            "contract_status": "research_only_unapproved_unimported",
+            "row_scope": (
+                "current train/cal calibration split: 34 primary retention-gate "
+                "rows plus 40 current-retained OOS rows"
+            ),
+            "feature_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+                "has_source_free_pqq_donor_acceptor_contact",
+                "source_free_pqq_donor_acceptor_contact_count",
+                "has_source_free_nad_family_donor_acceptor_distance",
+                "source_free_nad_family_donor_acceptor_distance_count",
+            ],
+            "direct_electron_flow_fields": [
+                "has_electron_transfer_event",
+                "electron_transfer_count",
+            ],
+            "included_components": [
+                "source_free_pqq_donor_acceptor_contact",
+                "source_free_nad_family_donor_acceptor_distance_8A",
+            ],
+            "excluded_components": [
+                "source_free_iron_sulfur_or_iron_donor_acceptor_distance_8A_until_projection_supported",
+                "heme",
+                "flavin",
+                "PQQ_in_relaxed_non_pqq_component",
+            ],
+        },
+        "feature_rows": feature_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "current_split_role",
+            "assigned_embedding_split",
+            "projection_backed_evidence",
+            "coordinate_path",
+            "mechanism_text",
+            "labels",
+            "accessions",
+            "source_ids",
+            "target_names",
+            "EC_or_Rhea_ids",
+        ],
+        "measured_readout": {
+            "full_retained_oos_current_split_tranche": {
+                "feature_rows": feature_rows,
+                "fixed_gate_readout": fixed_gate,
+            },
+            "projection_support_summary": projection_summary,
+            "positive_feature_rows": positive_rows,
+            "unsupported_relaxed_non_pqq_positive_rows": unsupported_rows,
+            "forbidden_feature_key_hits": forbidden_feature_key_hits,
+            "component_source_artifacts": combined_readout.get(
+                "source_artifacts", {}
+            ),
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_feature_key_hits),
+            "materialized_feature_rows": len(feature_rows),
+            "source_free_electron_flow_feature_complete_rows": fixed_gate.get(
+                "complete_rows"
+            ),
+            "source_free_electron_flow_feature_incomplete_rows": fixed_gate.get(
+                "incomplete_rows"
+            ),
+            "current_primary_rows": fixed_gate.get("primary_rows"),
+            "current_retained_oos_rows": fixed_gate.get("retained_oos_rows"),
+            "current_primary_positive_rows": fixed_gate.get(
+                "primary_positive_rows"
+            ),
+            "current_retained_oos_positive_rows": fixed_gate.get(
+                "retained_oos_positive_rows"
+            ),
+            "current_primary_retain_recall": fixed_gate.get(
+                "primary_retain_recall_if_abstain_positive"
+            ),
+            "current_retained_oos_abstain_recall": fixed_gate.get(
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ),
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                fixed_gate.get(
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                )
+            ),
+            "union_or_gate_oos_abstain_recall": fixed_gate.get(
+                "union_or_gate_oos_abstain_recall"
+            ),
+            "projection_backed_positive_feature_rows": len(positive_rows),
+            "pqq_projection_positive_rows": projection_summary.get(
+                "pqq_projection_positive_rows"
+            ),
+            "relaxed_non_pqq_projection_positive_rows": projection_summary.get(
+                "relaxed_non_pqq_projection_positive_rows"
+            ),
+            "combined_projection_positive_rows": len(
+                projection_summary.get("combined_projection_positive_entry_ids")
+                or []
+            ),
+            "combined_projection_positive_entry_ids": projection_summary.get(
+                "combined_projection_positive_entry_ids"
+            )
+            or [],
+            "unsupported_relaxed_non_pqq_positive_rows": len(unsupported_rows),
+            "forbidden_row_feature_key_hits": len(forbidden_feature_key_hits),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "standalone_current_split_feature_sidecar_materialized": True,
+            "current_split_feature_sidecar_complete": complete_sidecar,
+            "projection_backed_pqq_nad_preserves_primary_retention": bool(
+                fixed_gate.get("preserves_primary_retention")
+            ),
+            "projection_backed_pqq_nad_adds_current_retained_oos_abstention": bool(
+                fixed_gate.get("adds_incremental_oos_abstention")
+            ),
+            "projection_backed_pqq_nad_adds_operating_point_value_beyond_current_geometry_fold": (
+                supported_positive
+            ),
+            "projection_rows_support_pqq_nad_contract": projection_support,
+            "unsupported_iron_sulfur_positive_excluded": bool(unsupported_rows),
+            "normal_shaped_row_specific_feature_sidecar_emitted": True,
+            "forbidden_fields_absent_from_row_specific_event_features": (
+                not forbidden_feature_key_hits
+            ),
+            "source_free_projection_backed_pqq_nad_contract_approved": False,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not supported_positive,
+            "apply_or_promote_now": False,
+            "remaining_gap": (
+                "The projection-backed PQQ+NAD direct electron-flow sidecar is "
+                "measured, source-free, and train/cal-supported by existing "
+                "projection positives, but its component contracts remain "
+                "research-only and unimported."
+            ),
+            "smallest_next_experiment": (
+                "Run the Fe-S/iron projection materialization tranche before "
+                "deciding whether to add m_csa:119 back into the supported "
+                "direct electron-flow route; otherwise keep PQQ+NAD as the "
+                "supported research-only route."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "m_csa_row_specific_features_train_cal_only": True,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "combined_direct_feature_sidecar_readout": _source_path_record(
+                combined_direct_feature_sidecar_readout_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The projection-backed PQQ+NAD direct electron-flow feature "
+                f"sidecar is complete on {fixed_gate.get('complete_rows')}/"
+                f"{fixed_gate.get('rows')} current-split rows, preserves all "
+                "current primary rows, and catches "
+                f"{fixed_gate.get('retained_oos_positive_rows')}/"
+                f"{fixed_gate.get('retained_oos_rows')} current-retained OOS rows."
+            )
+            if supported_positive
+            else (
+                "The projection-backed PQQ+NAD direct electron-flow sidecar "
+                "does not yet provide a complete train/cal-supported primary-safe "
+                "incremental OOS signal."
+            ),
+            "next_action": (
+                "Keep this route research-only and use it as the supported "
+                "comparison point while the Fe-S/iron projection-support gap is "
+                "tested."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    gate = readout["measured_readout"][
+        "full_retained_oos_current_split_tranche"
+    ]["fixed_gate_readout"]
+    projection = readout["measured_readout"]["projection_support_summary"]
+    positive_rows = readout["measured_readout"]["positive_feature_rows"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Projection-Backed PQQ+NAD Feature Sidecar Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Materialized feature rows complete: "
+        f"{counts['source_free_electron_flow_feature_complete_rows']}/"
+        f"{counts['materialized_feature_rows']}",
+        "- Current primary/OOS positives: "
+        f"{counts['current_primary_positive_rows']}/"
+        f"{counts['current_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['current_primary_retain_recall']}",
+        "- Retained-OOS abstain recall: "
+        f"{counts['current_retained_oos_abstain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold OOS: "
+        f"{counts['incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Union OOS recall: "
+        f"{counts['union_or_gate_oos_abstain_recall']}",
+        "- Combined projection positive rows: "
+        f"{counts['combined_projection_positive_rows']}",
+        "- Unsupported Fe-S/iron positives excluded: "
+        f"{counts['unsupported_relaxed_non_pqq_positive_rows']}",
+        "",
+        "## Fixed Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | primary retain | retained-OOS recall | union OOS recall |",
+        "| ---: | ---: | ---: | ---: | ---: | ---: |",
+        f"| {gate.get('complete_rows')}/{gate.get('rows')} | "
+        f"{gate.get('primary_positive_rows')} | "
+        f"{gate.get('retained_oos_positive_rows')} | "
+        f"{gate.get('primary_retain_recall_if_abstain_positive')} | "
+        f"{gate.get('retained_oos_abstain_recall_if_abstain_positive')} | "
+        f"{gate.get('union_or_gate_oos_abstain_recall')} |",
+        "",
+        "## Positive Feature Rows",
+        "",
+        "| row | role | count | PQQ | NAD-family |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    if not positive_rows:
+        lines.append("| none | none | 0 | False | False |")
+    for row in positive_rows:
+        features = row.get("row_specific_event_features") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row.get('current_split_role')} | "
+            f"{features.get('electron_transfer_count')} | "
+            f"{features.get('has_source_free_pqq_donor_acceptor_contact')} | "
+            f"{features.get('has_source_free_nad_family_donor_acceptor_distance')} |"
+        )
+    lines += [
+        "",
+        "## Projection Support",
+        "",
+        "- PQQ projection positives: "
+        f"{projection.get('pqq_projection_positive_rows')}",
+        "- Relaxed non-PQQ projection positives: "
+        f"{projection.get('relaxed_non_pqq_projection_positive_rows')}",
+        "- Combined projection positive row IDs: "
+        f"{', '.join(projection.get('combined_projection_positive_entry_ids') or []) or 'none'}",
+        "- Train/cal supports PQQ+NAD contract: "
+        f"{projection.get('train_cal_supports_combined_contract')}",
+        "",
+        "## Decision",
+        "",
+        "- Standalone sidecar materialized: "
+        f"{decision['standalone_current_split_feature_sidecar_materialized']}",
+        "- Current-split sidecar complete: "
+        f"{decision['current_split_feature_sidecar_complete']}",
+        "- Preserves primary retention: "
+        f"{decision['projection_backed_pqq_nad_preserves_primary_retention']}",
+        "- Adds value beyond current geometry/fold: "
+        f"{decision['projection_backed_pqq_nad_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Projection rows support PQQ+NAD contract: "
+        f"{decision['projection_rows_support_pqq_nad_contract']}",
+        "- Unsupported Fe-S/iron positive excluded: "
+        f"{decision['unsupported_iron_sulfur_positive_excluded']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout(
+    *,
+    combined_direct_feature_sidecar_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_PROJECTION_BACKED_PQQ_NAD_FEATURE_SIDECAR_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout(
+        combined_direct_feature_sidecar_readout_path=(
+            combined_direct_feature_sidecar_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _locus_distance(row: dict[str, Any]) -> float:
+    try:
+        return float(row.get("nearest_active_site_distance_angstrom"))
+    except (TypeError, ValueError):
+        return math.inf
+
+
+def _iron_sulfur_locus_support_example(row: dict[str, Any]) -> dict[str, Any]:
+    distance = row.get("nearest_active_site_distance_angstrom")
+    return {
+        "entry_id": str(row.get("entry_id")),
+        "split_assignment": row.get("split_assignment"),
+        "sidecar_status": row.get("sidecar_status"),
+        "source_feature_status": row.get("source_feature_status"),
+        "nearest_active_site_distance_angstrom": distance,
+        "supporting_ligand_codes": sorted(
+            str(code).upper()
+            for code in (row.get("supporting_ligand_codes") or [])
+            if code
+        ),
+        "proximal_iron_sulfur_ligands": row.get(
+            "proximal_iron_sulfur_ligands", []
+        ),
+        "predictive_use_allowed": bool(row.get("predictive_use_allowed")),
+    }
+
+
+def _iron_sulfur_locus_support_scan(
+    *,
+    iron_sulfur_locus_sidecar: dict[str, Any],
+    current_split_entry_ids: set[str],
+) -> dict[str, Any]:
+    rows = [
+        row
+        for row in iron_sulfur_locus_sidecar.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    nonheldout_rows = [
+        row for row in rows if row.get("split_assignment") != "heldout"
+    ]
+    nonheldout_proximal_rows = [
+        row
+        for row in nonheldout_rows
+        if row.get("sidecar_status")
+        == "proximal_iron_sulfur_context_available"
+    ]
+    nonheldout_proximal_noncurrent_rows = [
+        row
+        for row in nonheldout_proximal_rows
+        if str(row.get("entry_id")) not in current_split_entry_ids
+    ]
+    nonheldout_structure_wide_only_rows = [
+        row
+        for row in nonheldout_rows
+        if row.get("sidecar_status")
+        == "structure_wide_iron_sulfur_context_only"
+    ]
+    nonheldout_unsupported_rows = [
+        row
+        for row in nonheldout_rows
+        if row.get("sidecar_status") == "unsupported_or_missing_geometry"
+    ]
+    nonheldout_proximal_predictive_rows = [
+        row
+        for row in nonheldout_proximal_rows
+        if row.get("predictive_use_allowed")
+    ]
+    nearest_noncurrent = sorted(
+        nonheldout_proximal_noncurrent_rows,
+        key=lambda row: (
+            _locus_distance(row),
+            _entry_sort_key(str(row.get("entry_id"))),
+        ),
+    )
+    nearest_all = sorted(
+        nonheldout_proximal_rows,
+        key=lambda row: (
+            _locus_distance(row),
+            _entry_sort_key(str(row.get("entry_id"))),
+        ),
+    )
+    return {
+        "available": bool(rows),
+        "rows": len(rows),
+        "nonheldout_rows_scanned": len(nonheldout_rows),
+        "heldout_rows_excluded_from_support_scan": len(rows) - len(nonheldout_rows),
+        "nonheldout_proximal_iron_sulfur_rows": len(nonheldout_proximal_rows),
+        "nonheldout_proximal_iron_sulfur_rows_outside_current_split": len(
+            nonheldout_proximal_noncurrent_rows
+        ),
+        "nonheldout_structure_wide_only_rows": len(
+            nonheldout_structure_wide_only_rows
+        ),
+        "nonheldout_unsupported_or_missing_geometry_rows": len(
+            nonheldout_unsupported_rows
+        ),
+        "nonheldout_proximal_predictive_use_allowed_rows": len(
+            nonheldout_proximal_predictive_rows
+        ),
+        "nearest_nonheldout_proximal_examples": [
+            _iron_sulfur_locus_support_example(row) for row in nearest_all[:8]
+        ],
+        "nearest_nonheldout_proximal_noncurrent_examples": [
+            _iron_sulfur_locus_support_example(row) for row in nearest_noncurrent[:8]
+        ],
+        "smallest_noncurrent_projection_tranche_entry_ids": [
+            str(row.get("entry_id")) for row in nearest_noncurrent[:3]
+        ],
+        "expanded_noncurrent_projection_tranche_entry_ids": [
+            str(row.get("entry_id")) for row in nearest_noncurrent
+        ],
+        "consumable_as_predictive_feature_now": bool(
+            nonheldout_proximal_predictive_rows
+        ),
+        "missing_consumption_gate": (
+            "The iron-sulfur locus sidecar is review-only: proximal "
+            "source-free coordinate evidence exists outside the current split, "
+            "but predictive_use_allowed is false for every row, so these rows "
+            "cannot be counted as train/cal projection support until an "
+            "approved source-free Fe-S/iron feature-sidecar materialization "
+            "contract exists."
+        ),
+    }
+
+
+def _iron_sulfur_tiny_projection_materialization_attempt(
+    *,
+    entry_ids: list[str],
+    geometry_by_entry: dict[str, dict[str, Any]] | None,
+    coordinate_cif_paths: dict[str, Path],
+) -> dict[str, Any]:
+    if geometry_by_entry is None:
+        return {
+            "available": False,
+            "candidate_entry_ids": entry_ids,
+            "candidate_rows": len(entry_ids),
+            "complete_rows": 0,
+            "positive_rows": 0,
+            "positive_entry_ids": [],
+            "required_evidence": (
+                "geometry_features plus committed coordinate CIFs for the "
+                "smallest non-heldout, non-current Fe-S/iron projection tranche"
+            ),
+        }
+    broad_rows: list[dict[str, Any]] = []
+    for entry_id in entry_ids:
+        geometry_row = geometry_by_entry.get(entry_id)
+        coordinate_features = _source_free_coordinate_electron_flow_features(
+            entry_id=entry_id,
+            geometry_row=geometry_row,
+        )
+        proxy_row = {
+            "entry_id": entry_id,
+            "tranche_role": "tiny_iron_sulfur_projection_materialization",
+            "coordinate_evidence": coordinate_features,
+        }
+        broad_row = _broad_redox_center_donor_acceptor_control_row(
+            proxy_row=proxy_row,
+            geometry_row=geometry_row,
+            gap_probe_by_entry={},
+            coordinate_cif_paths=coordinate_cif_paths,
+        )
+        broad_row["assigned_embedding_split"] = "research_only_projection_tranche"
+        broad_rows.append(broad_row)
+    feature_rows = _relaxed_non_pqq_donor_acceptor_feature_sidecar_rows_from_broad_rows(
+        broad_rows,
+        included_families={"iron_sulfur_or_iron"},
+    )
+    complete_rows = [
+        row
+        for row in feature_rows
+        if row.get("source_free_electron_flow_field_complete")
+    ]
+    positive_rows = [
+        row
+        for row in complete_rows
+        if (
+            row.get("row_specific_event_features") or {}
+        ).get("has_electron_transfer_event")
+    ]
+    missing_rows = [
+        {
+            "entry_id": row["entry_id"],
+            "missing_source_free_evidence": (
+                (row.get("relaxed_non_pqq_donor_acceptor_evidence") or {}).get(
+                    "missing_source_free_evidence", []
+                )
+            ),
+        }
+        for row in feature_rows
+        if not row.get("source_free_electron_flow_field_complete")
+    ]
+    return {
+        "available": True,
+        "research_only_not_consumable_as_train_cal_support": True,
+        "candidate_entry_ids": entry_ids,
+        "candidate_rows": len(feature_rows),
+        "complete_rows": len(complete_rows),
+        "incomplete_rows": len(feature_rows) - len(complete_rows),
+        "positive_rows": len(positive_rows),
+        "positive_entry_ids": _entry_ids(positive_rows),
+        "missing_rows": missing_rows,
+        "feature_rows": feature_rows,
+        "interpretation": (
+            "The tiny Fe-S/iron projection tranche can be materialized from "
+            "source-free coordinate fields in research-only mode, but it is not "
+            "an approved/imported train/cal feature sidecar and therefore does "
+            "not by itself make the Fe-S/iron current-split positive deployable."
+        ),
+    }
+
+
+def build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout(
+    *,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    iron_sulfur_locus_sidecar_path: Path,
+    geometry_features_path: Path | None = None,
+    coordinate_cif_paths: dict[str, Path] | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_PROJECTION_SUPPORT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    relaxed_readout = _read_json(relaxed_non_pqq_feature_sidecar_readout_path)
+    iron_sulfur_locus = _read_json(iron_sulfur_locus_sidecar_path)
+    family_split = (
+        (relaxed_readout.get("measured_readout") or {}).get(
+            "family_split_fixed_8A_readouts"
+        )
+        or {}
+    )
+    candidate = None
+    for item in family_split.get("candidate_readouts") or []:
+        if item.get("candidate_id") == "iron_sulfur_or_iron_only":
+            candidate = item
+            break
+    if candidate is None:
+        raise ValueError("iron_sulfur_or_iron_only family split readout is missing")
+
+    current_gate = candidate.get("fixed_gate_readout") or {}
+    projection_scout = candidate.get("projection_scout") or {}
+    current_split_entry_ids = {
+        str(row.get("entry_id"))
+        for row in relaxed_readout.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    support_scan = _iron_sulfur_locus_support_scan(
+        iron_sulfur_locus_sidecar=iron_sulfur_locus,
+        current_split_entry_ids=current_split_entry_ids,
+    )
+    geometry_by_entry = None
+    if geometry_features_path is not None and Path(geometry_features_path).exists():
+        geometry_by_entry = _geometry_feature_rows_by_entry(
+            _read_json(geometry_features_path)
+        )
+    if coordinate_cif_paths is None:
+        coordinate_cif_paths = {}
+    smallest_next_entry_ids = support_scan[
+        "smallest_noncurrent_projection_tranche_entry_ids"
+    ]
+    tiny_materialization = _iron_sulfur_tiny_projection_materialization_attempt(
+        entry_ids=smallest_next_entry_ids,
+        geometry_by_entry=geometry_by_entry,
+        coordinate_cif_paths=coordinate_cif_paths,
+    )
+    expanded_materialization = _iron_sulfur_tiny_projection_materialization_attempt(
+        entry_ids=support_scan["expanded_noncurrent_projection_tranche_entry_ids"],
+        geometry_by_entry=geometry_by_entry,
+        coordinate_cif_paths=coordinate_cif_paths,
+    )
+    current_signal = bool(
+        current_gate.get("operating_point_measurable_now")
+        and current_gate.get("preserves_primary_retention")
+        and current_gate.get("adds_incremental_oos_abstention")
+    )
+    existing_projection_support = bool(
+        projection_scout.get("train_cal_supports_fixed_contract")
+    )
+    review_only_source_free_evidence_exists = bool(
+        support_scan["nonheldout_proximal_iron_sulfur_rows_outside_current_split"]
+    )
+    review_only_evidence_consumable = bool(
+        support_scan["consumable_as_predictive_feature_now"]
+    )
+    tiny_materialization_positive = bool(
+        tiny_materialization.get("available")
+        and tiny_materialization.get("positive_rows")
+    )
+    measured_positive = bool(current_signal and existing_projection_support)
+    result_class = (
+        "research_only_iron_sulfur_projection_supported_operating_point_signal"
+        if measured_positive
+        else (
+            "research_only_iron_sulfur_current_split_signal_tiny_materialization_support_gap"
+            if current_signal and tiny_materialization_positive
+            else (
+                "research_only_iron_sulfur_current_split_signal_review_only_support_gap"
+                if current_signal and review_only_source_free_evidence_exists
+                else (
+                    "research_only_iron_sulfur_current_split_signal_no_projection_support"
+                    if current_signal
+                    else "research_only_iron_sulfur_incomplete_or_negative"
+                )
+            )
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_iron_sulfur_projection_support_"
+        f"readout_{result_class}"
+    )
+    next_experiment = (
+        "Approve/import the research-only tiny Fe-S/iron materialization "
+        f"tranche ({', '.join(smallest_next_entry_ids) or 'none available'}) "
+        "into the train/cal source-free feature sidecar, then rerun the same "
+        "Fe-S/iron family split gate without changing thresholds or touching "
+        "heldout rows."
+        if tiny_materialization_positive
+        else (
+            "Materialize the fixed 8 A Fe-S/iron donor/acceptor fields for "
+            "the smallest non-heldout, non-current source-free projection "
+            "tranche from the review-only locus scan: "
+            f"{', '.join(smallest_next_entry_ids) or 'none available'}. "
+            "Then rerun the same Fe-S/iron family split gate without changing "
+            "thresholds or touching heldout rows."
+        )
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_iron_sulfur_"
+            "projection_support_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 train/cal-disciplined source-free Fe-S/iron projection "
+            "support readout. It consumes the measured fixed 8 A relaxed "
+            "non-PQQ family split and the review-only iron-sulfur locus sidecar "
+            "to determine whether the Fe-S/iron current-split signal can be "
+            "counted as train/cal-supported now. It does not train, tune "
+            "thresholds, score heldout, edit registries, import features, or "
+            "promote a primitive."
+        ),
+        "measured_readout": {
+            "current_split_iron_sulfur_or_iron_family_gate": current_gate,
+            "existing_train_cal_projection_attempt": projection_scout,
+            "review_only_iron_sulfur_locus_support_scan": support_scan,
+            "tiny_iron_sulfur_projection_materialization_attempt": (
+                tiny_materialization
+            ),
+            "expanded_iron_sulfur_projection_materialization_attempt": (
+                expanded_materialization
+            ),
+            "current_split_positive_entry_ids": current_gate.get(
+                "retained_oos_positive_entry_ids", []
+            ),
+        },
+        "counts": {
+            "critical_violation_total": 0,
+            "current_primary_rows": current_gate.get("primary_rows"),
+            "current_primary_positive_rows": current_gate.get(
+                "primary_positive_rows"
+            ),
+            "current_primary_retain_recall": current_gate.get(
+                "primary_retain_recall_if_abstain_positive"
+            ),
+            "current_retained_oos_rows": current_gate.get("retained_oos_rows"),
+            "current_retained_oos_positive_rows": current_gate.get(
+                "retained_oos_positive_rows"
+            ),
+            "current_retained_oos_abstain_recall": current_gate.get(
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ),
+            "incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                current_gate.get(
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                )
+            ),
+            "union_or_gate_oos_abstain_recall": current_gate.get(
+                "union_or_gate_oos_abstain_recall"
+            ),
+            "projection_rows": projection_scout.get("projection_rows"),
+            "projection_complete_rows": projection_scout.get("complete_rows"),
+            "projection_positive_rows": projection_scout.get("positive_rows"),
+            "projection_train_positive_rows": projection_scout.get(
+                "train_positive_rows"
+            ),
+            "projection_calibration_positive_rows": projection_scout.get(
+                "calibration_positive_rows"
+            ),
+            "review_only_locus_rows": support_scan["rows"],
+            "review_only_nonheldout_rows_scanned": support_scan[
+                "nonheldout_rows_scanned"
+            ],
+            "review_only_heldout_rows_excluded_from_support_scan": (
+                support_scan["heldout_rows_excluded_from_support_scan"]
+            ),
+            "review_only_nonheldout_proximal_rows": support_scan[
+                "nonheldout_proximal_iron_sulfur_rows"
+            ],
+            "review_only_nonheldout_proximal_rows_outside_current_split": (
+                support_scan[
+                    "nonheldout_proximal_iron_sulfur_rows_outside_current_split"
+                ]
+            ),
+            "review_only_nonheldout_proximal_predictive_use_allowed_rows": (
+                support_scan["nonheldout_proximal_predictive_use_allowed_rows"]
+            ),
+            "smallest_noncurrent_projection_tranche_rows": len(
+                smallest_next_entry_ids
+            ),
+            "tiny_projection_materialization_available": bool(
+                tiny_materialization.get("available")
+            ),
+            "tiny_projection_candidate_rows": tiny_materialization.get(
+                "candidate_rows"
+            ),
+            "tiny_projection_complete_rows": tiny_materialization.get(
+                "complete_rows"
+            ),
+            "tiny_projection_positive_rows": tiny_materialization.get(
+                "positive_rows"
+            ),
+            "tiny_projection_positive_entry_ids": tiny_materialization.get(
+                "positive_entry_ids", []
+            ),
+            "expanded_projection_candidate_rows": expanded_materialization.get(
+                "candidate_rows"
+            ),
+            "expanded_projection_complete_rows": expanded_materialization.get(
+                "complete_rows"
+            ),
+            "expanded_projection_positive_rows": expanded_materialization.get(
+                "positive_rows"
+            ),
+            "expanded_projection_positive_entry_ids": expanded_materialization.get(
+                "positive_entry_ids", []
+            ),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "current_split_iron_sulfur_or_iron_gate_measurable": bool(
+                current_gate.get("operating_point_measurable_now")
+            ),
+            "iron_sulfur_or_iron_preserves_primary_retention": bool(
+                current_gate.get("preserves_primary_retention")
+            ),
+            "iron_sulfur_or_iron_adds_current_retained_oos_abstention": bool(
+                current_gate.get("adds_incremental_oos_abstention")
+            ),
+            "iron_sulfur_or_iron_adds_operating_point_value_beyond_current_geometry_fold": (
+                current_signal
+            ),
+            "existing_projection_rows_support_iron_sulfur_contract": (
+                existing_projection_support
+            ),
+            "review_only_source_free_iron_sulfur_evidence_exists_outside_current_split": (
+                review_only_source_free_evidence_exists
+            ),
+            "review_only_source_free_iron_sulfur_evidence_consumable_now": (
+                review_only_evidence_consumable
+            ),
+            "tiny_projection_materialization_attempt_positive": (
+                tiny_materialization_positive
+            ),
+            "tiny_projection_materialization_consumable_as_train_cal_support_now": (
+                False
+            ),
+            "train_cal_supported_now": measured_positive,
+            "deployable_now": False,
+            "research_only": True,
+            "negative": not measured_positive,
+            "apply_or_promote_now": False,
+            "remaining_gap": (
+                "The Fe-S/iron family split is measured and primary-safe on the "
+                "current 74-row split, but the existing 43-row train/cal "
+                "projection surface has 0 Fe-S/iron positives. Separate "
+                "non-heldout source-free Fe-S/iron locus evidence exists and "
+                "the tiny materialization attempt can make those rows positive "
+                "in research-only mode, but the rows remain outside the approved "
+                "train/cal feature sidecar and predictive_use_allowed is false."
+            ),
+            "smallest_next_experiment": next_experiment,
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "heldout_rows_excluded_from_support_scan": True,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "ligand_codes_used_as_source_free_coordinate_features": True,
+            "approved_direct_electron_flow_axis_materialized_by_this_artifact": (
+                False
+            ),
+            "review_only_locus_sidecar_imported_or_promoted": False,
+            "tiny_projection_materialization_imported_or_promoted": False,
+            "expanded_projection_materialization_imported_or_promoted": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "relaxed_non_pqq_feature_sidecar_readout": _source_path_record(
+                relaxed_non_pqq_feature_sidecar_readout_path
+            ),
+            "iron_sulfur_locus_sidecar": _source_path_record(
+                iron_sulfur_locus_sidecar_path
+            ),
+            "geometry_features": (
+                _source_path_record(geometry_features_path)
+                if geometry_features_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The Fe-S/iron family split catches the current-retained OOS "
+                "row m_csa:119 at primary retain 1.0, but the existing "
+                "train/cal projection surface has no Fe-S/iron positive rows. "
+                "The tiny non-current Fe-S/iron projection materialization "
+                "attempt is source-free positive in research-only mode, but "
+                "those rows are still outside the approved train/cal feature "
+                "sidecar and are not consumable as predictive features."
+            )
+            if current_signal and not existing_projection_support
+            else (
+                "The Fe-S/iron family split is train/cal-supported under the "
+                "existing projection surface."
+            )
+            if measured_positive
+            else (
+                "The Fe-S/iron family split does not yet provide a complete "
+                "primary-safe current-split signal."
+            ),
+            "next_action": (
+                "Keep the projection-backed PQQ+NAD subunion as the supported "
+                "measured route for now; the exact next Fe-S/iron action is "
+                "approval/import of the tiny materialized projection tranche "
+                "before deciding whether m_csa:119 can join it."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_iron_sulfur_projection_support_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    gate = readout["measured_readout"][
+        "current_split_iron_sulfur_or_iron_family_gate"
+    ]
+    projection = readout["measured_readout"]["existing_train_cal_projection_attempt"]
+    support_scan = readout["measured_readout"][
+        "review_only_iron_sulfur_locus_support_scan"
+    ]
+    tiny = readout["measured_readout"][
+        "tiny_iron_sulfur_projection_materialization_attempt"
+    ]
+    expanded = readout["measured_readout"][
+        "expanded_iron_sulfur_projection_materialization_attempt"
+    ]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Fe-S/Iron Projection Support Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Current Fe-S/iron primary/OOS positives: "
+        f"{counts['current_primary_positive_rows']}/"
+        f"{counts['current_retained_oos_positive_rows']}",
+        "- Current primary retain recall: "
+        f"{counts['current_primary_retain_recall']}",
+        "- Current retained-OOS abstain recall: "
+        f"{counts['current_retained_oos_abstain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold OOS: "
+        f"{counts['incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Existing projection positives: "
+        f"{counts['projection_positive_rows']}",
+        "- Review-only non-heldout proximal Fe-S/iron rows outside current split: "
+        f"{counts['review_only_nonheldout_proximal_rows_outside_current_split']}",
+        "- Tiny projection materialization positives: "
+        f"{counts['tiny_projection_positive_rows']}",
+        "- Expanded projection materialization positives: "
+        f"{counts['expanded_projection_positive_rows']}",
+        "",
+        "## Current Split Gate",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | primary retain | retained-OOS recall | union OOS recall |",
+        "| ---: | ---: | ---: | ---: | ---: | ---: |",
+        f"| {gate.get('complete_rows')}/{gate.get('rows')} | "
+        f"{gate.get('primary_positive_rows')} | "
+        f"{gate.get('retained_oos_positive_rows')} | "
+        f"{gate.get('primary_retain_recall_if_abstain_positive')} | "
+        f"{gate.get('retained_oos_abstain_recall_if_abstain_positive')} | "
+        f"{gate.get('union_or_gate_oos_abstain_recall')} |",
+        "",
+        "## Existing Projection Attempt",
+        "",
+        "- Complete rows: "
+        f"{projection.get('complete_rows')}/"
+        f"{projection.get('projection_rows')}",
+        "- Positive train/cal rows: "
+        f"{projection.get('train_positive_rows')}/"
+        f"{projection.get('calibration_positive_rows')}",
+        "- Positive row IDs: "
+        f"{', '.join(projection.get('positive_entry_ids') or []) or 'none'}",
+        f"- {projection.get('interpretation')}",
+        "",
+        "## Review-Only Source-Free Locus Scan",
+        "",
+        "- Heldout rows excluded from support scan: "
+        f"{support_scan['heldout_rows_excluded_from_support_scan']}",
+        "- Non-heldout proximal rows: "
+        f"{support_scan['nonheldout_proximal_iron_sulfur_rows']}",
+        "- Non-heldout proximal rows outside current split: "
+        f"{support_scan['nonheldout_proximal_iron_sulfur_rows_outside_current_split']}",
+        "- Predictive-use-allowed proximal rows: "
+        f"{support_scan['nonheldout_proximal_predictive_use_allowed_rows']}",
+        "- Smallest non-current projection tranche: "
+        f"{', '.join(support_scan['smallest_noncurrent_projection_tranche_entry_ids']) or 'none'}",
+        "",
+        "| row | split | distance | ligand codes | predictive use allowed |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    examples = support_scan["nearest_nonheldout_proximal_noncurrent_examples"]
+    if not examples:
+        lines.append("| none | none | none | none | False |")
+    for row in examples:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('split_assignment')} | "
+            f"{row.get('nearest_active_site_distance_angstrom')} | "
+            f"{', '.join(row.get('supporting_ligand_codes') or []) or 'none'} | "
+        f"{row.get('predictive_use_allowed')} |"
+        )
+    lines += [
+        "",
+        "## Tiny Projection Materialization",
+        "",
+        "- Available: "
+        f"{tiny.get('available')}",
+        "- Candidate rows: "
+        f"{tiny.get('candidate_rows')}",
+        "- Complete rows: "
+        f"{tiny.get('complete_rows')}",
+        "- Positive rows: "
+        f"{tiny.get('positive_rows')}",
+        "- Positive row IDs: "
+        f"{', '.join(tiny.get('positive_entry_ids') or []) or 'none'}",
+        "- Consumable as train/cal support now: False",
+        f"- {tiny.get('interpretation') or tiny.get('required_evidence')}",
+        "",
+        "### Expanded Non-Current Tranche",
+        "",
+        "- Candidate rows: "
+        f"{expanded.get('candidate_rows')}",
+        "- Complete rows: "
+        f"{expanded.get('complete_rows')}",
+        "- Positive rows: "
+        f"{expanded.get('positive_rows')}",
+        "- Positive row IDs: "
+        f"{', '.join(expanded.get('positive_entry_ids') or []) or 'none'}",
+        "- Consumable as train/cal support now: False",
+        "",
+        "## Decision",
+        "",
+        "- Current split adds value beyond geometry/fold: "
+        f"{decision['iron_sulfur_or_iron_adds_operating_point_value_beyond_current_geometry_fold']}",
+        "- Existing projection rows support Fe-S/iron contract: "
+        f"{decision['existing_projection_rows_support_iron_sulfur_contract']}",
+        "- Review-only source-free evidence exists outside current split: "
+        f"{decision['review_only_source_free_iron_sulfur_evidence_exists_outside_current_split']}",
+        "- Review-only source-free evidence consumable now: "
+        f"{decision['review_only_source_free_iron_sulfur_evidence_consumable_now']}",
+        "- Tiny projection materialization positive: "
+        f"{decision['tiny_projection_materialization_attempt_positive']}",
+        "- Tiny materialization consumable as train/cal support now: "
+        f"{decision['tiny_projection_materialization_consumable_as_train_cal_support_now']}",
+        "- Train/cal supported now: "
+        f"{decision['train_cal_supported_now']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout(
+    *,
+    relaxed_non_pqq_feature_sidecar_readout_path: Path,
+    iron_sulfur_locus_sidecar_path: Path,
+    out_path: Path,
+    geometry_features_path: Path | None = None,
+    coordinate_cif_paths: dict[str, Path] | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_IRON_SULFUR_PROJECTION_SUPPORT_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout(
+        relaxed_non_pqq_feature_sidecar_readout_path=(
+            relaxed_non_pqq_feature_sidecar_readout_path
+        ),
+        iron_sulfur_locus_sidecar_path=iron_sulfur_locus_sidecar_path,
+        geometry_features_path=geometry_features_path,
+        coordinate_cif_paths=coordinate_cif_paths,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_iron_sulfur_projection_support_report(
                 readout
             ),
             encoding="utf-8",

@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T08:38:48Z`
-- STARTED_AT_LOCAL: `2026-06-05T03:38:48-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T09:36:52Z`
-- ENDED_AT_LOCAL: `2026-06-05T04:36:52-0500 CDT`
-- ELAPSED_MINUTES: `58.07`
+- STARTED_AT_UTC: `2026-06-05T10:32:36Z`
+- STARTED_AT_LOCAL: `2026-06-05T05:32:36-0500 CDT`
+- ENDED_AT_UTC: `in_progress`
+- ENDED_AT_LOCAL: `in_progress`
+- ELAPSED_MINUTES: `in_progress`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,156 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 20
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T10:32:36Z`
+- STARTED_LOCAL: `2026-06-05T05:32:36-0500 CDT`
+- ENDED_AT: `in_progress`
+- ENDED_LOCAL: `in_progress`
+- ELAPSED_MINUTES: `in_progress`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Start from the measured combined direct source-free electron-flow sidecar and
+try to resolve the remaining Fe-S/iron projection-support gap without editing
+labels, registries, imports, production thresholds, or heldout splits.
+
+#### Work log
+
+- Run opened in the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial automation checkout was detached in another worktree; all substantive
+  work was performed in the existing Lever 2 branch worktree. Disk stayed above
+  the 10 GiB guardrail at 16 GiB free.
+- Added
+  `build-lever2-source-free-electron-flow-projection-backed-pqq-nad-feature-sidecar-readout`.
+  This pulls the nested projection-backed `PQQ + NAD-family` subunion out of
+  the combined direct readout and emits it as a standalone normal-shaped
+  `row_specific_event_features` sidecar.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout_current702_20260605.md`.
+- Added
+  `build-lever2-source-free-electron-flow-iron-sulfur-projection-support-readout`.
+  This measures the Fe-S/iron current-split family gate, the existing 43-row
+  projection attempt, the non-heldout review-only iron-sulfur locus support
+  pool, a 3-row tiny materialization tranche, and the expanded 12-row
+  non-current materialization tranche.
+- Generated the measured artifact/report:
+  `artifacts/v3_lever2_source_free_electron_flow_iron_sulfur_projection_support_readout_current702_20260605.json`
+  and
+  `work/lever2_source_free_electron_flow_iron_sulfur_projection_support_readout_current702_20260605.md`.
+
+#### Measured results
+
+- Projection-backed `PQQ + NAD-family` standalone sidecar status:
+  `lever2_source_free_electron_flow_projection_backed_pqq_nad_feature_sidecar_readout_research_only_projection_backed_pqq_nad_operating_point_signal`.
+  Result class:
+  `research_only_projection_backed_pqq_nad_operating_point_signal`.
+- Projection-backed sidecar rows are complete on 74/74 current-split rows,
+  preserve primary retention with 0/34 primary positives, and catch 2/40
+  current-retained OOS rows: `m_csa:104` through fixed PQQ donor/acceptor
+  contact and `m_csa:464` through fixed 8 A NAD-family donor/acceptor distance.
+  Retained-OOS abstain recall is 0.05, incremental OOS recall beyond current
+  geometry/fold is 0.026667, and union OOS recall is 0.493333.
+- Projection support for the standalone `PQQ + NAD-family` route remains
+  train/cal positive through `m_csa:59` and `m_csa:256`; the unsupported
+  Fe-S/iron positive `m_csa:119` is intentionally excluded from this supported
+  route.
+- Fe-S/iron projection-support readout status:
+  `lever2_source_free_electron_flow_iron_sulfur_projection_support_readout_research_only_iron_sulfur_current_split_signal_tiny_materialization_support_gap`.
+  Result class:
+  `research_only_iron_sulfur_current_split_signal_tiny_materialization_support_gap`.
+- The Fe-S/iron family gate remains measurable and primary-safe on the current
+  split: 74/74 rows complete, 0/34 current primary positives, 1/40
+  current-retained OOS positive (`m_csa:119`), retained-OOS abstain recall
+  0.025, incremental OOS recall 0.013333, and union OOS recall 0.48.
+- Existing approved/consumable train/cal projection support for Fe-S/iron is
+  still absent: the existing 43-row projection attempt is 43/43 complete with
+  0 positive rows.
+- Non-heldout review-only iron-sulfur locus evidence exists outside the current
+  split: 12 non-current proximal rows after excluding 140 heldout rows from the
+  support scan. Predictive-use-allowed proximal rows remain 0.
+- The tiny 3-row Fe-S/iron materialization tranche
+  (`m_csa:443`, `m_csa:127`, `m_csa:281`) is 3/3 complete and 3/3 positive in
+  research-only source-free coordinate fields; positive IDs sort as
+  `m_csa:127`, `m_csa:281`, `m_csa:443`.
+- The expanded 12-row non-current Fe-S/iron materialization tranche is 12/12
+  complete and 12/12 positive:
+  `m_csa:108`, `m_csa:123`, `m_csa:127`, `m_csa:130`, `m_csa:208`,
+  `m_csa:212`, `m_csa:276`, `m_csa:281`, `m_csa:358`, `m_csa:398`,
+  `m_csa:443`, and `m_csa:562`.
+- Interpretation: Fe-S/iron source-free evidence can now be materialized in
+  research-only mode, but it still cannot be counted as train/cal support
+  because the rows remain outside the approved train/cal feature sidecar and
+  `predictive_use_allowed` is false. The supported measured route remains
+  projection-backed `PQQ + NAD-family` until the Fe-S/iron tiny tranche is
+  approved/imported and rerun.
+
+#### Guardrails
+
+- Worked only on Lever 2 electron-flow research.
+- No labels, registries, ontologies, imports, production thresholds,
+  production gates, model weights, deployment routes, heldout splits, or Lever 3
+  files changed.
+- No heldout rows were trained on, tuned on, rescored, or evaluated. Heldout
+  rows in the iron-sulfur locus sidecar were excluded from the support scan
+  before materialization.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, accessions,
+  PDB IDs, or coordinate paths were used as predictive feature values. Entry IDs
+  and coordinate paths appear only outside `row_specific_event_features` for
+  tranche/source-evidence accounting.
+- The `PQQ + NAD-family`, Fe-S/iron tiny, and Fe-S/iron expanded surfaces remain
+  research-only and unapproved/unimported. No threshold was selected or
+  promoted by this run.
+
+#### Validation
+
+- Focused tests for the two new readouts and parser defaults: 6 passed.
+- Touched-file slice:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py -q`:
+  476 passed, 193 subtests passed.
+- `PYTHONPATH=src python -m compileall -q src/catalytic_earth/lever2_mechanism_incremental_readout.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_lever2_mechanism_incremental_readout.py tests/test_geometry_artifact_regression.py`:
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 mechanism fingerprints, 15 ontology families, and 702 curated labels
+  validated.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py -q`:
+  2 passed.
+- Repo JSON/JSONL parse sweep passed: 3588 JSON files and 27 JSONL files parsed
+  with 0 errors.
+- New artifact regeneration/source audit passed for both new artifacts after
+  normalizing `created_utc`.
+- New artifact feature-key guardrail audit found 0 forbidden keys across 74
+  projection-backed `PQQ + NAD-family` feature rows and 15 Fe-S/iron
+  materialization feature rows.
+- `git diff --check`: passed.
+- Full pytest on the final expanded Fe-S artifact state:
+  `PYTHONPATH=src python -m pytest -q`: 1553 passed, 212 subtests passed, with
+  the existing sklearn/SciPy deprecation warning.
+- Full unittest discovery on the final expanded Fe-S artifact state:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1508 tests OK, with
+  the same existing warning.
+
+#### Commit/push status
+
+- Pending final wrap-up.
+
+#### Exact next action
+
+- Keep the projection-backed `PQQ + NAD-family` sidecar as the supported
+  research-only Lever 2 electron-flow route for now. The exact next Fe-S/iron
+  action is approval/import of the 3-row tiny materialized projection tranche
+  (`m_csa:443`, `m_csa:127`, `m_csa:281`) into the train/cal source-free
+  feature sidecar, then rerun the same Fe-S/iron family gate without threshold
+  changes or heldout use to decide whether `m_csa:119` can join the supported
+  route.
 
 ### 2026-06-05 Lever 2 Research Run 19
 
