@@ -99,6 +99,10 @@ DEFAULT_ELECTRON_FLOW_CANDIDATE_TRAIN_CAL_BUNDLE_READOUT_ARTIFACT_ID = (
     "v3_lever2_source_free_electron_flow_candidate_train_cal_bundle_"
     "readout_current702_20260605"
 )
+DEFAULT_ELECTRON_FLOW_TRAIN_CAL_SIDECAR_CANDIDATE_READOUT_ARTIFACT_ID = (
+    "v3_lever2_source_free_electron_flow_train_cal_sidecar_candidate_"
+    "readout_current702_20260605"
+)
 DEFAULT_ELECTRON_FLOW_COORDINATE_PROXY_GAP_CIF_PATHS = {
     "m_csa:531": (
         "artifacts/v3_foldseek_coordinates_1000/pdb_1XVT.cif"
@@ -17031,6 +17035,686 @@ def write_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_lever2_source_free_electron_flow_candidate_train_cal_bundle_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _train_cal_sidecar_candidate_row(row: dict[str, Any]) -> dict[str, Any]:
+    candidate_split = row.get("candidate_split_assignment")
+    if candidate_split is None:
+        support_summary = row.get("support_evidence_summary") or {}
+        candidate_split = support_summary.get("split_assignment")
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "assigned_embedding_split": row.get("assigned_embedding_split"),
+        "candidate_split_assignment": candidate_split,
+        "current_split_role": row.get("current_split_role"),
+        "candidate_bundle_role": row.get("candidate_bundle_role"),
+        "source_free_electron_flow_field_complete": bool(
+            row.get("source_free_electron_flow_field_complete")
+        ),
+        "row_specific_event_features": _direct_electron_flow_component_features(
+            row.get("row_specific_event_features") or {}
+        ),
+    }
+
+
+def build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+    *,
+    candidate_train_cal_bundle_readout_path: Path,
+    train_cal_feature_sidecar_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_TRAIN_CAL_SIDECAR_CANDIDATE_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    candidate = _read_json(candidate_train_cal_bundle_readout_path)
+    approved_sidecar = _read_optional_json(train_cal_feature_sidecar_path)
+    candidate_counts = candidate.get("counts") or {}
+    candidate_decision = candidate.get("decision") or {}
+    candidate_measured = candidate.get("measured_readout") or {}
+    candidate_gate = (
+        (
+            candidate_measured.get("candidate_current_split_operating_point")
+            or {}
+        ).get("fixed_gate_readout")
+        or {}
+    )
+    source_rows = [
+        row
+        for row in candidate.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    sidecar_rows = sorted(
+        [_train_cal_sidecar_candidate_row(row) for row in source_rows],
+        key=lambda row: (
+            0
+            if row.get("candidate_bundle_role")
+            == "current_split_operating_point_row"
+            else 1,
+            _entry_sort_key(str(row.get("entry_id") or "")),
+        ),
+    )
+    feature_fields = [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count",
+    ]
+    component_fields = feature_fields[2:]
+    explicit_train_cal_splits = {"train", "calibration"}
+    rows_with_complete_feature_schema = [
+        row
+        for row in sidecar_rows
+        if all(
+            field in (row.get("row_specific_event_features") or {})
+            for field in feature_fields
+        )
+    ]
+    complete_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("source_free_electron_flow_field_complete")
+    ]
+    explicit_split_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("assigned_embedding_split") in explicit_train_cal_splits
+    ]
+    manifest_or_explicit_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("assigned_embedding_split") in explicit_train_cal_splits
+        or row.get("candidate_split_assignment") == "in_distribution"
+    ]
+    current_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("candidate_bundle_role") == "current_split_operating_point_row"
+    ]
+    support_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("candidate_bundle_role") != "current_split_operating_point_row"
+    ]
+    support_rows_missing_explicit_split = [
+        str(row["entry_id"])
+        for row in support_rows
+        if row.get("assigned_embedding_split") not in explicit_train_cal_splits
+    ]
+    selected_fe_s_support_rows = [
+        row
+        for row in support_rows
+        if row.get("candidate_bundle_role") == "selected_fe_s_support_row"
+    ]
+    selected_fe_s_missing_explicit_split = [
+        str(row["entry_id"])
+        for row in selected_fe_s_support_rows
+        if row.get("assigned_embedding_split") not in explicit_train_cal_splits
+    ]
+    split_oos_rows = candidate_gate.get("current_geometry_fold_oos_rows")
+    if split_oos_rows is not None:
+        try:
+            split_oos_rows = int(split_oos_rows)
+        except (TypeError, ValueError):
+            split_oos_rows = None
+    fixed_gate = _donor_acceptor_gate_readout(
+        current_rows,
+        split_oos_rows=split_oos_rows,
+        gate_id="fixed_binary_train_cal_sidecar_candidate_pqq_nad_fe_s_direct_electron_flow",
+        feature_fields=feature_fields,
+        gate_rule=(
+            "Candidate sidecar gate: abstain on complete direct source-free "
+            "PQQ, NAD-family, or Fe-S/iron component fields for the 74-row "
+            "current split. The rows and gate are inherited from the measured "
+            "candidate bundle; this readout only audits sidecar shape and "
+            "train/cal discipline and does not approve, import, or tune."
+        ),
+    )
+    forbidden_hits = _feature_row_exact_forbidden_key_hits(sidecar_rows)
+
+    approved_rows = [
+        row
+        for row in approved_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    approved_entry_ids = {str(row.get("entry_id")) for row in approved_rows}
+    approved_rows_by_entry = _records_by_entry(approved_rows)
+    approved_feature_keys = sorted(
+        {
+            str(key)
+            for row in approved_rows
+            for key in (row.get("row_specific_event_features") or {})
+        }
+    )
+    approved_component_fields_present = [
+        field for field in component_fields if field in approved_feature_keys
+    ]
+    approved_component_fields_missing = [
+        field for field in component_fields if field not in approved_feature_keys
+    ]
+    current_positive_entry_ids = fixed_gate["retained_oos_positive_entry_ids"]
+    current_entry_ids = _entry_ids(current_rows)
+    approved_current_split_entry_ids_present = [
+        entry_id for entry_id in current_entry_ids if entry_id in approved_entry_ids
+    ]
+    approved_current_split_direct_component_complete_entry_ids = []
+    for entry_id in approved_current_split_entry_ids_present:
+        approved_features = (
+            approved_rows_by_entry.get(entry_id, {}).get(
+                "row_specific_event_features"
+            )
+            or {}
+        )
+        if all(field in approved_features for field in component_fields):
+            approved_current_split_direct_component_complete_entry_ids.append(
+                entry_id
+            )
+    support_entry_ids = _entry_ids(support_rows)
+    support_present_in_approved = [
+        entry_id for entry_id in support_entry_ids if entry_id in approved_entry_ids
+    ]
+    current_positive_present_in_approved = [
+        entry_id
+        for entry_id in current_positive_entry_ids
+        if entry_id in approved_entry_ids
+    ]
+    selected_fe_s_blocked_by_gate_import = [
+        str(entry_id)
+        for entry_id in candidate_counts.get(
+            "selected_fe_s_support_blocked_only_by_predictive_gate_and_import_entry_ids"
+        )
+        or []
+    ]
+    sidecar_shape_complete = bool(
+        sidecar_rows
+        and len(rows_with_complete_feature_schema) == len(sidecar_rows)
+        and len(complete_rows) == len(sidecar_rows)
+        and not forbidden_hits
+    )
+    manifest_contained = bool(
+        sidecar_rows and len(manifest_or_explicit_rows) == len(sidecar_rows)
+    )
+    operating_point_positive = bool(
+        fixed_gate["operating_point_measurable_now"]
+        and fixed_gate["preserves_primary_retention"]
+        and fixed_gate["adds_incremental_oos_abstention"]
+    )
+    candidate_readout_measured = bool(
+        sidecar_shape_complete and manifest_contained and operating_point_positive
+    )
+    protected_blockers: list[str] = []
+    if approved_component_fields_missing:
+        protected_blockers.append(
+            "approved_train_cal_feature_sidecar_direct_component_field_import"
+        )
+    if selected_fe_s_blocked_by_gate_import:
+        protected_blockers.append(
+            "predictive_use_allowed_true_for_selected_fe_s_support_rows:"
+            + ",".join(selected_fe_s_blocked_by_gate_import)
+        )
+    if selected_fe_s_missing_explicit_split:
+        protected_blockers.append(
+            "explicit_train_cal_split_assignment_for_selected_fe_s_support_rows:"
+            + ",".join(selected_fe_s_missing_explicit_split)
+        )
+    if current_positive_entry_ids and not current_positive_present_in_approved:
+        protected_blockers.append(
+            "approved_sidecar_rows_for_current_positive_direct_electron_flow_rows:"
+            + ",".join(current_positive_entry_ids)
+        )
+    result_class = (
+        "research_only_train_cal_sidecar_candidate_measured_pending_protected_import"
+        if candidate_readout_measured
+        else (
+            "research_only_train_cal_sidecar_candidate_shaped_but_operating_point_negative"
+            if sidecar_shape_complete and manifest_contained
+            else "research_only_train_cal_sidecar_candidate_incomplete"
+        )
+    )
+    status = (
+        "lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout_"
+        f"{result_class}"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_electron_flow_train_cal_sidecar_"
+            "candidate_readout.v0"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "result_class": result_class,
+        "scope": (
+            "Lever 2 measured candidate-sidecar readout for direct source-free "
+            "electron-flow fields. It remaps the candidate train/cal bundle "
+            "into sidecar-shaped row-specific event features, audits explicit "
+            "train/cal split coverage and manifest containment, and reruns the "
+            "fixed operating point. It does not edit approved sidecars, "
+            "imports, labels, registries, ontologies, thresholds, model "
+            "weights, or heldout splits."
+        ),
+        "candidate_feature_sidecar": {
+            "sidecar_id": "candidate_source_free_pqq_nad_fe_s_direct_electron_flow_train_cal_sidecar",
+            "contract_status": "research_only_candidate_unapproved_unimported",
+            "axis_id": "source_free_pqq_nad_fe_s_direct_electron_flow",
+            "feature_fields": feature_fields,
+            "feature_rows": sidecar_rows,
+            "forbidden_feature_inputs": [
+                "mechanism_text",
+                "labels",
+                "EC_or_Rhea_ids",
+                "source_ids",
+                "target_names",
+                "accessions",
+                "PDB_or_coordinate_paths_as_feature_values",
+                "heldout_rows",
+            ],
+        },
+        "measured_readout": {
+            "fixed_operating_point": fixed_gate,
+            "split_and_sidecar_discipline": {
+                "rows_with_complete_feature_schema_entry_ids": _entry_ids(
+                    rows_with_complete_feature_schema
+                ),
+                "explicit_train_cal_split_entry_ids": _entry_ids(
+                    explicit_split_rows
+                ),
+                "manifest_or_explicit_train_cal_contained_entry_ids": _entry_ids(
+                    manifest_or_explicit_rows
+                ),
+                "support_rows_missing_explicit_split_entry_ids": (
+                    support_rows_missing_explicit_split
+                ),
+                "selected_fe_s_support_missing_explicit_split_entry_ids": (
+                    selected_fe_s_missing_explicit_split
+                ),
+                "forbidden_feature_key_hits": forbidden_hits,
+            },
+            "approved_train_cal_sidecar_gap": {
+                "approved_sidecar_rows": len(approved_rows),
+                "direct_component_fields_present": (
+                    approved_component_fields_present
+                ),
+                "direct_component_fields_missing": (
+                    approved_component_fields_missing
+                ),
+                "support_entry_ids_present": support_present_in_approved,
+                "current_positive_entry_ids_present": (
+                    current_positive_present_in_approved
+                ),
+            },
+            "approved_sidecar_only_current_split_attempt": {
+                "current_split_entry_ids_present": (
+                    approved_current_split_entry_ids_present
+                ),
+                "current_split_direct_component_complete_entry_ids": (
+                    approved_current_split_direct_component_complete_entry_ids
+                ),
+                "current_split_direct_component_fields_required": component_fields,
+                "measurable_now": bool(
+                    current_rows
+                    and len(
+                        approved_current_split_direct_component_complete_entry_ids
+                    )
+                    == len(current_rows)
+                ),
+                "failure_reason": (
+                    "approved train/cal sidecar lacks the 74 current-split "
+                    "direct PQQ/NAD/Fe-S component rows"
+                )
+                if len(approved_current_split_direct_component_complete_entry_ids)
+                < len(current_rows)
+                else None,
+            },
+            "protected_promotion_preflight": {
+                "protected_blockers": protected_blockers,
+                "candidate_bundle_remaining_gap": candidate_decision.get(
+                    "remaining_gap"
+                ),
+                "candidate_bundle_smallest_next_experiment": (
+                    candidate_decision.get("smallest_next_experiment")
+                ),
+            },
+        },
+        "counts": {
+            "critical_violation_total": len(forbidden_hits),
+            "sidecar_candidate_rows": len(sidecar_rows),
+            "sidecar_candidate_current_split_rows": len(current_rows),
+            "sidecar_candidate_support_rows": len(support_rows),
+            "sidecar_candidate_rows_with_complete_feature_schema": len(
+                rows_with_complete_feature_schema
+            ),
+            "sidecar_candidate_complete_source_free_rows": len(complete_rows),
+            "sidecar_candidate_explicit_train_cal_split_rows": len(
+                explicit_split_rows
+            ),
+            "sidecar_candidate_manifest_or_explicit_train_cal_contained_rows": len(
+                manifest_or_explicit_rows
+            ),
+            "sidecar_candidate_support_rows_missing_explicit_split": len(
+                support_rows_missing_explicit_split
+            ),
+            "sidecar_candidate_support_rows_missing_explicit_split_entry_ids": (
+                support_rows_missing_explicit_split
+            ),
+            "sidecar_candidate_selected_fe_s_support_rows_missing_explicit_split": len(
+                selected_fe_s_missing_explicit_split
+            ),
+            "sidecar_candidate_selected_fe_s_support_missing_explicit_split_entry_ids": (
+                selected_fe_s_missing_explicit_split
+            ),
+            "sidecar_candidate_current_primary_rows": fixed_gate["primary_rows"],
+            "sidecar_candidate_current_retained_oos_rows": fixed_gate[
+                "retained_oos_rows"
+            ],
+            "sidecar_candidate_current_primary_positive_rows": fixed_gate[
+                "primary_positive_rows"
+            ],
+            "sidecar_candidate_current_retained_oos_positive_rows": fixed_gate[
+                "retained_oos_positive_rows"
+            ],
+            "sidecar_candidate_current_retained_oos_positive_entry_ids": (
+                current_positive_entry_ids
+            ),
+            "sidecar_candidate_current_primary_retain_recall": fixed_gate[
+                "primary_retain_recall_if_abstain_positive"
+            ],
+            "sidecar_candidate_current_retained_oos_abstain_recall": fixed_gate[
+                "retained_oos_abstain_recall_if_abstain_positive"
+            ],
+            "sidecar_candidate_incremental_oos_abstain_recall_vs_current_geometry_fold": (
+                fixed_gate[
+                    "incremental_oos_abstain_recall_vs_current_geometry_fold"
+                ]
+            ),
+            "sidecar_candidate_union_or_gate_oos_abstain_recall": fixed_gate[
+                "union_or_gate_oos_abstain_recall"
+            ],
+            "approved_sidecar_direct_component_fields_present": (
+                approved_component_fields_present
+            ),
+            "approved_sidecar_direct_component_fields_missing": (
+                approved_component_fields_missing
+            ),
+            "approved_sidecar_support_entry_ids_present": (
+                support_present_in_approved
+            ),
+            "approved_sidecar_current_positive_entry_ids_present": (
+                current_positive_present_in_approved
+            ),
+            "approved_sidecar_current_split_entry_ids_present": (
+                approved_current_split_entry_ids_present
+            ),
+            "approved_sidecar_current_split_rows_present": len(
+                approved_current_split_entry_ids_present
+            ),
+            "approved_sidecar_current_split_direct_component_complete_entry_ids": (
+                approved_current_split_direct_component_complete_entry_ids
+            ),
+            "approved_sidecar_current_split_direct_component_complete_rows": len(
+                approved_current_split_direct_component_complete_entry_ids
+            ),
+            "selected_fe_s_support_blocked_only_by_predictive_gate_and_import_entry_ids": (
+                selected_fe_s_blocked_by_gate_import
+            ),
+            "protected_promotion_blockers": len(protected_blockers),
+            "protected_promotion_blocker_ids": protected_blockers,
+            "candidate_bundle_rows": candidate_counts.get("candidate_bundle_rows"),
+        },
+        "decision": {
+            "measured_readout_available": True,
+            "sidecar_candidate_shape_complete": sidecar_shape_complete,
+            "sidecar_candidate_manifest_or_explicit_train_cal_contained": (
+                manifest_contained
+            ),
+            "sidecar_candidate_has_all_explicit_train_cal_splits": bool(
+                sidecar_rows and len(explicit_split_rows) == len(sidecar_rows)
+            ),
+            "sidecar_candidate_preserves_primary_retention": fixed_gate[
+                "preserves_primary_retention"
+            ],
+            "sidecar_candidate_adds_incremental_oos_abstention": fixed_gate[
+                "adds_incremental_oos_abstention"
+            ],
+            "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_in_sidecar_candidate": (
+                candidate_readout_measured
+            ),
+            "sidecar_candidate_closes_direct_component_field_gap": bool(
+                len(rows_with_complete_feature_schema) == len(sidecar_rows)
+                and sidecar_rows
+            ),
+            "approved_train_cal_sidecar_still_missing_direct_component_fields": bool(
+                approved_component_fields_missing
+            ),
+            "approved_sidecar_only_current_split_direct_electron_flow_measurable_now": bool(
+                current_rows
+                and len(approved_current_split_direct_component_complete_entry_ids)
+                == len(current_rows)
+            ),
+            "approved_sidecar_only_route_failed_on_missing_current_split_component_rows": bool(
+                len(approved_current_split_direct_component_complete_entry_ids)
+                < len(current_rows)
+            ),
+            "selected_fe_s_support_still_missing_predictive_approval_import": bool(
+                selected_fe_s_blocked_by_gate_import
+            ),
+            "selected_fe_s_support_still_missing_explicit_train_cal_split_assignment": bool(
+                selected_fe_s_missing_explicit_split
+            ),
+            "protected_import_or_split_steps_required": bool(protected_blockers),
+            "train_cal_disciplined_candidate_readout_available": (
+                candidate_readout_measured
+            ),
+            "train_cal_supported_now": False,
+            "deployable_now": False,
+            "research_only": True,
+            "apply_or_promote_now": False,
+            "negative": not candidate_readout_measured,
+            "operating_point_failure": not operating_point_positive,
+            "remaining_gap": (
+                "; ".join(protected_blockers) if protected_blockers else "none"
+            ),
+            "smallest_next_experiment": (
+                "Perform the protected approval/import step for the candidate "
+                "direct source-free component fields, set predictive_use_allowed=true "
+                "for m_csa:127 and m_csa:281, assign those Fe-S support rows "
+                "to explicit train/cal splits, then rerun this fixed sidecar "
+                "candidate gate without threshold changes or heldout use."
+            ),
+        },
+        "guardrails": {
+            "measured_readout_first": True,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_scored_by_this_artifact": False,
+            "heldout_rows_evaluated": False,
+            "mechanism_text_or_source_ids_used_as_predictive_features": False,
+            "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": (
+                False
+            ),
+            "accessions_or_pdb_ids_used_as_predictive_features": False,
+            "pdb_ids_or_coordinate_paths_used_as_predictive_features": False,
+            "labels_used_as_feature_values": False,
+            "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": True,
+            "source_free_electron_flow_fields_materialized_by_this_artifact": True,
+            "candidate_feature_rows_imported_or_promoted": False,
+            "predictive_use_allowed_modified": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "candidate_train_cal_bundle_readout": _source_path_record(
+                candidate_train_cal_bundle_readout_path
+            ),
+            "train_cal_feature_sidecar": (
+                _source_path_record(train_cal_feature_sidecar_path)
+                if train_cal_feature_sidecar_path is not None
+                else {"path": None, "exists": False, "sha256": None}
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The sidecar-shaped candidate keeps the direct source-free "
+                f"electron-flow gate measurable on {fixed_gate['complete_rows']}/"
+                f"{fixed_gate['rows']} current-split rows, preserves primary "
+                "retention, and catches "
+                f"{fixed_gate['retained_oos_positive_rows']} current-retained "
+                "OOS rows."
+            )
+            if candidate_readout_measured
+            else (
+                "The sidecar-shaped candidate is incomplete, outside the "
+                "train/cal-contained candidate surface, or operating-point "
+                "negative."
+            ),
+            "next_action": (
+                "The remaining work is protected approval/import plus explicit "
+                "split assignment, not another operating-point search route."
+            ),
+        },
+    }
+
+
+def _render_lever2_source_free_electron_flow_train_cal_sidecar_candidate_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    gate = readout["measured_readout"]["fixed_operating_point"]
+    sidecar_gap = readout["measured_readout"]["approved_train_cal_sidecar_gap"]
+    lines = [
+        "# Lever 2 Source-Free Electron-Flow Train/Cal Sidecar Candidate Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        f"- Result class: {readout['result_class']}",
+        "- Candidate sidecar rows: "
+        f"{counts['sidecar_candidate_rows']}",
+        "- Complete source-free rows: "
+        f"{counts['sidecar_candidate_complete_source_free_rows']}/"
+        f"{counts['sidecar_candidate_rows']}",
+        "- Manifest or explicit train/cal-contained rows: "
+        f"{counts['sidecar_candidate_manifest_or_explicit_train_cal_contained_rows']}/"
+        f"{counts['sidecar_candidate_rows']}",
+        "- Explicit train/cal split rows: "
+        f"{counts['sidecar_candidate_explicit_train_cal_split_rows']}/"
+        f"{counts['sidecar_candidate_rows']}",
+        "- Current primary/OOS positives: "
+        f"{counts['sidecar_candidate_current_primary_positive_rows']}/"
+        f"{counts['sidecar_candidate_current_retained_oos_positive_rows']}",
+        "- Primary retain recall: "
+        f"{counts['sidecar_candidate_current_primary_retain_recall']}",
+        "- Incremental OOS recall vs current geometry/fold: "
+        f"{counts['sidecar_candidate_incremental_oos_abstain_recall_vs_current_geometry_fold']}",
+        "- Union OOS recall: "
+        f"{counts['sidecar_candidate_union_or_gate_oos_abstain_recall']}",
+        "- Forbidden row-feature key hits: "
+        f"{counts['critical_violation_total']}",
+        "",
+        "## Fixed Operating Point",
+        "",
+        "| rows complete | primary positives | retained-OOS positives | retained-OOS IDs | union OOS recall |",
+        "| ---: | ---: | ---: | --- | ---: |",
+        f"| {gate['complete_rows']}/{gate['rows']} | "
+        f"{gate['primary_positive_rows']} | "
+        f"{gate['retained_oos_positive_rows']} | "
+        f"{', '.join(gate['retained_oos_positive_entry_ids']) or 'none'} | "
+        f"{gate['union_or_gate_oos_abstain_recall']} |",
+        "",
+        "## Split Discipline",
+        "",
+        "- Support rows missing explicit train/cal split: "
+        f"{', '.join(counts['sidecar_candidate_support_rows_missing_explicit_split_entry_ids']) or 'none'}",
+        "- Selected Fe-S support rows missing explicit train/cal split: "
+        f"{', '.join(counts['sidecar_candidate_selected_fe_s_support_missing_explicit_split_entry_ids']) or 'none'}",
+        "- Selected Fe-S support rows blocked by predictive gate/import: "
+        f"{', '.join(counts['selected_fe_s_support_blocked_only_by_predictive_gate_and_import_entry_ids']) or 'none'}",
+        "",
+        "## Approved Sidecar Gap",
+        "",
+        "- Direct component fields present: "
+        f"{', '.join(sidecar_gap['direct_component_fields_present']) or 'none'}",
+        "- Direct component fields missing: "
+        f"{', '.join(sidecar_gap['direct_component_fields_missing']) or 'none'}",
+        "- Support rows present: "
+        f"{', '.join(sidecar_gap['support_entry_ids_present']) or 'none'}",
+        "- Current positive rows present: "
+        f"{', '.join(sidecar_gap['current_positive_entry_ids_present']) or 'none'}",
+        "- Approved sidecar current-split rows present: "
+        f"{counts['approved_sidecar_current_split_rows_present']}/"
+        f"{counts['sidecar_candidate_current_split_rows']}",
+        "- Approved sidecar current-split rows with direct components complete: "
+        f"{counts['approved_sidecar_current_split_direct_component_complete_rows']}/"
+        f"{counts['sidecar_candidate_current_split_rows']}",
+        "",
+        "## Decision",
+        "",
+        "- Sidecar candidate shape complete: "
+        f"{decision['sidecar_candidate_shape_complete']}",
+        "- Manifest or explicit train/cal-contained: "
+        f"{decision['sidecar_candidate_manifest_or_explicit_train_cal_contained']}",
+        "- All rows have explicit train/cal split: "
+        f"{decision['sidecar_candidate_has_all_explicit_train_cal_splits']}",
+        "- Preserves primary retention: "
+        f"{decision['sidecar_candidate_preserves_primary_retention']}",
+        "- Adds OOS abstention: "
+        f"{decision['sidecar_candidate_adds_incremental_oos_abstention']}",
+        "- Train/cal-disciplined candidate readout available: "
+        f"{decision['train_cal_disciplined_candidate_readout_available']}",
+        "- Approved-sidecar-only route measurable now: "
+        f"{decision['approved_sidecar_only_current_split_direct_electron_flow_measurable_now']}",
+        "- Deployable now: False",
+        f"- Remaining gap: {decision['remaining_gap']}",
+        f"- Smallest next experiment: {decision['smallest_next_experiment']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+    *,
+    candidate_train_cal_bundle_readout_path: Path,
+    out_path: Path,
+    train_cal_feature_sidecar_path: Path | None = None,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        DEFAULT_ELECTRON_FLOW_TRAIN_CAL_SIDECAR_CANDIDATE_READOUT_ARTIFACT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+        candidate_train_cal_bundle_readout_path=(
+            candidate_train_cal_bundle_readout_path
+        ),
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_lever2_source_free_electron_flow_train_cal_sidecar_candidate_report(
                 readout
             ),
             encoding="utf-8",

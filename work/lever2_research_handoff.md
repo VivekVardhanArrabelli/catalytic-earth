@@ -4,11 +4,11 @@
 
 - Automation ID: `catalytic-earth-lever-2-research-loop`
 - Branch: `lever-2-research-track`
-- STARTED_AT_UTC: `2026-06-05T15:33:09Z`
-- STARTED_AT_LOCAL: `2026-06-05T10:33:09-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T16:22:19Z`
-- ENDED_AT_LOCAL: `2026-06-05T11:22:19-0500 CDT`
-- ELAPSED_MINUTES: `49.18`
+- STARTED_AT_UTC: `2026-06-05T16:31:49Z`
+- STARTED_AT_LOCAL: `2026-06-05T11:31:49-0500 CDT`
+- ENDED_AT_UTC: `in_progress`
+- ENDED_AT_LOCAL: `in_progress`
+- ELAPSED_MINUTES: `in_progress`
 - Scope: Lever 2 mechanism-representation research only.
 - Guardrails: source-free/deployment-valid feature discipline, no heldout tuning,
   no mechanism text, EC/Rhea IDs, labels, source IDs, target names, registry
@@ -16,6 +16,38 @@
   split edits.
 
 ## Run Ledger
+
+### 2026-06-05 Lever 2 Research Run 26
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T16:31:49Z`
+- STARTED_LOCAL: `2026-06-05T11:31:49-0500 CDT`
+- ENDED_AT: `in_progress`
+- ENDED_LOCAL: `in_progress`
+- ELAPSED_MINUTES: `in_progress`
+
+#### Intent
+
+Continue Lever 2 electron-flow research only on `lever-2-research-track`.
+Use the candidate train/cal bundle readout as the measured baseline, then try
+the smallest source-free route that can move the direct electron-flow fields
+from research-only candidate evidence toward a train/cal-disciplined readout
+without editing labels, registries, ontologies, imports, production thresholds,
+or heldout splits.
+
+#### Work log
+
+- Run opened from automation checkout
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/031c/catalytic-earth`, which
+  was a clean detached duplicate and not the dedicated Lever 2 branch
+  worktree.
+- Switched substantive work to the dedicated branch worktree
+  `/Users/vivekvardhanarrabelli/.codex/worktrees/88bb/catalytic-earth` on
+  `lever-2-research-track`, isolated from Lever 3.
+- Initial disk was below the 10 GiB guardrail at 9.5 GiB free. The clean
+  detached duplicate checkout was removed with `git worktree remove`,
+  restoring disk to 13 GiB free before research writes continued.
 
 ### 2026-06-05 Lever 2 Research Run 25
 

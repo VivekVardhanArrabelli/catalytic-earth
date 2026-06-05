@@ -71,6 +71,7 @@ from .lever2_mechanism_incremental_readout import (
     write_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     write_lever2_source_free_electron_flow_split_alignment_readout,
     write_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
+    write_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout,
     write_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
     write_lever2_source_free_partial_surface_current_split_portability_readout,
 )
@@ -14325,6 +14326,36 @@ def cmd_build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readou
         f"{counts.get('candidate_current_retained_oos_positive_rows')}, "
         "support rows: "
         f"{counts.get('candidate_support_rows')}, "
+        f"result: {readout.get('result_class')})"
+    )
+    return 0
+
+
+def cmd_build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+        candidate_train_cal_bundle_readout_path=Path(
+            args.candidate_train_cal_bundle_readout
+        ),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    print(
+        "Wrote Lever 2 source-free electron-flow train/cal sidecar "
+        f"candidate readout to {args.out} "
+        "current primary/OOS positives: "
+        f"{counts.get('sidecar_candidate_current_primary_positive_rows')}/"
+        f"{counts.get('sidecar_candidate_current_retained_oos_positive_rows')}, "
+        "explicit split rows: "
+        f"{counts.get('sidecar_candidate_explicit_train_cal_split_rows')}/"
+        f"{counts.get('sidecar_candidate_rows')}, "
         f"result: {readout.get('result_class')})"
     )
     return 0
@@ -34305,6 +34336,51 @@ def build_parser() -> argparse.ArgumentParser:
     lever2_electron_flow_candidate_train_cal_bundle.set_defaults(
         func=(
             cmd_build_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout
+        )
+    )
+
+    lever2_electron_flow_train_cal_sidecar_candidate = subparsers.add_parser(
+        "build-lever2-source-free-electron-flow-train-cal-sidecar-candidate-readout",
+        help=(
+            "audit a research-only train/cal sidecar candidate for direct "
+            "source-free PQQ+NAD+Fe-S electron-flow component fields"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--candidate-train-cal-bundle-readout",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_candidate_train_cal_"
+            "bundle_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_"
+            "augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--artifact-id", default=None
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_lever2_source_free_electron_flow_train_cal_"
+            "sidecar_candidate_readout_current702_20260605.json"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.add_argument(
+        "--report",
+        default=(
+            "work/lever2_source_free_electron_flow_train_cal_sidecar_"
+            "candidate_readout_current702_20260605.md"
+        ),
+    )
+    lever2_electron_flow_train_cal_sidecar_candidate.set_defaults(
+        func=(
+            cmd_build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout
         )
     )
 

@@ -20900,6 +20900,183 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             readout["source_artifacts"]["train_cal_input_manifest"]["exists"]
         )
 
+    def test_lever2_electron_flow_train_cal_sidecar_candidate_current_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_lever2_source_free_electron_flow_train_cal_sidecar_"
+                "candidate_readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "lever2_source_free_electron_flow_train_cal_sidecar_candidate_"
+                "readout_research_only_train_cal_sidecar_candidate_measured_"
+                "pending_protected_import"
+            ),
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_train_cal_sidecar_candidate_measured_pending_protected_import",
+        )
+        self.assertEqual(readout["counts"]["sidecar_candidate_rows"], 78)
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_current_split_rows"], 74
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_support_rows"], 4
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_complete_source_free_rows"],
+            78,
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_rows_with_complete_feature_schema"],
+            78,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_manifest_or_explicit_train_cal_contained_rows"
+            ],
+            78,
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_explicit_train_cal_split_rows"],
+            76,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_selected_fe_s_support_missing_explicit_split_entry_ids"
+            ],
+            ["m_csa:127", "m_csa:281"],
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_current_primary_rows"], 34
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_current_retained_oos_rows"],
+            40,
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_current_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_current_retained_oos_positive_entry_ids"
+            ],
+            ["m_csa:104", "m_csa:119", "m_csa:464"],
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_current_primary_retain_recall"],
+            1.0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.04,
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_union_or_gate_oos_abstain_recall"],
+            0.506667,
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_direct_component_fields_present"],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_support_entry_ids_present"],
+            ["m_csa:59", "m_csa:256"],
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_current_positive_entry_ids_present"],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_current_split_entry_ids_present"],
+            ["m_csa:102"],
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_current_split_rows_present"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_current_split_direct_component_complete_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_current_split_direct_component_complete_rows"
+            ],
+            0,
+        )
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
+        self.assertEqual(readout["counts"]["protected_promotion_blockers"], 4)
+        feature_text = json.dumps(
+            [
+                row["row_specific_event_features"]
+                for row in readout["candidate_feature_sidecar"]["feature_rows"]
+            ]
+        )
+        self.assertNotIn("coordinate_path", feature_text)
+        self.assertTrue(
+            readout["decision"][
+                "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_in_sidecar_candidate"
+            ]
+        )
+        self.assertTrue(readout["decision"]["sidecar_candidate_shape_complete"])
+        self.assertTrue(
+            readout["decision"][
+                "sidecar_candidate_manifest_or_explicit_train_cal_contained"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["sidecar_candidate_has_all_explicit_train_cal_splits"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "selected_fe_s_support_still_missing_predictive_approval_import"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "selected_fe_s_support_still_missing_explicit_train_cal_split_assignment"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "train_cal_disciplined_candidate_readout_available"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "approved_sidecar_only_current_split_direct_electron_flow_measurable_now"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "approved_sidecar_only_route_failed_on_missing_current_split_component_rows"
+            ]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertFalse(readout["guardrails"]["heldout_rows_scored_by_this_artifact"])
+        self.assertTrue(
+            readout["source_artifacts"]["candidate_train_cal_bundle_readout"][
+                "exists"
+            ]
+        )
+        self.assertTrue(
+            readout["source_artifacts"]["train_cal_feature_sidecar"]["exists"]
+        )
+
     def test_lever2_electron_flow_pqq_donor_acceptor_contact_readout_current_counts(
         self,
     ) -> None:

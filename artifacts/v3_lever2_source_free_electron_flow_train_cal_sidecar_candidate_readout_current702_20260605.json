@@ -1,0 +1,1896 @@
+{
+  "artifact_id": "v3_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout_current702_20260605",
+  "candidate_feature_sidecar": {
+    "axis_id": "source_free_pqq_nad_fe_s_direct_electron_flow",
+    "contract_status": "research_only_candidate_unapproved_unimported",
+    "feature_fields": [
+      "has_electron_transfer_event",
+      "electron_transfer_count",
+      "has_source_free_pqq_donor_acceptor_contact",
+      "source_free_pqq_donor_acceptor_contact_count",
+      "has_source_free_nad_family_donor_acceptor_distance",
+      "source_free_nad_family_donor_acceptor_distance_count",
+      "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+      "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+    ],
+    "feature_rows": [
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:27",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:35",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:36",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:38",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:39",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:41",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:52",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:54",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:61",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:65",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:82",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:87",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:102",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:104",
+        "row_specific_event_features": {
+          "electron_transfer_count": 1,
+          "has_electron_transfer_event": true,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": true,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 1
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:106",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:119",
+        "row_specific_event_features": {
+          "electron_transfer_count": 1,
+          "has_electron_transfer_event": true,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": true,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:126",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:136",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:160",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:165",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:173",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:216",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:233",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:243",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:244",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:271",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:277",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:284",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:285",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:295",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:299",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:305",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:319",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:320",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:325",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:338",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:368",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:387",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:390",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:399",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:410",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:415",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:422",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:462",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:464",
+        "row_specific_event_features": {
+          "electron_transfer_count": 1,
+          "has_electron_transfer_event": true,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": true,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 1,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:471",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:473",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:482",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:483",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:490",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:499",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:503",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:531",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:537",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:542",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:547",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:556",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:565",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:622",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:630",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "m_csa:646",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:694",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:754",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:800",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:837",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:865",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:879",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:900",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:912",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:922",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:933",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:973",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_primary_retention_gate",
+        "entry_id": "m_csa:988",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "current_split_operating_point_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "current_retained_oos",
+        "entry_id": "uniprot:Q3LXA3",
+        "row_specific_event_features": {
+          "electron_transfer_count": 0,
+          "has_electron_transfer_event": false,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "projection_backed_pqq_nad_support_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "projection_calibration",
+        "entry_id": "m_csa:59",
+        "row_specific_event_features": {
+          "electron_transfer_count": 1,
+          "has_electron_transfer_event": true,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": true,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 1,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "research_only_projection_tranche",
+        "candidate_bundle_role": "selected_fe_s_support_row",
+        "candidate_split_assignment": "in_distribution",
+        "current_split_role": "candidate_fe_s_support_projection",
+        "entry_id": "m_csa:127",
+        "row_specific_event_features": {
+          "electron_transfer_count": 1,
+          "has_electron_transfer_event": true,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": true,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "calibration",
+        "candidate_bundle_role": "projection_backed_pqq_nad_support_row",
+        "candidate_split_assignment": null,
+        "current_split_role": "projection_calibration",
+        "entry_id": "m_csa:256",
+        "row_specific_event_features": {
+          "electron_transfer_count": 1,
+          "has_electron_transfer_event": true,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": false,
+          "has_source_free_nad_family_donor_acceptor_distance": true,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 0,
+          "source_free_nad_family_donor_acceptor_distance_count": 1,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      },
+      {
+        "assigned_embedding_split": "research_only_projection_tranche",
+        "candidate_bundle_role": "selected_fe_s_support_row",
+        "candidate_split_assignment": "in_distribution",
+        "current_split_role": "candidate_fe_s_support_projection",
+        "entry_id": "m_csa:281",
+        "row_specific_event_features": {
+          "electron_transfer_count": 1,
+          "has_electron_transfer_event": true,
+          "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": true,
+          "has_source_free_nad_family_donor_acceptor_distance": false,
+          "has_source_free_pqq_donor_acceptor_contact": false,
+          "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": 1,
+          "source_free_nad_family_donor_acceptor_distance_count": 0,
+          "source_free_pqq_donor_acceptor_contact_count": 0
+        },
+        "source_free_electron_flow_field_complete": true
+      }
+    ],
+    "forbidden_feature_inputs": [
+      "mechanism_text",
+      "labels",
+      "EC_or_Rhea_ids",
+      "source_ids",
+      "target_names",
+      "accessions",
+      "PDB_or_coordinate_paths_as_feature_values",
+      "heldout_rows"
+    ],
+    "sidecar_id": "candidate_source_free_pqq_nad_fe_s_direct_electron_flow_train_cal_sidecar"
+  },
+  "counts": {
+    "approved_sidecar_current_positive_entry_ids_present": [],
+    "approved_sidecar_current_split_direct_component_complete_entry_ids": [],
+    "approved_sidecar_current_split_direct_component_complete_rows": 0,
+    "approved_sidecar_current_split_entry_ids_present": [
+      "m_csa:102"
+    ],
+    "approved_sidecar_current_split_rows_present": 1,
+    "approved_sidecar_direct_component_fields_missing": [
+      "has_source_free_pqq_donor_acceptor_contact",
+      "source_free_pqq_donor_acceptor_contact_count",
+      "has_source_free_nad_family_donor_acceptor_distance",
+      "source_free_nad_family_donor_acceptor_distance_count",
+      "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+      "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+    ],
+    "approved_sidecar_direct_component_fields_present": [],
+    "approved_sidecar_support_entry_ids_present": [
+      "m_csa:59",
+      "m_csa:256"
+    ],
+    "candidate_bundle_rows": 78,
+    "critical_violation_total": 0,
+    "protected_promotion_blocker_ids": [
+      "approved_train_cal_feature_sidecar_direct_component_field_import",
+      "predictive_use_allowed_true_for_selected_fe_s_support_rows:m_csa:127,m_csa:281",
+      "explicit_train_cal_split_assignment_for_selected_fe_s_support_rows:m_csa:127,m_csa:281",
+      "approved_sidecar_rows_for_current_positive_direct_electron_flow_rows:m_csa:104,m_csa:119,m_csa:464"
+    ],
+    "protected_promotion_blockers": 4,
+    "selected_fe_s_support_blocked_only_by_predictive_gate_and_import_entry_ids": [
+      "m_csa:127",
+      "m_csa:281"
+    ],
+    "sidecar_candidate_complete_source_free_rows": 78,
+    "sidecar_candidate_current_primary_positive_rows": 0,
+    "sidecar_candidate_current_primary_retain_recall": 1.0,
+    "sidecar_candidate_current_primary_rows": 34,
+    "sidecar_candidate_current_retained_oos_abstain_recall": 0.075,
+    "sidecar_candidate_current_retained_oos_positive_entry_ids": [
+      "m_csa:104",
+      "m_csa:119",
+      "m_csa:464"
+    ],
+    "sidecar_candidate_current_retained_oos_positive_rows": 3,
+    "sidecar_candidate_current_retained_oos_rows": 40,
+    "sidecar_candidate_current_split_rows": 74,
+    "sidecar_candidate_explicit_train_cal_split_rows": 76,
+    "sidecar_candidate_incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+    "sidecar_candidate_manifest_or_explicit_train_cal_contained_rows": 78,
+    "sidecar_candidate_rows": 78,
+    "sidecar_candidate_rows_with_complete_feature_schema": 78,
+    "sidecar_candidate_selected_fe_s_support_missing_explicit_split_entry_ids": [
+      "m_csa:127",
+      "m_csa:281"
+    ],
+    "sidecar_candidate_selected_fe_s_support_rows_missing_explicit_split": 2,
+    "sidecar_candidate_support_rows": 4,
+    "sidecar_candidate_support_rows_missing_explicit_split": 2,
+    "sidecar_candidate_support_rows_missing_explicit_split_entry_ids": [
+      "m_csa:127",
+      "m_csa:281"
+    ],
+    "sidecar_candidate_union_or_gate_oos_abstain_recall": 0.506667
+  },
+  "created_utc": "2026-06-05T16:47:53Z",
+  "decision": {
+    "apply_or_promote_now": false,
+    "approved_sidecar_only_current_split_direct_electron_flow_measurable_now": false,
+    "approved_sidecar_only_route_failed_on_missing_current_split_component_rows": true,
+    "approved_train_cal_sidecar_still_missing_direct_component_fields": true,
+    "deployable_now": false,
+    "direct_source_free_electron_flow_adds_operating_point_value_beyond_current_geometry_fold_in_sidecar_candidate": true,
+    "measured_readout_available": true,
+    "negative": false,
+    "operating_point_failure": false,
+    "protected_import_or_split_steps_required": true,
+    "remaining_gap": "approved_train_cal_feature_sidecar_direct_component_field_import; predictive_use_allowed_true_for_selected_fe_s_support_rows:m_csa:127,m_csa:281; explicit_train_cal_split_assignment_for_selected_fe_s_support_rows:m_csa:127,m_csa:281; approved_sidecar_rows_for_current_positive_direct_electron_flow_rows:m_csa:104,m_csa:119,m_csa:464",
+    "research_only": true,
+    "selected_fe_s_support_still_missing_explicit_train_cal_split_assignment": true,
+    "selected_fe_s_support_still_missing_predictive_approval_import": true,
+    "sidecar_candidate_adds_incremental_oos_abstention": true,
+    "sidecar_candidate_closes_direct_component_field_gap": true,
+    "sidecar_candidate_has_all_explicit_train_cal_splits": false,
+    "sidecar_candidate_manifest_or_explicit_train_cal_contained": true,
+    "sidecar_candidate_preserves_primary_retention": true,
+    "sidecar_candidate_shape_complete": true,
+    "smallest_next_experiment": "Perform the protected approval/import step for the candidate direct source-free component fields, set predictive_use_allowed=true for m_csa:127 and m_csa:281, assign those Fe-S support rows to explicit train/cal splits, then rerun this fixed sidecar candidate gate without threshold changes or heldout use.",
+    "train_cal_disciplined_candidate_readout_available": true,
+    "train_cal_supported_now": false
+  },
+  "guardrails": {
+    "accessions_or_pdb_ids_used_as_predictive_features": false,
+    "candidate_feature_rows_imported_or_promoted": false,
+    "ec_rhea_ids_labels_source_ids_target_names_used_as_predictive_features": false,
+    "entry_ids_used_only_for_tranche_and_missing_evidence_accounting": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_scored_by_this_artifact": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_feature_values": false,
+    "measured_readout_first": true,
+    "mechanism_text_or_source_ids_used_as_predictive_features": false,
+    "model_weights_fit_or_refit": false,
+    "pdb_ids_or_coordinate_paths_used_as_predictive_features": false,
+    "predictive_use_allowed_modified": false,
+    "production_thresholds_changed": false,
+    "source_free_electron_flow_fields_materialized_by_this_artifact": true,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "The remaining work is protected approval/import plus explicit split assignment, not another operating-point search route.",
+    "result": "The sidecar-shaped candidate keeps the direct source-free electron-flow gate measurable on 74/74 current-split rows, preserves primary retention, and catches 3 current-retained OOS rows."
+  },
+  "measured_readout": {
+    "approved_sidecar_only_current_split_attempt": {
+      "current_split_direct_component_complete_entry_ids": [],
+      "current_split_direct_component_fields_required": [
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+      ],
+      "current_split_entry_ids_present": [
+        "m_csa:102"
+      ],
+      "failure_reason": "approved train/cal sidecar lacks the 74 current-split direct PQQ/NAD/Fe-S component rows",
+      "measurable_now": false
+    },
+    "approved_train_cal_sidecar_gap": {
+      "approved_sidecar_rows": 43,
+      "current_positive_entry_ids_present": [],
+      "direct_component_fields_missing": [
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+      ],
+      "direct_component_fields_present": [],
+      "support_entry_ids_present": [
+        "m_csa:59",
+        "m_csa:256"
+      ]
+    },
+    "fixed_operating_point": {
+      "adds_incremental_oos_abstention": true,
+      "baseline_current_geometry_fold_abstained_oos_rows": 35,
+      "complete_rows": 74,
+      "current_geometry_fold_oos_rows": 75,
+      "feature_fields": [
+        "has_electron_transfer_event",
+        "electron_transfer_count",
+        "has_source_free_pqq_donor_acceptor_contact",
+        "source_free_pqq_donor_acceptor_contact_count",
+        "has_source_free_nad_family_donor_acceptor_distance",
+        "source_free_nad_family_donor_acceptor_distance_count",
+        "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance",
+        "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count"
+      ],
+      "gate_id": "fixed_binary_train_cal_sidecar_candidate_pqq_nad_fe_s_direct_electron_flow",
+      "gate_rule": "Candidate sidecar gate: abstain on complete direct source-free PQQ, NAD-family, or Fe-S/iron component fields for the 74-row current split. The rows and gate are inherited from the measured candidate bundle; this readout only audits sidecar shape and train/cal discipline and does not approve, import, or tune.",
+      "incomplete_rows": 0,
+      "incremental_oos_abstain_recall_vs_current_geometry_fold": 0.04,
+      "operating_point_measurable_now": true,
+      "preserves_primary_retention": true,
+      "primary_positive_entry_ids": [],
+      "primary_positive_rows": 0,
+      "primary_retain_recall_if_abstain_positive": 1.0,
+      "primary_rows": 34,
+      "retained_oos_abstain_recall_if_abstain_positive": 0.075,
+      "retained_oos_positive_entry_ids": [
+        "m_csa:104",
+        "m_csa:119",
+        "m_csa:464"
+      ],
+      "retained_oos_positive_rows": 3,
+      "retained_oos_rows": 40,
+      "rows": 74,
+      "union_or_gate_oos_abstain_recall": 0.506667,
+      "union_or_gate_oos_abstained_rows": 38
+    },
+    "protected_promotion_preflight": {
+      "candidate_bundle_remaining_gap": "approved train/cal sidecar lacks direct source-free PQQ/NAD/Fe-S component fields; selected Fe-S support rows need predictive_use_allowed=true plus approved sidecar rows: m_csa:127, m_csa:281; selected Fe-S support rows need explicit train/cal split assignment: m_csa:127, m_csa:281; current positive direct electron-flow rows are not present in the approved sidecar: m_csa:104, m_csa:119, m_csa:464",
+      "candidate_bundle_smallest_next_experiment": "Approve/import the candidate direct component fields into the train/cal feature sidecar, set predictive_use_allowed=true for m_csa:127 and m_csa:281, and assign those Fe-S support rows to an explicit train/cal split before rerunning this fixed bundle.",
+      "protected_blockers": [
+        "approved_train_cal_feature_sidecar_direct_component_field_import",
+        "predictive_use_allowed_true_for_selected_fe_s_support_rows:m_csa:127,m_csa:281",
+        "explicit_train_cal_split_assignment_for_selected_fe_s_support_rows:m_csa:127,m_csa:281",
+        "approved_sidecar_rows_for_current_positive_direct_electron_flow_rows:m_csa:104,m_csa:119,m_csa:464"
+      ]
+    },
+    "split_and_sidecar_discipline": {
+      "explicit_train_cal_split_entry_ids": [
+        "m_csa:27",
+        "m_csa:35",
+        "m_csa:36",
+        "m_csa:38",
+        "m_csa:39",
+        "m_csa:41",
+        "m_csa:52",
+        "m_csa:54",
+        "m_csa:59",
+        "m_csa:61",
+        "m_csa:65",
+        "m_csa:82",
+        "m_csa:87",
+        "m_csa:102",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:119",
+        "m_csa:126",
+        "m_csa:136",
+        "m_csa:160",
+        "m_csa:165",
+        "m_csa:173",
+        "m_csa:216",
+        "m_csa:233",
+        "m_csa:243",
+        "m_csa:244",
+        "m_csa:256",
+        "m_csa:271",
+        "m_csa:277",
+        "m_csa:284",
+        "m_csa:285",
+        "m_csa:295",
+        "m_csa:299",
+        "m_csa:305",
+        "m_csa:319",
+        "m_csa:320",
+        "m_csa:325",
+        "m_csa:338",
+        "m_csa:368",
+        "m_csa:387",
+        "m_csa:390",
+        "m_csa:399",
+        "m_csa:410",
+        "m_csa:415",
+        "m_csa:422",
+        "m_csa:462",
+        "m_csa:464",
+        "m_csa:471",
+        "m_csa:473",
+        "m_csa:482",
+        "m_csa:483",
+        "m_csa:490",
+        "m_csa:499",
+        "m_csa:503",
+        "m_csa:531",
+        "m_csa:537",
+        "m_csa:542",
+        "m_csa:547",
+        "m_csa:556",
+        "m_csa:565",
+        "m_csa:622",
+        "m_csa:630",
+        "m_csa:646",
+        "m_csa:694",
+        "m_csa:754",
+        "m_csa:800",
+        "m_csa:837",
+        "m_csa:865",
+        "m_csa:879",
+        "m_csa:900",
+        "m_csa:912",
+        "m_csa:922",
+        "m_csa:933",
+        "m_csa:973",
+        "m_csa:988",
+        "uniprot:Q3LXA3"
+      ],
+      "forbidden_feature_key_hits": [],
+      "manifest_or_explicit_train_cal_contained_entry_ids": [
+        "m_csa:27",
+        "m_csa:35",
+        "m_csa:36",
+        "m_csa:38",
+        "m_csa:39",
+        "m_csa:41",
+        "m_csa:52",
+        "m_csa:54",
+        "m_csa:59",
+        "m_csa:61",
+        "m_csa:65",
+        "m_csa:82",
+        "m_csa:87",
+        "m_csa:102",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:119",
+        "m_csa:126",
+        "m_csa:127",
+        "m_csa:136",
+        "m_csa:160",
+        "m_csa:165",
+        "m_csa:173",
+        "m_csa:216",
+        "m_csa:233",
+        "m_csa:243",
+        "m_csa:244",
+        "m_csa:256",
+        "m_csa:271",
+        "m_csa:277",
+        "m_csa:281",
+        "m_csa:284",
+        "m_csa:285",
+        "m_csa:295",
+        "m_csa:299",
+        "m_csa:305",
+        "m_csa:319",
+        "m_csa:320",
+        "m_csa:325",
+        "m_csa:338",
+        "m_csa:368",
+        "m_csa:387",
+        "m_csa:390",
+        "m_csa:399",
+        "m_csa:410",
+        "m_csa:415",
+        "m_csa:422",
+        "m_csa:462",
+        "m_csa:464",
+        "m_csa:471",
+        "m_csa:473",
+        "m_csa:482",
+        "m_csa:483",
+        "m_csa:490",
+        "m_csa:499",
+        "m_csa:503",
+        "m_csa:531",
+        "m_csa:537",
+        "m_csa:542",
+        "m_csa:547",
+        "m_csa:556",
+        "m_csa:565",
+        "m_csa:622",
+        "m_csa:630",
+        "m_csa:646",
+        "m_csa:694",
+        "m_csa:754",
+        "m_csa:800",
+        "m_csa:837",
+        "m_csa:865",
+        "m_csa:879",
+        "m_csa:900",
+        "m_csa:912",
+        "m_csa:922",
+        "m_csa:933",
+        "m_csa:973",
+        "m_csa:988",
+        "uniprot:Q3LXA3"
+      ],
+      "rows_with_complete_feature_schema_entry_ids": [
+        "m_csa:27",
+        "m_csa:35",
+        "m_csa:36",
+        "m_csa:38",
+        "m_csa:39",
+        "m_csa:41",
+        "m_csa:52",
+        "m_csa:54",
+        "m_csa:59",
+        "m_csa:61",
+        "m_csa:65",
+        "m_csa:82",
+        "m_csa:87",
+        "m_csa:102",
+        "m_csa:104",
+        "m_csa:106",
+        "m_csa:119",
+        "m_csa:126",
+        "m_csa:127",
+        "m_csa:136",
+        "m_csa:160",
+        "m_csa:165",
+        "m_csa:173",
+        "m_csa:216",
+        "m_csa:233",
+        "m_csa:243",
+        "m_csa:244",
+        "m_csa:256",
+        "m_csa:271",
+        "m_csa:277",
+        "m_csa:281",
+        "m_csa:284",
+        "m_csa:285",
+        "m_csa:295",
+        "m_csa:299",
+        "m_csa:305",
+        "m_csa:319",
+        "m_csa:320",
+        "m_csa:325",
+        "m_csa:338",
+        "m_csa:368",
+        "m_csa:387",
+        "m_csa:390",
+        "m_csa:399",
+        "m_csa:410",
+        "m_csa:415",
+        "m_csa:422",
+        "m_csa:462",
+        "m_csa:464",
+        "m_csa:471",
+        "m_csa:473",
+        "m_csa:482",
+        "m_csa:483",
+        "m_csa:490",
+        "m_csa:499",
+        "m_csa:503",
+        "m_csa:531",
+        "m_csa:537",
+        "m_csa:542",
+        "m_csa:547",
+        "m_csa:556",
+        "m_csa:565",
+        "m_csa:622",
+        "m_csa:630",
+        "m_csa:646",
+        "m_csa:694",
+        "m_csa:754",
+        "m_csa:800",
+        "m_csa:837",
+        "m_csa:865",
+        "m_csa:879",
+        "m_csa:900",
+        "m_csa:912",
+        "m_csa:922",
+        "m_csa:933",
+        "m_csa:973",
+        "m_csa:988",
+        "uniprot:Q3LXA3"
+      ],
+      "selected_fe_s_support_missing_explicit_split_entry_ids": [
+        "m_csa:127",
+        "m_csa:281"
+      ],
+      "support_rows_missing_explicit_split_entry_ids": [
+        "m_csa:127",
+        "m_csa:281"
+      ]
+    }
+  },
+  "result_class": "research_only_train_cal_sidecar_candidate_measured_pending_protected_import",
+  "schema_version": "lever2_mechanism_feature_incremental_readout.v0.source_free_electron_flow_train_cal_sidecar_candidate_readout.v0",
+  "scope": "Lever 2 measured candidate-sidecar readout for direct source-free electron-flow fields. It remaps the candidate train/cal bundle into sidecar-shaped row-specific event features, audits explicit train/cal split coverage and manifest containment, and reruns the fixed operating point. It does not edit approved sidecars, imports, labels, registries, ontologies, thresholds, model weights, or heldout splits.",
+  "source_artifacts": {
+    "candidate_train_cal_bundle_readout": {
+      "exists": true,
+      "path": "artifacts/v3_lever2_source_free_electron_flow_candidate_train_cal_bundle_readout_current702_20260605.json",
+      "sha256": "6df52dd44237e0be468ed244de6ee8eb58d1f27a53159c1ffc7d7ab3d285be6f"
+    },
+    "train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    }
+  },
+  "status": "lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout_research_only_train_cal_sidecar_candidate_measured_pending_protected_import"
+}

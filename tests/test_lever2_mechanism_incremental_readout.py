@@ -33,6 +33,7 @@ from catalytic_earth.lever2_mechanism_incremental_readout import (
     build_lever2_source_free_electron_flow_relaxed_non_pqq_donor_acceptor_feature_sidecar_readout,
     build_lever2_source_free_electron_flow_split_alignment_readout,
     build_lever2_source_free_electron_flow_smoke_tranche_evidence_scan,
+    build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout,
     build_lever2_source_free_mechanism_axis_acquisition_ranking_readout,
     build_lever2_source_free_partial_surface_current_split_portability_readout,
 )
@@ -5796,6 +5797,221 @@ class Lever2MechanismIncrementalReadoutTests(unittest.TestCase):
             ]
         )
         self.assertFalse(readout["decision"]["support_contract_gap_only"])
+
+    def test_electron_flow_train_cal_sidecar_candidate_readout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_path = root / "candidate.json"
+            train_cal_sidecar_path = root / "train_cal_sidecar.json"
+
+            def features(
+                *,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                return {
+                    "has_electron_transfer_event": bool(pqq or nad or fe_s),
+                    "electron_transfer_count": pqq + nad + fe_s,
+                    "has_source_free_pqq_donor_acceptor_contact": pqq > 0,
+                    "source_free_pqq_donor_acceptor_contact_count": pqq,
+                    "has_source_free_nad_family_donor_acceptor_distance": nad > 0,
+                    "source_free_nad_family_donor_acceptor_distance_count": nad,
+                    "has_source_free_iron_sulfur_or_iron_donor_acceptor_distance": fe_s > 0,
+                    "source_free_iron_sulfur_or_iron_donor_acceptor_distance_count": fe_s,
+                }
+
+            def row(
+                entry_id: str,
+                role: str,
+                bundle_role: str,
+                *,
+                split: str = "calibration",
+                candidate_split: str | None = None,
+                pqq: int = 0,
+                nad: int = 0,
+                fe_s: int = 0,
+            ) -> dict[str, object]:
+                result = {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": split,
+                    "current_split_role": role,
+                    "candidate_bundle_role": bundle_role,
+                    "source_free_electron_flow_field_complete": True,
+                    "row_specific_event_features": features(
+                        pqq=pqq, nad=nad, fe_s=fe_s
+                    ),
+                }
+                if candidate_split is not None:
+                    result["candidate_split_assignment"] = candidate_split
+                return result
+
+            candidate_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "candidate_bundle_rows": 7,
+                            "selected_fe_s_support_blocked_only_by_predictive_gate_and_import_entry_ids": [
+                                "s_fe"
+                            ],
+                        },
+                        "decision": {
+                            "remaining_gap": "protected import gap",
+                            "smallest_next_experiment": "approve/import",
+                        },
+                        "feature_rows": [
+                            row(
+                                "p1",
+                                "current_primary_retention_gate",
+                                "current_split_operating_point_row",
+                            ),
+                            row(
+                                "p2",
+                                "current_primary_retention_gate",
+                                "current_split_operating_point_row",
+                            ),
+                            row(
+                                "o1",
+                                "current_retained_oos",
+                                "current_split_operating_point_row",
+                                pqq=1,
+                            ),
+                            row(
+                                "o2",
+                                "current_retained_oos",
+                                "current_split_operating_point_row",
+                                nad=1,
+                            ),
+                            row(
+                                "o3",
+                                "current_retained_oos",
+                                "current_split_operating_point_row",
+                                fe_s=1,
+                            ),
+                            row(
+                                "s_nad",
+                                "projection_calibration",
+                                "projection_backed_pqq_nad_support_row",
+                                nad=1,
+                            ),
+                            row(
+                                "s_fe",
+                                "candidate_fe_s_support_projection",
+                                "selected_fe_s_support_row",
+                                split="research_only_projection_tranche",
+                                candidate_split="in_distribution",
+                                fe_s=1,
+                            ),
+                        ],
+                        "measured_readout": {
+                            "candidate_current_split_operating_point": {
+                                "fixed_gate_readout": {
+                                    "current_geometry_fold_oos_rows": 5
+                                }
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "s_nad",
+                                "row_specific_event_features": {
+                                    "has_electron_transfer_event": True,
+                                    "electron_transfer_count": 1,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_lever2_source_free_electron_flow_train_cal_sidecar_candidate_readout(
+                candidate_train_cal_bundle_readout_path=candidate_path,
+                train_cal_feature_sidecar_path=train_cal_sidecar_path,
+                artifact_id="test_train_cal_sidecar_candidate",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "test_train_cal_sidecar_candidate"
+        )
+        self.assertEqual(
+            readout["result_class"],
+            "research_only_train_cal_sidecar_candidate_measured_pending_protected_import",
+        )
+        self.assertEqual(readout["counts"]["sidecar_candidate_rows"], 7)
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_current_split_rows"], 5
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_complete_source_free_rows"], 7
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_explicit_train_cal_split_rows"],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_manifest_or_explicit_train_cal_contained_rows"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_selected_fe_s_support_missing_explicit_split_entry_ids"
+            ],
+            ["s_fe"],
+        )
+        self.assertEqual(
+            readout["counts"]["sidecar_candidate_current_primary_positive_rows"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_current_retained_oos_positive_entry_ids"
+            ],
+            ["o1", "o2", "o3"],
+        )
+        self.assertEqual(
+            readout["counts"][
+                "sidecar_candidate_incremental_oos_abstain_recall_vs_current_geometry_fold"
+            ],
+            0.6,
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_direct_component_fields_present"],
+            [],
+        )
+        self.assertEqual(
+            readout["counts"]["approved_sidecar_current_split_rows_present"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "approved_sidecar_current_split_direct_component_complete_rows"
+            ],
+            0,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "train_cal_disciplined_candidate_readout_available"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "approved_sidecar_only_current_split_direct_electron_flow_measurable_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["sidecar_candidate_has_all_explicit_train_cal_splits"]
+        )
+        self.assertFalse(readout["decision"]["deployable_now"])
+        self.assertEqual(readout["counts"]["critical_violation_total"], 0)
 
     def test_source_free_mechanism_axis_acquisition_ranking_prefers_electron_flow(
         self,
