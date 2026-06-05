@@ -10045,6 +10045,222 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
         self.assertFalse(audit["guardrails"]["threshold_values_changed"])
 
+    def test_fold_augmented_lever3_deployment_contract_readiness_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_contract_"
+                "readiness_audit_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_contract_readiness_audit_passed",
+        )
+        self.assertEqual(audit["readiness_violations"], [])
+        self.assertTrue(audit["decision"]["deployment_contract_ready"])
+        self.assertTrue(audit["decision"]["safe_abstention_route_remains_current"])
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(audit["counts"]["application_rows"], 21)
+        self.assertEqual(
+            audit["counts"]["application_rows_abstain_or_route_novel_oos"], 21
+        )
+        self.assertEqual(audit["counts"]["application_rows_with_stage_source"], 21)
+        self.assertEqual(audit["counts"]["route_stages_with_rows"], 8)
+        self.assertEqual(audit["counts"]["source_records_checked"], 2)
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(
+            audit["counts"]["unsafe_non_abstain_residual_action_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["retained_residual_rows_after_all_counteraxes"], 0
+        )
+        self.assertEqual(audit["counts"]["residual_rows_without_final_route"], 0)
+        self.assertEqual(audit["counts"]["calibration_in_scope_retained"], 31)
+        self.assertEqual(audit["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(audit["counts"]["train_cal_oos_abstained_or_routed"], 167)
+        self.assertEqual(audit["counts"]["train_cal_oos_rows"], 204)
+        self.assertEqual(audit["operating_point"]["baseline_threshold"], 0.44155)
+        self.assertEqual(audit["operating_point"]["accepted_threshold"], 0.44155)
+        self.assertTrue(
+            audit["readiness_checks"]["accepted_threshold_locked_to_0_44155"]
+        )
+        self.assertTrue(audit["readiness_checks"]["threshold_selected_on_train_cal_only"])
+        self.assertTrue(audit["readiness_checks"]["application_source_hashes_current"])
+        self.assertTrue(
+            audit["readiness_checks"]["all_hard_residual_rows_abstain_or_route"]
+        )
+        self.assertTrue(audit["readiness_checks"]["no_forced_mechanism_labels"])
+        self.assertTrue(
+            audit["readiness_checks"]["fixed_threshold_scoring_fail_closed"]
+        )
+        self.assertTrue(
+            audit["readiness_checks"][
+                "no_heldout_metadata_or_forbidden_feature_shortcuts"
+            ]
+        )
+        self.assertEqual(
+            {
+                row["route_stage"]: row["rows"]
+                for row in audit["route_stage_rows"]
+            },
+            {
+                "accepted_cofactor_or_same_family_bandpass": 10,
+                "channel_margin_counteraxis": 2,
+                "descriptor_generalization_counteraxis": 1,
+                "fold_cofactor_pressure_counteraxis": 1,
+                "fold_tm_bandpass_counteraxis": 4,
+                "geometry_mismatch_counteraxis": 1,
+                "pairwise_descriptor_counteraxis": 1,
+                "pocket_chemistry_counteraxis": 1,
+            },
+        )
+        self.assertTrue(audit["guardrails"]["measured_readout"])
+        self.assertFalse(audit["guardrails"]["blocker_packet"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(audit["guardrails"]["threshold_values_changed"])
+
+    def test_fold_augmented_lever3_deployment_contract_lineage_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_contract_"
+                "lineage_audit_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_contract_lineage_audit_passed",
+        )
+        self.assertEqual(audit["lineage_violations"], [])
+        self.assertTrue(
+            audit["decision"]["deployment_contract_lineage_clean"]
+        )
+        self.assertTrue(audit["decision"]["deployment_contract_ready"])
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(audit["counts"]["lineage_artifacts_checked"], 9)
+        self.assertEqual(
+            audit["counts"]["lineage_artifacts_with_guardrail_violations"],
+            0,
+        )
+        self.assertEqual(audit["counts"]["source_records_checked"], 43)
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 43)
+        self.assertEqual(audit["counts"]["load_error_count"], 0)
+        self.assertEqual(audit["counts"]["application_rows"], 21)
+        self.assertEqual(
+            audit["counts"]["application_rows_abstain_or_route_novel_oos"],
+            21,
+        )
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(
+            audit["counts"]["unsafe_non_abstain_residual_action_rows"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["retained_residual_rows_after_all_counteraxes"], 0
+        )
+        self.assertEqual(audit["artifact_guardrail_violation_rows"], [])
+        self.assertTrue(audit["lineage_checks"]["contract_readiness_audit_passed"])
+        self.assertTrue(audit["lineage_checks"]["lineage_source_hashes_current"])
+        self.assertTrue(
+            audit["lineage_checks"]["lineage_artifacts_no_blocker_packets"]
+        )
+        self.assertTrue(
+            audit["lineage_checks"][
+                "lineage_artifacts_no_heldout_or_metadata_shortcuts"
+            ]
+        )
+        self.assertTrue(
+            audit["lineage_checks"][
+                "lineage_artifacts_no_threshold_changes_or_tuning"
+            ]
+        )
+        self.assertEqual(
+            sorted({row["depth"] for row in audit["artifact_guardrail_rows"]}),
+            [0, 1, 2, 3],
+        )
+        self.assertTrue(audit["guardrails"]["measured_readout"])
+        self.assertFalse(audit["guardrails"]["blocker_packet"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(audit["guardrails"]["threshold_values_changed"])
+
+    def test_fold_augmented_lever3_deployment_contract_reproducibility_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_contract_reproducibility_audit_passed",
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+        self.assertTrue(audit["decision"]["deployment_contract_reproducible"])
+        self.assertTrue(audit["decision"]["deployment_contract_ready"])
+        self.assertFalse(
+            audit["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertTrue(
+            audit["readiness_artifact"]["normalized_rebuild_matches_stored"]
+        )
+        self.assertTrue(
+            audit["lineage_artifact"]["normalized_rebuild_matches_stored"]
+        )
+        self.assertEqual(audit["counts"]["readiness_source_records_checked"], 1)
+        self.assertEqual(
+            audit["counts"]["readiness_source_records_hash_current"], 1
+        )
+        self.assertEqual(audit["counts"]["lineage_source_records_checked"], 1)
+        self.assertEqual(audit["counts"]["lineage_source_records_hash_current"], 1)
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertEqual(audit["counts"]["application_rows"], 21)
+        self.assertEqual(
+            audit["counts"]["application_rows_abstain_or_route_novel_oos"],
+            21,
+        )
+        self.assertEqual(audit["counts"]["forced_mechanism_label_rows"], 0)
+        self.assertEqual(
+            audit["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertTrue(
+            audit["reproducibility_checks"][
+                "readiness_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertTrue(
+            audit["reproducibility_checks"][
+                "lineage_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertTrue(
+            audit["reproducibility_checks"][
+                "operating_point_metrics_match_between_contract_artifacts"
+            ]
+        )
+        self.assertTrue(audit["guardrails"]["measured_readout"])
+        self.assertFalse(audit["guardrails"]["blocker_packet"])
+        self.assertFalse(audit["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(audit["guardrails"]["threshold_values_changed"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -10193,6 +10409,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_operating_point_application_"
                 "audit_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_contract_"
+                "readiness_audit_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_contract_"
+                "lineage_audit_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_current702_20260605.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

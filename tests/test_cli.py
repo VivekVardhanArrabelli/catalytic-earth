@@ -921,6 +921,88 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_deployment_contract_readiness_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-contract-"
+                "readiness-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+                "readiness_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "operating_point_application_audit",
+            args.operating_point_application_audit,
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_contract_lineage_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-contract-"
+                "lineage-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+                "lineage_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.deployment_contract_readiness_audit,
+        )
+        self.assertIn(
+            "deployment_contract_lineage_audit",
+            args.report,
+        )
+
+    def test_lever3_deployment_contract_reproducibility_audit_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-deployment-contract-"
+                "reproducibility-audit"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "deployment_contract_readiness_audit",
+            args.deployment_contract_readiness_audit,
+        )
+        self.assertIn(
+            "deployment_contract_lineage_audit",
+            args.deployment_contract_lineage_audit,
+        )
+        self.assertIn(
+            "deployment_contract_reproducibility_audit",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

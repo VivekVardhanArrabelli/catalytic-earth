@@ -384,6 +384,15 @@ FOLD_AUGMENTED_LEVER3_CLOSURE_REPRODUCIBILITY_AUDIT_ID = (
 FOLD_AUGMENTED_LEVER3_OPERATING_POINT_APPLICATION_AUDIT_ID = (
     "v3_fold_augmented_lever3_operating_point_application_audit_current702_20260605"
 )
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_READINESS_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_LINEAGE_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605"
+)
+FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_REPRODUCIBILITY_AUDIT_ID = (
+    "v3_fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -52873,6 +52882,1410 @@ def write_fold_augmented_lever3_operating_point_application_audit(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_operating_point_application_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_contract_readiness_audit(
+    *,
+    operating_point_application_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_READINESS_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    application = _read_json(operating_point_application_audit_path)
+    counts = application.get("counts") or {}
+    decision = application.get("decision") or {}
+    guardrails = application.get("guardrails") or {}
+    operating = application.get("operating_point") or {}
+    application_checks = application.get("application_checks") or {}
+    application_rows = [
+        row
+        for row in application.get("application_rows", []) or []
+        if isinstance(row, dict)
+    ]
+    source_hash_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=application.get("artifact_id"),
+        source_artifacts=application.get("source_artifacts") or {},
+    )
+
+    route_stage_counts = Counter(
+        str(row.get("final_lever3_route_stage") or "")
+        for row in application_rows
+    )
+    route_stage_rows = [
+        {
+            "route_stage": route_stage,
+            "rows": count,
+            "entry_ids": sorted(
+                [
+                    str(row.get("entry_id"))
+                    for row in application_rows
+                    if str(row.get("final_lever3_route_stage") or "")
+                    == route_stage
+                    and row.get("entry_id")
+                ],
+                key=_entry_id_sort_key,
+            ),
+        }
+        for route_stage, count in sorted(route_stage_counts.items())
+        if route_stage
+    ]
+    route_stage_source_rows = []
+    for row in application_rows:
+        route_stage_source_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "route_stage": row.get("final_lever3_route_stage"),
+                "operating_stage": row.get("operating_stage"),
+                "source_artifact": row.get("source_artifact"),
+                "action": row.get("deployment_action_now"),
+                "force_mechanism_label_now": bool(
+                    row.get("force_mechanism_label_now")
+                ),
+            }
+        )
+
+    calibration_rows = int(counts.get("calibration_in_scope_rows") or 0)
+    calibration_retained = int(counts.get("calibration_in_scope_retained") or 0)
+    train_cal_oos_rows = int(counts.get("train_cal_oos_rows") or 0)
+    train_cal_oos_abstained = int(
+        counts.get("train_cal_oos_abstained_or_routed") or 0
+    )
+    application_row_count = int(counts.get("application_rows") or 0)
+    application_rows_abstain = int(
+        counts.get("application_rows_abstain_or_route_novel_oos") or 0
+    )
+    application_rows_with_stage_source = int(
+        counts.get("application_rows_with_stage_source") or 0
+    )
+    threshold_value = operating.get("baseline_threshold")
+    try:
+        accepted_threshold_locked = (
+            threshold_value is not None
+            and abs(float(threshold_value) - 0.44155) < 1e-12
+        )
+    except (TypeError, ValueError):
+        accepted_threshold_locked = False
+    exact_missing_evidence = (
+        decision.get("exact_missing_evidence_for_scoring_closure") or []
+    )
+
+    readiness_checks = {
+        "application_audit_passed": (
+            application.get("status")
+            == "fold_augmented_lever3_operating_point_application_audit_passed"
+            and not application.get("application_violations")
+            and bool(decision.get("operating_point_application_contract_ready"))
+        ),
+        "application_checks_all_pass": (
+            bool(application_checks) and all(application_checks.values())
+        ),
+        "application_source_hashes_current": (
+            bool(source_hash_rows)
+            and all(row["source_hash_current"] for row in source_hash_rows)
+        ),
+        "hard_residual_rows_present": application_row_count > 0,
+        "all_hard_residual_rows_abstain_or_route": (
+            application_row_count > 0
+            and application_rows_abstain == application_row_count
+        ),
+        "all_hard_residual_rows_have_stage_source": (
+            application_row_count > 0
+            and application_rows_with_stage_source == application_row_count
+        ),
+        "route_stage_counts_match_application_audit": (
+            int(counts.get("application_stage_count_mismatches") or 0) == 0
+        ),
+        "no_forced_mechanism_labels": (
+            int(counts.get("forced_mechanism_label_rows") or 0) == 0
+        ),
+        "no_unsafe_non_abstain_actions": (
+            int(counts.get("unsafe_non_abstain_residual_action_rows") or 0) == 0
+        ),
+        "application_rows_not_used_for_rule_selection": (
+            int(counts.get("application_rows_used_for_rule_selection") or 0)
+            == 0
+        ),
+        "zero_retained_residual_rows": (
+            counts.get("retained_residual_rows_after_all_counteraxes") is not None
+            and int(counts.get("retained_residual_rows_after_all_counteraxes"))
+            == 0
+        ),
+        "zero_residual_rows_without_final_route": (
+            counts.get("residual_rows_without_final_route") is not None
+            and int(counts.get("residual_rows_without_final_route")) == 0
+        ),
+        "true_in_scope_retention_above_90_percent": (
+            calibration_rows > 0
+            and (calibration_retained / calibration_rows) >= 0.9
+        ),
+        "train_cal_oos_operating_point_measured": (
+            train_cal_oos_rows > 0 and train_cal_oos_abstained > 0
+        ),
+        "accepted_threshold_locked_to_0_44155": accepted_threshold_locked,
+        "threshold_selected_on_train_cal_only": (
+            operating.get("threshold_selection_source") == "train_calibration_only"
+        ),
+        "threshold_not_changed": (
+            not bool(operating.get("threshold_or_value_changed_now"))
+            and not bool(guardrails.get("threshold_values_changed"))
+            and not bool(guardrails.get("production_thresholds_changed"))
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(decision.get("fixed_threshold_scoring_closure_available_now"))
+            and not bool(
+                decision.get(
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure"
+                )
+            )
+        ),
+        "safe_abstention_evidence_sufficient": bool(
+            decision.get(
+                "predicted_structure_source_free_evidence_enough_for_safe_abstention"
+            )
+        ),
+        "exact_missing_scoring_evidence_named": (
+            bool(exact_missing_evidence)
+            and any("P07658" in str(item) for item in exact_missing_evidence)
+        ),
+        "measured_non_blocker_artifact": (
+            bool(guardrails.get("measured_readout"))
+            and not bool(guardrails.get("blocker_packet"))
+        ),
+        "no_new_rule_or_threshold_selection": (
+            not bool(guardrails.get("new_rule_selected_now"))
+            and not bool(guardrails.get("threshold_selected_or_tuned_now"))
+        ),
+        "no_row_scoring_provider_or_coordinate_changes": (
+            not bool(guardrails.get("candidate_rows_scored_now"))
+            and not bool(guardrails.get("provider_calls_performed"))
+            and not bool(guardrails.get("coordinates_generated_now"))
+            and not bool(guardrails.get("coordinates_staged_now"))
+        ),
+        "no_heldout_metadata_or_forbidden_feature_shortcuts": (
+            not bool(guardrails.get("heldout_rows_used_for_training_or_threshold_tuning"))
+            and not bool(guardrails.get("heldout_rows_used_for_rule_selection"))
+            and not bool(
+                guardrails.get("experimental_pdb_metadata_used_as_deployment_input")
+            )
+            and not bool(
+                guardrails.get(
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features"
+                )
+            )
+        ),
+        "no_label_registry_ontology_import_changes": (
+            not bool(guardrails.get("labels_registries_ontologies_changed"))
+            and not bool(guardrails.get("imports_or_promotions_performed"))
+        ),
+    }
+    readiness_violations = sorted(
+        [name for name, passed in readiness_checks.items() if not passed]
+    )
+    readiness_passed = not readiness_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_contract_readiness_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+            if readiness_passed
+            else "fold_augmented_lever3_deployment_contract_readiness_audit_needs_more_work"
+        ),
+        "scope": (
+            "Deployment-contract readiness audit for the current Lever 3 "
+            "abstain/route operating point. It consumes the accepted row-level "
+            "application audit and verifies that the operating-point contract "
+            "is source-current, threshold-locked, row-action complete, "
+            "guardrail-clean, and fail-closed for fixed-threshold scoring."
+        ),
+        "readiness_checks": readiness_checks,
+        "readiness_violations": readiness_violations,
+        "source_hash_audit_rows": source_hash_rows,
+        "route_stage_rows": route_stage_rows,
+        "route_stage_source_rows": route_stage_source_rows,
+        "operating_point": {
+            "route_id": operating.get("route_id"),
+            "baseline_threshold": threshold_value,
+            "accepted_threshold": 0.44155,
+            "threshold_selection_source": operating.get(
+                "threshold_selection_source"
+            ),
+            "threshold_or_value_changed_now": operating.get(
+                "threshold_or_value_changed_now"
+            ),
+            "calibration_in_scope_retained": calibration_retained,
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_retention_fraction": (
+                round(calibration_retained / calibration_rows, 6)
+                if calibration_rows
+                else None
+            ),
+            "train_cal_oos_abstained_or_routed": train_cal_oos_abstained,
+            "train_cal_oos_rows": train_cal_oos_rows,
+            "train_cal_oos_abstention_fraction": (
+                round(train_cal_oos_abstained / train_cal_oos_rows, 6)
+                if train_cal_oos_rows
+                else None
+            ),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "residual_rows_without_final_route": counts.get(
+                "residual_rows_without_final_route"
+            ),
+        },
+        "counts": {
+            "application_rows": application_row_count,
+            "application_rows_abstain_or_route_novel_oos": application_rows_abstain,
+            "application_rows_with_stage_source": application_rows_with_stage_source,
+            "route_stages_with_rows": len(route_stage_rows),
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "forced_mechanism_label_rows": int(
+                counts.get("forced_mechanism_label_rows") or 0
+            ),
+            "unsafe_non_abstain_residual_action_rows": int(
+                counts.get("unsafe_non_abstain_residual_action_rows") or 0
+            ),
+            "application_rows_used_for_rule_selection": int(
+                counts.get("application_rows_used_for_rule_selection") or 0
+            ),
+            "retained_residual_rows_after_all_counteraxes": counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "residual_rows_without_final_route": counts.get(
+                "residual_rows_without_final_route"
+            ),
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_in_scope_retained": calibration_retained,
+            "train_cal_oos_rows": train_cal_oos_rows,
+            "train_cal_oos_abstained_or_routed": train_cal_oos_abstained,
+            "readiness_violation_total": len(readiness_violations),
+        },
+        "decision": {
+            "deployment_contract_ready": readiness_passed,
+            "safe_abstention_route_remains_current": readiness_passed,
+            "zero_residual_retained_transfer_risk_available_now": (
+                counts.get("retained_residual_rows_after_all_counteraxes") is not None
+                and int(counts.get("retained_residual_rows_after_all_counteraxes"))
+                == 0
+            ),
+            "true_in_scope_retention_floor_met": bool(
+                decision.get("true_in_scope_retention_floor_met")
+            ),
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                readiness_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "operator_contract_action": (
+                "abstain_or_route_novel_oos_for_all_hard_confounded_residual_rows"
+            ),
+            "operator_contract_prohibitions": [
+                "do_not_force_mechanism_labels",
+                "do_not_change_threshold_0.44155",
+                "do_not_claim_fixed_threshold_scoring_closure",
+                "do_not_use_heldout_or_experimental_pdb_metadata_shortcuts",
+            ],
+            "exact_missing_evidence_for_scoring_closure": exact_missing_evidence,
+            "next_gate": (
+                "Use this deployment contract as the current Lever 3 "
+                "operating-point readout; fixed-threshold scoring closure "
+                "remains fail-closed pending the separate exact P07658 "
+                "coordinate/provenance route and acceptance preflight."
+                if readiness_passed
+                else (
+                    "Do not use the Lever 3 deployment contract until the "
+                    "listed readiness violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "application_audit_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "operating_point_application_audit": _source_path_record(
+                operating_point_application_audit_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 deployment contract is ready at the operating point."
+                if readiness_passed
+                else "Lever 3 deployment contract needs repair before use."
+            ),
+            "result": (
+                f"{application_rows_abstain}/{application_row_count} hard "
+                "residual rows abstain or route novel/OOS, "
+                f"{calibration_retained}/{calibration_rows} calibration "
+                "in-scope rows are retained, and "
+                f"{train_cal_oos_abstained}/{train_cal_oos_rows} train/cal "
+                "OOS rows abstain or route at threshold 0.44155."
+            ),
+            "next_action": (
+                "Use this as the operator-facing Lever 3 abstain/route "
+                "contract; keep scoring closure fail-closed until the exact "
+                "P07658 coordinate/provenance route exists."
+                if readiness_passed
+                else "Resolve readiness violations before applying the contract."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_contract_readiness_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    operating = audit["operating_point"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Contract Readiness Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Deployment contract ready: {decision['deployment_contract_ready']}",
+        "- Safe abstention route remains current: "
+        f"{decision['safe_abstention_route_remains_current']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Readiness violations: {audit['readiness_violations']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route ID: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        f"- Accepted threshold: {operating['accepted_threshold']}",
+        f"- Threshold selection source: {operating['threshold_selection_source']}",
+        "- Threshold/value changed now: "
+        f"{operating['threshold_or_value_changed_now']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']} "
+        f"({operating['calibration_retention_fraction']})",
+        "- Train/cal OOS abstained or routed: "
+        f"{operating['train_cal_oos_abstained_or_routed']}/"
+        f"{operating['train_cal_oos_rows']} "
+        f"({operating['train_cal_oos_abstention_fraction']})",
+        "- Retained residual rows after all counteraxes: "
+        f"{operating['retained_residual_rows_after_all_counteraxes']}",
+        "",
+        "## Counts",
+        "",
+        "- Application rows abstain/route: "
+        f"{counts['application_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['application_rows']}",
+        "- Application rows with stage source: "
+        f"{counts['application_rows_with_stage_source']}/"
+        f"{counts['application_rows']}",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Route stages with rows: {counts['route_stages_with_rows']}",
+        f"- Forced mechanism-label rows: {counts['forced_mechanism_label_rows']}",
+        "- Unsafe non-abstain residual action rows: "
+        f"{counts['unsafe_non_abstain_residual_action_rows']}",
+        "",
+        "## Readiness Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("readiness_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Route Stages",
+        "",
+        "| route stage | rows | entry ids |",
+        "| --- | ---: | --- |",
+    ]
+    for row in audit.get("route_stage_rows", []):
+        lines.append(
+            f"| {row['route_stage']} | {row['rows']} | "
+            f"{', '.join(row['entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Source Hashes",
+        "",
+        "| source | hash current | path |",
+        "| --- | ---: | --- |",
+    ]
+    for row in audit.get("source_hash_audit_rows", []):
+        lines.append(
+            f"| {row['source_key']} | {row['source_hash_current']} | "
+            f"{row.get('path')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        f"- Operator contract action: {decision['operator_contract_action']}",
+        "- Operator contract prohibitions: "
+        f"{decision['operator_contract_prohibitions']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing application audit only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_contract_readiness_audit(
+    *,
+    operating_point_application_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_READINESS_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_contract_readiness_audit(
+        operating_point_application_audit_path=operating_point_application_audit_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_contract_readiness_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _lever3_lineage_artifact_guardrail_row(
+    *,
+    path: Path,
+    depth: int,
+    artifact: dict[str, Any],
+) -> dict[str, Any]:
+    guardrails = artifact.get("guardrails") or {}
+    artifact_checks = {
+        "measured_readout": bool(guardrails.get("measured_readout")),
+        "not_blocker_packet": not bool(guardrails.get("blocker_packet")),
+        "no_candidate_rows_scored_now": not bool(
+            guardrails.get("candidate_rows_scored_now")
+        ),
+        "no_threshold_values_changed": not bool(
+            guardrails.get("threshold_values_changed")
+        ),
+        "no_production_thresholds_changed": not bool(
+            guardrails.get("production_thresholds_changed")
+        ),
+        "no_threshold_selected_or_tuned_now": not bool(
+            guardrails.get("threshold_selected_or_tuned_now")
+        ),
+        "no_provider_calls_performed": not bool(
+            guardrails.get("provider_calls_performed")
+        ),
+        "no_coordinates_generated_or_staged": (
+            not bool(guardrails.get("coordinates_generated_now"))
+            and not bool(guardrails.get("coordinates_staged_now"))
+        ),
+        "no_heldout_or_metadata_shortcuts": (
+            not bool(guardrails.get("heldout_rows_used_for_training_or_threshold_tuning"))
+            and not bool(guardrails.get("heldout_rows_used_for_rule_selection"))
+            and not bool(
+                guardrails.get("experimental_pdb_metadata_used_as_deployment_input")
+            )
+        ),
+        "no_forbidden_predictive_features": not bool(
+            guardrails.get(
+                "labels_source_ids_target_names_or_mechanism_text_used_as_features"
+            )
+        ),
+        "no_label_registry_ontology_or_import_changes": (
+            not bool(guardrails.get("labels_registries_ontologies_changed"))
+            and not bool(guardrails.get("imports_or_promotions_performed"))
+        ),
+    }
+    return {
+        "artifact_id": artifact.get("artifact_id"),
+        "status": artifact.get("status"),
+        "path": str(path),
+        "depth": depth,
+        "guardrail_checks": artifact_checks,
+        "guardrail_violations": sorted(
+            [name for name, passed in artifact_checks.items() if not passed]
+        ),
+    }
+
+
+def build_fold_augmented_lever3_deployment_contract_lineage_audit(
+    *,
+    deployment_contract_readiness_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_LINEAGE_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    max_depth = 3
+    queue: list[tuple[Path, int]] = [
+        (deployment_contract_readiness_audit_path, 0)
+    ]
+    seen_paths: set[Path] = set()
+    artifact_rows: list[dict[str, Any]] = []
+    source_hash_rows: list[dict[str, Any]] = []
+    load_errors: list[dict[str, Any]] = []
+    root_contract: dict[str, Any] | None = None
+
+    while queue:
+        path, depth = queue.pop(0)
+        if path in seen_paths or depth > max_depth:
+            continue
+        seen_paths.add(path)
+        try:
+            artifact = _read_json(path)
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            load_errors.append(
+                {
+                    "path": str(path),
+                    "depth": depth,
+                    "error": f"{type(exc).__name__}: {exc}",
+                }
+            )
+            continue
+        if root_contract is None:
+            root_contract = artifact
+        artifact_rows.append(
+            _lever3_lineage_artifact_guardrail_row(
+                path=path, depth=depth, artifact=artifact
+            )
+        )
+        source_rows = _lever3_source_hash_audit_rows(
+            parent_artifact_id=artifact.get("artifact_id"),
+            source_artifacts=artifact.get("source_artifacts") or {},
+        )
+        source_hash_rows.extend(source_rows)
+        if depth >= max_depth:
+            continue
+        for row in source_rows:
+            path_value = row.get("path")
+            if not path_value or not row.get("actual_exists"):
+                continue
+            queue.append((Path(str(path_value)), depth + 1))
+
+    contract_decision = (root_contract or {}).get("decision") or {}
+    contract_counts = (root_contract or {}).get("counts") or {}
+    contract_operating = (root_contract or {}).get("operating_point") or {}
+    artifact_guardrail_violation_rows = [
+        row for row in artifact_rows if row.get("guardrail_violations")
+    ]
+    lineage_checks = {
+        "contract_readiness_audit_passed": (
+            (root_contract or {}).get("status")
+            == "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+            and bool(contract_decision.get("deployment_contract_ready"))
+        ),
+        "lineage_artifacts_loaded_without_errors": not load_errors,
+        "lineage_source_hashes_current": (
+            bool(source_hash_rows)
+            and all(row["source_hash_current"] for row in source_hash_rows)
+        ),
+        "lineage_artifacts_all_measured_readouts": (
+            bool(artifact_rows)
+            and all(
+                row["guardrail_checks"]["measured_readout"]
+                for row in artifact_rows
+            )
+        ),
+        "lineage_artifacts_no_blocker_packets": all(
+            row["guardrail_checks"]["not_blocker_packet"] for row in artifact_rows
+        ),
+        "lineage_artifacts_no_candidate_row_scoring": all(
+            row["guardrail_checks"]["no_candidate_rows_scored_now"]
+            for row in artifact_rows
+        ),
+        "lineage_artifacts_no_threshold_changes_or_tuning": all(
+            row["guardrail_checks"]["no_threshold_values_changed"]
+            and row["guardrail_checks"]["no_production_thresholds_changed"]
+            and row["guardrail_checks"]["no_threshold_selected_or_tuned_now"]
+            for row in artifact_rows
+        ),
+        "lineage_artifacts_no_provider_or_coordinate_changes": all(
+            row["guardrail_checks"]["no_provider_calls_performed"]
+            and row["guardrail_checks"]["no_coordinates_generated_or_staged"]
+            for row in artifact_rows
+        ),
+        "lineage_artifacts_no_heldout_or_metadata_shortcuts": all(
+            row["guardrail_checks"]["no_heldout_or_metadata_shortcuts"]
+            for row in artifact_rows
+        ),
+        "lineage_artifacts_no_forbidden_predictive_features": all(
+            row["guardrail_checks"]["no_forbidden_predictive_features"]
+            for row in artifact_rows
+        ),
+        "lineage_artifacts_no_label_registry_import_changes": all(
+            row["guardrail_checks"]["no_label_registry_ontology_or_import_changes"]
+            for row in artifact_rows
+        ),
+    }
+    lineage_violations = sorted(
+        [name for name, passed in lineage_checks.items() if not passed]
+    )
+    lineage_passed = not lineage_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_contract_lineage_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_contract_lineage_audit_passed"
+            if lineage_passed
+            else "fold_augmented_lever3_deployment_contract_lineage_audit_needs_more_work"
+        ),
+        "scope": (
+            "Source-lineage guardrail audit for the current Lever 3 deployment "
+            "contract. It walks the bounded contract-to-application-to-closure "
+            "artifact chain through depth 3 and verifies source hashes plus "
+            "guardrail flags for blocker packets, threshold changes, heldout "
+            "shortcuts, metadata shortcuts, row scoring, provider calls, "
+            "coordinate staging, and label/import changes."
+        ),
+        "lineage": {
+            "max_depth": max_depth,
+            "root_contract_path": str(deployment_contract_readiness_audit_path),
+            "artifact_paths": [row["path"] for row in artifact_rows],
+        },
+        "lineage_checks": lineage_checks,
+        "lineage_violations": lineage_violations,
+        "artifact_guardrail_rows": artifact_rows,
+        "artifact_guardrail_violation_rows": artifact_guardrail_violation_rows,
+        "source_hash_audit_rows": source_hash_rows,
+        "load_errors": load_errors,
+        "operating_point": {
+            "baseline_threshold": contract_operating.get("baseline_threshold"),
+            "accepted_threshold": contract_operating.get("accepted_threshold"),
+            "threshold_selection_source": contract_operating.get(
+                "threshold_selection_source"
+            ),
+            "calibration_in_scope_retained": contract_counts.get(
+                "calibration_in_scope_retained"
+            ),
+            "calibration_in_scope_rows": contract_counts.get(
+                "calibration_in_scope_rows"
+            ),
+            "train_cal_oos_abstained_or_routed": contract_counts.get(
+                "train_cal_oos_abstained_or_routed"
+            ),
+            "train_cal_oos_rows": contract_counts.get("train_cal_oos_rows"),
+            "retained_residual_rows_after_all_counteraxes": contract_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "residual_rows_without_final_route": contract_counts.get(
+                "residual_rows_without_final_route"
+            ),
+        },
+        "counts": {
+            "lineage_artifacts_checked": len(artifact_rows),
+            "lineage_artifacts_with_guardrail_violations": len(
+                artifact_guardrail_violation_rows
+            ),
+            "source_records_checked": len(source_hash_rows),
+            "source_records_hash_current": len(
+                [row for row in source_hash_rows if row["source_hash_current"]]
+            ),
+            "load_error_count": len(load_errors),
+            "application_rows": contract_counts.get("application_rows"),
+            "application_rows_abstain_or_route_novel_oos": contract_counts.get(
+                "application_rows_abstain_or_route_novel_oos"
+            ),
+            "forced_mechanism_label_rows": contract_counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "unsafe_non_abstain_residual_action_rows": contract_counts.get(
+                "unsafe_non_abstain_residual_action_rows"
+            ),
+            "retained_residual_rows_after_all_counteraxes": contract_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "lineage_violation_total": len(lineage_violations),
+        },
+        "decision": {
+            "deployment_contract_lineage_clean": lineage_passed,
+            "deployment_contract_ready": (
+                lineage_passed
+                and bool(contract_decision.get("deployment_contract_ready"))
+            ),
+            "safe_abstention_route_remains_current": lineage_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                lineage_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": contract_decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the deployment contract as the current Lever 3 "
+                "abstain/route readout; keep scoring closure fail-closed "
+                "pending the separate exact P07658 coordinate/provenance route."
+                if lineage_passed
+                else (
+                    "Do not rely on the deployment contract until lineage "
+                    "source or guardrail violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "bounded_lineage_depth": max_depth,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_contract_readiness_audit": _source_path_record(
+                deployment_contract_readiness_audit_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 deployment contract lineage is guardrail-clean."
+                if lineage_passed
+                else "Lever 3 deployment contract lineage needs repair."
+            ),
+            "result": (
+                f"Checked {len(artifact_rows)} lineage artifacts and "
+                f"{len(source_hash_rows)} source records with "
+                f"{len(artifact_guardrail_violation_rows)} artifact guardrail "
+                "violation rows."
+            ),
+            "next_action": (
+                "Treat the current contract as the deployable abstain/route "
+                "readout; scoring closure still waits on exact P07658 evidence."
+                if lineage_passed
+                else "Resolve lineage violations before using the contract."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_contract_lineage_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Contract Lineage Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Deployment contract lineage clean: "
+        f"{decision['deployment_contract_lineage_clean']}",
+        f"- Deployment contract ready: {decision['deployment_contract_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Lineage violations: {audit['lineage_violations']}",
+        "",
+        "## Counts",
+        "",
+        f"- Lineage artifacts checked: {counts['lineage_artifacts_checked']}",
+        "- Lineage artifacts with guardrail violations: "
+        f"{counts['lineage_artifacts_with_guardrail_violations']}",
+        "- Source hashes current: "
+        f"{counts['source_records_hash_current']}/"
+        f"{counts['source_records_checked']}",
+        f"- Load errors: {counts['load_error_count']}",
+        "- Application rows abstain/route: "
+        f"{counts['application_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['application_rows']}",
+        "- Retained residual rows after all counteraxes: "
+        f"{counts['retained_residual_rows_after_all_counteraxes']}",
+        "",
+        "## Lineage Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("lineage_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Artifact Guardrails",
+        "",
+        "| depth | artifact | status | violations |",
+        "| ---: | --- | --- | --- |",
+    ]
+    for row in audit.get("artifact_guardrail_rows", []):
+        lines.append(
+            f"| {row['depth']} | {row['artifact_id']} | {row['status']} | "
+            f"{row['guardrail_violations']} |"
+        )
+    lines += [
+        "",
+        "## Source Hashes",
+        "",
+        "| parent | source | hash current | path |",
+        "| --- | --- | ---: | --- |",
+    ]
+    for row in audit.get("source_hash_audit_rows", []):
+        lines.append(
+            f"| {row['parent_artifact_id']} | {row['source_key']} | "
+            f"{row['source_hash_current']} | {row.get('path')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Bounded existing-artifact lineage audit only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_contract_lineage_audit(
+    *,
+    deployment_contract_readiness_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_LINEAGE_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_contract_lineage_audit(
+        deployment_contract_readiness_audit_path=(
+            deployment_contract_readiness_audit_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_contract_lineage_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+    *,
+    deployment_contract_readiness_audit_path: Path,
+    deployment_contract_lineage_audit_path: Path,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    readiness = _read_json(deployment_contract_readiness_audit_path)
+    lineage = _read_json(deployment_contract_lineage_audit_path)
+    readiness_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=readiness.get("artifact_id"),
+        source_artifacts=readiness.get("source_artifacts") or {},
+    )
+    lineage_source_rows = _lever3_source_hash_audit_rows(
+        parent_artifact_id=lineage.get("artifact_id"),
+        source_artifacts=lineage.get("source_artifacts") or {},
+    )
+
+    readiness_sources = readiness.get("source_artifacts") or {}
+    application_source = readiness_sources.get("operating_point_application_audit") or {}
+    application_path_value = (
+        application_source.get("path") if isinstance(application_source, dict) else None
+    )
+    rebuilt_readiness: dict[str, Any] | None = None
+    readiness_rebuild_error = None
+    if application_path_value and Path(application_path_value).exists():
+        try:
+            rebuilt_readiness = (
+                build_fold_augmented_lever3_deployment_contract_readiness_audit(
+                    operating_point_application_audit_path=Path(application_path_value),
+                    artifact_id=str(
+                        readiness.get("artifact_id")
+                        or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_READINESS_AUDIT_ID
+                    ),
+                )
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            readiness_rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        readiness_rebuild_error = "missing_operating_point_application_audit_source"
+
+    lineage_sources = lineage.get("source_artifacts") or {}
+    readiness_source = lineage_sources.get("deployment_contract_readiness_audit") or {}
+    readiness_path_value = (
+        readiness_source.get("path") if isinstance(readiness_source, dict) else None
+    )
+    rebuilt_lineage: dict[str, Any] | None = None
+    lineage_rebuild_error = None
+    if readiness_path_value and Path(readiness_path_value).exists():
+        try:
+            rebuilt_lineage = (
+                build_fold_augmented_lever3_deployment_contract_lineage_audit(
+                    deployment_contract_readiness_audit_path=Path(
+                        readiness_path_value
+                    ),
+                    artifact_id=str(
+                        lineage.get("artifact_id")
+                        or FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_LINEAGE_AUDIT_ID
+                    ),
+                )
+            )
+        except Exception as exc:  # pragma: no cover - defensive audit payload
+            lineage_rebuild_error = f"{type(exc).__name__}: {exc}"
+    else:
+        lineage_rebuild_error = "missing_deployment_contract_readiness_audit_source"
+
+    normalized_readiness = _normalize_lever3_closure_for_reproducibility(readiness)
+    normalized_rebuilt_readiness = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_readiness)
+        if rebuilt_readiness is not None
+        else None
+    )
+    normalized_lineage = _normalize_lever3_closure_for_reproducibility(lineage)
+    normalized_rebuilt_lineage = (
+        _normalize_lever3_closure_for_reproducibility(rebuilt_lineage)
+        if rebuilt_lineage is not None
+        else None
+    )
+    readiness_rebuild_matches = (
+        normalized_rebuilt_readiness == normalized_readiness
+        if normalized_rebuilt_readiness is not None
+        else False
+    )
+    lineage_rebuild_matches = (
+        normalized_rebuilt_lineage == normalized_lineage
+        if normalized_rebuilt_lineage is not None
+        else False
+    )
+    readiness_counts = readiness.get("counts") or {}
+    lineage_counts = lineage.get("counts") or {}
+    readiness_decision = readiness.get("decision") or {}
+    lineage_decision = lineage.get("decision") or {}
+    reproducibility_checks = {
+        "readiness_artifact_source_hashes_current": (
+            bool(readiness_source_rows)
+            and all(row["source_hash_current"] for row in readiness_source_rows)
+        ),
+        "lineage_artifact_source_hashes_current": (
+            bool(lineage_source_rows)
+            and all(row["source_hash_current"] for row in lineage_source_rows)
+        ),
+        "readiness_rebuild_matches_stored_after_created_utc_normalization": (
+            readiness_rebuild_matches
+        ),
+        "lineage_rebuild_matches_stored_after_created_utc_normalization": (
+            lineage_rebuild_matches
+        ),
+        "readiness_contract_passed": (
+            readiness.get("status")
+            == "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+            and not readiness.get("readiness_violations")
+            and bool(readiness_decision.get("deployment_contract_ready"))
+        ),
+        "lineage_contract_passed": (
+            lineage.get("status")
+            == "fold_augmented_lever3_deployment_contract_lineage_audit_passed"
+            and not lineage.get("lineage_violations")
+            and bool(lineage_decision.get("deployment_contract_lineage_clean"))
+        ),
+        "operating_point_metrics_match_between_contract_artifacts": (
+            readiness_counts.get("application_rows")
+            == lineage_counts.get("application_rows")
+            and readiness_counts.get("application_rows_abstain_or_route_novel_oos")
+            == lineage_counts.get("application_rows_abstain_or_route_novel_oos")
+            and readiness_counts.get("retained_residual_rows_after_all_counteraxes")
+            == lineage_counts.get("retained_residual_rows_after_all_counteraxes")
+            and readiness_counts.get("forced_mechanism_label_rows")
+            == lineage_counts.get("forced_mechanism_label_rows")
+        ),
+        "fixed_threshold_scoring_fail_closed": (
+            not bool(
+                readiness_decision.get("fixed_threshold_scoring_closure_available_now")
+            )
+            and not bool(
+                lineage_decision.get("fixed_threshold_scoring_closure_available_now")
+            )
+        ),
+    }
+    reproducibility_violations = sorted(
+        [name for name, passed in reproducibility_checks.items() if not passed]
+    )
+    reproducibility_passed = not reproducibility_violations
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_deployment_contract_reproducibility_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_deployment_contract_reproducibility_audit_passed"
+            if reproducibility_passed
+            else "fold_augmented_lever3_deployment_contract_reproducibility_audit_needs_more_work"
+        ),
+        "scope": (
+            "Reproducibility audit for the new Lever 3 deployment-contract "
+            "readiness and lineage artifacts. It rebuilds both artifacts from "
+            "their recorded source artifacts, normalizes only created_utc, and "
+            "checks source-hash currency plus operating-point metric agreement."
+        ),
+        "reproducibility_checks": reproducibility_checks,
+        "reproducibility_violations": reproducibility_violations,
+        "readiness_artifact": {
+            "artifact_id": readiness.get("artifact_id"),
+            "path": str(deployment_contract_readiness_audit_path),
+            "stored_created_utc": readiness.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_readiness.get("created_utc")
+                if rebuilt_readiness is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_readiness),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt_readiness)
+                if normalized_rebuilt_readiness is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": readiness_rebuild_matches,
+            "rebuild_error": readiness_rebuild_error,
+        },
+        "lineage_artifact": {
+            "artifact_id": lineage.get("artifact_id"),
+            "path": str(deployment_contract_lineage_audit_path),
+            "stored_created_utc": lineage.get("created_utc"),
+            "rebuilt_created_utc": (
+                rebuilt_lineage.get("created_utc")
+                if rebuilt_lineage is not None
+                else None
+            ),
+            "stored_normalized_sha256": _hash_json_payload(normalized_lineage),
+            "rebuilt_normalized_sha256": (
+                _hash_json_payload(normalized_rebuilt_lineage)
+                if normalized_rebuilt_lineage is not None
+                else None
+            ),
+            "normalized_rebuild_matches_stored": lineage_rebuild_matches,
+            "rebuild_error": lineage_rebuild_error,
+        },
+        "readiness_source_hash_audit_rows": readiness_source_rows,
+        "lineage_source_hash_audit_rows": lineage_source_rows,
+        "counts": {
+            "readiness_source_records_checked": len(readiness_source_rows),
+            "readiness_source_records_hash_current": len(
+                [row for row in readiness_source_rows if row["source_hash_current"]]
+            ),
+            "lineage_source_records_checked": len(lineage_source_rows),
+            "lineage_source_records_hash_current": len(
+                [row for row in lineage_source_rows if row["source_hash_current"]]
+            ),
+            "rebuild_difference_count": (
+                int(not readiness_rebuild_matches) + int(not lineage_rebuild_matches)
+            ),
+            "application_rows": readiness_counts.get("application_rows"),
+            "application_rows_abstain_or_route_novel_oos": readiness_counts.get(
+                "application_rows_abstain_or_route_novel_oos"
+            ),
+            "forced_mechanism_label_rows": readiness_counts.get(
+                "forced_mechanism_label_rows"
+            ),
+            "retained_residual_rows_after_all_counteraxes": readiness_counts.get(
+                "retained_residual_rows_after_all_counteraxes"
+            ),
+            "reproducibility_violation_total": len(reproducibility_violations),
+        },
+        "decision": {
+            "deployment_contract_reproducible": reproducibility_passed,
+            "deployment_contract_ready": (
+                reproducibility_passed
+                and bool(readiness_decision.get("deployment_contract_ready"))
+                and bool(lineage_decision.get("deployment_contract_ready"))
+            ),
+            "safe_abstention_route_remains_current": reproducibility_passed,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                reproducibility_passed
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "exact_missing_evidence_for_scoring_closure": readiness_decision.get(
+                "exact_missing_evidence_for_scoring_closure"
+            )
+            or [],
+            "next_gate": (
+                "Use the reproducible deployment contract as the current "
+                "Lever 3 abstain/route readout; keep scoring closure "
+                "fail-closed pending exact P07658 coordinate/provenance evidence."
+                if reproducibility_passed
+                else (
+                    "Do not rely on the deployment contract until the listed "
+                    "reproducibility violations are resolved."
+                )
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_contract_readiness_audit": _source_path_record(
+                deployment_contract_readiness_audit_path
+            ),
+            "deployment_contract_lineage_audit": _source_path_record(
+                deployment_contract_lineage_audit_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 deployment contract artifacts are reproducible."
+                if reproducibility_passed
+                else "Lever 3 deployment contract reproducibility needs repair."
+            ),
+            "result": (
+                "Readiness and lineage artifacts rebuild after created_utc "
+                f"normalization with {len(reproducibility_violations)} "
+                "reproducibility violations."
+            ),
+            "next_action": (
+                "Use the reproducible deployment contract as the operating "
+                "readout; keep fixed-threshold scoring fail-closed."
+                if reproducibility_passed
+                else "Resolve reproducibility violations before use."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_deployment_contract_reproducibility_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    readiness_artifact = audit["readiness_artifact"]
+    lineage_artifact = audit["lineage_artifact"]
+    lines = [
+        "# Fold-Augmented Lever 3 Deployment Contract Reproducibility Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Deployment contract reproducible: "
+        f"{decision['deployment_contract_reproducible']}",
+        f"- Deployment contract ready: {decision['deployment_contract_ready']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        f"- Reproducibility violations: {audit['reproducibility_violations']}",
+        "",
+        "## Artifact Rebuilds",
+        "",
+        "- Readiness artifact normalized rebuild matches stored: "
+        f"{readiness_artifact['normalized_rebuild_matches_stored']}",
+        "- Readiness normalized SHA-256: "
+        f"{readiness_artifact['stored_normalized_sha256']}",
+        "- Lineage artifact normalized rebuild matches stored: "
+        f"{lineage_artifact['normalized_rebuild_matches_stored']}",
+        "- Lineage normalized SHA-256: "
+        f"{lineage_artifact['stored_normalized_sha256']}",
+        "",
+        "## Counts",
+        "",
+        "- Readiness source hashes current: "
+        f"{counts['readiness_source_records_hash_current']}/"
+        f"{counts['readiness_source_records_checked']}",
+        "- Lineage source hashes current: "
+        f"{counts['lineage_source_records_hash_current']}/"
+        f"{counts['lineage_source_records_checked']}",
+        f"- Rebuild difference count: {counts['rebuild_difference_count']}",
+        "- Application rows abstain/route: "
+        f"{counts['application_rows_abstain_or_route_novel_oos']}/"
+        f"{counts['application_rows']}",
+        "- Retained residual rows after all counteraxes: "
+        f"{counts['retained_residual_rows_after_all_counteraxes']}",
+        "",
+        "## Reproducibility Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in audit.get("reproducibility_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing readiness and lineage artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+    *,
+    deployment_contract_readiness_audit_path: Path,
+    deployment_contract_lineage_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_DEPLOYMENT_CONTRACT_REPRODUCIBILITY_AUDIT_ID
+    ),
+) -> dict[str, Any]:
+    audit = build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+        deployment_contract_readiness_audit_path=(
+            deployment_contract_readiness_audit_path
+        ),
+        deployment_contract_lineage_audit_path=deployment_contract_lineage_audit_path,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_deployment_contract_reproducibility_audit_report(
                 audit
             ),
             encoding="utf-8",

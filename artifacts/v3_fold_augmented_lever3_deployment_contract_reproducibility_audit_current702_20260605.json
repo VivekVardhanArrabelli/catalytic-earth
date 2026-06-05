@@ -1,0 +1,130 @@
+{
+  "artifact_id": "v3_fold_augmented_lever3_deployment_contract_reproducibility_audit_current702_20260605",
+  "counts": {
+    "application_rows": 21,
+    "application_rows_abstain_or_route_novel_oos": 21,
+    "forced_mechanism_label_rows": 0,
+    "lineage_source_records_checked": 1,
+    "lineage_source_records_hash_current": 1,
+    "readiness_source_records_checked": 1,
+    "readiness_source_records_hash_current": 1,
+    "rebuild_difference_count": 0,
+    "reproducibility_violation_total": 0,
+    "retained_residual_rows_after_all_counteraxes": 0
+  },
+  "created_utc": "2026-06-05T11:24:33Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_contract_ready": true,
+    "deployment_contract_reproducible": true,
+    "exact_missing_evidence_for_scoring_closure": [
+      "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+      "returned full-length coordinate file at the preferred staging path",
+      "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+      "P07658 acceptance preflight with all required checks passing"
+    ],
+    "fixed_threshold_scoring_closure_available_now": false,
+    "next_gate": "Use the reproducible deployment contract as the current Lever 3 abstain/route readout; keep scoring closure fail-closed pending exact P07658 coordinate/provenance evidence.",
+    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": false,
+    "predicted_structure_source_free_evidence_enough_for_safe_abstention": true,
+    "safe_abstention_route_remains_current": true,
+    "score_or_force_mechanism_label_for_retained_rows_now": false,
+    "unsafe_forced_mechanism_transfer_allowed": false
+  },
+  "guardrails": {
+    "application_rows_used_for_rule_selection": false,
+    "blocker_packet": false,
+    "candidate_rows_scored_now": false,
+    "coordinates_generated_now": false,
+    "coordinates_staged_now": false,
+    "existing_artifacts_only": true,
+    "experimental_pdb_metadata_used_as_deployment_input": false,
+    "heldout_rows_used_for_rule_selection": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_source_ids_target_names_or_mechanism_text_used_as_features": false,
+    "lever3_only": true,
+    "measured_readout": true,
+    "new_rule_selected_now": false,
+    "production_thresholds_changed": false,
+    "provider_calls_performed": false,
+    "threshold_selected_or_tuned_now": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "Lever 3 deployment contract artifacts are reproducible.",
+    "next_action": "Use the reproducible deployment contract as the operating readout; keep fixed-threshold scoring fail-closed.",
+    "result": "Readiness and lineage artifacts rebuild after created_utc normalization with 0 reproducibility violations."
+  },
+  "lineage_artifact": {
+    "artifact_id": "v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605",
+    "normalized_rebuild_matches_stored": true,
+    "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.json",
+    "rebuild_error": null,
+    "rebuilt_created_utc": "2026-06-05T11:24:33Z",
+    "rebuilt_normalized_sha256": "528600debd66ee884a6a396a00d98c1a03cfb57a4746eb704feb23ed0a82cd38",
+    "stored_created_utc": "2026-06-05T11:14:11Z",
+    "stored_normalized_sha256": "528600debd66ee884a6a396a00d98c1a03cfb57a4746eb704feb23ed0a82cd38"
+  },
+  "lineage_source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "f583acba699ada87205ebee9d795ea72f723d5733267e06348b6b458288474de",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "f583acba699ada87205ebee9d795ea72f723d5733267e06348b6b458288474de",
+      "source_hash_current": true,
+      "source_key": "deployment_contract_readiness_audit"
+    }
+  ],
+  "readiness_artifact": {
+    "artifact_id": "v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605",
+    "normalized_rebuild_matches_stored": true,
+    "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.json",
+    "rebuild_error": null,
+    "rebuilt_created_utc": "2026-06-05T11:24:33Z",
+    "rebuilt_normalized_sha256": "98b63cdd14bad20d62e240f5130ce183589cd5f8c6258652bf69dfbacc6c4d8c",
+    "stored_created_utc": "2026-06-05T11:08:29Z",
+    "stored_normalized_sha256": "98b63cdd14bad20d62e240f5130ce183589cd5f8c6258652bf69dfbacc6c4d8c"
+  },
+  "readiness_source_hash_audit_rows": [
+    {
+      "actual_exists": true,
+      "actual_sha256": "447c00e0ee25b0f0f0b8653f424e9be3b066c3bf9b973a99e716caa41fa773d4",
+      "parent_artifact_id": "v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605",
+      "path": "artifacts/v3_fold_augmented_lever3_operating_point_application_audit_current702_20260605.json",
+      "recorded_exists": true,
+      "recorded_sha256": "447c00e0ee25b0f0f0b8653f424e9be3b066c3bf9b973a99e716caa41fa773d4",
+      "source_hash_current": true,
+      "source_key": "operating_point_application_audit"
+    }
+  ],
+  "reproducibility_checks": {
+    "fixed_threshold_scoring_fail_closed": true,
+    "lineage_artifact_source_hashes_current": true,
+    "lineage_contract_passed": true,
+    "lineage_rebuild_matches_stored_after_created_utc_normalization": true,
+    "operating_point_metrics_match_between_contract_artifacts": true,
+    "readiness_artifact_source_hashes_current": true,
+    "readiness_contract_passed": true,
+    "readiness_rebuild_matches_stored_after_created_utc_normalization": true
+  },
+  "reproducibility_violations": [],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_lever3_deployment_contract_reproducibility_audit",
+  "scope": "Reproducibility audit for the new Lever 3 deployment-contract readiness and lineage artifacts. It rebuilds both artifacts from their recorded source artifacts, normalizes only created_utc, and checks source-hash currency plus operating-point metric agreement.",
+  "source_artifacts": {
+    "deployment_contract_lineage_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_lineage_audit_current702_20260605.json",
+      "sha256": "2129546e994e6ad6f9ec96406ccf44c24a974594ad93024558305a2647ca4816"
+    },
+    "deployment_contract_readiness_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_lever3_deployment_contract_readiness_audit_current702_20260605.json",
+      "sha256": "f583acba699ada87205ebee9d795ea72f723d5733267e06348b6b458288474de"
+    }
+  },
+  "status": "fold_augmented_lever3_deployment_contract_reproducibility_audit_passed"
+}

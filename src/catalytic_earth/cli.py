@@ -176,6 +176,9 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_operating_point_closure_readout,
     write_fold_augmented_lever3_closure_reproducibility_audit,
     write_fold_augmented_lever3_operating_point_application_audit,
+    write_fold_augmented_lever3_deployment_contract_readiness_audit,
+    write_fold_augmented_lever3_deployment_contract_lineage_audit,
+    write_fold_augmented_lever3_deployment_contract_reproducibility_audit,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -14152,6 +14155,89 @@ def cmd_build_fold_augmented_lever3_operating_point_application_audit(
         f"{counts.get('application_rows')}, forced labels: "
         f"{counts.get('forced_mechanism_label_rows')}, ready: "
         f"{decision.get('operating_point_application_contract_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_contract_readiness_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_contract_readiness_audit(
+        operating_point_application_audit_path=Path(
+            args.operating_point_application_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment contract readiness audit to "
+        f"{args.out} (application rows: "
+        f"{counts.get('application_rows_abstain_or_route_novel_oos')}/"
+        f"{counts.get('application_rows')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, contract ready: "
+        f"{decision.get('deployment_contract_ready')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_contract_lineage_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_contract_lineage_audit(
+        deployment_contract_readiness_audit_path=Path(
+            args.deployment_contract_readiness_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment contract lineage audit to "
+        f"{args.out} (lineage artifacts: "
+        f"{counts.get('lineage_artifacts_checked')}, source hashes current: "
+        f"{counts.get('source_records_hash_current')}/"
+        f"{counts.get('source_records_checked')}, lineage clean: "
+        f"{decision.get('deployment_contract_lineage_clean')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    audit = write_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+        deployment_contract_readiness_audit_path=Path(
+            args.deployment_contract_readiness_audit
+        ),
+        deployment_contract_lineage_audit_path=Path(
+            args.deployment_contract_lineage_audit
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 deployment contract reproducibility audit to "
+        f"{args.out} (rebuild differences: "
+        f"{counts.get('rebuild_difference_count')}, reproducible: "
+        f"{decision.get('deployment_contract_reproducible')})"
     )
     return 0
 
@@ -34037,6 +34123,123 @@ def build_parser() -> argparse.ArgumentParser:
     )
     lever3_operating_point_application_audit.set_defaults(
         func=cmd_build_fold_augmented_lever3_operating_point_application_audit
+    )
+
+    lever3_deployment_contract_readiness_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-contract-readiness-audit",
+        help=(
+            "audit whether the current Lever 3 row-level application contract "
+            "is ready for deployment-time abstain/route use"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--operating-point-application-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_"
+            "application_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_contract_readiness_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_contract_readiness_audit
+    )
+
+    lever3_deployment_contract_lineage_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-contract-lineage-audit",
+        help=(
+            "audit the bounded source lineage behind the current Lever 3 "
+            "deployment contract readiness artifact"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--deployment-contract-readiness-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "lineage_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_contract_"
+            "lineage_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_contract_lineage_audit.set_defaults(
+        func=cmd_build_fold_augmented_lever3_deployment_contract_lineage_audit
+    )
+
+    lever3_deployment_contract_reproducibility_audit = subparsers.add_parser(
+        "build-fold-augmented-lever3-deployment-contract-reproducibility-audit",
+        help=(
+            "rebuild the current Lever 3 deployment contract readiness and "
+            "lineage artifacts from their recorded sources"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--deployment-contract-readiness-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "readiness_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--deployment-contract-lineage-audit",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "lineage_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_contract_"
+            "reproducibility_audit_current702_20260605.json"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_deployment_contract_"
+            "reproducibility_audit_current702_20260605.md"
+        ),
+    )
+    lever3_deployment_contract_reproducibility_audit.set_defaults(
+        func=(
+            cmd_build_fold_augmented_lever3_deployment_contract_reproducibility_audit
+        )
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

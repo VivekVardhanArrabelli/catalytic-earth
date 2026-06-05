@@ -92,6 +92,9 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_operating_point_closure_readout,
     build_fold_augmented_lever3_closure_reproducibility_audit,
     build_fold_augmented_lever3_operating_point_application_audit,
+    build_fold_augmented_lever3_deployment_contract_readiness_audit,
+    build_fold_augmented_lever3_deployment_contract_lineage_audit,
+    build_fold_augmented_lever3_deployment_contract_reproducibility_audit,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -8459,6 +8462,502 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertIn(
             "closure_reproducibility_audit_passed",
             blocked["application_violations"],
+        )
+
+    def test_lever3_deployment_contract_readiness_audit_requires_current_sources(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            closure_source_path = root / "closure.json"
+            repro_source_path = root / "repro.json"
+            app_path = root / "application.json"
+            closure_source_path.write_text(
+                json.dumps({"artifact_id": "closure"}),
+                encoding="utf-8",
+            )
+            repro_source_path.write_text(
+                json.dumps({"artifact_id": "repro"}),
+                encoding="utf-8",
+            )
+            app = {
+                "artifact_id": "application",
+                "status": (
+                    "fold_augmented_lever3_operating_point_application_audit_passed"
+                ),
+                "application_violations": [],
+                "application_checks": {
+                    "closure_reproducibility_audit_passed": True,
+                    "closure_rebuild_hash_matches_stored": True,
+                    "closure_source_hashes_current": True,
+                    "closure_readout_closed": True,
+                    "deployment_valid_safe_route_available": True,
+                    "application_row_count_matches_closure": True,
+                    "all_application_rows_have_stage_source": True,
+                    "stage_counts_match_closure": True,
+                    "all_application_rows_abstain_or_route_novel_oos": True,
+                    "no_forced_mechanism_labels": True,
+                    "application_rows_not_used_for_rule_selection": True,
+                    "zero_retained_residual_rows": True,
+                    "zero_residual_rows_without_final_route": True,
+                    "true_in_scope_retention_above_90_percent": True,
+                    "train_cal_oos_operating_point_present": True,
+                    "fixed_threshold_scoring_fail_closed": True,
+                    "threshold_not_changed": True,
+                    "no_row_scoring_provider_or_coordinate_changes": True,
+                    "no_heldout_metadata_label_or_import_shortcuts": True,
+                },
+                "application_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "final_lever3_route_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "operating_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "source_artifact": "deployment",
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                    {
+                        "entry_id": "m_csa:2",
+                        "final_lever3_route_stage": (
+                            "pairwise_descriptor_counteraxis"
+                        ),
+                        "operating_stage": "descriptor_generalization_and_pairwise",
+                        "source_artifact": "pairwise",
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    },
+                ],
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "counts": {
+                    "application_rows": 2,
+                    "application_rows_abstain_or_route_novel_oos": 2,
+                    "application_rows_with_stage_source": 2,
+                    "application_stage_count_mismatches": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "unsafe_non_abstain_residual_action_rows": 0,
+                    "application_rows_used_for_rule_selection": 0,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "residual_rows_without_final_route": 0,
+                    "calibration_in_scope_rows": 2,
+                    "calibration_in_scope_retained": 2,
+                    "train_cal_oos_rows": 5,
+                    "train_cal_oos_abstained_or_routed": 4,
+                },
+                "decision": {
+                    "operating_point_application_contract_ready": True,
+                    "true_in_scope_retention_floor_met": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "separate exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "measured_readout": True,
+                    "blocker_packet": False,
+                    "new_rule_selected_now": False,
+                    "candidate_rows_scored_now": False,
+                    "coordinates_generated_now": False,
+                    "coordinates_staged_now": False,
+                    "provider_calls_performed": False,
+                    "production_thresholds_changed": False,
+                    "threshold_values_changed": False,
+                    "threshold_selected_or_tuned_now": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_registries_ontologies_changed": False,
+                    "imports_or_promotions_performed": False,
+                },
+                "source_artifacts": {
+                    "operating_point_closure_readout": {
+                        "path": str(closure_source_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            closure_source_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                    "closure_reproducibility_audit": {
+                        "path": str(repro_source_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            repro_source_path.read_bytes()
+                        ).hexdigest(),
+                    },
+                },
+            }
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_contract_readiness_audit(
+                    operating_point_application_audit_path=app_path,
+                    artifact_id="contract_readiness",
+                )
+            )
+
+            closure_source_path.write_text(
+                json.dumps({"artifact_id": "closure", "stale": True}),
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_contract_readiness_audit(
+                    operating_point_application_audit_path=app_path,
+                    artifact_id="stale_contract_readiness",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "contract_readiness")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_contract_readiness_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_contract_ready"])
+        self.assertEqual(audit["counts"]["application_rows"], 2)
+        self.assertEqual(
+            audit["counts"]["application_rows_abstain_or_route_novel_oos"], 2
+        )
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 2)
+        self.assertTrue(
+            audit["readiness_checks"]["accepted_threshold_locked_to_0_44155"]
+        )
+        self.assertTrue(
+            audit["readiness_checks"]["exact_missing_scoring_evidence_named"]
+        )
+        self.assertEqual(audit["readiness_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_contract_readiness_audit_"
+                "needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["readiness_checks"]["application_source_hashes_current"]
+        )
+        self.assertIn(
+            "application_source_hashes_current",
+            stale_audit["readiness_violations"],
+        )
+
+    def test_lever3_deployment_contract_lineage_audit_flags_guardrails(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            contract_path = root / "contract.json"
+            common_guardrails = {
+                "measured_readout": True,
+                "blocker_packet": False,
+                "candidate_rows_scored_now": False,
+                "coordinates_generated_now": False,
+                "coordinates_staged_now": False,
+                "provider_calls_performed": False,
+                "production_thresholds_changed": False,
+                "threshold_values_changed": False,
+                "threshold_selected_or_tuned_now": False,
+                "heldout_rows_used_for_training_or_threshold_tuning": False,
+                "heldout_rows_used_for_rule_selection": False,
+                "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                "experimental_pdb_metadata_used_as_deployment_input": False,
+                "labels_registries_ontologies_changed": False,
+                "imports_or_promotions_performed": False,
+            }
+            app = {
+                "artifact_id": "application",
+                "status": "application_passed",
+                "guardrails": dict(common_guardrails),
+            }
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            contract = {
+                "artifact_id": "contract",
+                "status": (
+                    "fold_augmented_lever3_deployment_contract_readiness_audit_passed"
+                ),
+                "decision": {
+                    "deployment_contract_ready": True,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "P07658 coordinate/provenance route"
+                    ],
+                },
+                "counts": {
+                    "application_rows": 2,
+                    "application_rows_abstain_or_route_novel_oos": 2,
+                    "forced_mechanism_label_rows": 0,
+                    "unsafe_non_abstain_residual_action_rows": 0,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                },
+                "operating_point": {
+                    "baseline_threshold": 0.44155,
+                    "accepted_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                },
+                "guardrails": dict(common_guardrails),
+                "source_artifacts": {
+                    "operating_point_application_audit": {
+                        "path": str(app_path),
+                        "exists": True,
+                        "sha256": hashlib.sha256(
+                            app_path.read_bytes()
+                        ).hexdigest(),
+                    }
+                },
+            }
+            contract_path.write_text(
+                json.dumps(contract, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = build_fold_augmented_lever3_deployment_contract_lineage_audit(
+                deployment_contract_readiness_audit_path=contract_path,
+                artifact_id="lineage",
+            )
+
+            app["guardrails"]["blocker_packet"] = True
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            contract["source_artifacts"]["operating_point_application_audit"][
+                "sha256"
+            ] = hashlib.sha256(app_path.read_bytes()).hexdigest()
+            contract_path.write_text(
+                json.dumps(contract, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            blocked = build_fold_augmented_lever3_deployment_contract_lineage_audit(
+                deployment_contract_readiness_audit_path=contract_path,
+                artifact_id="blocked_lineage",
+            )
+
+        self.assertEqual(audit["artifact_id"], "lineage")
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_lever3_deployment_contract_lineage_audit_passed",
+        )
+        self.assertTrue(audit["decision"]["deployment_contract_lineage_clean"])
+        self.assertEqual(audit["counts"]["lineage_artifacts_checked"], 2)
+        self.assertEqual(audit["counts"]["source_records_hash_current"], 1)
+        self.assertEqual(audit["lineage_violations"], [])
+
+        self.assertEqual(
+            blocked["status"],
+            "fold_augmented_lever3_deployment_contract_lineage_audit_needs_more_work",
+        )
+        self.assertFalse(
+            blocked["lineage_checks"]["lineage_artifacts_no_blocker_packets"]
+        )
+        self.assertIn(
+            "lineage_artifacts_no_blocker_packets",
+            blocked["lineage_violations"],
+        )
+        self.assertEqual(
+            blocked["artifact_guardrail_violation_rows"][0]["artifact_id"],
+            "application",
+        )
+
+    def test_lever3_deployment_contract_reproducibility_audit_rebuilds(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            app_path = root / "application.json"
+            app_source_path = root / "application-source.json"
+            readiness_path = root / "readiness.json"
+            lineage_path = root / "lineage.json"
+            app = {
+                "artifact_id": "application",
+                "status": (
+                    "fold_augmented_lever3_operating_point_application_audit_passed"
+                ),
+                "application_violations": [],
+                "application_checks": {"application_contract_clean": True},
+                "application_rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "final_lever3_route_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "operating_stage": (
+                            "accepted_cofactor_or_same_family_bandpass"
+                        ),
+                        "source_artifact": "deployment",
+                        "deployment_action_now": "abstain_or_route_novel_oos",
+                        "force_mechanism_label_now": False,
+                        "used_for_rule_selection": False,
+                    }
+                ],
+                "operating_point": {
+                    "route_id": "route",
+                    "baseline_threshold": 0.44155,
+                    "threshold_selection_source": "train_calibration_only",
+                    "threshold_or_value_changed_now": False,
+                },
+                "counts": {
+                    "application_rows": 1,
+                    "application_rows_abstain_or_route_novel_oos": 1,
+                    "application_rows_with_stage_source": 1,
+                    "application_stage_count_mismatches": 0,
+                    "forced_mechanism_label_rows": 0,
+                    "unsafe_non_abstain_residual_action_rows": 0,
+                    "application_rows_used_for_rule_selection": 0,
+                    "retained_residual_rows_after_all_counteraxes": 0,
+                    "residual_rows_without_final_route": 0,
+                    "calibration_in_scope_rows": 1,
+                    "calibration_in_scope_retained": 1,
+                    "train_cal_oos_rows": 2,
+                    "train_cal_oos_abstained_or_routed": 1,
+                },
+                "decision": {
+                    "operating_point_application_contract_ready": True,
+                    "true_in_scope_retention_floor_met": True,
+                    "predicted_structure_source_free_evidence_enough_for_safe_abstention": True,
+                    "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": False,
+                    "fixed_threshold_scoring_closure_available_now": False,
+                    "exact_missing_evidence_for_scoring_closure": [
+                        "exact P07658 coordinate/provenance route"
+                    ],
+                },
+                "guardrails": {
+                    "measured_readout": True,
+                    "blocker_packet": False,
+                    "new_rule_selected_now": False,
+                    "candidate_rows_scored_now": False,
+                    "coordinates_generated_now": False,
+                    "coordinates_staged_now": False,
+                    "provider_calls_performed": False,
+                    "production_thresholds_changed": False,
+                    "threshold_values_changed": False,
+                    "threshold_selected_or_tuned_now": False,
+                    "heldout_rows_used_for_training_or_threshold_tuning": False,
+                    "heldout_rows_used_for_rule_selection": False,
+                    "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+                    "experimental_pdb_metadata_used_as_deployment_input": False,
+                    "labels_registries_ontologies_changed": False,
+                    "imports_or_promotions_performed": False,
+                },
+            }
+            app_source_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "application_source",
+                        "status": "application_source_ready",
+                        "guardrails": dict(app["guardrails"]),
+                    },
+                    indent=2,
+                    sort_keys=True,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            app["source_artifacts"] = {
+                "application_source": {
+                    "path": str(app_source_path),
+                    "exists": True,
+                    "sha256": hashlib.sha256(
+                        app_source_path.read_bytes()
+                    ).hexdigest(),
+                }
+            }
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            readiness = (
+                build_fold_augmented_lever3_deployment_contract_readiness_audit(
+                    operating_point_application_audit_path=app_path,
+                    artifact_id="readiness",
+                )
+            )
+            readiness_path.write_text(
+                json.dumps(readiness, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            lineage = build_fold_augmented_lever3_deployment_contract_lineage_audit(
+                deployment_contract_readiness_audit_path=readiness_path,
+                artifact_id="lineage",
+            )
+            lineage_path.write_text(
+                json.dumps(lineage, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            audit = (
+                build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    deployment_contract_lineage_audit_path=lineage_path,
+                    artifact_id="repro",
+                )
+            )
+
+            app["counts"]["train_cal_oos_abstained_or_routed"] = 2
+            app_path.write_text(
+                json.dumps(app, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            stale_audit = (
+                build_fold_augmented_lever3_deployment_contract_reproducibility_audit(
+                    deployment_contract_readiness_audit_path=readiness_path,
+                    deployment_contract_lineage_audit_path=lineage_path,
+                    artifact_id="stale_repro",
+                )
+            )
+
+        self.assertEqual(audit["artifact_id"], "repro")
+        self.assertEqual(
+            audit["status"],
+            (
+                "fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_passed"
+            ),
+        )
+        self.assertTrue(audit["decision"]["deployment_contract_reproducible"])
+        self.assertEqual(audit["counts"]["rebuild_difference_count"], 0)
+        self.assertTrue(
+            audit["readiness_artifact"]["normalized_rebuild_matches_stored"]
+        )
+        self.assertTrue(
+            audit["lineage_artifact"]["normalized_rebuild_matches_stored"]
+        )
+        self.assertEqual(audit["reproducibility_violations"], [])
+
+        self.assertEqual(
+            stale_audit["status"],
+            (
+                "fold_augmented_lever3_deployment_contract_"
+                "reproducibility_audit_needs_more_work"
+            ),
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "readiness_artifact_source_hashes_current"
+            ]
+        )
+        self.assertFalse(
+            stale_audit["reproducibility_checks"][
+                "readiness_rebuild_matches_stored_after_created_utc_normalization"
+            ]
+        )
+        self.assertIn(
+            "readiness_rebuild_matches_stored_after_created_utc_normalization",
+            stale_audit["reproducibility_violations"],
         )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
