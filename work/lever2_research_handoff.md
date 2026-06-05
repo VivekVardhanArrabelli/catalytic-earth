@@ -141,9 +141,14 @@ operating-point value beyond the current geometry/fold surface.
 
 #### Commit/push status
 
-- Pending during this handoff edit. Expected sequence: implementation/readout
-  commit, `--force-with-lease` push after the rebase, final handoff-only sync
-  commit, push, then fetch verification.
+- Implementation/readout commit
+  `64b4f6bd115d7f6b3b5d82936ae42efa695f2bf4` was pushed to
+  `origin/lever-2-research-track` with `--force-with-lease` after the branch
+  was rebased onto current `origin/main`.
+- Fetch verification after the push showed local `HEAD ==
+  origin/lever-2-research-track` at
+  `64b4f6bd115d7f6b3b5d82936ae42efa695f2bf4` before this handoff-only status
+  commit.
 
 #### Exact next action
 
