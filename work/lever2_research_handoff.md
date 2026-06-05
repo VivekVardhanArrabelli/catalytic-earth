@@ -155,8 +155,10 @@ importing, or promoting the primitive.
   `896389c16ee32706242249e164523e0464b8495d` was pushed to
   `origin/lever-2-research-track`. Fetch verification after that push showed
   local `HEAD == origin/lever-2-research-track` at the same hash before this
-  final handoff status edit. Final handoff status commit is to be pushed after
-  this update.
+  final handoff status edit. Final handoff status commit
+  `4c90952bf1efa744b867a0ffbf23740bd79c7f84` was then pushed and
+  fetch-verified equal to `origin/lever-2-research-track` before this ledger
+  correction.
 
 #### Exact next action
 
