@@ -3,17 +3,17 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T05:02:36Z`
-- STARTED_AT_LOCAL: `2026-06-05T00:02:36-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T05:23:50Z`
-- ENDED_AT_LOCAL: `2026-06-05T00:23:50-0500 CDT`
-- ELAPSED_MINUTES: `21.23`
-- Status: Run 48 wrap-up. Canonical
+- STARTED_AT_UTC: `2026-06-05T06:02:25Z`
+- STARTED_AT_LOCAL: `2026-06-05T01:02:25-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T06:24:36Z`
+- ENDED_AT_LOCAL: `2026-06-05T01:24:36-0500 CDT`
+- ELAPSED_MINUTES: `22.18`
+- Status: Run 49 wrap-up. Canonical
   `.git/catalytic-earth-automation.lock` acquired before substantive work at
-  `2026-06-05T05:02:36Z`. Lever 3 descriptor-generalization and retained
-  descriptor-rescue readouts are validated. Actual elapsed time is shorter than
-  the requested 55-minute work block; the progress ledger records the measured
-  duration rather than inflating it.
+  `2026-06-05T06:02:25Z`. Lever 3 retained pairwise descriptor counteraxis
+  readout is validated. Actual elapsed time is shorter than the requested
+  55-minute work block; the progress ledger records the measured duration
+  rather than inflating it.
 
 ## Mission
 
@@ -64,6 +64,123 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 49
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T06:02:25Z`
+- STARTED_LOCAL: `2026-06-05T01:02:25-0500 CDT`
+- ENDED_AT: `2026-06-05T06:24:36Z`
+- ENDED_LOCAL: `2026-06-05T01:24:36-0500 CDT`
+- ELAPSED_MINUTES: `22.18`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T06:02:25Z`.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-retained-pairwise-descriptor-counteraxis-readout`
+  with builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json`
+  and
+  `work/fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.md`.
+- Added synthetic builder coverage, parser-default coverage, artifact-count
+  regression coverage, and source-artifact hash coverage for the new readout.
+- Appended the measured progress-log entry and regenerated `work/status.md`.
+
+#### Measured results
+
+- Fixed baseline threshold remains `0.44155`; threshold selection remains
+  train/cal only.
+- The readout pre-registers a retained-blind residue-count OR family with an
+  all-train/cal-OOS breadth cap of 8 rows.
+- The selected rule is `residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0`.
+  It fires 0/34 calibration in-scope descriptor rows, 4/14 train/cal design
+  same-family descriptor rows, and 8/71 train/cal OOS descriptor rows.
+- Retained application rows were excluded from rule selection. After selection,
+  the rule fires `m_csa:25` and `m_csa:84`; `m_csa:84` is the one newly routed
+  retained row because `m_csa:25` was already covered by the prior LEU rule.
+- Retained residual rows after descriptor counteraxes fall from 10 to 9.
+  Remaining retained rows are `m_csa:52`, `m_csa:74`, `m_csa:89`, `m_csa:190`,
+  `m_csa:229`, `m_csa:256`, `m_csa:308`, `m_csa:468`, and `m_csa:638`.
+- A retained-blind greedy follow-up over the same capped residue-count OR
+  family selects two additional design-covering rules but fires 0 additional
+  retained rows.
+- The broader frozen descriptor family has 117 eligible capped pairwise OR
+  rules and 0 remaining retained-row hits. Current source-free pocket
+  descriptor evidence is therefore enough for partial fail-closed routing, not
+  zero residual retained-transfer risk.
+- Calibration retention remains 31/34 and train/cal OOS abstention remains
+  105/204 from the accepted operating-point surface.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training, rule selection, or threshold
+  tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new readout composes existing deployment-valid artifacts only; it
+  performs no provider calls, coordinate downloads, coordinate staging,
+  scoring, imports, or production-threshold changes.
+- No blocker packet was produced.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1430 passed.
+- Focused new-readout tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_retained_pairwise_descriptor_counteraxis_excludes_application_rows tests/test_cli.py::CliTests::test_lever3_retained_pairwise_descriptor_counteraxis_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  4 passed, 28 subtests passed.
+- Affected file suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  606 passed, 193 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1478 passed, 212 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1433 passed.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3560 JSON files and 27 JSONL files parsed with
+  0 errors.
+- `PYTHONPATH=src python -m pytest tests/test_doc_reference_check.py tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  3 passed, 28 subtests passed.
+- Normalized reproducibility check passed for the new CLI artifact after
+  normalizing `created_utc`.
+- Disk check remained above the guardrail: about 14 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md`.
+- Commit, push, `HEAD == origin/main` verification, and lock release are the
+  remaining mechanical wrap steps after this handoff edit.
+
+#### Exact next Lever 3 action
+
+Treat `m_csa:84` as newly safe to route `abstain_or_route_novel_oos` under the
+selected train/cal-only pairwise descriptor counteraxis. Do not force mechanism
+labels for the nine retained rows listed above. The next Lever 3 attempt should
+define or acquire a new source-free chemistry/evidence axis beyond the current
+frozen pocket descriptor family, because 117 eligible full-feature capped pair
+rules hit 0 of those remaining rows. Keep threshold `0.44155` unchanged. For
+fixed-threshold scoring closure, P07658 still needs exactly one credentialed
+provider route or local full-length predictor runtime with full
+coordinate/provenance, then the P07658 acceptance preflight.
 
 ### 2026-06-05 Lever 3 Forward Push Run 48
 

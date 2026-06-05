@@ -85,6 +85,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_descriptor_present_counteraxis_preflight,
     build_fold_augmented_lever3_descriptor_generalization_counteraxis_readout,
     build_fold_augmented_lever3_retained_descriptor_rescue_readout,
+    build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -6723,6 +6724,235 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ]
         )
         self.assertTrue(readout["guardrails"]["existing_artifacts_only"])
+
+    def test_lever3_retained_pairwise_descriptor_counteraxis_excludes_application_rows(
+        self,
+    ) -> None:
+        def pocket(leu_count: int, asn_count: int) -> dict[str, Any]:
+            return {
+                "pocket_context": {
+                    "descriptors": {"hydrophobic_fraction": 0.4},
+                    "residue_code_counts": {
+                        "ASN": asn_count,
+                        "LEU": leu_count,
+                    },
+                }
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight_path = root / "preflight.json"
+            risk_path = root / "risk.json"
+            generalization_path = root / "generalization.json"
+            rescue_path = root / "rescue.json"
+            surface_path = root / "surface.json"
+            atlas_path = root / "atlas.json"
+            threshold_path = root / "threshold.json"
+            channel_path = root / "channel.json"
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_source_free_feature_contract": {
+                            "descriptor_fields": ["hydrophobic_fraction"],
+                            "residue_code_count_fields": ["ASN", "LEU"],
+                        },
+                        "descriptor_present_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "descriptor_values": {
+                                    "hydrophobic_fraction": 0.4
+                                },
+                                "residue_code_counts": {"ASN": 2, "LEU": 1},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "descriptor_values": {
+                                    "hydrophobic_fraction": 0.4
+                                },
+                                "residue_code_counts": {"ASN": 2, "LEU": 4},
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            risk_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows": 3,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 5,
+                            "all_train_cal_oos_abstained": 1,
+                        },
+                        "decision": {
+                            "safe_abstention_routing_available_now": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            generalization_path.write_text(
+                json.dumps(
+                    {
+                        "selected_counteraxis_rule": {
+                            "feature_kind": "residue_count",
+                            "feature_name": "LEU",
+                            "operator": "<=",
+                            "threshold": 1.0,
+                            "feature_rule": "residue_count.LEU <= 1.0",
+                            "application_entry_ids_fired_after_selection": [
+                                "m_csa:1"
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rescue_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "retained_residual_rows_after_selected_descriptor_counteraxis": 2
+                        },
+                        "recovered_descriptor_rows": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "descriptor_values": {
+                                    "hydrophobic_fraction": 0.4
+                                },
+                                "residue_code_counts": {"ASN": 8, "LEU": 4},
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "predicted_geometry_candidate_retrieval": {
+                            "results": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "accession": "A1",
+                                    **pocket(1, 2),
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "accession": "A2",
+                                    **pocket(4, 2),
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "accession": "A3",
+                                    **pocket(4, 8),
+                                },
+                                {"entry_id": "m_csa:4", **pocket(1, 2)},
+                                {"entry_id": "m_csa:5", **pocket(1, 2)},
+                                {"entry_id": "m_csa:6", **pocket(4, 8)},
+                                {"entry_id": "m_csa:7", **pocket(4, 2)},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            atlas_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {"entry_id": "m_csa:10", **pocket(2, 2)},
+                            {"entry_id": "m_csa:11", **pocket(5, 3)},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_path.write_text(
+                json.dumps(
+                    {
+                        "train_cal_partition": {
+                            "calibration_entry_ids": ["m_csa:10", "m_csa:11"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "proxy_axis_row_diagnostics": {
+                            "same_family_structural_proxy_rows": [
+                                {"entry_id": "m_csa:1"},
+                                {"entry_id": "m_csa:2"},
+                                {"entry_id": "m_csa:3"},
+                                {"entry_id": "m_csa:4"},
+                                {"entry_id": "m_csa:5"},
+                                {"entry_id": "m_csa:6"},
+                                {"entry_id": "m_csa:7"},
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout(
+                descriptor_present_counteraxis_preflight_path=preflight_path,
+                retained_residual_risk_readout_path=risk_path,
+                descriptor_generalization_counteraxis_readout_path=generalization_path,
+                retained_descriptor_rescue_readout_path=rescue_path,
+                latest_train_cal_oos_surface_path=surface_path,
+                predicted_geometry_atlas_retrieval_path=atlas_path,
+                threshold_contract_path=threshold_path,
+                channel_veto_readout_path=channel_path,
+                artifact_id="custom_pairwise_descriptor_counteraxis",
+            )
+
+        self.assertEqual(
+            readout["artifact_id"], "custom_pairwise_descriptor_counteraxis"
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"]["feature_rule"],
+            "residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0",
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:4", "m_csa:5", "m_csa:6"],
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:1", "m_csa:3"],
+        )
+        self.assertEqual(
+            readout["counts"]["new_pairwise_application_rows_fired_after_prior_rule"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_pairwise_counteraxis"],
+            1,
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pairwise_descriptor_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(
         self,

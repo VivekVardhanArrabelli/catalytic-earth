@@ -363,6 +363,9 @@ FOLD_AUGMENTED_LEVER3_DESCRIPTOR_GENERALIZATION_COUNTERAXIS_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_RETAINED_DESCRIPTOR_RESCUE_READOUT_ID = (
     "v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604"
 )
+FOLD_AUGMENTED_LEVER3_RETAINED_PAIRWISE_DESCRIPTOR_COUNTERAXIS_READOUT_ID = (
+    "v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -46424,6 +46427,993 @@ def write_fold_augmented_lever3_retained_descriptor_rescue_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_retained_descriptor_rescue_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_descriptor_rule_fires_from_record(
+    row: dict[str, Any], rule: dict[str, Any]
+) -> bool:
+    threshold = _parse_optional_float(rule.get("threshold"))
+    if threshold is None:
+        return False
+    return _lever3_descriptor_rule_fires(
+        row,
+        feature_kind=str(rule.get("feature_kind") or ""),
+        feature_name=str(rule.get("feature_name") or ""),
+        operator=str(rule.get("operator") or ""),
+        threshold=threshold,
+    )
+
+
+def _lever3_descriptor_synthetic_application_row(
+    row: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "entry_id": str(row.get("entry_id") or ""),
+        "accession": row.get("accession"),
+        "pocket_context": {
+            "descriptors": dict(row.get("descriptor_values") or {}),
+            "residue_code_counts": dict(row.get("residue_code_counts") or {}),
+        },
+    }
+
+
+def _lever3_descriptor_pair_rule_record(
+    *,
+    component_a: dict[str, Any],
+    component_b: dict[str, Any],
+    calibration_rows: list[dict[str, Any]],
+    design_rows: list[dict[str, Any]],
+    all_oos_rows: list[dict[str, Any]],
+    application_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    components = sorted(
+        [component_a, component_b],
+        key=lambda rule: str(rule.get("rule_id") or rule.get("feature_rule") or ""),
+    )
+
+    def fires(row: dict[str, Any]) -> bool:
+        return any(
+            _lever3_descriptor_rule_fires_from_record(row, component)
+            for component in components
+        )
+
+    calibration_fired = [
+        str(row["entry_id"]) for row in calibration_rows if fires(row)
+    ]
+    design_fired = [str(row["entry_id"]) for row in design_rows if fires(row)]
+    all_oos_fired = [str(row["entry_id"]) for row in all_oos_rows if fires(row)]
+    application_fired = [
+        str(row["entry_id"]) for row in application_rows if fires(row)
+    ]
+    component_rules = [str(rule.get("feature_rule") or "") for rule in components]
+    return {
+        "rule_id": " OR ".join(str(rule.get("rule_id") or "") for rule in components),
+        "feature_rule": " OR ".join(component_rules),
+        "component_rules": [
+            {
+                "rule_id": str(rule.get("rule_id") or ""),
+                "feature_kind": str(rule.get("feature_kind") or ""),
+                "feature_name": str(rule.get("feature_name") or ""),
+                "operator": str(rule.get("operator") or ""),
+                "threshold": rule.get("threshold"),
+                "feature_rule": str(rule.get("feature_rule") or ""),
+            }
+            for rule in components
+        ],
+        "calibration_in_scope_entry_ids_fired": calibration_fired,
+        "calibration_in_scope_fired": len(calibration_fired),
+        "design_same_family_entry_ids_fired": design_fired,
+        "design_same_family_rows_fired": len(design_fired),
+        "all_train_cal_oos_entry_ids_fired": all_oos_fired,
+        "all_train_cal_oos_rows_fired": len(all_oos_fired),
+        "application_entry_ids_fired_after_selection": application_fired,
+        "application_rows_fired_after_selection": len(application_fired),
+        "retention_floor_met": len(calibration_fired) == 0,
+    }
+
+
+def build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout(
+    *,
+    descriptor_present_counteraxis_preflight_path: Path,
+    retained_residual_risk_readout_path: Path,
+    descriptor_generalization_counteraxis_readout_path: Path,
+    retained_descriptor_rescue_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    max_all_train_cal_oos_rows_fired: int = 8,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_PAIRWISE_DESCRIPTOR_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    preflight = _read_json(descriptor_present_counteraxis_preflight_path)
+    risk = _read_json(retained_residual_risk_readout_path)
+    generalization = _read_json(descriptor_generalization_counteraxis_readout_path)
+    rescue = _read_json(retained_descriptor_rescue_readout_path)
+    surface = _read_json(latest_train_cal_oos_surface_path)
+    atlas = _read_json(predicted_geometry_atlas_retrieval_path)
+    threshold_contract = _read_json(threshold_contract_path)
+    channel_veto = _read_json(channel_veto_readout_path)
+
+    feature_contract = preflight.get("allowed_source_free_feature_contract") or {}
+    descriptor_fields = [
+        str(field) for field in feature_contract.get("descriptor_fields") or []
+    ]
+    residue_count_fields = [
+        str(field)
+        for field in feature_contract.get("residue_code_count_fields") or []
+    ]
+    surface_rows = [
+        row
+        for row in (
+            (surface.get("predicted_geometry_candidate_retrieval") or {}).get(
+                "results"
+            )
+            or []
+        )
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and (row.get("pocket_context") or {}).get("descriptors")
+    ]
+    surface_by_entry = {str(row["entry_id"]): row for row in surface_rows}
+    atlas_rows = [
+        row
+        for row in atlas.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    atlas_by_entry = {str(row["entry_id"]): row for row in atlas_rows}
+    calibration_entry_ids = [
+        str(entry_id)
+        for entry_id in (
+            (threshold_contract.get("train_cal_partition") or {}).get(
+                "calibration_entry_ids"
+            )
+            or []
+        )
+    ]
+    calibration_rows = [
+        atlas_by_entry[entry_id]
+        for entry_id in calibration_entry_ids
+        if entry_id in atlas_by_entry
+        and (atlas_by_entry[entry_id].get("pocket_context") or {}).get(
+            "descriptors"
+        )
+    ]
+    same_family_proxy_ids = {
+        str(row["entry_id"])
+        for row in (
+            (channel_veto.get("proxy_axis_row_diagnostics") or {}).get(
+                "same_family_structural_proxy_rows"
+            )
+            or []
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    application_rows_by_entry: dict[str, dict[str, Any]] = {}
+    application_row_sources: dict[str, str] = {}
+    for row in preflight.get("descriptor_present_rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        application_rows_by_entry[entry_id] = surface_by_entry.get(
+            entry_id, _lever3_descriptor_synthetic_application_row(row)
+        )
+        application_row_sources[entry_id] = "descriptor_present_preflight"
+    for row in rescue.get("recovered_descriptor_rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        application_rows_by_entry[entry_id] = surface_by_entry.get(
+            entry_id, _lever3_descriptor_synthetic_application_row(row)
+        )
+        application_row_sources[entry_id] = "retained_descriptor_rescue"
+    application_ids = set(application_rows_by_entry)
+    application_rows = [
+        application_rows_by_entry[entry_id]
+        for entry_id in sorted(application_ids, key=_entry_id_sort_key)
+    ]
+    design_ids = same_family_proxy_ids - application_ids
+    design_rows = [
+        surface_by_entry[entry_id]
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id in surface_by_entry
+    ]
+    design_rows_missing_descriptor = [
+        entry_id
+        for entry_id in sorted(design_ids, key=_entry_id_sort_key)
+        if entry_id not in surface_by_entry
+    ]
+
+    atom_rules: list[dict[str, Any]] = []
+    for feature_name in residue_count_fields:
+        thresholds = sorted(
+            {
+                value
+                for value in (
+                    _lever3_pocket_feature_value(
+                        row,
+                        feature_kind="residue_count",
+                        feature_name=feature_name,
+                    )
+                    for row in design_rows
+                )
+                if value is not None
+            }
+        )
+        for threshold in thresholds:
+            for operator in ("<=", ">="):
+                rule = _lever3_descriptor_rule_record(
+                    feature_kind="residue_count",
+                    feature_name=feature_name,
+                    operator=operator,
+                    threshold=threshold,
+                    calibration_rows=calibration_rows,
+                    design_rows=design_rows,
+                    all_oos_rows=surface_rows,
+                    application_rows=application_rows,
+                )
+                if (
+                    rule["calibration_in_scope_fired"] == 0
+                    and rule["design_same_family_rows_fired"] > 0
+                ):
+                    atom_rules.append(rule)
+    atom_rules.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+
+    all_pair_rules_evaluated = 0
+    candidate_pair_rules: list[dict[str, Any]] = []
+    for component_a, component_b in itertools.combinations_with_replacement(
+        atom_rules, 2
+    ):
+        all_pair_rules_evaluated += 1
+        pair_rule = _lever3_descriptor_pair_rule_record(
+            component_a=component_a,
+            component_b=component_b,
+            calibration_rows=calibration_rows,
+            design_rows=design_rows,
+            all_oos_rows=surface_rows,
+            application_rows=application_rows,
+        )
+        if (
+            pair_rule["calibration_in_scope_fired"] == 0
+            and pair_rule["design_same_family_rows_fired"] > 0
+            and pair_rule["all_train_cal_oos_rows_fired"]
+            <= max_all_train_cal_oos_rows_fired
+        ):
+            candidate_pair_rules.append(pair_rule)
+    candidate_pair_rules.sort(
+        key=lambda rule: (
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+    selected_rule = candidate_pair_rules[0] if candidate_pair_rules else None
+    selected_application_ids = (
+        set(selected_rule["application_entry_ids_fired_after_selection"])
+        if selected_rule
+        else set()
+    )
+    prior_selected_rule = generalization.get("selected_counteraxis_rule") or {}
+    prior_fired_ids = {
+        str(entry_id)
+        for entry_id in prior_selected_rule.get(
+            "application_entry_ids_fired_after_selection", []
+        )
+    }
+    new_pairwise_fired_ids = selected_application_ids - prior_fired_ids
+    retained_before_original = int(
+        (risk.get("counts") or {}).get("retained_residual_rows") or 0
+    )
+    retained_before_pairwise = int(
+        (rescue.get("counts") or {}).get(
+            "retained_residual_rows_after_selected_descriptor_counteraxis"
+        )
+        or max(retained_before_original - len(prior_fired_ids), 0)
+    )
+    retained_after_pairwise = max(
+        retained_before_pairwise - len(new_pairwise_fired_ids), 0
+    )
+    retained_after_all_descriptor_rules = max(
+        retained_before_original - len(prior_fired_ids | selected_application_ids),
+        0,
+    )
+    application_row_actions = []
+    for entry_id in sorted(application_ids, key=_entry_id_sort_key):
+        pairwise_fires = entry_id in selected_application_ids
+        prior_fires = entry_id in prior_fired_ids
+        new_fire = pairwise_fires and not prior_fires
+        if prior_fires:
+            action_delta = "already_abstain_or_route_novel_oos_by_prior_descriptor_rule"
+        elif new_fire:
+            action_delta = "abstain_or_route_novel_oos"
+        else:
+            action_delta = "retain_at_fixed_operating_point_not_scoring_closure"
+        application_row_actions.append(
+            {
+                "entry_id": entry_id,
+                "accession": application_rows_by_entry[entry_id].get("accession"),
+                "descriptor_source": application_row_sources.get(entry_id),
+                "prior_descriptor_counteraxis_fires": prior_fires,
+                "selected_pairwise_counteraxis_fires_after_selection": (
+                    pairwise_fires
+                ),
+                "new_abstention_from_pairwise_counteraxis": new_fire,
+                "deployment_action_delta": action_delta,
+                "used_for_rule_selection": False,
+            }
+        )
+
+    retained_after_ids = [
+        row["entry_id"]
+        for row in application_row_actions
+        if not row["prior_descriptor_counteraxis_fires"]
+        and not row["selected_pairwise_counteraxis_fires_after_selection"]
+    ]
+    remaining_retained_ids = set(retained_after_ids)
+    remaining_candidate_hits_by_entry = {
+        entry_id: [
+            rule["feature_rule"]
+            for rule in candidate_pair_rules
+            if entry_id
+            in set(rule.get("application_entry_ids_fired_after_selection") or [])
+        ]
+        for entry_id in retained_after_ids
+    }
+    full_feature_atom_rules: list[dict[str, Any]] = []
+    full_feature_specs = [
+        ("descriptor", feature_name) for feature_name in descriptor_fields
+    ] + [("residue_count", feature_name) for feature_name in residue_count_fields]
+    for feature_kind, feature_name in full_feature_specs:
+        thresholds = sorted(
+            {
+                value
+                for value in (
+                    _lever3_pocket_feature_value(
+                        row,
+                        feature_kind=feature_kind,
+                        feature_name=feature_name,
+                    )
+                    for row in design_rows
+                )
+                if value is not None
+            }
+        )
+        for threshold in thresholds:
+            for operator in ("<=", ">="):
+                rule = _lever3_descriptor_rule_record(
+                    feature_kind=feature_kind,
+                    feature_name=feature_name,
+                    operator=operator,
+                    threshold=threshold,
+                    calibration_rows=calibration_rows,
+                    design_rows=design_rows,
+                    all_oos_rows=surface_rows,
+                    application_rows=application_rows,
+                )
+                if (
+                    rule["calibration_in_scope_fired"] == 0
+                    and rule["design_same_family_rows_fired"] > 0
+                ):
+                    full_feature_atom_rules.append(rule)
+    full_feature_pair_rules_evaluated = 0
+    full_feature_eligible_pair_rules = []
+    for component_a, component_b in itertools.combinations_with_replacement(
+        full_feature_atom_rules, 2
+    ):
+        full_feature_pair_rules_evaluated += 1
+        pair_rule = _lever3_descriptor_pair_rule_record(
+            component_a=component_a,
+            component_b=component_b,
+            calibration_rows=calibration_rows,
+            design_rows=design_rows,
+            all_oos_rows=surface_rows,
+            application_rows=application_rows,
+        )
+        if (
+            pair_rule["calibration_in_scope_fired"] == 0
+            and pair_rule["design_same_family_rows_fired"] > 0
+            and pair_rule["all_train_cal_oos_rows_fired"]
+            <= max_all_train_cal_oos_rows_fired
+        ):
+            full_feature_eligible_pair_rules.append(pair_rule)
+    full_feature_remaining_hit_rules = [
+        rule
+        for rule in full_feature_eligible_pair_rules
+        if remaining_retained_ids
+        & set(rule.get("application_entry_ids_fired_after_selection") or [])
+    ]
+    full_feature_remaining_hit_rules.sort(
+        key=lambda rule: (
+            -len(
+                remaining_retained_ids
+                & set(rule.get("application_entry_ids_fired_after_selection") or [])
+            ),
+            -int(rule["design_same_family_rows_fired"]),
+            int(rule["all_train_cal_oos_rows_fired"]),
+            str(rule["rule_id"]),
+        )
+    )
+    full_feature_remaining_hit_ids = set()
+    for rule in full_feature_remaining_hit_rules:
+        full_feature_remaining_hit_ids.update(
+            remaining_retained_ids
+            & set(rule.get("application_entry_ids_fired_after_selection") or [])
+        )
+    uncovered_design_ids = {str(row["entry_id"]) for row in design_rows}
+    greedy_application_ids = set(prior_fired_ids)
+    greedy_sequence_rows: list[dict[str, Any]] = []
+    for rank in range(1, 6):
+        greedy_candidates = []
+        for rule in candidate_pair_rules:
+            new_design_ids = set(
+                rule.get("design_same_family_entry_ids_fired") or []
+            ) & uncovered_design_ids
+            if new_design_ids:
+                greedy_candidates.append((rule, new_design_ids))
+        if not greedy_candidates:
+            break
+        greedy_candidates.sort(
+            key=lambda item: (
+                -len(item[1]),
+                int(item[0]["all_train_cal_oos_rows_fired"]),
+                str(item[0]["rule_id"]),
+            )
+        )
+        greedy_rule, new_design_ids = greedy_candidates[0]
+        application_ids_for_rule = set(
+            greedy_rule.get("application_entry_ids_fired_after_selection") or []
+        )
+        new_application_ids = application_ids_for_rule - greedy_application_ids
+        greedy_sequence_rows.append(
+            {
+                "rank": rank,
+                "feature_rule": greedy_rule["feature_rule"],
+                "new_design_same_family_entry_ids_fired": sorted(
+                    new_design_ids, key=_entry_id_sort_key
+                ),
+                "new_design_same_family_rows_fired": len(new_design_ids),
+                "all_train_cal_oos_rows_fired": int(
+                    greedy_rule["all_train_cal_oos_rows_fired"]
+                ),
+                "application_entry_ids_fired_after_selection": sorted(
+                    application_ids_for_rule, key=_entry_id_sort_key
+                ),
+                "new_application_entry_ids_after_prior_greedy_rules": sorted(
+                    new_application_ids, key=_entry_id_sort_key
+                ),
+                "new_retained_rows_after_prior_greedy_rules": len(
+                    new_application_ids
+                ),
+            }
+        )
+        uncovered_design_ids -= new_design_ids
+        greedy_application_ids |= application_ids_for_rule
+    greedy_new_application_after_first = set()
+    for row in greedy_sequence_rows[1:]:
+        greedy_new_application_after_first.update(
+            row["new_application_entry_ids_after_prior_greedy_rules"]
+        )
+    greedy_remaining_retained_ids = sorted(
+        application_ids - greedy_application_ids, key=_entry_id_sort_key
+    )
+    selected_ready = bool(selected_rule and new_pairwise_fired_ids)
+    status = (
+        "fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_partial_application"
+        if selected_ready
+        else "fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_no_new_application"
+    )
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 3 measured retained pairwise descriptor counteraxis readout. "
+            "It pre-registers a source-free residue-count OR-rule family, "
+            "selects within train/cal same-family OOS design rows under a "
+            "zero-calibration-fire guard and an all-train/cal-OOS breadth cap, "
+            "then applies the selected rule to retained descriptor rows only "
+            "after selection. It changes no thresholds, scores no new rows, "
+            "stages no coordinates, and uses no heldout rows."
+        ),
+        "selection_policy": {
+            "feature_source": (
+                "source-free pocket residue-code counts from the frozen "
+                "descriptor contract and rescued retained descriptor rows"
+            ),
+            "rule_family": "pairwise_or_of_residue_code_count_threshold_rules",
+            "selection_rows": (
+                "train/cal same-family structural proxy OOS rows with pocket "
+                "descriptors, excluding every retained descriptor application row"
+            ),
+            "application_rows_excluded_from_selection": sorted(
+                application_ids, key=_entry_id_sort_key
+            ),
+            "calibration_guard": (
+                "candidate OR rule must fire zero calibration in-scope rows "
+                "with descriptor values"
+            ),
+            "all_train_cal_oos_breadth_cap_rows": max_all_train_cal_oos_rows_fired,
+            "selection_objective": (
+                "maximize design same-family OOS rows fired, then minimize all "
+                "train/cal OOS descriptor rows fired, then deterministic rule id"
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "threshold_grid_source": "unique train/cal design-row residue counts",
+        },
+        "prior_descriptor_counteraxis_rule": prior_selected_rule,
+        "selected_pairwise_counteraxis_rule": selected_rule,
+        "top_candidate_pair_rules": candidate_pair_rules[:10],
+        "application_row_actions": application_row_actions,
+        "retained_blind_greedy_followup": {
+            "selection_objective": (
+                "iteratively maximize uncovered design same-family OOS rows, "
+                "then minimize all train/cal OOS descriptor rows, then "
+                "deterministic rule id; retained application outcomes are "
+                "measured only after each rule is selected"
+            ),
+            "max_rules_reported": 5,
+            "greedy_sequence_rows": greedy_sequence_rows,
+            "remaining_retained_candidate_hits_by_entry": {
+                entry_id: remaining_candidate_hits_by_entry[entry_id]
+                for entry_id in retained_after_ids
+            },
+        },
+        "full_feature_family_residual_pressure": {
+            "feature_family": (
+                "all frozen descriptor fields plus residue-code count fields"
+            ),
+            "all_train_cal_oos_breadth_cap_rows": max_all_train_cal_oos_rows_fired,
+            "eligible_pair_rules_within_breadth_cap": len(
+                full_feature_eligible_pair_rules
+            ),
+            "remaining_retained_hit_rules": [
+                {
+                    "feature_rule": rule["feature_rule"],
+                    "design_same_family_rows_fired": rule[
+                        "design_same_family_rows_fired"
+                    ],
+                    "all_train_cal_oos_rows_fired": rule[
+                        "all_train_cal_oos_rows_fired"
+                    ],
+                    "remaining_retained_entry_ids_fired": sorted(
+                        remaining_retained_ids
+                        & set(
+                            rule.get(
+                                "application_entry_ids_fired_after_selection"
+                            )
+                            or []
+                        ),
+                        key=_entry_id_sort_key,
+                    ),
+                }
+                for rule in full_feature_remaining_hit_rules[:10]
+            ],
+        },
+        "missing_descriptor_entry_ids": {
+            "design_same_family": design_rows_missing_descriptor,
+        },
+        "counts": {
+            "calibration_in_scope_rows_expected": len(calibration_entry_ids),
+            "calibration_in_scope_descriptor_rows": len(calibration_rows),
+            "train_cal_oos_descriptor_rows": len(surface_rows),
+            "same_family_proxy_rows": len(same_family_proxy_ids),
+            "design_same_family_descriptor_rows": len(design_rows),
+            "design_same_family_rows_missing_descriptor": len(
+                design_rows_missing_descriptor
+            ),
+            "retained_descriptor_application_rows": len(application_rows),
+            "residue_count_atom_rules_checked": len(atom_rules),
+            "pairwise_or_rules_evaluated": all_pair_rules_evaluated,
+            "candidate_pairwise_or_rules_within_breadth_cap": len(
+                candidate_pair_rules
+            ),
+            "top_candidate_pair_rules_reported": min(
+                10, len(candidate_pair_rules)
+            ),
+            "selected_rule_calibration_in_scope_fired": (
+                int(selected_rule["calibration_in_scope_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_design_same_family_rows_fired": (
+                int(selected_rule["design_same_family_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_all_train_cal_oos_rows_fired": (
+                int(selected_rule["all_train_cal_oos_rows_fired"])
+                if selected_rule
+                else None
+            ),
+            "selected_rule_application_rows_fired_after_selection": len(
+                selected_application_ids
+            ),
+            "prior_descriptor_counteraxis_application_rows_fired": len(
+                prior_fired_ids
+            ),
+            "new_pairwise_application_rows_fired_after_prior_rule": len(
+                new_pairwise_fired_ids
+            ),
+            "retained_residual_rows_before_any_descriptor_counteraxis": (
+                retained_before_original
+            ),
+            "retained_residual_rows_before_pairwise_counteraxis": (
+                retained_before_pairwise
+            ),
+            "retained_residual_rows_after_pairwise_counteraxis": (
+                retained_after_pairwise
+            ),
+            "retained_residual_rows_after_all_descriptor_counteraxes": (
+                retained_after_all_descriptor_rules
+            ),
+            "retained_blind_greedy_rules_reported": len(greedy_sequence_rows),
+            "greedy_followup_rules_after_selected_pairwise": max(
+                len(greedy_sequence_rows) - 1, 0
+            ),
+            "greedy_followup_new_application_rows_after_selected_pairwise": len(
+                greedy_new_application_after_first
+            ),
+            "retained_residual_rows_after_retained_blind_greedy_sequence": len(
+                greedy_remaining_retained_ids
+            ),
+            "remaining_retained_rows_with_any_eligible_pair_rule": sum(
+                1
+                for hits in remaining_candidate_hits_by_entry.values()
+                if hits
+            ),
+            "full_feature_atom_rules_checked": len(full_feature_atom_rules),
+            "full_feature_pairwise_or_rules_evaluated": (
+                full_feature_pair_rules_evaluated
+            ),
+            "full_feature_pairwise_or_rules_within_breadth_cap": len(
+                full_feature_eligible_pair_rules
+            ),
+            "remaining_retained_rows_hit_by_full_feature_pair_family": len(
+                full_feature_remaining_hit_ids
+            ),
+            "calibration_in_scope_rows": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_rows") or 0
+            ),
+            "calibration_in_scope_retained": int(
+                (risk.get("counts") or {}).get("calibration_in_scope_retained") or 0
+            ),
+            "all_train_cal_oos_rows": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_rows") or 0
+            ),
+            "all_train_cal_oos_abstained": int(
+                (risk.get("counts") or {}).get("all_train_cal_oos_abstained") or 0
+            ),
+        },
+        "decision": {
+            "pairwise_descriptor_counteraxis_selected_now": selected_rule is not None,
+            "pairwise_descriptor_counteraxis_ready_for_partial_application_now": (
+                selected_ready
+            ),
+            "application_rows_used_for_rule_selection": False,
+            "retained_descriptor_rows_abstained_by_pairwise_rule": len(
+                selected_application_ids
+            ),
+            "new_retained_descriptor_rows_abstained_after_prior_rule": len(
+                new_pairwise_fired_ids
+            ),
+            "safe_abstention_routing_available_now": bool(
+                (risk.get("decision") or {}).get(
+                    "safe_abstention_routing_available_now"
+                )
+            ),
+            "zero_residual_retained_transfer_risk_available_now": (
+                retained_after_pairwise == 0
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "retained_rows_remaining_after_pairwise_counteraxis": retained_after_ids,
+            "current_residue_count_pair_family_exhausted_for_remaining_retained_rows": (
+                not any(remaining_candidate_hits_by_entry.values())
+            ),
+            "current_full_descriptor_pair_family_exhausted_for_remaining_retained_rows": (
+                not full_feature_remaining_hit_ids
+            ),
+            "exact_remaining_evidence_for_zero_residual_risk": [
+                (
+                    "additional train/cal-selected source-free descriptor or "
+                    "chemistry counteraxes for retained rows not fired by the "
+                    "LEU-count or pairwise residue-count rules"
+                ),
+                (
+                    "the existing P07658 full-length predicted coordinate and "
+                    "provenance route before fixed-threshold scoring closure"
+                ),
+            ],
+            "next_gate": (
+                "Treat the selected pairwise residue-count rule as partial "
+                "fail-closed evidence for newly fired retained rows only. "
+                "Continue designing train/cal-only counteraxes for the "
+                "remaining retained descriptor rows; do not change threshold "
+                "0.44155 or force a mechanism label."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "rule_selected_on_train_cal_only": True,
+            "application_rows_used_for_rule_selection": False,
+            "application_row_outcomes_used_in_selection_objective": False,
+            "all_train_cal_oos_breadth_cap_applied": True,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "candidate_rows_scored_now": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "descriptor_present_counteraxis_preflight": _source_path_record(
+                descriptor_present_counteraxis_preflight_path
+            ),
+            "retained_residual_risk_readout": _source_path_record(
+                retained_residual_risk_readout_path
+            ),
+            "descriptor_generalization_counteraxis_readout": _source_path_record(
+                descriptor_generalization_counteraxis_readout_path
+            ),
+            "retained_descriptor_rescue_readout": _source_path_record(
+                retained_descriptor_rescue_readout_path
+            ),
+            "latest_train_cal_oos_surface": _source_path_record(
+                latest_train_cal_oos_surface_path
+            ),
+            "predicted_geometry_atlas_retrieval": _source_path_record(
+                predicted_geometry_atlas_retrieval_path
+            ),
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "channel_veto_readout": _source_path_record(channel_veto_readout_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"The pairwise residue-count counteraxis adds "
+                f"{len(new_pairwise_fired_ids)} new retained-row abstention "
+                "after train/cal-only selection."
+            ),
+            "result": (
+                "The selected rule is "
+                f"{selected_rule['feature_rule'] if selected_rule else 'none'}; "
+                f"retained residual rows fall from {retained_before_pairwise} "
+                f"to {retained_after_pairwise} after the prior descriptor rule."
+            ),
+            "next_action": (
+                "Keep the remaining retained descriptor rows in the evidence "
+                "queue and search for another source-free counteraxis selected "
+                "only on train/cal evidence."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    policy = readout["selection_policy"]
+    selected = readout.get("selected_pairwise_counteraxis_rule") or {}
+    lines = [
+        "# Fold-Augmented Lever 3 Retained Pairwise Descriptor Counteraxis Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Pairwise descriptor counteraxis selected now: "
+        f"{decision['pairwise_descriptor_counteraxis_selected_now']}",
+        "- Ready for partial application now: "
+        f"{decision['pairwise_descriptor_counteraxis_ready_for_partial_application_now']}",
+        "- Application rows used for rule selection: "
+        f"{decision['application_rows_used_for_rule_selection']}",
+        "",
+        "## Selection Policy",
+        "",
+        f"- Rule family: {policy['rule_family']}",
+        "- All train/cal OOS breadth cap rows: "
+        f"{policy['all_train_cal_oos_breadth_cap_rows']}",
+        f"- Selection objective: {policy['selection_objective']}",
+        "",
+        "## Counts",
+        "",
+        "- Calibration descriptor rows: "
+        f"{counts['calibration_in_scope_descriptor_rows']}/"
+        f"{counts['calibration_in_scope_rows_expected']}",
+        "- Design same-family descriptor rows: "
+        f"{counts['design_same_family_descriptor_rows']}/"
+        f"{counts['same_family_proxy_rows']}",
+        "- Atom/pair rules checked: "
+        f"{counts['residue_count_atom_rules_checked']}/"
+        f"{counts['pairwise_or_rules_evaluated']}",
+        "- Candidate pair rules within breadth cap: "
+        f"{counts['candidate_pairwise_or_rules_within_breadth_cap']}",
+        "- New retained rows fired after prior rule: "
+        f"{counts['new_pairwise_application_rows_fired_after_prior_rule']}",
+        "- Retained residual rows before/after pairwise counteraxis: "
+        f"{counts['retained_residual_rows_before_pairwise_counteraxis']}/"
+        f"{counts['retained_residual_rows_after_pairwise_counteraxis']}",
+        "- Greedy follow-up new application rows after selected pairwise rule: "
+        f"{counts['greedy_followup_new_application_rows_after_selected_pairwise']}",
+        "- Remaining retained rows with any eligible capped pair rule: "
+        f"{counts['remaining_retained_rows_with_any_eligible_pair_rule']}",
+        "- Full frozen feature-family rules within breadth cap / remaining hits: "
+        f"{counts['full_feature_pairwise_or_rules_within_breadth_cap']}/"
+        f"{counts['remaining_retained_rows_hit_by_full_feature_pair_family']}",
+        "",
+        "## Selected Rule",
+        "",
+        f"- Rule: {selected.get('feature_rule')}",
+        "- Calibration in-scope fired: "
+        f"{selected.get('calibration_in_scope_fired')}",
+        "- Design same-family rows fired: "
+        f"{selected.get('design_same_family_rows_fired')}",
+        "- All train/cal OOS descriptor rows fired: "
+        f"{selected.get('all_train_cal_oos_rows_fired')}",
+        "- Retained application rows fired after selection: "
+        f"{selected.get('application_entry_ids_fired_after_selection')}",
+        "",
+        "## Application Rows",
+        "",
+        "| row | source | prior fires | pairwise fires | new abstention | action delta |",
+        "| --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for row in readout.get("application_row_actions", []):
+        lines.append(
+            f"| {row['entry_id']} | {row.get('descriptor_source') or ''} | "
+            f"{row['prior_descriptor_counteraxis_fires']} | "
+            f"{row['selected_pairwise_counteraxis_fires_after_selection']} | "
+            f"{row['new_abstention_from_pairwise_counteraxis']} | "
+            f"{row['deployment_action_delta']} |"
+        )
+    lines += [
+        "",
+        "## Top Candidate Pair Rules",
+        "",
+        "| rule | design fired | all OOS fired | application fired |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for rule in readout.get("top_candidate_pair_rules", []):
+        lines.append(
+            f"| {rule['feature_rule']} | "
+            f"{rule['design_same_family_rows_fired']} | "
+            f"{rule['all_train_cal_oos_rows_fired']} | "
+            f"{rule['application_rows_fired_after_selection']} |"
+        )
+    greedy = readout.get("retained_blind_greedy_followup") or {}
+    lines += [
+        "",
+        "## Retained-Blind Greedy Follow-Up",
+        "",
+        "| rank | rule | new design fired | all OOS fired | new application fired |",
+        "| ---: | --- | ---: | ---: | --- |",
+    ]
+    for row in greedy.get("greedy_sequence_rows", []):
+        lines.append(
+            f"| {row['rank']} | {row['feature_rule']} | "
+            f"{row['new_design_same_family_rows_fired']} | "
+            f"{row['all_train_cal_oos_rows_fired']} | "
+            f"{row['new_application_entry_ids_after_prior_greedy_rules']} |"
+        )
+    full_feature = readout.get("full_feature_family_residual_pressure") or {}
+    lines += [
+        "",
+        "## Full Feature-Family Residual Pressure",
+        "",
+        "- Eligible capped pair rules: "
+        f"{full_feature.get('eligible_pair_rules_within_breadth_cap')}",
+        "",
+        "| rule | design fired | all OOS fired | remaining retained fired |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for row in full_feature.get("remaining_retained_hit_rules", []):
+        lines.append(
+            f"| {row['feature_rule']} | "
+            f"{row['design_same_family_rows_fired']} | "
+            f"{row['all_train_cal_oos_rows_fired']} | "
+            f"{row['remaining_retained_entry_ids_fired']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Apply/change threshold now: "
+        f"{decision['apply_or_change_threshold_now']}",
+        "- Remaining retained rows: "
+        f"{decision['retained_rows_remaining_after_pairwise_counteraxis']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. No coordinates, row scores, labels, registries, ontologies, imports, thresholds, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout(
+    *,
+    descriptor_present_counteraxis_preflight_path: Path,
+    retained_residual_risk_readout_path: Path,
+    descriptor_generalization_counteraxis_readout_path: Path,
+    retained_descriptor_rescue_readout_path: Path,
+    latest_train_cal_oos_surface_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    threshold_contract_path: Path,
+    channel_veto_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    max_all_train_cal_oos_rows_fired: int = 8,
+    artifact_id: str = (
+        FOLD_AUGMENTED_LEVER3_RETAINED_PAIRWISE_DESCRIPTOR_COUNTERAXIS_READOUT_ID
+    ),
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout(
+        descriptor_present_counteraxis_preflight_path=(
+            descriptor_present_counteraxis_preflight_path
+        ),
+        retained_residual_risk_readout_path=retained_residual_risk_readout_path,
+        descriptor_generalization_counteraxis_readout_path=(
+            descriptor_generalization_counteraxis_readout_path
+        ),
+        retained_descriptor_rescue_readout_path=retained_descriptor_rescue_readout_path,
+        latest_train_cal_oos_surface_path=latest_train_cal_oos_surface_path,
+        predicted_geometry_atlas_retrieval_path=predicted_geometry_atlas_retrieval_path,
+        threshold_contract_path=threshold_contract_path,
+        channel_veto_readout_path=channel_veto_readout_path,
+        max_all_train_cal_oos_rows_fired=max_all_train_cal_oos_rows_fired,
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_report(
                 readout
             ),
             encoding="utf-8",

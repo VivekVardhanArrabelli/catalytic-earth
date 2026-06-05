@@ -9241,6 +9241,119 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(readout["guardrails"]["existing_artifacts_only"])
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_retained_pairwise_"
+                "descriptor_counteraxis_readout_current702_20260604.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            (
+                "fold_augmented_lever3_retained_pairwise_descriptor_"
+                "counteraxis_readout_partial_application"
+            ),
+        )
+        self.assertEqual(
+            readout["selection_policy"]["all_train_cal_oos_breadth_cap_rows"],
+            8,
+        )
+        self.assertFalse(
+            readout["selection_policy"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"]["feature_rule"],
+            "residue_count.ASN >= 8.0 OR residue_count.LEU <= 1.0",
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"][
+                "design_same_family_entry_ids_fired"
+            ],
+            ["m_csa:104", "m_csa:244", "m_csa:422", "m_csa:646"],
+        )
+        self.assertEqual(
+            readout["selected_pairwise_counteraxis_rule"][
+                "application_entry_ids_fired_after_selection"
+            ],
+            ["m_csa:25", "m_csa:84"],
+        )
+        self.assertEqual(
+            readout["counts"]["candidate_pairwise_or_rules_within_breadth_cap"],
+            53,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_calibration_in_scope_fired"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["selected_rule_all_train_cal_oos_rows_fired"],
+            8,
+        )
+        self.assertEqual(
+            readout["counts"]["new_pairwise_application_rows_fired_after_prior_rule"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_before_pairwise_counteraxis"],
+            10,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_pairwise_counteraxis"],
+            9,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "greedy_followup_new_application_rows_after_selected_pairwise"
+            ],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["remaining_retained_rows_with_any_eligible_pair_rule"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["full_feature_pairwise_or_rules_within_breadth_cap"],
+            117,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "remaining_retained_rows_hit_by_full_feature_pair_family"
+            ],
+            0,
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_residue_count_pair_family_exhausted_for_remaining_retained_rows"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "current_full_descriptor_pair_family_exhausted_for_remaining_retained_rows"
+            ]
+        )
+        self.assertTrue(
+            readout["decision"][
+                "pairwise_descriptor_counteraxis_ready_for_partial_application_now"
+            ]
+        )
+        self.assertFalse(
+            readout["decision"]["application_rows_used_for_rule_selection"]
+        )
+        self.assertFalse(
+            readout["decision"][
+                "zero_residual_retained_transfer_risk_available_now"
+            ]
+        )
+        self.assertFalse(readout["guardrails"]["blocker_packet"])
+        self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -9361,6 +9474,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_retained_descriptor_"
                 "rescue_readout_current702_20260604.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_retained_pairwise_"
+                "descriptor_counteraxis_readout_current702_20260604.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

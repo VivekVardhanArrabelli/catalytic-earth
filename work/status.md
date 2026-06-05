@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 360
-- Measured elapsed time: 11009.5 minutes (183.49 hours)
+- Entries: 361
+- Measured elapsed time: 11031.7 minutes (183.86 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -17,7 +17,7 @@ Generated from `work/progress_log.jsonl`.
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - northstar-lever-2: 167.5 measured minutes (2.79 hours)
 - northstar-lever-2-3: 55.6 measured minutes (0.93 hours)
-- northstar-lever3: 842.0 measured minutes (14.03 hours)
+- northstar-lever3: 864.2 measured minutes (14.40 hours)
 - ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
@@ -32,21 +32,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3778
-- Evidence references logged: 3117
+- Artifact references logged: 3787
+- Evidence references logged: 3127
 
 ## Recent Entries
-
-### 2026-06-04T22:26:32.470910+00:00 - northstar-lever3
-
-- Task: Lever 3 P07658 exact route attempt readout
-- Time mode: measured
-- Measured minutes: 22.9
-- Started: 2026-06-04T22:03:19Z
-- Ended: 2026-06-04T22:26:13Z
-- Artifacts: artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempts_current702_20260604.json, artifacts/v3_fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.json, work/fold_augmented_lever3_p07658_exact_route_attempt_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
-- Evidence: six exact or provider route surfaces checked for P07658, zero coordinates returned and zero deployment-valid predicted coordinate rows, exact sequence hash 3090cc03d7d9a4015e6607c7008d258d99b15b4dfec5db660eadfea94b8fe9fa preserved, ESM Atlas exact POST returned HTTP 413 length limit 400, BioLM documented items payload returned HTTP 401 without credentials, NVIDIA NIM ESMFold exact POST returned HTTP 401 missing authorization, Hugging Face router returned HTTP 401 and legacy host DNS failed, SWISS-MODEL returned five PDB-provider rows and zero SWISSMODEL predicted rows, post-bandpass operating context remains 31 of 34 calibration retained and 105 of 204 train-cal OOS abstained, affected suite 569 passed and 181 subtests, full pytest 1441 passed 200 subtests with existing sklearn warning, unittest discovery 1396 passed, validate 702 labels compileall diff-check JSON parse and docs-reference passed, disk remained above 10 GiB
-- Notes: Measured readout artifact first; no blocker packet produced. Public/provider route attempts were no-staging evidence checks and kept the fixed 0.44155 threshold unchanged.
 
 ### 2026-06-04T23:22:40.005804+00:00 - northstar-lever3
 
@@ -124,6 +113,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.json, work/fold_augmented_lever3_descriptor_generalization_counteraxis_readout_current702_20260604.md, artifacts/v3_fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.json, work/fold_augmented_lever3_retained_descriptor_rescue_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
 - Evidence: descriptor-generalization counteraxis selected residue_count.LEU<=1.0 on train/cal design rows with zero calibration fires, excluded retained application rows were not used for rule selection, selected descriptor rule abstains m_csa:25 and leaves m_csa:52 retained, retained residual rows fall from 11 to 10 but zero residual retained-transfer risk remains false, retained descriptor rescue recovered 9 of 9 previously descriptor-missing rows from existing source-free artifacts, retained rows with descriptor evidence are now 11 of 11, selected LEU-count rule fires 0 recovered rows, full pytest 1475 passed 211 subtests with existing sklearn warning, unittest discovery 1430 passed, affected suite 603 passed 192 subtests, validate passed 702 labels, JSON parse 3559 JSON and 27 JSONL zero errors, normalized reproducibility passed for both new CLI artifacts, disk remained above 10 GiB
 - Notes: Measured readout artifacts first; no blocker packet produced; fixed threshold 0.44155 unchanged.
+
+### 2026-06-05T06:24:37.090381+00:00 - northstar-lever3
+
+- Task: Lever 3 retained pairwise descriptor counteraxis readout
+- Time mode: measured
+- Measured minutes: 22.183
+- Started: 2026-06-05T06:02:25Z
+- Ended: 2026-06-05T06:24:36Z
+- Artifacts: artifacts/v3_fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.json, work/fold_augmented_lever3_retained_pairwise_descriptor_counteraxis_readout_current702_20260604.md, src/catalytic_earth/northstar_next_levers.py, src/catalytic_earth/cli.py, tests/test_northstar_next_levers.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, work/handoff.md, work/status.md
+- Evidence: pairwise residue-count OR selected ASN>=8 OR LEU<=1 on train-cal design rows with zero calibration fires, m_csa:84 newly routed and prior m_csa:25 remains routed by descriptor evidence, retained residual rows after descriptor counteraxes 9, full frozen descriptor pair family has 117 eligible capped rules and 0 remaining retained row hits, calibration retention remains 31 of 34 and train-cal OOS abstention remains 105 of 204, focused tests 4 passed and 28 subtests, affected suite 606 passed and 193 subtests, full pytest 1478 passed and 212 subtests with existing sklearn warning, unittest discovery 1433 passed, validate compileall diff-check JSON parse doc-source-hash normalized reproducibility and disk checks passed
+- Notes: Measured readout artifact first; no blocker packet produced; fixed threshold 0.44155 unchanged. Actual elapsed time was measured from the canonical lock timestamp.
 
 ## Expectation Updates
 
@@ -621,3 +621,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-06-05T02:27:05.027678+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
 - 2026-06-05T03:33:38.753039+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values or experimental PDB deployment shortcuts changed.
 - 2026-06-05T05:24:07.185327+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions secret values provider calls or experimental-PDB deployment shortcuts changed.
+- 2026-06-05T06:24:37.090381+00:00: Lever 3 only; no labels registries ontologies imports heldout splits production thresholds threshold tuning row scoring coordinate staging model fitting source decisions provider calls secret values or experimental-PDB deployment shortcuts changed.
