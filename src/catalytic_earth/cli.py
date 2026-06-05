@@ -173,6 +173,7 @@ from .northstar_next_levers import (
     write_fold_augmented_lever3_retained_channel_margin_counteraxis_readout,
     write_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout,
     write_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout,
+    write_fold_augmented_lever3_operating_point_closure_readout,
     write_fold_augmented_lever3_post_bandpass_deployment_readout,
     write_fold_augmented_lever3_retention_frontier_readout,
     write_fold_augmented_lever3_residual_safety_readout,
@@ -14054,6 +14055,44 @@ def cmd_build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_reado
         f"{counts.get('retained_residual_rows_after_geometry_mismatch_counteraxis')}, "
         "ready: "
         f"{decision.get('geometry_mismatch_counteraxis_ready_for_application_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_lever3_operating_point_closure_readout(
+    args: argparse.Namespace,
+) -> int:
+    writer_kwargs: dict[str, Any] = {}
+    if getattr(args, "artifact_id", None):
+        writer_kwargs["artifact_id"] = args.artifact_id
+    readout = write_fold_augmented_lever3_operating_point_closure_readout(
+        deployment_action_readout_path=Path(args.deployment_action_readout),
+        retained_pairwise_descriptor_counteraxis_readout_path=Path(
+            args.retained_pairwise_descriptor_counteraxis_readout
+        ),
+        retained_channel_margin_counteraxis_readout_path=Path(
+            args.retained_channel_margin_counteraxis_readout
+        ),
+        retained_pocket_chemistry_counteraxis_readout_path=Path(
+            args.retained_pocket_chemistry_counteraxis_readout
+        ),
+        retained_geometry_mismatch_counteraxis_readout_path=Path(
+            args.retained_geometry_mismatch_counteraxis_readout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        **writer_kwargs,
+    )
+    counts = readout.get("counts", {})
+    decision = readout.get("decision", {})
+    print(
+        "Wrote fold-augmented Lever 3 operating-point closure readout to "
+        f"{args.out} (retained residual rows: "
+        f"{counts.get('retained_residual_rows_after_all_counteraxes')}, "
+        "train/cal OOS abstained/routed: "
+        f"{counts.get('train_cal_oos_abstained_or_routed')}/"
+        f"{counts.get('train_cal_oos_rows')}, safe route: "
+        f"{decision.get('deployment_valid_safe_abstention_route_available_now')})"
     )
     return 0
 
@@ -33796,6 +33835,70 @@ def build_parser() -> argparse.ArgumentParser:
         func=(
             cmd_build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout
         )
+    )
+
+    lever3_operating_point_closure_readout = subparsers.add_parser(
+        "build-fold-augmented-lever3-operating-point-closure-readout",
+        help=(
+            "compose accepted Lever 3 retained counteraxis readouts into a "
+            "deployment-valid abstain/route operating-point closure readout"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--deployment-action-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_deployment_action_"
+            "readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-pairwise-descriptor-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pairwise_"
+            "descriptor_counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-channel-margin-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_channel_margin_"
+            "counteraxis_readout_current702_20260604.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-pocket-chemistry-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_pocket_chemistry_"
+            "counteraxis_readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--retained-geometry-mismatch-counteraxis-readout",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_retained_geometry_mismatch_"
+            "counteraxis_readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--artifact-id",
+        default=None,
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.json"
+        ),
+    )
+    lever3_operating_point_closure_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_lever3_operating_point_closure_"
+            "readout_current702_20260605.md"
+        ),
+    )
+    lever3_operating_point_closure_readout.set_defaults(
+        func=cmd_build_fold_augmented_lever3_operating_point_closure_readout
     )
 
     p10746_caveat_decision_packet = subparsers.add_parser(

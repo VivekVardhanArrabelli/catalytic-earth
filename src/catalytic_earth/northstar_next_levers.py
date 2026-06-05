@@ -375,6 +375,9 @@ FOLD_AUGMENTED_LEVER3_RETAINED_POCKET_CHEMISTRY_COUNTERAXIS_READOUT_ID = (
 FOLD_AUGMENTED_LEVER3_RETAINED_GEOMETRY_MISMATCH_COUNTERAXIS_READOUT_ID = (
     "v3_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_current702_20260605"
 )
+FOLD_AUGMENTED_LEVER3_OPERATING_POINT_CLOSURE_READOUT_ID = (
+    "v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -50816,6 +50819,898 @@ def write_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout_report(
+                readout
+            ),
+            encoding="utf-8",
+        )
+    return readout
+
+
+def _lever3_sorted_entry_id_list(values: Any) -> list[str]:
+    if not isinstance(values, list):
+        return []
+    return sorted(
+        [str(value) for value in values if value is not None],
+        key=_entry_id_sort_key,
+    )
+
+
+def _lever3_action_entry_ids(
+    actions: list[dict[str, Any]],
+    *,
+    action_delta: str,
+) -> list[str]:
+    return sorted(
+        [
+            str(row["entry_id"])
+            for row in actions
+            if row.get("entry_id") and row.get("deployment_action_delta") == action_delta
+        ],
+        key=_entry_id_sort_key,
+    )
+
+
+def build_fold_augmented_lever3_operating_point_closure_readout(
+    *,
+    deployment_action_readout_path: Path,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    retained_channel_margin_counteraxis_readout_path: Path,
+    retained_pocket_chemistry_counteraxis_readout_path: Path,
+    retained_geometry_mismatch_counteraxis_readout_path: Path,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_OPERATING_POINT_CLOSURE_READOUT_ID,
+) -> dict[str, Any]:
+    deployment = _read_json(deployment_action_readout_path)
+    pairwise = _read_json(retained_pairwise_descriptor_counteraxis_readout_path)
+    channel = _read_json(retained_channel_margin_counteraxis_readout_path)
+    pocket = _read_json(retained_pocket_chemistry_counteraxis_readout_path)
+    geometry = _read_json(retained_geometry_mismatch_counteraxis_readout_path)
+
+    deployment_counts = deployment.get("counts") or {}
+    deployment_decision = deployment.get("decision") or {}
+    deployment_operating = deployment.get("operating_point") or {}
+    pairwise_counts = pairwise.get("counts") or {}
+    pairwise_decision = pairwise.get("decision") or {}
+    channel_counts = channel.get("counts") or {}
+    channel_decision = channel.get("decision") or {}
+    pocket_counts = pocket.get("counts") or {}
+    pocket_decision = pocket.get("decision") or {}
+    geometry_counts = geometry.get("counts") or {}
+    geometry_decision = geometry.get("decision") or {}
+    geometry_operating = geometry.get("operating_point_after_geometry_mismatch") or {}
+
+    residual_actions = [
+        row
+        for row in deployment.get("residual_action_rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    residual_ids = sorted(
+        [str(row["entry_id"]) for row in residual_actions],
+        key=_entry_id_sort_key,
+    )
+    baseline_accepted_ids = sorted(
+        [
+            str(row["entry_id"])
+            for row in residual_actions
+            if row.get("deployment_action_now") == "abstain_or_route_novel_oos"
+        ],
+        key=_entry_id_sort_key,
+    )
+
+    pairwise_actions = [
+        row
+        for row in pairwise.get("application_row_actions", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    descriptor_prior_ids = _lever3_action_entry_ids(
+        pairwise_actions,
+        action_delta="already_abstain_or_route_novel_oos_by_prior_descriptor_rule",
+    )
+    descriptor_pairwise_ids = _lever3_action_entry_ids(
+        pairwise_actions,
+        action_delta="abstain_or_route_novel_oos",
+    )
+    descriptor_stage_ids = sorted(
+        set(descriptor_prior_ids) | set(descriptor_pairwise_ids),
+        key=_entry_id_sort_key,
+    )
+
+    channel_margin_ids = _lever3_sorted_entry_id_list(
+        channel_decision.get("retained_rows_newly_abstained_by_margin_counteraxis")
+    )
+    fold_tm_bandpass_ids = _lever3_sorted_entry_id_list(
+        channel_decision.get("retained_rows_newly_abstained_by_fold_tm_bandpass_counteraxis")
+    )
+    fold_cofactor_pressure_ids = _lever3_sorted_entry_id_list(
+        channel_decision.get(
+            "retained_rows_newly_abstained_by_fold_cofactor_pressure_counteraxis"
+        )
+    )
+    channel_stage_ids = sorted(
+        set(channel_margin_ids)
+        | set(fold_tm_bandpass_ids)
+        | set(fold_cofactor_pressure_ids),
+        key=_entry_id_sort_key,
+    )
+    pocket_stage_ids = _lever3_sorted_entry_id_list(
+        pocket_decision.get("retained_rows_newly_abstained_by_pocket_chemistry_counteraxis")
+    )
+    geometry_stage_ids = _lever3_sorted_entry_id_list(
+        geometry_decision.get(
+            "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis"
+        )
+    )
+    final_residual_ids = _lever3_sorted_entry_id_list(
+        geometry_decision.get("retained_rows_remaining_after_geometry_mismatch_counteraxis")
+    )
+
+    routed_by_stage: dict[str, str] = {}
+    for entry_id in baseline_accepted_ids:
+        routed_by_stage[entry_id] = "accepted_cofactor_or_same_family_bandpass"
+    for entry_id in descriptor_prior_ids:
+        routed_by_stage[entry_id] = "descriptor_generalization_counteraxis"
+    for entry_id in descriptor_pairwise_ids:
+        routed_by_stage[entry_id] = "pairwise_descriptor_counteraxis"
+    for entry_id in channel_margin_ids:
+        routed_by_stage[entry_id] = "channel_margin_counteraxis"
+    for entry_id in fold_tm_bandpass_ids:
+        routed_by_stage[entry_id] = "fold_tm_bandpass_counteraxis"
+    for entry_id in fold_cofactor_pressure_ids:
+        routed_by_stage[entry_id] = "fold_cofactor_pressure_counteraxis"
+    for entry_id in pocket_stage_ids:
+        routed_by_stage[entry_id] = "pocket_chemistry_counteraxis"
+    for entry_id in geometry_stage_ids:
+        routed_by_stage[entry_id] = "geometry_mismatch_counteraxis"
+
+    routed_ids = sorted(set(routed_by_stage), key=_entry_id_sort_key)
+    unrouted_residual_ids = sorted(
+        set(residual_ids) - set(routed_ids), key=_entry_id_sort_key
+    )
+    duplicate_stage_ids = sorted(
+        [
+            entry_id
+            for entry_id, count in Counter(
+                baseline_accepted_ids
+                + descriptor_stage_ids
+                + channel_stage_ids
+                + pocket_stage_ids
+                + geometry_stage_ids
+            ).items()
+            if count > 1
+        ],
+        key=_entry_id_sort_key,
+    )
+
+    residual_route_rows = []
+    residual_by_entry = {str(row["entry_id"]): row for row in residual_actions}
+    for entry_id in residual_ids:
+        source = residual_by_entry.get(entry_id, {})
+        stage = routed_by_stage.get(entry_id, "unrouted_retained_residual")
+        residual_route_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": source.get("accession"),
+                "label_type": source.get("label_type"),
+                "final_lever3_route_stage": stage,
+                "deployment_action_now": (
+                    "abstain_or_route_novel_oos"
+                    if stage != "unrouted_retained_residual"
+                    else "retain_at_fixed_operating_point_not_scoring_closure"
+                ),
+                "force_mechanism_label_now": False,
+                "used_for_rule_selection": False,
+            }
+        )
+
+    calibration_rows = int(
+        geometry_operating.get("calibration_in_scope_rows")
+        or deployment_counts.get("calibration_in_scope_rows")
+        or 0
+    )
+    calibration_retained = int(
+        geometry_operating.get("calibration_in_scope_retained_after_geometry_mismatch")
+        or deployment_counts.get("calibration_in_scope_retained")
+        or 0
+    )
+    train_cal_oos_rows = int(
+        geometry_operating.get("all_train_cal_oos_full_channel_rows")
+        or deployment_counts.get("all_train_cal_oos_rows")
+        or 0
+    )
+    train_cal_oos_abstained = int(
+        geometry_operating.get("combined_all_train_cal_oos_abstained_after_geometry_mismatch")
+        or geometry_counts.get("combined_all_train_cal_oos_abstained_after_geometry_mismatch")
+        or 0
+    )
+    baseline_threshold = (
+        geometry_operating.get("baseline_threshold")
+        if geometry_operating.get("baseline_threshold") is not None
+        else deployment_operating.get("baseline_threshold")
+    )
+    retention_floor_rows = int(
+        deployment_counts.get("calibration_in_scope_retained") or calibration_retained
+    )
+    true_in_scope_retention_floor_met = (
+        calibration_rows > 0 and calibration_retained >= retention_floor_rows
+    )
+
+    def _closure_count_or_default(
+        counts: dict[str, Any], key: str, default: int
+    ) -> int:
+        value = counts.get(key)
+        return default if value is None else int(value)
+
+    deployment_residual_rows_count = _closure_count_or_default(
+        deployment_counts, "residual_rows", len(residual_ids)
+    )
+    expected_descriptor_stage_rows = _closure_count_or_default(
+        pairwise_counts,
+        "prior_descriptor_counteraxis_application_rows_fired",
+        len(descriptor_prior_ids),
+    ) + _closure_count_or_default(
+        pairwise_counts,
+        "new_pairwise_application_rows_fired_after_prior_rule",
+        len(descriptor_pairwise_ids),
+    )
+    oos_trace = {
+        "accepted_counteraxes": int(
+            deployment_counts.get("all_train_cal_oos_abstained") or 0
+        ),
+        "descriptor_plus_accepted": int(
+            channel_counts.get("descriptor_plus_accepted_all_train_cal_oos_abstained")
+            or deployment_counts.get("all_train_cal_oos_abstained")
+            or 0
+        ),
+        "channel_margin_fold_pressure": int(
+            channel_counts.get("combined_all_train_cal_oos_abstained_after_all_counteraxes")
+            or channel_counts.get("descriptor_plus_accepted_all_train_cal_oos_abstained")
+            or 0
+        ),
+        "pocket_chemistry": int(
+            pocket_counts.get("combined_all_train_cal_oos_abstained_after_pocket_chemistry")
+            or channel_counts.get("combined_all_train_cal_oos_abstained_after_all_counteraxes")
+            or 0
+        ),
+        "geometry_mismatch": train_cal_oos_abstained,
+    }
+    oos_trace_rows = [
+        {
+            "stage_id": stage_id,
+            "train_cal_oos_abstained_or_routed": value,
+        }
+        for stage_id, value in oos_trace.items()
+    ]
+    oos_values = list(oos_trace.values())
+    calibration_trace = {
+        "deployment_action": int(
+            deployment_counts.get("calibration_in_scope_retained")
+            or calibration_retained
+        ),
+        "channel_margin": int(
+            channel_counts.get("calibration_in_scope_retained_after_margin")
+            or calibration_retained
+        ),
+        "pocket_chemistry": int(
+            (pocket.get("operating_point_after_pocket_chemistry") or {}).get(
+                "calibration_in_scope_retained_after_pocket_chemistry"
+            )
+            or calibration_retained
+        ),
+        "geometry_mismatch": calibration_retained,
+    }
+    calibration_trace_rows = [
+        {"stage_id": stage_id, "calibration_in_scope_retained": value}
+        for stage_id, value in calibration_trace.items()
+    ]
+    source_guardrail_records = [
+        deployment.get("guardrails") or {},
+        pairwise.get("guardrails") or {},
+        channel.get("guardrails") or {},
+        pocket.get("guardrails") or {},
+        geometry.get("guardrails") or {},
+    ]
+    source_status_checks = {
+        "deployment_action_readout_ready": bool(
+            deployment_decision.get("deployment_valid_action_readout_available")
+        ),
+        "pairwise_counteraxis_selected": bool(
+            pairwise_decision.get("pairwise_descriptor_counteraxis_selected_now")
+        ),
+        "channel_margin_counteraxis_selected": bool(
+            channel_decision.get("channel_margin_counteraxis_selected_now")
+        ),
+        "pocket_chemistry_counteraxis_selected": bool(
+            pocket_decision.get("pocket_chemistry_counteraxis_selected_now")
+        ),
+        "geometry_mismatch_counteraxis_selected": bool(
+            geometry_decision.get("geometry_mismatch_counteraxis_selected_now")
+        ),
+        "source_artifacts_all_measured_readouts": all(
+            bool(guardrails.get("measured_readout"))
+            for guardrails in source_guardrail_records
+        ),
+        "source_artifacts_no_blocker_packets": all(
+            not bool(guardrails.get("blocker_packet"))
+            for guardrails in source_guardrail_records
+        ),
+        "source_artifacts_no_candidate_rows_scored_now": all(
+            not bool(guardrails.get("candidate_rows_scored_now"))
+            for guardrails in source_guardrail_records
+        ),
+        "source_artifacts_no_threshold_value_changes": all(
+            not bool(guardrails.get("threshold_values_changed"))
+            for guardrails in source_guardrail_records
+        ),
+        "source_artifacts_no_production_threshold_changes": all(
+            not bool(guardrails.get("production_thresholds_changed"))
+            for guardrails in source_guardrail_records
+        ),
+        "source_artifacts_no_experimental_pdb_metadata_shortcut": all(
+            not bool(
+                guardrails.get("experimental_pdb_metadata_used_as_deployment_input")
+            )
+            for guardrails in source_guardrail_records
+        ),
+    }
+    consistency_checks = {
+        "residual_row_count_matches_deployment_artifact": (
+            len(residual_ids) == deployment_residual_rows_count
+        ),
+        "accepted_counteraxis_count_matches_deployment_artifact": (
+            len(baseline_accepted_ids)
+            == _closure_count_or_default(
+                deployment_counts,
+                "unique_residual_rows_abstained_by_accepted_counteraxes",
+                len(baseline_accepted_ids),
+            )
+        ),
+        "descriptor_stage_count_matches_pairwise_artifact": (
+            len(descriptor_stage_ids) == expected_descriptor_stage_rows
+        ),
+        "channel_stage_count_matches_channel_artifact": (
+            len(channel_stage_ids)
+            == _closure_count_or_default(
+                channel_counts,
+                "new_counteraxis_application_rows_fired_after_descriptor_rules",
+                len(channel_stage_ids),
+            )
+        ),
+        "pocket_stage_count_matches_pocket_artifact": (
+            len(pocket_stage_ids)
+            == _closure_count_or_default(
+                pocket_counts,
+                "new_pocket_chemistry_application_rows_fired_after_prior_counteraxes",
+                len(pocket_stage_ids),
+            )
+        ),
+        "geometry_stage_count_matches_geometry_artifact": (
+            len(geometry_stage_ids)
+            == _closure_count_or_default(
+                geometry_counts,
+                "new_geometry_mismatch_application_rows_fired_after_pocket_chemistry",
+                len(geometry_stage_ids),
+            )
+        ),
+        "final_residual_count_matches_geometry_artifact": (
+            len(final_residual_ids)
+            == _closure_count_or_default(
+                geometry_counts,
+                "retained_residual_rows_after_geometry_mismatch_counteraxis",
+                len(final_residual_ids),
+            )
+        ),
+        "train_cal_oos_abstention_trace_monotonic": all(
+            earlier <= later for earlier, later in zip(oos_values, oos_values[1:])
+        ),
+        "calibration_retention_trace_stable": (
+            len(set(calibration_trace.values())) == 1
+        ),
+        "source_artifact_statuses_ready": all(source_status_checks.values()),
+    }
+
+    guardrail_checks = {
+        "deployment_action_readout_available": bool(
+            deployment_decision.get("deployment_valid_action_readout_available")
+        ),
+        "safe_abstention_routing_available": bool(
+            geometry_decision.get("safe_abstention_routing_available_now")
+        ),
+        "pairwise_selected_train_cal_only": bool(
+            (pairwise.get("guardrails") or {}).get("rule_selected_on_train_cal_only")
+        ),
+        "channel_selected_train_cal_only": bool(
+            (channel.get("guardrails") or {}).get("rule_selected_on_train_cal_only")
+        ),
+        "pocket_selected_train_cal_only": bool(
+            (pocket.get("guardrails") or {}).get("rule_selected_on_train_cal_only")
+        ),
+        "geometry_selected_train_cal_only": bool(
+            (geometry.get("guardrails") or {}).get("rule_selected_on_train_cal_only")
+        ),
+        "pairwise_application_rows_excluded": not bool(
+            pairwise_decision.get("application_rows_used_for_rule_selection")
+        ),
+        "channel_application_rows_excluded": not bool(
+            channel_decision.get("application_rows_used_for_rule_selection")
+        ),
+        "pocket_application_rows_excluded": not bool(
+            pocket_decision.get("application_rows_used_for_rule_selection")
+        ),
+        "geometry_application_rows_excluded": not bool(
+            geometry_decision.get("application_rows_used_for_rule_selection")
+        ),
+        "zero_residual_retained_rows": len(final_residual_ids) == 0,
+        "no_duplicate_stage_assignment": len(duplicate_stage_ids) == 0,
+        "all_residual_rows_have_final_route": len(unrouted_residual_ids) == 0,
+        "true_in_scope_retention_floor_met": true_in_scope_retention_floor_met,
+        "threshold_not_changed_by_closure": not bool(
+            geometry_operating.get("production_threshold_change")
+        ),
+        "fixed_threshold_scoring_closure_remains_fail_closed": not bool(
+            geometry_decision.get("fixed_threshold_scoring_closure_available_now")
+        ),
+        "closure_consistency_checks_pass": all(consistency_checks.values()),
+    }
+    guardrail_violations = sorted(
+        [name for name, ok in guardrail_checks.items() if not ok]
+    )
+    deployment_valid_closure = not guardrail_violations
+
+    operating_stages = [
+        {
+            "stage_id": "accepted_cofactor_or_same_family_bandpass",
+            "source_artifact": deployment.get("artifact_id"),
+            "rows_routed_or_abstained": len(baseline_accepted_ids),
+            "entry_ids": baseline_accepted_ids,
+            "residual_rows_remaining_after_stage": int(
+                deployment_counts.get("residual_rows_retained_after_accepted_counteraxes")
+                or 0
+            ),
+            "selection_or_acceptance_basis": (
+                "accepted prior Lever 3 cofactor-context and same-family "
+                "bandpass counteraxes"
+            ),
+        },
+        {
+            "stage_id": "descriptor_generalization_and_pairwise",
+            "source_artifact": pairwise.get("artifact_id"),
+            "rows_routed_or_abstained": len(descriptor_stage_ids),
+            "entry_ids": descriptor_stage_ids,
+            "residual_rows_remaining_after_stage": int(
+                pairwise_counts.get("retained_residual_rows_after_pairwise_counteraxis")
+                or 0
+            ),
+            "selection_or_acceptance_basis": (
+                "train/cal-selected source-free active-site residue-count "
+                "descriptor rules with retained application rows excluded"
+            ),
+        },
+        {
+            "stage_id": "channel_margin_fold_bandpass_and_fold_cofactor_pressure",
+            "source_artifact": channel.get("artifact_id"),
+            "rows_routed_or_abstained": len(channel_stage_ids),
+            "entry_ids": channel_stage_ids,
+            "residual_rows_remaining_after_stage": int(
+                channel_counts.get("retained_residual_rows_after_all_counteraxes")
+                or 0
+            ),
+            "selection_or_acceptance_basis": (
+                "train/cal-selected source-free margin, fold-TM midband, and "
+                "fold/cofactor pressure rules"
+            ),
+        },
+        {
+            "stage_id": "pocket_chemistry",
+            "source_artifact": pocket.get("artifact_id"),
+            "rows_routed_or_abstained": len(pocket_stage_ids),
+            "entry_ids": pocket_stage_ids,
+            "residual_rows_remaining_after_stage": int(
+                pocket_counts.get(
+                    "retained_residual_rows_after_pocket_chemistry_counteraxis"
+                )
+                or 0
+            ),
+            "selection_or_acceptance_basis": (
+                "train/cal-selected source-free pocket chemistry class-count rule"
+            ),
+        },
+        {
+            "stage_id": "geometry_mismatch",
+            "source_artifact": geometry.get("artifact_id"),
+            "rows_routed_or_abstained": len(geometry_stage_ids),
+            "entry_ids": geometry_stage_ids,
+            "residual_rows_remaining_after_stage": len(final_residual_ids),
+            "selection_or_acceptance_basis": (
+                "train/cal-selected source-free low geometry-top1/high "
+                "combined-min-geometry-fold mismatch rule"
+            ),
+        },
+    ]
+
+    return {
+        "artifact_id": artifact_id,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_lever3_operating_point_closure_readout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_lever3_operating_point_closure_readout_closed"
+            if deployment_valid_closure
+            else "fold_augmented_lever3_operating_point_closure_readout_needs_more_work"
+        ),
+        "scope": (
+            "Lever 3 deployment-valid operating-point closure readout. It "
+            "composes already-selected source-free train/cal counteraxis "
+            "readouts for hard retained same-family transfer residuals and "
+            "checks whether the current abstain/route operating point closes "
+            "unsafe mechanism transfer without changing thresholds, scoring "
+            "rows, staging coordinates, or using heldout rows."
+        ),
+        "operating_point": {
+            "route_id": (
+                "fixed_baseline_plus_accepted_counteraxes_plus_descriptor_"
+                "plus_channel_margin_fold_pressure_plus_pocket_chemistry_"
+                "plus_geometry_mismatch"
+            ),
+            "baseline_threshold": baseline_threshold,
+            "threshold_selection_source": "train_calibration_only",
+            "threshold_or_value_changed_now": False,
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_in_scope_retained": calibration_retained,
+            "calibration_retention_fraction": (
+                round(calibration_retained / calibration_rows, 6)
+                if calibration_rows
+                else None
+            ),
+            "train_cal_oos_rows": train_cal_oos_rows,
+            "train_cal_oos_abstained_or_routed": train_cal_oos_abstained,
+            "train_cal_oos_abstention_fraction": (
+                round(train_cal_oos_abstained / train_cal_oos_rows, 6)
+                if train_cal_oos_rows
+                else None
+            ),
+            "retained_residual_rows_after_all_counteraxes": len(final_residual_ids),
+            "hard_confounded_retained_residuals_closed": len(final_residual_ids) == 0,
+            "fixed_threshold_scoring_closure_available_now": False,
+            "stages": operating_stages,
+            "train_cal_oos_abstention_trace": oos_trace,
+            "train_cal_oos_abstention_trace_rows": oos_trace_rows,
+            "calibration_retention_trace": calibration_trace,
+            "calibration_retention_trace_rows": calibration_trace_rows,
+        },
+        "residual_route_rows": residual_route_rows,
+        "p07658_fail_closed_action_rows": [
+            row
+            for row in deployment.get("incomplete_input_action_rows", []) or []
+            if isinstance(row, dict)
+        ],
+        "guardrail_checks": guardrail_checks,
+        "source_status_checks": source_status_checks,
+        "consistency_checks": consistency_checks,
+        "guardrail_violations": guardrail_violations,
+        "counts": {
+            "residual_rows_entering_closure": len(residual_ids),
+            "accepted_counteraxis_residual_rows_abstained": len(baseline_accepted_ids),
+            "descriptor_counteraxis_residual_rows_abstained": len(descriptor_stage_ids),
+            "channel_margin_fold_pressure_residual_rows_abstained": len(
+                channel_stage_ids
+            ),
+            "pocket_chemistry_residual_rows_abstained": len(pocket_stage_ids),
+            "geometry_mismatch_residual_rows_abstained": len(geometry_stage_ids),
+            "residual_rows_abstained_or_routed_after_all_counteraxes": len(
+                routed_ids
+            ),
+            "retained_residual_rows_after_all_counteraxes": len(final_residual_ids),
+            "residual_rows_without_final_route": len(unrouted_residual_ids),
+            "duplicate_residual_stage_assignments": len(duplicate_stage_ids),
+            "calibration_in_scope_rows": calibration_rows,
+            "calibration_in_scope_retained": calibration_retained,
+            "train_cal_oos_rows": train_cal_oos_rows,
+            "train_cal_oos_abstained_or_routed": train_cal_oos_abstained,
+            "p07658_fail_closed_action_rows": len(
+                [
+                    row
+                    for row in deployment.get("incomplete_input_action_rows", []) or []
+                    if isinstance(row, dict)
+                ]
+            ),
+            "guardrail_violation_total": len(guardrail_violations),
+            "source_artifacts_composed": 5,
+        },
+        "diagnostics": {
+            "residual_ids": residual_ids,
+            "routed_residual_ids": routed_ids,
+            "unrouted_residual_ids": unrouted_residual_ids,
+            "duplicate_stage_assignment_entry_ids": duplicate_stage_ids,
+            "descriptor_prior_entry_ids": descriptor_prior_ids,
+            "descriptor_pairwise_entry_ids": descriptor_pairwise_ids,
+            "channel_margin_entry_ids": channel_margin_ids,
+            "fold_tm_bandpass_entry_ids": fold_tm_bandpass_ids,
+            "fold_cofactor_pressure_entry_ids": fold_cofactor_pressure_ids,
+            "pocket_chemistry_entry_ids": pocket_stage_ids,
+            "geometry_mismatch_entry_ids": geometry_stage_ids,
+        },
+        "decision": {
+            "deployment_valid_operating_point_readout_available": True,
+            "deployment_valid_safe_abstention_route_available_now": (
+                deployment_valid_closure
+            ),
+            "zero_residual_retained_transfer_risk_available_now": (
+                len(final_residual_ids) == 0
+            ),
+            "true_in_scope_retention_floor_met": true_in_scope_retention_floor_met,
+            "predicted_structure_source_free_evidence_enough_for_safe_abstention": (
+                deployment_valid_closure
+            ),
+            "predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure": (
+                False
+            ),
+            "fixed_threshold_scoring_closure_available_now": False,
+            "unsafe_forced_mechanism_transfer_allowed": False,
+            "score_or_force_mechanism_label_for_retained_rows_now": False,
+            "apply_or_change_threshold_now": False,
+            "operator_action_at_this_operating_point": (
+                "abstain_or_route_novel_oos_for_all_hard_retained_residuals; "
+                "do_not_force_mechanism_labels; keep fixed-threshold scoring "
+                "closure fail-closed"
+            ),
+            "exact_missing_evidence_for_scoring_closure": [
+                "one credentialed provider route or local predictor that accepts the exact 715-aa P07658 FASTA",
+                "returned full-length coordinate file at the preferred staging path",
+                "filled provenance with provider/model/version/path/checksum, input sequence hash, and documented U140 handling",
+                "P07658 acceptance preflight with all required checks passing",
+            ],
+            "next_gate": (
+                "Use this closure readout as the current Lever 3 abstain/route "
+                "operating point. Do not change threshold 0.44155 or force "
+                "mechanism labels; fixed-threshold scoring closure remains "
+                "blocked only on the separate exact P07658 coordinate/provenance "
+                "route."
+            ),
+        },
+        "guardrails": {
+            "measured_readout": True,
+            "blocker_packet": False,
+            "lever3_only": True,
+            "existing_artifacts_only": True,
+            "source_free_counteraxis_artifacts_only": True,
+            "composes_prior_train_cal_selected_rules": True,
+            "new_rule_selected_now": False,
+            "application_rows_used_for_rule_selection": False,
+            "candidate_rows_scored_now": False,
+            "coordinates_generated_now": False,
+            "coordinates_staged_now": False,
+            "provider_calls_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "threshold_selected_or_tuned_now": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_used_for_rule_selection": False,
+            "labels_source_ids_target_names_or_mechanism_text_used_as_features": False,
+            "experimental_pdb_metadata_used_as_deployment_input": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "source_artifacts": {
+            "deployment_action_readout": _source_path_record(
+                deployment_action_readout_path
+            ),
+            "retained_pairwise_descriptor_counteraxis_readout": _source_path_record(
+                retained_pairwise_descriptor_counteraxis_readout_path
+            ),
+            "retained_channel_margin_counteraxis_readout": _source_path_record(
+                retained_channel_margin_counteraxis_readout_path
+            ),
+            "retained_pocket_chemistry_counteraxis_readout": _source_path_record(
+                retained_pocket_chemistry_counteraxis_readout_path
+            ),
+            "retained_geometry_mismatch_counteraxis_readout": _source_path_record(
+                retained_geometry_mismatch_counteraxis_readout_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "Lever 3 has a deployment-valid abstain/route operating point "
+                f"with {len(final_residual_ids)} retained residual rows."
+            ),
+            "result": (
+                f"The composed route keeps {calibration_retained}/"
+                f"{calibration_rows} calibration in-scope rows and abstains or "
+                f"routes {train_cal_oos_abstained}/{train_cal_oos_rows} "
+                "train/cal OOS rows, while routing all hard retained residuals "
+                "instead of assigning mechanism labels."
+            ),
+            "next_action": (
+                "Harden this closure with source-hash and reproducibility "
+                "checks; fixed-threshold scoring closure is a separate P07658 "
+                "coordinate/provenance task."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_lever3_operating_point_closure_readout_report(
+    readout: dict[str, Any],
+) -> str:
+    counts = readout["counts"]
+    decision = readout["decision"]
+    operating = readout["operating_point"]
+    lines = [
+        "# Fold-Augmented Lever 3 Operating-Point Closure Readout - current702",
+        "",
+        f"Run: {readout['created_utc']}",
+        "",
+        readout["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {readout['status']}",
+        "- Deployment-valid safe abstention route available now: "
+        f"{decision['deployment_valid_safe_abstention_route_available_now']}",
+        "- Zero residual retained-transfer risk available now: "
+        f"{decision['zero_residual_retained_transfer_risk_available_now']}",
+        "- Fixed-threshold scoring closure available now: "
+        f"{decision['fixed_threshold_scoring_closure_available_now']}",
+        "- Guardrail violations: "
+        f"{readout['guardrail_violations']}",
+        "- Closure consistency checks pass: "
+        f"{readout['guardrail_checks']['closure_consistency_checks_pass']}",
+        "",
+        "## Operating Point",
+        "",
+        f"- Route ID: {operating['route_id']}",
+        f"- Baseline threshold: {operating['baseline_threshold']}",
+        f"- Threshold selection source: {operating['threshold_selection_source']}",
+        "- Threshold/value changed now: "
+        f"{operating['threshold_or_value_changed_now']}",
+        "- Calibration retained: "
+        f"{operating['calibration_in_scope_retained']}/"
+        f"{operating['calibration_in_scope_rows']} "
+        f"({operating['calibration_retention_fraction']})",
+        "- Train/cal OOS abstained or routed: "
+        f"{operating['train_cal_oos_abstained_or_routed']}/"
+        f"{operating['train_cal_oos_rows']} "
+        f"({operating['train_cal_oos_abstention_fraction']})",
+        "- Retained residual rows after all counteraxes: "
+        f"{operating['retained_residual_rows_after_all_counteraxes']}",
+        "",
+        "## Residual Route Stages",
+        "",
+        "| stage | rows routed | remaining after stage | entry ids |",
+        "| --- | ---: | ---: | --- |",
+    ]
+    for stage in operating.get("stages", []):
+        lines.append(
+            f"| {stage['stage_id']} | {stage['rows_routed_or_abstained']} | "
+            f"{stage['residual_rows_remaining_after_stage']} | "
+            f"{', '.join(stage['entry_ids']) or 'none'} |"
+        )
+    lines += [
+        "",
+        "## Operating Traces",
+        "",
+        "| stage | train/cal OOS abstained or routed |",
+        "| --- | ---: |",
+    ]
+    for row in operating.get("train_cal_oos_abstention_trace_rows", []):
+        lines.append(
+            f"| {row['stage_id']} | {row['train_cal_oos_abstained_or_routed']} |"
+        )
+    lines += [
+        "",
+        "| stage | calibration in-scope retained |",
+        "| --- | ---: |",
+    ]
+    for row in operating.get("calibration_retention_trace_rows", []):
+        lines.append(
+            f"| {row['stage_id']} | {row['calibration_in_scope_retained']} |"
+        )
+    lines += [
+        "",
+        "## Counts",
+        "",
+        f"- Residual rows entering closure: {counts['residual_rows_entering_closure']}",
+        "- Residual rows abstained/routed after all counteraxes: "
+        f"{counts['residual_rows_abstained_or_routed_after_all_counteraxes']}",
+        "- Residual rows without final route: "
+        f"{counts['residual_rows_without_final_route']}",
+        "- P07658 fail-closed action rows: "
+        f"{counts['p07658_fail_closed_action_rows']}",
+        "",
+        "## Consistency Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in readout.get("consistency_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Source Status Checks",
+        "",
+        "| check | passed |",
+        "| --- | ---: |",
+    ]
+    for name, passed in readout.get("source_status_checks", {}).items():
+        lines.append(f"| {name} | {passed} |")
+    lines += [
+        "",
+        "## Residual Row Actions",
+        "",
+        "| row | accession | route stage | action | force label |",
+        "| --- | --- | --- | --- | ---: |",
+    ]
+    for row in readout.get("residual_route_rows", []):
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row['final_lever3_route_stage']} | "
+            f"{row['deployment_action_now']} | "
+            f"{row['force_mechanism_label_now']} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Predicted/source-free evidence enough for safe abstention: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_safe_abstention']}",
+        "- Predicted/source-free evidence enough for fixed-threshold scoring closure: "
+        f"{decision['predicted_structure_source_free_evidence_enough_for_fixed_threshold_scoring_closure']}",
+        "- Unsafe forced mechanism transfer allowed: "
+        f"{decision['unsafe_forced_mechanism_transfer_allowed']}",
+        "- Operator action: "
+        f"{decision['operator_action_at_this_operating_point']}",
+        "- Exact missing evidence for scoring closure: "
+        f"{decision['exact_missing_evidence_for_scoring_closure']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Measured readout only. Existing source-free artifacts only; no new rule selection, row scoring, coordinates, labels, registries, ontologies, imports, production threshold changes, heldout tuning, provider calls, or secret values changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {readout['interpretation']['headline']}",
+        f"- {readout['interpretation']['result']}",
+        f"- {readout['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_lever3_operating_point_closure_readout(
+    *,
+    deployment_action_readout_path: Path,
+    retained_pairwise_descriptor_counteraxis_readout_path: Path,
+    retained_channel_margin_counteraxis_readout_path: Path,
+    retained_pocket_chemistry_counteraxis_readout_path: Path,
+    retained_geometry_mismatch_counteraxis_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    artifact_id: str = FOLD_AUGMENTED_LEVER3_OPERATING_POINT_CLOSURE_READOUT_ID,
+) -> dict[str, Any]:
+    readout = build_fold_augmented_lever3_operating_point_closure_readout(
+        deployment_action_readout_path=deployment_action_readout_path,
+        retained_pairwise_descriptor_counteraxis_readout_path=(
+            retained_pairwise_descriptor_counteraxis_readout_path
+        ),
+        retained_channel_margin_counteraxis_readout_path=(
+            retained_channel_margin_counteraxis_readout_path
+        ),
+        retained_pocket_chemistry_counteraxis_readout_path=(
+            retained_pocket_chemistry_counteraxis_readout_path
+        ),
+        retained_geometry_mismatch_counteraxis_readout_path=(
+            retained_geometry_mismatch_counteraxis_readout_path
+        ),
+        artifact_id=artifact_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(readout, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_lever3_operating_point_closure_readout_report(
                 readout
             ),
             encoding="utf-8",

@@ -9817,6 +9817,115 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
         self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
 
+    def test_fold_augmented_lever3_operating_point_closure_readout_counts(
+        self,
+    ) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_lever3_operating_point_closure_"
+                "readout_current702_20260605.json"
+            )
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_operating_point_closure_readout_closed",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_safe_abstention_route_available_now"]
+        )
+        self.assertTrue(
+            readout["decision"]["zero_residual_retained_transfer_risk_available_now"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_entering_closure"], 21
+        )
+        self.assertEqual(
+            readout["counts"]["accepted_counteraxis_residual_rows_abstained"],
+            10,
+        )
+        self.assertEqual(
+            readout["counts"]["descriptor_counteraxis_residual_rows_abstained"],
+            2,
+        )
+        self.assertEqual(
+            readout["counts"][
+                "channel_margin_fold_pressure_residual_rows_abstained"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readout["counts"]["pocket_chemistry_residual_rows_abstained"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["geometry_mismatch_residual_rows_abstained"],
+            1,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["train_cal_oos_abstained_or_routed"], 167
+        )
+        self.assertEqual(
+            readout["counts"]["calibration_in_scope_retained"], 31
+        )
+        self.assertEqual(readout["counts"]["calibration_in_scope_rows"], 34)
+        self.assertEqual(readout["guardrail_violations"], [])
+        self.assertTrue(
+            readout["guardrail_checks"]["closure_consistency_checks_pass"]
+        )
+        self.assertTrue(
+            readout["consistency_checks"][
+                "train_cal_oos_abstention_trace_monotonic"
+            ]
+        )
+        self.assertTrue(
+            readout["consistency_checks"]["calibration_retention_trace_stable"]
+        )
+        self.assertTrue(
+            readout["source_status_checks"][
+                "source_artifacts_all_measured_readouts"
+            ]
+        )
+        self.assertTrue(
+            readout["source_status_checks"]["source_artifacts_no_blocker_packets"]
+        )
+        self.assertTrue(
+            readout["source_status_checks"][
+                "source_artifacts_no_threshold_value_changes"
+            ]
+        )
+        self.assertEqual(
+            [
+                row["train_cal_oos_abstained_or_routed"]
+                for row in readout["operating_point"][
+                    "train_cal_oos_abstention_trace_rows"
+                ]
+            ],
+            [105, 110, 165, 165, 167],
+        )
+        self.assertEqual(
+            [
+                row["calibration_in_scope_retained"]
+                for row in readout["operating_point"][
+                    "calibration_retention_trace_rows"
+                ]
+            ],
+            [31, 31, 31, 31],
+        )
+        self.assertTrue(readout["guardrails"]["measured_readout"])
+        self.assertFalse(readout["guardrails"]["new_rule_selected_now"])
+        self.assertFalse(readout["guardrails"]["candidate_rows_scored_now"])
+        self.assertFalse(readout["guardrails"]["threshold_values_changed"])
+
     def test_fold_augmented_p07658_alphafold_prediction_api_probe_counts(
         self,
     ) -> None:
@@ -9953,6 +10062,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             (
                 "v3_fold_augmented_lever3_retained_geometry_mismatch_"
                 "counteraxis_readout_current702_20260605.json"
+            ),
+            (
+                "v3_fold_augmented_lever3_operating_point_closure_"
+                "readout_current702_20260605.json"
             ),
         ]:
             with self.subTest(artifact_name=artifact_name):

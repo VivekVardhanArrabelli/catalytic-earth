@@ -823,6 +823,48 @@ class CliTests(unittest.TestCase):
             args.report,
         )
 
+    def test_lever3_operating_point_closure_readout_parser_defaults(
+        self,
+    ) -> None:
+        args = build_parser().parse_args(
+            [
+                "build-fold-augmented-lever3-operating-point-"
+                "closure-readout"
+            ]
+        )
+
+        self.assertEqual(
+            args.out,
+            (
+                "artifacts/v3_fold_augmented_lever3_operating_point_closure_"
+                "readout_current702_20260605.json"
+            ),
+        )
+        self.assertIn(
+            "lever3_deployment_action_readout",
+            args.deployment_action_readout,
+        )
+        self.assertIn(
+            "retained_pairwise_descriptor_counteraxis_readout",
+            args.retained_pairwise_descriptor_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_channel_margin_counteraxis_readout",
+            args.retained_channel_margin_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_pocket_chemistry_counteraxis_readout",
+            args.retained_pocket_chemistry_counteraxis_readout,
+        )
+        self.assertIn(
+            "retained_geometry_mismatch_counteraxis_readout",
+            args.retained_geometry_mismatch_counteraxis_readout,
+        )
+        self.assertIn(
+            "operating_point_closure_readout",
+            args.report,
+        )
+
     def test_active_lever_commands_default_to_reviewed_locator_decisions(
         self,
     ) -> None:

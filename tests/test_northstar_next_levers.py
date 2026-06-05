@@ -89,6 +89,7 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_lever3_retained_channel_margin_counteraxis_readout,
     build_fold_augmented_lever3_retained_pocket_chemistry_counteraxis_readout,
     build_fold_augmented_lever3_retained_geometry_mismatch_counteraxis_readout,
+    build_fold_augmented_lever3_operating_point_closure_readout,
     build_fold_augmented_lever3_post_bandpass_deployment_readout,
     build_fold_augmented_lever3_retention_frontier_readout,
     build_fold_augmented_lever3_residual_safety_readout,
@@ -7697,6 +7698,305 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(readout["guardrails"]["rule_selected_on_train_cal_only"])
         self.assertFalse(
             readout["guardrails"]["heldout_rows_used_for_rule_selection"]
+        )
+
+    def test_lever3_operating_point_closure_composes_prior_counteraxes(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            deployment_path = root / "deployment.json"
+            pairwise_path = root / "pairwise.json"
+            channel_path = root / "channel.json"
+            pocket_path = root / "pocket.json"
+            geometry_path = root / "geometry.json"
+
+            deployment_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "deployment",
+                        "counts": {
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained": 2,
+                            "all_train_cal_oos_rows": 10,
+                            "all_train_cal_oos_abstained": 3,
+                            "residual_rows": 6,
+                            "unique_residual_rows_abstained_by_accepted_counteraxes": 1,
+                            "residual_rows_retained_after_accepted_counteraxes": 5,
+                        },
+                        "decision": {
+                            "deployment_valid_action_readout_available": True,
+                        },
+                        "guardrails": {
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "operating_point": {"baseline_threshold": 0.5},
+                        "incomplete_input_action_rows": [
+                            {
+                                "entry_id": "m_csa:562",
+                                "deployment_action_now": "abstain_or_route_novel_oos",
+                            }
+                        ],
+                        "residual_action_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "A1",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "abstain_or_route_novel_oos",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "A2",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "A3",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "accession": "A4",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "accession": "A5",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "accession": "A6",
+                                "label_type": "out_of_scope",
+                                "deployment_action_now": "retain_at_fixed_operating_point_not_scoring_closure",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pairwise_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "pairwise",
+                        "counts": {
+                            "prior_descriptor_counteraxis_application_rows_fired": 1,
+                            "new_pairwise_application_rows_fired_after_prior_rule": 1,
+                            "retained_residual_rows_after_pairwise_counteraxis": 3
+                        },
+                        "decision": {
+                            "pairwise_descriptor_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "application_row_actions": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "deployment_action_delta": "already_abstain_or_route_novel_oos_by_prior_descriptor_rule",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "deployment_action_delta": "abstain_or_route_novel_oos",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            channel_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "channel",
+                        "counts": {
+                            "descriptor_plus_accepted_all_train_cal_oos_abstained": 4,
+                            "combined_all_train_cal_oos_abstained_after_all_counteraxes": 5,
+                            "new_counteraxis_application_rows_fired_after_descriptor_rules": 1,
+                            "retained_residual_rows_after_all_counteraxes": 2
+                        },
+                        "decision": {
+                            "channel_margin_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "retained_rows_newly_abstained_by_margin_counteraxis": [
+                                "m_csa:4"
+                            ],
+                            "retained_rows_newly_abstained_by_fold_tm_bandpass_counteraxis": [],
+                            "retained_rows_newly_abstained_by_fold_cofactor_pressure_counteraxis": [],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            pocket_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "pocket",
+                        "counts": {
+                            "combined_all_train_cal_oos_abstained_after_pocket_chemistry": 6,
+                            "new_pocket_chemistry_application_rows_fired_after_prior_counteraxes": 1,
+                            "retained_residual_rows_after_pocket_chemistry_counteraxis": 1
+                        },
+                        "decision": {
+                            "pocket_chemistry_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "retained_rows_newly_abstained_by_pocket_chemistry_counteraxis": [
+                                "m_csa:5"
+                            ],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry_path.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "geometry",
+                        "counts": {
+                            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 7,
+                            "new_geometry_mismatch_application_rows_fired_after_pocket_chemistry": 1,
+                            "retained_residual_rows_after_geometry_mismatch_counteraxis": 0
+                        },
+                        "decision": {
+                            "geometry_mismatch_counteraxis_selected_now": True,
+                            "application_rows_used_for_rule_selection": False,
+                            "safe_abstention_routing_available_now": True,
+                            "fixed_threshold_scoring_closure_available_now": False,
+                            "retained_rows_newly_abstained_by_geometry_mismatch_counteraxis": [
+                                "m_csa:6"
+                            ],
+                            "retained_rows_remaining_after_geometry_mismatch_counteraxis": [],
+                        },
+                        "guardrails": {
+                            "rule_selected_on_train_cal_only": True,
+                            "measured_readout": True,
+                            "blocker_packet": False,
+                            "candidate_rows_scored_now": False,
+                            "threshold_values_changed": False,
+                            "production_thresholds_changed": False,
+                            "experimental_pdb_metadata_used_as_deployment_input": False,
+                        },
+                        "operating_point_after_geometry_mismatch": {
+                            "baseline_threshold": 0.5,
+                            "calibration_in_scope_rows": 2,
+                            "calibration_in_scope_retained_after_geometry_mismatch": 2,
+                            "all_train_cal_oos_full_channel_rows": 10,
+                            "combined_all_train_cal_oos_abstained_after_geometry_mismatch": 7,
+                            "production_threshold_change": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            readout = build_fold_augmented_lever3_operating_point_closure_readout(
+                deployment_action_readout_path=deployment_path,
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                retained_channel_margin_counteraxis_readout_path=channel_path,
+                retained_pocket_chemistry_counteraxis_readout_path=pocket_path,
+                retained_geometry_mismatch_counteraxis_readout_path=geometry_path,
+                artifact_id="custom_operating_point_closure",
+            )
+
+            pairwise_doc = json.loads(pairwise_path.read_text(encoding="utf-8"))
+            pairwise_doc["guardrails"]["blocker_packet"] = True
+            pairwise_path.write_text(json.dumps(pairwise_doc), encoding="utf-8")
+            blocked_readout = build_fold_augmented_lever3_operating_point_closure_readout(
+                deployment_action_readout_path=deployment_path,
+                retained_pairwise_descriptor_counteraxis_readout_path=pairwise_path,
+                retained_channel_margin_counteraxis_readout_path=channel_path,
+                retained_pocket_chemistry_counteraxis_readout_path=pocket_path,
+                retained_geometry_mismatch_counteraxis_readout_path=geometry_path,
+                artifact_id="blocked_operating_point_closure",
+            )
+
+        self.assertEqual(readout["artifact_id"], "custom_operating_point_closure")
+        self.assertEqual(
+            readout["status"],
+            "fold_augmented_lever3_operating_point_closure_readout_closed",
+        )
+        self.assertTrue(
+            readout["decision"]["deployment_valid_safe_abstention_route_available_now"]
+        )
+        self.assertTrue(
+            readout["decision"]["zero_residual_retained_transfer_risk_available_now"]
+        )
+        self.assertFalse(
+            readout["decision"]["fixed_threshold_scoring_closure_available_now"]
+        )
+        self.assertEqual(
+            readout["counts"]["residual_rows_entering_closure"], 6
+        )
+        self.assertEqual(
+            readout["counts"][
+                "residual_rows_abstained_or_routed_after_all_counteraxes"
+            ],
+            6,
+        )
+        self.assertEqual(
+            readout["counts"]["retained_residual_rows_after_all_counteraxes"],
+            0,
+        )
+        self.assertEqual(
+            readout["counts"]["train_cal_oos_abstained_or_routed"], 7
+        )
+        self.assertEqual(readout["guardrail_violations"], [])
+        self.assertTrue(
+            readout["guardrail_checks"]["closure_consistency_checks_pass"]
+        )
+        self.assertTrue(
+            readout["guardrails"]["composes_prior_train_cal_selected_rules"]
+        )
+        self.assertFalse(readout["guardrails"]["new_rule_selected_now"])
+
+        self.assertEqual(
+            blocked_readout["status"],
+            "fold_augmented_lever3_operating_point_closure_readout_needs_more_work",
+        )
+        self.assertFalse(
+            blocked_readout["source_status_checks"][
+                "source_artifacts_no_blocker_packets"
+            ]
+        )
+        self.assertFalse(
+            blocked_readout["guardrail_checks"]["closure_consistency_checks_pass"]
+        )
+        self.assertIn(
+            "closure_consistency_checks_pass",
+            blocked_readout["guardrail_violations"],
         )
 
     def test_confounded_proxy_train_cal_scoring_tranche_plan_selects_union(

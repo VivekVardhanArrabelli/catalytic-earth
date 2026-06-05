@@ -3,15 +3,16 @@
 ## Current automation run
 
 - Automation ID: `catalytic-earth-lever-3-2-forward-push`
-- STARTED_AT_UTC: `2026-06-05T08:01:49Z`
-- STARTED_AT_LOCAL: `2026-06-05T03:01:55-0500 CDT`
-- ENDED_AT_UTC: `2026-06-05T08:52:07Z`
-- ENDED_AT_LOCAL: `2026-06-05T03:52:07-0500 CDT`
-- ELAPSED_MINUTES: `50.30`
-- Status: Run 51 validation complete; commit/push/sync verification follows
-  this handoff write. Canonical `.git/catalytic-earth-automation.lock` was
-  acquired before substantive work at `2026-06-05T08:01:49Z`. Lever 3 work was
-  restricted to deployment-valid fold/geometry novelty-gate readouts.
+- STARTED_AT_UTC: `2026-06-05T09:01:46Z`
+- STARTED_AT_LOCAL: `2026-06-05T04:01:46-0500 CDT`
+- ENDED_AT_UTC: `2026-06-05T09:52:24Z`
+- ENDED_AT_LOCAL: `2026-06-05T04:52:24-0500 CDT`
+- ELAPSED_MINUTES: `50.65`
+- Status: Run 52 validation complete; commit/push/sync verification follows
+  this handoff write. Canonical
+  `.git/catalytic-earth-automation.lock` was acquired before substantive work
+  at `2026-06-05T09:01:46Z`. Lever 3 work was restricted to
+  deployment-valid fold/geometry novelty-gate readouts.
 
 ## Mission
 
@@ -62,6 +63,131 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-06-05 Lever 3 Forward Push Run 52
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-05T09:01:46Z`
+- STARTED_LOCAL: `2026-06-05T04:01:46-0500 CDT`
+- ENDED_AT: `2026-06-05T09:52:24Z`
+- ENDED_LOCAL: `2026-06-05T04:52:24-0500 CDT`
+- ELAPSED_MINUTES: `50.65`
+- Lock acquire result:
+  `.git/catalytic-earth-automation.lock` acquired before substantive work at
+  `2026-06-05T09:01:46Z`.
+
+#### Current objective
+
+Continue Lever 3 only: build a deployment-valid measured readout that further
+separates hard confounded OOS rows from true in-scope rows without heldout
+tuning or experimental-PDB metadata shortcuts. The previous run closed the
+retained-transfer residual set to zero at the current operating point, so this
+run should harden that result with focused validation, application/readout
+audits, or the next train/cal-selected source-free counteraxis if a remaining
+deployment-valid gap is found.
+
+#### What changed
+
+- Added
+  `build-fold-augmented-lever3-operating-point-closure-readout`
+  with builder/writer/report renderer in
+  `src/catalytic_earth/northstar_next_levers.py` and CLI wiring in
+  `src/catalytic_earth/cli.py`.
+- Wrote
+  `artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json`
+  and
+  `work/fold_augmented_lever3_operating_point_closure_readout_current702_20260605.md`.
+- Added synthetic builder coverage, parser-default coverage, artifact-count
+  regression coverage, source-artifact hash coverage, and a fail-closed
+  synthetic dependency-blocker check for the closure readout.
+
+#### Measured results
+
+- The closure readout composes the accepted Lever 3 retained counteraxis chain
+  without selecting a new rule: accepted cofactor/same-family bandpass,
+  descriptor generalization/pairwise descriptor, channel-margin/fold-pressure,
+  pocket chemistry, and geometry mismatch.
+- The deployment-valid operating point is closed for retained hard residuals:
+  21/21 hard residual rows route `abstain_or_route_novel_oos`, forced
+  mechanism labeling is false for all 21, and retained residual rows after all
+  counteraxes are 0.
+- True in-scope calibration retention stays 31/34. Train/cal OOS abstention or
+  routing is 167/204. The ordered trace is 105 -> 110 -> 165 -> 165 -> 167
+  train/cal OOS rows routed/abstained across the composed stages, while
+  calibration retention remains 31 at each checked stage.
+- Closure consistency checks and source-status checks all pass. Source
+  artifacts are measured readouts, non-blocker packets, have no candidate rows
+  scored now, no threshold changes, no production-threshold changes, and no
+  experimental-PDB metadata shortcut.
+- Current predicted/source-free evidence is enough for safe abstention/routing
+  at the operating point, not enough for fixed-threshold scoring closure. The
+  exact missing evidence for scoring closure remains the separate full-length
+  P07658 coordinate/provenance route and passing acceptance preflight.
+- No blocker packet was produced.
+
+#### Guardrails
+
+- Work was restricted to Lever 3.
+- No labels, registries, ontologies, imports, heldout splits, production
+  thresholds, threshold values, threshold tuning, row scoring, coordinate
+  staging, source decisions, model fitting, secret values, provider calls, or
+  experimental-PDB deployment shortcuts changed.
+- No heldout M-CSA rows were used for training, rule selection, or threshold
+  tuning.
+- No mechanism text, EC/Rhea IDs, labels, source IDs, target names, or
+  experimental-PDB metadata shortcuts were used as predictive features.
+- The new readout composes existing deployment-valid source-free artifacts
+  only; it performs no provider calls, coordinate downloads, coordinate
+  staging, imports, scoring reruns, or production-threshold changes.
+
+#### Validation
+
+- Required start-of-run unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1442 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Focused closure tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_lever3_operating_point_closure_composes_prior_counteraxes tests/test_cli.py::CliTests::test_lever3_operating_point_closure_readout_parser_defaults tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_operating_point_closure_readout_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_fold_augmented_lever3_dispatch_source_artifact_hashes_are_current -q`:
+  4 passed, 32 subtests passed.
+- Affected suites:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`:
+  618 passed, 197 subtests passed.
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`: 1490 passed, 216 subtests passed, with
+  the existing sklearn/SciPy L-BFGS-B deprecation warning.
+- Final full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`: 1445 passed with the
+  existing sklearn/SciPy L-BFGS-B deprecation warning.
+- `python -m compileall -q src tests`: passed.
+- `git diff --check`: passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`: 12 source records,
+  8 fingerprints, 15 ontology families, and 702 curated labels validated.
+- Repo JSON/JSONL parse sweep: 3564 JSON files and 27 JSONL files parsed with
+  0 errors.
+- Normalized reproducibility check passed for the closure CLI artifact after
+  normalizing `created_utc`.
+- Explicit closure guardrail audit passed with 0 errors.
+- Disk check remained above the guardrail: 23 GiB free.
+
+#### Progress, commit, and sync
+
+- Appended the measured progress entry to `work/progress_log.jsonl` and
+  regenerated `work/status.md` from the progress CLI.
+- Commit, push, `HEAD == origin/main` verification, and lock release remain the
+  final mechanical wrap steps after this handoff update.
+
+#### Exact next Lever 3 action
+
+Treat
+`artifacts/v3_fold_augmented_lever3_operating_point_closure_readout_current702_20260605.json`
+as the current Lever 3 abstain/route operating-point readout: zero retained
+hard residuals, 31/34 calibration retention, 167/204 train/cal OOS
+abstained/routed, and no forced mechanism labels. Do not change threshold
+`0.44155`; keep fixed-threshold scoring closure fail-closed until the separate
+exact P07658 coordinate/provenance route exists and passes acceptance
+preflight.
 
 ### 2026-06-05 Lever 3 Forward Push Run 51
 
