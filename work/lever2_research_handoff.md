@@ -158,7 +158,10 @@ blocker artifact.
 
 #### Commit/push status
 
-- Pending final wrap-up commit and push for this run.
+- Implementation/readout commit
+  `b17ca2f253cf309c7457578734633cb687c59c73` was pushed to
+  `origin/lever-2-research-track`.
+- A follow-up handoff status commit records this pushed implementation hash.
 
 #### Exact next action
 
